@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  push:
+    branches: [main, writer/**]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '24'
+  FORCE_COLOR: 0
+
+jobs:
+  # ─── Lint & Type Check ───────────────────────────────────────────────
+  lint:
+    name: Lint & Type Check
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check Writing Buddy extension
+        run: node node_modules/typescript/bin/tsc --project extensions/writing-buddy/tsconfig.json --noEmit
+
+      - name: ESLint Writing Buddy extension
+        run: node node_modules/eslint/bin/eslint.js extensions/writing-buddy/src --ext .ts --max-warnings 50
+        continue-on-error: true
+
+  # ─── Extension Tests ─────────────────────────────────────────────────
+  test-extension:
+    name: Extension Tests
+    runs-on: windows-latest
+    timeout-minutes: 30
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile extension
+        run: node node_modules/typescript/bin/tsc --project extensions/writing-buddy/tsconfig.json
+
+      - name: Run extension tests
+        run: |
+          $env:VSCODE_DEV = '1'
+          $env:NODE_ENV = 'development'
+          npm run test-extension -- --folder=extensions/writing-buddy 2>&1
+        shell: pwsh
+        continue-on-error: true
+
+  # ─── Build Check ─────────────────────────────────────────────────────
+  build:
+    name: Build Check
+    runs-on: windows-latest
+    timeout-minutes: 45
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile extensions
+        run: npm run compile-extensions-build
+
+      - name: Compile Writing Buddy extension
+        run: node node_modules/typescript/bin/tsc --project extensions/writing-buddy/tsconfig.json
+
+      - name: Verify build output
+        run: |
+          $files = @(
+            'extensions/writing-buddy/out/extension.js',
+            'extensions/writing-buddy/out/writerShell.js',
+            'extensions/writing-buddy/out/productHeader.js'
+          )
+          foreach ($f in $files) {
+            if (-not (Test-Path $f)) {
+              Write-Error "Missing build output: $f"
+              exit 1
+            }
+            Write-Host "OK: $f"
+          }
+        shell: pwsh
+
+  # ─── Security Scan ───────────────────────────────────────────────────
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: 'extensions/writing-buddy'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '0'

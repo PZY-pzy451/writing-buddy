@@ -1,0 +1,22 @@
+# Current Progress
+
+- Active task: Phase 0.3 — Writer Workbench Layout Prototype.
+- Status: implementation, full build, two-launch runtime, Hot Exit, hash safety, CLI, responsive layout, and low-resource verification passed; final review, documentation commit, local-origin push, and annotated tag are the remaining closeout gates.
+- Repository: `D:\develop_tool\writing-buddy`.
+- Branch: `writer/phase-0.3-writer-workbench-layout`.
+- Phase 0.3 base: annotated `baseline-writing-buddy-0.2-windows`, dereferenced commit `af858884cd982b88019c30fc76014c3ba0d921a5`.
+- Repository topology: `upstream` is `https://github.com/microsoft/vscode.git`; `origin` is `D:\develop_tool\writing-buddy-downstream.git`.
+- Architecture: the workbench prototype is a built-in UI extension; native Markdown TextDocuments and the Monaco editor remain the source of truth and editing surface.
+- Layout: the novel structure tree, native Markdown editor, and static scene assistant work together at wide and substantially narrower window sizes.
+- Editing: three chapters switch correctly; native editing, undo/redo, save, Hot Exit, counts, saved state, and focus mode passed.
+- Word counts: frozen CJK/ASCII/Markdown rules update from the active TextDocument and the three-chapter disk baseline.
+- Runtime isolation: `D:\develop_tool\writing-buddy-runtime\user-data`, `shared-data`, `extensions`, and `logs` were reused across both launches.
+- Hash safety: only the intentional Chapter 001 acceptance delta changed; Chapter 002 and Chapter 003 control hashes remained identical.
+- Build: final complete Watch passed at `BelowNormal` priority with the unchanged main-source/Copilot/all-built-in-extension task graph and no blocking errors.
+- Electron: the official final task regenerated `D:\develop_tool\writing-buddy\.build\electron\Writing Buddy.exe` with exit code 0.
+- Focused checks: extension compile 0 errors, 43 tests passing, ESLint exit 0.
+- Resource finding: the full Watch causes a bounded short-term commit peak and delayed Windows reclamation; after exit no repository Watch process remains and memory stabilizes. No growing Node leak was observed.
+- Known non-blockers: CLI still reports `Unknown commit`; the existing Mermaid proposal/tool error remains bounded; neither is being fixed in Phase 0.3.
+- Baseline report: `docs/build/windows-writing-buddy-workbench-layout.md`.
+- Final tag gate: `baseline-writing-buddy-0.3-windows` may be created only after final review, clean-tree verification, branch push, and exact local bare-ref checks pass.
+- Next phase: unstarted and intentionally undefined here; no Phase 0.4 implementation is authorized by this completion.

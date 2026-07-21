@@ -1,0 +1,156 @@
+{
+	"name": "writing-buddy",
+	"displayName": "%displayName%",
+	"description": "%description%",
+	"version": "0.0.1",
+	"publisher": "writing-buddy",
+	"private": true,
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.129.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"extensionKind": [
+		"ui"
+	],
+	"activationEvents": [
+		"onStartupFinished",
+		"onView:writingBuddy.novelStructure",
+		"onView:writingBuddy.sceneAssistant",
+		"onCommand:writingBuddy.openChapter",
+		"onCommand:writingBuddy.openSampleNovel",
+		"onCommand:writingBuddy.focusMode"
+	],
+	"main": "./out/extension",
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		},
+		"virtualWorkspaces": false
+	},
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "writingBuddyNavigation",
+					"title": "%navigation.container%",
+					"icon": "$(book)"
+				}
+			],
+			"secondarySidebar": [
+				{
+					"id": "writingBuddyAssistant",
+					"title": "%assistant.container%",
+					"icon": "$(lightbulb)"
+				}
+			]
+		},
+		"views": {
+			"writingBuddyNavigation": [
+				{
+					"id": "writingBuddy.novelStructure",
+					"name": "%navigation.view%",
+					"type": "tree",
+					"when": "writingBuddy.ready",
+					"visibility": "visible"
+				}
+			],
+			"writingBuddyAssistant": [
+				{
+					"id": "writingBuddy.sceneAssistant",
+					"name": "%assistant.view%",
+					"type": "webview",
+					"when": "writingBuddy.ready",
+					"visibility": "visible"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "writingBuddy.openChapter",
+				"title": "%command.openChapter%"
+			},
+			{
+				"command": "writingBuddy.openSampleNovel",
+				"title": "%command.openSampleNovel%"
+			},
+			{
+				"command": "writingBuddy.prevChapter",
+				"title": "%command.prevChapter%"
+			},
+			{
+				"command": "writingBuddy.nextChapter",
+				"title": "%command.nextChapter%"
+			},
+			{
+				"command": "writingBuddy.focusMode",
+				"title": "%command.focusMode%",
+				"icon": "$(screen-full)"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "writingBuddy.openChapter",
+					"when": "false"
+				}
+			]
+		},
+		"configurationDefaults": {
+			"window.menuBarVisibility": "hidden",
+			"workbench.activityBar.location": "hidden",
+			"workbench.secondarySideBar.defaultVisibility": "visibleInWorkspace",
+			"workbench.statusBar.visible": false,
+			"workbench.layoutControl.enabled": false,
+			"window.commandCenter": false,
+			"workbench.navigationControl.enabled": false,
+			"workbench.tips.enabled": false,
+			"workbench.startupEditor": "none",
+			"workbench.editor.enablePreview": false,
+			"workbench.editor.restoreViewState": true,
+			"breadcrumbs.enabled": false,
+			"window.title": "${appName}",
+			"editor.fontFamily": "'Source Han Serif SC', 'Noto Serif CJK SC', 'SimSun', serif",
+			"editor.fontSize": 16,
+			"editor.lineHeight": 1.8,
+			"editor.lineNumbers": "off",
+			"editor.minimap.enabled": false,
+			"editor.renderWhitespace": "none",
+			"editor.renderLineHighlight": "none",
+			"editor.hideCursorInOverviewRuler": true,
+			"editor.occurrencesHighlight": "off",
+			"editor.selectionHighlight": false,
+			"editor.wordHighlight": false,
+			"editor.folding": false,
+			"editor.glyphMargin": false,
+			"editor.padding.top": 48,
+			"editor.padding.bottom": 96,
+			"editor.scrollBeyondLastLine": false,
+			"editor.cursorStyle": "line",
+			"editor.cursorWidth": 2,
+			"editor.cursorBlinking": "solid",
+			"workbench.editor.centeredLayoutAutoResize": true,
+			"workbench.editor.centeredLayoutFixedWidth": true,
+			"security.workspace.trust.enabled": false,
+			"security.workspace.trust.startupPrompt": "never",
+			"security.workspace.trust.banner": "never",
+			"security.workspace.trust.untrustedFiles": "open",
+			"[markdown]": {
+				"editor.lineNumbers": "off",
+				"editor.folding": false,
+				"editor.glyphMargin": false,
+				"editor.minimap.enabled": false,
+				"editor.wordWrap": "on",
+				"editor.lineHeight": 32,
+				"editor.padding.top": 48,
+				"editor.padding.bottom": 96,
+				"editor.scrollBeyondLastLine": false,
+				"editor.renderWhitespace": "none",
+				"editor.fontFamily": "'Source Han Serif SC', 'Noto Serif CJK SC', 'SimSun', serif",
+				"editor.fontSize": 16
+			}
+		}
+	}
+}
