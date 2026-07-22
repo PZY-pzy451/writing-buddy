@@ -23,6 +23,7 @@ import { IClipboardService } from '../../../../platform/clipboard/common/clipboa
 import { Disposable, IDisposable, MutableDisposable } from '../../../../base/common/lifecycle.js';
 import { IStatusbarEntryAccessor, IStatusbarService, StatusbarAlignment, IStatusbarEntry } from '../../../services/statusbar/browser/statusbar.js';
 import { IMarkerService, MarkerStatistics } from '../../../../platform/markers/common/markers.js';
+import { IProductService } from '../../../../platform/product/common/productService.js';
 import { ViewContainer, IViewContainersRegistry, Extensions as ViewContainerExtensions, ViewContainerLocation, IViewsRegistry, WindowEnablement } from '../../../common/views.js';
 import { IViewsService } from '../../../services/views/common/viewsService.js';
 import { getVisbileViewContextKey, FocusedViewContext } from '../../../common/contextkeys.js';
@@ -571,16 +572,22 @@ registerAction2(class extends Action2 {
 
 class MarkersStatusBarContributions extends Disposable implements IWorkbenchContribution {
 
-	private markersStatusItem: IStatusbarEntryAccessor;
+	private markersStatusItem: IStatusbarEntryAccessor | undefined;
 	private markersStatusItemOff: IStatusbarEntryAccessor | undefined;
 
 	constructor(
 		@IMarkerService private readonly markerService: IMarkerService,
 		@IStatusbarService private readonly statusbarService: IStatusbarService,
-		@IConfigurationService private readonly configurationService: IConfigurationService
+		@IConfigurationService private readonly configurationService: IConfigurationService,
+		@IProductService private readonly productService: IProductService
 	) {
 		super();
-		this.markersStatusItem = this._register(this.statusbarService.addEntry(this.getMarkersItem(), 'status.problems', StatusbarAlignment.LEFT, 50 /* Medium Priority */));
+
+		// Writing Buddy product shell: do not register the problems count status bar entry.
+		const hideProblemsEntry = this.productService.applicationName === 'writing-buddy';
+		if (!hideProblemsEntry) {
+			this.markersStatusItem = this._register(this.statusbarService.addEntry(this.getMarkersItem(), 'status.problems', StatusbarAlignment.LEFT, 50 /* Medium Priority */));
+		}
 
 		const addStatusBarEntry = () => {
 			this.markersStatusItemOff = this.statusbarService.addEntry(this.getMarkersItemTurnedOff(), 'status.problemsVisibility', StatusbarAlignment.LEFT, 49);
@@ -588,21 +595,21 @@ class MarkersStatusBarContributions extends Disposable implements IWorkbenchCont
 
 		// Add the status bar entry if the problems is not visible
 		let config = this.configurationService.getValue('problems.visibility');
-		if (!config) {
+		if (!config && !hideProblemsEntry) {
 			addStatusBarEntry();
 		}
 
 		this._register(this.markerService.onMarkerChanged(() => {
-			this.markersStatusItem.update(this.getMarkersItem());
+			this.markersStatusItem?.update(this.getMarkersItem());
 		}));
 
 		this._register(this.configurationService.onDidChangeConfiguration(e => {
 			if (e.affectsConfiguration('problems.visibility')) {
-				this.markersStatusItem.update(this.getMarkersItem());
+				this.markersStatusItem?.update(this.getMarkersItem());
 
 				// Update based on what setting was changed to.
 				config = this.configurationService.getValue('problems.visibility');
-				if (!config && !this.markersStatusItemOff) {
+				if (!config && !this.markersStatusItemOff && !hideProblemsEntry) {
 					addStatusBarEntry();
 				} else if (config && this.markersStatusItemOff) {
 					this.markersStatusItemOff.dispose();

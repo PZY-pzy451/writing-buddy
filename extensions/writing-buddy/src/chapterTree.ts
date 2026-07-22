@@ -165,7 +165,8 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 
 		switch (element.kind) {
 			case 'volume':
-				return [...chapterElements];
+				// Chapters belong to the first volume; other volumes are placeholders.
+				return element.id === 'volume-01' ? [...chapterElements] : [];
 			case 'today':
 				// 今日写作可以显示今天创建的章节
 				return [];
