@@ -33,7 +33,12 @@ workbench.registerWorkbenchContribution(ProductContribution, LifecyclePhase.Rest
 workbench.registerWorkbenchContribution(UpdateContribution, LifecyclePhase.Restored);
 workbench.registerWorkbenchContribution(SwitchProductQualityContribution, LifecyclePhase.Restored);
 workbench.registerWorkbenchContribution(DefaultAccountUpdateContribution, LifecyclePhase.Eventually);
-workbench.registerWorkbenchContribution(UpdateTitleBarContribution, LifecyclePhase.Restored);
+// Writing Buddy product shell: the update title bar entry shows the "Hello"
+// state-bar item and the "Update" / "Sign In" chat title-bar action. Hide
+// both by skipping the contribution registration.
+if (product.applicationName !== 'writing-buddy') {
+	workbench.registerWorkbenchContribution(UpdateTitleBarContribution, LifecyclePhase.Restored);
+}
 workbench.registerWorkbenchContribution(PostUpdateWidgetContribution, LifecyclePhase.Restored);
 
 // Release notes
@@ -78,7 +83,6 @@ export class ShowReleaseNotesAction extends Action2 {
 }
 
 export class ShowCurrentReleaseNotesFromCurrentFileAction extends Action2 {
-
 	constructor() {
 		super({
 			id: ShowCurrentReleaseNotesFromCurrentFileActionId,

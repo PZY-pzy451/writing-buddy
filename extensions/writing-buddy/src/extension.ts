@@ -5,26 +5,18 @@
 
 import * as path from 'path';
 import * as vscode from 'vscode';
-import { AssistantViewProvider } from './assistantView';
-import { ChapterDefinition, chapters, findChapterById, findChapterByRelativePath, getAdjacentChapter } from './chapterCatalog';
-import { ContentAnnotations } from './contentAnnotations';
+import { ChapterDefinition, chapters, findChapterById, findChapterByRelativePath } from './chapterCatalog';
+import { ChapterMetadataViewProvider } from './chapterMetadataViewProvider';
 import { SerialOperationQueue } from './chapterTracking';
 import { ChapterTreeDataProvider, ChapterTreeElement } from './chapterTree';
 import { ensureSampleNovel, isSampleNovelWorkspace } from './novelBootstrap';
 import { WriterStatusBar } from './statusBar';
 import { areFilePathsEqual } from './workspaceIdentity';
-import { ProductHeader } from './productHeader';
 import { applyWriterShell } from './writerShell';
 import { WritingStatisticsService } from './writingStatistics';
 
-const sampleWorkspaceOpenedKey = 'writingBuddy.sampleWorkspaceOpened';
 const layoutInitializedKey = 'writingBuddy.layoutInitialized';
 const lastChapterIdKey = 'writingBuddy.lastChapterId';
-
-async function openSampleNovel(context: vscode.ExtensionContext, sampleNovelUri: vscode.Uri): Promise<void> {
-	await context.globalState.update(sampleWorkspaceOpenedKey, true);
-	await vscode.commands.executeCommand('vscode.openFolder', sampleNovelUri, { forceReuseWindow: true });
-}
 
 async function initializeLayout(context: vscode.ExtensionContext): Promise<void> {
 	if (context.workspaceState.get<boolean>(layoutInitializedKey, false)) {
@@ -69,10 +61,10 @@ async function trackActiveChapter(
 	context: vscode.ExtensionContext,
 	sampleNovelUri: vscode.Uri,
 	provider: ChapterTreeDataProvider,
-	assistantProvider: AssistantViewProvider,
+	metadataView: ChapterMetadataViewProvider,
 	treeView: vscode.TreeView<ChapterTreeElement>,
 	editor: vscode.TextEditor | undefined,
-	revealRequested = true
+	revealRequested: boolean
 ): Promise<void> {
 	if (vscode.window.activeTextEditor !== editor) {
 		return;
@@ -80,27 +72,21 @@ async function trackActiveChapter(
 
 	const chapter = editor ? getChapterForDocument(sampleNovelUri, editor.document.uri) : undefined;
 	provider.setActiveChapter(chapter?.id);
-	assistantProvider.setActiveChapter(chapter);
-	if (!chapter) {
-		return;
+	metadataView.setActiveChapter(chapter);
+	if (chapter) {
+		await context.workspaceState.update(lastChapterIdKey, chapter.id);
 	}
-
-	await context.workspaceState.update(lastChapterIdKey, chapter.id);
 	await provider.revealActiveChapter(treeView, vscode.window.activeTextEditor === editor, revealRequested);
 }
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-	// Apply Writing Buddy product shell first to transform Code-OSS into writing-focused product
 	await applyWriterShell(context);
 
 	const sampleNovelUri = await ensureSampleNovel(context);
-	// Automatic activation now waits for onStartupFinished so Workbench editor restoration wins; explicit commands can still activate earlier.
 	await vscode.commands.executeCommand('setContext', 'writingBuddy.ready', true);
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.openSampleNovel', async () => {
-		await openSampleNovel(context, sampleNovelUri);
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.focusMode', async () => {
-		await vscode.commands.executeCommand('workbench.action.toggleZenMode');
+
+	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.openChapter', async (chapterId: string) => {
+		await openChapter(context, sampleNovelUri, chapterId);
 	}));
 
 	const chapterTreeProvider = new ChapterTreeDataProvider();
@@ -110,46 +96,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 		showCollapseAll: true
 	});
 	context.subscriptions.push(chapterTreeView);
-	const assistantProvider = new AssistantViewProvider();
-	context.subscriptions.push(assistantProvider);
-	context.subscriptions.push(vscode.window.registerWebviewViewProvider('writingBuddy.sceneAssistant', assistantProvider));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.openChapter', async (chapterId: string) => {
-		await openChapter(context, sampleNovelUri, chapterId);
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.prevChapter', async () => {
-		const currentChapterId = context.workspaceState.get<string>(lastChapterIdKey);
-		if (currentChapterId) {
-			const prevChapter = getAdjacentChapter(currentChapterId, 'prev');
-			if (prevChapter) {
-				await openChapter(context, sampleNovelUri, prevChapter.id);
-			}
-		}
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.nextChapter', async () => {
-		const currentChapterId = context.workspaceState.get<string>(lastChapterIdKey);
-		if (currentChapterId) {
-			const nextChapter = getAdjacentChapter(currentChapterId, 'next');
-			if (nextChapter) {
-				await openChapter(context, sampleNovelUri, nextChapter.id);
-			}
-		}
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showPending', async () => {
-		await vscode.commands.executeCommand('workbench.view.extension.writingBuddyAssistant');
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showDiff', async () => {
-		await vscode.window.showInformationMessage(vscode.l10n.t('修改对比功能将在后续版本提供。'));
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showTasks', async () => {
-		await vscode.window.showInformationMessage(vscode.l10n.t('后台任务功能将在后续版本提供。'));
-	}));
-	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showBackupRecords', async () => {
-		await vscode.window.showInformationMessage(vscode.l10n.t('备份记录功能将在后续版本提供。'));
-	}));
+
+	const metadataView = new ChapterMetadataViewProvider();
+	context.subscriptions.push(metadataView);
+	context.subscriptions.push(vscode.window.registerWebviewViewProvider('writingBuddy.chapterMetadata', metadataView));
+
 	const chapterTrackingQueue = new SerialOperationQueue();
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(editor => {
 		void chapterTrackingQueue.enqueue(async () => {
-			await trackActiveChapter(context, sampleNovelUri, chapterTreeProvider, assistantProvider, chapterTreeView, editor);
+			await trackActiveChapter(context, sampleNovelUri, chapterTreeProvider, metadataView, chapterTreeView, editor, true);
 		}).catch(error => {
 			console.error('Writing Buddy chapter tracking failed.', error);
 		});
@@ -157,54 +112,42 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
 	if (isSampleNovelWorkspace(sampleNovelUri)) {
 		await initializeLayout(context);
+
 		const writingStatistics = new WritingStatisticsService(sampleNovelUri, documentUri => getChapterForDocument(sampleNovelUri, documentUri));
 		context.subscriptions.push(writingStatistics);
 		const writerStatusBar = new WriterStatusBar();
 		context.subscriptions.push(writerStatusBar);
-		const productHeader = new ProductHeader();
-		context.subscriptions.push(productHeader);
-		const contentAnnotations = new ContentAnnotations();
-		context.subscriptions.push(contentAnnotations);
-		const updateWriterStatus = (): void => {
+
+		const syncFromEditor = (): void => {
 			const editor = vscode.window.activeTextEditor;
 			const chapter = editor ? getChapterForDocument(sampleNovelUri, editor.document.uri) : undefined;
 			const isDirty = chapter && editor ? editor.document.isDirty : undefined;
-			writerStatusBar.update({
-				chapter,
-				statistics: writingStatistics.statistics,
-				isDirty,
-				todayWords: writingStatistics.statistics.novelWords,
-				targetWords: 3000,
-				pending: { severe: 0, warning: 0, suggestion: 0, ignored: 0 },
-				backgroundTasks: 0,
-				backupOk: true
-			});
-			productHeader.update({
-				chapter,
-				statistics: writingStatistics.statistics,
-				isDirty
-			});
+			writerStatusBar.update(chapter, writingStatistics.statistics, isDirty);
+			for (const c of chapters) {
+				chapterTreeProvider.updateChapterWordCount(c.id, writingStatistics.wordsForChapter(c.id));
+			}
 		};
-		context.subscriptions.push(writingStatistics.onDidChange(updateWriterStatus));
+
+		context.subscriptions.push(writingStatistics.onDidChange(syncFromEditor));
 		await writingStatistics.refreshNow();
-		updateWriterStatus();
-		productHeader.reveal();
-		const restoredChapter = vscode.window.activeTextEditor
-			? getChapterForDocument(sampleNovelUri, vscode.window.activeTextEditor.document.uri)
+		syncFromEditor();
+
+		// Restore priority:
+		// 1. Code-OSS already restored an editor → trust it
+		// 2. Else if we have a lastChapterId → open that chapter
+		// 3. Else → open chapter-001
+		const restoredEditor = vscode.window.activeTextEditor;
+		const restoredChapter = restoredEditor
+			? getChapterForDocument(sampleNovelUri, restoredEditor.document.uri)
 			: undefined;
+
 		if (restoredChapter) {
-			await trackActiveChapter(context, sampleNovelUri, chapterTreeProvider, assistantProvider, chapterTreeView, vscode.window.activeTextEditor, false);
-			return;
+			await trackActiveChapter(context, sampleNovelUri, chapterTreeProvider, metadataView, chapterTreeView, restoredEditor, false);
+		} else {
+			const savedChapterId = context.workspaceState.get<string>(lastChapterIdKey);
+			const initialChapter = findChapterById(savedChapterId ?? '') ?? chapters[0];
+			await openChapter(context, sampleNovelUri, initialChapter.id);
 		}
-
-		const savedChapterId = context.workspaceState.get<string>(lastChapterIdKey);
-		const initialChapter = findChapterById(savedChapterId ?? '') ?? chapters[0];
-		await openChapter(context, sampleNovelUri, initialChapter.id);
-		return;
-	}
-
-	if (!vscode.workspace.workspaceFolders && !context.globalState.get<boolean>(sampleWorkspaceOpenedKey, false)) {
-		await openSampleNovel(context, sampleNovelUri);
 	}
 }
 

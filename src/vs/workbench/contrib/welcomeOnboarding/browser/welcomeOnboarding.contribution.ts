@@ -11,6 +11,7 @@ import { Categories } from '../../../../platform/action/common/actionCommonCateg
 import { Action2, registerAction2 } from '../../../../platform/actions/common/actions.js';
 import { InstantiationType, registerSingleton } from '../../../../platform/instantiation/common/extensions.js';
 import { ServicesAccessor } from '../../../../platform/instantiation/common/instantiation.js';
+import { IProductService } from '../../../../platform/product/common/productService.js';
 import { IOnboardingService } from '../common/onboardingService.js';
 import { OnboardingVariationA } from './onboardingVariationA.js';
 
@@ -27,6 +28,11 @@ registerAction2(class extends Action2 {
 	}
 
 	run(accessor: ServicesAccessor): void {
+		// Writing Buddy product: skip the onboarding flow entirely.
+		const productService = accessor.get(IProductService);
+		if (productService.applicationName === 'writing-buddy') {
+			return;
+		}
 		const onboardingService = accessor.get(IOnboardingService);
 		onboardingService.show();
 	}

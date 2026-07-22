@@ -2,12 +2,8 @@
 	"displayName": "Writing Buddy",
 	"description": "一个专注于中文小说写作的工作台布局原型。",
 	"navigation.container": "我的作品",
-	"assistant.container": "章节资料",
 	"navigation.view": "作品大纲",
+	"assistant.container": "章节资料",
 	"assistant.view": "章节资料",
-	"command.openChapter": "打开章节",
-	"command.openSampleNovel": "打开示例小说",
-	"command.prevChapter": "上一章",
-	"command.nextChapter": "下一章",
-	"command.focusMode": "切换专注模式"
+	"command.openChapter": "打开章节"
 }

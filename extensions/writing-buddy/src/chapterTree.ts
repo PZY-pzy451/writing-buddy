@@ -11,11 +11,7 @@ export type ChapterTreeElement =
 	| TodayWritingElement
 	| VolumeElement
 	| ChapterElement
-	| NoteElement
-	| TrashElement
-	| SettingsElement
-	| HelpElement
-	| ResourceElement;
+	| PlaceholderElement;
 
 interface TodayWritingElement {
 	readonly kind: 'today';
@@ -24,54 +20,30 @@ interface TodayWritingElement {
 
 interface VolumeElement {
 	readonly kind: 'volume';
-	readonly id: string;
-	readonly label: string;
+	readonly id: 'volume-01';
 }
 
 interface ChapterElement {
 	readonly kind: 'chapter';
 	readonly id: string;
 	readonly chapter: ChapterDefinition;
-	readonly wordCount?: number;
 }
 
-interface NoteElement {
-	readonly kind: 'note';
-	readonly id: 'notes';
-}
-
-interface TrashElement {
-	readonly kind: 'trash';
-	readonly id: 'trash';
-}
-
-interface SettingsElement {
-	readonly kind: 'settings';
-	readonly id: 'settings';
-}
-
-interface HelpElement {
-	readonly kind: 'help';
-	readonly id: 'help';
-}
-
-interface ResourceElement {
-	readonly kind: 'resource';
+interface PlaceholderElement {
+	readonly kind: 'placeholder';
 	readonly id: 'characters' | 'worldbuilding' | 'timeline' | 'notes';
 }
 
-// Tree structure
 const todayWritingElement: TodayWritingElement = { kind: 'today', id: 'today-writing' };
-const volumeElements: VolumeElement[] = [
-	{ kind: 'volume', id: 'volume-01', label: '第一卷 灰城之下' },
-	{ kind: 'volume', id: 'volume-02', label: '第二卷 北境风云' },
-	{ kind: 'volume', id: 'volume-03', label: '第三卷 烽火将至' }
-];
+const volumeElement: VolumeElement = { kind: 'volume', id: 'volume-01' };
 const chapterElements: readonly ChapterElement[] = chapters.map(chapter => ({ kind: 'chapter', id: chapter.id, chapter }));
-const noteElement: NoteElement = { kind: 'note', id: 'notes' };
-const trashElement: TrashElement = { kind: 'trash', id: 'trash' };
-const settingsElement: SettingsElement = { kind: 'settings', id: 'settings' };
-const helpElement: HelpElement = { kind: 'help', id: 'help' };
+
+const placeholderElements: readonly PlaceholderElement[] = [
+	{ kind: 'placeholder', id: 'characters' },
+	{ kind: 'placeholder', id: 'worldbuilding' },
+	{ kind: 'placeholder', id: 'timeline' },
+	{ kind: 'placeholder', id: 'notes' }
+];
 
 export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterTreeElement>, vscode.Disposable {
 	private readonly changeEmitter = new vscode.EventEmitter<ChapterTreeElement | undefined>();
@@ -94,26 +66,24 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 				return item;
 			}
 			case 'volume': {
-				const item = new vscode.TreeItem(element.label, vscode.TreeItemCollapsibleState.Expanded);
+				const item = new vscode.TreeItem(vscode.l10n.t('第一卷'), vscode.TreeItemCollapsibleState.Expanded);
 				item.id = element.id;
 				item.iconPath = new vscode.ThemeIcon('folder-opened');
 				return item;
 			}
 			case 'chapter': {
-				const wordCount = this.chapterWordCounts.get(element.id) ?? element.chapter.wordCount ?? 0;
-				const wordCountText = wordCount > 0 ? `${wordCount}字` : '';
+				const wordCount = this.chapterWordCounts.get(element.id);
+				const wordCountText = wordCount !== undefined ? `${wordCount}字` : '';
+				const isActive = element.id === this.activeChapterId;
 				const item = new vscode.TreeItem(
 					this.getChapterLabel(element.chapter),
 					vscode.TreeItemCollapsibleState.None
 				);
 				item.id = element.id;
-				item.contextValue = 'writingBuddy.chapter';
-				item.iconPath = new vscode.ThemeIcon(element.id === this.activeChapterId ? 'edit' : 'file-text');
+				item.contextValue = isActive ? 'writingBuddy.chapter.active' : 'writingBuddy.chapter';
+				item.iconPath = new vscode.ThemeIcon(isActive ? 'edit' : 'file-text');
 				item.description = wordCountText;
-				item.tooltip = `${element.chapter.label} - ${wordCountText}`;
-				if (element.id === this.activeChapterId) {
-					item.contextValue = 'writingBuddy.chapter.active';
-				}
+				item.tooltip = wordCountText ? `${element.chapter.label} - ${wordCountText}` : element.chapter.label;
 				item.command = {
 					command: 'writingBuddy.openChapter',
 					title: vscode.l10n.t('打开章节'),
@@ -121,38 +91,11 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 				};
 				return item;
 			}
-			case 'note': {
-				const item = new vscode.TreeItem(vscode.l10n.t('便签'), vscode.TreeItemCollapsibleState.None);
-				item.id = element.id;
-				item.iconPath = new vscode.ThemeIcon('note');
-				item.contextValue = 'writingBuddy.note';
-				return item;
-			}
-			case 'trash': {
-				const item = new vscode.TreeItem(vscode.l10n.t('废稿箱'), vscode.TreeItemCollapsibleState.None);
-				item.id = element.id;
-				item.iconPath = new vscode.ThemeIcon('trash');
-				item.contextValue = 'writingBuddy.trash';
-				return item;
-			}
-			case 'settings': {
-				const item = new vscode.TreeItem(vscode.l10n.t('设置'), vscode.TreeItemCollapsibleState.None);
-				item.id = element.id;
-				item.iconPath = new vscode.ThemeIcon('gear');
-				item.contextValue = 'writingBuddy.settings';
-				return item;
-			}
-			case 'help': {
-				const item = new vscode.TreeItem(vscode.l10n.t('帮助'), vscode.TreeItemCollapsibleState.None);
-				item.id = element.id;
-				item.iconPath = new vscode.ThemeIcon('question');
-				item.contextValue = 'writingBuddy.help';
-				return item;
-			}
-			case 'resource': {
-				const item = new vscode.TreeItem(this.getResourceLabel(element), vscode.TreeItemCollapsibleState.None);
-				item.id = `resource-${element.id}`;
-				item.iconPath = new vscode.ThemeIcon(this.getResourceIcon(element));
+			case 'placeholder': {
+				const item = new vscode.TreeItem(this.getPlaceholderLabel(element), vscode.TreeItemCollapsibleState.None);
+				item.id = `placeholder-${element.id}`;
+				item.iconPath = new vscode.ThemeIcon(this.getPlaceholderIcon(element));
+				item.tooltip = vscode.l10n.t('后续开放');
 				return item;
 			}
 		}
@@ -160,38 +103,26 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 
 	getChildren(element?: ChapterTreeElement): ChapterTreeElement[] {
 		if (!element) {
-			return [todayWritingElement, ...volumeElements, noteElement, trashElement, settingsElement, helpElement];
+			return [todayWritingElement, volumeElement, ...placeholderElements];
 		}
 
 		switch (element.kind) {
 			case 'volume':
-				// Chapters belong to the first volume; other volumes are placeholders.
-				return element.id === 'volume-01' ? [...chapterElements] : [];
+				return [...chapterElements];
 			case 'today':
-				// 今日写作可以显示今天创建的章节
-				return [];
 			case 'chapter':
-			case 'note':
-			case 'trash':
-			case 'settings':
-			case 'help':
-			case 'resource':
+			case 'placeholder':
 				return [];
 		}
 	}
 
 	getParent(element: ChapterTreeElement): ChapterTreeElement | undefined {
 		switch (element.kind) {
-			case 'today':
-			case 'note':
-			case 'trash':
-			case 'settings':
-			case 'help':
-			case 'volume':
-				return undefined;
 			case 'chapter':
-				return volumeElements[0]; // 假设所有章节都在第一卷
-			case 'resource':
+				return volumeElement;
+			case 'today':
+			case 'volume':
+			case 'placeholder':
 				return undefined;
 		}
 	}
@@ -210,6 +141,14 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 		this.changeEmitter.fire(undefined);
 	}
 
+	clearChapterWordCounts(): void {
+		if (this.chapterWordCounts.size === 0) {
+			return;
+		}
+		this.chapterWordCounts.clear();
+		this.changeEmitter.fire(undefined);
+	}
+
 	async revealActiveChapter(treeView: vscode.TreeView<ChapterTreeElement>, editorStillActive: boolean, revealRequested: boolean): Promise<void> {
 		if (!shouldRevealActiveChapter(treeView.visible, editorStillActive, revealRequested)) {
 			return;
@@ -222,39 +161,24 @@ export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterT
 	}
 
 	private getChapterLabel(chapter: ChapterDefinition): string {
-		// 从章节标签中提取数字部分
-		const match = chapter.label.match(/第(\d+)章/);
-		if (match) {
-			const chapterNum = match[1];
-			const title = chapter.label.replace(/第\d+章\s*/, '');
-			return `第${chapterNum}章 ${title}`;
-		}
 		return chapter.label;
 	}
 
-	private getResourceLabel(element: ResourceElement): string {
+	private getPlaceholderLabel(element: PlaceholderElement): string {
 		switch (element.id) {
-			case 'characters':
-				return vscode.l10n.t('人物');
-			case 'worldbuilding':
-				return vscode.l10n.t('世界观');
-			case 'timeline':
-				return vscode.l10n.t('时间线');
-			case 'notes':
-				return vscode.l10n.t('资料');
+			case 'characters': return vscode.l10n.t('人物');
+			case 'worldbuilding': return vscode.l10n.t('世界观');
+			case 'timeline': return vscode.l10n.t('时间线');
+			case 'notes': return vscode.l10n.t('笔记');
 		}
 	}
 
-	private getResourceIcon(element: ResourceElement): string {
+	private getPlaceholderIcon(element: PlaceholderElement): string {
 		switch (element.id) {
-			case 'characters':
-				return 'person';
-			case 'worldbuilding':
-				return 'globe';
-			case 'timeline':
-				return 'history';
-			case 'notes':
-				return 'note';
+			case 'characters': return 'person';
+			case 'worldbuilding': return 'globe';
+			case 'timeline': return 'history';
+			case 'notes': return 'note';
 		}
 	}
 }

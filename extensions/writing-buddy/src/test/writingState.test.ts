@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as assert from 'assert';
-import { calculateWritingStatistics, ChapterTextSnapshot, LatestAsyncResult, loadWritingStatistics, readTextDocumentText } from '../writingState';
+import { calculateWritingStatistics, ChapterTextSnapshot, LatestAsyncResult, loadWritingStatistics, readTextDocumentText, WritingStatistics } from '../writingState';
 
 const chapterSnapshots: readonly ChapterTextSnapshot[] = [
 	{ chapterId: 'chapter-001', text: '一二' },
@@ -12,32 +12,48 @@ const chapterSnapshots: readonly ChapterTextSnapshot[] = [
 	{ chapterId: 'chapter-003', text: '三' }
 ];
 
+function toMap(statistics: WritingStatistics): Map<string, number> {
+	return new Map(statistics.perChapter);
+}
+
 suite('writingState', () => {
 	test('replaces the active disk snapshot with live dirty text', () => {
-		assert.deepStrictEqual(calculateWritingStatistics(chapterSnapshots, {
+		const result = calculateWritingStatistics(chapterSnapshots, {
 			chapterId: 'chapter-002',
 			text: 'Writing Buddy 2026'
-		}), {
-			currentChapterWords: 3,
-			novelWords: 6
 		});
+		assert.strictEqual(result.currentChapterWords, 3);
+		assert.strictEqual(result.novelWords, 6);
+		assert.deepStrictEqual(toMap(result), new Map([
+			['chapter-001', 2],
+			['chapter-002', 3],
+			['chapter-003', 1]
+		]));
 	});
 
 	test('uses only the three disk snapshots when no chapter is active', () => {
-		assert.deepStrictEqual(calculateWritingStatistics(chapterSnapshots, undefined), {
-			currentChapterWords: 0,
-			novelWords: 5
-		});
+		const result = calculateWritingStatistics(chapterSnapshots, undefined);
+		assert.strictEqual(result.currentChapterWords, 0);
+		assert.strictEqual(result.novelWords, 5);
+		assert.deepStrictEqual(toMap(result), new Map([
+			['chapter-001', 2],
+			['chapter-002', 2],
+			['chapter-003', 1]
+		]));
 	});
 
 	test('ignores an active override outside the demo catalog', () => {
-		assert.deepStrictEqual(calculateWritingStatistics(chapterSnapshots, {
+		const result = calculateWritingStatistics(chapterSnapshots, {
 			chapterId: 'unrelated',
 			text: '不会计入总数'
-		}), {
-			currentChapterWords: 0,
-			novelWords: 5
 		});
+		assert.strictEqual(result.currentChapterWords, 0);
+		assert.strictEqual(result.novelWords, 5);
+		assert.deepStrictEqual(toMap(result), new Map([
+			['chapter-001', 2],
+			['chapter-002', 2],
+			['chapter-003', 1]
+		]));
 	});
 
 	test('loads disk snapshots and overrides only the active chapter', async () => {
@@ -51,7 +67,13 @@ suite('writingState', () => {
 			async chapterId => diskText.get(chapterId)!,
 			{ chapterId: 'chapter-002', text: 'Writing Buddy 2026' }
 		);
-		assert.deepStrictEqual(result, { currentChapterWords: 3, novelWords: 5 });
+		assert.strictEqual(result.currentChapterWords, 3);
+		assert.strictEqual(result.novelWords, 5);
+		assert.deepStrictEqual(toMap(result), new Map([
+			['chapter-001', 1],
+			['chapter-002', 3],
+			['chapter-003', 1]
+		]));
 	});
 
 	test('reads chapter snapshots through the text document adapter', async () => {

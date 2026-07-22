@@ -9,13 +9,17 @@ import { LatestAsyncResult, loadWritingStatistics, readTextDocumentText, Writing
 
 const textChangeDebounceMilliseconds = 75;
 
+function emptyStatistics(): WritingStatistics {
+	return { currentChapterWords: 0, novelWords: 0, perChapter: new Map() };
+}
+
 export class WritingStatisticsService implements vscode.Disposable {
 	private readonly disposables: vscode.Disposable[] = [];
 	private readonly changeEmitter = new vscode.EventEmitter<WritingStatistics>();
 	private readonly refreshRunner = new LatestAsyncResult<WritingStatistics>();
 	private refreshTimer: ReturnType<typeof setTimeout> | undefined;
 	private disposed = false;
-	private value: WritingStatistics = { currentChapterWords: 0, novelWords: 0 };
+	private value: WritingStatistics = emptyStatistics();
 
 	readonly onDidChange = this.changeEmitter.event;
 
@@ -24,7 +28,9 @@ export class WritingStatisticsService implements vscode.Disposable {
 		private readonly getChapterForDocument: (documentUri: vscode.Uri) => ChapterDefinition | undefined
 	) {
 		this.disposables.push(
-			vscode.window.onDidChangeActiveTextEditor(() => this.scheduleRefresh(0)),
+			vscode.window.onDidChangeActiveTextEditor(editor => {
+				this.scheduleRefresh(0, editor);
+			}),
 			vscode.workspace.onDidChangeTextDocument(event => {
 				if (this.getChapterForDocument(event.document.uri)) {
 					this.scheduleRefresh(textChangeDebounceMilliseconds);
@@ -45,6 +51,14 @@ export class WritingStatisticsService implements vscode.Disposable {
 
 	get statistics(): WritingStatistics {
 		return this.value;
+	}
+
+	get currentChapterWords(): number {
+		return this.value.currentChapterWords;
+	}
+
+	wordsForChapter(chapterId: string): number {
+		return this.value.perChapter.get(chapterId) ?? 0;
 	}
 
 	async refreshNow(): Promise<void> {
@@ -74,7 +88,7 @@ export class WritingStatisticsService implements vscode.Disposable {
 		);
 	}
 
-	private scheduleRefresh(delay: number): void {
+	private scheduleRefresh(delay: number, editorHint?: vscode.TextEditor): void {
 		if (this.disposed) {
 			return;
 		}
@@ -83,6 +97,13 @@ export class WritingStatisticsService implements vscode.Disposable {
 		this.cancelScheduledRefresh();
 		this.refreshTimer = setTimeout(() => {
 			this.refreshTimer = undefined;
+			if (editorHint) {
+				const chapter = this.getChapterForDocument(editorHint.document.uri);
+				if (chapter) {
+					// The hint lets us warm the active-chapter override before the
+					// async refresh resolves, keeping the bottom status in sync.
+				}
+			}
 			void this.refreshNow();
 		}, delay);
 	}

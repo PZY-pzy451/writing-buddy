@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { countWords } from './wordCount';
+import { countWritingUnits } from './wordCount';
 
 export interface ChapterTextSnapshot {
 	readonly chapterId: string;
@@ -13,6 +13,7 @@ export interface ChapterTextSnapshot {
 export interface WritingStatistics {
 	readonly currentChapterWords: number;
 	readonly novelWords: number;
+	readonly perChapter: ReadonlyMap<string, number>;
 }
 
 export interface TextDocumentSnapshot {
@@ -58,19 +59,22 @@ export function calculateWritingStatistics(
 	chapters: readonly ChapterTextSnapshot[],
 	activeChapter: ChapterTextSnapshot | undefined
 ): WritingStatistics {
+	const perChapter = new Map<string, number>();
 	let currentChapterWords = 0;
 	let novelWords = 0;
 
 	for (const chapter of chapters) {
 		const isActiveChapter = chapter.chapterId === activeChapter?.chapterId;
-		const chapterWords = countWords(isActiveChapter ? activeChapter.text : chapter.text);
+		const text = isActiveChapter && activeChapter ? activeChapter.text : chapter.text;
+		const chapterWords = countWritingUnits(text);
+		perChapter.set(chapter.chapterId, chapterWords);
 		novelWords += chapterWords;
 		if (isActiveChapter) {
 			currentChapterWords = chapterWords;
 		}
 	}
 
-	return { currentChapterWords, novelWords };
+	return { currentChapterWords, novelWords, perChapter };
 }
 
 export async function loadWritingStatistics(

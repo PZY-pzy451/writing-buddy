@@ -18,10 +18,7 @@
 	"activationEvents": [
 		"onStartupFinished",
 		"onView:writingBuddy.novelStructure",
-		"onView:writingBuddy.sceneAssistant",
-		"onCommand:writingBuddy.openChapter",
-		"onCommand:writingBuddy.openSampleNovel",
-		"onCommand:writingBuddy.focusMode"
+		"onCommand:writingBuddy.openChapter"
 	],
 	"main": "./out/extension",
 	"capabilities": {
@@ -43,7 +40,7 @@
 				{
 					"id": "writingBuddyAssistant",
 					"title": "%assistant.container%",
-					"icon": "$(lightbulb)"
+					"icon": "$(notebook)"
 				}
 			]
 		},
@@ -59,7 +56,7 @@
 			],
 			"writingBuddyAssistant": [
 				{
-					"id": "writingBuddy.sceneAssistant",
+					"id": "writingBuddy.chapterMetadata",
 					"name": "%assistant.view%",
 					"type": "webview",
 					"when": "writingBuddy.ready",
@@ -71,23 +68,6 @@
 			{
 				"command": "writingBuddy.openChapter",
 				"title": "%command.openChapter%"
-			},
-			{
-				"command": "writingBuddy.openSampleNovel",
-				"title": "%command.openSampleNovel%"
-			},
-			{
-				"command": "writingBuddy.prevChapter",
-				"title": "%command.prevChapter%"
-			},
-			{
-				"command": "writingBuddy.nextChapter",
-				"title": "%command.nextChapter%"
-			},
-			{
-				"command": "writingBuddy.focusMode",
-				"title": "%command.focusMode%",
-				"icon": "$(screen-full)"
 			}
 		],
 		"menus": {
@@ -99,19 +79,9 @@
 			]
 		},
 		"configurationDefaults": {
-			"window.menuBarVisibility": "hidden",
-			"workbench.activityBar.location": "hidden",
-			"workbench.secondarySideBar.defaultVisibility": "visibleInWorkspace",
-			"workbench.statusBar.visible": true,
-			"workbench.layoutControl.enabled": false,
-			"window.commandCenter": false,
-			"workbench.navigationControl.enabled": false,
-			"workbench.tips.enabled": false,
 			"workbench.startupEditor": "none",
 			"workbench.editor.enablePreview": false,
 			"workbench.editor.restoreViewState": true,
-			"breadcrumbs.enabled": false,
-			"window.title": "${appName}",
 			"editor.fontFamily": "'Source Han Serif SC', 'Noto Serif CJK SC', 'SimSun', serif",
 			"editor.fontSize": 16,
 			"editor.lineHeight": 1.8,
@@ -133,10 +103,6 @@
 			"editor.cursorBlinking": "solid",
 			"workbench.editor.centeredLayoutAutoResize": true,
 			"workbench.editor.centeredLayoutFixedWidth": true,
-			"security.workspace.trust.enabled": false,
-			"security.workspace.trust.startupPrompt": "never",
-			"security.workspace.trust.banner": "never",
-			"security.workspace.trust.untrustedFiles": "open",
 			"[markdown]": {
 				"editor.lineNumbers": "off",
 				"editor.folding": false,
