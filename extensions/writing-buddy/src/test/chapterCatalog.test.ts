@@ -20,41 +20,41 @@ suite('chapterCatalog', () => {
 		})), [
 			{
 				id: 'chapter-001',
-				label: 'Chapter 001',
+				label: '第一章 停摆的时钟',
 				relativePath: 'Volume 01/Chapter 001.md',
 				scene: {
-					location: 'Old Railway Station',
+					location: '旧火车站',
 					time: '23:40',
-					pov: 'Lin Mo',
-					characters: ['Lin Mo', 'Xu Qing'],
-					goal: 'Find the missing notebook.',
-					note: 'The station clock stopped at 23:17.'
+					pov: '林墨',
+					characters: ['林墨', '徐青'],
+					goal: '找到遗失的笔记本。',
+					note: '车站的时钟停在了 23:17。'
 				}
 			},
 			{
 				id: 'chapter-002',
-				label: 'Chapter 002',
+				label: '第二章 迷路的旅人',
 				relativePath: 'Volume 01/Chapter 002.md',
 				scene: {
-					location: 'Platform Three',
+					location: '第三站台',
 					time: '23:52',
-					pov: 'Xu Qing',
-					characters: ['Xu Qing', 'Lin Mo'],
-					goal: 'Trace the notebook thief.',
-					note: 'A freight train is due before midnight.'
+					pov: '徐青',
+					characters: ['徐青', '林墨'],
+					goal: '追踪偷走笔记本的人。',
+					note: '午夜前有一班货运列车。'
 				}
 			},
 			{
 				id: 'chapter-003',
-				label: 'Chapter 003',
+				label: '第三章 深夜的访客',
 				relativePath: 'Volume 01/Chapter 003.md',
 				scene: {
-					location: 'Signal Tower',
+					location: '信号塔',
 					time: '00:06',
-					pov: 'Lin Mo',
-					characters: ['Lin Mo', 'Xu Qing'],
-					goal: 'Recover the station log.',
-					note: 'The tower lamp flashes in groups of three.'
+					pov: '林墨',
+					characters: ['林墨', '徐青'],
+					goal: '找回车站日志。',
+					note: '塔灯以三为一组闪烁。'
 				}
 			}
 		]);

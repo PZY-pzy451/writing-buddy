@@ -30,7 +30,7 @@ export class ProductHeader implements vscode.Disposable {
 		activeChapterId: undefined
 	};
 
-	constructor(private readonly context: vscode.ExtensionContext) {
+	constructor() {
 		this.panel = vscode.window.createWebviewPanel(
 			'writingBuddy.productHeader',
 			vscode.l10n.t('Writing Buddy'),

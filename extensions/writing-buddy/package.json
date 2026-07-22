@@ -102,7 +102,7 @@
 			"window.menuBarVisibility": "hidden",
 			"workbench.activityBar.location": "hidden",
 			"workbench.secondarySideBar.defaultVisibility": "visibleInWorkspace",
-			"workbench.statusBar.visible": false,
+			"workbench.statusBar.visible": true,
 			"workbench.layoutControl.enabled": false,
 			"window.commandCenter": false,
 			"workbench.navigationControl.enabled": false,

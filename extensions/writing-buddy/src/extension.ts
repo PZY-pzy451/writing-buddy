@@ -7,6 +7,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { AssistantViewProvider } from './assistantView';
 import { ChapterDefinition, chapters, findChapterById, findChapterByRelativePath, getAdjacentChapter } from './chapterCatalog';
+import { ContentAnnotations } from './contentAnnotations';
 import { SerialOperationQueue } from './chapterTracking';
 import { ChapterTreeDataProvider, ChapterTreeElement } from './chapterTree';
 import { ensureSampleNovel, isSampleNovelWorkspace } from './novelBootstrap';
@@ -133,6 +134,18 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 			}
 		}
 	}));
+	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showPending', async () => {
+		await vscode.commands.executeCommand('workbench.view.extension.writingBuddyAssistant');
+	}));
+	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showDiff', async () => {
+		await vscode.window.showInformationMessage(vscode.l10n.t('修改对比功能将在后续版本提供。'));
+	}));
+	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showTasks', async () => {
+		await vscode.window.showInformationMessage(vscode.l10n.t('后台任务功能将在后续版本提供。'));
+	}));
+	context.subscriptions.push(vscode.commands.registerCommand('writingBuddy.showBackupRecords', async () => {
+		await vscode.window.showInformationMessage(vscode.l10n.t('备份记录功能将在后续版本提供。'));
+	}));
 	const chapterTrackingQueue = new SerialOperationQueue();
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(editor => {
 		void chapterTrackingQueue.enqueue(async () => {
@@ -148,16 +161,28 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 		context.subscriptions.push(writingStatistics);
 		const writerStatusBar = new WriterStatusBar();
 		context.subscriptions.push(writerStatusBar);
-		const productHeader = new ProductHeader(context);
+		const productHeader = new ProductHeader();
 		context.subscriptions.push(productHeader);
+		const contentAnnotations = new ContentAnnotations();
+		context.subscriptions.push(contentAnnotations);
 		const updateWriterStatus = (): void => {
 			const editor = vscode.window.activeTextEditor;
 			const chapter = editor ? getChapterForDocument(sampleNovelUri, editor.document.uri) : undefined;
-			writerStatusBar.update(chapter, writingStatistics.statistics, chapter && editor ? editor.document.isDirty : undefined);
+			const isDirty = chapter && editor ? editor.document.isDirty : undefined;
+			writerStatusBar.update({
+				chapter,
+				statistics: writingStatistics.statistics,
+				isDirty,
+				todayWords: writingStatistics.statistics.novelWords,
+				targetWords: 3000,
+				pending: { severe: 0, warning: 0, suggestion: 0, ignored: 0 },
+				backgroundTasks: 0,
+				backupOk: true
+			});
 			productHeader.update({
 				chapter,
 				statistics: writingStatistics.statistics,
-				isDirty: chapter && editor ? editor.document.isDirty : undefined
+				isDirty
 			});
 		};
 		context.subscriptions.push(writingStatistics.onDidChange(updateWriterStatus));

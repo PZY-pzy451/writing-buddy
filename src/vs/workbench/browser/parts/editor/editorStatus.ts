@@ -58,6 +58,7 @@ import { TabFocus } from '../../../../editor/browser/config/tabFocus.js';
 import { IEditorGroupsService, IEditorPart } from '../../../services/editor/common/editorGroupsService.js';
 import { InputMode } from '../../../../editor/common/inputMode.js';
 import { IDialogService } from '../../../../platform/dialogs/common/dialogs.js';
+import { IProductService } from '../../../../platform/product/common/productService.js';
 
 class SideBySideEditorEncodingSupport implements IEncodingSupport {
 	constructor(private primary: IEncodingSupport, private secondary: IEncodingSupport) { }
@@ -372,7 +373,8 @@ class EditorStatus extends Disposable {
 		@ITextFileService private readonly textFileService: ITextFileService,
 		@IStatusbarService private readonly statusbarService: IStatusbarService,
 		@IInstantiationService instantiationService: IInstantiationService,
-		@IConfigurationService private readonly configurationService: IConfigurationService
+		@IConfigurationService private readonly configurationService: IConfigurationService,
+		@IProductService private readonly productService: IProductService
 	) {
 		super();
 
@@ -607,7 +609,25 @@ class EditorStatus extends Disposable {
 		this.updateElement(this.metadataElement, props, 'status.editor.info', StatusbarAlignment.RIGHT, 100);
 	}
 
+	/**
+	 * Development-oriented status bar entries that are hidden in the Writing Buddy product shell.
+	 */
+	private static readonly WRITER_HIDDEN_ENTRIES = new Set([
+		'status.editor.selection',
+		'status.editor.indentation',
+		'status.editor.encoding',
+		'status.editor.eol',
+		'status.editor.mode',
+		'status.editor.info'
+	]);
+
 	private updateElement(element: MutableDisposable<IStatusbarEntryAccessor>, props: IStatusbarEntry, id: string, alignment: StatusbarAlignment, priority: number) {
+		// Writing Buddy product shell: hide development-oriented status bar entries
+		if (this.productService.applicationName === 'writing-buddy' && EditorStatus.WRITER_HIDDEN_ENTRIES.has(id)) {
+			element.clear();
+			return;
+		}
+
 		if (!element.value) {
 			element.value = this.statusbarService.addEntry(props, id, alignment, priority);
 		} else {

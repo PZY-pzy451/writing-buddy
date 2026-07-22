@@ -5,7 +5,7 @@
 
 import { randomBytes } from 'crypto';
 import * as vscode from 'vscode';
-import { renderAssistantHtml } from './assistantHtml';
+import { PolishSuggestion, renderAssistantHtml } from './assistantHtml';
 import { ChapterDefinition } from './chapterCatalog';
 import { OwnedValue } from './ownedValue';
 
@@ -69,7 +69,34 @@ export class AssistantViewProvider implements vscode.WebviewViewProvider, vscode
 				notes: vscode.l10n.t('备注'),
 				noChapter: vscode.l10n.t('打开章节以查看写作上下文。')
 			},
-			scene: this.activeChapter?.scene
+			scene: this.activeChapter?.scene,
+			suggestions: this.getSuggestions()
 		});
+	}
+
+	private getSuggestions(): readonly PolishSuggestion[] {
+		if (!this.activeChapter) {
+			return [];
+		}
+
+		// Prototype suggestions; real AI-driven suggestions arrive in a later phase.
+		return [
+			{
+				index: 1,
+				total: 5,
+				original: '他回头看了一眼身后的队伍，眼神平静，却没人能看懂他在想什么。',
+				suggested: '他回头扫了一眼身后的队伍，眼神平静，没人能看出他心里在盘算什么。',
+				reason: '优化口语节奏，避免重复用词"看"和"想"。',
+				scope: '无'
+			},
+			{
+				index: 2,
+				total: 5,
+				original: '城门在雨中发出不堪重负的呻吟。',
+				suggested: '城门在雨中发出不堪重负的吱呀声。',
+				reason: '"呻吟"与城门意象略有不搭，改用拟声词更贴切。',
+				scope: '无'
+			}
+		];
 	}
 }

@@ -72,12 +72,6 @@ const noteElement: NoteElement = { kind: 'note', id: 'notes' };
 const trashElement: TrashElement = { kind: 'trash', id: 'trash' };
 const settingsElement: SettingsElement = { kind: 'settings', id: 'settings' };
 const helpElement: HelpElement = { kind: 'help', id: 'help' };
-const resourceElements: readonly ResourceElement[] = [
-	{ kind: 'resource', id: 'characters' },
-	{ kind: 'resource', id: 'worldbuilding' },
-	{ kind: 'resource', id: 'timeline' },
-	{ kind: 'resource', id: 'notes' }
-];
 
 export class ChapterTreeDataProvider implements vscode.TreeDataProvider<ChapterTreeElement>, vscode.Disposable {
 	private readonly changeEmitter = new vscode.EventEmitter<ChapterTreeElement | undefined>();
