@@ -1,0 +1,22 @@
+{
+  "fixture": "03-utf8-bom",
+  "projectId": "project-00000003",
+  "title": "脱敏测试作品 3",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000031",
+    "chapter-00000032",
+    "chapter-00000033"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "c9fbbed19bc47d4bab77b9692e5c36d577c10a3d4044bbbe7e3896be58a998f4",
+    "chapters/chapter-001.md": "0e8edf53b19af8bdcb32a965a940fe8f7afab75282c3d36b8fa5a354f459dfac",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91"
+  }
+}

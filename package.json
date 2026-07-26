@@ -1,0 +1,42 @@
+{
+  "name": "writing-buddy-next",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @writing-buddy/desktop dev",
+    "build": "pnpm --filter @writing-buddy/desktop build",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "fixtures:generate": "node scripts/compatibility/generate-fixtures.mjs",
+    "compatibility:report": "node scripts/compatibility/create-report.mjs",
+    "tauri": "pnpm --filter @writing-buddy/desktop tauri",
+    "tauri:dev": "pnpm --filter @writing-buddy/desktop tauri dev",
+    "tauri:build": "pnpm --filter @writing-buddy/desktop tauri build",
+    "acceptance": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@testing-library/jest-dom": "7.0.0",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.8.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.3",
+    "globals": "16.5.0",
+    "jsdom": "29.1.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.65.0",
+    "vitest": "4.1.10"
+  }
+}

@@ -1,0 +1,44 @@
+[package]
+name = "writing-buddy-next"
+version = "0.1.0"
+description = "Independent Writing Buddy desktop client"
+authors = ["Writing Buddy Contributors"]
+edition = "2024"
+rust-version = "1.88"
+
+[lib]
+name = "writing_buddy_next_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "writing-buddy-next"
+path = "src/main.rs"
+test = false
+bench = false
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3", features = [] }
+
+[dependencies]
+chrono = { version = "=0.4.45", features = ["serde"] }
+keyring = { version = "=4.1.5", default-features = false, features = ["v1", "windows-native-keyring-store"] }
+hex = "=0.4.3"
+reqwest = { version = "=0.13.4", default-features = false, features = ["json", "rustls"] }
+rfd = "=0.17.2"
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+sha2 = "=0.11.0"
+tauri = { version = "=2.11.5", features = [] }
+walkdir = "=2.5.0"
+windows-sys = { version = "=0.61.2", features = ["Win32_Storage_FileSystem"] }
+
+[profile.dev]
+incremental = true
+debug = 1
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+opt-level = "s"
+panic = "abort"
+strip = "symbols"

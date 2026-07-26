@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "projectId": "project-00000008",
+  "title": "脱敏测试作品 8",
+  "volumes": [
+    {
+      "id": "volume-00000081",
+      "title": "第1卷",
+      "chapters": [
+        {
+          "id": "chapter-00000081",
+          "title": "第1章 示例",
+          "file": "chapters/chapter-001.md",
+          "status": "draft",
+          "targetWords": 3000,
+          "scene": {
+            "location": "旧车站",
+            "time": "23:17",
+            "pov": "林墨",
+            "characters": [
+              "林墨",
+              "徐青"
+            ],
+            "goal": "找到遗失的笔记",
+            "note": "所有内容均为脱敏测试数据"
+          }
+        },
+        {
+          "id": "chapter-00000082",
+          "title": "第2章 示例",
+          "file": "chapters/chapter-002.md",
+          "status": "revision",
+          "targetWords": 3000,
+          "scene": {
+            "location": "旧车站",
+            "time": "23:18",
+            "pov": "林墨",
+            "characters": [
+              "林墨",
+              "徐青"
+            ],
+            "goal": "找到遗失的笔记",
+            "note": "所有内容均为脱敏测试数据"
+          }
+        },
+        {
+          "id": "chapter-00000083",
+          "title": "第3章 示例",
+          "file": "chapters/chapter-003.md",
+          "status": "draft",
+          "targetWords": 3000,
+          "scene": {
+            "location": "旧车站",
+            "time": "23:19",
+            "pov": "林墨",
+            "characters": [
+              "林墨",
+              "徐青"
+            ],
+            "goal": "找到遗失的笔记",
+            "note": "所有内容均为脱敏测试数据"
+          }
+        }
+      ]
+    }
+  ]
+}

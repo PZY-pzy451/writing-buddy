@@ -1,0 +1,4 @@
+{
+  "fixture": "01-invalid-json",
+  "expected": "invalid-json"
+}

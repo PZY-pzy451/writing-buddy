@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-26T09:30:02.871Z",
+  "mode": "read-only-golden-contract",
+  "fixtures": [
+    {
+      "fixture": "01-minimal-lf",
+      "legacyHash": "bfca2ea465f16ffcccc7e04c53e864233af4775426809b8815d6c660eddf9c41",
+      "nextHash": "bfca2ea465f16ffcccc7e04c53e864233af4775426809b8815d6c660eddf9c41",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000001",
+      "chapterCount": 3,
+      "fileCount": 4,
+      "byteLength": 2107
+    },
+    {
+      "fixture": "02-crlf",
+      "legacyHash": "66c522ffae778f6d796510b6bff484ec08e07e8df8a49c8801d3a02dbb4fc24b",
+      "nextHash": "66c522ffae778f6d796510b6bff484ec08e07e8df8a49c8801d3a02dbb4fc24b",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000002",
+      "chapterCount": 3,
+      "fileCount": 4,
+      "byteLength": 2116
+    },
+    {
+      "fixture": "03-utf8-bom",
+      "legacyHash": "693f421e432110a6ddfad15d336d395c49a7319b3ce7539ab0d22160a8a91d3e",
+      "nextHash": "693f421e432110a6ddfad15d336d395c49a7319b3ce7539ab0d22160a8a91d3e",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000003",
+      "chapterCount": 3,
+      "fileCount": 4,
+      "byteLength": 2110
+    },
+    {
+      "fixture": "04-unicode-paths",
+      "legacyHash": "7856fb00422f9a21453be4716ed319a59ae0c99ef99fbe48077f5a9721866a46",
+      "nextHash": "7856fb00422f9a21453be4716ed319a59ae0c99ef99fbe48077f5a9721866a46",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000004",
+      "chapterCount": 3,
+      "fileCount": 4,
+      "byteLength": 2115
+    },
+    {
+      "fixture": "05-multiple-volumes",
+      "legacyHash": "04a9b85c94f69905461e6c7b8d63de7803d1310fdc108f7655f893522c5269d0",
+      "nextHash": "04a9b85c94f69905461e6c7b8d63de7803d1310fdc108f7655f893522c5269d0",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000005",
+      "chapterCount": 4,
+      "fileCount": 5,
+      "byteLength": 2835
+    },
+    {
+      "fixture": "06-resources",
+      "legacyHash": "77c65aea7121d5e7f2dceb7cf2a2aa83ee9d460a3690231c75011d5d8d2d74e3",
+      "nextHash": "77c65aea7121d5e7f2dceb7cf2a2aa83ee9d460a3690231c75011d5d8d2d74e3",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000006",
+      "chapterCount": 3,
+      "fileCount": 10,
+      "byteLength": 2491
+    },
+    {
+      "fixture": "07-review",
+      "legacyHash": "b0e4fc4a2e7fd0d89575d303c52a2a94528136ec3bf1190aed362e2bbc613f99",
+      "nextHash": "b0e4fc4a2e7fd0d89575d303c52a2a94528136ec3bf1190aed362e2bbc613f99",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000007",
+      "chapterCount": 3,
+      "fileCount": 5,
+      "byteLength": 2390
+    },
+    {
+      "fixture": "08-history",
+      "legacyHash": "8277c893b334e906f8d0def0694940ed32f94a224243dd4ad5150464afbc5c74",
+      "nextHash": "8277c893b334e906f8d0def0694940ed32f94a224243dd4ad5150464afbc5c74",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000008",
+      "chapterCount": 3,
+      "fileCount": 5,
+      "byteLength": 2151
+    },
+    {
+      "fixture": "09-ai-state",
+      "legacyHash": "8639204f088d85ed6a30e5b2168b293879763f78d045dbd96602158e5b9158ab",
+      "nextHash": "8639204f088d85ed6a30e5b2168b293879763f78d045dbd96602158e5b9158ab",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-00000009",
+      "chapterCount": 3,
+      "fileCount": 5,
+      "byteLength": 2215
+    },
+    {
+      "fixture": "10-full",
+      "legacyHash": "8f890705d0e9cc7902c9a1e4924738a3de1fa0276d13e550ddfa842ea70ea026",
+      "nextHash": "8f890705d0e9cc7902c9a1e4924738a3de1fa0276d13e550ddfa842ea70ea026",
+      "differences": [],
+      "approvalReason": "Current-schema fixture is consumed without transformation.",
+      "blocking": false,
+      "projectId": "project-0000000a",
+      "chapterCount": 6,
+      "fileCount": 16,
+      "byteLength": 4917
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "blocking": 0,
+    "totalBytes": 25447
+  }
+}

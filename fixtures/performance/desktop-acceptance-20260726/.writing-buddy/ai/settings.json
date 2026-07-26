@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "sendWholeChapter": false
+}

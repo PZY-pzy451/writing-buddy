@@ -1,0 +1,23 @@
+{
+  "fixture": "08-history",
+  "projectId": "project-00000008",
+  "title": "脱敏测试作品 8",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000081",
+    "chapter-00000082",
+    "chapter-00000083"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "2b51a06944d53dd7a2542528b36e3f7e3beb1861bdd14d062d6a7e2775ae2d23",
+    "chapters/chapter-001.md": "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91",
+    ".writing-buddy/history/manifest.json": "c9aa3eccf6c2284f550d7b010070c9582a6ea10b2624f3f036bb02f28ce6c1d2"
+  }
+}

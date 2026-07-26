@@ -1,0 +1,25 @@
+{
+  "fixture": "05-multiple-volumes",
+  "projectId": "project-00000005",
+  "title": "脱敏测试作品 5",
+  "volumeCount": 2,
+  "chapterOrder": [
+    "chapter-00000051",
+    "chapter-00000053",
+    "chapter-00000052",
+    "chapter-00000054"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-003.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-004.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "685e394a061e4aaa0fa0aa043562efbe63db22e3ec57980585929de2b9f54050",
+    "chapters/chapter-001.md": "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91",
+    "chapters/chapter-004.md": "746cce7779d5051f018fb24390921e309a2c0659d79f7a18c4205e181d0e4e26"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "fixture": "06-resources",
+  "projectId": "project-00000006",
+  "title": "脱敏测试作品 6",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000061",
+    "chapter-00000062",
+    "chapter-00000063"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "d63837fc5d2193655c9bc2f73110067f0a0da7d7f267fa0244cbd7d42d6747a0",
+    "chapters/chapter-001.md": "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91",
+    "references/characters/lin-mo.json": "cde4984317f8219b1e158509b78430729573f8c29b0cf69679a9ff65160654cb",
+    "references/worldbuilding/station/metadata.json": "3c6dc07c08544a075522dad92c2be3e54884df1de102a1ee89e1d35a9381d465",
+    "references/worldbuilding/station/content.md": "845616cb01e7b8785d36e95faa3a37ef147754fdf0ba0fafe12ec361a9e0b72e",
+    "references/timeline.json": "8fd32758ca242b9caaeb56157b863ddaff1605e5cd2e97da3fe17ca2ef1b9d47",
+    "references/items/notebook.json": "297e1f7461704d94ad1520b2ccf9165bd0bec528b15ea9030ed931f4330454e3",
+    "references/notes/创作笔记.md": "a47740a76f0e9fae83efb4a89fb9cec7525ded19bd3bcd5dd244bc0b2fe77cae"
+  }
+}

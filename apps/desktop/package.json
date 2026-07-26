@@ -1,0 +1,37 @@
+{
+  "name": "@writing-buddy/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "4.7.0",
+    "@tauri-apps/api": "2.11.1",
+    "@writing-buddy/ai": "workspace:*",
+    "@writing-buddy/backup": "workspace:*",
+    "@writing-buddy/compatibility": "workspace:*",
+    "@writing-buddy/domain": "workspace:*",
+    "@writing-buddy/migration": "workspace:*",
+    "@writing-buddy/platform-ports": "workspace:*",
+    "@writing-buddy/project": "workspace:*",
+    "@writing-buddy/resource": "workspace:*",
+    "@writing-buddy/review": "workspace:*",
+    "@writing-buddy/version": "workspace:*",
+    "lucide-react": "1.27.0",
+    "monaco-editor": "0.56.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zustand": "5.0.14",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.11.4",
+    "@vitejs/plugin-react": "6.0.4",
+    "vite": "8.1.5"
+  }
+}

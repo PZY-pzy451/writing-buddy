@@ -1,0 +1,23 @@
+{
+  "fixture": "07-review",
+  "projectId": "project-00000007",
+  "title": "脱敏测试作品 7",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000071",
+    "chapter-00000072",
+    "chapter-00000073"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "de3dc937e65e8e697be0a09f163a6a97a29c9d364a3008b4aaf8fb11c500c04d",
+    "chapters/chapter-001.md": "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91",
+    ".writing-buddy/review/issues.json": "84c1d5e891aa0921298534439441f130501a52898e8bd29beeba2854dc238879"
+  }
+}

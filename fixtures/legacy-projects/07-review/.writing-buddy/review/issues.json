@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "issues": [
+    {
+      "id": "review-00000001",
+      "ruleId": "duplicate-punctuation",
+      "status": "open",
+      "chapterId": "chapter-00000071",
+      "anchor": {
+        "start": 0,
+        "end": 2,
+        "excerpt": "夜雨"
+      }
+    }
+  ]
+}

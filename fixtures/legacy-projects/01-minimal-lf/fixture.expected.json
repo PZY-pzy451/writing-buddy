@@ -1,0 +1,22 @@
+{
+  "fixture": "01-minimal-lf",
+  "projectId": "project-00000001",
+  "title": "脱敏测试作品 1",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000011",
+    "chapter-00000012",
+    "chapter-00000013"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "49606754dbefeecac04ce343a6ab2c83024525dca7c41db63222bd8d2b7c6f75",
+    "chapters/chapter-001.md": "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+    "chapters/chapter-002.md": "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+    "chapters/chapter-003.md": "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91"
+  }
+}

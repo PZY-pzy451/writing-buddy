@@ -1,0 +1,22 @@
+{
+  "fixture": "02-crlf",
+  "projectId": "project-00000002",
+  "title": "脱敏测试作品 2",
+  "volumeCount": 1,
+  "chapterOrder": [
+    "chapter-00000021",
+    "chapter-00000022",
+    "chapter-00000023"
+  ],
+  "chapterPaths": [
+    "chapters/chapter-001.md",
+    "chapters/chapter-002.md",
+    "chapters/chapter-003.md"
+  ],
+  "hashes": {
+    ".writing-buddy/project.json": "2db14686e7e7bd3af22ca88c4cd4b7723c95bbeb2862702a5463911c0a704335",
+    "chapters/chapter-001.md": "c9f0bc23aabe7d6c71e322e140c995b2172e59a3fc53755015401109219ff396",
+    "chapters/chapter-002.md": "f28a72b64b17066c1c25568828619e7616afe768bb0d34f21cdca2d9650836a0",
+    "chapters/chapter-003.md": "cf9dbfb9cac60e0cd95895d3416571c161cf739e04d2207a2c29f737592ac22e"
+  }
+}

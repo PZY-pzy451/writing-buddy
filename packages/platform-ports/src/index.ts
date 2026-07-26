@@ -1,0 +1,174 @@
+import type { TextFile, WritingProject } from '@writing-buddy/domain';
+
+export interface Disposable {
+	dispose(): void;
+}
+
+export interface FileEntry {
+	readonly name: string;
+	readonly path: string;
+	readonly kind: 'file' | 'directory';
+	readonly byteLength?: number;
+}
+
+export interface FileStat {
+	readonly kind: 'file' | 'directory';
+	readonly byteLength: number;
+	readonly modifiedAt: string;
+}
+
+export interface AtomicWriteRequest {
+	readonly projectRoot: string;
+	readonly relativePath: string;
+	readonly content: string;
+	readonly expectedHash: string;
+	readonly eol: 'lf' | 'crlf';
+	readonly hasBom: boolean;
+	readonly force?: boolean;
+}
+
+export interface AtomicWriteResult {
+	readonly hash: string;
+	readonly byteLength: number;
+	readonly modifiedAt: string;
+}
+
+export interface FileWatchEvent {
+	readonly relativePath: string;
+	readonly kind: 'created' | 'modified' | 'removed';
+}
+
+export interface FileSystemPort {
+	readText(projectRoot: string, relativePath: string): Promise<TextFile>;
+	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult>;
+	readBytes(projectRoot: string, relativePath: string): Promise<Uint8Array>;
+	writeBytesAtomic(projectRoot: string, relativePath: string, data: Uint8Array): Promise<AtomicWriteResult>;
+	list(projectRoot: string, relativePath: string): Promise<readonly FileEntry[]>;
+	stat(projectRoot: string, relativePath: string): Promise<FileStat | undefined>;
+	watch(projectRoot: string, listener: (event: FileWatchEvent) => void): Promise<Disposable>;
+}
+
+export interface SecretStorePort {
+	get(key: string): Promise<string | undefined>;
+	set(key: string, value: string): Promise<void>;
+	delete(key: string): Promise<void>;
+}
+
+export interface BackupCreateRequest {
+	readonly projectRoot: string;
+	readonly destination: string;
+	readonly reason: string;
+	readonly label?: string;
+}
+
+export interface BackupResult {
+	readonly path: string;
+	readonly hash: string;
+	readonly byteLength: number;
+	readonly entryCount: number;
+}
+
+export interface BackupInspection {
+	readonly valid: boolean;
+	readonly formatVersion?: number;
+	readonly projectId?: string;
+	readonly createdAt?: string;
+	readonly entryCount: number;
+	readonly issues: readonly string[];
+}
+
+export interface VersionSummary {
+	readonly id: string;
+	readonly createdAt: string;
+	readonly label?: string;
+}
+
+export interface VersionText {
+	readonly snapshotId: string;
+	readonly relativePath: string;
+	readonly content: string;
+	readonly hash: string;
+}
+
+export interface ArchivePort {
+	createBackup(request: BackupCreateRequest): Promise<BackupResult>;
+	inspect(path: string): Promise<BackupInspection>;
+	extractVerified(path: string, destination: string): Promise<void>;
+}
+
+export interface ProjectLock {
+	readonly projectRoot: string;
+	readonly mode: 'read-only' | 'read-write';
+	readonly pid: number;
+	readonly startedAt: string;
+	release(): Promise<void>;
+}
+
+export interface ProjectLockState {
+	readonly held: boolean;
+	readonly stale: boolean;
+	readonly application?: string;
+	readonly pid?: number;
+	readonly startedAt?: string;
+}
+
+export interface ProcessLockPort {
+	acquire(projectRoot: string, mode: 'read-only' | 'read-write'): Promise<ProjectLock>;
+	inspect(projectRoot: string): Promise<ProjectLockState>;
+}
+
+export interface DialogPort {
+	chooseProject(): Promise<string | undefined>;
+	chooseSavePath(suggestedName: string): Promise<string | undefined>;
+	confirm(message: string, detail?: string): Promise<boolean>;
+}
+
+export interface LoggerPort {
+	debug(event: string, fields?: Readonly<Record<string, string | number | boolean>>): void;
+	info(event: string, fields?: Readonly<Record<string, string | number | boolean>>): void;
+	warn(event: string, fields?: Readonly<Record<string, string | number | boolean>>): void;
+	error(event: string, fields?: Readonly<Record<string, string | number | boolean>>): void;
+}
+
+export interface ProjectSnapshot {
+	readonly root: string;
+	readonly project: WritingProject;
+	readonly resources: readonly {
+		readonly id: string;
+		readonly type: 'note' | 'character' | 'worldbuilding' | 'timeline' | 'item';
+		readonly title: string;
+		readonly path: string;
+	}[];
+	readonly wordCounts: Readonly<Record<string, number>>;
+	readonly integrityIssues: readonly {
+		readonly severity: 'info' | 'warning' | 'error';
+		readonly code: string;
+		readonly message: string;
+		readonly path?: string;
+	}[];
+	readonly readOnly: boolean;
+}
+
+export interface DesktopBridge {
+	chooseProject(): Promise<string | undefined>;
+	openProject(projectRoot: string): Promise<ProjectSnapshot>;
+	readText(projectRoot: string, relativePath: string): Promise<TextFile>;
+	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult>;
+	saveTextAs(content: string, eol: 'lf' | 'crlf', hasBom: boolean, suggestedName: string): Promise<string | undefined>;
+	readResource(projectRoot: string, relativePath: string): Promise<string>;
+	writeResource(projectRoot: string, relativePath: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
+	readReviewState(projectRoot: string): Promise<TextFile | undefined>;
+	writeReviewState(projectRoot: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
+	createSnapshot(projectRoot: string, reason: string, label?: string): Promise<string>;
+	createBackup(projectRoot: string, destination?: string): Promise<BackupResult>;
+	chooseBackup(): Promise<string | undefined>;
+	inspectBackup(path: string): Promise<BackupInspection>;
+	restoreBackup(path: string, projectRoot: string, overwrite: boolean): Promise<number>;
+	listVersions(projectRoot: string): Promise<readonly VersionSummary[]>;
+	readVersionText(projectRoot: string, snapshotId: string, relativePath: string): Promise<VersionText>;
+	restoreVersion(projectRoot: string, snapshotId: string): Promise<number>;
+	secretExists(key: string): Promise<boolean>;
+	setSecret(key: string, value: string): Promise<void>;
+	deleteSecret(key: string): Promise<void>;
+	aiComplete(request: { model: string; messages: readonly { role: 'system' | 'user' | 'assistant'; content: string }[] }): Promise<string>;
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+.vite/
+target/
+apps/desktop/src-tauri/target/
+*.log
+*.pdb
+*.msi
+*.exe
+*.zip
+.DS_Store
+.idea/
+.vscode/
+artifacts/
+tmp/

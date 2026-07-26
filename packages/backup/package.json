@@ -1,0 +1,11 @@
+{
+  "name": "@writing-buddy/backup",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@writing-buddy/version": "workspace:*",
+    "zod": "catalog:"
+  }
+}
