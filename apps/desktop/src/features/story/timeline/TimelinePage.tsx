@@ -205,7 +205,9 @@ export function TimelinePage({
 					}}><Plus size={16} />新建事件</button>
 				</div>
 			</header>
-			{error ? <div className="timeline-error" role="alert"><AlertTriangle size={17} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
+			<div className="timeline-messages">
+				{error ? <div className="timeline-error" role="alert"><AlertTriangle size={17} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
+			</div>
 			<section className="timeline-workspace">
 				{!data ? (
 					<div className="timeline-loading">正在读取事件与轨道…</div>

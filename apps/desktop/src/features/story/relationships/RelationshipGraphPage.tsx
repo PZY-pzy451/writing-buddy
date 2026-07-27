@@ -237,12 +237,14 @@ export function RelationshipGraphPage({
 					) : null}
 				</div>
 			</header>
-			{error ? <div className="relationship-error" role="alert"><AlertTriangle size={18} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
-			{graph.omittedNodes || graph.omittedEdges ? (
-				<div className="relationship-limit" role="status">
-					<Focus size={15} />为保持流畅，已省略 {graph.omittedNodes} 个节点和 {graph.omittedEdges} 条关系；请聚焦人物或缩小筛选。
-				</div>
-			) : null}
+			<div className="relationship-messages">
+				{error ? <div className="relationship-error" role="alert"><AlertTriangle size={18} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
+				{graph.omittedNodes || graph.omittedEdges ? (
+					<div className="relationship-limit" role="status">
+						<Focus size={15} />为保持流畅，已省略 {graph.omittedNodes} 个节点和 {graph.omittedEdges} 条关系；请聚焦人物或缩小筛选。
+					</div>
+				) : null}
+			</div>
 			<section className={`relationship-workspace is-${view}`}>
 				<div className="relationship-primary-view">
 					{!data ? (

@@ -312,6 +312,263 @@ const browserVersions: VersionSummary[] = [];
 const browserStoryResources = new Map<string, unknown>();
 const browserStoryTrash = new Map<string, unknown>();
 const browserMentionLinks = new Map<string, unknown>();
+const browserStoryTimestamp = '2026-07-27T00:00:00.000Z';
+const browserStoryFixtures: readonly Record<string, unknown>[] = [
+	{
+		id: 'character:lin-mo',
+		type: 'character',
+		title: '林墨',
+		aliases: [],
+		tags: ['主角', '调查者'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		role: 'protagonist',
+		pronouns: '他',
+		occupation: '自由撰稿人',
+		factionIds: [],
+		goals: ['找回遗失的笔记'],
+		desires: ['确认父亲失踪的真相'],
+		fears: ['自己的记忆并不可靠'],
+		values: ['证据优先'],
+		secrets: [],
+		speechStyle: '句子简短，追问时会重复对方的关键词。',
+		evidenceIds: ['evidence:lin-intro']
+	},
+	{
+		id: 'character:shen-qing',
+		type: 'character',
+		title: '沈青',
+		aliases: [],
+		tags: ['关键人物', '守护者'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		role: 'supporting',
+		pronouns: '她',
+		occupation: '旧站档案管理员',
+		factionIds: [],
+		goals: ['阻止林墨接近封存站台'],
+		desires: ['保护仍在站内的人'],
+		fears: ['秘密提前暴露'],
+		values: ['承诺'],
+		secrets: ['知道 23:17 的真正含义'],
+		speechStyle: '克制，避免直接回答涉及站台的问题。',
+		evidenceIds: ['evidence:shen-intro']
+	},
+	{
+		id: 'character:xu-qing',
+		type: 'character',
+		title: '徐青',
+		aliases: [],
+		tags: ['失踪者'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		role: 'supporting',
+		pronouns: '他',
+		occupation: '铁路信号员',
+		factionIds: [],
+		goals: [],
+		desires: [],
+		fears: [],
+		values: [],
+		secrets: [],
+		evidenceIds: ['evidence:notebook-owner']
+	},
+	{
+		id: 'relationship:lin-doubts-shen',
+		type: 'relationship',
+		title: '林墨怀疑沈青',
+		aliases: [],
+		tags: ['紧张'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		sourceCharacterId: 'character:lin-mo',
+		targetCharacterId: 'character:shen-qing',
+		relationshipType: '怀疑',
+		strength: 0.72,
+		visibility: 'private',
+		description: '林墨认为沈青隐瞒了封存站台的信息。',
+		effectiveFrom: {
+			chapterId: 'chapter:chapter-000000a1',
+			sceneId: 'scene:station-rain',
+			narrativeOrder: 1
+		},
+		evidenceIds: ['evidence:rain-dialogue'],
+		history: []
+	},
+	{
+		id: 'relationship:shen-protects-lin',
+		type: 'relationship',
+		title: '沈青保护林墨',
+		aliases: [],
+		tags: ['秘密'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		sourceCharacterId: 'character:shen-qing',
+		targetCharacterId: 'character:lin-mo',
+		relationshipType: '保护',
+		strength: 0.88,
+		visibility: 'secret',
+		description: '沈青没有向林墨说明保护他的真正理由。',
+		effectiveFrom: {
+			chapterId: 'chapter:chapter-000000a1',
+			sceneId: 'scene:station-rain',
+			narrativeOrder: 2
+		},
+		evidenceIds: ['evidence:station-rescue'],
+		history: []
+	},
+	{
+		id: 'relationship:xu-trusts-lin',
+		type: 'relationship',
+		title: '徐青信任林墨',
+		aliases: [],
+		tags: ['过去'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		sourceCharacterId: 'character:xu-qing',
+		targetCharacterId: 'character:lin-mo',
+		relationshipType: '信任',
+		strength: 0.8,
+		visibility: 'public',
+		effectiveFrom: {
+			chapterId: 'chapter:chapter-000000a2',
+			narrativeOrder: 0
+		},
+		effectiveUntil: {
+			chapterId: 'chapter:chapter-000000a4',
+			narrativeOrder: 4
+		},
+		evidenceIds: ['evidence:old-letter'],
+		history: []
+	},
+	{
+		id: 'timeline-event:childhood-clock',
+		type: 'timelineEvent',
+		title: '童年时钟停摆',
+		aliases: [],
+		tags: ['回忆'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		storyStart: '2012-04-03T08:00:00.000Z',
+		storyTimeKind: 'exact',
+		narrativePosition: {
+			chapterId: 'chapter:chapter-000000a5',
+			narrativeOrder: 5
+		},
+		eventType: '背景',
+		participantIds: ['character:lin-mo'],
+		locationIds: ['location:old-station'],
+		itemIds: [],
+		predecessorIds: [],
+		consequenceIds: ['timeline-event:station-meeting'],
+		plotThreadIds: ['plot-thread:missing-notebook'],
+		informationIds: [],
+		evidenceIds: ['evidence:childhood-memory']
+	},
+	{
+		id: 'timeline-event:letter-arrives',
+		type: 'timelineEvent',
+		title: '匿名来信抵达',
+		aliases: [],
+		tags: ['线索'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		storyStart: '2026-07-26T10:00:00.000Z',
+		storyTimeKind: 'exact',
+		narrativePosition: {
+			chapterId: 'chapter:chapter-000000a3',
+			narrativeOrder: 3
+		},
+		eventType: '线索',
+		participantIds: ['character:lin-mo'],
+		locationIds: [],
+		itemIds: [],
+		predecessorIds: [],
+		consequenceIds: ['timeline-event:station-meeting'],
+		plotThreadIds: ['plot-thread:missing-notebook'],
+		informationIds: [],
+		evidenceIds: ['evidence:anonymous-letter']
+	},
+	{
+		id: 'timeline-event:station-meeting',
+		type: 'timelineEvent',
+		title: '雨夜车站相遇',
+		aliases: [],
+		tags: ['主线'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		storyStart: '2026-07-27T23:17:00.000Z',
+		storyEnd: '2026-07-27T23:32:00.000Z',
+		storyTimeKind: 'exact',
+		narrativePosition: {
+			chapterId: 'chapter:chapter-000000a1',
+			sceneId: 'scene:station-rain',
+			narrativeOrder: 1
+		},
+		eventType: '会面',
+		participantIds: ['character:lin-mo', 'character:shen-qing'],
+		locationIds: ['location:old-station'],
+		itemIds: [],
+		predecessorIds: ['timeline-event:letter-arrives'],
+		consequenceIds: [],
+		plotThreadIds: ['plot-thread:missing-notebook'],
+		informationIds: ['information:clock-stopped'],
+		evidenceIds: ['evidence:station-meeting']
+	}
+];
+for (const resource of browserStoryFixtures) {
+	browserStoryResources.set(
+		browserStoryKey(resource.type as StoryResourceType, resource.id as string),
+		resource
+	);
+}
+browserFiles.set('story/states/character-states.json', JSON.stringify([
+	{
+		id: 'state:lin-location-station',
+		characterId: 'character:lin-mo',
+		kind: 'location',
+		value: '旧车站',
+		effectiveFrom: {
+			chapterId: 'chapter:chapter-000000a1',
+			sceneId: 'scene:station-rain',
+			narrativeOrder: 1
+		},
+		evidenceIds: ['evidence:station-arrival'],
+		confirmation: 'confirmed',
+		revision: 0
+	},
+	{
+		id: 'state:lin-location-conflict',
+		characterId: 'character:lin-mo',
+		kind: 'location',
+		value: '临江旅社',
+		effectiveFrom: {
+			chapterId: 'chapter:chapter-000000a1',
+			narrativeOrder: 1
+		},
+		evidenceIds: ['evidence:hotel-register'],
+		confirmation: 'pending',
+		revision: 0
+	}
+]));
 const browserAiModels: readonly AiModel[] = [
 	{ id: 'deepseek-v4-flash', ownedBy: 'deepseek' },
 	{ id: 'deepseek-v4-pro', ownedBy: 'deepseek' }

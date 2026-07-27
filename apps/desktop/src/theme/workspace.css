@@ -2044,6 +2044,14 @@
 			/ var(--rail-width) 240px minmax(0, 1fr);
 	}
 
+	.app-shell.is-story-studio {
+		grid-template:
+			"top top top" var(--topbar-height)
+			"rail sidebar center" minmax(0, 1fr)
+			"status status status" var(--status-height)
+			/ var(--rail-width) 240px minmax(0, 1fr);
+	}
+
 	.assistant-panel {
 		position: fixed;
 		z-index: 40;
@@ -2070,6 +2078,14 @@
 
 @media (max-width: 1023px) {
 	.app-shell {
+		grid-template:
+			"top top" var(--topbar-height)
+			"rail center" minmax(0, 1fr)
+			"status status" var(--status-height)
+			/ var(--rail-width) minmax(0, 1fr);
+	}
+
+	.app-shell.is-story-studio {
 		grid-template:
 			"top top" var(--topbar-height)
 			"rail center" minmax(0, 1fr)

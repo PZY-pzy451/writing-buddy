@@ -113,6 +113,10 @@
 	border-radius: 7px;
 }
 
+.timeline-messages {
+	min-height: 0;
+}
+
 .timeline-error button {
 	margin-left: auto;
 }
