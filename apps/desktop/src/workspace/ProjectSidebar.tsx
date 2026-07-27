@@ -17,6 +17,7 @@ import { useMemo, useState } from 'react';
 import { countWords, flattenChapters, type ResourceDescriptor } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
+import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
 
 const resourceIcons = {
 	character: UserRound,
@@ -28,6 +29,7 @@ const resourceIcons = {
 
 export function ProjectSidebar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
+	const activeMode = useAppStore(state => state.activeMode);
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
 	const search = useAppStore(state => state.search.trim().toLocaleLowerCase());
@@ -55,6 +57,10 @@ export function ProjectSidebar(): React.JSX.Element {
 				<button className="primary-button" type="button" onClick={() => void chooseProject()}>选择项目</button>
 			</aside>
 		);
+	}
+
+	if (activeMode === 'references') {
+		return <StoryReferenceSidebar />;
 	}
 
 	const toggleVolume = (volumeId: string) => {

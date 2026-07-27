@@ -29,6 +29,7 @@ import { desktopBridge } from '../platform/bridge';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
+export type StoryViewId = 'characters' | 'relationships' | 'timeline';
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
@@ -38,6 +39,7 @@ interface PersistedWorkspace {
 	readonly accent: 'gold' | 'blue' | 'purple';
 	readonly focusMode: boolean;
 	readonly activeMode: RailMode;
+	readonly storyView: StoryViewId;
 	readonly sidebarWidth: number;
 	readonly assistantWidth: number;
 	readonly dockHeight: number;
@@ -110,6 +112,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setSelection: (selection?: { start: number; end: number; text: string }) => void;
 	readonly setIssues: (issues: readonly ReviewIssue[]) => void;
 	readonly setMode: (mode: RailMode) => void;
+	readonly setStoryView: (view: StoryViewId) => void;
 	readonly setTheme: (theme: ThemeId) => void;
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
 	readonly toggleFocus: () => void;
@@ -159,6 +162,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	dockHeight: 240,
 	documentViews: {},
 	activeMode: 'works',
+	storyView: 'characters',
 	openResourceIds: [],
 	tabs: [],
 	issues: [],
@@ -672,6 +676,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}, 150);
 	},
 	setMode(activeMode) { set({ activeMode }); },
+	setStoryView(storyView) { set({ activeMode: 'references', storyView }); },
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
@@ -692,6 +697,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		accent: state.accent,
 		focusMode: state.focusMode,
 		activeMode: state.activeMode,
+		storyView: state.storyView,
 		sidebarWidth: state.sidebarWidth,
 		assistantWidth: state.assistantWidth,
 		dockHeight: state.dockHeight,

@@ -9,6 +9,22 @@ import { StoryResourceView } from '../features/story/ui/StoryResourceView';
 import { BacklinksPanel } from '../features/story/shared/BacklinksPanel';
 import { MentionService } from '../features/story/manuscript/MentionService';
 import { desktopBridge } from '../platform/bridge';
+import { CharacterCenterPage } from '../features/story/characters/CharacterCenterPage';
+
+export function StoryStudioRoute(): React.JSX.Element {
+	const storyView = useAppStore(state => state.storyView);
+	const projectRoot = useAppStore(state => state.snapshot?.root);
+
+	if (storyView === 'characters') {
+		return <CharacterCenterPage projectRoot={projectRoot} />;
+	}
+	return (
+		<section className="story-studio-pending">
+			<h1>{storyView === 'relationships' ? '人物关系' : '多轨时间线'}</h1>
+			<p>该页面将在当前 Gate 的后续任务中启用。</p>
+		</section>
+	);
+}
 
 /**
  * Story routes stay inside the existing workspace state machine. The persisted

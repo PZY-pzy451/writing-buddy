@@ -80,6 +80,13 @@ export const characterSchema = z.object({
 	birth: z.string().max(120).optional(),
 	appearance: z.string().max(10_000).optional(),
 	occupation: z.string().max(500).optional(),
+	factionIds: z.array(idFor('faction')).optional().default([]),
+	goals: z.array(z.string().trim().min(1).max(1000)).optional().default([]),
+	desires: z.array(z.string().trim().min(1).max(1000)).optional().default([]),
+	fears: z.array(z.string().trim().min(1).max(1000)).optional().default([]),
+	values: z.array(z.string().trim().min(1).max(1000)).optional().default([]),
+	secrets: z.array(z.string().trim().min(1).max(5000)).optional().default([]),
+	speechStyle: z.string().max(5000).optional(),
 	evidenceIds
 }).strict();
 

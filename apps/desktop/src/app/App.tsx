@@ -14,7 +14,7 @@ import { AssistantPanel } from '../assistant/AssistantPanel';
 import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
-import { StoryWorkspaceRoute } from './routes';
+import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
 import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
 
 export function App(): React.JSX.Element {
@@ -99,16 +99,17 @@ export function App(): React.JSX.Element {
 	}, []);
 
 	const systemPageVisible = !['works', 'references'].includes(activeMode);
+	const storyStudioVisible = activeMode === 'references' && Boolean(snapshot);
 	const showDashboard = !systemPageVisible && activeMode === 'works' && Boolean(snapshot) && !activeResource;
-	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible && !showDashboard;
-	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible && !showDashboard;
-	const showTextEditor = !systemPageVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
-	const showStoryResource = !systemPageVisible && activeResource?.type === 'story';
-	const showResourceEditor = !systemPageVisible && activeResource && !showTextEditor && !showStoryResource;
+	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
+	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
+	const showTextEditor = !systemPageVisible && !storyStudioVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
+	const showStoryResource = !systemPageVisible && !storyStudioVisible && activeResource?.type === 'story';
+	const showResourceEditor = !systemPageVisible && !storyStudioVisible && activeResource && !showTextEditor && !showStoryResource;
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${showDashboard ? 'is-dashboard' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -119,11 +120,12 @@ export function App(): React.JSX.Element {
 			{!focusMode && <GlobalRail />}
 			{!focusMode && <ProjectSidebar />}
 			<main className="center-workspace">
-				{!systemPageVisible && !showDashboard && <ResourceTabs />}
-				{!systemPageVisible && !showDashboard && <WriterHeader />}
+				{!systemPageVisible && !showDashboard && !storyStudioVisible && <ResourceTabs />}
+				{!systemPageVisible && !showDashboard && !storyStudioVisible && <WriterHeader />}
 				<div className="canvas-surface">
 					{systemPageVisible && <SystemPage />}
 					{showDashboard && <StoryDashboardPage />}
+					{storyStudioVisible && <StoryStudioRoute />}
 					{showTextEditor && <ChapterEditor />}
 					{showResourceEditor && <ResourceEditor />}
 					{showStoryResource && <StoryWorkspaceRoute />}
