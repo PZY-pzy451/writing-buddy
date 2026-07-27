@@ -4,14 +4,16 @@ import { resolve } from 'node:path';
 
 const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 const appUrl = process.argv[2] ?? 'http://127.0.0.1:1420';
-const outputRoot = resolve('docs/acceptance/screenshots/gate-c');
-const profileRoot = resolve(`tmp/gate-c-edge-profile-${Date.now()}`);
-const debugPort = 9337;
+const gate = process.argv[3] ?? 'gate-c';
+const outputRoot = resolve(`docs/acceptance/screenshots/${gate}`);
+const profileRoot = resolve(`tmp/${gate}-edge-profile-${Date.now()}`);
+const attachedDebugPort = Number(process.argv[4]) || undefined;
+const debugPort = attachedDebugPort ?? 9337;
 
 await mkdir(outputRoot, { recursive: true });
 await mkdir(profileRoot, { recursive: true });
 
-const edge = spawn(edgePath, [
+const edge = attachedDebugPort ? undefined : spawn(edgePath, [
 	'--headless=new',
 	'--disable-gpu',
 	'--disable-extensions',
@@ -112,7 +114,7 @@ const pages = await waitForJson(`http://127.0.0.1:${debugPort}/json/list`);
 const page = pages.find(candidate => candidate.type === 'page' && candidate.url.startsWith(appUrl))
 	?? pages.find(candidate => candidate.type === 'page');
 if (!page?.webSocketDebuggerUrl) {
-	edge.kill();
+	edge?.kill();
 	throw new Error('No inspectable Edge page was created.');
 }
 
@@ -122,7 +124,7 @@ await client.send('Runtime.enable');
 
 const initialState = {
 	state: {
-		recentProjectRoot: 'C:\\StoryForge Gate C Browser Fixture',
+		recentProjectRoot: process.argv[5] ?? 'C:\\StoryForge Gate C Browser Fixture',
 		activeMode: 'references',
 		storyView: 'characters',
 		theme: 'paper',
@@ -140,13 +142,22 @@ await client.send('Runtime.evaluate', {
 	expression: `localStorage.setItem('writing-buddy-next-workspace', ${JSON.stringify(JSON.stringify(initialState))})`
 });
 
-const captures = [
+const gateCCaptures = [
 	{ view: 'characters', selector: '.character-center', width: 1536, height: 960, name: '01-character-center-1536x992.png' },
 	{ view: 'relationships', selector: '.relationship-page', width: 1536, height: 960, name: '02-relationship-graph-1536x992.png' },
 	{ view: 'timeline', selector: '.timeline-page', width: 1536, height: 960, name: '03-timeline-1536x992.png' },
 	{ view: 'relationships', selector: '.relationship-page', width: 1280, height: 768, name: '04-relationship-1280x800.png' },
 	{ view: 'timeline', selector: '.timeline-page', width: 1024, height: 688, name: '05-timeline-1024x720.png' }
 ];
+const gateDCaptures = [
+	{ view: 'worldbuilding', selector: '.worldbuilding-page', width: 1536, height: 960, name: '01-worldbuilding-1536x992.png' },
+	{ view: 'assets', selector: '.story-assets-page', width: 1536, height: 960, name: '02-story-assets-1536x992.png' },
+	{ view: 'plots', selector: '.plot-board-page', width: 1536, height: 960, name: '03-plot-board-1536x992.png' },
+	{ view: 'information', selector: '.information-control-page', width: 1536, height: 960, name: '04-information-control-1536x992.png' },
+	{ view: 'worldbuilding', selector: '.worldbuilding-page', width: 1280, height: 768, name: '05-worldbuilding-1280x800.png' },
+	{ view: 'information', selector: '.information-control-page', width: 1024, height: 688, name: '06-information-control-1024x720.png' }
+];
+const captures = gate.startsWith('gate-d') ? gateDCaptures : gateCCaptures;
 const metrics = [];
 
 try {
@@ -204,11 +215,11 @@ try {
 		});
 	}
 	await writeFile(
-		resolve('docs/acceptance/gate-c-visual-metrics.json'),
+		resolve(`docs/acceptance/${gate}-visual-metrics.json`),
 		`${JSON.stringify({ generatedAt: new Date().toISOString(), captures: metrics }, undefined, 2)}\n`
 	);
 	process.stdout.write(`${JSON.stringify(metrics, undefined, 2)}\n`);
 } finally {
 	client.close();
-	edge.kill();
+	edge?.kill();
 }

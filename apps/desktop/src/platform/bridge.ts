@@ -313,6 +313,12 @@ const browserStoryResources = new Map<string, unknown>();
 const browserStoryTrash = new Map<string, unknown>();
 const browserMentionLinks = new Map<string, unknown>();
 const browserStoryTimestamp = '2026-07-27T00:00:00.000Z';
+function browserStoryBase(id: string, type: StoryResourceType, title: string, tags: readonly string[] = []) {
+	return {
+		id, type, title, aliases: [], tags, schemaVersion: 1,
+		createdAt: browserStoryTimestamp, updatedAt: browserStoryTimestamp, revision: 1
+	};
+}
 const browserStoryFixtures: readonly Record<string, unknown>[] = [
 	{
 		id: 'character:lin-mo',
@@ -532,6 +538,82 @@ const browserStoryFixtures: readonly Record<string, unknown>[] = [
 		plotThreadIds: ['plot-thread:missing-notebook'],
 		informationIds: ['information:clock-stopped'],
 		evidenceIds: ['evidence:station-meeting']
+	},
+	{
+		...browserStoryBase('location:gray-city', 'location', '灰城', ['城市']),
+		locationType: '城市', mapPoint: { x: 48, y: 44 }, travelLinks: [],
+		factionIds: ['faction:railway-bureau'], rules: ['午夜后禁止进入封存铁路区。'], evidenceIds: []
+	},
+	{
+		...browserStoryBase('location:old-station', 'location', '旧火车站', ['核心场景']),
+		parentLocationId: 'location:gray-city', locationType: '车站', mapPoint: { x: 63, y: 58 },
+		travelLinks: [{ targetLocationId: 'location:signal-tower', minimumMinutes: 12, mode: '步行' }],
+		factionIds: ['faction:railway-bureau'], rules: ['所有机械钟停在 23:17。'], evidenceIds: ['evidence:station-map']
+	},
+	{
+		...browserStoryBase('location:signal-tower', 'location', '信号塔', ['禁区']),
+		parentLocationId: 'location:old-station', locationType: '设施', mapPoint: { x: 78, y: 31 },
+		travelLinks: [{ targetLocationId: 'location:old-station', minimumMinutes: 12, mode: '步行' }],
+		factionIds: [], rules: ['塔灯遵循三短三长信号。'], evidenceIds: ['evidence:tower']
+	},
+	{
+		...browserStoryBase('faction:railway-bureau', 'faction', '灰城铁路局', ['官方']),
+		ideology: '秩序高于个人知情权。', goals: ['封存旧站事故档案'], allyFactionIds: [],
+		enemyFactionIds: [], territoryLocationIds: ['location:old-station'], evidenceIds: ['evidence:seal']
+	},
+	{
+		...browserStoryBase('world-rule:stopped-clocks', 'worldRule', '停摆时钟法则', ['异常']),
+		category: 'other', statement: '旧站范围内的机械钟会在 23:17 停止。',
+		exceptions: ['离开旧站十二小时后恢复。'], consequences: ['无法依赖机械钟判断时间。'],
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 }, evidenceIds: ['evidence:clock-wall']
+	},
+	{
+		...browserStoryBase('item:missing-notebook', 'item', '遗失的笔记', ['线索']),
+		itemType: '文书', unique: true, quantityUnit: '本', description: '封面被雨水浸泡，最后一页写着 23:17。',
+		restrictions: ['不可复制'], plotFunction: '连接徐青失踪与旧站事故。', evidenceIds: ['evidence:notebook-owner']
+	},
+	{
+		...browserStoryBase('item:brass-key', 'item', '黄铜钥匙', ['通行']),
+		itemType: '钥匙', unique: true, quantityUnit: '枚', description: '可以打开信号塔底层铁门。',
+		restrictions: [], plotFunction: '开启封存区域。', evidenceIds: ['evidence:key']
+	},
+	{
+		...browserStoryBase('plot-thread:missing-notebook', 'plotThread', '遗失笔记', ['主线']),
+		status: 'active', premise: '林墨追查徐青留下的最后一本笔记。', stakes: '笔记可能证明旧站事故并非意外。',
+		dramaticQuestion: '谁拿走了笔记？', startPosition: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 },
+		targetResolution: { chapterId: 'chapter:chapter-000000a5', narrativeOrder: 12 },
+		participantIds: ['character:lin-mo', 'character:shen-qing'], sceneIds: ['scene:station-rain'], evidenceIds: ['evidence:anonymous-letter']
+	},
+	{
+		...browserStoryBase('plot-thread:station-secret', 'plotThread', '封存站台', ['秘密']),
+		status: 'at-risk', premise: '被封存的第三站台仍在运行。', stakes: '秘密可能威胁灰城。',
+		dramaticQuestion: '午夜广播在呼叫谁？', startPosition: { chapterId: 'chapter:chapter-000000a2', narrativeOrder: 3 },
+		targetResolution: { chapterId: 'chapter:chapter-000000a4', narrativeOrder: 7 },
+		participantIds: ['character:shen-qing'], sceneIds: [], evidenceIds: ['evidence:broadcast']
+	},
+	{
+		...browserStoryBase('foreshadowing:clock-2317', 'foreshadowing', '23:17 的停摆时钟', ['核心伏笔']),
+		status: 'reminded', plantedAt: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 },
+		surfaceMeaning: '车站设备老化。', trueMeaning: '事故时间被人为固定。',
+		reminderPositions: [{ chapterId: 'chapter:chapter-000000a3', narrativeOrder: 5 }],
+		plannedPayoffAt: { chapterId: 'chapter:chapter-000000a5', narrativeOrder: 12 },
+		readerVisibility: 0.45, plotThreadIds: ['plot-thread:missing-notebook'], evidenceIds: ['evidence:clock-wall']
+	},
+	{
+		...browserStoryBase('information:clock-stopped', 'information', '时钟停摆真相', ['作者秘密']),
+		truthStatement: '23:17 是徐青切断主信号的时刻。', truthStatus: 'confirmed',
+		authorSecret: true, excludeFromAiByDefault: true,
+		truthEffectiveFrom: { chapterId: 'chapter:chapter-000000a3', narrativeOrder: 6 },
+		readerRevealAt: { chapterId: 'chapter:chapter-000000a5', narrativeOrder: 12 },
+		evidenceIds: ['evidence:clock-note']
+	},
+	{
+		...browserStoryBase('information:notebook-owner', 'information', '笔记原持有人', ['已揭示']),
+		truthStatement: '遗失笔记属于徐青。', truthStatus: 'confirmed',
+		authorSecret: false, excludeFromAiByDefault: false,
+		truthEffectiveFrom: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 },
+		readerRevealAt: { chapterId: 'chapter:chapter-000000a2', narrativeOrder: 3 },
+		evidenceIds: ['evidence:notebook-owner']
 	}
 ];
 for (const resource of browserStoryFixtures) {
@@ -567,6 +649,44 @@ browserFiles.set('story/states/character-states.json', JSON.stringify([
 		evidenceIds: ['evidence:hotel-register'],
 		confirmation: 'pending',
 		revision: 0
+	}
+]));
+browserFiles.set('story/states/item-states.json', JSON.stringify([
+	{
+		id: 'item-state:notebook-xu', itemId: 'item:missing-notebook', action: 'acquired', quantity: 1,
+		holderCharacterId: 'character:xu-qing', condition: '受潮',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 0 },
+		effectiveUntil: { chapterId: 'chapter:chapter-000000a2', narrativeOrder: 3 },
+		evidenceIds: ['evidence:notebook-owner'], confirmation: 'confirmed', revision: 0
+	},
+	{
+		id: 'item-state:notebook-lost', itemId: 'item:missing-notebook', action: 'lost', quantity: 1,
+		locationId: 'location:old-station', condition: '下落不明',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a2', narrativeOrder: 3 },
+		evidenceIds: ['evidence:anonymous-letter'], confirmation: 'confirmed', revision: 0
+	},
+	{
+		id: 'item-state:key-shen', itemId: 'item:brass-key', action: 'acquired', quantity: 1,
+		holderCharacterId: 'character:shen-qing', condition: '完好',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 },
+		evidenceIds: ['evidence:key'], confirmation: 'confirmed', revision: 0
+	}
+]));
+browserFiles.set('story/states/knowledge-states.json', JSON.stringify([
+	{
+		id: 'knowledge-state:reader-owner', informationId: 'information:notebook-owner', subject: 'reader', status: 'knows',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a2', narrativeOrder: 3 },
+		evidenceIds: ['evidence:notebook-owner'], confirmation: 'confirmed', revision: 0
+	},
+	{
+		id: 'knowledge-state:lin-clock', informationId: 'information:clock-stopped', subject: 'character:lin-mo', status: 'believes-false',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a3', narrativeOrder: 5 },
+		evidenceIds: ['evidence:clock-wall'], confirmation: 'pending', revision: 0
+	},
+	{
+		id: 'knowledge-state:shen-clock', informationId: 'information:clock-stopped', subject: 'character:shen-qing', status: 'knows',
+		effectiveFrom: { chapterId: 'chapter:chapter-000000a1', narrativeOrder: 1 },
+		evidenceIds: ['evidence:clock-note'], confirmation: 'confirmed', revision: 0
 	}
 ]));
 const browserAiModels: readonly AiModel[] = [

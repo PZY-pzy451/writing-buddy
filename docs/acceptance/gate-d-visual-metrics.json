@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-07-27T07:00:26.696Z",
+  "captures": [
+    {
+      "view": "worldbuilding",
+      "selector": ".worldbuilding-page",
+      "width": 1536,
+      "height": 960,
+      "name": "01-worldbuilding-1536x992.png",
+      "readyMs": 998,
+      "selectorReadyMs": 574,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 379
+    },
+    {
+      "view": "assets",
+      "selector": ".story-assets-page",
+      "width": 1536,
+      "height": 960,
+      "name": "02-story-assets-1536x992.png",
+      "readyMs": 627,
+      "selectorReadyMs": 240,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 372
+    },
+    {
+      "view": "plots",
+      "selector": ".plot-board-page",
+      "width": 1536,
+      "height": 960,
+      "name": "03-plot-board-1536x992.png",
+      "readyMs": 634,
+      "selectorReadyMs": 231,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 381
+    },
+    {
+      "view": "information",
+      "selector": ".information-control-page",
+      "width": 1536,
+      "height": 960,
+      "name": "04-information-control-1536x992.png",
+      "readyMs": 546,
+      "selectorReadyMs": 142,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 408
+    },
+    {
+      "view": "worldbuilding",
+      "selector": ".worldbuilding-page",
+      "width": 1280,
+      "height": 768,
+      "name": "05-worldbuilding-1280x800.png",
+      "readyMs": 666,
+      "selectorReadyMs": 246,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 922,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 5,
+      "domNodes": 379
+    },
+    {
+      "view": "information",
+      "selector": ".information-control-page",
+      "width": 1024,
+      "height": 688,
+      "name": "06-information-control-1024x720.png",
+      "readyMs": 642,
+      "selectorReadyMs": 235,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 18,
+      "domNodes": 408
+    }
+  ]
+}
