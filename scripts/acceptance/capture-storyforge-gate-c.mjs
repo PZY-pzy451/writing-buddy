@@ -401,7 +401,51 @@ const aiQuickActionsGateECaptures = [
 		name: '04-item-extraction-1024x688.png'
 	}
 ];
-const captures = gate === 'gate-ai-actions-e'
+const aiQuickActionsGateFCaptures = [
+	{
+		mode: 'references',
+		view: 'timeline',
+		readySelector: '.timeline-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-timeline-extraction',
+		width: 1536,
+		height: 960,
+		name: '01-timeline-extraction-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'timeline',
+		readySelector: '.timeline-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-timeline-directions',
+		width: 1280,
+		height: 768,
+		name: '02-timeline-three-directions-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'plots',
+		readySelector: '.plot-board-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-plot-thread',
+		width: 1536,
+		height: 960,
+		name: '03-plot-thread-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'plots',
+		readySelector: '.plot-board-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-foreshadowing-extraction',
+		width: 1024,
+		height: 688,
+		name: '04-foreshadowing-extraction-1024x688.png'
+	}
+];
+const captures = gate === 'gate-ai-actions-f'
+	? aiQuickActionsGateFCaptures
+	: gate === 'gate-ai-actions-e'
 	? aiQuickActionsGateECaptures
 	: gate === 'gate-ai-actions-d'
 	? aiQuickActionsGateDCaptures
@@ -683,6 +727,72 @@ try {
 			});
 			if (!generated.result.value) throw new Error('Gate E generation button was not available.');
 			await waitForSelector(client, '.ai-review-candidate');
+		}
+		if (
+			capture.prepare === 'generate-timeline-extraction'
+			|| capture.prepare === 'generate-timeline-directions'
+			|| capture.prepare === 'generate-plot-thread'
+			|| capture.prepare === 'generate-foreshadowing-extraction'
+		) {
+			const isTimeline = capture.prepare.includes('timeline');
+			const actionLabel = capture.prepare === 'generate-timeline-extraction'
+				? '从正文提取'
+				: capture.prepare === 'generate-timeline-directions'
+					? '三种后续'
+					: capture.prepare === 'generate-foreshadowing-extraction'
+						? '提取伏笔'
+						: '生成剧情线';
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const openButton = document.querySelector(
+						${JSON.stringify(isTimeline ? '.timeline-ai-event' : '.plot-ai-button')}
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate F AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			const selected = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+						.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!selected.result.value) throw new Error(`Gate F action was not available: ${actionLabel}`);
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate F generation button was not available.');
+			await waitForSelector(client, '.ai-review-candidate');
+			if (
+				capture.prepare === 'generate-timeline-directions'
+				|| capture.prepare === 'generate-foreshadowing-extraction'
+			) {
+				await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const body = document.querySelector('.ai-review-scroll');
+						if (!(body instanceof HTMLElement)) return false;
+						body.scrollTop = ${capture.prepare === 'generate-timeline-directions' ? 430 : 500};
+						return true;
+					})()`
+				});
+			}
 		}
 		if (capture.prepare?.startsWith('generate-')) {
 			await client.send('Runtime.evaluate', {

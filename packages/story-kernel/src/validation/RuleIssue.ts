@@ -9,6 +9,7 @@ export type TimelineRuleId =
 	| 'item.transfer-overlap'
 	| 'plot.thread-at-risk'
 	| 'plot.foreshadowing-overdue'
+	| 'plot.foreshadowing-early-payoff'
 	| 'information.premature-reveal';
 
 export interface RuleEvidencePosition {

@@ -6,6 +6,8 @@ export interface AiChapterSource {
 	readonly title: string;
 	readonly path: string;
 	readonly narrativeOrder: number;
+	readonly volumeId?: string;
+	readonly volumeTitle?: string;
 }
 
 export type OpenAiEvidence = (evidence: Pick<

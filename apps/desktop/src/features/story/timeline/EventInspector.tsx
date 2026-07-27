@@ -1,10 +1,12 @@
-import { BookOpenCheck, Link2, Save, X } from 'lucide-react';
+import { AlertTriangle, BookOpenCheck, Link2, Save, X } from 'lucide-react';
 import { useState } from 'react';
-import type { TimelineEvent } from '@writing-buddy/story-kernel';
+import type { RuleIssue, TimelineEvent } from '@writing-buddy/story-kernel';
 
 interface EventInspectorProps {
 	readonly event: TimelineEvent;
 	readonly saving: boolean;
+	readonly labels: Readonly<Record<string, string>>;
+	readonly ruleIssues: readonly RuleIssue[];
 	readonly onSave: (event: TimelineEvent) => Promise<void>;
 	readonly onClose: () => void;
 }
@@ -12,6 +14,8 @@ interface EventInspectorProps {
 export function EventInspector({
 	event,
 	saving,
+	labels,
+	ruleIssues,
 	onSave,
 	onClose
 }: EventInspectorProps): React.JSX.Element {
@@ -81,6 +85,30 @@ export function EventInspector({
 				<span><Link2 size={13} />后果事件 {event.consequenceIds.length}</span>
 				<span><BookOpenCheck size={13} />来源 {event.evidenceIds.length}</span>
 			</div>
+			<section className="event-inspector-section">
+				<h3>前置与结果</h3>
+				<p>{event.predecessorIds.length
+					? event.predecessorIds.map(id => labels[id] ?? id).join('、')
+					: '无前置事件'}</p>
+				<ul>{event.directResults.map(result => <li key={result}>{result}</li>)}</ul>
+			</section>
+			<section className="event-inspector-section">
+				<h3>后续影响</h3>
+				{event.impacts.length
+					? <ul>{event.impacts.map(impact => <li key={impact}>{impact}</li>)}</ul>
+					: <p>尚未记录影响。</p>}
+			</section>
+			<section className="event-inspector-section">
+				<h3>剧情线与伏笔</h3>
+				<p>{[...event.plotThreadIds, ...event.foreshadowingIds]
+					.map(id => labels[id] ?? id).join('、') || '尚未关联'}</p>
+			</section>
+			<section className="event-inspector-section">
+				<h3>确定性检查</h3>
+				{ruleIssues.length ? ruleIssues.map(issue => (
+					<p className="event-rule-issue" key={issue.id}><AlertTriangle size={13} />{issue.title}</p>
+				)) : <p>本地规则通过。</p>}
+			</section>
 			{event.evidenceIds.map(id => <code key={id}>{id}</code>)}
 			<button
 				type="button"

@@ -1201,11 +1201,15 @@ class BrowserDesktopBridge implements DesktopBridge {
 									? browserWorldAnalysisDeltas(request)
 									: request.jobType === 'item-analysis'
 										? browserItemAnalysisDeltas(request)
-										: request.jobType === 'story-extraction'
-											? browserStoryExtractionDeltas(request)
-											: request.jobType === 'story-kernel-generation'
-												? browserStoryKernelGenerationDeltas(request)
-												: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+										: request.jobType === 'timeline-analysis'
+											? browserTimelineAnalysisDeltas(request)
+											: request.jobType === 'plot-analysis'
+												? browserPlotAnalysisDeltas(request)
+												: request.jobType === 'story-extraction'
+													? browserStoryExtractionDeltas(request)
+													: request.jobType === 'story-kernel-generation'
+														? browserStoryKernelGenerationDeltas(request)
+														: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -1710,6 +1714,222 @@ function browserItemAnalysisDeltas(request: AiGenerateRequest): readonly string[
 				evidence: itemEvidence
 			}]
 		}] : []
+	});
+}
+
+function browserTimelineAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly sources?: readonly {
+			readonly resourceId?: string;
+			readonly narrativeOrder?: number;
+			readonly content?: string;
+		}[];
+		readonly existingEvents?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly characters?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly locations?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly items?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly plotThreads?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly foreshadowing?: readonly { readonly id?: string; readonly title?: string }[];
+	};
+	const source = decoded.sources?.[0];
+	const content = source?.content ?? '';
+	const sourceResourceId = source?.resourceId ?? 'chapter:browser-fixture';
+	const narrativeOrder = source?.narrativeOrder ?? 0;
+	const characterId = decoded.characters?.find(item => item.title === '林墨')?.id
+		?? decoded.characters?.[0]?.id;
+	const locationId = decoded.locations?.find(item => item.title === '旧火车站')?.id
+		?? decoded.locations?.[0]?.id;
+	const itemId = decoded.items?.find(item => item.title?.includes('行李票'))?.id
+		?? decoded.items?.[0]?.id;
+	const plotId = decoded.plotThreads?.[0]?.id;
+	const clueId = decoded.foreshadowing?.[0]?.id;
+	const existingEventId = decoded.existingEvents?.[0]?.id;
+	const clockEvidence = browserEvidence(content, '墙上的时钟停在二十三点十七分');
+	const ticketEvidence = browserEvidence(content, '徐青已经等在长椅旁');
+	const base = {
+		sourceResourceId,
+		aliases: [] as string[],
+		storyTimeKind: 'unknown',
+		storyStart: null,
+		storyEnd: null,
+		narrativeOrder,
+		participantIds: characterId ? [characterId] : [],
+		locationIds: locationId ? [locationId] : [],
+		itemIds: itemId ? [itemId] : [],
+		predecessorIds: [] as string[],
+		consequenceIds: [] as string[],
+		plotThreadIds: plotId ? [plotId] : [],
+		foreshadowingIds: clueId ? [clueId] : []
+	};
+	const clockCandidate = {
+		...base,
+		clientCandidateId: 'candidate:clock-stops',
+		title: '雨夜时钟停摆',
+		summary: '林墨发现候车室时钟停在二十三点十七分。',
+		eventType: '异常发现',
+		directResults: ['确认现场时间参照失效'],
+		impacts: ['调查开始围绕二十三点十七分展开'],
+		confidence: 0.97,
+		rationale: '正文明确描述了可独立追踪的异常事件。',
+		evidence: decoded.actionType === 'extract-events' ? clockEvidence : null
+	};
+	const ticketCandidate = {
+		...base,
+		clientCandidateId: 'candidate:ticket-revealed',
+		title: '褪色票据揭示时间',
+		summary: '徐青展示票据背面与停摆时钟相同的时间。',
+		eventType: '线索揭示',
+		directResults: ['票据与时钟形成交叉证据'],
+		impacts: ['林墨开始怀疑两起异常来自同一事件'],
+		confidence: 0.94,
+		rationale: '人物行动直接推进调查并形成可见结果。',
+		evidence: decoded.actionType === 'extract-events' ? ticketEvidence : null
+	};
+	if (decoded.actionType === 'generate-directions') {
+		return browserJsonDeltas({
+			candidates: [
+				{
+					...clockCandidate,
+					clientCandidateId: 'candidate:direction-platform',
+					title: '追查封闭月台',
+					summary: '林墨根据停摆时间前往不在站图上的月台。',
+					directResults: ['找到零号月台入口'],
+					impacts: ['调查进入受限制区域'],
+					confidence: 0.88
+				},
+				{
+					...clockCandidate,
+					clientCandidateId: 'candidate:direction-archive',
+					title: '核对事故档案',
+					summary: '徐青带林墨比对同一时刻的封存日志。',
+					directResults: ['发现一页日志被替换'],
+					impacts: ['怀疑转向档案管理者'],
+					confidence: 0.86
+				},
+				{
+					...clockCandidate,
+					clientCandidateId: 'candidate:direction-broadcast',
+					title: '监听午夜广播',
+					summary: '两人等待广播再次出现并记录隐藏频率。',
+					directResults: ['截获失踪者姓名'],
+					impacts: ['调查目标从地点转向失踪名单'],
+					confidence: 0.84
+				}
+			],
+			causalEdges: []
+		});
+	}
+	const candidates = decoded.actionType === 'suggest-causality'
+		? [ticketCandidate]
+		: [clockCandidate, ticketCandidate].filter(candidate => (
+			decoded.actionType !== 'extract-events' || candidate.evidence
+		));
+	const causalEdges = [
+		...(existingEventId ? [{
+			clientEdgeId: 'edge:existing-clock',
+			from: { kind: 'existing', id: existingEventId },
+			to: { kind: 'candidate', id: candidates[0]?.clientCandidateId ?? 'candidate:ticket-revealed' },
+			relation: 'enables',
+			confidence: 0.89,
+			rationale: '先抵达旧站，才有条件发现并核对异常。'
+		}] : []),
+		...(candidates.length > 1 ? [{
+			clientEdgeId: 'edge:clock-ticket',
+			from: { kind: 'candidate', id: 'candidate:clock-stops' },
+			to: { kind: 'candidate', id: 'candidate:ticket-revealed' },
+			relation: 'causes',
+			confidence: 0.91,
+			rationale: '停摆时刻使票据背面的相同时间成为关键线索。'
+		}] : [])
+	];
+	return browserJsonDeltas({ candidates, causalEdges });
+}
+
+function browserPlotAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly sources?: readonly {
+			readonly resourceId?: string;
+			readonly narrativeOrder?: number;
+			readonly content?: string;
+		}[];
+		readonly selectedPlotThreadId?: string;
+		readonly selectedForeshadowingId?: string;
+		readonly plotThreads?: readonly {
+			readonly id?: string;
+			readonly title?: string;
+		}[];
+		readonly foreshadowing?: readonly {
+			readonly id?: string;
+			readonly title?: string;
+			readonly trueMeaning?: string;
+		}[];
+		readonly characters?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly scenes?: readonly { readonly id?: string; readonly title?: string }[];
+	};
+	const source = decoded.sources?.[0];
+	const sourceResourceId = source?.resourceId ?? 'chapter:browser-fixture';
+	const narrativeOrder = source?.narrativeOrder ?? 0;
+	const content = source?.content ?? '';
+	const evidence = browserEvidence(content, '墙上的时钟停在二十三点十七分');
+	const characterId = decoded.characters?.find(item => item.title === '林墨')?.id
+		?? decoded.characters?.[0]?.id;
+	const sceneId = decoded.scenes?.[0]?.id;
+	const selectedThread = decoded.plotThreads?.find(thread => (
+		thread.id === decoded.selectedPlotThreadId
+	));
+	const selectedClue = decoded.foreshadowing?.find(clue => (
+		clue.id === decoded.selectedForeshadowingId
+	));
+	const plotThread = {
+		kind: 'plotThread',
+		sourceResourceId,
+		title: selectedThread?.title ?? '零号月台调查',
+		aliases: ['被删除的月台'],
+		summary: '沿二十三点十七分的交叉线索追查从站图中消失的零号月台。',
+		status: decoded.actionType === 'generate-plot-consequences' ? 'at-risk' : 'active',
+		premise: '林墨得到一张显示不存在月台的雨夜照片。',
+		stakes: '若错过下一场雨，入口与证据都可能再次消失。',
+		dramaticQuestion: '谁从站图和档案中删除了零号月台？',
+		startPosition: { chapterId: sourceResourceId, narrativeOrder },
+		targetResolution: { chapterId: sourceResourceId, narrativeOrder: narrativeOrder + 6 },
+		actualResolution: null,
+		participantIds: characterId ? [characterId] : [],
+		sceneIds: sceneId ? [sceneId] : [],
+		confidence: 0.91,
+		rationale: decoded.actionType === 'generate-plot-consequences'
+			? '以档案被替换制造阻碍，同时保留继续调查的路径。'
+			: '把时钟、票据和封闭空间收束为可追踪剧情线。',
+		evidence: decoded.actionType === 'extract-plot-progress' ? evidence : null
+	};
+	const foreshadowing = {
+		kind: 'foreshadowing',
+		sourceResourceId,
+		title: selectedClue?.title ?? '二十三点十七分',
+		aliases: ['停摆时刻'],
+		summary: '时钟与票据反复出现同一时刻，形成可逐步提醒的时间伏笔。',
+		status: decoded.actionType === 'generate-foreshadowing-payoff' ? 'reminded' : 'planted',
+		plantedAt: { chapterId: sourceResourceId, narrativeOrder },
+		surfaceMeaning: '旧站设备与票据都记录了同一时刻。',
+		trueMeaning: selectedClue?.trueMeaning ?? null,
+		reminderPositions: decoded.actionType === 'generate-foreshadowing-payoff'
+			? [{ chapterId: sourceResourceId, narrativeOrder: narrativeOrder + 2 }]
+			: [],
+		plannedPayoffAt: { chapterId: sourceResourceId, narrativeOrder: narrativeOrder + 6 },
+		actualPayoffAt: null,
+		readerVisibility: 0.42,
+		plotThreadIds: decoded.plotThreads?.[0]?.id ? [decoded.plotThreads[0].id] : [],
+		confidence: 0.93,
+		rationale: '相同时间在不同载体上重复出现，适合作为受控提醒。',
+		evidence: decoded.actionType === 'extract-foreshadowing' ? evidence : null
+	};
+	return browserJsonDeltas({
+		candidates: decoded.actionType?.includes('foreshadowing')
+			? [foreshadowing]
+			: [plotThread]
 	});
 }
 

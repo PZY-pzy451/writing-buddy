@@ -4,7 +4,9 @@ import {
 	createCharacterAiActions,
 	createDefaultAiActionRegistry,
 	createItemAiActions,
+	createPlotAiActions,
 	createRelationshipAiActions,
+	createTimelineAiActions,
 	createWorldAiActions,
 	createConsistencyReviewAction
 } from './AiActionRegistry';
@@ -57,6 +59,32 @@ describe('AiActionRegistry', () => {
 			hasProject: true,
 			currentResourceType: 'chapter'
 		}, 'world')).toHaveLength(0);
+	});
+
+	it('registers Gate F timeline, plot, and foreshadowing actions on dedicated surfaces', () => {
+		const registry = createDefaultAiActionRegistry();
+		expect(registry.list('timeline').map(action => action.id)).toEqual(
+			createTimelineAiActions().map(action => action.id)
+		);
+		expect([
+			...registry.list('plot'),
+			...registry.list('foreshadowing')
+		].map(action => action.id)).toEqual(createPlotAiActions().map(action => action.id));
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'story-progress'
+		}, 'timeline')).toHaveLength(4);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'plot-board'
+		}, 'plot')).toHaveLength(3);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'plot-board'
+		}, 'foreshadowing')).toHaveLength(3);
+		expect(createPlotAiActions().every(action => (
+			action.contextPolicy.includeAuthorSecretsByDefault === false
+		))).toBe(true);
 	});
 
 	it('filters by category and availability while retaining explicit reasons', () => {

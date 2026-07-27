@@ -195,6 +195,102 @@ const gateEItemOutputSchema = z.object({
 	}).strict()).max(16)
 }).strict();
 
+const gateFInputSchema = z.object({
+	instruction: z.string().trim().min(1).max(2_000),
+	sourceResourceIds: z.array(
+		z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u)
+	).min(1).max(12),
+	selectedResourceId: z.string().max(160).optional(),
+	includeAuthorSecrets: z.boolean().optional()
+}).strict();
+
+const gateFPositionSchema = z.object({
+	chapterId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	narrativeOrder: z.number().int().nonnegative()
+}).strict();
+
+const gateFTimelineOutputSchema = z.object({
+	candidates: z.array(z.object({
+		clientCandidateId: z.string().regex(/^candidate:[a-z0-9][a-z0-9-]*$/u),
+		sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+		title: z.string().trim().min(1).max(160),
+		aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+		summary: z.string().trim().min(1).max(10_000),
+		eventType: z.string().trim().min(1).max(160),
+		storyTimeKind: z.enum(['exact', 'date', 'relative', 'range', 'unknown']),
+		storyStart: z.string().trim().min(1).max(160).nullable(),
+		storyEnd: z.string().trim().min(1).max(160).nullable(),
+		narrativeOrder: z.number().int().nonnegative(),
+		participantIds: z.array(z.string()).max(100),
+		locationIds: z.array(z.string()).max(100),
+		itemIds: z.array(z.string()).max(100),
+		predecessorIds: z.array(z.string()).max(100),
+		consequenceIds: z.array(z.string()).max(100),
+		plotThreadIds: z.array(z.string()).max(100),
+		foreshadowingIds: z.array(z.string()).max(100),
+		directResults: z.array(z.string().trim().min(1).max(2_000)).max(40),
+		impacts: z.array(z.string().trim().min(1).max(2_000)).max(40),
+		confidence: z.number().min(0).max(1),
+		rationale: z.string().trim().min(1).max(2_000),
+		evidence: gateDEvidenceSchema.nullable()
+	}).strict()).max(32),
+	causalEdges: z.array(z.object({
+		clientEdgeId: z.string().regex(/^edge:[a-z0-9][a-z0-9-]*$/u),
+		from: z.object({
+			kind: z.enum(['existing', 'candidate']),
+			id: z.string().trim().min(1).max(160)
+		}).strict(),
+		to: z.object({
+			kind: z.enum(['existing', 'candidate']),
+			id: z.string().trim().min(1).max(160)
+		}).strict(),
+		relation: z.enum(['precondition', 'causes', 'enables', 'blocks']),
+		confidence: z.number().min(0).max(1),
+		rationale: z.string().trim().min(1).max(2_000)
+	}).strict()).max(64)
+}).strict();
+
+const gateFPlotBase = {
+	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	summary: z.string().trim().min(1).max(10_000),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().trim().min(1).max(2_000),
+	evidence: gateDEvidenceSchema.nullable()
+};
+
+const gateFPlotOutputSchema = z.object({
+	candidates: z.array(z.discriminatedUnion('kind', [
+		z.object({
+			kind: z.literal('plotThread'),
+			...gateFPlotBase,
+			status: z.enum(['planned', 'active', 'at-risk', 'resolved', 'abandoned']),
+			premise: z.string().trim().min(1).max(10_000),
+			stakes: z.string().trim().min(1).max(5_000),
+			dramaticQuestion: z.string().trim().min(1).max(5_000),
+			startPosition: gateFPositionSchema.nullable(),
+			targetResolution: gateFPositionSchema.nullable(),
+			actualResolution: gateFPositionSchema.nullable(),
+			participantIds: z.array(z.string()).max(100),
+			sceneIds: z.array(z.string()).max(100)
+		}).strict(),
+		z.object({
+			kind: z.literal('foreshadowing'),
+			...gateFPlotBase,
+			status: z.enum(['planted', 'reminded', 'resolved', 'overdue', 'abandoned']),
+			plantedAt: gateFPositionSchema.nullable(),
+			surfaceMeaning: z.string().trim().min(1).max(5_000),
+			trueMeaning: z.string().trim().min(1).max(5_000).nullable(),
+			reminderPositions: z.array(gateFPositionSchema).max(40),
+			plannedPayoffAt: gateFPositionSchema.nullable(),
+			actualPayoffAt: gateFPositionSchema.nullable(),
+			readerVisibility: z.number().min(0).max(1),
+			plotThreadIds: z.array(z.string()).max(100)
+		}).strict()
+	])).max(24)
+}).strict();
+
 function gateDAvailability(
 	surface: 'character-center' | 'relationship-graph',
 	scope: AiActionScope
@@ -222,6 +318,22 @@ function gateEAvailability(
 			reason: surface === 'worldbuilding-center'
 				? '请在世界观中心使用此动作'
 				: '请在物品与资产页使用此动作'
+		};
+	}
+	return { available: true as const };
+}
+
+function gateFAvailability(
+	surface: 'story-progress' | 'plot-board',
+	scope: AiActionScope
+) {
+	if (!scope.hasProject) return { available: false as const, reason: '请先打开作品' };
+	if (scope.currentResourceType !== surface) {
+		return {
+			available: false as const,
+			reason: surface === 'story-progress'
+				? '请在故事进程页使用此动作'
+				: '请在剧情线与伏笔页使用此动作'
 		};
 	}
 	return { available: true as const };
@@ -404,6 +516,113 @@ export function createItemAiActions(): readonly AiActionDefinition[] {
 	}));
 }
 
+export function createTimelineAiActions(): readonly AiActionDefinition[] {
+	const definitions: readonly {
+		readonly id:
+			| 'timeline.generateEvent'
+			| 'timeline.extractEvents'
+			| 'timeline.inferOrdering'
+			| 'timeline.detectConflicts';
+		readonly title: string;
+		readonly description: string;
+	}[] = [{
+		id: 'timeline.generateEvent',
+		title: '按章节目标生成事件',
+		description: '生成事件骨架、结果与后续影响候选。'
+	}, {
+		id: 'timeline.extractEvents',
+		title: '从正文提取事件',
+		description: '从明确选择的章节提取带精确证据的事件。'
+	}, {
+		id: 'timeline.inferOrdering',
+		title: '生成三种后续',
+		description: '生成三个实质不同的下一步事件方向。'
+	}, {
+		id: 'timeline.detectConflicts',
+		title: '补全因果',
+		description: '提出可分别接受的前置、因果与阻断边。'
+	}];
+	return definitions.map(definition => ({
+		...definition,
+		category: 'timeline' as const,
+		availability: (scope: AiActionScope) => gateFAvailability('story-progress', scope),
+		inputSchema: gateFInputSchema,
+		outputSchema: gateFTimelineOutputSchema,
+		outputSchemaName: 'TimelineAnalysisResponse',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource' as const],
+			optionalKinds: ['entity' as const, 'event' as const, 'plot-thread' as const, 'foreshadowing' as const],
+			maximumTokens: 16_000
+		},
+		applyPolicy: { type: 'create_resources' as const, selectableItems: true as const },
+		promptTemplateId: 'timeline.analysis',
+		defaultModelClass: 'reasoning' as const
+	}));
+}
+
+export function createPlotAiActions(): readonly AiActionDefinition[] {
+	const definitions: readonly {
+		readonly id:
+			| 'plot.generateThread'
+			| 'plot.generateConsequences'
+			| 'plot.extractProgress'
+			| 'foreshadowing.generateSeed'
+			| 'foreshadowing.generatePayoff'
+			| 'foreshadowing.extract';
+		readonly title: string;
+		readonly description: string;
+		readonly category: 'plot' | 'foreshadowing';
+	}[] = [{
+		id: 'plot.generateThread',
+		title: '生成剧情线',
+		description: '生成前提、赌注、戏剧问题与计划解决位置。',
+		category: 'plot'
+	}, {
+		id: 'plot.generateConsequences',
+		title: '生成阻碍与转折',
+		description: '为当前剧情线生成推进、阻碍与解决候选。',
+		category: 'plot'
+	}, {
+		id: 'plot.extractProgress',
+		title: '提取剧情推进',
+		description: '从正文提取带精确证据的剧情线推进。',
+		category: 'plot'
+	}, {
+		id: 'foreshadowing.generateSeed',
+		title: '生成伏笔',
+		description: '生成埋设、提醒和计划回收候选。',
+		category: 'foreshadowing'
+	}, {
+		id: 'foreshadowing.generatePayoff',
+		title: '生成回收方式',
+		description: '为当前伏笔生成可审核的回收候选。',
+		category: 'foreshadowing'
+	}, {
+		id: 'foreshadowing.extract',
+		title: '从正文提取伏笔',
+		description: '提取潜在伏笔、提醒或回收并保留证据。',
+		category: 'foreshadowing'
+	}];
+	return definitions.map(definition => ({
+		...definition,
+		availability: (scope: AiActionScope) => gateFAvailability('plot-board', scope),
+		inputSchema: gateFInputSchema,
+		outputSchema: gateFPlotOutputSchema,
+		outputSchemaName: 'PlotAnalysisResponse',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource' as const],
+			optionalKinds: ['entity' as const, 'plot-thread' as const, 'foreshadowing' as const],
+			maximumTokens: 16_000,
+			includeAuthorSecretsByDefault: false as const
+		},
+		applyPolicy: { type: 'create_resources' as const, selectableItems: true as const },
+		promptTemplateId: 'plot.analysis',
+		defaultModelClass: 'reasoning' as const
+	}));
+}
+
 export const consistencyReviewOutputSchema = z.object({
 	issues: z.array(z.object({
 		start: z.number().int().nonnegative(),
@@ -456,5 +675,7 @@ export function createDefaultAiActionRegistry(): AiActionRegistry {
 	for (const action of createRelationshipAiActions()) registry.register(action);
 	for (const action of createWorldAiActions()) registry.register(action);
 	for (const action of createItemAiActions()) registry.register(action);
+	for (const action of createTimelineAiActions()) registry.register(action);
+	for (const action of createPlotAiActions()) registry.register(action);
 	return registry;
 }

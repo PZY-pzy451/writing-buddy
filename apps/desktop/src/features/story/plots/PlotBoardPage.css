@@ -1,4 +1,5 @@
 .plot-board-page {
+	position: relative;
 	display: grid;
 	grid-template-rows: 116px auto minmax(0, 1fr) 34px;
 	width: 100%;
@@ -64,6 +65,14 @@
 	color: var(--text-primary);
 	background: var(--surface-raised);
 	box-shadow: 0 2px 8px rgb(30 28 24 / 8%);
+}
+
+.plot-board-toolbar button.plot-ai-button {
+	padding-inline: 12px;
+	color: var(--accent-strong);
+	font-weight: 750;
+	background: var(--accent-soft);
+	border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border-subtle));
 }
 
 .plot-board-toolbar label {
@@ -167,6 +176,15 @@
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-card);
 	box-shadow: 0 4px 12px rgb(30 28 24 / 5%);
+}
+
+.plot-kanban > section > div > button.plot-ai-empty-card {
+	place-items: center;
+	min-height: 132px;
+	color: var(--accent-strong);
+	text-align: center;
+	background: color-mix(in srgb, var(--accent-soft) 60%, var(--surface-raised));
+	border-style: dashed;
 }
 
 .plot-kanban button:hover,
@@ -324,6 +342,16 @@
 	font-size: 10px;
 }
 
+.plot-board-toolbar button:focus-visible,
+.plot-board-toolbar input:focus-visible,
+.plot-kanban button:focus-visible,
+.plot-inspector select:focus-visible,
+.plot-save:focus-visible,
+.foreshadowing-table button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
 @media (max-width: 1279px) {
 	.plot-board-page {
 		padding-inline: 12px;
@@ -354,5 +382,9 @@
 		align-items: flex-start;
 		flex-direction: column;
 		padding-block: 14px;
+	}
+
+	.plot-board-toolbar {
+		flex-wrap: wrap;
 	}
 }

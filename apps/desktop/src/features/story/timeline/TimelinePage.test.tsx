@@ -8,6 +8,7 @@ import {
 	TimelinePage,
 	type TimelinePageData
 } from './TimelinePage';
+import { desktopBridge } from '../../../platform/bridge';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
 
@@ -38,7 +39,10 @@ function timelineEvent(
 		itemIds: [],
 		predecessorIds: [],
 		consequenceIds: [],
+		directResults: ['确认旧站时钟失去时间参照'],
+		impacts: ['调查转向二十三点十七分'],
 		plotThreadIds: ['plot-thread:notebook'],
+		foreshadowingIds: [],
 		informationIds: [],
 		evidenceIds: ['evidence:chapter-one']
 	});
@@ -88,6 +92,8 @@ describe('TimelinePage', () => {
 
 		const first = await screen.findByRole('button', { name: /童年回忆/ });
 		first.focus();
+		expect(screen.getByText('确认旧站时钟失去时间参照')).toBeInTheDocument();
+		expect(screen.getByText('调查转向二十三点十七分')).toBeInTheDocument();
 		fireEvent.keyDown(first, { key: 'ArrowRight' });
 		expect(screen.getByRole('heading', { name: '车站相遇' })).toBeInTheDocument();
 
@@ -97,5 +103,37 @@ describe('TimelinePage', () => {
 		fireEvent.click(screen.getByRole('button', { name: '保存事件' }));
 
 		expect(saveEvent).toHaveBeenCalledWith(expect.objectContaining({ title: '雨夜车站相遇' }));
+	});
+
+	it('opens the AI story-progress workflow with evidence and separate causal-edge review', async () => {
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		const openEvidence = vi.fn();
+		render(
+			<TimelinePage
+				projectRoot="browser-fixture"
+				loadData={() => Promise.resolve(data)}
+				chapters={[{
+					resourceId: 'chapter:chapter-000000a1',
+					chapterId: 'chapter-000000a1',
+					title: '第一章 · 雨夜旧站',
+					path: 'chapters/chapter-001.md',
+					narrativeOrder: 0,
+					volumeId: 'volume:volume-00000001',
+					volumeTitle: '第一卷'
+				}]}
+				onOpenEvidence={openEvidence}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: 'AI 从正文提取' }));
+		expect(screen.getByRole('complementary', { name: 'AI 故事进程助手' })).toBeInTheDocument();
+		fireEvent.click(screen.getByRole('button', { name: '生成事件与因果候选' }));
+
+		expect(await screen.findByRole('heading', { name: '雨夜时钟停摆' })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: '褪色票据揭示时间' })).toBeInTheDocument();
+		expect(screen.getByText('虚线因果候选')).toBeInTheDocument();
+		expect(screen.getAllByText(/AI 建议/).length).toBeGreaterThan(0);
+		expect(screen.getAllByRole('button', { name: '查看原文证据' })).toHaveLength(2);
+		await desktopBridge.deleteDeepSeekKey();
 	});
 });

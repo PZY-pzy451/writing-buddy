@@ -6,11 +6,13 @@ import {
 	buildCharacterAnalysisMessages,
 	buildItemAnalysisMessages,
 	buildManuscriptContinuationMessages,
+	buildPlotAnalysisMessages,
 	buildRelationshipAnalysisMessages,
 	buildScenePlanMessages,
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
 	buildStoryKernelGenerationMessages,
+	buildTimelineAnalysisMessages,
 	buildWorldAnalysisMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
@@ -21,20 +23,24 @@ import {
 	parseCharacterAnalysisResponse,
 	parseItemAnalysisResponse,
 	parseManuscriptContinuationResponse,
+	parsePlotAnalysisResponse,
 	parseRelationshipAnalysisResponse,
 	parseScenePlanResponse,
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
+	parseTimelineAnalysisResponse,
 	parseWorldAnalysisResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
 	CHARACTER_ANALYSIS_SYSTEM_PROMPT,
 	ITEM_ANALYSIS_SYSTEM_PROMPT,
 	MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
+	PLOT_ANALYSIS_SYSTEM_PROMPT,
 	RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT,
 	SCENE_PLAN_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
 	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
+	TIMELINE_ANALYSIS_SYSTEM_PROMPT,
 	WORLD_ANALYSIS_SYSTEM_PROMPT,
 	shouldRetryAiFailure
 } from './index';
@@ -474,6 +480,154 @@ describe('AI core contracts', () => {
 				states: []
 			}]
 		}), 'extract-items')).toThrow('missingItemExtractionEvidence');
+	});
+
+	it('validates bounded timeline candidates, exact extraction, and typed causality', () => {
+		const sources = [{
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			narrativeOrder: 3,
+			content: '徐青把车票交给林墨，墙上的钟停在二十三点十七分。'
+		}];
+		const messages = buildTimelineAnalysisMessages({
+			actionType: 'suggest-causality',
+			instruction: '补全车站事件的因果链。',
+			sources,
+			existingEvents: [{
+				id: 'timeline-event:arrival',
+				title: '抵达旧站',
+				aliases: [],
+				revision: 1
+			}],
+			characters: [{ id: 'character:lin-mo', title: '林墨', revision: 1 }],
+			locations: [{ id: 'location:old-station', title: '旧车站', revision: 1 }],
+			items: [{ id: 'item:faded-ticket', title: '褪色车票', revision: 1 }],
+			plotThreads: [{ id: 'plot-thread:notebook', title: '遗失笔记', revision: 1 }],
+			foreshadowing: [{ id: 'foreshadowing:clock', title: '停摆时钟', revision: 1 }]
+		});
+		expect(messages[0]?.content).toBe(TIMELINE_ANALYSIS_SYSTEM_PROMPT);
+		const candidate = {
+			clientCandidateId: 'candidate:ticket-transfer',
+			sourceResourceId: 'chapter:one',
+			title: '车票转交',
+			aliases: [],
+			summary: '徐青把褪色车票交给林墨。',
+			eventType: '线索交接',
+			storyTimeKind: 'unknown',
+			storyStart: null,
+			storyEnd: null,
+			narrativeOrder: 3,
+			participantIds: ['character:lin-mo'],
+			locationIds: ['location:old-station'],
+			itemIds: ['item:faded-ticket'],
+			predecessorIds: ['timeline-event:arrival'],
+			consequenceIds: [],
+			plotThreadIds: ['plot-thread:notebook'],
+			foreshadowingIds: ['foreshadowing:clock'],
+			directResults: ['林墨取得车票'],
+			impacts: ['调查转向票面时间'],
+			confidence: 0.96,
+			rationale: '正文行动明确。',
+			evidence: { start: 0, end: 9, quote: '徐青把车票交给林墨' }
+		};
+		const parsed = parseTimelineAnalysisResponse(JSON.stringify({
+			candidates: [candidate],
+			causalEdges: [{
+				clientEdgeId: 'edge:arrival-transfer',
+				from: { kind: 'existing', id: 'timeline-event:arrival' },
+				to: { kind: 'candidate', id: 'candidate:ticket-transfer' },
+				relation: 'enables',
+				confidence: 0.9,
+				rationale: '到站后才发生交接。'
+			}]
+		}), 'suggest-causality', {
+			sourceIds: new Set(['chapter:one']),
+			eventIds: new Set(['timeline-event:arrival']),
+			characterIds: new Set(['character:lin-mo']),
+			locationIds: new Set(['location:old-station']),
+			itemIds: new Set(['item:faded-ticket']),
+			plotThreadIds: new Set(['plot-thread:notebook']),
+			foreshadowingIds: new Set(['foreshadowing:clock'])
+		});
+		expect(parsed.causalEdges).toHaveLength(1);
+		expect(() => parseTimelineAnalysisResponse(JSON.stringify({
+			candidates: [{ ...candidate, evidence: null }],
+			causalEdges: []
+		}), 'extract-events')).toThrow('invalidTimelineAnalysisResponse');
+	});
+
+	it('keeps plot author secrets opt-in and validates typed plot candidates', () => {
+		const common = {
+			sources: [{
+				resourceId: 'chapter:one',
+				sourceRevision: '7',
+				narrativeOrder: 3,
+				content: '墙上的钟停在二十三点十七分。'
+			}],
+			plotThreads: [{
+				id: 'plot-thread:notebook',
+				title: '遗失笔记',
+				aliases: [],
+				status: 'active',
+				revision: 1
+			}],
+			characters: [{ id: 'character:lin-mo', title: '林墨', revision: 1 }],
+			scenes: [{ id: 'scene:station', title: '车站相遇', revision: 1 }]
+		};
+		const messages = buildPlotAnalysisMessages({
+			...common,
+			actionType: 'generate-foreshadowing',
+			instruction: '生成一个受控伏笔。',
+			includeAuthorSecrets: false,
+			foreshadowing: [{
+				id: 'foreshadowing:clock',
+				title: '停摆时钟',
+				aliases: [],
+				status: 'planted',
+				surfaceMeaning: '旧钟故障',
+				revision: 1
+			}]
+		});
+		expect(messages[0]?.content).toBe(PLOT_ANALYSIS_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('列车事故真相');
+		expect(() => buildPlotAnalysisMessages({
+			...common,
+			actionType: 'generate-foreshadowing',
+			instruction: '生成一个受控伏笔。',
+			includeAuthorSecrets: false,
+			foreshadowing: [{
+				id: 'foreshadowing:clock',
+				title: '停摆时钟',
+				aliases: [],
+				status: 'planted',
+				trueMeaning: '列车事故真相',
+				revision: 1
+			}]
+		})).toThrow('invalidPlotAnalysisInput');
+		expect(parsePlotAnalysisResponse(JSON.stringify({
+			candidates: [{
+				kind: 'foreshadowing',
+				sourceResourceId: 'chapter:one',
+				title: '停摆时钟',
+				aliases: [],
+				summary: '时钟反复指向同一时刻。',
+				status: 'planted',
+				plantedAt: { chapterId: 'chapter:one', narrativeOrder: 3 },
+				surfaceMeaning: '旧钟故障',
+				trueMeaning: null,
+				reminderPositions: [],
+				plannedPayoffAt: null,
+				actualPayoffAt: null,
+				readerVisibility: 0.35,
+				plotThreadIds: ['plot-thread:notebook'],
+				confidence: 0.94,
+				rationale: '正文明确出现异常。',
+				evidence: { start: 0, end: 14, quote: '墙上的钟停在二十三点十七分' }
+			}]
+		}), 'extract-foreshadowing', {
+			sourceIds: new Set(['chapter:one']),
+			plotThreadIds: new Set(['plot-thread:notebook'])
+		})).toHaveLength(1);
 	});
 
 	it('builds a JSON-only story extraction request without auto-confirming facts', () => {

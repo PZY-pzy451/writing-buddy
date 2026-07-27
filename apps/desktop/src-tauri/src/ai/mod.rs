@@ -76,6 +76,21 @@ pub const ITEM_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
     "extract-items 的物品卡和每条状态事件都必须有精确正文证据。持有人和地点只能引用用户提供的 ID；不得为未识别人物或地点发明 ID。",
     "证据索引使用 JavaScript UTF-16 字符索引。所有卡片字段和状态事件仅供作者确认，不得声称已经保存、转移或覆盖物品。"
 );
+pub const TIMELINE_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的结构化故事进程候选分析器。只使用用户 JSON 中明确提供的章节、作者指令和资源身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。",
+    "仅返回 JSON 对象 {\"candidates\":[事件候选],\"causalEdges\":[因果边]}。事件候选严格为 {\"clientCandidateId\":\"candidate:slug\",\"sourceResourceId\":\"已知 chapter ID\",\"title\":\"标题\",\"aliases\":[],\"summary\":\"摘要\",\"eventType\":\"类型\",\"storyTimeKind\":\"exact|date|relative|range|unknown\",\"storyStart\":\"时间或 null\",\"storyEnd\":\"时间或 null\",\"narrativeOrder\":0,\"participantIds\":[\"已知 character ID\"],\"locationIds\":[\"已知 location ID\"],\"itemIds\":[\"已知 item ID\"],\"predecessorIds\":[\"已知 timeline-event ID\"],\"consequenceIds\":[\"已知 timeline-event ID\"],\"plotThreadIds\":[\"已知 plot-thread ID\"],\"foreshadowingIds\":[\"已知 foreshadowing ID\"],\"directResults\":[],\"impacts\":[],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}。",
+    "因果边严格为 {\"clientEdgeId\":\"edge:slug\",\"from\":{\"kind\":\"existing|candidate\",\"id\":\"对应 ID\"},\"to\":{\"kind\":\"existing|candidate\",\"id\":\"对应 ID\"},\"relation\":\"precondition|causes|enables|blocks\",\"confidence\":0.9,\"rationale\":\"依据\"}；不得自连或引用未提供/未返回的端点。",
+    "extract-events 的每个事件必须带来自其 sourceResourceId 的精确正文证据；generate-directions 必须返回恰好三个实质不同的候选；suggest-causality 必须返回至少一条因果边。",
+    "最多返回 32 个事件和 64 条因果边。证据索引使用 JavaScript UTF-16 字符索引。候选与虚线边只供作者确认，不得声称已经写入时间线。"
+);
+pub const PLOT_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的结构化剧情线与伏笔候选分析器。只使用用户 JSON 中明确提供的章节、作者指令和资源身份，不读取或推断路径、密钥、账户或隐藏历史。",
+    "仅返回 JSON 对象 {\"candidates\":[候选]}，候选按 kind 使用严格结构。",
+    "plotThread 为 {\"kind\":\"plotThread\",\"sourceResourceId\":\"已知 chapter ID\",\"title\":\"标题\",\"aliases\":[],\"summary\":\"摘要\",\"status\":\"planned|active|at-risk|resolved|abandoned\",\"premise\":\"前提\",\"stakes\":\"赌注\",\"dramaticQuestion\":\"戏剧问题\",\"startPosition\":位置或null,\"targetResolution\":位置或null,\"actualResolution\":位置或null,\"participantIds\":[\"已知 character ID\"],\"sceneIds\":[\"已知 scene ID\"],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}。",
+    "foreshadowing 为 {\"kind\":\"foreshadowing\",\"sourceResourceId\":\"已知 chapter ID\",\"title\":\"标题\",\"aliases\":[],\"summary\":\"摘要\",\"status\":\"planted|reminded|resolved|overdue|abandoned\",\"plantedAt\":位置或null,\"surfaceMeaning\":\"表面含义\",\"trueMeaning\":\"真实含义或 null\",\"reminderPositions\":[位置],\"plannedPayoffAt\":位置或null,\"actualPayoffAt\":位置或null,\"readerVisibility\":0.4,\"plotThreadIds\":[\"已知 plot-thread ID\"],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":...}。位置严格为 {\"chapterId\":\"已知 chapter ID\",\"narrativeOrder\":0}。",
+    "extract-plot-progress 与 extract-foreshadowing 的每条候选必须有精确正文证据。只能引用用户提供的章节、人物、场景和剧情线 ID。",
+    "includeAuthorSecrets 为 false 时，不得推断或声称知道既有伏笔的 trueMeaning；所有候选仅供作者确认，不得声称已经保存、推进或回收。最多返回 24 条。"
+);
 pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的结构化故事事实提取器。",
     "只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。",
@@ -291,6 +306,16 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_item_analysis_input(&self.messages[1].content)
             }
+            AiJobType::TimelineAnalysis => {
+                self.messages[0].content == TIMELINE_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_timeline_analysis_input(&self.messages[1].content)
+            }
+            AiJobType::PlotAnalysis => {
+                self.messages[0].content == PLOT_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_plot_analysis_input(&self.messages[1].content)
+            }
             AiJobType::StoryExtraction => {
                 self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -323,6 +348,8 @@ pub enum AiJobType {
     RelationshipAnalysis,
     WorldAnalysis,
     ItemAnalysis,
+    TimelineAnalysis,
+    PlotAnalysis,
     StoryExtraction,
     StoryKernelGeneration,
 }
@@ -339,6 +366,8 @@ impl AiJobType {
             Self::RelationshipAnalysis => "relationship-analysis",
             Self::WorldAnalysis => "world-analysis",
             Self::ItemAnalysis => "item-analysis",
+            Self::TimelineAnalysis => "timeline-analysis",
+            Self::PlotAnalysis => "plot-analysis",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
         }
@@ -910,6 +939,237 @@ fn validate_item_analysis_input(value: &str) -> bool {
     })
 }
 
+fn valid_gate_f_sources(sources: &[CharacterAnalysisSource]) -> bool {
+    let ids = sources
+        .iter()
+        .map(|source| source.resource_id.as_str())
+        .collect::<std::collections::HashSet<_>>();
+    (1..=12).contains(&sources.len())
+        && ids.len() == sources.len()
+        && sources.iter().all(valid_character_source)
+        && sources
+            .iter()
+            .map(|source| source.content.chars().count())
+            .sum::<usize>()
+            <= 160_000
+}
+
+fn valid_aliases(aliases: &[String]) -> bool {
+    aliases.len() <= 40
+        && aliases
+            .iter()
+            .all(|alias| !alias.trim().is_empty() && alias.chars().count() <= 160)
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct TimelineAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    instruction: String,
+    sources: Vec<CharacterAnalysisSource>,
+    existing_events: Vec<NamedRevisionIdentity>,
+    characters: Vec<SimpleEntityIdentity>,
+    locations: Vec<SimpleEntityIdentity>,
+    items: Vec<SimpleEntityIdentity>,
+    plot_threads: Vec<SimpleEntityIdentity>,
+    foreshadowing: Vec<SimpleEntityIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct NamedRevisionIdentity {
+    id: String,
+    title: String,
+    aliases: Vec<String>,
+    revision: u64,
+}
+
+fn valid_named_identity(value: &NamedRevisionIdentity, prefix: &str) -> bool {
+    value.id.starts_with(prefix)
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && valid_aliases(&value.aliases)
+        && value.revision <= u32::MAX as u64
+}
+
+fn unique_simple_entities(values: &[SimpleEntityIdentity], prefix: &str) -> bool {
+    values.len() <= 1_000
+        && values
+            .iter()
+            .map(|value| value.id.as_str())
+            .collect::<std::collections::HashSet<_>>()
+            .len()
+            == values.len()
+        && values
+            .iter()
+            .all(|value| valid_simple_entity(value, prefix))
+}
+
+fn validate_timeline_analysis_input(value: &str) -> bool {
+    if value.len() > 240_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<TimelineAnalysisInput>(value).is_ok_and(|input| {
+        let event_ids = input
+            .existing_events
+            .iter()
+            .map(|event| event.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "extract-events" | "generate-events" | "generate-directions" | "suggest-causality"
+            )
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_gate_f_sources(&input.sources)
+            && input.existing_events.len() <= 1_000
+            && event_ids.len() == input.existing_events.len()
+            && input
+                .existing_events
+                .iter()
+                .all(|event| valid_named_identity(event, "timeline-event:"))
+            && unique_simple_entities(&input.characters, "character:")
+            && unique_simple_entities(&input.locations, "location:")
+            && unique_simple_entities(&input.items, "item:")
+            && unique_simple_entities(&input.plot_threads, "plot-thread:")
+            && unique_simple_entities(&input.foreshadowing, "foreshadowing:")
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct PlotAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    instruction: String,
+    sources: Vec<CharacterAnalysisSource>,
+    include_author_secrets: bool,
+    selected_plot_thread_id: Option<String>,
+    selected_foreshadowing_id: Option<String>,
+    plot_threads: Vec<PlotThreadIdentity>,
+    foreshadowing: Vec<ForeshadowingIdentity>,
+    characters: Vec<SimpleEntityIdentity>,
+    scenes: Vec<SimpleEntityIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct PlotThreadIdentity {
+    id: String,
+    title: String,
+    aliases: Vec<String>,
+    status: String,
+    revision: u64,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ForeshadowingIdentity {
+    id: String,
+    title: String,
+    aliases: Vec<String>,
+    status: String,
+    surface_meaning: Option<String>,
+    true_meaning: Option<String>,
+    revision: u64,
+}
+
+fn valid_plot_thread_identity(value: &PlotThreadIdentity) -> bool {
+    value.id.starts_with("plot-thread:")
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && valid_aliases(&value.aliases)
+        && matches!(
+            value.status.as_str(),
+            "planned" | "active" | "at-risk" | "resolved" | "abandoned"
+        )
+        && value.revision <= u32::MAX as u64
+}
+
+fn valid_foreshadowing_identity(value: &ForeshadowingIdentity) -> bool {
+    value.id.starts_with("foreshadowing:")
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && valid_aliases(&value.aliases)
+        && matches!(
+            value.status.as_str(),
+            "planted" | "reminded" | "resolved" | "overdue" | "abandoned"
+        )
+        && value
+            .surface_meaning
+            .as_ref()
+            .is_none_or(|meaning| meaning.chars().count() <= 5_000)
+        && value
+            .true_meaning
+            .as_ref()
+            .is_none_or(|meaning| meaning.chars().count() <= 5_000)
+        && value.revision <= u32::MAX as u64
+}
+
+fn validate_plot_analysis_input(value: &str) -> bool {
+    if value.len() > 240_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<PlotAnalysisInput>(value).is_ok_and(|input| {
+        let plot_ids = input
+            .plot_threads
+            .iter()
+            .map(|thread| thread.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let clue_ids = input
+            .foreshadowing
+            .iter()
+            .map(|clue| clue.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let selection_is_valid = match input.action_type.as_str() {
+            "generate-plot-consequences" => {
+                input
+                    .selected_plot_thread_id
+                    .as_ref()
+                    .is_some_and(|id| plot_ids.contains(id.as_str()))
+                    && input.selected_foreshadowing_id.is_none()
+            }
+            "generate-foreshadowing-payoff" => {
+                input
+                    .selected_foreshadowing_id
+                    .as_ref()
+                    .is_some_and(|id| clue_ids.contains(id.as_str()))
+                    && input.selected_plot_thread_id.is_none()
+            }
+            "generate-plot-thread"
+            | "extract-plot-progress"
+            | "generate-foreshadowing"
+            | "extract-foreshadowing" => {
+                input.selected_plot_thread_id.is_none() && input.selected_foreshadowing_id.is_none()
+            }
+            _ => false,
+        };
+        input.schema_version == 1
+            && selection_is_valid
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_gate_f_sources(&input.sources)
+            && input.plot_threads.len() <= 1_000
+            && plot_ids.len() == input.plot_threads.len()
+            && input.plot_threads.iter().all(valid_plot_thread_identity)
+            && input.foreshadowing.len() <= 1_000
+            && clue_ids.len() == input.foreshadowing.len()
+            && input.foreshadowing.iter().all(valid_foreshadowing_identity)
+            && (input.include_author_secrets
+                || input
+                    .foreshadowing
+                    .iter()
+                    .all(|clue| clue.true_meaning.is_none()))
+            && unique_simple_entities(&input.characters, "character:")
+            && unique_simple_entities(&input.scenes, "scene:")
+    })
+}
+
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 struct StoryExtractionInput {
@@ -1150,10 +1410,10 @@ mod tests {
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
         ITEM_ANALYSIS_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
-        RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat, SCENE_PLAN_SYSTEM_PROMPT,
-        SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
-        STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
-        WORLD_ANALYSIS_SYSTEM_PROMPT,
+        PLOT_ANALYSIS_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
+        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
+        STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT,
+        TIMELINE_ANALYSIS_SYSTEM_PROMPT, ThinkingMode, WORLD_ANALYSIS_SYSTEM_PROMPT,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -1527,6 +1787,117 @@ mod tests {
             "\"selectedItemId\":\"item:faded-ticket\"",
             "\"selectedItemId\":\"item:missing\"",
         );
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn timeline_analysis_requires_bounded_sources_and_sanitized_identities() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::TimelineAnalysis;
+        request.messages[0].content = TIMELINE_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "extract-events",
+            "instruction": "提取本章事件。",
+            "sources": [{
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "徐青把车票交给林墨。"
+            }],
+            "existingEvents": [{
+                "id": "timeline-event:arrival",
+                "title": "抵达旧站",
+                "aliases": [],
+                "revision": 1
+            }],
+            "characters": [{
+                "id": "character:lin-mo",
+                "title": "林墨",
+                "revision": 1
+            }],
+            "locations": [{
+                "id": "location:old-station",
+                "title": "旧车站",
+                "revision": 1
+            }],
+            "items": [{
+                "id": "item:faded-ticket",
+                "title": "褪色车票",
+                "revision": 1
+            }],
+            "plotThreads": [{
+                "id": "plot-thread:notebook",
+                "title": "遗失笔记",
+                "revision": 1
+            }],
+            "foreshadowing": [{
+                "id": "foreshadowing:clock",
+                "title": "停摆时钟",
+                "revision": 1
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        let mut unsafe_request: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid timeline request");
+        unsafe_request["projectRoot"] = serde_json::json!("C:/secret");
+        request.messages[1].content = unsafe_request.to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn plot_analysis_keeps_author_secrets_explicitly_opt_in() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::PlotAnalysis;
+        request.messages[0].content = PLOT_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-foreshadowing",
+            "instruction": "生成伏笔候选。",
+            "sources": [{
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "墙上的钟停在二十三点十七分。"
+            }],
+            "includeAuthorSecrets": false,
+            "plotThreads": [{
+                "id": "plot-thread:notebook",
+                "title": "遗失笔记",
+                "aliases": [],
+                "status": "active",
+                "revision": 1
+            }],
+            "foreshadowing": [{
+                "id": "foreshadowing:clock",
+                "title": "停摆时钟",
+                "aliases": [],
+                "status": "planted",
+                "surfaceMeaning": "旧钟故障",
+                "revision": 1
+            }],
+            "characters": [{
+                "id": "character:lin-mo",
+                "title": "林墨",
+                "revision": 1
+            }],
+            "scenes": [{
+                "id": "scene:station",
+                "title": "车站相遇",
+                "revision": 1
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        let mut leaked: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid plot request");
+        leaked["foreshadowing"][0]["trueMeaning"] = serde_json::json!("事故真相");
+        request.messages[1].content = leaked.to_string();
         assert!(request.validate().is_err());
     }
 

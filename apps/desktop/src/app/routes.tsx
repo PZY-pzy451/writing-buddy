@@ -26,12 +26,17 @@ export function StoryStudioRoute(): React.JSX.Element {
 	const setMode = useAppStore(state => state.setMode);
 	const projectRoot = snapshot?.root;
 	const chapters = useMemo(() => snapshot
-		? flattenChapters(snapshot.project).map((chapter, index) => ({
+		? snapshot.project.volumes.flatMap(volume => volume.chapters.map(chapter => ({
+			volume,
+			chapter
+		}))).map(({ volume, chapter }, index) => ({
 			resourceId: toStoryChapterId(chapter.id),
 			chapterId: chapter.id,
 			title: chapter.title,
 			path: chapter.file,
-			narrativeOrder: index
+			narrativeOrder: index,
+			volumeId: volume.id,
+			volumeTitle: volume.title
 		}))
 		: [], [snapshot]);
 	const openEvidence = (evidence: {
@@ -77,7 +82,14 @@ export function StoryStudioRoute(): React.JSX.Element {
 		);
 	}
 	if (storyView === 'timeline') {
-		return <TimelinePage projectRoot={projectRoot} />;
+		return (
+			<TimelinePage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'worldbuilding') {
 		return (
@@ -100,7 +112,14 @@ export function StoryStudioRoute(): React.JSX.Element {
 		);
 	}
 	if (storyView === 'plots') {
-		return <PlotBoardPage projectRoot={projectRoot} />;
+		return (
+			<PlotBoardPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'information') {
 		return <InformationControlPage projectRoot={projectRoot} />;

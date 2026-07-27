@@ -74,6 +74,21 @@ export const ITEM_ANALYSIS_SYSTEM_PROMPT = [
 	'extract-items 的物品卡和每条状态事件都必须有精确正文证据。持有人和地点只能引用用户提供的 ID；不得为未识别人物或地点发明 ID。',
 	'证据索引使用 JavaScript UTF-16 字符索引。所有卡片字段和状态事件仅供作者确认，不得声称已经保存、转移或覆盖物品。'
 ].join('');
+export const TIMELINE_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的结构化故事进程候选分析器。只使用用户 JSON 中明确提供的章节、作者指令和资源身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。',
+	'仅返回 JSON 对象 {"candidates":[事件候选],"causalEdges":[因果边]}。事件候选严格为 {"clientCandidateId":"candidate:slug","sourceResourceId":"已知 chapter ID","title":"标题","aliases":[],"summary":"摘要","eventType":"类型","storyTimeKind":"exact|date|relative|range|unknown","storyStart":"时间或 null","storyEnd":"时间或 null","narrativeOrder":0,"participantIds":["已知 character ID"],"locationIds":["已知 location ID"],"itemIds":["已知 item ID"],"predecessorIds":["已知 timeline-event ID"],"consequenceIds":["已知 timeline-event ID"],"plotThreadIds":["已知 plot-thread ID"],"foreshadowingIds":["已知 foreshadowing ID"],"directResults":[],"impacts":[],"confidence":0.9,"rationale":"依据","evidence":{"start":0,"end":2,"quote":"原文"}或null}。',
+	'因果边严格为 {"clientEdgeId":"edge:slug","from":{"kind":"existing|candidate","id":"对应 ID"},"to":{"kind":"existing|candidate","id":"对应 ID"},"relation":"precondition|causes|enables|blocks","confidence":0.9,"rationale":"依据"}；不得自连或引用未提供/未返回的端点。',
+	'extract-events 的每个事件必须带来自其 sourceResourceId 的精确正文证据；generate-directions 必须返回恰好三个实质不同的候选；suggest-causality 必须返回至少一条因果边。',
+	'最多返回 32 个事件和 64 条因果边。证据索引使用 JavaScript UTF-16 字符索引。候选与虚线边只供作者确认，不得声称已经写入时间线。'
+].join('');
+export const PLOT_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的结构化剧情线与伏笔候选分析器。只使用用户 JSON 中明确提供的章节、作者指令和资源身份，不读取或推断路径、密钥、账户或隐藏历史。',
+	'仅返回 JSON 对象 {"candidates":[候选]}，候选按 kind 使用严格结构。',
+	'plotThread 为 {"kind":"plotThread","sourceResourceId":"已知 chapter ID","title":"标题","aliases":[],"summary":"摘要","status":"planned|active|at-risk|resolved|abandoned","premise":"前提","stakes":"赌注","dramaticQuestion":"戏剧问题","startPosition":位置或null,"targetResolution":位置或null,"actualResolution":位置或null,"participantIds":["已知 character ID"],"sceneIds":["已知 scene ID"],"confidence":0.9,"rationale":"依据","evidence":{"start":0,"end":2,"quote":"原文"}或null}。',
+	'foreshadowing 为 {"kind":"foreshadowing","sourceResourceId":"已知 chapter ID","title":"标题","aliases":[],"summary":"摘要","status":"planted|reminded|resolved|overdue|abandoned","plantedAt":位置或null,"surfaceMeaning":"表面含义","trueMeaning":"真实含义或 null","reminderPositions":[位置],"plannedPayoffAt":位置或null,"actualPayoffAt":位置或null,"readerVisibility":0.4,"plotThreadIds":["已知 plot-thread ID"],"confidence":0.9,"rationale":"依据","evidence":...}。位置严格为 {"chapterId":"已知 chapter ID","narrativeOrder":0}。',
+	'extract-plot-progress 与 extract-foreshadowing 的每条候选必须有精确正文证据。只能引用用户提供的章节、人物、场景和剧情线 ID。',
+	'includeAuthorSecrets 为 false 时，不得推断或声称知道既有伏笔的 trueMeaning；所有候选仅供作者确认，不得声称已经保存、推进或回收。最多返回 24 条。'
+].join('');
 export const STORY_EXTRACTION_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的结构化故事事实提取器。',
 	'只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。',
@@ -113,6 +128,8 @@ export type AiJobType =
 	| 'relationship-analysis'
 	| 'world-analysis'
 	| 'item-analysis'
+	| 'timeline-analysis'
+	| 'plot-analysis'
 	| 'story-extraction'
 	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
@@ -670,6 +687,104 @@ const itemAnalysisResponseSchema = z.object({
 	candidates: z.array(itemAnalysisCandidateSchema).max(16)
 }).strict();
 
+const gateFStoryPositionSchema = z.object({
+	chapterId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	narrativeOrder: z.number().int().nonnegative()
+}).strict();
+
+const timelineAnalysisCandidateSchema = z.object({
+	clientCandidateId: z.string().regex(/^candidate:[a-z0-9][a-z0-9-]*$/u),
+	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	summary: z.string().trim().min(1).max(10_000),
+	eventType: z.string().trim().min(1).max(160),
+	storyTimeKind: z.enum(['exact', 'date', 'relative', 'range', 'unknown']),
+	storyStart: z.string().trim().min(1).max(160).nullable(),
+	storyEnd: z.string().trim().min(1).max(160).nullable(),
+	narrativeOrder: z.number().int().nonnegative(),
+	participantIds: z.array(z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	locationIds: z.array(z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	itemIds: z.array(z.string().regex(/^item:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	predecessorIds: z.array(z.string().regex(/^timeline-event:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	consequenceIds: z.array(z.string().regex(/^timeline-event:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	plotThreadIds: z.array(z.string().regex(/^plot-thread:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	foreshadowingIds: z.array(z.string().regex(/^foreshadowing:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	directResults: z.array(z.string().trim().min(1).max(2_000)).max(40),
+	impacts: z.array(z.string().trim().min(1).max(2_000)).max(40),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().trim().min(1).max(2_000),
+	evidence: groundedEvidenceSchema.nullable()
+}).strict();
+
+const timelineEndpointSchema = z.object({
+	kind: z.enum(['existing', 'candidate']),
+	id: z.string().trim().min(1).max(160)
+}).strict();
+
+const timelineCausalEdgeSchema = z.object({
+	clientEdgeId: z.string().regex(/^edge:[a-z0-9][a-z0-9-]*$/u),
+	from: timelineEndpointSchema,
+	to: timelineEndpointSchema,
+	relation: z.enum(['precondition', 'causes', 'enables', 'blocks']),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().trim().min(1).max(2_000)
+}).strict().refine(edge => !(edge.from.kind === edge.to.kind && edge.from.id === edge.to.id), {
+	message: 'causalEdgeSelfLink'
+});
+
+const timelineAnalysisResponseSchema = z.object({
+	candidates: z.array(timelineAnalysisCandidateSchema).max(32),
+	causalEdges: z.array(timelineCausalEdgeSchema).max(64)
+}).strict();
+
+const plotCandidateBaseShape = {
+	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	summary: z.string().trim().min(1).max(10_000),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().trim().min(1).max(2_000),
+	evidence: groundedEvidenceSchema.nullable()
+};
+
+const plotThreadAnalysisCandidateSchema = z.object({
+	kind: z.literal('plotThread'),
+	...plotCandidateBaseShape,
+	status: z.enum(['planned', 'active', 'at-risk', 'resolved', 'abandoned']),
+	premise: z.string().trim().min(1).max(10_000),
+	stakes: z.string().trim().min(1).max(5_000),
+	dramaticQuestion: z.string().trim().min(1).max(5_000),
+	startPosition: gateFStoryPositionSchema.nullable(),
+	targetResolution: gateFStoryPositionSchema.nullable(),
+	actualResolution: gateFStoryPositionSchema.nullable(),
+	participantIds: z.array(z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u)).max(100),
+	sceneIds: z.array(z.string().regex(/^scene:[a-z0-9][a-z0-9-]*$/u)).max(100)
+}).strict();
+
+const foreshadowingAnalysisCandidateSchema = z.object({
+	kind: z.literal('foreshadowing'),
+	...plotCandidateBaseShape,
+	status: z.enum(['planted', 'reminded', 'resolved', 'overdue', 'abandoned']),
+	plantedAt: gateFStoryPositionSchema.nullable(),
+	surfaceMeaning: z.string().trim().min(1).max(5_000),
+	trueMeaning: z.string().trim().min(1).max(5_000).nullable(),
+	reminderPositions: z.array(gateFStoryPositionSchema).max(40),
+	plannedPayoffAt: gateFStoryPositionSchema.nullable(),
+	actualPayoffAt: gateFStoryPositionSchema.nullable(),
+	readerVisibility: z.number().min(0).max(1),
+	plotThreadIds: z.array(z.string().regex(/^plot-thread:[a-z0-9][a-z0-9-]*$/u)).max(100)
+}).strict();
+
+const plotAnalysisCandidateSchema = z.discriminatedUnion('kind', [
+	plotThreadAnalysisCandidateSchema,
+	foreshadowingAnalysisCandidateSchema
+]);
+
+const plotAnalysisResponseSchema = z.object({
+	candidates: z.array(plotAnalysisCandidateSchema).max(24)
+}).strict();
+
 const storyExtractionResponseSchema = z.object({
 	facts: z.array(z.object({
 		factType: z.enum([
@@ -930,6 +1045,109 @@ export interface ItemAnalysisCandidateResponse {
 	readonly evidence: GroundedCandidateEvidence | null;
 	readonly states: readonly ItemAnalysisStateCandidateResponse[];
 }
+
+export type TimelineAnalysisActionType =
+	| 'extract-events'
+	| 'generate-events'
+	| 'generate-directions'
+	| 'suggest-causality';
+
+export interface TimelineAnalysisCandidateResponse {
+	readonly clientCandidateId: string;
+	readonly sourceResourceId: string;
+	readonly title: string;
+	readonly aliases: readonly string[];
+	readonly summary: string;
+	readonly eventType: string;
+	readonly storyTimeKind: 'exact' | 'date' | 'relative' | 'range' | 'unknown';
+	readonly storyStart: string | null;
+	readonly storyEnd: string | null;
+	readonly narrativeOrder: number;
+	readonly participantIds: readonly string[];
+	readonly locationIds: readonly string[];
+	readonly itemIds: readonly string[];
+	readonly predecessorIds: readonly string[];
+	readonly consequenceIds: readonly string[];
+	readonly plotThreadIds: readonly string[];
+	readonly foreshadowingIds: readonly string[];
+	readonly directResults: readonly string[];
+	readonly impacts: readonly string[];
+	readonly confidence: number;
+	readonly rationale: string;
+	readonly evidence: GroundedCandidateEvidence | null;
+}
+
+export interface TimelineAnalysisEndpointResponse {
+	readonly kind: 'existing' | 'candidate';
+	readonly id: string;
+}
+
+export interface TimelineAnalysisCausalEdgeResponse {
+	readonly clientEdgeId: string;
+	readonly from: TimelineAnalysisEndpointResponse;
+	readonly to: TimelineAnalysisEndpointResponse;
+	readonly relation: 'precondition' | 'causes' | 'enables' | 'blocks';
+	readonly confidence: number;
+	readonly rationale: string;
+}
+
+export interface TimelineAnalysisResponse {
+	readonly candidates: readonly TimelineAnalysisCandidateResponse[];
+	readonly causalEdges: readonly TimelineAnalysisCausalEdgeResponse[];
+}
+
+export type PlotAnalysisActionType =
+	| 'generate-plot-thread'
+	| 'generate-plot-consequences'
+	| 'extract-plot-progress'
+	| 'generate-foreshadowing'
+	| 'generate-foreshadowing-payoff'
+	| 'extract-foreshadowing';
+
+export interface PlotAnalysisPositionResponse {
+	readonly chapterId: string;
+	readonly narrativeOrder: number;
+}
+
+export type PlotAnalysisCandidateResponse =
+	| {
+		readonly kind: 'plotThread';
+		readonly sourceResourceId: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly summary: string;
+		readonly status: 'planned' | 'active' | 'at-risk' | 'resolved' | 'abandoned';
+		readonly premise: string;
+		readonly stakes: string;
+		readonly dramaticQuestion: string;
+		readonly startPosition: PlotAnalysisPositionResponse | null;
+		readonly targetResolution: PlotAnalysisPositionResponse | null;
+		readonly actualResolution: PlotAnalysisPositionResponse | null;
+		readonly participantIds: readonly string[];
+		readonly sceneIds: readonly string[];
+		readonly confidence: number;
+		readonly rationale: string;
+		readonly evidence: GroundedCandidateEvidence | null;
+	}
+	| {
+		readonly kind: 'foreshadowing';
+		readonly sourceResourceId: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly summary: string;
+		readonly status: 'planted' | 'reminded' | 'resolved' | 'overdue' | 'abandoned';
+		readonly plantedAt: PlotAnalysisPositionResponse | null;
+		readonly surfaceMeaning: string;
+		readonly trueMeaning: string | null;
+		readonly reminderPositions: readonly PlotAnalysisPositionResponse[];
+		readonly plannedPayoffAt: PlotAnalysisPositionResponse | null;
+		readonly actualPayoffAt: PlotAnalysisPositionResponse | null;
+		readonly readerVisibility: number;
+		readonly plotThreadIds: readonly string[];
+		readonly confidence: number;
+		readonly rationale: string;
+		readonly evidence: GroundedCandidateEvidence | null;
+	};
 
 export interface StoryExtractionCandidate {
 	readonly factType:
@@ -1569,6 +1787,329 @@ export function parseItemAnalysisResponse(
 			&& !allowedLocationIds.has(state.locationId))
 	)))) {
 		throw new Error('unknownItemStateReference');
+	}
+	return candidates;
+}
+
+interface GateFChapterSourceInput {
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly narrativeOrder: number;
+	readonly content: string;
+}
+
+function validGateFSources(sources: readonly GateFChapterSourceInput[]): boolean {
+	const ids = new Set(sources.map(source => source.resourceId));
+	return sources.length >= 1
+		&& sources.length <= 12
+		&& ids.size === sources.length
+		&& sources.reduce((total, source) => total + source.content.length, 0) <= 160_000
+		&& sources.every(source => (
+			/^chapter:[a-z0-9][a-z0-9-]*$/u.test(source.resourceId)
+			&& Boolean(source.sourceRevision.trim())
+			&& source.sourceRevision.length <= 128
+			&& Number.isSafeInteger(source.narrativeOrder)
+			&& source.narrativeOrder >= 0
+			&& Boolean(source.content.trim())
+			&& source.content.length <= AI_CHAPTER_REVIEW_MAX_CHARS
+		));
+}
+
+interface TimelineAnalysisRequestInput {
+	readonly actionType: TimelineAnalysisActionType;
+	readonly instruction: string;
+	readonly sources: readonly GateFChapterSourceInput[];
+	readonly existingEvents: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly revision: number;
+	}[];
+	readonly characters: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly locations: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly items: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly plotThreads: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly foreshadowing: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+}
+
+export function buildTimelineAnalysisMessages(
+	input: TimelineAnalysisRequestInput
+): readonly AiMessage[] {
+	const collections = [
+		[input.existingEvents, 'timeline-event'],
+		[input.characters, 'character'],
+		[input.locations, 'location'],
+		[input.items, 'item'],
+		[input.plotThreads, 'plot-thread'],
+		[input.foreshadowing, 'foreshadowing']
+	] as const;
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !validGateFSources(input.sources)
+		|| collections.some(([values, prefix]) => (
+			values.length > 1_000
+			|| new Set(values.map(value => value.id)).size !== values.length
+			|| values.some(value => !validSimpleIdentity(value, prefix))
+		))
+		|| input.existingEvents.some(event => (
+			event.aliases.length > 40
+			|| event.aliases.some(alias => !alias.trim() || alias.length > 160)
+		))
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test([
+			input.instruction,
+			...input.sources.map(source => source.content)
+		].join('\n'))
+	) {
+		throw new Error('invalidTimelineAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		instruction: input.instruction.trim(),
+		sources: input.sources,
+		existingEvents: input.existingEvents,
+		characters: input.characters,
+		locations: input.locations,
+		items: input.items,
+		plotThreads: input.plotThreads,
+		foreshadowing: input.foreshadowing
+	});
+	if (payload.length > 240_000) throw new Error('invalidTimelineAnalysisInput');
+	return [
+		{ role: 'system', content: TIMELINE_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+function idsAreKnown(ids: readonly string[], allowed?: ReadonlySet<string>): boolean {
+	return allowed === undefined || ids.every(id => allowed.has(id));
+}
+
+export function parseTimelineAnalysisResponse(
+	response: string,
+	actionType: TimelineAnalysisActionType,
+	allowed: {
+		readonly sourceIds?: ReadonlySet<string>;
+		readonly eventIds?: ReadonlySet<string>;
+		readonly characterIds?: ReadonlySet<string>;
+		readonly locationIds?: ReadonlySet<string>;
+		readonly itemIds?: ReadonlySet<string>;
+		readonly plotThreadIds?: ReadonlySet<string>;
+		readonly foreshadowingIds?: ReadonlySet<string>;
+	} = {}
+): TimelineAnalysisResponse {
+	const parsed = timelineAnalysisResponseSchema.parse(JSON.parse(response));
+	const candidateIds = new Set(parsed.candidates.map(candidate => candidate.clientCandidateId));
+	const edgeIds = new Set(parsed.causalEdges.map(edge => edge.clientEdgeId));
+	if (
+		candidateIds.size !== parsed.candidates.length
+		|| edgeIds.size !== parsed.causalEdges.length
+		|| (actionType === 'generate-directions' && parsed.candidates.length !== 3)
+		|| (actionType === 'suggest-causality' && parsed.causalEdges.length === 0)
+		|| (actionType !== 'suggest-causality'
+			&& actionType !== 'extract-events'
+			&& parsed.candidates.length === 0)
+		|| (actionType === 'extract-events'
+			&& parsed.candidates.some(candidate => candidate.evidence === null))
+	) {
+		throw new Error('invalidTimelineAnalysisResponse');
+	}
+	if (parsed.candidates.some(candidate => (
+		!idsAreKnown([candidate.sourceResourceId], allowed.sourceIds)
+		|| !idsAreKnown(candidate.participantIds, allowed.characterIds)
+		|| !idsAreKnown(candidate.locationIds, allowed.locationIds)
+		|| !idsAreKnown(candidate.itemIds, allowed.itemIds)
+		|| !idsAreKnown(candidate.predecessorIds, allowed.eventIds)
+		|| !idsAreKnown(candidate.consequenceIds, allowed.eventIds)
+		|| !idsAreKnown(candidate.plotThreadIds, allowed.plotThreadIds)
+		|| !idsAreKnown(candidate.foreshadowingIds, allowed.foreshadowingIds)
+	))) {
+		throw new Error('unknownTimelineReference');
+	}
+	const endpointIsKnown = (endpoint: z.infer<typeof timelineEndpointSchema>) => (
+		endpoint.kind === 'candidate'
+			? candidateIds.has(endpoint.id)
+			: (allowed.eventIds?.has(endpoint.id) ?? true)
+	);
+	const causalPairs = new Set<string>();
+	for (const edge of parsed.causalEdges) {
+		if (!endpointIsKnown(edge.from) || !endpointIsKnown(edge.to)) {
+			throw new Error('unknownTimelineCausalEndpoint');
+		}
+		const left = `${edge.from.kind}:${edge.from.id}`;
+		const right = `${edge.to.kind}:${edge.to.id}`;
+		const pair = [left, right].sort().join('|');
+		if (causalPairs.has(pair)) throw new Error('duplicateTimelineCausalPair');
+		causalPairs.add(pair);
+	}
+	return parsed;
+}
+
+interface PlotAnalysisRequestInput {
+	readonly actionType: PlotAnalysisActionType;
+	readonly instruction: string;
+	readonly sources: readonly GateFChapterSourceInput[];
+	readonly includeAuthorSecrets: boolean;
+	readonly selectedPlotThreadId?: string;
+	readonly selectedForeshadowingId?: string;
+	readonly plotThreads: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly status: string;
+		readonly revision: number;
+	}[];
+	readonly foreshadowing: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly status: string;
+		readonly surfaceMeaning?: string;
+		readonly trueMeaning?: string;
+		readonly revision: number;
+	}[];
+	readonly characters: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly scenes: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+}
+
+export function buildPlotAnalysisMessages(
+	input: PlotAnalysisRequestInput
+): readonly AiMessage[] {
+	const plotIds = new Set(input.plotThreads.map(thread => thread.id));
+	const clueIds = new Set(input.foreshadowing.map(clue => clue.id));
+	const collections = [
+		[input.plotThreads, 'plot-thread'],
+		[input.foreshadowing, 'foreshadowing'],
+		[input.characters, 'character'],
+		[input.scenes, 'scene']
+	] as const;
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !validGateFSources(input.sources)
+		|| collections.some(([values, prefix]) => (
+			values.length > 1_000
+			|| new Set(values.map(value => value.id)).size !== values.length
+			|| values.some(value => !validSimpleIdentity(value, prefix))
+		))
+		|| [...input.plotThreads, ...input.foreshadowing].some(value => (
+			value.aliases.length > 40
+			|| value.aliases.some(alias => !alias.trim() || alias.length > 160)
+		))
+		|| (!input.includeAuthorSecrets
+			&& input.foreshadowing.some(clue => clue.trueMeaning !== undefined))
+		|| (input.actionType === 'generate-plot-consequences'
+			&& (!input.selectedPlotThreadId || !plotIds.has(input.selectedPlotThreadId)))
+		|| (input.actionType !== 'generate-plot-consequences'
+			&& input.selectedPlotThreadId !== undefined)
+		|| (input.actionType === 'generate-foreshadowing-payoff'
+			&& (!input.selectedForeshadowingId || !clueIds.has(input.selectedForeshadowingId)))
+		|| (input.actionType !== 'generate-foreshadowing-payoff'
+			&& input.selectedForeshadowingId !== undefined)
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test([
+			input.instruction,
+			...input.sources.map(source => source.content)
+		].join('\n'))
+	) {
+		throw new Error('invalidPlotAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		instruction: input.instruction.trim(),
+		sources: input.sources,
+		includeAuthorSecrets: input.includeAuthorSecrets,
+		...(input.selectedPlotThreadId
+			? { selectedPlotThreadId: input.selectedPlotThreadId }
+			: {}),
+		...(input.selectedForeshadowingId
+			? { selectedForeshadowingId: input.selectedForeshadowingId }
+			: {}),
+		plotThreads: input.plotThreads,
+		foreshadowing: input.foreshadowing,
+		characters: input.characters,
+		scenes: input.scenes
+	});
+	if (payload.length > 240_000) throw new Error('invalidPlotAnalysisInput');
+	return [
+		{ role: 'system', content: PLOT_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parsePlotAnalysisResponse(
+	response: string,
+	actionType: PlotAnalysisActionType,
+	allowed: {
+		readonly sourceIds?: ReadonlySet<string>;
+		readonly characterIds?: ReadonlySet<string>;
+		readonly sceneIds?: ReadonlySet<string>;
+		readonly plotThreadIds?: ReadonlySet<string>;
+	} = {}
+): readonly PlotAnalysisCandidateResponse[] {
+	const candidates = plotAnalysisResponseSchema.parse(JSON.parse(response)).candidates;
+	const expectedKind = actionType.startsWith('generate-plot')
+		|| actionType === 'extract-plot-progress'
+		? 'plotThread'
+		: 'foreshadowing';
+	const extraction = actionType === 'extract-plot-progress'
+		|| actionType === 'extract-foreshadowing';
+	const positionKnown = (position: PlotAnalysisPositionResponse | null) => (
+		position === null || idsAreKnown([position.chapterId], allowed.sourceIds)
+	);
+	if (
+		candidates.some(candidate => candidate.kind !== expectedKind)
+		|| (!extraction && candidates.length === 0)
+		|| (extraction && candidates.some(candidate => candidate.evidence === null))
+		|| candidates.some(candidate => (
+			!idsAreKnown([candidate.sourceResourceId], allowed.sourceIds)
+			|| (candidate.kind === 'plotThread'
+				? (
+					!idsAreKnown(candidate.participantIds, allowed.characterIds)
+					|| !idsAreKnown(candidate.sceneIds, allowed.sceneIds)
+					|| !positionKnown(candidate.startPosition)
+					|| !positionKnown(candidate.targetResolution)
+					|| !positionKnown(candidate.actualResolution)
+				)
+				: (
+					!idsAreKnown(candidate.plotThreadIds, allowed.plotThreadIds)
+					|| !positionKnown(candidate.plantedAt)
+					|| !positionKnown(candidate.plannedPayoffAt)
+					|| !positionKnown(candidate.actualPayoffAt)
+					|| candidate.reminderPositions.some(position => !positionKnown(position))
+				))
+		))
+	) {
+		throw new Error('invalidPlotAnalysisResponse');
 	}
 	return candidates;
 }

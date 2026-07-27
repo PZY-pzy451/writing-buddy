@@ -164,7 +164,10 @@ export const timelineEventSchema = z.object({
 	itemIds: z.array(idFor('item')),
 	predecessorIds: z.array(idFor('timelineEvent')),
 	consequenceIds: z.array(idFor('timelineEvent')),
+	directResults: z.array(z.string().trim().min(1).max(2_000)).optional().default([]),
+	impacts: z.array(z.string().trim().min(1).max(2_000)).optional().default([]),
 	plotThreadIds: z.array(idFor('plotThread')).optional().default([]),
+	foreshadowingIds: z.array(idFor('foreshadowing')).optional().default([]),
 	informationIds: z.array(idFor('information')).optional().default([]),
 	evidenceIds
 }).strict();

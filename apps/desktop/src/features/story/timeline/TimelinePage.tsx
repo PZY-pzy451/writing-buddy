@@ -6,6 +6,7 @@ import {
 	MapPin,
 	Minus,
 	Plus,
+	Sparkles,
 	UserRound
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -16,12 +17,22 @@ import {
 	queryEvents,
 	runTimelineRules,
 	type StoryResource,
+	type Character,
+	type Foreshadowing,
+	type Location,
+	type PlotThread,
+	type StoryItem,
 	type TimelineEvent,
 	type TimelineMode,
 	type TravelLinkRule
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import { EventInspector } from './EventInspector';
+import { TimelineAiPanel } from './TimelineAiPanel';
 import { TimelineCanvas, type TimelineTrackKind } from './TimelineCanvas';
 import { VirtualTimelineList } from './VirtualTimelineList';
 import './TimelinePage.css';
@@ -30,6 +41,11 @@ export interface TimelinePageData {
 	readonly events: readonly TimelineEvent[];
 	readonly labels: Readonly<Record<string, string>>;
 	readonly travelLinks?: readonly TravelLinkRule[];
+	readonly characters?: readonly Character[];
+	readonly locations?: readonly Location[];
+	readonly items?: readonly StoryItem[];
+	readonly plotThreads?: readonly PlotThread[];
+	readonly foreshadowing?: readonly Foreshadowing[];
 }
 
 export type TimelinePageLoader = (projectRoot: string) => Promise<TimelinePageData>;
@@ -41,17 +57,30 @@ function resourceLabels(resources: readonly StoryResource[]): Readonly<Record<st
 
 const defaultLoadData: TimelinePageLoader = async projectRoot => {
 	const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
-	const [events, characters, locations, plotThreads] = await Promise.all([
+	const [events, characters, locations, items, plotThreads, foreshadowing] = await Promise.all([
 		repository.list('timelineEvent'),
 		repository.list('character'),
 		repository.list('location'),
-		repository.list('plotThread')
+		repository.list('item'),
+		repository.list('plotThread'),
+		repository.list('foreshadowing')
 	]);
 	return {
 		events: events.map(value => parseTimelineEvent(
 			value as unknown as Parameters<typeof parseTimelineEvent>[0]
 		)),
-		labels: resourceLabels([...characters, ...locations, ...plotThreads])
+		labels: resourceLabels([
+			...characters,
+			...locations,
+			...items,
+			...plotThreads,
+			...foreshadowing
+		]),
+		characters: characters as unknown as readonly Character[],
+		locations: locations as unknown as readonly Location[],
+		items: items as unknown as readonly StoryItem[],
+		plotThreads: plotThreads as unknown as readonly PlotThread[],
+		foreshadowing: foreshadowing as unknown as readonly Foreshadowing[]
 	};
 };
 
@@ -88,12 +117,18 @@ interface TimelinePageProps {
 	readonly projectRoot?: string;
 	readonly loadData?: TimelinePageLoader;
 	readonly saveEvent?: TimelineEventSaver;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly readOnly?: boolean;
+	readonly onOpenEvidence?: OpenAiEvidence;
 }
 
 export function TimelinePage({
 	projectRoot,
 	loadData = defaultLoadData,
-	saveEvent
+	saveEvent,
+	chapters = [],
+	readOnly,
+	onOpenEvidence
 }: TimelinePageProps): React.JSX.Element {
 	const [data, setData] = useState<TimelinePageData>();
 	const [error, setError] = useState<string>();
@@ -104,6 +139,7 @@ export function TimelinePage({
 	const [selectedId, setSelectedId] = useState<string>();
 	const [draftEvent, setDraftEvent] = useState<TimelineEvent>();
 	const [saving, setSaving] = useState(false);
+	const [aiOpen, setAiOpen] = useState(false);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -140,6 +176,9 @@ export function TimelinePage({
 		travelLinks: data?.travelLinks ?? []
 	}), [data]);
 	const selected = draftEvent ?? events.find(event => event.id === selectedId);
+	const selectedIssues = selected
+		? ruleIssues.filter(issue => issue.evidence.some(item => item.eventId === selected.id))
+		: [];
 
 	const selectEvent = (event: TimelineEvent) => {
 		setDraftEvent(undefined);
@@ -199,11 +238,12 @@ export function TimelinePage({
 					<span>{Math.round(zoom * 100)}%</span>
 					<button type="button" aria-label="放大时间线" onClick={() => setZoom(value => Math.min(1.8, value + 0.15))}><Plus size={16} /></button>
 					<button type="button" className="timeline-view-toggle" aria-label="列表替代视图" onClick={() => setView(value => value === 'tracks' ? 'list' : 'tracks')}><LayoutList size={16} />{view === 'tracks' ? '列表' : '轨道'}</button>
-					<button type="button" className="timeline-new-event" onClick={() => {
+					<button type="button" className="timeline-ai-event" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 从正文提取</button>
+					<button type="button" className="timeline-new-event" disabled={readOnly} onClick={() => {
 						const event = newTimelineEvent();
 						setDraftEvent(event);
 						setSelectedId(event.id);
-					}}><Plus size={16} />新建事件</button>
+					}}><Plus size={16} />手动添加</button>
 				</div>
 			</header>
 			<div className="timeline-messages">
@@ -213,15 +253,25 @@ export function TimelinePage({
 				{!data ? (
 					<div className="timeline-loading">正在读取事件与轨道…</div>
 				) : view === 'tracks' ? (
-					<TimelineCanvas
-						events={events}
-						labels={data.labels}
-						mode={mode}
-						trackKind={trackKind}
-						zoom={zoom}
-						selectedId={selectedId}
-						onSelect={selectEvent}
-					/>
+					<>
+						<TimelineCanvas
+							events={events}
+							labels={data.labels}
+							mode={mode}
+							trackKind={trackKind}
+							zoom={zoom}
+							selectedId={selectedId}
+							onSelect={selectEvent}
+						/>
+						{events.length === 0 ? (
+							<div className="timeline-empty-state">
+								<Sparkles size={30} />
+								<h2>从正文建立第一条故事进程</h2>
+								<p>AI 候选会保留证据，并在作者确认前保持待定。</p>
+								<button type="button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>AI 从正文提取</button>
+							</div>
+						) : null}
+					</>
 				) : (
 					<VirtualTimelineList events={events} labels={data.labels} onSelect={selectEvent} />
 				)}
@@ -229,6 +279,8 @@ export function TimelinePage({
 					<EventInspector
 						key={selected.id}
 						event={selected}
+						labels={data?.labels ?? {}}
+						ruleIssues={selectedIssues}
 						saving={saving}
 						onSave={persistEvent}
 						onClose={() => {
@@ -238,6 +290,24 @@ export function TimelinePage({
 					/>
 				) : null}
 			</section>
+			{aiOpen && projectRoot ? (
+				<TimelineAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					events={data?.events ?? []}
+					characters={data?.characters ?? []}
+					locations={data?.locations ?? []}
+					items={data?.items ?? []}
+					plotThreads={data?.plotThreads ?? []}
+					foreshadowing={data?.foreshadowing ?? []}
+					readOnly={readOnly}
+					onClose={() => setAiOpen(false)}
+					onAccepted={accepted => setData(current => current
+						? { ...current, events: accepted }
+						: current)}
+					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
 			<footer className="timeline-legend">
 				<span><UserRound size={13} />人物轨道</span>
 				<span><MapPin size={13} />地点轨道</span>
