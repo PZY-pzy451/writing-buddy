@@ -18,6 +18,8 @@ import type {
 	BackupInspection,
 	BackupResult,
 	DesktopBridge,
+	ProjectOpenMode,
+	ProjectRepairResult,
 	ProjectSnapshot,
 	VersionSummary,
 	VersionText
@@ -33,8 +35,16 @@ class TauriDesktopBridge implements DesktopBridge {
 		return invoke<string | null>('choose_project').then(value => value ?? undefined);
 	}
 
-	openProject(projectRoot: string): Promise<ProjectSnapshot> {
-		return invoke<ProjectSnapshot>('open_project', { projectRoot });
+	openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
+		return invoke<ProjectSnapshot>('open_project', { projectRoot, mode });
+	}
+
+	repairProject(projectRoot: string): Promise<ProjectRepairResult> {
+		return invoke<ProjectRepairResult>('repair_project', { projectRoot });
+	}
+
+	revealProjectDirectory(projectRoot: string): Promise<void> {
+		return invoke('reveal_project_directory', { projectRoot });
 	}
 
 	readText(projectRoot: string, relativePath: string): Promise<TextFile> {
@@ -272,8 +282,16 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return browserProject.root;
 	}
 
-	async openProject(): Promise<ProjectSnapshot> {
-		return browserProject;
+	async openProject(_projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
+		return { ...browserProject, readOnly: mode === 'read-only' };
+	}
+
+	async repairProject(): Promise<ProjectRepairResult> {
+		return { repaired: true, diagnosticId: 'browser-repair' };
+	}
+
+	async revealProjectDirectory(): Promise<void> {
+		return undefined;
 	}
 
 	async readText(_projectRoot: string, relativePath: string): Promise<TextFile> {

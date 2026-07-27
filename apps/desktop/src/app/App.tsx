@@ -13,12 +13,20 @@ import { ResourceEditor } from '../resources/ResourceEditor';
 import { AssistantPanel } from '../assistant/AssistantPanel';
 import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
+import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
 	const loading = useAppStore(state => state.loading);
 	const error = useAppStore(state => state.error);
 	const setError = useAppStore(state => state.setError);
+	const projectOpenError = useAppStore(state => state.projectOpenError);
+	const projectOpenBusyAction = useAppStore(state => state.projectOpenBusyAction);
+	const retryProjectOpen = useAppStore(state => state.retryProjectOpen);
+	const openProjectReadOnly = useAppStore(state => state.openProjectReadOnly);
+	const repairProject = useAppStore(state => state.repairProject);
+	const revealProjectDirectory = useAppStore(state => state.revealProjectDirectory);
+	const dismissProjectOpenError = useAppStore(state => state.dismissProjectOpenError);
 	const activeMode = useAppStore(state => state.activeMode);
 	const activeResource = useAppStore(state => state.activeResource);
 	const theme = useAppStore(state => state.theme);
@@ -128,6 +136,17 @@ export function App(): React.JSX.Element {
 					<span>{error}</span>
 					<button type="button" onClick={() => setError(undefined)}>关闭</button>
 				</div>
+			)}
+			{projectOpenError && (
+				<ProjectOpenErrorDialog
+					error={projectOpenError}
+					busyAction={projectOpenBusyAction}
+					onRetry={() => void retryProjectOpen()}
+					onOpenReadOnly={() => void openProjectReadOnly()}
+					onRepair={() => void repairProject()}
+					onOpenDirectory={() => void revealProjectDirectory()}
+					onClose={dismissProjectOpenError}
+				/>
 			)}
 			<ExternalConflictDialog />
 		</div>

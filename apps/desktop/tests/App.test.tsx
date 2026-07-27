@@ -1,14 +1,34 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../src/app/App';
+import { useAppStore } from '../src/app/store';
 
 describe('Writing Buddy product shell', () => {
 	beforeEach(() => {
 		localStorage.clear();
+		useAppStore.setState({
+			recentProjectRoot: undefined,
+			snapshot: undefined,
+			activeResource: undefined,
+			activeResourceId: undefined,
+			session: undefined,
+			resourceContent: undefined,
+			resourceHash: undefined,
+			openResourceIds: [],
+			tabs: [],
+			projectOpenError: undefined,
+			pendingProjectRoot: undefined,
+			projectOpenBusyAction: undefined,
+			loading: false,
+			error: undefined,
+			activeMode: 'works'
+		});
 	});
 
 	it('opens the browser fixture and keeps chapters and references in one sidebar', async () => {
+		const user = userEvent.setup();
 		render(<App />);
+		await user.click(await screen.findByRole('button', { name: '选择项目' }));
 		await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: '第一章 停摆的时钟' })).toBeInTheDocument());
 		expect(screen.getByText('作品内容')).toBeInTheDocument();
 		expect(screen.getByText(/写作资料/)).toBeInTheDocument();
@@ -19,6 +39,7 @@ describe('Writing Buddy product shell', () => {
 	it('opens a character as a product form instead of Markdown', async () => {
 		const user = userEvent.setup();
 		render(<App />);
+		await user.click(await screen.findByRole('button', { name: '选择项目' }));
 		const character = await screen.findByRole('button', { name: /林墨/ });
 		await user.click(character);
 		await waitFor(() => expect(screen.getByText('人物卡')).toBeInTheDocument());

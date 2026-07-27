@@ -27,6 +27,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::choose_project,
             commands::open_project,
+            commands::repair_project,
+            commands::reveal_project_directory,
             commands::read_text,
             commands::write_text_atomic,
             commands::save_text_as,

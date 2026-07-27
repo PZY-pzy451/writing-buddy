@@ -84,6 +84,25 @@ pub fn acquire(state: &AppState, project_root: &str) -> Result<PathBuf, String> 
     Ok(path)
 }
 
+pub fn repair_stale(project_root: &str) -> Result<bool, String> {
+    let root = filesystem::canonical_project_root(project_root)?;
+    let path = root
+        .join(".writing-buddy")
+        .join("runtime")
+        .join("project.lock");
+    if !path.exists() {
+        return Ok(false);
+    }
+    let existing = fs::read_to_string(&path)
+        .ok()
+        .and_then(|value| serde_json::from_str::<LockFile>(&value).ok());
+    if existing.is_some_and(|lock| lock.pid != std::process::id() && process_exists(lock.pid)) {
+        return Err("projectLocked".to_owned());
+    }
+    fs::remove_file(path).map_err(|_| "staleLockRemoveFailed".to_owned())?;
+    Ok(true)
+}
+
 pub fn release_all(state: &AppState) {
     if let Ok(mut locks) = state.locks.lock() {
         for path in locks.values() {
@@ -96,5 +115,59 @@ pub fn release_all(state: &AppState) {
             }
         }
         locks.clear();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::time::{SystemTime, UNIX_EPOCH};
+
+    use super::*;
+
+    fn temp_project() -> PathBuf {
+        let nonce = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("clock")
+            .as_nanos();
+        let root = std::env::temp_dir().join(format!(
+            "writing-buddy-lock-repair-{}-{nonce}",
+            std::process::id()
+        ));
+        fs::create_dir_all(root.join(".writing-buddy").join("runtime")).expect("create runtime");
+        root
+    }
+
+    #[test]
+    fn repairs_an_invalid_stale_lock_without_touching_project_content() {
+        let root = temp_project();
+        let manifest = root.join(".writing-buddy").join("project.json");
+        fs::write(&manifest, b"{\"schemaVersion\":1}").expect("write manifest");
+        let lock = root
+            .join(".writing-buddy")
+            .join("runtime")
+            .join("project.lock");
+        fs::write(&lock, b"invalid lock").expect("write lock");
+
+        assert!(repair_stale(&root.to_string_lossy()).expect("repair lock"));
+        assert!(!lock.exists());
+        assert_eq!(
+            fs::read(&manifest).expect("manifest remains"),
+            b"{\"schemaVersion\":1}"
+        );
+
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn release_all_removes_the_current_process_lock() {
+        let root = temp_project();
+        let state = AppState::default();
+        let lock = acquire(&state, &root.to_string_lossy()).expect("acquire lock");
+
+        assert!(lock.exists());
+        release_all(&state);
+        assert!(!lock.exists());
+
+        let _ = fs::remove_dir_all(root);
     }
 }

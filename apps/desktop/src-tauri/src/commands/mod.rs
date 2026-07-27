@@ -1,6 +1,8 @@
 use std::{
     fs,
     path::{Path, PathBuf},
+    process::Command,
+    sync::atomic::{AtomicU64, Ordering},
 };
 
 use chrono::Utc;
@@ -53,6 +55,106 @@ struct SnapshotResource {
     content_hash: String,
 }
 
+#[derive(Debug, Clone, Copy, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProjectOpenMode {
+    ReadWrite,
+    ReadOnly,
+}
+
+#[derive(Debug, Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PublicProjectOpenError {
+    code: String,
+    stage: &'static str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    safe_path: Option<String>,
+    can_open_read_only: bool,
+    can_repair: bool,
+    diagnostic_id: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectRepairResult {
+    repaired: bool,
+    diagnostic_id: String,
+}
+
+static DIAGNOSTIC_SEQUENCE: AtomicU64 = AtomicU64::new(1);
+
+fn project_diagnostic_id(code: &str) -> String {
+    let sequence = DIAGNOSTIC_SEQUENCE.fetch_add(1, Ordering::Relaxed);
+    let seed = format!(
+        "{}:{code}:{sequence}:{}",
+        Utc::now().timestamp_millis(),
+        std::process::id()
+    );
+    let digest = hex::encode(Sha256::digest(seed.as_bytes()));
+    format!("project-open-{}", &digest[..16])
+}
+
+fn safe_project_path(project_root: &str) -> Option<String> {
+    if project_root.trim().is_empty() {
+        return None;
+    }
+    let separator = if project_root.contains('\\') {
+        '\\'
+    } else {
+        '/'
+    };
+    let mut segments = project_root
+        .split(['\\', '/'])
+        .map(ToOwned::to_owned)
+        .collect::<Vec<_>>();
+    if let Some(users_index) = segments
+        .iter()
+        .position(|segment| segment.eq_ignore_ascii_case("users"))
+    {
+        if let Some(username) = segments.get_mut(users_index + 1) {
+            *username = "***".to_owned();
+        }
+    }
+    Some(segments.join(&separator.to_string()))
+}
+
+fn public_project_open_error(code: &str, project_root: &str) -> PublicProjectOpenError {
+    let public_code = code.split(':').next().unwrap_or("projectOpenFailed");
+    let stage = match public_code {
+        "projectRootUnavailable" => "select-path",
+        "manifestNotFound" | "manifestReadFailed" | "invalidManifest" => "read-manifest",
+        "unsupportedSchema" => "validate-schema",
+        "projectLocked"
+        | "lockPoisoned"
+        | "lockCreateFailed"
+        | "lockSerializeFailed"
+        | "staleLockRemoveFailed"
+        | "lockWriteFailed"
+        | "lockSyncFailed" => "acquire-lock",
+        "projectReadFailed" | "missingChapterFile" | "unsafePath" => "integrity-scan",
+        _ => "load-index",
+    };
+    let can_open_read_only = matches!(
+        public_code,
+        "projectLocked"
+            | "lockPoisoned"
+            | "lockCreateFailed"
+            | "lockSerializeFailed"
+            | "staleLockRemoveFailed"
+            | "lockWriteFailed"
+            | "lockSyncFailed"
+    );
+    let can_repair = matches!(public_code, "staleLockRemoveFailed");
+    PublicProjectOpenError {
+        code: public_code.to_owned(),
+        stage,
+        safe_path: safe_project_path(project_root),
+        can_open_read_only,
+        can_repair,
+        diagnostic_id: project_diagnostic_id(public_code),
+    }
+}
+
 fn require_write_lock(state: &AppState, project_root: &str) -> Result<(), String> {
     let root = filesystem::canonical_project_root(project_root)?;
     let locks = state.locks.lock().map_err(|_| "lockPoisoned".to_owned())?;
@@ -75,14 +177,46 @@ pub fn choose_project() -> Option<String> {
 pub fn open_project(
     state: State<'_, AppState>,
     project_root: String,
-) -> Result<ProjectSnapshot, String> {
-    let snapshot = migration::open_project(&project_root)?;
-    if !snapshot.read_only {
-        process_lock::acquire(&state, &snapshot.root)?;
+    mode: Option<ProjectOpenMode>,
+) -> Result<ProjectSnapshot, PublicProjectOpenError> {
+    let mut snapshot = migration::open_project(&project_root)
+        .map_err(|code| public_project_open_error(&code, &project_root))?;
+    let mode = mode.unwrap_or(ProjectOpenMode::ReadWrite);
+    if matches!(mode, ProjectOpenMode::ReadOnly) {
+        snapshot.read_only = true;
+    } else if !snapshot.read_only {
+        process_lock::acquire(&state, &snapshot.root)
+            .map_err(|code| public_project_open_error(&code, &snapshot.root))?;
     }
     let project_token = hex::encode(Sha256::digest(snapshot.project.project_id.as_bytes()));
     logging::event("project.open", "info", Some(&project_token[..12]), None);
     Ok(snapshot)
+}
+
+#[tauri::command]
+pub fn repair_project(project_root: String) -> Result<ProjectRepairResult, PublicProjectOpenError> {
+    let repaired = process_lock::repair_stale(&project_root)
+        .map_err(|code| public_project_open_error(&code, &project_root))?;
+    Ok(ProjectRepairResult {
+        repaired,
+        diagnostic_id: project_diagnostic_id("repair"),
+    })
+}
+
+#[tauri::command]
+pub fn reveal_project_directory(project_root: String) -> Result<(), String> {
+    let root = filesystem::canonical_project_root(&project_root)?;
+    #[cfg(windows)]
+    let mut command = Command::new("explorer.exe");
+    #[cfg(target_os = "macos")]
+    let mut command = Command::new("open");
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let mut command = Command::new("xdg-open");
+    command
+        .arg(root)
+        .spawn()
+        .map_err(|_| "projectDirectoryOpenFailed".to_owned())?;
+    Ok(())
 }
 
 #[tauri::command]
@@ -600,4 +734,39 @@ pub fn restore_backup(
         Some("自动：恢复前".to_owned()),
     )?;
     archive::restore(&path, &project_root, overwrite)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn project_open_errors_are_structured_and_redacted() {
+        let error =
+            public_project_open_error("projectLocked:4242", r"C:\Users\Alice\Novel\Volume One");
+        assert_eq!(error.code, "projectLocked");
+        assert_eq!(error.stage, "acquire-lock");
+        assert_eq!(
+            error.safe_path.as_deref(),
+            Some(r"C:\Users\***\Novel\Volume One")
+        );
+        assert!(error.can_open_read_only);
+        assert!(!error.can_repair);
+        assert!(error.diagnostic_id.starts_with("project-open-"));
+        assert!(!error.diagnostic_id.contains("Alice"));
+        assert!(!error.diagnostic_id.contains("4242"));
+    }
+
+    #[test]
+    fn manifest_and_stale_lock_capabilities_are_explicit() {
+        let manifest = public_project_open_error("manifestNotFound", r"D:\Novel");
+        assert_eq!(manifest.stage, "read-manifest");
+        assert!(!manifest.can_open_read_only);
+        assert!(!manifest.can_repair);
+
+        let stale = public_project_open_error("staleLockRemoveFailed", r"D:\Novel");
+        assert_eq!(stale.stage, "acquire-lock");
+        assert!(stale.can_open_read_only);
+        assert!(stale.can_repair);
+    }
 }

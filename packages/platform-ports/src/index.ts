@@ -160,9 +160,35 @@ export interface ProjectSnapshot {
 	readonly readOnly: boolean;
 }
 
+export type ProjectOpenMode = 'read-write' | 'read-only';
+
+export type ProjectOpenStage =
+	| 'select-path'
+	| 'read-manifest'
+	| 'validate-schema'
+	| 'acquire-lock'
+	| 'integrity-scan'
+	| 'load-index';
+
+export interface PublicProjectOpenError {
+	readonly code: string;
+	readonly stage: ProjectOpenStage;
+	readonly safePath?: string;
+	readonly canOpenReadOnly: boolean;
+	readonly canRepair: boolean;
+	readonly diagnosticId: string;
+}
+
+export interface ProjectRepairResult {
+	readonly repaired: boolean;
+	readonly diagnosticId: string;
+}
+
 export interface DesktopBridge {
 	chooseProject(): Promise<string | undefined>;
-	openProject(projectRoot: string): Promise<ProjectSnapshot>;
+	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
+	repairProject(projectRoot: string): Promise<ProjectRepairResult>;
+	revealProjectDirectory(projectRoot: string): Promise<void>;
 	readText(projectRoot: string, relativePath: string): Promise<TextFile>;
 	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult>;
 	saveTextAs(content: string, eol: 'lf' | 'crlf', hasBom: boolean, suggestedName: string): Promise<string | undefined>;

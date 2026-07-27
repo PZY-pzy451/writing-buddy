@@ -11,9 +11,22 @@ import { useReviewAutomationStore } from './stores/reviewAutomationStore';
 function resetStores(): void {
 	localStorage.clear();
 	useAppStore.setState({
+		recentProjectRoot: 'browser-fixture',
+		snapshot: undefined,
+		activeResource: undefined,
+		activeResourceId: undefined,
+		session: undefined,
+		resourceContent: undefined,
+		resourceHash: undefined,
+		openResourceIds: [],
+		tabs: [],
 		activeMode: 'works',
 		issues: [],
 		error: undefined,
+		projectOpenError: undefined,
+		pendingProjectRoot: undefined,
+		projectOpenBusyAction: undefined,
+		loading: false,
 		dockOpen: true
 	});
 	useAiStore.setState({

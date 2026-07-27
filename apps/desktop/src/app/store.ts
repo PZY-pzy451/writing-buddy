@@ -11,6 +11,12 @@ import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import {
+	ProjectOpenService,
+	toPublicProjectOpenError,
+	type ProjectOpenMode,
+	type PublicProjectOpenError
+} from '../features/projects/application/ProjectOpenService';
 import { desktopBridge } from '../platform/bridge';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
@@ -33,6 +39,9 @@ interface PersistedWorkspace {
 interface AppState extends PersistedWorkspace {
 	readonly loading: boolean;
 	readonly error?: string;
+	readonly projectOpenError?: PublicProjectOpenError;
+	readonly pendingProjectRoot?: string;
+	readonly projectOpenBusyAction?: 'retry' | 'read-only' | 'repair' | 'directory';
 	readonly snapshot?: ProjectSnapshot;
 	readonly activeMode: RailMode;
 	readonly tabs: readonly ResourceDescriptor[];
@@ -60,7 +69,12 @@ interface AppState extends PersistedWorkspace {
 	};
 	readonly bootstrap: () => Promise<void>;
 	readonly chooseProject: () => Promise<void>;
-	readonly openProject: (root: string) => Promise<void>;
+	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
+	readonly retryProjectOpen: () => Promise<void>;
+	readonly openProjectReadOnly: () => Promise<void>;
+	readonly repairProject: () => Promise<void>;
+	readonly revealProjectDirectory: () => Promise<void>;
+	readonly dismissProjectOpenError: () => void;
 	readonly openResource: (resource: ResourceDescriptor) => Promise<void>;
 	readonly closeResource: (resourceId: string) => void;
 	readonly setContent: (content: string, change?: 'edit' | 'undo' | 'redo') => void;
@@ -91,6 +105,7 @@ interface AppState extends PersistedWorkspace {
 }
 
 const tabs = new ResourceTabManager();
+const projectOpenService = new ProjectOpenService(desktopBridge);
 let reviewPersistTimer: number | undefined;
 
 function toChapterResource(snapshot: ProjectSnapshot, chapterId: string): ResourceDescriptor | undefined {
@@ -144,11 +159,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		const root = get().recentProjectRoot;
 		if (root) {
 			await get().openProject(root);
-			return;
-		}
-		const chosen = await desktopBridge.chooseProject();
-		if (chosen) {
-			await get().openProject(chosen);
 		}
 	},
 
@@ -159,18 +169,37 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
-	async openProject(root) {
-		set({ loading: true, error: undefined });
+	async openProject(root, mode = 'read-write') {
+		set({
+			loading: true,
+			error: undefined,
+			projectOpenError: undefined,
+			pendingProjectRoot: root
+		});
+		const result = mode === 'read-only'
+			? await projectOpenService.openProjectReadOnly(root)
+			: await projectOpenService.openProjectReadWrite(root);
+		if (!result.ok) {
+			set({
+				loading: false,
+				projectOpenError: result.error,
+				projectOpenBusyAction: undefined
+			});
+			return;
+		}
+
 		try {
-			const snapshot = await desktopBridge.openProject(root);
-			const reviewFile = await desktopBridge.readReviewState(snapshot.root);
+			const snapshot = result.snapshot;
+			let reviewFile: TextFile | undefined;
 			let restoredIssues: readonly ReviewIssue[] = [];
-			if (reviewFile) {
-				try {
+			try {
+				reviewFile = await desktopBridge.readReviewState(snapshot.root);
+				if (reviewFile) {
 					restoredIssues = parseReviewState(reviewFile.content).issues;
-				} catch {
-					restoredIssues = [];
 				}
+			} catch {
+				reviewFile = undefined;
+				restoredIssues = [];
 			}
 			const restoredTabs = get().openResourceIds
 				.map(resourceId => toResource(snapshot, resourceId))
@@ -182,7 +211,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			tabs.restore({ resources: restoredTabs, activeId: resource?.id });
 			set({
 				snapshot,
-				recentProjectRoot: root,
+				recentProjectRoot: snapshot.root,
 				loading: false,
 				issues: restoredIssues,
 				reviewHash: reviewFile?.hash ?? '',
@@ -192,15 +221,75 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				session: undefined,
 				resourceContent: undefined,
 				resourceHash: undefined,
-				externalConflict: undefined
+				externalConflict: undefined,
+				projectOpenError: undefined,
+				pendingProjectRoot: undefined,
+				projectOpenBusyAction: undefined
 			});
 			const active = tabs.state.resources.find(candidate => candidate.id === tabs.state.activeId);
 			if (active) {
 				await get().openResource(active);
 			}
 		} catch (error) {
-			set({ loading: false, error: error instanceof Error ? error.message : '无法打开作品。' });
+			set({
+				loading: false,
+				projectOpenError: toPublicProjectOpenError(error, root),
+				projectOpenBusyAction: undefined
+			});
 		}
+	},
+
+	async retryProjectOpen() {
+		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
+		if (!root) {
+			return;
+		}
+		set({ projectOpenBusyAction: 'retry' });
+		await get().openProject(root, 'read-write');
+	},
+
+	async openProjectReadOnly() {
+		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
+		if (!root) {
+			return;
+		}
+		set({ projectOpenBusyAction: 'read-only' });
+		await get().openProject(root, 'read-only');
+	},
+
+	async repairProject() {
+		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
+		if (!root) {
+			return;
+		}
+		set({ projectOpenBusyAction: 'repair', error: undefined });
+		try {
+			await projectOpenService.repairProject(root);
+			await get().openProject(root, 'read-write');
+		} catch (error) {
+			set({
+				projectOpenError: toPublicProjectOpenError(error, root),
+				projectOpenBusyAction: undefined
+			});
+		}
+	},
+
+	async revealProjectDirectory() {
+		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
+		if (!root) {
+			return;
+		}
+		set({ projectOpenBusyAction: 'directory', error: undefined });
+		try {
+			await projectOpenService.revealProjectDirectory(root);
+			set({ projectOpenBusyAction: undefined });
+		} catch {
+			set({ projectOpenBusyAction: undefined, error: '无法打开项目目录。' });
+		}
+	},
+
+	dismissProjectOpenError() {
+		set({ projectOpenError: undefined, projectOpenBusyAction: undefined });
 	},
 
 	async openResource(resource) {
