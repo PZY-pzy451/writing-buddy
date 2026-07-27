@@ -32,4 +32,5 @@ export * from './validation/itemRules';
 export * from './validation/informationRules';
 export * from './validation/plotRules';
 export * from './validation/RuleIssue';
+export * from './validation/ContinuityEngine';
 export * from './validation/timeRules';

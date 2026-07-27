@@ -36,7 +36,8 @@ export type StoryViewId =
 	| 'worldbuilding'
 	| 'assets'
 	| 'plots'
-	| 'information';
+	| 'information'
+	| 'continuity';
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;

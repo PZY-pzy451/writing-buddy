@@ -1,6 +1,7 @@
 import {
 	BookOpenCheck,
 	CalendarClock,
+	ClipboardCheck,
 	Globe2,
 	KeyRound,
 	Milestone,
@@ -26,6 +27,8 @@ const navigation: readonly {
 	{ id: 'assets', label: '物品与资产', description: '持有人、数量与流转', icon: PackageSearch, available: true },
 	{ id: 'plots', label: '剧情线与伏笔', description: '生命周期与回收风险', icon: Milestone, available: true },
 	{ id: 'information', label: '信息权限', description: '真相、读者与人物知识', icon: KeyRound, available: true }
+	,
+	{ id: 'continuity', label: '一致性审查', description: '规则、Kernel 与 AI', icon: ClipboardCheck, available: true }
 ];
 
 export function StoryReferenceSidebar(): React.JSX.Element {
@@ -63,8 +66,8 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 				})}
 			</nav>
 			<footer className="sidebar-footer">
-				<span>Gate D</span>
-				<strong>世界观 · 资产 · 剧情 · 信息</strong>
+				<span>Gate E</span>
+				<strong>Grounded AI · 长篇一致性</strong>
 			</footer>
 		</aside>
 	);

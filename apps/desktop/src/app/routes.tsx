@@ -16,6 +16,7 @@ import { WorldbuildingPage } from '../features/story/worldbuilding/Worldbuilding
 import { StoryAssetsPage } from '../features/story/assets/StoryAssetsPage';
 import { PlotBoardPage } from '../features/story/plots/PlotBoardPage';
 import { InformationControlPage } from '../features/story/information/InformationControlPage';
+import { ContinuityReviewPage } from '../features/story/continuity/ContinuityReviewPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -41,6 +42,9 @@ export function StoryStudioRoute(): React.JSX.Element {
 	}
 	if (storyView === 'information') {
 		return <InformationControlPage projectRoot={projectRoot} />;
+	}
+	if (storyView === 'continuity') {
+		return <ContinuityReviewPage projectRoot={projectRoot} />;
 	}
 	return <WorldbuildingPage projectRoot={projectRoot} />;
 }
