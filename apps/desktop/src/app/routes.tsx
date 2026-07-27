@@ -12,6 +12,7 @@ import { desktopBridge } from '../platform/bridge';
 import { CharacterCenterPage } from '../features/story/characters/CharacterCenterPage';
 import { RelationshipGraphPage } from '../features/story/relationships/RelationshipGraphPage';
 import { TimelinePage } from '../features/story/timeline/TimelinePage';
+import { WorldbuildingPage } from '../features/story/worldbuilding/WorldbuildingPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -23,7 +24,13 @@ export function StoryStudioRoute(): React.JSX.Element {
 	if (storyView === 'relationships') {
 		return <RelationshipGraphPage projectRoot={projectRoot} />;
 	}
-	return <TimelinePage projectRoot={projectRoot} />;
+	if (storyView === 'timeline') {
+		return <TimelinePage projectRoot={projectRoot} />;
+	}
+	if (storyView === 'worldbuilding') {
+		return <WorldbuildingPage projectRoot={projectRoot} />;
+	}
+	return <WorldbuildingPage projectRoot={projectRoot} />;
 }
 
 /**

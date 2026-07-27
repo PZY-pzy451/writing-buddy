@@ -1,6 +1,7 @@
 import {
 	BookOpenCheck,
 	CalendarClock,
+	Globe2,
 	Network,
 	UserRound,
 	UsersRound
@@ -17,6 +18,11 @@ const navigation: readonly {
 	{ id: 'characters', label: '人物中心', description: '动态状态与来源', icon: UserRound, available: true },
 	{ id: 'relationships', label: '人物关系', description: '图谱与有向矩阵', icon: Network, available: true },
 	{ id: 'timeline', label: '多轨时间线', description: '实际时间与叙事顺序', icon: CalendarClock, available: true }
+	,
+	{ id: 'worldbuilding', label: '世界观中心', description: '地点、势力与规则', icon: Globe2, available: true },
+	{ id: 'assets', label: '物品与资产', description: '持有人、数量与流转', icon: BookOpenCheck, available: false },
+	{ id: 'plots', label: '剧情线与伏笔', description: '生命周期与回收风险', icon: BookOpenCheck, available: false },
+	{ id: 'information', label: '信息权限', description: '真相、读者与人物知识', icon: BookOpenCheck, available: false }
 ];
 
 export function StoryReferenceSidebar(): React.JSX.Element {
@@ -54,8 +60,8 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 				})}
 			</nav>
 			<footer className="sidebar-footer">
-				<span>Gate C</span>
-				<strong>人物 · 关系 · 时间线</strong>
+				<span>Gate D</span>
+				<strong>世界观 · 资产 · 剧情 · 信息</strong>
 			</footer>
 		</aside>
 	);

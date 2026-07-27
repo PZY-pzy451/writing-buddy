@@ -1,6 +1,8 @@
 export * from './ids/StoryId';
 export * from './model/Character';
 export * from './model/EvidenceRef';
+export * from './model/Faction';
+export * from './model/Location';
 export * from './model/MentionLink';
 export * from './model/Relationship';
 export * from './model/Scene';
@@ -8,6 +10,7 @@ export * from './model/StateRecord';
 export * from './model/StoryPosition';
 export * from './model/StoryResourceBase';
 export * from './model/TimelineEvent';
+export * from './model/WorldRule';
 export * from './query/TimelineQuery';
 export * from './repository/StoryPaths';
 export * from './repository/StoryRepository';

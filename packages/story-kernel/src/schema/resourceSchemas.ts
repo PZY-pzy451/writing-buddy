@@ -164,6 +164,50 @@ export const timelineEventSchema = z.object({
 	evidenceIds
 }).strict();
 
+const locationSchema = z.object({
+	id: idFor('location'),
+	type: z.literal('location'),
+	...baseShape,
+	parentLocationId: idFor('location').optional(),
+	locationType: z.string().trim().min(1).max(160).optional(),
+	mapPoint: z.object({
+		x: z.number().min(0).max(100),
+		y: z.number().min(0).max(100)
+	}).strict().optional(),
+	travelLinks: z.array(z.object({
+		targetLocationId: idFor('location'),
+		minimumMinutes: z.number().positive(),
+		mode: z.string().trim().min(1).max(160).optional()
+	}).strict()).optional().default([]),
+	factionIds: z.array(idFor('faction')).optional().default([]),
+	rules: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
+const factionSchema = z.object({
+	id: idFor('faction'),
+	type: z.literal('faction'),
+	...baseShape,
+	ideology: z.string().max(5000).optional(),
+	goals: z.array(z.string().trim().min(1).max(1000)).optional().default([]),
+	allyFactionIds: z.array(idFor('faction')).optional().default([]),
+	enemyFactionIds: z.array(idFor('faction')).optional().default([]),
+	territoryLocationIds: z.array(idFor('location')).optional().default([]),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
+const worldRuleSchema = z.object({
+	id: idFor('worldRule'),
+	type: z.literal('worldRule'),
+	...baseShape,
+	category: z.enum(['culture', 'religion', 'technology', 'magic', 'law', 'other']).optional().default('other'),
+	statement: z.string().trim().min(1).max(10_000).optional(),
+	exceptions: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
+	consequences: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
+	effectiveFrom: storyPositionSchema.optional(),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
 export const itemSchema = z.object({
 	id: idFor('item'),
 	type: z.literal('item'),
@@ -181,10 +225,10 @@ export const resourceSchemas = {
 	chapter: simpleResourceSchema('chapter'),
 	scene: sceneSchema,
 	character: characterSchema,
-	location: simpleResourceSchema('location'),
-	faction: simpleResourceSchema('faction'),
+	location: locationSchema,
+	faction: factionSchema,
 	item: itemSchema,
-	worldRule: simpleResourceSchema('worldRule'),
+	worldRule: worldRuleSchema,
 	timelineEvent: timelineEventSchema,
 	relationship: relationshipSchema,
 	plotThread: simpleResourceSchema('plotThread'),

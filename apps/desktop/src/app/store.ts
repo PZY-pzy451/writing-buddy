@@ -29,7 +29,14 @@ import { desktopBridge } from '../platform/bridge';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
-export type StoryViewId = 'characters' | 'relationships' | 'timeline';
+export type StoryViewId =
+	| 'characters'
+	| 'relationships'
+	| 'timeline'
+	| 'worldbuilding'
+	| 'assets'
+	| 'plots'
+	| 'information';
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
