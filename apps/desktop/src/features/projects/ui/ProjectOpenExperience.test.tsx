@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { PublicProjectOpenError } from '@writing-buddy/platform-ports';
 import { App } from '../../../app/App';
@@ -54,10 +54,7 @@ describe('project open integration', () => {
 		expect(screen.queryByText(/Alice/)).not.toBeInTheDocument();
 
 		await user.click(screen.getByRole('button', { name: '只读打开' }));
-		await waitFor(() => expect(screen.getByRole('heading', {
-			level: 1,
-			name: '第一章 停摆的时钟'
-		})).toBeInTheDocument());
+		await screen.findByRole('main', { name: '作品仪表盘' });
 		expect(openProject).toHaveBeenNthCalledWith(2, projectRoot, 'read-only');
 		expect(useAppStore.getState().snapshot?.readOnly).toBe(true);
 	});
@@ -68,7 +65,7 @@ describe('project open integration', () => {
 		resetForProjectOpen(projectRoot);
 
 		render(<App />);
-		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+		await screen.findByRole('main', { name: '作品仪表盘' });
 
 		expect(openProject).toHaveBeenCalledWith(projectRoot, 'read-write');
 		expect(useAppStore.getState().recentProjectRoot).toBe('browser-fixture');

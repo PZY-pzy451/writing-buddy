@@ -29,6 +29,8 @@ describe('Writing Buddy product shell', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await user.click(await screen.findByRole('button', { name: '选择项目' }));
+		await screen.findByRole('main', { name: '作品仪表盘' });
+		await user.click(screen.getByRole('button', { name: '继续写作' }));
 		await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: '第一章 停摆的时钟' })).toBeInTheDocument());
 		expect(screen.getByText('作品内容')).toBeInTheDocument();
 		expect(screen.getByText(/写作资料/)).toBeInTheDocument();
