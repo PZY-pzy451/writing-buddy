@@ -4,14 +4,16 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-AI Story Kernel direct generation is implemented and verified on
-`codex/ai-story-kernel-generation`. The frozen professional baseline remains
-tagged at `baseline-writing-buddy-storyforge-professional-v1`. This phase adds
-complete structured resource generation, strict candidate staging,
-collision/dependency checks and author-confirmed atomic commits without
-allowing AI to write formal Story files silently. The active contract is in
-`docs/plans/001-ai-story-kernel-generation.md`; acceptance evidence is in
-`docs/acceptance/012-ai-story-kernel-generation-2026-07-27.md`.
+AI Quick Actions Gate A/B passed automated and local visual acceptance on
+`codex/ai-quick-actions-gate-ab`. The round is intentionally limited to the
+shared Action/Prompt/output contracts, privacy-aware Context Pack, unified AI
+drawer and guarded Preview Transaction. Existing DeepSeek, Story Kernel,
+selection rewrite and version services are adapters; no second runtime is
+allowed. Gate A is commit `3305500`; Gate B is commit `962b713`. The frozen map
+is in
+`docs/plans/002-ai-quick-actions-source-map.md` and the capability matrix is in
+`docs/plans/003-ai-current-capability-matrix.md`; final evidence is in
+`docs/acceptance/013-ai-quick-actions-gate-ab-2026-07-27.md`.
 
 ## Completed
 
@@ -92,6 +94,16 @@ allowing AI to write formal Story files silently. The active contract is in
   release gates ignored in the normal suite
 - Release performance and sanitized recovery gates passed; fresh Windows
   production executable and NSIS installer built and close/restart verified
+- Reusable AI Action, versioned Prompt, strict output, privacy-aware Context,
+  and guarded Preview Transaction contracts
+- Unified AI generation drawer with the existing chapter-review runtime as its
+  first real streaming adapter
+- Responsive AI drawer evidence at 1536, 1280, and 1024 with zero clipped or
+  undersized controls
+- Full Node acceptance: 60 files / 176 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Windows EXE and NSIS installer built; isolated desktop smoke accepted
+  normal close
 
 ## Open
 
@@ -105,6 +117,5 @@ allowing AI to write formal Story files silently. The active contract is in
 
 ## Next
 
-Use the running release, configure DeepSeek under Settings, open a chapter,
-choose the assistant **Kernel** tab and run the first author-reviewed real-model
-generation.
+Review and explicitly approve Gate A/B. Do not start concrete editor or Story
+module actions before that approval.
