@@ -664,6 +664,106 @@
 	border-inline: 1px solid color-mix(in srgb, var(--border-subtle) 55%, transparent);
 }
 
+.writing-canvas.has-scene-nav {
+	display: grid;
+	grid-template-rows: 44px minmax(0, 1fr);
+}
+
+.chapter-editor-host {
+	min-width: 0;
+	min-height: 0;
+	height: 100%;
+}
+
+.has-scene-nav .chapter-editor-host {
+	height: auto;
+}
+
+.scene-navigator {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	padding: 5px 12px;
+	background: color-mix(in srgb, var(--surface-raised) 88%, var(--surface-canvas));
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.scene-navigator-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	flex: 0 0 auto;
+	color: var(--text-muted);
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.scene-chip-list {
+	display: flex;
+	flex: 1;
+	gap: 5px;
+	min-width: 0;
+	overflow: auto hidden;
+	scrollbar-width: none;
+}
+
+.scene-chip-list button,
+.scene-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	gap: 5px;
+	min-height: 32px;
+	padding: 0 9px;
+	color: var(--text-secondary);
+	font-size: 11px;
+	background: transparent;
+	border: 1px solid var(--border-subtle);
+	border-radius: 999px;
+}
+
+.scene-chip-list button.is-current {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border-color: color-mix(in srgb, var(--accent) 38%, var(--border-subtle));
+}
+
+.scene-action {
+	border-radius: var(--radius-control);
+}
+
+.scene-action.is-danger:not(:disabled) {
+	color: var(--danger);
+}
+
+.scene-empty,
+.scene-error {
+	align-self: center;
+	color: var(--text-muted);
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+.scene-error {
+	max-width: 120px;
+	overflow: hidden;
+	color: var(--danger);
+	text-overflow: ellipsis;
+}
+
+.story-scene-glyph {
+	width: 7px !important;
+	height: 7px !important;
+	margin-top: 13px;
+	margin-left: 8px;
+	background: var(--accent);
+	border: 2px solid var(--surface-canvas);
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px var(--accent);
+}
+
 .writing-canvas .monaco-editor,
 .writing-canvas .monaco-editor-background,
 .writing-canvas .margin {

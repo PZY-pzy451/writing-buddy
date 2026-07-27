@@ -1,11 +1,21 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
+import {
+	DesktopStoryRepository,
+	toStoryChapterId,
+	type StoryScene
+} from '@writing-buddy/story-kernel';
 import { useAppStore } from '../app/store';
+import { desktopBridge } from '../platform/bridge';
+import { SceneNavigator } from '../features/story/manuscript/SceneNavigator';
+import { SceneService } from '../features/story/manuscript/SceneService';
 
 export function ChapterEditor(): React.JSX.Element {
 	const activeResource = useAppStore(state => state.activeResource);
+	const snapshot = useAppStore(state => state.snapshot);
 	const session = useAppStore(state => state.session);
+	const selection = useAppStore(state => state.selection);
 	const setContent = useAppStore(state => state.setContent);
 	const setSelection = useAppStore(state => state.setSelection);
 	const updateCursor = useAppStore(state => state.updateCursor);
@@ -15,6 +25,16 @@ export function ChapterEditor(): React.JSX.Element {
 	const clearEditorEdit = useAppStore(state => state.clearEditorEdit);
 	const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | undefined>(undefined);
 	const cursorTimerRef = useRef<number | undefined>(undefined);
+	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
+	const [currentOffset, setCurrentOffset] = useState(0);
+	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
+	const projectRoot = snapshot?.root;
+	const sceneService = useMemo(() => projectRoot
+		? new SceneService(new DesktopStoryRepository(projectRoot, desktopBridge))
+		: undefined, [projectRoot]);
+	const storyChapterId = activeResource?.type === 'chapter'
+		? toStoryChapterId(activeResource.id)
+		: undefined;
 
 	const handleMount: OnMount = useCallback(editor => {
 		editorRef.current = editor;
@@ -30,7 +50,11 @@ export function ChapterEditor(): React.JSX.Element {
 		};
 		editor.onDidChangeCursorSelection(event => {
 			const model = editor.getModel();
-			if (!model || event.selection.isEmpty()) {
+			if (!model) {
+				return;
+			}
+			setCurrentOffset(model.getOffsetAt(event.selection.getPosition()));
+			if (event.selection.isEmpty()) {
 				setSelection(undefined);
 				return;
 			}
@@ -48,6 +72,13 @@ export function ChapterEditor(): React.JSX.Element {
 				column: session.state.cursor.column
 			});
 			editor.setScrollTop(session.state.cursor.scrollTop);
+			const model = editor.getModel();
+			if (model) {
+				setCurrentOffset(model.getOffsetAt({
+					lineNumber: session.state.cursor.lineNumber,
+					column: session.state.cursor.column
+				}));
+			}
 		}
 	}, [session, setSelection, updateCursor]);
 
@@ -75,6 +106,50 @@ export function ChapterEditor(): React.JSX.Element {
 		clearEditorEdit(pendingEdit.id);
 	}, [clearEditorEdit, pendingEdit, session?.state.resourceId]);
 
+	useEffect(() => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (!editor || !model) {
+			return;
+		}
+		sceneDecorationIdsRef.current = editor.deltaDecorations(
+			[...sceneDecorationIdsRef.current],
+			scenes.map(scene => {
+				const position = model.getPositionAt(scene.manuscriptRange.start);
+				return {
+					range: {
+						startLineNumber: position.lineNumber,
+						startColumn: 1,
+						endLineNumber: position.lineNumber,
+						endColumn: 1
+					},
+					options: {
+						isWholeLine: true,
+						glyphMarginClassName: 'story-scene-glyph',
+						glyphMarginHoverMessage: { value: scene.title }
+					}
+				};
+			})
+		);
+	}, [scenes]);
+
+	const navigateToOffset = useCallback((offset: number) => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (!editor || !model) {
+			return;
+		}
+		const position = model.getPositionAt(offset);
+		editor.setPosition(position);
+		editor.revealPositionInCenter(position);
+		editor.focus();
+		setCurrentOffset(offset);
+	}, []);
+
+	const updateScenes = useCallback((nextScenes: readonly StoryScene[]) => {
+		setScenes(nextScenes);
+	}, []);
+
 	if (!activeResource || !session) {
 		return <div className="canvas-empty">选择一个章节或笔记开始写作。</div>;
 	}
@@ -82,8 +157,24 @@ export function ChapterEditor(): React.JSX.Element {
 	const monacoTheme = theme === 'paper' || theme === 'fog' ? 'vs' : 'vs-dark';
 
 	return (
-		<div className="writing-canvas" data-resource-type={activeResource.type}>
-			<Editor
+		<div
+			className={`writing-canvas ${activeResource.type === 'chapter' ? 'has-scene-nav' : ''}`}
+			data-resource-type={activeResource.type}
+		>
+			{activeResource.type === 'chapter' && sceneService && storyChapterId && (
+				<SceneNavigator
+					service={sceneService}
+					chapterId={storyChapterId}
+					manuscript={session.content}
+					currentOffset={currentOffset}
+					selection={selection ? { start: selection.start, end: selection.end } : undefined}
+					readOnly={readOnly}
+					onNavigate={navigateToOffset}
+					onScenesChange={updateScenes}
+				/>
+			)}
+			<div className="chapter-editor-host">
+				<Editor
 				height="100%"
 				path={session.state.modelUri}
 				language="markdown"
@@ -106,7 +197,7 @@ export function ChapterEditor(): React.JSX.Element {
 					fontFamily: '"Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", SimSun, serif',
 					fontLigatures: false,
 					fontSize: 18,
-					glyphMargin: false,
+					glyphMargin: activeResource.type === 'chapter',
 					hideCursorInOverviewRuler: true,
 					hover: { enabled: 'off' },
 					lineDecorationsWidth: 0,
@@ -135,7 +226,8 @@ export function ChapterEditor(): React.JSX.Element {
 					wordWrapColumn: 80,
 					wrappingIndent: 'none'
 				}}
-			/>
+				/>
+			</div>
 		</div>
 	);
 }
