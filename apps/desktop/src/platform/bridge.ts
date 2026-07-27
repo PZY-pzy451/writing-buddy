@@ -1193,6 +1193,10 @@ class BrowserDesktopBridge implements DesktopBridge {
 					? browserContinuationDeltas(request)
 					: request.jobType === 'scene-plan-generation'
 						? browserScenePlanDeltas(request)
+					: request.jobType === 'character-analysis'
+						? browserCharacterAnalysisDeltas(request)
+					: request.jobType === 'relationship-analysis'
+						? browserRelationshipAnalysisDeltas(request)
 				: request.jobType === 'story-extraction'
 					? browserStoryExtractionDeltas(request)
 					: request.jobType === 'story-kernel-generation'
@@ -1321,6 +1325,182 @@ function browserScenePlanDeltas(request: AiGenerateRequest): readonly string[] {
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserJsonDeltas(value: unknown): readonly string[] {
+	const response = JSON.stringify(value);
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserEvidence(content: string, quote: string): {
+	readonly start: number;
+	readonly end: number;
+	readonly quote: string;
+} | null {
+	const start = content.indexOf(quote);
+	return start < 0 ? null : { start, end: start + quote.length, quote };
+}
+
+function browserCharacterAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly selectedCharacterId?: string;
+		readonly source?: { readonly content?: string };
+		readonly existingCharacters?: readonly {
+			readonly id?: string;
+			readonly title?: string;
+		}[];
+	};
+	const content = decoded.source?.content ?? '';
+	const selected = decoded.existingCharacters?.find(
+		character => character.id === decoded.selectedCharacterId
+	);
+	const generated = [{
+		title: '顾遥',
+		role: 'supporting',
+		confidence: 0.91,
+		rationale: '以冷静观察者补足旧站调查线。',
+		fields: [
+			{ key: 'occupation', value: '铁路档案修复师', evidence: null },
+			{ key: 'goals', value: ['找回被删去的事故记录'], evidence: null },
+			{ key: 'speechStyle', value: '先陈述可验证事实，再用短句提出质疑。', evidence: null }
+		]
+	}, {
+		title: '唐砚',
+		role: 'antagonist',
+		confidence: 0.88,
+		rationale: '制造制度性阻力，同时保留动机反转空间。',
+		fields: [
+			{ key: 'occupation', value: '夜班调度长', evidence: null },
+			{ key: 'values', value: ['秩序高于真相'], evidence: null },
+			{ key: 'fears', value: ['封存事故再次发生'], evidence: null }
+		]
+	}, {
+		title: '温禾',
+		role: 'minor',
+		confidence: 0.84,
+		rationale: '用目击者视角连接车站日常与异常。',
+		fields: [
+			{ key: 'occupation', value: '站前花店店主', evidence: null },
+			{ key: 'desires', value: ['让失踪者被人记住'], evidence: null },
+			{ key: 'state.knowledge', value: ['午夜广播只在雨夜出现'], evidence: null }
+		]
+	}];
+	if (decoded.actionType === 'generate-character') {
+		return browserJsonDeltas({ candidates: generated });
+	}
+	if (decoded.actionType === 'extract-from-chapter') {
+		const linEvidence = browserEvidence(content, '林墨');
+		const xuEvidence = browserEvidence(content, '徐青');
+		const stationEvidence = browserEvidence(content, '旧火车站');
+		return browserJsonDeltas({
+			candidates: [
+				...(linEvidence ? [{
+					title: '林墨',
+					role: 'protagonist',
+					confidence: 0.97,
+					rationale: '正文明确点名并描写其行动。',
+					fields: [
+						{ key: 'aliases', value: ['林墨'], evidence: linEvidence },
+						...(stationEvidence
+							? [{ key: 'state.location', value: '旧火车站', evidence: stationEvidence }]
+							: [])
+					]
+				}] : []),
+				...(xuEvidence ? [{
+					title: '徐青',
+					role: 'supporting',
+					confidence: 0.96,
+					rationale: '正文明确点名并写出其持有物。',
+					fields: [
+						{ key: 'aliases', value: ['徐青'], evidence: xuEvidence },
+						{ key: 'state.inventory', value: ['褪色的行李票'], evidence: browserEvidence(content, '褪色的行李票') }
+					]
+				}] : [])
+			]
+		});
+	}
+	const title = selected?.title ?? '当前人物';
+	const field = decoded.actionType === 'generate-speech-style'
+		? { key: 'speechStyle', value: '先观察，再用克制的短句追问关键细节。', evidence: null }
+		: decoded.actionType === 'generate-arc'
+			? { key: 'goals', value: ['查明旧站事故与失踪者的联系'], evidence: null }
+			: { key: 'summary', value: '成长于铁路家属区，对封存档案保持本能警惕。', evidence: null };
+	return browserJsonDeltas({
+		candidates: [{
+			title,
+			confidence: 0.87,
+			rationale: '结合所选章节与当前人物身份形成字段候选。',
+			fields: [field]
+		}]
+	});
+}
+
+function browserRelationshipAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly sourceCharacterId?: string;
+		readonly targetCharacterId?: string;
+		readonly source?: { readonly content?: string };
+		readonly characters?: readonly { readonly id?: string; readonly title?: string }[];
+	};
+	const content = decoded.source?.content ?? '';
+	const characters = decoded.characters ?? [];
+	const sourceId = decoded.sourceCharacterId ?? characters[0]?.id ?? '';
+	const targetId = decoded.targetCharacterId ?? characters[1]?.id ?? '';
+	if (decoded.actionType === 'generate-relationship') {
+		return browserJsonDeltas({
+			candidates: [{
+				sourceCharacterId: sourceId,
+				targetCharacterId: targetId,
+				relationshipType: '谨慎结盟',
+				strength: 0.64,
+				visibility: 'private',
+				description: '愿意交换线索，但仍保留关键秘密。',
+				confidence: 0.88,
+				rationale: '为当前冲突提供可变化的合作基础。',
+				evidence: null
+			}, {
+				sourceCharacterId: targetId,
+				targetCharacterId: sourceId,
+				relationshipType: '暗中保护',
+				strength: 0.78,
+				visibility: 'secret',
+				description: '保护动机尚未向对方公开。',
+				confidence: 0.85,
+				rationale: '保留双向认知差异与后续揭示空间。',
+				evidence: null
+			}]
+		});
+	}
+	const lin = characters.find(character => character.title === '林墨')?.id;
+	const xu = characters.find(character => character.title === '徐青')?.id;
+	const sentenceStart = content.indexOf('徐青已经等在长椅旁');
+	const sentenceEnd = sentenceStart >= 0 ? content.indexOf('。', sentenceStart) + 1 : 0;
+	const evidence = sentenceStart >= 0 && sentenceEnd > sentenceStart
+		? {
+			start: sentenceStart,
+			end: sentenceEnd,
+			quote: content.slice(sentenceStart, sentenceEnd)
+		}
+		: null;
+	return browserJsonDeltas({
+		candidates: lin && xu && evidence ? [{
+			sourceCharacterId: xu,
+			targetCharacterId: lin,
+			relationshipType: '主动提供线索',
+			strength: 0.72,
+			visibility: 'private',
+			description: '徐青把关键票据放到林墨面前。',
+			confidence: 0.94,
+			rationale: '正文动作明确改变双方的信息关系。',
+			evidence
+		}] : []
+	});
 }
 
 function browserStoryExtractionDeltas(request: AiGenerateRequest): readonly string[] {

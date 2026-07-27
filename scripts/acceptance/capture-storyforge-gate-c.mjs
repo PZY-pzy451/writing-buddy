@@ -317,7 +317,51 @@ const aiQuickActionsGateC2Captures = [
 		name: '05-scene-plan-fields-1024x720.png'
 	}
 ];
-const captures = gate === 'gate-ai-actions-c2'
+const aiQuickActionsGateDCaptures = [
+	{
+		mode: 'references',
+		view: 'characters',
+		readySelector: '.character-center',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-character-candidates',
+		width: 1536,
+		height: 960,
+		name: '01-character-three-candidates-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'relationships',
+		readySelector: '.relationship-page',
+		selector: '.relationship-page',
+		prepare: 'generate-relationship-candidates',
+		width: 1536,
+		height: 960,
+		name: '02-relationship-virtual-edges-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'characters',
+		readySelector: '.character-center',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-character-candidates',
+		width: 1280,
+		height: 768,
+		name: '03-character-extraction-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'relationships',
+		readySelector: '.relationship-page',
+		selector: '.relationship-page',
+		prepare: 'generate-relationship-candidates',
+		width: 1024,
+		height: 688,
+		name: '04-relationship-virtual-edges-1024x688.png'
+	}
+];
+const captures = gate === 'gate-ai-actions-d'
+	? aiQuickActionsGateDCaptures
+	: gate === 'gate-ai-actions-c2'
 	? aiQuickActionsGateC2Captures
 	: gate.startsWith('gate-ai-actions-c')
 	? aiQuickActionsGateCCaptures
@@ -485,6 +529,66 @@ try {
 				);
 			}
 			await waitForSelector(client, capture.selector);
+		}
+		if (
+			capture.prepare === 'generate-character-candidates'
+			|| capture.prepare === 'extract-character-candidates'
+			|| capture.prepare === 'generate-relationship-candidates'
+		) {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const isRelationship = ${JSON.stringify(capture.prepare === 'generate-relationship-candidates')};
+					const openButton = document.querySelector(
+						isRelationship
+							? '.relationship-ai-button'
+							: '.character-list-header-actions > button'
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate D AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			if (
+				capture.prepare === 'generate-character-candidates'
+				|| capture.prepare === 'generate-relationship-candidates'
+			) {
+				const actionLabel = capture.prepare === 'generate-character-candidates'
+					? '生成三个人物'
+					: '生成双向关系';
+				const selected = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+							.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!selected.result.value) throw new Error(`Gate D action was not available: ${actionLabel}`);
+			}
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate D generation button was not available.');
+			await waitForSelector(
+				client,
+				capture.prepare === 'generate-relationship-candidates'
+					? '.relationship-graph-canvas g.is-ai-candidate'
+					: '.ai-review-candidate'
+			);
 		}
 		if (capture.prepare?.startsWith('generate-')) {
 			await client.send('Runtime.evaluate', {

@@ -4,7 +4,8 @@ import {
 	GitBranch,
 	Grid3X3,
 	Network,
-	RotateCcw
+	RotateCcw,
+	Sparkles
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -17,6 +18,15 @@ import {
 import { desktopBridge } from '../../../platform/bridge';
 import { RelationshipInspector } from './RelationshipInspector';
 import { RelationshipMatrix } from './RelationshipMatrix';
+import { RelationshipAiPanel } from './RelationshipAiPanel';
+import type {
+	RelationshipReviewBatch,
+	RelationshipReviewCandidate
+} from './RelationshipAiReviewService';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import {
 	circularGraphLayout,
 	filterRelationshipsAt,
@@ -57,13 +67,19 @@ function RelationshipGraph({
 	selectedId,
 	onSelect,
 	selectedRelationshipId,
-	onSelectRelationship
+	onSelectRelationship,
+	pendingCandidates,
+	selectedPendingId,
+	onSelectPending
 }: {
 	readonly model: RelationshipGraphViewModel;
 	readonly selectedId?: string;
 	readonly onSelect: (id: string) => void;
 	readonly selectedRelationshipId?: string;
 	readonly onSelectRelationship: (id: string) => void;
+	readonly pendingCandidates: readonly RelationshipReviewCandidate[];
+	readonly selectedPendingId?: string;
+	readonly onSelectPending: (id: string) => void;
 }): React.JSX.Element {
 	const [positions, setPositions] = useState(() => circularGraphLayout(model.nodes));
 
@@ -83,6 +99,9 @@ function RelationshipGraph({
 			<svg viewBox="0 0 760 680" role="img" aria-label={`${model.nodes.length} 个人物，${model.edges.length} 条有向关系`}>
 				<defs>
 					<marker id="relationship-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+						<path d="M 0 0 L 10 5 L 0 10 z" />
+					</marker>
+					<marker id="relationship-candidate-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
 						<path d="M 0 0 L 10 5 L 0 10 z" />
 					</marker>
 				</defs>
@@ -116,6 +135,49 @@ function RelationshipGraph({
 						</g>
 					) : null;
 				})}
+				{pendingCandidates.map(candidate => {
+					const source = positions[candidate.sourceCharacterId];
+					const target = positions[candidate.targetCharacterId];
+					if (!source || !target) return null;
+					const length = Math.hypot(target.x - source.x, target.y - source.y) || 1;
+					const offsetX = -(target.y - source.y) / length * 10;
+					const offsetY = (target.x - source.x) / length * 10;
+					const x1 = source.x + offsetX;
+					const y1 = source.y + offsetY;
+					const x2 = target.x + offsetX;
+					const y2 = target.y + offsetY;
+					return (
+						<g
+							key={candidate.id}
+							role="button"
+							tabIndex={0}
+							aria-label={`AI 候选关系：${candidate.sourceTitle}到${candidate.targetTitle}，${candidate.relationshipType}`}
+							className={`is-ai-candidate ${selectedPendingId === candidate.id ? 'is-active' : ''}`}
+							onClick={() => onSelectPending(candidate.id)}
+							onKeyDown={event => {
+								if (event.key === 'Enter' || event.key === ' ') {
+									event.preventDefault();
+									onSelectPending(candidate.id);
+								}
+							}}
+						>
+							<line
+								x1={x1}
+								y1={y1}
+								x2={x2}
+								y2={y2}
+								strokeWidth={1 + candidate.strength * 2}
+								markerEnd="url(#relationship-candidate-arrow)"
+							/>
+							<text
+								x={(x1 + x2) / 2 + offsetX * 1.5}
+								y={(y1 + y2) / 2 + offsetY * 1.5}
+							>
+								AI · {candidate.relationshipType}
+							</text>
+						</g>
+					);
+				})}
 			</svg>
 			{model.nodes.map(node => {
 				const point = positions[node.id];
@@ -139,11 +201,17 @@ function RelationshipGraph({
 interface RelationshipGraphPageProps {
 	readonly projectRoot?: string;
 	readonly loadData?: RelationshipPageLoader;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly onOpenEvidence?: OpenAiEvidence;
+	readonly readOnly?: boolean;
 }
 
 export function RelationshipGraphPage({
 	projectRoot,
-	loadData = defaultLoadData
+	loadData = defaultLoadData,
+	chapters = [],
+	onOpenEvidence,
+	readOnly = false
 }: RelationshipGraphPageProps): React.JSX.Element {
 	const [data, setData] = useState<RelationshipPageData>();
 	const [error, setError] = useState<string>();
@@ -152,6 +220,9 @@ export function RelationshipGraphPage({
 	const [selectedRelationshipId, setSelectedRelationshipId] = useState<string>();
 	const [focusCharacterId, setFocusCharacterId] = useState<string>();
 	const [saving, setSaving] = useState(false);
+	const [aiOpen, setAiOpen] = useState(false);
+	const [aiBatch, setAiBatch] = useState<RelationshipReviewBatch>();
+	const [selectedPendingId, setSelectedPendingId] = useState<string>();
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -192,6 +263,9 @@ export function RelationshipGraphPage({
 	const selectedRelationship = visibleRelationships.find(
 		relationship => relationship.id === selectedRelationshipId
 	);
+	const pendingCandidates = aiBatch?.candidates.filter(
+		candidate => candidate.status === 'candidate'
+	) ?? [];
 
 	const saveRelationship = async (relationship: Relationship) => {
 		if (!projectRoot) {
@@ -235,6 +309,9 @@ export function RelationshipGraphPage({
 					{focusCharacterId ? (
 						<button type="button" className="relationship-reset-focus" onClick={() => setFocusCharacterId(undefined)}><RotateCcw size={15} />显示全部</button>
 					) : null}
+					<button type="button" className="relationship-ai-button" onClick={() => setAiOpen(true)}>
+						<Sparkles size={16} />AI 关系助手
+					</button>
 				</div>
 			</header>
 			<div className="relationship-messages">
@@ -263,6 +340,12 @@ export function RelationshipGraphPage({
 							onSelect={setFocusCharacterId}
 							selectedRelationshipId={selectedRelationshipId}
 							onSelectRelationship={setSelectedRelationshipId}
+							pendingCandidates={pendingCandidates}
+							selectedPendingId={selectedPendingId}
+							onSelectPending={candidateId => {
+								setSelectedPendingId(candidateId);
+								setAiOpen(true);
+							}}
 						/>
 					)}
 				</div>
@@ -276,6 +359,39 @@ export function RelationshipGraphPage({
 				) : null}
 			</section>
 			<div className="relationship-direction-legend"><GitBranch size={14} />箭头从关系发起者指向目标；反向关系单独记录。</div>
+			{aiOpen && projectRoot ? (
+				<RelationshipAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					characters={data?.characters ?? []}
+					relationships={data?.relationships ?? []}
+					readOnly={readOnly}
+					selectedCandidateId={selectedPendingId}
+					onClose={() => setAiOpen(false)}
+					onBatchChange={next => {
+						setAiBatch(next);
+						if (!next?.candidates.some(candidate => candidate.id === selectedPendingId)) {
+							setSelectedPendingId(undefined);
+						}
+					}}
+					onOpenEvidence={onOpenEvidence}
+					onAccepted={relationship => {
+						setData(current => {
+							if (!current) return current;
+							const exists = current.relationships.some(candidate => candidate.id === relationship.id);
+							return {
+								...current,
+								relationships: exists
+									? current.relationships.map(candidate => (
+										candidate.id === relationship.id ? relationship : candidate
+									))
+									: [...current.relationships, relationship]
+							};
+						});
+						setSelectedRelationshipId(relationship.id);
+					}}
+				/>
+			) : null}
 		</main>
 	);
 }

@@ -9,6 +9,7 @@ import {
 	RelationshipGraphPage,
 	type RelationshipPageData
 } from './RelationshipGraphPage';
+import { desktopBridge } from '../../../platform/bridge';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
 const characters: readonly Character[] = ['林越', '沈青'].map((title, index) => ({
@@ -110,5 +111,34 @@ describe('RelationshipGraphPage', () => {
 
 		expect(screen.getByText('怀疑')).toBeInTheDocument();
 		expect(screen.queryByText('保护')).not.toBeInTheDocument();
+	});
+
+	it('renders generated bidirectional candidates as separate virtual graph edges', async () => {
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		render(
+			<RelationshipGraphPage
+				projectRoot="browser-fixture"
+				loadData={() => Promise.resolve(data)}
+				chapters={[{
+					resourceId: 'chapter:chapter-000000a1',
+					chapterId: 'chapter-000000a1',
+					title: '第一章 · 雨夜旧站',
+					path: 'chapters/chapter-001.md',
+					narrativeOrder: 3
+				}]}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: 'AI 关系助手' }));
+		fireEvent.click(screen.getByRole('tab', { name: '生成双向关系' }));
+		fireEvent.click(screen.getByRole('button', { name: '生成关系候选' }));
+
+		expect(await screen.findByRole('button', {
+			name: 'AI 候选关系：林越到沈青，谨慎结盟'
+		})).toBeInTheDocument();
+		expect(screen.getByRole('button', {
+			name: 'AI 候选关系：沈青到林越，暗中保护'
+		})).toBeInTheDocument();
+		await desktopBridge.deleteDeepSeekKey();
 	});
 });

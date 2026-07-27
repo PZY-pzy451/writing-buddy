@@ -5,6 +5,7 @@
 - [Current AI and StoryForge capability matrix](./003-ai-current-capability-matrix.md)
 - [AI Quick Actions Gate C editor actions](./004-ai-quick-actions-gate-c-editor-actions.md)
 - [AI Quick Actions Gate C2 continuation and scene planning](./005-ai-quick-actions-gate-c2-continuation-outline.md)
+- [AI Quick Actions Gate D characters and relationships](./006-ai-quick-actions-gate-d-characters-relationships.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
 - [Phase 1.0B system layout and AI review follow-up](./phase-1.0b-system-layout-and-ai-review.md)
 - [StoryForge source map](./storyforge-source-map.md)

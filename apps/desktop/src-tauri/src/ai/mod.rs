@@ -44,6 +44,21 @@ pub const SCENE_PLAN_SYSTEM_PROMPT: &str = concat!(
     "emotionBeats is an array of {\"label\":\"beat\",\"emotion\":\"emotion\",\"intensity\":0.0}. ",
     "Every field is an optional candidate for author review and must never be described as already saved."
 );
+pub const CHARACTER_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的人物候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和人物身份，不读取或推断路径、密钥、账户或隐藏历史。",
+    "仅返回 JSON 对象：{\"candidates\":[{\"title\":\"人物名\",\"role\":\"protagonist|antagonist|supporting|minor 或省略\",\"confidence\":0.9,\"rationale\":\"依据\",\"fields\":[{\"key\":\"字段名\",\"value\":\"字段值\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}]}]}。",
+    "字段名仅可为 aliases、summary、pronouns、birth、appearance、occupation、goals、desires、fears、values、speechStyle、state.location、state.lifeStatus、state.health、state.emotion、state.currentGoal、state.inventory、state.knowledge、state.misconception、state.ability。",
+    "aliases/goals/desires/fears/values 与 state.inventory/state.knowledge 使用字符串数组；其余档案字段使用字符串；其他状态字段可使用字符串、数字、布尔或 null。",
+    "generate-character 必须返回恰好 3 个不同候选；背景、人物弧、语言风格动作只返回 1 个候选；extract-from-chapter 最多返回 12 个候选且每个字段必须有精确正文证据。",
+    "证据索引使用 JavaScript UTF-16 字符索引。所有字段仅供作者逐项确认，不得声称已经保存或覆盖人物。"
+);
+pub const RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的有向人物关系候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令、人物身份与既有关系身份，不读取或推断路径、密钥、账户或隐藏历史。",
+    "仅返回 JSON 对象：{\"candidates\":[{\"sourceCharacterId\":\"character:a\",\"targetCharacterId\":\"character:b\",\"relationshipType\":\"关系\",\"strength\":0.7,\"visibility\":\"public|private|secret\",\"description\":\"说明\",\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}]}。",
+    "方向必须明确；A 指向 B 与 B 指向 A 可以返回不同候选。只能引用用户提供的人物 ID。",
+    "extract-relationship-changes 的每条候选必须有精确正文证据；generate-relationship 可无证据。最多返回 24 条。",
+    "证据索引使用 JavaScript UTF-16 字符索引。所有边仅供作者逐条确认，不得声称已经保存或改变正式关系图。"
+);
 pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的结构化故事事实提取器。",
     "只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。",
@@ -239,6 +254,16 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_scene_plan_input(&self.messages[1].content)
             }
+            AiJobType::CharacterAnalysis => {
+                self.messages[0].content == CHARACTER_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_character_analysis_input(&self.messages[1].content)
+            }
+            AiJobType::RelationshipAnalysis => {
+                self.messages[0].content == RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_relationship_analysis_input(&self.messages[1].content)
+            }
             AiJobType::StoryExtraction => {
                 self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -267,6 +292,8 @@ pub enum AiJobType {
     SelectionRewrite,
     ManuscriptContinuation,
     ScenePlanGeneration,
+    CharacterAnalysis,
+    RelationshipAnalysis,
     StoryExtraction,
     StoryKernelGeneration,
 }
@@ -279,6 +306,8 @@ impl AiJobType {
             Self::SelectionRewrite => "selection-rewrite",
             Self::ManuscriptContinuation => "manuscript-continuation",
             Self::ScenePlanGeneration => "scene-plan-generation",
+            Self::CharacterAnalysis => "character-analysis",
+            Self::RelationshipAnalysis => "relationship-analysis",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
         }
@@ -482,6 +511,172 @@ fn validate_scene_plan_input(value: &str) -> bool {
                 .filter(|item| item.priority == "P1")
                 .count()
                 == 1
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CharacterAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    instruction: String,
+    source: CharacterAnalysisSource,
+    selected_character_id: Option<String>,
+    existing_characters: Vec<CharacterIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CharacterAnalysisSource {
+    resource_id: String,
+    source_revision: String,
+    narrative_order: u64,
+    content: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CharacterIdentity {
+    id: String,
+    title: String,
+    aliases: Vec<String>,
+    revision: u64,
+}
+
+fn valid_character_identity(value: &CharacterIdentity) -> bool {
+    value.id.starts_with("character:")
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && value.aliases.len() <= 40
+        && value
+            .aliases
+            .iter()
+            .all(|alias| !alias.trim().is_empty() && alias.chars().count() <= 160)
+        && value.revision <= u32::MAX as u64
+}
+
+fn valid_character_source(source: &CharacterAnalysisSource) -> bool {
+    source.resource_id.starts_with("chapter:")
+        && valid_story_id(&source.resource_id)
+        && !source.source_revision.trim().is_empty()
+        && source.source_revision.len() <= 128
+        && source.narrative_order <= u32::MAX as u64
+        && !source.content.trim().is_empty()
+        && source.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+}
+
+fn validate_character_analysis_input(value: &str) -> bool {
+    if value.len() > 140_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<CharacterAnalysisInput>(value).is_ok_and(|input| {
+        let ids = input
+            .existing_characters
+            .iter()
+            .map(|character| character.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "generate-character"
+                    | "generate-background"
+                    | "generate-arc"
+                    | "generate-speech-style"
+                    | "extract-from-chapter"
+            )
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_character_source(&input.source)
+            && input.existing_characters.len() <= 500
+            && ids.len() == input.existing_characters.len()
+            && input
+                .existing_characters
+                .iter()
+                .all(valid_character_identity)
+            && input
+                .selected_character_id
+                .as_ref()
+                .is_none_or(|id| ids.contains(id.as_str()))
+            && (matches!(
+                input.action_type.as_str(),
+                "generate-character" | "extract-from-chapter"
+            ) || input.selected_character_id.is_some())
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct RelationshipAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    instruction: String,
+    source: CharacterAnalysisSource,
+    source_character_id: Option<String>,
+    target_character_id: Option<String>,
+    characters: Vec<CharacterIdentity>,
+    existing_relationships: Vec<RelationshipIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct RelationshipIdentity {
+    id: String,
+    source_character_id: String,
+    target_character_id: String,
+    relationship_type: String,
+    revision: u64,
+}
+
+fn validate_relationship_analysis_input(value: &str) -> bool {
+    if value.len() > 180_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<RelationshipAnalysisInput>(value).is_ok_and(|input| {
+        let character_ids = input
+            .characters
+            .iter()
+            .map(|character| character.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let relationship_ids = input
+            .existing_relationships
+            .iter()
+            .map(|relationship| relationship.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let selected_pair_is_valid = input.action_type != "generate-relationship"
+            || input
+                .source_character_id
+                .as_ref()
+                .zip(input.target_character_id.as_ref())
+                .is_some_and(|(source, target)| {
+                    source != target
+                        && character_ids.contains(source.as_str())
+                        && character_ids.contains(target.as_str())
+                });
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "generate-relationship" | "extract-relationship-changes"
+            )
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_character_source(&input.source)
+            && (2..=500).contains(&input.characters.len())
+            && character_ids.len() == input.characters.len()
+            && input.characters.iter().all(valid_character_identity)
+            && input.existing_relationships.len() <= 1_000
+            && relationship_ids.len() == input.existing_relationships.len()
+            && input.existing_relationships.iter().all(|relationship| {
+                relationship.id.starts_with("relationship:")
+                    && valid_story_id(&relationship.id)
+                    && relationship.source_character_id != relationship.target_character_id
+                    && character_ids.contains(relationship.source_character_id.as_str())
+                    && character_ids.contains(relationship.target_character_id.as_str())
+                    && !relationship.relationship_type.trim().is_empty()
+                    && relationship.relationship_type.chars().count() <= 160
+                    && relationship.revision <= u32::MAX as u64
+            })
+            && selected_pair_is_valid
     })
 }
 
@@ -723,7 +918,8 @@ pub struct AiUsageSummary {
 mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
-        CHAPTER_REVIEW_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, ResponseFormat,
+        CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
+        MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
         SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
         STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
@@ -929,6 +1125,90 @@ mod tests {
             }]
         })
         .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn character_analysis_requires_bounded_chapter_and_known_selected_character() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::CharacterAnalysis;
+        request.messages[0].content = CHARACTER_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-background",
+            "instruction": "补充人物背景。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "沈青把钥匙交给林越。"
+            },
+            "selectedCharacterId": "character:lin-yue",
+            "existingCharacters": [{
+                "id": "character:lin-yue",
+                "title": "林越",
+                "aliases": ["阿越"],
+                "revision": 2
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-background",
+            "instruction": "补充人物背景。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "沈青把钥匙交给林越。"
+            },
+            "selectedCharacterId": "character:unknown",
+            "existingCharacters": []
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn relationship_analysis_requires_known_directed_endpoints() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::RelationshipAnalysis;
+        request.messages[0].content = RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-relationship",
+            "instruction": "设计双向认知。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "沈青把钥匙交给林越。"
+            },
+            "sourceCharacterId": "character:lin-yue",
+            "targetCharacterId": "character:shen-qing",
+            "characters": [{
+                "id": "character:lin-yue",
+                "title": "林越",
+                "aliases": [],
+                "revision": 2
+            }, {
+                "id": "character:shen-qing",
+                "title": "沈青",
+                "aliases": [],
+                "revision": 1
+            }],
+            "existingRelationships": []
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = request.messages[1]
+            .content
+            .replace("character:shen-qing", "character:lin-yue");
         assert!(request.validate().is_err());
     }
 

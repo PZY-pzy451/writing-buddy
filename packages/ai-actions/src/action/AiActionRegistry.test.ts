@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import {
 	AiActionRegistry,
+	createCharacterAiActions,
+	createDefaultAiActionRegistry,
+	createRelationshipAiActions,
 	createConsistencyReviewAction
 } from './AiActionRegistry';
 
@@ -12,6 +15,24 @@ describe('AiActionRegistry', () => {
 			.toThrow('aiActionAlreadyRegistered:review.consistency');
 		expect(() => registry.get('editor.polish'))
 			.toThrow('aiActionNotFound:editor.polish');
+	});
+
+	it('registers Gate D character and relationship actions for their dedicated surfaces', () => {
+		const registry = createDefaultAiActionRegistry();
+		expect(registry.list('character').map(action => action.id)).toEqual(
+			createCharacterAiActions().map(action => action.id)
+		);
+		expect(registry.list('relationship').map(action => action.id)).toEqual(
+			createRelationshipAiActions().map(action => action.id)
+		);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'character-center'
+		}, 'character')).toHaveLength(5);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'relationship-graph'
+		}, 'relationship')).toHaveLength(2);
 	});
 
 	it('filters by category and availability while retaining explicit reasons', () => {

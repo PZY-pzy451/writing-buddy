@@ -3,7 +3,9 @@ import {
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
 	buildChapterReviewMessages,
+	buildCharacterAnalysisMessages,
 	buildManuscriptContinuationMessages,
+	buildRelationshipAnalysisMessages,
 	buildScenePlanMessages,
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
@@ -14,13 +16,17 @@ import {
 	nextAiJobState,
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
+	parseCharacterAnalysisResponse,
 	parseManuscriptContinuationResponse,
+	parseRelationshipAnalysisResponse,
 	parseScenePlanResponse,
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
+	CHARACTER_ANALYSIS_SYSTEM_PROMPT,
 	MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
+	RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT,
 	SCENE_PLAN_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
 	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
@@ -229,6 +235,104 @@ describe('AI core contracts', () => {
 			projectRoot: 'D:\\private',
 			context: []
 		}))).toThrow('invalidScenePlanContext');
+	});
+
+	it('validates character candidates, exact generation counts, and extraction evidence', () => {
+		const messages = buildCharacterAnalysisMessages({
+			actionType: 'generate-character',
+			instruction: '设计三个能推动悬疑线的人物。',
+			content: '夜雨落在旧车站。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			narrativeOrder: 3,
+			existingCharacters: [{
+				id: 'character:lin-yue',
+				title: '林越',
+				aliases: ['阿越'],
+				revision: 2
+			}]
+		});
+		expect(messages[0]?.content).toBe(CHARACTER_ANALYSIS_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('projectRoot');
+		const candidate = (title: string) => ({
+			title,
+			role: 'supporting',
+			confidence: 0.9,
+			rationale: '补足冲突。',
+			fields: [{
+				key: 'goals',
+				value: ['找到失踪的列车员'],
+				evidence: null
+			}]
+		});
+		expect(parseCharacterAnalysisResponse(JSON.stringify({
+			candidates: [candidate('沈青'), candidate('周岚'), candidate('顾北')]
+		}), 'generate-character')).toHaveLength(3);
+		expect(() => parseCharacterAnalysisResponse(JSON.stringify({
+			candidates: [candidate('沈青')]
+		}), 'generate-character')).toThrow('invalidCharacterCandidateCount');
+		expect(() => parseCharacterAnalysisResponse(JSON.stringify({
+			candidates: [candidate('沈青')]
+		}), 'extract-from-chapter')).toThrow('missingCharacterExtractionEvidence');
+	});
+
+	it('validates directed relationship candidates and grounded changes', () => {
+		const characters = [{
+			id: 'character:lin-yue',
+			title: '林越',
+			aliases: [],
+			revision: 1
+		}, {
+			id: 'character:shen-qing',
+			title: '沈青',
+			aliases: [],
+			revision: 2
+		}];
+		const messages = buildRelationshipAnalysisMessages({
+			actionType: 'generate-relationship',
+			instruction: '设计两人的双向认知。',
+			content: '沈青把钥匙交给林越。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			narrativeOrder: 3,
+			sourceCharacterId: 'character:lin-yue',
+			targetCharacterId: 'character:shen-qing',
+			characters,
+			existingRelationships: []
+		});
+		expect(messages[0]?.content).toBe(RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT);
+		expect(parseRelationshipAnalysisResponse(JSON.stringify({
+			candidates: [{
+				sourceCharacterId: 'character:lin-yue',
+				targetCharacterId: 'character:shen-qing',
+				relationshipType: '戒备',
+				strength: 0.7,
+				visibility: 'private',
+				description: '林越尚未信任沈青。',
+				confidence: 0.9,
+				rationale: '作者设定。',
+				evidence: null
+			}, {
+				sourceCharacterId: 'character:shen-qing',
+				targetCharacterId: 'character:lin-yue',
+				relationshipType: '保护',
+				visibility: 'secret',
+				confidence: 0.8,
+				rationale: '反向认知。',
+				evidence: null
+			}]
+		}), 'generate-relationship', new Set(characters.map(item => item.id)))).toHaveLength(2);
+		expect(() => parseRelationshipAnalysisResponse(JSON.stringify({
+			candidates: [{
+				sourceCharacterId: 'character:lin-yue',
+				targetCharacterId: 'character:shen-qing',
+				relationshipType: '信任',
+				visibility: 'private',
+				confidence: 0.9,
+				rationale: '正文变化。',
+				evidence: null
+			}]
+		}), 'extract-relationship-changes')).toThrow('missingRelationshipExtractionEvidence');
 	});
 
 	it('builds a JSON-only story extraction request without auto-confirming facts', () => {

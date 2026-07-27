@@ -2,6 +2,7 @@ import {
 	AlertTriangle,
 	BookOpenCheck,
 	Search,
+	Sparkles,
 	UserRound,
 	UsersRound
 } from 'lucide-react';
@@ -17,6 +18,11 @@ import {
 import { desktopBridge } from '../../../platform/bridge';
 import { CharacterEditor } from './CharacterEditor';
 import { CharacterStateTimeline } from './CharacterStateTimeline';
+import { CharacterAiPanel } from './CharacterAiPanel';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import './CharacterCenterPage.css';
 
 export interface CharacterCenterData {
@@ -56,12 +62,18 @@ interface CharacterCenterPageProps {
 	readonly projectRoot?: string;
 	readonly loadData?: CharacterCenterLoader;
 	readonly saveCharacter?: CharacterSaver;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly onOpenEvidence?: OpenAiEvidence;
+	readonly readOnly?: boolean;
 }
 
 export function CharacterCenterPage({
 	projectRoot,
 	loadData = defaultLoadData,
-	saveCharacter
+	saveCharacter,
+	chapters = [],
+	onOpenEvidence,
+	readOnly = false
 }: CharacterCenterPageProps): React.JSX.Element {
 	const [data, setData] = useState<CharacterCenterData>();
 	const [error, setError] = useState<string>();
@@ -75,6 +87,7 @@ export function CharacterCenterPage({
 	const [narrativeOrder, setNarrativeOrder] = useState(0);
 	const [listScrollTop, setListScrollTop] = useState(0);
 	const [listViewportHeight, setListViewportHeight] = useState(600);
+	const [aiOpen, setAiOpen] = useState(false);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -186,7 +199,12 @@ export function CharacterCenterPage({
 			<aside className="character-list-pane">
 				<header>
 					<div><span className="eyebrow">CHARACTERS</span><h1>人物</h1></div>
-					<span className="character-count">{filtered.length}</span>
+					<div className="character-list-header-actions">
+						<button type="button" onClick={() => setAiOpen(true)}>
+							<Sparkles size={16} />AI 人物助手
+						</button>
+						<span className="character-count">{filtered.length}</span>
+					</div>
 				</header>
 				<label className="character-search">
 					<Search size={16} />
@@ -270,7 +288,14 @@ export function CharacterCenterPage({
 				) : !data ? (
 					<div className="character-loading" aria-live="polite">正在读取人物资料…</div>
 				) : !selected ? (
-					<div className="character-empty"><UsersRound size={36} /><h2>还没有人物</h2><p>从正文选区创建人物后，会在这里形成动态档案。</p></div>
+					<div className="character-empty">
+						<UsersRound size={36} />
+						<h2>还没有人物</h2>
+						<p>从正文选区创建人物，或让 AI 提供三个可逐字段确认的人物候选。</p>
+						<button type="button" onClick={() => setAiOpen(true)}>
+							<Sparkles size={17} />用 AI 创建人物
+						</button>
+					</div>
 				) : (
 					<>
 						<header className="character-detail-header">
@@ -337,6 +362,33 @@ export function CharacterCenterPage({
 					</>
 				)}
 			</section>
+			{aiOpen && projectRoot ? (
+				<CharacterAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					characters={data?.characters ?? []}
+					states={data?.states ?? []}
+					selectedCharacter={selected}
+					readOnly={readOnly}
+					onClose={() => setAiOpen(false)}
+					onOpenEvidence={onOpenEvidence}
+					onAccepted={(character, states) => {
+						setData(current => {
+							if (!current) return current;
+							const exists = current.characters.some(candidate => candidate.id === character.id);
+							return {
+								characters: exists
+									? current.characters.map(candidate => (
+										candidate.id === character.id ? character : candidate
+									))
+									: [...current.characters, character],
+								states
+							};
+						});
+						setSelectedId(character.id);
+					}}
+				/>
+			) : null}
 		</main>
 	);
 }

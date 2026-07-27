@@ -42,6 +42,21 @@ export const SCENE_PLAN_SYSTEM_PROMPT = [
 	'emotionBeats is an array of {"label":"beat","emotion":"emotion","intensity":0.0}. ',
 	'Every field is an optional candidate for author review and must never be described as already saved.'
 ].join('');
+export const CHARACTER_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的人物候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和人物身份，不读取或推断路径、密钥、账户或隐藏历史。',
+	'仅返回 JSON 对象：{"candidates":[{"title":"人物名","role":"protagonist|antagonist|supporting|minor 或省略","confidence":0.9,"rationale":"依据","fields":[{"key":"字段名","value":"字段值","evidence":{"start":0,"end":2,"quote":"原文"}或null}]}]}。',
+	'字段名仅可为 aliases、summary、pronouns、birth、appearance、occupation、goals、desires、fears、values、speechStyle、state.location、state.lifeStatus、state.health、state.emotion、state.currentGoal、state.inventory、state.knowledge、state.misconception、state.ability。',
+	'aliases/goals/desires/fears/values 与 state.inventory/state.knowledge 使用字符串数组；其余档案字段使用字符串；其他状态字段可使用字符串、数字、布尔或 null。',
+	'generate-character 必须返回恰好 3 个不同候选；背景、人物弧、语言风格动作只返回 1 个候选；extract-from-chapter 最多返回 12 个候选且每个字段必须有精确正文证据。',
+	'证据索引使用 JavaScript UTF-16 字符索引。所有字段仅供作者逐项确认，不得声称已经保存或覆盖人物。'
+].join('');
+export const RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的有向人物关系候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令、人物身份与既有关系身份，不读取或推断路径、密钥、账户或隐藏历史。',
+	'仅返回 JSON 对象：{"candidates":[{"sourceCharacterId":"character:a","targetCharacterId":"character:b","relationshipType":"关系","strength":0.7,"visibility":"public|private|secret","description":"说明","confidence":0.9,"rationale":"依据","evidence":{"start":0,"end":2,"quote":"原文"}或null}]}。',
+	'方向必须明确；A 指向 B 与 B 指向 A 可以返回不同候选。只能引用用户提供的人物 ID。',
+	'extract-relationship-changes 的每条候选必须有精确正文证据；generate-relationship 可无证据。最多返回 24 条。',
+	'证据索引使用 JavaScript UTF-16 字符索引。所有边仅供作者逐条确认，不得声称已经保存或改变正式关系图。'
+].join('');
 export const STORY_EXTRACTION_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的结构化故事事实提取器。',
 	'只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。',
@@ -77,6 +92,8 @@ export type AiJobType =
 	| 'selection-rewrite'
 	| 'manuscript-continuation'
 	| 'scene-plan-generation'
+	| 'character-analysis'
+	| 'relationship-analysis'
 	| 'story-extraction'
 	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
@@ -445,6 +462,104 @@ const scenePlanResponseSchema = z.object({
 	|| value.emotionBeats !== undefined
 ), { message: 'emptyScenePlanResponse' });
 
+const groundedEvidenceSchema = z.object({
+	start: z.number().int().nonnegative(),
+	end: z.number().int().positive(),
+	quote: z.string().min(1).max(4_000)
+}).strict().refine(value => value.end > value.start, {
+	message: 'invalidGroundedEvidence'
+});
+
+export const characterAnalysisFieldKeys = [
+	'aliases',
+	'summary',
+	'pronouns',
+	'birth',
+	'appearance',
+	'occupation',
+	'goals',
+	'desires',
+	'fears',
+	'values',
+	'speechStyle',
+	'state.location',
+	'state.lifeStatus',
+	'state.health',
+	'state.emotion',
+	'state.currentGoal',
+	'state.inventory',
+	'state.knowledge',
+	'state.misconception',
+	'state.ability'
+] as const;
+
+const characterArrayFields = new Set([
+	'aliases',
+	'goals',
+	'desires',
+	'fears',
+	'values',
+	'state.inventory',
+	'state.knowledge'
+]);
+const characterStringFields = new Set([
+	'summary',
+	'pronouns',
+	'birth',
+	'appearance',
+	'occupation',
+	'speechStyle'
+]);
+
+const characterAnalysisFieldSchema = z.object({
+	key: z.enum(characterAnalysisFieldKeys),
+	value: z.union([
+		z.string().min(1).max(10_000),
+		z.array(z.string().min(1).max(1_000)).min(1).max(40),
+		z.number().finite(),
+		z.boolean(),
+		z.null()
+	]),
+	evidence: groundedEvidenceSchema.nullable()
+}).strict().superRefine((field, context) => {
+	if (
+		(characterArrayFields.has(field.key) && !Array.isArray(field.value))
+		|| (characterStringFields.has(field.key) && typeof field.value !== 'string')
+	) {
+		context.addIssue({ code: 'custom', message: 'invalidCharacterFieldValue' });
+	}
+});
+
+const characterAnalysisCandidateSchema = z.object({
+	title: z.string().trim().min(1).max(160),
+	role: z.enum(['protagonist', 'antagonist', 'supporting', 'minor']).optional(),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	fields: z.array(characterAnalysisFieldSchema).min(1).max(24)
+}).strict();
+
+const characterAnalysisResponseSchema = z.object({
+	candidates: z.array(characterAnalysisCandidateSchema).max(12)
+}).strict();
+
+const relationshipAnalysisCandidateSchema = z.object({
+	sourceCharacterId: z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u),
+	targetCharacterId: z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u),
+	relationshipType: z.string().trim().min(1).max(160),
+	strength: z.number().min(0).max(1).optional(),
+	visibility: z.enum(['public', 'private', 'secret']),
+	description: z.string().max(10_000).optional(),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	evidence: groundedEvidenceSchema.nullable()
+}).strict().refine(value => value.sourceCharacterId !== value.targetCharacterId, {
+	message: 'relationshipEndpointsMustDiffer'
+});
+
+const relationshipAnalysisResponseSchema = z.object({
+	candidates: z.array(relationshipAnalysisCandidateSchema).max(24)
+}).strict();
+
 const storyExtractionResponseSchema = z.object({
 	facts: z.array(z.object({
 		factType: z.enum([
@@ -570,6 +685,57 @@ export interface ScenePlanResponse {
 	readonly outcome?: string;
 	readonly emotionBeats?: readonly SceneEmotionBeat[];
 	readonly rationale: string;
+}
+
+export type CharacterAnalysisActionType =
+	| 'generate-character'
+	| 'generate-background'
+	| 'generate-arc'
+	| 'generate-speech-style'
+	| 'extract-from-chapter';
+
+export type CharacterAnalysisFieldKey = typeof characterAnalysisFieldKeys[number];
+export type CharacterAnalysisFieldValue =
+	| string
+	| readonly string[]
+	| number
+	| boolean
+	| null;
+
+export interface GroundedCandidateEvidence {
+	readonly start: number;
+	readonly end: number;
+	readonly quote: string;
+}
+
+export interface CharacterAnalysisFieldResponse {
+	readonly key: CharacterAnalysisFieldKey;
+	readonly value: CharacterAnalysisFieldValue;
+	readonly evidence: GroundedCandidateEvidence | null;
+}
+
+export interface CharacterAnalysisCandidateResponse {
+	readonly title: string;
+	readonly role?: 'protagonist' | 'antagonist' | 'supporting' | 'minor';
+	readonly confidence: number;
+	readonly rationale: string;
+	readonly fields: readonly CharacterAnalysisFieldResponse[];
+}
+
+export type RelationshipAnalysisActionType =
+	| 'generate-relationship'
+	| 'extract-relationship-changes';
+
+export interface RelationshipAnalysisCandidateResponse {
+	readonly sourceCharacterId: string;
+	readonly targetCharacterId: string;
+	readonly relationshipType: string;
+	readonly strength?: number;
+	readonly visibility: 'public' | 'private' | 'secret';
+	readonly description?: string;
+	readonly confidence: number;
+	readonly rationale: string;
+	readonly evidence: GroundedCandidateEvidence | null;
 }
 
 export interface StoryExtractionCandidate {
@@ -731,6 +897,210 @@ export function buildScenePlanMessages(contextPackJson: string): readonly AiMess
 
 export function parseScenePlanResponse(response: string): ScenePlanResponse {
 	return scenePlanResponseSchema.parse(JSON.parse(response));
+}
+
+interface CharacterAnalysisRequestInput {
+	readonly actionType: CharacterAnalysisActionType;
+	readonly instruction: string;
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly narrativeOrder: number;
+	readonly selectedCharacterId?: string;
+	readonly existingCharacters: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly revision: number;
+	}[];
+}
+
+function isValidCharacterIdentity(value: CharacterAnalysisRequestInput['existingCharacters'][number]): boolean {
+	return /^character:[a-z0-9][a-z0-9-]*$/u.test(value.id)
+		&& Boolean(value.title.trim())
+		&& value.title.length <= 160
+		&& value.aliases.length <= 40
+		&& value.aliases.every(alias => Boolean(alias.trim()) && alias.length <= 160)
+		&& Number.isSafeInteger(value.revision)
+		&& value.revision >= 0;
+}
+
+export function buildCharacterAnalysisMessages(
+	input: CharacterAnalysisRequestInput
+): readonly AiMessage[] {
+	const ids = new Set(input.existingCharacters.map(character => character.id));
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^chapter:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
+		|| !Number.isSafeInteger(input.narrativeOrder)
+		|| input.narrativeOrder < 0
+		|| input.existingCharacters.length > 500
+		|| ids.size !== input.existingCharacters.length
+		|| input.existingCharacters.some(character => !isValidCharacterIdentity(character))
+		|| (input.selectedCharacterId !== undefined && !ids.has(input.selectedCharacterId))
+		|| (input.actionType !== 'generate-character'
+			&& input.actionType !== 'extract-from-chapter'
+			&& !input.selectedCharacterId)
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
+			`${input.instruction}\n${input.content}`
+		)
+	) {
+		throw new Error('invalidCharacterAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		instruction: input.instruction.trim(),
+		source: {
+			resourceId: input.resourceId,
+			sourceRevision: input.sourceRevision,
+			narrativeOrder: input.narrativeOrder,
+			content: input.content
+		},
+		...(input.selectedCharacterId
+			? { selectedCharacterId: input.selectedCharacterId }
+			: {}),
+		existingCharacters: input.existingCharacters
+	});
+	if (payload.length > 140_000) throw new Error('invalidCharacterAnalysisInput');
+	return [
+		{ role: 'system', content: CHARACTER_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseCharacterAnalysisResponse(
+	response: string,
+	actionType: CharacterAnalysisActionType
+): readonly CharacterAnalysisCandidateResponse[] {
+	const candidates = characterAnalysisResponseSchema.parse(JSON.parse(response)).candidates;
+	const expectedCount = actionType === 'generate-character' ? 3 : 1;
+	if (actionType !== 'extract-from-chapter' && candidates.length !== expectedCount) {
+		throw new Error('invalidCharacterCandidateCount');
+	}
+	if (
+		actionType === 'extract-from-chapter'
+		&& candidates.some(candidate => candidate.fields.some(field => field.evidence === null))
+	) {
+		throw new Error('missingCharacterExtractionEvidence');
+	}
+	return candidates;
+}
+
+interface RelationshipAnalysisRequestInput {
+	readonly actionType: RelationshipAnalysisActionType;
+	readonly instruction: string;
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly narrativeOrder: number;
+	readonly sourceCharacterId?: string;
+	readonly targetCharacterId?: string;
+	readonly characters: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly revision: number;
+	}[];
+	readonly existingRelationships: readonly {
+		readonly id: string;
+		readonly sourceCharacterId: string;
+		readonly targetCharacterId: string;
+		readonly relationshipType: string;
+		readonly revision: number;
+	}[];
+}
+
+export function buildRelationshipAnalysisMessages(
+	input: RelationshipAnalysisRequestInput
+): readonly AiMessage[] {
+	const characterIds = new Set(input.characters.map(character => character.id));
+	const relationshipIds = new Set(input.existingRelationships.map(relationship => relationship.id));
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^chapter:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
+		|| !Number.isSafeInteger(input.narrativeOrder)
+		|| input.narrativeOrder < 0
+		|| input.characters.length < 2
+		|| input.characters.length > 500
+		|| characterIds.size !== input.characters.length
+		|| input.characters.some(character => !isValidCharacterIdentity(character))
+		|| input.existingRelationships.length > 1_000
+		|| relationshipIds.size !== input.existingRelationships.length
+		|| input.existingRelationships.some(relationship => (
+			!/^relationship:[a-z0-9][a-z0-9-]*$/u.test(relationship.id)
+			|| !characterIds.has(relationship.sourceCharacterId)
+			|| !characterIds.has(relationship.targetCharacterId)
+			|| relationship.sourceCharacterId === relationship.targetCharacterId
+			|| !relationship.relationshipType.trim()
+			|| relationship.relationshipType.length > 160
+			|| !Number.isSafeInteger(relationship.revision)
+			|| relationship.revision < 0
+		))
+		|| (input.actionType === 'generate-relationship' && (
+			!input.sourceCharacterId
+			|| !input.targetCharacterId
+			|| input.sourceCharacterId === input.targetCharacterId
+			|| !characterIds.has(input.sourceCharacterId)
+			|| !characterIds.has(input.targetCharacterId)
+		))
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
+			`${input.instruction}\n${input.content}`
+		)
+	) {
+		throw new Error('invalidRelationshipAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		instruction: input.instruction.trim(),
+		source: {
+			resourceId: input.resourceId,
+			sourceRevision: input.sourceRevision,
+			narrativeOrder: input.narrativeOrder,
+			content: input.content
+		},
+		...(input.sourceCharacterId ? { sourceCharacterId: input.sourceCharacterId } : {}),
+		...(input.targetCharacterId ? { targetCharacterId: input.targetCharacterId } : {}),
+		characters: input.characters,
+		existingRelationships: input.existingRelationships
+	});
+	if (payload.length > 180_000) throw new Error('invalidRelationshipAnalysisInput');
+	return [
+		{ role: 'system', content: RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseRelationshipAnalysisResponse(
+	response: string,
+	actionType: RelationshipAnalysisActionType,
+	allowedCharacterIds?: ReadonlySet<string>
+): readonly RelationshipAnalysisCandidateResponse[] {
+	const candidates = relationshipAnalysisResponseSchema.parse(JSON.parse(response)).candidates;
+	if (
+		actionType === 'extract-relationship-changes'
+		&& candidates.some(candidate => candidate.evidence === null)
+	) {
+		throw new Error('missingRelationshipExtractionEvidence');
+	}
+	if (allowedCharacterIds && candidates.some(candidate => (
+		!allowedCharacterIds.has(candidate.sourceCharacterId)
+		|| !allowedCharacterIds.has(candidate.targetCharacterId)
+	))) {
+		throw new Error('unknownRelationshipCharacter');
+	}
+	return candidates;
 }
 
 export function buildSelectionRewriteMessages(contextPackJson: string): readonly AiMessage[] {

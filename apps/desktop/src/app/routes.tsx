@@ -20,13 +20,61 @@ import { ContinuityReviewPage } from '../features/story/continuity/ContinuityRev
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
-	const projectRoot = useAppStore(state => state.snapshot?.root);
+	const snapshot = useAppStore(state => state.snapshot);
+	const openResource = useAppStore(state => state.openResource);
+	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
+	const setMode = useAppStore(state => state.setMode);
+	const projectRoot = snapshot?.root;
+	const chapters = useMemo(() => snapshot
+		? flattenChapters(snapshot.project).map((chapter, index) => ({
+			resourceId: toStoryChapterId(chapter.id),
+			chapterId: chapter.id,
+			title: chapter.title,
+			path: chapter.file,
+			narrativeOrder: index
+		}))
+		: [], [snapshot]);
+	const openEvidence = (evidence: {
+		readonly resourceId: string;
+		readonly range?: { readonly start: number; readonly end: number };
+	}) => {
+		if (!snapshot) return;
+		const chapter = flattenChapters(snapshot.project).find(candidate => (
+			candidate.id === evidence.resourceId
+			|| toStoryChapterId(candidate.id) === evidence.resourceId
+		));
+		if (!chapter) return;
+		void openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		}).then(() => {
+			setMode('works');
+			requestEditorReveal(chapter.id, evidence.range?.start ?? 0);
+		});
+	};
 
 	if (storyView === 'characters') {
-		return <CharacterCenterPage projectRoot={projectRoot} />;
+		return (
+			<CharacterCenterPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'relationships') {
-		return <RelationshipGraphPage projectRoot={projectRoot} />;
+		return (
+			<RelationshipGraphPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'timeline') {
 		return <TimelinePage projectRoot={projectRoot} />;
