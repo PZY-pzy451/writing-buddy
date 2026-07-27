@@ -3,5 +3,8 @@
   "identifier": "main-window",
   "description": "Minimal capability for the Writing Buddy product window.",
   "windows": ["main"],
-  "permissions": ["core:default"]
+  "permissions": [
+    "core:default",
+    "core:window:allow-destroy"
+  ]
 }

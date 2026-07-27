@@ -11,8 +11,11 @@ editor handoff. Task 1 now provides structured project-open errors, read-only
 fallback, repair/diagnostic/retry actions, a stable first-launch landing page
 and real copied-project restart recovery. The canonical release opened the
 6-chapter acceptance project twice, including stale-lock recovery, without
-changing any of its 17 managed files. Story Kernel and professional data pages
-remain blocked until Gate A receives explicit human approval.
+changing any of its 17 managed files. A follow-up close regression was fixed by
+granting the main window Tauri's narrowly scoped `allow-destroy` permission;
+the rebuilt Windows release now exits on a normal non-force close signal.
+Story Kernel and professional data pages remain blocked until Gate A receives
+explicit human approval.
 
 ## Completed
 
@@ -30,6 +33,8 @@ remain blocked until Gate A receives explicit human approval.
   no-project startup
 - Real Tauri project open and second-launch recovery evidence in
   `docs/acceptance/005-storyforge-gate-a-project-open-2026-07-27.md`
+- Windows close regression evidence and rebuilt release hashes in
+  `docs/acceptance/006-window-close-regression-2026-07-27.md`
 - Initial Git branch and exact JavaScript/Rust lockfiles
 - Scoped DeepSeek provider contracts, model selection, job lifecycle, retry
   policy, cancellation, usage aggregation, and error taxonomy

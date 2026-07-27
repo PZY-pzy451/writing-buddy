@@ -72,3 +72,23 @@ pub fn run() {
             }
         });
 }
+
+#[cfg(test)]
+mod capability_tests {
+    #[test]
+    fn main_window_can_destroy_itself_after_close_listener_allows_exit() {
+        let capability: serde_json::Value =
+            serde_json::from_str(include_str!("../capabilities/default.json"))
+                .expect("default capability must be valid JSON");
+        let permissions = capability["permissions"]
+            .as_array()
+            .expect("default capability permissions");
+
+        assert!(
+            permissions
+                .iter()
+                .any(|permission| permission == "core:window:allow-destroy"),
+            "onCloseRequested calls window.destroy(), so the main window needs allow-destroy"
+        );
+    }
+}
