@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-07-27T11:57:04.525Z",
+  "captures": [
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".selection-action-menu",
+      "prepare": "select-editor",
+      "width": 1536,
+      "height": 960,
+      "name": "01-selection-toolbar-1536x992.png",
+      "readyMs": 1140,
+      "selectorReadyMs": 678,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 777,
+        "height": 72
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 113,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 789
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".selection-rewrite-panel",
+      "prepare": "select-editor-ai-polish",
+      "width": 1536,
+      "height": 960,
+      "name": "02-ai-polish-1536x992.png",
+      "readyMs": 782,
+      "selectorReadyMs": 359,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 291,
+        "height": 1150
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 113,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 789
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".kernel-generator",
+      "prepare": "select-editor-create-character",
+      "width": 1536,
+      "height": 960,
+      "name": "03-create-character-1536x992.png",
+      "readyMs": 665,
+      "selectorReadyMs": 222,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 291,
+        "height": 762
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 3,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 611
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".selection-rewrite-panel",
+      "prepare": "select-editor-ai-polish",
+      "width": 1280,
+      "height": 768,
+      "name": "04-ai-polish-1280x800.png",
+      "readyMs": 673,
+      "selectorReadyMs": 227,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 272,
+        "height": 1189
+      },
+      "gridColumns": "78px 280px 602px 320px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 151,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 789
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".kernel-generator",
+      "prepare": "select-editor-create-character",
+      "width": 1024,
+      "height": 688,
+      "name": "05-create-character-1024x720.png",
+      "readyMs": 812,
+      "selectorReadyMs": 361,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 312,
+        "height": 1017
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 52,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 611
+    }
+  ]
+}

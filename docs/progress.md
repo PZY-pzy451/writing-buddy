@@ -4,16 +4,10 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-AI Quick Actions Gate A/B passed automated and local visual acceptance on
-`codex/ai-quick-actions-gate-ab`. The round is intentionally limited to the
-shared Action/Prompt/output contracts, privacy-aware Context Pack, unified AI
-drawer and guarded Preview Transaction. Existing DeepSeek, Story Kernel,
-selection rewrite and version services are adapters; no second runtime is
-allowed. Gate A is commit `3305500`; Gate B is commit `962b713`. The frozen map
-is in
-`docs/plans/002-ai-quick-actions-source-map.md` and the capability matrix is in
-`docs/plans/003-ai-current-capability-matrix.md`; final evidence is in
-`docs/acceptance/013-ai-quick-actions-gate-ab-2026-07-27.md`.
+AI Quick Actions Gate C is complete on
+`codex/ai-quick-actions-gate-c`. The referenced selected-text toolbar now opens
+real grounded rewrite and Story Kernel candidate workflows. Acceptance is in
+`docs/acceptance/014-ai-quick-actions-gate-c-2026-07-27.md`.
 
 ## Completed
 
@@ -104,6 +98,18 @@ is in
   release gates ignored in the normal suite
 - Fresh Windows EXE and NSIS installer built; isolated desktop smoke accepted
   normal close
+- Selected-text **AI 润色** routed to grounded Context Pack, Diff candidate,
+  stale protection, cancellation, explicit acceptance and Undo
+- Selected-text character, location, item, information, and foreshadowing
+  actions routed to one-type Story Kernel presets without automatic requests
+- Warm-paper toolbar and assistant UI refined with visible active states,
+  44px targets, and 1536/1280/1024 responsive evidence
+- Full Node acceptance: 62 files / 181 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate C Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate C evidence in
+  `docs/acceptance/014-ai-quick-actions-gate-c-2026-07-27.md`
 
 ## Open
 
@@ -117,5 +123,5 @@ is in
 
 ## Next
 
-Review and explicitly approve Gate A/B. Do not start concrete editor or Story
-module actions before that approval.
+Await product direction or validate the completed AI workflows with an
+author-provided real DeepSeek account and author-selected content.
