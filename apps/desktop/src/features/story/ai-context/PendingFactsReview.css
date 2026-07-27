@@ -1,0 +1,118 @@
+.pending-facts-review {
+	display: grid;
+	gap: 12px;
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid var(--border);
+}
+
+.pending-facts-review > header,
+.pending-fact-meta,
+.pending-fact-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.pending-facts-review h3 {
+	margin: 2px 0 0;
+	font-size: 16px;
+}
+
+.pending-facts-count,
+.pending-fact-meta span {
+	color: var(--text-muted);
+	font-size: 12px;
+}
+
+.pending-facts-note,
+.pending-facts-error {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 0;
+	padding: 10px;
+	border-radius: 8px;
+	background: var(--surface-raised);
+	color: var(--text-muted);
+	font-size: 12px;
+	line-height: 1.55;
+}
+
+.pending-facts-error {
+	color: var(--danger);
+}
+
+.pending-facts-list {
+	display: grid;
+	gap: 10px;
+}
+
+.pending-fact-card {
+	display: grid;
+	gap: 9px;
+	padding: 12px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background: var(--surface-raised);
+}
+
+.pending-fact-card label {
+	display: grid;
+	gap: 5px;
+	color: var(--text-muted);
+	font-size: 12px;
+}
+
+.pending-fact-card input,
+.pending-fact-card textarea {
+	min-height: 36px;
+	padding: 8px 10px;
+	border: 1px solid var(--border);
+	border-radius: 7px;
+	background: var(--surface);
+	color: var(--text);
+	font: inherit;
+}
+
+.pending-fact-card textarea {
+	min-height: 72px;
+	resize: vertical;
+}
+
+.pending-fact-card blockquote {
+	margin: 0;
+	padding: 8px 10px;
+	border-left: 3px solid var(--accent);
+	background: var(--surface);
+	color: var(--text-muted);
+	font-size: 12px;
+	line-height: 1.55;
+}
+
+.pending-fact-actions button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-height: 36px;
+	padding: 0 10px;
+	border: 1px solid var(--border);
+	border-radius: 7px;
+	background: var(--surface);
+	color: var(--text);
+}
+
+.pending-fact-actions button:first-child {
+	border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+	color: var(--accent);
+}
+
+.pending-facts-empty {
+	margin: 0;
+	padding: 12px;
+	text-align: center;
+	color: var(--text-muted);
+	font-size: 12px;
+}

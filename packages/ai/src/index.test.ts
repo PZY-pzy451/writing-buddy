@@ -4,6 +4,7 @@ import {
 	aggregateAiUsage,
 	buildChapterReviewMessages,
 	buildSelectionRewriteMessages,
+	buildStoryExtractionMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
 	createDeepSeekProviderDefinition,
@@ -11,7 +12,9 @@ import {
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
 	parseSelectionRewriteResponse,
+	parseStoryExtractionResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
+	STORY_EXTRACTION_SYSTEM_PROMPT,
 	shouldRetryAiFailure
 } from './index';
 
@@ -164,5 +167,31 @@ describe('AI core contracts', () => {
 			context: [],
 			projectRoot: 'D:\\private'
 		}))).toThrow('invalidSelectionRewriteContext');
+	});
+
+	it('builds a JSON-only story extraction request without auto-confirming facts', () => {
+		const messages = buildStoryExtractionMessages({
+			content: '沈青把铜钥匙交给林越。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7'
+		});
+		expect(messages[0]?.content).toBe(STORY_EXTRACTION_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('projectRoot');
+		expect(parseStoryExtractionResponse(JSON.stringify({
+			facts: [{
+				factType: 'item-state',
+				title: '铜钥匙转移',
+				statement: '铜钥匙由沈青交给林越。',
+				confidence: 0.98,
+				start: 0,
+				end: 12,
+				quote: '沈青把铜钥匙交给林越。'
+			}]
+		}))).toHaveLength(1);
+		expect(() => buildStoryExtractionMessages({
+			content: '',
+			resourceId: 'chapter:one',
+			sourceRevision: '7'
+		})).toThrow('invalidStoryExtractionInput');
 	});
 });

@@ -28,9 +28,20 @@ export const SELECTION_REWRITE_SYSTEM_PROMPT = [
 	'仅返回 JSON 对象：{"suggestion":"改写候选","rationale":"简短依据","potentialImpact":"对上下文的潜在影响"}。',
 	'候选只是建议，不得声称已经修改正文。'
 ].join('');
+export const STORY_EXTRACTION_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的结构化故事事实提取器。',
+	'只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。',
+	'每条事实必须带有可在 content 中精确定位的 start、end、quote；索引使用 JavaScript UTF-16 字符索引。',
+	'仅返回 JSON 对象：{"facts":[{"factType":"character-state|item-state|location-state|relationship|timeline-event|world-rule|story-information|plot-thread|foreshadowing","title":"简短标题","statement":"明确事实","confidence":0.8,"start":0,"end":1,"quote":"原文证据"}]}。',
+	'提取结果全部处于待确认状态，最多返回 30 条，不得声称已经写入 Story Kernel。'
+].join('');
 
 export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
-export type AiJobType = 'storyforge-test' | 'chapter-review' | 'selection-rewrite';
+export type AiJobType =
+	| 'storyforge-test'
+	| 'chapter-review'
+	| 'selection-rewrite'
+	| 'story-extraction';
 export type AiThinkingMode = 'disabled' | 'enabled';
 export type AiReasoningEffort = 'high';
 export type AiResponseFormat = 'text' | 'json_object';
@@ -368,10 +379,51 @@ const selectionRewriteResponseSchema = z.object({
 	potentialImpact: z.string().max(1_000).optional().default('')
 }).strict();
 
+const storyExtractionResponseSchema = z.object({
+	facts: z.array(z.object({
+		factType: z.enum([
+			'character-state',
+			'item-state',
+			'location-state',
+			'relationship',
+			'timeline-event',
+			'world-rule',
+			'story-information',
+			'plot-thread',
+			'foreshadowing'
+		]),
+		title: z.string().min(1).max(120),
+		statement: z.string().min(1).max(4_000),
+		confidence: z.number().min(0).max(1),
+		start: z.number().int().nonnegative(),
+		end: z.number().int().positive(),
+		quote: z.string().min(1).max(4_000)
+	}).strict()).max(30)
+}).strict();
+
 export interface SelectionRewriteResponse {
 	readonly suggestion: string;
 	readonly rationale: string;
 	readonly potentialImpact: string;
+}
+
+export interface StoryExtractionCandidate {
+	readonly factType:
+		| 'character-state'
+		| 'item-state'
+		| 'location-state'
+		| 'relationship'
+		| 'timeline-event'
+		| 'world-rule'
+		| 'story-information'
+		| 'plot-thread'
+		| 'foreshadowing';
+	readonly title: string;
+	readonly statement: string;
+	readonly confidence: number;
+	readonly start: number;
+	readonly end: number;
+	readonly quote: string;
 }
 
 export function buildSelectionRewriteMessages(contextPackJson: string): readonly AiMessage[] {
@@ -396,6 +448,38 @@ export function buildSelectionRewriteMessages(contextPackJson: string): readonly
 
 export function parseSelectionRewriteResponse(response: string): SelectionRewriteResponse {
 	return selectionRewriteResponseSchema.parse(JSON.parse(response));
+}
+
+export function buildStoryExtractionMessages(input: {
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+}): readonly AiMessage[] {
+	if (
+		!input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(input.content)
+	) {
+		throw new Error('invalidStoryExtractionInput');
+	}
+	return [
+		{ role: 'system', content: STORY_EXTRACTION_SYSTEM_PROMPT },
+		{
+			role: 'user',
+			content: JSON.stringify({
+				schemaVersion: 1,
+				resourceId: input.resourceId,
+				sourceRevision: input.sourceRevision,
+				content: input.content
+			})
+		}
+	];
+}
+
+export function parseStoryExtractionResponse(response: string): readonly StoryExtractionCandidate[] {
+	return storyExtractionResponseSchema.parse(JSON.parse(response)).facts;
 }
 
 export function buildChapterReviewMessages(content: string): readonly AiMessage[] {

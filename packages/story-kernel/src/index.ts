@@ -7,6 +7,7 @@ export * from './model/ItemState';
 export * from './model/KnowledgeState';
 export * from './model/Location';
 export * from './model/PlotThread';
+export * from './model/PendingFact';
 export * from './model/MentionLink';
 export * from './model/Relationship';
 export * from './model/Scene';

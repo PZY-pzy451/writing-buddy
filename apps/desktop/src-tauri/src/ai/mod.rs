@@ -30,6 +30,13 @@ pub const SELECTION_REWRITE_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"suggestion\":\"改写候选\",\"rationale\":\"简短依据\",\"potentialImpact\":\"对上下文的潜在影响\"}。",
     "候选只是建议，不得声称已经修改正文。"
 );
+pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的结构化故事事实提取器。",
+    "只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。",
+    "每条事实必须带有可在 content 中精确定位的 start、end、quote；索引使用 JavaScript UTF-16 字符索引。",
+    "仅返回 JSON 对象：{\"facts\":[{\"factType\":\"character-state|item-state|location-state|relationship|timeline-event|world-rule|story-information|plot-thread|foreshadowing\",\"title\":\"简短标题\",\"statement\":\"明确事实\",\"confidence\":0.8,\"start\":0,\"end\":1,\"quote\":\"原文证据\"}]}。",
+    "提取结果全部处于待确认状态，最多返回 30 条，不得声称已经写入 Story Kernel。"
+);
 const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -188,6 +195,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_selection_rewrite_input(&self.messages[1].content)
             }
+            AiJobType::StoryExtraction => {
+                self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_story_extraction_input(&self.messages[1].content)
+            }
         };
         if !contract_valid {
             return Err(errors::PublicAiError::new(
@@ -204,6 +216,7 @@ pub enum AiJobType {
     StoryforgeTest,
     ChapterReview,
     SelectionRewrite,
+    StoryExtraction,
 }
 
 impl AiJobType {
@@ -212,6 +225,7 @@ impl AiJobType {
             Self::StoryforgeTest => "storyforge-test",
             Self::ChapterReview => "chapter-review",
             Self::SelectionRewrite => "selection-rewrite",
+            Self::StoryExtraction => "story-extraction",
         }
     }
 }
@@ -314,6 +328,27 @@ fn validate_selection_rewrite_input(value: &str) -> bool {
                 .filter(|item| item.priority == "P1" && item.kind == "selection")
                 .count()
                 == 1
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryExtractionInput {
+    schema_version: u8,
+    resource_id: String,
+    source_revision: String,
+    content: String,
+}
+
+fn validate_story_extraction_input(value: &str) -> bool {
+    serde_json::from_str::<StoryExtractionInput>(value).is_ok_and(|input| {
+        input.schema_version == 1
+            && input.resource_id.starts_with("chapter:")
+            && input.resource_id.len() <= 160
+            && !input.source_revision.trim().is_empty()
+            && input.source_revision.len() <= 128
+            && !input.content.trim().is_empty()
+            && input.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
     })
 }
 
@@ -434,7 +469,7 @@ mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, SELECTION_REWRITE_SYSTEM_PROMPT,
-        STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        STORY_EXTRACTION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -532,6 +567,32 @@ mod tests {
             "actionType": "polish",
             "projectRoot": "C:/secret",
             "context": []
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn story_extraction_accepts_only_isolated_manuscript_content() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::StoryExtraction;
+        request.messages[0].content = STORY_EXTRACTION_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "resourceId": "chapter:one",
+            "sourceRevision": "7",
+            "content": "沈青把铜钥匙交给林越。"
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "resourceId": "chapter:one",
+            "sourceRevision": "7",
+            "content": "沈青把铜钥匙交给林越。",
+            "projectRoot": "C:/secret"
         })
         .to_string();
         assert!(request.validate().is_err());

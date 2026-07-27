@@ -13,6 +13,7 @@ import { replaceReviewIssuesForResource, runLocalReview } from '@writing-buddy/r
 import { useState } from 'react';
 import { useAppStore } from '../app/store';
 import { SelectionRewritePanel } from '../features/story/ai-context/SelectionRewritePanel';
+import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { ResizeHandle } from '../shell/ResizeHandle';
 
 export function AssistantPanel(): React.JSX.Element {
@@ -124,6 +125,15 @@ export function AssistantPanel(): React.JSX.Element {
 					<ContextCard icon={<UsersRound size={18} />} label="出场人物" value={activeChapter?.scene.characters.join('、') || '未设置'} />
 					<ContextCard icon={<Lightbulb size={18} />} label="本章目标" value={activeChapter?.scene.goal || '未设置'} />
 					<ContextCard icon={<BookMarked size={18} />} label="备注" value={activeChapter?.scene.note || '未设置'} />
+					{snapshot && activeResource?.type === 'chapter' && session ? (
+						<PendingFactsReview
+							projectRoot={snapshot.root}
+							resourceId={activeResource.id}
+							sourceRevision={session.state.version}
+							content={session.content}
+							selection={selection}
+						/>
+					) : null}
 				</div>
 			)}
 			<ResizeHandle

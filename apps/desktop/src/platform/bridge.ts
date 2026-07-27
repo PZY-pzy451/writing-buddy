@@ -777,9 +777,14 @@ class BrowserDesktopBridge implements DesktopBridge {
 	}
 
 	async writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult> {
-		const current = browserFiles.get(request.relativePath) ?? '';
-		if (!request.force && browserHash(current) !== request.expectedHash) {
-			throw new Error('externalChange');
+		const current = browserFiles.get(request.relativePath);
+		if (!request.force) {
+			if (current === undefined && request.expectedHash !== '') {
+				throw new Error('externalChange:missing');
+			}
+			if (current !== undefined && browserHash(current) !== request.expectedHash) {
+				throw new Error('externalChange');
+			}
 		}
 		browserFiles.set(request.relativePath, request.content);
 		return {
@@ -1045,7 +1050,9 @@ class BrowserDesktopBridge implements DesktopBridge {
 			? browserReviewDeltas(request)
 			: request.jobType === 'selection-rewrite'
 				? browserRewriteDeltas(request)
-				: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+				: request.jobType === 'story-extraction'
+					? browserStoryExtractionDeltas(request)
+					: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -1111,6 +1118,29 @@ function browserRewriteDeltas(request: AiGenerateRequest): readonly string[] {
 			.replace(/[ \t]{2,}/gu, ' '),
 		rationale: '根据作者勾选的场景、人物和故事规则，压缩重复表达并保持原有事实。',
 		potentialImpact: '只影响当前选区，不改变人物知识或剧情线状态。'
+	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserStoryExtractionDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as { readonly content?: string };
+	const content = decoded.content ?? '';
+	const sentenceEnd = content.search(/[。！？]/u);
+	const end = sentenceEnd >= 0 ? sentenceEnd + 1 : content.length;
+	const quote = content.slice(0, end);
+	const response = JSON.stringify({
+		facts: quote ? [{
+			factType: 'story-information',
+			title: '正文明确事实',
+			statement: quote,
+			confidence: 0.82,
+			start: 0,
+			end,
+			quote
+		}] : []
 	});
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
