@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-07-27T08:03:44.290Z",
+  "captures": [
+    {
+      "view": "continuity",
+      "selector": ".continuity-review-page",
+      "width": 1536,
+      "height": 960,
+      "name": "01-continuity-review-1536x992.png",
+      "readyMs": 979,
+      "selectorReadyMs": 552,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 403
+    },
+    {
+      "view": "continuity",
+      "selector": ".continuity-review-page",
+      "width": 1280,
+      "height": 768,
+      "name": "02-continuity-review-1280x800.png",
+      "readyMs": 646,
+      "selectorReadyMs": 236,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 922,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 403
+    },
+    {
+      "view": "continuity",
+      "selector": ".continuity-review-page",
+      "width": 1024,
+      "height": 688,
+      "name": "03-continuity-review-1024x720.png",
+      "readyMs": 617,
+      "selectorReadyMs": 218,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 58,
+      "domNodes": 403
+    }
+  ]
+}

@@ -157,7 +157,16 @@ const gateDCaptures = [
 	{ view: 'worldbuilding', selector: '.worldbuilding-page', width: 1280, height: 768, name: '05-worldbuilding-1280x800.png' },
 	{ view: 'information', selector: '.information-control-page', width: 1024, height: 688, name: '06-information-control-1024x720.png' }
 ];
-const captures = gate.startsWith('gate-d') ? gateDCaptures : gateCCaptures;
+const gateECaptures = [
+	{ view: 'continuity', selector: '.continuity-review-page', width: 1536, height: 960, name: '01-continuity-review-1536x992.png' },
+	{ view: 'continuity', selector: '.continuity-review-page', width: 1280, height: 768, name: '02-continuity-review-1280x800.png' },
+	{ view: 'continuity', selector: '.continuity-review-page', width: 1024, height: 688, name: '03-continuity-review-1024x720.png' }
+];
+const captures = gate.startsWith('gate-e')
+	? gateECaptures
+	: gate.startsWith('gate-d')
+		? gateDCaptures
+		: gateCCaptures;
 const metrics = [];
 
 try {

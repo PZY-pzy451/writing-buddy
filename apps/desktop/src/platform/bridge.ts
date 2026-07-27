@@ -540,6 +540,33 @@ const browserStoryFixtures: readonly Record<string, unknown>[] = [
 		evidenceIds: ['evidence:station-meeting']
 	},
 	{
+		id: 'timeline-event:signal-tower-call',
+		type: 'timelineEvent',
+		title: '信号塔紧急呼叫',
+		aliases: [],
+		tags: ['验收冲突'],
+		schemaVersion: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp,
+		revision: 1,
+		storyStart: '2026-07-27T23:20:00.000Z',
+		storyEnd: '2026-07-27T23:28:00.000Z',
+		storyTimeKind: 'exact',
+		narrativePosition: {
+			chapterId: 'chapter:chapter-000000a1',
+			narrativeOrder: 2
+		},
+		eventType: '紧急行动',
+		participantIds: ['character:lin-mo'],
+		locationIds: ['location:signal-tower'],
+		itemIds: [],
+		predecessorIds: [],
+		consequenceIds: [],
+		plotThreadIds: ['plot-thread:missing-notebook'],
+		informationIds: [],
+		evidenceIds: ['evidence:signal-call']
+	},
+	{
 		...browserStoryBase('location:gray-city', 'location', '灰城', ['城市']),
 		locationType: '城市', mapPoint: { x: 48, y: 44 }, travelLinks: [],
 		factionIds: ['faction:railway-bureau'], rules: ['午夜后禁止进入封存铁路区。'], evidenceIds: []
