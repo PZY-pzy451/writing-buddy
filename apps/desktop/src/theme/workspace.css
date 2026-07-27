@@ -479,16 +479,13 @@
 	background: var(--surface-base);
 }
 
-.is-dashboard .center-workspace {
-	grid-template-rows: minmax(0, 1fr);
-}
-
 .is-dock-closed .center-workspace,
 .is-focus-mode .center-workspace {
 	grid-template-rows: var(--tabs-height) var(--header-height) minmax(0, 1fr);
 }
 
-.is-system-page .center-workspace {
+.is-system-page .center-workspace,
+.is-dashboard .center-workspace {
 	grid-template-rows: minmax(0, 1fr);
 }
 
