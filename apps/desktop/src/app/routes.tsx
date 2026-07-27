@@ -13,6 +13,7 @@ import { CharacterCenterPage } from '../features/story/characters/CharacterCente
 import { RelationshipGraphPage } from '../features/story/relationships/RelationshipGraphPage';
 import { TimelinePage } from '../features/story/timeline/TimelinePage';
 import { WorldbuildingPage } from '../features/story/worldbuilding/WorldbuildingPage';
+import { StoryAssetsPage } from '../features/story/assets/StoryAssetsPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -29,6 +30,9 @@ export function StoryStudioRoute(): React.JSX.Element {
 	}
 	if (storyView === 'worldbuilding') {
 		return <WorldbuildingPage projectRoot={projectRoot} />;
+	}
+	if (storyView === 'assets') {
+		return <StoryAssetsPage projectRoot={projectRoot} />;
 	}
 	return <WorldbuildingPage projectRoot={projectRoot} />;
 }

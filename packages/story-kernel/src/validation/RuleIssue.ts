@@ -3,7 +3,13 @@ import type { TimelineEvent } from '../model/TimelineEvent';
 export type TimelineRuleId =
 	| 'timeline.impossible-overlap'
 	| 'timeline.predecessor-inversion'
-	| 'location.insufficient-travel-time';
+	| 'location.insufficient-travel-time'
+	| 'item.negative-quantity'
+	| 'item.unique-multiple-holders'
+	| 'item.transfer-overlap'
+	| 'plot.thread-at-risk'
+	| 'plot.foreshadowing-overdue'
+	| 'information.premature-reveal';
 
 export interface RuleEvidencePosition {
 	readonly eventId: string;
