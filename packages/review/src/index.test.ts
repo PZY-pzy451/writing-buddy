@@ -1,6 +1,7 @@
 import { EditTransactionService } from '@writing-buddy/project';
 import {
 	parseReviewState,
+	replaceReviewIssuesForResource,
 	ReviewResolutionService,
 	runLocalReview,
 	serializeReviewState
@@ -46,5 +47,18 @@ describe('local review', () => {
 		const serialized = serializeReviewState(issue ? [issue] : []);
 		expect(parseReviewState(serialized).issues).toHaveLength(1);
 		expect(() => parseReviewState('{"schemaVersion":1,"issues":[{"id":"legacy"}]}')).toThrow('reviewStateInvalid');
+	});
+
+	it('replaces one review origin without discarding other resources or AI results', () => {
+		const local = runLocalReview('project', 'chapter', '一句话。。').issues[0];
+		const other = runLocalReview('project', 'other', '另一句话。。').issues[0];
+		expect(local).toBeDefined();
+		expect(other).toBeDefined();
+		if (!local || !other) {
+			return;
+		}
+		const ai = { ...local, id: 'ai-1', origin: 'ai' as const };
+		const next = replaceReviewIssuesForResource([local, ai, other], [], 'chapter', 'local');
+		expect(next.map(issue => issue.id)).toEqual(['ai-1', other.id]);
 	});
 });

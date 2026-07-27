@@ -494,7 +494,7 @@ fn record_usage(
         timestamp: Utc::now().to_rfc3339(),
         provider_id: request.provider_id.clone(),
         model_id: request.model_id.clone(),
-        job_type: "storyforge-test".to_owned(),
+        job_type: request.job_type.as_str().to_owned(),
         duration_ms: started_at.elapsed().as_millis().min(u128::from(u64::MAX)) as u64,
         status: status.to_owned(),
         usage,

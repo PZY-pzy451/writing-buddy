@@ -95,7 +95,7 @@ export function App(): React.JSX.Element {
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -106,8 +106,8 @@ export function App(): React.JSX.Element {
 			{!focusMode && <GlobalRail />}
 			{!focusMode && <ProjectSidebar />}
 			<main className="center-workspace">
-				<ResourceTabs />
-				<WriterHeader />
+				{!systemPageVisible && <ResourceTabs />}
+				{!systemPageVisible && <WriterHeader />}
 				<div className="canvas-surface">
 					{systemPageVisible && <SystemPage />}
 					{showTextEditor && <ChapterEditor />}

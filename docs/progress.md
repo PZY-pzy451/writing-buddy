@@ -4,11 +4,13 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-Phase 1.0A automated acceptance is complete on
+Phase 1.0B automated acceptance is complete on
 `codex/phase-1.0a-deepseek-ai-foundation`. The independent Tauri + React
-client now has a secure DeepSeek BYOK foundation and StoryForge test flow.
-Production EXE and NSIS artifacts are built. Real-key validation and M9 human
-cutover remain open; Legacy remains the rollback source.
+client now has a secure DeepSeek BYOK foundation, a StoryForge test flow,
+full-height system pages, and manual/AI chapter review. Release EXE and NSIS
+artifacts were built in an isolated target because the user had the canonical
+release EXE open. Real-key validation and M9 human cutover remain open; Legacy
+remains the rollback source.
 
 ## Completed
 
@@ -27,17 +29,28 @@ cutover remain open; Legacy remains the rollback source.
 - AI & Models settings and isolated StoryForge streaming test page
 - Durable Phase 1.0A evidence in
   `docs/acceptance/003-phase-1.0a-ai-foundation-2026-07-27.md`
+- Full-width, full-height system-page shell for Search, Review, Versions,
+  AI Test, and Settings
+- Local manual and DeepSeek automatic chapter review with author-confirmed
+  application
+- Strict Rust job-purpose validation and validated AI issue anchoring
+- Durable Phase 1.0B evidence in
+  `docs/acceptance/004-system-layout-and-ai-review-2026-07-27.md`
 
 ## Open
 
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
+- Validate AI automatic chapter review with that key.
+- Close the currently running canonical release application before replacing
+  its EXE and NSIS artifacts with the normal build command.
 - Human cutover gates are intentionally not automated.
 - Legacy retirement is forbidden until M9 is complete.
 
 ## Next
 
-Run the explicit real-key Phase 1.0A checklist without recording the key,
-prompt, response, or reasoning content. Continue M9 writing sessions against
-project copies and record each recovery/restore result before deciding whether
-to retire Legacy.
+Run the explicit real-key checklist without recording the key, prompt,
+response, chapter content, or reasoning. Close the running release window and
+run the canonical package build. Continue M9 writing sessions against project
+copies and record each recovery/restore result before deciding whether to
+retire Legacy.

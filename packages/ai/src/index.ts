@@ -1,4 +1,4 @@
-import { createTextAnchor, type ReviewIssue } from '@writing-buddy/review';
+import { createTextAnchor, hashText, type ReviewIssue } from '@writing-buddy/review';
 import { z } from 'zod';
 
 export const DEEPSEEK_PROVIDER_ID = 'deepseek' as const;
@@ -7,8 +7,23 @@ export const DEEPSEEK_PRO_MODEL_ID = 'deepseek-v4-pro';
 export const DEEPSEEK_RETIRED_MODEL_IDS = ['deepseek-chat', 'deepseek-reasoner'] as const;
 export const AI_MAX_OUTPUT_PRESETS = [512, 1024, 2048, 4096, 8192] as const;
 export const AI_JOB_QUEUE_LIMIT = 3;
+export const AI_CHAPTER_REVIEW_MAX_CHARS = 100_000;
+export const STORYFORGE_SYSTEM_PROMPT = [
+	'你是 StoryForge 的测试生成器。',
+	'只回答用户在本面板明确输入的写作指令。',
+	'不要请求、推断或提及任何项目、章节、路径、账户或历史信息。',
+	'输出纯文本候选内容，不执行修改。'
+].join('');
+export const CHAPTER_REVIEW_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的中文小说审校器。',
+	'只分析用户 JSON 中 content 字段提供的当前章节，不请求、推断或提及项目、路径、账户或历史信息。',
+	'找出明确的错别字、语病、标点、重复、指代、逻辑或表达问题；不要续写正文。',
+	'仅返回 JSON 对象：{"issues":[{"start":0,"end":1,"target":"原文片段","severity":"info|suggestion|warning|error","title":"简短标题","message":"问题说明","replacement":"可选替换文本"}]}。',
+	'start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。'
+].join('');
 
 export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
+export type AiJobType = 'storyforge-test' | 'chapter-review';
 export type AiThinkingMode = 'disabled' | 'enabled';
 export type AiReasoningEffort = 'high';
 export type AiResponseFormat = 'text' | 'json_object';
@@ -213,6 +228,7 @@ export interface AiGenerationOptions {
 
 export interface AiGenerateRequest {
 	readonly jobId: string;
+	readonly jobType: AiJobType;
 	readonly providerId: AiProviderId;
 	readonly modelId: string;
 	readonly messages: readonly AiMessage[];
@@ -305,7 +321,7 @@ export interface AiUsageRecord extends AiUsage {
 	readonly timestamp: string;
 	readonly providerId: AiProviderId;
 	readonly modelId: string;
-	readonly jobType: 'storyforge-test';
+	readonly jobType: AiJobType;
 	readonly durationMs: number;
 	readonly status: 'completed' | 'cancelled' | 'failed';
 }
@@ -325,6 +341,71 @@ export function aggregateAiUsage(records: readonly AiUsageRecord[]): AiUsageSumm
 			?? (record.inputTokens ?? 0) + (record.outputTokens ?? 0)),
 		requests: summary.requests + 1
 	}), { inputTokens: 0, outputTokens: 0, totalTokens: 0, requests: 0 });
+}
+
+const chapterReviewResponseSchema = z.object({
+	issues: z.array(z.object({
+		start: z.number().int().nonnegative(),
+		end: z.number().int().nonnegative(),
+		target: z.string().min(1).max(4_000),
+		severity: z.enum(['info', 'suggestion', 'warning', 'error']),
+		title: z.string().min(1).max(80),
+		message: z.string().min(1).max(500),
+		replacement: z.string().max(4_000).optional()
+	}).strict()).max(50)
+}).strict();
+
+export function buildChapterReviewMessages(content: string): readonly AiMessage[] {
+	if (!content.trim() || content.length > AI_CHAPTER_REVIEW_MAX_CHARS) {
+		throw new Error('invalidReviewContent');
+	}
+	return [
+		{ role: 'system', content: CHAPTER_REVIEW_SYSTEM_PROMPT },
+		{
+			role: 'user',
+			content: JSON.stringify({ schemaVersion: 1, content })
+		}
+	];
+}
+
+export function parseChapterReviewResponse(input: {
+	readonly projectId: string;
+	readonly resourceId: string;
+	readonly content: string;
+	readonly response: string;
+}): readonly ReviewIssue[] {
+	const parsed = chapterReviewResponseSchema.parse(JSON.parse(input.response));
+	const now = new Date().toISOString();
+	return parsed.issues.flatMap((candidate, index): readonly ReviewIssue[] => {
+		let start = candidate.start;
+		let end = candidate.end;
+		if (end < start || input.content.slice(start, end) !== candidate.target) {
+			const first = input.content.indexOf(candidate.target);
+			const second = first >= 0
+				? input.content.indexOf(candidate.target, first + Math.max(1, candidate.target.length))
+				: -1;
+			if (first < 0 || second >= 0) {
+				return [];
+			}
+			start = first;
+			end = first + candidate.target.length;
+		}
+		return [{
+			id: `ai-review:${input.resourceId}:${start}:${hashText(`${candidate.title}:${candidate.target}:${index}`)}`,
+			projectId: input.projectId,
+			resourceId: input.resourceId,
+			ruleId: 'ai-chapter-review',
+			severity: candidate.severity,
+			status: 'open',
+			title: candidate.title,
+			message: candidate.message,
+			anchor: createTextAnchor(input.content, start, end),
+			...(candidate.replacement === undefined ? {} : { replacement: candidate.replacement }),
+			createdAt: now,
+			updatedAt: now,
+			origin: 'ai'
+		}];
+	});
 }
 
 export function publicAiErrorMessage(code: AiErrorCode): string {

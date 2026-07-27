@@ -446,7 +446,9 @@ class BrowserDesktopBridge implements DesktopBridge {
 		browserCancelledJobs.delete(request.jobId);
 		listener({ type: 'job_started', jobId: request.jobId });
 		listener({ type: 'connection_opened', jobId: request.jobId });
-		const deltas = ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+		const deltas = request.jobType === 'chapter-review'
+			? browserReviewDeltas(request)
+			: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -474,6 +476,29 @@ class BrowserDesktopBridge implements DesktopBridge {
 	async getAiUsageSummary(): Promise<AiUsageSummary> {
 		return browserAiUsageSummary;
 	}
+}
+
+function browserReviewDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as { content?: string };
+	const content = decoded.content ?? '';
+	const sentenceEnd = content.search(/[。！？]/u);
+	const end = sentenceEnd >= 0 ? sentenceEnd + 1 : Math.min(content.length, 24);
+	const target = content.slice(0, end);
+	const response = JSON.stringify({
+		issues: target ? [{
+			start: 0,
+			end,
+			target,
+			severity: 'suggestion',
+			title: 'AI 表达建议',
+			message: '开篇意象较集中，可以适当压缩修饰语，让动作更快进入。',
+			replacement: target.replace('细密的声响像一封迟迟没有拆开的信', '雨声敲打着沉默的穹顶')
+		}] : []
+	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
 }
 
 export const desktopBridge: DesktopBridge = isTauriRuntime()

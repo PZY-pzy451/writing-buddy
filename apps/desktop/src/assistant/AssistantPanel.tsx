@@ -15,7 +15,7 @@ import {
 	buildSelectionContext,
 	suggestionToReviewIssue
 } from '@writing-buddy/ai';
-import { runLocalReview } from '@writing-buddy/review';
+import { replaceReviewIssuesForResource, runLocalReview } from '@writing-buddy/review';
 import { useState } from 'react';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
@@ -44,7 +44,8 @@ export function AssistantPanel(): React.JSX.Element {
 		if (!snapshot || !activeResource || !session) {
 			return;
 		}
-		setIssues(runLocalReview(snapshot.project.projectId, activeResource.id, session.content).issues);
+		const result = runLocalReview(snapshot.project.projectId, activeResource.id, session.content);
+		setIssues(replaceReviewIssuesForResource(issues, result.issues, activeResource.id, 'local'));
 		setTab('review');
 	};
 

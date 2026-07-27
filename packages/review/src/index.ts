@@ -34,6 +34,18 @@ export interface ReviewRunResult {
 	readonly cancelled: boolean;
 }
 
+export function replaceReviewIssuesForResource(
+	current: readonly ReviewIssue[],
+	replacement: readonly ReviewIssue[],
+	resourceId: string,
+	origin: ReviewIssue['origin']
+): readonly ReviewIssue[] {
+	return [
+		...current.filter(issue => issue.resourceId !== resourceId || issue.origin !== origin),
+		...replacement
+	];
+}
+
 export function hashText(value: string): string {
 	let hash = 2166136261;
 	for (const character of value) {

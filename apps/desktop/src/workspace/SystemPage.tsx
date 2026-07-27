@@ -1,15 +1,15 @@
-import { Archive, FileSearch, History, ListChecks, Search } from 'lucide-react';
+import { FileSearch, History, Search } from 'lucide-react';
 import type { VersionSummary } from '@writing-buddy/platform-ports';
 import { useEffect, useState } from 'react';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { SettingsPage } from '../settings/SettingsPage';
 import { AiPlaygroundPage } from '../features/ai/AiPlaygroundPage';
+import { ReviewPage } from '../features/review/ReviewPage';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
 	const snapshot = useAppStore(state => state.snapshot);
-	const issues = useAppStore(state => state.issues);
 	const search = useAppStore(state => state.search);
 	const openResource = useAppStore(state => state.openResource);
 	const activeResource = useAppStore(state => state.activeResource);
@@ -80,15 +80,7 @@ export function SystemPage(): React.JSX.Element | null {
 	}
 
 	if (mode === 'review') {
-		return (
-			<div className="system-page">
-				<header><span className="eyebrow">Local Review</span><h1>全书审校</h1><p>当前阶段只运行本地规则，正文不会离开设备。</p></header>
-				<div className="metric-grid">
-					<div><ListChecks size={22} /><strong>{issues.length}</strong><span>当前问题</span></div>
-					<div><Archive size={22} /><strong>{issues.filter(issue => issue.status === 'accepted').length}</strong><span>已接受</span></div>
-				</div>
-			</div>
-		);
+		return <ReviewPage />;
 	}
 
 	const createSnapshot = async () => {

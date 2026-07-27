@@ -16,6 +16,14 @@ pub const STORYFORGE_SYSTEM_PROMPT: &str = concat!(
     "不要请求、推断或提及任何项目、章节、路径、账户或历史信息。",
     "输出纯文本候选内容，不执行修改。"
 );
+pub const CHAPTER_REVIEW_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的中文小说审校器。",
+    "只分析用户 JSON 中 content 字段提供的当前章节，不请求、推断或提及项目、路径、账户或历史信息。",
+    "找出明确的错别字、语病、标点、重复、指代、逻辑或表达问题；不要续写正文。",
+    "仅返回 JSON 对象：{\"issues\":[{\"start\":0,\"end\":1,\"target\":\"原文片段\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"简短标题\",\"message\":\"问题说明\",\"replacement\":\"可选替换文本\"}]}。",
+    "start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。"
+);
+const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -118,6 +126,7 @@ pub enum ThinkingMode {
 #[serde(rename_all = "camelCase")]
 pub struct AiGenerateRequest {
     pub job_id: String,
+    pub job_type: AiJobType,
     pub provider_id: String,
     pub model_id: String,
     pub messages: Vec<AiMessage>,
@@ -126,11 +135,6 @@ pub struct AiGenerateRequest {
 
 impl AiGenerateRequest {
     pub fn validate(&self) -> Result<(), errors::PublicAiError> {
-        let total_chars = self
-            .messages
-            .iter()
-            .map(|message| message.content.chars().count())
-            .sum::<usize>();
         if self.provider_id != PROVIDER_ID
             || self.job_id.is_empty()
             || self.job_id.len() > 128
@@ -146,10 +150,7 @@ impl AiGenerateRequest {
             )
             || self.messages.len() != 2
             || !matches!(self.messages[0].role, AiRole::System)
-            || self.messages[0].content != STORYFORGE_SYSTEM_PROMPT
             || !matches!(self.messages[1].role, AiRole::User)
-            || self.messages[1].content.chars().count() > 10_000
-            || total_chars > 20_000
             || !self.options.stream
             || !matches!(
                 self.options.max_output_tokens,
@@ -164,7 +165,40 @@ impl AiGenerateRequest {
                 errors::AiErrorCode::InvalidConfiguration,
             ));
         }
+        let contract_valid = match self.job_type {
+            AiJobType::StoryforgeTest => {
+                self.messages[0].content == STORYFORGE_SYSTEM_PROMPT
+                    && self.messages[1].content.chars().count() <= 10_000
+                    && matches!(self.options.response_format, ResponseFormat::Text)
+            }
+            AiJobType::ChapterReview => {
+                self.messages[0].content == CHAPTER_REVIEW_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_chapter_review_input(&self.messages[1].content)
+            }
+        };
+        if !contract_valid {
+            return Err(errors::PublicAiError::new(
+                errors::AiErrorCode::InvalidConfiguration,
+            ));
+        }
         Ok(())
+    }
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum AiJobType {
+    StoryforgeTest,
+    ChapterReview,
+}
+
+impl AiJobType {
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::StoryforgeTest => "storyforge-test",
+            Self::ChapterReview => "chapter-review",
+        }
     }
 }
 
@@ -193,11 +227,26 @@ pub struct AiGenerationOptions {
     pub response_format: ResponseFormat,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum ResponseFormat {
     Text,
     JsonObject,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ChapterReviewInput {
+    schema_version: u8,
+    content: String,
+}
+
+fn validate_chapter_review_input(value: &str) -> bool {
+    serde_json::from_str::<ChapterReviewInput>(value).is_ok_and(|input| {
+        input.schema_version == 1
+            && !input.content.trim().is_empty()
+            && input.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+    })
 }
 
 #[derive(Clone, Debug, Default, Deserialize, Eq, PartialEq, Serialize)]
@@ -315,13 +364,14 @@ pub struct AiUsageSummary {
 #[cfg(test)]
 mod tests {
     use super::{
-        AiGenerateRequest, AiGenerationOptions, AiMessage, AiRole, ResponseFormat,
-        STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
+        CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
 
     fn valid_request() -> AiGenerateRequest {
         AiGenerateRequest {
             job_id: "job-123".to_owned(),
+            job_type: AiJobType::StoryforgeTest,
             provider_id: "deepseek".to_owned(),
             model_id: "deepseek-v4-flash".to_owned(),
             messages: vec![
@@ -359,5 +409,28 @@ mod tests {
         let mut invalid_reasoning = valid_request();
         invalid_reasoning.options.thinking_mode = ThinkingMode::Enabled;
         assert!(invalid_reasoning.validate().is_err());
+    }
+
+    #[test]
+    fn chapter_review_accepts_only_the_fixed_content_contract() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::ChapterReview;
+        request.messages[0].content = CHAPTER_REVIEW_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content =
+            serde_json::json!({"schemaVersion": 1, "content": "夜雨落下。。"}).to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "content": "夜雨落下。。",
+            "projectPath": "C:/secret"
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+
+        request.messages[1].content =
+            serde_json::json!({"schemaVersion": 1, "content": ""}).to_string();
+        assert!(request.validate().is_err());
     }
 }

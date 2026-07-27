@@ -25,4 +25,19 @@ describe('Writing Buddy product shell', () => {
 		expect(screen.getByLabelText('名称')).toHaveValue('林墨');
 		expect(screen.queryByLabelText('正文编辑器')).not.toBeInTheDocument();
 	});
+
+	it('gives every system route a dedicated full-height workspace', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await screen.findByRole('navigation', { name: '全局导航' });
+
+		for (const label of ['搜索', '审校', '版本', 'AI 测试', '设置']) {
+			await user.click(screen.getByRole('button', { name: label }));
+			expect(document.querySelector('.app-shell')).toHaveClass('is-system-page');
+			expect(screen.queryByRole('tablist', { name: '已打开资源' })).not.toBeInTheDocument();
+			const workspace = document.querySelector('.center-workspace');
+			expect(workspace?.children).toHaveLength(1);
+			expect(workspace?.firstElementChild).toHaveClass('canvas-surface');
+		}
+	});
 });

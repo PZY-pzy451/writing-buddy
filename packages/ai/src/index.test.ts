@@ -2,11 +2,13 @@ import {
 	AiProviderRegistry,
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
+	buildChapterReviewMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
 	createDeepSeekProviderDefinition,
 	nextAiJobState,
 	normalizeAiPreferences,
+	parseChapterReviewResponse,
 	shouldRetryAiFailure
 } from './index';
 
@@ -90,5 +92,55 @@ describe('AI core contracts', () => {
 			totalTokens: 25,
 			requests: 2
 		});
+	});
+
+	it('builds an isolated chapter-review request and anchors validated AI issues', () => {
+		const content = '林墨推开门。。雨声突然停了。';
+		const messages = buildChapterReviewMessages(content);
+		expect(messages).toHaveLength(2);
+		expect(messages[1]?.content).toContain(content);
+		expect(messages[1]?.content).not.toContain('projectId');
+
+		const issues = parseChapterReviewResponse({
+			projectId: 'project',
+			resourceId: 'chapter',
+			content,
+			response: JSON.stringify({
+				issues: [{
+					start: 4,
+					end: 7,
+					target: '门。。',
+					severity: 'warning',
+					title: '重复标点',
+					message: '句末标点重复。',
+					replacement: '门。'
+				}]
+			})
+		});
+		expect(issues).toMatchObject([{
+			resourceId: 'chapter',
+			origin: 'ai',
+			anchor: { target: '门。。' },
+			replacement: '门。'
+		}]);
+	});
+
+	it('drops AI review candidates that cannot be uniquely anchored', () => {
+		const content = '雨声。雨声。';
+		expect(parseChapterReviewResponse({
+			projectId: 'project',
+			resourceId: 'chapter',
+			content,
+			response: JSON.stringify({
+				issues: [{
+					start: 99,
+					end: 101,
+					target: '雨声',
+					severity: 'suggestion',
+					title: '重复',
+					message: '可能重复。'
+				}]
+			})
+		})).toEqual([]);
 	});
 });

@@ -1,5 +1,6 @@
 import {
 	DEFAULT_AI_PREFERENCES,
+	STORYFORGE_SYSTEM_PROMPT,
 	chooseDefaultModel,
 	nextAiJobState,
 	publicAiErrorMessage,
@@ -18,13 +19,6 @@ import {
 } from '@writing-buddy/ai';
 import { create } from 'zustand';
 import { desktopBridge } from '../../../platform/bridge';
-
-const STORYFORGE_SYSTEM_PROMPT = [
-	'你是 StoryForge 的测试生成器。',
-	'只回答用户在本面板明确输入的写作指令。',
-	'不要请求、推断或提及任何项目、章节、路径、账户或历史信息。',
-	'输出纯文本候选内容，不执行修改。'
-].join('');
 
 interface AiStore {
 	readonly initialized: boolean;
@@ -63,7 +57,7 @@ const emptyUsageSummary: AiUsageSummary = {
 	requests: 0
 };
 
-function normalizeError(error: unknown): PublicAiError {
+export function normalizeAiError(error: unknown): PublicAiError {
 	if (typeof error === 'object' && error !== null && 'code' in error) {
 		const candidate = error as Partial<PublicAiError>;
 		const code = candidate.code as AiErrorCode;
@@ -176,7 +170,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					usageSummary
 				});
 			} catch (error) {
-				set({ initialized: true, loading: false, error: normalizeError(error) });
+				set({ initialized: true, loading: false, error: normalizeAiError(error) });
 			}
 		},
 
@@ -208,7 +202,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					balance: result.balance
 				});
 			} catch (error) {
-				set({ loading: false, error: normalizeError(error) });
+				set({ loading: false, error: normalizeAiError(error) });
 				throw error;
 			}
 		},
@@ -255,7 +249,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					balance: result.balance
 				});
 			} catch (error) {
-				set({ loading: false, error: normalizeError(error) });
+				set({ loading: false, error: normalizeAiError(error) });
 			}
 		},
 
@@ -271,7 +265,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					: currentPreferences;
 				set({ loading: false, models, preferences });
 			} catch (error) {
-				set({ loading: false, error: normalizeError(error) });
+				set({ loading: false, error: normalizeAiError(error) });
 			}
 		},
 
@@ -280,7 +274,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 			try {
 				set({ loading: false, balance: await desktopBridge.getDeepSeekBalance() });
 			} catch (error) {
-				set({ loading: false, error: normalizeError(error) });
+				set({ loading: false, error: normalizeAiError(error) });
 			}
 		},
 
@@ -295,7 +289,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					status: status ? { ...status, preferences: saved } : status
 				});
 			} catch (error) {
-				set({ preferences: previous, error: normalizeError(error) });
+				set({ preferences: previous, error: normalizeAiError(error) });
 			}
 		},
 
@@ -308,7 +302,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 			const prompt = state.prompt.trim();
 			const modelId = state.preferences.defaultModelId;
 			if (!state.status?.secret.configured || !modelId || !prompt) {
-				set({ error: normalizeError('invalid_configuration') });
+				set({ error: normalizeAiError('invalid_configuration') });
 				return;
 			}
 			if (state.jobId && !['completed', 'cancelled', 'failed'].includes(state.jobState)) {
@@ -317,6 +311,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 			const jobId = crypto.randomUUID();
 			const request: AiGenerateRequest = {
 				jobId,
+				jobType: 'storyforge-test',
 				providerId: 'deepseek',
 				modelId,
 				messages: [
@@ -347,7 +342,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 				if (get().jobId === jobId && !['completed', 'cancelled', 'failed'].includes(get().jobState)) {
 					set({
 						jobState: 'failed',
-						error: normalizeError(error),
+						error: normalizeAiError(error),
 						durationMs: Date.now() - (get().startedAt ?? Date.now()),
 						partial: Boolean(get().output)
 					});
