@@ -21,9 +21,16 @@ export const CHAPTER_REVIEW_SYSTEM_PROMPT = [
 	'仅返回 JSON 对象：{"issues":[{"start":0,"end":1,"target":"原文片段","severity":"info|suggestion|warning|error","title":"简短标题","message":"问题说明","replacement":"可选替换文本"}]}。',
 	'start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。'
 ].join('');
+export const SELECTION_REWRITE_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的选区改写助手。',
+	'只改写用户 JSON 中 P1 当前选区，不补写整章，不推断未提供的故事事实。',
+	'其余 context 只用于保持人物状态、世界规则、剧情线和信息权限一致。',
+	'仅返回 JSON 对象：{"suggestion":"改写候选","rationale":"简短依据","potentialImpact":"对上下文的潜在影响"}。',
+	'候选只是建议，不得声称已经修改正文。'
+].join('');
 
 export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
-export type AiJobType = 'storyforge-test' | 'chapter-review';
+export type AiJobType = 'storyforge-test' | 'chapter-review' | 'selection-rewrite';
 export type AiThinkingMode = 'disabled' | 'enabled';
 export type AiReasoningEffort = 'high';
 export type AiResponseFormat = 'text' | 'json_object';
@@ -354,6 +361,42 @@ const chapterReviewResponseSchema = z.object({
 		replacement: z.string().max(4_000).optional()
 	}).strict()).max(50)
 }).strict();
+
+const selectionRewriteResponseSchema = z.object({
+	suggestion: z.string().min(1).max(12_000),
+	rationale: z.string().min(1).max(1_000),
+	potentialImpact: z.string().max(1_000).optional().default('')
+}).strict();
+
+export interface SelectionRewriteResponse {
+	readonly suggestion: string;
+	readonly rationale: string;
+	readonly potentialImpact: string;
+}
+
+export function buildSelectionRewriteMessages(contextPackJson: string): readonly AiMessage[] {
+	const payload = JSON.parse(contextPackJson) as unknown;
+	if (
+		!payload
+		|| typeof payload !== 'object'
+		|| !('schemaVersion' in payload)
+		|| payload.schemaVersion !== 1
+		|| !('context' in payload)
+		|| !Array.isArray(payload.context)
+		|| contextPackJson.length > 40_000
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(contextPackJson)
+	) {
+		throw new Error('invalidSelectionRewriteContext');
+	}
+	return [
+		{ role: 'system', content: SELECTION_REWRITE_SYSTEM_PROMPT },
+		{ role: 'user', content: contextPackJson }
+	];
+}
+
+export function parseSelectionRewriteResponse(response: string): SelectionRewriteResponse {
+	return selectionRewriteResponseSchema.parse(JSON.parse(response));
+}
 
 export function buildChapterReviewMessages(content: string): readonly AiMessage[] {
 	if (!content.trim() || content.length > AI_CHAPTER_REVIEW_MAX_CHARS) {

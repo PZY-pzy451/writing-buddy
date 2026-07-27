@@ -1,0 +1,132 @@
+.selection-rewrite-panel {
+	display: grid;
+	gap: 12px;
+}
+
+.rewrite-loading,
+.rewrite-error,
+.rewrite-stale {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 10px;
+	font-size: 11px;
+	background: var(--surface-canvas);
+	border-radius: 7px;
+}
+
+.rewrite-error,
+.rewrite-stale {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 10%, transparent);
+}
+
+.rewrite-candidate {
+	display: grid;
+	gap: 10px;
+	padding-top: 12px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.rewrite-candidate > header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.rewrite-candidate h3 {
+	margin: 3px 0 0;
+	font: 20px Georgia, "Microsoft YaHei UI", serif;
+}
+
+.rewrite-candidate > header > span,
+.rewrite-usage {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.candidate-diff-view {
+	height: 220px;
+	overflow: hidden;
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.rewrite-draft {
+	display: grid;
+	gap: 6px;
+}
+
+.rewrite-draft > span {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.rewrite-draft textarea {
+	width: 100%;
+	min-height: 104px;
+	padding: 10px;
+	resize: vertical;
+	color: var(--text-primary);
+	font: 14px/1.6 Georgia, "Microsoft YaHei UI", serif;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 7px;
+}
+
+.rewrite-rationale {
+	display: grid;
+	grid-template-columns: 52px minmax(0, 1fr);
+	gap: 5px 8px;
+	padding: 10px;
+	background: var(--surface-canvas);
+	border-radius: 7px;
+}
+
+.rewrite-rationale strong,
+.rewrite-rationale p {
+	margin: 0;
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.rewrite-rationale strong {
+	color: var(--text-muted);
+}
+
+.rewrite-actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 6px;
+}
+
+.rewrite-actions button,
+.rewrite-undo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-height: 38px;
+	padding: 0 8px;
+	color: var(--text-secondary);
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: 6px;
+}
+
+.rewrite-actions button:first-child {
+	color: white;
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+.rewrite-actions button:disabled {
+	cursor: not-allowed;
+	opacity: .48;
+}
+
+.rewrite-undo {
+	width: 100%;
+	color: var(--accent-strong);
+}

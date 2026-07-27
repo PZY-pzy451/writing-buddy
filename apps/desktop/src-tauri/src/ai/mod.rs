@@ -23,6 +23,13 @@ pub const CHAPTER_REVIEW_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"issues\":[{\"start\":0,\"end\":1,\"target\":\"原文片段\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"简短标题\",\"message\":\"问题说明\",\"replacement\":\"可选替换文本\"}]}。",
     "start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。"
 );
+pub const SELECTION_REWRITE_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的选区改写助手。",
+    "只改写用户 JSON 中 P1 当前选区，不补写整章，不推断未提供的故事事实。",
+    "其余 context 只用于保持人物状态、世界规则、剧情线和信息权限一致。",
+    "仅返回 JSON 对象：{\"suggestion\":\"改写候选\",\"rationale\":\"简短依据\",\"potentialImpact\":\"对上下文的潜在影响\"}。",
+    "候选只是建议，不得声称已经修改正文。"
+);
 const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -176,6 +183,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_chapter_review_input(&self.messages[1].content)
             }
+            AiJobType::SelectionRewrite => {
+                self.messages[0].content == SELECTION_REWRITE_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_selection_rewrite_input(&self.messages[1].content)
+            }
         };
         if !contract_valid {
             return Err(errors::PublicAiError::new(
@@ -191,6 +203,7 @@ impl AiGenerateRequest {
 pub enum AiJobType {
     StoryforgeTest,
     ChapterReview,
+    SelectionRewrite,
 }
 
 impl AiJobType {
@@ -198,6 +211,7 @@ impl AiJobType {
         match self {
             Self::StoryforgeTest => "storyforge-test",
             Self::ChapterReview => "chapter-review",
+            Self::SelectionRewrite => "selection-rewrite",
         }
     }
 }
@@ -246,6 +260,60 @@ fn validate_chapter_review_input(value: &str) -> bool {
         input.schema_version == 1
             && !input.content.trim().is_empty()
             && input.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct SelectionRewriteInput {
+    schema_version: u8,
+    action_type: String,
+    context: Vec<SelectionContextItem>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct SelectionContextItem {
+    priority: String,
+    kind: String,
+    title: String,
+    content: String,
+}
+
+fn validate_selection_rewrite_input(value: &str) -> bool {
+    if value.len() > 40_000 {
+        return false;
+    }
+    serde_json::from_str::<SelectionRewriteInput>(value).is_ok_and(|input| {
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "polish" | "concise" | "grammar" | "dialogue" | "pacing"
+            )
+            && (2..=64).contains(&input.context.len())
+            && input.context.iter().all(|item| {
+                matches!(
+                    item.priority.as_str(),
+                    "P0" | "P1" | "P2" | "P3" | "P4" | "P5" | "P6"
+                ) && !item.kind.is_empty()
+                    && item.kind.len() <= 64
+                    && !item.title.trim().is_empty()
+                    && item.title.len() <= 160
+                    && !item.content.trim().is_empty()
+                    && item.content.len() <= 12_000
+            })
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P0" && item.kind == "instruction")
+                .count()
+                == 1
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P1" && item.kind == "selection")
+                .count()
+                == 1
     })
 }
 
@@ -365,7 +433,8 @@ pub struct AiUsageSummary {
 mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
-        CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, SELECTION_REWRITE_SYSTEM_PROMPT,
+        STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -431,6 +500,40 @@ mod tests {
 
         request.messages[1].content =
             serde_json::json!({"schemaVersion": 1, "content": ""}).to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn selection_rewrite_requires_grounded_context_without_paths() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::SelectionRewrite;
+        request.messages[0].content = SELECTION_REWRITE_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "polish",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "作者指令",
+                "content": "只润色"
+            }, {
+                "priority": "P1",
+                "kind": "selection",
+                "title": "当前选区",
+                "content": "夜雨落下。"
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "polish",
+            "projectRoot": "C:/secret",
+            "context": []
+        })
+        .to_string();
         assert!(request.validate().is_err());
     }
 }

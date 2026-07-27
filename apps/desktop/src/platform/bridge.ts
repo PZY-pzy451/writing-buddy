@@ -1043,7 +1043,9 @@ class BrowserDesktopBridge implements DesktopBridge {
 		listener({ type: 'connection_opened', jobId: request.jobId });
 		const deltas = request.jobType === 'chapter-review'
 			? browserReviewDeltas(request)
-			: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+			: request.jobType === 'selection-rewrite'
+				? browserRewriteDeltas(request)
+				: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -1090,6 +1092,25 @@ function browserReviewDeltas(request: AiGenerateRequest): readonly string[] {
 			message: '开篇意象较集中，可以适当压缩修饰语，让动作更快进入。',
 			replacement: target.replace('细密的声响像一封迟迟没有拆开的信', '雨声敲打着沉默的穹顶')
 		}] : []
+	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserRewriteDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly context?: readonly { readonly priority?: string; readonly content?: string }[];
+	};
+	const original = decoded.context?.find(item => item.priority === 'P1')?.content ?? '';
+	const response = JSON.stringify({
+		suggestion: original
+			.replace(/非常非常/gu, '格外')
+			.replace(/然后然后/gu, '随后')
+			.replace(/[ \t]{2,}/gu, ' '),
+		rationale: '根据作者勾选的场景、人物和故事规则，压缩重复表达并保持原有事实。',
+		potentialImpact: '只影响当前选区，不改变人物知识或剧情线状态。'
 	});
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);

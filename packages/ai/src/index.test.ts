@@ -3,12 +3,15 @@ import {
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
 	buildChapterReviewMessages,
+	buildSelectionRewriteMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
 	createDeepSeekProviderDefinition,
 	nextAiJobState,
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
+	parseSelectionRewriteResponse,
+	SELECTION_REWRITE_SYSTEM_PROMPT,
 	shouldRetryAiFailure
 } from './index';
 
@@ -142,5 +145,24 @@ describe('AI core contracts', () => {
 				}]
 			})
 		})).toEqual([]);
+	});
+
+	it('builds and validates the grounded selection rewrite contract', () => {
+		const messages = buildSelectionRewriteMessages(JSON.stringify({
+			schemaVersion: 1,
+			actionType: 'polish',
+			context: [{ priority: 'P1', kind: 'selection', title: '当前选区', content: '雨落在站台。' }]
+		}));
+		expect(messages[0]?.content).toBe(SELECTION_REWRITE_SYSTEM_PROMPT);
+		expect(parseSelectionRewriteResponse(JSON.stringify({
+			suggestion: '雨丝落上寂静的站台。',
+			rationale: '收紧意象。',
+			potentialImpact: '不改变情节。'
+		})).suggestion).toContain('站台');
+		expect(() => buildSelectionRewriteMessages(JSON.stringify({
+			schemaVersion: 1,
+			context: [],
+			projectRoot: 'D:\\private'
+		}))).toThrow('invalidSelectionRewriteContext');
 	});
 });

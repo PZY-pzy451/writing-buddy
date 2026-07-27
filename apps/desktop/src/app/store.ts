@@ -124,6 +124,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
 	readonly toggleFocus: () => void;
 	readonly toggleAssistant: () => void;
+	readonly openAssistant: () => void;
 	readonly toggleDock: () => void;
 	readonly setSearch: (search: string) => void;
 	readonly setError: (error?: string) => void;
@@ -688,6 +689,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setAccent(accent) { set({ accent }); },
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
 	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
+	openAssistant() { set({ assistantOpen: true }); },
 	toggleDock() { set(state => ({ dockOpen: !state.dockOpen })); },
 	setSearch(search) { set({ search }); },
 	setError(error) { set({ error }); },

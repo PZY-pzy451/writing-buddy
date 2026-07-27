@@ -394,6 +394,7 @@ export function ChapterEditor(): React.JSX.Element {
 							selection={selection}
 							readOnly={readOnly}
 							onLinked={mention => setMentions(current => [...current, mention])}
+							onRewrite={() => useAppStore.getState().openAssistant()}
 						/>
 					)}
 			</div>

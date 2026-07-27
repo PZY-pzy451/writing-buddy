@@ -4,6 +4,7 @@ import {
 	Gem,
 	Link2,
 	MapPin,
+	Sparkles,
 	UserPlus
 } from 'lucide-react';
 import { useState } from 'react';
@@ -24,6 +25,7 @@ interface SelectionActionMenuProps {
 	readonly selection: { readonly start: number; readonly end: number; readonly text: string };
 	readonly readOnly: boolean;
 	readonly onLinked: (mention: MentionLink) => void;
+	readonly onRewrite: () => void;
 }
 
 const creationActions = [
@@ -42,7 +44,8 @@ export function SelectionActionMenu({
 	manuscript,
 	selection,
 	readOnly,
-	onLinked
+	onLinked,
+	onRewrite
 }: SelectionActionMenuProps): React.JSX.Element {
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState<string>();
@@ -101,7 +104,9 @@ export function SelectionActionMenu({
 			};
 			const resource = type === 'item'
 				? { ...base, unique: true, restrictions: [] }
-				: base;
+				: type === 'information'
+					? { ...base, truthStatement: selectedTitle, authorSecret: false }
+					: base;
 			const saved = await repository.save(resource, 0);
 			await link(saved.id);
 			setError(undefined);
@@ -117,6 +122,9 @@ export function SelectionActionMenu({
 			<span className="selection-action-preview" title={selection.text}>{selection.text}</span>
 			<button type="button" disabled={readOnly || busy} onClick={() => void linkExisting()}>
 				<Link2 size={15} />链接已有资源
+			</button>
+			<button type="button" disabled={readOnly || busy || !selectedTitle} onClick={onRewrite}>
+				<Sparkles size={15} />AI 润色
 			</button>
 			{creationActions.map(action => {
 				const Icon = action.icon;
