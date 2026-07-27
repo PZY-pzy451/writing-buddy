@@ -11,6 +11,7 @@ export default defineConfig({
 			'@writing-buddy/resource': `${root}packages/resource/src/index.ts`,
 			'@writing-buddy/review': `${root}packages/review/src/index.ts`,
 			'@writing-buddy/ai': `${root}packages/ai/src/index.ts`,
+			'@writing-buddy/ai-actions': `${root}packages/ai-actions/src/index.ts`,
 			'@writing-buddy/version': `${root}packages/version/src/index.ts`,
 			'@writing-buddy/backup': `${root}packages/backup/src/index.ts`,
 			'@writing-buddy/schema': `${root}packages/schema/src/index.ts`,

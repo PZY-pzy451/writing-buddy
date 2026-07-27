@@ -74,6 +74,9 @@ importers:
       '@writing-buddy/ai':
         specifier: workspace:*
         version: link:../../packages/ai
+      '@writing-buddy/ai-actions':
+        specifier: workspace:*
+        version: link:../../packages/ai-actions
       '@writing-buddy/backup':
         specifier: workspace:*
         version: link:../../packages/backup
@@ -138,6 +141,18 @@ importers:
       '@writing-buddy/review':
         specifier: workspace:*
         version: link:../review
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+
+  packages/ai-actions:
+    dependencies:
+      '@writing-buddy/ai':
+        specifier: workspace:*
+        version: link:../ai
+      '@writing-buddy/story-kernel':
+        specifier: workspace:*
+        version: link:../story-kernel
       zod:
         specifier: 'catalog:'
         version: 4.4.3
