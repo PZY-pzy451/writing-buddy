@@ -67,6 +67,18 @@ fn safe_archive_path(value: &str) -> bool {
             .any(|segment| segment.is_empty() || segment == "." || segment == "..")
 }
 
+fn excluded_backup_path(relative: &str) -> bool {
+    let lower = relative.to_ascii_lowercase();
+    lower.starts_with(".git/")
+        || lower.starts_with("node_modules/")
+        || lower.starts_with(".writing-buddy/history/")
+        || lower.starts_with(".writing-buddy/runtime/")
+        || lower.starts_with(".writing-buddy/cache/")
+        || lower.starts_with(".writing-buddy/ai/tmp/")
+        || lower.starts_with(".writing-buddy/ai/cache/")
+        || lower.ends_with(".wbbackup")
+}
+
 fn collect(root: &Path) -> Result<BTreeMap<String, Vec<u8>>, String> {
     let mut files = BTreeMap::new();
     for entry in WalkDir::new(root).follow_links(false).into_iter() {
@@ -85,13 +97,7 @@ fn collect(root: &Path) -> Result<BTreeMap<String, Vec<u8>>, String> {
             .map(|component| component.as_os_str().to_string_lossy())
             .collect::<Vec<_>>()
             .join("/");
-        let lower = relative.to_ascii_lowercase();
-        if lower.starts_with(".git/")
-            || lower.starts_with("node_modules/")
-            || lower.starts_with(".writing-buddy/history/")
-            || lower == ".writing-buddy/runtime/project.lock"
-            || lower.ends_with(".wbbackup")
-        {
+        if excluded_backup_path(&relative) {
             continue;
         }
         if !safe_archive_path(&relative) {
@@ -329,6 +335,16 @@ pub fn restore(path: &str, destination: &str, overwrite: bool) -> Result<usize, 
     let (_, entries) = decode(&bytes)?;
     let destination =
         fs::canonicalize(destination).map_err(|_| "restoreDestinationMissing".to_owned())?;
+    for relative in [
+        ".writing-buddy/cache",
+        ".writing-buddy/ai/tmp",
+        ".writing-buddy/ai/cache",
+    ] {
+        let derived = destination.join(relative);
+        if derived.exists() {
+            fs::remove_dir_all(derived).map_err(|_| "restoreCacheCleanupFailed".to_owned())?;
+        }
+    }
     for (relative, payload) in &entries {
         let relative_path = filesystem::safe_relative_path(relative)?;
         let target = destination.join(relative_path);
@@ -346,11 +362,16 @@ pub fn restore(path: &str, destination: &str, overwrite: bool) -> Result<usize, 
 #[cfg(test)]
 mod tests {
     use std::{
+        collections::{BTreeMap, HashSet},
         fs,
+        path::Path,
         time::{SystemTime, UNIX_EPOCH},
     };
 
-    use super::{create, inspect, restore};
+    use serde_json::Value;
+    use walkdir::WalkDir;
+
+    use super::{collect, create, decode, inspect, restore};
 
     fn temp_directory(label: &str) -> std::path::PathBuf {
         let nonce = SystemTime::now()
@@ -363,20 +384,179 @@ mod tests {
         ))
     }
 
+    fn copy_directory(source: &Path, destination: &Path) {
+        fs::create_dir_all(destination).expect("create copy destination");
+        for entry in WalkDir::new(source).follow_links(false) {
+            let entry = entry.expect("scan source copy");
+            let relative = entry
+                .path()
+                .strip_prefix(source)
+                .expect("relative copy path");
+            let target = destination.join(relative);
+            if entry.file_type().is_dir() {
+                fs::create_dir_all(&target).expect("create copied directory");
+            } else if entry.file_type().is_file() {
+                fs::copy(entry.path(), target).expect("copy project file");
+            }
+        }
+    }
+
+    fn collect_ids(value: &Value, ids: &mut HashSet<String>) {
+        match value {
+            Value::Array(values) => {
+                for value in values {
+                    collect_ids(value, ids);
+                }
+            }
+            Value::Object(object) => {
+                if let Some(id) = object.get("id").and_then(Value::as_str) {
+                    ids.insert(id.to_owned());
+                }
+                for value in object.values() {
+                    collect_ids(value, ids);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    fn collect_id_references(value: &Value, key: Option<&str>, references: &mut Vec<String>) {
+        match value {
+            Value::Array(values) => {
+                for value in values {
+                    collect_id_references(value, key, references);
+                }
+            }
+            Value::Object(object) => {
+                for (key, value) in object {
+                    collect_id_references(value, Some(key), references);
+                }
+            }
+            Value::String(value)
+                if key.is_some_and(|key| key.ends_with("Id") || key.ends_with("Ids"))
+                    && value.contains(':')
+                    && !value.starts_with("evidence:") =>
+            {
+                references.push(value.clone());
+            }
+            _ => {}
+        }
+    }
+
+    fn validate_story_backlinks(root: &Path) -> usize {
+        let project: Value = serde_json::from_slice(
+            &fs::read(root.join(".writing-buddy").join("project.json"))
+                .expect("read restored project"),
+        )
+        .expect("parse restored project");
+        let mut ids = HashSet::new();
+        for chapter in project
+            .get("volumes")
+            .and_then(Value::as_array)
+            .into_iter()
+            .flatten()
+            .flat_map(|volume| {
+                volume
+                    .get("chapters")
+                    .and_then(Value::as_array)
+                    .into_iter()
+                    .flatten()
+            })
+        {
+            if let Some(id) = chapter.get("id").and_then(Value::as_str) {
+                ids.insert(id.to_owned());
+                ids.insert(format!("chapter:{id}"));
+            }
+        }
+        let mut values = Vec::new();
+        for entry in WalkDir::new(root.join("story")).follow_links(false) {
+            let entry = entry.expect("scan restored story");
+            if !entry.file_type().is_file()
+                || entry.path().extension().and_then(|value| value.to_str()) != Some("json")
+            {
+                continue;
+            }
+            let value: Value =
+                serde_json::from_slice(&fs::read(entry.path()).expect("read story json"))
+                    .expect("parse story json");
+            collect_ids(&value, &mut ids);
+            values.push(value);
+        }
+        let mut references = Vec::new();
+        for value in &values {
+            collect_id_references(value, None, &mut references);
+        }
+        let unresolved = references
+            .iter()
+            .filter(|reference| !ids.contains(reference.as_str()))
+            .collect::<Vec<_>>();
+        assert!(
+            unresolved.is_empty(),
+            "unresolved backlinks: {unresolved:?}"
+        );
+        references.len()
+    }
+
     #[test]
     fn creates_inspects_and_restores_legacy_backup_frames() {
         let root = temp_directory("archive-project");
         let destination = temp_directory("archive-restore");
         let backup = temp_directory("archive-output").with_extension("wbbackup");
         fs::create_dir_all(root.join(".writing-buddy")).expect("metadata directory");
+        fs::create_dir_all(root.join(".writing-buddy").join("cache")).expect("cache directory");
+        fs::create_dir_all(root.join(".writing-buddy").join("ai").join("pending-facts"))
+            .expect("pending fact directory");
+        fs::create_dir_all(root.join(".writing-buddy").join("ai").join("tmp"))
+            .expect("ai temp directory");
         fs::create_dir_all(root.join("chapters")).expect("chapters directory");
+        fs::create_dir_all(root.join("story").join("characters")).expect("story directory");
         fs::create_dir_all(&destination).expect("restore directory");
+        fs::create_dir_all(destination.join(".writing-buddy").join("cache"))
+            .expect("restored cache directory");
+        fs::write(
+            destination
+                .join(".writing-buddy")
+                .join("cache")
+                .join("stale.json"),
+            "stale",
+        )
+        .expect("stale restored cache");
         fs::write(
             root.join(".writing-buddy").join("project.json"),
             r#"{"schemaVersion":1,"projectId":"project-00000001","title":"Fixture","volumes":[]}"#,
         )
         .expect("manifest");
         fs::write(root.join("chapters").join("one.md"), "夜雨。\r\n").expect("chapter");
+        fs::write(
+            root.join("story")
+                .join("characters")
+                .join("character%3Alin.json"),
+            r#"{"schemaVersion":1,"id":"character:lin","type":"character"}"#,
+        )
+        .expect("story resource");
+        fs::write(
+            root.join(".writing-buddy")
+                .join("ai")
+                .join("pending-facts")
+                .join("index.json"),
+            r#"{"schemaVersion":1,"facts":[]}"#,
+        )
+        .expect("pending facts");
+        fs::write(
+            root.join(".writing-buddy")
+                .join("cache")
+                .join("story-index-v1.json"),
+            "derived",
+        )
+        .expect("derived index");
+        fs::write(
+            root.join(".writing-buddy")
+                .join("ai")
+                .join("tmp")
+                .join("job.json"),
+            "temporary",
+        )
+        .expect("ai temporary file");
 
         let result = create(
             root.to_str().expect("root path"),
@@ -385,7 +565,12 @@ mod tests {
             None,
         )
         .expect("create backup");
-        assert_eq!(result.entry_count, 2);
+        assert_eq!(result.entry_count, 4);
+        let (_, entries) = decode(&fs::read(&backup).expect("read backup")).expect("decode backup");
+        assert!(entries.contains_key("story/characters/character%3Alin.json"));
+        assert!(entries.contains_key(".writing-buddy/ai/pending-facts/index.json"));
+        assert!(!entries.contains_key(".writing-buddy/cache/story-index-v1.json"));
+        assert!(!entries.contains_key(".writing-buddy/ai/tmp/job.json"));
         let inspection = inspect(backup.to_str().expect("backup path"));
         assert!(inspection.valid);
         assert_eq!(inspection.project_id.as_deref(), Some("project-00000001"));
@@ -396,15 +581,119 @@ mod tests {
                 false,
             )
             .expect("restore"),
-            2
+            4
         );
         assert_eq!(
             fs::read_to_string(destination.join("chapters").join("one.md"))
                 .expect("restored chapter"),
             "夜雨。\r\n"
         );
+        assert!(!destination.join(".writing-buddy").join("cache").exists());
 
         let _ = fs::remove_dir_all(root);
+        let _ = fs::remove_dir_all(destination);
+        let _ = fs::remove_file(backup);
+    }
+
+    #[test]
+    #[ignore = "run with STORYFORGE_REAL_PROJECT through scripts/acceptance/verify-storyforge-recovery.ps1"]
+    fn sanitized_real_project_backup_restore_reopens_and_keeps_backlinks() {
+        let source = std::env::var("STORYFORGE_REAL_PROJECT")
+            .expect("STORYFORGE_REAL_PROJECT must name the sanitized project copy");
+        let source = fs::canonicalize(source).expect("canonical sanitized project");
+        let staging = temp_directory("storyforge-recovery-source");
+        let destination = temp_directory("storyforge-recovery-restored");
+        let backup = temp_directory("storyforge-recovery").with_extension("wbbackup");
+        copy_directory(&source, &staging);
+        fs::create_dir_all(staging.join(".writing-buddy").join("cache"))
+            .expect("create derived cache");
+        fs::create_dir_all(staging.join(".writing-buddy").join("ai").join("tmp"))
+            .expect("create ai temp");
+        fs::write(
+            staging
+                .join(".writing-buddy")
+                .join("cache")
+                .join("story-index-v1.json"),
+            "derived",
+        )
+        .expect("write derived cache");
+        fs::write(
+            staging
+                .join(".writing-buddy")
+                .join("ai")
+                .join("tmp")
+                .join("job.json"),
+            "temporary",
+        )
+        .expect("write ai temp");
+        fs::create_dir_all(&destination).expect("create recovery destination");
+
+        let expected = collect(&staging).expect("collect backup policy");
+        let result = create(
+            staging.to_str().expect("staging path"),
+            Some(backup.to_str().expect("backup path")),
+            "gate-f-recovery",
+            Some("StoryForge Gate F"),
+        )
+        .expect("create real-project backup");
+        let (_, encoded_entries) =
+            decode(&fs::read(&backup).expect("read backup")).expect("decode backup");
+        assert_eq!(encoded_entries, expected);
+        assert!(
+            encoded_entries
+                .keys()
+                .any(|path| path.starts_with("story/"))
+        );
+        assert!(!encoded_entries.contains_key(".writing-buddy/cache/story-index-v1.json"));
+        assert!(!encoded_entries.contains_key(".writing-buddy/ai/tmp/job.json"));
+
+        let restored_count = restore(
+            backup.to_str().expect("backup path"),
+            destination.to_str().expect("destination path"),
+            false,
+        )
+        .expect("restore real-project backup");
+        assert_eq!(restored_count, expected.len());
+        assert_eq!(
+            collect(&destination).expect("collect restored project"),
+            expected
+        );
+
+        let first = crate::migration::open_project(destination.to_str().expect("destination path"))
+            .expect("first restored project open");
+        let second =
+            crate::migration::open_project(destination.to_str().expect("destination path"))
+                .expect("second restored project open");
+        assert_eq!(first.project.project_id, second.project.project_id);
+        assert!(!first.read_only);
+        assert!(!second.read_only);
+        let backlinks_checked = validate_story_backlinks(&destination);
+        let chapter_hashes = expected
+            .iter()
+            .filter(|(path, _)| path.starts_with("chapters/") && path.ends_with(".md"))
+            .map(|(path, bytes)| (path, crate::filesystem::sha256(bytes)))
+            .collect::<BTreeMap<_, _>>();
+
+        println!(
+            "STORYFORGE_RECOVERY_JSON:{}",
+            serde_json::json!({
+                "schemaVersion": 1,
+                "projectId": first.project.project_id,
+                "backupEntries": result.entry_count,
+                "restoredEntries": restored_count,
+                "storyFiles": expected.keys().filter(|path| path.starts_with("story/")).count(),
+                "chapterHashes": chapter_hashes,
+                "backlinksChecked": backlinks_checked,
+                "unresolvedBacklinks": 0,
+                "secondLaunch": true,
+                "excluded": [
+                    ".writing-buddy/cache/story-index-v1.json",
+                    ".writing-buddy/ai/tmp/job.json"
+                ]
+            })
+        );
+
+        let _ = fs::remove_dir_all(staging);
         let _ = fs::remove_dir_all(destination);
         let _ = fs::remove_file(backup);
     }

@@ -1,0 +1,34 @@
+{
+    "schemaVersion":  1,
+    "generatedAt":  "2026-07-27T09:04:28.7672081Z",
+    "source":  {
+                   "projectRoot":  "sanitized-real-project-copy",
+                   "copyrightedProse":  false
+               },
+    "result":  {
+                   "backlinksChecked":  89,
+                   "backupEntries":  47,
+                   "chapterHashes":  {
+                                         "chapters/chapter-001.md":  "e0ee6944a2ab7328d4aa3f50307742ad3cf8c32f8805ea152c2cc58a8d970a0c",
+                                         "chapters/chapter-002.md":  "ab67ae6383899f1bb271b6743af0c003b68409cd51f151d09a286f0edc648010",
+                                         "chapters/chapter-003.md":  "c4863aa62163c678cce21523a5a22b7969064911eee750e9feb06bc794483b91",
+                                         "chapters/chapter-004.md":  "746cce7779d5051f018fb24390921e309a2c0659d79f7a18c4205e181d0e4e26",
+                                         "chapters/chapter-005.md":  "3ac3caeb4739aad3bde6fdd65969fe7131aff5068e2f1dda480e955b6f470e93",
+                                         "chapters/chapter-006.md":  "8f41c519e813c722c4aa73cfcf557cb63a27ad8b5c55e80e6f511a81ca5f9582"
+                                     },
+                   "excluded":  [
+                                    ".writing-buddy/cache/story-index-v1.json",
+                                    ".writing-buddy/ai/tmp/job.json"
+                                ],
+                   "projectId":  "project-0000000a",
+                   "restoredEntries":  47,
+                   "schemaVersion":  1,
+                   "secondLaunch":  true,
+                   "storyFiles":  30,
+                   "unresolvedBacklinks":  0
+               },
+    "toolchain":  {
+                      "rustc":  "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+                      "cargo":  "cargo 1.97.1 (c980f4866 2026-06-30)"
+                  }
+}

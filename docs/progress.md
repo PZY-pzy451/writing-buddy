@@ -5,14 +5,13 @@ Updated: 2026-07-27
 ## Active milestone
 
 StoryForge Gate F is active on
-`codex/phase-1.0a-deepseek-ai-foundation`. Task 21 is complete: the derived
-Story Index updates incrementally, persists outside author content, rebuilds
-from canonical project data, and supports bounded queries. Character and
-timeline lists now virtualize large collections. The deterministic 266,000-row
-scale fixture is below all five performance thresholds. Task 22 is complete:
-all three responsive tiers have zero page overflow, clipped interactive
-controls or visible StoryForge controls below 44px. Task 23 migration, backup
-and recovery acceptance is next.
+`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 21-23 are complete. The
+derived Story Index and virtualized views meet all five performance gates; all
+three responsive tiers have zero page overflow, clipped interactive controls
+or visible StoryForge controls below 44px; staged v0-to-v1 migration, exact
+rollback, backup policy, cache invalidation and sanitized real-project
+second-launch recovery are verified. Task 24 final vertical-slice acceptance
+is next.
 
 ## Completed
 
@@ -82,7 +81,7 @@ and recovery acceptance is next.
 
 ## Open
 
-- Complete Gate F Tasks 22–24 and stop with final acceptance evidence.
+- Complete Gate F Task 24 and stop with final acceptance evidence.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -91,5 +90,5 @@ and recovery acceptance is next.
 
 ## Next
 
-Implement staged v0-to-v1 Story Kernel migration and prove snapshot/backup
-inclusion, derived-cache exclusion, rollback and second-launch recovery.
+Complete the professional-editor vertical slice, documentation, production
+build, real desktop restart check and final Gate F acceptance report.

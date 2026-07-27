@@ -26,6 +26,7 @@ export * from './repository/StoryRepository';
 export * from './schema/resourceSchemas';
 export * from './schema/schemaRegistry';
 export * from './schema/storyManifestSchema';
+export * from './schema/migrations/v0-to-v1';
 export * from './transaction/StoryTransaction';
 export * from './validation/locationRules';
 export * from './validation/itemRules';

@@ -299,7 +299,13 @@ pub fn write_resource(
 
 fn snapshot_kind(relative: &str) -> Option<&'static str> {
     let lower = relative.to_ascii_lowercase();
-    if lower == ".writing-buddy/project.json" {
+    if lower.starts_with(".writing-buddy/cache/")
+        || lower.starts_with(".writing-buddy/runtime/")
+        || lower.starts_with(".writing-buddy/ai/tmp/")
+        || lower.starts_with(".writing-buddy/ai/cache/")
+    {
+        None
+    } else if lower == ".writing-buddy/project.json" {
         Some("projectManifest")
     } else if lower.starts_with("chapters/") && lower.ends_with(".md") {
         Some("chapter")
@@ -615,6 +621,7 @@ pub fn restore_version(
         )?;
         filesystem::write_bytes_atomic(&target, bytes)?;
     }
+    crate::story::commands::invalidate_cached_index(&state, &project_root)?;
     Ok(prepared.len())
 }
 
@@ -741,12 +748,14 @@ pub fn restore_backup(
         return Err("backupPathRejected".to_owned());
     }
     create_snapshot(
-        state,
+        state.clone(),
         project_root.clone(),
         "beforeRestore".to_owned(),
         Some("自动：恢复前".to_owned()),
     )?;
-    archive::restore(&path, &project_root, overwrite)
+    let restored = archive::restore(&path, &project_root, overwrite)?;
+    crate::story::commands::invalidate_cached_index(&state, &project_root)?;
+    Ok(restored)
 }
 
 #[cfg(test)]
@@ -788,6 +797,19 @@ mod tests {
         assert_eq!(
             snapshot_kind("story/characters/character%3Alin-yue.json"),
             Some("storyResource")
+        );
+        assert_eq!(
+            snapshot_kind(".writing-buddy/ai/pending-facts/index.json"),
+            Some("aiState")
+        );
+        assert_eq!(
+            snapshot_kind(".writing-buddy/cache/story-index-v1.json"),
+            None
+        );
+        assert_eq!(snapshot_kind(".writing-buddy/ai/tmp/job-1.json"), None);
+        assert_eq!(
+            snapshot_kind(".writing-buddy/ai/cache/context-pack.json"),
+            None
         );
     }
 }
