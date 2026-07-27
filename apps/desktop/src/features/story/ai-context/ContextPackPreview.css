@@ -1,0 +1,210 @@
+.context-pack-preview {
+	display: grid;
+	gap: 12px;
+}
+
+.context-pack-preview > header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.context-pack-preview h3,
+.context-pack-preview p {
+	margin: 0;
+}
+
+.context-pack-preview h3 {
+	margin-top: 3px;
+	font: 20px Georgia, "Microsoft YaHei UI", serif;
+}
+
+.context-pack-preview header p {
+	margin-top: 4px;
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.context-pack-safe {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	flex: 0 0 auto;
+	padding: 5px 8px;
+	color: var(--success);
+	font-size: 10px;
+	background: color-mix(in srgb, var(--success) 10%, transparent);
+	border-radius: 5px;
+}
+
+.context-budget {
+	display: grid;
+	gap: 7px;
+	padding: 10px 12px;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.context-budget > div:first-child {
+	display: flex;
+	justify-content: space-between;
+	font-size: 11px;
+}
+
+.context-budget strong {
+	color: var(--text-muted);
+	font-weight: 500;
+}
+
+.context-budget-track {
+	height: 5px;
+	overflow: hidden;
+	background: var(--surface-selected);
+	border-radius: 999px;
+}
+
+.context-budget-track span {
+	display: block;
+	height: 100%;
+	background: var(--accent);
+	border-radius: inherit;
+}
+
+.context-priority-groups {
+	display: grid;
+	gap: 10px;
+}
+
+.context-priority-groups > section {
+	overflow: hidden;
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.context-priority-groups > section > header {
+	display: grid;
+	grid-template-columns: 30px minmax(0, 1fr) auto;
+	align-items: center;
+	min-height: 34px;
+	padding: 0 10px;
+	background: var(--surface-canvas);
+}
+
+.context-priority-groups > section > header span {
+	color: var(--accent-strong);
+	font: 600 10px ui-monospace, monospace;
+}
+
+.context-priority-groups > section > header strong {
+	font-size: 11px;
+}
+
+.context-priority-groups > section > header em {
+	color: var(--text-muted);
+	font-size: 10px;
+	font-style: normal;
+}
+
+.context-priority-groups article {
+	padding: 8px 10px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.context-priority-groups article > label {
+	display: grid;
+	grid-template-columns: 20px minmax(0, 1fr) auto auto;
+	align-items: center;
+	gap: 7px;
+	min-height: 36px;
+	cursor: pointer;
+}
+
+.context-priority-groups input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.context-priority-groups label > span {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	color: white;
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: 4px;
+}
+
+.context-priority-groups .is-included label > span {
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+.context-priority-groups label > div {
+	display: grid;
+	gap: 2px;
+}
+
+.context-priority-groups label small {
+	color: var(--text-muted);
+	font-size: 9px;
+}
+
+.context-priority-groups label em {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	padding: 3px 5px;
+	color: var(--text-muted);
+	font-size: 9px;
+	font-style: normal;
+	background: var(--surface-canvas);
+	border-radius: 4px;
+}
+
+.context-priority-groups label em.is-secret {
+	color: var(--warning);
+}
+
+.context-priority-groups article > button {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	min-height: 36px;
+	margin-left: 27px;
+	padding: 0;
+	color: var(--text-muted);
+	font-size: 10px;
+	background: transparent;
+	border: 0;
+}
+
+.context-priority-groups article > button svg:last-child {
+	margin-left: auto;
+}
+
+.context-priority-groups article pre {
+	max-height: 160px;
+	margin: 4px 0 0 27px;
+	padding: 9px;
+	overflow: auto;
+	color: var(--text-secondary);
+	font: 11px/1.55 "Microsoft YaHei UI", sans-serif;
+	white-space: pre-wrap;
+	background: var(--surface-canvas);
+	border-radius: 6px;
+}
+
+.context-priority-groups article > p {
+	margin: 4px 0 0 27px;
+	color: var(--warning);
+	font-size: 9px;
+}
+
+.context-priority-groups .is-excluded {
+	opacity: .7;
+}

@@ -18,6 +18,8 @@ export * from './model/StoryInformation';
 export * from './model/TimelineEvent';
 export * from './model/WorldRule';
 export * from './query/TimelineQuery';
+export * from './query/ContextPackBuilder';
+export * from './query/TokenBudgetPolicy';
 export * from './repository/StoryPaths';
 export * from './repository/StoryRepository';
 export * from './schema/resourceSchemas';
