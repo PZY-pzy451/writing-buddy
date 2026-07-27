@@ -1,0 +1,155 @@
+.ai-context-preview {
+	display: grid;
+	gap: 12px;
+	padding: 14px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
+}
+
+.ai-context-preview > header,
+.ai-context-preview > header > div,
+.ai-context-meter,
+.ai-context-records {
+	display: grid;
+	gap: 8px;
+}
+
+.ai-context-preview > header {
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: start;
+}
+
+.ai-context-preview > header span {
+	color: var(--accent-strong);
+	font-size: 12px;
+	font-weight: 750;
+	letter-spacing: .06em;
+}
+
+.ai-context-preview > header strong {
+	font-size: 15px;
+}
+
+.ai-context-preview > header em {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--success);
+	font-size: 11px;
+	font-style: normal;
+}
+
+.ai-context-meter > div:first-child {
+	display: flex;
+	justify-content: space-between;
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.ai-context-meter > div:last-child {
+	height: 5px;
+	overflow: hidden;
+	background: var(--surface-subtle);
+	border-radius: 999px;
+}
+
+.ai-context-meter > div:last-child > span {
+	display: block;
+	height: 100%;
+	background: var(--accent);
+	border-radius: inherit;
+}
+
+.ai-context-records label {
+	display: grid;
+	grid-template-columns: 22px minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 9px;
+	min-height: 46px;
+	padding: 7px 9px;
+	cursor: pointer;
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.ai-context-records label.is-excluded {
+	opacity: .68;
+}
+
+.ai-context-records input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.ai-context-records label:focus-within {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.ai-context-check {
+	display: grid;
+	place-items: center;
+	width: 20px;
+	height: 20px;
+	color: white;
+	background: var(--accent);
+	border: 1px solid var(--accent);
+	border-radius: 5px;
+}
+
+.is-excluded .ai-context-check {
+	background: transparent;
+	border-color: var(--border-strong);
+}
+
+.ai-context-records label > div {
+	display: grid;
+	min-width: 0;
+	gap: 2px;
+}
+
+.ai-context-records label strong {
+	overflow: hidden;
+	font-size: 12px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ai-context-records label small {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.ai-context-records label > em {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--text-muted);
+	font-size: 10px;
+	font-style: normal;
+}
+
+.ai-context-records label > em.is-secret {
+	color: var(--warning);
+}
+
+.ai-context-footnote,
+.ai-context-empty p {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.55;
+}
+
+.ai-context-empty {
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: start;
+	color: var(--text-muted);
+}
+
+.ai-context-empty strong {
+	color: var(--text-primary);
+}

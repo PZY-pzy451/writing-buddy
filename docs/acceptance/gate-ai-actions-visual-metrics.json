@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-07-27T11:32:19.270Z",
+  "captures": [
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".ai-generation-drawer",
+      "prepare": "open-ai-drawer",
+      "width": 1536,
+      "height": 960,
+      "name": "01-unified-ai-drawer-1536x992.png",
+      "readyMs": 1057,
+      "selectorReadyMs": 628,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 380,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 2,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 619
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".ai-generation-drawer",
+      "prepare": "open-ai-drawer",
+      "width": 1280,
+      "height": 768,
+      "name": "02-unified-ai-drawer-1280x800.png",
+      "readyMs": 677,
+      "selectorReadyMs": 252,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 380,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 602px 320px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 2,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 619
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".ai-generation-drawer",
+      "prepare": "open-ai-drawer",
+      "width": 1024,
+      "height": 688,
+      "name": "03-context-preview-1024x720.png",
+      "readyMs": 635,
+      "selectorReadyMs": 243,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 520,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 7,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 619
+    }
+  ]
+}

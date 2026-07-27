@@ -181,7 +181,41 @@ const gateFCaptures = [
 	{ mode: 'works', selector: '.story-dashboard', width: 1280, height: 768, name: '07-workspace-overview-1280x800.png' },
 	{ mode: 'references', view: 'timeline', selector: '.timeline-page', width: 1024, height: 688, name: '08-timeline-1024x720.png' }
 ];
-const captures = gate.startsWith('gate-e')
+const aiQuickActionsCaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1536,
+		height: 960,
+		name: '01-unified-ai-drawer-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1280,
+		height: 768,
+		name: '02-unified-ai-drawer-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1024,
+		height: 688,
+		name: '03-context-preview-1024x720.png'
+	}
+];
+const captures = gate.startsWith('gate-ai-actions')
+	? aiQuickActionsCaptures
+	: gate.startsWith('gate-e')
 	? gateECaptures
 	: gate.startsWith('gate-f')
 		? gateFCaptures
@@ -217,6 +251,30 @@ try {
 				returnByValue: true
 			});
 			if (!selectionResult.result.value) throw new Error('No manuscript content was available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'open-ai-drawer') {
+			const openResult = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-quick-open');
+					if (!(button instanceof HTMLButtonElement)) {
+						return {
+							opened: false,
+							topBar: document.querySelector('.top-bar')?.innerText,
+							buttons: [...document.querySelectorAll('.top-bar button')]
+								.map(item => ({ className: item.className, text: item.textContent?.trim() }))
+						};
+					}
+					button.click();
+					return { opened: true };
+				})()`,
+				returnByValue: true
+			});
+			if (!openResult.result.value?.opened) {
+				throw new Error(
+					`AI quick action entry was not available: ${JSON.stringify(openResult.result.value)}`
+				);
+			}
 			await waitForSelector(client, capture.selector);
 		}
 		await new Promise(resolveWait => setTimeout(resolveWait, 350));

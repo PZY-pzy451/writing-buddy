@@ -8,6 +8,10 @@ import {
 	Sparkles
 } from 'lucide-react';
 import { useAppStore } from '../app/store';
+import {
+	aiGenerationStore,
+	useAiGenerationStore
+} from '../features/ai/drawer/aiGenerationStore';
 
 export function TopBar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -20,6 +24,62 @@ export function TopBar(): React.JSX.Element {
 	const assistantOpen = useAppStore(state => state.assistantOpen);
 	const activeMode = useAppStore(state => state.activeMode);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
+	const activeResource = useAppStore(state => state.activeResource);
+	const resourceContent = useAppStore(state => state.resourceContent);
+	const selection = useAppStore(state => state.selection);
+	const drawerOpen = useAiGenerationStore(state => state.open);
+
+	const openAiDrawer = () => {
+		const activeChapter = snapshot?.project.volumes
+			.flatMap(volume => volume.chapters)
+			.find(chapter => chapter.id === activeResource?.id);
+		const content = session?.content ?? resourceContent;
+		aiGenerationStore.getState().openAiAction(
+			'review.consistency',
+			{ instruction: '' },
+			{
+				currentResourceType: activeResource?.type,
+				baseRevision: session?.state.version ?? 0,
+				context: {
+					...(snapshot ? {
+						project: {
+							id: snapshot.project.projectId,
+							title: snapshot.project.title,
+							summary: `${snapshot.project.volumes.length} 卷作品；仅发送当前明确勾选的上下文。`
+						}
+					} : {}),
+					...(activeResource && content ? {
+						currentResource: {
+							id: activeResource.id,
+							title: activeResource.title,
+							summary: content
+						}
+					} : {}),
+					...(selection?.text ? {
+						selection: {
+							id: `${activeResource?.id ?? 'selection'}:${selection.start}-${selection.end}`,
+							title: '当前选区',
+							summary: selection.text,
+							start: selection.start,
+							end: selection.end
+						}
+					} : {}),
+					...(activeChapter ? {
+						scene: {
+							id: `${activeChapter.id}:scene`,
+							title: '当前场景信息',
+							summary: [
+								activeChapter.scene.location ? `地点：${activeChapter.scene.location}` : '',
+								activeChapter.scene.time ? `时间：${activeChapter.scene.time}` : '',
+								activeChapter.scene.pov ? `视角：${activeChapter.scene.pov}` : '',
+								activeChapter.scene.goal ? `目标：${activeChapter.scene.goal}` : ''
+							].filter(Boolean).join('\n') || '当前章节尚未设置场景信息。'
+						}
+					} : {})
+				}
+			}
+		);
+	};
 
 	return (
 		<header className="top-bar" data-tauri-drag-region>
@@ -50,12 +110,20 @@ export function TopBar(): React.JSX.Element {
 					<Focus size={17} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
+				<button
+					className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
+					type="button"
+					onClick={openAiDrawer}
+				>
+					<Sparkles size={17} />
+					<span>AI 快速生成</span>
+				</button>
 				{['works', 'references'].includes(activeMode) && (
 					<button className="icon-button" type="button" onClick={toggleAssistant} aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}>
 						{assistantOpen ? <PanelRightClose size={19} /> : <PanelRightOpen size={19} />}
 					</button>
 				)}
-				<span className="ai-state"><Sparkles size={15} /> AI 本地预览</span>
+				<span className="ai-state">本地优先</span>
 			</div>
 		</header>
 	);
