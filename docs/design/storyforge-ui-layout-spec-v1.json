@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 1,
+  "coordinateSystem": {
+    "unit": "css_px",
+    "baselineWindow": {
+      "width": 1536,
+      "height": 992,
+      "windowsTitleBarHeight": 32
+    },
+    "webViewport": {
+      "x": 0,
+      "y": 32,
+      "width": 1536,
+      "height": 960
+    },
+    "notes": [
+      "坐标包含 Windows 原生标题栏；React 根节点从 y=32 开始。",
+      "100%/125%/150% DPI 下均使用 CSS px；不得根据物理像素写死布局。",
+      "固定尺寸仅用于主框架；中央区使用 minmax 与 clamp。"
+    ]
+  },
+  "globalShell": {
+    "topBar": {
+      "x": 0,
+      "y": 32,
+      "w": 1536,
+      "h": 68
+    },
+    "globalRail": {
+      "x": 0,
+      "y": 100,
+      "w": 78,
+      "h": 852
+    },
+    "projectPane": {
+      "x": 78,
+      "y": 100,
+      "w": 304,
+      "h": 852,
+      "minW": 240,
+      "maxW": 380
+    },
+    "workspace": {
+      "x": 382,
+      "y": 100,
+      "w": 815,
+      "h": 852,
+      "minW": 620
+    },
+    "assistant": {
+      "x": 1197,
+      "y": 100,
+      "w": 339,
+      "h": 852,
+      "minW": 320,
+      "maxW": 440
+    },
+    "statusBar": {
+      "x": 0,
+      "y": 952,
+      "w": 1536,
+      "h": 40
+    },
+    "splitters": [
+      {
+        "id": "project-workspace",
+        "x": 378,
+        "y": 100,
+        "w": 8,
+        "h": 852
+      },
+      {
+        "id": "workspace-assistant",
+        "x": 1193,
+        "y": 100,
+        "w": 8,
+        "h": 852
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "name": "wide",
+        "minWidth": 1600,
+        "behavior": "project 320, assistant 360, workspace flex"
+      },
+      {
+        "name": "desktop",
+        "minWidth": 1280,
+        "maxWidth": 1599,
+        "behavior": "project 280-304, assistant 320-360"
+      },
+      {
+        "name": "compact",
+        "minWidth": 1024,
+        "maxWidth": 1279,
+        "behavior": "project 240, assistant overlay drawer, task dock collapsible"
+      },
+      {
+        "name": "narrow",
+        "maxWidth": 1023,
+        "behavior": "global rail 64, project drawer, assistant drawer, single main view"
+      }
+    ],
+    "minWindow": {
+      "width": 1024,
+      "height": 720
+    },
+    "touchTarget": 36,
+    "focusRing": 2
+  },
+  "screens": {
+    "manuscriptEditor": {
+      "resourceTabs": {
+        "x": 382,
+        "y": 100,
+        "w": 815,
+        "h": 44
+      },
+      "chapterHeader": {
+        "x": 382,
+        "y": 144,
+        "w": 815,
+        "h": 96
+      },
+      "editorCanvas": {
+        "x": 400,
+        "y": 240,
+        "w": 779,
+        "h": 480,
+        "maxReadingColumnW": 760
+      },
+      "contextStrip": {
+        "x": 418,
+        "y": 674,
+        "w": 742,
+        "h": 32
+      },
+      "taskDock": {
+        "x": 382,
+        "y": 720,
+        "w": 815,
+        "h": 232
+      },
+      "assistantTabs": {
+        "x": 1197,
+        "y": 176,
+        "w": 339,
+        "h": 48
+      },
+      "assistantBody": {
+        "x": 1216,
+        "y": 242,
+        "w": 302,
+        "h": 610
+      }
+    },
+    "dashboard": {
+      "pageHeader": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 92
+      },
+      "continueCard": {
+        "x": 418,
+        "y": 244,
+        "w": 526,
+        "h": 180
+      },
+      "todayCard": {
+        "x": 960,
+        "y": 244,
+        "w": 538,
+        "h": 180
+      },
+      "plotCard": {
+        "x": 418,
+        "y": 440,
+        "w": 526,
+        "h": 220
+      },
+      "reviewCard": {
+        "x": 960,
+        "y": 440,
+        "w": 538,
+        "h": 220
+      },
+      "recentCard": {
+        "x": 418,
+        "y": 678,
+        "w": 1080,
+        "h": 210
+      }
+    },
+    "characterCenter": {
+      "categoryPane": {
+        "x": 78,
+        "y": 100,
+        "w": 304,
+        "h": 852
+      },
+      "resourceList": {
+        "x": 382,
+        "y": 100,
+        "w": 308,
+        "h": 852
+      },
+      "detail": {
+        "x": 690,
+        "y": 100,
+        "w": 846,
+        "h": 852
+      },
+      "detailHeader": {
+        "x": 720,
+        "y": 126,
+        "w": 780,
+        "h": 94
+      },
+      "detailTabs": {
+        "x": 720,
+        "y": 224,
+        "w": 780,
+        "h": 38
+      },
+      "detailContent": {
+        "x": 720,
+        "y": 280,
+        "w": 748,
+        "h": 610
+      }
+    },
+    "relationshipGraph": {
+      "header": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 72
+      },
+      "toolbar": {
+        "x": 590,
+        "y": 126,
+        "w": 908,
+        "h": 42
+      },
+      "graphCanvas": {
+        "x": 406,
+        "y": 216,
+        "w": 762,
+        "h": 704
+      },
+      "inspector": {
+        "x": 1186,
+        "y": 216,
+        "w": 332,
+        "h": 704
+      },
+      "matrixView": {
+        "x": 406,
+        "y": 216,
+        "w": 1112,
+        "h": 704
+      }
+    },
+    "timeline": {
+      "header": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 74
+      },
+      "toolbar": {
+        "x": 770,
+        "y": 126,
+        "w": 728,
+        "h": 42
+      },
+      "timelineCanvas": {
+        "x": 406,
+        "y": 220,
+        "w": 1110,
+        "h": 696
+      },
+      "trackLabelW": 134,
+      "timeHeaderH": 64,
+      "eventInspector": {
+        "x": 1168,
+        "y": 598,
+        "w": 330,
+        "h": 294
+      }
+    },
+    "worldbuilding": {
+      "categoryPane": {
+        "x": 78,
+        "y": 100,
+        "w": 304,
+        "h": 852
+      },
+      "resourceList": {
+        "x": 382,
+        "y": 100,
+        "w": 300,
+        "h": 852
+      },
+      "detail": {
+        "x": 682,
+        "y": 100,
+        "w": 854,
+        "h": 852
+      },
+      "hierarchyTree": {
+        "x": 706,
+        "y": 252,
+        "w": 260,
+        "h": 610
+      },
+      "structuredEditor": {
+        "x": 986,
+        "y": 252,
+        "w": 526,
+        "h": 610
+      }
+    },
+    "storyAssets": {
+      "assetList": {
+        "x": 382,
+        "y": 100,
+        "w": 300,
+        "h": 852
+      },
+      "detailHeader": {
+        "x": 720,
+        "y": 126,
+        "w": 748,
+        "h": 100
+      },
+      "tabs": {
+        "x": 720,
+        "y": 224,
+        "w": 748,
+        "h": 38
+      },
+      "summaryGrid": {
+        "x": 720,
+        "y": 280,
+        "w": 748,
+        "h": 188
+      },
+      "history": {
+        "x": 720,
+        "y": 520,
+        "w": 748,
+        "h": 260
+      },
+      "continuityAlert": {
+        "x": 720,
+        "y": 812,
+        "w": 748,
+        "h": 70
+      }
+    },
+    "plotAndForeshadowing": {
+      "header": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 74
+      },
+      "viewTabs": {
+        "x": 418,
+        "y": 202,
+        "w": 360,
+        "h": 40
+      },
+      "kanban": {
+        "x": 406,
+        "y": 258,
+        "w": 1110,
+        "h": 632
+      },
+      "columns": [
+        {
+          "id": "planned",
+          "x": 422,
+          "w": 250
+        },
+        {
+          "id": "active",
+          "x": 686,
+          "w": 250
+        },
+        {
+          "id": "atRisk",
+          "x": 950,
+          "w": 250
+        },
+        {
+          "id": "resolved",
+          "x": 1214,
+          "w": 286
+        }
+      ]
+    },
+    "informationControl": {
+      "header": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 74
+      },
+      "filters": {
+        "x": 418,
+        "y": 206,
+        "w": 1080,
+        "h": 52
+      },
+      "factList": {
+        "x": 406,
+        "y": 276,
+        "w": 412,
+        "h": 614
+      },
+      "knowledgeMatrix": {
+        "x": 834,
+        "y": 276,
+        "w": 682,
+        "h": 614
+      }
+    },
+    "aiGroundedWriting": {
+      "actionPane": {
+        "x": 78,
+        "y": 100,
+        "w": 304,
+        "h": 852
+      },
+      "contextBuilder": {
+        "x": 418,
+        "y": 214,
+        "w": 482,
+        "h": 638
+      },
+      "candidatePanel": {
+        "x": 930,
+        "y": 214,
+        "w": 588,
+        "h": 676
+      },
+      "selectedText": {
+        "x": 418,
+        "y": 214,
+        "w": 482,
+        "h": 132
+      },
+      "contextItems": {
+        "x": 418,
+        "y": 416,
+        "w": 482,
+        "h": 348
+      },
+      "generateButton": {
+        "x": 418,
+        "y": 802,
+        "w": 202,
+        "h": 50
+      },
+      "diffActions": {
+        "x": 954,
+        "y": 744,
+        "w": 528,
+        "h": 46
+      }
+    },
+    "continuityReview": {
+      "header": {
+        "x": 418,
+        "y": 126,
+        "w": 1080,
+        "h": 88
+      },
+      "filters": {
+        "x": 418,
+        "y": 228,
+        "w": 1080,
+        "h": 52
+      },
+      "severityPane": {
+        "x": 406,
+        "y": 296,
+        "w": 160,
+        "h": 594
+      },
+      "issueList": {
+        "x": 566,
+        "y": 296,
+        "w": 536,
+        "h": 594
+      },
+      "issueDetail": {
+        "x": 1102,
+        "y": 296,
+        "w": 414,
+        "h": 594
+      }
+    },
+    "settingsStory": {
+      "pageHeader": {
+        "x": 428,
+        "y": 130,
+        "w": 1044,
+        "h": 92
+      },
+      "tabs": {
+        "x": 428,
+        "y": 248,
+        "w": 330,
+        "h": 52
+      },
+      "section": {
+        "x": 428,
+        "y": 326,
+        "w": 1044,
+        "h": 540
+      }
+    }
+  },
+  "tokens": {
+    "spacing": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64
+    ],
+    "radii": {
+      "small": 6,
+      "medium": 8,
+      "large": 12,
+      "pill": 999
+    },
+    "fontSizes": {
+      "caption": 12,
+      "body": 14,
+      "bodyLarge": 16,
+      "section": 18,
+      "page": 28
+    },
+    "lineHeights": {
+      "body": 1.55,
+      "editor": 1.85
+    },
+    "zIndex": {
+      "base": 0,
+      "sticky": 10,
+      "drawer": 30,
+      "dialog": 50,
+      "toast": 60,
+      "tooltip": 70
+    }
+  }
+}

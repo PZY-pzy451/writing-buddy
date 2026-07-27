@@ -4,13 +4,14 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-Phase 1.0B automated acceptance is complete on
-`codex/phase-1.0a-deepseek-ai-foundation`. The independent Tauri + React
-client now has a secure DeepSeek BYOK foundation, a StoryForge test flow,
-full-height system pages, and manual/AI chapter review. Release EXE and NSIS
-artifacts were built in an isolated target because the user had the canonical
-release EXE open. Real-key validation and M9 human cutover remain open; Legacy
-remains the rollback source.
+StoryForge Gate A is active on
+`codex/phase-1.0a-deepseek-ai-foundation`. Task 0 froze the baseline at
+`7e658a284920b0e61d42da39a0addaa39bd6b11d`, copied the complete professional
+editor handoff into the repository, recorded the real source map and reproduced
+the generic “无法打开作品” failure. Task 1 is limited to diagnosable project
+open, read-only fallback, repair/diagnostic/retry actions and close/restart
+recovery against a sanitized project copy. Story Kernel and professional data
+pages remain blocked until Gate A receives human approval.
 
 ## Completed
 
@@ -39,18 +40,17 @@ remains the rollback source.
 
 ## Open
 
+- Complete StoryForge Gate A Task 1 and its real copied-project restart
+  acceptance.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
-- Close the currently running canonical release application before replacing
-  its EXE and NSIS artifacts with the normal build command.
 - Human cutover gates are intentionally not automated.
 - Legacy retirement is forbidden until M9 is complete.
 
 ## Next
 
-Run the explicit real-key checklist without recording the key, prompt,
-response, chapter content, or reasoning. Close the running release window and
-run the canonical package build. Continue M9 writing sessions against project
-copies and record each recovery/restore result before deciding whether to
-retire Legacy.
+Finish Task 1 with TDD, build the canonical release, open the new sanitized
+Gate A project copy, close the app, launch it a second time and record restored
+project/resource evidence. Stop at Gate A for human approval; do not start
+Story Kernel work automatically.
