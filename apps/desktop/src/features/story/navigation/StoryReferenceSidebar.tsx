@@ -2,7 +2,10 @@ import {
 	BookOpenCheck,
 	CalendarClock,
 	Globe2,
+	KeyRound,
+	Milestone,
 	Network,
+	PackageSearch,
 	UserRound,
 	UsersRound
 } from 'lucide-react';
@@ -20,9 +23,9 @@ const navigation: readonly {
 	{ id: 'timeline', label: '多轨时间线', description: '实际时间与叙事顺序', icon: CalendarClock, available: true }
 	,
 	{ id: 'worldbuilding', label: '世界观中心', description: '地点、势力与规则', icon: Globe2, available: true },
-	{ id: 'assets', label: '物品与资产', description: '持有人、数量与流转', icon: BookOpenCheck, available: true },
-	{ id: 'plots', label: '剧情线与伏笔', description: '生命周期与回收风险', icon: BookOpenCheck, available: true },
-	{ id: 'information', label: '信息权限', description: '真相、读者与人物知识', icon: BookOpenCheck, available: false }
+	{ id: 'assets', label: '物品与资产', description: '持有人、数量与流转', icon: PackageSearch, available: true },
+	{ id: 'plots', label: '剧情线与伏笔', description: '生命周期与回收风险', icon: Milestone, available: true },
+	{ id: 'information', label: '信息权限', description: '真相、读者与人物知识', icon: KeyRound, available: true }
 ];
 
 export function StoryReferenceSidebar(): React.JSX.Element {

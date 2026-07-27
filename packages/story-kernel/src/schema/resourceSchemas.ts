@@ -240,6 +240,19 @@ const foreshadowingSchema = z.object({
 	evidenceIds: evidenceIds.optional().default([])
 }).strict();
 
+const informationSchema = z.object({
+	id: idFor('information'),
+	type: z.literal('information'),
+	...baseShape,
+	truthStatement: z.string().trim().min(1).max(10_000),
+	truthStatus: z.enum(['confirmed', 'disputed', 'unknown']).optional().default('unknown'),
+	authorSecret: z.boolean().optional().default(false),
+	excludeFromAiByDefault: z.boolean().optional(),
+	truthEffectiveFrom: storyPositionSchema.optional(),
+	readerRevealAt: storyPositionSchema.optional(),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
 export const itemSchema = z.object({
 	id: idFor('item'),
 	type: z.literal('item'),
@@ -265,7 +278,7 @@ export const resourceSchemas = {
 	relationship: relationshipSchema,
 	plotThread: plotThreadSchema,
 	foreshadowing: foreshadowingSchema,
-	information: simpleResourceSchema('information')
+	information: informationSchema
 } as const;
 
 export type StoryResource =
