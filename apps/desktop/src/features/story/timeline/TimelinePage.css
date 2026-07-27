@@ -433,6 +433,11 @@
 	gap: 4px;
 }
 
+.timeline-legend span.has-rule-issues {
+	color: var(--warning);
+	font-weight: 700;
+}
+
 @media (max-width: 1279px) {
 	.timeline-page {
 		padding-inline: 12px;

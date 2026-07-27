@@ -14,9 +14,11 @@ import {
 	DesktopStoryRepository,
 	parseTimelineEvent,
 	queryEvents,
+	runTimelineRules,
 	type StoryResource,
 	type TimelineEvent,
-	type TimelineMode
+	type TimelineMode,
+	type TravelLinkRule
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
 import { EventInspector } from './EventInspector';
@@ -26,6 +28,7 @@ import './TimelinePage.css';
 export interface TimelinePageData {
 	readonly events: readonly TimelineEvent[];
 	readonly labels: Readonly<Record<string, string>>;
+	readonly travelLinks?: readonly TravelLinkRule[];
 }
 
 export type TimelinePageLoader = (projectRoot: string) => Promise<TimelinePageData>;
@@ -131,6 +134,10 @@ export function TimelinePage({
 		{},
 		mode
 	), [data, mode]);
+	const ruleIssues = useMemo(() => runTimelineRules({
+		events: data?.events ?? [],
+		travelLinks: data?.travelLinks ?? []
+	}), [data]);
 	const selected = draftEvent ?? events.find(event => event.id === selectedId);
 
 	const selectEvent = (event: TimelineEvent) => {
@@ -247,6 +254,9 @@ export function TimelinePage({
 				<span><UserRound size={13} />人物轨道</span>
 				<span><MapPin size={13} />地点轨道</span>
 				<span><CalendarClock size={13} />支持精确、日期、相对与未确定时间</span>
+				<span className={ruleIssues.length ? 'has-rule-issues' : ''}>
+					<AlertTriangle size={13} />确定性检查 {ruleIssues.length ? `${ruleIssues.length} 项冲突` : '通过'}
+				</span>
 			</footer>
 		</main>
 	);
