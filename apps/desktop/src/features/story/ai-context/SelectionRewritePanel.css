@@ -107,7 +107,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	min-height: 38px;
+	min-height: 44px;
 	padding: 0 8px;
 	color: var(--text-secondary);
 	background: var(--surface-base);

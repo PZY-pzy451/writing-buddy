@@ -6,6 +6,7 @@ import {
 	type ItemState,
 	type StoryItem
 } from '@writing-buddy/story-kernel';
+import { useModalFocus } from '../../../accessibility/useModalFocus';
 
 export function ItemTransferDialog({
 	item,
@@ -23,6 +24,7 @@ export function ItemTransferDialog({
 	const [quantity, setQuantity] = useState(current?.quantity ?? 1);
 	const [order, setOrder] = useState((current?.effectiveFrom.narrativeOrder ?? 0) + 1);
 	const [saving, setSaving] = useState(false);
+	const dialogRef = useModalFocus(onCancel);
 	const preview = useMemo(() => (
 		`${current?.holderCharacterId ?? '无持有人'} → ${holderId || '无持有人'}；`
 		+ `数量 ${current?.quantity ?? 0} → ${quantity}；位置 ${locationId || '未指定'}`
@@ -30,7 +32,7 @@ export function ItemTransferDialog({
 
 	return (
 		<div className="item-transfer-backdrop">
-			<section role="dialog" aria-modal="true" aria-labelledby="item-transfer-title" className="item-transfer-dialog">
+			<section ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="item-transfer-title" className="item-transfer-dialog">
 				<header>
 					<div><span className="eyebrow">TRANSFER TRANSACTION</span><h2 id="item-transfer-title">转移「{item.title}」</h2></div>
 					<button type="button" aria-label="关闭转移对话框" onClick={onCancel}><X size={18} /></button>

@@ -9,8 +9,10 @@ StoryForge Gate F is active on
 Story Index updates incrementally, persists outside author content, rebuilds
 from canonical project data, and supports bounded queries. Character and
 timeline lists now virtualize large collections. The deterministic 266,000-row
-scale fixture is below all five performance thresholds. Task 22 responsive,
-accessibility and visual acceptance is next.
+scale fixture is below all five performance thresholds. Task 22 is complete:
+all three responsive tiers have zero page overflow, clipped interactive
+controls or visible StoryForge controls below 44px. Task 23 migration, backup
+and recovery acceptance is next.
 
 ## Completed
 
@@ -89,5 +91,5 @@ accessibility and visual acceptance is next.
 
 ## Next
 
-Implement the three responsive viewport contracts, keyboard/focus/reduced
-motion coverage and six approved StoryForge prototype screenshots for Task 22.
+Implement staged v0-to-v1 Story Kernel migration and prove snapshot/backup
+inclusion, derived-cache exclusion, rollback and second-launch recovery.

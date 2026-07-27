@@ -132,7 +132,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	min-height: 40px;
+	min-height: 44px;
 	padding: 0 13px;
 	color: white;
 	font-weight: 650;
@@ -248,7 +248,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-	min-height: 36px;
+	min-height: 44px;
 	padding: 0;
 	margin-top: 12px;
 	color: var(--accent-strong);

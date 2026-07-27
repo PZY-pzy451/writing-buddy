@@ -35,6 +35,28 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const storyView = useAppStore(state => state.storyView);
 	const setStoryView = useAppStore(state => state.setStoryView);
+	const moveFocus = (
+		event: React.KeyboardEvent<HTMLButtonElement>,
+		index: number
+	) => {
+		if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+		event.preventDefault();
+		const nextIndex = event.key === 'Home'
+			? 0
+			: event.key === 'End'
+				? navigation.length - 1
+				: Math.min(
+					navigation.length - 1,
+					Math.max(0, index + (event.key === 'ArrowDown' ? 1 : -1))
+				);
+		const next = navigation[nextIndex];
+		if (!next?.available) return;
+		setStoryView(next.id);
+		event.currentTarget
+			.closest('nav')
+			?.querySelectorAll<HTMLButtonElement>('button')[nextIndex]
+			?.focus();
+	};
 
 	return (
 		<aside className="project-sidebar story-reference-sidebar">
@@ -47,7 +69,7 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 				<span><strong>{snapshot?.project.title}</strong><small>结构化故事资源</small></span>
 			</div>
 			<nav aria-label="资料中心页面">
-				{navigation.map(item => {
+				{navigation.map((item, index) => {
 					const Icon = item.icon;
 					return (
 						<button
@@ -55,6 +77,7 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 							key={item.id}
 							className={storyView === item.id ? 'is-active' : ''}
 							onClick={() => item.available && setStoryView(item.id)}
+							onKeyDown={event => moveFocus(event, index)}
 							disabled={!item.available}
 							aria-label={`${item.label}，${item.description}`}
 						>

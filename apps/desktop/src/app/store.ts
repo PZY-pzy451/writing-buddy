@@ -736,3 +736,27 @@ export function selectNovelWordCount(state: AppState): number {
 		return total + (state.snapshot?.wordCounts[chapter.id] ?? 0);
 	}, 0);
 }
+
+declare global {
+	interface Window {
+		readonly __WRITING_BUDDY_DEVTOOLS__?: {
+			readonly selectManuscriptPrefix: (length?: number) => boolean;
+		};
+	}
+}
+
+if (import.meta.env.DEV && typeof window !== 'undefined') {
+	Object.defineProperty(window, '__WRITING_BUDDY_DEVTOOLS__', {
+		configurable: true,
+		value: {
+			selectManuscriptPrefix(length = 56): boolean {
+				const state = useAppStore.getState();
+				const text = state.session?.content.slice(0, length);
+				if (!text) return false;
+				state.setSelection({ start: 0, end: text.length, text });
+				state.openAssistant();
+				return true;
+			}
+		}
+	});
+}

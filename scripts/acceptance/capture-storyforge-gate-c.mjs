@@ -162,8 +162,29 @@ const gateECaptures = [
 	{ view: 'continuity', selector: '.continuity-review-page', width: 1280, height: 768, name: '02-continuity-review-1280x800.png' },
 	{ view: 'continuity', selector: '.continuity-review-page', width: 1024, height: 688, name: '03-continuity-review-1024x720.png' }
 ];
+const gateFCaptures = [
+	{ mode: 'works', selector: '.story-dashboard', width: 1536, height: 960, name: '01-workspace-overview-1536x992.png' },
+	{ mode: 'references', view: 'characters', selector: '.character-center', width: 1536, height: 960, name: '02-character-center-1536x992.png' },
+	{ mode: 'references', view: 'relationships', selector: '.relationship-page', width: 1536, height: 960, name: '03-relationship-graph-1536x992.png' },
+	{ mode: 'references', view: 'timeline', selector: '.timeline-page', width: 1536, height: 960, name: '04-timeline-1536x992.png' },
+	{ mode: 'references', view: 'assets', selector: '.story-assets-page', width: 1536, height: 960, name: '05-story-assets-1536x992.png' },
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-rewrite-panel',
+		prepare: 'select-editor',
+		width: 1536,
+		height: 960,
+		name: '06-ai-grounded-context-1536x992.png'
+	},
+	{ mode: 'works', selector: '.story-dashboard', width: 1280, height: 768, name: '07-workspace-overview-1280x800.png' },
+	{ mode: 'references', view: 'timeline', selector: '.timeline-page', width: 1024, height: 688, name: '08-timeline-1024x720.png' }
+];
 const captures = gate.startsWith('gate-e')
 	? gateECaptures
+	: gate.startsWith('gate-f')
+		? gateFCaptures
 	: gate.startsWith('gate-d')
 		? gateDCaptures
 		: gateCCaptures;
@@ -180,14 +201,24 @@ try {
 		await client.send('Runtime.evaluate', {
 			expression: `(() => {
 				const persisted = JSON.parse(localStorage.getItem('writing-buddy-next-workspace'));
-				persisted.state.activeMode = 'references';
+				persisted.state.activeMode = ${JSON.stringify(capture.mode ?? 'references')};
 				persisted.state.storyView = ${JSON.stringify(capture.view)};
+				persisted.state.openResourceIds = ${JSON.stringify(capture.resourceId ? [capture.resourceId] : [])};
+				persisted.state.activeResourceId = ${JSON.stringify(capture.resourceId)};
 				localStorage.setItem('writing-buddy-next-workspace', JSON.stringify(persisted));
 			})()`
 		});
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
-		const readyMs = await waitForSelector(client, capture.selector);
+		const readyMs = await waitForSelector(client, capture.readySelector ?? capture.selector);
+		if (capture.prepare === 'select-editor') {
+			const selectionResult = await client.send('Runtime.evaluate', {
+				expression: `window.__WRITING_BUDDY_DEVTOOLS__?.selectManuscriptPrefix(56) ?? false`,
+				returnByValue: true
+			});
+			if (!selectionResult.result.value) throw new Error('No manuscript content was available.');
+			await waitForSelector(client, capture.selector);
+		}
 		await new Promise(resolveWait => setTimeout(resolveWait, 350));
 		const layout = await client.send('Runtime.evaluate', {
 			expression: `(() => {
@@ -198,6 +229,48 @@ try {
 					const box = element.getBoundingClientRect();
 					return box.right > innerWidth + 1 || box.bottom > innerHeight + 1;
 				}).length;
+				const hasScrollableAncestor = element => {
+					for (let current = element.parentElement; current; current = current.parentElement) {
+						const style = getComputedStyle(current);
+						const scrollsY = /(auto|scroll)/.test(style.overflowY) && current.scrollHeight > current.clientHeight;
+						const scrollsX = /(auto|scroll)/.test(style.overflowX) && current.scrollWidth > current.clientWidth;
+						if (scrollsY || scrollsX) return true;
+					}
+					return false;
+				};
+				const interactive = [...document.querySelectorAll('button, input, select, textarea, [role="button"], [role="tab"]')]
+					.filter(element => {
+						const box = element.getBoundingClientRect();
+						const style = getComputedStyle(element);
+						return box.width > 0 && box.height > 0 && style.visibility !== 'hidden' && style.opacity !== '0';
+					});
+				const clippedInteractiveElements = interactive.filter(element => {
+					const box = element.getBoundingClientRect();
+					const clipped = box.left < -1 || box.top < -1 || box.right > innerWidth + 1 || box.bottom > innerHeight + 1;
+					return clipped && !hasScrollableAncestor(element);
+				});
+				const undersizedStoryControlElements = [...root.querySelectorAll('button, input, select, textarea, [role="button"], [role="tab"]')]
+					.filter(element => {
+						const box = element.getBoundingClientRect();
+						const style = getComputedStyle(element);
+						return box.width > 0 && box.height > 0 && style.visibility !== 'hidden'
+							&& style.opacity !== '0' && box.height < 43.5;
+					});
+				const describeInteractive = element => {
+					const box = element.getBoundingClientRect();
+					return {
+						tag: element.tagName.toLowerCase(),
+						label: element.getAttribute('aria-label') ?? element.textContent?.trim().slice(0, 80),
+						className: typeof element.className === 'string' ? element.className : '',
+						rect: {
+							left: Math.round(box.left),
+							top: Math.round(box.top),
+							right: Math.round(box.right),
+							bottom: Math.round(box.bottom),
+							height: Math.round(box.height)
+						}
+					};
+				};
 				return {
 					viewport: { width: innerWidth, height: innerHeight },
 					root: { width: Math.round(rect.width), height: Math.round(rect.height) },
@@ -205,6 +278,10 @@ try {
 					pageOverflowX: Math.max(0, document.documentElement.scrollWidth - innerWidth),
 					pageOverflowY: Math.max(0, document.documentElement.scrollHeight - innerHeight),
 					overflowingElements: overflowing,
+					clippedInteractive: clippedInteractiveElements.length,
+					clippedInteractiveDetails: clippedInteractiveElements.slice(0, 5).map(describeInteractive),
+					undersizedStoryControls: undersizedStoryControlElements.length,
+					undersizedStoryControlDetails: undersizedStoryControlElements.slice(0, 5).map(describeInteractive),
 					domNodes: document.querySelectorAll('*').length
 				};
 			})()`,

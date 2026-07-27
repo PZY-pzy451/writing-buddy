@@ -18,6 +18,17 @@ export function RelationshipMatrix({
 		const key = `${relationship.sourceCharacterId}→${relationship.targetCharacterId}`;
 		byPair.set(key, [...(byPair.get(key) ?? []), relationship]);
 	}
+	const moveCellFocus = (
+		event: React.KeyboardEvent<HTMLButtonElement>,
+		direction: -1 | 1
+	) => {
+		event.preventDefault();
+		const buttons = [...event.currentTarget
+			.closest('table')!
+			.querySelectorAll<HTMLButtonElement>('tbody button')];
+		const currentIndex = buttons.indexOf(event.currentTarget);
+		buttons[Math.min(buttons.length - 1, Math.max(0, currentIndex + direction))]?.focus();
+	};
 
 	return (
 		<div className="relationship-matrix-scroll">
@@ -42,6 +53,13 @@ export function RelationshipMatrix({
 												key={relationship.id}
 												className={selectedId === relationship.id ? 'is-active' : ''}
 												onClick={() => onSelect(relationship)}
+												onKeyDown={event => {
+													if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+														moveCellFocus(event, 1);
+													} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+														moveCellFocus(event, -1);
+													}
+												}}
 												aria-label={`${source.title} 到 ${target.title}：${relationship.relationshipType}，强度 ${Math.round((relationship.strength ?? 0.5) * 100)}%`}
 											>
 												<strong>{relationship.relationshipType}</strong>

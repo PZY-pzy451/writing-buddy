@@ -9,6 +9,7 @@ import {
 	Wrench
 } from 'lucide-react';
 import { useState } from 'react';
+import { useModalFocus } from '../../../accessibility/useModalFocus';
 import type { PublicProjectOpenError } from '../application/ProjectOpenService';
 
 interface ProjectOpenErrorDialogProps {
@@ -73,6 +74,7 @@ export function ProjectOpenErrorDialog({
 	const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
 	const [copied, setCopied] = useState(false);
 	const copy = errorCopy[error.code] ?? errorCopy.projectOpenFailed;
+	const dialogRef = useModalFocus(onClose);
 
 	const copyPath = async () => {
 		if (!error.safePath || !navigator.clipboard) {
@@ -84,7 +86,7 @@ export function ProjectOpenErrorDialog({
 
 	return (
 		<div className="modal-backdrop" role="presentation">
-			<section className="project-open-dialog" role="dialog" aria-modal="true" aria-labelledby="project-open-title">
+			<section ref={dialogRef} tabIndex={-1} className="project-open-dialog" role="dialog" aria-modal="true" aria-labelledby="project-open-title">
 				<header>
 					<span className="project-open-icon" aria-hidden="true"><AlertTriangle size={22} /></span>
 					<div>

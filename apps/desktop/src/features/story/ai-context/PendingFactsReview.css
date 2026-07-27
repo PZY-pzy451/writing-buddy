@@ -67,7 +67,7 @@
 
 .pending-fact-card input,
 .pending-fact-card textarea {
-	min-height: 36px;
+	min-height: 44px;
 	padding: 8px 10px;
 	border: 1px solid var(--border);
 	border-radius: 7px;
@@ -96,7 +96,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	min-height: 36px;
+	min-height: 44px;
 	padding: 0 10px;
 	border: 1px solid var(--border);
 	border-radius: 7px;

@@ -32,7 +32,7 @@
 	--surface-overlay: rgb(23 32 51 / 88%);
 	--text-primary: #292722;
 	--text-secondary: #625e56;
-	--text-muted: #8a857b;
+	--text-muted: #756f66;
 	--text-on-dark: #f3f5fa;
 	--text-on-dark-muted: #aeb7c7;
 	--border-subtle: #dedbd4;
@@ -60,7 +60,7 @@
 	--surface-overlay: rgb(7 11 18 / 90%);
 	--text-primary: #ece7dd;
 	--text-secondary: #bbb6ad;
-	--text-muted: #868b95;
+	--text-muted: #9aa0aa;
 	--text-on-dark: #f4f6fb;
 	--text-on-dark-muted: #a8b1c1;
 	--border-subtle: #2c3748;
@@ -80,7 +80,7 @@
 	--surface-selected: #d9e0e3;
 	--text-primary: #313943;
 	--text-secondary: #596570;
-	--text-muted: #7b8790;
+	--text-muted: #66727c;
 	--border-subtle: #ced5d8;
 	--border-strong: #aebbc0;
 	--accent: #6f8090;
@@ -100,7 +100,7 @@
 	--surface-selected: #dfd3c2;
 	--text-primary: #2d2924;
 	--text-secondary: #665e54;
-	--text-muted: #928a7f;
+	--text-muted: #766e64;
 	--border-subtle: #dcd3c5;
 	--border-strong: #bdb1a0;
 }
@@ -132,6 +132,7 @@ body,
 
 button,
 input,
+select,
 textarea {
 	font: inherit;
 }
@@ -142,6 +143,7 @@ button {
 
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible {
 	outline: none;
 	box-shadow: var(--focus-ring);

@@ -24,7 +24,11 @@ export default defineConfig({
 		globals: true,
 		environment: 'jsdom',
 		setupFiles: ['./apps/desktop/tests/setup.tsx'],
-		include: ['packages/**/*.test.ts', 'apps/desktop/**/*.test.ts?(x)'],
+		include: [
+			'packages/**/*.test.ts',
+			'apps/desktop/**/*.test.ts?(x)',
+			'apps/desktop/tests/e2e/**/*.spec.ts?(x)'
+		],
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'json-summary', 'html'],

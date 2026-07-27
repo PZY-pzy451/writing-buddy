@@ -57,7 +57,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	height: 40px;
+	height: 46px;
 	margin: 0 16px 10px;
 	padding: 0 11px;
 	color: var(--text-muted);
@@ -73,6 +73,7 @@
 
 .character-search input {
 	width: 100%;
+	height: 44px;
 	min-width: 0;
 	color: var(--text-primary);
 	background: transparent;
@@ -89,7 +90,7 @@
 
 .character-role-filters button {
 	flex: 0 0 auto;
-	min-height: 32px;
+	min-height: 44px;
 	padding: 0 9px;
 	cursor: pointer;
 	color: var(--text-muted);
@@ -269,7 +270,7 @@
 .character-tabs button {
 	position: relative;
 	flex: 0 0 auto;
-	min-height: 38px;
+	min-height: 44px;
 	padding: 0 12px;
 	cursor: pointer;
 	color: var(--text-muted);
@@ -330,7 +331,7 @@
 .character-form-grid textarea,
 .state-position-control input {
 	width: 100%;
-	min-height: 40px;
+	min-height: 44px;
 	padding: 9px 11px;
 	color: var(--text-primary);
 	background: var(--surface-raised);
@@ -357,7 +358,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	min-height: 40px;
+	min-height: 44px;
 	padding: 0 15px;
 	cursor: pointer;
 	color: white;

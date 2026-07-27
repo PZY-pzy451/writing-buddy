@@ -36,7 +36,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	min-height: 40px;
+	min-height: 44px;
 	padding: 0 14px;
 	border: 1px solid var(--border);
 	border-radius: 8px;
@@ -139,7 +139,7 @@
 }
 
 .continuity-list-panel select {
-	min-height: 34px;
+	min-height: 44px;
 	padding: 0 28px 0 9px;
 	border: 1px solid var(--border);
 	border-radius: 7px;
@@ -266,7 +266,7 @@
 
 .continuity-evidence button {
 	justify-self: start;
-	min-height: 34px;
+	min-height: 44px;
 	font-size: 12px;
 }
 

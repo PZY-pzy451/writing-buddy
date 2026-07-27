@@ -1,0 +1,221 @@
+{
+  "generatedAt": "2026-07-27T08:56:05.363Z",
+  "captures": [
+    {
+      "mode": "works",
+      "selector": ".story-dashboard",
+      "width": 1536,
+      "height": 960,
+      "name": "01-workspace-overview-1536x992.png",
+      "readyMs": 1005,
+      "selectorReadyMs": 599,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 476
+    },
+    {
+      "mode": "references",
+      "view": "characters",
+      "selector": ".character-center",
+      "width": 1536,
+      "height": 960,
+      "name": "02-character-center-1536x992.png",
+      "readyMs": 648,
+      "selectorReadyMs": 244,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 401
+    },
+    {
+      "mode": "references",
+      "view": "relationships",
+      "selector": ".relationship-page",
+      "width": 1536,
+      "height": 960,
+      "name": "03-relationship-graph-1536x992.png",
+      "readyMs": 614,
+      "selectorReadyMs": 222,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 356
+    },
+    {
+      "mode": "references",
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1536,
+      "height": 960,
+      "name": "04-timeline-1536x992.png",
+      "readyMs": 649,
+      "selectorReadyMs": 244,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 9,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 456
+    },
+    {
+      "mode": "references",
+      "view": "assets",
+      "selector": ".story-assets-page",
+      "width": 1536,
+      "height": 960,
+      "name": "05-story-assets-1536x992.png",
+      "readyMs": 617,
+      "selectorReadyMs": 231,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 384
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".selection-rewrite-panel",
+      "prepare": "select-editor",
+      "width": 1536,
+      "height": 960,
+      "name": "06-ai-grounded-context-1536x992.png",
+      "readyMs": 753,
+      "selectorReadyMs": 335,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 293,
+        "height": 1114
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 115,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 766
+    },
+    {
+      "mode": "works",
+      "selector": ".story-dashboard",
+      "width": 1280,
+      "height": 768,
+      "name": "07-workspace-overview-1280x800.png",
+      "readyMs": 619,
+      "selectorReadyMs": 230,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 922,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 476
+    },
+    {
+      "mode": "references",
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1024,
+      "height": 688,
+      "name": "08-timeline-1024x720.png",
+      "readyMs": 630,
+      "selectorReadyMs": 230,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 31,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 456
+    }
+  ]
+}

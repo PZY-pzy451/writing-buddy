@@ -1,5 +1,6 @@
 import { AlertTriangle, Download, RefreshCcw, Save, X } from 'lucide-react';
 import { useAppStore } from '../app/store';
+import { useModalFocus } from '../accessibility/useModalFocus';
 
 export function ExternalConflictDialog(): React.JSX.Element | null {
 	const conflict = useAppStore(state => state.externalConflict);
@@ -8,6 +9,7 @@ export function ExternalConflictDialog(): React.JSX.Element | null {
 	const forceSave = useAppStore(state => state.forceSave);
 	const reloadExternal = useAppStore(state => state.reloadExternal);
 	const dismiss = useAppStore(state => state.dismissExternalConflict);
+	const dialogRef = useModalFocus(dismiss);
 
 	if (!conflict || !session) {
 		return null;
@@ -15,7 +17,7 @@ export function ExternalConflictDialog(): React.JSX.Element | null {
 
 	return (
 		<div className="modal-backdrop" role="presentation">
-			<section className="conflict-dialog" role="dialog" aria-modal="true" aria-labelledby="external-conflict-title">
+			<section ref={dialogRef} tabIndex={-1} className="conflict-dialog" role="dialog" aria-modal="true" aria-labelledby="external-conflict-title">
 				<header>
 					<div className="conflict-icon"><AlertTriangle size={22} /></div>
 					<div>

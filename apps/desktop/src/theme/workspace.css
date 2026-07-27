@@ -11,7 +11,7 @@
 	background: var(--surface-app);
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1280px) {
 	.app-shell.is-assistant-closed:not(.is-focus-mode) {
 		grid-template:
 			"top top top" var(--topbar-height)
@@ -125,7 +125,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	min-height: 36px;
+	min-height: 44px;
 	padding: 0 11px;
 	cursor: pointer;
 	border: 1px solid transparent;
@@ -500,8 +500,13 @@
 
 .story-reference-sidebar > nav {
 	display: grid;
+	flex: 1 1 auto;
+	align-content: start;
+	min-height: 0;
 	gap: 6px;
-	padding: 10px;
+	padding: 10px 10px 52px;
+	overflow-y: auto;
+	scrollbar-gutter: stable;
 }
 
 .story-reference-project {
