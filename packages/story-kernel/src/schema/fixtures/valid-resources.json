@@ -1,0 +1,96 @@
+{
+  "character": {
+    "id": "character:lin-yue",
+    "type": "character",
+    "title": "林越",
+    "aliases": [],
+    "tags": ["主角"],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "role": "protagonist",
+    "evidenceIds": []
+  },
+  "scene": {
+    "id": "scene:station-rain",
+    "type": "scene",
+    "title": "雨夜车站",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "chapterId": "chapter:chapter-001",
+    "manuscriptRange": {
+      "start": 0,
+      "end": 32,
+      "revision": 0,
+      "quote": "夜雨落在旧车站的玻璃顶上。"
+    },
+    "narrativeOrder": 0,
+    "locationIds": [],
+    "participantIds": [],
+    "plotThreadIds": [],
+    "revealInformationIds": [],
+    "foreshadowingIds": []
+  },
+  "relationship": {
+    "id": "relationship:lin-shen-doubt",
+    "type": "relationship",
+    "title": "林越怀疑沈青",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "sourceCharacterId": "character:lin-yue",
+    "targetCharacterId": "character:shen-qing",
+    "relationshipType": "怀疑",
+    "visibility": "private",
+    "effectiveFrom": {
+      "chapterId": "chapter:chapter-001",
+      "narrativeOrder": 0
+    },
+    "evidenceIds": []
+  },
+  "timelineEvent": {
+    "id": "timeline-event:station-meeting",
+    "type": "timelineEvent",
+    "title": "车站相遇",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "narrativePosition": {
+      "chapterId": "chapter:chapter-001",
+      "sceneId": "scene:station-rain",
+      "narrativeOrder": 0
+    },
+    "eventType": "meeting",
+    "participantIds": ["character:lin-yue"],
+    "locationIds": [],
+    "itemIds": [],
+    "predecessorIds": [],
+    "consequenceIds": [],
+    "evidenceIds": []
+  },
+  "item": {
+    "id": "item:black-notebook",
+    "type": "item",
+    "title": "黑色笔记本",
+    "aliases": [],
+    "tags": ["证据"],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "unique": true,
+    "restrictions": [],
+    "evidenceIds": []
+  }
+}

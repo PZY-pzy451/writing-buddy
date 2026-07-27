@@ -1,0 +1,94 @@
+{
+  "character": {
+    "id": "character:lin yue",
+    "type": "character",
+    "title": "林越",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "evidenceIds": []
+  },
+  "scene": {
+    "id": "scene:bad-range",
+    "type": "scene",
+    "title": "错误场景",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "chapterId": "chapter:chapter-001",
+    "manuscriptRange": {
+      "start": 20,
+      "end": 10,
+      "revision": 0,
+      "quote": "错误"
+    },
+    "narrativeOrder": 0,
+    "locationIds": [],
+    "participantIds": [],
+    "plotThreadIds": [],
+    "revealInformationIds": [],
+    "foreshadowingIds": []
+  },
+  "relationship": {
+    "id": "relationship:invalid",
+    "type": "relationship",
+    "title": "无向关系",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "sourceCharacterId": "character:lin-yue",
+    "targetCharacterId": "character:lin-yue",
+    "relationshipType": "怀疑",
+    "visibility": "private",
+    "effectiveFrom": {
+      "chapterId": "chapter:chapter-001",
+      "narrativeOrder": 0
+    },
+    "evidenceIds": []
+  },
+  "timelineEvent": {
+    "id": "timeline-event:invalid",
+    "type": "timelineEvent",
+    "title": "错误事件",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 2,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": 0,
+    "narrativePosition": {
+      "chapterId": "chapter:chapter-001",
+      "narrativeOrder": 0
+    },
+    "eventType": "meeting",
+    "participantIds": [],
+    "locationIds": [],
+    "itemIds": [],
+    "predecessorIds": [],
+    "consequenceIds": [],
+    "evidenceIds": []
+  },
+  "item": {
+    "id": "item:invalid",
+    "type": "item",
+    "title": "错误物品",
+    "aliases": [],
+    "tags": [],
+    "schemaVersion": 1,
+    "createdAt": "2026-07-27T00:00:00.000Z",
+    "updatedAt": "2026-07-27T00:00:00.000Z",
+    "revision": -1,
+    "unique": true,
+    "restrictions": [],
+    "evidenceIds": []
+  }
+}
