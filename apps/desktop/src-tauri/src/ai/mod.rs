@@ -329,7 +329,7 @@ fn validate_selection_rewrite_input(value: &str) -> bool {
         input.schema_version == 1
             && matches!(
                 input.action_type.as_str(),
-                "polish" | "concise" | "grammar" | "dialogue" | "pacing"
+                "polish" | "concise" | "expand" | "grammar" | "dialogue" | "pacing"
             )
             && (2..=64).contains(&input.context.len())
             && input.context.iter().all(|item| {
@@ -689,6 +689,24 @@ mod tests {
         })
         .to_string();
         request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "expand",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "作者指令",
+                "content": "扩展感官和动作细节"
+            }, {
+                "priority": "P1",
+                "kind": "selection",
+                "title": "当前选区",
+                "content": "夜雨落下。"
+            }]
+        })
+        .to_string();
         assert!(request.validate().is_ok());
 
         request.messages[1].content = serde_json::json!({

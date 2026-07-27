@@ -26,6 +26,7 @@ interface SelectionActionMenuProps {
 	readonly readOnly: boolean;
 	readonly onLinked: (mention: MentionLink) => void;
 	readonly onRewrite: () => void;
+	readonly onGenerateResource?: (type: StoryResourceType) => void;
 }
 
 const creationActions = [
@@ -45,7 +46,8 @@ export function SelectionActionMenu({
 	selection,
 	readOnly,
 	onLinked,
-	onRewrite
+	onRewrite,
+	onGenerateResource
 }: SelectionActionMenuProps): React.JSX.Element {
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState<string>();
@@ -123,7 +125,12 @@ export function SelectionActionMenu({
 			<button type="button" disabled={readOnly || busy} onClick={() => void linkExisting()}>
 				<Link2 size={15} />链接已有资源
 			</button>
-			<button type="button" disabled={readOnly || busy || !selectedTitle} onClick={onRewrite}>
+			<button
+				type="button"
+				className="selection-action-ai"
+				disabled={readOnly || busy || !selectedTitle}
+				onClick={onRewrite}
+			>
 				<Sparkles size={15} />AI 润色
 			</button>
 			{creationActions.map(action => {
@@ -132,8 +139,16 @@ export function SelectionActionMenu({
 					<button
 						key={action.type}
 						type="button"
+						className="selection-action-create"
+						data-resource-action={action.type}
 						disabled={readOnly || busy || !selectedTitle}
-						onClick={() => void createAndLink(action.type)}
+						onClick={() => {
+							if (onGenerateResource) {
+								onGenerateResource(action.type);
+							} else {
+								void createAndLink(action.type);
+							}
+						}}
 					>
 						<Icon size={15} />{action.label}
 					</button>

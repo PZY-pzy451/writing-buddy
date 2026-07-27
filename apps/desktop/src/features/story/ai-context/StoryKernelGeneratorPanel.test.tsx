@@ -89,6 +89,62 @@ class MemoryStoryGateway implements StoryStorageGateway {
 }
 
 describe('StoryKernelGeneratorPanel', () => {
+	it('applies a selection quick-action preset without starting a paid request', async () => {
+		const runGeneration = vi.fn(() => Promise.resolve(''));
+		const { rerender } = render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				selection={{ start: 0, end: 2, text: '林越' }}
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+				preset={{
+					id: 'intent-character',
+					instruction: '从当前选区创建人物候选。',
+					targetTypes: ['character']
+				}}
+			/>
+		);
+
+		expect(screen.getByDisplayValue('从当前选区创建人物候选。')).toBeInTheDocument();
+		const checkboxes = screen.getAllByRole('checkbox');
+		expect(checkboxes[0]).toBeChecked();
+		for (const checkbox of checkboxes.slice(1)) {
+			expect(checkbox).not.toBeChecked();
+		}
+		expect(runGeneration).not.toHaveBeenCalled();
+
+		rerender(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="旧车站。"
+				selection={{ start: 0, end: 3, text: '旧车站' }}
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+				preset={{
+					id: 'intent-location',
+					instruction: '从当前选区创建地点候选。',
+					targetTypes: ['location']
+				}}
+			/>
+		);
+
+		expect(await screen.findByDisplayValue('从当前选区创建地点候选。')).toBeInTheDocument();
+		expect(runGeneration).not.toHaveBeenCalled();
+	});
+
 	it('keeps generated resources pending until snapshot-backed author confirmation', async () => {
 		const events: string[] = [];
 		const gateway = new MemoryStoryGateway(events);

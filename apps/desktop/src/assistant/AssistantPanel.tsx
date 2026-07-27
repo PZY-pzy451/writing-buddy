@@ -3,6 +3,7 @@ import {
 	Check,
 	ClipboardCheck,
 	Lightbulb,
+	Maximize2,
 	MapPin,
 	UsersRound,
 	WandSparkles,
@@ -10,14 +11,26 @@ import {
 } from 'lucide-react';
 import type { ContextPackRequest } from '@writing-buddy/story-kernel';
 import { replaceReviewIssuesForResource, runLocalReview } from '@writing-buddy/review';
-import { useState } from 'react';
-import { useAppStore } from '../app/store';
+import { useMemo, useState } from 'react';
+import { useAppStore, type AssistantActionIntent } from '../app/store';
 import { SelectionRewritePanel } from '../features/story/ai-context/SelectionRewritePanel';
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
 import { ResizeHandle } from '../shell/ResizeHandle';
 
 export function AssistantPanel(): React.JSX.Element {
+	const assistantIntent = useAppStore(state => state.assistantIntent);
+	return (
+		<AssistantPanelContent
+			key={assistantIntent?.id ?? 'assistant-default'}
+			initialIntent={assistantIntent}
+		/>
+	);
+}
+
+function AssistantPanelContent(props: {
+	readonly initialIntent?: AssistantActionIntent;
+}): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
@@ -29,8 +42,19 @@ export function AssistantPanel(): React.JSX.Element {
 	const theme = useAppStore(state => state.theme);
 	const setAssistantWidth = useAppStore(state => state.setAssistantWidth);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
-	const [tab, setTab] = useState<'suggestions' | 'review' | 'context' | 'kernel'>('suggestions');
-	const [rewriteAction, setRewriteAction] = useState<ContextPackRequest['actionType']>('polish');
+	const [tab, setTab] = useState<'suggestions' | 'review' | 'context' | 'kernel'>(
+		props.initialIntent?.kind === 'story-kernel' ? 'kernel' : 'suggestions'
+	);
+	const [rewriteAction, setRewriteAction] = useState<ContextPackRequest['actionType']>(
+		props.initialIntent?.kind === 'rewrite' ? props.initialIntent.actionType : 'polish'
+	);
+	const kernelPreset = useMemo(() => props.initialIntent?.kind === 'story-kernel'
+		? {
+			id: props.initialIntent.id,
+			instruction: props.initialIntent.instruction,
+			targetTypes: [props.initialIntent.targetType]
+		}
+		: undefined, [props.initialIntent]);
 
 	const activeChapter = snapshot?.project.volumes
 		.flatMap(volume => volume.chapters)
@@ -68,7 +92,9 @@ export function AssistantPanel(): React.JSX.Element {
 						<p>{selection?.text || '请先在正文中选择一段文字。'}</p>
 					</div>
 					<div className="quick-actions">
+						<button type="button" className={rewriteAction === 'polish' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('polish')}><WandSparkles size={17} />润色</button>
 						<button type="button" className={rewriteAction === 'concise' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('concise')}><Lightbulb size={17} />精简</button>
+						<button type="button" className={rewriteAction === 'expand' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('expand')}><Maximize2 size={17} />扩写</button>
 						<button type="button" className={rewriteAction === 'grammar' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('grammar')}><ClipboardCheck size={17} />语病</button>
 						<button type="button" className={rewriteAction === 'dialogue' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('dialogue')}><UsersRound size={17} />对话</button>
 						<button type="button" className={rewriteAction === 'pacing' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('pacing')}><BookMarked size={17} />节奏</button>
@@ -148,6 +174,7 @@ export function AssistantPanel(): React.JSX.Element {
 							content={session.content}
 							readOnly={snapshot.readOnly}
 							selection={selection}
+							preset={kernelPreset}
 						/>
 					) : (
 						<p className="kernel-generator-empty">

@@ -874,30 +874,35 @@
 .selection-action-menu {
 	position: absolute;
 	z-index: 12;
-	right: 16px;
-	bottom: 14px;
-	left: 16px;
+	right: 18px;
+	bottom: 18px;
+	left: 18px;
 	display: flex;
 	align-items: center;
-	gap: 6px;
+	gap: 8px;
 	min-width: 0;
-	padding: 7px;
+	min-height: 60px;
+	padding: 8px 10px;
 	overflow: auto hidden;
-	background: color-mix(in srgb, var(--surface-top) 94%, transparent);
-	border: 1px solid rgb(255 255 255 / 12%);
-	border-radius: 10px;
+	scrollbar-color: rgb(255 255 255 / 28%) transparent;
+	scrollbar-width: thin;
+	background: color-mix(in srgb, var(--surface-top) 97%, transparent);
+	border: 1px solid color-mix(in srgb, var(--accent) 22%, rgb(255 255 255 / 12%));
+	border-radius: 12px;
 	box-shadow: var(--shadow-float);
 }
 
 .selection-action-preview {
 	flex: 0 0 auto;
-	max-width: 120px;
-	padding: 0 8px;
+	max-width: 150px;
+	padding: 0 14px 0 8px;
 	overflow: hidden;
 	color: var(--text-on-dark-muted);
-	font-size: 11px;
+	font-size: 12px;
+	line-height: 44px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	border-right: 1px solid rgb(255 255 255 / 12%);
 }
 
 .selection-action-menu button {
@@ -905,18 +910,37 @@
 	align-items: center;
 	justify-content: center;
 	flex: 0 0 auto;
-	gap: 5px;
-	min-height: 34px;
-	padding: 0 9px;
+	gap: 7px;
+	min-height: 44px;
+	padding: 0 12px;
 	color: var(--text-on-dark);
-	font-size: 11px;
+	font-size: 12px;
+	font-weight: 620;
 	background: rgb(255 255 255 / 8%);
 	border: 1px solid rgb(255 255 255 / 12%);
-	border-radius: 6px;
+	border-radius: 8px;
+	transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .selection-action-menu button:hover:not(:disabled) {
 	background: rgb(255 255 255 / 15%);
+	border-color: rgb(255 255 255 / 24%);
+}
+
+.selection-action-menu .selection-action-ai {
+	color: #ffe1aa;
+	background: rgb(209 151 72 / 18%);
+	border-color: rgb(240 188 113 / 34%);
+}
+
+.selection-action-menu .selection-action-ai:hover:not(:disabled) {
+	background: rgb(209 151 72 / 28%);
+	border-color: rgb(240 188 113 / 54%);
+}
+
+.selection-action-menu button:disabled {
+	cursor: not-allowed;
+	opacity: .48;
 }
 
 .selection-action-error {
@@ -1155,8 +1179,8 @@
 .assistant-scroll {
 	display: grid;
 	align-content: start;
-	gap: 12px;
-	padding: 15px;
+	gap: 14px;
+	padding: 16px;
 	overflow: auto;
 }
 
@@ -1168,6 +1192,20 @@
 	background: var(--surface-raised);
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-card);
+}
+
+.selection-card {
+	position: relative;
+	overflow: hidden;
+	border-color: color-mix(in srgb, var(--accent) 30%, var(--border-subtle));
+}
+
+.selection-card::before {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 3px;
+	background: var(--accent);
+	content: "";
 }
 
 .selection-card > span,
@@ -1189,6 +1227,7 @@
 
 .selection-card p {
 	max-height: 90px;
+	margin: 10px 0 0;
 	overflow: auto;
 }
 
@@ -1203,12 +1242,32 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	min-height: 42px;
+	min-height: 48px;
 	cursor: pointer;
 	color: var(--text-secondary);
 	background: var(--surface-subtle);
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-control);
+	font-weight: 620;
+	transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.quick-actions button:hover:not(:disabled) {
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border-color: var(--border-strong);
+}
+
+.quick-actions button.is-active {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border-color: color-mix(in srgb, var(--accent) 54%, var(--border-subtle));
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.quick-actions button:disabled {
+	cursor: not-allowed;
+	opacity: .48;
 }
 
 .suggestion-card blockquote {

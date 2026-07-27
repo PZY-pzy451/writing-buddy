@@ -9,7 +9,11 @@ import {
 import { DocumentSession, ResourceTabManager } from '@writing-buddy/project';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
-import { DesktopStoryRepository } from '@writing-buddy/story-kernel';
+import {
+	DesktopStoryRepository,
+	type ContextPackRequest
+} from '@writing-buddy/story-kernel';
+import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import {
@@ -39,6 +43,21 @@ export type StoryViewId =
 	| 'plots'
 	| 'information'
 	| 'continuity';
+
+export type AssistantActionRequest =
+	| {
+		readonly kind: 'rewrite';
+		readonly actionType: ContextPackRequest['actionType'];
+	}
+	| {
+		readonly kind: 'story-kernel';
+		readonly targetType: StoryKernelGenerationResourceType;
+		readonly instruction: string;
+	};
+
+export type AssistantActionIntent = AssistantActionRequest & {
+	readonly id: string;
+};
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
@@ -78,6 +97,7 @@ interface AppState extends PersistedWorkspace {
 	readonly selection?: { start: number; end: number; text: string };
 	readonly search: string;
 	readonly assistantOpen: boolean;
+	readonly assistantIntent?: AssistantActionIntent;
 	readonly dockOpen: boolean;
 	readonly lastSavedAt?: string;
 	readonly pendingEdit?: {
@@ -127,6 +147,7 @@ interface AppState extends PersistedWorkspace {
 	readonly toggleFocus: () => void;
 	readonly toggleAssistant: () => void;
 	readonly openAssistant: () => void;
+	readonly requestAssistantAction: (request: AssistantActionRequest) => void;
 	readonly toggleDock: () => void;
 	readonly setSearch: (search: string) => void;
 	readonly setError: (error?: string) => void;
@@ -696,6 +717,15 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
 	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
 	openAssistant() { set({ assistantOpen: true }); },
+	requestAssistantAction(request) {
+		set({
+			assistantOpen: true,
+			assistantIntent: {
+				...request,
+				id: crypto.randomUUID()
+			}
+		});
+	},
 	toggleDock() { set(state => ({ dockOpen: !state.dockOpen })); },
 	setSearch(search) { set({ search }); },
 	setError(error) { set({ error }); },

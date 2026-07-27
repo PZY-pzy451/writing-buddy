@@ -1,10 +1,12 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
+import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
 import {
 	DesktopStoryRepository,
 	toStoryChapterId,
 	type MentionLink,
+	type StoryResourceType,
 	type StoryScene
 } from '@writing-buddy/story-kernel';
 import { useAppStore } from '../app/store';
@@ -14,6 +16,32 @@ import { SceneService } from '../features/story/manuscript/SceneService';
 import { MentionService } from '../features/story/manuscript/MentionService';
 import { SelectionActionMenu } from '../features/story/manuscript/SelectionActionMenu';
 import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
+
+const selectionResourceIntents: Readonly<Partial<Record<StoryResourceType, {
+	readonly targetType: StoryKernelGenerationResourceType;
+	readonly instruction: string;
+}>>> = {
+	character: {
+		targetType: 'character',
+		instruction: '从当前选区提取并生成一个人物候选；保留原文证据，不补写没有依据的设定。'
+	},
+	location: {
+		targetType: 'location',
+		instruction: '从当前选区提取并生成一个地点候选；保留原文证据，不补写没有依据的设定。'
+	},
+	item: {
+		targetType: 'item',
+		instruction: '从当前选区提取并生成一个物品候选；保留原文证据，不补写没有依据的设定。'
+	},
+	information: {
+		targetType: 'information',
+		instruction: '从当前选区提取并生成一个信息揭示候选；明确事实内容与知情范围。'
+	},
+	foreshadowing: {
+		targetType: 'foreshadowing',
+		instruction: '从当前选区提取并生成一个伏笔候选；保留原文证据并标明当前状态。'
+	}
+};
 
 export function ChapterEditor(): React.JSX.Element {
 	const activeResource = useAppStore(state => state.activeResource);
@@ -29,6 +57,7 @@ export function ChapterEditor(): React.JSX.Element {
 	const clearEditorEdit = useAppStore(state => state.clearEditorEdit);
 	const pendingReveal = useAppStore(state => state.pendingReveal);
 	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
+	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | undefined>(undefined);
 	const cursorTimerRef = useRef<number | undefined>(undefined);
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
@@ -226,6 +255,16 @@ export function ChapterEditor(): React.JSX.Element {
 	const updateScenes = useCallback((nextScenes: readonly StoryScene[]) => {
 		setScenes(nextScenes);
 	}, []);
+	const generateResourceFromSelection = useCallback((type: StoryResourceType) => {
+		const intent = selectionResourceIntents[type];
+		if (intent) {
+			requestAssistantAction({
+				kind: 'story-kernel',
+				targetType: intent.targetType,
+				instruction: intent.instruction
+			});
+		}
+	}, [requestAssistantAction]);
 
 	useEffect(() => {
 		if (!mentionService || !storyChapterId) {
@@ -394,7 +433,11 @@ export function ChapterEditor(): React.JSX.Element {
 							selection={selection}
 							readOnly={readOnly}
 							onLinked={mention => setMentions(current => [...current, mention])}
-							onRewrite={() => useAppStore.getState().openAssistant()}
+							onRewrite={() => requestAssistantAction({
+								kind: 'rewrite',
+								actionType: 'polish'
+							})}
+							onGenerateResource={generateResourceFromSelection}
 						/>
 					)}
 			</div>

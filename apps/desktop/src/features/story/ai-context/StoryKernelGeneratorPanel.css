@@ -2,7 +2,10 @@
 	display: grid;
 	gap: 14px;
 	min-width: 0;
-	padding-bottom: 18px;
+	padding: 14px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
 }
 
 .kernel-generator-heading,
@@ -42,7 +45,7 @@
 	color: var(--text-muted);
 	font-size: 12px;
 	line-height: 1.55;
-	background: var(--surface-raised);
+	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
 	border-radius: 9px;
 }
@@ -67,7 +70,7 @@
 	color: var(--text-primary);
 	font: inherit;
 	line-height: 1.55;
-	background: var(--surface-raised);
+	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
 	border-radius: 9px;
 }
@@ -76,6 +79,7 @@
 	min-width: 0;
 	margin: 0;
 	padding: 11px;
+	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
 	border-radius: 9px;
 }
@@ -102,7 +106,7 @@
 	cursor: pointer;
 	color: var(--text-secondary);
 	font-size: 12px;
-	background: var(--surface-raised);
+	background: var(--surface-base);
 	border: 1px solid var(--border-subtle);
 	border-radius: 8px;
 }
@@ -142,10 +146,10 @@
 
 .kernel-candidates > header {
 	position: sticky;
-	top: -15px;
+	top: -16px;
 	z-index: 2;
 	padding: 10px 0;
-	background: var(--surface-base);
+	background: var(--surface-raised);
 	border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -189,7 +193,7 @@
 	gap: 9px;
 	min-width: 0;
 	padding: 12px;
-	background: var(--surface-raised);
+	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
 	border-radius: 10px;
 }

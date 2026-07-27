@@ -102,6 +102,17 @@ describe('ContextPackBuilder', () => {
 		expect(serializeContextPackForAi(optedIn)).toContain('不得默认发送');
 	});
 
+	it('supports grounded expansion as a selection-only action', () => {
+		const serialized = serializeContextPackForAi(buildContextPack({
+			...baseRequest,
+			actionType: 'expand',
+			instruction: '扩展感官和动作细节，不续写选区外情节。'
+		}));
+		expect(serialized).toContain('"actionType":"expand"');
+		expect(serialized).toContain('扩展感官和动作细节');
+		expect(serialized).toContain('雨落在旧站的铁轨上。');
+	});
+
 	it('rejects an adjacent full-chapter-sized candidate', () => {
 		expect(() => buildContextPack({
 			...baseRequest,

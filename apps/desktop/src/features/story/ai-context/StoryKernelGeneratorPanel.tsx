@@ -77,6 +77,11 @@ export interface StoryKernelGeneratorPanelProps {
 		readonly end: number;
 		readonly text: string;
 	};
+	readonly preset?: {
+		readonly id: string;
+		readonly instruction: string;
+		readonly targetTypes: readonly StoryKernelGenerationResourceType[];
+	};
 	readonly repository?: StoryRepository;
 	readonly store?: StoryKernelGenerationStore;
 	readonly runGeneration?: (
@@ -164,6 +169,18 @@ function candidateIsConfirmable(candidate: StoryKernelGenerationCandidate): bool
 export function StoryKernelGeneratorPanel(
 	props: StoryKernelGeneratorPanelProps
 ): React.JSX.Element {
+	return (
+		<StoryKernelGeneratorPanelContent
+			key={`${props.projectRoot}:${props.resourceId}:${props.preset?.id ?? 'latest'}`}
+			{...props}
+		/>
+	);
+}
+
+function StoryKernelGeneratorPanelContent(
+	props: StoryKernelGeneratorPanelProps
+): React.JSX.Element {
+	const presetId = props.preset?.id;
 	const repository = useMemo(
 		() => props.repository
 			?? new DesktopStoryRepository(props.projectRoot, desktopBridge),
@@ -179,10 +196,11 @@ export function StoryKernelGeneratorPanel(
 		[repository, store]
 	);
 	const [instruction, setInstruction] = useState(
-		'根据正文生成可确认的人物、地点、物品、事件、关系、剧情线和信息权限资源。'
+		props.preset?.instruction
+			?? '根据正文生成可确认的人物、地点、物品、事件、关系、剧情线和信息权限资源。'
 	);
 	const [targetTypes, setTargetTypes] = useState<readonly StoryKernelGenerationResourceType[]>(
-		defaultTargetTypes
+		props.preset?.targetTypes ?? defaultTargetTypes
 	);
 	const [batch, setBatch] = useState<StoryKernelGenerationBatch>();
 	const [selectedIds, setSelectedIds] = useState<ReadonlySet<string>>(new Set());
@@ -194,6 +212,7 @@ export function StoryKernelGeneratorPanel(
 	const generating = !terminalStates.includes(jobState);
 
 	useEffect(() => {
+		if (presetId) return;
 		let cancelled = false;
 		void store.load().then(batches => {
 			if (cancelled) return;
@@ -210,7 +229,7 @@ export function StoryKernelGeneratorPanel(
 		return () => {
 			cancelled = true;
 		};
-	}, [props.resourceId, store]);
+	}, [presetId, props.resourceId, store]);
 
 	const toggleTargetType = (type: StoryKernelGenerationResourceType) => {
 		setTargetTypes(current => current.includes(type)

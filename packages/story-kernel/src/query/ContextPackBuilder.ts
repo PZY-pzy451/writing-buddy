@@ -28,7 +28,7 @@ export interface ContextPackCandidate {
 }
 
 export interface ContextPackRequest {
-	readonly actionType: 'polish' | 'concise' | 'grammar' | 'dialogue' | 'pacing';
+	readonly actionType: 'polish' | 'concise' | 'expand' | 'grammar' | 'dialogue' | 'pacing';
 	readonly instruction: string;
 	readonly selection: {
 		readonly text: string;

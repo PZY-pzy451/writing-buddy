@@ -45,6 +45,7 @@ const contextBuilder = new DeterministicContextPackBuilder();
 const actionInstructions: Readonly<Record<ContextPackRequest['actionType'], string>> = {
 	polish: '保持事实、视角和人物语气，只润色当前选区。',
 	concise: '压缩重复表达，只返回更精炼的当前选区。',
+	expand: '扩展当前选区的感官、动作与叙事细节，不续写选区之外的情节。',
 	grammar: '修正语病、标点和指代，不改变情节事实。',
 	dialogue: '优化当前选区的对话自然度，保持人物既有语言风格。',
 	pacing: '调整当前选区节奏，不扩写选区外内容。'
@@ -70,11 +71,13 @@ export interface SelectionRewritePanelProps {
 
 async function defaultRunRewrite(
 	pack: ContextPack,
-	onProgress: (output: string, state: AiJobState, usage?: AiUsage) => void
+	onProgress: (output: string, state: AiJobState, usage?: AiUsage) => void,
+	onJobId: (jobId: string | undefined) => void
 ): Promise<{ readonly output: string; readonly usage?: AiUsage }> {
 	const preferences = await desktopBridge.getAiPreferences();
 	if (!preferences.defaultModelId) throw new Error('未配置可用的 DeepSeek 模型。');
 	const jobId = crypto.randomUUID();
+	onJobId(jobId);
 	const request: AiGenerateRequest = {
 		jobId,
 		jobType: 'selection-rewrite',
@@ -97,6 +100,7 @@ async function defaultRunRewrite(
 		const finish = (result?: { readonly output: string; readonly usage?: AiUsage }, error?: Error) => {
 			if (settled) return;
 			settled = true;
+			onJobId(undefined);
 			if (error) reject(error);
 			else if (result) resolve(result);
 		};
@@ -141,6 +145,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 	const [usage, setUsage] = useState<AiUsage>();
 	const [lastAppliedContent, setLastAppliedContent] = useState<string>();
 	const [error, setError] = useState<string>();
+	const [activeJobId, setActiveJobId] = useState<string>();
 	const loadPackOverride = props.loadPack;
 	const projectRoot = props.projectRoot;
 	const resourceId = props.resourceId;
@@ -210,11 +215,14 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		setCandidate(undefined);
 		setError(undefined);
 		try {
-			const result = await (props.runRewrite ?? defaultRunRewrite)(pack, (output, state, nextUsage) => {
+			const onProgress = (output: string, state: AiJobState, nextUsage?: AiUsage) => {
 				setStreamedLength(output.length);
 				setJobState(state);
 				if (nextUsage) setUsage(nextUsage);
-			});
+			};
+			const result = props.runRewrite
+				? await props.runRewrite(pack, onProgress)
+				: await defaultRunRewrite(pack, onProgress, setActiveJobId);
 			const response = parseSelectionRewriteResponse(result.output);
 			const next = createRewriteCandidate({ pack, response, ...(result.usage ? { usage: result.usage } : {}) });
 			setCandidate(next);
@@ -225,6 +233,11 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '生成候选失败。');
 		}
+	};
+
+	const cancel = async () => {
+		if (!activeJobId) return;
+		await desktopBridge.cancelAiJob(activeJobId);
 	};
 
 	const accept = (replacement: string) => {
@@ -256,10 +269,17 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		<section className="selection-rewrite-panel" aria-label="Grounded 选区改写">
 			{pack ? <ContextPackPreview pack={pack} onChange={setPack} /> : <p className="rewrite-loading">正在构建 Context Pack…</p>}
 			{error ? <p className="rewrite-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
-			<button className="primary-button full-width" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
-				{generating ? <Sparkles size={17} /> : <Send size={17} />}
-				{generating ? `DeepSeek 流式生成中 · ${streamedLength} 字符` : '确认 Context Pack 并生成'}
-			</button>
+			<div className="rewrite-generation-actions">
+				<button className="primary-button" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
+					{generating ? <Sparkles size={17} /> : <Send size={17} />}
+					{generating ? `DeepSeek 流式生成中 · ${streamedLength} 字符` : '确认 Context Pack 并生成'}
+				</button>
+				{generating && activeJobId ? (
+					<button className="secondary-button" type="button" onClick={() => void cancel()}>
+						<X size={16} />取消
+					</button>
+				) : null}
+			</div>
 			{candidate ? (
 				<section className="rewrite-candidate">
 					<header>

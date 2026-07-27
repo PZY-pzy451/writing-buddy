@@ -1,6 +1,10 @@
 .selection-rewrite-panel {
 	display: grid;
-	gap: 12px;
+	gap: 14px;
+	padding: 14px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
 }
 
 .rewrite-loading,
@@ -10,10 +14,11 @@
 	align-items: center;
 	gap: 6px;
 	margin: 0;
-	padding: 10px;
-	font-size: 11px;
+	padding: 11px 12px;
+	font-size: 12px;
+	line-height: 1.5;
 	background: var(--surface-canvas);
-	border-radius: 7px;
+	border-radius: 8px;
 }
 
 .rewrite-error,
@@ -24,8 +29,8 @@
 
 .rewrite-candidate {
 	display: grid;
-	gap: 10px;
-	padding-top: 12px;
+	gap: 12px;
+	padding-top: 14px;
 	border-top: 1px solid var(--border-subtle);
 }
 
@@ -47,10 +52,10 @@
 }
 
 .candidate-diff-view {
-	height: 220px;
+	height: 240px;
 	overflow: hidden;
 	border: 1px solid var(--border-subtle);
-	border-radius: 8px;
+	border-radius: 10px;
 }
 
 .rewrite-draft {
@@ -65,14 +70,14 @@
 
 .rewrite-draft textarea {
 	width: 100%;
-	min-height: 104px;
-	padding: 10px;
+	min-height: 112px;
+	padding: 11px 12px;
 	resize: vertical;
 	color: var(--text-primary);
 	font: 14px/1.6 Georgia, "Microsoft YaHei UI", serif;
 	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
-	border-radius: 7px;
+	border-radius: 8px;
 }
 
 .rewrite-rationale {
@@ -81,7 +86,25 @@
 	gap: 5px 8px;
 	padding: 10px;
 	background: var(--surface-canvas);
-	border-radius: 7px;
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.rewrite-generation-actions {
+	display: flex;
+	align-items: stretch;
+	gap: 8px;
+}
+
+.rewrite-generation-actions .primary-button {
+	flex: 1 1 auto;
+	min-height: 48px;
+}
+
+.rewrite-generation-actions .secondary-button {
+	flex: 0 0 auto;
+	min-width: 80px;
+	min-height: 48px;
 }
 
 .rewrite-rationale strong,
@@ -113,6 +136,7 @@
 	background: var(--surface-base);
 	border: 1px solid var(--border-subtle);
 	border-radius: 6px;
+	transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .rewrite-actions button:first-child {
@@ -129,4 +153,14 @@
 .rewrite-undo {
 	width: 100%;
 	color: var(--accent-strong);
+}
+
+.rewrite-draft textarea:focus-visible {
+	border-color: var(--accent);
+}
+
+@media (max-width: 1120px) {
+	.candidate-diff-view {
+		height: 210px;
+	}
 }

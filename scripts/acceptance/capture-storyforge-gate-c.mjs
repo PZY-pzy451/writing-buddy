@@ -213,7 +213,61 @@ const aiQuickActionsCaptures = [
 		name: '03-context-preview-1024x720.png'
 	}
 ];
-const captures = gate.startsWith('gate-ai-actions')
+const aiQuickActionsGateCCaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-action-menu',
+		prepare: 'select-editor',
+		width: 1536,
+		height: 960,
+		name: '01-selection-toolbar-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-rewrite-panel',
+		prepare: 'select-editor-ai-polish',
+		width: 1536,
+		height: 960,
+		name: '02-ai-polish-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.kernel-generator',
+		prepare: 'select-editor-create-character',
+		width: 1536,
+		height: 960,
+		name: '03-create-character-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-rewrite-panel',
+		prepare: 'select-editor-ai-polish',
+		width: 1280,
+		height: 768,
+		name: '04-ai-polish-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.kernel-generator',
+		prepare: 'select-editor-create-character',
+		width: 1024,
+		height: 688,
+		name: '05-create-character-1024x720.png'
+	}
+];
+const captures = gate.startsWith('gate-ai-actions-c')
+	? aiQuickActionsGateCCaptures
+	: gate.startsWith('gate-ai-actions')
 	? aiQuickActionsCaptures
 	: gate.startsWith('gate-e')
 	? gateECaptures
@@ -245,12 +299,36 @@ try {
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
 		const readyMs = await waitForSelector(client, capture.readySelector ?? capture.selector);
-		if (capture.prepare === 'select-editor') {
+		if (capture.prepare?.startsWith('select-editor')) {
 			const selectionResult = await client.send('Runtime.evaluate', {
 				expression: `window.__WRITING_BUDDY_DEVTOOLS__?.selectManuscriptPrefix(56) ?? false`,
 				returnByValue: true
 			});
 			if (!selectionResult.result.value) throw new Error('No manuscript content was available.');
+			if (capture.prepare === 'select-editor-ai-polish') {
+				const result = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = document.querySelector('.selection-action-ai');
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!result.result.value) throw new Error('AI polish selection action was not available.');
+			}
+			if (capture.prepare === 'select-editor-create-character') {
+				const result = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = document.querySelector('[data-resource-action="character"]');
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!result.result.value) throw new Error('Create-character selection action was not available.');
+			}
 			await waitForSelector(client, capture.selector);
 		}
 		if (capture.prepare === 'open-ai-drawer') {
@@ -311,8 +389,13 @@ try {
 					.filter(element => {
 						const box = element.getBoundingClientRect();
 						const style = getComputedStyle(element);
+						const label = element.matches('input[type="checkbox"], input[type="radio"]')
+							? element.closest('label')
+							: undefined;
+						const hasAccessibleLabelTarget = label
+							&& label.getBoundingClientRect().height >= 43.5;
 						return box.width > 0 && box.height > 0 && style.visibility !== 'hidden'
-							&& style.opacity !== '0' && box.height < 43.5;
+							&& style.opacity !== '0' && box.height < 43.5 && !hasAccessibleLabelTarget;
 					});
 				const describeInteractive = element => {
 					const box = element.getBoundingClientRect();
