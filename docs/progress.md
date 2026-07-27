@@ -4,10 +4,11 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-AI Quick Actions Gate C is complete on
-`codex/ai-quick-actions-gate-c`. The referenced selected-text toolbar now opens
-real grounded rewrite and Story Kernel candidate workflows. Acceptance is in
-`docs/acceptance/014-ai-quick-actions-gate-c-2026-07-27.md`.
+AI Quick Actions Gate C2 is complete on
+`codex/ai-quick-actions-gate-c2`. The remaining original Gate C tasks now have
+author-controlled continuation plus grounded scene goal, outline, reverse
+extraction, and emotion-beat candidates. Acceptance evidence is in
+`docs/acceptance/015-ai-quick-actions-gate-c2-2026-07-27.md`.
 
 ## Completed
 
@@ -110,6 +111,24 @@ real grounded rewrite and Story Kernel candidate workflows. Acceptance is in
   accepted normal close
 - Gate C evidence in
   `docs/acceptance/014-ai-quick-actions-gate-c-2026-07-27.md`
+- Header **AI 续写** modes for continuing a paragraph, completing a scene, and
+  comparing exactly three directions
+- Cursor/revision/anchor-protected candidate insertion with explicit author
+  choice, cancellation, rejection, stale blocking, and Undo
+- Assistant **细纲** tab for generating or extracting scene goal, conflict,
+  turn, outcome, and emotion beats
+- Per-field StoryScene acceptance with fresh repository recheck, expected
+  revision, pre-write safety snapshot, and optional `emotionBeats`
+- Matching TypeScript/Rust `manuscript-continuation` and
+  `scene-plan-generation` request boundaries
+- Responsive warm-paper evidence at 1536/1280/1024 with zero page overflow,
+  clipped controls, or effective targets below 44px
+- Full Node acceptance: 64 files / 188 tests; Rust: 37 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate C2 Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate C2 evidence in
+  `docs/acceptance/015-ai-quick-actions-gate-c2-2026-07-27.md`
 
 ## Open
 
@@ -123,5 +142,6 @@ real grounded rewrite and Story Kernel candidate workflows. Acceptance is in
 
 ## Next
 
-Await product direction or validate the completed AI workflows with an
-author-provided real DeepSeek account and author-selected content.
+Stop for explicit product direction before starting the handoff's character
+and relationship AI work. Do not broaden the accepted Gate C2 scope
+automatically.
