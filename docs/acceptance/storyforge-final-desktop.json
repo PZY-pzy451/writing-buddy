@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-27T09:30:07.4396899Z",
+  "branch": "codex/phase-1.0a-deepseek-ai-foundation",
+  "build": {
+    "node": "24.14.0",
+    "pnpm": "10.32.1",
+    "rustc": "1.97.1",
+    "cargo": "1.97.1",
+    "portableExe": {
+      "path": "tmp/gate-f-target-final/release/writing-buddy-next.exe",
+      "bytes": 6961152,
+      "sha256": "C0EF9675640698F92169E4894B04A915CAD99A1EEB7947280F0E38E67016AEE7"
+    },
+    "nsisInstaller": {
+      "path": "tmp/gate-f-target-final/release/bundle/nsis/Writing Buddy_0.1.0_x64-setup.exe",
+      "bytes": 3028633,
+      "sha256": "85B569DDB747E772438E434D7A4869503908092F8BD92072F369BAFDD651748D"
+    }
+  },
+  "firstLaunchClose": {
+    "pid": 49272,
+    "windowTitle": "Writing Buddy",
+    "closeAccepted": true,
+    "exitedWithin10Seconds": true
+  },
+  "secondLaunch": {
+    "pid": 44252,
+    "windowTitle": "Writing Buddy",
+    "startedAt": "2026-07-27T09:28:43.7757197Z",
+    "runningAtReportTime": true,
+    "projectId": "project-0000000a",
+    "projectLock": {
+      "pid": 44252,
+      "startedAt": "2026-07-27T09:28:44.349687+00:00",
+      "mode": "read-write"
+    },
+    "storyIndexRebuilt": true
+  },
+  "captureNote": "An unrelated exclusive full-screen process occluded Windows.Graphics.Capture. No further UI input was sent; Gate F visual evidence uses the sanitized real-project browser captures."
+}

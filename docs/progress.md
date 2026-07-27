@@ -4,14 +4,13 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate F is active on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 21-23 are complete. The
-derived Story Index and virtualized views meet all five performance gates; all
-three responsive tiers have zero page overflow, clipped interactive controls
-or visible StoryForge controls below 44px; staged v0-to-v1 migration, exact
-rollback, backup policy, cache invalidation and sanitized real-project
-second-launch recovery are verified. Task 24 final vertical-slice acceptance
-is next.
+StoryForge Gate F is complete on
+`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 21-24 passed performance,
+responsive/accessibility, migration, recovery, vertical-slice and production
+Windows build gates. The first final binary closed normally; the second launch
+restored the sanitized real project in read-write mode and remains running.
+Final evidence is recorded in
+`docs/acceptance/011-storyforge-gate-f-professional-baseline-2026-07-27.md`.
 
 ## Completed
 
@@ -81,7 +80,6 @@ is next.
 
 ## Open
 
-- Complete Gate F Task 24 and stop with final acceptance evidence.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -90,5 +88,5 @@ is next.
 
 ## Next
 
-Complete the professional-editor vertical slice, documentation, production
-build, real desktop restart check and final Gate F acceptance report.
+Gate F is the final supplied implementation gate. Stop and wait for explicit
+product scope; live DeepSeek account acceptance requires a user-provided key.
