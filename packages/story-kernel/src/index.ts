@@ -7,6 +7,8 @@ export * from './model/Scene';
 export * from './model/StateRecord';
 export * from './model/StoryPosition';
 export * from './model/StoryResourceBase';
+export * from './model/TimelineEvent';
+export * from './query/TimelineQuery';
 export * from './repository/StoryPaths';
 export * from './repository/StoryRepository';
 export * from './schema/resourceSchemas';

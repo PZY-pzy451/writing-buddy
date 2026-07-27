@@ -143,6 +143,15 @@ export const timelineEventSchema = z.object({
 	...baseShape,
 	storyStart: z.string().trim().min(1).optional(),
 	storyEnd: z.string().trim().min(1).optional(),
+	storyTimeKind: z.enum(['exact', 'date', 'relative', 'range', 'unknown']).optional(),
+	relativeTime: z.object({
+		anchorEventId: idFor('timelineEvent'),
+		offsetMinutes: z.number().finite()
+	}).strict().optional(),
+	uncertainRange: z.object({
+		earliest: z.string().trim().min(1).optional(),
+		latest: z.string().trim().min(1).optional()
+	}).strict().optional(),
 	narrativePosition: storyPositionSchema,
 	eventType: z.string().trim().min(1).max(160),
 	participantIds: z.array(idFor('character')),
@@ -150,6 +159,8 @@ export const timelineEventSchema = z.object({
 	itemIds: z.array(idFor('item')),
 	predecessorIds: z.array(idFor('timelineEvent')),
 	consequenceIds: z.array(idFor('timelineEvent')),
+	plotThreadIds: z.array(idFor('plotThread')).optional().default([]),
+	informationIds: z.array(idFor('information')).optional().default([]),
 	evidenceIds
 }).strict();
 

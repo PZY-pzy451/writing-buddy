@@ -11,6 +11,7 @@ import { MentionService } from '../features/story/manuscript/MentionService';
 import { desktopBridge } from '../platform/bridge';
 import { CharacterCenterPage } from '../features/story/characters/CharacterCenterPage';
 import { RelationshipGraphPage } from '../features/story/relationships/RelationshipGraphPage';
+import { TimelinePage } from '../features/story/timeline/TimelinePage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -22,12 +23,7 @@ export function StoryStudioRoute(): React.JSX.Element {
 	if (storyView === 'relationships') {
 		return <RelationshipGraphPage projectRoot={projectRoot} />;
 	}
-	return (
-		<section className="story-studio-pending">
-			<h1>多轨时间线</h1>
-			<p>该页面将在当前 Gate 的后续任务中启用。</p>
-		</section>
-	);
+	return <TimelinePage projectRoot={projectRoot} />;
 }
 
 /**
