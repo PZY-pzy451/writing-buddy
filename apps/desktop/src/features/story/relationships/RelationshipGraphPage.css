@@ -1,0 +1,447 @@
+.relationship-page {
+	display: grid;
+	grid-template-rows: 116px auto minmax(0, 1fr) 34px;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+	padding: 0 18px;
+	overflow: hidden;
+	background: var(--surface-canvas);
+}
+
+.relationship-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 20px 18px 14px;
+}
+
+.relationship-header h1,
+.relationship-header p {
+	margin: 0;
+}
+
+.relationship-header h1 {
+	margin-top: 3px;
+	font-family: Georgia, "Microsoft YaHei UI", serif;
+	font-size: 28px;
+}
+
+.relationship-header p {
+	margin-top: 5px;
+	color: var(--text-muted);
+	font-size: 12px;
+}
+
+.relationship-toolbar,
+.relationship-toolbar > div,
+.relationship-toolbar label {
+	display: flex;
+	align-items: center;
+}
+
+.relationship-toolbar {
+	gap: 10px;
+}
+
+.relationship-toolbar > div {
+	padding: 3px;
+	background: var(--surface-subtle);
+	border-radius: 8px;
+}
+
+.relationship-toolbar button,
+.relationship-reset-focus {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 36px;
+	padding: 0 10px;
+	cursor: pointer;
+	color: var(--text-muted);
+	background: transparent;
+	border: 0;
+	border-radius: 6px;
+}
+
+.relationship-toolbar button.is-active {
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	box-shadow: 0 2px 8px rgb(30 28 24 / 8%);
+}
+
+.relationship-toolbar label {
+	gap: 6px;
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.relationship-toolbar input {
+	width: 72px;
+	height: 36px;
+	padding: 0 8px;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.relationship-error,
+.relationship-limit {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	min-height: 36px;
+	padding: 7px 12px;
+	margin: 0 18px 8px;
+	font-size: 12px;
+	border-radius: 7px;
+}
+
+.relationship-error {
+	color: var(--danger);
+	background: color-mix(in srgb, var(--danger) 8%, var(--surface-raised));
+}
+
+.relationship-error button {
+	margin-left: auto;
+}
+
+.relationship-limit {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 9%, var(--surface-raised));
+}
+
+.relationship-workspace {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 332px;
+	min-height: 0;
+	overflow: hidden;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
+	box-shadow: 0 10px 28px rgb(37 33 28 / 6%);
+}
+
+.relationship-workspace.is-matrix:not(:has(.relationship-inspector)) {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.relationship-primary-view {
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
+	border-right: 1px solid var(--border-subtle);
+}
+
+.relationship-graph-canvas {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 520px;
+	overflow: hidden;
+	background:
+		radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--border-subtle) 65%, transparent) 1px, transparent 0) 0 0 / 22px 22px,
+		var(--surface-canvas);
+}
+
+.relationship-graph-canvas svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.relationship-graph-canvas line {
+	stroke: color-mix(in srgb, var(--accent) 62%, var(--text-muted));
+}
+
+.relationship-graph-canvas g[role="button"] {
+	cursor: pointer;
+	outline: none;
+}
+
+.relationship-graph-canvas g[role="button"]:focus-visible line,
+.relationship-graph-canvas g[role="button"].is-active line {
+	stroke: var(--accent-strong);
+	filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 70%, transparent));
+}
+
+.relationship-graph-canvas marker path {
+	fill: var(--accent-strong);
+}
+
+.relationship-graph-canvas text {
+	fill: var(--text-muted);
+	font-size: 11px;
+	text-anchor: middle;
+}
+
+.relationship-graph-canvas > button {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	gap: 3px;
+	width: 78px;
+	min-height: 64px;
+	padding: 6px;
+	cursor: pointer;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-strong);
+	border-radius: 10px;
+	box-shadow: 0 7px 18px rgb(28 27 23 / 12%);
+	transform: translate(-50%, -50%);
+}
+
+.relationship-graph-canvas > button:hover,
+.relationship-graph-canvas > button.is-active {
+	border-color: var(--accent);
+	box-shadow: var(--focus-ring);
+}
+
+.relationship-graph-canvas > button span {
+	display: grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border-radius: 999px;
+}
+
+.relationship-graph-canvas > button strong {
+	max-width: 100%;
+	overflow: hidden;
+	font-size: 11px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.relationship-inspector {
+	min-width: 0;
+	padding: 20px;
+	overflow: auto;
+	background: var(--surface-base);
+}
+
+.relationship-inspector.is-empty {
+	display: grid;
+	align-content: center;
+	place-items: center;
+	color: var(--text-muted);
+	text-align: center;
+}
+
+.relationship-inspector header h2 {
+	margin: 2px 0 5px;
+	font-size: 22px;
+}
+
+.relationship-inspector header p {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 0 18px;
+	color: var(--text-secondary);
+}
+
+.relationship-inspector > label {
+	display: grid;
+	gap: 6px;
+	margin-bottom: 12px;
+	color: var(--text-secondary);
+	font-size: 11px;
+}
+
+.relationship-inspector input:not([type="range"]),
+.relationship-inspector select {
+	width: 100%;
+	height: 40px;
+	padding: 0 9px;
+	color: var(--text-primary);
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.relationship-period {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.relationship-period > div {
+	padding: 9px;
+	background: var(--surface-canvas);
+	border-radius: 7px;
+}
+
+.relationship-period dt {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.relationship-period dd {
+	margin: 4px 0 0;
+	font-size: 12px;
+}
+
+.relationship-inspector section {
+	padding-top: 10px;
+	margin-top: 14px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.relationship-inspector section h3 {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 0 8px;
+	font-size: 12px;
+}
+
+.relationship-inspector section code,
+.relationship-inspector section p {
+	display: block;
+	margin: 5px 0;
+	color: var(--text-muted);
+	font-family: inherit;
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.relationship-save {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	width: 100%;
+	min-height: 40px;
+	margin-top: 18px;
+	cursor: pointer;
+	color: white;
+	font-weight: 700;
+	background: var(--accent-strong);
+	border: 0;
+	border-radius: var(--radius-control);
+}
+
+.relationship-matrix-scroll {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.relationship-matrix {
+	min-width: 100%;
+	border-spacing: 0;
+	border-collapse: separate;
+	font-size: 12px;
+}
+
+.relationship-matrix th,
+.relationship-matrix td {
+	min-width: 118px;
+	height: 70px;
+	padding: 7px;
+	border-right: 1px solid var(--border-subtle);
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.relationship-matrix th {
+	position: sticky;
+	z-index: 2;
+	top: 0;
+	color: var(--text-secondary);
+	background: var(--surface-subtle);
+}
+
+.relationship-matrix tbody th {
+	left: 0;
+	z-index: 1;
+}
+
+.relationship-matrix td.is-self {
+	background: color-mix(in srgb, var(--surface-subtle) 58%, transparent);
+}
+
+.relationship-matrix td button {
+	display: grid;
+	width: 100%;
+	min-height: 48px;
+	padding: 7px;
+	cursor: pointer;
+	color: var(--text-primary);
+	text-align: left;
+	background: var(--accent-soft);
+	border: 1px solid transparent;
+	border-radius: 7px;
+}
+
+.relationship-matrix td button:hover,
+.relationship-matrix td button.is-active {
+	border-color: var(--accent);
+}
+
+.relationship-matrix td button span {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.relationship-loading {
+	display: grid;
+	place-items: center;
+	height: 100%;
+	color: var(--text-muted);
+}
+
+.relationship-direction-legend {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+@media (max-width: 1279px) {
+	.relationship-page {
+		padding-inline: 12px;
+	}
+
+	.relationship-workspace {
+		position: relative;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.relationship-inspector {
+		position: absolute;
+		z-index: 30;
+		top: 12px;
+		right: 12px;
+		bottom: 12px;
+		width: min(332px, calc(100% - 24px));
+		border: 1px solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		box-shadow: var(--shadow-float);
+	}
+}
+
+@media (max-width: 1023px) {
+	.relationship-page {
+		grid-template-rows: auto auto minmax(0, 1fr) 34px;
+	}
+
+	.relationship-header {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 10px;
+		padding-block: 14px;
+	}
+
+	.relationship-toolbar {
+		flex-wrap: wrap;
+	}
+}

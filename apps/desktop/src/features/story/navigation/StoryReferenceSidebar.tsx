@@ -15,7 +15,7 @@ const navigation: readonly {
 	readonly available: boolean;
 }[] = [
 	{ id: 'characters', label: '人物中心', description: '动态状态与来源', icon: UserRound, available: true },
-	{ id: 'relationships', label: '人物关系', description: '图谱与有向矩阵', icon: Network, available: false },
+	{ id: 'relationships', label: '人物关系', description: '图谱与有向矩阵', icon: Network, available: true },
 	{ id: 'timeline', label: '多轨时间线', description: '实际时间与叙事顺序', icon: CalendarClock, available: false }
 ];
 

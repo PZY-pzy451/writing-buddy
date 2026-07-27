@@ -2,6 +2,7 @@ export * from './ids/StoryId';
 export * from './model/Character';
 export * from './model/EvidenceRef';
 export * from './model/MentionLink';
+export * from './model/Relationship';
 export * from './model/Scene';
 export * from './model/StateRecord';
 export * from './model/StoryPosition';

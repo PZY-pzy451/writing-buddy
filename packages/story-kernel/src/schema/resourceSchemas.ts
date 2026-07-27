@@ -124,7 +124,14 @@ export const relationshipSchema = z.object({
 	description: z.string().max(10_000).optional(),
 	effectiveFrom: storyPositionSchema,
 	effectiveUntil: storyPositionSchema.optional(),
-	evidenceIds
+	evidenceIds,
+	history: z.array(z.object({
+		effectiveFrom: storyPositionSchema,
+		relationshipType: z.string().trim().min(1).max(160),
+		strength: z.number().min(0).max(1).optional(),
+		visibility: z.enum(['public', 'private', 'secret']),
+		evidenceIds
+	}).strict()).optional().default([])
 }).strict().refine(
 	relationship => relationship.sourceCharacterId !== relationship.targetCharacterId,
 	{ message: 'relationshipEndpointsMustDiffer' }
