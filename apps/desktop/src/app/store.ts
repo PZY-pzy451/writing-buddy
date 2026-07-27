@@ -9,6 +9,7 @@ import {
 import { DocumentSession, ResourceTabManager } from '@writing-buddy/project';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
+import { DesktopStoryRepository } from '@writing-buddy/story-kernel';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import {
@@ -17,6 +18,13 @@ import {
 	type ProjectOpenMode,
 	type PublicProjectOpenError
 } from '../features/projects/application/ProjectOpenService';
+import {
+	StoryResourceOpenService,
+	type StoryOpenResult,
+	type StoryResourceReference,
+	type StoryTabDescriptor
+} from '../features/story/application/StoryResourceOpenService';
+import { parseStoryTabKey } from '../features/story/application/StoryResourceRegistry';
 import { desktopBridge } from '../platform/bridge';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
@@ -46,6 +54,7 @@ interface AppState extends PersistedWorkspace {
 	readonly activeMode: RailMode;
 	readonly tabs: readonly ResourceDescriptor[];
 	readonly activeResource?: ResourceDescriptor;
+	readonly storyOpenResult?: StoryOpenResult;
 	readonly session?: DocumentSession;
 	readonly resourceContent?: string;
 	readonly resourceHash?: string;
@@ -76,6 +85,8 @@ interface AppState extends PersistedWorkspace {
 	readonly revealProjectDirectory: () => Promise<void>;
 	readonly dismissProjectOpenError: () => void;
 	readonly openResource: (resource: ResourceDescriptor) => Promise<void>;
+	readonly openStoryResource: (reference: StoryResourceReference) => Promise<void>;
+	readonly restoreStoryResource: () => Promise<void>;
 	readonly closeResource: (resourceId: string) => void;
 	readonly setContent: (content: string, change?: 'edit' | 'undo' | 'redo') => void;
 	readonly updateCursor: (cursor: CursorState) => void;
@@ -106,6 +117,7 @@ interface AppState extends PersistedWorkspace {
 
 const tabs = new ResourceTabManager();
 const projectOpenService = new ProjectOpenService(desktopBridge);
+let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
 
 function toChapterResource(snapshot: ProjectSnapshot, chapterId: string): ResourceDescriptor | undefined {
@@ -135,6 +147,10 @@ function firstResource(snapshot: ProjectSnapshot, preferredId?: string): Resourc
 	}
 	const first = flattenChapters(snapshot.project)[0];
 	return first ? toChapterResource(snapshot, first.id) : undefined;
+}
+
+function isStoryTab(resource: ResourceDescriptor): resource is StoryTabDescriptor {
+	return resource.type === 'story' && parseStoryTabKey(resource.id) !== undefined;
 }
 
 export const useAppStore = create<AppState>()(persist((set, get) => ({
@@ -201,14 +217,34 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				reviewFile = undefined;
 				restoredIssues = [];
 			}
-			const restoredTabs = get().openResourceIds
+			const persistedResourceIds = get().openResourceIds;
+			const restoredTabs = persistedResourceIds
+				.filter(resourceId => !parseStoryTabKey(resourceId))
 				.map(resourceId => toResource(snapshot, resourceId))
 				.filter((resource): resource is ResourceDescriptor => resource !== undefined);
-			const resource = firstResource(snapshot, get().activeResourceId);
-			if (restoredTabs.length === 0 && resource) {
-				restoredTabs.push(resource);
+			tabs.restore({ resources: restoredTabs });
+			storyResourceOpenService = new StoryResourceOpenService(
+				new DesktopStoryRepository(snapshot.root, desktopBridge),
+				tabs,
+				snapshot.project.projectId
+			);
+			const restoredStoryResults = await storyResourceOpenService.restoreStoryResources(
+				persistedResourceIds,
+				get().activeResourceId
+			);
+			const preferredResource = firstResource(snapshot, get().activeResourceId);
+			if (tabs.state.resources.length === 0 && preferredResource) {
+				tabs.open(preferredResource);
 			}
-			tabs.restore({ resources: restoredTabs, activeId: resource?.id });
+			const persistedActiveId = get().activeResourceId;
+			if (persistedActiveId) {
+				tabs.activate(persistedActiveId);
+			}
+			const active = tabs.state.resources.find(candidate => candidate.id === tabs.state.activeId)
+				?? tabs.state.resources[0];
+			const activeStoryResult = active
+				? restoredStoryResults.find(result => result.tab.id === active.id)
+				: undefined;
 			set({
 				snapshot,
 				recentProjectRoot: snapshot.root,
@@ -218,6 +254,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				tabs: tabs.state.resources,
 				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
 				activeResource: undefined,
+				storyOpenResult: activeStoryResult,
 				session: undefined,
 				resourceContent: undefined,
 				resourceHash: undefined,
@@ -226,7 +263,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				pendingProjectRoot: undefined,
 				projectOpenBusyAction: undefined
 			});
-			const active = tabs.state.resources.find(candidate => candidate.id === tabs.state.activeId);
 			if (active) {
 				await get().openResource(active);
 			}
@@ -294,13 +330,24 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 
 	async openResource(resource) {
 		const snapshot = get().snapshot;
-		if (!snapshot || !resource.path) {
+		if (!snapshot) {
+			return;
+		}
+		if (isStoryTab(resource)) {
+			const reference = parseStoryTabKey(resource.id);
+			if (reference) {
+				await get().openStoryResource(reference);
+			}
+			return;
+		}
+		if (!resource.path) {
 			return;
 		}
 		tabs.open(resource);
 		set({
 			activeResource: resource,
 			activeResourceId: resource.id,
+			storyOpenResult: undefined,
 			tabs: tabs.state.resources,
 			openResourceIds: tabs.state.resources.map(candidate => candidate.id),
 			externalConflict: undefined,
@@ -325,6 +372,50 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
+	async openStoryResource(reference) {
+		if (!storyResourceOpenService) {
+			set({ error: 'Story Kernel 尚未连接到当前项目。' });
+			return;
+		}
+		try {
+			const result = await storyResourceOpenService.openStoryResource(reference);
+			set({
+				activeResource: result.tab,
+				activeResourceId: result.tab.id,
+				storyOpenResult: result,
+				tabs: tabs.state.resources,
+				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
+				session: undefined,
+				resourceContent: undefined,
+				resourceHash: undefined,
+				externalConflict: undefined,
+				error: undefined
+			});
+		} catch (error) {
+			set({ error: error instanceof Error ? error.message : '无法打开 Story 资源。' });
+		}
+	},
+
+	async restoreStoryResource() {
+		const missing = get().storyOpenResult;
+		if (!storyResourceOpenService || missing?.status !== 'missing') {
+			return;
+		}
+		try {
+			const result = await storyResourceOpenService.restoreFromTrash(missing.reference);
+			set({
+				activeResource: result.tab,
+				activeResourceId: result.tab.id,
+				storyOpenResult: result,
+				tabs: tabs.state.resources,
+				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
+				error: undefined
+			});
+		} catch (error) {
+			set({ error: error instanceof Error ? error.message : '资源不在可恢复区。' });
+		}
+	},
+
 	closeResource(resourceId) {
 		const session = get().session;
 		if (get().activeResource?.id === resourceId && session?.state.dirty) {
@@ -341,7 +432,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		if (next) {
 			void get().openResource(next);
 		} else {
-			set({ activeResource: undefined, session: undefined, resourceContent: undefined });
+			set({
+				activeResource: undefined,
+				storyOpenResult: undefined,
+				session: undefined,
+				resourceContent: undefined
+			});
 		}
 	},
 

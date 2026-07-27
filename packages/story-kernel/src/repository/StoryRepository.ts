@@ -14,7 +14,7 @@ export interface StoryStorageGateway {
 		projectRoot: string,
 		type: StoryResourceType,
 		id: string
-	): Promise<unknown | undefined>;
+	): Promise<unknown>;
 	listStoryResources(projectRoot: string, type: StoryResourceType): Promise<readonly unknown[]>;
 	saveStoryResources(
 		projectRoot: string,
@@ -80,6 +80,9 @@ function toStorageError(error: unknown): Error {
 		return new StoryRevisionConflictError(Number.isSafeInteger(actual) ? actual : undefined);
 	}
 	const publicCode = code.split(':')[0];
+	if (publicCode === 'projectReadOnly') {
+		return new StoryStorageError('storyReadOnly');
+	}
 	const knownCodes = new Set([
 		'storyResourceNotFound',
 		'storyTrashNotFound',

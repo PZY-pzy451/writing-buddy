@@ -14,6 +14,7 @@ import { AssistantPanel } from '../assistant/AssistantPanel';
 import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
+import { StoryWorkspaceRoute } from './routes';
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
@@ -99,7 +100,8 @@ export function App(): React.JSX.Element {
 	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible;
 	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible;
 	const showTextEditor = !systemPageVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
-	const showResourceEditor = !systemPageVisible && activeResource && !showTextEditor;
+	const showStoryResource = !systemPageVisible && activeResource?.type === 'story';
+	const showResourceEditor = !systemPageVisible && activeResource && !showTextEditor && !showStoryResource;
 
 	return (
 		<div
@@ -120,6 +122,7 @@ export function App(): React.JSX.Element {
 					{systemPageVisible && <SystemPage />}
 					{showTextEditor && <ChapterEditor />}
 					{showResourceEditor && <ResourceEditor />}
+					{showStoryResource && <StoryWorkspaceRoute />}
 					{!systemPageVisible && !activeResource && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
 				</div>
 				{workspaceDockVisible && <TaskDock />}

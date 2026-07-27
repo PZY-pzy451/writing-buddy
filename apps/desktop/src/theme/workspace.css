@@ -3100,6 +3100,114 @@ body,
 	border-left-color: var(--success);
 }
 
+.story-resource-state {
+	display: grid;
+	place-items: center;
+	align-content: center;
+	gap: 10px;
+	width: min(100% - 48px, 720px);
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 48px;
+	color: var(--text-secondary);
+	text-align: center;
+}
+
+.story-resource-state > svg {
+	color: var(--accent);
+}
+
+.story-resource-state h2,
+.story-resource-state p {
+	margin: 0;
+}
+
+.story-resource-state h2 {
+	color: var(--text-primary);
+	font-family: Georgia, "Microsoft YaHei UI", serif;
+	font-size: clamp(24px, 3vw, 34px);
+}
+
+.story-resource-state p {
+	max-width: 590px;
+	line-height: 1.7;
+}
+
+.story-resource-eyebrow {
+	color: var(--accent-strong);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.story-resource-state code {
+	padding: 5px 8px;
+	color: var(--text-secondary);
+	background: var(--surface-subtle);
+	border-radius: 6px;
+}
+
+.story-resource-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.story-resource-actions button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	min-height: 44px;
+	padding: 0 16px;
+	color: white;
+	background: var(--accent-strong);
+	border: 1px solid var(--accent-strong);
+	border-radius: var(--radius-control);
+}
+
+.story-resource-actions button.secondary {
+	color: var(--text-secondary);
+	background: var(--surface-raised);
+	border-color: var(--border-strong);
+}
+
+.story-resource-facts {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1px;
+	width: min(100%, 620px);
+	margin: 18px 0 0;
+	overflow: hidden;
+	background: var(--border-subtle);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
+}
+
+.story-resource-facts div {
+	min-width: 0;
+	padding: 13px;
+	background: var(--surface-raised);
+}
+
+.story-resource-facts dt {
+	margin-bottom: 5px;
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.story-resource-facts dd {
+	margin: 0;
+	overflow: hidden;
+	color: var(--text-primary);
+	font-size: 12px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 @media (max-width: 1099px) {
 	.ai-setting-grid,
 	.ai-playground-grid {
@@ -3121,6 +3229,10 @@ body,
 
 	.review-run-panel {
 		position: static;
+	}
+
+	.story-resource-facts {
+		grid-template-columns: 1fr;
 	}
 }
 

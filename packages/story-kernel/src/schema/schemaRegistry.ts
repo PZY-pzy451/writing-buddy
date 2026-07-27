@@ -10,6 +10,6 @@ import { resourceSchemas, type StoryResource } from './resourceSchemas';
  */
 export class StorySchemaRegistry {
 	static parse(type: StoryResourceType, json: unknown): StoryResource {
-		return resourceSchemas[type].parse(json) as StoryResource;
+		return resourceSchemas[type].parse(json);
 	}
 }

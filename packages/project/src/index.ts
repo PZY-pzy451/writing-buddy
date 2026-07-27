@@ -181,7 +181,11 @@ export class ResourceTabManager {
 	open(resource: ResourceDescriptor): void {
 		const exists = this.stateValue.resources.some(candidate => candidate.id === resource.id);
 		this.stateValue = {
-			resources: exists ? this.stateValue.resources : [...this.stateValue.resources, resource],
+			resources: exists
+				? this.stateValue.resources.map(candidate => (
+					candidate.id === resource.id ? resource : candidate
+				))
+				: [...this.stateValue.resources, resource],
 			activeId: resource.id
 		};
 	}

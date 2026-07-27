@@ -17,17 +17,17 @@ class MemoryStoryGateway implements StoryStorageGateway {
 		return `${type}:${id}`;
 	}
 
-	async getStoryResource(_root: string, type: string, id: string): Promise<unknown | undefined> {
-		return this.resources.get(this.key(type, id));
+	getStoryResource(_root: string, type: string, id: string): Promise<unknown> {
+		return Promise.resolve(this.resources.get(this.key(type, id)));
 	}
 
-	async listStoryResources(_root: string, type: string): Promise<readonly unknown[]> {
-		return [...this.resources.entries()]
+	listStoryResources(_root: string, type: string): Promise<readonly unknown[]> {
+		return Promise.resolve([...this.resources.entries()]
 			.filter(([key]) => key.startsWith(`${type}:`))
-			.map(([, value]) => value);
+			.map(([, value]) => value));
 	}
 
-	async saveStoryResources(
+	saveStoryResources(
 		_root: string,
 		entries: readonly { readonly resource: unknown; readonly expectedRevision?: number }[]
 	): Promise<readonly unknown[]> {
@@ -38,7 +38,7 @@ class MemoryStoryGateway implements StoryStorageGateway {
 			const current = this.resources.get(key) as { revision: number } | undefined;
 			const actualRevision = current?.revision ?? 0;
 			if (entry.expectedRevision !== undefined && entry.expectedRevision !== actualRevision) {
-				throw `storyRevisionConflict:${actualRevision}`;
+				throw new Error(`storyRevisionConflict:${actualRevision}`);
 			}
 			return {
 				key,
@@ -48,28 +48,29 @@ class MemoryStoryGateway implements StoryStorageGateway {
 		for (const entry of prepared) {
 			this.resources.set(entry.key, entry.value);
 		}
-		return prepared.map(entry => entry.value);
+		return Promise.resolve(prepared.map(entry => entry.value));
 	}
 
-	async moveStoryResourceToTrash(_root: string, type: string, id: string): Promise<void> {
+	moveStoryResourceToTrash(_root: string, type: string, id: string): Promise<void> {
 		const key = this.key(type, id);
 		const resource = this.resources.get(key);
 		if (!resource) {
-			throw 'storyResourceNotFound';
+			return Promise.reject(new Error('storyResourceNotFound'));
 		}
 		this.trash.set(key, resource);
 		this.resources.delete(key);
+		return Promise.resolve();
 	}
 
-	async restoreStoryResourceFromTrash(_root: string, type: string, id: string): Promise<unknown> {
+	restoreStoryResourceFromTrash(_root: string, type: string, id: string): Promise<unknown> {
 		const key = this.key(type, id);
 		const resource = this.trash.get(key);
 		if (!resource) {
-			throw 'storyTrashNotFound';
+			return Promise.reject(new Error('storyTrashNotFound'));
 		}
 		this.resources.set(key, resource);
 		this.trash.delete(key);
-		return resource;
+		return Promise.resolve(resource);
 	}
 }
 

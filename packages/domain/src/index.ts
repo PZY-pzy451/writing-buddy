@@ -8,6 +8,7 @@ export type ResourceType =
 	| 'worldbuilding'
 	| 'timeline'
 	| 'item'
+	| 'story'
 	| 'review'
 	| 'version'
 	| 'trash'

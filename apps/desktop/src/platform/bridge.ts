@@ -116,8 +116,8 @@ class TauriDesktopBridge implements DesktopBridge {
 		projectRoot: string,
 		type: StoryResourceType,
 		id: string
-	): Promise<unknown | undefined> {
-		return invoke<unknown | null>('story_get_resource', {
+	): Promise<unknown> {
+		return invoke<unknown>('story_get_resource', {
 			projectRoot,
 			resourceType: type,
 			id
@@ -473,7 +473,7 @@ class BrowserDesktopBridge implements DesktopBridge {
 		_projectRoot: string,
 		type: StoryResourceType,
 		id: string
-	): Promise<unknown | undefined> {
+	): Promise<unknown> {
 		return browserStoryResources.get(browserStoryKey(type, id));
 	}
 

@@ -10,11 +10,7 @@ import type {
 	AiUsageSummary,
 	SecretStatus
 } from '@writing-buddy/ai';
-import type {
-	StoryResourceType,
-	StorySaveEntry,
-	StoryStorageGateway
-} from '@writing-buddy/story-kernel';
+import type { StoryStorageGateway } from '@writing-buddy/story-kernel';
 
 export interface Disposable {
 	dispose(): void;
