@@ -4,11 +4,11 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-AI Quick Actions Gate C2 is complete on
-`codex/ai-quick-actions-gate-c2`. The remaining original Gate C tasks now have
-author-controlled continuation plus grounded scene goal, outline, reverse
-extraction, and emotion-beat candidates. Acceptance evidence is in
-`docs/acceptance/015-ai-quick-actions-gate-c2-2026-07-27.md`.
+AI Quick Actions Gate D is complete on
+`codex/ai-quick-actions-gate-d`. Character generation/extraction and directed
+relationship generation/evolution analysis now use explicit, grounded,
+revision-safe review flows. Acceptance evidence is in
+`docs/acceptance/016-ai-quick-actions-gate-d-2026-07-27.md`.
 
 ## Completed
 
@@ -129,6 +129,22 @@ extraction, and emotion-beat candidates. Acceptance evidence is in
   accepted normal close
 - Gate C2 evidence in
   `docs/acceptance/015-ai-quick-actions-gate-c2-2026-07-27.md`
+- Strict TypeScript/Rust `character-analysis` and `relationship-analysis`
+  contracts with exact candidate shapes and extraction evidence
+- Character Center AI generation, backstory, arc, voice, and grounded chapter
+  extraction with explicit same-name merge and selected-only acceptance
+- Confirmed dynamic character state persistence for inventory and knowledge
+- Directed relationship generation/evolution analysis with independent
+  opposite edges, dashed pending previews, conflicts, and one-edge acceptance
+- Snapshot-backed, revision-safe Character and Relationship commits
+- Responsive 1536/1280/1024 Gate D evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 66 files / 199 tests; Rust: 39 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate D Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate D evidence in
+  `docs/acceptance/016-ai-quick-actions-gate-d-2026-07-27.md`
 
 ## Open
 
@@ -142,6 +158,17 @@ extraction, and emotion-beat candidates. Acceptance evidence is in
 
 ## Next
 
-Stop for explicit product direction before starting the handoff's character
-and relationship AI work. Do not broaden the accepted Gate C2 scope
-automatically.
+Continue the original handoff with Gate E worldbuilding and item AI workflows,
+using the accepted Action Registry, grounded evidence, and guarded apply path.
+
+## AI Quick Actions Gate D start
+
+- The user explicitly asked to continue after Gate C2, satisfying the previous
+  stop for product direction.
+- Created `codex/ai-quick-actions-gate-d` from the accepted Gate C2 branch.
+- Gate D implements original Tasks 12–14: character generation, grounded
+  character extraction and directed relationship generation/extraction.
+- The `ui-ux-pro-max` skill guides the warm-paper review surfaces: 44px targets,
+  explicit states, visible focus and responsive layout.
+- Contract:
+  `docs/plans/006-ai-quick-actions-gate-d-characters-relationships.md`.
