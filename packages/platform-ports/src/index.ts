@@ -1,4 +1,15 @@
 import type { TextFile, WritingProject } from '@writing-buddy/domain';
+import type {
+	AiBalance,
+	AiConnectionTestResult,
+	AiGenerateRequest,
+	AiModel,
+	AiProviderPreferences,
+	AiProviderStatus,
+	AiStreamEvent,
+	AiUsageSummary,
+	SecretStatus
+} from '@writing-buddy/ai';
 
 export interface Disposable {
 	dispose(): void;
@@ -167,8 +178,15 @@ export interface DesktopBridge {
 	listVersions(projectRoot: string): Promise<readonly VersionSummary[]>;
 	readVersionText(projectRoot: string, snapshotId: string, relativePath: string): Promise<VersionText>;
 	restoreVersion(projectRoot: string, snapshotId: string): Promise<number>;
-	secretExists(key: string): Promise<boolean>;
-	setSecret(key: string, value: string): Promise<void>;
-	deleteSecret(key: string): Promise<void>;
-	aiComplete(request: { model: string; messages: readonly { role: 'system' | 'user' | 'assistant'; content: string }[] }): Promise<string>;
+	getAiProviderStatus(): Promise<AiProviderStatus>;
+	saveDeepSeekKey(key: string): Promise<SecretStatus>;
+	deleteDeepSeekKey(): Promise<SecretStatus>;
+	testDeepSeekConnection(): Promise<AiConnectionTestResult>;
+	listDeepSeekModels(forceRefresh?: boolean): Promise<readonly AiModel[]>;
+	getDeepSeekBalance(): Promise<AiBalance>;
+	getAiPreferences(): Promise<AiProviderPreferences>;
+	saveAiPreferences(preferences: AiProviderPreferences): Promise<AiProviderPreferences>;
+	startAiGeneration(request: AiGenerateRequest, listener: (event: AiStreamEvent) => void): Promise<void>;
+	cancelAiJob(jobId: string): Promise<boolean>;
+	getAiUsageSummary(): Promise<AiUsageSummary>;
 }

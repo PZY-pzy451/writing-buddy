@@ -16,35 +16,8 @@ use crate::{
     filesystem::{self, AtomicWriteRequest, AtomicWriteResult, TextFile},
     logging,
     migration::{self, ProjectSnapshot},
-    process_lock, secrets,
+    process_lock,
 };
-
-#[derive(Debug, Deserialize)]
-pub struct AiMessage {
-    role: String,
-    content: String,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct AiCompleteRequest {
-    model: String,
-    messages: Vec<AiMessage>,
-}
-
-#[derive(Debug, Deserialize)]
-struct DeepSeekResponse {
-    choices: Vec<DeepSeekChoice>,
-}
-
-#[derive(Debug, Deserialize)]
-struct DeepSeekChoice {
-    message: DeepSeekMessage,
-}
-
-#[derive(Debug, Deserialize)]
-struct DeepSeekMessage {
-    content: String,
-}
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -627,84 +600,4 @@ pub fn restore_backup(
         Some("自动：恢复前".to_owned()),
     )?;
     archive::restore(&path, &project_root, overwrite)
-}
-
-#[tauri::command]
-pub fn set_secret(key: String, value: String) -> Result<(), String> {
-    if key != "deepseek-api-key" {
-        return Err("invalidSecretKey".to_owned());
-    }
-    secrets::set(&key, &value)
-}
-
-#[tauri::command]
-pub fn delete_secret(key: String) -> Result<(), String> {
-    if key != "deepseek-api-key" {
-        return Err("invalidSecretKey".to_owned());
-    }
-    secrets::delete(&key)
-}
-
-#[tauri::command]
-pub fn secret_exists(key: String) -> Result<bool, String> {
-    if key != "deepseek-api-key" {
-        return Err("invalidSecretKey".to_owned());
-    }
-    Ok(secrets::get(&key)?.is_some())
-}
-
-#[tauri::command]
-pub async fn ai_complete(request: AiCompleteRequest) -> Result<String, String> {
-    let allowed_models = ["deepseek-chat", "deepseek-reasoner"];
-    if !allowed_models.contains(&request.model.as_str())
-        || request.messages.is_empty()
-        || request.messages.len() > 20
-        || request
-            .messages
-            .iter()
-            .map(|message| message.content.chars().count())
-            .sum::<usize>()
-            > 20_000
-        || request
-            .messages
-            .iter()
-            .any(|message| !matches!(message.role.as_str(), "system" | "user" | "assistant"))
-    {
-        return Err("aiRequestRejected".to_owned());
-    }
-    let key = secrets::get("deepseek-api-key")?.ok_or_else(|| "aiNotConfigured".to_owned())?;
-    let messages = request
-        .messages
-        .into_iter()
-        .map(|message| json!({ "role": message.role, "content": message.content }))
-        .collect::<Vec<_>>();
-    let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(120))
-        .redirect(reqwest::redirect::Policy::none())
-        .build()
-        .map_err(|_| "aiClientFailed".to_owned())?;
-    let response = client
-        .post("https://api.deepseek.com/chat/completions")
-        .bearer_auth(key)
-        .json(&json!({
-            "model": request.model,
-            "messages": messages,
-            "stream": false,
-            "response_format": { "type": "json_object" }
-        }))
-        .send()
-        .await
-        .map_err(|_| "aiNetworkFailed".to_owned())?;
-    if !response.status().is_success() {
-        return Err(format!("aiHttpStatus:{}", response.status().as_u16()));
-    }
-    let body: DeepSeekResponse = response
-        .json()
-        .await
-        .map_err(|_| "aiInvalidResponse".to_owned())?;
-    body.choices
-        .into_iter()
-        .next()
-        .map(|choice| choice.message.content)
-        .ok_or_else(|| "aiInvalidResponse".to_owned())
 }

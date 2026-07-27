@@ -88,12 +88,14 @@ export function App(): React.JSX.Element {
 	}, []);
 
 	const systemPageVisible = !['works', 'references'].includes(activeMode);
+	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible;
+	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible;
 	const showTextEditor = !systemPageVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
 	const showResourceEditor = !systemPageVisible && activeResource && !showTextEditor;
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${assistantOpen ? '' : 'is-assistant-closed'} ${dockOpen ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -112,12 +114,12 @@ export function App(): React.JSX.Element {
 					{showResourceEditor && <ResourceEditor />}
 					{!systemPageVisible && !activeResource && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
 				</div>
-				{dockOpen && !focusMode && <TaskDock />}
-				{!dockOpen && !focusMode && (
+				{workspaceDockVisible && <TaskDock />}
+				{!dockOpen && !focusMode && !systemPageVisible && (
 					<button className="dock-restore" type="button" onClick={toggleDock}><PanelBottomOpen size={17} />展开待处理区</button>
 				)}
 			</main>
-			{assistantOpen && !focusMode && <AssistantPanel />}
+			{workspaceAssistantVisible && <AssistantPanel />}
 			{!focusMode && <StatusBar />}
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (

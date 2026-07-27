@@ -14,7 +14,7 @@ import { persist } from 'zustand/middleware';
 import { desktopBridge } from '../platform/bridge';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
-export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'settings';
+export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
@@ -22,7 +22,6 @@ interface PersistedWorkspace {
 	readonly openResourceIds: readonly string[];
 	readonly theme: ThemeId;
 	readonly accent: 'gold' | 'blue' | 'purple';
-	readonly aiMode: 'local' | 'deepseek';
 	readonly focusMode: boolean;
 	readonly activeMode: RailMode;
 	readonly sidebarWidth: number;
@@ -81,7 +80,6 @@ interface AppState extends PersistedWorkspace {
 	readonly setMode: (mode: RailMode) => void;
 	readonly setTheme: (theme: ThemeId) => void;
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
-	readonly setAiMode: (mode: 'local' | 'deepseek') => void;
 	readonly toggleFocus: () => void;
 	readonly toggleAssistant: () => void;
 	readonly toggleDock: () => void;
@@ -128,7 +126,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	loading: false,
 	theme: 'paper',
 	accent: 'gold',
-	aiMode: 'local',
 	focusMode: false,
 	sidebarWidth: 320,
 	assistantWidth: 360,
@@ -476,7 +473,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setMode(activeMode) { set({ activeMode }); },
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },
-	setAiMode(aiMode) { set({ aiMode }); },
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
 	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
 	toggleDock() { set(state => ({ dockOpen: !state.dockOpen })); },
@@ -493,7 +489,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		openResourceIds: state.openResourceIds,
 		theme: state.theme,
 		accent: state.accent,
-		aiMode: state.aiMode,
 		focusMode: state.focusMode,
 		activeMode: state.activeMode,
 		sidebarWidth: state.sidebarWidth,

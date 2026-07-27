@@ -13,13 +13,11 @@ import {
 import {
 	FakeAiProvider,
 	buildSelectionContext,
-	parseAiSuggestion,
 	suggestionToReviewIssue
 } from '@writing-buddy/ai';
 import { runLocalReview } from '@writing-buddy/review';
 import { useState } from 'react';
 import { useAppStore } from '../app/store';
-import { desktopBridge } from '../platform/bridge';
 import { ResizeHandle } from '../shell/ResizeHandle';
 
 const fakeAi = new FakeAiProvider();
@@ -31,7 +29,6 @@ export function AssistantPanel(): React.JSX.Element {
 	const selection = useAppStore(state => state.selection);
 	const issues = useAppStore(state => state.issues);
 	const setIssues = useAppStore(state => state.setIssues);
-	const aiMode = useAppStore(state => state.aiMode);
 	const setError = useAppStore(state => state.setError);
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const setAssistantWidth = useAppStore(state => state.setAssistantWidth);
@@ -64,17 +61,12 @@ export function AssistantPanel(): React.JSX.Element {
 				before: session.content.slice(Math.max(0, selection.start - 100), selection.start),
 				after: session.content.slice(selection.end, selection.end + 100)
 			});
-			const suggestion = aiMode === 'deepseek'
-				? parseAiSuggestion(selection.text, await desktopBridge.aiComplete({
-					model: 'deepseek-chat',
-					messages
-				}))
-				: await fakeAi.complete({
-					requestId: crypto.randomUUID(),
-					model: 'local-fixture',
-					messages,
-					task: 'polish'
-				});
+			const suggestion = await fakeAi.complete({
+				requestId: crypto.randomUUID(),
+				model: 'local-fixture',
+				messages,
+				task: 'polish'
+			});
 			setIssues([
 				suggestionToReviewIssue({
 					projectId: snapshot.project.projectId,
@@ -116,7 +108,7 @@ export function AssistantPanel(): React.JSX.Element {
 						<button className="primary-button full-width" type="button" disabled={!selection?.text || working} onClick={() => void polish()}>
 							<Sparkles size={17} />{working
 								? '正在分析…'
-								: aiMode === 'deepseek' ? '使用 DeepSeek 生成建议' : '生成本地模拟建议'}
+								: '生成本地模拟建议'}
 						</button>
 					</div>
 					<div className="quick-actions">

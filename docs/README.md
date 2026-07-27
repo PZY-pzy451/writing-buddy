@@ -7,3 +7,5 @@
 - [Acceptance](./acceptance/README.md)
 - [Daily memory](./memory/README.md)
 - [Postmortems](./postmortem/README.md)
+- [Plans](./plans/README.md)
+- [Frozen specifications](./superpowers/README.md)

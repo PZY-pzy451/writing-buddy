@@ -45,10 +45,16 @@ export function GlobalRail(): React.JSX.Element {
 				})}
 			</div>
 			<div className="rail-secondary">
-				<div className="rail-ai" title="智能助手使用本地模拟结果">
+				<button
+					type="button"
+					className={`rail-item rail-ai ${activeMode === 'ai' ? 'is-active' : ''}`}
+					onClick={() => setMode('ai')}
+					aria-current={activeMode === 'ai' ? 'page' : undefined}
+					title="打开 StoryForge AI 测试台"
+				>
 					<Sparkles size={18} />
-					<span>助手</span>
-				</div>
+					<span>AI 测试</span>
+				</button>
 				<button
 					type="button"
 					className={`rail-item ${activeMode === 'settings' ? 'is-active' : ''}`}

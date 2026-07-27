@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { SettingsPage } from '../settings/SettingsPage';
+import { AiPlaygroundPage } from '../features/ai/AiPlaygroundPage';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
@@ -42,6 +43,9 @@ export function SystemPage(): React.JSX.Element | null {
 
 	if (mode === 'settings') {
 		return <SettingsPage />;
+	}
+	if (mode === 'ai') {
+		return <AiPlaygroundPage />;
 	}
 	if (mode === 'works' || mode === 'references') {
 		return null;

@@ -1,3 +1,4 @@
+mod ai;
 mod archive;
 mod commands;
 mod filesystem;
@@ -17,6 +18,7 @@ use tauri::Manager;
 pub struct AppState {
     locks: Mutex<HashMap<PathBuf, PathBuf>>,
     approved_backups: Mutex<HashSet<PathBuf>>,
+    ai_jobs: Mutex<ai::job_registry::AiJobRegistry>,
 }
 
 pub fn run() {
@@ -40,10 +42,17 @@ pub fn run() {
             commands::choose_backup,
             commands::inspect_backup,
             commands::restore_backup,
-            commands::secret_exists,
-            commands::set_secret,
-            commands::delete_secret,
-            commands::ai_complete,
+            ai::commands::ai_get_provider_status,
+            ai::commands::ai_save_deepseek_key,
+            ai::commands::ai_delete_deepseek_key,
+            ai::commands::ai_test_deepseek_connection,
+            ai::commands::ai_list_deepseek_models,
+            ai::commands::ai_get_deepseek_balance,
+            ai::commands::ai_get_preferences,
+            ai::commands::ai_save_preferences,
+            ai::commands::ai_start_generation,
+            ai::commands::ai_cancel_job,
+            ai::commands::ai_get_usage_summary,
         ])
         .build(tauri::generate_context!())
         .expect("Writing Buddy failed to initialize")
@@ -54,6 +63,9 @@ pub fn run() {
             ) {
                 if let Some(state) = app.try_state::<AppState>() {
                     process_lock::release_all(&state);
+                    if let Ok(mut jobs) = state.ai_jobs.lock() {
+                        jobs.cancel_all();
+                    }
                 }
             }
         });

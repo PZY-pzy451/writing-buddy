@@ -1,4 +1,17 @@
-import { invoke } from '@tauri-apps/api/core';
+import { Channel, invoke } from '@tauri-apps/api/core';
+import {
+	DEFAULT_AI_PREFERENCES,
+	createDeepSeekProviderDefinition,
+	type AiBalance,
+	type AiConnectionTestResult,
+	type AiGenerateRequest,
+	type AiModel,
+	type AiProviderPreferences,
+	type AiProviderStatus,
+	type AiStreamEvent,
+	type AiUsageSummary,
+	type SecretStatus
+} from '@writing-buddy/ai';
 import type {
 	AtomicWriteRequest,
 	AtomicWriteResult,
@@ -85,20 +98,50 @@ class TauriDesktopBridge implements DesktopBridge {
 		return invoke<number>('restore_version', { projectRoot, snapshotId });
 	}
 
-	secretExists(key: string): Promise<boolean> {
-		return invoke<boolean>('secret_exists', { key });
+	getAiProviderStatus(): Promise<AiProviderStatus> {
+		return invoke('ai_get_provider_status');
 	}
 
-	setSecret(key: string, value: string): Promise<void> {
-		return invoke('set_secret', { key, value });
+	saveDeepSeekKey(key: string): Promise<SecretStatus> {
+		return invoke('ai_save_deepseek_key', { key });
 	}
 
-	deleteSecret(key: string): Promise<void> {
-		return invoke('delete_secret', { key });
+	deleteDeepSeekKey(): Promise<SecretStatus> {
+		return invoke('ai_delete_deepseek_key');
 	}
 
-	aiComplete(request: { model: string; messages: readonly { role: 'system' | 'user' | 'assistant'; content: string }[] }): Promise<string> {
-		return invoke('ai_complete', { request });
+	testDeepSeekConnection(): Promise<AiConnectionTestResult> {
+		return invoke('ai_test_deepseek_connection');
+	}
+
+	listDeepSeekModels(forceRefresh = false): Promise<readonly AiModel[]> {
+		return invoke<AiModel[]>('ai_list_deepseek_models', { forceRefresh });
+	}
+
+	getDeepSeekBalance(): Promise<AiBalance> {
+		return invoke('ai_get_deepseek_balance');
+	}
+
+	getAiPreferences(): Promise<AiProviderPreferences> {
+		return invoke('ai_get_preferences');
+	}
+
+	saveAiPreferences(preferences: AiProviderPreferences): Promise<AiProviderPreferences> {
+		return invoke('ai_save_preferences', { preferences });
+	}
+
+	startAiGeneration(request: AiGenerateRequest, listener: (event: AiStreamEvent) => void): Promise<void> {
+		const onEvent = new Channel<AiStreamEvent>();
+		onEvent.onmessage = listener;
+		return invoke('ai_start_generation', { request, onEvent });
+	}
+
+	cancelAiJob(jobId: string): Promise<boolean> {
+		return invoke('ai_cancel_job', { jobId });
+	}
+
+	getAiUsageSummary(): Promise<AiUsageSummary> {
+		return invoke('ai_get_usage_summary');
 	}
 }
 
@@ -189,7 +232,31 @@ const browserFiles = new Map<string, string>([
 let browserReviewFile: TextFile | undefined;
 const browserVersionContent = new Map<string, Map<string, string>>();
 const browserVersions: VersionSummary[] = [];
-const browserSecrets = new Set<string>();
+const browserAiModels: readonly AiModel[] = [
+	{ id: 'deepseek-v4-flash', ownedBy: 'deepseek' },
+	{ id: 'deepseek-v4-pro', ownedBy: 'deepseek' }
+];
+const browserAiBalance: AiBalance = {
+	available: true,
+	balances: [{
+		currency: 'CNY',
+		totalBalance: '88.00',
+		grantedBalance: '8.00',
+		toppedUpBalance: '80.00'
+	}]
+};
+let browserAiPreferences: AiProviderPreferences = DEFAULT_AI_PREFERENCES;
+let browserAiSecretStatus: SecretStatus = {
+	configured: false,
+	providerId: 'deepseek'
+};
+let browserAiUsageSummary: AiUsageSummary = {
+	inputTokens: 0,
+	outputTokens: 0,
+	totalTokens: 0,
+	requests: 0
+};
+const browserCancelledJobs = new Set<string>();
 
 function browserHash(value: string): string {
 	let result = 2166136261;
@@ -301,21 +368,111 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return version.size;
 	}
 
-	async secretExists(key: string): Promise<boolean> {
-		return browserSecrets.has(key);
+	async getAiProviderStatus(): Promise<AiProviderStatus> {
+		return {
+			provider: createDeepSeekProviderDefinition(),
+			secret: browserAiSecretStatus,
+			preferences: browserAiPreferences
+		};
 	}
 
-	async setSecret(key: string): Promise<void> {
-		browserSecrets.add(key);
+	async saveDeepSeekKey(key: string): Promise<SecretStatus> {
+		if (!key.trim()) {
+			throw new Error('invalid_configuration');
+		}
+		browserAiSecretStatus = {
+			configured: true,
+			providerId: 'deepseek',
+			updatedAt: new Date().toISOString(),
+			fingerprint: 'A4F9…'
+		};
+		return browserAiSecretStatus;
 	}
 
-	async deleteSecret(key: string): Promise<void> {
-		browserSecrets.delete(key);
+	async deleteDeepSeekKey(): Promise<SecretStatus> {
+		browserAiSecretStatus = {
+			configured: false,
+			providerId: 'deepseek'
+		};
+		return browserAiSecretStatus;
 	}
 
-	async aiComplete(request: { model: string; messages: readonly { role: 'system' | 'user' | 'assistant'; content: string }[] }): Promise<string> {
-		const selection = request.messages.at(-1)?.content ?? '';
-		return JSON.stringify({ replacement: selection, reason: '浏览器预览不发送网络请求。', scope: '当前选区' });
+	async testDeepSeekConnection(): Promise<AiConnectionTestResult> {
+		if (!browserAiSecretStatus.configured) {
+			throw new Error('authentication_failed');
+		}
+		return {
+			status: {
+				provider: createDeepSeekProviderDefinition(),
+				secret: browserAiSecretStatus,
+				preferences: browserAiPreferences,
+				lastValidatedAt: new Date().toISOString()
+			},
+			models: browserAiModels,
+			balance: browserAiBalance
+		};
+	}
+
+	async listDeepSeekModels(): Promise<readonly AiModel[]> {
+		if (!browserAiSecretStatus.configured) {
+			throw new Error('authentication_failed');
+		}
+		return browserAiModels;
+	}
+
+	async getDeepSeekBalance(): Promise<AiBalance> {
+		if (!browserAiSecretStatus.configured) {
+			throw new Error('authentication_failed');
+		}
+		return browserAiBalance;
+	}
+
+	async getAiPreferences(): Promise<AiProviderPreferences> {
+		return browserAiPreferences;
+	}
+
+	async saveAiPreferences(preferences: AiProviderPreferences): Promise<AiProviderPreferences> {
+		browserAiPreferences = preferences;
+		return browserAiPreferences;
+	}
+
+	async startAiGeneration(
+		request: AiGenerateRequest,
+		listener: (event: AiStreamEvent) => void
+	): Promise<void> {
+		if (!browserAiSecretStatus.configured) {
+			throw new Error('authentication_failed');
+		}
+		browserCancelledJobs.delete(request.jobId);
+		listener({ type: 'job_started', jobId: request.jobId });
+		listener({ type: 'connection_opened', jobId: request.jobId });
+		const deltas = ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+		for (const text of deltas) {
+			await new Promise(resolve => window.setTimeout(resolve, 45));
+			if (browserCancelledJobs.has(request.jobId)) {
+				listener({ type: 'cancelled', jobId: request.jobId });
+				return;
+			}
+			listener({ type: 'content_delta', jobId: request.jobId, text });
+		}
+		const usage = { inputTokens: 38, outputTokens: 82, totalTokens: 120, cachedInputTokens: 0 };
+		browserAiUsageSummary = {
+			inputTokens: browserAiUsageSummary.inputTokens + 38,
+			outputTokens: browserAiUsageSummary.outputTokens + 82,
+			totalTokens: browserAiUsageSummary.totalTokens + 120,
+			requests: browserAiUsageSummary.requests + 1
+		};
+		listener({ type: 'usage', jobId: request.jobId, usage });
+		listener({ type: 'completed', jobId: request.jobId, finishReason: 'stop' });
+	}
+
+	async cancelAiJob(jobId: string): Promise<boolean> {
+		browserCancelledJobs.add(jobId);
+		return true;
+	}
+
+	async getAiUsageSummary(): Promise<AiUsageSummary> {
+		return browserAiUsageSummary;
 	}
 }
 

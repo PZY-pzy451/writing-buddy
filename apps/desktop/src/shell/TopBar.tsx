@@ -18,6 +18,7 @@ export function TopBar(): React.JSX.Element {
 	const focusMode = useAppStore(state => state.focusMode);
 	const toggleFocus = useAppStore(state => state.toggleFocus);
 	const assistantOpen = useAppStore(state => state.assistantOpen);
+	const activeMode = useAppStore(state => state.activeMode);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
 
 	return (
@@ -49,9 +50,11 @@ export function TopBar(): React.JSX.Element {
 					<Focus size={17} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
-				<button className="icon-button" type="button" onClick={toggleAssistant} aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}>
-					{assistantOpen ? <PanelRightClose size={19} /> : <PanelRightOpen size={19} />}
-				</button>
+				{['works', 'references'].includes(activeMode) && (
+					<button className="icon-button" type="button" onClick={toggleAssistant} aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}>
+						{assistantOpen ? <PanelRightClose size={19} /> : <PanelRightOpen size={19} />}
+					</button>
+				)}
 				<span className="ai-state"><Sparkles size={15} /> AI 本地预览</span>
 			</div>
 		</header>
