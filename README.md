@@ -15,14 +15,37 @@ legacy Code-OSS shell while preserving Writing Buddy's on-disk project format.
 
 ## Commands
 
+Use Node.js 24 and pnpm 10.32.1:
+
+```powershell
+node --version
+pnpm --version
+```
+
+Install, verify and compile:
+
 ```powershell
 pnpm install --frozen-lockfile
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm tauri:dev
+pnpm acceptance
 pnpm tauri:build
+```
+
+Run the desktop app during development:
+
+```powershell
+pnpm tauri:dev
+```
+
+Run the compiled application:
+
+```powershell
+& '.\apps\desktop\src-tauri\target\release\writing-buddy-next.exe'
+```
+
+The Windows installer is generated at:
+
+```text
+apps\desktop\src-tauri\target\release\bundle\nsis\Writing Buddy_0.1.0_x64-setup.exe
 ```
 
 See [migration status](docs/migration/001-status.md) and the

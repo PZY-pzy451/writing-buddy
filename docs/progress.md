@@ -4,18 +4,15 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate A is ready for human approval on
-`codex/phase-1.0a-deepseek-ai-foundation`. Task 0 froze the baseline at
-`7e658a284920b0e61d42da39a0addaa39bd6b11d` and copied the complete professional
-editor handoff. Task 1 now provides structured project-open errors, read-only
-fallback, repair/diagnostic/retry actions, a stable first-launch landing page
-and real copied-project restart recovery. The canonical release opened the
-6-chapter acceptance project twice, including stale-lock recovery, without
-changing any of its 17 managed files. A follow-up close regression was fixed by
-granting the main window Tauri's narrowly scoped `allow-destroy` permission;
-the rebuilt Windows release now exits on a normal non-force close signal.
-Story Kernel and professional data pages remain blocked until Gate A receives
-explicit human approval.
+StoryForge Gate B is complete and waiting for human approval on
+`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 2–8 now provide the Story
+Kernel, strict schemaVersion 1 resources, atomic Rust persistence, resource
+tabs/routes, the project dashboard, scene metadata/navigation, manuscript
+mentions and backlinks. A real copied 6-chapter project loaded 5 resources,
+2 scenes and 3 mentions without changing any of its 17 pre-existing files.
+The 1536×992-equivalent Tauri WebView now gives the dashboard the full 852px
+workspace height; 1280×800 and 1024×720 checks also have no horizontal page
+overflow. Gate C remains blocked until this report receives explicit approval.
 
 ## Completed
 
@@ -35,6 +32,14 @@ explicit human approval.
   `docs/acceptance/005-storyforge-gate-a-project-open-2026-07-27.md`
 - Windows close regression evidence and rebuilt release hashes in
   `docs/acceptance/006-window-close-regression-2026-07-27.md`
+- Story Kernel IDs, positions, evidence, strict schemas and safe paths
+- Atomic Story Repository transactions, revision conflicts and Trash recovery
+- First-class Story resource routes/tabs with persistence and missing recovery
+- Full-height Story dashboard with three responsive viewport checks
+- Scene metadata/navigation and manuscript-safe unlink behavior
+- Mention persistence, rebase/stale handling, Monaco decorations and backlinks
+- Gate B real Tauri evidence in
+  `docs/acceptance/007-storyforge-gate-b-story-kernel-2026-07-27.md`
 - Initial Git branch and exact JavaScript/Rust lockfiles
 - Scoped DeepSeek provider contracts, model selection, job lifecycle, retry
   policy, cancellation, usage aggregation, and error taxonomy
@@ -53,7 +58,7 @@ explicit human approval.
 
 ## Open
 
-- Obtain human approval for StoryForge Gate A before starting Task 2.
+- Obtain human approval for StoryForge Gate B before starting Task 9.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -62,5 +67,5 @@ explicit human approval.
 
 ## Next
 
-Review the Gate A acceptance report, screenshots and commits. Stop for explicit
-human approval; do not start Story Kernel work automatically.
+Review the Gate B acceptance report, three screenshots and commits. Stop for
+explicit human approval; do not start Character Center or Gate C automatically.

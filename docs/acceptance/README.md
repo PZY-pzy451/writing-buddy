@@ -6,5 +6,6 @@
 - [System layout and AI review acceptance, 2026-07-27](./004-system-layout-and-ai-review-2026-07-27.md)
 - [StoryForge Gate A project-open acceptance, 2026-07-27](./005-storyforge-gate-a-project-open-2026-07-27.md)
 - [Window close regression acceptance, 2026-07-27](./006-window-close-regression-2026-07-27.md)
+- [StoryForge Gate B Story Kernel acceptance, 2026-07-27](./007-storyforge-gate-b-story-kernel-2026-07-27.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
