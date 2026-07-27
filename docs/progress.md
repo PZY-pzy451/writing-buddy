@@ -4,15 +4,16 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate D is complete and waiting for human approval on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 13–16 provide structured
-worldbuilding and location hierarchy, story-asset state/history, plot-thread
-and foreshadowing lifecycles, and position-aware information permissions.
-Author secrets default to exclusion from AI context. Visual acceptance at
-1536×992, 1280×800 and 1024×720 has zero page-level overflow and uses the full
-available workspace. A sanitized copied six-chapter project preserves every
-Markdown hash while carrying the complete Gate D data set. Gate E remains
-blocked until this Gate D report receives explicit approval.
+StoryForge Gate E is complete and waiting for human approval on
+`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 17–20 provide author-visible
+Context Packs, grounded selection rewrite with Diff/Undo, AI-extracted pending
+facts and a unified long-form continuity review. Dynamic character state is
+resolved at the selected scene position, author secrets remain excluded by
+default, and all AI output remains author-confirmed. Visual acceptance at
+1536×992, 1280×800 and 1024×720 has zero page-level overflow. The real copied
+project closes normally and restores on second launch with all six Markdown
+hashes unchanged. Gate F remains blocked until the Gate E report receives
+explicit approval.
 
 ## Completed
 
@@ -54,6 +55,16 @@ blocked until this Gate D report receives explicit approval.
 - Author-secret default AI exclusion and premature-reveal checks
 - Gate D evidence in
   `docs/acceptance/009-storyforge-gate-d-world-assets-plots-information-2026-07-27.md`
+- Deterministic P0–P6 Context Pack construction with author-visible toggles,
+  token budgets and author-secret exclusion
+- Position-aware dynamic character state in grounded AI context
+- Selection rewrite streaming, Diff, partial/full accept, note, reject and Undo
+- AI-extracted pending facts with atomic persistence and mandatory author
+  confirmation, Evidence and StoryPosition
+- Unified text-rule, Story Kernel and AI continuity review with deduplication,
+  stale evidence, two-source navigation and persisted resolution
+- Gate E evidence in
+  `docs/acceptance/010-storyforge-gate-e-grounded-ai-continuity-2026-07-27.md`
 - Initial Git branch and exact JavaScript/Rust lockfiles
 - Scoped DeepSeek provider contracts, model selection, job lifecycle, retry
   policy, cancellation, usage aggregation, and error taxonomy
@@ -72,7 +83,7 @@ blocked until this Gate D report receives explicit approval.
 
 ## Open
 
-- Obtain human approval for StoryForge Gate D before starting Task 17.
+- Obtain human approval for StoryForge Gate E before starting Task 21.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -81,5 +92,6 @@ blocked until this Gate D report receives explicit approval.
 
 ## Next
 
-Review the Gate D acceptance report, six screenshots and commits. Stop for
-explicit human approval; do not start AI Context Pack or Gate E automatically.
+Review the Gate E acceptance report, three screenshots and commits. Stop for
+explicit human approval; do not start scale/performance Task 21 or Gate F
+automatically.
