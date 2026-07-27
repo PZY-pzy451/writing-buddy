@@ -37,6 +37,26 @@ pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"facts\":[{\"factType\":\"character-state|item-state|location-state|relationship|timeline-event|world-rule|story-information|plot-thread|foreshadowing\",\"title\":\"简短标题\",\"statement\":\"明确事实\",\"confidence\":0.8,\"start\":0,\"end\":1,\"quote\":\"原文证据\"}]}。",
     "提取结果全部处于待确认状态，最多返回 30 条，不得声称已经写入 Story Kernel。"
 );
+pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的 Story Kernel 结构化资源生成器。",
+    "只根据用户 JSON 中 instruction、source 和 existingResources 生成 targetTypes 指定的完整资源候选；不得请求或推断项目路径、账户、密钥或隐藏历史。",
+    "仅返回 JSON 对象：{\"candidates\":[{\"operation\":\"create|update\",\"resource\":{\"id\":\"类型前缀:slug\",\"type\":\"资源类型\",\"title\":\"标题\",\"aliases\":[],\"tags\":[],\"evidenceIds\":[]},\"confidence\":0.9,\"rationale\":\"生成依据\",\"evidence\":{\"start\":0,\"end\":1,\"quote\":\"原文证据\"}或null}]}。",
+    "resource 禁止包含 schemaVersion、createdAt、updatedAt、revision；evidenceIds 必须为空，系统会生成证据与版本字段。",
+    "支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。",
+    "公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。",
+    "character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。",
+    "scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。",
+    "location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。",
+    "item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。",
+    "timelineEvent 使用 narrativePosition、eventType、participantIds/locationIds/itemIds/predecessorIds/consequenceIds/plotThreadIds/informationIds，以及可选故事时间字段。",
+    "relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。",
+    "plotThread 使用 status、participantIds、sceneIds 及可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。",
+    "foreshadowing 使用 status、reminderPositions、readerVisibility、plotThreadIds 及可选 plantedAt/surfaceMeaning/trueMeaning/plannedPayoffAt/actualPayoffAt。",
+    "information 使用 truthStatement、truthStatus、authorSecret 及可选 excludeFromAiByDefault/truthEffectiveFrom/readerRevealAt。",
+    "引用已有资源时必须使用 existingResources 中的 ID；同一批新资源可以互相引用。update 只能使用 existingResources 中的 ID。",
+    "有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。",
+    "最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。"
+);
 const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -200,6 +220,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_story_extraction_input(&self.messages[1].content)
             }
+            AiJobType::StoryKernelGeneration => {
+                self.messages[0].content == STORY_KERNEL_GENERATION_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_story_kernel_generation_input(&self.messages[1].content)
+            }
         };
         if !contract_valid {
             return Err(errors::PublicAiError::new(
@@ -217,6 +242,7 @@ pub enum AiJobType {
     ChapterReview,
     SelectionRewrite,
     StoryExtraction,
+    StoryKernelGeneration,
 }
 
 impl AiJobType {
@@ -226,6 +252,7 @@ impl AiJobType {
             Self::ChapterReview => "chapter-review",
             Self::SelectionRewrite => "selection-rewrite",
             Self::StoryExtraction => "story-extraction",
+            Self::StoryKernelGeneration => "story-kernel-generation",
         }
     }
 }
@@ -352,6 +379,107 @@ fn validate_story_extraction_input(value: &str) -> bool {
     })
 }
 
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryKernelGenerationInput {
+    schema_version: u8,
+    instruction: String,
+    source: StoryKernelGenerationSource,
+    target_types: Vec<String>,
+    existing_resources: Vec<StoryKernelExistingResource>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryKernelGenerationSource {
+    resource_id: String,
+    source_revision: String,
+    content: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryKernelExistingResource {
+    id: String,
+    #[serde(rename = "type")]
+    resource_type: String,
+    title: String,
+    revision: u64,
+}
+
+fn valid_story_kernel_generation_type(value: &str) -> bool {
+    matches!(
+        value,
+        "character"
+            | "scene"
+            | "location"
+            | "faction"
+            | "item"
+            | "worldRule"
+            | "timelineEvent"
+            | "relationship"
+            | "plotThread"
+            | "foreshadowing"
+            | "information"
+    )
+}
+
+fn valid_story_id(value: &str) -> bool {
+    let mut parts = value.split(':');
+    let prefix = parts.next().unwrap_or_default();
+    let leaf = parts.next().unwrap_or_default();
+    parts.next().is_none()
+        && !prefix.is_empty()
+        && !leaf.is_empty()
+        && prefix
+            .chars()
+            .all(|value| value.is_ascii_lowercase() || value.is_ascii_digit() || value == '-')
+        && leaf
+            .chars()
+            .all(|value| value.is_ascii_lowercase() || value.is_ascii_digit() || value == '-')
+}
+
+fn validate_story_kernel_generation_input(value: &str) -> bool {
+    if value.len() > 140_000 {
+        return false;
+    }
+    serde_json::from_str::<StoryKernelGenerationInput>(value).is_ok_and(|input| {
+        let target_types = input
+            .target_types
+            .iter()
+            .collect::<std::collections::HashSet<_>>();
+        let existing_ids = input
+            .existing_resources
+            .iter()
+            .map(|resource| resource.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        input.schema_version == 1
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && input.source.resource_id.starts_with("chapter:")
+            && valid_story_id(&input.source.resource_id)
+            && !input.source.source_revision.trim().is_empty()
+            && input.source.source_revision.len() <= 128
+            && !input.source.content.trim().is_empty()
+            && input.source.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+            && (1..=11).contains(&input.target_types.len())
+            && target_types.len() == input.target_types.len()
+            && input
+                .target_types
+                .iter()
+                .all(|resource_type| valid_story_kernel_generation_type(resource_type))
+            && input.existing_resources.len() <= 500
+            && existing_ids.len() == input.existing_resources.len()
+            && input.existing_resources.iter().all(|resource| {
+                valid_story_id(&resource.id)
+                    && valid_story_kernel_generation_type(&resource.resource_type)
+                    && !resource.title.trim().is_empty()
+                    && resource.title.chars().count() <= 160
+                    && resource.revision <= u32::MAX as u64
+            })
+    })
+}
+
 #[derive(Clone, Debug, Default, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AiUsage {
@@ -469,7 +597,8 @@ mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, SELECTION_REWRITE_SYSTEM_PROMPT,
-        STORY_EXTRACTION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        STORY_EXTRACTION_SYSTEM_PROMPT, STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
+        STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -592,6 +721,47 @@ mod tests {
             "resourceId": "chapter:one",
             "sourceRevision": "7",
             "content": "沈青把铜钥匙交给林越。",
+            "projectRoot": "C:/secret"
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn story_kernel_generation_requires_bounded_structured_context() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::StoryKernelGeneration;
+        request.messages[0].content = STORY_KERNEL_GENERATION_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "instruction": "根据正文创建人物和地点。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "content": "林越在旧车站等候沈青。"
+            },
+            "targetTypes": ["character", "location"],
+            "existingResources": [{
+                "id": "character:shen-qing",
+                "type": "character",
+                "title": "沈青",
+                "revision": 2
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "instruction": "生成",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "content": "林越。"
+            },
+            "targetTypes": ["character", "character"],
+            "existingResources": [],
             "projectRoot": "C:/secret"
         })
         .to_string();

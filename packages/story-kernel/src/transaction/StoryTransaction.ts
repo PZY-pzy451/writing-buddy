@@ -6,10 +6,11 @@ export class StoryTransaction {
 
 	constructor(private readonly repository: StoryRepository) {}
 
-	stage(resource: unknown, expectedRevision?: number): this {
+	stage(resource: unknown, expectedRevision?: number, expectedAbsent = false): this {
 		this.entries.push({
 			resource,
-			...(expectedRevision === undefined ? {} : { expectedRevision })
+			...(expectedRevision === undefined ? {} : { expectedRevision }),
+			...(expectedAbsent ? { expectedAbsent: true } : {})
 		});
 		return this;
 	}

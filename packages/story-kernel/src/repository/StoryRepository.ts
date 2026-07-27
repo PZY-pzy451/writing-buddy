@@ -7,6 +7,7 @@ import type { StoryResource } from '../schema/resourceSchemas';
 export interface StorySaveEntry {
 	readonly resource: unknown;
 	readonly expectedRevision?: number;
+	readonly expectedAbsent?: boolean;
 }
 
 export interface StoryStorageGateway {
@@ -136,7 +137,8 @@ export class DesktopStoryRepository implements StoryRepository {
 			const type = resourceType(entry.resource);
 			return {
 				resource: StorySchemaRegistry.parse(type, entry.resource),
-				...(entry.expectedRevision === undefined ? {} : { expectedRevision: entry.expectedRevision })
+				...(entry.expectedRevision === undefined ? {} : { expectedRevision: entry.expectedRevision }),
+				...(entry.expectedAbsent ? { expectedAbsent: true } : {})
 			};
 		});
 		try {

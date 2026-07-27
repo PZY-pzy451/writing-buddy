@@ -4,13 +4,14 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate F is complete on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 21-24 passed performance,
-responsive/accessibility, migration, recovery, vertical-slice and production
-Windows build gates. The first final binary closed normally; the second launch
-restored the sanitized real project in read-write mode and remains running.
-Final evidence is recorded in
-`docs/acceptance/011-storyforge-gate-f-professional-baseline-2026-07-27.md`.
+AI Story Kernel direct generation is implemented and verified on
+`codex/ai-story-kernel-generation`. The frozen professional baseline remains
+tagged at `baseline-writing-buddy-storyforge-professional-v1`. This phase adds
+complete structured resource generation, strict candidate staging,
+collision/dependency checks and author-confirmed atomic commits without
+allowing AI to write formal Story files silently. The active contract is in
+`docs/plans/001-ai-story-kernel-generation.md`; acceptance evidence is in
+`docs/acceptance/012-ai-story-kernel-generation-2026-07-27.md`.
 
 ## Completed
 
@@ -77,16 +78,33 @@ Final evidence is recorded in
 - Strict Rust job-purpose validation and validated AI issue anchoring
 - Durable Phase 1.0B evidence in
   `docs/acceptance/004-system-layout-and-ai-review-2026-07-27.md`
+- Isolated `story-kernel-generation` AI purpose with matching TypeScript and
+  Rust request boundaries
+- Strict complete-resource response parser for eleven Story Kernel types
+- Persisted generation batches with exact evidence anchoring, schema checks,
+  collision/reference/dependency conflicts and author-secret protection
+- Create-safe, revision-safe atomic batch confirmation with a mandatory
+  pre-commit safety snapshot
+- Assistant **Kernel** tab with target selection, streaming/cancel state,
+  candidate JSON/evidence review, rejection and batch confirmation
+- Snapshot and `.wbbackup` inclusion for pending generation decisions
+- Full Node acceptance: 52 files / 153 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Release performance and sanitized recovery gates passed; fresh Windows
+  production executable and NSIS installer built and close/restart verified
 
 ## Open
 
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
+- Validate AI Story Kernel generation quality against the user's real
+  DeepSeek account and a non-sanitized author-selected chapter.
 - Human cutover gates are intentionally not automated.
 - Legacy retirement is forbidden until M9 is complete.
 
 ## Next
 
-Gate F is the final supplied implementation gate. Stop and wait for explicit
-product scope; live DeepSeek account acceptance requires a user-provided key.
+Use the running release, configure DeepSeek under Settings, open a chapter,
+choose the assistant **Kernel** tab and run the first author-reviewed real-model
+generation.

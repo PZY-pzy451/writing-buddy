@@ -64,6 +64,7 @@ fn saves_atomically_and_rejects_stale_revisions() {
     let entry = StorySaveEntry {
         resource: character("character:lin-yue"),
         expected_revision: Some(0),
+        expected_absent: false,
     };
     let saved =
         storage::save_resources(&root.to_string_lossy(), &[entry.clone()]).expect("initial save");
@@ -89,6 +90,7 @@ fn rejects_invalid_schema_before_creating_any_story_file() {
         &[StorySaveEntry {
             resource: invalid,
             expected_revision: Some(0),
+            expected_absent: false,
         }],
     )
     .expect_err("invalid schema");
@@ -109,10 +111,12 @@ fn validates_every_entry_before_partial_staging() {
             StorySaveEntry {
                 resource: character("character:lin-yue"),
                 expected_revision: Some(0),
+                expected_absent: false,
             },
             StorySaveEntry {
                 resource: invalid,
                 expected_revision: Some(0),
+                expected_absent: false,
             },
         ],
     )
@@ -135,6 +139,7 @@ fn moves_to_trash_and_restores_without_data_loss() {
         &[StorySaveEntry {
             resource: character("character:lin-yue"),
             expected_revision: Some(0),
+            expected_absent: false,
         }],
     )
     .expect("save");
@@ -150,6 +155,36 @@ fn moves_to_trash_and_restores_without_data_loss() {
             .expect("restore");
     assert_eq!(restored, saved[0]);
 
+    let _ = fs::remove_dir_all(root);
+}
+
+#[test]
+fn create_only_entries_never_replace_existing_resources() {
+    let root = temp_project();
+    let initial = StorySaveEntry {
+        resource: character("character:lin-yue"),
+        expected_revision: Some(0),
+        expected_absent: false,
+    };
+    storage::save_resources(&root.to_string_lossy(), &[initial]).expect("initial save");
+
+    let mut replacement = character("character:lin-yue");
+    replacement["title"] = Value::from("不应覆盖");
+    let error = storage::save_resources(
+        &root.to_string_lossy(),
+        &[StorySaveEntry {
+            resource: replacement,
+            expected_revision: None,
+            expected_absent: true,
+        }],
+    )
+    .expect_err("create collision");
+
+    assert_eq!(error, "storyRevisionConflict:1");
+    let stored = storage::get_resource(&root.to_string_lossy(), "character", "character:lin-yue")
+        .expect("read")
+        .expect("resource");
+    assert_ne!(stored["title"], "不应覆盖");
     let _ = fs::remove_dir_all(root);
 }
 

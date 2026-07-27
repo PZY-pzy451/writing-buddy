@@ -1,0 +1,310 @@
+.kernel-generator {
+	display: grid;
+	gap: 14px;
+	min-width: 0;
+	padding-bottom: 18px;
+}
+
+.kernel-generator-heading,
+.kernel-candidates > header,
+.kernel-candidate-card > header,
+.kernel-generator-primary-actions,
+.kernel-candidate-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.kernel-generator-heading h3 {
+	margin: 3px 0 0;
+	font-size: 17px;
+}
+
+.kernel-generator-safety {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	flex: 0 0 auto;
+	color: var(--success);
+	font-size: 11px;
+	font-weight: 650;
+}
+
+.kernel-generator-note,
+.kernel-generator-error,
+.kernel-generator-empty {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 0;
+	padding: 11px 12px;
+	color: var(--text-muted);
+	font-size: 12px;
+	line-height: 1.55;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 9px;
+}
+
+.kernel-generator-error {
+	color: var(--danger);
+	border-color: color-mix(in srgb, var(--danger) 38%, var(--border-subtle));
+}
+
+.kernel-generator-instruction {
+	display: grid;
+	gap: 7px;
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-weight: 650;
+}
+
+.kernel-generator-instruction textarea {
+	min-height: 96px;
+	padding: 10px 11px;
+	resize: vertical;
+	color: var(--text-primary);
+	font: inherit;
+	line-height: 1.55;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 9px;
+}
+
+.kernel-generator-types {
+	min-width: 0;
+	margin: 0;
+	padding: 11px;
+	border: 1px solid var(--border-subtle);
+	border-radius: 9px;
+}
+
+.kernel-generator-types legend {
+	padding: 0 5px;
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-weight: 650;
+}
+
+.kernel-generator-types > div {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 7px;
+}
+
+.kernel-generator-types label {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	min-height: 44px;
+	padding: 0 9px;
+	cursor: pointer;
+	color: var(--text-secondary);
+	font-size: 12px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.kernel-generator-types label:has(input:checked) {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border-color: color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+}
+
+.kernel-generator-types input,
+.kernel-candidate-card input {
+	width: 18px;
+	height: 18px;
+	flex: 0 0 auto;
+	accent-color: var(--accent);
+}
+
+.kernel-generator-primary-actions {
+	align-items: stretch;
+}
+
+.kernel-generator-primary-actions .primary-button {
+	flex: 1 1 auto;
+	min-height: 44px;
+}
+
+.kernel-generator-primary-actions .secondary-button {
+	min-width: 76px;
+	min-height: 44px;
+}
+
+.kernel-candidates {
+	display: grid;
+	gap: 10px;
+}
+
+.kernel-candidates > header {
+	position: sticky;
+	top: -15px;
+	z-index: 2;
+	padding: 10px 0;
+	background: var(--surface-base);
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.kernel-candidates > header > div {
+	display: grid;
+	gap: 2px;
+}
+
+.kernel-candidates > header span {
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.kernel-candidates > header button,
+.kernel-candidate-actions button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 44px;
+	padding: 0 11px;
+	cursor: pointer;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.kernel-candidates > header button {
+	color: var(--accent-strong);
+	border-color: color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+}
+
+.kernel-candidate-list {
+	display: grid;
+	gap: 10px;
+}
+
+.kernel-candidate-card {
+	display: grid;
+	gap: 9px;
+	min-width: 0;
+	padding: 12px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+}
+
+.kernel-candidate-card[data-blocked="true"] {
+	border-color: color-mix(in srgb, var(--danger) 40%, var(--border-subtle));
+}
+
+.kernel-candidate-card[data-status="accepted"] {
+	border-color: color-mix(in srgb, var(--success) 42%, var(--border-subtle));
+}
+
+.kernel-candidate-card > header label {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	min-width: 0;
+	cursor: pointer;
+}
+
+.kernel-candidate-card > header label > span {
+	display: grid;
+	gap: 3px;
+	min-width: 0;
+}
+
+.kernel-candidate-card strong {
+	overflow-wrap: anywhere;
+}
+
+.kernel-candidate-card small,
+.kernel-candidate-card > p {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.kernel-candidate-status {
+	flex: 0 0 auto;
+	padding: 4px 7px;
+	color: var(--text-muted);
+	font-size: 10px;
+	background: var(--surface-subtle);
+	border-radius: 999px;
+}
+
+.kernel-candidate-card blockquote {
+	margin: 0;
+	padding: 9px 10px;
+	color: var(--text-secondary);
+	font-size: 12px;
+	line-height: 1.55;
+	background: var(--surface-base);
+	border-left: 3px solid var(--accent);
+	border-radius: 0 7px 7px 0;
+}
+
+.kernel-candidate-conflicts {
+	display: grid;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.kernel-candidate-conflicts li {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	color: var(--danger);
+	font-size: 11px;
+	line-height: 1.45;
+}
+
+.kernel-candidate-actions {
+	justify-content: flex-start;
+}
+
+.kernel-candidate-actions button {
+	color: var(--text-secondary);
+	background: var(--surface-base);
+}
+
+.kernel-candidate-card pre {
+	max-height: 260px;
+	margin: 0;
+	padding: 10px;
+	overflow: auto;
+	color: var(--text-secondary);
+	font: 11px/1.55 Consolas, "SFMono-Regular", monospace;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 7px;
+}
+
+.kernel-generator button:focus-visible,
+.kernel-generator textarea:focus-visible,
+.kernel-generator input:focus-visible,
+.kernel-candidate-card pre:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.kernel-generator button:disabled,
+.kernel-generator textarea:disabled,
+.kernel-generator label:has(input:disabled) {
+	cursor: not-allowed;
+	opacity: 0.55;
+}
+
+@media (max-width: 1280px) {
+	.kernel-generator-types > div {
+		grid-template-columns: 1fr;
+	}
+}

@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useAppStore } from '../app/store';
 import { SelectionRewritePanel } from '../features/story/ai-context/SelectionRewritePanel';
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
+import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
 import { ResizeHandle } from '../shell/ResizeHandle';
 
 export function AssistantPanel(): React.JSX.Element {
@@ -28,7 +29,7 @@ export function AssistantPanel(): React.JSX.Element {
 	const theme = useAppStore(state => state.theme);
 	const setAssistantWidth = useAppStore(state => state.setAssistantWidth);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
-	const [tab, setTab] = useState<'suggestions' | 'review' | 'context'>('suggestions');
+	const [tab, setTab] = useState<'suggestions' | 'review' | 'context' | 'kernel'>('suggestions');
 	const [rewriteAction, setRewriteAction] = useState<ContextPackRequest['actionType']>('polish');
 
 	const activeChapter = snapshot?.project.volumes
@@ -57,6 +58,7 @@ export function AssistantPanel(): React.JSX.Element {
 				<button type="button" role="tab" aria-selected={tab === 'suggestions'} onClick={() => setTab('suggestions')}>建议</button>
 				<button type="button" role="tab" aria-selected={tab === 'review'} onClick={() => setTab('review')}>审校</button>
 				<button type="button" role="tab" aria-selected={tab === 'context'} onClick={() => setTab('context')}>上下文</button>
+				<button type="button" role="tab" aria-selected={tab === 'kernel'} onClick={() => setTab('kernel')}>内核</button>
 			</div>
 
 			{tab === 'suggestions' && (
@@ -134,6 +136,24 @@ export function AssistantPanel(): React.JSX.Element {
 							selection={selection}
 						/>
 					) : null}
+				</div>
+			)}
+			{tab === 'kernel' && (
+				<div className="assistant-scroll">
+					{snapshot && activeResource?.type === 'chapter' && session ? (
+						<StoryKernelGeneratorPanel
+							projectRoot={snapshot.root}
+							resourceId={activeResource.id}
+							sourceRevision={session.state.version}
+							content={session.content}
+							readOnly={snapshot.readOnly}
+							selection={selection}
+						/>
+					) : (
+						<p className="kernel-generator-empty">
+							请先打开一个章节，再让 AI 从正文直接生成 Story Kernel 候选。
+						</p>
+					)}
 				</div>
 			)}
 			<ResizeHandle

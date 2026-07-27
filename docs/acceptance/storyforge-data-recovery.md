@@ -50,6 +50,7 @@ invalid resources and unsupported versions.
 | `story/**/*.json` | included | included | formal Story Kernel facts |
 | `.writing-buddy/review/**` | included | included | author review decisions |
 | `.writing-buddy/ai/pending-facts/**` | included | included | author-reviewed candidates |
+| `.writing-buddy/ai/story-kernel-generation/**` | included | included | validated AI resource batches awaiting author decisions |
 | `.writing-buddy/cache/**` | excluded | excluded | rebuildable index |
 | `.writing-buddy/runtime/**` | excluded | excluded | process-local state |
 | `.writing-buddy/ai/tmp/**` | excluded | excluded | incomplete AI jobs |

@@ -803,6 +803,10 @@ mod tests {
             Some("aiState")
         );
         assert_eq!(
+            snapshot_kind(".writing-buddy/ai/story-kernel-generation/index.json"),
+            Some("aiState")
+        );
+        assert_eq!(
             snapshot_kind(".writing-buddy/cache/story-index-v1.json"),
             None
         );

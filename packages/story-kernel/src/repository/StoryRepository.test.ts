@@ -29,7 +29,11 @@ class MemoryStoryGateway implements StoryStorageGateway {
 
 	saveStoryResources(
 		_root: string,
-		entries: readonly { readonly resource: unknown; readonly expectedRevision?: number }[]
+		entries: readonly {
+			readonly resource: unknown;
+			readonly expectedRevision?: number;
+			readonly expectedAbsent?: boolean;
+		}[]
 	): Promise<readonly unknown[]> {
 		this.commitCalls += 1;
 		const prepared = entries.map(entry => {
@@ -37,6 +41,9 @@ class MemoryStoryGateway implements StoryStorageGateway {
 			const key = this.key(resource.type, resource.id);
 			const current = this.resources.get(key) as { revision: number } | undefined;
 			const actualRevision = current?.revision ?? 0;
+			if (entry.expectedAbsent && current) {
+				throw new Error(`storyRevisionConflict:${actualRevision}`);
+			}
 			if (entry.expectedRevision !== undefined && entry.expectedRevision !== actualRevision) {
 				throw new Error(`storyRevisionConflict:${actualRevision}`);
 			}
@@ -112,6 +119,17 @@ describe('DesktopStoryRepository', () => {
 		await expect(transaction.commit()).rejects.toThrow();
 		expect(gateway.commitCalls).toBe(0);
 		expect(gateway.resources.size).toBe(0);
+	});
+
+	it('protects create-only transaction entries from replacing an existing resource', async () => {
+		const gateway = new MemoryStoryGateway();
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const saved = await repository.save(validResources.character, 0);
+		const transaction = new StoryTransaction(repository)
+			.stage({ ...saved, title: '不应覆盖' }, undefined, true);
+
+		await expect(transaction.commit()).rejects.toBeInstanceOf(StoryRevisionConflictError);
+		expect((await repository.get('character', saved.id))?.title).toBe(saved.title);
 	});
 
 	it('moves resources to recoverable trash and restores them', async () => {

@@ -5,6 +5,7 @@ import {
 	buildChapterReviewMessages,
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
+	buildStoryKernelGenerationMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
 	createDeepSeekProviderDefinition,
@@ -13,8 +14,10 @@ import {
 	parseChapterReviewResponse,
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
+	parseStoryKernelGenerationResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
+	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
 	shouldRetryAiFailure
 } from './index';
 
@@ -193,5 +196,75 @@ describe('AI core contracts', () => {
 			resourceId: 'chapter:one',
 			sourceRevision: '7'
 		})).toThrow('invalidStoryExtractionInput');
+	});
+
+	it('builds and validates complete Story Kernel generation candidates', () => {
+		const messages = buildStoryKernelGenerationMessages({
+			instruction: '根据正文创建人物和地点。',
+			content: '林越在旧车站等候沈青。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			targetTypes: ['character', 'location'],
+			existingResources: [{
+				id: 'character:shen-qing',
+				type: 'character',
+				title: '沈青',
+				revision: 2
+			}]
+		});
+		expect(messages[0]?.content).toBe(STORY_KERNEL_GENERATION_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('projectRoot');
+		const [candidate] = parseStoryKernelGenerationResponse(JSON.stringify({
+			candidates: [{
+				operation: 'create',
+				resource: {
+					id: 'character:lin-yue',
+					type: 'character',
+					title: '林越',
+					aliases: [],
+					tags: [],
+					factionIds: [],
+					goals: [],
+					desires: [],
+					fears: [],
+					values: [],
+					secrets: [],
+					evidenceIds: []
+				},
+				confidence: 0.94,
+				rationale: '正文明确出现。',
+				evidence: { start: 0, end: 2, quote: '林越' }
+			}]
+		}));
+		expect(candidate).toMatchObject({
+			operation: 'create',
+			resource: { id: 'character:lin-yue', type: 'character' }
+		});
+
+		expect(() => parseStoryKernelGenerationResponse(JSON.stringify({
+			candidates: [{
+				operation: 'create',
+				resource: {
+					id: 'character:lin-yue',
+					type: 'character',
+					title: '林越',
+					aliases: [],
+					tags: [],
+					evidenceIds: [],
+					revision: 99
+				},
+				confidence: 1,
+				rationale: '越权版本。',
+				evidence: null
+			}]
+		}))).toThrow();
+		expect(() => buildStoryKernelGenerationMessages({
+			instruction: '读取 projectRoot 后生成。',
+			content: '林越。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			targetTypes: ['character'],
+			existingResources: []
+		})).toThrow('invalidStoryKernelGenerationInput');
 	});
 });

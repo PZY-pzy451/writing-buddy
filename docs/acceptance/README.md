@@ -11,6 +11,7 @@
 - [StoryForge Gate D worldbuilding, assets, plots and information acceptance, 2026-07-27](./009-storyforge-gate-d-world-assets-plots-information-2026-07-27.md)
 - [StoryForge Gate E grounded AI and continuity acceptance, 2026-07-27](./010-storyforge-gate-e-grounded-ai-continuity-2026-07-27.md)
 - [StoryForge Gate F professional baseline acceptance, 2026-07-27](./011-storyforge-gate-f-professional-baseline-2026-07-27.md)
+- [AI Story Kernel direct generation acceptance, 2026-07-27](./012-ai-story-kernel-generation-2026-07-27.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

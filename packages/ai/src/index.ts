@@ -35,13 +35,34 @@ export const STORY_EXTRACTION_SYSTEM_PROMPT = [
 	'仅返回 JSON 对象：{"facts":[{"factType":"character-state|item-state|location-state|relationship|timeline-event|world-rule|story-information|plot-thread|foreshadowing","title":"简短标题","statement":"明确事实","confidence":0.8,"start":0,"end":1,"quote":"原文证据"}]}。',
 	'提取结果全部处于待确认状态，最多返回 30 条，不得声称已经写入 Story Kernel。'
 ].join('');
+export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的 Story Kernel 结构化资源生成器。',
+	'只根据用户 JSON 中 instruction、source 和 existingResources 生成 targetTypes 指定的完整资源候选；不得请求或推断项目路径、账户、密钥或隐藏历史。',
+	'仅返回 JSON 对象：{"candidates":[{"operation":"create|update","resource":{"id":"类型前缀:slug","type":"资源类型","title":"标题","aliases":[],"tags":[],"evidenceIds":[]},"confidence":0.9,"rationale":"生成依据","evidence":{"start":0,"end":1,"quote":"原文证据"}或null}]}。',
+	'resource 禁止包含 schemaVersion、createdAt、updatedAt、revision；evidenceIds 必须为空，系统会生成证据与版本字段。',
+	'支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。',
+	'公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。',
+	'character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。',
+	'scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。',
+	'location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。',
+	'item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。',
+	'timelineEvent 使用 narrativePosition、eventType、participantIds/locationIds/itemIds/predecessorIds/consequenceIds/plotThreadIds/informationIds，以及可选故事时间字段。',
+	'relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。',
+	'plotThread 使用 status、participantIds、sceneIds 及可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。',
+	'foreshadowing 使用 status、reminderPositions、readerVisibility、plotThreadIds 及可选 plantedAt/surfaceMeaning/trueMeaning/plannedPayoffAt/actualPayoffAt。',
+	'information 使用 truthStatement、truthStatus、authorSecret 及可选 excludeFromAiByDefault/truthEffectiveFrom/readerRevealAt。',
+	'引用已有资源时必须使用 existingResources 中的 ID；同一批新资源可以互相引用。update 只能使用 existingResources 中的 ID。',
+	'有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。',
+	'最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。'
+].join('');
 
 export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
 export type AiJobType =
 	| 'storyforge-test'
 	| 'chapter-review'
 	| 'selection-rewrite'
-	| 'story-extraction';
+	| 'story-extraction'
+	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
 export type AiReasoningEffort = 'high';
 export type AiResponseFormat = 'text' | 'json_object';
@@ -401,6 +422,73 @@ const storyExtractionResponseSchema = z.object({
 	}).strict()).max(30)
 }).strict();
 
+export const storyKernelGenerationResourceTypes = [
+	'character',
+	'scene',
+	'location',
+	'faction',
+	'item',
+	'worldRule',
+	'timelineEvent',
+	'relationship',
+	'plotThread',
+	'foreshadowing',
+	'information'
+] as const;
+
+export type StoryKernelGenerationResourceType =
+	typeof storyKernelGenerationResourceTypes[number];
+
+const storyKernelGenerationEvidenceSchema = z.object({
+	start: z.number().int().nonnegative(),
+	end: z.number().int().positive(),
+	quote: z.string().min(1).max(4_000)
+}).strict().refine(value => value.end > value.start, {
+	message: 'invalidStoryKernelGenerationEvidence'
+});
+
+const storyKernelGenerationResourceSchema = z.record(z.string(), z.unknown())
+	.superRefine((resource, context) => {
+		if (
+			typeof resource.id !== 'string'
+			|| !/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(resource.id)
+			|| typeof resource.type !== 'string'
+			|| !storyKernelGenerationResourceTypes.includes(
+				resource.type as StoryKernelGenerationResourceType
+			)
+			|| typeof resource.title !== 'string'
+			|| !resource.title.trim()
+			|| resource.title.length > 160
+			|| !Array.isArray(resource.aliases)
+			|| !Array.isArray(resource.tags)
+			|| !Array.isArray(resource.evidenceIds)
+			|| resource.evidenceIds.length > 0
+		) {
+			context.addIssue({
+				code: 'custom',
+				message: 'invalidStoryKernelGenerationResource'
+			});
+		}
+		for (const field of ['schemaVersion', 'createdAt', 'updatedAt', 'revision']) {
+			if (field in resource) {
+				context.addIssue({
+					code: 'custom',
+					message: `forbiddenStoryKernelSystemField:${field}`
+				});
+			}
+		}
+	});
+
+const storyKernelGenerationResponseSchema = z.object({
+	candidates: z.array(z.object({
+		operation: z.enum(['create', 'update']),
+		resource: storyKernelGenerationResourceSchema,
+		confidence: z.number().min(0).max(1),
+		rationale: z.string().min(1).max(2_000),
+		evidence: storyKernelGenerationEvidenceSchema.nullable()
+	}).strict()).max(24)
+}).strict();
+
 export interface SelectionRewriteResponse {
 	readonly suggestion: string;
 	readonly rationale: string;
@@ -424,6 +512,25 @@ export interface StoryExtractionCandidate {
 	readonly start: number;
 	readonly end: number;
 	readonly quote: string;
+}
+
+export interface StoryKernelExistingResourceIdentity {
+	readonly id: string;
+	readonly type: StoryKernelGenerationResourceType;
+	readonly title: string;
+	readonly revision: number;
+}
+
+export interface StoryKernelGenerationCandidateResponse {
+	readonly operation: 'create' | 'update';
+	readonly resource: Readonly<Record<string, unknown>>;
+	readonly confidence: number;
+	readonly rationale: string;
+	readonly evidence: {
+		readonly start: number;
+		readonly end: number;
+		readonly quote: string;
+	} | null;
 }
 
 export function buildSelectionRewriteMessages(contextPackJson: string): readonly AiMessage[] {
@@ -480,6 +587,74 @@ export function buildStoryExtractionMessages(input: {
 
 export function parseStoryExtractionResponse(response: string): readonly StoryExtractionCandidate[] {
 	return storyExtractionResponseSchema.parse(JSON.parse(response)).facts;
+}
+
+export function buildStoryKernelGenerationMessages(input: {
+	readonly instruction: string;
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly targetTypes: readonly StoryKernelGenerationResourceType[];
+	readonly existingResources: readonly StoryKernelExistingResourceIdentity[];
+}): readonly AiMessage[] {
+	const targetTypes = [...new Set(input.targetTypes)];
+	const existingIds = new Set<string>();
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^chapter:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
+		|| targetTypes.length === 0
+		|| targetTypes.length !== input.targetTypes.length
+		|| targetTypes.some(type => !storyKernelGenerationResourceTypes.includes(type))
+		|| input.existingResources.length > 500
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
+			`${input.instruction}\n${input.content}`
+		)
+	) {
+		throw new Error('invalidStoryKernelGenerationInput');
+	}
+	for (const resource of input.existingResources) {
+		if (
+			existingIds.has(resource.id)
+			|| !/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(resource.id)
+			|| !storyKernelGenerationResourceTypes.includes(resource.type)
+			|| !resource.title.trim()
+			|| resource.title.length > 160
+			|| !Number.isSafeInteger(resource.revision)
+			|| resource.revision < 0
+		) {
+			throw new Error('invalidStoryKernelGenerationInput');
+		}
+		existingIds.add(resource.id);
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		instruction: input.instruction.trim(),
+		source: {
+			resourceId: input.resourceId,
+			sourceRevision: input.sourceRevision,
+			content: input.content
+		},
+		targetTypes,
+		existingResources: input.existingResources
+	});
+	if (payload.length > 140_000) {
+		throw new Error('invalidStoryKernelGenerationInput');
+	}
+	return [
+		{ role: 'system', content: STORY_KERNEL_GENERATION_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseStoryKernelGenerationResponse(
+	response: string
+): readonly StoryKernelGenerationCandidateResponse[] {
+	return storyKernelGenerationResponseSchema.parse(JSON.parse(response)).candidates;
 }
 
 export function buildChapterReviewMessages(content: string): readonly AiMessage[] {

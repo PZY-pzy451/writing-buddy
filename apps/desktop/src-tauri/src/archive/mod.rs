@@ -506,6 +506,12 @@ mod tests {
         fs::create_dir_all(root.join(".writing-buddy").join("cache")).expect("cache directory");
         fs::create_dir_all(root.join(".writing-buddy").join("ai").join("pending-facts"))
             .expect("pending fact directory");
+        fs::create_dir_all(
+            root.join(".writing-buddy")
+                .join("ai")
+                .join("story-kernel-generation"),
+        )
+        .expect("story kernel generation directory");
         fs::create_dir_all(root.join(".writing-buddy").join("ai").join("tmp"))
             .expect("ai temp directory");
         fs::create_dir_all(root.join("chapters")).expect("chapters directory");
@@ -544,6 +550,14 @@ mod tests {
         .expect("pending facts");
         fs::write(
             root.join(".writing-buddy")
+                .join("ai")
+                .join("story-kernel-generation")
+                .join("index.json"),
+            r#"{"schemaVersion":1,"batches":[]}"#,
+        )
+        .expect("story kernel generation candidates");
+        fs::write(
+            root.join(".writing-buddy")
                 .join("cache")
                 .join("story-index-v1.json"),
             "derived",
@@ -565,10 +579,11 @@ mod tests {
             None,
         )
         .expect("create backup");
-        assert_eq!(result.entry_count, 4);
+        assert_eq!(result.entry_count, 5);
         let (_, entries) = decode(&fs::read(&backup).expect("read backup")).expect("decode backup");
         assert!(entries.contains_key("story/characters/character%3Alin.json"));
         assert!(entries.contains_key(".writing-buddy/ai/pending-facts/index.json"));
+        assert!(entries.contains_key(".writing-buddy/ai/story-kernel-generation/index.json"));
         assert!(!entries.contains_key(".writing-buddy/cache/story-index-v1.json"));
         assert!(!entries.contains_key(".writing-buddy/ai/tmp/job.json"));
         let inspection = inspect(backup.to_str().expect("backup path"));
@@ -581,7 +596,7 @@ mod tests {
                 false,
             )
             .expect("restore"),
-            4
+            5
         );
         assert_eq!(
             fs::read_to_string(destination.join("chapters").join("one.md"))

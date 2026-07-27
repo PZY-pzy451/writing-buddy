@@ -949,6 +949,9 @@ class BrowserDesktopBridge implements DesktopBridge {
 			const envelope = browserStoryEnvelope(entry.resource);
 			const key = browserStoryKey(envelope.type, envelope.id);
 			const current = browserStoryResources.get(key);
+			if (entry.expectedAbsent && current) {
+				throw new Error(`storyRevisionConflict:${browserStoryEnvelope(current).revision}`);
+			}
 			const actualRevision = current
 				? browserStoryEnvelope(current).revision
 				: 0;
@@ -1171,6 +1174,8 @@ class BrowserDesktopBridge implements DesktopBridge {
 				? browserRewriteDeltas(request)
 				: request.jobType === 'story-extraction'
 					? browserStoryExtractionDeltas(request)
+					: request.jobType === 'story-kernel-generation'
+						? browserStoryKernelGenerationDeltas(request)
 					: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
@@ -1261,6 +1266,210 @@ function browserStoryExtractionDeltas(request: AiGenerateRequest): readonly stri
 			quote
 		}] : []
 	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly source?: {
+			readonly resourceId?: string;
+			readonly sourceRevision?: string;
+			readonly content?: string;
+		};
+		readonly targetTypes?: readonly string[];
+		readonly existingResources?: readonly {
+			readonly id?: string;
+			readonly type?: string;
+		}[];
+	};
+	const source = decoded.source;
+	const content = source?.content ?? '';
+	const quote = content.slice(0, Math.min(24, content.length));
+	const evidence = quote ? { start: 0, end: quote.length, quote } : null;
+	const suffix = request.jobId.toLowerCase().replace(/[^a-z0-9-]+/gu, '-').slice(0, 18);
+	const base = {
+		aliases: [] as string[],
+		tags: ['AI 候选'],
+		evidenceIds: [] as string[]
+	};
+	const chapterId = source?.resourceId ?? 'chapter:browser-fixture';
+	const sourceRevision = Number(source?.sourceRevision ?? 0);
+	const existingCharacterIds = (decoded.existingResources ?? [])
+		.filter(item => item.type === 'character' && typeof item.id === 'string')
+		.map(item => item.id as string);
+	const generatedCharacterId = `character:ai-${suffix}`;
+	const characterIds = [
+		...existingCharacterIds,
+		...((decoded.targetTypes ?? []).includes('character') ? [generatedCharacterId] : [])
+	];
+	const candidates = (decoded.targetTypes ?? []).flatMap(type => {
+		let resource: Record<string, unknown> | undefined;
+		switch (type) {
+			case 'character':
+				resource = {
+					...base,
+					id: generatedCharacterId,
+					type,
+					title: 'AI 识别人物',
+					role: 'supporting',
+					factionIds: [],
+					goals: [],
+					desires: [],
+					fears: [],
+					values: [],
+					secrets: []
+				};
+				break;
+			case 'scene':
+				resource = {
+					...base,
+					id: `scene:ai-${suffix}`,
+					type,
+					title: 'AI 识别场景',
+					chapterId,
+					manuscriptRange: {
+						start: 0,
+						end: Math.max(1, quote.length),
+						revision: Number.isSafeInteger(sourceRevision) ? sourceRevision : 0,
+						quote: quote || '正文'
+					},
+					narrativeOrder: 0,
+					locationIds: [],
+					participantIds: [],
+					plotThreadIds: [],
+					revealInformationIds: [],
+					foreshadowingIds: []
+				};
+				break;
+			case 'location':
+				resource = {
+					...base,
+					id: `location:ai-${suffix}`,
+					type,
+					title: 'AI 识别地点',
+					locationType: '正文场景',
+					travelLinks: [],
+					factionIds: [],
+					rules: []
+				};
+				break;
+			case 'faction':
+				resource = {
+					...base,
+					id: `faction:ai-${suffix}`,
+					type,
+					title: 'AI 识别势力',
+					goals: [],
+					allyFactionIds: [],
+					enemyFactionIds: [],
+					territoryLocationIds: []
+				};
+				break;
+			case 'item':
+				resource = {
+					...base,
+					id: `item:ai-${suffix}`,
+					type,
+					title: 'AI 识别物品',
+					unique: true,
+					restrictions: []
+				};
+				break;
+			case 'worldRule':
+				resource = {
+					...base,
+					id: `world-rule:ai-${suffix}`,
+					type,
+					title: 'AI 识别世界规则',
+					category: 'other',
+					statement: quote || '待作者确认的世界规则。',
+					exceptions: [],
+					consequences: []
+				};
+				break;
+			case 'timelineEvent':
+				resource = {
+					...base,
+					id: `timeline-event:ai-${suffix}`,
+					type,
+					title: 'AI 识别事件',
+					narrativePosition: { chapterId, narrativeOrder: 0 },
+					eventType: '正文事件',
+					participantIds: [],
+					locationIds: [],
+					itemIds: [],
+					predecessorIds: [],
+					consequenceIds: [],
+					plotThreadIds: [],
+					informationIds: []
+				};
+				break;
+			case 'relationship':
+				if (characterIds.length >= 2 && characterIds[0] !== characterIds[1]) {
+					resource = {
+						...base,
+						id: `relationship:ai-${suffix}`,
+						type,
+						title: 'AI 识别关系',
+						sourceCharacterId: characterIds[0],
+						targetCharacterId: characterIds[1],
+						relationshipType: '正文关联',
+						visibility: 'private',
+						effectiveFrom: { chapterId, narrativeOrder: 0 },
+						history: []
+					};
+				}
+				break;
+			case 'plotThread':
+				resource = {
+					...base,
+					id: `plot-thread:ai-${suffix}`,
+					type,
+					title: 'AI 识别剧情线',
+					status: 'active',
+					premise: quote || '待作者确认的剧情线。',
+					participantIds: [],
+					sceneIds: []
+				};
+				break;
+			case 'foreshadowing':
+				resource = {
+					...base,
+					id: `foreshadowing:ai-${suffix}`,
+					type,
+					title: 'AI 识别伏笔',
+					status: 'planted',
+					surfaceMeaning: quote || '待作者确认的伏笔。',
+					reminderPositions: [],
+					readerVisibility: 0,
+					plotThreadIds: []
+				};
+				break;
+			case 'information':
+				resource = {
+					...base,
+					id: `information:ai-${suffix}`,
+					type,
+					title: 'AI 识别信息',
+					truthStatement: quote || '待作者确认的故事信息。',
+					truthStatus: 'unknown',
+					authorSecret: false,
+					excludeFromAiByDefault: false
+				};
+				break;
+		}
+		return resource ? [{
+			operation: 'create',
+			resource,
+			confidence: 0.84,
+			rationale: '浏览器演示：根据当前正文构建完整 Story Kernel 候选。',
+			evidence
+		}] : [];
+	});
+	const response = JSON.stringify({ candidates });
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];

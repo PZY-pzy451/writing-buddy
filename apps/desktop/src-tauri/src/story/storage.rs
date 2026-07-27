@@ -16,6 +16,8 @@ use crate::filesystem;
 pub struct StorySaveEntry {
     pub resource: Value,
     pub expected_revision: Option<u64>,
+    #[serde(default)]
+    pub expected_absent: bool,
 }
 
 struct PreparedResource {
@@ -152,6 +154,9 @@ fn prepare_resource(root: &Path, entry: &StorySaveEntry) -> Result<PreparedResou
         })
         .transpose()?
         .unwrap_or(0);
+    if entry.expected_absent && original.is_some() {
+        return Err(format!("storyRevisionConflict:{actual_revision}"));
+    }
     let expected_revision = entry.expected_revision.unwrap_or(incoming_revision);
     if actual_revision != expected_revision {
         return Err(format!("storyRevisionConflict:{actual_revision}"));
