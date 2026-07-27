@@ -98,6 +98,9 @@ importers:
       '@writing-buddy/review':
         specifier: workspace:*
         version: link:../../packages/review
+      '@writing-buddy/story-kernel':
+        specifier: workspace:*
+        version: link:../../packages/story-kernel
       '@writing-buddy/version':
         specifier: workspace:*
         version: link:../../packages/version
@@ -173,6 +176,9 @@ importers:
       '@writing-buddy/domain':
         specifier: workspace:*
         version: link:../domain
+      '@writing-buddy/story-kernel':
+        specifier: workspace:*
+        version: link:../story-kernel
 
   packages/project:
     dependencies:

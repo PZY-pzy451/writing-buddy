@@ -6,6 +6,7 @@ mod logging;
 mod migration;
 mod process_lock;
 mod secrets;
+mod story;
 
 use std::{
     collections::{HashMap, HashSet},
@@ -18,6 +19,7 @@ use tauri::Manager;
 pub struct AppState {
     locks: Mutex<HashMap<PathBuf, PathBuf>>,
     approved_backups: Mutex<HashSet<PathBuf>>,
+    story_transactions: Mutex<()>,
     ai_jobs: Mutex<ai::job_registry::AiJobRegistry>,
 }
 
@@ -29,6 +31,11 @@ pub fn run() {
             commands::open_project,
             commands::repair_project,
             commands::reveal_project_directory,
+            story::commands::story_get_resource,
+            story::commands::story_list_resources,
+            story::commands::story_save_resources,
+            story::commands::story_move_to_trash,
+            story::commands::story_restore_from_trash,
             commands::read_text,
             commands::write_text_atomic,
             commands::save_text_as,

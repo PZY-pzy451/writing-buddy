@@ -10,6 +10,11 @@ import type {
 	AiUsageSummary,
 	SecretStatus
 } from '@writing-buddy/ai';
+import type {
+	StoryResourceType,
+	StorySaveEntry,
+	StoryStorageGateway
+} from '@writing-buddy/story-kernel';
 
 export interface Disposable {
 	dispose(): void;
@@ -184,7 +189,7 @@ export interface ProjectRepairResult {
 	readonly diagnosticId: string;
 }
 
-export interface DesktopBridge {
+export interface DesktopBridge extends StoryStorageGateway {
 	chooseProject(): Promise<string | undefined>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
 	repairProject(projectRoot: string): Promise<ProjectRepairResult>;

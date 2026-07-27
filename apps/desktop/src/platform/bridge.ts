@@ -25,6 +25,10 @@ import type {
 	VersionText
 } from '@writing-buddy/platform-ports';
 import type { TextFile } from '@writing-buddy/domain';
+import type {
+	StoryResourceType,
+	StorySaveEntry
+} from '@writing-buddy/story-kernel';
 
 function isTauriRuntime(): boolean {
 	return '__TAURI_INTERNALS__' in window;
@@ -106,6 +110,56 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	restoreVersion(projectRoot: string, snapshotId: string): Promise<number> {
 		return invoke<number>('restore_version', { projectRoot, snapshotId });
+	}
+
+	getStoryResource(
+		projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<unknown | undefined> {
+		return invoke<unknown | null>('story_get_resource', {
+			projectRoot,
+			resourceType: type,
+			id
+		}).then(value => value ?? undefined);
+	}
+
+	listStoryResources(projectRoot: string, type: StoryResourceType): Promise<readonly unknown[]> {
+		return invoke<unknown[]>('story_list_resources', {
+			projectRoot,
+			resourceType: type
+		});
+	}
+
+	saveStoryResources(
+		projectRoot: string,
+		entries: readonly StorySaveEntry[]
+	): Promise<readonly unknown[]> {
+		return invoke<unknown[]>('story_save_resources', { projectRoot, entries });
+	}
+
+	moveStoryResourceToTrash(
+		projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<void> {
+		return invoke('story_move_to_trash', {
+			projectRoot,
+			resourceType: type,
+			id
+		});
+	}
+
+	restoreStoryResourceFromTrash(
+		projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<unknown> {
+		return invoke('story_restore_from_trash', {
+			projectRoot,
+			resourceType: type,
+			id
+		});
 	}
 
 	getAiProviderStatus(): Promise<AiProviderStatus> {
@@ -242,6 +296,8 @@ const browserFiles = new Map<string, string>([
 let browserReviewFile: TextFile | undefined;
 const browserVersionContent = new Map<string, Map<string, string>>();
 const browserVersions: VersionSummary[] = [];
+const browserStoryResources = new Map<string, unknown>();
+const browserStoryTrash = new Map<string, unknown>();
 const browserAiModels: readonly AiModel[] = [
 	{ id: 'deepseek-v4-flash', ownedBy: 'deepseek' },
 	{ id: 'deepseek-v4-pro', ownedBy: 'deepseek' }
@@ -275,6 +331,33 @@ function browserHash(value: string): string {
 		result = Math.imul(result, 16777619);
 	}
 	return (result >>> 0).toString(16).padStart(64, '0');
+}
+
+function browserStoryKey(type: StoryResourceType, id: string): string {
+	return `${type}:${id}`;
+}
+
+function browserStoryEnvelope(resource: unknown): {
+	readonly type: StoryResourceType;
+	readonly id: string;
+	readonly revision: number;
+} {
+	if (!resource || typeof resource !== 'object') {
+		throw new Error('storySchemaInvalid');
+	}
+	const envelope = resource as {
+		readonly type?: StoryResourceType;
+		readonly id?: string;
+		readonly revision?: number;
+	};
+	if (!envelope.type || !envelope.id || !Number.isSafeInteger(envelope.revision)) {
+		throw new Error('storySchemaInvalid');
+	}
+	return envelope as {
+		readonly type: StoryResourceType;
+		readonly id: string;
+		readonly revision: number;
+	};
 }
 
 class BrowserDesktopBridge implements DesktopBridge {
@@ -384,6 +467,81 @@ class BrowserDesktopBridge implements DesktopBridge {
 			browserFiles.set(path, content);
 		}
 		return version.size;
+	}
+
+	async getStoryResource(
+		_projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<unknown | undefined> {
+		return browserStoryResources.get(browserStoryKey(type, id));
+	}
+
+	async listStoryResources(
+		_projectRoot: string,
+		type: StoryResourceType
+	): Promise<readonly unknown[]> {
+		const prefix = `${type}:`;
+		return [...browserStoryResources.entries()]
+			.filter(([key]) => key.startsWith(prefix))
+			.map(([, value]) => value);
+	}
+
+	async saveStoryResources(
+		_projectRoot: string,
+		entries: readonly StorySaveEntry[]
+	): Promise<readonly unknown[]> {
+		const staged = entries.map(entry => {
+			const envelope = browserStoryEnvelope(entry.resource);
+			const key = browserStoryKey(envelope.type, envelope.id);
+			const current = browserStoryResources.get(key);
+			const actualRevision = current
+				? browserStoryEnvelope(current).revision
+				: 0;
+			const expectedRevision = entry.expectedRevision ?? envelope.revision;
+			if (expectedRevision !== actualRevision) {
+				throw new Error(`storyRevisionConflict:${actualRevision}`);
+			}
+			const saved = {
+				...entry.resource as object,
+				revision: actualRevision + 1,
+				updatedAt: new Date().toISOString()
+			};
+			return { key, saved };
+		});
+		for (const { key, saved } of staged) {
+			browserStoryResources.set(key, saved);
+		}
+		return staged.map(({ saved }) => saved);
+	}
+
+	async moveStoryResourceToTrash(
+		_projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<void> {
+		const key = browserStoryKey(type, id);
+		const resource = browserStoryResources.get(key);
+		if (!resource) {
+			throw new Error('storyResourceNotFound');
+		}
+		browserStoryTrash.set(key, resource);
+		browserStoryResources.delete(key);
+	}
+
+	async restoreStoryResourceFromTrash(
+		_projectRoot: string,
+		type: StoryResourceType,
+		id: string
+	): Promise<unknown> {
+		const key = browserStoryKey(type, id);
+		const resource = browserStoryTrash.get(key);
+		if (!resource) {
+			throw new Error('storyTrashNotFound');
+		}
+		browserStoryResources.set(key, resource);
+		browserStoryTrash.delete(key);
+		return resource;
 	}
 
 	async getAiProviderStatus(): Promise<AiProviderStatus> {

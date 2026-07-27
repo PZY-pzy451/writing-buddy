@@ -155,7 +155,7 @@ fn public_project_open_error(code: &str, project_root: &str) -> PublicProjectOpe
     }
 }
 
-fn require_write_lock(state: &AppState, project_root: &str) -> Result<(), String> {
+pub(crate) fn require_write_lock(state: &AppState, project_root: &str) -> Result<(), String> {
     let root = filesystem::canonical_project_root(project_root)?;
     let locks = state.locks.lock().map_err(|_| "lockPoisoned".to_owned())?;
     if locks.contains_key(&root) {
@@ -308,6 +308,8 @@ fn snapshot_kind(relative: &str) -> Option<&'static str> {
         Some("aiState")
     } else if lower.starts_with(".writing-buddy/trash/") {
         Some("trashMetadata")
+    } else if lower.starts_with("story/") && lower.ends_with(".json") {
+        Some("storyResource")
     } else {
         None
     }
@@ -768,5 +770,13 @@ mod tests {
         assert_eq!(stale.stage, "acquire-lock");
         assert!(stale.can_open_read_only);
         assert!(stale.can_repair);
+    }
+
+    #[test]
+    fn story_resources_participate_in_existing_snapshots() {
+        assert_eq!(
+            snapshot_kind("story/characters/character%3Alin-yue.json"),
+            Some("storyResource")
+        );
     }
 }

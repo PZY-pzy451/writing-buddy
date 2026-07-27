@@ -21,6 +21,7 @@
     "@writing-buddy/project": "workspace:*",
     "@writing-buddy/resource": "workspace:*",
     "@writing-buddy/review": "workspace:*",
+    "@writing-buddy/story-kernel": "workspace:*",
     "@writing-buddy/version": "workspace:*",
     "lucide-react": "1.27.0",
     "monaco-editor": "0.56.0",

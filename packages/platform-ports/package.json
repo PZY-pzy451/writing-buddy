@@ -6,6 +6,7 @@
   "exports": "./src/index.ts",
   "dependencies": {
     "@writing-buddy/ai": "workspace:*",
-    "@writing-buddy/domain": "workspace:*"
+    "@writing-buddy/domain": "workspace:*",
+    "@writing-buddy/story-kernel": "workspace:*"
   }
 }
