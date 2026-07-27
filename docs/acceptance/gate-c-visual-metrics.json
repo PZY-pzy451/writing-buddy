@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-07-27T06:24:37.161Z",
+  "captures": [
+    {
+      "view": "characters",
+      "selector": ".character-center",
+      "width": 1536,
+      "height": 960,
+      "name": "01-character-center-1536x992.png",
+      "readyMs": 908,
+      "selectorReadyMs": 510,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 350
+    },
+    {
+      "view": "relationships",
+      "selector": ".relationship-page",
+      "width": 1536,
+      "height": 960,
+      "name": "02-relationship-graph-1536x992.png",
+      "readyMs": 630,
+      "selectorReadyMs": 231,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 305
+    },
+    {
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1536,
+      "height": 960,
+      "name": "03-timeline-1536x992.png",
+      "readyMs": 552,
+      "selectorReadyMs": 144,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 9,
+      "domNodes": 400
+    },
+    {
+      "view": "relationships",
+      "selector": ".relationship-page",
+      "width": 1280,
+      "height": 768,
+      "name": "04-relationship-1280x800.png",
+      "readyMs": 607,
+      "selectorReadyMs": 216,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 922,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "domNodes": 305
+    },
+    {
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1024,
+      "height": 688,
+      "name": "05-timeline-1024x720.png",
+      "readyMs": 615,
+      "selectorReadyMs": 219,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 18,
+      "domNodes": 400
+    }
+  ]
+}

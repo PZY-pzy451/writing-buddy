@@ -4,15 +4,15 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate B is complete and waiting for human approval on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 2–8 now provide the Story
-Kernel, strict schemaVersion 1 resources, atomic Rust persistence, resource
-tabs/routes, the project dashboard, scene metadata/navigation, manuscript
-mentions and backlinks. A real copied 6-chapter project loaded 5 resources,
-2 scenes and 3 mentions without changing any of its 17 pre-existing files.
-The 1536×992-equivalent Tauri WebView now gives the dashboard the full 852px
-workspace height; 1280×800 and 1024×720 checks also have no horizontal page
-overflow. Gate C remains blocked until this report receives explicit approval.
+StoryForge Gate C is complete and waiting for human approval on
+`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 9–12 now provide the
+position-aware Character Center, directed and time-aware relationship
+graph/matrix, story-time versus narrative-order timeline, and deterministic
+time/location review rules. Visual acceptance at 1536×992, 1280×800 and
+1024×720 has zero page-level overflow and uses the full available workspace.
+A sanitized copied 6-chapter project contains 3 characters, 4 states,
+3 relationships and 3 timeline events while preserving every Markdown hash.
+Gate D remains blocked until the Gate C report receives explicit approval.
 
 ## Completed
 
@@ -40,6 +40,13 @@ overflow. Gate C remains blocked until this report receives explicit approval.
 - Mention persistence, rebase/stale handling, Monaco decorations and backlinks
 - Gate B real Tauri evidence in
   `docs/acceptance/007-storyforge-gate-b-story-kernel-2026-07-27.md`
+- Character Center with dynamic state history, confirmation and conflicts
+- Directed relationship graph/matrix with time slices, evidence and Worker layout
+- Story-time and narrative-order timeline with virtual tracks and list fallback
+- Deterministic overlap, predecessor and travel-time review rules
+- Full-height 1536/1280/1024 Story workspace regression fix
+- Gate C evidence in
+  `docs/acceptance/008-storyforge-gate-c-character-relationships-timeline-2026-07-27.md`
 - Initial Git branch and exact JavaScript/Rust lockfiles
 - Scoped DeepSeek provider contracts, model selection, job lifecycle, retry
   policy, cancellation, usage aggregation, and error taxonomy
@@ -58,7 +65,7 @@ overflow. Gate C remains blocked until this report receives explicit approval.
 
 ## Open
 
-- Obtain human approval for StoryForge Gate B before starting Task 9.
+- Obtain human approval for StoryForge Gate C before starting Task 13.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -67,5 +74,5 @@ overflow. Gate C remains blocked until this report receives explicit approval.
 
 ## Next
 
-Review the Gate B acceptance report, three screenshots and commits. Stop for
-explicit human approval; do not start Character Center or Gate C automatically.
+Review the Gate C acceptance report, five screenshots and commits. Stop for
+explicit human approval; do not start Worldbuilding or Gate D automatically.
