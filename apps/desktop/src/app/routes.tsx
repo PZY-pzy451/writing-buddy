@@ -80,10 +80,24 @@ export function StoryStudioRoute(): React.JSX.Element {
 		return <TimelinePage projectRoot={projectRoot} />;
 	}
 	if (storyView === 'worldbuilding') {
-		return <WorldbuildingPage projectRoot={projectRoot} />;
+		return (
+			<WorldbuildingPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'assets') {
-		return <StoryAssetsPage projectRoot={projectRoot} />;
+		return (
+			<StoryAssetsPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'plots') {
 		return <PlotBoardPage projectRoot={projectRoot} />;
@@ -94,7 +108,14 @@ export function StoryStudioRoute(): React.JSX.Element {
 	if (storyView === 'continuity') {
 		return <ContinuityReviewPage projectRoot={projectRoot} />;
 	}
-	return <WorldbuildingPage projectRoot={projectRoot} />;
+	return (
+		<WorldbuildingPage
+			projectRoot={projectRoot}
+			chapters={chapters}
+			readOnly={snapshot?.readOnly}
+			onOpenEvidence={openEvidence}
+		/>
+	);
 }
 
 /**

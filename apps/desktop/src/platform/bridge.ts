@@ -1193,15 +1193,19 @@ class BrowserDesktopBridge implements DesktopBridge {
 					? browserContinuationDeltas(request)
 					: request.jobType === 'scene-plan-generation'
 						? browserScenePlanDeltas(request)
-					: request.jobType === 'character-analysis'
-						? browserCharacterAnalysisDeltas(request)
-					: request.jobType === 'relationship-analysis'
-						? browserRelationshipAnalysisDeltas(request)
-				: request.jobType === 'story-extraction'
-					? browserStoryExtractionDeltas(request)
-					: request.jobType === 'story-kernel-generation'
-						? browserStoryKernelGenerationDeltas(request)
-					: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+						: request.jobType === 'character-analysis'
+							? browserCharacterAnalysisDeltas(request)
+							: request.jobType === 'relationship-analysis'
+								? browserRelationshipAnalysisDeltas(request)
+								: request.jobType === 'world-analysis'
+									? browserWorldAnalysisDeltas(request)
+									: request.jobType === 'item-analysis'
+										? browserItemAnalysisDeltas(request)
+										: request.jobType === 'story-extraction'
+											? browserStoryExtractionDeltas(request)
+											: request.jobType === 'story-kernel-generation'
+												? browserStoryKernelGenerationDeltas(request)
+												: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -1499,6 +1503,212 @@ function browserRelationshipAnalysisDeltas(request: AiGenerateRequest): readonly
 			confidence: 0.94,
 			rationale: '正文动作明确改变双方的信息关系。',
 			evidence
+		}] : []
+	});
+}
+
+function browserWorldAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly targetType?: string;
+		readonly source?: { readonly content?: string };
+		readonly existingResources?: readonly {
+			readonly id?: string;
+			readonly type?: string;
+		}[];
+	};
+	const content = decoded.source?.content ?? '';
+	const existing = decoded.existingResources ?? [];
+	const oldStationId = existing.find(resource => (
+		resource.type === 'location' && resource.id === 'location:old-station'
+	))?.id ?? null;
+	if (decoded.actionType === 'generate-world-entry') {
+		if (decoded.targetType === 'location') {
+			return browserJsonDeltas({
+				candidates: [{
+					kind: 'location',
+					title: '雾钟广场',
+					aliases: ['北站前广场'],
+					summary: '旧站外终年积雾的圆形广场，失踪者常在午夜留下湿脚印。',
+					locationType: '公共广场',
+					parentLocationId: oldStationId,
+					rules: ['午夜后不能沿同一条石径连续绕行三圈'],
+					confidence: 0.91,
+					rationale: '延展旧站空间，并提供可执行的场景限制。',
+					evidence: null
+				}, {
+					kind: 'location',
+					title: '封闭月台',
+					aliases: ['零号月台'],
+					summary: '不在公开站图上的短月台，只在暴雨时出现信号灯。',
+					locationType: '禁入设施',
+					parentLocationId: oldStationId,
+					rules: ['未经值守人许可不得点亮信号灯'],
+					confidence: 0.87,
+					rationale: '为悬疑线提供受规则约束的新调查空间。',
+					evidence: null
+				}]
+			});
+		}
+		if (decoded.targetType === 'faction') {
+			return browserJsonDeltas({
+				candidates: [{
+					kind: 'faction',
+					title: '夜巡档案处',
+					aliases: ['夜档处'],
+					summary: '负责封存停运线路事故记录的隐秘小组。',
+					ideology: '秩序必须建立在可验证的记录上。',
+					goals: ['找回被删去的午夜列车日志', '阻止未授权人员进入零号月台'],
+					territoryLocationIds: oldStationId ? [oldStationId] : [],
+					confidence: 0.89,
+					rationale: '为旧站秘密提供制度性维护者。',
+					evidence: null
+				}]
+			});
+		}
+		const category = ['culture', 'religion', 'technology', 'magic', 'law']
+			.includes(decoded.targetType ?? '')
+			? decoded.targetType
+			: 'other';
+		return browserJsonDeltas({
+			candidates: [{
+				kind: 'worldRule',
+				title: '雨夜停钟规则',
+				aliases: ['二十三点十七分法则'],
+				category,
+				statement: '旧车站内未被人持续注视的机械钟会在雨夜停在二十三点十七分。',
+				scope: '旧火车站范围内的雨夜',
+				exceptions: ['有人持续注视表盘时，秒针仍会移动'],
+				consequences: ['依赖钟表的行动会产生错误时间判断'],
+				conflicts: [],
+				confidence: 0.93,
+				rationale: '把现有异常收束为可验证、带例外的规则。',
+				evidence: null
+			}]
+		});
+	}
+	const stationEvidence = browserEvidence(content, '旧火车站');
+	const clockEvidence = browserEvidence(content, '墙上的时钟停在二十三点十七分');
+	return browserJsonDeltas({
+		candidates: [
+			...(stationEvidence ? [{
+				kind: 'location',
+				title: '旧火车站',
+				aliases: [],
+				summary: '雨夜仍保留候车室与玻璃穹顶的停运车站。',
+				locationType: '废弃车站',
+				parentLocationId: null,
+				rules: [],
+				confidence: 0.97,
+				rationale: '正文明确点名并描写空间。',
+				evidence: stationEvidence
+			}] : []),
+			...(clockEvidence ? [{
+				kind: 'worldRule',
+				title: '时钟停摆',
+				aliases: [],
+				category: 'technology',
+				statement: '候车室墙上的时钟停在二十三点十七分。',
+				scope: '旧火车站候车室',
+				exceptions: [],
+				consequences: ['现场时间无法通过墙钟确认'],
+				conflicts: existing
+					.filter(resource => resource.type === 'worldRule' && resource.id)
+					.slice(0, 1)
+					.map(resource => ({
+						resourceId: resource.id!,
+						reason: '与已有停摆规则适用范围可能重叠。'
+					})),
+				confidence: 0.96,
+				rationale: '正文直接描述停摆状态。',
+				evidence: clockEvidence
+			}] : [])
+		]
+	});
+}
+
+function browserItemAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly selectedItemId?: string;
+		readonly source?: { readonly content?: string };
+		readonly existingItems?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly characters?: readonly { readonly id?: string; readonly title?: string }[];
+		readonly locations?: readonly { readonly id?: string; readonly title?: string }[];
+	};
+	const content = decoded.source?.content ?? '';
+	const characters = decoded.characters ?? [];
+	const locations = decoded.locations ?? [];
+	const holder = characters.find(character => character.title === '徐青') ?? characters[0];
+	const location = locations.find(candidate => candidate.title === '旧火车站') ?? locations[0];
+	if (decoded.actionType === 'generate-item') {
+		return browserJsonDeltas({
+			candidates: [{
+				title: '无字站牌',
+				aliases: ['零号站牌'],
+				itemType: '线索物品',
+				unique: true,
+				quantityUnit: '块',
+				description: '锈蚀铁牌上没有站名，雨水会短暂显出被刮去的字。',
+				restrictions: ['离开旧站后显出的文字会消失'],
+				plotFunction: '证明零号月台曾经存在，并指向被删去的线路。',
+				confidence: 0.9,
+				rationale: '生成可被追踪、受限制且能推动调查的核心物品。',
+				evidence: null,
+				states: []
+			}]
+		});
+	}
+	if (decoded.actionType === 'generate-item-history') {
+		const selected = decoded.existingItems?.find(item => item.id === decoded.selectedItemId);
+		return browserJsonDeltas({
+			candidates: [{
+				title: selected?.title ?? '当前物品',
+				aliases: [],
+				itemType: '线索物品',
+				unique: true,
+				quantityUnit: '件',
+				description: '与旧站事故相关、表面留有受潮痕迹。',
+				restrictions: ['关键标记在强光下会褪色'],
+				plotFunction: '在人物之间流转并逐步揭示事故时间。',
+				confidence: 0.86,
+				rationale: '为当前物品补充可分别确认的使用记录。',
+				evidence: null,
+				states: [{
+					action: 'used',
+					quantity: 1,
+					holderCharacterId: holder?.id ?? null,
+					locationId: location?.id ?? null,
+					condition: '受潮但可辨认',
+					evidence: null
+				}]
+			}]
+		});
+	}
+	const itemEvidence = browserEvidence(content, '褪色的行李票');
+	return browserJsonDeltas({
+		candidates: itemEvidence ? [{
+			title: '褪色的行李票',
+			aliases: ['旧行李票'],
+			itemType: '线索票据',
+			unique: true,
+			quantityUnit: '张',
+			description: '票面褪色，背后写着二十三点十七分。',
+			restrictions: ['票面字迹不可再次复写'],
+			plotFunction: '把徐青与停摆时钟指向同一个时间。',
+			confidence: 0.97,
+			rationale: '正文明确出现物品、持有人和票面信息。',
+			evidence: itemEvidence,
+			states: [{
+				action: 'acquired',
+				quantity: 1,
+				holderCharacterId: holder?.id ?? null,
+				locationId: location?.id ?? null,
+				condition: '褪色',
+				evidence: itemEvidence
+			}]
 		}] : []
 	});
 }

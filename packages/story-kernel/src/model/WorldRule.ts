@@ -17,6 +17,7 @@ export interface WorldRule extends StoryResourceBase {
 	readonly type: 'worldRule';
 	readonly category: WorldRuleCategory;
 	readonly statement: string;
+	readonly scope?: string;
 	readonly exceptions: readonly string[];
 	readonly consequences: readonly string[];
 	readonly effectiveFrom?: StoryPosition;
@@ -25,11 +26,12 @@ export interface WorldRule extends StoryResourceBase {
 
 type WorldRuleInput = Omit<
 	WorldRule,
-	'id' | 'category' | 'statement' | 'exceptions' | 'consequences' | 'effectiveFrom' | 'evidenceIds'
+	'id' | 'category' | 'statement' | 'scope' | 'exceptions' | 'consequences' | 'effectiveFrom' | 'evidenceIds'
 > & {
 	readonly id: string;
 	readonly category?: string;
 	readonly statement?: string;
+	readonly scope?: string;
 	readonly exceptions?: readonly string[];
 	readonly consequences?: readonly string[];
 	readonly effectiveFrom?: Parameters<typeof parseStoryPosition>[0];
@@ -52,6 +54,7 @@ export function parseWorldRule(value: WorldRuleInput): WorldRule {
 		type: 'worldRule',
 		category,
 		statement,
+		...(value.scope?.trim() ? { scope: value.scope.trim() } : {}),
 		exceptions: [...(value.exceptions ?? [])],
 		consequences: [...(value.consequences ?? [])],
 		...(value.effectiveFrom ? { effectiveFrom: parseStoryPosition(value.effectiveFrom) } : {}),

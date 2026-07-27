@@ -57,6 +57,23 @@ export const RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT = [
 	'extract-relationship-changes 的每条候选必须有精确正文证据；generate-relationship 可无证据。最多返回 24 条。',
 	'证据索引使用 JavaScript UTF-16 字符索引。所有边仅供作者逐条确认，不得声称已经保存或改变正式关系图。'
 ].join('');
+export const WORLD_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的结构化世界观候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和世界资料身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。',
+	'仅返回 JSON 对象 {"candidates":[候选]}。候选按 kind 使用严格结构：',
+	'location 为 {"kind":"location","title":"名称","aliases":[],"summary":"说明","locationType":"类型","parentLocationId":"已知 location ID 或 null","rules":[],"confidence":0.9,"rationale":"依据","evidence":{"start":0,"end":2,"quote":"原文"}或null}；',
+	'faction 为 {"kind":"faction","title":"名称","aliases":[],"summary":"说明","ideology":"纲领","goals":[],"territoryLocationIds":["已知 location ID"],"confidence":0.9,"rationale":"依据","evidence":...}；',
+	'worldRule 为 {"kind":"worldRule","title":"名称","aliases":[],"category":"culture|religion|technology|magic|law|other","statement":"规则","scope":"适用范围","exceptions":[],"consequences":[],"conflicts":[{"resourceId":"已知 world-rule ID","reason":"冲突说明"}],"confidence":0.9,"rationale":"依据","evidence":...}。',
+	'generate-world-entry 只返回 targetType 对应的候选；文化、宗教、科技、魔法和法律使用 worldRule 及对应 category。规则必须有明确 scope，exceptions 可为空但不可省略。',
+	'extract-worldbuilding 最多返回 24 个独立条目，每条必须有精确正文证据；长设定拆分成可分别确认的候选，不推断未写出的事实。',
+	'证据索引使用 JavaScript UTF-16 字符索引。不得声称已经保存、合并或覆盖世界资料。'
+].join('');
+export const ITEM_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的结构化物品候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令、物品和人物/地点身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。',
+	'仅返回 JSON 对象 {"candidates":[{"title":"物品名","aliases":[],"itemType":"类型","unique":true,"quantityUnit":"单位或 null","description":"外观、来源与用途","restrictions":[],"plotFunction":"叙事作用","confidence":0.9,"rationale":"依据","evidence":{"start":0,"end":2,"quote":"原文"}或null,"states":[{"action":"acquired|transferred|used|lost|destroyed|adjusted","quantity":1,"holderCharacterId":"已知 character ID 或 null","locationId":"已知 location ID 或 null","condition":"状态或 null","evidence":{"start":0,"end":2,"quote":"原文"}或null}]}]}。',
+	'generate-item 生成完整物品卡；generate-item-history 针对 selectedItemId 生成可分别确认的历史或流转事件；extract-items 最多返回 16 个物品候选。',
+	'extract-items 的物品卡和每条状态事件都必须有精确正文证据。持有人和地点只能引用用户提供的 ID；不得为未识别人物或地点发明 ID。',
+	'证据索引使用 JavaScript UTF-16 字符索引。所有卡片字段和状态事件仅供作者确认，不得声称已经保存、转移或覆盖物品。'
+].join('');
 export const STORY_EXTRACTION_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的结构化故事事实提取器。',
 	'只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。',
@@ -94,6 +111,8 @@ export type AiJobType =
 	| 'scene-plan-generation'
 	| 'character-analysis'
 	| 'relationship-analysis'
+	| 'world-analysis'
+	| 'item-analysis'
 	| 'story-extraction'
 	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
@@ -560,6 +579,97 @@ const relationshipAnalysisResponseSchema = z.object({
 	candidates: z.array(relationshipAnalysisCandidateSchema).max(24)
 }).strict();
 
+export const worldAnalysisTargetTypes = [
+	'location',
+	'faction',
+	'culture',
+	'religion',
+	'technology',
+	'magic',
+	'law',
+	'world-rule'
+] as const;
+
+const worldCandidateBaseShape = {
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	evidence: groundedEvidenceSchema.nullable()
+};
+
+const worldLocationCandidateSchema = z.object({
+	kind: z.literal('location'),
+	...worldCandidateBaseShape,
+	summary: z.string().trim().min(1).max(10_000),
+	locationType: z.string().trim().min(1).max(160),
+	parentLocationId: z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u).nullable(),
+	rules: z.array(z.string().trim().min(1).max(2_000)).max(40)
+}).strict();
+
+const worldFactionCandidateSchema = z.object({
+	kind: z.literal('faction'),
+	...worldCandidateBaseShape,
+	summary: z.string().trim().min(1).max(10_000),
+	ideology: z.string().trim().min(1).max(5_000),
+	goals: z.array(z.string().trim().min(1).max(1_000)).max(40),
+	territoryLocationIds: z.array(
+		z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u)
+	).max(100)
+}).strict();
+
+const worldRuleCandidateSchema = z.object({
+	kind: z.literal('worldRule'),
+	...worldCandidateBaseShape,
+	category: z.enum(['culture', 'religion', 'technology', 'magic', 'law', 'other']),
+	statement: z.string().trim().min(1).max(10_000),
+	scope: z.string().trim().min(1).max(2_000),
+	exceptions: z.array(z.string().trim().min(1).max(2_000)).max(40),
+	consequences: z.array(z.string().trim().min(1).max(2_000)).max(40),
+	conflicts: z.array(z.object({
+		resourceId: z.string().regex(/^world-rule:[a-z0-9][a-z0-9-]*$/u),
+		reason: z.string().trim().min(1).max(2_000)
+	}).strict()).max(24)
+}).strict();
+
+const worldAnalysisCandidateSchema = z.discriminatedUnion('kind', [
+	worldLocationCandidateSchema,
+	worldFactionCandidateSchema,
+	worldRuleCandidateSchema
+]);
+
+const worldAnalysisResponseSchema = z.object({
+	candidates: z.array(worldAnalysisCandidateSchema).max(24)
+}).strict();
+
+const itemStateCandidateSchema = z.object({
+	action: z.enum(['acquired', 'transferred', 'used', 'lost', 'destroyed', 'adjusted']),
+	quantity: z.number().finite().nonnegative(),
+	holderCharacterId: z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u).nullable(),
+	locationId: z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u).nullable(),
+	condition: z.string().trim().min(1).max(1_000).nullable(),
+	evidence: groundedEvidenceSchema.nullable()
+}).strict();
+
+const itemAnalysisCandidateSchema = z.object({
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	itemType: z.string().trim().min(1).max(160),
+	unique: z.boolean(),
+	quantityUnit: z.string().trim().min(1).max(160).nullable(),
+	description: z.string().trim().min(1).max(10_000),
+	restrictions: z.array(z.string().trim().min(1).max(1_000)).max(40),
+	plotFunction: z.string().trim().min(1).max(5_000),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	evidence: groundedEvidenceSchema.nullable(),
+	states: z.array(itemStateCandidateSchema).max(12)
+}).strict();
+
+const itemAnalysisResponseSchema = z.object({
+	candidates: z.array(itemAnalysisCandidateSchema).max(16)
+}).strict();
+
 const storyExtractionResponseSchema = z.object({
 	facts: z.array(z.object({
 		factType: z.enum([
@@ -736,6 +846,89 @@ export interface RelationshipAnalysisCandidateResponse {
 	readonly confidence: number;
 	readonly rationale: string;
 	readonly evidence: GroundedCandidateEvidence | null;
+}
+
+export type WorldAnalysisActionType =
+	| 'generate-world-entry'
+	| 'extract-worldbuilding';
+export type WorldAnalysisTargetType = typeof worldAnalysisTargetTypes[number];
+export type WorldRuleCandidateCategory =
+	| 'culture'
+	| 'religion'
+	| 'technology'
+	| 'magic'
+	| 'law'
+	| 'other';
+export type WorldAnalysisCandidateResponse =
+	| {
+		readonly kind: 'location';
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly summary: string;
+		readonly locationType: string;
+		readonly parentLocationId: string | null;
+		readonly rules: readonly string[];
+		readonly confidence: number;
+		readonly rationale: string;
+		readonly evidence: GroundedCandidateEvidence | null;
+	}
+	| {
+		readonly kind: 'faction';
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly summary: string;
+		readonly ideology: string;
+		readonly goals: readonly string[];
+		readonly territoryLocationIds: readonly string[];
+		readonly confidence: number;
+		readonly rationale: string;
+		readonly evidence: GroundedCandidateEvidence | null;
+	}
+	| {
+		readonly kind: 'worldRule';
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly category: WorldRuleCandidateCategory;
+		readonly statement: string;
+		readonly scope: string;
+		readonly exceptions: readonly string[];
+		readonly consequences: readonly string[];
+		readonly conflicts: readonly {
+			readonly resourceId: string;
+			readonly reason: string;
+		}[];
+		readonly confidence: number;
+		readonly rationale: string;
+		readonly evidence: GroundedCandidateEvidence | null;
+	};
+
+export type ItemAnalysisActionType =
+	| 'generate-item'
+	| 'generate-item-history'
+	| 'extract-items';
+
+export interface ItemAnalysisStateCandidateResponse {
+	readonly action: 'acquired' | 'transferred' | 'used' | 'lost' | 'destroyed' | 'adjusted';
+	readonly quantity: number;
+	readonly holderCharacterId: string | null;
+	readonly locationId: string | null;
+	readonly condition: string | null;
+	readonly evidence: GroundedCandidateEvidence | null;
+}
+
+export interface ItemAnalysisCandidateResponse {
+	readonly title: string;
+	readonly aliases: readonly string[];
+	readonly itemType: string;
+	readonly unique: boolean;
+	readonly quantityUnit: string | null;
+	readonly description: string;
+	readonly restrictions: readonly string[];
+	readonly plotFunction: string;
+	readonly confidence: number;
+	readonly rationale: string;
+	readonly evidence: GroundedCandidateEvidence | null;
+	readonly states: readonly ItemAnalysisStateCandidateResponse[];
 }
 
 export interface StoryExtractionCandidate {
@@ -1099,6 +1292,283 @@ export function parseRelationshipAnalysisResponse(
 		|| !allowedCharacterIds.has(candidate.targetCharacterId)
 	))) {
 		throw new Error('unknownRelationshipCharacter');
+	}
+	return candidates;
+}
+
+interface WorldAnalysisRequestInput {
+	readonly actionType: WorldAnalysisActionType;
+	readonly targetType?: WorldAnalysisTargetType;
+	readonly instruction: string;
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly narrativeOrder: number;
+	readonly existingResources: readonly {
+		readonly id: string;
+		readonly type: 'location' | 'faction' | 'worldRule';
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly revision: number;
+		readonly category?: 'culture' | 'religion' | 'technology' | 'magic' | 'law' | 'other';
+		readonly statement?: string;
+		readonly scope?: string;
+	}[];
+}
+
+function isValidWorldIdentity(
+	value: WorldAnalysisRequestInput['existingResources'][number]
+): boolean {
+	const prefix = value.type === 'worldRule' ? 'world-rule' : value.type;
+	return value.id.startsWith(`${prefix}:`)
+		&& /^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(value.id)
+		&& Boolean(value.title.trim())
+		&& value.title.length <= 160
+		&& value.aliases.length <= 40
+		&& value.aliases.every(alias => Boolean(alias.trim()) && alias.length <= 160)
+		&& Number.isSafeInteger(value.revision)
+		&& value.revision >= 0
+		&& (value.type !== 'worldRule' || value.category !== undefined);
+}
+
+export function buildWorldAnalysisMessages(
+	input: WorldAnalysisRequestInput
+): readonly AiMessage[] {
+	const ids = new Set(input.existingResources.map(resource => resource.id));
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^chapter:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
+		|| !Number.isSafeInteger(input.narrativeOrder)
+		|| input.narrativeOrder < 0
+		|| input.existingResources.length > 1_000
+		|| ids.size !== input.existingResources.length
+		|| input.existingResources.some(resource => !isValidWorldIdentity(resource))
+		|| (input.actionType === 'generate-world-entry'
+			&& (!input.targetType || !worldAnalysisTargetTypes.includes(input.targetType)))
+		|| (input.actionType === 'extract-worldbuilding' && input.targetType !== undefined)
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
+			`${input.instruction}\n${input.content}`
+		)
+	) {
+		throw new Error('invalidWorldAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		...(input.targetType ? { targetType: input.targetType } : {}),
+		instruction: input.instruction.trim(),
+		source: {
+			resourceId: input.resourceId,
+			sourceRevision: input.sourceRevision,
+			narrativeOrder: input.narrativeOrder,
+			content: input.content
+		},
+		existingResources: input.existingResources
+	});
+	if (payload.length > 180_000) throw new Error('invalidWorldAnalysisInput');
+	return [
+		{ role: 'system', content: WORLD_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+const worldTargetCategory: Readonly<Partial<Record<
+	WorldAnalysisTargetType,
+	WorldRuleCandidateCategory
+>>> = {
+	culture: 'culture',
+	religion: 'religion',
+	technology: 'technology',
+	magic: 'magic',
+	law: 'law'
+};
+
+export function parseWorldAnalysisResponse(
+	response: string,
+	actionType: WorldAnalysisActionType,
+	targetType?: WorldAnalysisTargetType,
+	allowedResourceIds?: ReadonlySet<string>
+): readonly WorldAnalysisCandidateResponse[] {
+	const candidates = worldAnalysisResponseSchema.parse(JSON.parse(response)).candidates;
+	if (
+		actionType === 'extract-worldbuilding'
+		&& candidates.some(candidate => candidate.evidence === null)
+	) {
+		throw new Error('missingWorldExtractionEvidence');
+	}
+	if (actionType === 'generate-world-entry') {
+		if (!targetType || candidates.length === 0 || candidates.length > 6) {
+			throw new Error('invalidWorldCandidateCount');
+		}
+		const expectedKind = targetType === 'location'
+			? 'location'
+			: targetType === 'faction'
+				? 'faction'
+				: 'worldRule';
+		if (candidates.some(candidate => (
+			candidate.kind !== expectedKind
+			|| (
+				candidate.kind === 'worldRule'
+				&& worldTargetCategory[targetType] !== undefined
+				&& candidate.category !== worldTargetCategory[targetType]
+			)
+		))) {
+			throw new Error('worldCandidateTypeMismatch');
+		}
+	}
+	if (allowedResourceIds && candidates.some(candidate => {
+		if (
+			candidate.kind === 'location'
+			&& candidate.parentLocationId
+			&& !allowedResourceIds.has(candidate.parentLocationId)
+		) return true;
+		if (
+			candidate.kind === 'faction'
+			&& candidate.territoryLocationIds.some(id => !allowedResourceIds.has(id))
+		) return true;
+		return candidate.kind === 'worldRule'
+			&& candidate.conflicts.some(conflict => !allowedResourceIds.has(conflict.resourceId));
+	})) {
+		throw new Error('unknownWorldReference');
+	}
+	return candidates;
+}
+
+interface ItemAnalysisRequestInput {
+	readonly actionType: ItemAnalysisActionType;
+	readonly instruction: string;
+	readonly content: string;
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly narrativeOrder: number;
+	readonly selectedItemId?: string;
+	readonly existingItems: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly aliases: readonly string[];
+		readonly unique: boolean;
+		readonly revision: number;
+	}[];
+	readonly characters: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+	readonly locations: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly revision: number;
+	}[];
+}
+
+function validSimpleIdentity(
+	value: { readonly id: string; readonly title: string; readonly revision: number },
+	prefix: string
+): boolean {
+	return value.id.startsWith(`${prefix}:`)
+		&& /^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(value.id)
+		&& Boolean(value.title.trim())
+		&& value.title.length <= 160
+		&& Number.isSafeInteger(value.revision)
+		&& value.revision >= 0;
+}
+
+export function buildItemAnalysisMessages(
+	input: ItemAnalysisRequestInput
+): readonly AiMessage[] {
+	const itemIds = new Set(input.existingItems.map(item => item.id));
+	const characterIds = new Set(input.characters.map(character => character.id));
+	const locationIds = new Set(input.locations.map(location => location.id));
+	if (
+		!input.instruction.trim()
+		|| input.instruction.length > 2_000
+		|| !input.content.trim()
+		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		|| !/^chapter:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
+		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
+		|| !Number.isSafeInteger(input.narrativeOrder)
+		|| input.narrativeOrder < 0
+		|| input.existingItems.length > 1_000
+		|| itemIds.size !== input.existingItems.length
+		|| input.existingItems.some(item => (
+			!validSimpleIdentity(item, 'item')
+			|| item.aliases.length > 40
+			|| item.aliases.some(alias => !alias.trim() || alias.length > 160)
+		))
+		|| input.characters.length > 500
+		|| characterIds.size !== input.characters.length
+		|| input.characters.some(character => !validSimpleIdentity(character, 'character'))
+		|| input.locations.length > 1_000
+		|| locationIds.size !== input.locations.length
+		|| input.locations.some(location => !validSimpleIdentity(location, 'location'))
+		|| (input.actionType === 'generate-item-history'
+			&& (!input.selectedItemId || !itemIds.has(input.selectedItemId)))
+		|| (input.actionType !== 'generate-item-history' && input.selectedItemId !== undefined)
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
+			`${input.instruction}\n${input.content}`
+		)
+	) {
+		throw new Error('invalidItemAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		actionType: input.actionType,
+		instruction: input.instruction.trim(),
+		source: {
+			resourceId: input.resourceId,
+			sourceRevision: input.sourceRevision,
+			narrativeOrder: input.narrativeOrder,
+			content: input.content
+		},
+		...(input.selectedItemId ? { selectedItemId: input.selectedItemId } : {}),
+		existingItems: input.existingItems,
+		characters: input.characters,
+		locations: input.locations
+	});
+	if (payload.length > 200_000) throw new Error('invalidItemAnalysisInput');
+	return [
+		{ role: 'system', content: ITEM_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseItemAnalysisResponse(
+	response: string,
+	actionType: ItemAnalysisActionType,
+	allowedCharacterIds?: ReadonlySet<string>,
+	allowedLocationIds?: ReadonlySet<string>
+): readonly ItemAnalysisCandidateResponse[] {
+	const candidates = itemAnalysisResponseSchema.parse(JSON.parse(response)).candidates;
+	if (
+		actionType !== 'extract-items'
+		&& (candidates.length === 0 || candidates.length > 6)
+	) {
+		throw new Error('invalidItemCandidateCount');
+	}
+	if (
+		actionType === 'extract-items'
+		&& candidates.some(candidate => (
+			candidate.evidence === null
+			|| candidate.states.some(state => state.evidence === null)
+		))
+	) {
+		throw new Error('missingItemExtractionEvidence');
+	}
+	if (candidates.some(candidate => candidate.states.some(state => (
+		(state.holderCharacterId !== null
+			&& allowedCharacterIds !== undefined
+			&& !allowedCharacterIds.has(state.holderCharacterId))
+		|| (state.locationId !== null
+			&& allowedLocationIds !== undefined
+			&& !allowedLocationIds.has(state.locationId))
+	)))) {
+		throw new Error('unknownItemStateReference');
 	}
 	return candidates;
 }

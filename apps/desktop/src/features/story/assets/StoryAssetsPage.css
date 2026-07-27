@@ -1,4 +1,5 @@
 .story-assets-page {
+	position: relative;
 	display: grid;
 	grid-template-columns: 292px minmax(0, 1fr);
 	width: 100%;
@@ -131,7 +132,8 @@
 }
 
 .story-assets-detail > header button,
-.item-transfer-commit {
+.item-transfer-commit,
+.story-assets-empty button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -144,6 +146,19 @@
 	background: var(--accent-strong);
 	border: 0;
 	border-radius: var(--radius-control);
+}
+
+.story-assets-detail > header .story-assets-ai-button {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border-subtle));
+}
+
+.story-assets-detail > header button:focus-visible,
+.story-assets-list button:focus-visible,
+.story-assets-empty button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
 }
 
 .story-assets-messages {
@@ -261,9 +276,14 @@
 }
 
 .story-assets-empty {
+	gap: 12px;
 	display: grid;
 	place-items: center;
 	color: var(--text-muted);
+}
+
+.story-assets-empty button {
+	padding: 0 15px;
 }
 
 .item-transfer-backdrop {
@@ -366,6 +386,10 @@
 	.story-assets-detail > header {
 		align-items: flex-start;
 		flex-wrap: wrap;
+	}
+
+	.story-assets-detail > header > div {
+		flex-basis: 100%;
 	}
 
 	.asset-current-grid {

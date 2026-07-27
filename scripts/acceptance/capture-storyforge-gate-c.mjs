@@ -359,7 +359,51 @@ const aiQuickActionsGateDCaptures = [
 		name: '04-relationship-virtual-edges-1024x688.png'
 	}
 ];
-const captures = gate === 'gate-ai-actions-d'
+const aiQuickActionsGateECaptures = [
+	{
+		mode: 'references',
+		view: 'worldbuilding',
+		readySelector: '.worldbuilding-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-world-candidates',
+		width: 1536,
+		height: 960,
+		name: '01-world-location-candidates-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'assets',
+		readySelector: '.story-assets-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-item-candidates',
+		width: 1536,
+		height: 960,
+		name: '02-item-card-candidate-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'worldbuilding',
+		readySelector: '.worldbuilding-page',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-world-candidates',
+		width: 1280,
+		height: 768,
+		name: '03-world-extraction-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'assets',
+		readySelector: '.story-assets-page',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-item-candidates',
+		width: 1024,
+		height: 688,
+		name: '04-item-extraction-1024x688.png'
+	}
+];
+const captures = gate === 'gate-ai-actions-e'
+	? aiQuickActionsGateECaptures
+	: gate === 'gate-ai-actions-d'
 	? aiQuickActionsGateDCaptures
 	: gate === 'gate-ai-actions-c2'
 	? aiQuickActionsGateC2Captures
@@ -589,6 +633,56 @@ try {
 					? '.relationship-graph-canvas g.is-ai-candidate'
 					: '.ai-review-candidate'
 			);
+		}
+		if (
+			capture.prepare === 'generate-world-candidates'
+			|| capture.prepare === 'extract-world-candidates'
+			|| capture.prepare === 'generate-item-candidates'
+			|| capture.prepare === 'extract-item-candidates'
+		) {
+			const isWorld = capture.prepare.includes('world');
+			const isExtract = capture.prepare.startsWith('extract-');
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const openButton = document.querySelector(
+						${JSON.stringify(isWorld ? '.worldbuilding-ai-button' : '.story-assets-ai-button')}
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate E AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			const actionLabel = isWorld
+				? (isExtract ? '从正文提取' : '快速创建')
+				: (isExtract ? '从正文提取' : '生成物品卡');
+			const selected = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+						.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!selected.result.value) throw new Error(`Gate E action was not available: ${actionLabel}`);
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate E generation button was not available.');
+			await waitForSelector(client, '.ai-review-candidate');
 		}
 		if (capture.prepare?.startsWith('generate-')) {
 			await client.send('Runtime.evaluate', {

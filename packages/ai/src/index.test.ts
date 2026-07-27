@@ -4,12 +4,14 @@ import {
 	aggregateAiUsage,
 	buildChapterReviewMessages,
 	buildCharacterAnalysisMessages,
+	buildItemAnalysisMessages,
 	buildManuscriptContinuationMessages,
 	buildRelationshipAnalysisMessages,
 	buildScenePlanMessages,
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
 	buildStoryKernelGenerationMessages,
+	buildWorldAnalysisMessages,
 	canQueueAiJob,
 	chooseDefaultModel,
 	createDeepSeekProviderDefinition,
@@ -17,19 +19,23 @@ import {
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
 	parseCharacterAnalysisResponse,
+	parseItemAnalysisResponse,
 	parseManuscriptContinuationResponse,
 	parseRelationshipAnalysisResponse,
 	parseScenePlanResponse,
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
+	parseWorldAnalysisResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
 	CHARACTER_ANALYSIS_SYSTEM_PROMPT,
+	ITEM_ANALYSIS_SYSTEM_PROMPT,
 	MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
 	RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT,
 	SCENE_PLAN_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
 	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
+	WORLD_ANALYSIS_SYSTEM_PROMPT,
 	shouldRetryAiFailure
 } from './index';
 
@@ -333,6 +339,141 @@ describe('AI core contracts', () => {
 				evidence: null
 			}]
 		}), 'extract-relationship-changes')).toThrow('missingRelationshipExtractionEvidence');
+	});
+
+	it('validates type-specific world candidates, rule scope, and extraction evidence', () => {
+		const existingResources = [{
+			id: 'location:old-station',
+			type: 'location' as const,
+			title: '旧车站',
+			aliases: [],
+			revision: 1
+		}, {
+			id: 'world-rule:rain-clock',
+			type: 'worldRule' as const,
+			title: '雨夜停钟',
+			aliases: [],
+			revision: 2,
+			category: 'magic' as const,
+			statement: '雨夜钟表停摆。',
+			scope: '旧车站'
+		}];
+		const messages = buildWorldAnalysisMessages({
+			actionType: 'generate-world-entry',
+			targetType: 'magic',
+			instruction: '设计三条有例外的魔法规则。',
+			content: '雨夜的旧车站没有钟声。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			narrativeOrder: 3,
+			existingResources
+		});
+		expect(messages[0]?.content).toBe(WORLD_ANALYSIS_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('projectRoot');
+		expect(parseWorldAnalysisResponse(JSON.stringify({
+			candidates: [{
+				kind: 'worldRule',
+				title: '停钟规则',
+				aliases: [],
+				category: 'magic',
+				statement: '进入旧站的机械钟在雨夜停摆。',
+				scope: '旧车站内的雨夜',
+				exceptions: ['由站长手动上弦的钟'],
+				consequences: ['无法依靠钟表判断时间'],
+				conflicts: [{
+					resourceId: 'world-rule:rain-clock',
+					reason: '适用范围重叠但例外不同。'
+				}],
+				confidence: 0.9,
+				rationale: '作者设定候选。',
+				evidence: null
+			}]
+		}), 'generate-world-entry', 'magic', new Set(existingResources.map(item => item.id))))
+			.toHaveLength(1);
+		expect(() => parseWorldAnalysisResponse(JSON.stringify({
+			candidates: [{
+				kind: 'location',
+				title: '旧车站',
+				aliases: [],
+				summary: '废弃站房。',
+				locationType: '车站',
+				parentLocationId: null,
+				rules: [],
+				confidence: 0.9,
+				rationale: '正文提取。',
+				evidence: null
+			}]
+		}), 'extract-worldbuilding')).toThrow('missingWorldExtractionEvidence');
+	});
+
+	it('validates structured item cards, state references, and extraction evidence', () => {
+		const messages = buildItemAnalysisMessages({
+			actionType: 'generate-item-history',
+			instruction: '为车票生成流转历史候选。',
+			content: '徐青把褪色车票交给林墨。',
+			resourceId: 'chapter:one',
+			sourceRevision: '7',
+			narrativeOrder: 3,
+			selectedItemId: 'item:faded-ticket',
+			existingItems: [{
+				id: 'item:faded-ticket',
+				title: '褪色车票',
+				aliases: [],
+				unique: true,
+				revision: 1
+			}],
+			characters: [{
+				id: 'character:lin-mo',
+				title: '林墨',
+				revision: 1
+			}],
+			locations: [{
+				id: 'location:old-station',
+				title: '旧车站',
+				revision: 1
+			}]
+		});
+		expect(messages[0]?.content).toBe(ITEM_ANALYSIS_SYSTEM_PROMPT);
+		expect(parseItemAnalysisResponse(JSON.stringify({
+			candidates: [{
+				title: '褪色车票',
+				aliases: [],
+				itemType: '线索',
+				unique: true,
+				quantityUnit: '张',
+				description: '边缘被雨水泡软的旧车票。',
+				restrictions: ['票面编号只能辨认一次'],
+				plotFunction: '连接失踪者与旧车站。',
+				confidence: 0.92,
+				rationale: '为现有物品补全历史。',
+				evidence: null,
+				states: [{
+					action: 'transferred',
+					quantity: 1,
+					holderCharacterId: 'character:lin-mo',
+					locationId: 'location:old-station',
+					condition: '受潮',
+					evidence: null
+				}]
+			}]
+		}), 'generate-item-history', new Set(['character:lin-mo']), new Set(['location:old-station'])))
+			.toHaveLength(1);
+		expect(() => parseItemAnalysisResponse(JSON.stringify({
+			candidates: [{
+				title: '褪色车票',
+				aliases: [],
+				itemType: '线索',
+				unique: true,
+				quantityUnit: '张',
+				description: '旧车票。',
+				restrictions: [],
+				plotFunction: '线索。',
+				confidence: 0.9,
+				rationale: '正文提取。',
+				evidence: null,
+				states: []
+			}]
+		}), 'extract-items')).toThrow('missingItemExtractionEvidence');
 	});
 
 	it('builds a JSON-only story extraction request without auto-confirming facts', () => {

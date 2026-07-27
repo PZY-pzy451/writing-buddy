@@ -5,26 +5,38 @@ import {
 	History,
 	MapPin,
 	PackageOpen,
+	Sparkles,
 	UserRound
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
 	DesktopStoryRepository,
+	StorySchemaRegistry,
 	getItemStateAt,
 	parseItemState,
 	parseStoryItem,
+	parseLocation,
 	runItemRules,
+	type Character,
 	type ItemState,
+	type Location,
 	type StoryItem
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
 import { ItemTransferDialog } from './ItemTransferDialog';
+import { ItemAiPanel } from './ItemAiPanel';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import './StoryAssetsPage.css';
 
 export interface StoryAssetsData {
 	readonly items: readonly StoryItem[];
 	readonly states: readonly ItemState[];
 	readonly stateHash?: string;
+	readonly characters?: readonly Character[];
+	readonly locations?: readonly Location[];
 }
 
 export type StoryAssetsLoader = (projectRoot: string) => Promise<StoryAssetsData>;
@@ -32,26 +44,43 @@ export type StoryAssetsLoader = (projectRoot: string) => Promise<StoryAssetsData
 const statePath = 'story/states/item-states.json';
 const defaultLoadData: StoryAssetsLoader = async projectRoot => {
 	const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
-	const items = (await repository.list('item')).map(value => parseStoryItem(value as never));
+	const [rawItems, rawCharacters, rawLocations] = await Promise.all([
+		repository.list('item'),
+		repository.list('character'),
+		repository.list('location')
+	]);
+	const items = rawItems.map(value => parseStoryItem(value as never));
+	const characters = rawCharacters.map(value => (
+		StorySchemaRegistry.parse('character', value) as unknown as Character
+	));
+	const locations = rawLocations.map(value => parseLocation(value as never));
 	try {
 		const file = await desktopBridge.readText(projectRoot, statePath);
 		const json = JSON.parse(file.content) as unknown;
 		return {
 			items,
 			states: Array.isArray(json) ? json.map(value => parseItemState(value as never)) : [],
-			stateHash: file.hash
+			stateHash: file.hash,
+			characters,
+			locations
 		};
 	} catch {
-		return { items, states: [] };
+		return { items, states: [], characters, locations };
 	}
 };
 
 export function StoryAssetsPage({
 	projectRoot,
-	loadData = defaultLoadData
+	loadData = defaultLoadData,
+	chapters = [],
+	readOnly,
+	onOpenEvidence
 }: {
 	readonly projectRoot?: string;
 	readonly loadData?: StoryAssetsLoader;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly readOnly?: boolean;
+	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
 	const [data, setData] = useState<StoryAssetsData>();
 	const [selectedId, setSelectedId] = useState<string>();
@@ -59,6 +88,7 @@ export function StoryAssetsPage({
 	const [order, setOrder] = useState(0);
 	const [transferOpen, setTransferOpen] = useState(false);
 	const [error, setError] = useState<string>();
+	const [aiOpen, setAiOpen] = useState(false);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -108,6 +138,22 @@ export function StoryAssetsPage({
 		setTransferOpen(false);
 	};
 
+	const acceptAiItem = (item: StoryItem, states: readonly ItemState[]) => {
+		setData(current => current ? {
+			...current,
+			items: [
+				...current.items.filter(candidate => candidate.id !== item.id),
+				item
+			],
+			states
+		} : current);
+		setSelectedId(item.id);
+		setOrder(states.reduce(
+			(maximum, state) => Math.max(maximum, state.effectiveFrom.narrativeOrder),
+			order
+		));
+	};
+
 	return (
 		<main className="story-assets-page" aria-label="物品与叙事资产">
 			<aside className="story-assets-list">
@@ -125,6 +171,7 @@ export function StoryAssetsPage({
 				<header>
 					<div><span className="eyebrow">OWNERSHIP & CONDITION</span><h2>{selected?.title ?? '选择物品'}</h2><p>{selected?.description ?? selected?.summary ?? '追踪获得、转移、使用、丢失与销毁。'}</p></div>
 					<label><span>叙事位置</span><input type="number" aria-label="物品叙事位置" min={0} value={order} onChange={event => setOrder(Number(event.target.value))} /></label>
+					<button type="button" className="story-assets-ai-button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 物品助手</button>
 					<button type="button" disabled={!selected} onClick={() => setTransferOpen(true)}><ArrowRightLeft size={16} />记录转移</button>
 				</header>
 				<div className="story-assets-messages">
@@ -154,9 +201,24 @@ export function StoryAssetsPage({
 							))}
 						</section>
 					</div>
-				) : <div className="story-assets-empty"><PackageOpen size={38} />还没有物品资源</div>}
+				) : <div className="story-assets-empty"><PackageOpen size={38} /><span>还没有物品资源</span><button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />用 AI 创建物品</button></div>}
 			</section>
 			{transferOpen && selected ? <ItemTransferDialog item={selected} current={current} onCancel={() => setTransferOpen(false)} onCommit={commitTransfer} /> : null}
+			{aiOpen && projectRoot ? (
+				<ItemAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					items={data?.items ?? []}
+					states={data?.states ?? []}
+					characters={data?.characters ?? []}
+					locations={data?.locations ?? []}
+					selectedItem={selected}
+					readOnly={readOnly}
+					onClose={() => setAiOpen(false)}
+					onAccepted={acceptAiItem}
+					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
 		</main>
 	);
 }

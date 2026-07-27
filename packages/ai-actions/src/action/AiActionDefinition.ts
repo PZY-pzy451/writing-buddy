@@ -19,6 +19,7 @@ export type AiActionId =
 	| 'world.generateFaction'
 	| 'world.generateRule'
 	| 'world.generateCulture'
+	| 'world.extractFromText'
 	| 'timeline.generateEvent'
 	| 'timeline.extractEvents'
 	| 'timeline.inferOrdering'

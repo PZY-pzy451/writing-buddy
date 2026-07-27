@@ -59,6 +59,23 @@ pub const RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
     "extract-relationship-changes 的每条候选必须有精确正文证据；generate-relationship 可无证据。最多返回 24 条。",
     "证据索引使用 JavaScript UTF-16 字符索引。所有边仅供作者逐条确认，不得声称已经保存或改变正式关系图。"
 );
+pub const WORLD_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的结构化世界观候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和世界资料身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。",
+    "仅返回 JSON 对象 {\"candidates\":[候选]}。候选按 kind 使用严格结构：",
+    "location 为 {\"kind\":\"location\",\"title\":\"名称\",\"aliases\":[],\"summary\":\"说明\",\"locationType\":\"类型\",\"parentLocationId\":\"已知 location ID 或 null\",\"rules\":[],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}；",
+    "faction 为 {\"kind\":\"faction\",\"title\":\"名称\",\"aliases\":[],\"summary\":\"说明\",\"ideology\":\"纲领\",\"goals\":[],\"territoryLocationIds\":[\"已知 location ID\"],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":...}；",
+    "worldRule 为 {\"kind\":\"worldRule\",\"title\":\"名称\",\"aliases\":[],\"category\":\"culture|religion|technology|magic|law|other\",\"statement\":\"规则\",\"scope\":\"适用范围\",\"exceptions\":[],\"consequences\":[],\"conflicts\":[{\"resourceId\":\"已知 world-rule ID\",\"reason\":\"冲突说明\"}],\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":...}。",
+    "generate-world-entry 只返回 targetType 对应的候选；文化、宗教、科技、魔法和法律使用 worldRule 及对应 category。规则必须有明确 scope，exceptions 可为空但不可省略。",
+    "extract-worldbuilding 最多返回 24 个独立条目，每条必须有精确正文证据；长设定拆分成可分别确认的候选，不推断未写出的事实。",
+    "证据索引使用 JavaScript UTF-16 字符索引。不得声称已经保存、合并或覆盖世界资料。"
+);
+pub const ITEM_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的结构化物品候选分析器。只使用用户 JSON 中明确提供的章节正文、作者指令、物品和人物/地点身份，不读取或推断路径、密钥、账户、作者秘密或隐藏历史。",
+    "仅返回 JSON 对象 {\"candidates\":[{\"title\":\"物品名\",\"aliases\":[],\"itemType\":\"类型\",\"unique\":true,\"quantityUnit\":\"单位或 null\",\"description\":\"外观、来源与用途\",\"restrictions\":[],\"plotFunction\":\"叙事作用\",\"confidence\":0.9,\"rationale\":\"依据\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null,\"states\":[{\"action\":\"acquired|transferred|used|lost|destroyed|adjusted\",\"quantity\":1,\"holderCharacterId\":\"已知 character ID 或 null\",\"locationId\":\"已知 location ID 或 null\",\"condition\":\"状态或 null\",\"evidence\":{\"start\":0,\"end\":2,\"quote\":\"原文\"}或null}]}]}。",
+    "generate-item 生成完整物品卡；generate-item-history 针对 selectedItemId 生成可分别确认的历史或流转事件；extract-items 最多返回 16 个物品候选。",
+    "extract-items 的物品卡和每条状态事件都必须有精确正文证据。持有人和地点只能引用用户提供的 ID；不得为未识别人物或地点发明 ID。",
+    "证据索引使用 JavaScript UTF-16 字符索引。所有卡片字段和状态事件仅供作者确认，不得声称已经保存、转移或覆盖物品。"
+);
 pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的结构化故事事实提取器。",
     "只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。",
@@ -264,6 +281,16 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_relationship_analysis_input(&self.messages[1].content)
             }
+            AiJobType::WorldAnalysis => {
+                self.messages[0].content == WORLD_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_world_analysis_input(&self.messages[1].content)
+            }
+            AiJobType::ItemAnalysis => {
+                self.messages[0].content == ITEM_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_item_analysis_input(&self.messages[1].content)
+            }
             AiJobType::StoryExtraction => {
                 self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -294,6 +321,8 @@ pub enum AiJobType {
     ScenePlanGeneration,
     CharacterAnalysis,
     RelationshipAnalysis,
+    WorldAnalysis,
+    ItemAnalysis,
     StoryExtraction,
     StoryKernelGeneration,
 }
@@ -308,6 +337,8 @@ impl AiJobType {
             Self::ScenePlanGeneration => "scene-plan-generation",
             Self::CharacterAnalysis => "character-analysis",
             Self::RelationshipAnalysis => "relationship-analysis",
+            Self::WorldAnalysis => "world-analysis",
+            Self::ItemAnalysis => "item-analysis",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
         }
@@ -682,6 +713,205 @@ fn validate_relationship_analysis_input(value: &str) -> bool {
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct WorldAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    target_type: Option<String>,
+    instruction: String,
+    source: CharacterAnalysisSource,
+    existing_resources: Vec<WorldResourceIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct WorldResourceIdentity {
+    id: String,
+    #[serde(rename = "type")]
+    resource_type: String,
+    title: String,
+    aliases: Vec<String>,
+    revision: u64,
+    category: Option<String>,
+    statement: Option<String>,
+    scope: Option<String>,
+}
+
+fn valid_world_identity(value: &WorldResourceIdentity) -> bool {
+    let prefix = match value.resource_type.as_str() {
+        "location" => "location:",
+        "faction" => "faction:",
+        "worldRule" => "world-rule:",
+        _ => return false,
+    };
+    value.id.starts_with(prefix)
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && value.aliases.len() <= 40
+        && value
+            .aliases
+            .iter()
+            .all(|alias| !alias.trim().is_empty() && alias.chars().count() <= 160)
+        && value.revision <= u32::MAX as u64
+        && (value.resource_type != "worldRule"
+            || value.category.as_ref().is_some_and(|category| {
+                matches!(
+                    category.as_str(),
+                    "culture" | "religion" | "technology" | "magic" | "law" | "other"
+                )
+            }))
+        && value
+            .statement
+            .as_ref()
+            .is_none_or(|statement| statement.chars().count() <= 10_000)
+        && value
+            .scope
+            .as_ref()
+            .is_none_or(|scope| scope.chars().count() <= 2_000)
+}
+
+fn validate_world_analysis_input(value: &str) -> bool {
+    if value.len() > 180_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<WorldAnalysisInput>(value).is_ok_and(|input| {
+        let ids = input
+            .existing_resources
+            .iter()
+            .map(|resource| resource.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let target_is_valid = match input.action_type.as_str() {
+            "generate-world-entry" => input.target_type.as_ref().is_some_and(|target| {
+                matches!(
+                    target.as_str(),
+                    "location"
+                        | "faction"
+                        | "culture"
+                        | "religion"
+                        | "technology"
+                        | "magic"
+                        | "law"
+                        | "world-rule"
+                )
+            }),
+            "extract-worldbuilding" => input.target_type.is_none(),
+            _ => false,
+        };
+        input.schema_version == 1
+            && target_is_valid
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_character_source(&input.source)
+            && input.existing_resources.len() <= 1_000
+            && ids.len() == input.existing_resources.len()
+            && input.existing_resources.iter().all(valid_world_identity)
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ItemAnalysisInput {
+    schema_version: u8,
+    action_type: String,
+    instruction: String,
+    source: CharacterAnalysisSource,
+    selected_item_id: Option<String>,
+    existing_items: Vec<ItemIdentity>,
+    characters: Vec<SimpleEntityIdentity>,
+    locations: Vec<SimpleEntityIdentity>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ItemIdentity {
+    id: String,
+    title: String,
+    aliases: Vec<String>,
+    #[serde(rename = "unique")]
+    _unique: bool,
+    revision: u64,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct SimpleEntityIdentity {
+    id: String,
+    title: String,
+    revision: u64,
+}
+
+fn valid_simple_entity(value: &SimpleEntityIdentity, prefix: &str) -> bool {
+    value.id.starts_with(prefix)
+        && valid_story_id(&value.id)
+        && !value.title.trim().is_empty()
+        && value.title.chars().count() <= 160
+        && value.revision <= u32::MAX as u64
+}
+
+fn validate_item_analysis_input(value: &str) -> bool {
+    if value.len() > 200_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<ItemAnalysisInput>(value).is_ok_and(|input| {
+        let item_ids = input
+            .existing_items
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let character_ids = input
+            .characters
+            .iter()
+            .map(|entity| entity.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let location_ids = input
+            .locations
+            .iter()
+            .map(|entity| entity.id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let selection_is_valid = match input.action_type.as_str() {
+            "generate-item-history" => input
+                .selected_item_id
+                .as_ref()
+                .is_some_and(|id| item_ids.contains(id.as_str())),
+            "generate-item" | "extract-items" => input.selected_item_id.is_none(),
+            _ => false,
+        };
+        input.schema_version == 1
+            && selection_is_valid
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && valid_character_source(&input.source)
+            && input.existing_items.len() <= 1_000
+            && item_ids.len() == input.existing_items.len()
+            && input.existing_items.iter().all(|item| {
+                item.id.starts_with("item:")
+                    && valid_story_id(&item.id)
+                    && !item.title.trim().is_empty()
+                    && item.title.chars().count() <= 160
+                    && item.aliases.len() <= 40
+                    && item
+                        .aliases
+                        .iter()
+                        .all(|alias| !alias.trim().is_empty() && alias.chars().count() <= 160)
+                    && item.revision <= u32::MAX as u64
+            })
+            && input.characters.len() <= 500
+            && character_ids.len() == input.characters.len()
+            && input
+                .characters
+                .iter()
+                .all(|entity| valid_simple_entity(entity, "character:"))
+            && input.locations.len() <= 1_000
+            && location_ids.len() == input.locations.len()
+            && input
+                .locations
+                .iter()
+                .all(|entity| valid_simple_entity(entity, "location:"))
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
 struct StoryExtractionInput {
     schema_version: u8,
     resource_id: String,
@@ -919,9 +1149,11 @@ mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
-        MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
-        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
+        ITEM_ANALYSIS_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
+        RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat, SCENE_PLAN_SYSTEM_PROMPT,
+        SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
         STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        WORLD_ANALYSIS_SYSTEM_PROMPT,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -1209,6 +1441,92 @@ mod tests {
         request.messages[1].content = request.messages[1]
             .content
             .replace("character:shen-qing", "character:lin-yue");
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn world_analysis_requires_typed_target_and_sanitized_identities() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::WorldAnalysis;
+        request.messages[0].content = WORLD_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-world-entry",
+            "targetType": "magic",
+            "instruction": "生成有范围和例外的规则。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "雨夜的旧车站没有钟声。"
+            },
+            "existingResources": [{
+                "id": "world-rule:rain-clock",
+                "type": "worldRule",
+                "title": "雨夜停钟",
+                "aliases": [],
+                "revision": 2,
+                "category": "magic",
+                "statement": "雨夜钟表停摆。",
+                "scope": "旧车站"
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        let mut missing_target: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid world request");
+        missing_target
+            .as_object_mut()
+            .expect("world request object")
+            .remove("targetType");
+        request.messages[1].content = missing_target.to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn item_analysis_requires_known_history_target_and_entity_ids() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::ItemAnalysis;
+        request.messages[0].content = ITEM_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-item-history",
+            "instruction": "生成物品流转候选。",
+            "source": {
+                "resourceId": "chapter:one",
+                "sourceRevision": "7",
+                "narrativeOrder": 3,
+                "content": "徐青把车票交给林墨。"
+            },
+            "selectedItemId": "item:faded-ticket",
+            "existingItems": [{
+                "id": "item:faded-ticket",
+                "title": "褪色车票",
+                "aliases": [],
+                "unique": true,
+                "revision": 1
+            }],
+            "characters": [{
+                "id": "character:lin-mo",
+                "title": "林墨",
+                "revision": 1
+            }],
+            "locations": [{
+                "id": "location:old-station",
+                "title": "旧车站",
+                "revision": 1
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = request.messages[1].content.replace(
+            "\"selectedItemId\":\"item:faded-ticket\"",
+            "\"selectedItemId\":\"item:missing\"",
+        );
         assert!(request.validate().is_err());
     }
 

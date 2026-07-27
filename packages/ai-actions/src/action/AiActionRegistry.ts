@@ -107,6 +107,94 @@ const relationshipCandidateOutputSchema = z.object({
 	}).strict()).max(24)
 }).strict();
 
+const gateEWorldInputSchema = z.object({
+	instruction: z.string().trim().min(1).max(2_000),
+	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	targetType: z.enum([
+		'location',
+		'faction',
+		'culture',
+		'religion',
+		'technology',
+		'magic',
+		'law',
+		'world-rule'
+	]).optional()
+}).strict();
+
+const gateEWorldBase = {
+	title: z.string().trim().min(1).max(160),
+	aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	evidence: gateDEvidenceSchema.nullable()
+};
+const gateEWorldOutputSchema = z.object({
+	candidates: z.array(z.discriminatedUnion('kind', [
+		z.object({
+			kind: z.literal('location'),
+			...gateEWorldBase,
+			summary: z.string().min(1).max(10_000),
+			locationType: z.string().min(1).max(160),
+			parentLocationId: z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u).nullable(),
+			rules: z.array(z.string().min(1).max(2_000)).max(40)
+		}).strict(),
+		z.object({
+			kind: z.literal('faction'),
+			...gateEWorldBase,
+			summary: z.string().min(1).max(10_000),
+			ideology: z.string().min(1).max(5_000),
+			goals: z.array(z.string().min(1).max(1_000)).max(40),
+			territoryLocationIds: z.array(
+				z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u)
+			).max(100)
+		}).strict(),
+		z.object({
+			kind: z.literal('worldRule'),
+			...gateEWorldBase,
+			category: z.enum(['culture', 'religion', 'technology', 'magic', 'law', 'other']),
+			statement: z.string().min(1).max(10_000),
+			scope: z.string().min(1).max(2_000),
+			exceptions: z.array(z.string().min(1).max(2_000)).max(40),
+			consequences: z.array(z.string().min(1).max(2_000)).max(40),
+			conflicts: z.array(z.object({
+				resourceId: z.string().regex(/^world-rule:[a-z0-9][a-z0-9-]*$/u),
+				reason: z.string().min(1).max(2_000)
+			}).strict()).max(24)
+		}).strict()
+	])).max(24)
+}).strict();
+
+const gateEItemInputSchema = z.object({
+	instruction: z.string().trim().min(1).max(2_000),
+	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	selectedItemId: z.string().regex(/^item:[a-z0-9][a-z0-9-]*$/u).optional()
+}).strict();
+
+const gateEItemOutputSchema = z.object({
+	candidates: z.array(z.object({
+		title: z.string().trim().min(1).max(160),
+		aliases: z.array(z.string().trim().min(1).max(160)).max(40),
+		itemType: z.string().trim().min(1).max(160),
+		unique: z.boolean(),
+		quantityUnit: z.string().trim().min(1).max(160).nullable(),
+		description: z.string().trim().min(1).max(10_000),
+		restrictions: z.array(z.string().trim().min(1).max(1_000)).max(40),
+		plotFunction: z.string().trim().min(1).max(5_000),
+		confidence: z.number().min(0).max(1),
+		rationale: z.string().min(1).max(2_000),
+		evidence: gateDEvidenceSchema.nullable(),
+		states: z.array(z.object({
+			action: z.enum(['acquired', 'transferred', 'used', 'lost', 'destroyed', 'adjusted']),
+			quantity: z.number().finite().nonnegative(),
+			holderCharacterId: z.string().regex(/^character:[a-z0-9][a-z0-9-]*$/u).nullable(),
+			locationId: z.string().regex(/^location:[a-z0-9][a-z0-9-]*$/u).nullable(),
+			condition: z.string().trim().min(1).max(1_000).nullable(),
+			evidence: gateDEvidenceSchema.nullable()
+		}).strict()).max(12)
+	}).strict()).max(16)
+}).strict();
+
 function gateDAvailability(
 	surface: 'character-center' | 'relationship-graph',
 	scope: AiActionScope
@@ -118,6 +206,22 @@ function gateDAvailability(
 			reason: surface === 'character-center'
 				? '请在人物中心使用此动作'
 				: '请在人物关系图使用此动作'
+		};
+	}
+	return { available: true as const };
+}
+
+function gateEAvailability(
+	surface: 'worldbuilding-center' | 'story-assets',
+	scope: AiActionScope
+) {
+	if (!scope.hasProject) return { available: false as const, reason: '请先打开作品' };
+	if (scope.currentResourceType !== surface) {
+		return {
+			available: false as const,
+			reason: surface === 'worldbuilding-center'
+				? '请在世界观中心使用此动作'
+				: '请在物品与资产页使用此动作'
 		};
 	}
 	return { available: true as const };
@@ -213,6 +317,93 @@ export function createRelationshipAiActions(): readonly AiActionDefinition[] {
 	}));
 }
 
+export function createWorldAiActions(): readonly AiActionDefinition[] {
+	const definitions: readonly {
+		readonly id:
+			| 'world.generateLocation'
+			| 'world.generateFaction'
+			| 'world.generateRule'
+			| 'world.generateCulture'
+			| 'world.extractFromText';
+		readonly title: string;
+		readonly description: string;
+	}[] = [{
+		id: 'world.generateLocation',
+		title: '生成地点',
+		description: '生成带层级、类型和局部规则的地点候选。'
+	}, {
+		id: 'world.generateFaction',
+		title: '生成势力',
+		description: '生成势力纲领、目标和已知领地候选。'
+	}, {
+		id: 'world.generateRule',
+		title: '生成世界规则',
+		description: '生成带适用范围、例外、后果和冲突提示的规则。'
+	}, {
+		id: 'world.generateCulture',
+		title: '生成文化设定',
+		description: '以结构化文化规则生成可审核候选。'
+	}, {
+		id: 'world.extractFromText',
+		title: '从正文提取世界观',
+		description: '从明确选择的章节拆分地点、势力和规则条目。'
+	}];
+	return definitions.map(definition => ({
+		...definition,
+		category: 'world' as const,
+		availability: (scope: AiActionScope) => gateEAvailability('worldbuilding-center', scope),
+		inputSchema: gateEWorldInputSchema,
+		outputSchema: gateEWorldOutputSchema,
+		outputSchemaName: 'WorldAnalysisResponse',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource' as const],
+			optionalKinds: ['world-rule' as const, 'entity' as const],
+			maximumTokens: 12_000
+		},
+		applyPolicy: { type: 'field_patch' as const, selectableFields: true as const },
+		promptTemplateId: 'world.analysis',
+		defaultModelClass: 'reasoning' as const
+	}));
+}
+
+export function createItemAiActions(): readonly AiActionDefinition[] {
+	const definitions: readonly {
+		readonly id: 'item.generate' | 'item.extractFromText' | 'item.generateHistory';
+		readonly title: string;
+		readonly description: string;
+	}[] = [{
+		id: 'item.generate',
+		title: '生成物品卡',
+		description: '生成外观、用途、限制和叙事作用。'
+	}, {
+		id: 'item.extractFromText',
+		title: '从正文提取物品',
+		description: '提取物品、持有人、地点和流转事件候选。'
+	}, {
+		id: 'item.generateHistory',
+		title: '生成物品历史',
+		description: '为当前物品生成可分别确认的历史与转移事件。'
+	}];
+	return definitions.map(definition => ({
+		...definition,
+		category: 'item' as const,
+		availability: (scope: AiActionScope) => gateEAvailability('story-assets', scope),
+		inputSchema: gateEItemInputSchema,
+		outputSchema: gateEItemOutputSchema,
+		outputSchemaName: 'ItemAnalysisResponse',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource' as const],
+			optionalKinds: ['entity' as const],
+			maximumTokens: 12_000
+		},
+		applyPolicy: { type: 'field_patch' as const, selectableFields: true as const },
+		promptTemplateId: 'item.analysis',
+		defaultModelClass: 'reasoning' as const
+	}));
+}
+
 export const consistencyReviewOutputSchema = z.object({
 	issues: z.array(z.object({
 		start: z.number().int().nonnegative(),
@@ -263,5 +454,7 @@ export function createDefaultAiActionRegistry(): AiActionRegistry {
 	registry.register(createConsistencyReviewAction());
 	for (const action of createCharacterAiActions()) registry.register(action);
 	for (const action of createRelationshipAiActions()) registry.register(action);
+	for (const action of createWorldAiActions()) registry.register(action);
+	for (const action of createItemAiActions()) registry.register(action);
 	return registry;
 }

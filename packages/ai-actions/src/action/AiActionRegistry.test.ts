@@ -3,7 +3,9 @@ import {
 	AiActionRegistry,
 	createCharacterAiActions,
 	createDefaultAiActionRegistry,
+	createItemAiActions,
 	createRelationshipAiActions,
+	createWorldAiActions,
 	createConsistencyReviewAction
 } from './AiActionRegistry';
 
@@ -33,6 +35,28 @@ describe('AiActionRegistry', () => {
 			hasProject: true,
 			currentResourceType: 'relationship-graph'
 		}, 'relationship')).toHaveLength(2);
+	});
+
+	it('registers Gate E world and item actions only on their dedicated surfaces', () => {
+		const registry = createDefaultAiActionRegistry();
+		expect(registry.list('world').map(action => action.id)).toEqual(
+			createWorldAiActions().map(action => action.id)
+		);
+		expect(registry.list('item').map(action => action.id)).toEqual(
+			createItemAiActions().map(action => action.id)
+		);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'worldbuilding-center'
+		}, 'world')).toHaveLength(5);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'story-assets'
+		}, 'item')).toHaveLength(3);
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'chapter'
+		}, 'world')).toHaveLength(0);
 	});
 
 	it('filters by category and availability while retaining explicit reasons', () => {

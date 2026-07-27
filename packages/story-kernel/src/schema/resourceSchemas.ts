@@ -207,6 +207,7 @@ const worldRuleSchema = z.object({
 	...baseShape,
 	category: z.enum(['culture', 'religion', 'technology', 'magic', 'law', 'other']).optional().default('other'),
 	statement: z.string().trim().min(1).max(10_000).optional(),
+	scope: z.string().trim().min(1).max(2_000).optional(),
 	exceptions: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
 	consequences: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
 	effectiveFrom: storyPositionSchema.optional(),
