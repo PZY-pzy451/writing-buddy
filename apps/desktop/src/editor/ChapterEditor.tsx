@@ -40,6 +40,7 @@ export function ChapterEditor(): React.JSX.Element {
 	} | undefined>(undefined);
 	const mentionTextRevisionRef = useRef(0);
 	const [currentOffset, setCurrentOffset] = useState(0);
+	const [editorReady, setEditorReady] = useState(false);
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
 	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
 	const projectRoot = snapshot?.root;
@@ -60,6 +61,7 @@ export function ChapterEditor(): React.JSX.Element {
 
 	const handleMount: OnMount = useCallback(editor => {
 		editorRef.current = editor;
+		setEditorReady(true);
 		const scheduleCursorPersistence = () => {
 			window.clearTimeout(cursorTimerRef.current);
 			cursorTimerRef.current = window.setTimeout(() => {
@@ -177,7 +179,7 @@ export function ChapterEditor(): React.JSX.Element {
 				};
 			})
 		);
-	}, [scenes]);
+	}, [editorReady, scenes]);
 
 	useEffect(() => {
 		mentionsRef.current = mentions;
@@ -205,7 +207,7 @@ export function ChapterEditor(): React.JSX.Element {
 					}
 				}))
 		);
-	}, [mentions]);
+	}, [editorReady, mentions]);
 
 	const navigateToOffset = useCallback((offset: number) => {
 		const editor = editorRef.current;
