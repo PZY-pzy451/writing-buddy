@@ -84,6 +84,7 @@ interface AppState extends PersistedWorkspace {
 	readonly repairProject: () => Promise<void>;
 	readonly revealProjectDirectory: () => Promise<void>;
 	readonly dismissProjectOpenError: () => void;
+	readonly openDashboard: () => void;
 	readonly openResource: (resource: ResourceDescriptor) => Promise<void>;
 	readonly openStoryResource: (reference: StoryResourceReference) => Promise<void>;
 	readonly restoreStoryResource: () => Promise<void>;
@@ -136,17 +137,6 @@ function toResource(snapshot: ProjectSnapshot, resourceId: string): ResourceDesc
 		?? snapshot.resources
 			.filter(candidate => candidate.id === resourceId)
 			.map(candidate => ({ ...candidate, projectId: snapshot.project.projectId }))[0];
-}
-
-function firstResource(snapshot: ProjectSnapshot, preferredId?: string): ResourceDescriptor | undefined {
-	if (preferredId) {
-		const resource = toResource(snapshot, preferredId);
-		if (resource) {
-			return resource;
-		}
-	}
-	const first = flattenChapters(snapshot.project)[0];
-	return first ? toChapterResource(snapshot, first.id) : undefined;
 }
 
 function isStoryTab(resource: ResourceDescriptor): resource is StoryTabDescriptor {
@@ -232,16 +222,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				persistedResourceIds,
 				get().activeResourceId
 			);
-			const preferredResource = firstResource(snapshot, get().activeResourceId);
-			if (tabs.state.resources.length === 0 && preferredResource) {
-				tabs.open(preferredResource);
-			}
 			const persistedActiveId = get().activeResourceId;
 			if (persistedActiveId) {
 				tabs.activate(persistedActiveId);
 			}
-			const active = tabs.state.resources.find(candidate => candidate.id === tabs.state.activeId)
-				?? tabs.state.resources[0];
+			const active = persistedActiveId
+				? tabs.state.resources.find(candidate => candidate.id === tabs.state.activeId)
+				: undefined;
 			const activeStoryResult = active
 				? restoredStoryResults.find(result => result.tab.id === active.id)
 				: undefined;
@@ -326,6 +313,20 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 
 	dismissProjectOpenError() {
 		set({ projectOpenError: undefined, projectOpenBusyAction: undefined });
+	},
+
+	openDashboard() {
+		set({
+			activeMode: 'works',
+			activeResource: undefined,
+			activeResourceId: undefined,
+			storyOpenResult: undefined,
+			session: undefined,
+			resourceContent: undefined,
+			resourceHash: undefined,
+			externalConflict: undefined,
+			error: undefined
+		});
 	},
 
 	async openResource(resource) {

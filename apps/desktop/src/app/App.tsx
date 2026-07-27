@@ -15,6 +15,7 @@ import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
 import { StoryWorkspaceRoute } from './routes';
+import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
@@ -30,6 +31,7 @@ export function App(): React.JSX.Element {
 	const dismissProjectOpenError = useAppStore(state => state.dismissProjectOpenError);
 	const activeMode = useAppStore(state => state.activeMode);
 	const activeResource = useAppStore(state => state.activeResource);
+	const snapshot = useAppStore(state => state.snapshot);
 	const theme = useAppStore(state => state.theme);
 	const accent = useAppStore(state => state.accent);
 	const focusMode = useAppStore(state => state.focusMode);
@@ -97,15 +99,16 @@ export function App(): React.JSX.Element {
 	}, []);
 
 	const systemPageVisible = !['works', 'references'].includes(activeMode);
-	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible;
-	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible;
+	const showDashboard = !systemPageVisible && activeMode === 'works' && Boolean(snapshot) && !activeResource;
+	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible && !showDashboard;
+	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible && !showDashboard;
 	const showTextEditor = !systemPageVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
 	const showStoryResource = !systemPageVisible && activeResource?.type === 'story';
 	const showResourceEditor = !systemPageVisible && activeResource && !showTextEditor && !showStoryResource;
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${showDashboard ? 'is-dashboard' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -116,14 +119,15 @@ export function App(): React.JSX.Element {
 			{!focusMode && <GlobalRail />}
 			{!focusMode && <ProjectSidebar />}
 			<main className="center-workspace">
-				{!systemPageVisible && <ResourceTabs />}
-				{!systemPageVisible && <WriterHeader />}
+				{!systemPageVisible && !showDashboard && <ResourceTabs />}
+				{!systemPageVisible && !showDashboard && <WriterHeader />}
 				<div className="canvas-surface">
 					{systemPageVisible && <SystemPage />}
+					{showDashboard && <StoryDashboardPage />}
 					{showTextEditor && <ChapterEditor />}
 					{showResourceEditor && <ResourceEditor />}
 					{showStoryResource && <StoryWorkspaceRoute />}
-					{!systemPageVisible && !activeResource && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
+					{!systemPageVisible && !activeResource && !showDashboard && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
 				</div>
 				{workspaceDockVisible && <TaskDock />}
 				{!dockOpen && !focusMode && !systemPageVisible && (

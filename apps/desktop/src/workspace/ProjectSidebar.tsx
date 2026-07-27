@@ -32,6 +32,7 @@ export function ProjectSidebar(): React.JSX.Element {
 	const session = useAppStore(state => state.session);
 	const search = useAppStore(state => state.search.trim().toLocaleLowerCase());
 	const openResource = useAppStore(state => state.openResource);
+	const openDashboard = useAppStore(state => state.openDashboard);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const sidebarWidth = useAppStore(state => state.sidebarWidth);
 	const setSidebarWidth = useAppStore(state => state.setSidebarWidth);
@@ -83,11 +84,13 @@ export function ProjectSidebar(): React.JSX.Element {
 			</div>
 
 			<div className="project-card">
-				<div className="cover-placeholder" aria-hidden="true"><BookOpen size={24} /></div>
-				<div className="project-card-copy">
-					<strong>{snapshot.project.title}</strong>
-					<span>{flattenChapters(snapshot.project).length} 个章节</span>
-				</div>
+				<button className="project-card-home" type="button" onClick={openDashboard} aria-label="打开作品仪表盘">
+					<span className="cover-placeholder" aria-hidden="true"><BookOpen size={24} /></span>
+					<span className="project-card-copy">
+						<strong>{snapshot.project.title}</strong>
+						<span>{flattenChapters(snapshot.project).length} 个章节</span>
+					</span>
+				</button>
 				<button className="icon-button" type="button" onClick={() => void chooseProject()} aria-label="切换作品"><FolderOpen size={18} /></button>
 			</div>
 

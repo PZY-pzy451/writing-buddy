@@ -270,6 +270,19 @@
 	box-shadow: 0 4px 14px rgb(38 35 30 / 5%);
 }
 
+.project-card-home {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	gap: 11px;
+	min-width: 0;
+	padding: 0;
+	color: inherit;
+	text-align: left;
+	background: transparent;
+	border: 0;
+}
+
 .cover-placeholder {
 	display: grid;
 	place-items: center;
@@ -464,6 +477,10 @@
 	min-width: 0;
 	min-height: 0;
 	background: var(--surface-base);
+}
+
+.is-dashboard .center-workspace {
+	grid-template-rows: minmax(0, 1fr);
 }
 
 .is-dock-closed .center-workspace,
@@ -1738,8 +1755,8 @@
 
 @media (max-width: 1599px) {
 	:root {
-		--sidebar-width: 286px;
-		--assistant-width: 318px;
+		--sidebar-width: clamp(280px, calc(160px + 9.375vw), 304px);
+		--assistant-width: clamp(320px, calc(225px + 7.421875vw), 339px);
 	}
 
 	.top-bar {
@@ -1759,7 +1776,7 @@
 	}
 }
 
-@media (max-width: 1365px) {
+@media (max-width: 1279px) {
 	.product-resize-handle {
 		display: none;
 	}
@@ -1768,7 +1785,7 @@
 			"top top top" var(--topbar-height)
 			"rail sidebar center" minmax(0, 1fr)
 			"status status status" var(--status-height)
-			/ var(--rail-width) 272px minmax(0, 1fr);
+			/ var(--rail-width) 240px minmax(0, 1fr);
 	}
 
 	.assistant-panel {
@@ -1795,7 +1812,7 @@
 	}
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 1023px) {
 	.app-shell {
 		grid-template:
 			"top top" var(--topbar-height)
