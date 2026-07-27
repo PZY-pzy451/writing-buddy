@@ -145,6 +145,23 @@ revision-safe review flows. Acceptance evidence is in
   accepted normal close
 - Gate D evidence in
   `docs/acceptance/016-ai-quick-actions-gate-d-2026-07-27.md`
+- Strict TypeScript/Rust `world-analysis` and `item-analysis` contracts with
+  typed targets, bounded chapter context, known identities, and exact
+  extraction evidence
+- Worldbuilding generation and extraction for locations, factions, cultures,
+  religions, technology, magic, law, and scoped general rules
+- Explicit same-name merge, per-field acceptance, rule conflict detection,
+  stale-source/revision checks, and snapshot-backed world commits
+- Item card, history, and extraction candidates with independently selectable
+  state events and deterministic unique-item holder checks
+- Responsive 1536/1280/1024 Gate E evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 69 files / 210 tests; Rust: 41 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate E Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate E evidence in
+  `docs/acceptance/017-ai-quick-actions-gate-e-2026-07-27.md`
 
 ## Open
 
@@ -158,8 +175,20 @@ revision-safe review flows. Acceptance evidence is in
 
 ## Next
 
-Continue the original handoff with Gate E worldbuilding and item AI workflows,
-using the accepted Action Registry, grounded evidence, and guarded apply path.
+Continue the original handoff with Gate F story progress, event extraction and
+generation, causality suggestions, plot-thread, and foreshadowing AI workflows.
+
+## AI Quick Actions Gate E start
+
+- The user explicitly asked to continue after accepted Gate D.
+- Created `codex/ai-quick-actions-gate-e` from the accepted Gate D branch.
+- Gate E implements original Tasks 15–17: structured worldbuilding generation
+  and extraction plus item card/history/extraction/transfer candidates.
+- The UI/UX skill package did not include its referenced search helper, so its
+  documented warm-paper, Lucide, 44px, focus, responsive, contrast, and
+  reduced-motion rules are applied directly.
+- Contract:
+  `docs/plans/007-ai-quick-actions-gate-e-worldbuilding-items.md`.
 
 ## AI Quick Actions Gate D start
 
