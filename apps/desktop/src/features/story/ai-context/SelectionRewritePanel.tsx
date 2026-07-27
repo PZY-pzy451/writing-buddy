@@ -11,10 +11,12 @@ import { EditTransactionService } from '@writing-buddy/project';
 import {
 	DesktopStoryRepository,
 	DeterministicContextPackBuilder,
+	parseStateRecord,
 	serializeContextPackForAi,
 	toStoryChapterId,
 	type ContextPack,
-	type ContextPackRequest
+	type ContextPackRequest,
+	type StateRecord
 } from '@writing-buddy/story-kernel';
 import {
 	buildSelectionRewriteMessages,
@@ -118,6 +120,18 @@ async function defaultRunRewrite(
 	});
 }
 
+async function loadCharacterStateRecords(projectRoot: string): Promise<readonly StateRecord[]> {
+	try {
+		const file = await desktopBridge.readText(projectRoot, 'story/states/character-states.json');
+		const json = JSON.parse(file.content) as unknown;
+		if (!Array.isArray(json)) return [];
+		return json.map(value => parseStateRecord(value as Parameters<typeof parseStateRecord>[0]));
+	} catch {
+		// State history is optional for migrated projects and must not block AI actions.
+		return [];
+	}
+}
+
 export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.JSX.Element {
 	const [pack, setPack] = useState<ContextPack>();
 	const [candidate, setCandidate] = useState<RewriteCandidate>();
@@ -137,10 +151,12 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 	const load = useCallback(async () => {
 		if (loadPackOverride) return loadPackOverride();
 		const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
+		const stateRecords = await loadCharacterStateRecords(projectRoot);
 		const candidates = await loadGroundedContextCandidates({
 			repository,
 			chapterId: toStoryChapterId(resourceId),
-			selectionStart: selection.start
+			selectionStart: selection.start,
+			stateRecords
 		});
 		return contextBuilder.build({
 			actionType,

@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { EditTransactionService } from '@writing-buddy/project';
-import { buildContextPack } from '@writing-buddy/story-kernel';
+import {
+	buildContextPack,
+	parseStateRecord,
+	type StoryRepository
+} from '@writing-buddy/story-kernel';
 import {
 	createRewriteCandidate,
 	isRewriteCandidateStale,
+	loadGroundedContextCandidates,
 	SelectionRewriteService
 } from './SelectionRewriteService';
 
@@ -46,5 +51,85 @@ describe('SelectionRewriteService', () => {
 		expect(isRewriteCandidateStale(value, 5, '夜里非常非常安静。')).toBe(true);
 		expect(() => new SelectionRewriteService(new EditTransactionService())
 			.accept(value, 4, '夜里并不安静。')).toThrow('staleRewriteCandidate');
+	});
+
+	it('grounds scene characters in their dynamic state at the current narrative position', async () => {
+		const timestamp = '2026-07-27T00:00:00.000Z';
+		const resources = {
+			scene: [{
+				id: 'scene:rain-station',
+				type: 'scene',
+				title: '雨夜车站',
+				aliases: [],
+				tags: [],
+				schemaVersion: 1,
+				createdAt: timestamp,
+				updatedAt: timestamp,
+				revision: 0,
+				chapterId: 'chapter:one',
+				manuscriptRange: { start: 0, end: 24, revision: 0, quote: '雨落在站台上。' },
+				narrativeOrder: 5,
+				locationIds: [],
+				participantIds: ['character:lin'],
+				plotThreadIds: [],
+				revealInformationIds: [],
+				foreshadowingIds: [],
+				evidenceIds: []
+			}],
+			character: [{
+				id: 'character:lin',
+				type: 'character',
+				title: '林越',
+				aliases: [],
+				tags: [],
+				schemaVersion: 1,
+				createdAt: timestamp,
+				updatedAt: timestamp,
+				revision: 0,
+				factionIds: [],
+				goals: ['找到失踪者'],
+				desires: [],
+				fears: [],
+				values: [],
+				secrets: [],
+				evidenceIds: []
+			}]
+		} as const;
+		const repository = {
+			list: (type: string) => Promise.resolve(resources[type as keyof typeof resources] ?? [])
+		} as unknown as StoryRepository;
+		const stateRecords = [
+			parseStateRecord({
+				id: 'state:lin-location',
+				characterId: 'character:lin',
+				kind: 'location',
+				value: '旧车站',
+				effectiveFrom: { chapterId: 'chapter:one', narrativeOrder: 3 },
+				evidenceIds: ['evidence:arrival'],
+				confirmation: 'confirmed',
+				revision: 0
+			}),
+			parseStateRecord({
+				id: 'state:lin-emotion',
+				characterId: 'character:lin',
+				kind: 'emotion',
+				value: '警惕',
+				effectiveFrom: { chapterId: 'chapter:one', narrativeOrder: 5 },
+				evidenceIds: ['evidence:reaction'],
+				confirmation: 'pending',
+				revision: 0
+			})
+		];
+
+		const candidates = await loadGroundedContextCandidates({
+			repository,
+			chapterId: 'chapter:one',
+			selectionStart: 8,
+			stateRecords
+		});
+		const character = candidates.find(candidate => candidate.kind === 'character');
+		expect(character?.priority).toBe('P3');
+		expect(character?.content).toContain('当前位置：旧车站（作者已确认）');
+		expect(character?.content).toContain('当前情绪：警惕（待作者确认）');
 	});
 });

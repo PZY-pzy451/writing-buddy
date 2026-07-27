@@ -1,17 +1,20 @@
 import type { EditTransaction, EditTransactionService } from '@writing-buddy/project';
 import {
 	buildContextPack,
+	getStateAt,
 	parseForeshadowing,
 	parseLocation,
 	parsePlotThread,
 	parseStoryInformation,
 	parseStoryItem,
+	parseStoryPosition,
 	parseStoryScene,
 	parseWorldRule,
 	type Character,
 	type ContextPack,
 	type ContextPackCandidate,
 	type ContextPackRequest,
+	type StateRecord,
 	type StoryRepository
 } from '@writing-buddy/story-kernel';
 import type { AiUsage, SelectionRewriteResponse } from '@writing-buddy/ai';
@@ -104,10 +107,56 @@ function joinParts(parts: readonly (string | undefined)[]): string {
 	return parts.filter((part): part is string => Boolean(part?.trim())).join('\n');
 }
 
+const characterStateLabels: Readonly<Record<StateRecord['kind'], string>> = {
+	location: '当前位置',
+	lifeStatus: '生存状态',
+	health: '伤势与健康',
+	emotion: '当前情绪',
+	currentGoal: '当前目标',
+	inventory: '持有物品',
+	knowledge: '已知信息',
+	misconception: '误解信息',
+	ability: '能力变化'
+};
+
+function stateValueLabel(value: StateRecord['value']): string {
+	if (Array.isArray(value)) return value.length ? value.join('、') : '无';
+	if (value === null) return '未知';
+	if (typeof value === 'boolean') return value ? '是' : '否';
+	return String(value);
+}
+
+function currentCharacterState(
+	records: readonly StateRecord[],
+	characterId: string,
+	scene: ReturnType<typeof parseStoryScene>
+): string | undefined {
+	const snapshot = getStateAt(
+		records.filter(record => record.characterId === characterId),
+		parseStoryPosition({
+			chapterId: scene.chapterId,
+			sceneId: scene.id,
+			narrativeOrder: scene.narrativeOrder
+		})
+	);
+	const lines = Object.entries(snapshot).map(([kind, resolution]) => {
+		const current = resolution.current;
+		const confirmation = current.confirmation === 'confirmed' ? '作者已确认' : '待作者确认';
+		const conflicts = resolution.conflicts.length
+			? `；另有 ${resolution.conflicts.length} 条冲突状态`
+			: '';
+		return `${characterStateLabels[kind as StateRecord['kind']]}：${stateValueLabel(current.value)}（${confirmation}${conflicts}）`;
+	});
+	return lines.length
+		? `当前场景状态（叙事序位 ${scene.narrativeOrder}）：\n${lines.join('\n')}`
+		: undefined;
+}
+
 export async function loadGroundedContextCandidates(input: {
 	readonly repository: StoryRepository;
 	readonly chapterId: string;
 	readonly selectionStart: number;
+	readonly stateRecords?: readonly StateRecord[];
 }): Promise<readonly ContextPackCandidate[]> {
 	const [rawScenes, rawCharacters, rawLocations, rawItems, rawRules, rawPlots, rawForeshadowing, rawInformation] = await Promise.all([
 		input.repository.list('scene'),
@@ -151,12 +200,16 @@ export async function loadGroundedContextCandidates(input: {
 		});
 	}
 	for (const character of characters.filter(value => scene?.participantIds.includes(value.id) || scene?.povCharacterId === value.id)) {
+		const dynamicState = scene
+			? currentCharacterState(input.stateRecords ?? [], character.id, scene)
+			: undefined;
 		candidates.push({
 			id: `context:${character.id}`,
 			priority: 'P3',
 			kind: 'character',
 			title: character.title,
 			content: joinParts([
+				dynamicState,
 				character.summary,
 				character.goals.length ? `目标：${character.goals.join('；')}` : undefined,
 				character.speechStyle ? `语言风格：${character.speechStyle}` : undefined
