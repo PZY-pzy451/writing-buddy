@@ -8,6 +8,8 @@
 - [Window close regression acceptance, 2026-07-27](./006-window-close-regression-2026-07-27.md)
 - [StoryForge Gate B Story Kernel acceptance, 2026-07-27](./007-storyforge-gate-b-story-kernel-2026-07-27.md)
 - [StoryForge Gate C character, relationships and timeline acceptance, 2026-07-27](./008-storyforge-gate-c-character-relationships-timeline-2026-07-27.md)
+- [StoryForge Gate D worldbuilding, assets, plots and information acceptance, 2026-07-27](./009-storyforge-gate-d-world-assets-plots-information-2026-07-27.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)
+- [Gate D visual metrics](./gate-d-visual-metrics.json)
