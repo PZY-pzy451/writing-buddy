@@ -21,6 +21,9 @@ import type {
 	ProjectOpenMode,
 	ProjectRepairResult,
 	ProjectSnapshot,
+	StoryIndexQuery,
+	StoryIndexQueryResult,
+	StoryIndexStatus,
 	VersionSummary,
 	VersionText
 } from '@writing-buddy/platform-ports';
@@ -162,6 +165,18 @@ class TauriDesktopBridge implements DesktopBridge {
 			resourceType: type,
 			id
 		});
+	}
+
+	getStoryIndexStatus(projectRoot: string): Promise<StoryIndexStatus> {
+		return invoke('story_index_status', { projectRoot });
+	}
+
+	rebuildStoryIndex(projectRoot: string): Promise<StoryIndexStatus> {
+		return invoke('story_rebuild_index', { projectRoot });
+	}
+
+	queryStoryIndex(projectRoot: string, query: StoryIndexQuery): Promise<StoryIndexQueryResult> {
+		return invoke('story_query_index', { projectRoot, query });
 	}
 
 	listMentionLinks(projectRoot: string): Promise<readonly unknown[]> {
@@ -741,6 +756,13 @@ let browserAiUsageSummary: AiUsageSummary = {
 	requests: 0
 };
 const browserCancelledJobs = new Set<string>();
+let browserStoryIndexStatus: StoryIndexStatus = {
+	schemaVersion: 1,
+	ready: false,
+	sourceFingerprint: '',
+	recordCount: 0,
+	kindCounts: {}
+};
 
 function browserHash(value: string): string {
 	let result = 2166136261;
@@ -814,6 +836,15 @@ class BrowserDesktopBridge implements DesktopBridge {
 			}
 		}
 		browserFiles.set(request.relativePath, request.content);
+		if (request.relativePath.startsWith('story/')) {
+			browserStoryIndexStatus = {
+				schemaVersion: 1,
+				ready: false,
+				sourceFingerprint: '',
+				recordCount: 0,
+				kindCounts: {}
+			};
+		}
 		return {
 			hash: browserHash(request.content),
 			byteLength: new TextEncoder().encode(request.content).byteLength,
@@ -965,6 +996,67 @@ class BrowserDesktopBridge implements DesktopBridge {
 		browserStoryResources.set(key, resource);
 		browserStoryTrash.delete(key);
 		return resource;
+	}
+
+	async getStoryIndexStatus(): Promise<StoryIndexStatus> {
+		return browserStoryIndexStatus;
+	}
+
+	async rebuildStoryIndex(): Promise<StoryIndexStatus> {
+		const kindCounts: Record<string, number> = {};
+		const ids: string[] = [];
+		for (const value of browserStoryResources.values()) {
+			const envelope = browserStoryEnvelope(value);
+			kindCounts[envelope.type] = (kindCounts[envelope.type] ?? 0) + 1;
+			ids.push(envelope.id);
+		}
+		kindCounts.mention = browserMentionLinks.size;
+		for (const value of browserMentionLinks.values()) {
+			ids.push(parseMentionLink(value).id);
+		}
+		const chapterCount = browserProject.project.volumes.reduce(
+			(total, volume) => total + volume.chapters.length,
+			0
+		);
+		kindCounts.chapter = chapterCount;
+		browserStoryIndexStatus = {
+			schemaVersion: 1,
+			ready: true,
+			sourceFingerprint: browserHash(ids.sort().join('\n')).slice(0, 16),
+			recordCount: ids.length + chapterCount,
+			kindCounts
+		};
+		return browserStoryIndexStatus;
+	}
+
+	async queryStoryIndex(
+		_projectRoot: string,
+		query: StoryIndexQuery
+	): Promise<StoryIndexQueryResult> {
+		if (!browserStoryIndexStatus.ready) await this.rebuildStoryIndex();
+		const ids = [...browserStoryResources.values()]
+			.filter(value => {
+				const resource = value as {
+					readonly id?: string;
+					readonly type?: string;
+					readonly chapterId?: string;
+					readonly participantIds?: readonly string[];
+				};
+				return (!query.kind || resource.type === query.kind)
+					&& (!query.chapterId || resource.chapterId === query.chapterId)
+					&& (!query.participantId || resource.participantIds?.includes(query.participantId));
+			})
+			.map(value => browserStoryEnvelope(value).id)
+			.sort();
+		const offset = Math.min(query.offset ?? 0, ids.length);
+		const limit = Math.min(query.limit ?? 200, 5_000);
+		return {
+			ids: ids.slice(offset, offset + limit),
+			total: ids.length,
+			offset,
+			limit,
+			sourceFingerprint: browserStoryIndexStatus.sourceFingerprint
+		};
 	}
 
 	async listMentionLinks(): Promise<readonly unknown[]> {

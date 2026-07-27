@@ -73,6 +73,8 @@ export function CharacterCenterPage({
 	const [saving, setSaving] = useState(false);
 	const [saved, setSaved] = useState(false);
 	const [narrativeOrder, setNarrativeOrder] = useState(0);
+	const [listScrollTop, setListScrollTop] = useState(0);
+	const [listViewportHeight, setListViewportHeight] = useState(600);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -119,6 +121,14 @@ export function CharacterCenterPage({
 				].some(value => value.toLocaleLowerCase().includes(normalized)))
 		));
 	}, [data, role, search]);
+	const characterRowHeight = 64;
+	const characterStart = Math.max(
+		0,
+		Math.floor(listScrollTop / characterRowHeight) - 4
+	);
+	const characterCount = Math.ceil(listViewportHeight / characterRowHeight) + 8;
+	const characterEnd = Math.min(filtered.length, characterStart + characterCount);
+	const visibleCharacters = filtered.slice(characterStart, characterEnd);
 	const selected = data?.characters.find(character => character.id === selectedId);
 	const selectedStates = data?.states.filter(record => record.characterId === selectedId) ?? [];
 
@@ -184,26 +194,52 @@ export function CharacterCenterPage({
 					<input
 						aria-label="搜索人物"
 						value={search}
-						onChange={event => setSearch(event.target.value)}
+						onChange={event => {
+							setSearch(event.target.value);
+							setListScrollTop(0);
+						}}
 						placeholder="姓名、别名或标签"
 					/>
 				</label>
 				<div className="character-role-filters" aria-label="按角色筛选">
-					<button type="button" className={role === 'all' ? 'is-active' : ''} onClick={() => setRole('all')}>全部</button>
+					<button type="button" className={role === 'all' ? 'is-active' : ''} onClick={() => {
+						setRole('all');
+						setListScrollTop(0);
+					}}>全部</button>
 					{(Object.entries(characterRoleLabels) as [CharacterRole, string][]).map(([value, label]) => (
 						<button
 							type="button"
 							key={value}
 							className={role === value ? 'is-active' : ''}
-							onClick={() => setRole(value)}
+							onClick={() => {
+								setRole(value);
+								setListScrollTop(0);
+							}}
 						>{label}</button>
 					))}
 				</div>
-				<div className="character-list">
-					{filtered.map(character => (
+				<nav
+					className="character-list"
+					aria-label="人物列表"
+					onScroll={event => {
+						setListScrollTop(event.currentTarget.scrollTop);
+						setListViewportHeight(event.currentTarget.clientHeight || 600);
+					}}
+				>
+					{characterStart ? (
+						<div
+							className="character-list-spacer"
+							style={{ height: characterStart * characterRowHeight }}
+							aria-hidden="true"
+						/>
+					) : null}
+					{visibleCharacters.map((character, visibleIndex) => (
 						<button
 							type="button"
 							key={character.id}
+							aria-current={selectedId === character.id ? 'true' : undefined}
+							aria-posinset={characterStart + visibleIndex + 1}
+							aria-setsize={filtered.length}
 							className={selectedId === character.id ? 'is-active' : ''}
 							onClick={() => chooseCharacter(character.id)}
 							aria-label={`${character.title}，${character.role ? characterRoleLabels[character.role] : '未分类'}`}
@@ -212,10 +248,17 @@ export function CharacterCenterPage({
 							<span><strong>{character.title}</strong><small>{character.role ? characterRoleLabels[character.role] : '未分类'} · {character.tags.join(' / ') || '无标签'}</small></span>
 						</button>
 					))}
+					{characterEnd < filtered.length ? (
+						<div
+							className="character-list-spacer"
+							style={{ height: (filtered.length - characterEnd) * characterRowHeight }}
+							aria-hidden="true"
+						/>
+					) : null}
 					{data && filtered.length === 0 ? (
 						<div className="character-list-empty"><UsersRound size={28} />没有符合筛选的人物</div>
 					) : null}
-				</div>
+				</nav>
 			</aside>
 
 			<section className="character-detail">

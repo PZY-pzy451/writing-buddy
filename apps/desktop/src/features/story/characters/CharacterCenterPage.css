@@ -138,6 +138,11 @@
 	border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
 }
 
+.character-list-spacer {
+	width: 100%;
+	pointer-events: none;
+}
+
 .character-avatar,
 .character-portrait {
 	display: grid;

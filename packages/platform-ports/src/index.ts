@@ -188,7 +188,38 @@ export interface ProjectRepairResult {
 	readonly diagnosticId: string;
 }
 
-export interface DesktopBridge extends StoryStorageGateway, MentionStorageGateway {
+export interface StoryIndexStatus {
+	readonly schemaVersion: number;
+	readonly ready: boolean;
+	readonly sourceFingerprint: string;
+	readonly recordCount: number;
+	readonly kindCounts: Readonly<Record<string, number>>;
+}
+
+export interface StoryIndexQuery {
+	readonly kind?: string;
+	readonly chapterId?: string;
+	readonly participantId?: string;
+	readonly relatedResourceId?: string;
+	readonly offset?: number;
+	readonly limit?: number;
+}
+
+export interface StoryIndexQueryResult {
+	readonly ids: readonly string[];
+	readonly total: number;
+	readonly offset: number;
+	readonly limit: number;
+	readonly sourceFingerprint: string;
+}
+
+export interface StoryIndexGateway {
+	getStoryIndexStatus(projectRoot: string): Promise<StoryIndexStatus>;
+	rebuildStoryIndex(projectRoot: string): Promise<StoryIndexStatus>;
+	queryStoryIndex(projectRoot: string, query: StoryIndexQuery): Promise<StoryIndexQueryResult>;
+}
+
+export interface DesktopBridge extends StoryStorageGateway, MentionStorageGateway, StoryIndexGateway {
 	chooseProject(): Promise<string | undefined>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
 	repairProject(projectRoot: string): Promise<ProjectRepairResult>;

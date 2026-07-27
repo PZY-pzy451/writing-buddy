@@ -20,6 +20,7 @@ pub struct AppState {
     locks: Mutex<HashMap<PathBuf, PathBuf>>,
     approved_backups: Mutex<HashSet<PathBuf>>,
     story_transactions: Mutex<()>,
+    story_indexes: Mutex<HashMap<PathBuf, story::index::StoryIndex>>,
     ai_jobs: Mutex<ai::job_registry::AiJobRegistry>,
 }
 
@@ -36,6 +37,9 @@ pub fn run() {
             story::commands::story_save_resources,
             story::commands::story_move_to_trash,
             story::commands::story_restore_from_trash,
+            story::commands::story_index_status,
+            story::commands::story_rebuild_index,
+            story::commands::story_query_index,
             story::mentions::mention_list_links,
             story::mentions::mention_save_links,
             commands::read_text,

@@ -230,7 +230,18 @@ pub fn write_text_atomic(
     request: AtomicWriteRequest,
 ) -> Result<AtomicWriteResult, String> {
     require_write_lock(&state, &request.project_root)?;
-    filesystem::write_text_atomic(&request)
+    let result = filesystem::write_text_atomic(&request)?;
+    if request.relative_path.starts_with("story/")
+        && crate::story::commands::invalidate_cached_index(&state, &request.project_root).is_err()
+    {
+        logging::event(
+            "story.index.invalidate.failed",
+            "warning",
+            None,
+            Some("storyIndexInvalidateFailed"),
+        );
+    }
+    Ok(result)
 }
 
 #[tauri::command]

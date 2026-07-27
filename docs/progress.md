@@ -4,16 +4,13 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate E is complete and waiting for human approval on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 17–20 provide author-visible
-Context Packs, grounded selection rewrite with Diff/Undo, AI-extracted pending
-facts and a unified long-form continuity review. Dynamic character state is
-resolved at the selected scene position, author secrets remain excluded by
-default, and all AI output remains author-confirmed. Visual acceptance at
-1536×992, 1280×800 and 1024×720 has zero page-level overflow. The real copied
-project closes normally and restores on second launch with all six Markdown
-hashes unchanged. Gate F remains blocked until the Gate E report receives
-explicit approval.
+StoryForge Gate F is active on
+`codex/phase-1.0a-deepseek-ai-foundation`. Task 21 is complete: the derived
+Story Index updates incrementally, persists outside author content, rebuilds
+from canonical project data, and supports bounded queries. Character and
+timeline lists now virtualize large collections. The deterministic 266,000-row
+scale fixture is below all five performance thresholds. Task 22 responsive,
+accessibility and visual acceptance is next.
 
 ## Completed
 
@@ -83,7 +80,7 @@ explicit approval.
 
 ## Open
 
-- Obtain human approval for StoryForge Gate E before starting Task 21.
+- Complete Gate F Tasks 22–24 and stop with final acceptance evidence.
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
@@ -92,6 +89,5 @@ explicit approval.
 
 ## Next
 
-Review the Gate E acceptance report, three screenshots and commits. Stop for
-explicit human approval; do not start scale/performance Task 21 or Gate F
-automatically.
+Implement the three responsive viewport contracts, keyboard/focus/reduced
+motion coverage and six approved StoryForge prototype screenshots for Task 22.

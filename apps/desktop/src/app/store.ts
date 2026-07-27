@@ -18,6 +18,7 @@ import {
 	type ProjectOpenMode,
 	type PublicProjectOpenError
 } from '../features/projects/application/ProjectOpenService';
+import { StoryIndexService } from '../features/story/application/StoryIndexService';
 import {
 	StoryResourceOpenService,
 	type StoryOpenResult,
@@ -136,6 +137,7 @@ interface AppState extends PersistedWorkspace {
 
 const tabs = new ResourceTabManager();
 const projectOpenService = new ProjectOpenService(desktopBridge);
+const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
 
@@ -269,6 +271,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				pendingProjectRoot: undefined,
 				projectOpenBusyAction: undefined
 			});
+			void storyIndexService
+				.prepare(snapshot.root, !snapshot.readOnly)
+				.catch(() => undefined);
 			if (active) {
 				await get().openResource(active);
 			}

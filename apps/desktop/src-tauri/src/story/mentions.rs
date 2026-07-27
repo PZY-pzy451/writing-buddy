@@ -10,6 +10,10 @@ use serde::Deserialize;
 use serde_json::Value;
 use tauri::State;
 
+use super::{
+    commands::update_cached_index,
+    index::{IndexMutation, index_record_from_value},
+};
 use crate::{AppState, commands::require_write_lock, filesystem, logging};
 
 #[derive(Debug, Clone, Deserialize)]
@@ -288,6 +292,19 @@ pub fn mention_save_links(
         .lock()
         .map_err(|_| "storyTransactionLockPoisoned".to_owned())?;
     let saved = save_links(&project_root, &entries)?;
+    let mutations = saved
+        .iter()
+        .filter_map(|value| index_record_from_value(value, "mention"))
+        .map(IndexMutation::Upsert)
+        .collect::<Vec<_>>();
+    if update_cached_index(&state, &project_root, &mutations).is_err() {
+        logging::event(
+            "story.index.incremental.failed",
+            "warning",
+            None,
+            Some("storyIndexUpdateFailed"),
+        );
+    }
     logging::event("story.mentions.changed", "info", None, None);
     Ok(saved)
 }

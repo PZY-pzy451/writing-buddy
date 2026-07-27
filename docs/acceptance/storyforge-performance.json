@@ -1,0 +1,58 @@
+{
+    "schemaVersion":  1,
+    "generatedAt":  "2026-07-27T08:34:49.4298652Z",
+    "fixture":  {
+                    "schemaVersion":  1,
+                    "fixtureId":  "storyforge-large-project-v1",
+                    "seed":  "writing-buddy-storyforge-scale-2026-07-27",
+                    "copyrightedProse":  false,
+                    "counts":  {
+                                   "chapters":  1000,
+                                   "scenes":  10000,
+                                   "resources":  5000,
+                                   "eventsAndStates":  50000,
+                                   "mentions":  200000
+                               },
+                    "generation":  {
+                                       "mode":  "deterministic-in-memory",
+                                       "test":  "story::index_tests::large_fixture_meets_storyforge_performance_gates",
+                                       "runner":  "scripts/perf/measure-storyforge.ps1"
+                                   },
+                    "thresholdsMs":  {
+                                         "projectInteractive":  2500,
+                                         "resourceSwitch":  200,
+                                         "singleResourceSave":  300,
+                                         "timelineFeedback":  100,
+                                         "filteredGraph":  1000
+                                     }
+                },
+    "result":  {
+                   "fixture":  {
+                                   "chapters":  1000,
+                                   "eventsAndStates":  50000,
+                                   "indexedRecords":  266001,
+                                   "mentions":  200000,
+                                   "resources":  5000,
+                                   "scenes":  10000
+                               },
+                   "metricsMs":  {
+                                     "filteredGraph":  0.192,
+                                     "projectInteractive":  420.4278,
+                                     "resourceSwitch":  0.5909,
+                                     "singleResourceSave":  0.0046,
+                                     "timelineFeedback":  4.2341999999999995
+                                 },
+                   "schemaVersion":  1,
+                   "thresholdsMs":  {
+                                        "filteredGraph":  1000,
+                                        "projectInteractive":  2500,
+                                        "resourceSwitch":  200,
+                                        "singleResourceSave":  300,
+                                        "timelineFeedback":  100
+                                    }
+               },
+    "toolchain":  {
+                      "rustc":  "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+                      "cargo":  "cargo 1.97.1 (c980f4866 2026-06-30)"
+                  }
+}

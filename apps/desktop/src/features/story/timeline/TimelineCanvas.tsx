@@ -86,7 +86,11 @@ export function TimelineCanvas({
 	onSelect
 }: TimelineCanvasProps): React.JSX.Element {
 	const [scrollLeft, setScrollLeft] = useState(0);
+	const [scrollTop, setScrollTop] = useState(0);
+	const [viewportHeight, setViewportHeight] = useState(720);
 	const itemWidth = Math.round(172 * zoom);
+	const trackHeight = 112;
+	const headerHeight = 64;
 	const canvasWidth = Math.max(1180, 170 + events.length * itemWidth);
 	const startIndex = Math.max(0, Math.floor(scrollLeft / itemWidth) - 3);
 	const endIndex = Math.min(events.length, startIndex + Math.ceil(1180 / itemWidth) + 7);
@@ -94,6 +98,13 @@ export function TimelineCanvas({
 		events.slice(startIndex, endIndex).map(event => event.id)
 	), [endIndex, events, startIndex]);
 	const tracks = useMemo(() => buildTracks(events, labels, trackKind), [events, labels, trackKind]);
+	const trackStart = Math.max(
+		0,
+		Math.floor(Math.max(0, scrollTop - headerHeight) / trackHeight) - 3
+	);
+	const trackCount = Math.ceil(viewportHeight / trackHeight) + 6;
+	const trackEnd = Math.min(tracks.length, trackStart + trackCount);
+	const visibleTracks = tracks.slice(trackStart, trackEnd);
 	const indexById = useMemo(() => new Map(
 		events.map((event, index) => [event.id, index])
 	), [events]);
@@ -113,7 +124,11 @@ export function TimelineCanvas({
 		<section className="timeline-canvas" role="region" aria-label="多轨时间线画布">
 			<div
 				className="timeline-scroll"
-				onScroll={event => setScrollLeft(event.currentTarget.scrollLeft)}
+				onScroll={event => {
+					setScrollLeft(event.currentTarget.scrollLeft);
+					setScrollTop(event.currentTarget.scrollTop);
+					setViewportHeight(event.currentTarget.clientHeight || 720);
+				}}
 			>
 				<div className="timeline-virtual-surface" style={{ width: canvasWidth }}>
 					<header className="timeline-time-header">
@@ -127,7 +142,14 @@ export function TimelineCanvas({
 						</div>
 					</header>
 					<div className="timeline-track-stack">
-						{tracks.map(track => (
+						{trackStart ? (
+							<div
+								className="timeline-track-spacer"
+								style={{ height: trackStart * trackHeight }}
+								aria-hidden="true"
+							/>
+						) : null}
+						{visibleTracks.map(track => (
 							<div className="timeline-track" key={track.id}>
 								<strong className="timeline-track-label">
 									{trackKind === 'character' ? <UserRound size={15} /> : trackKind === 'location' ? <MapPin size={15} /> : <CalendarClock size={15} />}
@@ -170,6 +192,13 @@ export function TimelineCanvas({
 								</div>
 							</div>
 						))}
+						{trackEnd < tracks.length ? (
+							<div
+								className="timeline-track-spacer"
+								style={{ height: (tracks.length - trackEnd) * trackHeight }}
+								aria-hidden="true"
+							/>
+						) : null}
 					</div>
 				</div>
 			</div>

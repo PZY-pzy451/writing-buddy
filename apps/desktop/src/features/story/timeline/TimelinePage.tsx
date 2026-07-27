@@ -23,6 +23,7 @@ import {
 import { desktopBridge } from '../../../platform/bridge';
 import { EventInspector } from './EventInspector';
 import { TimelineCanvas, type TimelineTrackKind } from './TimelineCanvas';
+import { VirtualTimelineList } from './VirtualTimelineList';
 import './TimelinePage.css';
 
 export interface TimelinePageData {
@@ -222,22 +223,7 @@ export function TimelinePage({
 						onSelect={selectEvent}
 					/>
 				) : (
-					<div className="timeline-list-scroll">
-						<table className="timeline-list" aria-label="时间线列表替代视图">
-							<thead><tr><th>事件</th><th>类型</th><th>实际时间</th><th>叙事位置</th><th>轨道</th></tr></thead>
-							<tbody>
-								{events.map(event => (
-									<tr key={event.id}>
-										<td><button type="button" onClick={() => selectEvent(event)}>{event.title}</button></td>
-										<td>{event.eventType}</td>
-										<td>{event.storyStart ?? '未确定'}</td>
-										<td>{event.narrativePosition.narrativeOrder}</td>
-										<td>{event.participantIds.map(id => data.labels[id] ?? id).join('、') || '未分配'}</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
+					<VirtualTimelineList events={events} labels={data.labels} onSelect={selectEvent} />
 				)}
 				{selected ? (
 					<EventInspector
