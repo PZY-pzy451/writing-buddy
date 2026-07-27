@@ -76,6 +76,10 @@ interface AppState extends PersistedWorkspace {
 		readonly end: number;
 		readonly text: string;
 	};
+	readonly pendingReveal?: {
+		readonly resourceId: string;
+		readonly offset: number;
+	};
 	readonly bootstrap: () => Promise<void>;
 	readonly chooseProject: () => Promise<void>;
 	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
@@ -93,6 +97,8 @@ interface AppState extends PersistedWorkspace {
 	readonly updateCursor: (cursor: CursorState) => void;
 	readonly requestEditorEdit: (edit: NonNullable<AppState['pendingEdit']>) => void;
 	readonly clearEditorEdit: (id: string) => void;
+	readonly requestEditorReveal: (resourceId: string, offset: number) => void;
+	readonly clearEditorReveal: (resourceId: string, offset: number) => void;
 	readonly setResourceContent: (content: string) => void;
 	readonly save: () => Promise<void>;
 	readonly saveAs: () => Promise<void>;
@@ -484,6 +490,15 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	clearEditorEdit(id) {
 		if (get().pendingEdit?.id === id) {
 			set({ pendingEdit: undefined });
+		}
+	},
+	requestEditorReveal(resourceId, offset) {
+		set({ pendingReveal: { resourceId, offset } });
+	},
+	clearEditorReveal(resourceId, offset) {
+		const pending = get().pendingReveal;
+		if (pending?.resourceId === resourceId && pending.offset === offset) {
+			set({ pendingReveal: undefined });
 		}
 	},
 

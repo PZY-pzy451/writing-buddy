@@ -8,12 +8,14 @@ interface StoryResourceViewProps {
 	readonly result?: StoryOpenResult;
 	readonly onRetry: (reference: StoryResourceReference) => void;
 	readonly onRestore: () => void;
+	readonly backlinks?: React.ReactNode;
 }
 
 export function StoryResourceView({
 	result,
 	onRetry,
-	onRestore
+	onRestore,
+	backlinks
 }: StoryResourceViewProps): React.JSX.Element {
 	if (!result) {
 		return (
@@ -58,6 +60,7 @@ export function StoryResourceView({
 				<div><dt>资源 ID</dt><dd>{result.reference.id}</dd></div>
 				<div><dt>Revision</dt><dd>{result.resource.revision}</dd></div>
 			</dl>
+			{backlinks}
 		</section>
 	);
 }

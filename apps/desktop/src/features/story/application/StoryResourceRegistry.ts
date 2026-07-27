@@ -85,3 +85,12 @@ export function parseStoryTabKey(
 	}
 	return { type: type as StoryResourceType, id };
 }
+
+export function storyReferenceFromId(
+	id: string
+): { readonly type: StoryResourceType; readonly id: string } | undefined {
+	const registration = listStoryResourceRegistrations().find(candidate => (
+		id.startsWith(`${candidate.idPrefix}:`)
+	));
+	return registration ? { type: registration.type, id } : undefined;
+}

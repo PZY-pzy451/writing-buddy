@@ -4,12 +4,16 @@ import type { editor as MonacoEditor } from 'monaco-editor';
 import {
 	DesktopStoryRepository,
 	toStoryChapterId,
+	type MentionLink,
 	type StoryScene
 } from '@writing-buddy/story-kernel';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { SceneNavigator } from '../features/story/manuscript/SceneNavigator';
 import { SceneService } from '../features/story/manuscript/SceneService';
+import { MentionService } from '../features/story/manuscript/MentionService';
+import { SelectionActionMenu } from '../features/story/manuscript/SelectionActionMenu';
+import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
 
 export function ChapterEditor(): React.JSX.Element {
 	const activeResource = useAppStore(state => state.activeResource);
@@ -23,18 +27,36 @@ export function ChapterEditor(): React.JSX.Element {
 	const readOnly = useAppStore(state => state.snapshot?.readOnly ?? true);
 	const pendingEdit = useAppStore(state => state.pendingEdit);
 	const clearEditorEdit = useAppStore(state => state.clearEditorEdit);
+	const pendingReveal = useAppStore(state => state.pendingReveal);
+	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
 	const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | undefined>(undefined);
 	const cursorTimerRef = useRef<number | undefined>(undefined);
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
+	const mentionDecorationIdsRef = useRef<readonly string[]>([]);
+	const mentionsRef = useRef<readonly MentionLink[]>([]);
+	const lastMentionContentRef = useRef<{
+		readonly resourceId: string;
+		readonly content: string;
+	} | undefined>(undefined);
+	const mentionTextRevisionRef = useRef(0);
 	const [currentOffset, setCurrentOffset] = useState(0);
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
+	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
 	const projectRoot = snapshot?.root;
-	const sceneService = useMemo(() => projectRoot
-		? new SceneService(new DesktopStoryRepository(projectRoot, desktopBridge))
+	const storyRepository = useMemo(() => projectRoot
+		? new DesktopStoryRepository(projectRoot, desktopBridge)
+		: undefined, [projectRoot]);
+	const sceneService = useMemo(() => storyRepository
+		? new SceneService(storyRepository)
+		: undefined, [storyRepository]);
+	const mentionService = useMemo(() => projectRoot
+		? new MentionService(projectRoot, desktopBridge)
 		: undefined, [projectRoot]);
 	const storyChapterId = activeResource?.type === 'chapter'
 		? toStoryChapterId(activeResource.id)
 		: undefined;
+	const sessionResourceId = session?.state.resourceId;
+	const sessionContent = session?.content;
 
 	const handleMount: OnMount = useCallback(editor => {
 		editorRef.current = editor;
@@ -66,6 +88,23 @@ export function ChapterEditor(): React.JSX.Element {
 		});
 		editor.onDidChangeCursorPosition(scheduleCursorPersistence);
 		editor.onDidScrollChange(scheduleCursorPersistence);
+		editor.onMouseDown(event => {
+			const model = editor.getModel();
+			const position = event.target.position;
+			if (!model || !position) {
+				return;
+			}
+			const offset = model.getOffsetAt(position);
+			const mention = mentionsRef.current.find(candidate => (
+				candidate.status === 'active'
+					&& candidate.anchor.start <= offset
+					&& offset < candidate.anchor.end
+			));
+			const reference = mention ? storyReferenceFromId(mention.resourceId) : undefined;
+			if (reference) {
+				void useAppStore.getState().openStoryResource(reference);
+			}
+		});
 		if (session) {
 			editor.setPosition({
 				lineNumber: session.state.cursor.lineNumber,
@@ -78,6 +117,13 @@ export function ChapterEditor(): React.JSX.Element {
 					lineNumber: session.state.cursor.lineNumber,
 					column: session.state.cursor.column
 				}));
+				const reveal = useAppStore.getState().pendingReveal;
+				if (reveal?.resourceId === session.state.resourceId) {
+					const revealPosition = model.getPositionAt(reveal.offset);
+					editor.setPosition(revealPosition);
+					editor.revealPositionInCenter(revealPosition);
+					useAppStore.getState().clearEditorReveal(reveal.resourceId, reveal.offset);
+				}
 			}
 		}
 	}, [session, setSelection, updateCursor]);
@@ -133,28 +179,128 @@ export function ChapterEditor(): React.JSX.Element {
 		);
 	}, [scenes]);
 
-	const navigateToOffset = useCallback((offset: number) => {
+	useEffect(() => {
+		mentionsRef.current = mentions;
 		const editor = editorRef.current;
 		const model = editor?.getModel();
 		if (!editor || !model) {
 			return;
+		}
+		mentionDecorationIdsRef.current = editor.deltaDecorations(
+			[...mentionDecorationIdsRef.current],
+			mentions
+				.filter(mention => mention.status === 'active')
+				.map(mention => ({
+					range: {
+						startLineNumber: model.getPositionAt(mention.anchor.start).lineNumber,
+						startColumn: model.getPositionAt(mention.anchor.start).column,
+						endLineNumber: model.getPositionAt(mention.anchor.end).lineNumber,
+						endColumn: model.getPositionAt(mention.anchor.end).column
+					},
+					options: {
+						inlineClassName: 'story-mention-range',
+						hoverMessage: {
+							value: `链接到 **${mention.resourceId}** — 点击打开`
+						}
+					}
+				}))
+		);
+	}, [mentions]);
+
+	const navigateToOffset = useCallback((offset: number) => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (!editor || !model) {
+			return false;
 		}
 		const position = model.getPositionAt(offset);
 		editor.setPosition(position);
 		editor.revealPositionInCenter(position);
 		editor.focus();
 		setCurrentOffset(offset);
+		return true;
 	}, []);
 
 	const updateScenes = useCallback((nextScenes: readonly StoryScene[]) => {
 		setScenes(nextScenes);
 	}, []);
 
+	useEffect(() => {
+		if (!mentionService || !storyChapterId) {
+			return;
+		}
+		let cancelled = false;
+		void mentionService.listMentionsForChapter(storyChapterId)
+			.then(next => {
+				if (!cancelled) {
+					setMentions(next);
+				}
+			})
+			.catch(() => {
+				if (!cancelled) {
+					setMentions([]);
+				}
+			});
+		return () => {
+			cancelled = true;
+		};
+	}, [mentionService, storyChapterId]);
+
+	useEffect(() => {
+		if (!mentionService
+			|| !storyChapterId
+			|| sessionContent === undefined
+			|| !sessionResourceId
+			|| activeResource?.type !== 'chapter') {
+			return;
+		}
+		const previous = lastMentionContentRef.current;
+		lastMentionContentRef.current = {
+			resourceId: sessionResourceId,
+			content: sessionContent
+		};
+		if (!previous
+			|| previous.resourceId !== sessionResourceId
+			|| previous.content === sessionContent
+			|| mentionsRef.current.length === 0) {
+			return;
+		}
+		mentionTextRevisionRef.current += 1;
+		const revision = mentionTextRevisionRef.current;
+		const timer = window.setTimeout(() => {
+			void mentionService
+				.rebaseMentions(storyChapterId, sessionContent, revision)
+				.then(setMentions)
+				.catch(() => undefined);
+		}, 450);
+		return () => window.clearTimeout(timer);
+	}, [
+		activeResource?.type,
+		mentionService,
+		sessionContent,
+		sessionResourceId,
+		storyChapterId
+	]);
+
+	useEffect(() => {
+		if (!pendingReveal
+			|| pendingReveal.resourceId !== session?.state.resourceId) {
+			return;
+		}
+		if (navigateToOffset(pendingReveal.offset)) {
+			clearEditorReveal(pendingReveal.resourceId, pendingReveal.offset);
+		}
+	}, [clearEditorReveal, navigateToOffset, pendingReveal, session?.state.resourceId]);
+
 	if (!activeResource || !session) {
 		return <div className="canvas-empty">选择一个章节或笔记开始写作。</div>;
 	}
 
 	const monacoTheme = theme === 'paper' || theme === 'fog' ? 'vs' : 'vs-dark';
+	const currentScene = scenes.find(scene => (
+		scene.manuscriptRange.start <= currentOffset
+			&& currentOffset < scene.manuscriptRange.end
+	));
 
 	return (
 		<div
@@ -199,7 +345,11 @@ export function ChapterEditor(): React.JSX.Element {
 					fontSize: 18,
 					glyphMargin: activeResource.type === 'chapter',
 					hideCursorInOverviewRuler: true,
-					hover: { enabled: 'off' },
+					hover: {
+						enabled: activeResource.type === 'chapter' ? 'on' : 'off',
+						delay: 300,
+						sticky: true
+					},
 					lineDecorationsWidth: 0,
 					lineHeight: 34,
 					lineNumbers: 'off',
@@ -227,6 +377,23 @@ export function ChapterEditor(): React.JSX.Element {
 					wrappingIndent: 'none'
 				}}
 				/>
+				{activeResource.type === 'chapter'
+					&& storyRepository
+					&& mentionService
+					&& storyChapterId
+					&& selection
+					&& (
+						<SelectionActionMenu
+							repository={storyRepository}
+							mentionService={mentionService}
+							chapterId={storyChapterId}
+							sceneId={currentScene?.id}
+							manuscript={session.content}
+							selection={selection}
+							readOnly={readOnly}
+							onLinked={mention => setMentions(current => [...current, mention])}
+						/>
+					)}
 			</div>
 		</div>
 	);

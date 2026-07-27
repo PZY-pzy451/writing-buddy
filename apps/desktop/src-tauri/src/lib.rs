@@ -36,6 +36,8 @@ pub fn run() {
             story::commands::story_save_resources,
             story::commands::story_move_to_trash,
             story::commands::story_restore_from_trash,
+            story::mentions::mention_list_links,
+            story::mentions::mention_save_links,
             commands::read_text,
             commands::write_text_atomic,
             commands::save_text_as,

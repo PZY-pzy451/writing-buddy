@@ -1,5 +1,14 @@
+import { useMemo } from 'react';
+import { flattenChapters, type ResourceDescriptor } from '@writing-buddy/domain';
+import {
+	toStoryChapterId,
+	type MentionLink
+} from '@writing-buddy/story-kernel';
 import { useAppStore } from './store';
 import { StoryResourceView } from '../features/story/ui/StoryResourceView';
+import { BacklinksPanel } from '../features/story/shared/BacklinksPanel';
+import { MentionService } from '../features/story/manuscript/MentionService';
+import { desktopBridge } from '../platform/bridge';
 
 /**
  * Story routes stay inside the existing workspace state machine. The persisted
@@ -8,18 +17,56 @@ import { StoryResourceView } from '../features/story/ui/StoryResourceView';
 export function StoryWorkspaceRoute(): React.JSX.Element | null {
 	const activeResource = useAppStore(state => state.activeResource);
 	const result = useAppStore(state => state.storyOpenResult);
+	const snapshot = useAppStore(state => state.snapshot);
 	const openStoryResource = useAppStore(state => state.openStoryResource);
 	const restoreStoryResource = useAppStore(state => state.restoreStoryResource);
+	const openResource = useAppStore(state => state.openResource);
+	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
+	const projectRoot = snapshot?.root;
+	const mentionService = useMemo(() => projectRoot
+		? new MentionService(projectRoot, desktopBridge)
+		: undefined, [projectRoot]);
 
 	if (activeResource?.type !== 'story') {
 		return null;
 	}
+
+	const openBacklink = (mention: MentionLink) => {
+		if (!snapshot) {
+			return;
+		}
+		const chapter = flattenChapters(snapshot.project).find(candidate => (
+			toStoryChapterId(candidate.id) === mention.chapterId
+		));
+		if (!chapter) {
+			return;
+		}
+		const resource: ResourceDescriptor = {
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		};
+		void openResource(resource).then(() => {
+			requestEditorReveal(chapter.id, mention.anchor.start);
+		});
+	};
 
 	return (
 		<StoryResourceView
 			result={result}
 			onRetry={reference => void openStoryResource(reference)}
 			onRestore={() => void restoreStoryResource()}
+			backlinks={mentionService && result?.status === 'ready'
+				? (
+					<BacklinksPanel
+						service={mentionService}
+						resourceId={result.resource.id}
+						onOpenBacklink={openBacklink}
+					/>
+				)
+				: undefined}
 		/>
 	);
 }

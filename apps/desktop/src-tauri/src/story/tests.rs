@@ -6,6 +6,7 @@ use std::{
 
 use serde_json::{Value, json};
 
+use super::mentions::{self, MentionSaveEntry};
 use super::storage::{self, StorySaveEntry};
 
 fn temp_project() -> PathBuf {
@@ -33,6 +34,27 @@ fn character(id: &str) -> Value {
         "updatedAt": "2026-07-27T00:00:00.000Z",
         "revision": 0,
         "evidenceIds": []
+    })
+}
+
+fn mention(id: &str) -> Value {
+    json!({
+        "id": id,
+        "resourceId": "character:lin-yue",
+        "chapterId": "chapter:chapter-001",
+        "anchor": {
+            "start": 2,
+            "end": 4,
+            "revision": 0,
+            "quote": "林越",
+            "before": "夜里",
+            "after": "走进车站"
+        },
+        "displayText": "林越",
+        "status": "active",
+        "revision": 0,
+        "createdAt": "2026-07-27T00:00:00.000Z",
+        "updatedAt": "2026-07-27T00:00:00.000Z"
     })
 }
 
@@ -128,5 +150,52 @@ fn moves_to_trash_and_restores_without_data_loss() {
             .expect("restore");
     assert_eq!(restored, saved[0]);
 
+    let _ = fs::remove_dir_all(root);
+}
+
+#[test]
+fn saves_mentions_outside_markdown_with_revision_checks() {
+    let root = temp_project();
+    let entry = MentionSaveEntry {
+        mention: mention("mention:lin-yue-intro"),
+        expected_revision: Some(0),
+    };
+    let saved =
+        mentions::save_links(&root.to_string_lossy(), &[entry.clone()]).expect("save mention");
+    assert_eq!(saved[0]["revision"], 1);
+    assert_eq!(
+        mentions::list_links(&root.to_string_lossy())
+            .expect("list mentions")
+            .len(),
+        1
+    );
+    assert!(!root.join("chapters").join("chapter-001.md").exists());
+
+    let error = mentions::save_links(&root.to_string_lossy(), &[entry]).expect_err("stale mention");
+    assert_eq!(error, "mentionRevisionConflict:1");
+    let _ = fs::remove_dir_all(root);
+}
+
+#[test]
+fn validates_all_mentions_before_creating_the_author_owned_directory() {
+    let root = temp_project();
+    let mut invalid = mention("mention:broken");
+    invalid["anchor"]["end"] = Value::from(2);
+    let error = mentions::save_links(
+        &root.to_string_lossy(),
+        &[
+            MentionSaveEntry {
+                mention: mention("mention:valid"),
+                expected_revision: Some(0),
+            },
+            MentionSaveEntry {
+                mention: invalid,
+                expected_revision: Some(0),
+            },
+        ],
+    )
+    .expect_err("invalid batch");
+    assert_eq!(error, "invalidMention");
+    assert!(!root.join("story").join("mentions").exists());
     let _ = fs::remove_dir_all(root);
 }

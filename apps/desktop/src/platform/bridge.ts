@@ -25,9 +25,11 @@ import type {
 	VersionText
 } from '@writing-buddy/platform-ports';
 import type { TextFile } from '@writing-buddy/domain';
-import type {
-	StoryResourceType,
-	StorySaveEntry
+import {
+	parseMentionLink,
+	type MentionSaveEntry,
+	type StoryResourceType,
+	type StorySaveEntry
 } from '@writing-buddy/story-kernel';
 
 function isTauriRuntime(): boolean {
@@ -160,6 +162,17 @@ class TauriDesktopBridge implements DesktopBridge {
 			resourceType: type,
 			id
 		});
+	}
+
+	listMentionLinks(projectRoot: string): Promise<readonly unknown[]> {
+		return invoke<unknown[]>('mention_list_links', { projectRoot });
+	}
+
+	saveMentionLinks(
+		projectRoot: string,
+		entries: readonly MentionSaveEntry[]
+	): Promise<readonly unknown[]> {
+		return invoke<unknown[]>('mention_save_links', { projectRoot, entries });
 	}
 
 	getAiProviderStatus(): Promise<AiProviderStatus> {
@@ -298,6 +311,7 @@ const browserVersionContent = new Map<string, Map<string, string>>();
 const browserVersions: VersionSummary[] = [];
 const browserStoryResources = new Map<string, unknown>();
 const browserStoryTrash = new Map<string, unknown>();
+const browserMentionLinks = new Map<string, unknown>();
 const browserAiModels: readonly AiModel[] = [
 	{ id: 'deepseek-v4-flash', ownedBy: 'deepseek' },
 	{ id: 'deepseek-v4-pro', ownedBy: 'deepseek' }
@@ -542,6 +556,34 @@ class BrowserDesktopBridge implements DesktopBridge {
 		browserStoryResources.set(key, resource);
 		browserStoryTrash.delete(key);
 		return resource;
+	}
+
+	async listMentionLinks(): Promise<readonly unknown[]> {
+		return [...browserMentionLinks.values()];
+	}
+
+	async saveMentionLinks(
+		_projectRoot: string,
+		entries: readonly MentionSaveEntry[]
+	): Promise<readonly unknown[]> {
+		const staged = entries.map(entry => {
+			const mention = parseMentionLink(entry.mention);
+			const current = browserMentionLinks.get(mention.id);
+			const actualRevision = current ? parseMentionLink(current).revision : 0;
+			const expectedRevision = entry.expectedRevision ?? mention.revision;
+			if (actualRevision !== expectedRevision) {
+				throw new Error(`mentionRevisionConflict:${actualRevision}`);
+			}
+			return {
+				...mention,
+				revision: actualRevision + 1,
+				updatedAt: new Date().toISOString()
+			};
+		});
+		for (const mention of staged) {
+			browserMentionLinks.set(mention.id, mention);
+		}
+		return staged;
 	}
 
 	async getAiProviderStatus(): Promise<AiProviderStatus> {
