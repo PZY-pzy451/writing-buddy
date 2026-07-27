@@ -4,11 +4,11 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-AI Quick Actions Gate D is complete on
-`codex/ai-quick-actions-gate-d`. Character generation/extraction and directed
-relationship generation/evolution analysis now use explicit, grounded,
-revision-safe review flows. Acceptance evidence is in
-`docs/acceptance/016-ai-quick-actions-gate-d-2026-07-27.md`.
+AI Quick Actions Gate F is complete on
+`codex/ai-quick-actions-gate-f`. Timeline extraction/generation, causal-edge
+review, plot-thread workflows, and foreshadowing workflows now use explicit,
+grounded, revision-safe review flows. Acceptance evidence is in
+`docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`.
 
 ## Completed
 
@@ -162,6 +162,23 @@ revision-safe review flows. Acceptance evidence is in
   accepted normal close
 - Gate E evidence in
   `docs/acceptance/017-ai-quick-actions-gate-e-2026-07-27.md`
+- Strict TypeScript/Rust `timeline-analysis` and `plot-analysis` contracts with
+  bounded multi-chapter context, known identities, and exact extraction
+  evidence
+- Timeline extraction, goal-based generation, exactly three directions, and
+  typed dashed causal-edge review with atomic bidirectional link persistence
+- Plot-thread generation/progress extraction plus foreshadowing generation,
+  payoff, and extraction with explicit lifecycle checks
+- Author secrets excluded by default behind an explanatory opt-in control
+- Snapshot-backed, stale-source/revision-safe selected-batch commits
+- Responsive 1536/1280/1024 Gate F evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 71 files / 222 tests; Rust: 43 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate F Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate F evidence in
+  `docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`
 
 ## Open
 
@@ -175,8 +192,22 @@ revision-safe review flows. Acceptance evidence is in
 
 ## Next
 
-Continue the original handoff with Gate F story progress, event extraction and
-generation, causality suggestions, plot-thread, and foreshadowing AI workflows.
+Continue the original handoff with Gate G bulk manuscript organization,
+AI-created review issues, and final privacy/performance/recovery hardening.
+
+## AI Quick Actions Gate F start
+
+- The user explicitly asked to continue after accepted Gate E.
+- Created `codex/ai-quick-actions-gate-f` from the accepted Gate E branch.
+- Gate F implements original Tasks 18–21 with dedicated `timeline-analysis`
+  and `plot-analysis` boundaries, bounded multi-chapter scope, exact extraction
+  evidence, atomic batch acceptance, dashed pending causality, and author
+  secrets excluded by default.
+- The installed UI/UX skill still lacks its referenced search helper. Its
+  accessible warm-paper, Lucide, 44px, focus, contrast, responsive, and
+  reduced-motion rules are applied directly.
+- Contract:
+  `docs/plans/008-ai-quick-actions-gate-f-story-progress-plots.md`.
 
 ## AI Quick Actions Gate E start
 
