@@ -29,6 +29,7 @@
       "@writing-buddy/migration": ["packages/migration/src/index.ts"],
       "@writing-buddy/platform-ports": ["packages/platform-ports/src/index.ts"],
       "@writing-buddy/compatibility": ["packages/compatibility/src/index.ts"],
+      "@writing-buddy/story-kernel": ["packages/story-kernel/src/index.ts"],
       "@writing-buddy/test-support": ["packages/test-support/src/index.ts"]
     }
   },
