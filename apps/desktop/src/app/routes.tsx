@@ -14,6 +14,7 @@ import { RelationshipGraphPage } from '../features/story/relationships/Relations
 import { TimelinePage } from '../features/story/timeline/TimelinePage';
 import { WorldbuildingPage } from '../features/story/worldbuilding/WorldbuildingPage';
 import { StoryAssetsPage } from '../features/story/assets/StoryAssetsPage';
+import { PlotBoardPage } from '../features/story/plots/PlotBoardPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -33,6 +34,9 @@ export function StoryStudioRoute(): React.JSX.Element {
 	}
 	if (storyView === 'assets') {
 		return <StoryAssetsPage projectRoot={projectRoot} />;
+	}
+	if (storyView === 'plots') {
+		return <PlotBoardPage projectRoot={projectRoot} />;
 	}
 	return <WorldbuildingPage projectRoot={projectRoot} />;
 }

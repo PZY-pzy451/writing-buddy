@@ -208,6 +208,38 @@ const worldRuleSchema = z.object({
 	evidenceIds: evidenceIds.optional().default([])
 }).strict();
 
+const plotThreadSchema = z.object({
+	id: idFor('plotThread'),
+	type: z.literal('plotThread'),
+	...baseShape,
+	status: z.enum(['planned', 'active', 'at-risk', 'resolved', 'abandoned']).optional().default('planned'),
+	premise: z.string().max(10_000).optional(),
+	stakes: z.string().max(5000).optional(),
+	dramaticQuestion: z.string().max(5000).optional(),
+	startPosition: storyPositionSchema.optional(),
+	targetResolution: storyPositionSchema.optional(),
+	actualResolution: storyPositionSchema.optional(),
+	participantIds: z.array(idFor('character')).optional().default([]),
+	sceneIds: z.array(idFor('scene')).optional().default([]),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
+const foreshadowingSchema = z.object({
+	id: idFor('foreshadowing'),
+	type: z.literal('foreshadowing'),
+	...baseShape,
+	status: z.enum(['planted', 'reminded', 'resolved', 'overdue', 'abandoned']).optional().default('planted'),
+	plantedAt: storyPositionSchema.optional(),
+	surfaceMeaning: z.string().max(5000).optional(),
+	trueMeaning: z.string().max(5000).optional(),
+	reminderPositions: z.array(storyPositionSchema).optional().default([]),
+	plannedPayoffAt: storyPositionSchema.optional(),
+	actualPayoffAt: storyPositionSchema.optional(),
+	readerVisibility: z.number().min(0).max(1).optional().default(0),
+	plotThreadIds: z.array(idFor('plotThread')).optional().default([]),
+	evidenceIds: evidenceIds.optional().default([])
+}).strict();
+
 export const itemSchema = z.object({
 	id: idFor('item'),
 	type: z.literal('item'),
@@ -231,8 +263,8 @@ export const resourceSchemas = {
 	worldRule: worldRuleSchema,
 	timelineEvent: timelineEventSchema,
 	relationship: relationshipSchema,
-	plotThread: simpleResourceSchema('plotThread'),
-	foreshadowing: simpleResourceSchema('foreshadowing'),
+	plotThread: plotThreadSchema,
+	foreshadowing: foreshadowingSchema,
 	information: simpleResourceSchema('information')
 } as const;
 
