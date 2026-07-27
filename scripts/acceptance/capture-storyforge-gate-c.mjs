@@ -265,7 +265,61 @@ const aiQuickActionsGateCCaptures = [
 		name: '05-create-character-1024x720.png'
 	}
 ];
-const captures = gate.startsWith('gate-ai-actions-c')
+const aiQuickActionsGateC2Captures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-continuation-menu[open]',
+		prepare: 'open-continuation-menu',
+		width: 1536,
+		height: 960,
+		name: '01-continuation-entry-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.continuation-candidates',
+		prepare: 'generate-three-directions',
+		width: 1536,
+		height: 960,
+		name: '02-three-directions-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.scene-plan-fields',
+		prepare: 'generate-scene-plan',
+		width: 1536,
+		height: 960,
+		name: '03-scene-plan-fields-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.continuation-candidates',
+		prepare: 'generate-continuation',
+		width: 1280,
+		height: 768,
+		name: '04-continuation-candidate-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.scene-plan-fields',
+		prepare: 'generate-scene-plan',
+		width: 1024,
+		height: 688,
+		name: '05-scene-plan-fields-1024x720.png'
+	}
+];
+const captures = gate === 'gate-ai-actions-c2'
+	? aiQuickActionsGateC2Captures
+	: gate.startsWith('gate-ai-actions-c')
 	? aiQuickActionsGateCCaptures
 	: gate.startsWith('gate-ai-actions')
 	? aiQuickActionsCaptures
@@ -299,6 +353,7 @@ try {
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
 		const readyMs = await waitForSelector(client, capture.readySelector ?? capture.selector);
+		await new Promise(resolveWait => setTimeout(resolveWait, 300));
 		if (capture.prepare?.startsWith('select-editor')) {
 			const selectionResult = await client.send('Runtime.evaluate', {
 				expression: `window.__WRITING_BUDDY_DEVTOOLS__?.selectManuscriptPrefix(56) ?? false`,
@@ -331,6 +386,82 @@ try {
 			}
 			await waitForSelector(client, capture.selector);
 		}
+		if (capture.prepare === 'open-continuation-menu') {
+			const result = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const summary = document.querySelector('.ai-continuation-menu summary');
+					if (!(summary instanceof HTMLElement)) return false;
+					summary.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!result.result.value) throw new Error('AI continuation entry was not available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'generate-continuation' || capture.prepare === 'generate-three-directions') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!tools?.setManuscriptCursor(56)) return false;
+					if (!await tools.enableBrowserAiFixture()) return false;
+					const summary = document.querySelector('.ai-continuation-menu summary');
+					if (!(summary instanceof HTMLElement)) return false;
+					summary.click();
+					const target = ${JSON.stringify(capture.prepare === 'generate-three-directions' ? '三种走向' : '继续本段')};
+					const button = [...document.querySelectorAll('.ai-continuation-menu button')]
+						.find(item => item.textContent?.includes(target));
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					tools.setManuscriptCursor(56);
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Continuation workflow could not be prepared.');
+			await waitForSelector(client, '.continuation-panel .context-pack-preview');
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.continuation-panel .primary-button');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Continuation generation button was not available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'generate-scene-plan') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!tools?.setManuscriptCursor(56)) return false;
+					if (!await tools.enableBrowserAiFixture()) return false;
+					const tab = [...document.querySelectorAll('.assistant-tabs [role="tab"]')]
+						.find(item => item.textContent?.trim() === '细纲');
+					if (!(tab instanceof HTMLButtonElement)) return false;
+					tab.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Scene-plan workflow could not be prepared.');
+			await waitForSelector(client, '.scene-planning-panel .context-pack-preview');
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.scene-planning-panel .primary-button');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Scene-plan generation button was not available.');
+			await waitForSelector(client, capture.selector);
+		}
 		if (capture.prepare === 'open-ai-drawer') {
 			const openResult = await client.send('Runtime.evaluate', {
 				expression: `(() => {
@@ -354,6 +485,19 @@ try {
 				);
 			}
 			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare?.startsWith('generate-')) {
+			await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const target = document.querySelector(${JSON.stringify(capture.selector)});
+					const scroller = target?.closest('.assistant-scroll');
+					if (target && scroller) {
+						scroller.scrollTop += target.getBoundingClientRect().top
+							- scroller.getBoundingClientRect().top - 8;
+					}
+					window.scrollTo(0, 0);
+				})()`
+			});
 		}
 		await new Promise(resolveWait => setTimeout(resolveWait, 350));
 		const layout = await client.send('Runtime.evaluate', {

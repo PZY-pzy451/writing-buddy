@@ -7,6 +7,8 @@ import {
 export type ContextItemKind =
 	| 'instruction'
 	| 'selection'
+	| 'manuscript-excerpt'
+	| 'scene-manuscript'
 	| 'scene'
 	| 'character'
 	| 'location'
@@ -17,10 +19,36 @@ export type ContextItemKind =
 	| 'information'
 	| 'adjacent-summary';
 
+export type SelectionRewriteActionType =
+	| 'polish'
+	| 'concise'
+	| 'expand'
+	| 'grammar'
+	| 'dialogue'
+	| 'pacing';
+
+export type ManuscriptContinuationMode =
+	| 'continue-paragraph'
+	| 'finish-scene'
+	| 'three-directions';
+
+export type ScenePlanActionType =
+	| 'generate-goal'
+	| 'generate-outline'
+	| 'extract-outline'
+	| 'generate-emotion-beats';
+
+export type ContextPackActionType =
+	| SelectionRewriteActionType
+	| ManuscriptContinuationMode
+	| ScenePlanActionType;
+
+export type ContextSourceKind = 'selection' | 'manuscript-excerpt' | 'scene-manuscript';
+
 export interface ContextPackCandidate {
 	readonly id: string;
 	readonly priority: Exclude<ContextPriority, 'P0' | 'P1'>;
-	readonly kind: Exclude<ContextItemKind, 'instruction' | 'selection'>;
+	readonly kind: Exclude<ContextItemKind, 'instruction' | ContextSourceKind>;
 	readonly title: string;
 	readonly content: string;
 	readonly resourceId?: string;
@@ -28,8 +56,10 @@ export interface ContextPackCandidate {
 }
 
 export interface ContextPackRequest {
-	readonly actionType: 'polish' | 'concise' | 'expand' | 'grammar' | 'dialogue' | 'pacing';
+	readonly actionType: ContextPackActionType;
 	readonly instruction: string;
+	readonly sourceKind?: ContextSourceKind;
+	readonly sourceTitle?: string;
 	readonly selection: {
 		readonly text: string;
 		readonly resourceId: string;
@@ -85,6 +115,15 @@ function itemKey(candidate: ContextPackCandidate): string {
 export function buildContextPack(request: ContextPackRequest): ContextPack {
 	const instruction = normalizeContent(request.instruction, 1_000);
 	const selection = normalizeContent(request.selection.text, 12_000);
+	const sourceKind = request.sourceKind ?? 'selection';
+	const sourceTitle = normalizeContent(
+		request.sourceTitle ?? (sourceKind === 'selection'
+			? '当前选区'
+			: sourceKind === 'scene-manuscript'
+				? '当前场景正文'
+				: '光标前文'),
+		160
+	);
 	if (
 		!request.selection.resourceId
 		|| request.selection.start < 0
@@ -106,8 +145,8 @@ export function buildContextPack(request: ContextPackRequest): ContextPack {
 	}, {
 		id: 'context:selection',
 		priority: 'P1',
-		kind: 'selection',
-		title: '当前选区',
+		kind: sourceKind,
+		title: sourceTitle,
 		content: selection,
 		resourceId: request.selection.resourceId,
 		required: true,

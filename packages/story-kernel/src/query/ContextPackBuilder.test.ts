@@ -113,6 +113,33 @@ describe('ContextPackBuilder', () => {
 		expect(serialized).toContain('雨落在旧站的铁轨上。');
 	});
 
+	it('labels bounded manuscript sources for continuation and scene planning', () => {
+		const continuation = buildContextPack({
+			...baseRequest,
+			actionType: 'continue-paragraph',
+			instruction: '继续本段。',
+			sourceKind: 'manuscript-excerpt',
+			sourceTitle: '光标前文'
+		});
+		expect(continuation.items[1]).toMatchObject({
+			kind: 'manuscript-excerpt',
+			title: '光标前文',
+			required: true
+		});
+
+		const scene = buildContextPack({
+			...baseRequest,
+			actionType: 'generate-outline',
+			instruction: '生成场景细纲。',
+			sourceKind: 'scene-manuscript',
+			sourceTitle: '当前场景正文'
+		});
+		expect(scene.items[1]).toMatchObject({
+			kind: 'scene-manuscript',
+			title: '当前场景正文'
+		});
+	});
+
 	it('rejects an adjacent full-chapter-sized candidate', () => {
 		expect(() => buildContextPack({
 			...baseRequest,

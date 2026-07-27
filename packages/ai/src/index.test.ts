@@ -3,6 +3,8 @@ import {
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
 	buildChapterReviewMessages,
+	buildManuscriptContinuationMessages,
+	buildScenePlanMessages,
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
 	buildStoryKernelGenerationMessages,
@@ -12,10 +14,14 @@ import {
 	nextAiJobState,
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
+	parseManuscriptContinuationResponse,
+	parseScenePlanResponse,
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
+	MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
+	SCENE_PLAN_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
 	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
 	shouldRetryAiFailure
@@ -170,6 +176,59 @@ describe('AI core contracts', () => {
 			context: [],
 			projectRoot: 'D:\\private'
 		}))).toThrow('invalidSelectionRewriteContext');
+	});
+
+	it('builds bounded continuation requests and enforces three distinct directions', () => {
+		const context = JSON.stringify({
+			schemaVersion: 1,
+			actionType: 'three-directions',
+			context: [
+				{ priority: 'P0', kind: 'instruction', title: '作者指令', content: '生成三种不同走向。' },
+				{ priority: 'P1', kind: 'manuscript-excerpt', title: '光标前文', content: '雨停了。' }
+			]
+		});
+		const messages = buildManuscriptContinuationMessages(context);
+		expect(messages[0]?.content).toBe(MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT);
+		expect(messages[1]?.content).not.toContain('projectRoot');
+		expect(parseManuscriptContinuationResponse(JSON.stringify({
+			candidates: [
+				{ title: '追出去', content: '林越冲进雨幕。', rationale: '推进追踪。' },
+				{ title: '留下来', content: '林越关上了门。', rationale: '积累悬念。' },
+				{ title: '转向真相', content: '钟声从地下传来。', rationale: '揭开新线索。' }
+			]
+		}), 'three-directions')).toHaveLength(3);
+		expect(() => parseManuscriptContinuationResponse(JSON.stringify({
+			candidates: [{ title: '唯一走向', content: '林越离开。', rationale: '不足三种。' }]
+		}), 'three-directions')).toThrow('invalidContinuationCandidateCount');
+	});
+
+	it('builds and validates selectable scene-plan fields', () => {
+		const messages = buildScenePlanMessages(JSON.stringify({
+			schemaVersion: 1,
+			actionType: 'generate-outline',
+			context: [
+				{ priority: 'P0', kind: 'instruction', title: '作者指令', content: '生成场景细纲。' },
+				{ priority: 'P1', kind: 'scene-manuscript', title: '当前场景正文', content: '雨落在旧车站。' }
+			]
+		}));
+		expect(messages[0]?.content).toBe(SCENE_PLAN_SYSTEM_PROMPT);
+		expect(parseScenePlanResponse(JSON.stringify({
+			goal: '找到失踪者留下的线索。',
+			conflict: '站务员拒绝开门。',
+			turn: '停摆的钟突然恢复。',
+			outcome: '林越发现地下通道。',
+			emotionBeats: [
+				{ label: '迟疑', emotion: '不安', intensity: 0.4 },
+				{ label: '逼近', emotion: '警觉', intensity: 0.8 }
+			],
+			rationale: '依据当前场景冲突。'
+		})).emotionBeats).toHaveLength(2);
+		expect(() => buildScenePlanMessages(JSON.stringify({
+			schemaVersion: 1,
+			actionType: 'generate-outline',
+			projectRoot: 'D:\\private',
+			context: []
+		}))).toThrow('invalidScenePlanContext');
 	});
 
 	it('builds a JSON-only story extraction request without auto-confirming facts', () => {

@@ -28,6 +28,20 @@ export const SELECTION_REWRITE_SYSTEM_PROMPT = [
 	'仅返回 JSON 对象：{"suggestion":"改写候选","rationale":"简短依据","potentialImpact":"对上下文的潜在影响"}。',
 	'候选只是建议，不得声称已经修改正文。'
 ].join('');
+export const MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT = [
+	'You are Writing Buddy, an author-controlled Chinese fiction continuation assistant. ',
+	'Use only the supplied JSON context. Never ask for or infer project paths, credentials, hidden history, or undisclosed story facts. ',
+	'Return only a JSON object shaped as {"candidates":[{"title":"short direction","content":"continuation text","rationale":"brief grounded reason"}]}. ',
+	'For three-directions return exactly three materially different candidates; for all other modes return exactly one. ',
+	'Candidates are suggestions only and must never claim that the manuscript was modified.'
+].join('');
+export const SCENE_PLAN_SYSTEM_PROMPT = [
+	'You are Writing Buddy, an author-controlled Chinese fiction scene-planning assistant. ',
+	'Use only the supplied JSON context. Never ask for or infer project paths, credentials, hidden history, or undisclosed story facts. ',
+	'Return only a JSON object with one or more of goal, conflict, turn, outcome, emotionBeats, plus rationale. ',
+	'emotionBeats is an array of {"label":"beat","emotion":"emotion","intensity":0.0}. ',
+	'Every field is an optional candidate for author review and must never be described as already saved.'
+].join('');
 export const STORY_EXTRACTION_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的结构化故事事实提取器。',
 	'只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。',
@@ -61,6 +75,8 @@ export type AiJobType =
 	| 'storyforge-test'
 	| 'chapter-review'
 	| 'selection-rewrite'
+	| 'manuscript-continuation'
+	| 'scene-plan-generation'
 	| 'story-extraction'
 	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
@@ -400,6 +416,35 @@ const selectionRewriteResponseSchema = z.object({
 	potentialImpact: z.string().max(1_000).optional().default('')
 }).strict();
 
+const manuscriptContinuationResponseSchema = z.object({
+	candidates: z.array(z.object({
+		title: z.string().min(1).max(120),
+		content: z.string().min(1).max(16_000),
+		rationale: z.string().min(1).max(1_000)
+	}).strict()).min(1).max(3)
+}).strict();
+
+const sceneEmotionBeatSchema = z.object({
+	label: z.string().min(1).max(120),
+	emotion: z.string().min(1).max(120),
+	intensity: z.number().min(0).max(1)
+}).strict();
+
+const scenePlanResponseSchema = z.object({
+	goal: z.string().min(1).max(2_000).optional(),
+	conflict: z.string().min(1).max(2_000).optional(),
+	turn: z.string().min(1).max(2_000).optional(),
+	outcome: z.string().min(1).max(2_000).optional(),
+	emotionBeats: z.array(sceneEmotionBeatSchema).min(1).max(24).optional(),
+	rationale: z.string().min(1).max(2_000)
+}).strict().refine(value => (
+	value.goal !== undefined
+	|| value.conflict !== undefined
+	|| value.turn !== undefined
+	|| value.outcome !== undefined
+	|| value.emotionBeats !== undefined
+), { message: 'emptyScenePlanResponse' });
+
 const storyExtractionResponseSchema = z.object({
 	facts: z.array(z.object({
 		factType: z.enum([
@@ -495,6 +540,38 @@ export interface SelectionRewriteResponse {
 	readonly potentialImpact: string;
 }
 
+export type ManuscriptContinuationMode =
+	| 'continue-paragraph'
+	| 'finish-scene'
+	| 'three-directions';
+
+export interface ManuscriptContinuationCandidateResponse {
+	readonly title: string;
+	readonly content: string;
+	readonly rationale: string;
+}
+
+export type ScenePlanActionType =
+	| 'generate-goal'
+	| 'generate-outline'
+	| 'extract-outline'
+	| 'generate-emotion-beats';
+
+export interface SceneEmotionBeat {
+	readonly label: string;
+	readonly emotion: string;
+	readonly intensity: number;
+}
+
+export interface ScenePlanResponse {
+	readonly goal?: string;
+	readonly conflict?: string;
+	readonly turn?: string;
+	readonly outcome?: string;
+	readonly emotionBeats?: readonly SceneEmotionBeat[];
+	readonly rationale: string;
+}
+
 export interface StoryExtractionCandidate {
 	readonly factType:
 		| 'character-state'
@@ -531,6 +608,129 @@ export interface StoryKernelGenerationCandidateResponse {
 		readonly end: number;
 		readonly quote: string;
 	} | null;
+}
+
+const groundedContextItemSchema = z.object({
+	priority: z.enum(['P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6']),
+	kind: z.enum([
+		'instruction',
+		'selection',
+		'manuscript-excerpt',
+		'scene-manuscript',
+		'scene',
+		'character',
+		'location',
+		'item',
+		'world-rule',
+		'plot-thread',
+		'foreshadowing',
+		'information',
+		'adjacent-summary'
+	]),
+	title: z.string().min(1).max(160),
+	content: z.string().min(1).max(12_000)
+}).strict();
+
+const continuationContextSchema = z.object({
+	schemaVersion: z.literal(1),
+	actionType: z.enum(['continue-paragraph', 'finish-scene', 'three-directions']),
+	context: z.array(groundedContextItemSchema).min(2).max(64)
+}).strict().superRefine((value, context) => {
+	const instructions = value.context.filter(item => (
+		item.priority === 'P0' && item.kind === 'instruction'
+	));
+	const sources = value.context.filter(item => (
+		item.priority === 'P1'
+		&& (item.kind === 'manuscript-excerpt' || item.kind === 'scene-manuscript')
+	));
+	if (instructions.length !== 1 || sources.length !== 1) {
+		context.addIssue({ code: 'custom', message: 'invalidContinuationContext' });
+	}
+	if (value.actionType === 'finish-scene' && sources[0]?.kind !== 'scene-manuscript') {
+		context.addIssue({ code: 'custom', message: 'finishSceneRequiresSceneContext' });
+	}
+});
+
+const scenePlanContextSchema = z.object({
+	schemaVersion: z.literal(1),
+	actionType: z.enum([
+		'generate-goal',
+		'generate-outline',
+		'extract-outline',
+		'generate-emotion-beats'
+	]),
+	context: z.array(groundedContextItemSchema).min(2).max(64)
+}).strict().superRefine((value, context) => {
+	const instructions = value.context.filter(item => (
+		item.priority === 'P0' && item.kind === 'instruction'
+	));
+	const sources = value.context.filter(item => (
+		item.priority === 'P1' && item.kind === 'scene-manuscript'
+	));
+	if (instructions.length !== 1 || sources.length !== 1) {
+		context.addIssue({ code: 'custom', message: 'invalidScenePlanContext' });
+	}
+});
+
+function parseBoundedGroundedPayload<T>(
+	contextPackJson: string,
+	schema: z.ZodType<T>,
+	errorCode: string
+): T {
+	if (
+		!contextPackJson.trim()
+		|| contextPackJson.length > 40_000
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(contextPackJson)
+	) {
+		throw new Error(errorCode);
+	}
+	try {
+		return schema.parse(JSON.parse(contextPackJson));
+	} catch {
+		throw new Error(errorCode);
+	}
+}
+
+export function buildManuscriptContinuationMessages(
+	contextPackJson: string
+): readonly AiMessage[] {
+	parseBoundedGroundedPayload(
+		contextPackJson,
+		continuationContextSchema,
+		'invalidManuscriptContinuationContext'
+	);
+	return [
+		{ role: 'system', content: MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT },
+		{ role: 'user', content: contextPackJson }
+	];
+}
+
+export function parseManuscriptContinuationResponse(
+	response: string,
+	mode: ManuscriptContinuationMode
+): readonly ManuscriptContinuationCandidateResponse[] {
+	const parsed = manuscriptContinuationResponseSchema.parse(JSON.parse(response));
+	const expectedCount = mode === 'three-directions' ? 3 : 1;
+	if (parsed.candidates.length !== expectedCount) {
+		throw new Error('invalidContinuationCandidateCount');
+	}
+	return parsed.candidates;
+}
+
+export function buildScenePlanMessages(contextPackJson: string): readonly AiMessage[] {
+	parseBoundedGroundedPayload(
+		contextPackJson,
+		scenePlanContextSchema,
+		'invalidScenePlanContext'
+	);
+	return [
+		{ role: 'system', content: SCENE_PLAN_SYSTEM_PROMPT },
+		{ role: 'user', content: contextPackJson }
+	];
+}
+
+export function parseScenePlanResponse(response: string): ScenePlanResponse {
+	return scenePlanResponseSchema.parse(JSON.parse(response));
 }
 
 export function buildSelectionRewriteMessages(contextPackJson: string): readonly AiMessage[] {

@@ -30,6 +30,20 @@ pub const SELECTION_REWRITE_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"suggestion\":\"改写候选\",\"rationale\":\"简短依据\",\"potentialImpact\":\"对上下文的潜在影响\"}。",
     "候选只是建议，不得声称已经修改正文。"
 );
+pub const MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT: &str = concat!(
+    "You are Writing Buddy, an author-controlled Chinese fiction continuation assistant. ",
+    "Use only the supplied JSON context. Never ask for or infer project paths, credentials, hidden history, or undisclosed story facts. ",
+    "Return only a JSON object shaped as {\"candidates\":[{\"title\":\"short direction\",\"content\":\"continuation text\",\"rationale\":\"brief grounded reason\"}]}. ",
+    "For three-directions return exactly three materially different candidates; for all other modes return exactly one. ",
+    "Candidates are suggestions only and must never claim that the manuscript was modified."
+);
+pub const SCENE_PLAN_SYSTEM_PROMPT: &str = concat!(
+    "You are Writing Buddy, an author-controlled Chinese fiction scene-planning assistant. ",
+    "Use only the supplied JSON context. Never ask for or infer project paths, credentials, hidden history, or undisclosed story facts. ",
+    "Return only a JSON object with one or more of goal, conflict, turn, outcome, emotionBeats, plus rationale. ",
+    "emotionBeats is an array of {\"label\":\"beat\",\"emotion\":\"emotion\",\"intensity\":0.0}. ",
+    "Every field is an optional candidate for author review and must never be described as already saved."
+);
 pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的结构化故事事实提取器。",
     "只从用户 JSON 中 content 字段的正文提取明确写出的事实，不推断、不补全、不确认事实。",
@@ -215,6 +229,16 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_selection_rewrite_input(&self.messages[1].content)
             }
+            AiJobType::ManuscriptContinuation => {
+                self.messages[0].content == MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_manuscript_continuation_input(&self.messages[1].content)
+            }
+            AiJobType::ScenePlanGeneration => {
+                self.messages[0].content == SCENE_PLAN_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_scene_plan_input(&self.messages[1].content)
+            }
             AiJobType::StoryExtraction => {
                 self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -241,6 +265,8 @@ pub enum AiJobType {
     StoryforgeTest,
     ChapterReview,
     SelectionRewrite,
+    ManuscriptContinuation,
+    ScenePlanGeneration,
     StoryExtraction,
     StoryKernelGeneration,
 }
@@ -251,6 +277,8 @@ impl AiJobType {
             Self::StoryforgeTest => "storyforge-test",
             Self::ChapterReview => "chapter-review",
             Self::SelectionRewrite => "selection-rewrite",
+            Self::ManuscriptContinuation => "manuscript-continuation",
+            Self::ScenePlanGeneration => "scene-plan-generation",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
         }
@@ -353,6 +381,105 @@ fn validate_selection_rewrite_input(value: &str) -> bool {
                 .context
                 .iter()
                 .filter(|item| item.priority == "P1" && item.kind == "selection")
+                .count()
+                == 1
+    })
+}
+
+fn contains_forbidden_context_key(value: &str) -> bool {
+    let normalized = value.to_ascii_lowercase();
+    ["projectroot", "apikey", "credential", "absolutepath"]
+        .iter()
+        .any(|key| normalized.contains(key))
+}
+
+fn valid_grounded_context_item(item: &SelectionContextItem) -> bool {
+    matches!(
+        item.priority.as_str(),
+        "P0" | "P1" | "P2" | "P3" | "P4" | "P5" | "P6"
+    ) && matches!(
+        item.kind.as_str(),
+        "instruction"
+            | "selection"
+            | "manuscript-excerpt"
+            | "scene-manuscript"
+            | "scene"
+            | "character"
+            | "location"
+            | "item"
+            | "world-rule"
+            | "plot-thread"
+            | "foreshadowing"
+            | "information"
+            | "adjacent-summary"
+    ) && !item.title.trim().is_empty()
+        && item.title.len() <= 160
+        && !item.content.trim().is_empty()
+        && item.content.len() <= 12_000
+}
+
+fn validate_manuscript_continuation_input(value: &str) -> bool {
+    if value.len() > 40_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<SelectionRewriteInput>(value).is_ok_and(|input| {
+        let source = input.context.iter().find(|item| item.priority == "P1");
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "continue-paragraph" | "finish-scene" | "three-directions"
+            )
+            && (2..=64).contains(&input.context.len())
+            && input.context.iter().all(valid_grounded_context_item)
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P0" && item.kind == "instruction")
+                .count()
+                == 1
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P1")
+                .count()
+                == 1
+            && source.is_some_and(|item| {
+                matches!(
+                    item.kind.as_str(),
+                    "manuscript-excerpt" | "scene-manuscript"
+                ) && (input.action_type != "finish-scene" || item.kind == "scene-manuscript")
+            })
+    })
+}
+
+fn validate_scene_plan_input(value: &str) -> bool {
+    if value.len() > 40_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<SelectionRewriteInput>(value).is_ok_and(|input| {
+        input.schema_version == 1
+            && matches!(
+                input.action_type.as_str(),
+                "generate-goal" | "generate-outline" | "extract-outline" | "generate-emotion-beats"
+            )
+            && (2..=64).contains(&input.context.len())
+            && input.context.iter().all(valid_grounded_context_item)
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P0" && item.kind == "instruction")
+                .count()
+                == 1
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P1" && item.kind == "scene-manuscript")
+                .count()
+                == 1
+            && input
+                .context
+                .iter()
+                .filter(|item| item.priority == "P1")
                 .count()
                 == 1
     })
@@ -596,9 +723,9 @@ pub struct AiUsageSummary {
 mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
-        CHAPTER_REVIEW_SYSTEM_PROMPT, ResponseFormat, SELECTION_REWRITE_SYSTEM_PROMPT,
-        STORY_EXTRACTION_SYSTEM_PROMPT, STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
-        STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
+        CHAPTER_REVIEW_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, ResponseFormat,
+        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
+        STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT, ThinkingMode,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -714,6 +841,92 @@ mod tests {
             "actionType": "polish",
             "projectRoot": "C:/secret",
             "context": []
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn continuation_requires_a_bounded_cursor_or_scene_source() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::ManuscriptContinuation;
+        request.messages[0].content = MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "three-directions",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "Author instruction",
+                "content": "Return three directions."
+            }, {
+                "priority": "P1",
+                "kind": "manuscript-excerpt",
+                "title": "Before cursor",
+                "content": "The rain stopped."
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "finish-scene",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "Author instruction",
+                "content": "Finish the scene."
+            }, {
+                "priority": "P1",
+                "kind": "manuscript-excerpt",
+                "title": "Wrong source",
+                "content": "The rain stopped."
+            }]
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn scene_plan_requires_current_scene_without_sensitive_keys() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::ScenePlanGeneration;
+        request.messages[0].content = SCENE_PLAN_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-outline",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "Author instruction",
+                "content": "Generate an outline."
+            }, {
+                "priority": "P1",
+                "kind": "scene-manuscript",
+                "title": "Current scene",
+                "content": "The rain stopped."
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "actionType": "generate-outline",
+            "context": [{
+                "priority": "P0",
+                "kind": "instruction",
+                "title": "Author instruction",
+                "content": "Generate an outline."
+            }, {
+                "priority": "P1",
+                "kind": "scene-manuscript",
+                "title": "Current scene",
+                "content": "credential should not be sent"
+            }]
         })
         .to_string();
         assert!(request.validate().is_err());

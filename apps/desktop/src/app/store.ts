@@ -11,7 +11,9 @@ import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
 import {
 	DesktopStoryRepository,
-	type ContextPackRequest
+	type SelectionRewriteActionType,
+	type ManuscriptContinuationMode,
+	type ScenePlanActionType
 } from '@writing-buddy/story-kernel';
 import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
 import { create } from 'zustand';
@@ -47,7 +49,15 @@ export type StoryViewId =
 export type AssistantActionRequest =
 	| {
 		readonly kind: 'rewrite';
-		readonly actionType: ContextPackRequest['actionType'];
+		readonly actionType: SelectionRewriteActionType;
+	}
+	| {
+		readonly kind: 'continuation';
+		readonly mode: ManuscriptContinuationMode;
+	}
+	| {
+		readonly kind: 'scene-plan';
+		readonly actionType: ScenePlanActionType;
 	}
 	| {
 		readonly kind: 'story-kernel';
@@ -95,6 +105,7 @@ interface AppState extends PersistedWorkspace {
 		readonly detectedAt: string;
 	};
 	readonly selection?: { start: number; end: number; text: string };
+	readonly cursorOffset: number;
 	readonly search: string;
 	readonly assistantOpen: boolean;
 	readonly assistantIntent?: AssistantActionIntent;
@@ -139,6 +150,7 @@ interface AppState extends PersistedWorkspace {
 	readonly verifyExternalChange: () => Promise<void>;
 	readonly reloadProject: () => Promise<void>;
 	readonly setSelection: (selection?: { start: number; end: number; text: string }) => void;
+	readonly setCursorOffset: (cursorOffset: number) => void;
 	readonly setIssues: (issues: readonly ReviewIssue[]) => void;
 	readonly setMode: (mode: RailMode) => void;
 	readonly setStoryView: (view: StoryViewId) => void;
@@ -200,6 +212,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	issues: [],
 	reviewHash: '',
 	search: '',
+	cursorOffset: 0,
 	assistantOpen: true,
 	dockOpen: true,
 
@@ -694,6 +707,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	setSelection(selection) { set({ selection }); },
+	setCursorOffset(cursorOffset) { set({ cursorOffset: Math.max(0, cursorOffset) }); },
 	setIssues(issues) {
 		set({ issues, dockOpen: true });
 		window.clearTimeout(reviewPersistTimer);
@@ -771,6 +785,8 @@ declare global {
 	interface Window {
 		readonly __WRITING_BUDDY_DEVTOOLS__?: {
 			readonly selectManuscriptPrefix: (length?: number) => boolean;
+			readonly setManuscriptCursor: (offset?: number) => boolean;
+			readonly enableBrowserAiFixture: () => Promise<boolean>;
 		};
 	}
 }
@@ -785,6 +801,22 @@ if (import.meta.env.DEV && typeof window !== 'undefined') {
 				if (!text) return false;
 				state.setSelection({ start: 0, end: text.length, text });
 				state.openAssistant();
+				return true;
+			},
+			setManuscriptCursor(offset = 56): boolean {
+				const state = useAppStore.getState();
+				if (!state.session?.content) return false;
+				state.setSelection(undefined);
+				state.setCursorOffset(Math.min(
+					Math.max(0, offset),
+					state.session.content.length
+				));
+				state.openAssistant();
+				return true;
+			},
+			async enableBrowserAiFixture(): Promise<boolean> {
+				if ('__TAURI_INTERNALS__' in window) return false;
+				await desktopBridge.saveDeepSeekKey('browser-fixture');
 				return true;
 			}
 		}

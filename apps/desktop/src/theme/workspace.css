@@ -745,6 +745,103 @@
 	background: var(--surface-subtle);
 }
 
+.ai-continuation-menu {
+	position: relative;
+	z-index: 12;
+}
+
+.ai-continuation-menu summary {
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	padding: 0 12px;
+	list-style: none;
+	color: var(--accent-strong);
+	background: color-mix(in srgb, var(--accent) 9%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border-subtle));
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 700;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.ai-continuation-menu summary::-webkit-details-marker {
+	display: none;
+}
+
+.ai-continuation-menu summary:hover {
+	background: color-mix(in srgb, var(--accent) 15%, var(--surface-raised));
+	border-color: var(--accent);
+}
+
+.ai-continuation-menu summary:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+.ai-continuation-menu[open] summary > svg:last-child {
+	transform: rotate(180deg);
+}
+
+.ai-continuation-menu > div {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	width: 250px;
+	display: grid;
+	gap: 5px;
+	padding: 7px;
+	background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+	border: 1px solid var(--border-subtle);
+	border-radius: 13px;
+	box-shadow: var(--shadow-float);
+	backdrop-filter: blur(14px);
+}
+
+.ai-continuation-menu > div button {
+	min-height: 54px;
+	display: grid;
+	grid-template-columns: 22px minmax(0, 1fr);
+	align-items: center;
+	gap: 9px;
+	padding: 8px 10px;
+	color: var(--text-primary);
+	text-align: left;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 9px;
+	cursor: pointer;
+}
+
+.ai-continuation-menu > div button:hover,
+.ai-continuation-menu > div button:focus-visible {
+	background: var(--surface-subtle);
+	border-color: var(--border-subtle);
+	outline: none;
+}
+
+.ai-continuation-menu > div button > svg {
+	color: var(--accent-strong);
+}
+
+.ai-continuation-menu > div button span {
+	display: grid;
+	gap: 3px;
+}
+
+.ai-continuation-menu > div button strong {
+	font-size: 13px;
+}
+
+.ai-continuation-menu > div button small {
+	color: var(--text-secondary);
+	font-size: 11px;
+}
+
 .canvas-surface {
 	position: relative;
 	min-width: 0;
@@ -1149,7 +1246,7 @@
 
 .assistant-tabs {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	flex: 0 0 44px;
 	border-bottom: 1px solid var(--border-subtle);
 }

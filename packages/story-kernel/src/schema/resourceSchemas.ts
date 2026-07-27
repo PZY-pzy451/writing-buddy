@@ -106,6 +106,11 @@ export const sceneSchema = z.object({
 	conflict: z.string().max(5000).optional(),
 	turn: z.string().max(5000).optional(),
 	outcome: z.string().max(5000).optional(),
+	emotionBeats: z.array(z.object({
+		label: z.string().trim().min(1).max(160),
+		emotion: z.string().trim().min(1).max(160),
+		intensity: z.number().min(0).max(1)
+	}).strict()).max(24).optional(),
 	plotThreadIds: z.array(idFor('plotThread')),
 	revealInformationIds: z.array(idFor('information')),
 	foreshadowingIds: z.array(idFor('foreshadowing')),

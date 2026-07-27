@@ -50,6 +50,7 @@ export function ChapterEditor(): React.JSX.Element {
 	const selection = useAppStore(state => state.selection);
 	const setContent = useAppStore(state => state.setContent);
 	const setSelection = useAppStore(state => state.setSelection);
+	const setCursorOffset = useAppStore(state => state.setCursorOffset);
 	const updateCursor = useAppStore(state => state.updateCursor);
 	const theme = useAppStore(state => state.theme);
 	const readOnly = useAppStore(state => state.snapshot?.readOnly ?? true);
@@ -106,7 +107,9 @@ export function ChapterEditor(): React.JSX.Element {
 			if (!model) {
 				return;
 			}
-			setCurrentOffset(model.getOffsetAt(event.selection.getPosition()));
+			const offset = model.getOffsetAt(event.selection.getPosition());
+			setCurrentOffset(offset);
+			setCursorOffset(offset);
 			if (event.selection.isEmpty()) {
 				setSelection(undefined);
 				return;
@@ -144,10 +147,12 @@ export function ChapterEditor(): React.JSX.Element {
 			editor.setScrollTop(session.state.cursor.scrollTop);
 			const model = editor.getModel();
 			if (model) {
-				setCurrentOffset(model.getOffsetAt({
+				const offset = model.getOffsetAt({
 					lineNumber: session.state.cursor.lineNumber,
 					column: session.state.cursor.column
-				}));
+				});
+				setCurrentOffset(offset);
+				setCursorOffset(offset);
 				const reveal = useAppStore.getState().pendingReveal;
 				if (reveal?.resourceId === session.state.resourceId) {
 					const revealPosition = model.getPositionAt(reveal.offset);
@@ -157,7 +162,7 @@ export function ChapterEditor(): React.JSX.Element {
 				}
 			}
 		}
-	}, [session, setSelection, updateCursor]);
+	}, [session, setCursorOffset, setSelection, updateCursor]);
 
 	useEffect(() => () => window.clearTimeout(cursorTimerRef.current), []);
 
@@ -249,8 +254,9 @@ export function ChapterEditor(): React.JSX.Element {
 		editor.revealPositionInCenter(position);
 		editor.focus();
 		setCurrentOffset(offset);
+		setCursorOffset(offset);
 		return true;
-	}, []);
+	}, [setCursorOffset]);
 
 	const updateScenes = useCallback((nextScenes: readonly StoryScene[]) => {
 		setScenes(nextScenes);

@@ -15,7 +15,7 @@ import {
 	serializeContextPackForAi,
 	toStoryChapterId,
 	type ContextPack,
-	type ContextPackRequest,
+	type SelectionRewriteActionType,
 	type StateRecord
 } from '@writing-buddy/story-kernel';
 import {
@@ -42,7 +42,7 @@ import './SelectionRewritePanel.css';
 
 const rewriteService = new SelectionRewriteService(new EditTransactionService());
 const contextBuilder = new DeterministicContextPackBuilder();
-const actionInstructions: Readonly<Record<ContextPackRequest['actionType'], string>> = {
+const actionInstructions: Readonly<Record<SelectionRewriteActionType, string>> = {
 	polish: '保持事实、视角和人物语气，只润色当前选区。',
 	concise: '压缩重复表达，只返回更精炼的当前选区。',
 	expand: '扩展当前选区的感官、动作与叙事细节，不续写选区之外的情节。',
@@ -58,7 +58,7 @@ export interface SelectionRewritePanelProps {
 	readonly content: string;
 	readonly selection: { readonly start: number; readonly end: number; readonly text: string };
 	readonly theme: 'vs' | 'vs-dark';
-	readonly actionType: ContextPackRequest['actionType'];
+	readonly actionType: SelectionRewriteActionType;
 	readonly onApply: (start: number, end: number, text: string) => void;
 	readonly onReplaceDocument: (content: string) => void;
 	readonly onSaveNote?: (candidate: RewriteCandidate) => void;

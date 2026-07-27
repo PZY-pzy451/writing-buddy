@@ -336,6 +336,23 @@ function browserStoryBase(id: string, type: StoryResourceType, title: string, ta
 }
 const browserStoryFixtures: readonly Record<string, unknown>[] = [
 	{
+		...browserStoryBase('scene:station-rain', 'scene', '雨夜旧车站', ['开场场景']),
+		chapterId: 'chapter:chapter-a11ce001',
+		manuscriptRange: {
+			start: 0,
+			end: browserFiles.get('chapters/chapter-001.md')?.length ?? 1,
+			revision: 1,
+			quote: browserFiles.get('chapters/chapter-001.md')?.slice(0, 120) ?? '雨夜旧车站'
+		},
+		narrativeOrder: 1,
+		locationIds: ['location:old-station'],
+		participantIds: ['character:lin-mo', 'character:shen-qing'],
+		plotThreadIds: ['plot-thread:missing-notebook'],
+		revealInformationIds: ['information:notebook-owner'],
+		foreshadowingIds: ['foreshadowing:clock-2317'],
+		evidenceIds: ['evidence:station-meeting']
+	},
+	{
 		id: 'character:lin-mo',
 		type: 'character',
 		title: '林墨',
@@ -1172,6 +1189,10 @@ class BrowserDesktopBridge implements DesktopBridge {
 			? browserReviewDeltas(request)
 			: request.jobType === 'selection-rewrite'
 				? browserRewriteDeltas(request)
+				: request.jobType === 'manuscript-continuation'
+					? browserContinuationDeltas(request)
+					: request.jobType === 'scene-plan-generation'
+						? browserScenePlanDeltas(request)
 				: request.jobType === 'story-extraction'
 					? browserStoryExtractionDeltas(request)
 					: request.jobType === 'story-kernel-generation'
@@ -1243,6 +1264,60 @@ function browserRewriteDeltas(request: AiGenerateRequest): readonly string[] {
 		rationale: '根据作者勾选的场景、人物和故事规则，压缩重复表达并保持原有事实。',
 		potentialImpact: '只影响当前选区，不改变人物知识或剧情线状态。'
 	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserContinuationDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly actionType?: string;
+		readonly context?: readonly { readonly priority?: string; readonly content?: string }[];
+	};
+	const source = decoded.context?.find(item => item.priority === 'P1')?.content ?? '';
+	const tail = source.slice(-32);
+	const directions = [{
+		title: '沿声音追出去',
+		content: `${tail ? '钟声越过雨幕，' : ''}林越抬起头，循着雾里忽明忽暗的信号灯走向站台尽头。`,
+		rationale: '延续当前感官线索并推进人物行动。'
+	}, {
+		title: '留在原地观察',
+		content: '林越没有立刻追上去。他关掉手电，让黑暗替自己听清铁轨下方第二种脚步声。',
+		rationale: '降低动作速度，以观察和悬念积累压力。'
+	}, {
+		title: '转向隐藏入口',
+		content: '停摆的旧钟忽然响了十三下，售票窗后那扇没有把手的门随之弹开一道缝。',
+		rationale: '利用现有车站意象开启新的空间选择。'
+	}];
+	const response = JSON.stringify({
+		candidates: decoded.actionType === 'three-directions' ? directions : [directions[0]]
+	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserScenePlanDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as { readonly actionType?: string };
+	const full = {
+		goal: '确认旧车站钟声的来源，并找到失踪者留下的线索。',
+		conflict: '封闭站房与逼近的脚步让林越无法同时追踪两条线索。',
+		turn: '停摆多年的旧钟突然响起，隐藏入口随之出现。',
+		outcome: '林越进入地下通道，但暴露了自己的位置。',
+		emotionBeats: [
+			{ label: '迟疑', emotion: '不安', intensity: 0.36 },
+			{ label: '逼近', emotion: '警觉', intensity: 0.72 },
+			{ label: '越界', emotion: '决绝', intensity: 0.9 }
+		],
+		rationale: '字段只基于当前场景的车站、钟声与追踪冲突组织，供作者逐项确认。'
+	};
+	const response = JSON.stringify(decoded.actionType === 'generate-goal'
+		? { goal: full.goal, rationale: full.rationale }
+		: decoded.actionType === 'generate-emotion-beats'
+			? { emotionBeats: full.emotionBeats, rationale: full.rationale }
+			: full);
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
