@@ -4,15 +4,19 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Story Kernel scene grounding repair is active on
-`codex/story-kernel-scene-grounding`. A generated scene candidate can be
-blocked when the model omits chapter/range/order fields or returns correct
-evidence text with inaccurate indices, despite the application already owning
-the authoritative source position. Contract:
-`docs/plans/020-story-kernel-scene-grounding.md`.
+No implementation milestone is active. The Story Kernel scene-grounding
+repair is accepted on `codex/story-kernel-scene-grounding`.
 
 ## Completed
 
+- Scene generation now derives chapter/range/revision/order from local
+  manuscript state, safely re-anchors unique evidence quotes, and keeps
+  ambiguous, overlapping, or multi-scene ranges blocked.
+- Scene-grounding acceptance: 97 frontend files / 331 tests, 51 Rust tests,
+  Paper/Midnight responsive checks, fresh Tauri packaging, and isolated native
+  close with exit code 0.
+- Story Kernel scene-grounding evidence in
+  `docs/acceptance/028-story-kernel-scene-grounding-2026-07-28.md`.
 - Shared 32/40/44-pixel control tiers, 16/18/20-pixel button icon tiers,
   stable hover feedback, readable full-opacity disabled states, and shared
   card geometry across the desktop client.

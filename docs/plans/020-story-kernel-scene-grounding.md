@@ -1,7 +1,7 @@
 # Story Kernel scene grounding repair
 
 Updated: 2026-07-28
-Status: Active
+Status: Accepted
 
 ## Observed failure
 
