@@ -4,11 +4,12 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project structure drag Y3 is complete on
-`codex/project-structure-drag-y3`. Volume and chapter reordering, cross-volume
-chapter moves, pointer/keyboard parity, atomic revision-safe persistence,
-reopen verification, and inverse-command Undo are accepted. Evidence is in
-`docs/acceptance/021-project-structure-drag-y3-2026-07-28.md`.
+Project association drag Y4 is complete on
+`codex/project-association-drag-y4`. Guarded character/item/foreshadowing
+association, narrative timeline reordering, plot lifecycle dragging,
+pointer/keyboard parity, atomic revision-safe persistence, and Undo are
+accepted. Evidence is in
+`docs/acceptance/022-project-association-drag-y4-2026-07-28.md`.
 
 ## Completed
 
@@ -208,6 +209,20 @@ reopen verification, and inverse-command Undo are accepted. Evidence is in
   normal close passed with exit code 0
 - Project structure drag Y3 evidence in
   `docs/acceptance/021-project-structure-drag-y3-2026-07-28.md`
+- Guarded character, item, and foreshadowing association with explicit
+  scene/position/meaning confirmation and no AI invocation
+- Narrative timeline reordering with story-time lockout and pre-write
+  causality conflict confirmation
+- Plot-thread lifecycle dragging with no-op protection, revision-safe save,
+  reload consistency, and Undo
+- Responsive 1440/1024/800 evidence with zero document/page overflow, 44px
+  controls, bottom-sheet confirmation, visible focus, and reduced motion
+- Full Node acceptance: 86 files / 279 tests; Rust: 49 passed / 2 explicit
+  external gates ignored
+- Fresh portable EXE and NSIS installer built; isolated native startup and
+  normal close passed with exit code 0
+- Project association drag Y4 evidence in
+  `docs/acceptance/022-project-association-drag-y4-2026-07-28.md`
 
 ## Open
 
@@ -221,9 +236,9 @@ reopen verification, and inverse-command Undo are accepted. Evidence is in
 
 ## Next
 
-Y4 resource association dragging is the next handoff gate. Scene
-cross-chapter movement first needs a manuscript-anchor migration contract;
-do not implement it as a synthetic array reorder.
+Continue with the handoff's shared highlight and visual-state convergence.
+Scene cross-chapter movement still requires a manuscript-anchor migration
+contract; do not implement it as a synthetic array reorder.
 
 ## Project Creation Y0–Y2 complete
 

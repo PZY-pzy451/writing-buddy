@@ -1,0 +1,70 @@
+{
+  "date": "2026-07-28",
+  "gate": "project-association-drag-y4",
+  "browser": {
+    "driver": "Playwright 1.55.1",
+    "binary": "Microsoft Edge",
+    "consoleErrors": 0,
+    "pageErrors": 0
+  },
+  "viewports": [
+    {
+      "name": "association-desktop",
+      "width": 1440,
+      "height": 1000,
+      "documentOverflowX": 0,
+      "pageOverflowX": 0,
+      "sourceCount": 6,
+      "sceneTargetCount": 1,
+      "characterTargetCount": 3
+    },
+    {
+      "name": "association-compact",
+      "width": 1024,
+      "height": 768,
+      "documentOverflowX": 0,
+      "pageOverflowX": 0,
+      "controlsBelow44": 0,
+      "characterTargetCount": 3,
+      "confirmationMode": "bottom-sheet"
+    },
+    {
+      "name": "association-narrow",
+      "width": 800,
+      "height": 720,
+      "documentOverflowX": 0,
+      "pageOverflowX": 0,
+      "workspaceOverflowX": 116,
+      "workspaceOverflowContained": true,
+      "storySidebarWidth": 220,
+      "confirmationMode": "bottom-sheet"
+    },
+    {
+      "name": "timeline",
+      "width": 1440,
+      "height": 1000,
+      "documentOverflowX": 0,
+      "controlsBelow44": 0,
+      "dragHandleCount": 4,
+      "dragHandleWidth": 44,
+      "dragHandleHeight": 64
+    },
+    {
+      "name": "plot-board",
+      "width": 1440,
+      "height": 1000,
+      "documentOverflowX": 0,
+      "pageOverflowX": 0,
+      "controlsBelow44": 0,
+      "cardCount": 2
+    }
+  ],
+  "interactions": {
+    "associationCommitAndUndo": "passed",
+    "narrowBottomSheet": "passed",
+    "storyTimeGuard": "passed",
+    "causalityConflictCancel": "passed",
+    "plotStatusCommitAndUndo": "passed",
+    "plotInspectorReload": "passed"
+  }
+}
