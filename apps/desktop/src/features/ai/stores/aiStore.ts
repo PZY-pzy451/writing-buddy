@@ -3,9 +3,7 @@ import {
 	STORYFORGE_SYSTEM_PROMPT,
 	chooseDefaultModel,
 	nextAiJobState,
-	publicAiErrorMessage,
 	type AiBalance,
-	type AiErrorCode,
 	type AiGenerateRequest,
 	type AiJobState,
 	type AiModel,
@@ -19,6 +17,9 @@ import {
 } from '@writing-buddy/ai';
 import { create } from 'zustand';
 import { desktopBridge } from '../../../platform/bridge';
+import { normalizeAiError } from '../errors/AiErrorPresentation';
+
+export { normalizeAiError } from '../errors/AiErrorPresentation';
 
 interface AiStore {
 	readonly initialized: boolean;
@@ -56,40 +57,6 @@ const emptyUsageSummary: AiUsageSummary = {
 	totalTokens: 0,
 	requests: 0
 };
-
-export function normalizeAiError(error: unknown): PublicAiError {
-	if (typeof error === 'object' && error !== null && 'code' in error) {
-		const candidate = error as Partial<PublicAiError>;
-		const code = candidate.code as AiErrorCode;
-		return {
-			code,
-			message: candidate.message ?? publicAiErrorMessage(code),
-			retryable: candidate.retryable ?? false,
-			httpStatus: candidate.httpStatus
-		};
-	}
-	const raw = error instanceof Error ? error.message : String(error);
-	const knownCodes: readonly AiErrorCode[] = [
-		'invalid_configuration',
-		'authentication_failed',
-		'insufficient_balance',
-		'invalid_request',
-		'rate_limited',
-		'provider_overloaded',
-		'provider_server_error',
-		'network_unavailable',
-		'connection_timeout',
-		'first_content_timeout',
-		'stream_idle_timeout',
-		'stream_parse_failed',
-		'stream_incomplete',
-		'empty_response',
-		'cancelled',
-		'secret_store_failed'
-	];
-	const code = knownCodes.find(candidate => raw.includes(candidate)) ?? 'unknown';
-	return { code, message: publicAiErrorMessage(code), retryable: false };
-}
 
 export const useAiStore = create<AiStore>((set, get) => {
 	const onStreamEvent = (event: AiStreamEvent) => {

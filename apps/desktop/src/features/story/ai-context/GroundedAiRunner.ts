@@ -8,6 +8,7 @@ import {
 	type AiUsage
 } from '@writing-buddy/ai';
 import { desktopBridge } from '../../../platform/bridge';
+import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 
 export interface GroundedAiProgress {
 	readonly output: string;
@@ -69,14 +70,11 @@ export async function runGroundedJsonJob(input: {
 			if (event.type === 'completed') {
 				finish({ output, ...(usage ? { usage } : {}) });
 			}
-			if (event.type === 'failed') finish(undefined, new Error(event.error.message));
-			if (event.type === 'cancelled') finish(undefined, new Error('生成已取消。'));
+			if (event.type === 'failed') finish(undefined, toAiRequestError(event.error));
+			if (event.type === 'cancelled') finish(undefined, toAiRequestError('cancelled'));
 		};
 		void desktopBridge.startAiGeneration(request, listener).catch(reason => {
-			finish(
-				undefined,
-				reason instanceof Error ? reason : new Error('AI 生成失败。')
-			);
+			finish(undefined, toAiRequestError(reason));
 		});
 	});
 }

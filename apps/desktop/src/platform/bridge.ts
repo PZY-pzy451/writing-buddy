@@ -8,6 +8,7 @@ import {
 	type AiModel,
 	type AiProviderPreferences,
 	type AiProviderStatus,
+	type PublicAiError,
 	type AiStreamEvent,
 	type AiUsageSummary,
 	type SecretStatus
@@ -43,6 +44,10 @@ import {
 
 function isTauriRuntime(): boolean {
 	return '__TAURI_INTERNALS__' in window;
+}
+
+function browserAiFixtureError(error: PublicAiError): Error & PublicAiError {
+	return Object.assign(new Error(error.message), error);
 }
 
 class TauriDesktopBridge implements DesktopBridge {
@@ -845,6 +850,7 @@ let browserAiUsageSummary: AiUsageSummary = {
 	requests: 0
 };
 const browserCancelledJobs = new Set<string>();
+let browserRateLimitFailuresRemaining = 1;
 let browserStoryIndexStatus: StoryIndexStatus = {
 	schemaVersion: 1,
 	ready: false,
@@ -1420,6 +1426,33 @@ class BrowserDesktopBridge implements DesktopBridge {
 	): Promise<void> {
 		if (!browserAiSecretStatus.configured) {
 			throw new Error('authentication_failed');
+		}
+		const qaInstruction = request.messages.map(message => message.content).join('\n');
+		if (qaInstruction.includes('[QA_AUTH_ERROR]')) {
+			throw browserAiFixtureError({
+				code: 'authentication_failed',
+				message: 'API Key 无效或已经失效。',
+				retryable: false,
+				httpStatus: 401
+			});
+		}
+		if (qaInstruction.includes('[QA_RATE_LIMIT]')) {
+			if (browserRateLimitFailuresRemaining > 0) {
+				browserRateLimitFailuresRemaining -= 1;
+				throw browserAiFixtureError({
+					code: 'rate_limited',
+					message: '请求过多，请稍后再试。',
+					retryable: true,
+					httpStatus: 429
+				});
+			}
+		}
+		if (qaInstruction.includes('[QA_UNKNOWN_ERROR]')) {
+			throw browserAiFixtureError({
+				code: 'unknown',
+				message: 'AI 请求未能启动。',
+				retryable: false
+			});
 		}
 		browserCancelledJobs.delete(request.jobId);
 		listener({ type: 'job_started', jobId: request.jobId });

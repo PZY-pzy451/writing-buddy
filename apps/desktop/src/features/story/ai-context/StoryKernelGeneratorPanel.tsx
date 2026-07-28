@@ -5,6 +5,8 @@ import {
 	ChevronRight,
 	DatabaseZap,
 	LoaderCircle,
+	RefreshCcw,
+	Settings2,
 	ShieldCheck,
 	Sparkles,
 	TextQuote,
@@ -26,7 +28,13 @@ import {
 	type StoryRepository
 } from '@writing-buddy/story-kernel';
 import { useEffect, useMemo, useState } from 'react';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	describeAiFailure,
+	toAiRequestError,
+	type AiFailurePresentation
+} from '../../ai/errors/AiErrorPresentation';
 import {
 	AiCandidateFrame,
 	AiCandidateStatus,
@@ -157,11 +165,11 @@ async function defaultRunGeneration(
 			if (event.type === 'content_delta') output += event.text;
 			onProgress(state, output);
 			if (event.type === 'completed') settle(output);
-			if (event.type === 'failed') settle(undefined, new Error(event.error.message));
-			if (event.type === 'cancelled') settle(undefined, new Error('AI 生成已取消。'));
+			if (event.type === 'failed') settle(undefined, toAiRequestError(event.error));
+			if (event.type === 'cancelled') settle(undefined, toAiRequestError('cancelled'));
 		};
 		void desktopBridge.startAiGeneration(request, listener).catch(reason => {
-			settle(undefined, reason instanceof Error ? reason : new Error('AI 生成失败。'));
+			settle(undefined, toAiRequestError(reason));
 		});
 	});
 }
@@ -187,6 +195,7 @@ function StoryKernelGeneratorPanelContent(
 	props: StoryKernelGeneratorPanelProps
 ): React.JSX.Element {
 	const presetId = props.preset?.id;
+	const setMode = useAppStore(state => state.setMode);
 	const repository = useMemo(
 		() => props.repository
 			?? new DesktopStoryRepository(props.projectRoot, desktopBridge),
@@ -214,6 +223,7 @@ function StoryKernelGeneratorPanelContent(
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [busyAction, setBusyAction] = useState<'confirm' | 'reject'>();
 	const [error, setError] = useState('');
+	const [generationFailure, setGenerationFailure] = useState<AiFailurePresentation>();
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const generating = !terminalStates.includes(jobState);
 
@@ -249,6 +259,7 @@ function StoryKernelGeneratorPanelContent(
 			? { content: props.selection.text, baseOffset: props.selection.start }
 			: { content: props.content, baseOffset: 0 };
 		setError('');
+		setGenerationFailure(undefined);
 		setStreamedLength(0);
 		setJobState('created');
 		setBatch(undefined);
@@ -293,13 +304,17 @@ function StoryKernelGeneratorPanelContent(
 			setJobState('completed');
 		} catch (reason) {
 			setJobState('failed');
-			setError(errorMessage(reason));
+			setGenerationFailure(describeAiFailure(reason));
 		}
 	};
 
 	const cancel = async () => {
 		if (!activeJobId) return;
-		await desktopBridge.cancelAiJob(activeJobId);
+		try {
+			await desktopBridge.cancelAiJob(activeJobId);
+		} catch (reason) {
+			setGenerationFailure(describeAiFailure(reason));
+		}
 	};
 
 	const confirmSelected = async () => {
@@ -421,6 +436,45 @@ function StoryKernelGeneratorPanelContent(
 					<AlertTriangle size={16} />{error}
 				</p>
 			) : null}
+			{generationFailure ? (
+				<section
+					className={`kernel-generation-failure is-${generationFailure.code}`}
+					role={generationFailure.code === 'cancelled' ? 'status' : 'alert'}
+					aria-live={generationFailure.code === 'cancelled' ? 'polite' : 'assertive'}
+				>
+					<header>
+						<AlertTriangle size={18} aria-hidden="true" />
+						<span>
+							<strong>{generationFailure.title}</strong>
+							<small>{generationFailure.message}</small>
+						</span>
+					</header>
+					<p>{generationFailure.guidance}</p>
+					<details>
+						<summary>诊断信息</summary>
+						<code>{generationFailure.code}</code>
+						{generationFailure.httpStatus !== undefined
+							? <small>HTTP {generationFailure.httpStatus}</small>
+							: null}
+					</details>
+					{generationFailure.recoveryAction !== 'none' ? (
+						<div className="kernel-generation-failure-actions">
+							{generationFailure.recoveryAction === 'retry' ? (
+								<button type="button" onClick={() => void generate()}>
+									<RefreshCcw size={16} aria-hidden="true" />
+									使用相同条件重试
+								</button>
+							) : null}
+							{generationFailure.recoveryAction === 'settings' ? (
+								<button type="button" onClick={() => setMode('settings')}>
+									<Settings2 size={16} aria-hidden="true" />
+									检查 AI 设置
+								</button>
+							) : null}
+						</div>
+					) : null}
+				</section>
+			) : null}
 
 			{batch ? (
 				<section className="kernel-candidates" aria-label="Story Kernel 候选">
@@ -458,11 +512,11 @@ function StoryKernelGeneratorPanelContent(
 						))}
 					</div>
 				</section>
-			) : (
+			) : !generationFailure ? (
 				<p className="kernel-generator-empty" aria-live="polite">
 					AI 返回的数据会先进入候选区，校验通过并经你确认后才会原子写入。
 				</p>
-			)}
+			) : null}
 		</section>
 	);
 }

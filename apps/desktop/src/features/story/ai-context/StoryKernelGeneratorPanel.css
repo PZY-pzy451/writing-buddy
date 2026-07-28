@@ -55,6 +55,104 @@
 	border-color: color-mix(in srgb, var(--danger) 38%, var(--border-subtle));
 }
 
+.kernel-generation-failure {
+	display: grid;
+	gap: 10px;
+	padding: 12px;
+	color: var(--highlight-conflict-fg);
+	background: var(--highlight-conflict-bg);
+	border: 1px solid color-mix(in srgb, var(--highlight-conflict-fg) 42%, var(--border-subtle));
+	border-left-width: 3px;
+	border-radius: var(--radius-control);
+}
+
+.kernel-generation-failure.is-cancelled {
+	color: var(--text-secondary);
+	background: var(--surface-canvas);
+	border-color: var(--border-subtle);
+}
+
+.kernel-generation-failure > header {
+	display: grid;
+	grid-template-columns: 20px minmax(0, 1fr);
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.kernel-generation-failure > header > span {
+	display: grid;
+	gap: 3px;
+	min-width: 0;
+}
+
+.kernel-generation-failure > header strong,
+.kernel-generation-failure > header small,
+.kernel-generation-failure > p {
+	overflow-wrap: anywhere;
+}
+
+.kernel-generation-failure > header small {
+	color: currentColor;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.kernel-generation-failure > p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 11px;
+	line-height: 1.55;
+}
+
+.kernel-generation-failure details {
+	display: grid;
+	gap: 6px;
+}
+
+.kernel-generation-failure summary {
+	display: flex;
+	align-items: center;
+	min-height: 44px;
+	cursor: pointer;
+	color: var(--text-secondary);
+	font-size: 11px;
+	font-weight: 650;
+}
+
+.kernel-generation-failure code,
+.kernel-generation-failure details small {
+	display: inline-flex;
+	width: fit-content;
+	max-width: 100%;
+	padding: 3px 6px;
+	overflow-wrap: anywhere;
+	color: var(--text-secondary);
+	font: 10px/1.4 Consolas, "SFMono-Regular", monospace;
+	background: color-mix(in srgb, var(--surface-raised) 80%, transparent);
+	border: 1px solid var(--border-subtle);
+	border-radius: 5px;
+}
+
+.kernel-generation-failure-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.kernel-generation-failure-actions button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 44px;
+	padding: 0 12px;
+	cursor: pointer;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid color-mix(in srgb, currentColor 22%, var(--border-subtle));
+	border-radius: 8px;
+}
+
 .kernel-generator-instruction {
 	display: grid;
 	gap: 7px;
@@ -361,6 +459,7 @@
 .kernel-generator button:focus-visible,
 .kernel-generator textarea:focus-visible,
 .kernel-generator input:focus-visible,
+.kernel-generation-failure summary:focus-visible,
 .kernel-candidate-card pre:focus-visible {
 	outline: 2px solid var(--accent);
 	outline-offset: 2px;

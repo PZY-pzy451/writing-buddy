@@ -9,7 +9,9 @@ import {
 	type StoryStorageGateway
 } from '@writing-buddy/story-kernel';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { useAppStore } from '../../../app/store';
+import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 import { StoryKernelGeneratorPanel } from './StoryKernelGeneratorPanel';
 import {
 	StoryKernelGenerationStore,
@@ -88,7 +90,37 @@ class MemoryStoryGateway implements StoryStorageGateway {
 	}
 }
 
+function generatedCharacterResponse(): string {
+	return JSON.stringify({
+		candidates: [{
+			operation: 'create',
+			resource: {
+				id: 'character:lin-yue-ui',
+				type: 'character',
+				title: '林越',
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				role: 'protagonist',
+				factionIds: [],
+				goals: [],
+				desires: [],
+				fears: [],
+				values: [],
+				secrets: []
+			},
+			confidence: 0.97,
+			rationale: '正文明确出现人物。',
+			evidence: { start: 0, end: 2, quote: '林越' }
+		}]
+	});
+}
+
 describe('StoryKernelGeneratorPanel', () => {
+	afterEach(() => {
+		useAppStore.setState({ activeMode: 'works' });
+	});
+
 	it('applies a selection quick-action preset without starting a paid request', async () => {
 		const runGeneration = vi.fn(() => Promise.resolve(''));
 		const { rerender } = render(
@@ -151,29 +183,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		const repository = new DesktopStoryRepository('D:/Novel', gateway);
 		const store = new StoryKernelGenerationStore('D:/Novel', new MemoryStorage());
 		const onCommitted = vi.fn();
-		const response = JSON.stringify({
-			candidates: [{
-				operation: 'create',
-				resource: {
-					id: 'character:lin-yue-ui',
-					type: 'character',
-					title: '林越',
-					aliases: [],
-					tags: [],
-					evidenceIds: [],
-					role: 'protagonist',
-					factionIds: [],
-					goals: [],
-					desires: [],
-					fears: [],
-					values: [],
-					secrets: []
-				},
-				confidence: 0.97,
-				rationale: '正文明确出现人物。',
-				evidence: { start: 0, end: 2, quote: '林越' }
-			}]
-		});
+		const response = generatedCharacterResponse();
 
 		render(
 			<StoryKernelGeneratorPanel
@@ -232,5 +242,74 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		expect(screen.getByRole('button', { name: '生成 Story Kernel 候选' })).toBeDisabled();
 		expect(screen.getByText(/当前项目为只读模式/)).toBeInTheDocument();
+	});
+
+	it('preserves a structured native authentication error and opens AI settings', async () => {
+		const runGeneration = vi.fn(() => Promise.reject(toAiRequestError({
+			code: 'authentication_failed',
+			message: 'API Key 无效或已经失效。',
+			retryable: false,
+			httpStatus: 401
+		})));
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+
+		expect(await screen.findByText('API Key 无效或已经失效。')).toBeInTheDocument();
+		expect(screen.queryByText('AI 生成失败。')).not.toBeInTheDocument();
+		expect(screen.queryByText(/AI 返回的数据会先进入候选区/)).not.toBeInTheDocument();
+		fireEvent.click(screen.getByText('诊断信息'));
+		expect(screen.getByText('authentication_failed')).toBeInTheDocument();
+		expect(screen.getByText('HTTP 401')).toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '检查 AI 设置' }));
+		expect(useAppStore.getState().activeMode).toBe('settings');
+	});
+
+	it('retries a retryable native failure with the unchanged generation request', async () => {
+		const response = generatedCharacterResponse();
+		const runGeneration = vi.fn()
+			.mockRejectedValueOnce({
+				code: 'rate_limited',
+				message: '请求过多，请稍后再试。',
+				retryable: true,
+				httpStatus: 429
+			})
+			.mockResolvedValueOnce(response);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		expect(await screen.findByText('请求过多，请稍后再试。')).toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '使用相同条件重试' }));
+		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
+		expect(runGeneration).toHaveBeenCalledTimes(2);
+		expect(runGeneration.mock.calls[1]?.[0]).toEqual(runGeneration.mock.calls[0]?.[0]);
 	});
 });
