@@ -7,7 +7,7 @@ import {
 	type TextFile
 } from '@writing-buddy/domain';
 import { DocumentSession, ResourceTabManager } from '@writing-buddy/project';
-import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
+import type { MoveCommand, ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
 import {
 	DesktopStoryRepository,
@@ -24,6 +24,10 @@ import {
 	type ProjectOpenMode,
 	type PublicProjectOpenError
 } from '../features/projects/application/ProjectOpenService';
+import {
+	ProjectStructureMoveGatewayError,
+	ProjectStructureMoveService
+} from '../features/projects/application/ProjectStructureMoveService';
 import { StoryIndexService } from '../features/story/application/StoryIndexService';
 import {
 	StoryResourceOpenService,
@@ -113,6 +117,13 @@ interface AppState extends PersistedWorkspace {
 	readonly assistantIntent?: AssistantActionIntent;
 	readonly dockOpen: boolean;
 	readonly projectWizardOpen: boolean;
+	readonly structureMoveBusy: boolean;
+	readonly structureMoveAnnouncement?: string;
+	readonly structureUndo?: {
+		readonly inverseCommand: MoveCommand;
+		readonly description: string;
+		readonly expiresAt: number;
+	};
 	readonly lastSavedAt?: string;
 	readonly pendingEdit?: {
 		readonly id: string;
@@ -129,6 +140,9 @@ interface AppState extends PersistedWorkspace {
 	readonly chooseProject: () => Promise<void>;
 	readonly openProjectWizard: () => void;
 	readonly closeProjectWizard: () => void;
+	readonly moveProjectStructure: (command: MoveCommand) => Promise<boolean>;
+	readonly undoProjectStructureMove: () => Promise<void>;
+	readonly dismissProjectStructureUndo: () => void;
 	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
 	readonly retryProjectOpen: () => Promise<void>;
 	readonly openProjectReadOnly: () => Promise<void>;
@@ -175,9 +189,21 @@ interface AppState extends PersistedWorkspace {
 
 const tabs = new ResourceTabManager();
 const projectOpenService = new ProjectOpenService(desktopBridge);
+const projectStructureMoveService = new ProjectStructureMoveService(desktopBridge);
 const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
+
+const projectMoveErrorCopy: Readonly<Record<string, string>> = {
+	projectReadOnly: '当前作品以只读模式打开，不能调整结构。',
+	projectRevisionConflict: '作品结构已在磁盘上变化，请重新载入后再移动。',
+	projectMoveSourceChanged: '待移动项目的位置已经变化，请重试。',
+	projectMoveNoChange: '项目已经在这个位置。',
+	projectMoveEntityTypeUnsupported: '当前项目类型暂不支持此移动。',
+	projectMoveWriteFailed: '项目结构保存失败，原顺序未改变。',
+	projectMoveVerificationFailed: '项目结构验证失败，已恢复原顺序。',
+	projectMoveFailed: '暂时无法调整项目结构。'
+};
 
 function toChapterResource(snapshot: ProjectSnapshot, chapterId: string): ResourceDescriptor | undefined {
 	const found = findChapter(snapshot.project, chapterId);
@@ -222,6 +248,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	assistantOpen: true,
 	dockOpen: true,
 	projectWizardOpen: false,
+	structureMoveBusy: false,
 
 	async bootstrap() {
 		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
@@ -243,6 +270,83 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 
 	closeProjectWizard() {
 		set({ projectWizardOpen: false });
+	},
+
+	async moveProjectStructure(command) {
+		const snapshot = get().snapshot;
+		if (!snapshot || get().structureMoveBusy) {
+			return false;
+		}
+		if (snapshot.readOnly) {
+			set({ error: projectMoveErrorCopy.projectReadOnly });
+			return false;
+		}
+		set({ structureMoveBusy: true, error: undefined });
+		try {
+			const result = await projectStructureMoveService.execute(snapshot.root, command);
+			set({
+				snapshot: {
+					...snapshot,
+					project: result.project,
+					projectRevision: result.projectRevision
+				},
+				structureMoveBusy: false,
+				structureMoveAnnouncement: result.description,
+				structureUndo: {
+					inverseCommand: result.inverseCommand,
+					description: result.description,
+					expiresAt: Date.now() + 6000
+				}
+			});
+			return true;
+		} catch (error) {
+			const code = error instanceof ProjectStructureMoveGatewayError
+				? error.code
+				: 'projectMoveFailed';
+			set({
+				structureMoveBusy: false,
+				error: projectMoveErrorCopy[code] ?? projectMoveErrorCopy.projectMoveFailed
+			});
+			return false;
+		}
+	},
+
+	async undoProjectStructureMove() {
+		const snapshot = get().snapshot;
+		const undo = get().structureUndo;
+		if (!snapshot || !undo || get().structureMoveBusy) {
+			return;
+		}
+		set({ structureMoveBusy: true, error: undefined });
+		try {
+			const result = await projectStructureMoveService.execute(
+				snapshot.root,
+				undo.inverseCommand
+			);
+			set({
+				snapshot: {
+					...snapshot,
+					project: result.project,
+					projectRevision: result.projectRevision
+				},
+				structureMoveBusy: false,
+				structureMoveAnnouncement: `已撤销：${undo.description}`,
+				structureUndo: undefined
+			});
+		} catch (error) {
+			const code = error instanceof ProjectStructureMoveGatewayError
+				? error.code
+				: 'projectMoveFailed';
+			set({
+				structureMoveBusy: false,
+				structureUndo: code === 'projectRevisionConflict' ? undefined : undo,
+				error: projectMoveErrorCopy[code] ?? projectMoveErrorCopy.projectMoveFailed
+			});
+		}
+	},
+
+	dismissProjectStructureUndo() {
+		set({ structureUndo: undefined });
 	},
 
 	async openProject(root, mode = 'read-write') {
@@ -329,7 +433,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				externalConflict: undefined,
 				projectOpenError: undefined,
 				pendingProjectRoot: undefined,
-				projectOpenBusyAction: undefined
+				projectOpenBusyAction: undefined,
+				structureMoveBusy: false,
+				structureMoveAnnouncement: undefined,
+				structureUndo: undefined
 			});
 			void storyIndexService
 				.prepare(snapshot.root, !snapshot.readOnly)

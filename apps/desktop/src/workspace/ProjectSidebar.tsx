@@ -2,7 +2,6 @@ import {
 	BookOpen,
 	ChevronDown,
 	ChevronRight,
-	FileText,
 	FolderOpen,
 	Gem,
 	Globe2,
@@ -14,10 +13,11 @@ import {
 	UserRound
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { countWords, flattenChapters, type ResourceDescriptor } from '@writing-buddy/domain';
+import { countWords, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
+import { ProjectStructureTree } from '../features/projects/ui/ProjectStructureTree';
 
 const resourceIcons = {
 	character: UserRound,
@@ -121,47 +121,15 @@ export function ProjectSidebar(): React.JSX.Element {
 					<button className="icon-button compact" type="button" aria-label="新建章节（迁移验收后启用）" disabled><Plus size={16} /></button>
 				</div>
 				<div className="resource-tree">
-					{snapshot.project.volumes.map(volume => {
-						const expanded = !collapsedVolumes.has(volume.id);
-						const chapters = volume.chapters.filter(chapter => !search || chapter.title.toLocaleLowerCase().includes(search));
-						if (search && chapters.length === 0 && !volume.title.toLocaleLowerCase().includes(search)) {
-							return null;
-						}
-						return (
-							<div className="tree-group" key={volume.id}>
-								<button className="tree-row volume-row" type="button" onClick={() => toggleVolume(volume.id)}>
-									{expanded ? <ChevronDown size={17} /> : <ChevronRight size={17} />}
-									<FolderOpen size={18} />
-									<span>{volume.title}</span>
-								</button>
-								{expanded && (
-									<div className="tree-children">
-										{chapters.map(chapter => {
-											const resource: ResourceDescriptor = {
-												id: chapter.id,
-												type: 'chapter',
-												title: chapter.title,
-												path: chapter.file,
-												projectId: snapshot.project.projectId
-											};
-											return (
-												<button
-													key={chapter.id}
-													className={`tree-row chapter-row ${activeResource?.id === chapter.id ? 'is-active' : ''}`}
-													type="button"
-													onClick={() => void openResource(resource)}
-												>
-													<FileText size={17} />
-													<span>{chapter.title}</span>
-													<small>{chapterWords(chapter.id) || ''}</small>
-												</button>
-											);
-										})}
-									</div>
-								)}
-							</div>
-						);
-					})}
+					<ProjectStructureTree
+						snapshot={snapshot}
+						activeResourceId={activeResource?.id}
+						collapsedVolumes={collapsedVolumes}
+						search={search}
+						chapterWords={chapterWords}
+						onToggleVolume={toggleVolume}
+						onOpenChapter={resource => void openResource(resource)}
+					/>
 				</div>
 			</section>
 

@@ -128,6 +128,40 @@ pub struct CreatedProject {
     created_directory_count: usize,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct OrderedLocation {
+    container_id: String,
+    index: usize,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MoveCommand {
+    command_id: String,
+    entity_type: String,
+    entity_ids: Vec<String>,
+    from: OrderedLocation,
+    to: OrderedLocation,
+    expected_project_revision: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectStructureMoveRequest {
+    project_root: String,
+    command: MoveCommand,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectStructureMoveResult {
+    project: migration::WritingProject,
+    project_revision: String,
+    inverse_command: MoveCommand,
+    description: String,
+}
+
 static DIAGNOSTIC_SEQUENCE: AtomicU64 = AtomicU64::new(1);
 
 fn project_diagnostic_id(code: &str) -> String {
@@ -625,6 +659,179 @@ pub fn create_project(request: CreateProjectRequest) -> Result<CreatedProject, S
         let _ = fs::remove_dir_all(&staging);
     }
     result
+}
+
+fn project_move_error(code: &str) -> Result<(MoveCommand, String), String> {
+    Err(code.to_owned())
+}
+
+fn apply_project_structure_move(
+    project: &mut migration::WritingProject,
+    command: &MoveCommand,
+) -> Result<(MoveCommand, String), String> {
+    if command.entity_ids.len() != 1 {
+        return project_move_error("projectMoveMultipleUnsupported");
+    }
+    let entity_id = command
+        .entity_ids
+        .first()
+        .ok_or_else(|| "projectMoveEntityMissing".to_owned())?;
+
+    let (inverse_from, inverse_to, description) = if command.entity_type == "volume" {
+        if command.from.container_id != project.project_id
+            || command.to.container_id != project.project_id
+        {
+            return project_move_error("projectMoveContainerInvalid");
+        }
+        let source = project
+            .volumes
+            .get(command.from.index)
+            .filter(|volume| volume.id == *entity_id)
+            .cloned()
+            .ok_or_else(|| "projectMoveSourceChanged".to_owned())?;
+        if command.to.index >= project.volumes.len() {
+            return project_move_error("projectMoveTargetIndexInvalid");
+        }
+        if command.from.index == command.to.index {
+            return project_move_error("projectMoveNoChange");
+        }
+        project.volumes.remove(command.from.index);
+        project.volumes.insert(command.to.index, source.clone());
+        (
+            command.to.clone(),
+            command.from.clone(),
+            format!(
+                "已将“{}”移动到第 {} 位。",
+                source.title,
+                command.to.index + 1
+            ),
+        )
+    } else if command.entity_type == "chapter" {
+        let source_volume_index = project
+            .volumes
+            .iter()
+            .position(|volume| volume.id == command.from.container_id)
+            .ok_or_else(|| "projectMoveContainerInvalid".to_owned())?;
+        let target_volume_index = project
+            .volumes
+            .iter()
+            .position(|volume| volume.id == command.to.container_id)
+            .ok_or_else(|| "projectMoveContainerInvalid".to_owned())?;
+        let source = project.volumes[source_volume_index]
+            .chapters
+            .get(command.from.index)
+            .filter(|chapter| chapter.id == *entity_id)
+            .cloned()
+            .ok_or_else(|| "projectMoveSourceChanged".to_owned())?;
+        let same_volume = source_volume_index == target_volume_index;
+        let target_length = project.volumes[target_volume_index].chapters.len();
+        if (same_volume && command.to.index >= target_length)
+            || (!same_volume && command.to.index > target_length)
+        {
+            return project_move_error("projectMoveTargetIndexInvalid");
+        }
+        if same_volume && command.from.index == command.to.index {
+            return project_move_error("projectMoveNoChange");
+        }
+        project.volumes[source_volume_index]
+            .chapters
+            .remove(command.from.index);
+        project.volumes[target_volume_index]
+            .chapters
+            .insert(command.to.index, source.clone());
+        let target_title = project.volumes[target_volume_index].title.clone();
+        (
+            OrderedLocation {
+                container_id: command.to.container_id.clone(),
+                index: command.to.index,
+            },
+            OrderedLocation {
+                container_id: command.from.container_id.clone(),
+                index: command.from.index,
+            },
+            format!(
+                "已将“{}”移动到{}第 {} 位。",
+                source.title,
+                target_title,
+                command.to.index + 1
+            ),
+        )
+    } else {
+        return project_move_error("projectMoveEntityTypeUnsupported");
+    };
+
+    Ok((
+        MoveCommand {
+            command_id: format!("undo:{}", command.command_id),
+            entity_type: command.entity_type.clone(),
+            entity_ids: command.entity_ids.clone(),
+            from: inverse_from,
+            to: inverse_to,
+            expected_project_revision: command.expected_project_revision.clone(),
+        },
+        description,
+    ))
+}
+
+fn move_project_structure_on_disk(
+    project_root: &str,
+    command: &MoveCommand,
+) -> Result<ProjectStructureMoveResult, String> {
+    let root = filesystem::canonical_project_root(project_root)?;
+    let manifest_path = root.join(".writing-buddy").join("project.json");
+    let previous_bytes = fs::read(&manifest_path).map_err(|_| "manifestReadFailed".to_owned())?;
+    let current_revision = filesystem::sha256(&previous_bytes);
+    if command.expected_project_revision != current_revision {
+        return Err(format!("projectRevisionConflict:{current_revision}"));
+    }
+    let mut project: migration::WritingProject =
+        serde_json::from_slice(&previous_bytes).map_err(|_| "invalidManifest".to_owned())?;
+    let (mut inverse_command, description) = apply_project_structure_move(&mut project, command)?;
+    let mut next_bytes =
+        serde_json::to_vec_pretty(&project).map_err(|_| "projectMoveSerializeFailed".to_owned())?;
+    next_bytes.push(b'\n');
+    let next_content =
+        String::from_utf8(next_bytes).map_err(|_| "projectMoveSerializeFailed".to_owned())?;
+    let write_result = filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root: root.to_string_lossy().into_owned(),
+        relative_path: ".writing-buddy/project.json".to_owned(),
+        content: next_content,
+        expected_hash: current_revision,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    })
+    .map_err(|error| {
+        if error.starts_with("externalChange:") {
+            "projectRevisionConflict".to_owned()
+        } else {
+            "projectMoveWriteFailed".to_owned()
+        }
+    })?;
+    let verified = migration::open_project(&root.to_string_lossy()).map_err(|_| {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_bytes);
+        "projectMoveVerificationFailed".to_owned()
+    })?;
+    if verified.read_only || verified.project_revision != write_result.hash {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_bytes);
+        return Err("projectMoveVerificationFailed".to_owned());
+    }
+    inverse_command.expected_project_revision = write_result.hash.clone();
+    Ok(ProjectStructureMoveResult {
+        project: verified.project,
+        project_revision: write_result.hash,
+        inverse_command,
+        description,
+    })
+}
+
+#[tauri::command]
+pub fn move_project_structure(
+    state: State<'_, AppState>,
+    request: ProjectStructureMoveRequest,
+) -> Result<ProjectStructureMoveResult, String> {
+    require_write_lock(&state, &request.project_root)?;
+    move_project_structure_on_disk(&request.project_root, &request.command)
 }
 
 #[tauri::command]
@@ -1255,6 +1462,48 @@ mod tests {
         }
     }
 
+    fn project_move_fixture(label: &str) -> PathBuf {
+        let parent = project_creation_parent(label);
+        let root = parent.join("Sanitized Move");
+        fs::create_dir_all(root.join(".writing-buddy")).expect("create manifest directory");
+        fs::create_dir_all(root.join("chapters")).expect("create chapter directory");
+        for chapter in ["1", "2", "3", "4"] {
+            fs::write(
+                root.join("chapters").join(format!("{chapter}.md")),
+                format!("# Chapter {chapter}\n"),
+            )
+            .expect("write chapter");
+        }
+        write_pretty_json(
+            &root.join(".writing-buddy").join("project.json"),
+            &json!({
+                "schemaVersion": 1,
+                "projectId": "project-a11ce001",
+                "title": "Sanitized Move",
+                "volumes": [
+                    {
+                        "id": "volume-a11ce001",
+                        "title": "Volume One",
+                        "chapters": [
+                            {"id": "chapter-a11ce001", "title": "Chapter One", "file": "chapters/1.md", "scene": {}},
+                            {"id": "chapter-a11ce002", "title": "Chapter Two", "file": "chapters/2.md", "scene": {}},
+                            {"id": "chapter-a11ce003", "title": "Chapter Three", "file": "chapters/3.md", "scene": {}}
+                        ]
+                    },
+                    {
+                        "id": "volume-a11ce002",
+                        "title": "Volume Two",
+                        "chapters": [
+                            {"id": "chapter-a11ce004", "title": "Chapter Four", "file": "chapters/4.md", "scene": {}}
+                        ]
+                    }
+                ]
+            }),
+        )
+        .expect("write project manifest");
+        root
+    }
+
     #[test]
     fn project_creation_preflight_rejects_reserved_duplicate_and_invalid_requests_without_writes() {
         let root = project_creation_parent("preflight");
@@ -1347,6 +1596,89 @@ mod tests {
                 .starts_with(".writing-buddy-project-staging-")
         }));
         let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn project_structure_moves_persist_reopen_and_undo_without_renaming_files() {
+        let root = project_move_fixture("structure-move");
+        let opened = migration::open_project(&root.to_string_lossy()).expect("open fixture");
+        let command = MoveCommand {
+            command_id: "move-chapter-2".to_owned(),
+            entity_type: "chapter".to_owned(),
+            entity_ids: vec!["chapter-a11ce002".to_owned()],
+            from: OrderedLocation {
+                container_id: "volume-a11ce001".to_owned(),
+                index: 1,
+            },
+            to: OrderedLocation {
+                container_id: "volume-a11ce002".to_owned(),
+                index: 1,
+            },
+            expected_project_revision: opened.project_revision,
+        };
+        let moved = move_project_structure_on_disk(&root.to_string_lossy(), &command)
+            .expect("move chapter across volumes");
+        assert_eq!(
+            moved.project.volumes[0]
+                .chapters
+                .iter()
+                .map(|chapter| chapter.id.as_str())
+                .collect::<Vec<_>>(),
+            vec!["chapter-a11ce001", "chapter-a11ce003"]
+        );
+        assert_eq!(
+            moved.project.volumes[1]
+                .chapters
+                .iter()
+                .map(|chapter| (chapter.id.as_str(), chapter.file.as_str()))
+                .collect::<Vec<_>>(),
+            vec![
+                ("chapter-a11ce004", "chapters/4.md"),
+                ("chapter-a11ce002", "chapters/2.md")
+            ]
+        );
+        let reopened = migration::open_project(&root.to_string_lossy()).expect("reopen moved");
+        assert_eq!(reopened.project_revision, moved.project_revision);
+        let restored =
+            move_project_structure_on_disk(&root.to_string_lossy(), &moved.inverse_command)
+                .expect("undo move");
+        assert_eq!(
+            restored.project.volumes[0]
+                .chapters
+                .iter()
+                .map(|chapter| chapter.id.as_str())
+                .collect::<Vec<_>>(),
+            vec!["chapter-a11ce001", "chapter-a11ce002", "chapter-a11ce003"]
+        );
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
+    }
+
+    #[test]
+    fn project_structure_move_rejects_stale_revision_without_writes() {
+        let root = project_move_fixture("structure-stale");
+        let manifest = root.join(".writing-buddy").join("project.json");
+        let before = fs::read(&manifest).expect("read manifest");
+        let command = MoveCommand {
+            command_id: "stale-volume".to_owned(),
+            entity_type: "volume".to_owned(),
+            entity_ids: vec!["volume-1".to_owned()],
+            from: OrderedLocation {
+                container_id: "project-move".to_owned(),
+                index: 0,
+            },
+            to: OrderedLocation {
+                container_id: "project-move".to_owned(),
+                index: 1,
+            },
+            expected_project_revision: "stale-revision".to_owned(),
+        };
+        assert!(
+            move_project_structure_on_disk(&root.to_string_lossy(), &command)
+                .expect_err("stale revision must fail")
+                .starts_with("projectRevisionConflict")
+        );
+        assert_eq!(fs::read(&manifest).expect("reread manifest"), before);
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
     }
 
     #[test]

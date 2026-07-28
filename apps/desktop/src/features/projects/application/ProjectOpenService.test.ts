@@ -7,6 +7,7 @@ import {
 
 const snapshot: ProjectSnapshot = {
 	root: 'D:\\projects\\story',
+	projectRevision: 'revision-test-1',
 	project: {
 		schemaVersion: 1,
 		projectId: 'project-00000001',

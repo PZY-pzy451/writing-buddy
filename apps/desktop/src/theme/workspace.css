@@ -325,6 +325,8 @@
 
 .tree-section:first-of-type {
 	flex: 0 1 auto;
+	max-height: 50%;
+	overflow: auto;
 }
 
 .tree-section:nth-of-type(2) {
@@ -359,17 +361,18 @@
 }
 
 .resource-tree {
+	position: relative;
 	padding: 0 8px 7px;
 }
 
 .tree-row {
+	position: relative;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 2px;
 	width: 100%;
-	min-height: 36px;
-	padding: 0 9px;
-	overflow: hidden;
+	min-height: 40px;
+	padding: 0;
 	color: var(--text-secondary);
 	font-size: 13px;
 	text-align: left;
@@ -377,6 +380,10 @@
 	background: transparent;
 	border: 0;
 	border-radius: 6px;
+	transition:
+		background var(--transition-fast),
+		box-shadow var(--transition-fast),
+		opacity var(--transition-fast);
 }
 
 .tree-row:hover {
@@ -392,6 +399,28 @@
 	box-shadow: inset 3px 0 0 var(--accent);
 }
 
+.tree-row-main {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	min-height: 40px;
+	padding: 0 5px 0 9px;
+	color: inherit;
+	text-align: left;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	border-radius: inherit;
+}
+
+button.tree-row {
+	gap: 8px;
+	padding: 0 9px;
+}
+
+.tree-row-main > span,
 .tree-row > span {
 	flex: 1;
 	overflow: hidden;
@@ -399,14 +428,205 @@
 	white-space: nowrap;
 }
 
+.tree-row-main small,
 .tree-row small {
 	color: var(--text-muted);
 	font-size: 11px;
 	font-weight: 400;
 }
 
-.volume-row {
+.volume-row .tree-row-main {
 	font-weight: 660;
+}
+
+.tree-drag-handle {
+	display: grid;
+	flex: 0 0 40px;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	color: var(--text-muted);
+	cursor: grab;
+	background: transparent;
+	border: 0;
+	border-radius: 6px;
+	opacity: 0;
+	transition:
+		color var(--transition-fast),
+		background var(--transition-fast),
+		opacity var(--transition-fast);
+	place-items: center;
+	touch-action: none;
+}
+
+.tree-row:hover .tree-drag-handle,
+.tree-drag-handle:focus-visible,
+.tree-row.is-drag-source .tree-drag-handle {
+	opacity: 1;
+}
+
+.tree-drag-handle:hover {
+	color: var(--accent-strong);
+	background: color-mix(in srgb, var(--accent-soft) 72%, transparent);
+}
+
+.tree-drag-handle:active {
+	cursor: grabbing;
+}
+
+.tree-drag-handle:disabled {
+	color: var(--text-muted);
+	background: transparent;
+	opacity: 0;
+}
+
+.tree-row.is-drag-source {
+	color: var(--accent-strong);
+	background: var(--highlight-drag-source-bg);
+	box-shadow: inset 0 0 0 1px var(--highlight-drag-source-border);
+	opacity: 0.48;
+}
+
+.tree-row.is-drop-valid {
+	color: var(--text-primary);
+	background: var(--highlight-drag-target-bg);
+}
+
+.tree-row.is-drop-inside {
+	box-shadow: inset 0 0 0 2px var(--highlight-drag-target-border);
+}
+
+.tree-row.is-drop-before::before,
+.tree-row.is-drop-after::before {
+	position: absolute;
+	right: 4px;
+	left: 4px;
+	z-index: 4;
+	height: 3px;
+	background: var(--highlight-drag-target-border);
+	border-radius: 3px;
+	content: "";
+	pointer-events: none;
+}
+
+.tree-row.is-drop-before::after,
+.tree-row.is-drop-after::after {
+	position: absolute;
+	left: 1px;
+	z-index: 5;
+	width: 7px;
+	height: 7px;
+	background: var(--highlight-drag-target-border);
+	border: 2px solid var(--surface-sidebar);
+	border-radius: 50%;
+	content: "";
+	pointer-events: none;
+}
+
+.tree-row.is-drop-before::before {
+	top: -2px;
+}
+
+.tree-row.is-drop-before::after {
+	top: -4px;
+}
+
+.tree-row.is-drop-after::before {
+	bottom: -2px;
+}
+
+.tree-row.is-drop-after::after {
+	bottom: -4px;
+}
+
+.tree-row.is-drop-invalid {
+	color: var(--danger);
+	background: var(--highlight-drag-invalid-bg);
+	box-shadow: inset 0 0 0 2px var(--highlight-drag-invalid-border);
+}
+
+.tree-reorder-hint {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	min-height: 30px;
+	margin: 0 4px 5px;
+	padding: 0 8px;
+	color: var(--text-muted);
+	font-size: 11px;
+	background: var(--surface-subtle);
+	border: 1px solid var(--border-subtle);
+	border-radius: 7px;
+}
+
+.tree-drop-status {
+	position: sticky;
+	bottom: 6px;
+	z-index: 8;
+	margin: 7px 4px 0;
+	padding: 7px 9px;
+	color: var(--text-secondary);
+	font-size: 11px;
+	line-height: 1.35;
+	background: color-mix(in srgb, var(--surface-raised) 94%, transparent);
+	border: 1px solid var(--border-strong);
+	border-radius: 8px;
+	box-shadow: var(--shadow-card);
+	backdrop-filter: blur(8px);
+	pointer-events: none;
+}
+
+.tree-drop-status.is-valid {
+	color: var(--accent-strong);
+	border-color: var(--highlight-drag-target-border);
+}
+
+.tree-drop-status.is-invalid {
+	color: var(--danger);
+	border-color: var(--highlight-drag-invalid-border);
+}
+
+.structure-drag-overlay {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	width: max-content;
+	min-width: 220px;
+	max-width: min(420px, calc(100vw - 32px));
+	padding: 10px 12px;
+	color: var(--text-primary);
+	cursor: grabbing;
+	background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+	border: 1px solid var(--highlight-drag-source-border);
+	border-radius: 10px;
+	box-shadow: var(--shadow-drag);
+	backdrop-filter: blur(8px);
+}
+
+.structure-drag-overlay > svg {
+	flex: 0 0 auto;
+	color: var(--accent-strong);
+}
+
+.structure-drag-overlay > span {
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+}
+
+.structure-drag-overlay small {
+	color: var(--text-muted);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.structure-drag-overlay strong {
+	overflow: hidden;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .tree-children {
@@ -2209,6 +2429,71 @@
 	color: var(--accent-strong);
 	background: transparent;
 	border: 0;
+}
+
+.structure-undo-toast {
+	position: fixed;
+	right: 18px;
+	bottom: 54px;
+	z-index: 109;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: min(460px, calc(100vw - 36px));
+	min-height: 58px;
+	padding: 9px 10px 9px 12px;
+	color: var(--text-primary);
+	background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+	border: 1px solid color-mix(in srgb, var(--success) 38%, var(--border-subtle));
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-float);
+	backdrop-filter: blur(10px);
+}
+
+.structure-undo-icon {
+	display: grid;
+	flex: 0 0 30px;
+	width: 30px;
+	height: 30px;
+	color: var(--highlight-success-fg);
+	background: var(--highlight-success-bg);
+	border-radius: 50%;
+	place-items: center;
+}
+
+.structure-undo-copy {
+	display: grid;
+	flex: 1 1 auto;
+	gap: 2px;
+	min-width: 0;
+}
+
+.structure-undo-copy strong {
+	font-size: 13px;
+}
+
+.structure-undo-copy small {
+	overflow: hidden;
+	color: var(--text-muted);
+	font-size: 11px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.structure-undo-toast > button:not(.icon-button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-height: 40px;
+	padding: 0 11px;
+	color: var(--accent-strong);
+	font-size: 12px;
+	font-weight: 700;
+	cursor: pointer;
+	background: var(--accent-soft);
+	border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--border-subtle));
+	border-radius: 8px;
 }
 
 .is-focus-mode {

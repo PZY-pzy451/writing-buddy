@@ -24,12 +24,15 @@ import type {
 	ProjectOpenMode,
 	ProjectRepairResult,
 	ProjectSnapshot,
+	ProjectStructureMoveRequest,
+	ProjectStructureMoveResult,
 	StoryIndexQuery,
 	StoryIndexQueryResult,
 	StoryIndexStatus,
 	VersionSummary,
 	VersionText
 } from '@writing-buddy/platform-ports';
+import { applyProjectStructureMove } from '@writing-buddy/project';
 import type { TextFile } from '@writing-buddy/domain';
 import {
 	parseMentionLink,
@@ -57,6 +60,10 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	createProject(request: CreateProjectRequest): Promise<CreatedProject> {
 		return invoke<CreatedProject>('create_project', { request });
+	}
+
+	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
+		return invoke<ProjectStructureMoveResult>('move_project_structure', { request });
 	}
 
 	openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
@@ -252,8 +259,9 @@ class TauriDesktopBridge implements DesktopBridge {
 	}
 }
 
-const browserProject: ProjectSnapshot = {
+let browserProject: ProjectSnapshot = {
 	root: 'browser-fixture',
+	projectRevision: 'browser-project-revision-1',
 	project: {
 		schemaVersion: 1,
 		projectId: 'project-a11ce001',
@@ -291,7 +299,13 @@ const browserProject: ProjectSnapshot = {
 						goal: '追踪拿走笔记的人',
 						note: '午夜前有一班货运列车'
 					}
-				},
+				}
+			]
+		},
+		{
+			id: 'volume-a11ce002',
+			title: '第二卷 雾中来客',
+			chapters: [
 				{
 					id: 'chapter-a11ce003',
 					title: '第三章 深夜的访客',
@@ -333,6 +347,7 @@ const browserProject: ProjectSnapshot = {
 };
 
 const browserCreatedProjects = new Map<string, ProjectSnapshot>();
+let browserProjectRevisionSequence = 1;
 
 const browserFiles = new Map<string, string>([
 	['chapters/chapter-001.md', '夜雨落在旧火车站的玻璃穹顶上，细密的声响像一封迟迟没有拆开的信。\\n\\n林墨推开候车室的木门，看见墙上的时钟停在二十三点十七分。\\n\\n徐青已经等在长椅旁。她把一张褪色的行李票放到灯下，票面背后写着同一个时间。'],
@@ -939,6 +954,7 @@ class BrowserDesktopBridge implements DesktopBridge {
 			: undefined;
 		const snapshot: ProjectSnapshot = {
 			root: preflight.targetRoot,
+			projectRevision: `browser-created-revision-${++browserProjectRevisionSequence}`,
 			project: {
 				schemaVersion: 1,
 				projectId,
@@ -972,6 +988,42 @@ class BrowserDesktopBridge implements DesktopBridge {
 			...(firstChapter ? { firstChapterId: firstChapter.id } : {}),
 			createdFileCount: preflight.createdFileCount,
 			createdDirectoryCount: preflight.createdDirectoryCount
+		};
+	}
+
+	async moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current) {
+			throw new Error('projectRootUnavailable');
+		}
+		if (current.readOnly) {
+			throw new Error('projectReadOnly');
+		}
+		if (request.command.expectedProjectRevision !== current.projectRevision) {
+			throw new Error('projectRevisionConflict');
+		}
+		const moved = applyProjectStructureMove(current.project, request.command);
+		const projectRevision = `browser-project-revision-${++browserProjectRevisionSequence}`;
+		const inverseCommand = {
+			...moved.inverseCommand,
+			expectedProjectRevision: projectRevision
+		};
+		const next: ProjectSnapshot = {
+			...current,
+			project: moved.project,
+			projectRevision
+		};
+		if (request.projectRoot === browserProject.root) {
+			browserProject = next;
+		} else {
+			browserCreatedProjects.set(request.projectRoot, next);
+		}
+		return {
+			project: moved.project,
+			projectRevision,
+			inverseCommand,
+			description: moved.description
 		};
 	}
 

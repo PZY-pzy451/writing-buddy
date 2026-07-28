@@ -2,6 +2,7 @@ import type { CursorState, ResourceDescriptor, TextFile } from '@writing-buddy/d
 import type { AtomicWriteRequest, AtomicWriteResult, FileSystemPort } from '@writing-buddy/platform-ports';
 
 export * from './ProjectTemplateRegistry';
+export * from './ProjectStructureMove';
 
 export interface DocumentSessionState {
 	readonly resourceId: string;

@@ -16,6 +16,7 @@ import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
 import { ProjectCreationWizard } from '../features/projects/ui/ProjectCreationWizard';
 import { ProjectWelcome } from '../features/projects/ui/ProjectWelcome';
+import { ProjectStructureUndoToast } from '../features/projects/ui/ProjectStructureUndoToast';
 import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
 import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
 import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
@@ -54,9 +55,22 @@ export function App(): React.JSX.Element {
 
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
-			if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === 's') {
+			const modifier = event.ctrlKey || event.metaKey;
+			const key = event.key.toLocaleLowerCase();
+			if (modifier && key === 's') {
 				event.preventDefault();
 				void useAppStore.getState().save();
+			}
+			if (modifier && key === 'z') {
+				const target = event.target;
+				const editing = target instanceof HTMLElement
+					&& (target.matches('input, textarea, [contenteditable="true"]')
+						|| Boolean(target.closest('.monaco-editor')));
+				const state = useAppStore.getState();
+				if (!editing && state.structureUndo) {
+					event.preventDefault();
+					void state.undoProjectStructureMove();
+				}
 			}
 		};
 		window.addEventListener('keydown', handler);
@@ -153,6 +167,7 @@ export function App(): React.JSX.Element {
 			{!focusMode && <StatusBar />}
 			<AiGenerationDrawer />
 			<ProjectCreationWizard />
+			<ProjectStructureUndoToast />
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">

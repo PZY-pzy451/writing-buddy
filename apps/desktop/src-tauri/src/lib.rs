@@ -32,6 +32,7 @@ pub fn run() {
             commands::choose_project_parent_directory,
             commands::preflight_project_creation,
             commands::create_project,
+            commands::move_project_structure,
             commands::open_project,
             commands::repair_project,
             commands::reveal_project_directory,

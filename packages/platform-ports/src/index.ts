@@ -148,6 +148,7 @@ export interface LoggerPort {
 export interface ProjectSnapshot {
 	readonly root: string;
 	readonly project: WritingProject;
+	readonly projectRevision: string;
 	readonly appearance?: ProjectAppearance;
 	readonly resources: readonly {
 		readonly id: string;
@@ -221,6 +222,58 @@ export interface CreatedProject {
 	readonly createdDirectoryCount: number;
 }
 
+export type DragEntityType =
+	| 'volume'
+	| 'chapter'
+	| 'scene'
+	| 'character'
+	| 'worldEntry'
+	| 'timelineEvent'
+	| 'item'
+	| 'plotThread'
+	| 'foreshadowing';
+
+export interface DragPayload {
+	readonly entityType: DragEntityType;
+	readonly entityIds: readonly string[];
+	readonly sourceContainerId: string;
+	readonly sourceIndex: number;
+	readonly projectRevision: string;
+}
+
+export interface DropTarget {
+	readonly targetType: 'before' | 'after' | 'inside' | 'associate';
+	readonly containerId: string;
+	readonly targetEntityId?: string;
+	readonly associationKind?: string;
+}
+
+export interface OrderedLocation {
+	readonly containerId: string;
+	readonly index: number;
+}
+
+export interface MoveCommand {
+	readonly commandId: string;
+	readonly entityType: Extract<DragEntityType, 'volume' | 'chapter'>;
+	readonly entityIds: readonly string[];
+	readonly from: OrderedLocation;
+	readonly to: OrderedLocation;
+	readonly expectedProjectRevision: string;
+}
+
+export interface ProjectStructureMoveRequest {
+	readonly projectRoot: string;
+	readonly command: MoveCommand;
+}
+
+export interface ProjectStructureMoveResult {
+	readonly project: WritingProject;
+	readonly projectRevision: string;
+	readonly inverseCommand: MoveCommand;
+	readonly description: string;
+}
+
 export type ProjectOpenStage =
 	| 'select-path'
 	| 'read-manifest'
@@ -279,6 +332,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	chooseProjectParentDirectory(): Promise<string | undefined>;
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
+	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
 	repairProject(projectRoot: string): Promise<ProjectRepairResult>;
 	revealProjectDirectory(projectRoot: string): Promise<void>;

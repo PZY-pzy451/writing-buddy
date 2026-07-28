@@ -101,6 +101,7 @@ pub struct IntegrityIssue {
 pub struct ProjectSnapshot {
     pub root: String,
     pub project: WritingProject,
+    pub project_revision: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub appearance: Option<ProjectAppearance>,
     pub resources: Vec<ResourceDescriptor>,
@@ -417,15 +418,17 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
     let root = filesystem::canonical_project_root(project_root)?;
     let current_path = root.join(".writing-buddy").join("project.json");
     let early_path = root.join("project.json");
-    let (project, mut issues, read_only) = if current_path.exists() {
+    let (project, mut issues, read_only, project_revision) = if current_path.exists() {
         let bytes = fs::read(&current_path).map_err(|_| "manifestReadFailed".to_owned())?;
+        let project_revision = filesystem::sha256(&bytes);
         let project: WritingProject =
             serde_json::from_slice(&bytes).map_err(|_| "invalidManifest".to_owned())?;
         let issues = validate_current(&project);
         let read_only = issues.iter().any(|issue| issue.severity == "error");
-        (project, issues, read_only)
+        (project, issues, read_only, project_revision)
     } else if early_path.exists() {
         let bytes = fs::read(&early_path).map_err(|_| "manifestReadFailed".to_owned())?;
+        let project_revision = filesystem::sha256(&bytes);
         let manifest: EarlyManifest =
             serde_json::from_slice(&bytes).map_err(|_| "invalidManifest".to_owned())?;
         let project = discover_early_project(&root, manifest)?;
@@ -437,7 +440,7 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
                     .to_owned(),
             path: Some("project.json".to_owned()),
         }];
-        (project, issues, true)
+        (project, issues, true, project_revision)
     } else {
         return Err("manifestNotFound".to_owned());
     };
@@ -461,6 +464,7 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
         root: root.to_string_lossy().into_owned(),
         appearance: read_project_appearance(&root),
         project,
+        project_revision,
         resources: collect_resources(&root),
         integrity_issues: issues,
         word_counts,

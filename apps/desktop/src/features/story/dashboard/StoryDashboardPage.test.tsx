@@ -9,6 +9,7 @@ import {
 
 const projectSnapshot: ProjectSnapshot = {
 	root: 'D:/Writing Buddy Fixture',
+	projectRevision: 'revision-dashboard-1',
 	project: {
 		schemaVersion: 1,
 		projectId: 'project-dashboard',
