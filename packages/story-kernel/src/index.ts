@@ -29,6 +29,7 @@ export * from './schema/storyManifestSchema';
 export * from './schema/migrations/v0-to-v1';
 export * from './transaction/StoryTransaction';
 export * from './transaction/StoryDragTransaction';
+export * from './transaction/SceneMoveTransaction';
 export * from './validation/locationRules';
 export * from './validation/itemRules';
 export * from './validation/informationRules';

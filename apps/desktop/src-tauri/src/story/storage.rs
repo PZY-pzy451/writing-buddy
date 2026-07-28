@@ -20,11 +20,11 @@ pub struct StorySaveEntry {
     pub expected_absent: bool,
 }
 
-struct PreparedResource {
-    target: PathBuf,
-    original: Option<Vec<u8>>,
-    value: Value,
-    bytes: Vec<u8>,
+pub(crate) struct PreparedResource {
+    pub(crate) target: PathBuf,
+    pub(crate) original: Option<Vec<u8>>,
+    pub(crate) value: Value,
+    pub(crate) bytes: Vec<u8>,
 }
 
 fn resource_folder(resource_type: &str) -> Option<(&'static str, &'static str)> {
@@ -131,7 +131,10 @@ fn read_value(path: &Path) -> Result<Value, String> {
     serde_json::from_slice(&bytes).map_err(|_| "invalidStoryResource".to_owned())
 }
 
-fn prepare_resource(root: &Path, entry: &StorySaveEntry) -> Result<PreparedResource, String> {
+pub(crate) fn prepare_resource(
+    root: &Path,
+    entry: &StorySaveEntry,
+) -> Result<PreparedResource, String> {
     let (resource_type, id, incoming_revision) = validate_resource(&entry.resource)?;
     let target = resource_target(root, resource_type, id)?;
     let original = if target.exists() {

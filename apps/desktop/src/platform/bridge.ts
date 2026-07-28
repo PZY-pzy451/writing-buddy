@@ -25,6 +25,8 @@ import type {
 	ProjectOpenMode,
 	ProjectRepairResult,
 	ProjectSnapshot,
+	SceneMoveCommitRequest,
+	SceneMoveCommitResult,
 	ProjectStructureMoveRequest,
 	ProjectStructureMoveResult,
 	StoryIndexQuery,
@@ -69,6 +71,10 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
 		return invoke<ProjectStructureMoveResult>('move_project_structure', { request });
+	}
+
+	commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult> {
+		return invoke<SceneMoveCommitResult>('story_commit_scene_move', { request });
 	}
 
 	openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
@@ -1064,6 +1070,89 @@ class BrowserDesktopBridge implements DesktopBridge {
 			projectRevision,
 			inverseCommand,
 			description: moved.description
+		};
+	}
+
+	async commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current) throw new Error('projectRootUnavailable');
+		if (current.readOnly) throw new Error('projectReadOnly');
+		if (current.projectRevision !== request.expectedProjectRevision) {
+			throw new Error('sceneMoveProjectRevisionConflict');
+		}
+
+		const stagedTexts = request.manuscripts.map(write => {
+			const currentContent = browserFiles.get(write.relativePath);
+			if (
+				currentContent === undefined
+				|| browserHash(currentContent) !== write.expectedHash
+			) {
+				throw new Error('sceneMoveTextConflict');
+			}
+			return { write, currentContent };
+		});
+		const stagedResources = request.storyEntries.map(entry => {
+			const envelope = browserStoryEnvelope(entry.resource);
+			const key = browserStoryKey(envelope.type, envelope.id);
+			const currentResource = browserStoryResources.get(key);
+			const actualRevision = currentResource
+				? browserStoryEnvelope(currentResource).revision
+				: 0;
+			if (actualRevision !== (entry.expectedRevision ?? envelope.revision)) {
+				throw new Error('sceneMoveStoryRevisionConflict');
+			}
+			return {
+				key,
+				value: {
+					...entry.resource as object,
+					revision: actualRevision + 1,
+					updatedAt: new Date().toISOString()
+				}
+			};
+		});
+		const stagedMentions = request.mentionEntries.map(entry => {
+			const mention = parseMentionLink(entry.mention);
+			const currentMention = browserMentionLinks.get(mention.id);
+			const actualRevision = currentMention ? parseMentionLink(currentMention).revision : 0;
+			if (actualRevision !== (entry.expectedRevision ?? mention.revision)) {
+				throw new Error('sceneMoveMentionRevisionConflict');
+			}
+			return {
+				id: mention.id,
+				value: {
+					...mention,
+					revision: actualRevision + 1,
+					updatedAt: new Date().toISOString()
+				}
+			};
+		});
+
+		for (const { write } of stagedTexts) {
+			browserFiles.set(write.relativePath, write.content);
+		}
+		for (const { key, value } of stagedResources) {
+			browserStoryResources.set(key, value);
+		}
+		for (const { id, value } of stagedMentions) {
+			browserMentionLinks.set(id, value);
+		}
+		browserStoryIndexStatus = {
+			schemaVersion: 1,
+			ready: false,
+			sourceFingerprint: '',
+			recordCount: 0,
+			kindCounts: {}
+		};
+		return {
+			storyResources: stagedResources.map(entry => entry.value),
+			mentions: stagedMentions.map(entry => entry.value),
+			manuscripts: stagedTexts.map(({ write }) => ({
+				chapterId: write.chapterId,
+				relativePath: write.relativePath,
+				hash: browserHash(write.content),
+				byteLength: new TextEncoder().encode(write.content).byteLength
+			}))
 		};
 	}
 

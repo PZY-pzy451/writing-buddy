@@ -441,9 +441,9 @@ button.tree-row {
 
 .tree-drag-handle {
 	display: grid;
-	flex: 0 0 40px;
-	width: 40px;
-	height: 40px;
+	flex: 0 0 44px;
+	width: 44px;
+	height: 44px;
 	padding: 0;
 	color: var(--text-muted);
 	cursor: grab;
@@ -645,6 +645,35 @@ button.tree-row {
 
 .chapter-row {
 	padding-left: 11px;
+}
+
+.chapter-tree-group {
+	min-width: 0;
+}
+
+.scene-tree-children {
+	position: relative;
+	margin-left: 24px;
+	padding-left: 8px;
+}
+
+.scene-tree-children::before {
+	position: absolute;
+	inset: 0 auto 5px 0;
+	width: 1px;
+	background: color-mix(in srgb, var(--border-subtle) 76%, transparent);
+	content: "";
+}
+
+.scene-row {
+	min-height: 44px;
+	padding-left: 11px;
+	color: var(--text-secondary);
+}
+
+.scene-row .tree-row-main {
+	min-width: 0;
+	font-size: 12px;
 }
 
 .reference-tree {

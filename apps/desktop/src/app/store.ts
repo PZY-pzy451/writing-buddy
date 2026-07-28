@@ -13,7 +13,8 @@ import {
 	DesktopStoryRepository,
 	type SelectionRewriteActionType,
 	type ManuscriptContinuationMode,
-	type ScenePlanActionType
+	type ScenePlanActionType,
+	type StoryScene
 } from '@writing-buddy/story-kernel';
 import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
 import { create } from 'zustand';
@@ -24,6 +25,11 @@ import {
 	type ProjectOpenMode,
 	type PublicProjectOpenError
 } from '../features/projects/application/ProjectOpenService';
+import {
+	ProjectSceneMoveGatewayError,
+	ProjectSceneMoveService,
+	type ProjectSceneMoveUndoReceipt
+} from '../features/projects/application/ProjectSceneMoveService';
 import {
 	ProjectStructureMoveGatewayError,
 	ProjectStructureMoveService
@@ -75,6 +81,17 @@ export type AssistantActionIntent = AssistantActionRequest & {
 	readonly id: string;
 };
 
+type StructureUndoState = {
+	readonly description: string;
+	readonly expiresAt: number;
+} & ({
+	readonly kind: 'project';
+	readonly inverseCommand: MoveCommand;
+} | {
+	readonly kind: 'scene';
+	readonly receipt: ProjectSceneMoveUndoReceipt;
+});
+
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
 	readonly recentProjectRoots: readonly string[];
@@ -120,11 +137,8 @@ interface AppState extends PersistedWorkspace {
 	readonly projectWizardOpen: boolean;
 	readonly structureMoveBusy: boolean;
 	readonly structureMoveAnnouncement?: string;
-	readonly structureUndo?: {
-		readonly inverseCommand: MoveCommand;
-		readonly description: string;
-		readonly expiresAt: number;
-	};
+	readonly structureScenes: readonly StoryScene[];
+	readonly structureUndo?: StructureUndoState;
 	readonly lastSavedAt?: string;
 	readonly pendingEdit?: {
 		readonly id: string;
@@ -144,6 +158,10 @@ interface AppState extends PersistedWorkspace {
 	readonly moveProjectStructure: (command: MoveCommand) => Promise<boolean>;
 	readonly undoProjectStructureMove: () => Promise<void>;
 	readonly dismissProjectStructureUndo: () => void;
+	readonly syncStructureScenesForChapter: (
+		chapterId: string,
+		scenes: readonly StoryScene[]
+	) => void;
 	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
 	readonly retryProjectOpen: () => Promise<void>;
 	readonly openProjectReadOnly: () => Promise<void>;
@@ -191,6 +209,7 @@ interface AppState extends PersistedWorkspace {
 const tabs = new ResourceTabManager();
 const projectOpenService = new ProjectOpenService(desktopBridge);
 const projectStructureMoveService = new ProjectStructureMoveService(desktopBridge);
+const projectSceneMoveService = new ProjectSceneMoveService(desktopBridge);
 const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
@@ -204,6 +223,25 @@ const projectMoveErrorCopy: Readonly<Record<string, string>> = {
 	projectMoveWriteFailed: '项目结构保存失败，原顺序未改变。',
 	projectMoveVerificationFailed: '项目结构验证失败，已恢复原顺序。',
 	projectMoveFailed: '暂时无法调整项目结构。'
+};
+
+const sceneMoveErrorCopy: Readonly<Record<string, string>> = {
+	projectReadOnly: '当前作品以只读模式打开，不能移动场景。',
+	sceneMoveUnsavedDocument: '请先保存当前文稿，再移动场景。',
+	sceneMoveProjectRevisionConflict: '作品结构已变化，请重新载入后再移动场景。',
+	sceneMoveStoryRevisionConflict: '场景或剧情资料已变化，请重新载入后再试。',
+	sceneMoveMentionRevisionConflict: '正文引用已变化，请重新载入后再试。',
+	sceneMoveTextConflict: '章节正文已在磁盘上变化，场景未移动。',
+	sceneMoveAnchorInvalid: '场景锚点与当前正文不一致，请先重新标记场景范围。',
+	sceneMoveMentionBoundaryConflict: '有正文引用跨过场景边界，无法安全移动。',
+	sceneMoveSourceChanged: '待移动场景的位置已变化，请重试。',
+	sceneMoveTargetInvalid: '目标章节或场景位置无效。',
+	sceneMoveNoChange: '场景已经位于该位置。',
+	sceneMoveStagingFailed: '无法准备场景移动，正文未改变。',
+	sceneMoveWriteFailed: '场景移动保存失败，原正文已恢复。',
+	sceneMoveRollbackFailed: '场景移动回滚失败，请从备份记录恢复。',
+	sceneMoveVerificationFailed: '场景移动验证失败，原正文已恢复。',
+	sceneMoveFailed: '暂时无法移动场景，正文未改变。'
 };
 
 function toChapterResource(snapshot: ProjectSnapshot, chapterId: string): ResourceDescriptor | undefined {
@@ -250,6 +288,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	dockOpen: true,
 	projectWizardOpen: false,
 	structureMoveBusy: false,
+	structureScenes: [],
 
 	async bootstrap() {
 		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
@@ -282,6 +321,60 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({ error: projectMoveErrorCopy.projectReadOnly });
 			return false;
 		}
+		if (command.entityType === 'scene') {
+			const session = get().session;
+			if (session?.state.dirty) {
+				set({ error: sceneMoveErrorCopy.sceneMoveUnsavedDocument });
+				return false;
+			}
+			set({ structureMoveBusy: true, error: undefined });
+			try {
+				const result = await projectSceneMoveService.execute(snapshot, command);
+				const activeResource = get().activeResource;
+				let nextSession = session;
+				if (
+					session
+					&& activeResource?.type === 'chapter'
+					&& result.wordCountContent[activeResource.id] !== undefined
+					&& activeResource.path
+				) {
+					const disk = await desktopBridge.readText(snapshot.root, activeResource.path);
+					session.reload(disk);
+					nextSession = session.copy();
+				}
+				set({
+					snapshot: {
+						...snapshot,
+						wordCounts: {
+							...snapshot.wordCounts,
+							...Object.fromEntries(Object.entries(result.wordCountContent).map(
+								([chapterId, content]) => [chapterId, countWords(content)]
+							))
+						}
+					},
+					session: nextSession,
+					structureScenes: result.scenes,
+					structureMoveBusy: false,
+					structureMoveAnnouncement: result.description,
+					structureUndo: {
+						kind: 'scene',
+						receipt: result.undoReceipt,
+						description: result.description,
+						expiresAt: Date.now() + 6000
+					}
+				});
+				return true;
+			} catch (error) {
+				const code = error instanceof ProjectSceneMoveGatewayError
+					? error.code
+					: 'sceneMoveFailed';
+				set({
+					structureMoveBusy: false,
+					error: sceneMoveErrorCopy[code] ?? sceneMoveErrorCopy.sceneMoveFailed
+				});
+				return false;
+			}
+		}
 		set({ structureMoveBusy: true, error: undefined });
 		try {
 			const result = await projectStructureMoveService.execute(snapshot.root, command);
@@ -294,6 +387,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				structureMoveBusy: false,
 				structureMoveAnnouncement: result.description,
 				structureUndo: {
+					kind: 'project',
 					inverseCommand: result.inverseCommand,
 					description: result.description,
 					expiresAt: Date.now() + 6000
@@ -319,6 +413,50 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			return;
 		}
 		set({ structureMoveBusy: true, error: undefined });
+		if (undo.kind === 'scene') {
+			try {
+				const result = await projectSceneMoveService.undo(snapshot, undo.receipt);
+				const activeResource = get().activeResource;
+				const session = get().session;
+				let nextSession = session;
+				if (
+					session
+					&& activeResource?.type === 'chapter'
+					&& result.wordCountContent[activeResource.id] !== undefined
+					&& activeResource.path
+				) {
+					const disk = await desktopBridge.readText(snapshot.root, activeResource.path);
+					session.reload(disk);
+					nextSession = session.copy();
+				}
+				set({
+					snapshot: {
+						...snapshot,
+						wordCounts: {
+							...snapshot.wordCounts,
+							...Object.fromEntries(Object.entries(result.wordCountContent).map(
+								([chapterId, content]) => [chapterId, countWords(content)]
+							))
+						}
+					},
+					session: nextSession,
+					structureScenes: result.scenes,
+					structureMoveBusy: false,
+					structureMoveAnnouncement: result.description,
+					structureUndo: undefined
+				});
+			} catch (error) {
+				const code = error instanceof ProjectSceneMoveGatewayError
+					? error.code
+					: 'sceneMoveFailed';
+				set({
+					structureMoveBusy: false,
+					structureUndo: code.endsWith('Conflict') ? undefined : undo,
+					error: sceneMoveErrorCopy[code] ?? sceneMoveErrorCopy.sceneMoveFailed
+				});
+			}
+			return;
+		}
 		try {
 			const result = await projectStructureMoveService.execute(
 				snapshot.root,
@@ -350,6 +488,19 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		set({ structureUndo: undefined });
 	},
 
+	syncStructureScenesForChapter(chapterId, scenes) {
+		set(state => ({
+			structureScenes: [
+				...state.structureScenes.filter(scene => scene.chapterId !== chapterId),
+				...scenes
+			].sort((left, right) => (
+				left.chapterId.localeCompare(right.chapterId)
+				|| left.narrativeOrder - right.narrativeOrder
+				|| left.manuscriptRange.start - right.manuscriptRange.start
+			))
+		}));
+	},
+
 	async openProject(root, mode = 'read-write') {
 		set({
 			loading: true,
@@ -379,6 +530,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			].slice(0, 3);
 			let reviewFile: TextFile | undefined;
 			let restoredIssues: readonly ReviewIssue[] = [];
+			let structureScenes: readonly StoryScene[] = [];
 			try {
 				reviewFile = await desktopBridge.readReviewState(snapshot.root);
 				if (reviewFile) {
@@ -387,6 +539,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			} catch {
 				reviewFile = undefined;
 				restoredIssues = [];
+			}
+			try {
+				structureScenes = await projectSceneMoveService.listScenes(snapshot.root);
+			} catch {
+				structureScenes = [];
 			}
 			const persistedResourceIds = get().openResourceIds;
 			const restoredTabs = persistedResourceIds
@@ -436,6 +593,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				pendingProjectRoot: undefined,
 				projectOpenBusyAction: undefined,
 				structureMoveBusy: false,
+				structureScenes,
 				structureMoveAnnouncement: undefined,
 				structureUndo: undefined
 			});

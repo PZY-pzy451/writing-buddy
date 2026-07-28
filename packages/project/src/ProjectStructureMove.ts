@@ -27,6 +27,22 @@ export class ProjectStructureMoveError extends Error {
 
 export class DropRuleRegistry {
 	evaluate(payload: DragPayload, target: DropTarget): DropRuleDecision {
+		if (payload.entityType === 'scene' && payload.entityIds.length === 1) {
+			return ['before', 'after', 'inside'].includes(target.targetType)
+				? {
+					allowed: true,
+					action: payload.sourceContainerId === target.containerId ? 'reorder' : 'move',
+					confirmationRequired: false,
+					label: payload.sourceContainerId === target.containerId
+						? '调整场景顺序'
+						: '移动场景到其他章节'
+				}
+				: {
+					allowed: false,
+					code: 'sceneMoveTargetInvalid',
+					reason: '场景只能放在章节内或其他场景之前、之后。'
+				};
+		}
 		if (payload.entityIds.length !== 1) {
 			return {
 				allowed: false,
@@ -135,6 +151,9 @@ export function applyProjectStructureMove(
 		};
 	}
 
+	if (command.entityType !== 'chapter') {
+		moveError('projectMoveEntityTypeUnsupported');
+	}
 	const sourceVolumeIndex = project.volumes.findIndex(
 		volume => volume.id === command.from.containerId
 	);

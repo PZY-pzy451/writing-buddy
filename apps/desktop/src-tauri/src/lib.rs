@@ -46,6 +46,7 @@ pub fn run() {
             story::commands::story_query_index,
             story::mentions::mention_list_links,
             story::mentions::mention_save_links,
+            story::scene_move::story_commit_scene_move,
             commands::read_text,
             commands::write_text_atomic,
             commands::save_text_as,

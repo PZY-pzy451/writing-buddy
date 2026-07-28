@@ -68,6 +68,9 @@ export function ChapterEditor(): React.JSX.Element {
 	const pendingReveal = useAppStore(state => state.pendingReveal);
 	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
+	const syncStructureScenesForChapter = useAppStore(
+		state => state.syncStructureScenesForChapter
+	);
 	const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | undefined>(undefined);
 	const cursorTimerRef = useRef<number | undefined>(undefined);
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
@@ -304,7 +307,10 @@ export function ChapterEditor(): React.JSX.Element {
 
 	const updateScenes = useCallback((nextScenes: readonly StoryScene[]) => {
 		setScenes(nextScenes);
-	}, []);
+		if (storyChapterId) {
+			syncStructureScenesForChapter(storyChapterId, nextScenes);
+		}
+	}, [storyChapterId, syncStructureScenesForChapter]);
 	const generateResourceFromSelection = useCallback((type: StoryResourceType) => {
 		const intent = selectionResourceIntents[type];
 		if (intent) {

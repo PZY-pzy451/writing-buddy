@@ -1,4 +1,5 @@
 import type { WritingProject } from '@writing-buddy/domain';
+import { toStoryChapterId, type StoryScene } from '@writing-buddy/story-kernel';
 import type {
 	DragPayload,
 	DropTarget,
@@ -51,7 +52,8 @@ export function resolveProjectStructureDrop(
 	project: WritingProject,
 	active: ProjectStructureDragItem,
 	over: ProjectStructureDragItem,
-	placement: ProjectStructureDropPlacement
+	placement: ProjectStructureDropPlacement,
+	scenes: readonly StoryScene[] = []
 ): ProjectStructureDropIntent {
 	if (active.entityId === over.entityId) {
 		return { allowed: false, reason: '项目已经在这个位置。' };
@@ -68,7 +70,43 @@ export function resolveProjectStructureDrop(
 	let targetIndex: number;
 	let label: string;
 
-	if (active.entityType === 'volume') {
+	if (active.entityType === 'scene') {
+		const targetChapterId = over.entityType === 'scene'
+			? over.containerId
+			: over.entityType === 'chapter'
+				? toStoryChapterId(over.entityId)
+				: undefined;
+		if (!targetChapterId) {
+			return { allowed: false, reason: '场景只能移动到章节或其他场景。' };
+		}
+		const targetScenes = scenes
+			.filter(scene => scene.chapterId === targetChapterId)
+			.sort((left, right) => (
+				left.narrativeOrder - right.narrativeOrder
+				|| left.manuscriptRange.start - right.manuscriptRange.start
+			));
+		if (over.entityType === 'scene') {
+			target = {
+				targetType: placement,
+				containerId: targetChapterId,
+				targetEntityId: over.entityId
+			};
+			targetIndex = active.containerId === targetChapterId
+				? indexAfterRemoval(active.index, over.index, placement)
+				: over.index + (placement === 'after' ? 1 : 0);
+			label = `移到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
+		} else {
+			target = {
+				targetType: 'inside',
+				containerId: targetChapterId,
+				targetEntityId: over.entityId
+			};
+			targetIndex = active.containerId === targetChapterId
+				? Math.max(0, targetScenes.length - 1)
+				: targetScenes.length;
+			label = `移到“${over.title}”的场景末尾（第 ${targetIndex + 1} 位）`;
+		}
+	} else if (active.entityType === 'volume') {
 		if (over.entityType !== 'volume') {
 			return { allowed: false, reason: '卷只能放在其他卷之前或之后。' };
 		}
@@ -79,6 +117,8 @@ export function resolveProjectStructureDrop(
 		};
 		targetIndex = indexAfterRemoval(active.index, over.index, placement);
 		label = `放到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
+	} else if (over.entityType === 'scene') {
+		return { allowed: false, reason: '卷和章节不能放入场景。' };
 	} else if (over.entityType === 'volume') {
 		const destination = project.volumes.find(volume => volume.id === over.entityId);
 		if (!destination) {

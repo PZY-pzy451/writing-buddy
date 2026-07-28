@@ -17,6 +17,7 @@
 - [Project highlight and shared interaction Y5 implementation contract](./015-project-highlight-components-y5.md)
 - [AI generation reliability and handoff audit](./016-ai-generation-reliability-handoff-audit.md)
 - [AI prompt contract parity repair](./017-ai-prompt-contract-parity.md)
+- [Project scene movement](./018-project-scene-movement.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
 - [Phase 1.0B system layout and AI review follow-up](./phase-1.0b-system-layout-and-ai-review.md)
 - [StoryForge source map](./storyforge-source-map.md)

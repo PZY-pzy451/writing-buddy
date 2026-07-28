@@ -21,6 +21,7 @@ import { CSS } from '@dnd-kit/utilities';
 import {
 	ChevronDown,
 	ChevronRight,
+	Clapperboard,
 	FileText,
 	FolderOpen,
 	GripVertical
@@ -32,6 +33,7 @@ import type {
 	VolumeDescriptor
 } from '@writing-buddy/domain';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
+import { toStoryChapterId, type StoryScene } from '@writing-buddy/story-kernel';
 import { useAppStore } from '../../../app/store';
 import {
 	DragOverlayCard,
@@ -48,6 +50,7 @@ import {
 
 const volumeDragId = (volumeId: string) => `project-volume:${volumeId}`;
 const chapterDragId = (chapterId: string) => `project-chapter:${chapterId}`;
+const sceneDragId = (sceneId: string) => `project-scene:${sceneId}`;
 
 interface DropFeedback {
 	readonly overId: string;
@@ -63,6 +66,7 @@ interface ProjectStructureTreeProps {
 	readonly chapterWords: (chapterId: string) => number;
 	readonly onToggleVolume: (volumeId: string) => void;
 	readonly onOpenChapter: (resource: ResourceDescriptor) => void;
+	readonly onOpenScene: (resource: ResourceDescriptor, offset: number) => void;
 }
 
 interface SortableRowProps {
@@ -252,6 +256,65 @@ function SortableChapterRow({
 	);
 }
 
+function SortableSceneRow({
+	item,
+	scene,
+	disabledReason,
+	feedback,
+	onOpen
+}: SortableRowProps & {
+	readonly scene: StoryScene;
+	readonly onOpen: () => void;
+}): React.JSX.Element {
+	const {
+		attributes,
+		isDragging,
+		listeners,
+		setActivatorNodeRef,
+		setNodeRef,
+		transform,
+		transition
+	} = useSortable({
+		id: sceneDragId(scene.id),
+		data: { structureItem: item },
+		disabled: Boolean(disabledReason)
+	});
+	return (
+		<TreeRow
+			nodeRef={setNodeRef}
+			className="tree-row scene-row"
+			state={interactionState(isDragging, feedback)}
+			style={{
+				transform: CSS.Transform.toString(transform),
+				transition
+			}}
+			dataStructureId={scene.id}
+		>
+			<button className="tree-row-main" type="button" onClick={onOpen}>
+				<Clapperboard size={16} />
+				<span>{scene.title}</span>
+				<small>场景 {scene.narrativeOrder + 1}</small>
+			</button>
+			<button
+				ref={setActivatorNodeRef}
+				className="tree-drag-handle"
+				type="button"
+				disabled={Boolean(disabledReason)}
+				title={disabledReason ?? `拖动“${scene.title}”调整场景位置`}
+				aria-label={disabledReason
+					? `拖动场景：${scene.title}；${disabledReason}`
+					: `拖动场景：${scene.title}`}
+				{...attributes}
+				{...listeners}
+				aria-describedby="project-structure-drag-instructions"
+			>
+				<GripVertical size={16} />
+			</button>
+			<RowDropIndicator feedback={feedback} />
+		</TreeRow>
+	);
+}
+
 export function ProjectStructureTree({
 	snapshot,
 	activeResourceId,
@@ -259,11 +322,14 @@ export function ProjectStructureTree({
 	search,
 	chapterWords,
 	onToggleVolume,
-	onOpenChapter
+	onOpenChapter,
+	onOpenScene
 }: ProjectStructureTreeProps): React.JSX.Element {
 	const moveProjectStructure = useAppStore(state => state.moveProjectStructure);
 	const moveBusy = useAppStore(state => state.structureMoveBusy);
 	const persistedAnnouncement = useAppStore(state => state.structureMoveAnnouncement);
+	const scenes = useAppStore(state => state.structureScenes);
+	const hasUnsavedDocument = useAppStore(state => state.session?.state.dirty ?? false);
 	const [activeItem, setActiveItem] = useState<ProjectStructureDragItem>();
 	const [dropFeedback, setDropFeedback] = useState<DropFeedback>();
 	const [localAnnouncement, setLocalAnnouncement] = useState('');
@@ -271,13 +337,17 @@ export function ProjectStructureTree({
 		useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
 		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
 	);
-	const disabledReason = snapshot.readOnly
+	const baseDisabledReason = snapshot.readOnly
 		? '只读作品不能调整结构'
 		: search
 			? '清除搜索后可调整结构'
 			: moveBusy
 				? '正在保存项目结构'
 				: undefined;
+
+	const sceneDisabledReason = hasUnsavedDocument
+		? '保存当前文稿后可移动场景'
+		: baseDisabledReason;
 
 	const resolveFeedback = (
 		event: DragOverEvent | DragEndEvent
@@ -287,7 +357,10 @@ export function ProjectStructureTree({
 		if (!active || !over) {
 			return undefined;
 		}
-		const placement = active.entityType === 'chapter' && over.entityType === 'volume'
+		const placement = (
+			(active.entityType === 'chapter' && over.entityType === 'volume')
+			|| (active.entityType === 'scene' && over.entityType === 'chapter')
+		)
 			? 'inside'
 			: placementFromEvent(event);
 		return {
@@ -297,7 +370,8 @@ export function ProjectStructureTree({
 				snapshot.project,
 				active,
 				over,
-				placement === 'inside' ? 'after' : placement
+				placement === 'inside' ? 'after' : placement,
+				scenes
 			)
 		};
 	};
@@ -311,6 +385,12 @@ export function ProjectStructureTree({
 		const item = readDragItem(event.active.data);
 		setActiveItem(item);
 		setDropFeedback(undefined);
+		if (item?.entityType === 'scene') {
+			setLocalAnnouncement(
+				`已拾取场景“${item.title}”。使用方向键选择位置，空格或回车放下，Esc 取消。`
+			);
+			return;
+		}
 		if (item) {
 			setLocalAnnouncement(`已拾取${item.entityType === 'volume' ? '卷' : '章节'}“${item.title}”。使用方向键选择位置，空格或回车放下，Esc 取消。`);
 		}
@@ -383,9 +463,9 @@ export function ProjectStructureTree({
 			<p className="sr-only" role="status" aria-live="polite">
 				{persistedAnnouncement}
 			</p>
-			{disabledReason && !moveBusy && (
+			{sceneDisabledReason && !moveBusy && (
 				<p className="tree-reorder-hint">
-					<GripVertical size={14} aria-hidden="true" />{disabledReason}
+					<GripVertical size={14} aria-hidden="true" />{sceneDisabledReason}
 				</p>
 			)}
 			<SortableContext
@@ -394,9 +474,16 @@ export function ProjectStructureTree({
 			>
 				{snapshot.project.volumes.map((volume, volumeIndex) => {
 					const expanded = !collapsedVolumes.has(volume.id);
-					const chapters = volume.chapters.filter(
-						chapter => !search || chapter.title.toLocaleLowerCase().includes(search)
-					);
+					const chapters = volume.chapters.filter(chapter => {
+						if (!search || chapter.title.toLocaleLowerCase().includes(search)) {
+							return true;
+						}
+						const storyChapterId = toStoryChapterId(chapter.id);
+						return scenes.some(scene => (
+							scene.chapterId === storyChapterId
+							&& scene.title.toLocaleLowerCase().includes(search)
+						));
+					});
 					if (search && chapters.length === 0 && !volume.title.toLocaleLowerCase().includes(search)) {
 						return null;
 					}
@@ -414,7 +501,7 @@ export function ProjectStructureTree({
 								item={volumeItem}
 								volume={volume}
 								expanded={expanded}
-								disabledReason={disabledReason}
+									disabledReason={baseDisabledReason}
 								feedback={dropFeedback?.overId === volume.id ? dropFeedback : undefined}
 								onToggle={() => onToggleVolume(volume.id)}
 							/>
@@ -433,24 +520,66 @@ export function ProjectStructureTree({
 												path: chapter.file,
 												projectId: snapshot.project.projectId
 											};
+											const storyChapterId = toStoryChapterId(chapter.id);
+											const chapterScenes = scenes
+												.filter(scene => (
+													scene.chapterId === storyChapterId
+													&& (!search || scene.title.toLocaleLowerCase().includes(search))
+												))
+												.sort((left, right) => (
+													left.narrativeOrder - right.narrativeOrder
+													|| left.manuscriptRange.start - right.manuscriptRange.start
+												));
 											return (
-												<SortableChapterRow
-													key={chapter.id}
-													item={{
-														entityType: 'chapter',
-														entityId: chapter.id,
-														title: chapter.title,
-														containerId: volume.id,
-														index: chapterIndex,
-														projectRevision: snapshot.projectRevision
-													}}
-													chapter={chapter}
-													words={chapterWords(chapter.id)}
-													active={activeResourceId === chapter.id}
-													disabledReason={disabledReason}
-													feedback={dropFeedback?.overId === chapter.id ? dropFeedback : undefined}
-													onOpen={() => onOpenChapter(resource)}
-												/>
+												<div className="chapter-tree-group" key={chapter.id}>
+													<SortableChapterRow
+														item={{
+															entityType: 'chapter',
+															entityId: chapter.id,
+															title: chapter.title,
+															containerId: volume.id,
+															index: chapterIndex,
+															projectRevision: snapshot.projectRevision
+														}}
+														chapter={chapter}
+														words={chapterWords(chapter.id)}
+														active={activeResourceId === chapter.id}
+														disabledReason={baseDisabledReason}
+														feedback={dropFeedback?.overId === chapter.id ? dropFeedback : undefined}
+														onOpen={() => onOpenChapter(resource)}
+													/>
+													{chapterScenes.length > 0 && (
+														<SortableContext
+															items={chapterScenes.map(scene => sceneDragId(scene.id))}
+															strategy={verticalListSortingStrategy}
+														>
+															<div className="scene-tree-children">
+																{chapterScenes.map((scene, sceneIndex) => (
+																	<SortableSceneRow
+																		key={scene.id}
+																		item={{
+																			entityType: 'scene',
+																			entityId: scene.id,
+																			title: scene.title,
+																			containerId: storyChapterId,
+																			index: sceneIndex,
+																			projectRevision: snapshot.projectRevision
+																		}}
+																		scene={scene}
+																		disabledReason={sceneDisabledReason}
+																		feedback={dropFeedback?.overId === scene.id
+																			? dropFeedback
+																			: undefined}
+																		onOpen={() => onOpenScene(
+																			resource,
+																			scene.manuscriptRange.start
+																		)}
+																	/>
+																))}
+															</div>
+														</SortableContext>
+													)}
+												</div>
 											);
 										})}
 									</div>
@@ -473,7 +602,16 @@ export function ProjectStructureTree({
 				</div>
 			)}
 			<DragOverlay modifiers={[restrictToWindowEdges]}>
-				{activeItem ? (
+				{activeItem?.entityType === 'scene' ? (
+					<DragOverlayCard
+						icon={<Clapperboard size={18} />}
+						kind="场景"
+						title={activeItem.title}
+						hint={dropFeedback?.intent.allowed
+							? dropFeedback.intent.label
+							: undefined}
+					/>
+				) : activeItem ? (
 					<DragOverlayCard
 						icon={activeItem.entityType === 'volume'
 							? <FolderOpen size={18} />

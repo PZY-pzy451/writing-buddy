@@ -34,6 +34,7 @@ export function ProjectSidebar(): React.JSX.Element {
 	const session = useAppStore(state => state.session);
 	const search = useAppStore(state => state.search.trim().toLocaleLowerCase());
 	const openResource = useAppStore(state => state.openResource);
+	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
 	const openDashboard = useAppStore(state => state.openDashboard);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
@@ -129,6 +130,11 @@ export function ProjectSidebar(): React.JSX.Element {
 						chapterWords={chapterWords}
 						onToggleVolume={toggleVolume}
 						onOpenChapter={resource => void openResource(resource)}
+						onOpenScene={(resource, offset) => {
+							void openResource(resource).then(() => {
+								requestEditorReveal(resource.id, offset);
+							});
+						}}
 					/>
 				</div>
 			</section>

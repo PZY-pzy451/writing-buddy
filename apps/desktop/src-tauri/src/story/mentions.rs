@@ -49,11 +49,11 @@ struct MentionLink {
     updated_at: String,
 }
 
-struct PreparedMention {
-    target: PathBuf,
-    original: Option<Vec<u8>>,
-    value: Value,
-    bytes: Vec<u8>,
+pub(crate) struct PreparedMention {
+    pub(crate) target: PathBuf,
+    pub(crate) original: Option<Vec<u8>>,
+    pub(crate) value: Value,
+    pub(crate) bytes: Vec<u8>,
 }
 
 fn valid_story_id(value: &str, required_prefix: Option<&str>) -> bool {
@@ -137,7 +137,10 @@ fn mention_target(root: &Path, id: &str) -> Result<PathBuf, String> {
         .join(format!("{}.json", id.replace(':', "%3A"))))
 }
 
-fn prepare_mention(root: &Path, entry: &MentionSaveEntry) -> Result<PreparedMention, String> {
+pub(crate) fn prepare_mention(
+    root: &Path,
+    entry: &MentionSaveEntry,
+) -> Result<PreparedMention, String> {
     let mention = validate_mention(&entry.mention)?;
     let target = mention_target(root, &mention.id)?;
     let original = if target.exists() {

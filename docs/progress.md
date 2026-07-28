@@ -4,12 +4,12 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-No implementation milestone is currently active. AI prompt contract parity is
-accepted on `codex/ai-prompt-contract-parity` at implementation commit
-`9716f473`. Story Kernel generation now passes the strict local request
-contract when DeepSeek settings are valid, and a 14-prompt cross-language
-parity test prevents the same drift. Evidence:
-`docs/acceptance/025-ai-prompt-contract-parity-2026-07-28.md`.
+Project scene movement is active on `codex/project-scene-movement`. The
+implementation follows the manuscript-anchor migration and combined native
+rollback contract in `docs/plans/018-project-scene-movement.md`: scene dragging
+must move the exact manuscript slice, migrate scenes/Mentions/scene-specific
+Story Positions, reject stale anchors or revisions, and expose pointer,
+keyboard, and Undo parity.
 
 ## Completed
 
@@ -267,9 +267,8 @@ parity test prevents the same drift. Evidence:
 
 ## Next
 
-Start the broad Y6 application visual-polish pass as a separate gate. Scene
-cross-chapter movement still requires a manuscript-anchor migration contract;
-do not implement it as a synthetic array reorder.
+Complete and accept project scene movement, then start the broad Y6
+application visual-polish pass as a separate gate.
 
 ## Project Creation Y0–Y2 complete
 

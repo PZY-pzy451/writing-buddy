@@ -64,15 +64,16 @@ describe('DropRuleRegistry', () => {
 		}
 	);
 
-	it('keeps scene movement blocked until manuscript anchors can move safely', () => {
+	it('allows scene movement only at scene or chapter insertion targets', () => {
 		const result = registry.evaluate(
 			{ ...payload, entityType: 'scene', entityIds: ['scene-1'] },
 			{ targetType: 'inside', containerId: 'chapter-2' }
 		);
-		expect(result).toMatchObject({
-			allowed: false,
-			code: 'projectMoveSceneRequiresManuscriptPlan'
-		});
+		expect(result).toMatchObject({ allowed: true, action: 'move' });
+		expect(registry.evaluate(
+			{ ...payload, entityType: 'scene', entityIds: ['scene-1'] },
+			{ targetType: 'associate', containerId: 'character-1' }
+		).allowed).toBe(false);
 	});
 });
 
@@ -120,4 +121,3 @@ describe('applyProjectStructureMove', () => {
 			.toEqual(['chapter-1', 'chapter-2', 'chapter-3']);
 	});
 });
-

@@ -11,7 +11,9 @@ import type {
 	SecretStatus
 } from '@writing-buddy/ai';
 import type {
+	MentionSaveEntry,
 	MentionStorageGateway,
+	StorySaveEntry,
 	StoryStorageGateway
 } from '@writing-buddy/story-kernel';
 
@@ -255,7 +257,7 @@ export interface OrderedLocation {
 
 export interface MoveCommand {
 	readonly commandId: string;
-	readonly entityType: Extract<DragEntityType, 'volume' | 'chapter'>;
+	readonly entityType: Extract<DragEntityType, 'volume' | 'chapter' | 'scene'>;
 	readonly entityIds: readonly string[];
 	readonly from: OrderedLocation;
 	readonly to: OrderedLocation;
@@ -272,6 +274,38 @@ export interface ProjectStructureMoveResult {
 	readonly projectRevision: string;
 	readonly inverseCommand: MoveCommand;
 	readonly description: string;
+}
+
+export interface SceneMoveTextWrite {
+	readonly chapterId: string;
+	readonly relativePath: string;
+	readonly content: string;
+	readonly expectedHash: string;
+	readonly eol: 'lf' | 'crlf';
+	readonly hasBom: boolean;
+}
+
+export interface SceneMoveCommitRequest {
+	readonly projectRoot: string;
+	readonly commandId: string;
+	readonly sceneId: string;
+	readonly fromChapterId: string;
+	readonly toChapterId: string;
+	readonly expectedProjectRevision: string;
+	readonly manuscripts: readonly SceneMoveTextWrite[];
+	readonly storyEntries: readonly StorySaveEntry[];
+	readonly mentionEntries: readonly MentionSaveEntry[];
+}
+
+export interface SceneMoveCommitResult {
+	readonly storyResources: readonly unknown[];
+	readonly mentions: readonly unknown[];
+	readonly manuscripts: readonly {
+		readonly chapterId: string;
+		readonly relativePath: string;
+		readonly hash: string;
+		readonly byteLength: number;
+	}[];
 }
 
 export type ProjectOpenStage =
@@ -333,6 +367,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult>;
+	commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
 	repairProject(projectRoot: string): Promise<ProjectRepairResult>;
 	revealProjectDirectory(projectRoot: string): Promise<void>;
