@@ -309,4 +309,51 @@ describe('StoryKernelGenerationService', () => {
 		expect((await store.load())[0]?.candidates.every(candidate => candidate.status === 'pending'))
 			.toBe(true);
 	});
+
+	it('persists a field-specific diagnostic for invalid foreshadowing visibility', async () => {
+		const { service, store } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成伏笔候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '是',
+			targetTypes: ['foreshadowing'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'foreshadowing:signal-tower-message',
+						type: 'foreshadowing',
+						title: '信号塔的无声警告',
+						aliases: [],
+						tags: ['信号塔'],
+						evidenceIds: [],
+						status: 'planted',
+						reminderPositions: [],
+						readerVisibility: 'hidden',
+						plotThreadIds: []
+					},
+					confidence: 0.65,
+					rationale: '候选需要作者确认。',
+					evidence: { start: 0, end: 1, quote: '是' }
+				}]
+			}),
+			now
+		});
+
+		const schemaConflict = batch.candidates[0]?.conflicts.find(
+			item => item.code === 'invalid-schema'
+		);
+		expect(schemaConflict).toMatchObject({
+			message: '字段结构不符合 Story Kernel，修正前无法确认写入。',
+			details: [{
+				path: 'readerVisibility',
+				expected: '0–1 之间的数字',
+				actual: '"hidden"'
+			}]
+		});
+		expect(schemaConflict?.details?.[0]?.message).toContain('不能使用“hidden”');
+		expect((await store.load())[0]?.candidates[0]?.conflicts[0]?.details)
+			.toEqual(schemaConflict?.details);
+	});
 });

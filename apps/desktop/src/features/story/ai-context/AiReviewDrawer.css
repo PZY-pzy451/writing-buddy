@@ -213,30 +213,69 @@
 
 .ai-review-error,
 .ai-review-merge-note {
-	color: var(--danger);
-	background: color-mix(in srgb, var(--danger) 9%, var(--surface-raised));
+	color: var(--highlight-conflict-fg);
+	background: var(--highlight-conflict-bg);
+	border-left: 3px solid var(--highlight-conflict-fg);
 }
 
 .ai-review-notice {
-	color: var(--success);
-	background: color-mix(in srgb, var(--success) 10%, var(--surface-raised));
+	color: var(--highlight-success-fg);
+	background: var(--highlight-success-bg);
+	border-left: 3px solid var(--highlight-success-fg);
 }
 
 .ai-review-candidate {
+	position: relative;
 	margin-top: 14px;
-	padding: 15px;
-	background: var(--surface-raised);
-	border: 1px solid var(--border-subtle);
+	padding: 15px 15px 15px 18px;
+	background: color-mix(in srgb, var(--highlight-ai-bg) 34%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--highlight-ai-fg) 28%, var(--border-subtle));
 	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+}
+
+.ai-review-candidate::before {
+	position: absolute;
+	inset: 12px auto 12px 0;
+	width: 3px;
+	background: var(--highlight-ai-fg);
+	border-radius: 0 3px 3px 0;
+	content: "";
 }
 
 .ai-review-candidate.is-accepted {
-	border-color: color-mix(in srgb, var(--success) 45%, var(--border-subtle));
+	background: color-mix(in srgb, var(--highlight-success-bg) 54%, var(--surface-raised));
+	border-color: color-mix(in srgb, var(--highlight-success-fg) 45%, var(--border-subtle));
+}
+
+.ai-review-candidate.is-accepted::before {
+	background: var(--highlight-success-fg);
+}
+
+.ai-review-candidate.is-rejected {
+	filter: saturate(0.72);
+	opacity: 0.76;
+}
+
+.ai-review-candidate.is-rejected::before {
+	background: var(--text-muted);
+}
+
+.ai-review-candidate.is-stale {
+	background: var(--surface-subtle);
+	border-style: dashed;
+	filter: saturate(0.56);
+}
+
+.ai-review-candidate.is-stale::before {
+	background: var(--text-muted);
 }
 
 .ai-review-candidate.is-selected {
-	border-color: var(--accent);
-	box-shadow: var(--focus-ring);
+	border-color: var(--highlight-selected-fg);
+	box-shadow:
+		inset 3px 0 0 var(--highlight-selected-fg),
+		0 0 0 3px var(--highlight-focus-halo);
 }
 
 .ai-review-close:focus-visible,
@@ -249,8 +288,9 @@
 .ai-review-instruction textarea:focus-visible,
 .ai-review-character-pair select:focus-visible,
 .ai-review-option select:focus-visible {
-	outline: 2px solid var(--accent);
+	outline: 2px solid var(--highlight-focus);
 	outline-offset: 2px;
+	box-shadow: 0 0 0 4px var(--highlight-focus-halo);
 }
 
 .ai-review-candidate > header {

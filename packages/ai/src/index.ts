@@ -116,9 +116,9 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 	'item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。',
 	'timelineEvent 使用 narrativePosition、eventType、participantIds/locationIds/itemIds/predecessorIds/consequenceIds/plotThreadIds/informationIds，以及可选故事时间字段。',
 	'relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。',
-	'plotThread 使用 status、participantIds、sceneIds 及可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。',
-	'foreshadowing 使用 status、reminderPositions、readerVisibility、plotThreadIds 及可选 plantedAt/surfaceMeaning/trueMeaning/plannedPayoffAt/actualPayoffAt。',
-	'information 使用 truthStatement、truthStatus、authorSecret 及可选 excludeFromAiByDefault/truthEffectiveFrom/readerRevealAt。',
+	'plotThread 的 status 只能是 planned|active|at-risk|resolved|abandoned；participantIds、sceneIds 必须为数组，可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。',
+	'foreshadowing 的 status 只能是 planted|reminded|resolved|overdue|abandoned；reminderPositions、plotThreadIds 必须为数组；readerVisibility 必须是 0 到 1 之间的数字（0 表示完全隐藏，1 表示完全可见），禁止返回 hidden/public 等文字；可选 plantedAt/surfaceMeaning/trueMeaning/plannedPayoffAt/actualPayoffAt。',
+	'information 使用 truthStatement；truthStatus 只能是 confirmed|disputed|unknown；authorSecret 与 excludeFromAiByDefault 必须是布尔值，可选 truthEffectiveFrom/readerRevealAt。',
 	'引用已有资源时必须使用 existingResources 中的 ID；同一批新资源可以互相引用。update 只能使用 existingResources 中的 ID。',
 	'有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。',
 	'最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。'

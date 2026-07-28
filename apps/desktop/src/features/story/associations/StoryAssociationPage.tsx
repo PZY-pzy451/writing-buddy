@@ -27,8 +27,7 @@ import {
 	Package,
 	ShieldCheck,
 	Sparkles,
-	UserRound,
-	X
+	UserRound
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -43,8 +42,12 @@ import {
 	type StoryItem,
 	type StoryScene
 } from '@writing-buddy/story-kernel';
-import { useModalFocus } from '../../../accessibility/useModalFocus';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	AssociationMenu,
+	DragOverlayCard,
+	DropIndicator
+} from '../../shared/interaction';
 import type { AiChapterSource } from '../ai-context/AiChapterSource';
 import { ItemStateFileStore } from '../assets/ItemAiReviewService';
 import { StoryDragUndoToast } from '../shared/StoryDragUndoToast';
@@ -190,10 +193,11 @@ function AssociationTarget({
 		>
 			{children}
 			{isOver && verdict ? (
-				<span className="association-target-label">
-					{verdict.allowed ? <Check size={15} /> : <X size={15} />}
-					{verdict.allowed ? '松开后确认关联' : verdict.reason}
-				</span>
+				<DropIndicator
+					state={verdict.allowed ? 'association' : 'invalid'}
+					placement="inside"
+					label={verdict.allowed ? '松开后确认关联' : verdict.reason}
+				/>
 			) : null}
 		</div>
 	);
@@ -246,35 +250,43 @@ function AssociationConfirmSheet({
 	);
 	const [quantity, setQuantity] = useState(currentItemState?.quantity ?? 1);
 	const [action, setAction] = useState<'plant' | 'reminder' | 'payoff'>('plant');
-	const dialogRef = useModalFocus(onCancel);
 	const needsScene = intent.target.type !== 'character';
 	const targetCharacter = characters.find(character => character.id === intent.target.id);
 
 	return (
-		<div className="association-confirm-backdrop">
-			<section
-				ref={dialogRef}
-				tabIndex={-1}
-				role="dialog"
-				aria-modal="true"
-				aria-labelledby="association-confirm-title"
-				className="association-confirm-sheet"
-			>
-				<header>
-					<div>
-						<span className="eyebrow">CONFIRM ASSOCIATION</span>
-						<h2 id="association-confirm-title">确认资料关联</h2>
-					</div>
-					<button type="button" aria-label="关闭关联确认" onClick={onCancel}>
-						<X size={18} />
-					</button>
-				</header>
+		<AssociationMenu
+			title="确认资料关联"
+			onClose={onCancel}
+			className="association-confirm-sheet"
+			description={(
+				<>
 				<div className="association-confirm-route">
 					<span>{sourceIcon(intent.source.type)}{intent.source.title}</span>
 					<Link2 size={18} />
 					<span>{intent.target.type === 'character' ? <UserRound size={17} /> : <BookOpen size={17} />}{intent.target.title}</span>
 				</div>
-				<p>{intent.label}。确认前不会写入任何资料。</p>
+					<p className="association-confirm-lead">{intent.label}。确认前不会写入任何资料。</p>
+				</>
+			)}
+			footer={(
+				<>
+					<button type="button" onClick={onCancel}>取消</button>
+					<button
+						type="button"
+						className="is-primary"
+						disabled={saving || (needsScene && !selectedScene) || quantity < 0}
+						onClick={() => onConfirm({
+							sceneId: selectedScene?.id,
+							action,
+							narrativeOrder,
+							quantity
+						})}
+					>
+						{saving ? '保存中…' : <><Check size={17} />确认关联</>}
+					</button>
+				</>
+			)}
+		>
 				{needsScene ? (
 					<label>
 						<span>具体场景</span>
@@ -364,24 +376,7 @@ function AssociationConfirmSheet({
 					<ShieldCheck size={18} />
 					<span><strong>安全写入</strong><small>乐观并发检查 · 可撤销 · 不调用 AI</small></span>
 				</div>
-				<footer>
-					<button type="button" onClick={onCancel}>取消</button>
-					<button
-						type="button"
-						className="is-primary"
-						disabled={saving || (needsScene && !selectedScene) || quantity < 0}
-						onClick={() => onConfirm({
-							sceneId: selectedScene?.id,
-							action,
-							narrativeOrder,
-							quantity
-						})}
-					>
-						{saving ? '保存中…' : <><Check size={17} />确认关联</>}
-					</button>
-				</footer>
-			</section>
-		</div>
+		</AssociationMenu>
 	);
 }
 
@@ -771,11 +766,13 @@ export function StoryAssociationPage({
 				) : null}
 				<DragOverlay modifiers={[restrictToWindowEdges]}>
 					{activeSource ? (
-						<div className="association-drag-overlay">
-							{sourceIcon(activeSource.type)}
-							<span><small>正在关联</small><strong>{activeSource.title}</strong></span>
-							<Sparkles size={15} />
-						</div>
+						<DragOverlayCard
+							icon={sourceIcon(activeSource.type)}
+							kind="正在关联"
+							title={activeSource.title}
+							hint={hoveredIntent?.allowed ? hoveredIntent.label : '选择高亮的目标'}
+							trailing={<Sparkles size={15} />}
+						/>
 					) : null}
 				</DragOverlay>
 			</DndContext>

@@ -4,6 +4,7 @@ import {
 	type StoryKernelGenerationResourceType
 } from '@writing-buddy/ai';
 import type { TextFile } from '@writing-buddy/domain';
+import { ZodError } from 'zod';
 import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
@@ -43,6 +44,14 @@ export interface StoryKernelGenerationConflict {
 	readonly code: StoryKernelGenerationConflictCode;
 	readonly message: string;
 	readonly blocking: true;
+	readonly details?: readonly StoryKernelGenerationConflictDetail[];
+}
+
+export interface StoryKernelGenerationConflictDetail {
+	readonly path: string;
+	readonly message: string;
+	readonly expected?: string;
+	readonly actual?: string;
 }
 
 export interface StoryKernelGenerationCandidate {
@@ -135,10 +144,32 @@ function parseConflict(value: unknown): StoryKernelGenerationConflict {
 	if (!codes.includes(value.code as StoryKernelGenerationConflictCode)) {
 		throw new Error('invalidStoryKernelGenerationConflict');
 	}
+	const details = value.details;
+	if (details !== undefined && !Array.isArray(details)) {
+		throw new Error('invalidStoryKernelGenerationConflict');
+	}
+	const parsedDetails = details?.map(detail => {
+		if (
+			!isRecord(detail)
+			|| typeof detail.path !== 'string'
+			|| typeof detail.message !== 'string'
+			|| (detail.expected !== undefined && typeof detail.expected !== 'string')
+			|| (detail.actual !== undefined && typeof detail.actual !== 'string')
+		) {
+			throw new Error('invalidStoryKernelGenerationConflict');
+		}
+		return {
+			path: detail.path,
+			message: detail.message,
+			...(detail.expected === undefined ? {} : { expected: detail.expected }),
+			...(detail.actual === undefined ? {} : { actual: detail.actual })
+		};
+	});
 	return {
 		code: value.code as StoryKernelGenerationConflictCode,
 		message: value.message,
-		blocking: true
+		blocking: true,
+		...(parsedDetails?.length ? { details: parsedDetails } : {})
 	};
 }
 
@@ -313,9 +344,105 @@ export class StoryKernelGenerationStore {
 
 function conflict(
 	code: StoryKernelGenerationConflictCode,
-	message: string
+	message: string,
+	details?: readonly StoryKernelGenerationConflictDetail[]
 ): StoryKernelGenerationConflict {
-	return { code, message, blocking: true };
+	return {
+		code,
+		message,
+		blocking: true,
+		...(details?.length ? { details } : {})
+	};
+}
+
+const schemaFieldLabels: Readonly<Record<string, string>> = {
+	readerVisibility: '读者可见度',
+	status: '状态',
+	plantedAt: '埋设位置',
+	reminderPositions: '提醒位置',
+	plannedPayoffAt: '计划回收位置',
+	actualPayoffAt: '实际回收位置',
+	plotThreadIds: '剧情线引用',
+	aliases: '别名',
+	tags: '标签',
+	evidenceIds: '证据引用'
+};
+
+function valueAtPath(
+	value: unknown,
+	path: readonly PropertyKey[]
+): unknown {
+	let current = value;
+	for (const segment of path) {
+		if (
+			current === null
+			|| typeof current !== 'object'
+			|| !(segment in current)
+		) {
+			return undefined;
+		}
+		current = (current as Record<PropertyKey, unknown>)[segment];
+	}
+	return current;
+}
+
+function safeValuePreview(value: unknown): string | undefined {
+	if (value === undefined) return '未提供';
+	if (typeof value === 'bigint') return `${value.toString()}n`;
+	if (typeof value === 'symbol') return value.description ? `Symbol(${value.description})` : 'Symbol';
+	if (typeof value === 'function') return '[函数]';
+	try {
+		const serialized = JSON.stringify(value);
+		if (serialized === undefined) return '[无法显示的值]';
+		return serialized.length > 120 ? `${serialized.slice(0, 117)}…` : serialized;
+	} catch {
+		return '[无法序列化的值]';
+	}
+}
+
+function schemaConflictDetails(
+	reason: unknown,
+	raw: Readonly<Record<string, unknown>>
+): readonly StoryKernelGenerationConflictDetail[] {
+	if (!(reason instanceof ZodError)) {
+		return [];
+	}
+	return reason.issues.slice(0, 12).map(issue => {
+		const path = issue.path.map(String).join('.') || '资源';
+		const leaf = String(issue.path.at(-1) ?? '资源');
+		const field = schemaFieldLabels[leaf] ?? path;
+		const issueRecord = issue as unknown as {
+			readonly code: string;
+			readonly expected?: unknown;
+			readonly values?: readonly unknown[];
+			readonly minimum?: unknown;
+			readonly maximum?: unknown;
+		};
+		const expected = leaf === 'readerVisibility'
+			? '0–1 之间的数字'
+			: issueRecord.code === 'invalid_value' && issueRecord.values?.length
+				? issueRecord.values.map(String).join(' / ')
+				: issueRecord.expected === 'string'
+					? '文本'
+					: issueRecord.expected === 'number'
+						? '数字'
+						: issueRecord.expected === 'array'
+							? '列表'
+							: issueRecord.expected === 'object'
+								? '对象'
+								: undefined;
+		const message = leaf === 'readerVisibility'
+			? '读者可见度不能使用“hidden”等文字；请改为 0（完全隐藏）到 1（完全可见）之间的数字。'
+			: expected
+				? `${field}需要使用${expected}。`
+				: `${field}不符合 Story Kernel 约束：${issue.message}`;
+		return {
+			path,
+			message,
+			...(expected ? { expected } : {}),
+			actual: safeValuePreview(valueAtPath(raw, issue.path)) ?? '未提供'
+		};
+	});
 }
 
 function anchorEvidence(input: {
@@ -515,10 +642,11 @@ export class StoryKernelGenerationService {
 					...(evidence ? { evidence } : {}),
 					now
 				});
-			} catch {
+			} catch (reason) {
 				conflicts.push(conflict(
 					'invalid-schema',
-					'资源未通过完整 Story Kernel Schema 校验。'
+					'字段结构不符合 Story Kernel，修正前无法确认写入。',
+					schemaConflictDetails(reason, rawResource)
 				));
 			}
 			for (const reference of collectStoryReferences(rawResource)) {

@@ -14,6 +14,15 @@ import { desktopBridge } from '../platform/bridge';
 import { SceneNavigator } from '../features/story/manuscript/SceneNavigator';
 import { SceneService } from '../features/story/manuscript/SceneService';
 import { MentionService } from '../features/story/manuscript/MentionService';
+import {
+	EntityHighlightControls
+} from '../features/story/manuscript/EntityHighlightControls';
+import {
+	loadManuscriptHighlightKinds,
+	mentionHighlightKind,
+	saveManuscriptHighlightKinds,
+	type ManuscriptHighlightKind
+} from '../features/story/manuscript/EntityHighlightPreferences';
 import { SelectionActionMenu } from '../features/story/manuscript/SelectionActionMenu';
 import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
 
@@ -73,6 +82,9 @@ export function ChapterEditor(): React.JSX.Element {
 	const [editorReady, setEditorReady] = useState(false);
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
 	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
+	const [highlightOverrides, setHighlightOverrides] = useState<
+		ReadonlyMap<string, ReadonlySet<ManuscriptHighlightKind>>
+	>(new Map());
 	const projectRoot = snapshot?.root;
 	const storyRepository = useMemo(() => projectRoot
 		? new DesktopStoryRepository(projectRoot, desktopBridge)
@@ -88,6 +100,15 @@ export function ChapterEditor(): React.JSX.Element {
 		: undefined;
 	const sessionResourceId = session?.state.resourceId;
 	const sessionContent = session?.content;
+	const defaultHighlightKinds = useMemo<ReadonlySet<ManuscriptHighlightKind>>(
+		() => projectRoot
+			? loadManuscriptHighlightKinds(projectRoot)
+			: new Set<ManuscriptHighlightKind>(),
+		[projectRoot]
+	);
+	const highlightKinds = projectRoot
+		? highlightOverrides.get(projectRoot) ?? defaultHighlightKinds
+		: defaultHighlightKinds;
 
 	const handleMount: OnMount = useCallback(editor => {
 		editorRef.current = editor;
@@ -216,7 +237,11 @@ export function ChapterEditor(): React.JSX.Element {
 	}, [editorReady, scenes]);
 
 	useEffect(() => {
-		mentionsRef.current = mentions;
+		const highlightedMentions = mentions.filter(mention => {
+			const kind = mentionHighlightKind(mention.resourceId);
+			return mention.status === 'active' && Boolean(kind && highlightKinds.has(kind));
+		});
+		mentionsRef.current = highlightedMentions;
 		const editor = editorRef.current;
 		const model = editor?.getModel();
 		if (!editor || !model) {
@@ -224,8 +249,7 @@ export function ChapterEditor(): React.JSX.Element {
 		}
 		mentionDecorationIdsRef.current = editor.deltaDecorations(
 			[...mentionDecorationIdsRef.current],
-			mentions
-				.filter(mention => mention.status === 'active')
+			highlightedMentions
 				.map(mention => ({
 					range: {
 						startLineNumber: model.getPositionAt(mention.anchor.start).lineNumber,
@@ -234,14 +258,34 @@ export function ChapterEditor(): React.JSX.Element {
 						endColumn: model.getPositionAt(mention.anchor.end).column
 					},
 					options: {
-						inlineClassName: 'story-mention-range',
+						inlineClassName: `story-mention-range story-mention-${mentionHighlightKind(
+							mention.resourceId
+						)}`,
 						hoverMessage: {
 							value: `链接到 **${mention.resourceId}** — 点击打开`
 						}
 					}
 				}))
 		);
-	}, [editorReady, mentions]);
+	}, [editorReady, highlightKinds, mentions]);
+
+	const toggleHighlightKind = useCallback((
+		kind: ManuscriptHighlightKind,
+		enabled: boolean
+	) => {
+		if (!projectRoot) return;
+		setHighlightOverrides(current => {
+			const nextKinds = new Set(
+				current.get(projectRoot) ?? loadManuscriptHighlightKinds(projectRoot)
+			);
+			if (enabled) nextKinds.add(kind);
+			else nextKinds.delete(kind);
+			saveManuscriptHighlightKinds(projectRoot, nextKinds);
+			const next = new Map(current);
+			next.set(projectRoot, nextKinds);
+			return next;
+		});
+	}, [projectRoot]);
 
 	const navigateToOffset = useCallback((offset: number) => {
 		const editor = editorRef.current;
@@ -367,6 +411,13 @@ export function ChapterEditor(): React.JSX.Element {
 				/>
 			)}
 			<div className="chapter-editor-host">
+				{activeResource.type === 'chapter' ? (
+					<EntityHighlightControls
+						mentions={mentions}
+						enabledKinds={highlightKinds}
+						onToggle={toggleHighlightKind}
+					/>
+				) : null}
 				<Editor
 				height="100%"
 				path={session.state.modelUri}
@@ -405,7 +456,10 @@ export function ChapterEditor(): React.JSX.Element {
 					minimap: { enabled: false },
 					overviewRulerBorder: false,
 					overviewRulerLanes: 0,
-					padding: { top: 38, bottom: 80 },
+					padding: {
+						top: activeResource.type === 'chapter' ? 68 : 38,
+						bottom: 80
+					},
 					quickSuggestions: false,
 					readOnly,
 					renderLineHighlight: 'none',

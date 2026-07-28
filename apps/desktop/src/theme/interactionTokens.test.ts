@@ -23,7 +23,15 @@ const semanticTokens = [
 	'--highlight-success-bg',
 	'--highlight-success-fg',
 	'--highlight-info-bg',
-	'--highlight-info-fg'
+	'--highlight-info-fg',
+	'--entity-character-bg',
+	'--entity-character-border',
+	'--entity-location-bg',
+	'--entity-location-border',
+	'--entity-item-bg',
+	'--entity-item-border',
+	'--entity-foreshadowing-bg',
+	'--entity-foreshadowing-border'
 ] as const;
 
 function block(selector: string, nextSelector: string): string {
@@ -51,6 +59,8 @@ describe('semantic interaction token contract', () => {
 		expect(tokensCss).toContain('--highlight-selected-bg: #f1dfcf');
 		expect(tokensCss).toContain('--highlight-selected-fg: #a85c31');
 		expect(tokensCss).toContain('--highlight-focus: #4f7db8');
+		expect(tokensCss).toContain('--entity-character-bg: #eaf2fc');
+		expect(tokensCss).toContain('--entity-foreshadowing-border: #c17a2e');
 		expect(block('.theme-midnight', '.theme-fog')).toContain('--highlight-selected-bg: #3a2a22');
 		expect(block('.theme-midnight', '.theme-fog')).toContain('--highlight-focus: #78a5d8');
 	});
@@ -60,4 +70,3 @@ describe('semantic interaction token contract', () => {
 		expect(tokensCss).not.toContain('button:disabled {\n\tcursor: not-allowed;\n\topacity:');
 	});
 });
-

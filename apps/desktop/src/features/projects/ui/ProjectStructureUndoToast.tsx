@@ -1,6 +1,6 @@
-import { Check, RotateCcw, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { useAppStore } from '../../../app/store';
+import { UndoToast } from '../../shared/interaction';
 
 export function ProjectStructureUndoToast(): React.JSX.Element | null {
 	const undo = useAppStore(state => state.structureUndo);
@@ -20,18 +20,12 @@ export function ProjectStructureUndoToast(): React.JSX.Element | null {
 	}
 
 	return (
-		<div className="structure-undo-toast">
-			<span className="structure-undo-icon" aria-hidden="true"><Check size={17} /></span>
-			<span className="structure-undo-copy" role="status" aria-live="polite">
-				<strong>项目结构已更新</strong>
-				<small>{undo.description}</small>
-			</span>
-			<button type="button" disabled={busy} onClick={() => void undoMove()}>
-				<RotateCcw size={16} aria-hidden="true" />撤销
-			</button>
-			<button className="icon-button compact" type="button" aria-label="关闭撤销提示" onClick={dismiss}>
-				<X size={16} />
-			</button>
-		</div>
+		<UndoToast
+			title="项目结构已更新"
+			message={undo.description}
+			busy={busy}
+			onUndo={() => void undoMove()}
+			onDismiss={dismiss}
+		/>
 	);
 }

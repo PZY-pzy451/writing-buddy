@@ -4,12 +4,11 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project association drag Y4 is complete on
-`codex/project-association-drag-y4`. Guarded character/item/foreshadowing
-association, narrative timeline reordering, plot lifecycle dragging,
-pointer/keyboard parity, atomic revision-safe persistence, and Undo are
-accepted. Evidence is in
-`docs/acceptance/022-project-association-drag-y4-2026-07-28.md`.
+Project highlight and shared interaction Y5 is active on
+`codex/project-highlight-components-y5`. The scope is shared drag/association/
+undo primitives, opt-in manuscript entity highlights, standardized AI
+candidate states, and actionable Story Kernel schema diagnostics. Contract:
+`docs/plans/015-project-highlight-components-y5.md`.
 
 ## Completed
 
@@ -236,9 +235,9 @@ accepted. Evidence is in
 
 ## Next
 
-Continue with the handoff's shared highlight and visual-state convergence.
-Scene cross-chapter movement still requires a manuscript-anchor migration
-contract; do not implement it as a synthetic array reorder.
+Complete and accept Y5 before starting the broad Y6 visual-polish pass. Scene
+cross-chapter movement still requires a manuscript-anchor migration contract;
+do not implement it as a synthetic array reorder.
 
 ## Project Creation Y0–Y2 complete
 

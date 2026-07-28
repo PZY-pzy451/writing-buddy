@@ -674,6 +674,8 @@ describe('AI core contracts', () => {
 			}]
 		});
 		expect(messages[0]?.content).toBe(STORY_KERNEL_GENERATION_SYSTEM_PROMPT);
+		expect(messages[0]?.content).toContain('readerVisibility 必须是 0 到 1 之间的数字');
+		expect(messages[0]?.content).toContain('禁止返回 hidden/public 等文字');
 		expect(messages[1]?.content).not.toContain('projectRoot');
 		const [candidate] = parseStoryKernelGenerationResponse(JSON.stringify({
 			candidates: [{

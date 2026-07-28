@@ -670,6 +670,11 @@ const browserStoryFixtures: readonly Record<string, unknown>[] = [
 		restrictions: ['不可复制'], plotFunction: '连接徐青失踪与旧站事故。', evidenceIds: ['evidence:notebook-owner']
 	},
 	{
+		...browserStoryBase('item:luggage-ticket', 'item', '褪色的行李票', ['线索']),
+		itemType: '票据', unique: true, quantityUnit: '张', description: '票面背后写着 23:17。',
+		restrictions: [], plotFunction: '把候车室与停摆时钟联系起来。', evidenceIds: ['evidence:clock-wall']
+	},
+	{
 		...browserStoryBase('item:brass-key', 'item', '黄铜钥匙', ['通行']),
 		itemType: '钥匙', unique: true, quantityUnit: '枚', description: '可以打开信号塔底层铁门。',
 		restrictions: [], plotFunction: '开启封存区域。', evidenceIds: ['evidence:key']
@@ -718,6 +723,35 @@ for (const resource of browserStoryFixtures) {
 		browserStoryKey(resource.type as StoryResourceType, resource.id as string),
 		resource
 	);
+}
+const browserMentionFixtureContent = browserFiles.get('chapters/chapter-001.md') ?? '';
+for (const [id, resourceId, quote] of [
+	['mention:browser-lin-mo', 'character:lin-mo', '林墨'],
+	['mention:browser-old-station', 'location:old-station', '旧火车站'],
+	['mention:browser-luggage-ticket', 'item:luggage-ticket', '行李票'],
+	['mention:browser-clock-2317', 'foreshadowing:clock-2317', '二十三点十七分']
+] as const) {
+	const start = browserMentionFixtureContent.indexOf(quote);
+	if (start < 0) continue;
+	const end = start + quote.length;
+	browserMentionLinks.set(id, {
+		id,
+		resourceId,
+		chapterId: 'chapter:chapter-a11ce001',
+		anchor: {
+			start,
+			end,
+			revision: 0,
+			quote,
+			before: browserMentionFixtureContent.slice(Math.max(0, start - 24), start),
+			after: browserMentionFixtureContent.slice(end, end + 24)
+		},
+		displayText: quote,
+		status: 'active',
+		revision: 1,
+		createdAt: browserStoryTimestamp,
+		updatedAt: browserStoryTimestamp
+	});
 }
 browserFiles.set('story/states/character-states.json', JSON.stringify([
 	{
@@ -2215,6 +2249,7 @@ function browserStoryConsistencyAnalysisDeltas(request: AiGenerateRequest): read
 function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonly string[] {
 	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
 	const decoded = JSON.parse(userMessage) as {
+		readonly instruction?: string;
 		readonly source?: {
 			readonly resourceId?: string;
 			readonly sourceRevision?: string;
@@ -2227,6 +2262,7 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 		}[];
 	};
 	const source = decoded.source;
+	const invalidVisibilityFixture = decoded.instruction?.includes('[QA_INVALID_SCHEMA]') ?? false;
 	const content = source?.content ?? '';
 	const quote = content.slice(0, Math.min(24, content.length));
 	const evidence = quote ? { start: 0, end: quote.length, quote } : null;
@@ -2381,11 +2417,11 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 					...base,
 					id: `foreshadowing:ai-${suffix}`,
 					type,
-					title: 'AI 识别伏笔',
+					title: invalidVisibilityFixture ? '信号塔的无声警告' : 'AI 识别伏笔',
 					status: 'planted',
 					surfaceMeaning: quote || '待作者确认的伏笔。',
 					reminderPositions: [],
-					readerVisibility: 0,
+					readerVisibility: invalidVisibilityFixture ? 'hidden' : 0,
 					plotThreadIds: []
 				};
 				break;

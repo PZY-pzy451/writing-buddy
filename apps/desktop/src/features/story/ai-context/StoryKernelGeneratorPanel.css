@@ -189,21 +189,7 @@
 }
 
 .kernel-candidate-card {
-	display: grid;
-	gap: 9px;
-	min-width: 0;
-	padding: 12px;
-	background: var(--surface-canvas);
-	border: 1px solid var(--border-subtle);
-	border-radius: 10px;
-}
-
-.kernel-candidate-card[data-blocked="true"] {
-	border-color: color-mix(in srgb, var(--danger) 40%, var(--border-subtle));
-}
-
-.kernel-candidate-card[data-status="accepted"] {
-	border-color: color-mix(in srgb, var(--success) 42%, var(--border-subtle));
+	isolation: isolate;
 }
 
 .kernel-candidate-card > header label {
@@ -232,13 +218,23 @@
 	line-height: 1.5;
 }
 
-.kernel-candidate-status {
-	flex: 0 0 auto;
-	padding: 4px 7px;
-	color: var(--text-muted);
+.kernel-candidate-evidence {
+	display: grid;
+	gap: 5px;
+	margin: 0;
+}
+
+.kernel-candidate-evidence figcaption {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--text-secondary);
 	font-size: 10px;
-	background: var(--surface-subtle);
-	border-radius: 999px;
+	font-weight: 700;
+}
+
+.kernel-candidate-evidence figcaption small {
+	margin-left: auto;
 }
 
 .kernel-candidate-card blockquote {
@@ -261,12 +257,61 @@
 }
 
 .kernel-candidate-conflicts li {
-	display: flex;
+	display: grid;
+	grid-template-columns: 18px minmax(0, 1fr);
 	align-items: flex-start;
 	gap: 6px;
-	color: var(--danger);
+	padding: 9px 10px;
+	color: var(--highlight-conflict-fg);
 	font-size: 11px;
-	line-height: 1.45;
+	line-height: 1.5;
+	background: var(--highlight-conflict-bg);
+	border-left: 3px solid var(--highlight-conflict-fg);
+	border-radius: 0 8px 8px 0;
+}
+
+.kernel-candidate-conflicts li > span {
+	display: grid;
+	gap: 7px;
+	min-width: 0;
+}
+
+.kernel-schema-details {
+	display: grid;
+	gap: 6px;
+	padding: 0;
+	list-style: none;
+}
+
+.kernel-schema-details li {
+	display: grid;
+	grid-template-columns: minmax(88px, auto) minmax(0, 1fr);
+	gap: 3px 8px;
+	padding: 8px;
+	color: var(--text-primary);
+	background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+	border: 1px solid color-mix(in srgb, var(--highlight-conflict-fg) 24%, var(--border-subtle));
+	border-radius: 7px;
+}
+
+.kernel-schema-details code {
+	align-self: start;
+	padding: 2px 5px;
+	overflow-wrap: anywhere;
+	color: var(--highlight-conflict-fg);
+	font: 10px/1.4 Consolas, "SFMono-Regular", monospace;
+	background: color-mix(in srgb, var(--highlight-conflict-fg) 8%, transparent);
+	border-radius: 4px;
+}
+
+.kernel-schema-details span {
+	overflow-wrap: anywhere;
+}
+
+.kernel-schema-details small {
+	grid-column: 1 / -1;
+	color: var(--text-secondary);
+	font-size: 10px;
 }
 
 .kernel-candidate-actions {
@@ -276,6 +321,27 @@
 .kernel-candidate-actions button {
 	color: var(--text-secondary);
 	background: var(--surface-base);
+}
+
+.kernel-candidate-structure {
+	display: grid;
+	gap: 7px;
+	min-width: 0;
+	padding-top: 2px;
+}
+
+.kernel-candidate-structure > header {
+	display: grid;
+	gap: 2px;
+}
+
+.kernel-candidate-structure > header strong {
+	font-size: 11px;
+}
+
+.kernel-candidate-structure > header small {
+	color: var(--text-muted);
+	font-size: 10px;
 }
 
 .kernel-candidate-card pre {

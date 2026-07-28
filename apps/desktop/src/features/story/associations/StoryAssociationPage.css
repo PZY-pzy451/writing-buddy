@@ -399,56 +399,6 @@
 	background: color-mix(in srgb, var(--danger) 7%, var(--surface-raised));
 }
 
-.association-target-label {
-	position: absolute;
-	z-index: 10;
-	inset: 50% auto auto 50%;
-	display: flex;
-	align-items: center;
-	gap: 5px;
-	max-width: calc(100% - 16px);
-	padding: 7px 9px;
-	color: var(--text-primary);
-	font-size: 10px;
-	font-weight: 800;
-	text-align: center;
-	background: var(--surface-raised);
-	border: 1px solid var(--accent);
-	border-radius: 999px;
-	box-shadow: var(--shadow-float);
-	transform: translate(-50%, -50%);
-}
-
-.association-drag-overlay {
-	display: grid;
-	grid-template-columns: 24px minmax(120px, 1fr) 20px;
-	align-items: center;
-	gap: 8px;
-	min-width: 220px;
-	min-height: 56px;
-	padding: 8px 12px;
-	color: var(--text-primary);
-	background: var(--surface-raised);
-	border: 1px solid var(--accent);
-	border-radius: var(--radius-card);
-	box-shadow: var(--shadow-float);
-}
-
-.association-drag-overlay span {
-	display: grid;
-	gap: 2px;
-}
-
-.association-drag-overlay small {
-	color: var(--accent-strong);
-	font-size: 9px;
-	font-weight: 800;
-}
-
-.association-drag-overlay strong {
-	font-size: 12px;
-}
-
 .association-floating-status {
 	position: fixed;
 	z-index: 90;
@@ -476,55 +426,8 @@
 	border-color: var(--danger);
 }
 
-.association-confirm-backdrop {
-	position: fixed;
-	z-index: 110;
-	inset: 0;
-	display: grid;
-	place-items: center;
-	padding: 20px;
-	background: rgb(25 23 20 / 36%);
-	backdrop-filter: blur(3px);
-}
-
-.association-confirm-sheet {
-	width: min(520px, 100%);
-	max-height: min(720px, calc(100vh - 40px));
-	padding: 20px;
-	overflow: auto;
-	color: var(--text-primary);
-	background: var(--surface-base);
-	border: 1px solid var(--border-subtle);
-	border-radius: 16px;
-	box-shadow: var(--shadow-float);
-}
-
-.association-confirm-sheet > header {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 10px;
-}
-
-.association-confirm-sheet h2,
 .association-confirm-sheet p {
 	margin: 0;
-}
-
-.association-confirm-sheet h2 {
-	margin-top: 3px;
-	font: 23px Georgia, "Microsoft YaHei UI", serif;
-}
-
-.association-confirm-sheet > header > button {
-	display: grid;
-	place-items: center;
-	width: 44px;
-	min-height: 44px;
-	cursor: pointer;
-	background: transparent;
-	border: 0;
-	border-radius: var(--radius-control);
 }
 
 .association-confirm-route {
@@ -533,7 +436,7 @@
 	align-items: center;
 	gap: 8px;
 	padding: 12px;
-	margin-top: 18px;
+	margin-top: 0;
 	background: var(--surface-subtle);
 	border-radius: var(--radius-card);
 }
@@ -551,14 +454,14 @@
 	color: var(--accent);
 }
 
-.association-confirm-sheet > p {
+.association-confirm-lead {
 	margin-top: 10px;
 	color: var(--text-muted);
 	font-size: 11px;
 	line-height: 1.55;
 }
 
-.association-confirm-sheet > label,
+.association-confirm-sheet .interaction-association-menu-body > label,
 .association-transfer-fields label {
 	display: grid;
 	gap: 6px;
@@ -657,16 +560,7 @@
 	font-size: 9px;
 }
 
-.association-confirm-sheet > footer {
-	display: flex;
-	justify-content: flex-end;
-	gap: 8px;
-	padding-top: 18px;
-	margin-top: 18px;
-	border-top: 1px solid var(--border-subtle);
-}
-
-.association-confirm-sheet > footer button {
+.association-confirm-sheet .interaction-association-menu-footer button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -681,7 +575,7 @@
 	border-radius: var(--radius-control);
 }
 
-.association-confirm-sheet > footer button.is-primary {
+.association-confirm-sheet .interaction-association-menu-footer button.is-primary {
 	color: white;
 	font-weight: 750;
 	background: var(--accent-strong);
@@ -750,17 +644,6 @@
 		flex: 0 0 190px;
 	}
 
-	.association-confirm-backdrop {
-		align-items: end;
-		padding: 0;
-	}
-
-	.association-confirm-sheet {
-		width: 100%;
-		max-width: none;
-		max-height: min(82vh, 720px);
-		border-radius: 18px 18px 0 0;
-	}
 }
 
 @media (max-width: 799px) {

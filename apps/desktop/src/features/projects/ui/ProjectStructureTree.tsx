@@ -34,6 +34,12 @@ import type {
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { useAppStore } from '../../../app/store';
 import {
+	DragOverlayCard,
+	DropIndicator,
+	TreeRow,
+	type TreeRowInteractionState
+} from '../../shared/interaction';
+import {
 	resolveProjectStructureDrop,
 	type ProjectStructureDragItem,
 	type ProjectStructureDropIntent,
@@ -83,14 +89,32 @@ function placementFromEvent(event: DragOverEvent | DragEndEvent): ProjectStructu
 	return activeCenter > overCenter ? 'after' : 'before';
 }
 
-function feedbackClass(feedback: DropFeedback | undefined): string {
-	if (!feedback) {
-		return '';
-	}
-	if (!feedback.intent.allowed) {
-		return ' is-drop-invalid';
-	}
-	return ` is-drop-valid is-drop-${feedback.placement}`;
+function interactionState(
+	isDragging: boolean,
+	feedback: DropFeedback | undefined
+): TreeRowInteractionState {
+	if (isDragging) return 'drag-source';
+	if (!feedback) return 'idle';
+	return feedback.intent.allowed ? 'drop-valid' : 'drop-invalid';
+}
+
+function RowDropIndicator({
+	feedback
+}: {
+	readonly feedback?: DropFeedback;
+}): React.JSX.Element | null {
+	if (!feedback) return null;
+	return (
+		<DropIndicator
+			state={feedback.intent.allowed ? 'valid' : 'invalid'}
+			placement={feedback.placement}
+			label={feedback.placement === 'inside' || !feedback.intent.allowed
+				? feedback.intent.allowed
+					? feedback.intent.label
+					: feedback.intent.reason
+				: undefined}
+		/>
+	);
 }
 
 function SortableVolumeRow({
@@ -124,11 +148,12 @@ function SortableVolumeRow({
 	};
 
 	return (
-		<div
-			ref={setNodeRef}
-			className={`tree-row volume-row${isDragging ? ' is-drag-source' : ''}${feedbackClass(feedback)}`}
+		<TreeRow
+			nodeRef={setNodeRef}
+			className="tree-row volume-row"
+			state={interactionState(isDragging, feedback)}
 			style={style}
-			data-structure-id={volume.id}
+			dataStructureId={volume.id}
 		>
 			<button
 				className="tree-row-main"
@@ -156,7 +181,8 @@ function SortableVolumeRow({
 			>
 				<GripVertical size={16} />
 			</button>
-		</div>
+			<RowDropIndicator feedback={feedback} />
+		</TreeRow>
 	);
 }
 
@@ -193,11 +219,13 @@ function SortableChapterRow({
 	};
 
 	return (
-		<div
-			ref={setNodeRef}
-			className={`tree-row chapter-row${active ? ' is-active' : ''}${isDragging ? ' is-drag-source' : ''}${feedbackClass(feedback)}`}
+		<TreeRow
+			nodeRef={setNodeRef}
+			className={`tree-row chapter-row${active ? ' is-active' : ''}`}
+			selected={active}
+			state={interactionState(isDragging, feedback)}
 			style={style}
-			data-structure-id={chapter.id}
+			dataStructureId={chapter.id}
 		>
 			<button className="tree-row-main" type="button" onClick={onOpen}>
 				<FileText size={17} />
@@ -219,7 +247,8 @@ function SortableChapterRow({
 			>
 				<GripVertical size={16} />
 			</button>
-		</div>
+			<RowDropIndicator feedback={feedback} />
+		</TreeRow>
 	);
 }
 
@@ -445,15 +474,16 @@ export function ProjectStructureTree({
 			)}
 			<DragOverlay modifiers={[restrictToWindowEdges]}>
 				{activeItem ? (
-					<div className="structure-drag-overlay">
-						{activeItem.entityType === 'volume'
+					<DragOverlayCard
+						icon={activeItem.entityType === 'volume'
 							? <FolderOpen size={18} />
 							: <FileText size={18} />}
-						<span>
-							<small>{activeItem.entityType === 'volume' ? '卷' : '章节'}</small>
-							<strong>{activeItem.title}</strong>
-						</span>
-					</div>
+						kind={activeItem.entityType === 'volume' ? '卷' : '章节'}
+						title={activeItem.title}
+						hint={dropFeedback?.intent.allowed
+							? dropFeedback.intent.label
+							: undefined}
+					/>
 				) : null}
 			</DragOverlay>
 		</DndContext>

@@ -7,6 +7,7 @@ import {
 	LoaderCircle,
 	ShieldCheck,
 	Sparkles,
+	TextQuote,
 	X
 } from 'lucide-react';
 import {
@@ -26,6 +27,11 @@ import {
 } from '@writing-buddy/story-kernel';
 import { useEffect, useMemo, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	AiCandidateFrame,
+	AiCandidateStatus,
+	type AiCandidateVisualState
+} from '../../shared/interaction';
 import {
 	loadStoryKernelGenerationIdentities,
 	StoryKernelGenerationService,
@@ -461,7 +467,7 @@ function StoryKernelGeneratorPanelContent(
 	);
 }
 
-function KernelCandidateCard(props: {
+export function KernelCandidateCard(props: {
 	readonly candidate: StoryKernelGenerationCandidate;
 	readonly selected: boolean;
 	readonly busy: boolean;
@@ -470,11 +476,14 @@ function KernelCandidateCard(props: {
 }): React.JSX.Element {
 	const [expanded, setExpanded] = useState(false);
 	const confirmable = candidateIsConfirmable(props.candidate);
+	const visualState: AiCandidateVisualState = props.candidate.conflicts.length > 0
+		? 'conflict'
+		: props.candidate.status;
+	const evidenceQuote = props.candidate.evidence?.quotePreview ?? '';
 	return (
-		<article
+		<AiCandidateFrame
 			className="kernel-candidate-card"
-			data-status={props.candidate.status}
-			data-blocked={props.candidate.conflicts.length > 0 ? 'true' : 'false'}
+			state={visualState}
 		>
 			<header>
 				<label>
@@ -496,33 +505,54 @@ function KernelCandidateCard(props: {
 						</small>
 					</span>
 				</label>
-				<span className="kernel-candidate-status">
-					{props.candidate.status === 'accepted'
-						? '已写入'
-						: props.candidate.status === 'rejected'
-							? '已拒绝'
-							: props.candidate.conflicts.length > 0
-								? '需处理'
-								: '待确认'}
-				</span>
+				<AiCandidateStatus state={visualState} />
 			</header>
 			<p>{props.candidate.rationale}</p>
 			{props.candidate.evidence ? (
-				<blockquote>{props.candidate.evidence.quotePreview}</blockquote>
+				<figure className="kernel-candidate-evidence">
+					<figcaption>
+						<TextQuote size={14} aria-hidden="true" />
+						<span>正文证据</span>
+						<small>{evidenceQuote.length} 字</small>
+					</figcaption>
+					<blockquote>{evidenceQuote || '未提供可显示的引文'}</blockquote>
+				</figure>
 			) : (
 				<small className="kernel-candidate-no-evidence">此候选未附正文证据，请重点人工核对。</small>
 			)}
 			{props.candidate.conflicts.length > 0 ? (
-				<ul className="kernel-candidate-conflicts">
+				<ul className="kernel-candidate-conflicts" role="alert">
 					{props.candidate.conflicts.map(item => (
 						<li key={`${item.code}:${item.message}`}>
-							<AlertTriangle size={14} />{item.message}
+							<AlertTriangle size={15} aria-hidden="true" />
+							<span>
+								<strong>{item.message}</strong>
+								{item.details?.length ? (
+									<ul className="kernel-schema-details">
+										{item.details.map(detail => (
+											<li key={`${detail.path}:${detail.message}`}>
+												<code>{detail.path}</code>
+												<span>{detail.message}</span>
+												<small>
+													{detail.expected ? `需要：${detail.expected}` : ''}
+													{detail.expected && detail.actual ? ' · ' : ''}
+													{detail.actual ? `当前：${detail.actual}` : ''}
+												</small>
+											</li>
+										))}
+									</ul>
+								) : null}
+							</span>
 						</li>
 					))}
 				</ul>
 			) : null}
 			<div className="kernel-candidate-actions">
-				<button type="button" onClick={() => setExpanded(value => !value)}>
+				<button
+					type="button"
+					aria-expanded={expanded}
+					onClick={() => setExpanded(value => !value)}
+				>
 					{expanded ? <ChevronDown size={15} /> : <ChevronRight size={15} />}
 					{expanded ? '收起结构' : '查看结构'}
 				</button>
@@ -533,12 +563,18 @@ function KernelCandidateCard(props: {
 				) : null}
 			</div>
 			{expanded ? (
-				<pre tabIndex={0}>{JSON.stringify(
-					props.candidate.normalizedResource ?? props.candidate.rawResource,
-					null,
-					2
-				)}</pre>
+				<section className="kernel-candidate-structure" aria-label="候选原始结构">
+					<header>
+						<strong>原始结构</strong>
+						<small>仅用于排查；实际写入仍以 Schema 校验为准。</small>
+					</header>
+					<pre tabIndex={0}>{JSON.stringify(
+						props.candidate.normalizedResource ?? props.candidate.rawResource,
+						null,
+						2
+					)}</pre>
+				</section>
 			) : null}
-		</article>
+		</AiCandidateFrame>
 	);
 }
