@@ -4,15 +4,26 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project scene movement is active on `codex/project-scene-movement`. The
-implementation follows the manuscript-anchor migration and combined native
-rollback contract in `docs/plans/018-project-scene-movement.md`: scene dragging
-must move the exact manuscript slice, migrate scenes/Mentions/scene-specific
-Story Positions, reject stale anchors or revisions, and expose pointer,
-keyboard, and Undo parity.
+Project scene movement is complete on `codex/project-scene-movement`.
+Implementation commit `405b8742` moves exact manuscript slices, migrates
+scene/Mention anchors and scene-specific Story Positions, persists every
+affected file under one verified native rollback boundary, and provides
+pointer, keyboard, and exact-restore Undo parity.
 
 ## Completed
 
+- First-class scene rows below chapters with same-chapter reorder and
+  cross-chapter movement.
+- Exact UTF-16 manuscript-slice planning with preservation of unlinked text,
+  stable scene IDs, dense narrative order, and strict anchor validation.
+- One native transaction for Markdown, Story resources, and Mentions with
+  revision/hash prechecks, staging, rollback, and reread verification.
+- Exact-restore scene Undo based on verified post-move revisions and hashes.
+- Scene movement acceptance: 95 frontend files / 321 tests, 51 Rust tests,
+  1440/1024/800 responsive checks, fresh Tauri package, and isolated native
+  close with exit code 0.
+- Project scene movement evidence in
+  `docs/acceptance/026-project-scene-movement-2026-07-28.md`.
 - Fixed Story Kernel requests being rejected as **AI 配置不完整。** before
   provider dispatch when the model and credential were valid.
 - TypeScript/Rust prompt parity now covers all 14 duplicated AI system prompts.
@@ -267,8 +278,7 @@ keyboard, and Undo parity.
 
 ## Next
 
-Complete and accept project scene movement, then start the broad Y6
-application visual-polish pass as a separate gate.
+Start the broad Y6 application visual-polish pass as a separate gate.
 
 ## Project Creation Y0–Y2 complete
 

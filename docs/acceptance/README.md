@@ -25,6 +25,7 @@
 - [Project highlight and shared interaction Y5 acceptance, 2026-07-28](./023-project-highlight-components-y5-2026-07-28.md)
 - [AI generation reliability and handoff audit, 2026-07-28](./024-ai-generation-reliability-and-handoff-audit-2026-07-28.md)
 - [AI prompt contract parity repair, 2026-07-28](./025-ai-prompt-contract-parity-2026-07-28.md)
+- [Project scene movement acceptance, 2026-07-28](./026-project-scene-movement-2026-07-28.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)
