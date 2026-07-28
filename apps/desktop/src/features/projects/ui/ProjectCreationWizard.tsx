@@ -92,14 +92,14 @@ function toRequest(draft: WizardDraft): CreateProjectRequest {
 }
 
 const createErrorCopy: Readonly<Record<string, string>> = {
-	projectTargetExists: '同名作品目录已经存在，不会自动覆盖。',
+	projectTargetExists: '同名项目目录已经存在，不会自动覆盖。',
 	projectParentUnavailable: '保存位置不存在或当前不可访问。',
-	projectParentReadOnly: '保存位置为只读，无法创建作品。',
+	projectParentReadOnly: '保存位置为只读，无法创建项目。',
 	projectStagingCreateFailed: '无法建立安全的临时创建目录。',
 	projectStagingWriteFailed: '写入项目结构时中断，临时内容已清理。',
 	projectStagingVerifyFailed: '项目结构校验失败，未保留半成品。',
 	projectAtomicRenameFailed: '最终保存项目时失败，未覆盖任何现有目录。',
-	projectCreationFailed: '暂时无法创建作品，请检查保存位置后重试。'
+	projectCreationFailed: '暂时无法创建项目，请检查保存位置后重试。'
 };
 
 function fieldIssue(issues: readonly ProjectCreationIssue[], field: ProjectCreationIssue['field']): string | undefined {
@@ -113,6 +113,8 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const openResource = useAppStore(state => state.openResource);
 	const openDashboard = useAppStore(state => state.openDashboard);
 	const setError = useAppStore(state => state.setError);
+	const currentProjectTitle = useAppStore(state => state.snapshot?.project.title);
+	const currentManuscriptDirty = useAppStore(state => Boolean(state.session?.state.dirty));
 	const [step, setStep] = useState(0);
 	const [draft, setDraft] = useState<WizardDraft>(defaultDraft);
 	const [preflight, setPreflight] = useState<ProjectCreationPreflight>();
@@ -135,7 +137,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const dismiss = () => {
 		if (busy) return;
 		if (isDirty) {
-			const retain = window.confirm('关闭新建作品向导并保留当前表单草稿吗？');
+			const retain = window.confirm('关闭新建项目向导并保留当前表单草稿吗？');
 			if (!retain) reset();
 		}
 		close();
@@ -201,6 +203,15 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	};
 
 	const create = async () => {
+		if (currentManuscriptDirty) {
+			const confirmed = window.confirm(
+				`“${currentProjectTitle ?? '当前项目'}”有尚未保存的正文。创建后将切换到新项目，是否放弃这些未保存修改并继续？`
+			);
+			if (!confirmed) {
+				setStatus('已取消创建；当前项目和未保存正文保持不变。');
+				return;
+			}
+		}
 		setBusy(true);
 		setStatus('正在安全创建项目并验证可重新打开…');
 		try {
@@ -258,10 +269,10 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 				<header className="project-wizard-header">
 					<div>
 						<span className="eyebrow">NEW PROJECT</span>
-						<h2 id="project-wizard-title">新建作品</h2>
+						<h2 id="project-wizard-title">新建项目</h2>
 						<p id="project-wizard-description">建立项目结构、外观与写作方式</p>
 					</div>
-					<button className="icon-button" type="button" aria-label="关闭新建作品向导" onClick={dismiss} disabled={busy}>
+					<button className="icon-button" type="button" aria-label="关闭新建项目向导" onClick={dismiss} disabled={busy}>
 						<X size={20} />
 					</button>
 				</header>
@@ -512,6 +523,12 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									<Check size={18} />
 									<span><strong>安全创建事务</strong><small>同级 staging 写入 → 重新读取验证 → 原子保存到目标目录</small></span>
 								</div>
+								{currentManuscriptDirty && (
+									<div className="creation-switch-warning" role="note">
+										<strong>当前项目有未保存正文</strong>
+										<span>创建前会再次确认；取消不会写入新项目。</span>
+									</div>
+								)}
 							</div>
 							{issues.length > 0 && (
 								<div className="wizard-review-errors" role="alert">
@@ -534,7 +551,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						</button>
 					)}
 					<button className="primary-button wizard-next" type="submit" disabled={busy}>
-						{step === 3 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建作品'}</> : <>下一步<ChevronRight size={18} /></>}
+						{step === 3 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建项目'}</> : <>下一步<ChevronRight size={18} /></>}
 					</button>
 				</footer>
 			</form>

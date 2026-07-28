@@ -4,12 +4,22 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-No implementation milestone is active. Story Kernel scene grounding and
-Schema-constrained optional-null normalization are accepted on
-`codex/story-kernel-scene-grounding`.
+No implementation milestone is active. Project creation entry hardening is
+accepted on `codex/story-kernel-scene-grounding`.
 
 ## Completed
 
+- Project creation is now explicitly labeled **新建项目** in the welcome,
+  global create menu, compact project shelf, and four-step wizard.
+- The open-project sidebar overflow is a working keyboard-accessible project
+  menu rather than an inert control.
+- Dirty-manuscript creation cancellation performs no create call and preserves
+  the current project and unsaved content.
+- Project creation entry acceptance: 97 frontend files / 337 tests, 51 Rust
+  tests, six Paper/Midnight responsive menu checks, fresh Tauri packaging, and
+  isolated native close with exit code 0.
+- Evidence in
+  `docs/acceptance/029-project-creation-entry-hardening-2026-07-28.md`.
 - Scene generation now derives chapter/range/revision/order from local
   manuscript state, safely re-anchors unique evidence quotes, and keeps
   ambiguous, overlapping, or multi-scene ranges blocked.

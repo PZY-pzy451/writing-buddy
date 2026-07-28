@@ -18,14 +18,14 @@ export function ProjectWelcome(): React.JSX.Element {
 				<div>
 					<span className="eyebrow">WRITING BUDDY</span>
 					<h1 id="welcome-title">开始你的故事</h1>
-					<p>创建一部新作品，或打开已有的 Writing Buddy 项目。所有内容默认保存在本地。</p>
+					<p>创建一个新的 Writing Buddy 项目，或打开已有项目。所有内容默认保存在本地。</p>
 				</div>
 				<div className="welcome-actions">
 					<button className="primary-button" type="button" onClick={openProjectWizard}>
-						<Plus size={18} />新建作品
+						<Plus size={18} />新建项目
 					</button>
 					<button className="secondary-button" type="button" onClick={() => void chooseProject()}>
-						<FolderOpen size={18} />打开作品
+						<FolderOpen size={18} />打开项目
 					</button>
 				</div>
 				<button className="ghost-button welcome-import" type="button" onClick={() => void chooseProject()}>
@@ -56,7 +56,7 @@ export function ProjectWelcome(): React.JSX.Element {
 				) : (
 					<div className="recent-project-empty">
 						<BookOpenText size={24} aria-hidden="true" />
-						<span>创建第一部作品后会显示在这里</span>
+						<span>创建第一个项目后会显示在这里</span>
 					</div>
 				)}
 			</section>

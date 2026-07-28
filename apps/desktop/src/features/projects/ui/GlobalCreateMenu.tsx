@@ -22,15 +22,32 @@ const projectItems = [
 	{ label: '新建时间事件', Icon: CalendarPlus }
 ] as const;
 
+function moveMenuFocus(menu: HTMLDivElement, direction: 'first' | 'last' | 'next' | 'previous'): void {
+	const items = [...menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)')];
+	if (!items.length) return;
+	const current = items.indexOf(document.activeElement as HTMLButtonElement);
+	const next = direction === 'first'
+		? items[0]
+		: direction === 'last'
+			? items.at(-1)
+			: direction === 'next'
+				? items[(current + 1 + items.length) % items.length]
+				: items[(current - 1 + items.length) % items.length];
+	next?.focus();
+}
+
 export function GlobalCreateMenu(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const [open, setOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
+	const triggerRef = useRef<HTMLButtonElement>(null);
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (!open) return;
+		menuRef.current?.querySelector<HTMLButtonElement>('[role="menuitem"]')?.focus();
 		const close = (event: PointerEvent) => {
 			if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
 		};
@@ -38,6 +55,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 			if (event.key === 'Escape') {
 				event.preventDefault();
 				setOpen(false);
+				triggerRef.current?.focus();
 			}
 		};
 		window.addEventListener('pointerdown', close);
@@ -51,6 +69,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 	return (
 		<div className="global-create" ref={rootRef}>
 			<button
+				ref={triggerRef}
 				className="global-create-trigger"
 				type="button"
 				aria-label="新建"
@@ -63,7 +82,27 @@ export function GlobalCreateMenu(): React.JSX.Element {
 				<ChevronDown size={16} aria-hidden="true" />
 			</button>
 			{open && (
-				<div className="global-create-menu" role="menu" aria-label="新建内容">
+				<div
+					ref={menuRef}
+					className="global-create-menu"
+					role="menu"
+					aria-label="新建内容"
+					onKeyDown={event => {
+						if (event.key === 'ArrowDown') {
+							event.preventDefault();
+							moveMenuFocus(event.currentTarget, 'next');
+						} else if (event.key === 'ArrowUp') {
+							event.preventDefault();
+							moveMenuFocus(event.currentTarget, 'previous');
+						} else if (event.key === 'Home') {
+							event.preventDefault();
+							moveMenuFocus(event.currentTarget, 'first');
+						} else if (event.key === 'End') {
+							event.preventDefault();
+							moveMenuFocus(event.currentTarget, 'last');
+						}
+					}}
+				>
 					<button
 						type="button"
 						role="menuitem"
@@ -73,7 +112,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 						}}
 					>
 						<BookPlus size={18} />
-						<span><strong>新建作品</strong><small>从模板和初始结构开始</small></span>
+						<span><strong>新建项目</strong><small>从模板和初始结构开始</small></span>
 					</button>
 					<button
 						type="button"
@@ -84,7 +123,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 						}}
 					>
 						<FolderInput size={18} />
-						<span><strong>导入旧项目</strong><small>选择已有项目目录</small></span>
+						<span><strong>打开项目</strong><small>选择已有项目目录</small></span>
 					</button>
 					<div className="global-create-separator" role="separator" />
 					{projectItems.map(({ label, Icon }) => (

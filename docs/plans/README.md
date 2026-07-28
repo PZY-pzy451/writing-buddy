@@ -20,6 +20,7 @@
 - [Project scene movement](./018-project-scene-movement.md)
 - [Project visual polish Y6](./019-project-visual-polish-y6.md)
 - [Story Kernel scene grounding repair](./020-story-kernel-scene-grounding.md)
+- [Project creation entry hardening](./021-project-creation-entry-hardening.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
 - [Phase 1.0B system layout and AI review follow-up](./phase-1.0b-system-layout-and-ai-review.md)
 - [StoryForge source map](./storyforge-source-map.md)

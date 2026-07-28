@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-07-28T14:50:00.000Z",
+  "browser": "Microsoft Edge via Playwright",
+  "creationResult": {
+    "currentProject": "新建项目视觉验收",
+    "recentProjectRoot": "D:\\WritingBuddy\\Projects\\新建项目视觉验收",
+    "themeClass": "app-shell theme-midnight accent-gold mode-works",
+    "firstChapterVisible": true
+  },
+  "projectMenuMatrix": [
+    {
+      "theme": "paper",
+      "viewport": [1536, 992],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    },
+    {
+      "theme": "paper",
+      "viewport": [1280, 800],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    },
+    {
+      "theme": "paper",
+      "viewport": [1024, 720],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    },
+    {
+      "theme": "midnight",
+      "viewport": [1536, 992],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    },
+    {
+      "theme": "midnight",
+      "viewport": [1280, 800],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    },
+    {
+      "theme": "midnight",
+      "viewport": [1024, 720],
+      "pageOverflowX": false,
+      "menuVisible": true,
+      "menuWithinViewport": true,
+      "menuWithinSidebar": true,
+      "minMenuItemHeight": 50
+    }
+  ],
+  "wizard": {
+    "review1280x800": {
+      "pageOverflowX": false,
+      "dialogWithinViewport": true,
+      "dialog": {
+        "width": 960,
+        "height": 752
+      },
+      "undersizedControls": []
+    },
+    "basics1024x720": {
+      "pageOverflowX": false,
+      "dialogWithinViewport": true,
+      "dialog": {
+        "width": 976,
+        "height": 672
+      },
+      "undersizedControls": []
+    }
+  },
+  "consoleErrors": []
+}

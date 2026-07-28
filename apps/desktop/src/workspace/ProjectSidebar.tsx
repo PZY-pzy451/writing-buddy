@@ -6,7 +6,6 @@ import {
 	Gem,
 	Globe2,
 	History,
-	MoreHorizontal,
 	NotebookPen,
 	Plus,
 	Trash2,
@@ -17,6 +16,7 @@ import { countWords, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
+import { ProjectActionsMenu } from '../features/projects/ui/ProjectActionsMenu';
 import { ProjectStructureTree } from '../features/projects/ui/ProjectStructureTree';
 
 const resourceIcons = {
@@ -60,8 +60,8 @@ export function ProjectSidebar(): React.JSX.Element {
 					<h2>作品书架</h2>
 				</div>
 				<div className="empty-sidebar-launcher">
-					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={18} />新建作品</button>
-					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={18} />打开作品</button>
+					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={18} />新建项目</button>
+					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={18} />打开项目</button>
 				</div>
 				<nav className="sidebar-recent-list" aria-label="最近作品">
 					{recentProjectRoots.length ? recentProjectRoots.map(root => (
@@ -102,7 +102,7 @@ export function ProjectSidebar(): React.JSX.Element {
 					<span className="eyebrow">我的作品</span>
 					<h2>作品大纲</h2>
 				</div>
-				<button className="icon-button" type="button" aria-label="作品菜单"><MoreHorizontal size={20} /></button>
+				<ProjectActionsMenu />
 			</div>
 
 			<div className="project-card">
