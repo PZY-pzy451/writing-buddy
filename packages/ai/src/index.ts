@@ -21,6 +21,13 @@ export const CHAPTER_REVIEW_SYSTEM_PROMPT = [
 	'仅返回 JSON 对象：{"issues":[{"start":0,"end":1,"target":"原文片段","severity":"info|suggestion|warning|error","title":"简短标题","message":"问题说明","replacement":"可选替换文本"}]}。',
 	'start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。'
 ].join('');
+export const STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的长篇小说一致性对照分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和 Story Fact 摘要。',
+	'不得请求或推断项目路径、密钥、账户、隐藏历史或未提供的作者秘密。不得改写正文或 Story Kernel。',
+	'仅返回 JSON 对象：{"issues":[{"ruleId":"ai-continuity","severity":"info|suggestion|warning|error","title":"标题","message":"说明","evidence":[{"resourceId":"已知 chapter ID","start":0,"end":2,"quote":"精确原文","label":"证据 A"},{"resourceId":"已知 chapter ID","start":0,"end":2,"quote":"精确原文","label":"证据 B"}],"storyFact":{"resourceId":"已知 Story Fact ID","title":"标题","statement":"事实摘要"}或null}]}。',
+	'每条问题必须包含 2 至 4 个互不重复的精确正文证据，并只引用用户提供的章节和 Story Fact。索引使用 JavaScript UTF-16 字符索引。',
+	'结果仅为待确认 ReviewIssue，最多 50 条；不得返回 replacement、patch、操作指令或声称已修改内容。'
+].join('');
 export const SELECTION_REWRITE_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的选区改写助手。',
 	'只改写用户 JSON 中 P1 当前选区，不补写整章，不推断未提供的故事事实。',
@@ -130,6 +137,7 @@ export type AiJobType =
 	| 'item-analysis'
 	| 'timeline-analysis'
 	| 'plot-analysis'
+	| 'story-consistency-analysis'
 	| 'story-extraction'
 	| 'story-kernel-generation';
 export type AiThinkingMode = 'disabled' | 'enabled';
@@ -460,6 +468,33 @@ const chapterReviewResponseSchema = z.object({
 		title: z.string().min(1).max(80),
 		message: z.string().min(1).max(500),
 		replacement: z.string().max(4_000).optional()
+	}).strict()).max(50)
+}).strict();
+
+const storyConsistencyEvidenceSchema = z.object({
+	resourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
+	start: z.number().int().nonnegative(),
+	end: z.number().int().positive(),
+	quote: z.string().min(1).max(4_000),
+	label: z.string().min(1).max(80)
+}).strict().refine(evidence => evidence.end > evidence.start, {
+	message: 'invalidStoryConsistencyEvidence'
+});
+
+const storyConsistencyFactSchema = z.object({
+	resourceId: z.string().regex(/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u),
+	title: z.string().min(1).max(160),
+	statement: z.string().min(1).max(4_000)
+}).strict();
+
+const storyConsistencyResponseSchema = z.object({
+	issues: z.array(z.object({
+		ruleId: z.string().regex(/^ai-[a-z0-9][a-z0-9-]*$/u),
+		severity: z.enum(['info', 'suggestion', 'warning', 'error']),
+		title: z.string().min(1).max(120),
+		message: z.string().min(1).max(2_000),
+		evidence: z.array(storyConsistencyEvidenceSchema).min(2).max(4),
+		storyFact: storyConsistencyFactSchema.nullable()
 	}).strict()).max(50)
 }).strict();
 
@@ -2288,6 +2323,149 @@ export function parseChapterReviewResponse(input: {
 			updatedAt: now,
 			origin: 'ai'
 		}];
+	});
+}
+
+export interface StoryConsistencySourceInput {
+	readonly resourceId: string;
+	readonly sourceRevision: string;
+	readonly content: string;
+}
+
+export interface StoryConsistencyFactInput {
+	readonly resourceId: string;
+	readonly title: string;
+	readonly statement: string;
+}
+
+export function buildStoryConsistencyAnalysisMessages(input: {
+	readonly instruction: string;
+	readonly sources: readonly StoryConsistencySourceInput[];
+	readonly storyFacts: readonly StoryConsistencyFactInput[];
+}): readonly AiMessage[] {
+	const instruction = input.instruction.trim();
+	const sourceIds = new Set(input.sources.map(source => source.resourceId));
+	const factIds = new Set(input.storyFacts.map(fact => fact.resourceId));
+	if (!instruction
+		|| instruction.length > 2_000
+		|| input.sources.length < 2
+		|| input.sources.length > 12
+		|| sourceIds.size !== input.sources.length
+		|| input.sources.reduce((total, source) => total + source.content.length, 0) > 160_000
+		|| input.sources.some(source => (
+			Object.keys(source).some(key => ![
+				'resourceId',
+				'sourceRevision',
+				'content'
+			].includes(key))
+			||
+			!/^chapter:[a-z0-9][a-z0-9-]*$/u.test(source.resourceId)
+			|| !source.sourceRevision.trim()
+			|| source.sourceRevision.length > 128
+			|| !source.content.trim()
+			|| source.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
+		))
+		|| input.storyFacts.length > 500
+		|| factIds.size !== input.storyFacts.length
+		|| input.storyFacts.some(fact => (
+			Object.keys(fact).some(key => ![
+				'resourceId',
+				'title',
+				'statement'
+			].includes(key))
+			||
+			!/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(fact.resourceId)
+			|| !fact.title.trim()
+			|| fact.title.length > 160
+			|| !fact.statement.trim()
+			|| fact.statement.length > 4_000
+		))
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test([
+			instruction,
+			...input.sources.map(source => source.content),
+			...input.storyFacts.flatMap(fact => [fact.title, fact.statement])
+		].join('\n'))
+	) {
+		throw new Error('invalidStoryConsistencyAnalysisInput');
+	}
+	const payload = JSON.stringify({
+		schemaVersion: 1,
+		instruction,
+		sources: input.sources,
+		storyFacts: input.storyFacts
+	});
+	if (payload.length > 220_000) {
+		throw new Error('invalidStoryConsistencyAnalysisInput');
+	}
+	return [
+		{ role: 'system', content: STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseStoryConsistencyAnalysisResponse(input: {
+	readonly projectId: string;
+	readonly sources: readonly StoryConsistencySourceInput[];
+	readonly storyFacts: readonly StoryConsistencyFactInput[];
+	readonly response: string;
+}): readonly ReviewIssue[] {
+	const parsed = storyConsistencyResponseSchema.parse(JSON.parse(input.response));
+	const sourceById = new Map(input.sources.map(source => [source.resourceId, source]));
+	const factById = new Map(input.storyFacts.map(fact => [fact.resourceId, fact]));
+	const now = new Date().toISOString();
+	return parsed.issues.map((candidate, index): ReviewIssue => {
+		const evidenceKeys = new Set<string>();
+		const relatedEvidence = candidate.evidence.map((evidence, evidenceIndex) => {
+			const source = sourceById.get(evidence.resourceId);
+			const key = `${evidence.resourceId}:${evidence.start}:${evidence.end}:${evidence.quote}`;
+			if (!source
+				|| evidenceKeys.has(key)
+				|| source.content.slice(evidence.start, evidence.end) !== evidence.quote
+			) {
+				throw new Error('invalidStoryConsistencyEvidence');
+			}
+			evidenceKeys.add(key);
+			return {
+				resourceId: evidence.resourceId,
+				label: evidence.label || `证据 ${String.fromCharCode(65 + evidenceIndex)}`,
+				anchor: createTextAnchor(source.content, evidence.start, evidence.end)
+			};
+		});
+		const primary = relatedEvidence[0];
+		if (!primary) throw new Error('invalidStoryConsistencyEvidence');
+		let storyFact: StoryConsistencyFactInput | undefined;
+		if (candidate.storyFact) {
+			const known = factById.get(candidate.storyFact.resourceId);
+			if (!known
+				|| known.title !== candidate.storyFact.title
+				|| known.statement !== candidate.storyFact.statement
+			) {
+				throw new Error('unknownStoryConsistencyFact');
+			}
+			storyFact = known;
+		}
+		return {
+			id: `ai-continuity:${hashText([
+				candidate.ruleId,
+				...relatedEvidence.map(evidence => (
+					`${evidence.resourceId}:${evidence.anchor.start}:${evidence.anchor.end}`
+				)),
+				String(index)
+			].join('|'))}`,
+			projectId: input.projectId,
+			resourceId: primary.resourceId,
+			ruleId: candidate.ruleId,
+			severity: candidate.severity === 'error' ? 'warning' : candidate.severity,
+			status: 'open',
+			title: candidate.title,
+			message: candidate.message,
+			anchor: primary.anchor,
+			relatedEvidence,
+			...(storyFact ? { storyFact } : {}),
+			createdAt: now,
+			updatedAt: now,
+			origin: 'ai'
+		};
 	});
 }
 

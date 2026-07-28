@@ -64,6 +64,56 @@ const consistencyInputSchema = z.object({
 	instruction: z.string().trim().max(500).default('')
 }).strict();
 
+const manuscriptOrganizationInputSchema = z.object({
+	instruction: z.string().trim().min(1).max(2_000),
+	sourceResourceIds: z.array(
+		z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u)
+	).min(1).max(1_000),
+	targetTypes: z.array(z.enum([
+		'character',
+		'scene',
+		'location',
+		'faction',
+		'item',
+		'worldRule',
+		'timelineEvent',
+		'relationship',
+		'plotThread',
+		'foreshadowing',
+		'information'
+	])).min(1).max(11)
+}).strict();
+
+const manuscriptOrganizationOutputSchema = z.object({
+	runId: z.string().regex(/^extraction-run:[a-z0-9][a-z0-9-]*$/u),
+	status: z.enum([
+		'planned',
+		'running',
+		'stopped',
+		'completed',
+		'completed-with-errors'
+	]),
+	tokenEstimate: z.number().int().positive(),
+	chapterCount: z.number().int().positive()
+}).strict();
+
+const crossChapterConsistencyInputSchema = z.object({
+	instruction: z.string().trim().min(1).max(2_000),
+	sourceResourceIds: z.array(
+		z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u)
+	).min(2).max(12)
+}).strict();
+
+const crossChapterConsistencyOutputSchema = z.object({
+	issues: z.array(z.object({
+		ruleId: z.string().regex(/^ai-[a-z0-9][a-z0-9-]*$/u),
+		severity: z.enum(['info', 'suggestion', 'warning']),
+		title: z.string().min(1).max(120),
+		evidenceCount: z.number().int().min(2).max(4),
+		storyFactResourceId: z.string().optional()
+	}).strict()).max(50)
+}).strict();
+
 const gateDInputSchema = z.object({
 	instruction: z.string().trim().min(1).max(2_000),
 	sourceResourceId: z.string().regex(/^chapter:[a-z0-9][a-z0-9-]*$/u),
@@ -668,6 +718,56 @@ export function createConsistencyReviewAction(): AiActionDefinition<
 	};
 }
 
+export function createGateGAiActions(): readonly AiActionDefinition[] {
+	return [{
+		id: 'manuscript.organize',
+		title: 'AI 从正文整理',
+		description: '按章节分批提取所选 Story Kernel 类型，统一进入冲突候选。',
+		category: 'manuscript',
+		availability: scope => scope.hasProject
+			? { available: true }
+			: { available: false, reason: '请先打开作品' },
+		inputSchema: manuscriptOrganizationInputSchema,
+		outputSchema: manuscriptOrganizationOutputSchema,
+		outputSchemaName: 'ManuscriptExtractionRun',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource'],
+			optionalKinds: ['entity', 'event', 'plot-thread', 'foreshadowing', 'world-rule'],
+			maximumTokens: 16_000,
+			includeAuthorSecretsByDefault: false
+		},
+		applyPolicy: { type: 'create_resources', selectableItems: true },
+		promptTemplateId: 'story-kernel.generation',
+		defaultModelClass: 'reasoning'
+	}, {
+		id: 'review.crossChapterConsistency',
+		title: 'AI 对照审查',
+		description: '以证据 A/B 和 Story Fact 生成不直接修改内容的 ReviewIssue。',
+		category: 'review',
+		availability: scope => {
+			if (!scope.hasProject) return { available: false, reason: '请先打开作品' };
+			if ((scope.selectedChapterCount ?? 0) < 2) {
+				return { available: false, reason: '请至少选择两个章节' };
+			}
+			return { available: true };
+		},
+		inputSchema: crossChapterConsistencyInputSchema,
+		outputSchema: crossChapterConsistencyOutputSchema,
+		outputSchemaName: 'StoryConsistencyReviewIssues',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: ['current-resource'],
+			optionalKinds: ['entity', 'event', 'plot-thread', 'foreshadowing', 'world-rule'],
+			maximumTokens: 16_000,
+			includeAuthorSecretsByDefault: false
+		},
+		applyPolicy: { type: 'review_issues', maximumSeverity: 'warning' },
+		promptTemplateId: 'story.consistency.analysis',
+		defaultModelClass: 'reasoning'
+	}];
+}
+
 export function createDefaultAiActionRegistry(): AiActionRegistry {
 	const registry = new AiActionRegistry();
 	registry.register(createConsistencyReviewAction());
@@ -677,5 +777,6 @@ export function createDefaultAiActionRegistry(): AiActionRegistry {
 	for (const action of createItemAiActions()) registry.register(action);
 	for (const action of createTimelineAiActions()) registry.register(action);
 	for (const action of createPlotAiActions()) registry.register(action);
+	for (const action of createGateGAiActions()) registry.register(action);
 	return registry;
 }

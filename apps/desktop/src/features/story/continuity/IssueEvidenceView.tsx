@@ -1,4 +1,9 @@
-import { ExternalLink, FileText, GitCompareArrows } from 'lucide-react';
+import {
+	Database,
+	ExternalLink,
+	FileText,
+	GitCompareArrows
+} from 'lucide-react';
 import type {
 	ContinuityEvidence,
 	ContinuityIssue
@@ -19,16 +24,24 @@ export function IssueEvidenceView(props: {
 			</header>
 			<div className="continuity-evidence-list">
 				{props.issue.evidence.map((evidence, index) => (
-					<article key={evidence.id}>
+					<article
+						key={evidence.id}
+						className={evidence.kind === 'story-fact' ? 'is-story-fact' : ''}
+					>
 						<div>
-							<strong>{evidence.label}</strong>
+							<strong>
+								{evidence.kind === 'story-fact' ? <Database size={14} /> : null}
+								{evidence.label}
+							</strong>
 							<span>{evidence.chapterId ?? evidence.resourceId}</span>
 						</div>
 						{evidence.storyTime ? <small>故事时间：{evidence.storyTime}</small> : null}
 						{evidence.quote ? <blockquote>{evidence.quote}</blockquote> : null}
-						<button type="button" onClick={() => props.onOpenEvidence(evidence)}>
-							打开证据 {index + 1}<ExternalLink size={14} />
-						</button>
+						{evidence.kind !== 'story-fact' ? (
+							<button type="button" onClick={() => props.onOpenEvidence(evidence)}>
+								打开{evidence.label || `证据 ${index + 1}`}<ExternalLink size={14} />
+							</button>
+						) : <small>用于对照，不会由 AI 直接修改。</small>}
 					</article>
 				))}
 			</div>

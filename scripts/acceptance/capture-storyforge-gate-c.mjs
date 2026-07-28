@@ -443,8 +443,52 @@ const aiQuickActionsGateFCaptures = [
 		name: '04-foreshadowing-extraction-1024x688.png'
 	}
 ];
+const aiQuickActionsGateGCaptures = [
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'plan-extraction',
+		width: 1536,
+		height: 960,
+		name: '01-extraction-plan-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'run-extraction',
+		width: 1280,
+		height: 768,
+		name: '02-extraction-candidates-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'continuity',
+		readySelector: '.continuity-review-page',
+		selector: '.continuity-review-page',
+		prepare: 'run-consistency-review',
+		width: 1536,
+		height: 960,
+		name: '03-consistency-evidence-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'plan-extraction',
+		width: 1024,
+		height: 688,
+		name: '04-extraction-responsive-1024x688.png'
+	}
+];
 const captures = gate === 'gate-ai-actions-f'
 	? aiQuickActionsGateFCaptures
+	: gate === 'gate-ai-actions-g'
+	? aiQuickActionsGateGCaptures
 	: gate === 'gate-ai-actions-e'
 	? aiQuickActionsGateECaptures
 	: gate === 'gate-ai-actions-d'
@@ -793,6 +837,77 @@ try {
 					})()`
 				});
 			}
+		}
+		if (capture.prepare === 'plan-extraction' || capture.prepare === 'run-extraction') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const scope = [...document.querySelectorAll('.extraction-scope-grid button')]
+						.find(item => item.textContent?.trim() === '当前卷');
+					if (!(scope instanceof HTMLButtonElement)) return false;
+					scope.click();
+					const plan = document.querySelector('.extraction-plan-button');
+					if (!(plan instanceof HTMLButtonElement) || plan.disabled) return false;
+					plan.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate G extraction plan could not be created.');
+			await waitForSelector(client, '.extraction-run-card [data-status="planned"]');
+			if (capture.prepare === 'run-extraction') {
+				const started = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = [...document.querySelectorAll('.extraction-run-actions button')]
+							.find(item => item.textContent?.includes('开始逐章整理'));
+						if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!started.result.value) throw new Error('Gate G extraction run could not be started.');
+				await waitForSelector(client, '.extraction-candidate-grid > article');
+			}
+		}
+		if (capture.prepare === 'run-consistency-review') {
+			const opened = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const button = [...document.querySelectorAll('.continuity-header-actions button')]
+						.find(item => item.textContent?.includes('AI 对照审查'));
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!opened.result.value) throw new Error('Gate G consistency review could not be opened.');
+			await waitForSelector(client, '.story-consistency-panel');
+			const started = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.story-consistency-panel footer button')]
+						.find(item => item.textContent?.includes('开始对照审查'));
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!started.result.value) throw new Error('Gate G consistency generation could not be started.');
+			await waitForSelector(client, '.story-consistency-success');
+			await client.send('Runtime.evaluate', {
+				expression: `document.querySelector('.story-consistency-panel > header > button')?.click()`
+			});
+			await waitForSelector(client, '.continuity-issue-list [data-ai="true"]');
+			await client.send('Runtime.evaluate', {
+				expression: `document.querySelector('.continuity-issue-list [data-ai="true"]')?.click()`
+			});
+			await waitForSelector(client, '.continuity-evidence-list article.is-story-fact');
 		}
 		if (capture.prepare?.startsWith('generate-')) {
 			await client.send('Runtime.evaluate', {

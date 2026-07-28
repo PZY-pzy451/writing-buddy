@@ -8,7 +8,8 @@ import {
 	createRelationshipAiActions,
 	createTimelineAiActions,
 	createWorldAiActions,
-	createConsistencyReviewAction
+	createConsistencyReviewAction,
+	createGateGAiActions
 } from './AiActionRegistry';
 
 describe('AiActionRegistry', () => {
@@ -117,5 +118,25 @@ describe('AiActionRegistry', () => {
 			available: false,
 			unavailableReason: '请先选择一段正文'
 		}]);
+	});
+
+	it('registers Gate G orchestration and cross-chapter review actions', () => {
+		const registry = createDefaultAiActionRegistry();
+		expect(createGateGAiActions().map(action => action.id)).toEqual([
+			'manuscript.organize',
+			'review.crossChapterConsistency'
+		]);
+		expect(registry.list('manuscript').map(action => action.id)).toEqual([
+			'manuscript.organize'
+		]);
+		expect(registry.listAvailable({
+			hasProject: true,
+			selectedChapterCount: 2
+		}, 'review').map(action => action.id)).toContain(
+			'review.crossChapterConsistency'
+		);
+		expect(createGateGAiActions().every(action => (
+			action.contextPolicy.includeAuthorSecretsByDefault === false
+		))).toBe(true);
 	});
 });

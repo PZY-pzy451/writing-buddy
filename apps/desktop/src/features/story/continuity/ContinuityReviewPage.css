@@ -6,8 +6,8 @@
 	min-height: 0;
 	padding: 24px clamp(18px, 2.2vw, 32px);
 	overflow: hidden;
-	background: var(--canvas);
-	color: var(--text);
+	background: var(--surface-canvas);
+	color: var(--text-primary);
 }
 
 .continuity-page-header {
@@ -29,7 +29,7 @@
 	line-height: 1.65;
 }
 
-.continuity-page-header > button,
+.continuity-header-actions button,
 .continuity-evidence button,
 .continuity-actions button {
 	display: inline-flex;
@@ -38,16 +38,28 @@
 	gap: 7px;
 	min-height: 44px;
 	padding: 0 14px;
-	border: 1px solid var(--border);
+	border: 1px solid var(--border-subtle);
 	border-radius: 8px;
-	background: var(--surface);
-	color: var(--text);
+	background: var(--surface-base);
+	color: var(--text-primary);
 }
 
-.continuity-page-header > button {
+.continuity-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: 0 0 auto;
+}
+
+.continuity-header-actions button:first-child {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+}
+
+.continuity-header-actions button:last-child {
 	border-color: var(--accent);
-	background: var(--accent);
-	color: var(--accent-contrast);
+	background: var(--accent-strong);
+	color: #fff;
 }
 
 .continuity-metrics {
@@ -63,14 +75,14 @@
 	gap: 9px;
 	min-height: 58px;
 	padding: 12px 14px;
-	border: 1px solid var(--border);
+	border: 1px solid var(--border-subtle);
 	border-radius: 10px;
-	background: var(--surface);
+	background: var(--surface-base);
 	color: var(--text-muted);
 }
 
 .continuity-metrics strong {
-	color: var(--text);
+	color: var(--text-primary);
 	font-size: 22px;
 }
 
@@ -95,10 +107,10 @@
 	display: grid;
 	grid-template-columns: minmax(320px, 0.78fr) minmax(420px, 1.22fr);
 	min-height: 0;
-	border: 1px solid var(--border);
+	border: 1px solid var(--border-subtle);
 	border-radius: 12px;
 	overflow: hidden;
-	background: var(--surface);
+	background: var(--surface-base);
 }
 
 .continuity-list-panel,
@@ -109,7 +121,7 @@
 }
 
 .continuity-list-panel {
-	border-right: 1px solid var(--border);
+	border-right: 1px solid var(--border-subtle);
 }
 
 .continuity-list-panel > header,
@@ -120,7 +132,7 @@
 	justify-content: space-between;
 	gap: 12px;
 	padding: 14px 16px;
-	border-bottom: 1px solid var(--border);
+	border-bottom: 1px solid var(--border-subtle);
 }
 
 .continuity-list-panel > header > div,
@@ -141,10 +153,10 @@
 .continuity-list-panel select {
 	min-height: 44px;
 	padding: 0 28px 0 9px;
-	border: 1px solid var(--border);
+	border: 1px solid var(--border-subtle);
 	border-radius: 7px;
 	background: var(--surface-raised);
-	color: var(--text);
+	color: var(--text-primary);
 }
 
 .continuity-issue-list,
@@ -160,14 +172,14 @@
 	min-height: 72px;
 	padding: 12px 14px;
 	border: 0;
-	border-bottom: 1px solid var(--border);
+	border-bottom: 1px solid var(--border-subtle);
 	background: transparent;
-	color: var(--text);
+	color: var(--text-primary);
 	text-align: left;
 }
 
 .continuity-issue-list > button.is-active {
-	background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+	background: color-mix(in srgb, var(--accent) 10%, var(--surface-base));
 	box-shadow: inset 3px 0 var(--accent);
 }
 
@@ -226,7 +238,7 @@
 }
 
 .continuity-evidence {
-	border: 1px solid var(--border);
+	border: 1px solid var(--border-subtle);
 	border-radius: 10px;
 	overflow: hidden;
 }
@@ -240,13 +252,23 @@
 	display: grid;
 	gap: 9px;
 	padding: 13px;
-	border-right: 1px solid var(--border);
-	border-bottom: 1px solid var(--border);
+	border-right: 1px solid var(--border-subtle);
+	border-bottom: 1px solid var(--border-subtle);
 }
 
 .continuity-evidence-list article > div {
 	display: grid;
 	gap: 3px;
+}
+
+.continuity-evidence-list article > div > strong {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.continuity-evidence-list article.is-story-fact {
+	background: color-mix(in srgb, var(--accent) 6%, var(--surface-base));
 }
 
 .continuity-evidence-list span,
@@ -275,13 +297,13 @@
 	flex-wrap: wrap;
 	gap: 8px;
 	padding-top: 12px;
-	border-top: 1px solid var(--border);
+	border-top: 1px solid var(--border-subtle);
 }
 
 .continuity-actions button:first-child {
 	border-color: var(--accent);
-	background: var(--accent);
-	color: var(--accent-contrast);
+	background: var(--accent-strong);
+	color: #fff;
 }
 
 .continuity-empty {
@@ -316,7 +338,7 @@
 	.continuity-list-panel {
 		min-height: 320px;
 		border-right: 0;
-		border-bottom: 1px solid var(--border);
+		border-bottom: 1px solid var(--border-subtle);
 	}
 
 	.continuity-evidence-list {

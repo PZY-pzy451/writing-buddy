@@ -12,6 +12,7 @@ import {
 	buildSelectionRewriteMessages,
 	buildStoryExtractionMessages,
 	buildStoryKernelGenerationMessages,
+	buildStoryConsistencyAnalysisMessages,
 	buildTimelineAnalysisMessages,
 	buildWorldAnalysisMessages,
 	canQueueAiJob,
@@ -29,6 +30,7 @@ import {
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
+	parseStoryConsistencyAnalysisResponse,
 	parseTimelineAnalysisResponse,
 	parseWorldAnalysisResponse,
 	SELECTION_REWRITE_SYSTEM_PROMPT,
@@ -40,6 +42,7 @@ import {
 	SCENE_PLAN_SYSTEM_PROMPT,
 	STORY_EXTRACTION_SYSTEM_PROMPT,
 	STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
+	STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT,
 	TIMELINE_ANALYSIS_SYSTEM_PROMPT,
 	WORLD_ANALYSIS_SYSTEM_PROMPT,
 	shouldRetryAiFailure
@@ -724,5 +727,122 @@ describe('AI core contracts', () => {
 			targetTypes: ['character'],
 			existingResources: []
 		})).toThrow('invalidStoryKernelGenerationInput');
+	});
+});
+
+describe('story consistency analysis contract', () => {
+	const firstContent = '林墨在雨夜抵达旧站，墙上的时钟停在二十三点十七分。';
+	const secondContent = '清晨的港口记录写着：林墨整夜未曾离开码头。';
+	const sources = [{
+		resourceId: 'chapter:chapter-0001',
+		sourceRevision: 'hash:one',
+		content: firstContent
+	}, {
+		resourceId: 'chapter:chapter-0002',
+		sourceRevision: 'hash:two',
+		content: secondContent
+	}];
+	const storyFacts = [{
+		resourceId: 'timeline-event:arrival',
+		title: '抵达旧站',
+		statement: '林墨在雨夜抵达旧站。'
+	}];
+
+	it('builds a bounded two-source request without accepting secret-shaped fields', () => {
+		const messages = buildStoryConsistencyAnalysisMessages({
+			instruction: '对照人物位置和时间。',
+			sources,
+			storyFacts
+		});
+		expect(messages[0]?.content).toBe(STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT);
+		const payload = JSON.parse(messages[1]?.content ?? '{}') as {
+			sources: readonly unknown[];
+		};
+		expect(payload.sources).toHaveLength(2);
+		expect(() => buildStoryConsistencyAnalysisMessages({
+			instruction: '对照人物位置和时间。',
+			sources,
+			storyFacts: [{
+				...storyFacts[0],
+				authorSecret: true
+			} as never]
+		})).toThrow('invalidStoryConsistencyAnalysisInput');
+	});
+
+	it('creates warning-capped ReviewIssues with evidence A/B and Story Fact', () => {
+		const firstQuote = '林墨在雨夜抵达旧站';
+		const secondQuote = '林墨整夜未曾离开码头';
+		const issues = parseStoryConsistencyAnalysisResponse({
+			projectId: 'project:test',
+			sources,
+			storyFacts,
+			response: JSON.stringify({
+				issues: [{
+					ruleId: 'ai-location-conflict',
+					severity: 'error',
+					title: '人物位置可能冲突',
+					message: '两个章节对同一时段的位置描述不一致，需要作者确认。',
+					evidence: [{
+						resourceId: sources[0].resourceId,
+						start: firstContent.indexOf(firstQuote),
+						end: firstContent.indexOf(firstQuote) + firstQuote.length,
+						quote: firstQuote,
+						label: '证据 A'
+					}, {
+						resourceId: sources[1].resourceId,
+						start: secondContent.indexOf(secondQuote),
+						end: secondContent.indexOf(secondQuote) + secondQuote.length,
+						quote: secondQuote,
+						label: '证据 B'
+					}],
+					storyFact: storyFacts[0]
+				}]
+			})
+		});
+
+		expect(issues[0]).toMatchObject({
+			severity: 'warning',
+			origin: 'ai',
+			relatedEvidence: [{ label: '证据 A' }, { label: '证据 B' }],
+			storyFact: { title: '抵达旧站' }
+		});
+		expect(issues[0]?.replacement).toBeUndefined();
+	});
+
+	it('rejects non-exact, duplicate, or unknown evidence and facts', () => {
+		const response = (secondQuote: string, factId = storyFacts[0].resourceId) => JSON.stringify({
+			issues: [{
+				ruleId: 'ai-location-conflict',
+				severity: 'warning',
+				title: '人物位置可能冲突',
+				message: '需要作者确认。',
+				evidence: [{
+					resourceId: sources[0].resourceId,
+					start: 0,
+					end: 2,
+					quote: '林墨',
+					label: '证据 A'
+				}, {
+					resourceId: sources[1].resourceId,
+					start: 0,
+					end: secondQuote.length,
+					quote: secondQuote,
+					label: '证据 B'
+				}],
+				storyFact: { ...storyFacts[0], resourceId: factId }
+			}]
+		});
+		expect(() => parseStoryConsistencyAnalysisResponse({
+			projectId: 'project:test',
+			sources,
+			storyFacts,
+			response: response('不存在的引文')
+		})).toThrow('invalidStoryConsistencyEvidence');
+		expect(() => parseStoryConsistencyAnalysisResponse({
+			projectId: 'project:test',
+			sources,
+			storyFacts,
+			response: response('清晨', 'timeline-event:unknown')
+		})).toThrow('unknownStoryConsistencyFact');
 	});
 });

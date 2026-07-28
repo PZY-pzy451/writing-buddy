@@ -14,6 +14,7 @@ export interface ContinuityEvidence {
 	readonly quote?: string;
 	readonly storyTime?: string;
 	readonly expectedRevision?: string;
+	readonly kind?: 'manuscript' | 'story-fact';
 	readonly label: string;
 }
 
@@ -72,7 +73,8 @@ function evidenceIdentity(evidence: ContinuityEvidence): string {
 		evidence.sceneId ?? '',
 		evidence.start ?? '',
 		evidence.end ?? '',
-		evidence.quote ?? ''
+		evidence.quote ?? '',
+		evidence.kind ?? 'manuscript'
 	].join(':');
 }
 

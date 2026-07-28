@@ -33,7 +33,9 @@ export type AiActionId =
 	| 'foreshadowing.generateSeed'
 	| 'foreshadowing.generatePayoff'
 	| 'foreshadowing.extract'
-	| 'review.consistency';
+	| 'review.consistency'
+	| 'review.crossChapterConsistency'
+	| 'manuscript.organize';
 
 export type AiActionCategory =
 	| 'editor'
@@ -44,6 +46,7 @@ export type AiActionCategory =
 	| 'item'
 	| 'plot'
 	| 'foreshadowing'
+	| 'manuscript'
 	| 'review';
 
 export type AiContextKind =

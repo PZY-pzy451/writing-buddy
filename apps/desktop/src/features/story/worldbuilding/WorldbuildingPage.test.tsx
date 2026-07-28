@@ -23,7 +23,7 @@ describe('WorldbuildingPage', () => {
 		})} />);
 
 		expect(await screen.findByRole('main', { name: '世界观中心' })).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: /旧车站，/ }));
+		await user.click(await screen.findByRole('button', { name: /旧车站，/ }));
 		expect(screen.getByRole('img', { name: '静态地点示意图' })).toBeInTheDocument();
 		await user.click(screen.getByRole('tab', { name: '势力' }));
 		expect(await screen.findByRole('heading', { name: '铁路局' })).toBeInTheDocument();

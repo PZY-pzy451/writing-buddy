@@ -1209,7 +1209,9 @@ class BrowserDesktopBridge implements DesktopBridge {
 													? browserStoryExtractionDeltas(request)
 													: request.jobType === 'story-kernel-generation'
 														? browserStoryKernelGenerationDeltas(request)
-														: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
+														: request.jobType === 'story-consistency-analysis'
+															? browserStoryConsistencyAnalysisDeltas(request)
+															: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
 		for (const text of deltas) {
 			await new Promise(resolve => window.setTimeout(resolve, 45));
 			if (browserCancelledJobs.has(request.jobId)) {
@@ -1954,6 +1956,55 @@ function browserStoryExtractionDeltas(request: AiGenerateRequest): readonly stri
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserStoryConsistencyAnalysisDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly sources?: readonly {
+			readonly resourceId?: string;
+			readonly content?: string;
+		}[];
+		readonly storyFacts?: readonly {
+			readonly resourceId?: string;
+			readonly title?: string;
+			readonly statement?: string;
+		}[];
+	};
+	const sources = (decoded.sources ?? []).slice(0, 2);
+	if (sources.length < 2) return browserJsonDeltas({ issues: [] });
+	const evidence = sources.map((source, index) => {
+		const content = source.content ?? '';
+		const sentenceEnd = content.search(/[。！？]/u);
+		const end = sentenceEnd >= 0 ? sentenceEnd + 1 : Math.min(content.length, 28);
+		return {
+			resourceId: source.resourceId,
+			start: 0,
+			end,
+			quote: content.slice(0, end),
+			label: `证据 ${String.fromCharCode(65 + index)}`
+		};
+	});
+	if (evidence.some(item => !item.resourceId || !item.quote)) {
+		return browserJsonDeltas({ issues: [] });
+	}
+	const fact = decoded.storyFacts?.[0];
+	return browserJsonDeltas({
+		issues: [{
+			ruleId: 'ai-cross-chapter-consistency',
+			severity: 'warning',
+			title: '章节叙述可能存在状态差异',
+			message: '两处正文对同一状态的描述需要作者复核；AI 只提出建议，不会自动修改。',
+			evidence,
+			storyFact: fact?.resourceId && fact.title && fact.statement
+				? {
+					resourceId: fact.resourceId,
+					title: fact.title,
+					statement: fact.statement
+				}
+				: null
+		}]
+	});
 }
 
 function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonly string[] {

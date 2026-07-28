@@ -86,6 +86,27 @@ export class ContinuityReviewRepository {
 }
 
 export function reviewIssueToContinuityCandidate(issue: ReviewIssue): ContinuityCandidate {
+	const manuscriptEvidence = issue.relatedEvidence?.length
+		? issue.relatedEvidence.map((evidence, index) => ({
+			id: `${issue.id}:evidence-${index + 1}`,
+			resourceId: evidence.resourceId,
+			start: evidence.anchor.start,
+			end: evidence.anchor.end,
+			quote: evidence.anchor.target,
+			expectedRevision: evidence.anchor.sourceHash,
+			kind: 'manuscript' as const,
+			label: evidence.label
+		}))
+		: [{
+			id: `${issue.id}:evidence`,
+			resourceId: issue.resourceId,
+			start: issue.anchor.start,
+			end: issue.anchor.end,
+			quote: issue.anchor.target,
+			expectedRevision: issue.anchor.sourceHash,
+			kind: 'manuscript' as const,
+			label: issue.origin === 'ai' ? 'AI 审校证据' : '正文规则证据'
+		}];
 	return {
 		sourceId: issue.id,
 		layer: issue.origin === 'ai' ? 'ai' : 'text-rule',
@@ -93,14 +114,15 @@ export function reviewIssueToContinuityCandidate(issue: ReviewIssue): Continuity
 		severity: issue.severity,
 		title: issue.title,
 		message: issue.message,
-		evidence: [{
-			id: `${issue.id}:evidence`,
-			resourceId: issue.resourceId,
-			start: issue.anchor.start,
-			end: issue.anchor.end,
-			quote: issue.anchor.target,
-			expectedRevision: issue.anchor.sourceHash,
-			label: issue.origin === 'ai' ? 'AI 审校证据' : '正文规则证据'
-		}]
+		evidence: [
+			...manuscriptEvidence,
+			...(issue.storyFact ? [{
+				id: `${issue.id}:story-fact`,
+				resourceId: issue.storyFact.resourceId,
+				quote: issue.storyFact.statement,
+				kind: 'story-fact' as const,
+				label: `Story Fact · ${issue.storyFact.title}`
+			}] : [])
+		]
 	};
 }

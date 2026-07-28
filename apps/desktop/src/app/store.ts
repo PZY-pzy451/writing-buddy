@@ -44,7 +44,8 @@ export type StoryViewId =
 	| 'assets'
 	| 'plots'
 	| 'information'
-	| 'continuity';
+	| 'continuity'
+	| 'extraction';
 
 export type AssistantActionRequest =
 	| {

@@ -55,8 +55,8 @@ describe('ContinuityReviewPage', () => {
 		);
 		await waitFor(() => expect(screen.getAllByText('人物同时出现在两个地点')).toHaveLength(2));
 		expect(screen.getByText('Story Kernel')).toBeInTheDocument();
-		expect(screen.getAllByRole('button', { name: /打开证据/u })).toHaveLength(2);
-		fireEvent.click(screen.getByRole('button', { name: '打开证据 2' }));
+		expect(screen.getAllByRole('button', { name: /打开.*场景/u })).toHaveLength(2);
+		fireEvent.click(screen.getByRole('button', { name: '打开港口场景' }));
 		expect(onOpenEvidence).toHaveBeenCalledWith(expect.objectContaining({ resourceId: 'chapter:two' }));
 		fireEvent.click(screen.getByRole('button', { name: '标记已解决' }));
 		await waitFor(() => expect(screen.getAllByText('resolved')).toHaveLength(2));

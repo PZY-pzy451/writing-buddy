@@ -81,7 +81,8 @@ describe('StoryForge professional layout contract', () => {
 		expect(second).toHaveFocus();
 		expect(useAppStore.getState().storyView).toBe('relationships');
 		fireEvent.keyDown(second, { key: 'End' });
-		expect(screen.getByRole('button', { name: /一致性审查/ })).toHaveFocus();
+		expect(screen.getByRole('button', { name: /AI 正文整理/ })).toHaveFocus();
+		expect(useAppStore.getState().storyView).toBe('extraction');
 	});
 
 	it('moves through directed matrix cells and timeline rows by keyboard', () => {

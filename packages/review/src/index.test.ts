@@ -49,6 +49,33 @@ describe('local review', () => {
 		expect(() => parseReviewState('{"schemaVersion":1,"issues":[{"id":"legacy"}]}')).toThrow('reviewStateInvalid');
 	});
 
+	it('round-trips multi-source evidence and Story Fact metadata', () => {
+		const issue = runLocalReview('project', 'chapter', '一句话。。').issues[0];
+		expect(issue).toBeDefined();
+		if (!issue) return;
+		const enriched = {
+			...issue,
+			relatedEvidence: [{
+				resourceId: 'chapter:one',
+				label: '证据 A',
+				anchor: issue.anchor
+			}, {
+				resourceId: 'chapter:two',
+				label: '证据 B',
+				anchor: { ...issue.anchor, sourceHash: 'other-hash' }
+			}],
+			storyFact: {
+				resourceId: 'timeline-event:arrival',
+				title: '抵达旧站',
+				statement: '林墨在雨夜抵达旧站。'
+			}
+		};
+		expect(parseReviewState(serializeReviewState([enriched])).issues[0]).toMatchObject({
+			relatedEvidence: [{ label: '证据 A' }, { label: '证据 B' }],
+			storyFact: { title: '抵达旧站' }
+		});
+	});
+
 	it('replaces one review origin without discarding other resources or AI results', () => {
 		const local = runLocalReview('project', 'chapter', '一句话。。').issues[0];
 		const other = runLocalReview('project', 'other', '另一句话。。').issues[0];

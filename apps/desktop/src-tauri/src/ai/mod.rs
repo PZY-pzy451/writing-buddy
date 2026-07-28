@@ -23,6 +23,13 @@ pub const CHAPTER_REVIEW_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"issues\":[{\"start\":0,\"end\":1,\"target\":\"原文片段\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"简短标题\",\"message\":\"问题说明\",\"replacement\":\"可选替换文本\"}]}。",
     "start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。"
 );
+pub const STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的长篇小说一致性对照分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和 Story Fact 摘要。",
+    "不得请求或推断项目路径、密钥、账户、隐藏历史或未提供的作者秘密。不得改写正文或 Story Kernel。",
+    "仅返回 JSON 对象：{\"issues\":[{\"ruleId\":\"ai-continuity\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"标题\",\"message\":\"说明\",\"evidence\":[{\"resourceId\":\"已知 chapter ID\",\"start\":0,\"end\":2,\"quote\":\"精确原文\",\"label\":\"证据 A\"},{\"resourceId\":\"已知 chapter ID\",\"start\":0,\"end\":2,\"quote\":\"精确原文\",\"label\":\"证据 B\"}],\"storyFact\":{\"resourceId\":\"已知 Story Fact ID\",\"title\":\"标题\",\"statement\":\"事实摘要\"}或null}]}。",
+    "每条问题必须包含 2 至 4 个互不重复的精确正文证据，并只引用用户提供的章节和 Story Fact。索引使用 JavaScript UTF-16 字符索引。",
+    "结果仅为待确认 ReviewIssue，最多 50 条；不得返回 replacement、patch、操作指令或声称已修改内容。"
+);
 pub const SELECTION_REWRITE_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的选区改写助手。",
     "只改写用户 JSON 中 P1 当前选区，不补写整章，不推断未提供的故事事实。",
@@ -316,6 +323,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_plot_analysis_input(&self.messages[1].content)
             }
+            AiJobType::StoryConsistencyAnalysis => {
+                self.messages[0].content == STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_story_consistency_analysis_input(&self.messages[1].content)
+            }
             AiJobType::StoryExtraction => {
                 self.messages[0].content == STORY_EXTRACTION_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -350,6 +362,7 @@ pub enum AiJobType {
     ItemAnalysis,
     TimelineAnalysis,
     PlotAnalysis,
+    StoryConsistencyAnalysis,
     StoryExtraction,
     StoryKernelGeneration,
 }
@@ -368,6 +381,7 @@ impl AiJobType {
             Self::ItemAnalysis => "item-analysis",
             Self::TimelineAnalysis => "timeline-analysis",
             Self::PlotAnalysis => "plot-analysis",
+            Self::StoryConsistencyAnalysis => "story-consistency-analysis",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
         }
@@ -418,6 +432,77 @@ fn validate_chapter_review_input(value: &str) -> bool {
         input.schema_version == 1
             && !input.content.trim().is_empty()
             && input.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+    })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryConsistencyAnalysisInput {
+    schema_version: u8,
+    instruction: String,
+    sources: Vec<StoryConsistencySource>,
+    story_facts: Vec<StoryConsistencyFact>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryConsistencySource {
+    resource_id: String,
+    source_revision: String,
+    content: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryConsistencyFact {
+    resource_id: String,
+    title: String,
+    statement: String,
+}
+
+fn validate_story_consistency_analysis_input(value: &str) -> bool {
+    if value.len() > 220_000 || contains_forbidden_context_key(value) {
+        return false;
+    }
+    serde_json::from_str::<StoryConsistencyAnalysisInput>(value).is_ok_and(|input| {
+        let source_ids = input
+            .sources
+            .iter()
+            .map(|source| source.resource_id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        let fact_ids = input
+            .story_facts
+            .iter()
+            .map(|fact| fact.resource_id.as_str())
+            .collect::<std::collections::HashSet<_>>();
+        input.schema_version == 1
+            && !input.instruction.trim().is_empty()
+            && input.instruction.chars().count() <= 2_000
+            && (2..=12).contains(&input.sources.len())
+            && source_ids.len() == input.sources.len()
+            && input
+                .sources
+                .iter()
+                .map(|source| source.content.chars().count())
+                .sum::<usize>()
+                <= 160_000
+            && input.sources.iter().all(|source| {
+                source.resource_id.starts_with("chapter:")
+                    && valid_story_id(&source.resource_id)
+                    && !source.source_revision.trim().is_empty()
+                    && source.source_revision.len() <= 128
+                    && !source.content.trim().is_empty()
+                    && source.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+            })
+            && input.story_facts.len() <= 500
+            && fact_ids.len() == input.story_facts.len()
+            && input.story_facts.iter().all(|fact| {
+                valid_story_id(&fact.resource_id)
+                    && !fact.title.trim().is_empty()
+                    && fact.title.chars().count() <= 160
+                    && !fact.statement.trim().is_empty()
+                    && fact.statement.chars().count() <= 4_000
+            })
     })
 }
 
@@ -1411,7 +1496,8 @@ mod tests {
         CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
         ITEM_ANALYSIS_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
         PLOT_ANALYSIS_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
-        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
+        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT,
+        STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
         STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT,
         TIMELINE_ANALYSIS_SYSTEM_PROMPT, ThinkingMode, WORLD_ANALYSIS_SYSTEM_PROMPT,
     };
@@ -1479,6 +1565,54 @@ mod tests {
 
         request.messages[1].content =
             serde_json::json!({"schemaVersion": 1, "content": ""}).to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn story_consistency_analysis_requires_bounded_sources_and_sanitized_facts() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::StoryConsistencyAnalysis;
+        request.messages[0].content = STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "instruction": "对照人物位置和时间。",
+            "sources": [{
+                "resourceId": "chapter:one",
+                "sourceRevision": "hash:one",
+                "content": "林墨在雨夜抵达旧站。"
+            }, {
+                "resourceId": "chapter:two",
+                "sourceRevision": "hash:two",
+                "content": "港口记录称林墨整夜未离开。"
+            }],
+            "storyFacts": [{
+                "resourceId": "timeline-event:arrival",
+                "title": "抵达旧站",
+                "statement": "林墨在雨夜抵达旧站。"
+            }]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        let mut leaked: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid consistency request");
+        leaked["storyFacts"][0]["authorSecret"] = serde_json::json!(true);
+        request.messages[1].content = leaked.to_string();
+        assert!(request.validate().is_err());
+
+        let mut one_source: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("json request");
+        one_source["storyFacts"][0]
+            .as_object_mut()
+            .expect("fact object")
+            .remove("authorSecret");
+        one_source["sources"] = serde_json::json!([{
+            "resourceId": "chapter:one",
+            "sourceRevision": "hash:one",
+            "content": "林墨在雨夜抵达旧站。"
+        }]);
+        request.messages[1].content = one_source.to_string();
         assert!(request.validate().is_err());
     }
 
