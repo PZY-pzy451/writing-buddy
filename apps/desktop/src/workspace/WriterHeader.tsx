@@ -77,7 +77,7 @@ export function WriterHeader(): React.JSX.Element | null {
 							{!snapshot.readOnly ? (
 								<details className="ai-continuation-menu">
 									<summary>
-										<Feather size={17} />AI 续写<ChevronDown size={15} />
+										<Feather size={18} />AI 续写<ChevronDown size={16} />
 									</summary>
 									<div>
 										<button
@@ -110,10 +110,10 @@ export function WriterHeader(): React.JSX.Element | null {
 						<Save size={18} />
 					</button>
 					<button className="chapter-nav-button" type="button" disabled={index <= 0} onClick={() => openChapterAt(index - 1)}>
-						<ChevronLeft size={17} />上一章
+						<ChevronLeft size={18} />上一章
 					</button>
 					<button className="chapter-nav-button" type="button" disabled={index < 0 || index >= chapters.length - 1} onClick={() => openChapterAt(index + 1)}>
-						下一章<ChevronRight size={17} />
+						下一章<ChevronRight size={18} />
 					</button>
 				</div>
 			</div>

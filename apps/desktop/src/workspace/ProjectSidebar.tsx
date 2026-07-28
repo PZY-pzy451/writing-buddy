@@ -60,13 +60,13 @@ export function ProjectSidebar(): React.JSX.Element {
 					<h2>作品书架</h2>
 				</div>
 				<div className="empty-sidebar-launcher">
-					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={17} />新建作品</button>
-					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={17} />打开作品</button>
+					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={18} />新建作品</button>
+					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={18} />打开作品</button>
 				</div>
 				<nav className="sidebar-recent-list" aria-label="最近作品">
 					{recentProjectRoots.length ? recentProjectRoots.map(root => (
 						<button type="button" key={root} onClick={() => void openProject(root)}>
-							<BookOpen size={17} />
+							<BookOpen size={18} />
 							<span>{root.split(/[\\/]/).filter(Boolean).at(-1) ?? root}</span>
 						</button>
 					)) : <p>暂无最近作品</p>}
@@ -102,7 +102,7 @@ export function ProjectSidebar(): React.JSX.Element {
 					<span className="eyebrow">我的作品</span>
 					<h2>作品大纲</h2>
 				</div>
-				<button className="icon-button" type="button" aria-label="作品菜单"><MoreHorizontal size={19} /></button>
+				<button className="icon-button" type="button" aria-label="作品菜单"><MoreHorizontal size={20} /></button>
 			</div>
 
 			<div className="project-card">
@@ -155,14 +155,14 @@ export function ProjectSidebar(): React.JSX.Element {
 									className={`tree-row ${activeResource?.id === resource.id ? 'is-active' : ''}`}
 									onClick={() => void openResource({ ...resource, projectId: snapshot.project.projectId })}
 								>
-									<Icon size={17} />
+									<Icon size={18} />
 									<span>{resource.title}</span>
 									<small>{resource.type === 'character' ? '人物' : ''}</small>
 								</button>
 							);
 						})}
 						<button className="tree-row muted-row" type="button">
-							<Trash2 size={17} />
+							<Trash2 size={18} />
 							<span>回收站</span>
 						</button>
 					</div>

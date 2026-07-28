@@ -42,6 +42,7 @@ import {
 	type StoryResource
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import type {
 	AiChapterSource,
 	OpenAiEvidence
@@ -345,8 +346,8 @@ export function PlotBoardPage({
 				</div>
 			</header>
 			<div className="plot-board-messages">
-				{error ? <div role="alert"><AlertTriangle size={15} />{error}</div> : null}
-				{issues.length ? <div role="status"><AlertTriangle size={15} />{issues.length} 条生命周期风险</div> : null}
+				{error ? <div role="alert"><AlertTriangle size={16} />{error}</div> : null}
+				{issues.length ? <div role="status"><AlertTriangle size={16} />{issues.length} 条生命周期风险</div> : null}
 			</div>
 			<section className="plot-board-workspace">
 				<div className="plot-board-primary">
@@ -384,7 +385,7 @@ export function PlotBoardPage({
 											))}
 											{(data?.threads.filter(thread => thread.status === status).length ?? 0) === 0 && status === 'planned' ? (
 												<button type="button" className="plot-ai-empty-card" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
-													<Sparkles size={19} />
+													<Sparkles size={20} />
 													<strong>用 AI 创建剧情线</strong>
 													<small>先生成候选，再由作者确认。</small>
 												</button>
@@ -396,7 +397,7 @@ export function PlotBoardPage({
 							<DragOverlay modifiers={[restrictToWindowEdges]}>
 								{activeThread ? (
 									<div className="plot-thread-overlay">
-										<GripVertical size={17} />
+										<GripVertical size={18} />
 										<span><small>移动剧情线</small><strong>{activeThread.title}</strong></span>
 									</div>
 								) : null}
@@ -422,7 +423,14 @@ export function PlotBoardPage({
 							<section><h3>真实含义</h3><p>{selectedClue.trueMeaning ?? '未定义'}</p></section>
 							<section><h3>可见程度</h3><p>{Math.round(selectedClue.readerVisibility * 100)}%</p></section>
 						</>
-					) : <div className="plot-inspector-empty"><ListChecks size={34} /><h2>选择一条记录</h2><p>查看来源、计划位置和生命周期。</p></div>}
+					) : (
+						<AppEmptyState
+							icon={ListChecks}
+							title="选择一条记录"
+							description="查看来源、计划位置和生命周期。"
+							className="plot-inspector-empty"
+						/>
+					)}
 				</aside>
 			</section>
 			{aiOpen && projectRoot ? (

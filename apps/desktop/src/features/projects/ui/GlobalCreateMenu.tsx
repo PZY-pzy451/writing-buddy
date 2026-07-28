@@ -58,9 +58,9 @@ export function GlobalCreateMenu(): React.JSX.Element {
 				aria-expanded={open}
 				onClick={() => setOpen(value => !value)}
 			>
-				<Plus size={17} aria-hidden="true" />
+				<Plus size={18} aria-hidden="true" />
 				<span>新建</span>
-				<ChevronDown size={14} aria-hidden="true" />
+				<ChevronDown size={16} aria-hidden="true" />
 			</button>
 			{open && (
 				<div className="global-create-menu" role="menu" aria-label="新建内容">
@@ -95,7 +95,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 							disabled
 							title={snapshot ? '将在项目结构编排阶段启用' : '请先打开作品'}
 						>
-							<Icon size={17} />
+							<Icon size={18} />
 							<span>
 								<strong>{label}</strong>
 								<small>{snapshot ? '下一阶段启用' : '请先打开作品'}</small>

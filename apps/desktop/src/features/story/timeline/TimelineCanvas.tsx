@@ -152,7 +152,7 @@ export function TimelineCanvas({
 						{visibleTracks.map(track => (
 							<div className="timeline-track" key={track.id}>
 								<strong className="timeline-track-label">
-									{trackKind === 'character' ? <UserRound size={15} /> : trackKind === 'location' ? <MapPin size={15} /> : <CalendarClock size={15} />}
+									{trackKind === 'character' ? <UserRound size={16} /> : trackKind === 'location' ? <MapPin size={16} /> : <CalendarClock size={16} />}
 									{track.label}
 								</strong>
 								<div className="timeline-track-events">

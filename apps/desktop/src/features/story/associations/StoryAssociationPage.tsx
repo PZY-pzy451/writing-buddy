@@ -48,6 +48,7 @@ import {
 	DragOverlayCard,
 	DropIndicator
 } from '../../shared/interaction';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import type { AiChapterSource } from '../ai-context/AiChapterSource';
 import { ItemStateFileStore } from '../assets/ItemAiReviewService';
 import { StoryDragUndoToast } from '../shared/StoryDragUndoToast';
@@ -116,9 +117,9 @@ const associationCollisionDetection: CollisionDetection = arguments_ => {
 };
 
 function sourceIcon(type: AssociationDragSource['type']): React.JSX.Element {
-	if (type === 'character') return <UserRound size={17} />;
-	if (type === 'item') return <Package size={17} />;
-	return <Eye size={17} />;
+	if (type === 'character') return <UserRound size={18} />;
+	if (type === 'item') return <Package size={18} />;
+	return <Eye size={18} />;
 }
 
 function DraggableSource({
@@ -263,7 +264,7 @@ function AssociationConfirmSheet({
 				<div className="association-confirm-route">
 					<span>{sourceIcon(intent.source.type)}{intent.source.title}</span>
 					<Link2 size={18} />
-					<span>{intent.target.type === 'character' ? <UserRound size={17} /> : <BookOpen size={17} />}{intent.target.title}</span>
+					<span>{intent.target.type === 'character' ? <UserRound size={18} /> : <BookOpen size={18} />}{intent.target.title}</span>
 				</div>
 					<p className="association-confirm-lead">{intent.label}。确认前不会写入任何资料。</p>
 				</>
@@ -282,7 +283,7 @@ function AssociationConfirmSheet({
 							quantity
 						})}
 					>
-						{saving ? '保存中…' : <><Check size={17} />确认关联</>}
+						{saving ? '保存中…' : <><Check size={18} />确认关联</>}
 					</button>
 				</>
 			)}
@@ -625,7 +626,7 @@ export function StoryAssociationPage({
 					<p>把人物、物品和伏笔放入故事位置；松开后先确认，再安全写入。</p>
 				</div>
 				<div className="association-safety-badge">
-					<ShieldCheck size={17} />
+					<ShieldCheck size={18} />
 					<span><strong>显式确认</strong><small>无 AI 请求 · 可撤销</small></span>
 				</div>
 			</header>
@@ -673,7 +674,7 @@ export function StoryAssociationPage({
 					<section className="association-story-map">
 						<header>
 							<div><span className="eyebrow">STORY POSITION</span><h2>章节与场景</h2></div>
-							<span><CircleDot size={14} />{data.scenes.length} 个场景</span>
+							<span><CircleDot size={16} />{data.scenes.length} 个场景</span>
 						</header>
 						<div className="association-chapter-list">
 							{chapters.map(chapter => {
@@ -705,7 +706,7 @@ export function StoryAssociationPage({
 												aria-expanded={expanded}
 											>
 												<ChevronDown size={16} className={expanded ? '' : 'is-collapsed'} />
-												<BookOpen size={17} />
+												<BookOpen size={18} />
 												<span><strong>{chapter.title}</strong><small>{chapter.volumeTitle}</small></span>
 												<em>{chapterScenes.length}</em>
 											</button>
@@ -721,7 +722,7 @@ export function StoryAssociationPage({
 													>
 														<span>{scene.narrativeOrder}</span>
 														<div><strong>{scene.title}</strong><small>{scene.participantIds.length} 人物 · {(scene.itemIds ?? []).length} 物品 · {scene.foreshadowingIds.length} 伏笔</small></div>
-														<Link2 size={15} />
+														<Link2 size={16} />
 													</AssociationTarget>
 												))}
 												{chapterScenes.length === 0 ? <p>暂无场景；章节可以作为目标，但确认前需要先创建场景。</p> : null}
@@ -730,7 +731,15 @@ export function StoryAssociationPage({
 									</AssociationTarget>
 								);
 							})}
-							{chapters.length === 0 ? <div className="association-empty"><BookOpen size={30} /><span>当前作品还没有章节</span></div> : null}
+							{chapters.length === 0 ? (
+								<AppEmptyState
+									icon={BookOpen}
+									title="当前作品还没有章节"
+									description="创建章节后即可建立资料与场景关联。"
+									density="panel"
+									className="association-empty"
+								/>
+							) : null}
 						</div>
 					</section>
 					<aside className="association-character-targets">
@@ -749,7 +758,7 @@ export function StoryAssociationPage({
 								>
 									<UserRound size={18} />
 									<span><strong>{character.title}</strong><small>{character.role ?? '人物'}</small></span>
-									<Package size={15} />
+									<Package size={16} />
 								</AssociationTarget>
 							))}
 						</div>
@@ -771,7 +780,7 @@ export function StoryAssociationPage({
 							kind="正在关联"
 							title={activeSource.title}
 							hint={hoveredIntent?.allowed ? hoveredIntent.label : '选择高亮的目标'}
-							trailing={<Sparkles size={15} />}
+							trailing={<Sparkles size={16} />}
 						/>
 					) : null}
 				</DragOverlay>

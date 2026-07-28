@@ -273,7 +273,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 					disabled={!packReady || !scene || generating || props.readOnly || candidate?.status === 'accepted'}
 					onClick={() => void generate()}
 				>
-					{generating ? <Sparkles size={17} /> : <Send size={17} />}
+					{generating ? <Sparkles size={18} /> : <Send size={18} />}
 					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '确认资料并生成细纲'}
 				</button>
 				{generating && activeJobId ? (
@@ -294,7 +294,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 					</header>
 					{stale ? (
 						<p className="ai-action-stale">
-							<AlertTriangle size={15} />正文或场景版本已变化，请重新生成。
+							<AlertTriangle size={16} />正文或场景版本已变化，请重新生成。
 						</p>
 					) : null}
 					<div className="scene-plan-fields">
@@ -306,7 +306,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 									disabled={candidate.status !== 'candidate'}
 									onChange={() => toggleField(field)}
 								/>
-								<span aria-hidden="true">{selectedFields.includes(field) ? <Check size={14} /> : null}</span>
+								<span aria-hidden="true">{selectedFields.includes(field) ? <Check size={16} /> : null}</span>
 								<div>
 									<strong>{fieldLabels[field]}</strong>
 									{field === 'emotionBeats' ? (
@@ -343,7 +343,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 								type="button"
 								onClick={() => setCandidate({ ...candidate, status: 'rejected' })}
 							>
-								<X size={15} />放弃候选
+								<X size={16} />放弃候选
 							</button>
 						) : null}
 					</div>

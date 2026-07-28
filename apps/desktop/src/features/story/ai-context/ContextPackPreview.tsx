@@ -71,7 +71,7 @@ export function ContextPackPreview({
 											disabled={item.required}
 											onChange={event => onChange(withContextItemIncluded(pack, item.id, event.target.checked))}
 										/>
-										<span aria-hidden="true">{item.included ? <Check size={14} /> : null}</span>
+										<span aria-hidden="true">{item.included ? <Check size={16} /> : null}</span>
 										<div><strong>{item.title}</strong><small>{item.estimatedTokens} tokens</small></div>
 										{item.required ? <em><LockKeyhole size={13} />必选</em> : null}
 										{item.authorSecret ? <em className="is-secret"><EyeOff size={13} />作者秘密</em> : null}
@@ -82,7 +82,7 @@ export function ContextPackPreview({
 										aria-expanded={expanded === item.id}
 										onClick={() => setExpanded(current => current === item.id ? undefined : item.id)}
 									>
-										<BookOpenText size={15} /><span>查看内容</span><ChevronDown size={14} />
+										<BookOpenText size={16} /><span>查看内容</span><ChevronDown size={16} />
 									</button>
 									{expanded === item.id ? <pre>{item.content}</pre> : null}
 									{item.excludedReason === 'token-budget' ? <p>已按 Token 预算从低优先级自动裁剪。</p> : null}

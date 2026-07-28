@@ -189,7 +189,7 @@
 .ai-review-primary:disabled,
 .ai-review-accept:disabled {
 	cursor: not-allowed;
-	opacity: 0.48;
+	opacity: 1;
 }
 
 .ai-review-hint,

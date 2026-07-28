@@ -1,4 +1,4 @@
-import { AlertTriangle, LoaderCircle, PanelBottomOpen } from 'lucide-react';
+import { AlertTriangle, BookOpenText, LoaderCircle, PanelBottomOpen } from 'lucide-react';
 import { useEffect } from 'react';
 import { useAppStore } from './store';
 import { TopBar } from '../shell/TopBar';
@@ -21,6 +21,8 @@ import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
 import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
 import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
+import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
+import '../theme/visualPolish.css';
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
@@ -156,11 +158,19 @@ export function App(): React.JSX.Element {
 					{showTextEditor && <ChapterEditor />}
 					{showResourceEditor && <ResourceEditor />}
 					{showStoryResource && <StoryWorkspaceRoute />}
-					{!systemPageVisible && !welcomeVisible && !activeResource && !showDashboard && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
+					{!systemPageVisible && !welcomeVisible && !activeResource && !showDashboard && (
+						<AppEmptyState
+							icon={BookOpenText}
+							title="选择一个章节"
+							description="从左侧作品大纲打开章节，继续写作或查看关联资料。"
+							density="full"
+							className="canvas-empty"
+						/>
+					)}
 				</div>
 				{workspaceDockVisible && <TaskDock />}
 				{!dockOpen && !focusMode && !systemPageVisible && (
-					<button className="dock-restore" type="button" onClick={toggleDock}><PanelBottomOpen size={17} />展开待处理区</button>
+					<button className="dock-restore" type="button" onClick={toggleDock}><PanelBottomOpen size={18} />展开待处理区</button>
 				)}
 			</main>
 			{workspaceAssistantVisible && <AssistantPanel />}
@@ -171,7 +181,7 @@ export function App(): React.JSX.Element {
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">
-					<AlertTriangle size={19} />
+					<AlertTriangle size={20} />
 					<span>{error}</span>
 					<button type="button" onClick={() => setError(undefined)}>关闭</button>
 				</div>

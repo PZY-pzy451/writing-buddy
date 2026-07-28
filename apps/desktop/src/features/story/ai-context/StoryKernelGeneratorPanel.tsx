@@ -366,11 +366,11 @@ function StoryKernelGeneratorPanelContent(
 					<span className="eyebrow">STORY KERNEL GENERATOR</span>
 					<h3>直接生成故事内核</h3>
 				</div>
-				<span className="kernel-generator-safety"><ShieldCheck size={15} />确认后才写入</span>
+				<span className="kernel-generator-safety"><ShieldCheck size={16} />确认后才写入</span>
 			</header>
 
 			<p className="kernel-generator-note">
-				<DatabaseZap size={17} />
+				<DatabaseZap size={18} />
 				{props.selection?.text
 					? '仅使用当前选区生成；作者秘密不会加入发送上下文。'
 					: '使用当前章节生成；作者秘密不会加入发送上下文。'}
@@ -416,7 +416,7 @@ function StoryKernelGeneratorPanelContent(
 					}
 					onClick={() => void generate()}
 				>
-					{generating ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}
+					{generating ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '生成 Story Kernel 候选'}
 				</button>
 				{generating && activeJobId ? (
@@ -565,7 +565,7 @@ export function KernelCandidateCard(props: {
 			{props.candidate.evidence ? (
 				<figure className="kernel-candidate-evidence">
 					<figcaption>
-						<TextQuote size={14} aria-hidden="true" />
+						<TextQuote size={16} aria-hidden="true" />
 						<span>正文证据</span>
 						<small>{evidenceQuote.length} 字</small>
 					</figcaption>
@@ -578,7 +578,7 @@ export function KernelCandidateCard(props: {
 				<ul className="kernel-candidate-conflicts" role="alert">
 					{props.candidate.conflicts.map(item => (
 						<li key={`${item.code}:${item.message}`}>
-							<AlertTriangle size={15} aria-hidden="true" />
+							<AlertTriangle size={16} aria-hidden="true" />
 							<span>
 								<strong>{item.message}</strong>
 								{item.details?.length ? (
@@ -607,12 +607,12 @@ export function KernelCandidateCard(props: {
 					aria-expanded={expanded}
 					onClick={() => setExpanded(value => !value)}
 				>
-					{expanded ? <ChevronDown size={15} /> : <ChevronRight size={15} />}
+					{expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
 					{expanded ? '收起结构' : '查看结构'}
 				</button>
 				{props.candidate.status === 'pending' ? (
 					<button type="button" disabled={props.busy} onClick={props.onReject}>
-						<X size={15} />拒绝
+						<X size={16} />拒绝
 					</button>
 				) : null}
 			</div>

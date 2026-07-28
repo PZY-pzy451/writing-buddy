@@ -73,7 +73,7 @@ export function CharacterStateTimeline({
 							<strong>{resolution ? stateValue(resolution.current.value) : '未记录'}</strong>
 							{resolution?.conflicts.length ? (
 								<p className="state-conflict">
-									<AlertTriangle size={14} />存在 {resolution.conflicts.length} 条冲突来源
+									<AlertTriangle size={16} />存在 {resolution.conflicts.length} 条冲突来源
 								</p>
 							) : null}
 							{resolution?.current.evidenceIds.map(evidenceId => (

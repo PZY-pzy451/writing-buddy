@@ -329,7 +329,7 @@ export function PlotAiPanel(props: {
 					))}
 				</div>
 				<section className="ai-review-source-card">
-					<div><BookOpen size={17} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
+					<div><BookOpen size={18} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
 					<select aria-label="剧情资料分析章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 						{props.chapters.map(chapter => <option key={chapter.resourceId} value={chapter.resourceId}>{chapter.volumeTitle ? `${chapter.volumeTitle} · ` : ''}{chapter.title}</option>)}
 					</select>
@@ -350,7 +350,7 @@ export function PlotAiPanel(props: {
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
 					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
-						{generating ? <LoaderCircle className="spin" size={17} /> : <WandSparkles size={17} />}
+						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成剧情资料候选'}
 					</button>
 					{generating && activeJobId ? <button type="button" className="ai-review-secondary" onClick={() => void desktopBridge.cancelAiJob(activeJobId)}>取消</button> : null}
@@ -381,7 +381,7 @@ export function PlotAiPanel(props: {
 								<span>{response.kind === 'plotThread' ? `${response.participantIds.length} 人物` : `可见 ${Math.round(response.readerVisibility * 100)}%`}</span>
 							</div>
 							<div className="ai-review-origin is-ai"><Sparkles size={13} />AI 建议 · {response.rationale}</div>
-							{candidate.matchedResourceId ? <div className="ai-review-merge-note"><AlertTriangle size={15} />同名资料已存在，勾选即表示显式合并。</div> : null}
+							{candidate.matchedResourceId ? <div className="ai-review-merge-note"><AlertTriangle size={16} />同名资料已存在，勾选即表示显式合并。</div> : null}
 							{candidate.conflicts.map(conflict => <p className="ai-review-inline-warning" key={conflict}>{conflict}</p>)}
 							{candidate.localIssues.map(issue => <div className="ai-review-origin is-local" key={issue.id}><AlertTriangle size={13} />本地规则 · {issue.title}</div>)}
 							{response.kind === 'plotThread' ? (
@@ -395,7 +395,7 @@ export function PlotAiPanel(props: {
 									{response.trueMeaning ? <section className="ai-review-detail is-secret"><Eye size={13} /><strong>真实含义</strong><p>{response.trueMeaning}</p></section> : null}
 								</>
 							)}
-							{candidate.evidence && props.onOpenEvidence ? <button type="button" className="ai-review-evidence-button" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}><BookOpen size={14} />查看原文证据</button> : null}
+							{candidate.evidence && props.onOpenEvidence ? <button type="button" className="ai-review-evidence-button" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}><BookOpen size={16} />查看原文证据</button> : null}
 						</article>
 					);
 				})}

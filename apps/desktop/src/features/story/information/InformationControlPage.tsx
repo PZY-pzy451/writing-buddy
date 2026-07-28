@@ -10,6 +10,7 @@ import {
 	type StoryInformation
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import { KnowledgeMatrix } from './KnowledgeMatrix';
 import './InformationControlPage.css';
 
@@ -114,14 +115,14 @@ export function InformationControlPage({
 					<div><span className="eyebrow">KNOWLEDGE SLICE</span><h2>{selected?.title ?? '选择一条故事事实'}</h2></div>
 					<label><span>叙事位置</span><input type="number" min={0} value={narrativeOrder} onChange={event => setNarrativeOrder(Math.max(0, Number(event.target.value)))} /></label>
 				</header>
-				{error ? <p className="information-error"><AlertTriangle size={17} />{error}</p> : null}
+				{error ? <p className="information-error"><AlertTriangle size={18} />{error}</p> : null}
 				{selected ? (
 					<div className="information-content">
 						<section className="truth-summary">
 							<div><span className="eyebrow">故事真实事实</span><p>{selected.truthStatement}</p></div>
 							<div className="truth-badges">
-								<span className={selected.authorSecret ? 'is-secret' : ''}>{selected.authorSecret ? <EyeOff size={15} /> : <Eye size={15} />}{selected.authorSecret ? '作者秘密' : '公开事实'}</span>
-								<span className={selected.excludeFromAiByDefault ? 'is-protected' : ''}>{selected.excludeFromAiByDefault ? <BotOff size={15} /> : <ShieldCheck size={15} />}{selected.excludeFromAiByDefault ? '默认不发送给 AI' : '可加入 AI 上下文'}</span>
+								<span className={selected.authorSecret ? 'is-secret' : ''}>{selected.authorSecret ? <EyeOff size={16} /> : <Eye size={16} />}{selected.authorSecret ? '作者秘密' : '公开事实'}</span>
+								<span className={selected.excludeFromAiByDefault ? 'is-protected' : ''}>{selected.excludeFromAiByDefault ? <BotOff size={16} /> : <ShieldCheck size={16} />}{selected.excludeFromAiByDefault ? '默认不发送给 AI' : '可加入 AI 上下文'}</span>
 							</div>
 						</section>
 						<section className="information-matrix-card">
@@ -135,7 +136,14 @@ export function InformationControlPage({
 							<div className={issues.length ? 'has-warning' : ''}><span>揭示检查</span><strong>{issues.length ? `${issues.length} 项风险` : '顺序正常'}</strong></div>
 						</section>
 					</div>
-				) : <div className="information-empty"><KeyRound size={30} /><p>从左侧选择事实以查看信息权限。</p></div>}
+				) : (
+					<AppEmptyState
+						icon={KeyRound}
+						title="选择一条故事事实"
+						description="从左侧打开事实，查看读者揭示与人物知识权限。"
+						className="information-empty"
+					/>
+				)}
 			</main>
 		</section>
 	);

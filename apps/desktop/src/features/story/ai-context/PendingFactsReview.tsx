@@ -173,7 +173,7 @@ export function PendingFactsReview(props: PendingFactsReviewProps): React.JSX.El
 				disabled={!props.content.trim() || generating}
 				onClick={() => void extract()}
 			>
-				{generating ? <LoaderCircle className="spin" size={17} /> : <DatabaseZap size={17} />}
+				{generating ? <LoaderCircle className="spin" size={18} /> : <DatabaseZap size={18} />}
 				{generating ? `正在提取 · ${streamedLength} 字符` : '用 DeepSeek 提取待确认事实'}
 			</button>
 			{error ? <p className="pending-facts-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
@@ -270,10 +270,10 @@ function PendingFactCard(props: {
 					disabled={busy || !title.trim() || !statement.trim() || !Number.isSafeInteger(narrativeOrder)}
 					onClick={() => void run(() => props.onAccept(title, statement, narrativeOrder))}
 				>
-					<Check size={15} />确认并接受
+					<Check size={16} />确认并接受
 				</button>
 				<button type="button" disabled={busy} onClick={() => void run(props.onReject)}>
-					<X size={15} />拒绝
+					<X size={16} />拒绝
 				</button>
 			</div>
 		</article>

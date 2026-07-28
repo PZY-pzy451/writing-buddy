@@ -103,7 +103,7 @@ export function ProjectOpenErrorDialog({
 						<div className="project-safe-path">
 							<code>{error.safePath}</code>
 							<button type="button" className="icon-button" aria-label="复制安全路径" onClick={() => void copyPath()}>
-								{copied ? <Check size={17} /> : <Clipboard size={17} />}
+								{copied ? <Check size={18} /> : <Clipboard size={18} />}
 							</button>
 						</div>
 					)}
@@ -120,25 +120,25 @@ export function ProjectOpenErrorDialog({
 
 				<div className="project-open-actions">
 					<button type="button" className="primary-button" disabled={busyAction !== undefined} onClick={onRetry}>
-						<RefreshCw size={17} />{busyAction === 'retry' ? '正在重试…' : '重试'}
+						<RefreshCw size={18} />{busyAction === 'retry' ? '正在重试…' : '重试'}
 					</button>
 					{error.canOpenReadOnly && (
 						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onOpenReadOnly}>
-							<ShieldCheck size={17} />{busyAction === 'read-only' ? '正在打开…' : '只读打开'}
+							<ShieldCheck size={18} />{busyAction === 'read-only' ? '正在打开…' : '只读打开'}
 						</button>
 					)}
 					{error.canRepair && (
 						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onRepair}>
-							<Wrench size={17} />{busyAction === 'repair' ? '正在修复…' : '修复项目'}
+							<Wrench size={18} />{busyAction === 'repair' ? '正在修复…' : '修复项目'}
 						</button>
 					)}
 					{error.safePath && (
 						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onOpenDirectory}>
-							<FolderOpen size={17} />打开目录
+							<FolderOpen size={18} />打开目录
 						</button>
 					)}
 					<button type="button" className="secondary-button" aria-expanded={diagnosticsOpen} onClick={() => setDiagnosticsOpen(value => !value)}>
-						<Stethoscope size={17} />{diagnosticsOpen ? '收起诊断' : '查看诊断'}
+						<Stethoscope size={18} />{diagnosticsOpen ? '收起诊断' : '查看诊断'}
 					</button>
 					<button type="button" className="text-button" onClick={onClose}>关闭</button>
 				</div>

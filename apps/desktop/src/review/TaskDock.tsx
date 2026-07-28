@@ -16,6 +16,7 @@ import { resolveAnchor, ReviewResolutionService } from '@writing-buddy/review';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { ResizeHandle } from '../shell/ResizeHandle';
+import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 
 const resolution = new ReviewResolutionService(new EditTransactionService());
 
@@ -136,18 +137,26 @@ export function TaskDock(): React.JSX.Element {
 						<Archive size={16} />备份记录
 					</button>
 				</div>
-				<button className="icon-button" type="button" onClick={toggleDock} aria-label="关闭任务区"><X size={17} /></button>
+				<button className="icon-button" type="button" onClick={toggleDock} aria-label="关闭任务区"><X size={18} /></button>
 			</header>
 
 			{tab === 'issues' && (
 				<div className="dock-body issue-dock">
 					<div className="issue-filters">
-						<button type="button" className="is-active"><CircleAlert size={15} />全部 <strong>{issues.length}</strong></button>
+						<button type="button" className="is-active"><CircleAlert size={16} />全部 <strong>{issues.length}</strong></button>
 						<button type="button">严重与警告 <strong>{counts.warning}</strong></button>
 						<button type="button">已忽略 <strong>{counts.ignored}</strong></button>
 					</div>
 					<div className="issue-list">
-						{issues.length === 0 && <div className="dock-empty"><Check size={24} /><span>当前章节没有待处理问题</span></div>}
+						{issues.length === 0 && (
+							<AppEmptyState
+								icon={Check}
+								title="当前章节没有待处理问题"
+								density="compact"
+								tone="positive"
+								className="dock-empty"
+							/>
+						)}
 						{issues.map(issue => (
 							<button
 								key={issue.id}
@@ -172,10 +181,17 @@ export function TaskDock(): React.JSX.Element {
 								<div className="detail-actions">
 									<button className="primary-button" type="button" onClick={accept} disabled={selected.status !== 'open' || selected.replacement === undefined}>接受</button>
 									<button className="secondary-button" type="button" onClick={ignore} disabled={selected.status !== 'open'}>忽略</button>
-									<button className="secondary-button" type="button" onClick={restore} disabled={selected.status !== 'accepted' && selected.status !== 'ignored'}><RotateCcw size={15} />恢复状态</button>
+									<button className="secondary-button" type="button" onClick={restore} disabled={selected.status !== 'accepted' && selected.status !== 'ignored'}><RotateCcw size={16} />恢复状态</button>
 								</div>
 							</>
-						) : <div className="dock-empty">选择一个问题查看详情</div>}
+						) : (
+							<AppEmptyState
+								icon={ClipboardList}
+								title="选择一个问题查看详情"
+								density="compact"
+								className="dock-empty"
+							/>
+						)}
 					</div>
 				</div>
 			)}
@@ -189,9 +205,9 @@ export function TaskDock(): React.JSX.Element {
 
 			{tab === 'tasks' && (
 				<div className="dock-body task-list">
-					<div><Check size={17} /><span>读取项目清单</span><strong>完成</strong></div>
-					<div><Check size={17} /><span>建立资源索引</span><strong>完成</strong></div>
-					<div><ChevronDown size={17} /><span>本地章节审校</span><strong>{issues.length ? '完成' : '待运行'}</strong></div>
+					<div><Check size={18} /><span>读取项目清单</span><strong>完成</strong></div>
+					<div><Check size={18} /><span>建立资源索引</span><strong>完成</strong></div>
+					<div><ChevronDown size={18} /><span>本地章节审校</span><strong>{issues.length ? '完成' : '待运行'}</strong></div>
 				</div>
 			)}
 

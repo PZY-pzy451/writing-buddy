@@ -160,7 +160,7 @@ export function StoryConsistencyAiPanel(props: {
 						<p>只创建带证据的待处理问题，不改正文、不覆盖 Story Kernel。</p>
 					</div>
 					<button type="button" aria-label="关闭 AI 对照审查" disabled={running} onClick={props.onClose}>
-						<X size={19} />
+						<X size={20} />
 					</button>
 				</header>
 
@@ -174,7 +174,7 @@ export function StoryConsistencyAiPanel(props: {
 
 				<section className="story-consistency-source-section">
 					<header>
-						<div><FileCheck2 size={17} /><h3>选择对照章节</h3></div>
+						<div><FileCheck2 size={18} /><h3>选择对照章节</h3></div>
 						<strong>{selectedIds.length}/12</strong>
 					</header>
 					<div className="story-consistency-source-list">
@@ -222,11 +222,11 @@ export function StoryConsistencyAiPanel(props: {
 				{error ? <p className="story-consistency-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
 
 				<footer>
-					<span><Sparkles size={15} />点击开始后才会调用 DeepSeek</span>
+					<span><Sparkles size={16} />点击开始后才会调用 DeepSeek</span>
 					<div>
 						{running ? (
 							<button type="button" onClick={() => void cancel()}>
-								<CircleStop size={17} />停止
+								<CircleStop size={18} />停止
 							</button>
 						) : (
 							<button
@@ -238,7 +238,7 @@ export function StoryConsistencyAiPanel(props: {
 								}
 								onClick={() => void run()}
 							>
-								<Sparkles size={17} />开始对照审查
+								<Sparkles size={18} />开始对照审查
 							</button>
 						)}
 					</div>

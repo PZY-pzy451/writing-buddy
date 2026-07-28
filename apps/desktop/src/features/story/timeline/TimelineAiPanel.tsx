@@ -337,7 +337,7 @@ export function TimelineAiPanel(props: {
 					))}
 				</div>
 				<section className="ai-review-source-card">
-					<div><BookOpen size={17} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
+					<div><BookOpen size={18} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
 					<select aria-label="故事进程分析范围" value={scopeMode} onChange={event => setScopeMode(event.target.value as TimelineScopeMode)}>
 						{Object.entries(scopeLabels).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
 					</select>
@@ -365,7 +365,7 @@ export function TimelineAiPanel(props: {
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
 					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
-						{generating ? <LoaderCircle className="spin" size={17} /> : <WandSparkles size={17} />}
+						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成事件与因果候选'}
 					</button>
 					{generating && activeJobId ? <button type="button" className="ai-review-secondary" onClick={() => void desktopBridge.cancelAiJob(activeJobId)}>取消</button> : null}
@@ -395,16 +395,16 @@ export function TimelineAiPanel(props: {
 							<span>{candidate.response.participantIds.length} 人物</span>
 						</div>
 						<div className="ai-review-origin is-ai"><Sparkles size={13} />AI 建议 · {candidate.response.rationale}</div>
-						{candidate.matchedEventId ? <div className="ai-review-merge-note"><AlertTriangle size={15} />同名事件已存在，勾选即表示显式合并。</div> : null}
+						{candidate.matchedEventId ? <div className="ai-review-merge-note"><AlertTriangle size={16} />同名事件已存在，勾选即表示显式合并。</div> : null}
 						{candidate.conflicts.map(conflict => <p className="ai-review-inline-warning" key={conflict}>{conflict}</p>)}
 						{candidate.localIssues.map(issue => <div className="ai-review-origin is-local" key={issue.id}><AlertTriangle size={13} />本地规则 · {issue.title}</div>)}
 						{candidate.response.directResults.length ? <section className="ai-review-detail"><strong>直接结果</strong><p>{candidate.response.directResults.join('；')}</p></section> : null}
 						{candidate.response.impacts.length ? <section className="ai-review-detail"><strong>后续影响</strong><p>{candidate.response.impacts.join('；')}</p></section> : null}
-						{candidate.evidence && props.onOpenEvidence ? <button type="button" className="ai-review-evidence-button" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}><BookOpen size={14} />查看原文证据</button> : null}
+						{candidate.evidence && props.onOpenEvidence ? <button type="button" className="ai-review-evidence-button" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}><BookOpen size={16} />查看原文证据</button> : null}
 						{candidate.duplicateCount ? <small>已合并 {candidate.duplicateCount} 个重复候选。</small> : null}
 					</article>
 				))}
-				{batch?.edges.length ? <h3 className="ai-review-subtitle"><GitBranch size={14} />虚线因果候选</h3> : null}
+				{batch?.edges.length ? <h3 className="ai-review-subtitle"><GitBranch size={16} />虚线因果候选</h3> : null}
 				<div className="ai-causality-preview">
 					{batch?.edges.map(edge => (
 						<label className={`ai-causality-edge ${edge.conflict ? 'has-conflict' : ''}`} key={edge.id}>

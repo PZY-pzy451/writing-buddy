@@ -139,12 +139,12 @@ function AssistantPanelContent(props: {
 						<p>{selection?.text || '请先在正文中选择一段文字。'}</p>
 					</div>
 					<div className="quick-actions">
-						<button type="button" className={rewriteAction === 'polish' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('polish')}><WandSparkles size={17} />润色</button>
-						<button type="button" className={rewriteAction === 'concise' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('concise')}><Lightbulb size={17} />精简</button>
-						<button type="button" className={rewriteAction === 'expand' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('expand')}><Maximize2 size={17} />扩写</button>
-						<button type="button" className={rewriteAction === 'grammar' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('grammar')}><ClipboardCheck size={17} />语病</button>
-						<button type="button" className={rewriteAction === 'dialogue' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('dialogue')}><UsersRound size={17} />对话</button>
-						<button type="button" className={rewriteAction === 'pacing' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('pacing')}><BookMarked size={17} />节奏</button>
+						<button type="button" className={rewriteAction === 'polish' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('polish')}><WandSparkles size={18} />润色</button>
+						<button type="button" className={rewriteAction === 'concise' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('concise')}><Lightbulb size={18} />精简</button>
+						<button type="button" className={rewriteAction === 'expand' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('expand')}><Maximize2 size={18} />扩写</button>
+						<button type="button" className={rewriteAction === 'grammar' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('grammar')}><ClipboardCheck size={18} />语病</button>
+						<button type="button" className={rewriteAction === 'dialogue' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('dialogue')}><UsersRound size={18} />对话</button>
+						<button type="button" className={rewriteAction === 'pacing' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('pacing')}><BookMarked size={18} />节奏</button>
 					</div>
 					{snapshot && activeResource?.type === 'chapter' && session && selection?.text ? (
 						<SelectionRewritePanel
@@ -180,21 +180,21 @@ function AssistantPanelContent(props: {
 									className={continuationMode === 'continue-paragraph' ? 'is-active' : ''}
 									onClick={() => setContinuationMode('continue-paragraph')}
 								>
-									<Feather size={17} />继续本段
+									<Feather size={18} />继续本段
 								</button>
 								<button
 									type="button"
 									className={continuationMode === 'finish-scene' ? 'is-active' : ''}
 									onClick={() => setContinuationMode('finish-scene')}
 								>
-									<Check size={17} />完成场景
+									<Check size={18} />完成场景
 								</button>
 								<button
 									type="button"
 									className={continuationMode === 'three-directions' ? 'is-active' : ''}
 									onClick={() => setContinuationMode('three-directions')}
 								>
-									<Compass size={17} />三种走向
+									<Compass size={18} />三种走向
 								</button>
 							</div>
 							{snapshot && activeResource?.type === 'chapter' && session ? (
@@ -237,28 +237,28 @@ function AssistantPanelContent(props: {
 							className={scenePlanAction === 'generate-goal' ? 'is-active' : ''}
 							onClick={() => setScenePlanAction('generate-goal')}
 						>
-							<Lightbulb size={17} />生成目标
+							<Lightbulb size={18} />生成目标
 						</button>
 						<button
 							type="button"
 							className={scenePlanAction === 'generate-outline' ? 'is-active' : ''}
 							onClick={() => setScenePlanAction('generate-outline')}
 						>
-							<ListTree size={17} />生成细纲
+							<ListTree size={18} />生成细纲
 						</button>
 						<button
 							type="button"
 							className={scenePlanAction === 'extract-outline' ? 'is-active' : ''}
 							onClick={() => setScenePlanAction('extract-outline')}
 						>
-							<ClipboardCheck size={17} />提取细纲
+							<ClipboardCheck size={18} />提取细纲
 						</button>
 						<button
 							type="button"
 							className={scenePlanAction === 'generate-emotion-beats' ? 'is-active' : ''}
 							onClick={() => setScenePlanAction('generate-emotion-beats')}
 						>
-							<HeartPulse size={17} />情绪节拍
+							<HeartPulse size={18} />情绪节拍
 						</button>
 					</div>
 					{snapshot && activeResource?.type === 'chapter' && session ? (
@@ -284,7 +284,7 @@ function AssistantPanelContent(props: {
 						<div><strong>当前章节问题</strong><span>本地规则，不发送正文</span></div>
 					</div>
 					<button className="primary-button full-width" type="button" onClick={runReview} disabled={!session}>
-						<ClipboardCheck size={17} />重新审校当前章节
+						<ClipboardCheck size={18} />重新审校当前章节
 					</button>
 					{issues.map(issue => (
 						<div className="compact-issue" key={issue.id}>

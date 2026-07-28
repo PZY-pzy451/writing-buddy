@@ -71,7 +71,7 @@ export function ItemTransferDialog({
 						void onCommit(state).finally(() => setSaving(false));
 					}}
 				>
-					{saving ? '提交中…' : <><span>确认转移</span><ArrowRight size={17} /></>}
+					{saving ? '提交中…' : <><span>确认转移</span><ArrowRight size={18} /></>}
 				</button>
 			</section>
 		</div>

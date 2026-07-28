@@ -36,10 +36,10 @@ export function StoryResourceView({
 				<code>{result.reference.id}</code>
 				<div className="story-resource-actions">
 					<button type="button" onClick={onRestore}>
-						<RotateCcw size={17} />从回收区恢复
+						<RotateCcw size={18} />从回收区恢复
 					</button>
 					<button type="button" className="secondary" onClick={() => onRetry(result.reference)}>
-						<RefreshCw size={17} />重新检查
+						<RefreshCw size={18} />重新检查
 					</button>
 				</div>
 			</section>

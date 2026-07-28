@@ -38,7 +38,7 @@ export function GlobalRail(): React.JSX.Element {
 							onClick={() => setMode(item.mode)}
 							aria-current={activeMode === item.mode ? 'page' : undefined}
 						>
-							<Icon size={21} />
+							<Icon size={20} />
 							<span>{item.label}</span>
 						</button>
 					);
@@ -60,7 +60,7 @@ export function GlobalRail(): React.JSX.Element {
 					className={`rail-item ${activeMode === 'settings' ? 'is-active' : ''}`}
 					onClick={() => setMode('settings')}
 				>
-					<Settings2 size={21} />
+					<Settings2 size={20} />
 					<span>设置</span>
 				</button>
 			</div>

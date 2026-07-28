@@ -234,7 +234,7 @@ export function ManuscriptContinuationPanel(
 					disabled={!packReady || generating || props.readOnly || batch?.status === 'accepted'}
 					onClick={() => void generate()}
 				>
-					{generating ? <Sparkles size={17} /> : <Send size={17} />}
+					{generating ? <Sparkles size={18} /> : <Send size={18} />}
 					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '确认资料并生成候选'}
 				</button>
 				{generating && activeJobId ? (
@@ -251,7 +251,7 @@ export function ManuscriptContinuationPanel(
 				<div className="continuation-candidates">
 					{stale ? (
 						<p className="ai-action-stale">
-							<AlertTriangle size={15} />正文或光标锚点已变化，请重新生成候选。
+							<AlertTriangle size={16} />正文或光标锚点已变化，请重新生成候选。
 						</p>
 					) : null}
 					{batch.candidates.map((candidate, index) => (
@@ -277,14 +277,14 @@ export function ManuscriptContinuationPanel(
 							type="button"
 							onClick={() => setBatch({ ...batch, status: 'rejected' })}
 						>
-							<X size={15} />全部放弃
+							<X size={16} />全部放弃
 						</button>
 					) : null}
 				</div>
 			) : null}
 			{batch?.status === 'accepted' && lastAppliedContent ? (
 				<button className="ai-action-undo" type="button" onClick={undo}>
-					<RotateCcw size={15} />撤销本次插入
+					<RotateCcw size={16} />撤销本次插入
 				</button>
 			) : null}
 		</section>

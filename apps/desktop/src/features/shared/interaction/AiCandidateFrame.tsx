@@ -25,12 +25,12 @@ const stateLabels: Readonly<Record<AiCandidateVisualState, string>> = {
 };
 
 function StateIcon({ state }: { readonly state: AiCandidateVisualState }): React.JSX.Element {
-	if (state === 'conflict') return <AlertTriangle size={14} aria-hidden="true" />;
-	if (state === 'accepted') return <Check size={14} aria-hidden="true" />;
-	if (state === 'rejected') return <X size={14} aria-hidden="true" />;
-	if (state === 'stale') return <Undo2 size={14} aria-hidden="true" />;
-	if (state === 'pending') return <Clock3 size={14} aria-hidden="true" />;
-	return <Sparkles size={14} aria-hidden="true" />;
+	if (state === 'conflict') return <AlertTriangle size={16} aria-hidden="true" />;
+	if (state === 'accepted') return <Check size={16} aria-hidden="true" />;
+	if (state === 'rejected') return <X size={16} aria-hidden="true" />;
+	if (state === 'stale') return <Undo2 size={16} aria-hidden="true" />;
+	if (state === 'pending') return <Clock3 size={16} aria-hidden="true" />;
+	return <Sparkles size={16} aria-hidden="true" />;
 }
 
 export function AiCandidateFrame({

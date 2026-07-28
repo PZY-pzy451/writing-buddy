@@ -1534,7 +1534,7 @@ button.tree-row {
 
 .selection-action-menu button:disabled {
 	cursor: not-allowed;
-	opacity: .48;
+	opacity: 1;
 }
 
 .selection-action-error {
@@ -1861,7 +1861,7 @@ button.tree-row {
 
 .quick-actions button:disabled {
 	cursor: not-allowed;
-	opacity: .48;
+	opacity: 1;
 }
 
 .suggestion-card blockquote {
@@ -3279,7 +3279,7 @@ body,
 }
 
 .provider-picker button:disabled {
-	opacity: .55;
+	opacity: 1;
 }
 
 .provider-picker span {

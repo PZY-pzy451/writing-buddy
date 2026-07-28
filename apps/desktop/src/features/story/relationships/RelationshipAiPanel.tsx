@@ -266,7 +266,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 				</div>
 
 				<section className="ai-review-source-card">
-					<div><BookOpen size={17} /><strong>章节范围</strong></div>
+					<div><BookOpen size={18} /><strong>章节范围</strong></div>
 					<select
 						aria-label="选择关系分析章节"
 						value={chapterResourceId}
@@ -290,7 +290,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 								{props.characters.map(character => <option key={character.id} value={character.id}>{character.title}</option>)}
 							</select>
 						</label>
-						<ArrowRight size={17} />
+						<ArrowRight size={18} />
 						<label>
 							<span>关系目标</span>
 							<select value={targetCharacterId} onChange={event => setTargetCharacterId(event.target.value)}>
@@ -307,7 +307,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
 					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
-						{generating ? <LoaderCircle className="spin" size={17} /> : <WandSparkles size={17} />}
+						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成关系候选'}
 					</button>
 					{generating && activeJobId ? (
@@ -338,12 +338,12 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 						<p>{candidate.description || candidate.rationale}</p>
 						<small>强度 {Math.round(candidate.strength * 100)}% · {visibilityLabels[candidate.visibility]}</small>
 						{candidate.conflict ? (
-							<div className="ai-review-merge-note"><AlertTriangle size={15} />{candidate.conflict}</div>
+							<div className="ai-review-merge-note"><AlertTriangle size={16} />{candidate.conflict}</div>
 						) : null}
 						<div className="ai-review-run-row">
 							{candidate.evidence && props.onOpenEvidence ? (
 								<button type="button" className="ai-review-secondary" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}>
-									<BookOpen size={14} />查看证据
+									<BookOpen size={16} />查看证据
 								</button>
 							) : null}
 							<button

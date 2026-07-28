@@ -533,7 +533,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						}
 						onClick={() => void createPlan()}
 					>
-						{planning ? <LoaderCircle className="spin" size={17} /> : <Clock3 size={17} />}
+						{planning ? <LoaderCircle className="spin" size={18} /> : <Clock3 size={18} />}
 						{planning
 							? `正在读取 ${planningProgress}/${scopedChapters.length}`
 							: '计算 Token 并创建批次'}
@@ -575,7 +575,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							}
 							onClick={() => void startRun()}
 						>
-							{busyAction === 'run' ? <LoaderCircle className="spin" size={17} /> : <Play size={17} />}
+							{busyAction === 'run' ? <LoaderCircle className="spin" size={18} /> : <Play size={18} />}
 							{selectedRun?.status === 'stopped' || selectedRun?.status === 'completed-with-errors'
 								? '继续未完成批次'
 								: '开始逐章整理'}
@@ -585,12 +585,12 @@ export function ManuscriptExtractionCenterPage(props: {
 							disabled={selectedRun?.status !== 'running' && busyAction !== 'run'}
 							onClick={() => void stopRun()}
 						>
-							<CircleStop size={17} />停止
+							<CircleStop size={18} />停止
 						</button>
 					</div>
 					{busyAction === 'run' ? (
 						<p className="extraction-stream-status" role="status">
-							<LoaderCircle className="spin" size={15} />
+							<LoaderCircle className="spin" size={16} />
 							{streamState} · 已接收 {streamedLength.toLocaleString()} 字符
 						</p>
 					) : null}
@@ -609,7 +609,7 @@ export function ManuscriptExtractionCenterPage(props: {
 								{chapter.errorCode ? <small>{chapter.errorCode}</small> : null}
 								{chapter.status === 'stale' ? (
 									<button type="button" onClick={() => void refreshStaleChapter(chapter.resourceId)}>
-										<RotateCcw size={14} />使用最新正文
+										<RotateCcw size={16} />使用最新正文
 									</button>
 								) : null}
 							</article>
@@ -626,7 +626,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						<div><h2 id="candidate-queue-title">统一冲突候选</h2><small>AI 结果不会自动写入 Story Kernel</small></div>
 					</div>
 					<div className="extraction-candidate-filters">
-						<Filter size={15} />
+						<Filter size={16} />
 						<select aria-label="按候选类型筛选" value={candidateType} onChange={event => setCandidateType(event.target.value as typeof candidateType)}>
 							<option value="all">全部类型</option>
 							{storyKernelGenerationResourceTypes.map(type => <option value={type} key={type}>{typeLabels[type]}</option>)}
@@ -672,7 +672,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							{candidate.evidence ? <blockquote>{candidate.evidence.quotePreview}</blockquote> : null}
 							{candidate.conflicts.map(conflict => (
 								<p className="extraction-conflict" key={`${conflict.code}:${conflict.message}`}>
-									<AlertTriangle size={14} />{conflict.message}
+									<AlertTriangle size={16} />{conflict.message}
 								</p>
 							))}
 							<span className="extraction-candidate-state">
@@ -683,7 +683,7 @@ export function ManuscriptExtractionCenterPage(props: {
 										: candidate.conflicts.length
 											? '需处理冲突'
 											: '待作者确认'}
-								<ChevronRight size={14} />
+								<ChevronRight size={16} />
 							</span>
 						</article>
 					))}

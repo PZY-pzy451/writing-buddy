@@ -123,7 +123,7 @@ export function SelectionActionMenu({
 		<div className="selection-action-menu" role="toolbar" aria-label="选区 Story 操作">
 			<span className="selection-action-preview" title={selection.text}>{selection.text}</span>
 			<button type="button" disabled={readOnly || busy} onClick={() => void linkExisting()}>
-				<Link2 size={15} />链接已有资源
+				<Link2 size={16} />链接已有资源
 			</button>
 			<button
 				type="button"
@@ -131,7 +131,7 @@ export function SelectionActionMenu({
 				disabled={readOnly || busy || !selectedTitle}
 				onClick={onRewrite}
 			>
-				<Sparkles size={15} />AI 润色
+				<Sparkles size={16} />AI 润色
 			</button>
 			{creationActions.map(action => {
 				const Icon = action.icon;
@@ -150,7 +150,7 @@ export function SelectionActionMenu({
 							}
 						}}
 					>
-						<Icon size={15} />{action.label}
+						<Icon size={16} />{action.label}
 					</button>
 				);
 			})}

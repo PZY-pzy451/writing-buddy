@@ -29,7 +29,7 @@ function LocationNode({
 				onClick={() => onSelect(location)}
 				aria-label={`${location.title}，${children.length} 个子地点`}
 			>
-				{children.length ? <ChevronRight size={14} /> : <span className="world-tree-spacer" />}
+				{children.length ? <ChevronRight size={16} /> : <span className="world-tree-spacer" />}
 				<MapPin size={16} />
 				<span><strong>{location.title}</strong><small>{location.locationType ?? '未分类地点'}</small></span>
 			</button>

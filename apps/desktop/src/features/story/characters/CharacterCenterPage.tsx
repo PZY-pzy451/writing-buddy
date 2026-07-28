@@ -23,6 +23,7 @@ import type {
 	AiChapterSource,
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import './CharacterCenterPage.css';
 
 export interface CharacterCenterData {
@@ -274,7 +275,13 @@ export function CharacterCenterPage({
 						/>
 					) : null}
 					{data && filtered.length === 0 ? (
-						<div className="character-list-empty"><UsersRound size={28} />没有符合筛选的人物</div>
+						<AppEmptyState
+							icon={UsersRound}
+							title="没有符合筛选的人物"
+							description="调整姓名、别名、标签或角色筛选。"
+							density="compact"
+							className="character-list-empty"
+						/>
 					) : null}
 				</nav>
 			</aside>
@@ -288,14 +295,18 @@ export function CharacterCenterPage({
 				) : !data ? (
 					<div className="character-loading" aria-live="polite">正在读取人物资料…</div>
 				) : !selected ? (
-					<div className="character-empty">
-						<UsersRound size={36} />
-						<h2>还没有人物</h2>
-						<p>从正文选区创建人物，或让 AI 提供三个可逐字段确认的人物候选。</p>
-						<button type="button" onClick={() => setAiOpen(true)}>
-							<Sparkles size={17} />用 AI 创建人物
-						</button>
-					</div>
+					<AppEmptyState
+						icon={UsersRound}
+						title="还没有人物"
+						description="从正文选区创建人物，或让 AI 提供三个可逐字段确认的人物候选。"
+						density="full"
+						className="character-empty"
+						actions={(
+							<button type="button" onClick={() => setAiOpen(true)}>
+								<Sparkles size={18} />用 AI 创建人物
+							</button>
+						)}
+					/>
 				) : (
 					<>
 						<header className="character-detail-header">
@@ -308,7 +319,7 @@ export function CharacterCenterPage({
 							<div className="character-detail-meta">
 								<span>{selected.role ? characterRoleLabels[selected.role] : '未分类'}</span>
 								<span>{selectedStates.length} 条状态</span>
-								{saved ? <strong><BookOpenCheck size={14} />已保存</strong> : null}
+								{saved ? <strong><BookOpenCheck size={16} />已保存</strong> : null}
 							</div>
 						</header>
 						<div className="character-tabs" role="tablist" aria-label="人物详情">
@@ -348,7 +359,7 @@ export function CharacterCenterPage({
 										{[...new Set([
 											...selected.evidenceIds,
 											...selectedStates.flatMap(record => record.evidenceIds)
-										])].map(evidenceId => <li key={evidenceId}><BookOpenCheck size={15} />{evidenceId}</li>)}
+										])].map(evidenceId => <li key={evidenceId}><BookOpenCheck size={16} />{evidenceId}</li>)}
 									</ul>
 								</section>
 							) : null}

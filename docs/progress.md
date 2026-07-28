@@ -4,11 +4,11 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project scene movement is complete on `codex/project-scene-movement`.
-Implementation commit `405b8742` moves exact manuscript slices, migrates
-scene/Mention anchors and scene-specific Story Positions, persists every
-affected file under one verified native rollback boundary, and provides
-pointer, keyboard, and exact-restore Undo parity.
+Project visual polish Y6 is active on `codex/project-visual-polish-y6`.
+The implementation contract in `docs/plans/019-project-visual-polish-y6.md`
+normalizes shared control sizes, icon tiers, empty states, hover stability,
+disabled readability, card geometry, and responsive behavior without changing
+business or persistence logic.
 
 ## Completed
 
@@ -278,7 +278,8 @@ pointer, keyboard, and exact-restore Undo parity.
 
 ## Next
 
-Start the broad Y6 application visual-polish pass as a separate gate.
+Complete and accept the Y6 application visual-polish pass, then handle
+remaining person/world grouping drag and Y7 hardening as separate gates.
 
 ## Project Creation Y0–Y2 complete
 

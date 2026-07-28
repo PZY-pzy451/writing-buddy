@@ -93,7 +93,7 @@ export function TimelineReorderRail({
 	if (mode !== 'narrative-order') {
 		return (
 			<div className="timeline-drag-guard" role="note">
-				<LockKeyhole size={15} />
+				<LockKeyhole size={16} />
 				<span><strong>实际时间受保护</strong>切换到“叙事顺序”后可拖动读者看到事件的先后。</span>
 			</div>
 		);

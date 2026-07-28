@@ -30,7 +30,7 @@ export function IssueEvidenceView(props: {
 					>
 						<div>
 							<strong>
-								{evidence.kind === 'story-fact' ? <Database size={14} /> : null}
+								{evidence.kind === 'story-fact' ? <Database size={16} /> : null}
 								{evidence.label}
 							</strong>
 							<span>{evidence.chapterId ?? evidence.resourceId}</span>
@@ -39,7 +39,7 @@ export function IssueEvidenceView(props: {
 						{evidence.quote ? <blockquote>{evidence.quote}</blockquote> : null}
 						{evidence.kind !== 'story-fact' ? (
 							<button type="button" onClick={() => props.onOpenEvidence(evidence)}>
-								打开{evidence.label || `证据 ${index + 1}`}<ExternalLink size={14} />
+								打开{evidence.label || `证据 ${index + 1}`}<ExternalLink size={16} />
 							</button>
 						) : <small>用于对照，不会由 AI 直接修改。</small>}
 					</article>

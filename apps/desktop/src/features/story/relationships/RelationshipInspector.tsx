@@ -5,6 +5,7 @@ import type {
 	Relationship,
 	RelationshipVisibility
 } from '@writing-buddy/story-kernel';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 
 interface RelationshipInspectorProps {
 	readonly relationship?: Relationship;
@@ -28,9 +29,11 @@ export function RelationshipInspector({
 	if (!relationship) {
 		return (
 			<aside className="relationship-inspector is-empty">
-				<ArrowRight size={26} />
-				<h2>选择一条关系</h2>
-				<p>查看方向、强度、时间范围、变化历史和正文来源。</p>
+				<AppEmptyState
+					icon={ArrowRight}
+					title="选择一条关系"
+					description="查看方向、强度、时间范围、变化历史和正文来源。"
+				/>
 			</aside>
 		);
 	}
@@ -60,7 +63,7 @@ function RelationshipInspectorForm({
 			<header>
 				<span className="eyebrow">RELATIONSHIP INSPECTOR</span>
 				<h2>{relationship.relationshipType}</h2>
-				<p><strong>{source?.title ?? relationship.sourceCharacterId}</strong><ArrowRight size={14} /><strong>{target?.title ?? relationship.targetCharacterId}</strong></p>
+				<p><strong>{source?.title ?? relationship.sourceCharacterId}</strong><ArrowRight size={16} /><strong>{target?.title ?? relationship.targetCharacterId}</strong></p>
 			</header>
 			<label>
 				<span>关系类型</span>
@@ -106,13 +109,13 @@ function RelationshipInspectorForm({
 				<div><dt>结束</dt><dd>{relationship.effectiveUntil ? `叙事位置 ${relationship.effectiveUntil.narrativeOrder}` : '持续有效'}</dd></div>
 			</dl>
 			<section>
-				<h3><BookOpenCheck size={15} />来源证据</h3>
+				<h3><BookOpenCheck size={16} />来源证据</h3>
 				{relationship.evidenceIds.length
 					? relationship.evidenceIds.map(id => <code key={id}>{id}</code>)
 					: <p>尚无来源，保存前建议链接正文。</p>}
 			</section>
 			<section>
-				<h3><Shield size={15} />变化历史</h3>
+				<h3><Shield size={16} />变化历史</h3>
 				{relationship.history.length
 					? relationship.history.map((change, index) => (
 						<p key={`${change.effectiveFrom.narrativeOrder}:${index}`}>

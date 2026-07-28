@@ -1,0 +1,88 @@
+/*
+ * Y6 is the final shared visual normalization layer. Component styles retain
+ * their domain-specific layout; these rules enforce cross-application
+ * interaction invariants.
+ */
+
+.app-shell button {
+	transition:
+		color var(--transition-fast),
+		background-color var(--transition-fast),
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+}
+
+.app-shell button:disabled,
+.app-shell input:disabled,
+.app-shell select:disabled,
+.app-shell textarea:disabled,
+.app-shell label:has(input:disabled) {
+	cursor: not-allowed;
+	opacity: 1;
+}
+
+.app-shell button:disabled {
+	color: var(--text-secondary);
+	background-color: var(--surface-subtle);
+	border-color: var(--border-subtle);
+}
+
+.icon-button {
+	width: var(--control-height-lg);
+	min-width: var(--control-height-lg);
+}
+
+.icon-button.compact {
+	width: var(--control-height-md);
+	min-width: var(--control-height-md);
+	min-height: var(--control-height-md);
+}
+
+.section-label {
+	height: auto;
+	min-height: var(--control-height-md);
+}
+
+.tab-close {
+	width: var(--control-height-lg);
+	min-width: var(--control-height-lg);
+}
+
+.status-bar button {
+	min-height: var(--control-height-sm);
+	padding: 0 8px;
+	border-radius: 8px;
+}
+
+.status-bar button:hover {
+	color: var(--text-on-dark);
+	background: rgb(255 255 255 / 8%);
+}
+
+.association-source-card:hover,
+.ai-action-toolbar button:hover:not(:disabled),
+.continuation-candidate > button:hover:not(:disabled),
+.ai-action-reject:hover:not(:disabled),
+.ai-action-undo:hover:not(:disabled) {
+	transform: none;
+}
+
+:is(
+	.dashboard-card,
+	.theme-card,
+	.character-state-grid article,
+	.character-evidence-panel,
+	.character-linked-panel,
+	.world-detail-card,
+	.story-assets-card,
+	.plot-card
+) {
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.app-shell button {
+		transition: none;
+	}
+}

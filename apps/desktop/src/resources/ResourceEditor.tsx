@@ -1,6 +1,7 @@
-import { CalendarClock, Gem, Globe2, Save, UserRound } from 'lucide-react';
+import { BookOpenText, CalendarClock, FileText, Gem, Globe2, Save, UserRound } from 'lucide-react';
 import { useMemo } from 'react';
 import { useAppStore } from '../app/store';
+import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 
 interface EditableResourceDocument {
 	schemaVersion?: number;
@@ -64,10 +65,26 @@ export function ResourceEditor(): React.JSX.Element {
 	}, [content]);
 
 	if (!activeResource) {
-		return <div className="canvas-empty">选择一项写作资料。</div>;
+		return (
+			<AppEmptyState
+				icon={BookOpenText}
+				title="选择一项写作资料"
+				description="从左侧资料列表打开人物、世界观、时间线或物品。"
+				density="full"
+				className="canvas-empty"
+			/>
+		);
 	}
 	if (activeResource.type === 'note') {
-		return <div className="canvas-empty">笔记使用正文编辑器打开。</div>;
+		return (
+			<AppEmptyState
+				icon={FileText}
+				title="笔记使用正文编辑器打开"
+				description="返回作品大纲并选择这篇笔记，即可进入写作画布。"
+				density="full"
+				className="canvas-empty"
+			/>
+		);
 	}
 
 	const update = (patch: Partial<EditableResourceDocument>) => {
@@ -99,7 +116,7 @@ export function ResourceEditor(): React.JSX.Element {
 					<span>{activeResource.type === 'character' ? '人物卡' : activeResource.type === 'worldbuilding' ? '世界设定' : activeResource.type === 'timeline' ? '时间线' : '物品卡'}</span>
 					<h2>{document.name ?? activeResource.title}</h2>
 				</div>
-				<button className="primary-button" type="button" onClick={() => void save()} disabled={readOnly}><Save size={17} /> 保存资料</button>
+				<button className="primary-button" type="button" onClick={() => void save()} disabled={readOnly}><Save size={18} /> 保存资料</button>
 			</div>
 
 			{activeResource.type === 'timeline' ? (

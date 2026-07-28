@@ -262,7 +262,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						<p id="project-wizard-description">建立项目结构、外观与写作方式</p>
 					</div>
 					<button className="icon-button" type="button" aria-label="关闭新建作品向导" onClick={dismiss} disabled={busy}>
-						<X size={19} />
+						<X size={20} />
 					</button>
 				</header>
 
@@ -283,7 +283,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								disabled={index > step || busy}
 							>
 								<span className="wizard-step-index">
-									{complete ? <Check size={15} /> : <span>{index + 1}</span>}
+									{complete ? <Check size={16} /> : <span>{index + 1}</span>}
 								</span>
 								<span className="wizard-step-copy">
 									<strong>{title}</strong>
@@ -339,7 +339,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										placeholder="选择用于保存作品的父目录"
 									/>
 									<button className="secondary-button" type="button" onClick={() => void browse()}>
-										<FolderOpen size={17} />浏览
+										<FolderOpen size={18} />浏览
 									</button>
 								</div>
 								{fieldIssue(issues, 'rootDirectory') && <small className="wizard-field-error" id="wizard-root-error">{fieldIssue(issues, 'rootDirectory')}</small>}
@@ -438,7 +438,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										>
 											<span className="theme-choice-preview" aria-hidden="true"><i /><i /><i /></span>
 											<span><strong>{theme.title}</strong><small>{theme.description}</small></span>
-											{draft.themeId === theme.id && <Check size={17} aria-label="已选择" />}
+											{draft.themeId === theme.id && <Check size={18} aria-label="已选择" />}
 										</button>
 									))}
 								</fieldset>
@@ -464,7 +464,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										onClick={() => updateDraft('accentId', accent.id)}
 									>
 										<i style={{ background: accent.color }} />{accent.title}
-										{draft.accentId === accent.id && <Check size={15} />}
+										{draft.accentId === accent.id && <Check size={16} />}
 									</button>
 								))}
 							</fieldset>
@@ -509,7 +509,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									<div><dt>创建规模</dt><dd>{preflight?.createdDirectoryCount ?? '—'} 个目录 · {preflight?.createdFileCount ?? '—'} 个文件</dd></div>
 								</dl>
 								<div className="creation-safety-note">
-									<Check size={17} />
+									<Check size={18} />
 									<span><strong>安全创建事务</strong><small>同级 staging 写入 → 重新读取验证 → 原子保存到目标目录</small></span>
 								</div>
 							</div>
@@ -530,11 +530,11 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 					</div>
 					{step > 0 && (
 						<button className="secondary-button" type="button" onClick={() => setStep(current => current - 1)} disabled={busy}>
-							<ChevronLeft size={17} />上一步
+							<ChevronLeft size={18} />上一步
 						</button>
 					)}
 					<button className="primary-button wizard-next" type="submit" disabled={busy}>
-						{step === 3 ? <><Sparkles size={17} />{busy ? '正在创建…' : '创建作品'}</> : <>下一步<ChevronRight size={17} /></>}
+						{step === 3 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建作品'}</> : <>下一步<ChevronRight size={18} /></>}
 					</button>
 				</footer>
 			</form>

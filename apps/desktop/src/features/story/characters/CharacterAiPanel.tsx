@@ -298,7 +298,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 				</div>
 
 				<section className="ai-review-source-card">
-					<div><BookOpen size={17} /><strong>章节范围</strong></div>
+					<div><BookOpen size={18} /><strong>章节范围</strong></div>
 					<select
 						aria-label="选择人物分析章节"
 						value={chapterResourceId}
@@ -331,8 +331,8 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 						onClick={() => void generate()}
 					>
 						{generating
-							? <LoaderCircle className="spin" size={17} />
-							: <WandSparkles size={17} />}
+							? <LoaderCircle className="spin" size={18} />
+							: <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成候选'}
 					</button>
 					{generating && activeJobId ? (
@@ -359,7 +359,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 						<p>{candidate.rationale}</p>
 						{candidate.matchedCharacterId ? (
 							<div className="ai-review-merge-note">
-								<AlertTriangle size={15} />同名或别名已存在，只会合并你勾选的字段。
+								<AlertTriangle size={16} />同名或别名已存在，只会合并你勾选的字段。
 							</div>
 						) : null}
 						{candidate.duplicateCount ? (
@@ -389,7 +389,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 												event.preventDefault();
 												props.onOpenEvidence?.(field.evidence!);
 											}}
-										><BookOpen size={14} />证据</button>
+										><BookOpen size={16} />证据</button>
 									) : null}
 								</label>
 							))}

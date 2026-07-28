@@ -54,7 +54,7 @@ export function BacklinksPanel({
 										<small>{mention.chapterId} · 位置 {mention.anchor.start}</small>
 									</span>
 									{mention.status === 'stale' && <em>需重定位</em>}
-									<ArrowUpRight size={15} />
+									<ArrowUpRight size={16} />
 								</button>
 							</li>
 						))}

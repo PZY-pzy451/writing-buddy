@@ -469,7 +469,7 @@
 .kernel-generator textarea:disabled,
 .kernel-generator label:has(input:disabled) {
 	cursor: not-allowed;
-	opacity: 0.55;
+	opacity: 1;
 }
 
 @media (max-width: 1280px) {

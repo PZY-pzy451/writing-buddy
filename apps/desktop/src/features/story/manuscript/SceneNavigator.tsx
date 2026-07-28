@@ -116,7 +116,7 @@ export function SceneNavigator({
 
 	return (
 		<nav className="scene-navigator" aria-label="场景导航">
-			<span className="scene-navigator-label"><MapPin size={15} />场景</span>
+			<span className="scene-navigator-label"><MapPin size={16} />场景</span>
 			<div className="scene-chip-list">
 				{scenes.length ? scenes.map(scene => (
 					<button
@@ -138,7 +138,7 @@ export function SceneNavigator({
 				onClick={() => void createFromSelection()}
 				aria-label="将选区设为场景"
 			>
-				<Plus size={15} />选区建场景
+				<Plus size={16} />选区建场景
 			</button>
 			<button
 				type="button"
@@ -147,7 +147,7 @@ export function SceneNavigator({
 				onClick={() => void unlinkCurrent()}
 				aria-label="解除当前场景关联"
 			>
-				<Link2Off size={15} />解除关联
+				<Link2Off size={16} />解除关联
 			</button>
 		</nav>
 	);

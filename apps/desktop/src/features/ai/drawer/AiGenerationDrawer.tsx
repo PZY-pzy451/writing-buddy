@@ -127,7 +127,7 @@ export function AiGenerationDrawer({
 			>
 				<header className="ai-generation-heading">
 					<div>
-						<span><Sparkles size={14} />AI QUICK ACTION</span>
+						<span><Sparkles size={16} />AI QUICK ACTION</span>
 						<h2 id="ai-generation-title">AI 快速生成</h2>
 					</div>
 					<div>
@@ -140,7 +140,7 @@ export function AiGenerationDrawer({
 							{state.expanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
 						</button>
 						<button className="icon-button" type="button" onClick={state.close} aria-label="关闭 AI 快速生成">
-							<X size={19} />
+							<X size={20} />
 						</button>
 					</div>
 				</header>
@@ -153,7 +153,7 @@ export function AiGenerationDrawer({
 							<p>{state.definition?.description}</p>
 						</div>
 						<span className={`ai-generation-state is-${state.state}`}>
-							{active ? <LoaderCircle size={14} className="spin" /> : null}
+							{active ? <LoaderCircle size={16} className="spin" /> : null}
 							{stateLabels[state.state]}
 						</span>
 						<dl>
@@ -164,7 +164,7 @@ export function AiGenerationDrawer({
 
 					{state.unavailableReason ? (
 						<div className="ai-drawer-notice" role="status">
-							<AlertTriangle size={17} />
+							<AlertTriangle size={18} />
 							<div><strong>暂时不可用</strong><span>{state.unavailableReason}</span></div>
 						</div>
 					) : null}
@@ -181,7 +181,7 @@ export function AiGenerationDrawer({
 
 					{state.error ? (
 						<div className="ai-drawer-error" role="alert">
-							<AlertTriangle size={17} />
+							<AlertTriangle size={18} />
 							<div>
 								<strong>生成未完成</strong>
 								<span>{state.error}</span>
@@ -205,7 +205,7 @@ export function AiGenerationDrawer({
 							disabled={!active}
 							onClick={() => void state.cancelGeneration()}
 						>
-							<Square size={15} />停止
+							<Square size={16} />停止
 						</button>
 					</section>
 
@@ -216,7 +216,7 @@ export function AiGenerationDrawer({
 									<span>候选结果</span>
 									<strong>校验后的预览事务</strong>
 								</div>
-								{state.state === 'preview' ? <em><ShieldCheck size={15} />尚未写入作品</em> : null}
+								{state.state === 'preview' ? <em><ShieldCheck size={16} />尚未写入作品</em> : null}
 							</header>
 							{state.state === 'preview' && issues.length === 0 ? (
 								<div className="ai-empty-result">
@@ -236,7 +236,7 @@ export function AiGenerationDrawer({
 							))}
 							{state.state === 'stale' ? (
 								<div className="ai-drawer-notice">
-									<AlertTriangle size={17} />
+									<AlertTriangle size={18} />
 									<span>章节在生成后已变化。请重新生成，旧候选不能应用。</span>
 								</div>
 							) : null}

@@ -224,7 +224,7 @@ export function ReviewPage(): React.JSX.Element {
 					<div className="review-run-actions">
 						{mode === 'manual' ? (
 							<button className="primary-button" type="button" onClick={runManual} disabled={!isChapter}>
-								<ClipboardCheck size={17} />手动运行审校
+								<ClipboardCheck size={18} />手动运行审校
 							</button>
 						) : (
 							<>
@@ -234,11 +234,11 @@ export function ReviewPage(): React.JSX.Element {
 									onClick={() => void runAi()}
 									disabled={!isChapter || !configured || active || Boolean(session && session.content.length > AI_CHAPTER_REVIEW_MAX_CHARS)}
 								>
-									{active ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}
+									{active ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 									{active ? 'AI 正在审校…' : '开始 AI 自动审校'}
 								</button>
 								<button className="secondary-button" type="button" onClick={() => void cancel()} disabled={!active}>
-									<Square size={15} />停止
+									<Square size={16} />停止
 								</button>
 							</>
 						)}
@@ -258,7 +258,7 @@ export function ReviewPage(): React.JSX.Element {
 					<div className="review-results-heading">
 						<div><CheckCircle2 size={20} /><h2 id="review-results-title">当前章节结果</h2></div>
 						<button className="secondary-button" type="button" onClick={returnToEditor} disabled={!isChapter || currentIssues.length === 0}>
-							回到正文处理<ExternalLink size={15} />
+							回到正文处理<ExternalLink size={16} />
 						</button>
 					</div>
 					<div className="review-metric-grid">

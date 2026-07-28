@@ -89,7 +89,7 @@ export function AiSettingsSection(): React.JSX.Element {
 						<div><strong>DeepSeek</strong><span>流式生成 · 模型发现 · 余额查询 · 思考模式</span></div>
 					</div>
 					<div className={`provider-status ${configured ? 'is-ready' : ''}`}>
-						{configured ? <CheckCircle2 size={17} /> : <XCircle size={17} />}
+						{configured ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
 						{configured ? '凭据已配置' : '尚未配置'}
 					</div>
 					{configured && (
@@ -133,14 +133,14 @@ export function AiSettingsSection(): React.JSX.Element {
 					</label>
 					<div className="ai-button-row">
 						<button className="primary-button" type="button" onClick={() => void save()} disabled={!key.trim() || loading}>
-							<ShieldCheck size={17} />{loading ? '正在保存并验证…' : '安全保存并验证'}
+							<ShieldCheck size={18} />{loading ? '正在保存并验证…' : '安全保存并验证'}
 						</button>
 						<button className="secondary-button" type="button" onClick={() => void testConnection()} disabled={!configured || loading}>
-							<Activity size={17} />测试连接
+							<Activity size={18} />测试连接
 						</button>
 						{!confirmDelete ? (
 							<button className="secondary-button danger-button" type="button" onClick={() => setConfirmDelete(true)} disabled={!configured || loading}>
-								<Trash2 size={17} />移除凭据
+								<Trash2 size={18} />移除凭据
 							</button>
 						) : (
 							<div className="inline-confirm" role="group" aria-label="确认移除凭据">

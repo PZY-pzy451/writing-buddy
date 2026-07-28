@@ -294,7 +294,7 @@ export function ItemAiPanel(props: {
 					))}
 				</div>
 				<section className="ai-review-source-card">
-					<div><BookOpen size={17} /><strong>章节范围</strong></div>
+					<div><BookOpen size={18} /><strong>章节范围</strong></div>
 					<select aria-label="选择物品分析章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 						{props.chapters.length === 0 ? <option value="">没有可用章节</option> : null}
 						{props.chapters.map(source => <option key={source.resourceId} value={source.resourceId}>{source.title}</option>)}
@@ -308,7 +308,7 @@ export function ItemAiPanel(props: {
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
 					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
-						{generating ? <LoaderCircle className="spin" size={17} /> : <WandSparkles size={17} />}
+						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成物品候选'}
 					</button>
 					{generating && activeJobId ? <button type="button" className="ai-review-secondary" onClick={() => void desktopBridge.cancelAiJob(activeJobId)}>取消</button> : null}
@@ -322,14 +322,14 @@ export function ItemAiPanel(props: {
 							<strong>{Math.round(candidate.confidence * 100)}%</strong>
 						</header>
 						<p>{candidate.rationale}</p>
-						{candidate.matchedItemId ? <div className="ai-review-merge-note"><AlertTriangle size={15} />同名物品已存在，只合并勾选字段和事件。</div> : null}
+						{candidate.matchedItemId ? <div className="ai-review-merge-note"><AlertTriangle size={16} />同名物品已存在，只合并勾选字段和事件。</div> : null}
 						{candidate.duplicateCount ? <small>已合并 {candidate.duplicateCount} 个重复候选。</small> : null}
 						<div className="ai-review-field-list">
 							{candidate.fields.map(field => (
 								<label className={`ai-review-field ${field.conflict ? 'has-conflict' : ''}`} key={field.id}>
 									<input type="checkbox" disabled={field.blocking || candidate.status !== 'candidate'} checked={(selectedFields[candidate.id] ?? []).includes(field.id)} onChange={() => toggleSelection(setSelectedFields, candidate.id, field.id)} />
 									<span><strong>{fieldLabels[field.key]}</strong><em>{displayValue(field.value)}</em>{field.conflict ? <small>{field.conflict}</small> : null}</span>
-									{field.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(field.evidence!); }}><BookOpen size={14} />证据</button> : null}
+									{field.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(field.evidence!); }}><BookOpen size={16} />证据</button> : null}
 								</label>
 							))}
 						</div>
@@ -343,7 +343,7 @@ export function ItemAiPanel(props: {
 										<em>{state.holderTitle ?? '无持有人'} · {state.locationTitle ?? '未指定地点'}{state.condition ? ` · ${state.condition}` : ''}</em>
 										{state.conflict ? <small>{state.conflict}</small> : null}
 									</span>
-									{state.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(state.evidence!); }}><BookOpen size={14} />证据</button> : null}
+									{state.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(state.evidence!); }}><BookOpen size={16} />证据</button> : null}
 								</label>
 							))}
 						</div>

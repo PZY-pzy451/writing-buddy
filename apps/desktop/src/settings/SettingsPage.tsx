@@ -25,10 +25,10 @@ export function SettingsPage(): React.JSX.Element {
 				<p>界面、AI 配置与使用统计保存在应用数据目录，不会写入小说项目。</p>
 				<div className="settings-tabs" role="tablist" aria-label="设置类别">
 					<button type="button" role="tab" aria-selected={tab === 'appearance'} onClick={() => setTab('appearance')}>
-						<Palette size={17} />外观
+						<Palette size={18} />外观
 					</button>
 					<button type="button" role="tab" aria-selected={tab === 'ai'} onClick={() => setTab('ai')}>
-						<Bot size={17} />AI 与模型
+						<Bot size={18} />AI 与模型
 					</button>
 				</div>
 			</header>

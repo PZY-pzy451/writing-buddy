@@ -147,7 +147,7 @@
 
 .rewrite-actions button:disabled {
 	cursor: not-allowed;
-	opacity: .48;
+	opacity: 1;
 }
 
 .rewrite-undo {

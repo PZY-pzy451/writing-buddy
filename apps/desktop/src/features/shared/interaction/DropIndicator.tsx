@@ -23,7 +23,7 @@ export function DropIndicator({
 		>
 			{placement === 'inside' && label ? (
 				<span className="interaction-drop-indicator-label">
-					<Icon size={14} aria-hidden="true" />
+					<Icon size={16} aria-hidden="true" />
 					{label}
 				</span>
 			) : null}

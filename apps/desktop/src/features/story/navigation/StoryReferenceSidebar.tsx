@@ -85,7 +85,7 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 							disabled={!item.available}
 							aria-label={`${item.label}，${item.description}`}
 						>
-							<Icon size={19} />
+							<Icon size={20} />
 							<span><strong>{item.label}</strong><small>{item.description}</small></span>
 							{!item.available ? <em>本阶段</em> : null}
 						</button>

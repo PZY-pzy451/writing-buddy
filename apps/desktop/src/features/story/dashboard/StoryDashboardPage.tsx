@@ -226,7 +226,7 @@ export function StoryDashboardPage({
 									type="button"
 									onClick={() => void openStoryResource({ type: 'plotThread', id: thread.id })}
 								>
-									<span>{thread.title}</span><ArrowRight size={15} />
+									<span>{thread.title}</span><ArrowRight size={16} />
 								</button>
 							</li>
 						))}
@@ -259,7 +259,7 @@ export function StoryDashboardPage({
 							<span>待确认事实 {model.pendingFacts}</span>
 						</div>
 						<button type="button" className="dashboard-text-action" onClick={() => setMode('review')}>
-							打开审校中心<ArrowRight size={15} />
+							打开审校中心<ArrowRight size={16} />
 						</button>
 					</>
 				) : <LoadingLines />}
@@ -276,10 +276,10 @@ export function StoryDashboardPage({
 							{model.recentChapters.map(chapter => (
 								<li key={chapter.id}>
 									<button type="button" onClick={() => openChapter(chapter)}>
-										<FileText size={17} />
+										<FileText size={18} />
 										<span><strong>{chapter.title}</strong><small>{chapter.scene.location || '未设置场景'}</small></span>
 										<em>{(snapshot.wordCounts[chapter.id] ?? 0).toLocaleString()} 字</em>
-										<ArrowRight size={15} />
+										<ArrowRight size={16} />
 									</button>
 								</li>
 							))}

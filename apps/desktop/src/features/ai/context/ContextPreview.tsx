@@ -55,7 +55,7 @@ export function ContextPreview({
 					<span>参考上下文</span>
 					<strong>将发送给 DeepSeek</strong>
 				</div>
-				<em><ShieldCheck size={15} />路径与密钥未包含</em>
+				<em><ShieldCheck size={16} />路径与密钥未包含</em>
 			</header>
 			<div className="ai-context-meter">
 				<div><span>预计 {pack.tokenEstimate.toLocaleString()} Tokens</span><span>{percentage}%</span></div>
@@ -71,7 +71,7 @@ export function ContextPreview({
 							onChange={event => onToggle(record.key, event.target.checked)}
 						/>
 						<span className="ai-context-check" aria-hidden="true">
-							{record.included ? <Check size={14} /> : null}
+							{record.included ? <Check size={16} /> : null}
 						</span>
 						<div>
 							<strong>{record.title}</strong>

@@ -71,7 +71,7 @@ export function AiPlaygroundPage(): React.JSX.Element {
 			<div className="ai-playground-grid">
 				<section className="ai-prompt-card" aria-labelledby="storyforge-prompt-title">
 					<div className="ai-card-heading">
-						<div><Bot size={19} /><h2 id="storyforge-prompt-title">测试指令</h2></div>
+						<div><Bot size={20} /><h2 id="storyforge-prompt-title">测试指令</h2></div>
 						<span>{preferences.defaultModelId}</span>
 					</div>
 					<label className="ai-field">
@@ -87,11 +87,11 @@ export function AiPlaygroundPage(): React.JSX.Element {
 					<div className="ai-prompt-meta"><span>{prompt.length.toLocaleString()} / 10,000 字符</span><span>最大输出 {preferences.maxOutputTokens.toLocaleString()} Token</span></div>
 					<div className="ai-button-row">
 						<button className="primary-button" type="button" onClick={() => void startGeneration()} disabled={!configured || !prompt.trim() || active}>
-							{active ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}
+							{active ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 							{active ? '正在生成…' : '开始流式生成'}
 						</button>
 						<button className="secondary-button" type="button" onClick={() => void cancelGeneration()} disabled={!active}>
-							<Square size={15} />停止
+							<Square size={16} />停止
 						</button>
 					</div>
 					{error && <p className="ai-inline-error" role="alert">{error.message}</p>}
@@ -99,7 +99,7 @@ export function AiPlaygroundPage(): React.JSX.Element {
 
 				<section className="ai-output-card" aria-labelledby="storyforge-output-title">
 					<div className="ai-card-heading">
-						<div><Sparkles size={19} /><h2 id="storyforge-output-title">候选输出</h2></div>
+						<div><Sparkles size={20} /><h2 id="storyforge-output-title">候选输出</h2></div>
 						<JobBadge state={jobState} partial={partial} />
 					</div>
 					<div

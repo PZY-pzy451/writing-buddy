@@ -36,6 +36,7 @@ import {
 } from '@writing-buddy/story-kernel';
 import { useModalFocus } from '../../../accessibility/useModalFocus';
 import { desktopBridge } from '../../../platform/bridge';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import type {
 	AiChapterSource,
 	OpenAiEvidence
@@ -161,7 +162,7 @@ function CausalityConfirmDialog({
 					<button type="button" aria-label="关闭因果冲突确认" onClick={onCancel}><X size={18} /></button>
 				</header>
 				<div className="timeline-causality-warning">
-					<AlertTriangle size={19} />
+					<AlertTriangle size={20} />
 					<p>新的叙事顺序会让结果早于已声明的前置事件。这里只改变读者看到的顺序，不改变故事实际时间。</p>
 				</div>
 				<ul>
@@ -176,7 +177,7 @@ function CausalityConfirmDialog({
 				<footer>
 					<button type="button" onClick={onCancel}>返回调整</button>
 					<button type="button" className="is-primary" disabled={saving} onClick={onConfirm}>
-						<Check size={17} />{saving ? '保存中…' : '仍然保存'}
+						<Check size={18} />{saving ? '保存中…' : '仍然保存'}
 					</button>
 				</footer>
 			</section>
@@ -385,7 +386,7 @@ export function TimelinePage({
 				</div>
 			</header>
 			<div className="timeline-messages">
-				{error ? <div className="timeline-error" role="alert"><AlertTriangle size={17} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
+				{error ? <div className="timeline-error" role="alert"><AlertTriangle size={18} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
 			</div>
 			<section className="timeline-workspace">
 				<TimelineReorderRail
@@ -409,12 +410,17 @@ export function TimelinePage({
 							onSelect={selectEvent}
 						/>
 						{events.length === 0 ? (
-							<div className="timeline-empty-state">
-								<Sparkles size={30} />
-								<h2>从正文建立第一条故事进程</h2>
-								<p>AI 候选会保留证据，并在作者确认前保持待定。</p>
-								<button type="button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>AI 从正文提取</button>
-							</div>
+							<AppEmptyState
+								icon={Sparkles}
+								title="从正文建立第一条故事进程"
+								description="AI 候选会保留证据，并在作者确认前保持待定。"
+								className="timeline-empty-state"
+								actions={(
+									<button type="button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
+										AI 从正文提取
+									</button>
+								)}
+							/>
 						) : null}
 					</>
 				) : (

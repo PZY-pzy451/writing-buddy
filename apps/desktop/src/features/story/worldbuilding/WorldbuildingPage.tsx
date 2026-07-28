@@ -28,6 +28,7 @@ import type {
 	AiChapterSource,
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import './WorldbuildingPage.css';
 
 export interface WorldbuildingData {
@@ -193,7 +194,7 @@ export function WorldbuildingPage({
 										style={{ left: `${location.mapPoint?.x}%`, top: `${location.mapPoint?.y}%` }}
 										onClick={() => setSelectedId(location.id)}
 										aria-label={`定位到 ${location.title}`}
-									><MapPin size={14} /><span>{location.title}</span></button>
+									><MapPin size={16} /><span>{location.title}</span></button>
 								))}
 							</div>
 							<div className="world-detail-grid">
@@ -214,7 +215,20 @@ export function WorldbuildingPage({
 						</>
 					) : null}
 					{section === 'rules' && selectedRule ? <WorldRuleEditor key={selectedRule.id} rule={selectedRule} saving={saving} onSave={saveRule} /> : null}
-					{data && !selectedLocation && !selectedFaction && !selectedRule ? <div className="worldbuilding-empty"><BookOpenCheck size={34} /><h2>选择或创建世界资料</h2><button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />用 AI 创建世界资料</button></div> : null}
+					{data && !selectedLocation && !selectedFaction && !selectedRule ? (
+						<AppEmptyState
+							icon={BookOpenCheck}
+							title="选择或创建世界资料"
+							description="从左侧打开地点、势力或规则，或生成一组可逐项确认的候选。"
+							density="full"
+							className="worldbuilding-empty"
+							actions={(
+								<button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}>
+									<Sparkles size={16} />用 AI 创建世界资料
+								</button>
+							)}
+						/>
+					) : null}
 				</section>
 			</section>
 			{aiOpen && projectRoot ? (

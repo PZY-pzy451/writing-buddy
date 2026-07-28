@@ -272,7 +272,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 			{error ? <p className="rewrite-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
 			<div className="rewrite-generation-actions">
 				<button className="primary-button" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
-					{generating ? <Sparkles size={17} /> : <Send size={17} />}
+					{generating ? <Sparkles size={18} /> : <Send size={18} />}
 					{generating ? `DeepSeek 流式生成中 · ${streamedLength} 字符` : '确认 Context Pack 并生成'}
 				</button>
 				{generating && activeJobId ? (
@@ -287,20 +287,20 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 						<div><span className="eyebrow">AUTHOR CANDIDATE</span><h3>改写候选</h3></div>
 						{candidate.usage?.totalTokens ? <span>{candidate.usage.totalTokens} tokens</span> : null}
 					</header>
-					{stale ? <p className="rewrite-stale"><AlertTriangle size={15} />正文已变化，此候选不可接受。</p> : null}
+					{stale ? <p className="rewrite-stale"><AlertTriangle size={16} />正文已变化，此候选不可接受。</p> : null}
 					<CandidateDiffView original={candidate.original} modified={draft} theme={props.theme} />
 					<label className="rewrite-draft"><span>可编辑候选（编辑后接受即为部分接受）</span><textarea value={draft} onChange={event => setDraft(event.target.value)} /></label>
 					<div className="rewrite-rationale"><strong>依据</strong><p>{candidate.rationale}</p><strong>潜在影响</strong><p>{candidate.potentialImpact || '未发现对既有事实的直接影响。'}</p></div>
 					<div className="rewrite-actions">
-						<button type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => accept(candidate.suggestion)}><Check size={15} />全部接受</button>
-						<button type="button" disabled={stale || candidate.status !== 'candidate' || draft === candidate.suggestion} onClick={() => accept(draft)}><ClipboardList size={15} />接受编辑内容</button>
-						{props.onSaveNote ? <button type="button" onClick={() => props.onSaveNote?.(candidate)}><ClipboardList size={15} />保存到笔记</button> : null}
-						<button type="button" onClick={() => setCandidate({ ...candidate, status: 'rejected' })}><X size={15} />拒绝</button>
+						<button type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => accept(candidate.suggestion)}><Check size={16} />全部接受</button>
+						<button type="button" disabled={stale || candidate.status !== 'candidate' || draft === candidate.suggestion} onClick={() => accept(draft)}><ClipboardList size={16} />接受编辑内容</button>
+						{props.onSaveNote ? <button type="button" onClick={() => props.onSaveNote?.(candidate)}><ClipboardList size={16} />保存到笔记</button> : null}
+						<button type="button" onClick={() => setCandidate({ ...candidate, status: 'rejected' })}><X size={16} />拒绝</button>
 					</div>
 				</section>
 			) : null}
 			{candidate?.status === 'accepted' && lastAppliedContent ? (
-				<button className="rewrite-undo" type="button" onClick={undo}><RotateCcw size={15} />撤销本次接受</button>
+				<button className="rewrite-undo" type="button" onClick={undo}><RotateCcw size={16} />撤销本次接受</button>
 			) : null}
 			{usage?.totalTokens && !candidate ? <small className="rewrite-usage">本次生成使用 {usage.totalTokens} tokens</small> : null}
 		</section>

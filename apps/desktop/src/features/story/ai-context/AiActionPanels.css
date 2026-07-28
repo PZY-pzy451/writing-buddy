@@ -152,7 +152,6 @@
 .ai-action-undo:hover:not(:disabled) {
 	border-color: var(--accent);
 	background: color-mix(in srgb, var(--accent) 9%, var(--surface-raised));
-	transform: translateY(-1px);
 }
 
 .ai-action-toolbar button:focus-visible,
@@ -166,7 +165,7 @@
 
 .ai-action-toolbar button:disabled,
 .continuation-candidate > button:disabled {
-	opacity: 0.48;
+	opacity: 1;
 	cursor: not-allowed;
 	transform: none;
 }

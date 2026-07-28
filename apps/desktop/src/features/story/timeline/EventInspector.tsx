@@ -24,7 +24,7 @@ export function EventInspector({
 		<aside className="event-inspector">
 			<header>
 				<div><span className="eyebrow">EVENT INSPECTOR</span><h2>{event.title}</h2></div>
-				<button type="button" aria-label="关闭事件详情" onClick={onClose}><X size={17} /></button>
+				<button type="button" aria-label="关闭事件详情" onClick={onClose}><X size={18} /></button>
 			</header>
 			<div className="event-form-grid">
 				<label>

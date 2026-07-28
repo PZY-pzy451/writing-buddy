@@ -219,7 +219,6 @@
 
 .association-source-card:hover {
 	border-color: var(--accent);
-	transform: translateY(-1px);
 }
 
 .association-source-card.is-dragging {

@@ -307,7 +307,7 @@ export function RelationshipGraphPage({
 						/>
 					</label>
 					{focusCharacterId ? (
-						<button type="button" className="relationship-reset-focus" onClick={() => setFocusCharacterId(undefined)}><RotateCcw size={15} />显示全部</button>
+						<button type="button" className="relationship-reset-focus" onClick={() => setFocusCharacterId(undefined)}><RotateCcw size={16} />显示全部</button>
 					) : null}
 					<button type="button" className="relationship-ai-button" onClick={() => setAiOpen(true)}>
 						<Sparkles size={16} />AI 关系助手
@@ -318,7 +318,7 @@ export function RelationshipGraphPage({
 				{error ? <div className="relationship-error" role="alert"><AlertTriangle size={18} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
 				{graph.omittedNodes || graph.omittedEdges ? (
 					<div className="relationship-limit" role="status">
-						<Focus size={15} />为保持流畅，已省略 {graph.omittedNodes} 个节点和 {graph.omittedEdges} 条关系；请聚焦人物或缩小筛选。
+						<Focus size={16} />为保持流畅，已省略 {graph.omittedNodes} 个节点和 {graph.omittedEdges} 条关系；请聚焦人物或缩小筛选。
 					</div>
 				) : null}
 			</div>
@@ -358,7 +358,7 @@ export function RelationshipGraphPage({
 					/>
 				) : null}
 			</section>
-			<div className="relationship-direction-legend"><GitBranch size={14} />箭头从关系发起者指向目标；反向关系单独记录。</div>
+			<div className="relationship-direction-legend"><GitBranch size={16} />箭头从关系发起者指向目标；反向关系单独记录。</div>
 			{aiOpen && projectRoot ? (
 				<RelationshipAiPanel
 					projectRoot={projectRoot}

@@ -25,7 +25,7 @@ export function ResourceTabs(): React.JSX.Element {
 							<span>{resource.title}</span>
 						</button>
 						<button className="tab-close" type="button" onClick={() => closeResource(resource.id)} aria-label={`关闭 ${resource.title}`}>
-							<X size={14} />
+							<X size={16} />
 						</button>
 					</div>
 				);

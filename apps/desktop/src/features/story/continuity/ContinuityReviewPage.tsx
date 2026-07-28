@@ -35,6 +35,7 @@ import { hashText, type ReviewIssue } from '@writing-buddy/review';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import {
 	ContinuityReviewRepository,
 	reviewIssueToContinuityCandidate
@@ -255,10 +256,10 @@ export function ContinuityReviewPage({
 						disabled={!projectRoot || readOnly || chapters.length < 2}
 						onClick={() => setAiPanelOpen(true)}
 					>
-						<Sparkles size={17} />AI 对照审查
+						<Sparkles size={18} />AI 对照审查
 					</button>
 					<button type="button" onClick={() => void run()} disabled={!projectRoot || loading}>
-						{loading ? <LoaderCircle className="spin" size={17} /> : <RefreshCw size={17} />}
+						{loading ? <LoaderCircle className="spin" size={18} /> : <RefreshCw size={18} />}
 						{loading ? '正在聚合审查' : '重新运行审查'}
 					</button>
 				</div>
@@ -272,12 +273,12 @@ export function ContinuityReviewPage({
 			</section>
 
 			{notice ? <p className="continuity-notice" role="status">{notice}</p> : null}
-			{error ? <p className="continuity-error" role="alert"><AlertTriangle size={17} />{error}</p> : null}
+			{error ? <p className="continuity-error" role="alert"><AlertTriangle size={18} />{error}</p> : null}
 
 			<div className="continuity-workspace">
 				<section className="continuity-list-panel">
 					<header>
-						<div><Filter size={17} /><h2>问题列表</h2></div>
+						<div><Filter size={18} /><h2>问题列表</h2></div>
 						<select aria-label="按严重程度筛选" value={severity} onChange={event => setSeverity(event.target.value as typeof severity)}>
 							<option value="all">全部严重程度</option>
 							<option value="error">错误</option>
@@ -306,7 +307,13 @@ export function ContinuityReviewPage({
 							</button>
 						))}
 						{!loading && filtered.length === 0 ? (
-							<div className="continuity-empty"><CheckCircle2 size={26} /><span>当前筛选下没有一致性问题</span></div>
+							<AppEmptyState
+								icon={CheckCircle2}
+								title="当前筛选下没有一致性问题"
+								density="compact"
+								tone="positive"
+								className="continuity-empty"
+							/>
 						) : null}
 					</div>
 				</section>
@@ -333,7 +340,13 @@ export function ContinuityReviewPage({
 							</div>
 						</>
 					) : (
-						<div className="continuity-empty"><CheckCircle2 size={28} /><span>选择问题查看来源与证据</span></div>
+						<AppEmptyState
+							icon={CheckCircle2}
+							title="选择问题查看来源与证据"
+							description="问题详情会区分规则、Story Kernel 与 AI 来源。"
+							density="panel"
+							className="continuity-empty"
+						/>
 					)}
 				</section>
 			</div>

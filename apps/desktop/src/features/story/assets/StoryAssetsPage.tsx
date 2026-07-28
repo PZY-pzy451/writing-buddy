@@ -29,6 +29,7 @@ import type {
 	AiChapterSource,
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
+import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import './StoryAssetsPage.css';
 
 export interface StoryAssetsData {
@@ -191,7 +192,7 @@ export function StoryAssetsPage({
 							<div>{selected.restrictions.map(restriction => <span key={restriction}>{restriction}</span>)}</div>
 						</section>
 						<section className="asset-history">
-							<header><History size={17} /><h3>流转历史</h3><span>{history.length}</span></header>
+							<header><History size={18} /><h3>流转历史</h3><span>{history.length}</span></header>
 							{history.map(state => (
 								<article key={state.id}>
 									<span className={`asset-action is-${state.action}`}>{state.action}</span>
@@ -201,7 +202,20 @@ export function StoryAssetsPage({
 							))}
 						</section>
 					</div>
-				) : <div className="story-assets-empty"><PackageOpen size={38} /><span>还没有物品资源</span><button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />用 AI 创建物品</button></div>}
+				) : (
+					<AppEmptyState
+						icon={PackageOpen}
+						title="还没有物品资源"
+						description="创建物品后，可以追踪持有人、地点、数量和状态流转。"
+						density="full"
+						className="story-assets-empty"
+						actions={(
+							<button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}>
+								<Sparkles size={16} />用 AI 创建物品
+							</button>
+						)}
+					/>
+				)}
 			</section>
 			{transferOpen && selected ? <ItemTransferDialog item={selected} current={current} onCancel={() => setTransferOpen(false)} onCommit={commitTransfer} /> : null}
 			{aiOpen && projectRoot ? (

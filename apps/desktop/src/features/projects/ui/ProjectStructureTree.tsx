@@ -166,7 +166,7 @@ function SortableVolumeRow({
 				aria-expanded={expanded}
 				aria-label={`${expanded ? '收起' : '展开'}${volume.title}`}
 			>
-				{expanded ? <ChevronDown size={17} /> : <ChevronRight size={17} />}
+				{expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
 				<FolderOpen size={18} />
 				<span>{volume.title}</span>
 			</button>
@@ -232,7 +232,7 @@ function SortableChapterRow({
 			dataStructureId={chapter.id}
 		>
 			<button className="tree-row-main" type="button" onClick={onOpen}>
-				<FileText size={17} />
+				<FileText size={18} />
 				<span>{chapter.title}</span>
 				<small>{words || ''}</small>
 			</button>
@@ -465,7 +465,7 @@ export function ProjectStructureTree({
 			</p>
 			{sceneDisabledReason && !moveBusy && (
 				<p className="tree-reorder-hint">
-					<GripVertical size={14} aria-hidden="true" />{sceneDisabledReason}
+					<GripVertical size={16} aria-hidden="true" />{sceneDisabledReason}
 				</p>
 			)}
 			<SortableContext

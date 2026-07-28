@@ -6,6 +6,7 @@ import { desktopBridge } from '../platform/bridge';
 import { SettingsPage } from '../settings/SettingsPage';
 import { AiPlaygroundPage } from '../features/ai/AiPlaygroundPage';
 import { ReviewPage } from '../features/review/ReviewPage';
+import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
@@ -73,7 +74,14 @@ export function SystemPage(): React.JSX.Element | null {
 							<FileSearch size={18} /><span><strong>{result.title}</strong><small>{result.path}</small></span>
 						</button>
 					))}
-					{results.length === 0 && <div className="system-empty"><Search size={28} />没有找到匹配内容</div>}
+					{results.length === 0 && (
+						<AppEmptyState
+							icon={Search}
+							title="没有找到匹配内容"
+							description="调整顶部搜索词，或清空搜索以查看全部章节和资料。"
+							className="system-empty"
+						/>
+					)}
 				</div>
 			</div>
 		);
@@ -117,7 +125,12 @@ export function SystemPage(): React.JSX.Element | null {
 				{versionMessage && <span className="success-message">{versionMessage}</span>}
 			</header>
 			{versions.length === 0 ? (
-				<div className="system-empty"><History size={30} />创建第一个安全快照后，历史版本会显示在这里。</div>
+				<AppEmptyState
+					icon={History}
+					title="还没有安全快照"
+					description="创建第一个快照后，可以在这里比较并恢复受管资源。"
+					className="system-empty"
+				/>
 			) : (
 				<div className="version-workspace">
 					<div className="version-list">
@@ -128,7 +141,7 @@ export function SystemPage(): React.JSX.Element | null {
 								className={selectedVersion === version.id ? 'is-active' : ''}
 								onClick={() => setSelectedVersion(version.id)}
 							>
-								<History size={17} />
+								<History size={18} />
 								<span><strong>{version.label || '未命名快照'}</strong><small>{new Date(version.createdAt).toLocaleString()}</small></span>
 							</button>
 						))}

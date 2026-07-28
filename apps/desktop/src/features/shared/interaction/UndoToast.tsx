@@ -17,7 +17,7 @@ export function UndoToast({
 	return (
 		<aside className="interaction-undo-toast" role="status" aria-live="polite">
 			<span className="interaction-undo-toast-icon" aria-hidden="true">
-				<Check size={17} />
+				<Check size={18} />
 			</span>
 			<span className="interaction-undo-toast-copy">
 				<strong>{title}</strong>
