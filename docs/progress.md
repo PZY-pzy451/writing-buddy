@@ -4,13 +4,27 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project highlight and shared interaction Y5 is accepted on
-`codex/project-highlight-components-y5` at implementation commit `830deedd`.
+No implementation milestone is currently active. AI generation reliability and
+the two-handoff implementation audit are accepted on
+`codex/ai-generation-reliability-audit` at implementation commit `12a278f7`.
 Evidence:
-`docs/acceptance/023-project-highlight-components-y5-2026-07-28.md`.
+`docs/acceptance/024-ai-generation-reliability-and-handoff-audit-2026-07-28.md`.
+The next explicitly scoped work should address scene movement, person/world
+group dragging, Y6/Y7 polish/hardening, or the author-visible schema-repair
+request; these remain separate incomplete design requirements.
 
 ## Completed
 
+- Structured native AI failures now preserve public code, localized message,
+  retryability, and HTTP status across Story Kernel, grounded JSON, and
+  selection-rewrite boundaries.
+- Story Kernel shows recovery guidance plus an explicit retry or AI-settings
+  action without silently repeating a paid request.
+- Both source handoffs have an evidence-backed implemented/partial/external
+  matrix instead of a blanket completion claim.
+- Reliability acceptance: 91 files / 295 frontend tests, 49 Rust tests,
+  responsive Paper/Midnight visual checks, fresh Tauri build, and normal native
+  close with exit code 0.
 - Independent client architecture and Legacy schema compatibility reader
 - Safe Rust filesystem, process lock, Credential Manager, snapshots and backup
 - Monaco desktop render fix (`freezePrototype: false`)

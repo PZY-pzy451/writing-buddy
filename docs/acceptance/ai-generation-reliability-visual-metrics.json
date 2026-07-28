@@ -1,0 +1,86 @@
+{
+  "date": "2026-07-28",
+  "implementationCommit": "12a278f7",
+  "browser": "Microsoft Edge via Playwright",
+  "checks": [
+    {
+      "id": "paper-authentication-1440",
+      "theme": "paper",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "failureCode": "authentication_failed",
+      "publicMessage": "API Key 无效或已经失效。",
+      "recoveryAction": "settings",
+      "documentOverflowX": 0,
+      "minimumActionHeight": 44,
+      "genericFallbackVisible": false,
+      "misleadingEmptyStateVisible": false
+    },
+    {
+      "id": "paper-unknown-1024",
+      "theme": "paper",
+      "viewport": {
+        "width": 1024,
+        "height": 800
+      },
+      "failureCode": "unknown",
+      "publicMessage": "AI 请求未能启动。",
+      "recoveryAction": "retry",
+      "failureCard": {
+        "x": 696,
+        "y": 503.1875,
+        "width": 297,
+        "height": 251.09375
+      },
+      "diagnosticSummaryHeight": 44,
+      "actionHeight": 44,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0
+    },
+    {
+      "id": "midnight-authentication-1024",
+      "theme": "midnight",
+      "viewport": {
+        "width": 1024,
+        "height": 800
+      },
+      "failureCode": "authentication_failed",
+      "httpStatus": 401,
+      "publicMessage": "API Key 无效或已经失效。",
+      "recoveryAction": "settings",
+      "failureCard": {
+        "x": 696,
+        "y": 520.1875,
+        "width": 297,
+        "height": 234.046875
+      },
+      "diagnosticSummaryHeight": 44,
+      "actionHeight": 44,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0
+    },
+    {
+      "id": "paper-rate-limit-retry",
+      "theme": "paper",
+      "viewport": {
+        "width": 1024,
+        "height": 800
+      },
+      "failureCode": "rate_limited",
+      "httpStatus": 429,
+      "publicMessage": "请求过多，请稍后再试。",
+      "recoveryAction": "retry",
+      "sameInstructionRetained": true,
+      "retryResult": "7 candidates",
+      "failureCardVisibleAfterSuccess": false
+    }
+  ],
+  "runtime": {
+    "pageErrors": 0,
+    "knownConsoleNoise": [
+      "favicon request returned 404"
+    ]
+  }
+}
