@@ -195,6 +195,46 @@ grounded, revision-safe review flows. Acceptance evidence is in
 Continue the original handoff with Gate G bulk manuscript organization,
 AI-created review issues, and final privacy/performance/recovery hardening.
 
+## AI Quick Actions Gate G start
+
+- User direction “继续完成” continues the accepted Gate F branch into the final
+  Tasks 22–25.
+- Created `codex/ai-quick-actions-gate-g` from accepted Gate F.
+- Gate G reuses the existing strict Story Kernel generation/conflict pipeline,
+  ReviewIssue/Continuity Engine, AI streaming lifecycle, snapshots, backup, and
+  restore ports instead of introducing parallel write paths.
+- The `ui-ux-pro-max` rules file was read completely. Its required
+  `scripts/search.py` is absent from the installed package, so the documented
+  accessibility, interaction, responsive, contrast, and reduced-motion rules
+  are applied directly.
+- Contract:
+  `docs/plans/009-ai-quick-actions-gate-g-extraction-review-hardening.md`.
+
+## AI Quick Actions Gate G complete
+
+- Added **AI 正文整理** with current chapter/current volume/selected/all/
+  unfinished scope, deterministic preflight Tokens, sequential paid jobs,
+  explicit stop/resume and restart normalization without automatic billing.
+- Completed chapters and candidate batches survive failure/cancellation;
+  stale sources require explicit refresh and concurrent ledger writes fail
+  safely.
+- All extracted resources use the existing Story Kernel generation schema,
+  collision/reference/evidence rules, pending candidate store, snapshot and
+  atomic transaction path.
+- Added grounded **AI 对照审查** for 2–12 selected chapters, exact evidence
+  A/B, optional safe Story Fact, AI severity capped at warning and no
+  replacement/write path.
+- Privacy tests and scans cover author secrets, paths, credentials, ledger
+  prose, Prompt output and hidden foreshadowing meanings.
+- Responsive 1536/1280/1024 evidence has zero page overflow, clipped controls
+  or effective controls below 44px.
+- Full Node acceptance: 75 files / 241 tests; Rust: 44 passed / 2 explicit
+  manual gates ignored.
+- Fresh portable EXE and NSIS installer built; native startup and normal close
+  passed.
+- Acceptance:
+  `docs/acceptance/019-ai-quick-actions-gate-g-2026-07-28.md`.
+
 ## AI Quick Actions Gate F start
 
 - The user explicitly asked to continue after accepted Gate E.
