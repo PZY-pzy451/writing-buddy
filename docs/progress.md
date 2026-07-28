@@ -4,12 +4,11 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project Creation Y0–Y2 is complete on
-`codex/project-creation-y0-y2`. The no-project welcome flow, global create
-menu, four-step wizard, six templates, semantic interaction tokens, typed
-preflight, verified same-parent staging, atomic save, and project appearance
-restore are accepted. Evidence is in
-`docs/acceptance/020-project-creation-y0-y2-2026-07-28.md`.
+Project structure drag Y3 is complete on
+`codex/project-structure-drag-y3`. Volume and chapter reordering, cross-volume
+chapter moves, pointer/keyboard parity, atomic revision-safe persistence,
+reopen verification, and inverse-command Undo are accepted. Evidence is in
+`docs/acceptance/021-project-structure-drag-y3-2026-07-28.md`.
 
 ## Completed
 
@@ -196,6 +195,19 @@ restore are accepted. Evidence is in
   normal close passed
 - Project Creation Y0–Y2 evidence in
   `docs/acceptance/020-project-creation-y0-y2-2026-07-28.md`
+- Typed volume/chapter drag payloads, targets, rule registry, and commands
+- Pointer and keyboard project-tree dragging with source, target, insertion,
+  overlay, invalid, live-announcement, search-disabled, and read-only states
+- Write-locked manifest revision checks, atomic persistence, canonical reopen
+  verification, exact inverse commands, toast Undo, and Ctrl+Z parity
+- Responsive 1440/1024/800 evidence with zero horizontal overflow and fixed
+  structure/reference scrolling
+- Full Node acceptance: 83 files / 271 tests; Rust: 49 passed / 2 explicit
+  external gates ignored
+- Fresh portable EXE and NSIS installer built; isolated native startup and
+  normal close passed with exit code 0
+- Project structure drag Y3 evidence in
+  `docs/acceptance/021-project-structure-drag-y3-2026-07-28.md`
 
 ## Open
 
@@ -209,9 +221,9 @@ restore are accepted. Evidence is in
 
 ## Next
 
-Continue the project-creation handoff with Y3 chapter/volume drag, keyboard
-parity, persistence, and Undo. Do not begin Y4 resource drag until Y3 has its
-own accepted evidence.
+Y4 resource association dragging is the next handoff gate. Scene
+cross-chapter movement first needs a manuscript-anchor migration contract;
+do not implement it as a synthetic array reorder.
 
 ## Project Creation Y0–Y2 complete
 

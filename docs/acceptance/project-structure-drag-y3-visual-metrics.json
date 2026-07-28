@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-07-28",
+  "branch": "codex/project-structure-drag-y3",
+  "implementationCommit": "9276ff39",
+  "browser": "Microsoft Edge via Playwright 1.55.1",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "horizontalOverflowPx": 0,
+      "dragHandleWidthPx": 40,
+      "dragHandleHeightPx": 40,
+      "volumeRows": 2,
+      "chapterRows": 3
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "horizontalOverflowPx": 0,
+      "structureAndReferenceOverlap": false
+    },
+    {
+      "width": 800,
+      "height": 720,
+      "horizontalOverflowPx": 0,
+      "sidebarWidthPx": 320,
+      "filteredVisibleChapterRows": 1,
+      "filteredDisabledHandles": 2
+    }
+  ],
+  "interactionChecks": {
+    "pointerCrossVolumeMove": true,
+    "keyboardSameVolumeMove": true,
+    "keyboardCrossVolumeMove": true,
+    "escapeCancel": true,
+    "invalidTargetFeedback": true,
+    "overlayConstrainedToViewport": true,
+    "toastUndo": true,
+    "ctrlZUndo": true,
+    "searchDisablesReorder": true
+  }
+}
+
