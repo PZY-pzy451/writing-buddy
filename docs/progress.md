@@ -1,14 +1,15 @@
 # Current progress
 
-Updated: 2026-07-27
+Updated: 2026-07-28
 
 ## Active milestone
 
-AI Quick Actions Gate F is complete on
-`codex/ai-quick-actions-gate-f`. Timeline extraction/generation, causal-edge
-review, plot-thread workflows, and foreshadowing workflows now use explicit,
-grounded, revision-safe review flows. Acceptance evidence is in
-`docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`.
+Project Creation Y0–Y2 is complete on
+`codex/project-creation-y0-y2`. The no-project welcome flow, global create
+menu, four-step wizard, six templates, semantic interaction tokens, typed
+preflight, verified same-parent staging, atomic save, and project appearance
+restore are accepted. Evidence is in
+`docs/acceptance/020-project-creation-y0-y2-2026-07-28.md`.
 
 ## Completed
 
@@ -179,6 +180,22 @@ grounded, revision-safe review flows. Acceptance evidence is in
   accepted normal close
 - Gate F evidence in
   `docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`
+- Global no-project create entry, welcome page, compact recent-project shelf,
+  and four-step creation wizard
+- Six typed project templates with adjustable initial resources and no
+  automatic AI/prose generation
+- Native creation preflight, same-parent staging, reopen verification, atomic
+  directory save, collision refusal, and failure cleanup
+- Project-scoped theme/accent persistence and restore
+- Semantic selected/hover/focus/drag/AI/conflict/status tokens across Paper,
+  Midnight, Fog, and Focus themes
+- Responsive 1440/1024 visual evidence and explicit compact icon labels
+- Full Node acceptance: 79 files / 252 tests; Rust: 47 passed / 2 explicit
+  external gates ignored
+- Fresh portable EXE and NSIS installer built; isolated native startup and
+  normal close passed
+- Project Creation Y0–Y2 evidence in
+  `docs/acceptance/020-project-creation-y0-y2-2026-07-28.md`
 
 ## Open
 
@@ -192,8 +209,25 @@ grounded, revision-safe review flows. Acceptance evidence is in
 
 ## Next
 
-Continue the original handoff with Gate G bulk manuscript organization,
-AI-created review issues, and final privacy/performance/recovery hardening.
+Continue the project-creation handoff with Y3 chapter/volume drag, keyboard
+parity, persistence, and Undo. Do not begin Y4 resource drag until Y3 has its
+own accepted evidence.
+
+## Project Creation Y0–Y2 complete
+
+- Source map and canonical project ordering contract are recorded in
+  `docs/plans/010-project-creation-drag-source-map.md` and
+  `docs/plans/011-project-data-ordering-contract.md`.
+- Implementation contract and stop line are recorded in
+  `docs/plans/012-project-creation-y0-y2.md`.
+- `ui-ux-pro-max` guided the semantic token, focus, responsive, readable
+  disabled-state, and reduced-motion treatment.
+- Browser visual acceptance exposed and fixed the welcome import style,
+  compact sidebar button layout, and responsive icon-only accessible labels.
+- The official browser-skill client was incompatible with the protected Node
+  runtime; local Playwright and installed Edge provided the equivalent
+  acceptance path.
+- Drag Y3–Y4 remains deliberately deferred per the handoff.
 
 ## AI Quick Actions Gate G start
 

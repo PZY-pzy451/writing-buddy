@@ -19,6 +19,7 @@
 - [AI Quick Actions Gate E acceptance, 2026-07-27](./017-ai-quick-actions-gate-e-2026-07-27.md)
 - [AI Quick Actions Gate F acceptance, 2026-07-27](./018-ai-quick-actions-gate-f-2026-07-27.md)
 - [AI Quick Actions Gate G acceptance, 2026-07-28](./019-ai-quick-actions-gate-g-2026-07-28.md)
+- [Project Creation Y0–Y2 acceptance, 2026-07-28](./020-project-creation-y0-y2-2026-07-28.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)
