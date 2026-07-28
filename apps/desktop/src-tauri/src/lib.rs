@@ -29,6 +29,9 @@ pub fn run() {
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
             commands::choose_project,
+            commands::choose_project_parent_directory,
+            commands::preflight_project_creation,
+            commands::create_project,
             commands::open_project,
             commands::repair_project,
             commands::reveal_project_directory,

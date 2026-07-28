@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../src/app/App';
 import { useAppStore } from '../src/app/store';
@@ -8,6 +8,7 @@ describe('Writing Buddy product shell', () => {
 		localStorage.clear();
 		useAppStore.setState({
 			recentProjectRoot: undefined,
+			recentProjectRoots: [],
 			snapshot: undefined,
 			activeResource: undefined,
 			activeResourceId: undefined,
@@ -21,6 +22,7 @@ describe('Writing Buddy product shell', () => {
 			projectOpenBusyAction: undefined,
 			loading: false,
 			error: undefined,
+			projectWizardOpen: false,
 			activeMode: 'works'
 		});
 	});
@@ -28,7 +30,8 @@ describe('Writing Buddy product shell', () => {
 	it('opens the browser fixture and keeps chapters and references in one sidebar', async () => {
 		const user = userEvent.setup();
 		render(<App />);
-		await user.click(await screen.findByRole('button', { name: '选择项目' }));
+		const sidebar = await screen.findByRole('navigation', { name: '最近作品' });
+		await user.click(within(sidebar.parentElement as HTMLElement).getByRole('button', { name: '打开作品' }));
 		await screen.findByRole('main', { name: '作品仪表盘' });
 		await user.click(screen.getByRole('button', { name: '继续写作' }));
 		await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: '第一章 停摆的时钟' })).toBeInTheDocument());
@@ -41,7 +44,8 @@ describe('Writing Buddy product shell', () => {
 	it('opens a character as a product form instead of Markdown', async () => {
 		const user = userEvent.setup();
 		render(<App />);
-		await user.click(await screen.findByRole('button', { name: '选择项目' }));
+		const sidebar = await screen.findByRole('navigation', { name: '最近作品' });
+		await user.click(within(sidebar.parentElement as HTMLElement).getByRole('button', { name: '打开作品' }));
 		const character = await screen.findByRole('button', { name: /林墨/ });
 		await user.click(character);
 		await waitFor(() => expect(screen.getByText('人物卡')).toBeInTheDocument());

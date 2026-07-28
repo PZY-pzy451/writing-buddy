@@ -1,4 +1,5 @@
 use std::{
+    collections::BTreeSet,
     fs,
     path::{Path, PathBuf},
     process::Command,
@@ -79,6 +80,52 @@ pub struct PublicProjectOpenError {
 pub struct ProjectRepairResult {
     repaired: bool,
     diagnostic_id: String,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateProjectRequest {
+    name: String,
+    #[serde(default)]
+    description: String,
+    root_directory: String,
+    project_type: String,
+    language: String,
+    template_id: String,
+    selected_initial_resources: Vec<String>,
+    theme_id: String,
+    accent_id: String,
+    writing_mode: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectCreationIssue {
+    field: &'static str,
+    code: &'static str,
+    message: &'static str,
+}
+
+#[derive(Debug, Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectCreationPreflight {
+    valid: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    target_root: Option<String>,
+    created_file_count: usize,
+    created_directory_count: usize,
+    issues: Vec<ProjectCreationIssue>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreatedProject {
+    root: String,
+    project_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    first_chapter_id: Option<String>,
+    created_file_count: usize,
+    created_directory_count: usize,
 }
 
 static DIAGNOSTIC_SEQUENCE: AtomicU64 = AtomicU64::new(1);
@@ -171,6 +218,413 @@ pub fn choose_project() -> Option<String> {
         .set_title("选择 Writing Buddy 项目副本")
         .pick_folder()
         .map(|path| path.to_string_lossy().into_owned())
+}
+
+#[tauri::command]
+pub fn choose_project_parent_directory() -> Option<String> {
+    rfd::FileDialog::new()
+        .set_title("选择新作品保存位置")
+        .pick_folder()
+        .map(|path| path.to_string_lossy().into_owned())
+}
+
+fn creation_issue(
+    field: &'static str,
+    code: &'static str,
+    message: &'static str,
+) -> ProjectCreationIssue {
+    ProjectCreationIssue {
+        field,
+        code,
+        message,
+    }
+}
+
+fn valid_project_name(name: &str) -> Result<(), ProjectCreationIssue> {
+    let trimmed = name.trim();
+    if trimmed.is_empty() || trimmed.chars().count() > 80 {
+        return Err(creation_issue(
+            "name",
+            "invalidProjectNameLength",
+            "作品名称需要为 1–80 个字符。",
+        ));
+    }
+    if trimmed.ends_with(' ')
+        || trimmed.ends_with('.')
+        || trimmed.chars().any(|character| {
+            matches!(
+                character,
+                '<' | '>' | ':' | '"' | '/' | '\\' | '|' | '?' | '*'
+            )
+        })
+    {
+        return Err(creation_issue(
+            "name",
+            "invalidProjectNameCharacters",
+            "作品名称包含 Windows 不允许的字符或结尾。",
+        ));
+    }
+    let stem = trimmed
+        .split('.')
+        .next()
+        .unwrap_or_default()
+        .to_ascii_lowercase();
+    let reserved = matches!(stem.as_str(), "con" | "prn" | "aux" | "nul")
+        || (stem.len() == 4
+            && (stem.starts_with("com") || stem.starts_with("lpt"))
+            && stem
+                .chars()
+                .last()
+                .is_some_and(|character| ('1'..='9').contains(&character)));
+    if reserved {
+        return Err(creation_issue(
+            "name",
+            "reservedProjectName",
+            "该名称是 Windows 保留名称，请更换作品名称。",
+        ));
+    }
+    Ok(())
+}
+
+fn creation_directories(request: &CreateProjectRequest) -> BTreeSet<&'static str> {
+    let selected = request
+        .selected_initial_resources
+        .iter()
+        .map(String::as_str)
+        .collect::<BTreeSet<_>>();
+    let mut directories = BTreeSet::from(["", ".writing-buddy"]);
+    if selected.contains("first-chapter") {
+        directories.insert("chapters");
+    }
+    if selected.contains("character-category") {
+        directories.insert("references");
+        directories.insert("references/characters");
+    }
+    if selected.contains("worldbuilding-category") {
+        directories.insert("references");
+        directories.insert("references/worldbuilding");
+    }
+    if selected.contains("timeline") {
+        directories.insert("story");
+        directories.insert("story/events");
+    }
+    if selected.contains("plot-and-foreshadowing") {
+        directories.insert("story");
+        directories.insert("story/plot-threads");
+        directories.insert("story/foreshadowing");
+    }
+    if selected.contains("sample-content") {
+        directories.insert("references");
+        directories.insert("references/notes");
+    }
+    if selected.contains("ai-quick-actions") {
+        directories.insert(".writing-buddy/ai");
+    }
+    directories
+}
+
+fn creation_file_count(request: &CreateProjectRequest) -> usize {
+    2 + usize::from(
+        request
+            .selected_initial_resources
+            .iter()
+            .any(|value| value == "first-chapter"),
+    ) + usize::from(
+        request
+            .selected_initial_resources
+            .iter()
+            .any(|value| value == "sample-content"),
+    )
+}
+
+#[tauri::command]
+pub fn preflight_project_creation(request: CreateProjectRequest) -> ProjectCreationPreflight {
+    let mut issues = Vec::new();
+    if let Err(issue) = valid_project_name(&request.name) {
+        issues.push(issue);
+    }
+    if !matches!(
+        request.template_id.as_str(),
+        "blank-longform"
+            | "mystery-longform"
+            | "fantasy-longform"
+            | "science-fiction-longform"
+            | "realist-fiction"
+            | "custom"
+    ) {
+        issues.push(creation_issue(
+            "templateId",
+            "unknownProjectTemplate",
+            "所选项目模板不可用。",
+        ));
+    }
+    if !matches!(
+        request.project_type.as_str(),
+        "longform" | "novella" | "short" | "series"
+    ) || request.language.trim().is_empty()
+        || !matches!(
+            request.theme_id.as_str(),
+            "paper" | "midnight" | "fog" | "focus"
+        )
+        || !matches!(request.accent_id.as_str(), "gold" | "blue" | "purple")
+        || !matches!(
+            request.writing_mode.as_str(),
+            "manuscriptFirst" | "planningFirst"
+        )
+    {
+        issues.push(creation_issue(
+            "request",
+            "invalidProjectCreationOption",
+            "项目类型、语言或外观选项无效。",
+        ));
+    }
+    let allowed_resources = [
+        "first-volume",
+        "first-chapter",
+        "character-category",
+        "worldbuilding-category",
+        "timeline",
+        "plot-and-foreshadowing",
+        "sample-content",
+        "ai-quick-actions",
+    ];
+    let selected = request
+        .selected_initial_resources
+        .iter()
+        .map(String::as_str)
+        .collect::<BTreeSet<_>>();
+    if selected.len() != request.selected_initial_resources.len()
+        || selected
+            .iter()
+            .any(|value| !allowed_resources.contains(value))
+    {
+        issues.push(creation_issue(
+            "selectedInitialResources",
+            "invalidInitialResources",
+            "初始结构包含重复或未知项目。",
+        ));
+    }
+    if selected.contains("first-chapter") && !selected.contains("first-volume") {
+        issues.push(creation_issue(
+            "selectedInitialResources",
+            "firstChapterRequiresVolume",
+            "创建第一章草稿时必须同时创建第一卷。",
+        ));
+    }
+
+    let parent = match filesystem::canonical_project_root(&request.root_directory) {
+        Ok(parent) => Some(parent),
+        Err(_) => {
+            issues.push(creation_issue(
+                "rootDirectory",
+                "projectParentUnavailable",
+                "保存位置不存在、不是目录或当前不可访问。",
+            ));
+            None
+        }
+    };
+    let target = parent
+        .as_ref()
+        .map(|parent| parent.join(request.name.trim()));
+    if let Some(parent) = &parent {
+        if fs::metadata(parent).is_ok_and(|metadata| metadata.permissions().readonly()) {
+            issues.push(creation_issue(
+                "rootDirectory",
+                "projectParentReadOnly",
+                "保存位置为只读，无法创建作品。",
+            ));
+        }
+    }
+    if let Some(target) = &target {
+        if target.exists() {
+            issues.push(creation_issue(
+                "rootDirectory",
+                "projectTargetExists",
+                "同名作品目录已经存在，不会自动覆盖。",
+            ));
+        }
+        if target.to_string_lossy().chars().count() > 240 {
+            issues.push(creation_issue(
+                "rootDirectory",
+                "projectPathTooLong",
+                "目标路径过长，请选择更短的保存位置或名称。",
+            ));
+        }
+    }
+
+    ProjectCreationPreflight {
+        valid: issues.is_empty(),
+        target_root: target.map(|path| path.to_string_lossy().into_owned()),
+        created_file_count: creation_file_count(&request),
+        created_directory_count: creation_directories(&request).len(),
+        issues,
+    }
+}
+
+fn write_pretty_json(path: &Path, value: &serde_json::Value) -> Result<(), String> {
+    let mut bytes =
+        serde_json::to_vec_pretty(value).map_err(|_| "projectCreateSerializeFailed".to_owned())?;
+    bytes.push(b'\n');
+    filesystem::write_bytes_atomic(path, &bytes)
+}
+
+fn creation_id(prefix: &str, seed: &str) -> String {
+    let digest = hex::encode(Sha256::digest(seed.as_bytes()));
+    format!("{prefix}-{}", &digest[..8])
+}
+
+fn create_project_in_staging(
+    request: &CreateProjectRequest,
+    staging: &Path,
+) -> Result<(String, Option<String>), String> {
+    let selected = request
+        .selected_initial_resources
+        .iter()
+        .map(String::as_str)
+        .collect::<BTreeSet<_>>();
+    for relative in creation_directories(request) {
+        let directory = if relative.is_empty() {
+            staging.to_path_buf()
+        } else {
+            staging.join(relative)
+        };
+        fs::create_dir_all(directory).map_err(|_| "projectStagingWriteFailed".to_owned())?;
+    }
+
+    let nonce = format!(
+        "{}:{}:{}",
+        request.name,
+        Utc::now().timestamp_millis(),
+        std::process::id()
+    );
+    let project_id = creation_id("project", &nonce);
+    let volume_id = creation_id("volume", &format!("{nonce}:volume"));
+    let first_chapter_id = selected
+        .contains("first-chapter")
+        .then(|| creation_id("chapter", &format!("{nonce}:chapter")));
+    let chapters = first_chapter_id
+        .as_ref()
+        .map(|chapter_id| {
+            vec![json!({
+                "id": chapter_id,
+                "title": "第一章",
+                "file": "chapters/chapter-001.md",
+                "status": "draft",
+                "scene": {
+                    "location": "",
+                    "time": "",
+                    "pov": "",
+                    "characters": [],
+                    "goal": "",
+                    "note": ""
+                }
+            })]
+        })
+        .unwrap_or_default();
+    let volumes = if selected.contains("first-volume") {
+        vec![json!({
+            "id": volume_id,
+            "title": "第一卷",
+            "chapters": chapters
+        })]
+    } else {
+        Vec::new()
+    };
+    write_pretty_json(
+        &staging.join(".writing-buddy").join("project.json"),
+        &json!({
+            "schemaVersion": 1,
+            "projectId": project_id,
+            "title": request.name.trim(),
+            "volumes": volumes
+        }),
+    )?;
+    write_pretty_json(
+        &staging.join(".writing-buddy").join("workspace.json"),
+        &json!({
+            "schemaVersion": 1,
+            "description": request.description.trim(),
+            "projectType": request.project_type,
+            "language": request.language,
+            "templateId": request.template_id,
+            "selectedInitialResources": request.selected_initial_resources,
+            "themeId": request.theme_id,
+            "accentId": request.accent_id,
+            "writingMode": request.writing_mode,
+            "aiQuickActionsEnabled": selected.contains("ai-quick-actions"),
+            "createdAt": Utc::now().to_rfc3339()
+        }),
+    )?;
+    if first_chapter_id.is_some() {
+        filesystem::write_bytes_atomic(
+            &staging.join("chapters").join("chapter-001.md"),
+            "# 第一章\n\n".as_bytes(),
+        )?;
+    }
+    if selected.contains("sample-content") {
+        filesystem::write_bytes_atomic(
+            &staging.join("references").join("notes").join("开始创作.md"),
+            "# 开始创作\n\n这里保存创作提示与备忘，不包含自动生成的小说正文。\n".as_bytes(),
+        )?;
+    }
+    Ok((project_id, first_chapter_id))
+}
+
+#[tauri::command]
+pub fn create_project(request: CreateProjectRequest) -> Result<CreatedProject, String> {
+    let preflight = preflight_project_creation(request.clone());
+    if !preflight.valid {
+        let code = preflight
+            .issues
+            .first()
+            .map(|issue| issue.code)
+            .unwrap_or("projectCreationPreflightFailed");
+        return Err(code.to_owned());
+    }
+    let target = PathBuf::from(
+        preflight
+            .target_root
+            .as_deref()
+            .ok_or_else(|| "projectCreationPreflightFailed".to_owned())?,
+    );
+    let parent = target
+        .parent()
+        .ok_or_else(|| "projectParentUnavailable".to_owned())?;
+    let staging = parent.join(format!(
+        ".writing-buddy-project-staging-{}-{}",
+        std::process::id(),
+        Utc::now().timestamp_millis()
+    ));
+    fs::create_dir(&staging).map_err(|_| "projectStagingCreateFailed".to_owned())?;
+    let result = (|| -> Result<CreatedProject, String> {
+        let (project_id, first_chapter_id) = create_project_in_staging(&request, &staging)?;
+        let verified = migration::open_project(&staging.to_string_lossy())
+            .map_err(|_| "projectStagingVerifyFailed".to_owned())?;
+        if verified.read_only
+            || verified.project.project_id != project_id
+            || verified
+                .integrity_issues
+                .iter()
+                .any(|issue| issue.severity == "error")
+        {
+            return Err("projectStagingVerifyFailed".to_owned());
+        }
+        if target.exists() {
+            return Err("projectTargetExists".to_owned());
+        }
+        fs::rename(&staging, &target).map_err(|_| "projectAtomicRenameFailed".to_owned())?;
+        Ok(CreatedProject {
+            root: target.to_string_lossy().into_owned(),
+            project_id,
+            first_chapter_id,
+            created_file_count: preflight.created_file_count,
+            created_directory_count: preflight.created_directory_count,
+        })
+    })();
+    if result.is_err() && staging.exists() {
+        let _ = fs::remove_dir_all(&staging);
+    }
+    result
 }
 
 #[tauri::command]
@@ -761,6 +1215,139 @@ pub fn restore_backup(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn project_creation_parent(label: &str) -> PathBuf {
+        let nonce = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .expect("clock")
+            .as_nanos();
+        let root = std::env::temp_dir().join(format!(
+            "writing-buddy-project-create-{label}-{}-{nonce}",
+            std::process::id()
+        ));
+        fs::create_dir_all(&root).expect("create project parent");
+        root
+    }
+
+    fn project_creation_request(
+        root: &Path,
+        name: &str,
+        template_id: &str,
+    ) -> CreateProjectRequest {
+        CreateProjectRequest {
+            name: name.to_owned(),
+            description: "Sanitized creation test".to_owned(),
+            root_directory: root.to_string_lossy().into_owned(),
+            project_type: "longform".to_owned(),
+            language: "zh-CN".to_owned(),
+            template_id: template_id.to_owned(),
+            selected_initial_resources: vec![
+                "first-volume".to_owned(),
+                "first-chapter".to_owned(),
+                "character-category".to_owned(),
+                "worldbuilding-category".to_owned(),
+                "plot-and-foreshadowing".to_owned(),
+                "ai-quick-actions".to_owned(),
+            ],
+            theme_id: "paper".to_owned(),
+            accent_id: "gold".to_owned(),
+            writing_mode: "manuscriptFirst".to_owned(),
+        }
+    }
+
+    #[test]
+    fn project_creation_preflight_rejects_reserved_duplicate_and_invalid_requests_without_writes() {
+        let root = project_creation_parent("preflight");
+        fs::create_dir(root.join("Existing")).expect("existing target");
+        for (name, code) in [
+            ("CON", "reservedProjectName"),
+            ("bad:name", "invalidProjectNameCharacters"),
+            ("Existing", "projectTargetExists"),
+        ] {
+            let result =
+                preflight_project_creation(project_creation_request(&root, name, "blank-longform"));
+            assert!(!result.valid);
+            assert!(result.issues.iter().any(|issue| issue.code == code));
+        }
+        assert!(fs::read_dir(&root).expect("list parent").all(|entry| {
+            !entry
+                .expect("entry")
+                .file_name()
+                .to_string_lossy()
+                .starts_with(".writing-buddy-project-staging-")
+        }));
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn all_built_in_templates_create_through_verified_staging_and_reopen() {
+        let root = project_creation_parent("templates");
+        for (index, template) in [
+            "blank-longform",
+            "mystery-longform",
+            "fantasy-longform",
+            "science-fiction-longform",
+            "realist-fiction",
+            "custom",
+        ]
+        .iter()
+        .enumerate()
+        {
+            let mut request =
+                project_creation_request(&root, &format!("Sanitized {index}"), template);
+            request.theme_id = if index % 2 == 0 {
+                "paper".to_owned()
+            } else {
+                "midnight".to_owned()
+            };
+            let created = create_project(request).expect("create project");
+            let reopened = migration::open_project(&created.root).expect("reopen project");
+            assert_eq!(reopened.project.project_id, created.project_id);
+            assert_eq!(
+                reopened
+                    .appearance
+                    .as_ref()
+                    .map(|value| value.theme_id.as_str()),
+                Some(if index % 2 == 0 { "paper" } else { "midnight" })
+            );
+            assert!(!reopened.read_only);
+            assert!(created.first_chapter_id.is_some());
+            let all_bytes = WalkDir::new(&created.root)
+                .into_iter()
+                .filter_map(Result::ok)
+                .filter(|entry| entry.file_type().is_file())
+                .flat_map(|entry| fs::read(entry.path()).unwrap_or_default())
+                .collect::<Vec<_>>();
+            assert!(!String::from_utf8_lossy(&all_bytes).contains("sk-"));
+        }
+        assert!(fs::read_dir(&root).expect("list parent").all(|entry| {
+            !entry
+                .expect("entry")
+                .file_name()
+                .to_string_lossy()
+                .starts_with(".writing-buddy-project-staging-")
+        }));
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn creation_never_overwrites_an_existing_target_or_leaves_staging() {
+        let root = project_creation_parent("collision");
+        let request = project_creation_request(&root, "Existing", "blank-longform");
+        fs::create_dir(root.join("Existing")).expect("existing target");
+        assert_eq!(
+            create_project(request).expect_err("must reject existing target"),
+            "projectTargetExists"
+        );
+        assert!(fs::read_dir(&root).expect("list parent").all(|entry| {
+            !entry
+                .expect("entry")
+                .file_name()
+                .to_string_lossy()
+                .starts_with(".writing-buddy-project-staging-")
+        }));
+        let _ = fs::remove_dir_all(root);
+    }
 
     #[test]
     fn project_open_errors_are_structured_and_redacted() {

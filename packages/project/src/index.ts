@@ -1,6 +1,8 @@
 import type { CursorState, ResourceDescriptor, TextFile } from '@writing-buddy/domain';
 import type { AtomicWriteRequest, AtomicWriteResult, FileSystemPort } from '@writing-buddy/platform-ports';
 
+export * from './ProjectTemplateRegistry';
+
 export interface DocumentSessionState {
 	readonly resourceId: string;
 	readonly path: string;

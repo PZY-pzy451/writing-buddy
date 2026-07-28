@@ -36,6 +36,9 @@ export function ProjectSidebar(): React.JSX.Element {
 	const openResource = useAppStore(state => state.openResource);
 	const openDashboard = useAppStore(state => state.openDashboard);
 	const chooseProject = useAppStore(state => state.chooseProject);
+	const openProjectWizard = useAppStore(state => state.openProjectWizard);
+	const openProject = useAppStore(state => state.openProject);
+	const recentProjectRoots = useAppStore(state => state.recentProjectRoots) ?? [];
 	const sidebarWidth = useAppStore(state => state.sidebarWidth);
 	const setSidebarWidth = useAppStore(state => state.setSidebarWidth);
 	const [collapsedVolumes, setCollapsedVolumes] = useState<ReadonlySet<string>>(new Set());
@@ -51,10 +54,22 @@ export function ProjectSidebar(): React.JSX.Element {
 	if (!snapshot) {
 		return (
 			<aside className="project-sidebar empty-sidebar">
-				<BookOpen size={32} />
-				<h2>打开你的作品</h2>
-				<p>选择一个 Writing Buddy 项目副本开始迁移验证。</p>
-				<button className="primary-button" type="button" onClick={() => void chooseProject()}>选择项目</button>
+				<div className="empty-sidebar-heading">
+					<span className="eyebrow">最近作品</span>
+					<h2>作品书架</h2>
+				</div>
+				<div className="empty-sidebar-launcher">
+					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={17} />新建作品</button>
+					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={17} />打开作品</button>
+				</div>
+				<nav className="sidebar-recent-list" aria-label="最近作品">
+					{recentProjectRoots.length ? recentProjectRoots.map(root => (
+						<button type="button" key={root} onClick={() => void openProject(root)}>
+							<BookOpen size={17} />
+							<span>{root.split(/[\\/]/).filter(Boolean).at(-1) ?? root}</span>
+						</button>
+					)) : <p>暂无最近作品</p>}
+				</nav>
 			</aside>
 		);
 	}

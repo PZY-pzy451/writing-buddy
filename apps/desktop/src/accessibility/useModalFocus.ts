@@ -9,7 +9,10 @@ const focusableSelector = [
 	'[tabindex]:not([tabindex="-1"])'
 ].join(',');
 
-export function useModalFocus(onDismiss?: () => void): React.RefObject<HTMLElement | null> {
+export function useModalFocus(
+	onDismiss?: () => void,
+	active = true
+): React.RefObject<HTMLElement | null> {
 	const dialogRef = useRef<HTMLElement>(null);
 	const dismissRef = useRef(onDismiss);
 	useLayoutEffect(() => {
@@ -17,6 +20,7 @@ export function useModalFocus(onDismiss?: () => void): React.RefObject<HTMLEleme
 	}, [onDismiss]);
 
 	useLayoutEffect(() => {
+		if (!active) return;
 		const previouslyFocused = document.activeElement instanceof HTMLElement
 			? document.activeElement
 			: undefined;
@@ -57,7 +61,7 @@ export function useModalFocus(onDismiss?: () => void): React.RefObject<HTMLEleme
 				previouslyFocused.focus();
 			}
 		};
-	}, []);
+	}, [active]);
 
 	return dialogRef;
 }

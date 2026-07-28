@@ -148,6 +148,7 @@ export interface LoggerPort {
 export interface ProjectSnapshot {
 	readonly root: string;
 	readonly project: WritingProject;
+	readonly appearance?: ProjectAppearance;
 	readonly resources: readonly {
 		readonly id: string;
 		readonly type: 'note' | 'character' | 'worldbuilding' | 'timeline' | 'item';
@@ -165,6 +166,60 @@ export interface ProjectSnapshot {
 }
 
 export type ProjectOpenMode = 'read-write' | 'read-only';
+
+export type ProjectThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
+export type ProjectAccentId = 'gold' | 'blue' | 'purple';
+export type ProjectWritingMode = 'manuscriptFirst' | 'planningFirst';
+
+export interface ProjectAppearance {
+	readonly themeId: ProjectThemeId;
+	readonly accentId: ProjectAccentId;
+	readonly writingMode: ProjectWritingMode;
+	readonly aiQuickActionsEnabled: boolean;
+}
+
+export interface CreateProjectRequest {
+	readonly name: string;
+	readonly description?: string;
+	readonly rootDirectory: string;
+	readonly projectType: 'longform' | 'novella' | 'short' | 'series';
+	readonly language: string;
+	readonly templateId: string;
+	readonly selectedInitialResources: readonly string[];
+	readonly themeId: ProjectThemeId;
+	readonly accentId: ProjectAccentId;
+	readonly writingMode: ProjectWritingMode;
+}
+
+export type ProjectCreationField =
+	| 'name'
+	| 'rootDirectory'
+	| 'templateId'
+	| 'selectedInitialResources'
+	| 'themeId'
+	| 'request';
+
+export interface ProjectCreationIssue {
+	readonly field: ProjectCreationField;
+	readonly code: string;
+	readonly message: string;
+}
+
+export interface ProjectCreationPreflight {
+	readonly valid: boolean;
+	readonly targetRoot?: string;
+	readonly createdFileCount: number;
+	readonly createdDirectoryCount: number;
+	readonly issues: readonly ProjectCreationIssue[];
+}
+
+export interface CreatedProject {
+	readonly root: string;
+	readonly projectId: string;
+	readonly firstChapterId?: string;
+	readonly createdFileCount: number;
+	readonly createdDirectoryCount: number;
+}
 
 export type ProjectOpenStage =
 	| 'select-path'
@@ -221,6 +276,9 @@ export interface StoryIndexGateway {
 
 export interface DesktopBridge extends StoryStorageGateway, MentionStorageGateway, StoryIndexGateway {
 	chooseProject(): Promise<string | undefined>;
+	chooseProjectParentDirectory(): Promise<string | undefined>;
+	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
+	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
 	repairProject(projectRoot: string): Promise<ProjectRepairResult>;
 	revealProjectDirectory(projectRoot: string): Promise<void>;

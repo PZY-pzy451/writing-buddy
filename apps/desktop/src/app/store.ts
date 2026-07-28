@@ -72,6 +72,7 @@ export type AssistantActionIntent = AssistantActionRequest & {
 
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
+	readonly recentProjectRoots: readonly string[];
 	readonly activeResourceId?: string;
 	readonly openResourceIds: readonly string[];
 	readonly theme: ThemeId;
@@ -111,6 +112,7 @@ interface AppState extends PersistedWorkspace {
 	readonly assistantOpen: boolean;
 	readonly assistantIntent?: AssistantActionIntent;
 	readonly dockOpen: boolean;
+	readonly projectWizardOpen: boolean;
 	readonly lastSavedAt?: string;
 	readonly pendingEdit?: {
 		readonly id: string;
@@ -125,6 +127,8 @@ interface AppState extends PersistedWorkspace {
 	};
 	readonly bootstrap: () => Promise<void>;
 	readonly chooseProject: () => Promise<void>;
+	readonly openProjectWizard: () => void;
+	readonly closeProjectWizard: () => void;
 	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
 	readonly retryProjectOpen: () => Promise<void>;
 	readonly openProjectReadOnly: () => Promise<void>;
@@ -208,6 +212,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	documentViews: {},
 	activeMode: 'works',
 	storyView: 'characters',
+	recentProjectRoots: [],
 	openResourceIds: [],
 	tabs: [],
 	issues: [],
@@ -216,9 +221,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	cursorOffset: 0,
 	assistantOpen: true,
 	dockOpen: true,
+	projectWizardOpen: false,
 
 	async bootstrap() {
-		const root = get().recentProjectRoot;
+		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
 		if (root) {
 			await get().openProject(root);
 		}
@@ -229,6 +235,14 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		if (root) {
 			await get().openProject(root);
 		}
+	},
+
+	openProjectWizard() {
+		set({ projectWizardOpen: true, error: undefined });
+	},
+
+	closeProjectWizard() {
+		set({ projectWizardOpen: false });
 	},
 
 	async openProject(root, mode = 'read-write') {
@@ -252,6 +266,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 
 		try {
 			const snapshot = result.snapshot;
+			const recentProjectRoots = [
+				snapshot.root,
+				...(get().recentProjectRoots ?? []).filter(candidate => (
+					candidate.toLocaleLowerCase() !== snapshot.root.toLocaleLowerCase()
+				))
+			].slice(0, 3);
 			let reviewFile: TextFile | undefined;
 			let restoredIssues: readonly ReviewIssue[] = [];
 			try {
@@ -291,6 +311,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({
 				snapshot,
 				recentProjectRoot: snapshot.root,
+				recentProjectRoots,
+				...(snapshot.appearance ? {
+					theme: snapshot.appearance.themeId,
+					accent: snapshot.appearance.accentId
+				} : {}),
 				loading: false,
 				issues: restoredIssues,
 				reviewHash: reviewFile?.hash ?? '',
@@ -751,6 +776,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	name: 'writing-buddy-next-workspace',
 	partialize: state => ({
 		recentProjectRoot: state.recentProjectRoot,
+		recentProjectRoots: state.recentProjectRoots,
 		activeResourceId: state.activeResourceId,
 		openResourceIds: state.openResourceIds,
 		theme: state.theme,

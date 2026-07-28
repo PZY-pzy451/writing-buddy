@@ -17,7 +17,10 @@ import type {
 	AtomicWriteResult,
 	BackupInspection,
 	BackupResult,
+	CreateProjectRequest,
+	CreatedProject,
 	DesktopBridge,
+	ProjectCreationPreflight,
 	ProjectOpenMode,
 	ProjectRepairResult,
 	ProjectSnapshot,
@@ -42,6 +45,18 @@ function isTauriRuntime(): boolean {
 class TauriDesktopBridge implements DesktopBridge {
 	chooseProject(): Promise<string | undefined> {
 		return invoke<string | null>('choose_project').then(value => value ?? undefined);
+	}
+
+	chooseProjectParentDirectory(): Promise<string | undefined> {
+		return invoke<string | null>('choose_project_parent_directory').then(value => value ?? undefined);
+	}
+
+	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight> {
+		return invoke<ProjectCreationPreflight>('preflight_project_creation', { request });
+	}
+
+	createProject(request: CreateProjectRequest): Promise<CreatedProject> {
+		return invoke<CreatedProject>('create_project', { request });
 	}
 
 	openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
@@ -295,6 +310,12 @@ const browserProject: ProjectSnapshot = {
 			]
 		}]
 	},
+	appearance: {
+		themeId: 'paper',
+		accentId: 'gold',
+		writingMode: 'manuscriptFirst',
+		aiQuickActionsEnabled: true
+	},
 	resources: [
 		{ id: 'lin-mo', type: 'character', title: '林墨', path: 'references/characters/lin-mo.json' },
 		{ id: 'old-station', type: 'worldbuilding', title: '旧火车站', path: 'references/worldbuilding/old-station/metadata.json' },
@@ -310,6 +331,8 @@ const browserProject: ProjectSnapshot = {
 	integrityIssues: [],
 	readOnly: false
 };
+
+const browserCreatedProjects = new Map<string, ProjectSnapshot>();
 
 const browserFiles = new Map<string, string>([
 	['chapters/chapter-001.md', '夜雨落在旧火车站的玻璃穹顶上，细密的声响像一封迟迟没有拆开的信。\\n\\n林墨推开候车室的木门，看见墙上的时钟停在二十三点十七分。\\n\\n徐青已经等在长椅旁。她把一张褪色的行李票放到灯下，票面背后写着同一个时间。'],
@@ -822,8 +845,138 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return browserProject.root;
 	}
 
-	async openProject(_projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
-		return { ...browserProject, readOnly: mode === 'read-only' };
+	async chooseProjectParentDirectory(): Promise<string> {
+		return 'D:\\WritingBuddy\\Projects';
+	}
+
+	async preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight> {
+		const issues: ProjectCreationPreflight['issues'][number][] = [];
+		const name = request.name.trim();
+		if (!name || name.length > 80) {
+			issues.push({ field: 'name', code: 'invalidProjectNameLength', message: '作品名称需要为 1–80 个字符。' });
+		}
+		if (/[<>:"/\\|?*]/.test(name) || /[ .]$/.test(name)) {
+			issues.push({ field: 'name', code: 'invalidProjectNameCharacters', message: '作品名称包含 Windows 不允许的字符或结尾。' });
+		}
+		if (/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(name)) {
+			issues.push({ field: 'name', code: 'reservedProjectName', message: '该名称是 Windows 保留名称，请更换作品名称。' });
+		}
+		if (!request.rootDirectory.trim()) {
+			issues.push({ field: 'rootDirectory', code: 'projectParentUnavailable', message: '请选择作品保存位置。' });
+		}
+		if (request.selectedInitialResources.includes('first-chapter')
+			&& !request.selectedInitialResources.includes('first-volume')) {
+			issues.push({
+				field: 'selectedInitialResources',
+				code: 'firstChapterRequiresVolume',
+				message: '创建第一章草稿时必须同时创建第一卷。'
+			});
+		}
+		const targetRoot = request.rootDirectory && name
+			? `${request.rootDirectory.replace(/[\\/]+$/, '')}\\${name}`
+			: undefined;
+		if (targetRoot && browserCreatedProjects.has(targetRoot)) {
+			issues.push({ field: 'rootDirectory', code: 'projectTargetExists', message: '同名作品目录已经存在，不会自动覆盖。' });
+		}
+		const selected = new Set(request.selectedInitialResources);
+		const directories = new Set(['', '.writing-buddy']);
+		if (selected.has('first-chapter')) directories.add('chapters');
+		if (selected.has('character-category')) {
+			directories.add('references');
+			directories.add('references/characters');
+		}
+		if (selected.has('worldbuilding-category')) {
+			directories.add('references');
+			directories.add('references/worldbuilding');
+		}
+		if (selected.has('timeline')) {
+			directories.add('story');
+			directories.add('story/events');
+		}
+		if (selected.has('plot-and-foreshadowing')) {
+			directories.add('story');
+			directories.add('story/plot-threads');
+			directories.add('story/foreshadowing');
+		}
+		if (selected.has('sample-content')) {
+			directories.add('references');
+			directories.add('references/notes');
+		}
+		if (selected.has('ai-quick-actions')) directories.add('.writing-buddy/ai');
+		return {
+			valid: issues.length === 0,
+			...(targetRoot ? { targetRoot } : {}),
+			createdFileCount: 2 + Number(selected.has('first-chapter')) + Number(selected.has('sample-content')),
+			createdDirectoryCount: directories.size,
+			issues
+		};
+	}
+
+	async createProject(request: CreateProjectRequest): Promise<CreatedProject> {
+		const preflight = await this.preflightProjectCreation(request);
+		if (!preflight.valid || !preflight.targetRoot) {
+			throw new Error(preflight.issues[0]?.code ?? 'projectCreationPreflightFailed');
+		}
+		const suffix = Math.abs([...request.name].reduce((total, character) => (
+			(total * 31 + (character.codePointAt(0) ?? 0)) | 0
+		), 17)).toString(16).padStart(8, '0').slice(-8);
+		const projectId = `project-${suffix}`;
+		const firstChapter = request.selectedInitialResources.includes('first-chapter')
+			? {
+				id: `chapter-${suffix}`,
+				title: '第一章',
+				file: 'chapters/chapter-001.md',
+				status: 'draft' as const,
+				scene: {
+					location: '',
+					time: '',
+					pov: '',
+					characters: [],
+					goal: '',
+					note: ''
+				}
+			}
+			: undefined;
+		const snapshot: ProjectSnapshot = {
+			root: preflight.targetRoot,
+			project: {
+				schemaVersion: 1,
+				projectId,
+				title: request.name.trim(),
+				volumes: request.selectedInitialResources.includes('first-volume')
+					? [{
+						id: `volume-${suffix}`,
+						title: '第一卷',
+						chapters: firstChapter ? [firstChapter] : []
+					}]
+					: []
+			},
+			appearance: {
+				themeId: request.themeId,
+				accentId: request.accentId,
+				writingMode: request.writingMode,
+				aiQuickActionsEnabled: request.selectedInitialResources.includes('ai-quick-actions')
+			},
+			resources: [],
+			wordCounts: firstChapter ? { [firstChapter.id]: 0 } : {},
+			integrityIssues: [],
+			readOnly: false
+		};
+		browserCreatedProjects.set(preflight.targetRoot, snapshot);
+		if (firstChapter) {
+			browserFiles.set(firstChapter.file, '# 第一章\n\n');
+		}
+		return {
+			root: preflight.targetRoot,
+			projectId,
+			...(firstChapter ? { firstChapterId: firstChapter.id } : {}),
+			createdFileCount: preflight.createdFileCount,
+			createdDirectoryCount: preflight.createdDirectoryCount
+		};
+	}
+
+	async openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
+		return { ...(browserCreatedProjects.get(projectRoot) ?? browserProject), readOnly: mode === 'read-only' };
 	}
 
 	async repairProject(): Promise<ProjectRepairResult> {

@@ -58,6 +58,25 @@ pub struct WritingProject {
     pub volumes: Vec<VolumeDescriptor>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProjectAppearance {
+    pub theme_id: String,
+    pub accent_id: String,
+    pub writing_mode: String,
+    pub ai_quick_actions_enabled: bool,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ProjectWorkspacePreferences {
+    schema_version: u64,
+    theme_id: String,
+    accent_id: String,
+    writing_mode: String,
+    ai_quick_actions_enabled: bool,
+}
+
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ResourceDescriptor {
@@ -82,10 +101,37 @@ pub struct IntegrityIssue {
 pub struct ProjectSnapshot {
     pub root: String,
     pub project: WritingProject,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub appearance: Option<ProjectAppearance>,
     pub resources: Vec<ResourceDescriptor>,
     pub integrity_issues: Vec<IntegrityIssue>,
     pub word_counts: HashMap<String, usize>,
     pub read_only: bool,
+}
+
+fn read_project_appearance(root: &Path) -> Option<ProjectAppearance> {
+    let path = root.join(".writing-buddy").join("workspace.json");
+    let bytes = fs::read(path).ok()?;
+    let preferences: ProjectWorkspacePreferences = serde_json::from_slice(&bytes).ok()?;
+    if preferences.schema_version != 1
+        || !matches!(
+            preferences.theme_id.as_str(),
+            "paper" | "midnight" | "fog" | "focus"
+        )
+        || !matches!(preferences.accent_id.as_str(), "gold" | "blue" | "purple")
+        || !matches!(
+            preferences.writing_mode.as_str(),
+            "manuscriptFirst" | "planningFirst"
+        )
+    {
+        return None;
+    }
+    Some(ProjectAppearance {
+        theme_id: preferences.theme_id,
+        accent_id: preferences.accent_id,
+        writing_mode: preferences.writing_mode,
+        ai_quick_actions_enabled: preferences.ai_quick_actions_enabled,
+    })
 }
 
 #[derive(Debug, Deserialize)]
@@ -413,6 +459,7 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
     let read_only = read_only || issues.iter().any(|issue| issue.severity == "error");
     Ok(ProjectSnapshot {
         root: root.to_string_lossy().into_owned(),
+        appearance: read_project_appearance(&root),
         project,
         resources: collect_resources(&root),
         integrity_issues: issues,

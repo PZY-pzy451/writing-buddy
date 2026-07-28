@@ -14,6 +14,8 @@ import { AssistantPanel } from '../assistant/AssistantPanel';
 import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
+import { ProjectCreationWizard } from '../features/projects/ui/ProjectCreationWizard';
+import { ProjectWelcome } from '../features/projects/ui/ProjectWelcome';
 import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
 import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
 import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
@@ -108,17 +110,18 @@ export function App(): React.JSX.Element {
 	}, []);
 
 	const systemPageVisible = !['works', 'references'].includes(activeMode);
+	const welcomeVisible = activeMode === 'works' && !snapshot;
 	const storyStudioVisible = activeMode === 'references' && Boolean(snapshot);
 	const showDashboard = !systemPageVisible && activeMode === 'works' && Boolean(snapshot) && !activeResource;
-	const workspaceAssistantVisible = assistantOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
-	const workspaceDockVisible = dockOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
+	const workspaceAssistantVisible = Boolean(snapshot) && assistantOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
+	const workspaceDockVisible = Boolean(snapshot) && dockOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
 	const showTextEditor = !systemPageVisible && !storyStudioVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
 	const showStoryResource = !systemPageVisible && !storyStudioVisible && activeResource?.type === 'story';
 	const showResourceEditor = !systemPageVisible && !storyStudioVisible && activeResource && !showTextEditor && !showStoryResource;
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${welcomeVisible ? 'is-welcome' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -133,12 +136,13 @@ export function App(): React.JSX.Element {
 				{!systemPageVisible && !showDashboard && !storyStudioVisible && <WriterHeader />}
 				<div className="canvas-surface">
 					{systemPageVisible && <SystemPage />}
+					{welcomeVisible && <ProjectWelcome />}
 					{showDashboard && <StoryDashboardPage />}
 					{storyStudioVisible && <StoryStudioRoute />}
 					{showTextEditor && <ChapterEditor />}
 					{showResourceEditor && <ResourceEditor />}
 					{showStoryResource && <StoryWorkspaceRoute />}
-					{!systemPageVisible && !activeResource && !showDashboard && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
+					{!systemPageVisible && !welcomeVisible && !activeResource && !showDashboard && <div className="canvas-empty">从左侧选择一个章节开始写作。</div>}
 				</div>
 				{workspaceDockVisible && <TaskDock />}
 				{!dockOpen && !focusMode && !systemPageVisible && (
@@ -148,6 +152,7 @@ export function App(): React.JSX.Element {
 			{workspaceAssistantVisible && <AssistantPanel />}
 			{!focusMode && <StatusBar />}
 			<AiGenerationDrawer />
+			<ProjectCreationWizard />
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">

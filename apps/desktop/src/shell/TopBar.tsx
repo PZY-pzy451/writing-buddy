@@ -12,6 +12,7 @@ import {
 	aiGenerationStore,
 	useAiGenerationStore
 } from '../features/ai/drawer/aiGenerationStore';
+import { GlobalCreateMenu } from '../features/projects/ui/GlobalCreateMenu';
 
 export function TopBar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -102,17 +103,30 @@ export function TopBar(): React.JSX.Element {
 				<kbd>Ctrl K</kbd>
 			</label>
 			<div className="top-actions">
-				<button className="ghost-button" type="button" onClick={() => void save()} disabled={!session?.state.dirty}>
+				<GlobalCreateMenu />
+				<button
+					className="ghost-button"
+					type="button"
+					aria-label={session?.state.dirty ? '保存' : '已保存'}
+					onClick={() => void save()}
+					disabled={!session?.state.dirty}
+				>
 					<Save size={17} />
 					<span>{session?.state.dirty ? '保存' : '已保存'}</span>
 				</button>
-				<button className={`ghost-button ${focusMode ? 'is-active' : ''}`} type="button" onClick={toggleFocus}>
+				<button
+					className={`ghost-button ${focusMode ? 'is-active' : ''}`}
+					type="button"
+					aria-label={focusMode ? '退出专注' : '专注模式'}
+					onClick={toggleFocus}
+				>
 					<Focus size={17} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
 				<button
 					className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
 					type="button"
+					aria-label="AI 快速生成"
 					onClick={openAiDrawer}
 				>
 					<Sparkles size={17} />
