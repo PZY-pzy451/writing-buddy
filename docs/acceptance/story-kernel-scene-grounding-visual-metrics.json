@@ -1,40 +1,81 @@
 {
-  "implementationCommit": "9c59601d",
-  "fixture": {
-    "source": "sanitized browser fixture",
-    "candidateType": "scene",
-    "omittedFields": [
-      "chapterId",
-      "manuscriptRange",
-      "narrativeOrder"
-    ],
-    "evidenceOffsets": "intentionally outside the sent source"
+  "implementationCommits": {
+    "sceneGrounding": "9c59601d",
+    "optionalNullNormalization": "73f633f7"
   },
-  "result": {
-    "candidateSelectable": true,
-    "confirmEnabled": true,
-    "finalWriteTriggered": false,
-    "localGroundingExplanationVisible": true,
-    "reportedConflictVisible": false,
-    "consoleErrors": []
-  },
-  "viewports": [
-    {
-      "theme": "paper",
-      "width": 1440,
-      "height": 1000,
-      "documentScrollWidth": 1440,
-      "assistantWidth": 331.875,
-      "candidateWidth": 268.875,
-      "minimumCandidateActionHeight": 44
+  "fixtures": {
+    "sceneGrounding": {
+      "source": "sanitized browser fixture",
+      "candidateType": "scene",
+      "omittedFields": [
+        "chapterId",
+        "manuscriptRange",
+        "narrativeOrder"
+      ],
+      "evidenceOffsets": "intentionally outside the sent source"
     },
-    {
-      "theme": "midnight",
-      "width": 390,
-      "height": 844,
-      "documentScrollWidth": 390,
-      "bodyScrollWidth": 390,
-      "candidateWidth": 227
+    "optionalNull": {
+      "source": "sanitized browser fixture",
+      "candidateType": "location",
+      "mapPoint": null
     }
-  ]
+  },
+  "results": {
+    "sceneGrounding": {
+      "candidateSelectable": true,
+      "confirmEnabled": true,
+      "finalWriteTriggered": false,
+      "localGroundingExplanationVisible": true,
+      "reportedConflictVisible": false,
+      "consoleErrors": []
+    },
+    "optionalNull": {
+      "candidateSelectable": true,
+      "confirmEnabled": true,
+      "finalWriteTriggered": false,
+      "mapPointConflictVisible": false,
+      "genericSchemaConflictVisible": false,
+      "consoleErrors": []
+    }
+  },
+  "viewports": {
+    "sceneGrounding": [
+      {
+        "theme": "paper",
+        "width": 1440,
+        "height": 1000,
+        "documentScrollWidth": 1440,
+        "assistantWidth": 331.875,
+        "candidateWidth": 268.875,
+        "minimumCandidateActionHeight": 44
+      },
+      {
+        "theme": "midnight",
+        "width": 390,
+        "height": 844,
+        "documentScrollWidth": 390,
+        "bodyScrollWidth": 390,
+        "candidateWidth": 227
+      }
+    ],
+    "optionalNull": [
+      {
+        "theme": "paper",
+        "width": 1440,
+        "height": 1000,
+        "documentScrollWidth": 1440,
+        "assistantWidth": 331.875,
+        "candidateWidth": 268.875,
+        "minimumCandidateActionHeight": 44
+      },
+      {
+        "theme": "midnight",
+        "width": 390,
+        "height": 844,
+        "documentScrollWidth": 390,
+        "bodyScrollWidth": 390,
+        "candidateWidth": 227
+      }
+    ]
+  }
 }

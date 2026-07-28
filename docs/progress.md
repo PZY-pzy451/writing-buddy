@@ -4,20 +4,18 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Story Kernel optional-null normalization is active on
-`codex/story-kernel-scene-grounding`. A real location candidate returned
-`mapPoint: null`; the field is optional but strict parsing currently treats
-explicit JSON null as an invalid object. The canonical contract remains
-`docs/plans/020-story-kernel-scene-grounding.md`.
+No implementation milestone is active. Story Kernel scene grounding and
+Schema-constrained optional-null normalization are accepted on
+`codex/story-kernel-scene-grounding`.
 
 ## Completed
 
 - Scene generation now derives chapter/range/revision/order from local
   manuscript state, safely re-anchors unique evidence quotes, and keeps
   ambiguous, overlapping, or multi-scene ranges blocked.
-- Scene-grounding acceptance: 97 frontend files / 331 tests, 51 Rust tests,
-  Paper/Midnight responsive checks, fresh Tauri packaging, and isolated native
-  close with exit code 0.
+- Scene-grounding and optional-null acceptance: 97 frontend files / 335 tests,
+  51 Rust tests, Paper/Midnight responsive checks, final Tauri packaging, and
+  isolated native close with exit code 0.
 - Story Kernel scene-grounding evidence in
   `docs/acceptance/028-story-kernel-scene-grounding-2026-07-28.md`.
 - Shared 32/40/44-pixel control tiers, 16/18/20-pixel button icon tiers,
