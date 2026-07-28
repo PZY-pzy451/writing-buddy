@@ -486,6 +486,171 @@ describe('StoryKernelGenerationService', () => {
 		expect(batch.candidates[0]?.evidence).toBeUndefined();
 	});
 
+	it('omits null optional location fields and persists the valid candidate', async () => {
+		const { repository, service } = createHarness();
+		await repository.save({
+			id: 'location:station-yard',
+			type: 'location',
+			title: '站外空地',
+			aliases: [],
+			tags: [],
+			schemaVersion: 1,
+			createdAt: now,
+			updatedAt: now,
+			revision: 0,
+			travelLinks: [],
+			factionIds: [],
+			rules: [],
+			evidenceIds: []
+		}, 0);
+		const content = '夜雨落在旧车站的玻璃顶上';
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成地点候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['location'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'location:old-station-roof',
+						type: 'location',
+						title: '旧车站玻璃顶',
+						aliases: [],
+						summary: null,
+						tags: [],
+						evidenceIds: [],
+						parentLocationId: null,
+						locationType: '车站构造',
+						mapPoint: null,
+						travelLinks: [{
+							targetLocationId: 'location:station-yard',
+							minimumMinutes: 2,
+							mode: null
+						}],
+						factionIds: [],
+						rules: []
+					},
+					confidence: 0.9,
+					rationale: '原文明确提到旧车站的玻璃顶。',
+					evidence: { start: 3, end: content.length, quote: content.slice(3) }
+				}]
+			}),
+			now
+		});
+
+		const candidate = batch.candidates[0];
+		expect(candidate?.conflicts).toEqual([]);
+		expect(candidate?.normalizedResource).not.toHaveProperty('summary');
+		expect(candidate?.normalizedResource).not.toHaveProperty('parentLocationId');
+		expect(candidate?.normalizedResource).not.toHaveProperty('mapPoint');
+		expect(candidate?.normalizedResource).toMatchObject({
+			travelLinks: [{
+				targetLocationId: 'location:station-yard',
+				minimumMinutes: 2
+			}]
+		});
+		expect(candidate?.normalizedResource).not.toHaveProperty('travelLinks.0.mode');
+
+		await expect(service.confirm(batch.id, [candidate?.id ?? ''])).resolves.toMatchObject({
+			candidates: [expect.objectContaining({ status: 'accepted' })]
+		});
+		expect(await repository.get('location', 'location:old-station-roof')).toMatchObject({
+			id: 'location:old-station-roof',
+			title: '旧车站玻璃顶',
+			locationType: '车站构造'
+		});
+	});
+
+	it('keeps required null fields blocked at the response boundary', async () => {
+		const { service } = createHarness();
+		await expect(service.stageFromResponse({
+			instruction: '从正文生成地点候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '旧车站',
+			targetTypes: ['location'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'location:missing-title',
+						type: 'location',
+						title: null,
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						mapPoint: null,
+						travelLinks: [],
+						factionIds: [],
+						rules: []
+					},
+					confidence: 0.9,
+					rationale: '候选缺少必填标题。',
+					evidence: { start: 0, end: 3, quote: '旧车站' }
+				}]
+			}),
+			now
+		})).rejects.toThrow('invalidStoryKernelGenerationResource');
+	});
+
+	it('does not hide unknown null fields or null array entries', async () => {
+		const { service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成地点候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '旧车站',
+			targetTypes: ['location'],
+			response: JSON.stringify({
+				candidates: [
+					{
+						operation: 'create',
+						resource: {
+							id: 'location:unknown-null-field',
+							type: 'location',
+							title: '未知字段地点',
+							aliases: [],
+							tags: [],
+							evidenceIds: [],
+							modelInventedField: null,
+							travelLinks: [],
+							factionIds: [],
+							rules: []
+						},
+						confidence: 0.8,
+						rationale: '包含未知字段。',
+						evidence: { start: 0, end: 3, quote: '旧车站' }
+					},
+					{
+						operation: 'create',
+						resource: {
+							id: 'location:null-array-entry',
+							type: 'location',
+							title: '空数组项地点',
+							aliases: [],
+							tags: [],
+							evidenceIds: [],
+							travelLinks: [],
+							factionIds: [],
+							rules: [null]
+						},
+						confidence: 0.8,
+						rationale: '数组包含 null。',
+						evidence: { start: 0, end: 3, quote: '旧车站' }
+					}
+				]
+			}),
+			now
+		});
+
+		for (const candidate of batch.candidates) {
+			expect(candidate.normalizedResource).toBeUndefined();
+			expect(candidate.conflicts.map(item => item.code)).toContain('invalid-schema');
+		}
+	});
+
 	it('blocks overlapping and multiple scene candidates for one source range', async () => {
 		const { repository, service } = createHarness();
 		await repository.save({

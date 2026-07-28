@@ -4,8 +4,11 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-No implementation milestone is active. The Story Kernel scene-grounding
-repair is accepted on `codex/story-kernel-scene-grounding`.
+Story Kernel optional-null normalization is active on
+`codex/story-kernel-scene-grounding`. A real location candidate returned
+`mapPoint: null`; the field is optional but strict parsing currently treats
+explicit JSON null as an invalid object. The canonical contract remains
+`docs/plans/020-story-kernel-scene-grounding.md`.
 
 ## Completed
 

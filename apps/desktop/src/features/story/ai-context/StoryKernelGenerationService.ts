@@ -102,6 +102,36 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function pathMatches(
+	left: readonly PropertyKey[],
+	right: readonly PropertyKey[]
+): boolean {
+	return left.length === right.length
+		&& left.every((segment, index) => segment === right[index]);
+}
+
+function omitNullFieldsAtPaths(
+	value: unknown,
+	paths: readonly (readonly PropertyKey[])[],
+	currentPath: readonly PropertyKey[] = []
+): unknown {
+	if (Array.isArray(value)) {
+		return value.map((item, index) => omitNullFieldsAtPaths(
+			item,
+			paths,
+			[...currentPath, index]
+		));
+	}
+	if (!isRecord(value)) return value;
+	return Object.fromEntries(
+		Object.entries(value).flatMap(([key, child]) => (
+			child === null && paths.some(path => pathMatches(path, [...currentPath, key]))
+				? []
+				: [[key, omitNullFieldsAtPaths(child, paths, [...currentPath, key])]]
+		))
+	);
+}
+
 function requiredString(value: unknown, code: string): string {
 	if (typeof value !== 'string') throw new Error(code);
 	return value;
@@ -536,7 +566,21 @@ function hydrateResource(input: {
 	if (input.resourceType === 'information' && payload.authorSecret === true) {
 		payload.excludeFromAiByDefault = true;
 	}
-	return StorySchemaRegistry.parse(input.resourceType, payload);
+	try {
+		return StorySchemaRegistry.parse(input.resourceType, payload);
+	} catch (reason) {
+		if (!(reason instanceof ZodError)) throw reason;
+		const nullPaths = reason.issues
+			.map(issue => issue.path)
+			.filter(path => (
+				path.length > 0
+				&& typeof path[path.length - 1] === 'string'
+				&& valueAtPath(payload, path) === null
+			));
+		if (nullPaths.length === 0) throw reason;
+		const retryPayload = omitNullFieldsAtPaths(payload, nullPaths);
+		return StorySchemaRegistry.parse(input.resourceType, retryPayload);
+	}
 }
 
 async function loadCurrentResources(

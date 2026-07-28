@@ -1,7 +1,7 @@
 # Story Kernel scene grounding repair
 
 Updated: 2026-07-28
-Status: Accepted
+Status: Active
 
 ## Observed failure
 
@@ -46,6 +46,11 @@ indices, even though it can be re-anchored deterministically without inference.
    commit, and author-confirmation boundaries.
 8. Explain in the UI that scene position is locally grounded and advise
    selecting complete scene prose when the whole chapter is too broad.
+9. When strict Story Kernel parsing reports a type error whose exact raw path
+   is JSON `null`, retry once with only those null-valued object properties
+   omitted. Accept the retry only if the same strict Schema fully passes. This
+   repairs optional fields such as `location.mapPoint` without inventing a
+   value, while required fields and unknown properties remain blocked.
 
 ## Verification
 
@@ -56,10 +61,13 @@ indices, even though it can be re-anchored deterministically without inference.
    multiple-scene rejection, persistence, and confirmation tests.
 4. Panel test for the local-grounding explanation and a confirmable repaired
    scene candidate.
-5. Complete `pnpm acceptance`.
-6. Rust formatting and complete Rust tests to prove no native regression.
-7. Responsive Paper/Midnight browser evidence for the repaired candidate.
-8. Fresh one-job Tauri Release/NSIS build and isolated native startup/normal
+5. Service and panel regressions for a location candidate with
+   `mapPoint: null`, plus a negative test proving a required `null` still
+   blocks.
+6. Complete `pnpm acceptance`.
+7. Rust formatting and complete Rust tests to prove no native regression.
+8. Responsive Paper/Midnight browser evidence for the repaired candidate.
+9. Fresh one-job Tauri Release/NSIS build and isolated native startup/normal
    close.
 
 ## Stop line
@@ -68,6 +76,8 @@ indices, even though it can be re-anchored deterministically without inference.
   or scene range as authoritative.
 - Never guess between repeated evidence quotes.
 - Never create overlapping scene ranges.
+- Never replace a required `null` with an invented semantic value or default.
+- Never coerce malformed non-null values into another type.
 - Never write a candidate before explicit author selection, safety snapshot,
   fresh revision checks, and schema validation.
 - Do not send an automatic paid repair request.

@@ -141,6 +141,30 @@ function generatedSceneResponse(): string {
 	});
 }
 
+function generatedLocationResponse(): string {
+	return JSON.stringify({
+		candidates: [{
+			operation: 'create',
+			resource: {
+				id: 'location:old-station-roof-ui',
+				type: 'location',
+				title: '旧车站玻璃顶',
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				locationType: '车站构造',
+				mapPoint: null,
+				travelLinks: [],
+				factionIds: [],
+				rules: []
+			},
+			confidence: 0.9,
+			rationale: '原文提及旧车站的玻璃顶。',
+			evidence: { start: 3, end: 15, quote: '旧车站的玻璃顶' }
+		}]
+	});
+}
+
 describe('StoryKernelGeneratorPanel', () => {
 	afterEach(() => {
 		useAppStore.setState({ activeMode: 'works' });
@@ -295,6 +319,55 @@ describe('StoryKernelGeneratorPanel', () => {
 			},
 			narrativeOrder: 0
 		});
+	});
+
+	it('confirms a location candidate whose optional map point is null', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const response = generatedLocationResponse();
+
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="夜雨落在旧车站的玻璃顶上。"
+				repository={repository}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={(_messages, onProgress) => {
+					onProgress('streaming', response);
+					return Promise.resolve(response);
+				}}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+				preset={{
+					id: 'location-null-map-point',
+					instruction: '从当前正文创建地点候选。',
+					targetTypes: ['location']
+				}}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		const checkbox = await screen.findByRole('checkbox', { name: '选择 旧车站玻璃顶' });
+		expect(checkbox).toBeEnabled();
+		expect(screen.queryByText(/mapPoint需要使用对象/)).not.toBeInTheDocument();
+		expect(screen.queryByText('字段结构不符合 Story Kernel，修正前无法确认写入。'))
+			.not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect(gateway.resources.get('location:location:old-station-roof-ui')).toMatchObject({
+			id: 'location:old-station-roof-ui',
+			title: '旧车站玻璃顶',
+			locationType: '车站构造'
+		});
+		expect(gateway.resources.get('location:location:old-station-roof-ui'))
+			.not.toHaveProperty('mapPoint');
 	});
 
 	it('disables generation for a read-only project', () => {

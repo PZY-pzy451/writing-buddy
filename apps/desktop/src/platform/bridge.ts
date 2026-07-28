@@ -2387,6 +2387,8 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 	const invalidVisibilityFixture = decoded.instruction?.includes('[QA_INVALID_SCHEMA]') ?? false;
 	const invalidSceneGroundingFixture =
 		decoded.instruction?.includes('[QA_SCENE_GROUNDING]') ?? false;
+	const invalidOptionalNullFixture =
+		decoded.instruction?.includes('[QA_OPTIONAL_NULL]') ?? false;
 	const content = source?.content ?? '';
 	const quote = content.slice(0, Math.min(24, content.length));
 	const evidence = quote ? { start: 0, end: quote.length, quote } : null;
@@ -2454,6 +2456,7 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 					type,
 					title: 'AI 识别地点',
 					locationType: '正文场景',
+					...(invalidOptionalNullFixture ? { mapPoint: null } : {}),
 					travelLinks: [],
 					factionIds: [],
 					rules: []
