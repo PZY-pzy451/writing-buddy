@@ -4,17 +4,20 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-No implementation milestone is currently active. AI generation reliability and
-the two-handoff implementation audit are accepted on
-`codex/ai-generation-reliability-audit` at implementation commit `12a278f7`.
-Evidence:
-`docs/acceptance/024-ai-generation-reliability-and-handoff-audit-2026-07-28.md`.
-The next explicitly scoped work should address scene movement, person/world
-group dragging, Y6/Y7 polish/hardening, or the author-visible schema-repair
-request; these remain separate incomplete design requirements.
+No implementation milestone is currently active. AI prompt contract parity is
+accepted on `codex/ai-prompt-contract-parity` at implementation commit
+`9716f473`. Story Kernel generation now passes the strict local request
+contract when DeepSeek settings are valid, and a 14-prompt cross-language
+parity test prevents the same drift. Evidence:
+`docs/acceptance/025-ai-prompt-contract-parity-2026-07-28.md`.
 
 ## Completed
 
+- Fixed Story Kernel requests being rejected as **AI 配置不完整。** before
+  provider dispatch when the model and credential were valid.
+- TypeScript/Rust prompt parity now covers all 14 duplicated AI system prompts.
+- Prompt-parity acceptance: 92 files / 309 frontend tests, 49 Rust tests,
+  fresh Tauri package, and normal native close with exit code 0.
 - Structured native AI failures now preserve public code, localized message,
   retryability, and HTTP status across Story Kernel, grounded JSON, and
   selection-rewrite boundaries.
