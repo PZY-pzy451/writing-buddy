@@ -120,6 +120,17 @@ recorded through the existing edit transaction and supports exact Undo.
 Extracted facts remain outside `story/` until the author supplies evidence,
 position and explicit confirmation.
 
+Direct Story Kernel generation uses the same trust boundary at resource scale.
+DeepSeek may propose complete characters, scenes, locations, factions, items,
+world rules, timeline events, relationships, plot threads, foreshadowing and
+information records, but it cannot supply system metadata or storage paths.
+The application hydrates timestamps and revisions, validates every strict
+schema and cross-resource reference, and persists the result under
+`.writing-buddy/ai/story-kernel-generation/` as a pending batch. Only an
+author-selected, conflict-free batch can enter `story/`; confirmation first
+creates a safety snapshot and then performs one optimistic, create-safe
+repository transaction.
+
 ## Versioning and recovery
 
 The v0-to-v1 migration is a three-step contract:

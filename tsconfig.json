@@ -23,6 +23,7 @@
       "@writing-buddy/resource": ["packages/resource/src/index.ts"],
       "@writing-buddy/review": ["packages/review/src/index.ts"],
       "@writing-buddy/ai": ["packages/ai/src/index.ts"],
+      "@writing-buddy/ai-actions": ["packages/ai-actions/src/index.ts"],
       "@writing-buddy/version": ["packages/version/src/index.ts"],
       "@writing-buddy/backup": ["packages/backup/src/index.ts"],
       "@writing-buddy/schema": ["packages/schema/src/index.ts"],

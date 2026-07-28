@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-07-27T13:39:34.006Z",
+  "captures": [
+    {
+      "mode": "references",
+      "view": "characters",
+      "readySelector": ".character-center",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-character-candidates",
+      "width": 1536,
+      "height": 960,
+      "name": "01-character-three-candidates-1536x960.png",
+      "readyMs": 1531,
+      "selectorReadyMs": 590,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 520,
+        "height": 828
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 83,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 564
+    },
+    {
+      "mode": "references",
+      "view": "relationships",
+      "readySelector": ".relationship-page",
+      "selector": ".relationship-page",
+      "prepare": "generate-relationship-candidates",
+      "width": 1536,
+      "height": 960,
+      "name": "02-relationship-virtual-edges-1536x960.png",
+      "readyMs": 1198,
+      "selectorReadyMs": 239,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 27,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 491
+    },
+    {
+      "mode": "references",
+      "view": "characters",
+      "readySelector": ".character-center",
+      "selector": ".ai-review-drawer",
+      "prepare": "extract-character-candidates",
+      "width": 1280,
+      "height": 768,
+      "name": "03-character-extraction-1280x768.png",
+      "readyMs": 1188,
+      "selectorReadyMs": 231,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 520,
+        "height": 636
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 81,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 536
+    },
+    {
+      "mode": "references",
+      "view": "relationships",
+      "readySelector": ".relationship-page",
+      "selector": ".relationship-page",
+      "prepare": "generate-relationship-candidates",
+      "width": 1024,
+      "height": 688,
+      "name": "04-relationship-virtual-edges-1024x688.png",
+      "readyMs": 1282,
+      "selectorReadyMs": 332,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 62,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 491
+    }
+  ]
+}

@@ -17,36 +17,144 @@ import { StoryAssetsPage } from '../features/story/assets/StoryAssetsPage';
 import { PlotBoardPage } from '../features/story/plots/PlotBoardPage';
 import { InformationControlPage } from '../features/story/information/InformationControlPage';
 import { ContinuityReviewPage } from '../features/story/continuity/ContinuityReviewPage';
+import { ManuscriptExtractionCenterPage } from '../features/story/extraction/ManuscriptExtractionCenterPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
-	const projectRoot = useAppStore(state => state.snapshot?.root);
+	const snapshot = useAppStore(state => state.snapshot);
+	const activeResource = useAppStore(state => state.activeResource);
+	const openResource = useAppStore(state => state.openResource);
+	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
+	const setMode = useAppStore(state => state.setMode);
+	const projectRoot = snapshot?.root;
+	const chapters = useMemo(() => snapshot
+		? snapshot.project.volumes.flatMap(volume => volume.chapters.map(chapter => ({
+			volume,
+			chapter
+		}))).map(({ volume, chapter }, index) => ({
+			resourceId: toStoryChapterId(chapter.id),
+			chapterId: chapter.id,
+			title: chapter.title,
+			path: chapter.file,
+			narrativeOrder: index,
+			volumeId: volume.id,
+			volumeTitle: volume.title
+		}))
+		: [], [snapshot]);
+	const openEvidence = (evidence: {
+		readonly resourceId: string;
+		readonly range?: { readonly start: number; readonly end: number };
+	}) => {
+		if (!snapshot) return;
+		const chapter = flattenChapters(snapshot.project).find(candidate => (
+			candidate.id === evidence.resourceId
+			|| toStoryChapterId(candidate.id) === evidence.resourceId
+		));
+		if (!chapter) return;
+		void openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		}).then(() => {
+			setMode('works');
+			requestEditorReveal(chapter.id, evidence.range?.start ?? 0);
+		});
+	};
 
 	if (storyView === 'characters') {
-		return <CharacterCenterPage projectRoot={projectRoot} />;
+		return (
+			<CharacterCenterPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'relationships') {
-		return <RelationshipGraphPage projectRoot={projectRoot} />;
+		return (
+			<RelationshipGraphPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'timeline') {
-		return <TimelinePage projectRoot={projectRoot} />;
+		return (
+			<TimelinePage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'worldbuilding') {
-		return <WorldbuildingPage projectRoot={projectRoot} />;
+		return (
+			<WorldbuildingPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'assets') {
-		return <StoryAssetsPage projectRoot={projectRoot} />;
+		return (
+			<StoryAssetsPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'plots') {
-		return <PlotBoardPage projectRoot={projectRoot} />;
+		return (
+			<PlotBoardPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
+			/>
+		);
 	}
 	if (storyView === 'information') {
 		return <InformationControlPage projectRoot={projectRoot} />;
 	}
 	if (storyView === 'continuity') {
-		return <ContinuityReviewPage projectRoot={projectRoot} />;
+		return (
+			<ContinuityReviewPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+			/>
+		);
 	}
-	return <WorldbuildingPage projectRoot={projectRoot} />;
+	if (storyView === 'extraction') {
+		return (
+			<ManuscriptExtractionCenterPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				activeChapterId={activeResource?.type === 'chapter'
+					? toStoryChapterId(activeResource.id)
+					: undefined}
+				readOnly={snapshot?.readOnly}
+			/>
+		);
+	}
+	return (
+		<WorldbuildingPage
+			projectRoot={projectRoot}
+			chapters={chapters}
+			readOnly={snapshot?.readOnly}
+			onOpenEvidence={openEvidence}
+		/>
+	);
 }
 
 /**

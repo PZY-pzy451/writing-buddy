@@ -9,7 +9,7 @@ connected while leaving every manuscript change under author control.
 The Windows installer is generated under:
 
 ```text
-tmp/gate-f-target-final/release/bundle/nsis/
+tmp/ai-story-kernel-target-final/release/bundle/nsis/
 ```
 
 For local development, use Node.js 24 and pnpm 10:
@@ -28,14 +28,14 @@ pnpm tauri dev
 For a production Windows build:
 
 ```powershell
-$env:CARGO_TARGET_DIR = "$PWD\tmp\gate-f-target-final"
+$env:CARGO_TARGET_DIR = "$PWD\tmp\ai-story-kernel-target-final"
 pnpm tauri build
 ```
 
 The portable executable is then available at:
 
 ```text
-tmp/gate-f-target-final/release/writing-buddy-next.exe
+tmp/ai-story-kernel-target-final/release/writing-buddy-next.exe
 ```
 
 ## Open and recover a work
@@ -108,6 +108,26 @@ Author secrets are excluded by default. AI-extracted facts enter the pending
 facts area and require individual author confirmation, evidence and a story
 position before they become canonical.
 
+## Direct Story Kernel generation
+
+1. Open a chapter, then open the writing assistant's **Kernel** tab.
+2. Optionally select a passage. With no selection, the current chapter is the
+   source.
+3. Describe what should be generated and choose the allowed resource types.
+4. Select **Generate Story Kernel candidates**.
+5. Inspect each candidate's operation, confidence, rationale, manuscript
+   evidence, conflicts and normalized JSON structure.
+6. Reject unwanted candidates or select any conflict-free candidates.
+7. Select **Create snapshot and confirm**. Writing Buddy creates a safety
+   snapshot first, then writes the selected resources in one atomic
+   transaction.
+
+The AI cannot choose project paths, schema versions, timestamps, revisions or
+evidence IDs. Create collisions, missing update targets, invalid evidence,
+missing references and blocked dependencies remain visible and cannot be
+confirmed. Generated author-secret information is automatically excluded from
+future AI context.
+
 ## Performance and recovery model
 
 The manuscript and `story/**/*.json` files are canonical. Search/backlink
@@ -116,10 +136,10 @@ without losing author data. Large character and timeline views render bounded
 windows rather than every row at once.
 
 Snapshots and backups include manuscript, formal Story Kernel resources,
-review decisions and pending author-reviewed facts. They exclude process
-locks, derived indexes and incomplete AI jobs. Restore verifies archive
-hashes, rejects unsafe paths, clears stale caches and rebuilds indexes from
-canonical files.
+review decisions, pending author-reviewed facts and pending direct-generation
+batches. They exclude process locks, derived indexes and incomplete AI jobs.
+Restore verifies archive hashes, rejects unsafe paths, clears stale caches and
+rebuilds indexes from canonical files.
 
 ## Known limitations
 

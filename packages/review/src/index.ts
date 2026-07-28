@@ -12,6 +12,18 @@ export interface TextAnchor {
 	readonly sourceHash: string;
 }
 
+export interface ReviewEvidence {
+	readonly resourceId: string;
+	readonly label: string;
+	readonly anchor: TextAnchor;
+}
+
+export interface ReviewStoryFact {
+	readonly resourceId: string;
+	readonly title: string;
+	readonly statement: string;
+}
+
 export interface ReviewIssue {
 	readonly id: string;
 	readonly projectId: string;
@@ -22,6 +34,8 @@ export interface ReviewIssue {
 	readonly title: string;
 	readonly message: string;
 	readonly anchor: TextAnchor;
+	readonly relatedEvidence?: readonly ReviewEvidence[];
+	readonly storyFact?: ReviewStoryFact;
 	readonly replacement?: string;
 	readonly createdAt: string;
 	readonly updatedAt: string;
@@ -253,6 +267,22 @@ function isTextAnchor(value: unknown): value is TextAnchor {
 		&& typeof candidate.sourceHash === 'string';
 }
 
+function isReviewEvidence(value: unknown): value is ReviewEvidence {
+	if (!value || typeof value !== 'object') return false;
+	const candidate = value as Partial<ReviewEvidence>;
+	return typeof candidate.resourceId === 'string'
+		&& typeof candidate.label === 'string'
+		&& isTextAnchor(candidate.anchor);
+}
+
+function isReviewStoryFact(value: unknown): value is ReviewStoryFact {
+	if (!value || typeof value !== 'object') return false;
+	const candidate = value as Partial<ReviewStoryFact>;
+	return typeof candidate.resourceId === 'string'
+		&& typeof candidate.title === 'string'
+		&& typeof candidate.statement === 'string';
+}
+
 function isReviewIssue(value: unknown): value is ReviewIssue {
 	if (!value || typeof value !== 'object') {
 		return false;
@@ -267,6 +297,10 @@ function isReviewIssue(value: unknown): value is ReviewIssue {
 		&& typeof candidate.title === 'string'
 		&& typeof candidate.message === 'string'
 		&& isTextAnchor(candidate.anchor)
+		&& (candidate.relatedEvidence === undefined
+			|| (Array.isArray(candidate.relatedEvidence)
+				&& candidate.relatedEvidence.every(isReviewEvidence)))
+		&& (candidate.storyFact === undefined || isReviewStoryFact(candidate.storyFact))
 		&& (candidate.replacement === undefined || typeof candidate.replacement === 'string')
 		&& typeof candidate.createdAt === 'string'
 		&& typeof candidate.updatedAt === 'string'

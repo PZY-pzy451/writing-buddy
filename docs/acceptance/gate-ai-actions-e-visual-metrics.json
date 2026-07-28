@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-07-27T14:20:11.899Z",
+  "captures": [
+    {
+      "mode": "references",
+      "view": "worldbuilding",
+      "readySelector": ".worldbuilding-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-world-candidates",
+      "width": 1536,
+      "height": 960,
+      "name": "01-world-location-candidates-1536x960.png",
+      "readyMs": 2048,
+      "selectorReadyMs": 1094,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 520,
+        "height": 828
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 58,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 538
+    },
+    {
+      "mode": "references",
+      "view": "assets",
+      "readySelector": ".story-assets-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-item-candidates",
+      "width": 1536,
+      "height": 960,
+      "name": "02-item-card-candidate-1536x960.png",
+      "readyMs": 1169,
+      "selectorReadyMs": 251,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 520,
+        "height": 828
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 28,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 494
+    },
+    {
+      "mode": "references",
+      "view": "worldbuilding",
+      "readySelector": ".worldbuilding-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "extract-world-candidates",
+      "width": 1280,
+      "height": 768,
+      "name": "03-world-extraction-1280x768.png",
+      "readyMs": 1159,
+      "selectorReadyMs": 223,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 520,
+        "height": 636
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 129,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 589
+    },
+    {
+      "mode": "references",
+      "view": "assets",
+      "readySelector": ".story-assets-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "extract-item-candidates",
+      "width": 1024,
+      "height": 688,
+      "name": "04-item-extraction-1024x688.png",
+      "readyMs": 1157,
+      "selectorReadyMs": 238,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 520,
+        "height": 556
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 95,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 532
+    }
+  ]
+}

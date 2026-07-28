@@ -16,6 +16,8 @@ import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
 import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
 import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPage';
+import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
+import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
@@ -42,6 +44,7 @@ export function App(): React.JSX.Element {
 	const sidebarWidth = useAppStore(state => state.sidebarWidth);
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const dockHeight = useAppStore(state => state.dockHeight);
+	const sourceRevision = useAppStore(state => state.session?.state.version);
 
 	useEffect(() => {
 		void bootstrap();
@@ -57,6 +60,12 @@ export function App(): React.JSX.Element {
 		window.addEventListener('keydown', handler);
 		return () => window.removeEventListener('keydown', handler);
 	}, []);
+
+	useEffect(() => {
+		if (sourceRevision !== undefined) {
+			aiGenerationStore.getState().markStale(sourceRevision);
+		}
+	}, [sourceRevision]);
 
 	useEffect(() => {
 		const checkDisk = () => {
@@ -138,6 +147,7 @@ export function App(): React.JSX.Element {
 			</main>
 			{workspaceAssistantVisible && <AssistantPanel />}
 			{!focusMode && <StatusBar />}
+			<AiGenerationDrawer />
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">

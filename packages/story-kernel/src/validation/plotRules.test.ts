@@ -33,4 +33,19 @@ describe('plot rules', () => {
 		});
 		expect(runPlotRules([thread], [], 10)).toEqual([]);
 	});
+
+	it('separately reports an actual payoff that precedes the author plan', () => {
+		const clue = parseForeshadowing({
+			...base,
+			id: 'foreshadowing:early',
+			type: 'foreshadowing',
+			title: '过早响起的钟',
+			status: 'resolved',
+			actualPayoffAt: { chapterId: 'chapter:chapter-002', narrativeOrder: 2 },
+			plannedPayoffAt: { chapterId: 'chapter:chapter-006', narrativeOrder: 6 }
+		});
+		expect(runPlotRules([], [clue], 3).map(issue => issue.ruleId)).toEqual([
+			'plot.foreshadowing-early-payoff'
+		]);
+	});
 });

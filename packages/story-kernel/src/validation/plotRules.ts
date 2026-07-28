@@ -41,6 +41,23 @@ export function runPlotRules(
 	}
 	for (const clue of foreshadowing) {
 		if (
+			clue.actualPayoffAt
+			&& clue.plannedPayoffAt
+			&& clue.actualPayoffAt.narrativeOrder < clue.plannedPayoffAt.narrativeOrder
+		) {
+			issues.push({
+				id: stableRuleIssueId('plot.foreshadowing-early-payoff', [clue.id]),
+				ruleId: 'plot.foreshadowing-early-payoff',
+				severity: 'warning',
+				title: '伏笔早于计划位置回收',
+				message: `${clue.title} 的实际回收早于作者计划位置，请确认是否提前泄露。`,
+				evidence: [
+					evidenceFor(clue, clue.actualPayoffAt),
+					evidenceFor(clue, clue.plannedPayoffAt)
+				]
+			});
+		}
+		if (
 			!['resolved', 'abandoned'].includes(clue.status)
 			&& clue.plannedPayoffAt
 			&& clue.plannedPayoffAt.narrativeOrder < currentNarrativeOrder

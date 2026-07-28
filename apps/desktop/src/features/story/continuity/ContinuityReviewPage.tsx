@@ -39,7 +39,10 @@ import {
 	ContinuityReviewRepository,
 	reviewIssueToContinuityCandidate
 } from '../../review/ReviewRepository';
+import type { AiChapterSource } from '../ai-context/AiChapterSource';
 import { IssueEvidenceView } from './IssueEvidenceView';
+import { StoryConsistencyAiPanel } from './StoryConsistencyAiPanel';
+import { replaceStoryConsistencyIssues } from './StoryConsistencyReviewService';
 import './ContinuityReviewPage.css';
 
 export type ContinuityCandidateLoader = (
@@ -97,6 +100,8 @@ interface ContinuityReviewPageProps {
 	readonly loadPrevious?: () => Promise<readonly ContinuityIssue[]>;
 	readonly persist?: (issues: readonly ContinuityIssue[]) => Promise<readonly ContinuityIssue[]>;
 	readonly onOpenEvidence?: (evidence: ContinuityEvidence) => void;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly readOnly?: boolean;
 }
 
 const severityLabels: Readonly<Record<ContinuitySeverity, string>> = {
@@ -117,9 +122,12 @@ export function ContinuityReviewPage({
 	loadCandidates = defaultContinuityCandidateLoader,
 	loadPrevious,
 	persist,
-	onOpenEvidence
+	onOpenEvidence,
+	chapters = [],
+	readOnly
 }: ContinuityReviewPageProps): React.JSX.Element {
 	const reviewIssues = useAppStore(state => state.issues);
+	const setReviewIssues = useAppStore(state => state.setIssues);
 	const snapshot = useAppStore(state => state.snapshot);
 	const session = useAppStore(state => state.session);
 	const openResource = useAppStore(state => state.openResource);
@@ -131,6 +139,7 @@ export function ContinuityReviewPage({
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [notice, setNotice] = useState('');
+	const [aiPanelOpen, setAiPanelOpen] = useState(false);
 	const repository = useMemo(
 		() => projectRoot ? new ContinuityReviewRepository(projectRoot, desktopBridge) : undefined,
 		[projectRoot]
@@ -240,10 +249,19 @@ export function ContinuityReviewPage({
 					<h1>长篇一致性审查</h1>
 					<p>统一核对正文规则、Story Kernel 确定性约束与 AI 建议；所有结论都保留来源证据和作者处理状态。</p>
 				</div>
-				<button type="button" onClick={() => void run()} disabled={!projectRoot || loading}>
-					{loading ? <LoaderCircle className="spin" size={17} /> : <RefreshCw size={17} />}
-					{loading ? '正在聚合审查' : '重新运行审查'}
-				</button>
+				<div className="continuity-header-actions">
+					<button
+						type="button"
+						disabled={!projectRoot || readOnly || chapters.length < 2}
+						onClick={() => setAiPanelOpen(true)}
+					>
+						<Sparkles size={17} />AI 对照审查
+					</button>
+					<button type="button" onClick={() => void run()} disabled={!projectRoot || loading}>
+						{loading ? <LoaderCircle className="spin" size={17} /> : <RefreshCw size={17} />}
+						{loading ? '正在聚合审查' : '重新运行审查'}
+					</button>
+				</div>
 			</header>
 
 			<section className="continuity-metrics" aria-label="审查指标">
@@ -273,6 +291,8 @@ export function ContinuityReviewPage({
 							<button
 								type="button"
 								key={issue.id}
+								data-issue-id={issue.id}
+								data-ai={issue.layers.includes('ai') ? 'true' : 'false'}
 								className={selected?.id === issue.id ? 'is-active' : ''}
 								onClick={() => setSelectedId(issue.id)}
 							>
@@ -317,6 +337,20 @@ export function ContinuityReviewPage({
 					)}
 				</section>
 			</div>
+
+			{aiPanelOpen && projectRoot && snapshot ? (
+				<StoryConsistencyAiPanel
+					projectId={snapshot.project.projectId}
+					projectRoot={projectRoot}
+					chapters={chapters}
+					readOnly={readOnly}
+					onClose={() => setAiPanelOpen(false)}
+					onCreated={created => {
+						setReviewIssues(replaceStoryConsistencyIssues(reviewIssues, created));
+						setNotice(`AI 对照审查已创建 ${created.length} 条待处理建议；没有修改正文或 Story Kernel。`);
+					}}
+				/>
+			) : null}
 		</main>
 	);
 }

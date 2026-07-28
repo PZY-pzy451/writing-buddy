@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-07-27T15:13:02.050Z",
+  "captures": [
+    {
+      "mode": "references",
+      "view": "timeline",
+      "readySelector": ".timeline-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-timeline-extraction",
+      "width": 1536,
+      "height": 960,
+      "name": "01-timeline-extraction-1536x960.png",
+      "readyMs": 1528,
+      "selectorReadyMs": 588,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 520,
+        "height": 828
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 75,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 620
+    },
+    {
+      "mode": "references",
+      "view": "timeline",
+      "readySelector": ".timeline-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-timeline-directions",
+      "width": 1280,
+      "height": 768,
+      "name": "02-timeline-three-directions-1280x768.png",
+      "readyMs": 1198,
+      "selectorReadyMs": 241,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 520,
+        "height": 636
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 68,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 615
+    },
+    {
+      "mode": "references",
+      "view": "plots",
+      "readySelector": ".plot-board-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-plot-thread",
+      "width": 1536,
+      "height": 960,
+      "name": "03-plot-thread-1536x960.png",
+      "readyMs": 1194,
+      "selectorReadyMs": 240,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 520,
+        "height": 828
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 28,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 509
+    },
+    {
+      "mode": "references",
+      "view": "plots",
+      "readySelector": ".plot-board-page",
+      "selector": ".ai-review-drawer",
+      "prepare": "generate-foreshadowing-extraction",
+      "width": 1024,
+      "height": 688,
+      "name": "04-foreshadowing-extraction-1024x688.png",
+      "readyMs": 1339,
+      "selectorReadyMs": 371,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 520,
+        "height": 556
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 26,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 510
+    }
+  ]
+}

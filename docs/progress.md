@@ -4,13 +4,11 @@ Updated: 2026-07-27
 
 ## Active milestone
 
-StoryForge Gate F is complete on
-`codex/phase-1.0a-deepseek-ai-foundation`. Tasks 21-24 passed performance,
-responsive/accessibility, migration, recovery, vertical-slice and production
-Windows build gates. The first final binary closed normally; the second launch
-restored the sanitized real project in read-write mode and remains running.
-Final evidence is recorded in
-`docs/acceptance/011-storyforge-gate-f-professional-baseline-2026-07-27.md`.
+AI Quick Actions Gate F is complete on
+`codex/ai-quick-actions-gate-f`. Timeline extraction/generation, causal-edge
+review, plot-thread workflows, and foreshadowing workflows now use explicit,
+grounded, revision-safe review flows. Acceptance evidence is in
+`docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`.
 
 ## Completed
 
@@ -77,16 +75,200 @@ Final evidence is recorded in
 - Strict Rust job-purpose validation and validated AI issue anchoring
 - Durable Phase 1.0B evidence in
   `docs/acceptance/004-system-layout-and-ai-review-2026-07-27.md`
+- Isolated `story-kernel-generation` AI purpose with matching TypeScript and
+  Rust request boundaries
+- Strict complete-resource response parser for eleven Story Kernel types
+- Persisted generation batches with exact evidence anchoring, schema checks,
+  collision/reference/dependency conflicts and author-secret protection
+- Create-safe, revision-safe atomic batch confirmation with a mandatory
+  pre-commit safety snapshot
+- Assistant **Kernel** tab with target selection, streaming/cancel state,
+  candidate JSON/evidence review, rejection and batch confirmation
+- Snapshot and `.wbbackup` inclusion for pending generation decisions
+- Full Node acceptance: 52 files / 153 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Release performance and sanitized recovery gates passed; fresh Windows
+  production executable and NSIS installer built and close/restart verified
+- Reusable AI Action, versioned Prompt, strict output, privacy-aware Context,
+  and guarded Preview Transaction contracts
+- Unified AI generation drawer with the existing chapter-review runtime as its
+  first real streaming adapter
+- Responsive AI drawer evidence at 1536, 1280, and 1024 with zero clipped or
+  undersized controls
+- Full Node acceptance: 60 files / 176 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Windows EXE and NSIS installer built; isolated desktop smoke accepted
+  normal close
+- Selected-text **AI 润色** routed to grounded Context Pack, Diff candidate,
+  stale protection, cancellation, explicit acceptance and Undo
+- Selected-text character, location, item, information, and foreshadowing
+  actions routed to one-type Story Kernel presets without automatic requests
+- Warm-paper toolbar and assistant UI refined with visible active states,
+  44px targets, and 1536/1280/1024 responsive evidence
+- Full Node acceptance: 62 files / 181 tests; Rust: 35 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate C Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate C evidence in
+  `docs/acceptance/014-ai-quick-actions-gate-c-2026-07-27.md`
+- Header **AI 续写** modes for continuing a paragraph, completing a scene, and
+  comparing exactly three directions
+- Cursor/revision/anchor-protected candidate insertion with explicit author
+  choice, cancellation, rejection, stale blocking, and Undo
+- Assistant **细纲** tab for generating or extracting scene goal, conflict,
+  turn, outcome, and emotion beats
+- Per-field StoryScene acceptance with fresh repository recheck, expected
+  revision, pre-write safety snapshot, and optional `emotionBeats`
+- Matching TypeScript/Rust `manuscript-continuation` and
+  `scene-plan-generation` request boundaries
+- Responsive warm-paper evidence at 1536/1280/1024 with zero page overflow,
+  clipped controls, or effective targets below 44px
+- Full Node acceptance: 64 files / 188 tests; Rust: 37 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate C2 Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate C2 evidence in
+  `docs/acceptance/015-ai-quick-actions-gate-c2-2026-07-27.md`
+- Strict TypeScript/Rust `character-analysis` and `relationship-analysis`
+  contracts with exact candidate shapes and extraction evidence
+- Character Center AI generation, backstory, arc, voice, and grounded chapter
+  extraction with explicit same-name merge and selected-only acceptance
+- Confirmed dynamic character state persistence for inventory and knowledge
+- Directed relationship generation/evolution analysis with independent
+  opposite edges, dashed pending previews, conflicts, and one-edge acceptance
+- Snapshot-backed, revision-safe Character and Relationship commits
+- Responsive 1536/1280/1024 Gate D evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 66 files / 199 tests; Rust: 39 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate D Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate D evidence in
+  `docs/acceptance/016-ai-quick-actions-gate-d-2026-07-27.md`
+- Strict TypeScript/Rust `world-analysis` and `item-analysis` contracts with
+  typed targets, bounded chapter context, known identities, and exact
+  extraction evidence
+- Worldbuilding generation and extraction for locations, factions, cultures,
+  religions, technology, magic, law, and scoped general rules
+- Explicit same-name merge, per-field acceptance, rule conflict detection,
+  stale-source/revision checks, and snapshot-backed world commits
+- Item card, history, and extraction candidates with independently selectable
+  state events and deterministic unique-item holder checks
+- Responsive 1536/1280/1024 Gate E evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 69 files / 210 tests; Rust: 41 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate E Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate E evidence in
+  `docs/acceptance/017-ai-quick-actions-gate-e-2026-07-27.md`
+- Strict TypeScript/Rust `timeline-analysis` and `plot-analysis` contracts with
+  bounded multi-chapter context, known identities, and exact extraction
+  evidence
+- Timeline extraction, goal-based generation, exactly three directions, and
+  typed dashed causal-edge review with atomic bidirectional link persistence
+- Plot-thread generation/progress extraction plus foreshadowing generation,
+  payoff, and extraction with explicit lifecycle checks
+- Author secrets excluded by default behind an explanatory opt-in control
+- Snapshot-backed, stale-source/revision-safe selected-batch commits
+- Responsive 1536/1280/1024 Gate F evidence with zero page overflow, clipped
+  controls, or effective targets below 44px
+- Full Node acceptance: 71 files / 222 tests; Rust: 43 passed / 2 explicit
+  release gates ignored in the normal suite
+- Fresh Gate F Windows EXE and NSIS installer built; isolated desktop smoke
+  accepted normal close
+- Gate F evidence in
+  `docs/acceptance/018-ai-quick-actions-gate-f-2026-07-27.md`
 
 ## Open
 
 - Validate `/models`, balance, streaming, cancellation, restart, and deletion
   with a user-provided real DeepSeek key.
 - Validate AI automatic chapter review with that key.
+- Validate AI Story Kernel generation quality against the user's real
+  DeepSeek account and a non-sanitized author-selected chapter.
 - Human cutover gates are intentionally not automated.
 - Legacy retirement is forbidden until M9 is complete.
 
 ## Next
 
-Gate F is the final supplied implementation gate. Stop and wait for explicit
-product scope; live DeepSeek account acceptance requires a user-provided key.
+Continue the original handoff with Gate G bulk manuscript organization,
+AI-created review issues, and final privacy/performance/recovery hardening.
+
+## AI Quick Actions Gate G start
+
+- User direction “继续完成” continues the accepted Gate F branch into the final
+  Tasks 22–25.
+- Created `codex/ai-quick-actions-gate-g` from accepted Gate F.
+- Gate G reuses the existing strict Story Kernel generation/conflict pipeline,
+  ReviewIssue/Continuity Engine, AI streaming lifecycle, snapshots, backup, and
+  restore ports instead of introducing parallel write paths.
+- The `ui-ux-pro-max` rules file was read completely. Its required
+  `scripts/search.py` is absent from the installed package, so the documented
+  accessibility, interaction, responsive, contrast, and reduced-motion rules
+  are applied directly.
+- Contract:
+  `docs/plans/009-ai-quick-actions-gate-g-extraction-review-hardening.md`.
+
+## AI Quick Actions Gate G complete
+
+- Added **AI 正文整理** with current chapter/current volume/selected/all/
+  unfinished scope, deterministic preflight Tokens, sequential paid jobs,
+  explicit stop/resume and restart normalization without automatic billing.
+- Completed chapters and candidate batches survive failure/cancellation;
+  stale sources require explicit refresh and concurrent ledger writes fail
+  safely.
+- All extracted resources use the existing Story Kernel generation schema,
+  collision/reference/evidence rules, pending candidate store, snapshot and
+  atomic transaction path.
+- Added grounded **AI 对照审查** for 2–12 selected chapters, exact evidence
+  A/B, optional safe Story Fact, AI severity capped at warning and no
+  replacement/write path.
+- Privacy tests and scans cover author secrets, paths, credentials, ledger
+  prose, Prompt output and hidden foreshadowing meanings.
+- Responsive 1536/1280/1024 evidence has zero page overflow, clipped controls
+  or effective controls below 44px.
+- Full Node acceptance: 75 files / 241 tests; Rust: 44 passed / 2 explicit
+  manual gates ignored.
+- Fresh portable EXE and NSIS installer built; native startup and normal close
+  passed.
+- Acceptance:
+  `docs/acceptance/019-ai-quick-actions-gate-g-2026-07-28.md`.
+
+## AI Quick Actions Gate F start
+
+- The user explicitly asked to continue after accepted Gate E.
+- Created `codex/ai-quick-actions-gate-f` from the accepted Gate E branch.
+- Gate F implements original Tasks 18–21 with dedicated `timeline-analysis`
+  and `plot-analysis` boundaries, bounded multi-chapter scope, exact extraction
+  evidence, atomic batch acceptance, dashed pending causality, and author
+  secrets excluded by default.
+- The installed UI/UX skill still lacks its referenced search helper. Its
+  accessible warm-paper, Lucide, 44px, focus, contrast, responsive, and
+  reduced-motion rules are applied directly.
+- Contract:
+  `docs/plans/008-ai-quick-actions-gate-f-story-progress-plots.md`.
+
+## AI Quick Actions Gate E start
+
+- The user explicitly asked to continue after accepted Gate D.
+- Created `codex/ai-quick-actions-gate-e` from the accepted Gate D branch.
+- Gate E implements original Tasks 15–17: structured worldbuilding generation
+  and extraction plus item card/history/extraction/transfer candidates.
+- The UI/UX skill package did not include its referenced search helper, so its
+  documented warm-paper, Lucide, 44px, focus, responsive, contrast, and
+  reduced-motion rules are applied directly.
+- Contract:
+  `docs/plans/007-ai-quick-actions-gate-e-worldbuilding-items.md`.
+
+## AI Quick Actions Gate D start
+
+- The user explicitly asked to continue after Gate C2, satisfying the previous
+  stop for product direction.
+- Created `codex/ai-quick-actions-gate-d` from the accepted Gate C2 branch.
+- Gate D implements original Tasks 12–14: character generation, grounded
+  character extraction and directed relationship generation/extraction.
+- The `ui-ux-pro-max` skill guides the warm-paper review surfaces: 44px targets,
+  explicit states, visible focus and responsive layout.
+- Contract:
+  `docs/plans/006-ai-quick-actions-gate-d-characters-relationships.md`.

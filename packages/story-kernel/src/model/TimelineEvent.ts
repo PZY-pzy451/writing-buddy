@@ -28,7 +28,10 @@ export interface TimelineEvent extends StoryResourceBase {
 	readonly itemIds: readonly StoryId[];
 	readonly predecessorIds: readonly StoryId[];
 	readonly consequenceIds: readonly StoryId[];
+	readonly directResults: readonly string[];
+	readonly impacts: readonly string[];
 	readonly plotThreadIds: readonly StoryId[];
+	readonly foreshadowingIds: readonly StoryId[];
 	readonly informationIds: readonly StoryId[];
 	readonly evidenceIds: readonly StoryId[];
 }
@@ -69,7 +72,10 @@ interface TimelineEventInput {
 	readonly itemIds: readonly string[];
 	readonly predecessorIds: readonly string[];
 	readonly consequenceIds: readonly string[];
+	readonly directResults?: readonly string[];
+	readonly impacts?: readonly string[];
 	readonly plotThreadIds?: readonly string[];
+	readonly foreshadowingIds?: readonly string[];
 	readonly informationIds?: readonly string[];
 	readonly evidenceIds: readonly string[];
 }
@@ -140,7 +146,10 @@ export function parseTimelineEvent(value: TimelineEventInput): TimelineEvent {
 		itemIds: value.itemIds.map(parseStoryId),
 		predecessorIds: value.predecessorIds.map(parseStoryId),
 		consequenceIds: value.consequenceIds.map(parseStoryId),
+		directResults: (value.directResults ?? []).map(result => result.trim()).filter(Boolean),
+		impacts: (value.impacts ?? []).map(impact => impact.trim()).filter(Boolean),
 		plotThreadIds: (value.plotThreadIds ?? []).map(parseStoryId),
+		foreshadowingIds: (value.foreshadowingIds ?? []).map(parseStoryId),
 		informationIds: (value.informationIds ?? []).map(parseStoryId),
 		evidenceIds: value.evidenceIds.map(parseStoryId)
 	};

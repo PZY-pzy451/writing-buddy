@@ -1,6 +1,14 @@
 import { AlertTriangle, CheckCircle2 } from 'lucide-react';
 import type { Foreshadowing } from '@writing-buddy/story-kernel';
 
+const statusLabels = {
+	planted: '已埋设',
+	reminded: '已提醒',
+	resolved: '已回收',
+	overdue: '已逾期',
+	abandoned: '已放弃'
+} as const;
+
 export function ForeshadowingTable({
 	items,
 	currentOrder,
@@ -18,10 +26,16 @@ export function ForeshadowingTable({
 					{items.map(item => {
 						const overdue = !['resolved', 'abandoned'].includes(item.status)
 							&& Boolean(item.plannedPayoffAt && item.plannedPayoffAt.narrativeOrder < currentOrder);
+						const early = Boolean(
+							item.actualPayoffAt
+							&& item.plannedPayoffAt
+							&& item.actualPayoffAt.narrativeOrder
+								< item.plannedPayoffAt.narrativeOrder
+						);
 						return (
-							<tr key={item.id} className={overdue ? 'is-overdue' : ''}>
+							<tr key={item.id} className={overdue || early ? 'is-overdue' : ''}>
 								<td><button type="button" onClick={() => onSelect(item)}>{item.title}</button></td>
-								<td><span>{overdue ? <AlertTriangle size={13} /> : <CheckCircle2 size={13} />}{overdue ? '逾期' : item.status}</span></td>
+								<td><span>{overdue || early ? <AlertTriangle size={13} /> : <CheckCircle2 size={13} />}{overdue ? '逾期' : early ? '提前回收' : statusLabels[item.status]}</span></td>
 								<td>{item.plantedAt?.narrativeOrder ?? '—'}</td>
 								<td>{item.reminderPositions.length}</td>
 								<td>{item.plannedPayoffAt?.narrativeOrder ?? '—'}</td>

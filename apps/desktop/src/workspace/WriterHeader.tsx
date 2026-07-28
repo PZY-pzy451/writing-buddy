@@ -1,4 +1,14 @@
-import { Check, ChevronLeft, ChevronRight, CircleDot, Save } from 'lucide-react';
+import {
+	Check,
+	ChevronDown,
+	ChevronLeft,
+	ChevronRight,
+	CircleDot,
+	Compass,
+	Feather,
+	Save
+} from 'lucide-react';
+import type { ManuscriptContinuationMode } from '@writing-buddy/story-kernel';
 import { countWords, findChapter, flattenChapters } from '@writing-buddy/domain';
 import { selectNovelWordCount, useAppStore } from '../app/store';
 
@@ -8,6 +18,7 @@ export function WriterHeader(): React.JSX.Element | null {
 	const session = useAppStore(state => state.session);
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
+	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const novelWords = useAppStore(selectNovelWordCount);
 
 	if (!snapshot || !activeResource) {
@@ -31,6 +42,13 @@ export function WriterHeader(): React.JSX.Element | null {
 			path: chapter.file,
 			projectId: snapshot.project.projectId
 		});
+	};
+	const openContinuation = (
+		mode: ManuscriptContinuationMode,
+		target: HTMLElement
+	) => {
+		requestAssistantAction({ kind: 'continuation', mode });
+		target.closest('details')?.removeAttribute('open');
 	};
 
 	return (
@@ -56,6 +74,36 @@ export function WriterHeader(): React.JSX.Element | null {
 						<>
 							<span className="word-chip">本章 {chapterWords.toLocaleString()} 字</span>
 							<span className="word-chip">全书 {novelWords.toLocaleString()} 字</span>
+							{!snapshot.readOnly ? (
+								<details className="ai-continuation-menu">
+									<summary>
+										<Feather size={17} />AI 续写<ChevronDown size={15} />
+									</summary>
+									<div>
+										<button
+											type="button"
+											onClick={event => openContinuation('continue-paragraph', event.currentTarget)}
+										>
+											<Feather size={16} />
+											<span><strong>继续本段</strong><small>沿当前光标生成一个候选</small></span>
+										</button>
+										<button
+											type="button"
+											onClick={event => openContinuation('finish-scene', event.currentTarget)}
+										>
+											<Check size={16} />
+											<span><strong>完成场景</strong><small>收束当前已关联场景</small></span>
+										</button>
+										<button
+											type="button"
+											onClick={event => openContinuation('three-directions', event.currentTarget)}
+										>
+											<Compass size={16} />
+											<span><strong>三种走向</strong><small>并排审阅三种后续方向</small></span>
+										</button>
+									</div>
+								</details>
+							) : null}
 						</>
 					)}
 					<button className="icon-button" type="button" onClick={() => void save()} disabled={!session?.state.dirty} aria-label="保存">

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "baseline": { "width": 1536, "height": 992 },
+  "shell": {
+    "titleBar": [0, 0, 1536, 32],
+    "productHeader": [0, 32, 1536, 68],
+    "globalRail": [0, 100, 78, 852],
+    "statusBar": [0, 952, 1536, 40]
+  },
+  "aiDrawer": {
+    "desktopWidth": 380,
+    "expandedWidth": 520,
+    "minWidth": 340,
+    "overlayBreakpoint": 1440
+  },
+  "breakpoints": {
+    "wide": 1440,
+    "compact": 1100,
+    "minimumSupported": 800
+  },
+  "editorActions": [
+    "polish", "condense", "expand", "dialogue", "pacing", "continue"
+  ],
+  "modules": [
+    "editor", "character", "relationship", "world", "timeline",
+    "item", "plot", "foreshadowing", "review"
+  ]
+}

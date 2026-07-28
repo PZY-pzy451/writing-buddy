@@ -106,6 +106,11 @@ export const sceneSchema = z.object({
 	conflict: z.string().max(5000).optional(),
 	turn: z.string().max(5000).optional(),
 	outcome: z.string().max(5000).optional(),
+	emotionBeats: z.array(z.object({
+		label: z.string().trim().min(1).max(160),
+		emotion: z.string().trim().min(1).max(160),
+		intensity: z.number().min(0).max(1)
+	}).strict()).max(24).optional(),
 	plotThreadIds: z.array(idFor('plotThread')),
 	revealInformationIds: z.array(idFor('information')),
 	foreshadowingIds: z.array(idFor('foreshadowing')),
@@ -159,7 +164,10 @@ export const timelineEventSchema = z.object({
 	itemIds: z.array(idFor('item')),
 	predecessorIds: z.array(idFor('timelineEvent')),
 	consequenceIds: z.array(idFor('timelineEvent')),
+	directResults: z.array(z.string().trim().min(1).max(2_000)).optional().default([]),
+	impacts: z.array(z.string().trim().min(1).max(2_000)).optional().default([]),
 	plotThreadIds: z.array(idFor('plotThread')).optional().default([]),
+	foreshadowingIds: z.array(idFor('foreshadowing')).optional().default([]),
 	informationIds: z.array(idFor('information')).optional().default([]),
 	evidenceIds
 }).strict();
@@ -202,6 +210,7 @@ const worldRuleSchema = z.object({
 	...baseShape,
 	category: z.enum(['culture', 'religion', 'technology', 'magic', 'law', 'other']).optional().default('other'),
 	statement: z.string().trim().min(1).max(10_000).optional(),
+	scope: z.string().trim().min(1).max(2_000).optional(),
 	exceptions: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
 	consequences: z.array(z.string().trim().min(1).max(2000)).optional().default([]),
 	effectiveFrom: storyPositionSchema.optional(),

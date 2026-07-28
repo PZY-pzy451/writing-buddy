@@ -1,4 +1,5 @@
 .relationship-page {
+	position: relative;
 	display: grid;
 	grid-template-rows: 116px auto minmax(0, 1fr) 34px;
 	width: 100%;
@@ -7,6 +8,14 @@
 	padding: 0 18px;
 	overflow: hidden;
 	background: var(--surface-canvas);
+}
+
+.relationship-toolbar .relationship-ai-button {
+	padding-inline: 13px;
+	color: var(--accent-strong);
+	font-weight: 750;
+	background: var(--accent-soft);
+	border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border-subtle));
 }
 
 .relationship-header {
@@ -176,6 +185,33 @@
 
 .relationship-graph-canvas marker path {
 	fill: var(--accent-strong);
+}
+
+.relationship-graph-canvas g.is-ai-candidate line {
+	stroke: color-mix(in srgb, var(--warning) 82%, var(--accent-strong));
+	stroke-dasharray: 9 7;
+	animation: relationship-candidate-dash 12s linear infinite;
+}
+
+.relationship-graph-canvas g.is-ai-candidate text {
+	fill: var(--warning);
+	font-weight: 750;
+}
+
+.relationship-graph-canvas #relationship-candidate-arrow path {
+	fill: var(--warning);
+}
+
+@keyframes relationship-candidate-dash {
+	to {
+		stroke-dashoffset: -64;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.relationship-graph-canvas g.is-ai-candidate line {
+		animation: none;
+	}
 }
 
 .relationship-graph-canvas text {

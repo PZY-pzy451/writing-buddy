@@ -6,7 +6,8 @@ import {
 	Map,
 	MapPin,
 	Scale,
-	Shield
+	Shield,
+	Sparkles
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -22,6 +23,11 @@ import {
 import { desktopBridge } from '../../../platform/bridge';
 import { LocationTree } from './LocationTree';
 import { WorldRuleEditor } from './WorldRuleEditor';
+import { WorldAiPanel } from './WorldAiPanel';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import './WorldbuildingPage.css';
 
 export interface WorldbuildingData {
@@ -48,16 +54,23 @@ const defaultLoadData: WorldbuildingLoader = async projectRoot => {
 
 export function WorldbuildingPage({
 	projectRoot,
-	loadData = defaultLoadData
+	loadData = defaultLoadData,
+	chapters = [],
+	readOnly,
+	onOpenEvidence
 }: {
 	readonly projectRoot?: string;
 	readonly loadData?: WorldbuildingLoader;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly readOnly?: boolean;
+	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
 	const [data, setData] = useState<WorldbuildingData>();
 	const [section, setSection] = useState<'locations' | 'factions' | 'rules'>('locations');
 	const [selectedId, setSelectedId] = useState<string>();
 	const [error, setError] = useState<string>();
 	const [saving, setSaving] = useState(false);
+	const [aiOpen, setAiOpen] = useState(false);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -99,14 +112,54 @@ export function WorldbuildingPage({
 		}
 	};
 
+	const acceptAiResource = (resource: Location | Faction | WorldRule) => {
+		setData(current => {
+			if (!current) return current;
+			if (resource.type === 'location') {
+				return {
+					...current,
+					locations: [
+						...current.locations.filter(candidate => candidate.id !== resource.id),
+						resource
+					]
+				};
+			}
+			if (resource.type === 'faction') {
+				return {
+					...current,
+					factions: [
+						...current.factions.filter(candidate => candidate.id !== resource.id),
+						resource
+					]
+				};
+			}
+			return {
+				...current,
+				rules: [
+					...current.rules.filter(candidate => candidate.id !== resource.id),
+					resource
+				]
+			};
+		});
+		setSection(resource.type === 'location'
+			? 'locations'
+			: resource.type === 'faction'
+				? 'factions'
+				: 'rules');
+		setSelectedId(resource.id);
+	};
+
 	return (
 		<main className="worldbuilding-page" aria-label="世界观中心">
 			<header className="worldbuilding-header">
 				<div><span className="eyebrow">WORLD BIBLE</span><h1>世界观中心</h1><p>地点层级、势力和世界规则共享同一组正文证据。</p></div>
-				<div role="tablist" aria-label="世界观分类">
-					<button type="button" role="tab" aria-selected={section === 'locations'} className={section === 'locations' ? 'is-active' : ''} onClick={() => { setSection('locations'); setSelectedId(data?.locations[0]?.id); }}><MapPin size={16} />地点</button>
-					<button type="button" role="tab" aria-selected={section === 'factions'} className={section === 'factions' ? 'is-active' : ''} onClick={() => { setSection('factions'); setSelectedId(data?.factions[0]?.id); }}><Shield size={16} />势力</button>
-					<button type="button" role="tab" aria-selected={section === 'rules'} className={section === 'rules' ? 'is-active' : ''} onClick={() => { setSection('rules'); setSelectedId(data?.rules[0]?.id); }}><Scale size={16} />世界规则</button>
+				<div className="worldbuilding-header-actions">
+					<button type="button" className="worldbuilding-ai-button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 世界观助手</button>
+					<div role="tablist" aria-label="世界观分类">
+						<button type="button" role="tab" aria-selected={section === 'locations'} className={section === 'locations' ? 'is-active' : ''} onClick={() => { setSection('locations'); setSelectedId(data?.locations[0]?.id); }}><MapPin size={16} />地点</button>
+						<button type="button" role="tab" aria-selected={section === 'factions'} className={section === 'factions' ? 'is-active' : ''} onClick={() => { setSection('factions'); setSelectedId(data?.factions[0]?.id); }}><Shield size={16} />势力</button>
+						<button type="button" role="tab" aria-selected={section === 'rules'} className={section === 'rules' ? 'is-active' : ''} onClick={() => { setSection('rules'); setSelectedId(data?.rules[0]?.id); }}><Scale size={16} />世界规则</button>
+					</div>
 				</div>
 			</header>
 			<div className="worldbuilding-messages">
@@ -161,9 +214,22 @@ export function WorldbuildingPage({
 						</>
 					) : null}
 					{section === 'rules' && selectedRule ? <WorldRuleEditor key={selectedRule.id} rule={selectedRule} saving={saving} onSave={saveRule} /> : null}
-					{data && !selectedLocation && !selectedFaction && !selectedRule ? <div className="worldbuilding-empty"><BookOpenCheck size={34} /><h2>选择或创建世界资料</h2></div> : null}
+					{data && !selectedLocation && !selectedFaction && !selectedRule ? <div className="worldbuilding-empty"><BookOpenCheck size={34} /><h2>选择或创建世界资料</h2><button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />用 AI 创建世界资料</button></div> : null}
 				</section>
 			</section>
+			{aiOpen && projectRoot ? (
+				<WorldAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					locations={data?.locations ?? []}
+					factions={data?.factions ?? []}
+					rules={data?.rules ?? []}
+					readOnly={readOnly}
+					onClose={() => setAiOpen(false)}
+					onAccepted={acceptAiResource}
+					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
 		</main>
 	);
 }

@@ -1,4 +1,5 @@
 .timeline-page {
+	position: relative;
 	display: grid;
 	grid-template-rows: 120px auto minmax(0, 1fr) 36px;
 	width: 100%;
@@ -98,6 +99,13 @@
 	font-weight: 700;
 	background: var(--accent-strong);
 	border-color: var(--accent-strong);
+}
+
+.timeline-toolbar button.timeline-ai-event {
+	color: var(--accent-strong);
+	font-weight: 700;
+	background: var(--accent-soft);
+	border-color: color-mix(in srgb, var(--accent) 42%, var(--border-subtle));
 }
 
 .timeline-error {
@@ -364,6 +372,36 @@
 	white-space: nowrap;
 }
 
+.event-inspector-section {
+	padding-top: 11px;
+	margin-top: 11px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.event-inspector-section h3 {
+	margin: 0 0 5px;
+	font-size: 11px;
+}
+
+.event-inspector-section p,
+.event-inspector-section ul {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 10px;
+	line-height: 1.55;
+}
+
+.event-inspector-section ul {
+	padding-left: 17px;
+}
+
+.event-rule-issue {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--warning) !important;
+}
+
 .event-save {
 	display: flex;
 	align-items: center;
@@ -432,6 +470,55 @@
 	place-items: center;
 	height: 100%;
 	color: var(--text-muted);
+}
+
+.timeline-empty-state {
+	position: absolute;
+	inset: 64px 0 0;
+	display: grid;
+	place-content: center;
+	justify-items: center;
+	gap: 8px;
+	padding: 24px;
+	color: var(--text-muted);
+	text-align: center;
+	pointer-events: none;
+}
+
+.timeline-empty-state h2,
+.timeline-empty-state p {
+	margin: 0;
+}
+
+.timeline-empty-state h2 {
+	color: var(--text-primary);
+	font: 20px Georgia, "Microsoft YaHei UI", serif;
+}
+
+.timeline-empty-state p {
+	font-size: 12px;
+}
+
+.timeline-empty-state button {
+	min-height: 44px;
+	padding: 0 14px;
+	margin-top: 4px;
+	cursor: pointer;
+	color: white;
+	font-weight: 700;
+	background: var(--accent-strong);
+	border: 0;
+	border-radius: var(--radius-control);
+	pointer-events: auto;
+}
+
+.timeline-toolbar button:focus-visible,
+.timeline-toolbar select:focus-visible,
+.event-inspector button:focus-visible,
+.event-form-grid input:focus-visible,
+.timeline-empty-state button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
 }
 
 .timeline-legend {

@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-07-28T00:54:19.968Z",
+  "captures": [
+    {
+      "mode": "references",
+      "view": "extraction",
+      "readySelector": ".extraction-center-page",
+      "selector": ".extraction-center-page",
+      "prepare": "plan-extraction",
+      "width": 1536,
+      "height": 960,
+      "name": "01-extraction-plan-1536x960.png",
+      "readyMs": 1305,
+      "selectorReadyMs": 572,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 1,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 491
+    },
+    {
+      "mode": "references",
+      "view": "extraction",
+      "readySelector": ".extraction-center-page",
+      "selector": ".extraction-center-page",
+      "prepare": "run-extraction",
+      "width": 1280,
+      "height": 768,
+      "name": "02-extraction-candidates-1280x768.png",
+      "readyMs": 1517,
+      "selectorReadyMs": 235,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 922,
+        "height": 660
+      },
+      "gridColumns": "78px 280px 922px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 248,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 719
+    },
+    {
+      "mode": "references",
+      "view": "continuity",
+      "readySelector": ".continuity-review-page",
+      "selector": ".continuity-review-page",
+      "prepare": "run-consistency-review",
+      "width": 1536,
+      "height": 960,
+      "name": "03-consistency-evidence-1536x960.png",
+      "readyMs": 1208,
+      "selectorReadyMs": 247,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1154,
+        "height": 852
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 5,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 444
+    },
+    {
+      "mode": "references",
+      "view": "extraction",
+      "readySelector": ".extraction-center-page",
+      "selector": ".extraction-center-page",
+      "prepare": "plan-extraction",
+      "width": 1024,
+      "height": 688,
+      "name": "04-extraction-responsive-1024x688.png",
+      "readyMs": 956,
+      "selectorReadyMs": 224,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 119,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 491
+    }
+  ]
+}

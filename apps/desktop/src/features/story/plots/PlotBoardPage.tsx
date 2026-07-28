@@ -4,7 +4,8 @@ import {
 	Columns3,
 	Eye,
 	ListChecks,
-	Save
+	Save,
+	Sparkles
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -13,17 +14,26 @@ import {
 	parsePlotThread,
 	plotThreadStatuses,
 	runPlotRules,
+	type Character,
 	type Foreshadowing,
 	type PlotThread,
-	type PlotThreadStatus
+	type PlotThreadStatus,
+	type StoryScene
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
+import type {
+	AiChapterSource,
+	OpenAiEvidence
+} from '../ai-context/AiChapterSource';
 import { ForeshadowingTable } from './ForeshadowingTable';
+import { PlotAiPanel } from './PlotAiPanel';
 import './PlotBoardPage.css';
 
 export interface PlotBoardData {
 	readonly threads: readonly PlotThread[];
 	readonly foreshadowing: readonly Foreshadowing[];
+	readonly characters?: readonly Character[];
+	readonly scenes?: readonly StoryScene[];
 }
 
 const statusLabels: Readonly<Record<PlotThreadStatus, string>> = {
@@ -36,22 +46,32 @@ const statusLabels: Readonly<Record<PlotThreadStatus, string>> = {
 
 const defaultLoadData = async (projectRoot: string): Promise<PlotBoardData> => {
 	const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
-	const [threads, foreshadowing] = await Promise.all([
+	const [threads, foreshadowing, characters, scenes] = await Promise.all([
 		repository.list('plotThread'),
-		repository.list('foreshadowing')
+		repository.list('foreshadowing'),
+		repository.list('character'),
+		repository.list('scene')
 	]);
 	return {
 		threads: threads.map(value => parsePlotThread(value as never)),
-		foreshadowing: foreshadowing.map(value => parseForeshadowing(value as never))
+		foreshadowing: foreshadowing.map(value => parseForeshadowing(value as never)),
+		characters: characters as unknown as readonly Character[],
+		scenes: scenes as unknown as readonly StoryScene[]
 	};
 };
 
 export function PlotBoardPage({
 	projectRoot,
-	loadData = defaultLoadData
+	loadData = defaultLoadData,
+	chapters = [],
+	readOnly,
+	onOpenEvidence
 }: {
 	readonly projectRoot?: string;
 	readonly loadData?: (projectRoot: string) => Promise<PlotBoardData>;
+	readonly chapters?: readonly AiChapterSource[];
+	readonly readOnly?: boolean;
+	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
 	const [data, setData] = useState<PlotBoardData>();
 	const [view, setView] = useState<'board' | 'foreshadowing'>('board');
@@ -60,6 +80,7 @@ export function PlotBoardPage({
 	const [draftStatus, setDraftStatus] = useState<PlotThreadStatus>('planned');
 	const [saving, setSaving] = useState(false);
 	const [error, setError] = useState<string>();
+	const [aiOpen, setAiOpen] = useState(false);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -110,6 +131,7 @@ export function PlotBoardPage({
 						<button type="button" role="tab" aria-selected={view === 'foreshadowing'} className={view === 'foreshadowing' ? 'is-active' : ''} onClick={() => setView('foreshadowing')}><Eye size={16} />伏笔表</button>
 					</div>
 					<label><span>当前叙事位置</span><input type="number" aria-label="当前叙事位置" min={0} value={currentOrder} onChange={event => setCurrentOrder(Number(event.target.value))} /></label>
+					<button type="button" className="plot-ai-button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 剧情线与伏笔</button>
 				</div>
 			</header>
 			<div className="plot-board-messages">
@@ -138,6 +160,13 @@ export function PlotBoardPage({
 												</button>
 											);
 										})}
+										{(data?.threads.filter(thread => thread.status === status).length ?? 0) === 0 && status === 'planned' ? (
+											<button type="button" className="plot-ai-empty-card" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
+												<Sparkles size={19} />
+												<strong>用 AI 创建剧情线</strong>
+												<small>先生成候选，再由作者确认。</small>
+											</button>
+										) : null}
 									</div>
 								</section>
 							))}
@@ -165,6 +194,25 @@ export function PlotBoardPage({
 					) : <div className="plot-inspector-empty"><ListChecks size={34} /><h2>选择一条记录</h2><p>查看来源、计划位置和生命周期。</p></div>}
 				</aside>
 			</section>
+			{aiOpen && projectRoot ? (
+				<PlotAiPanel
+					projectRoot={projectRoot}
+					chapters={chapters}
+					threads={data?.threads ?? []}
+					foreshadowing={data?.foreshadowing ?? []}
+					characters={data?.characters ?? []}
+					scenes={data?.scenes ?? []}
+					selectedThread={selected}
+					selectedForeshadowing={selectedClue}
+					currentNarrativeOrder={currentOrder}
+					readOnly={readOnly}
+					onClose={() => setAiOpen(false)}
+					onAccepted={(threads, foreshadowing) => setData(current => current
+						? { ...current, threads, foreshadowing }
+						: current)}
+					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
 			<footer className="plot-board-legend"><BookOpenCheck size={13} />自动风险只创建审校问题，不修改剧情资料。</footer>
 		</main>
 	);

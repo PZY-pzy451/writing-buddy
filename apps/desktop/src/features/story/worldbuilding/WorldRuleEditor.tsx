@@ -48,6 +48,20 @@ export function WorldRuleEditor({
 				<span>规则陈述</span>
 				<textarea rows={5} value={draft.statement} onChange={event => setDraft(current => ({ ...current, statement: event.target.value }))} />
 			</label>
+			<label className="is-wide">
+				<span>适用范围</span>
+				<input
+					value={draft.scope ?? ''}
+					placeholder="例如：灰城旧城区、雨夜、登记在册的居民"
+					onChange={event => {
+						const scope = event.target.value;
+						setDraft(current => ({
+							...current,
+							scope: scope.trim() ? scope : undefined
+						}));
+					}}
+				/>
+			</label>
 			<label>
 				<span>例外（每行一项）</span>
 				<textarea rows={4} value={draft.exceptions.join('\n')} onChange={event => setDraft(current => ({

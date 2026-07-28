@@ -9,6 +9,7 @@ import {
 	CharacterCenterPage,
 	type CharacterCenterData
 } from './CharacterCenterPage';
+import { desktopBridge } from '../../../platform/bridge';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
 const storyId = (value: string) => parseStoryId(value);
@@ -135,5 +136,34 @@ describe('CharacterCenterPage', () => {
 			expect.objectContaining({ title: '林越·修订' })
 		));
 		expect(screen.getByText('已保存')).toBeInTheDocument();
+	});
+
+	it('opens the empty-state AI workflow and renders exactly three generated candidates', async () => {
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		render(
+			<CharacterCenterPage
+				projectRoot="browser-fixture"
+				loadData={() => Promise.resolve({ characters: [], states: [] })}
+				chapters={[{
+					resourceId: 'chapter:chapter-000000a1',
+					chapterId: 'chapter-000000a1',
+					title: '第一章 · 雨夜旧站',
+					path: 'chapters/chapter-001.md',
+					narrativeOrder: 0
+				}]}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建人物' }));
+		expect(screen.getByRole('complementary', { name: 'AI 人物助手' })).toBeInTheDocument();
+		expect(screen.getByRole('combobox', { name: '选择人物分析章节' })).toHaveValue(
+			'chapter:chapter-000000a1'
+		);
+		fireEvent.click(screen.getByRole('button', { name: '生成候选' }));
+
+		expect(await screen.findByRole('heading', { name: '顾遥' })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: '唐砚' })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: '温禾' })).toBeInTheDocument();
+		await desktopBridge.deleteDeepSeekKey();
 	});
 });

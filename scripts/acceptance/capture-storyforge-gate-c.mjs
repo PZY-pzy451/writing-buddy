@@ -181,7 +181,325 @@ const gateFCaptures = [
 	{ mode: 'works', selector: '.story-dashboard', width: 1280, height: 768, name: '07-workspace-overview-1280x800.png' },
 	{ mode: 'references', view: 'timeline', selector: '.timeline-page', width: 1024, height: 688, name: '08-timeline-1024x720.png' }
 ];
-const captures = gate.startsWith('gate-e')
+const aiQuickActionsCaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1536,
+		height: 960,
+		name: '01-unified-ai-drawer-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1280,
+		height: 768,
+		name: '02-unified-ai-drawer-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-generation-drawer',
+		prepare: 'open-ai-drawer',
+		width: 1024,
+		height: 688,
+		name: '03-context-preview-1024x720.png'
+	}
+];
+const aiQuickActionsGateCCaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-action-menu',
+		prepare: 'select-editor',
+		width: 1536,
+		height: 960,
+		name: '01-selection-toolbar-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-rewrite-panel',
+		prepare: 'select-editor-ai-polish',
+		width: 1536,
+		height: 960,
+		name: '02-ai-polish-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.kernel-generator',
+		prepare: 'select-editor-create-character',
+		width: 1536,
+		height: 960,
+		name: '03-create-character-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-rewrite-panel',
+		prepare: 'select-editor-ai-polish',
+		width: 1280,
+		height: 768,
+		name: '04-ai-polish-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.kernel-generator',
+		prepare: 'select-editor-create-character',
+		width: 1024,
+		height: 688,
+		name: '05-create-character-1024x720.png'
+	}
+];
+const aiQuickActionsGateC2Captures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.ai-continuation-menu[open]',
+		prepare: 'open-continuation-menu',
+		width: 1536,
+		height: 960,
+		name: '01-continuation-entry-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.continuation-candidates',
+		prepare: 'generate-three-directions',
+		width: 1536,
+		height: 960,
+		name: '02-three-directions-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.scene-plan-fields',
+		prepare: 'generate-scene-plan',
+		width: 1536,
+		height: 960,
+		name: '03-scene-plan-fields-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.continuation-candidates',
+		prepare: 'generate-continuation',
+		width: 1280,
+		height: 768,
+		name: '04-continuation-candidate-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.scene-plan-fields',
+		prepare: 'generate-scene-plan',
+		width: 1024,
+		height: 688,
+		name: '05-scene-plan-fields-1024x720.png'
+	}
+];
+const aiQuickActionsGateDCaptures = [
+	{
+		mode: 'references',
+		view: 'characters',
+		readySelector: '.character-center',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-character-candidates',
+		width: 1536,
+		height: 960,
+		name: '01-character-three-candidates-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'relationships',
+		readySelector: '.relationship-page',
+		selector: '.relationship-page',
+		prepare: 'generate-relationship-candidates',
+		width: 1536,
+		height: 960,
+		name: '02-relationship-virtual-edges-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'characters',
+		readySelector: '.character-center',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-character-candidates',
+		width: 1280,
+		height: 768,
+		name: '03-character-extraction-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'relationships',
+		readySelector: '.relationship-page',
+		selector: '.relationship-page',
+		prepare: 'generate-relationship-candidates',
+		width: 1024,
+		height: 688,
+		name: '04-relationship-virtual-edges-1024x688.png'
+	}
+];
+const aiQuickActionsGateECaptures = [
+	{
+		mode: 'references',
+		view: 'worldbuilding',
+		readySelector: '.worldbuilding-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-world-candidates',
+		width: 1536,
+		height: 960,
+		name: '01-world-location-candidates-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'assets',
+		readySelector: '.story-assets-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-item-candidates',
+		width: 1536,
+		height: 960,
+		name: '02-item-card-candidate-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'worldbuilding',
+		readySelector: '.worldbuilding-page',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-world-candidates',
+		width: 1280,
+		height: 768,
+		name: '03-world-extraction-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'assets',
+		readySelector: '.story-assets-page',
+		selector: '.ai-review-drawer',
+		prepare: 'extract-item-candidates',
+		width: 1024,
+		height: 688,
+		name: '04-item-extraction-1024x688.png'
+	}
+];
+const aiQuickActionsGateFCaptures = [
+	{
+		mode: 'references',
+		view: 'timeline',
+		readySelector: '.timeline-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-timeline-extraction',
+		width: 1536,
+		height: 960,
+		name: '01-timeline-extraction-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'timeline',
+		readySelector: '.timeline-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-timeline-directions',
+		width: 1280,
+		height: 768,
+		name: '02-timeline-three-directions-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'plots',
+		readySelector: '.plot-board-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-plot-thread',
+		width: 1536,
+		height: 960,
+		name: '03-plot-thread-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'plots',
+		readySelector: '.plot-board-page',
+		selector: '.ai-review-drawer',
+		prepare: 'generate-foreshadowing-extraction',
+		width: 1024,
+		height: 688,
+		name: '04-foreshadowing-extraction-1024x688.png'
+	}
+];
+const aiQuickActionsGateGCaptures = [
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'plan-extraction',
+		width: 1536,
+		height: 960,
+		name: '01-extraction-plan-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'run-extraction',
+		width: 1280,
+		height: 768,
+		name: '02-extraction-candidates-1280x768.png'
+	},
+	{
+		mode: 'references',
+		view: 'continuity',
+		readySelector: '.continuity-review-page',
+		selector: '.continuity-review-page',
+		prepare: 'run-consistency-review',
+		width: 1536,
+		height: 960,
+		name: '03-consistency-evidence-1536x960.png'
+	},
+	{
+		mode: 'references',
+		view: 'extraction',
+		readySelector: '.extraction-center-page',
+		selector: '.extraction-center-page',
+		prepare: 'plan-extraction',
+		width: 1024,
+		height: 688,
+		name: '04-extraction-responsive-1024x688.png'
+	}
+];
+const captures = gate === 'gate-ai-actions-f'
+	? aiQuickActionsGateFCaptures
+	: gate === 'gate-ai-actions-g'
+	? aiQuickActionsGateGCaptures
+	: gate === 'gate-ai-actions-e'
+	? aiQuickActionsGateECaptures
+	: gate === 'gate-ai-actions-d'
+	? aiQuickActionsGateDCaptures
+	: gate === 'gate-ai-actions-c2'
+	? aiQuickActionsGateC2Captures
+	: gate.startsWith('gate-ai-actions-c')
+	? aiQuickActionsGateCCaptures
+	: gate.startsWith('gate-ai-actions')
+	? aiQuickActionsCaptures
+	: gate.startsWith('gate-e')
 	? gateECaptures
 	: gate.startsWith('gate-f')
 		? gateFCaptures
@@ -211,13 +529,398 @@ try {
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
 		const readyMs = await waitForSelector(client, capture.readySelector ?? capture.selector);
-		if (capture.prepare === 'select-editor') {
+		await new Promise(resolveWait => setTimeout(resolveWait, 300));
+		if (capture.prepare?.startsWith('select-editor')) {
 			const selectionResult = await client.send('Runtime.evaluate', {
 				expression: `window.__WRITING_BUDDY_DEVTOOLS__?.selectManuscriptPrefix(56) ?? false`,
 				returnByValue: true
 			});
 			if (!selectionResult.result.value) throw new Error('No manuscript content was available.');
+			if (capture.prepare === 'select-editor-ai-polish') {
+				const result = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = document.querySelector('.selection-action-ai');
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!result.result.value) throw new Error('AI polish selection action was not available.');
+			}
+			if (capture.prepare === 'select-editor-create-character') {
+				const result = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = document.querySelector('[data-resource-action="character"]');
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!result.result.value) throw new Error('Create-character selection action was not available.');
+			}
 			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'open-continuation-menu') {
+			const result = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const summary = document.querySelector('.ai-continuation-menu summary');
+					if (!(summary instanceof HTMLElement)) return false;
+					summary.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!result.result.value) throw new Error('AI continuation entry was not available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'generate-continuation' || capture.prepare === 'generate-three-directions') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!tools?.setManuscriptCursor(56)) return false;
+					if (!await tools.enableBrowserAiFixture()) return false;
+					const summary = document.querySelector('.ai-continuation-menu summary');
+					if (!(summary instanceof HTMLElement)) return false;
+					summary.click();
+					const target = ${JSON.stringify(capture.prepare === 'generate-three-directions' ? '三种走向' : '继续本段')};
+					const button = [...document.querySelectorAll('.ai-continuation-menu button')]
+						.find(item => item.textContent?.includes(target));
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					tools.setManuscriptCursor(56);
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Continuation workflow could not be prepared.');
+			await waitForSelector(client, '.continuation-panel .context-pack-preview');
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.continuation-panel .primary-button');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Continuation generation button was not available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'generate-scene-plan') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!tools?.setManuscriptCursor(56)) return false;
+					if (!await tools.enableBrowserAiFixture()) return false;
+					const tab = [...document.querySelectorAll('.assistant-tabs [role="tab"]')]
+						.find(item => item.textContent?.trim() === '细纲');
+					if (!(tab instanceof HTMLButtonElement)) return false;
+					tab.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Scene-plan workflow could not be prepared.');
+			await waitForSelector(client, '.scene-planning-panel .context-pack-preview');
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.scene-planning-panel .primary-button');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Scene-plan generation button was not available.');
+			await waitForSelector(client, capture.selector);
+		}
+		if (capture.prepare === 'open-ai-drawer') {
+			const openResult = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-quick-open');
+					if (!(button instanceof HTMLButtonElement)) {
+						return {
+							opened: false,
+							topBar: document.querySelector('.top-bar')?.innerText,
+							buttons: [...document.querySelectorAll('.top-bar button')]
+								.map(item => ({ className: item.className, text: item.textContent?.trim() }))
+						};
+					}
+					button.click();
+					return { opened: true };
+				})()`,
+				returnByValue: true
+			});
+			if (!openResult.result.value?.opened) {
+				throw new Error(
+					`AI quick action entry was not available: ${JSON.stringify(openResult.result.value)}`
+				);
+			}
+			await waitForSelector(client, capture.selector);
+		}
+		if (
+			capture.prepare === 'generate-character-candidates'
+			|| capture.prepare === 'extract-character-candidates'
+			|| capture.prepare === 'generate-relationship-candidates'
+		) {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const isRelationship = ${JSON.stringify(capture.prepare === 'generate-relationship-candidates')};
+					const openButton = document.querySelector(
+						isRelationship
+							? '.relationship-ai-button'
+							: '.character-list-header-actions > button'
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate D AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			if (
+				capture.prepare === 'generate-character-candidates'
+				|| capture.prepare === 'generate-relationship-candidates'
+			) {
+				const actionLabel = capture.prepare === 'generate-character-candidates'
+					? '生成三个人物'
+					: '生成双向关系';
+				const selected = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+							.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+						if (!(button instanceof HTMLButtonElement)) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!selected.result.value) throw new Error(`Gate D action was not available: ${actionLabel}`);
+			}
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate D generation button was not available.');
+			await waitForSelector(
+				client,
+				capture.prepare === 'generate-relationship-candidates'
+					? '.relationship-graph-canvas g.is-ai-candidate'
+					: '.ai-review-candidate'
+			);
+		}
+		if (
+			capture.prepare === 'generate-world-candidates'
+			|| capture.prepare === 'extract-world-candidates'
+			|| capture.prepare === 'generate-item-candidates'
+			|| capture.prepare === 'extract-item-candidates'
+		) {
+			const isWorld = capture.prepare.includes('world');
+			const isExtract = capture.prepare.startsWith('extract-');
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const openButton = document.querySelector(
+						${JSON.stringify(isWorld ? '.worldbuilding-ai-button' : '.story-assets-ai-button')}
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate E AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			const actionLabel = isWorld
+				? (isExtract ? '从正文提取' : '快速创建')
+				: (isExtract ? '从正文提取' : '生成物品卡');
+			const selected = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+						.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!selected.result.value) throw new Error(`Gate E action was not available: ${actionLabel}`);
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate E generation button was not available.');
+			await waitForSelector(client, '.ai-review-candidate');
+		}
+		if (
+			capture.prepare === 'generate-timeline-extraction'
+			|| capture.prepare === 'generate-timeline-directions'
+			|| capture.prepare === 'generate-plot-thread'
+			|| capture.prepare === 'generate-foreshadowing-extraction'
+		) {
+			const isTimeline = capture.prepare.includes('timeline');
+			const actionLabel = capture.prepare === 'generate-timeline-extraction'
+				? '从正文提取'
+				: capture.prepare === 'generate-timeline-directions'
+					? '三种后续'
+					: capture.prepare === 'generate-foreshadowing-extraction'
+						? '提取伏笔'
+						: '生成剧情线';
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const openButton = document.querySelector(
+						${JSON.stringify(isTimeline ? '.timeline-ai-event' : '.plot-ai-button')}
+					);
+					if (!(openButton instanceof HTMLButtonElement)) return false;
+					openButton.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate F AI review drawer could not be opened.');
+			await waitForSelector(client, '.ai-review-drawer');
+			const selected = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.ai-review-action-grid button')]
+						.find(item => item.textContent?.trim() === ${JSON.stringify(actionLabel)});
+					if (!(button instanceof HTMLButtonElement)) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!selected.result.value) throw new Error(`Gate F action was not available: ${actionLabel}`);
+			const generated = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = document.querySelector('.ai-review-primary');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!generated.result.value) throw new Error('Gate F generation button was not available.');
+			await waitForSelector(client, '.ai-review-candidate');
+			if (
+				capture.prepare === 'generate-timeline-directions'
+				|| capture.prepare === 'generate-foreshadowing-extraction'
+			) {
+				await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const body = document.querySelector('.ai-review-scroll');
+						if (!(body instanceof HTMLElement)) return false;
+						body.scrollTop = ${capture.prepare === 'generate-timeline-directions' ? 430 : 500};
+						return true;
+					})()`
+				});
+			}
+		}
+		if (capture.prepare === 'plan-extraction' || capture.prepare === 'run-extraction') {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const scope = [...document.querySelectorAll('.extraction-scope-grid button')]
+						.find(item => item.textContent?.trim() === '当前卷');
+					if (!(scope instanceof HTMLButtonElement)) return false;
+					scope.click();
+					const plan = document.querySelector('.extraction-plan-button');
+					if (!(plan instanceof HTMLButtonElement) || plan.disabled) return false;
+					plan.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!prepared.result.value) throw new Error('Gate G extraction plan could not be created.');
+			await waitForSelector(client, '.extraction-run-card [data-status="planned"]');
+			if (capture.prepare === 'run-extraction') {
+				const started = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const button = [...document.querySelectorAll('.extraction-run-actions button')]
+							.find(item => item.textContent?.includes('开始逐章整理'));
+						if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!started.result.value) throw new Error('Gate G extraction run could not be started.');
+				await waitForSelector(client, '.extraction-candidate-grid > article');
+			}
+		}
+		if (capture.prepare === 'run-consistency-review') {
+			const opened = await client.send('Runtime.evaluate', {
+				expression: `(async () => {
+					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+					if (!await tools?.enableBrowserAiFixture()) return false;
+					const button = [...document.querySelectorAll('.continuity-header-actions button')]
+						.find(item => item.textContent?.includes('AI 对照审查'));
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				awaitPromise: true,
+				returnByValue: true
+			});
+			if (!opened.result.value) throw new Error('Gate G consistency review could not be opened.');
+			await waitForSelector(client, '.story-consistency-panel');
+			const started = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const button = [...document.querySelectorAll('.story-consistency-panel footer button')]
+						.find(item => item.textContent?.includes('开始对照审查'));
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!started.result.value) throw new Error('Gate G consistency generation could not be started.');
+			await waitForSelector(client, '.story-consistency-success');
+			await client.send('Runtime.evaluate', {
+				expression: `document.querySelector('.story-consistency-panel > header > button')?.click()`
+			});
+			await waitForSelector(client, '.continuity-issue-list [data-ai="true"]');
+			await client.send('Runtime.evaluate', {
+				expression: `document.querySelector('.continuity-issue-list [data-ai="true"]')?.click()`
+			});
+			await waitForSelector(client, '.continuity-evidence-list article.is-story-fact');
+		}
+		if (capture.prepare?.startsWith('generate-')) {
+			await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const target = document.querySelector(${JSON.stringify(capture.selector)});
+					const scroller = target?.closest('.assistant-scroll');
+					if (target && scroller) {
+						scroller.scrollTop += target.getBoundingClientRect().top
+							- scroller.getBoundingClientRect().top - 8;
+					}
+					window.scrollTo(0, 0);
+				})()`
+			});
 		}
 		await new Promise(resolveWait => setTimeout(resolveWait, 350));
 		const layout = await client.send('Runtime.evaluate', {
@@ -253,8 +956,13 @@ try {
 					.filter(element => {
 						const box = element.getBoundingClientRect();
 						const style = getComputedStyle(element);
+						const label = element.matches('input[type="checkbox"], input[type="radio"]')
+							? element.closest('label')
+							: undefined;
+						const hasAccessibleLabelTarget = label
+							&& label.getBoundingClientRect().height >= 43.5;
 						return box.width > 0 && box.height > 0 && style.visibility !== 'hidden'
-							&& style.opacity !== '0' && box.height < 43.5;
+							&& style.opacity !== '0' && box.height < 43.5 && !hasAccessibleLabelTarget;
 					});
 				const describeInteractive = element => {
 					const box = element.getBoundingClientRect();

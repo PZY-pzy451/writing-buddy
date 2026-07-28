@@ -56,9 +56,12 @@ export function ContextPackPreview({
 				{contextPriorities.map(priority => {
 					const items = pack.items.filter(item => item.priority === priority);
 					if (items.length === 0) return null;
+					const groupLabel = priority === 'P1'
+						? items[0]?.title ?? priorityLabels[priority]
+						: priorityLabels[priority];
 					return (
 						<section key={priority}>
-							<header><span>{priority}</span><strong>{priorityLabels[priority]}</strong><em>{items.filter(item => item.included).length}/{items.length}</em></header>
+							<header><span>{priority}</span><strong>{groupLabel}</strong><em>{items.filter(item => item.included).length}/{items.length}</em></header>
 							{items.map(item => (
 								<article className={item.included ? 'is-included' : 'is-excluded'} key={item.id}>
 									<label>

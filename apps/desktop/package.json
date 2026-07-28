@@ -13,6 +13,7 @@
     "@monaco-editor/react": "4.7.0",
     "@tauri-apps/api": "2.11.1",
     "@writing-buddy/ai": "workspace:*",
+    "@writing-buddy/ai-actions": "workspace:*",
     "@writing-buddy/backup": "workspace:*",
     "@writing-buddy/compatibility": "workspace:*",
     "@writing-buddy/domain": "workspace:*",
