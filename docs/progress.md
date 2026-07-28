@@ -4,11 +4,10 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project highlight and shared interaction Y5 is active on
-`codex/project-highlight-components-y5`. The scope is shared drag/association/
-undo primitives, opt-in manuscript entity highlights, standardized AI
-candidate states, and actionable Story Kernel schema diagnostics. Contract:
-`docs/plans/015-project-highlight-components-y5.md`.
+Project highlight and shared interaction Y5 is accepted on
+`codex/project-highlight-components-y5` at implementation commit `830deedd`.
+Evidence:
+`docs/acceptance/023-project-highlight-components-y5-2026-07-28.md`.
 
 ## Completed
 
@@ -222,6 +221,22 @@ candidate states, and actionable Story Kernel schema diagnostics. Contract:
   normal close passed with exit code 0
 - Project association drag Y4 evidence in
   `docs/acceptance/022-project-association-drag-y4-2026-07-28.md`
+- Shared TreeRow, DropIndicator, DragOverlayCard, AssociationMenu, UndoToast,
+  and AI candidate state primitives adopted by project-tree and association
+  surfaces
+- Project-scoped, opt-in character/location/item/foreshadowing manuscript
+  highlights with distinct four-theme semantic tokens
+- Field-specific Story Kernel diagnostics with safe actual-value previews,
+  blocked invalid writes, and raw JSON collapsed behind diagnostic disclosure
+- Responsive 1440/1024 evidence for real entity decorations and the supplied
+  `readerVisibility: "hidden"` regression across Paper, Midnight, Fog, and
+  Focus
+- Full Node acceptance: 89 files / 287 tests; Rust: 49 passed / 2 explicit
+  external gates ignored
+- Fresh portable EXE and NSIS installer built; isolated native startup and
+  normal close passed with exit code 0
+- Project highlight and shared interaction Y5 evidence in
+  `docs/acceptance/023-project-highlight-components-y5-2026-07-28.md`
 
 ## Open
 
@@ -235,7 +250,7 @@ candidate states, and actionable Story Kernel schema diagnostics. Contract:
 
 ## Next
 
-Complete and accept Y5 before starting the broad Y6 visual-polish pass. Scene
+Start the broad Y6 application visual-polish pass as a separate gate. Scene
 cross-chapter movement still requires a manuscript-anchor migration contract;
 do not implement it as a synthetic array reorder.
 

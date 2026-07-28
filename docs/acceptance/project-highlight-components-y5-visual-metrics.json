@@ -1,0 +1,86 @@
+{
+  "date": "2026-07-28",
+  "gate": "project-highlight-components-y5",
+  "browser": {
+    "driver": "Playwright",
+    "binary": "Microsoft Edge",
+    "source": "isolated browser fixture"
+  },
+  "viewports": [
+    {
+      "name": "entity-highlights",
+      "width": 1440,
+      "height": 1000,
+      "enabledKinds": 4,
+      "activeDecorations": 4,
+      "counts": {
+        "character": 1,
+        "location": 1,
+        "item": 1,
+        "foreshadowing": 1
+      }
+    },
+    {
+      "name": "invalid-kernel-candidate",
+      "width": 1024,
+      "height": 800,
+      "documentOverflowX": 0,
+      "pageOverflowX": 0,
+      "cardWidth": 297,
+      "cardScrollWidth": 295,
+      "cardClientWidth": 295,
+      "actionControlsBelow44": 0,
+      "field": "readerVisibility",
+      "expected": "0–1 之间的数字",
+      "actual": "\"hidden\""
+    },
+    {
+      "name": "expanded-kernel-structure",
+      "width": 1024,
+      "height": 800,
+      "structureWidth": 264,
+      "structureScrollWidth": 262,
+      "structureClientWidth": 262,
+      "overflowContained": true
+    }
+  ],
+  "themes": [
+    {
+      "name": "paper",
+      "monacoBackground": "rgb(248, 244, 236)",
+      "candidateBackground": "color(srgb 1 0.962588 0.951843)",
+      "candidateText": "rgb(45, 41, 37)",
+      "candidateBorder": "rgb(183, 68, 53)"
+    },
+    {
+      "name": "midnight",
+      "monacoBackground": "rgb(18, 23, 32)",
+      "candidateBackground": "color(srgb 0.175529 0.139294 0.169176)",
+      "candidateText": "rgb(238, 233, 223)",
+      "candidateBorder": "rgb(240, 138, 124)"
+    },
+    {
+      "name": "fog",
+      "monacoBackground": "rgb(242, 243, 241)",
+      "candidateBackground": "color(srgb 0.986353 0.945412 0.936314)",
+      "candidateText": "rgb(49, 57, 67)",
+      "candidateBorder": "rgb(169, 67, 54)"
+    },
+    {
+      "name": "focus",
+      "monacoBackground": "rgb(245, 240, 230)",
+      "candidateBackground": "color(srgb 0.985333 0.941725 0.921098)",
+      "candidateText": "rgb(45, 41, 36)",
+      "candidateBorder": "rgb(170, 67, 55)"
+    }
+  ],
+  "interactions": {
+    "highlightDefaultOff": "passed",
+    "independentHighlightToggles": "passed",
+    "fieldSpecificSchemaDiagnostic": "passed",
+    "invalidCandidateBlocked": "passed",
+    "rawStructureCollapsedByDefault": "passed",
+    "rawStructureInternalScroll": "passed",
+    "realThemeSwitching": "passed"
+  }
+}

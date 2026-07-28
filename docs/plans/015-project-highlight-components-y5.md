@@ -1,6 +1,7 @@
 # Project highlight and shared interaction Y5 implementation contract
 
 Date: 2026-07-28
+Status: Accepted
 
 ## Outcome
 
