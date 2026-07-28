@@ -1,0 +1,79 @@
+{
+  "date": "2026-07-28",
+  "implementationCommit": "6a00b285",
+  "runtime": {
+    "browser": "Microsoft Edge via Playwright",
+    "fixture": "browser-fixture",
+    "reducedMotion": true
+  },
+  "baseline": {
+    "observedControlHeightsPx": [17, 28, 34, 36],
+    "disabledOpacityRuleGroups": 9,
+    "hoverTranslationRules": 2
+  },
+  "scenarios": [
+    {
+      "name": "dashboard-paper",
+      "viewport": [1536, 992],
+      "documentOverflowPx": 0,
+      "visibleButtons": 43,
+      "controlsBelow32Px": 0,
+      "disabledBelowFullOpacity": 0
+    },
+    {
+      "name": "settings-midnight",
+      "viewport": [1280, 800],
+      "documentOverflowPx": 0,
+      "visibleButtons": 44,
+      "controlsBelow32Px": 0,
+      "disabledBelowFullOpacity": 0
+    },
+    {
+      "name": "character-empty-paper",
+      "viewport": [1280, 800],
+      "documentOverflowPx": 0,
+      "detailOverflowPx": 0,
+      "primaryActionPx": [130, 44]
+    },
+    {
+      "name": "versions-empty-midnight",
+      "viewport": [1024, 720],
+      "documentOverflowPx": 0,
+      "visibleButtons": 37,
+      "controlsBelow32Px": 0,
+      "disabledBelowFullOpacity": 0
+    },
+    {
+      "name": "search-empty-paper",
+      "viewport": [1024, 720],
+      "documentOverflowPx": 0,
+      "keyboardFocusVisible": true
+    }
+  ],
+  "iconSizesPx": [16, 18, 20],
+  "presentationIconSizesPx": [24, 32],
+  "paperDisabledContrastRatio": 5.84,
+  "freshConsoleErrors": 0,
+  "failedResponses": 0,
+  "nativeSmoke": {
+    "pid": 2984,
+    "inputIdle": true,
+    "responding": true,
+    "windowTitle": "Writing Buddy",
+    "closeMainWindow": true,
+    "forced": false,
+    "exitCode": 0
+  },
+  "artifacts": {
+    "portable": {
+      "path": "tmp/project-visual-polish-y6-target/release/writing-buddy-next.exe",
+      "bytes": 7398912,
+      "sha256": "BE5BAB7A930D64DFDFC7D5F7EC724FC1EAA89AE43E444E848C73771C111A7FE0"
+    },
+    "nsis": {
+      "path": "tmp/project-visual-polish-y6-target/release/bundle/nsis/Writing Buddy_0.1.0_x64-setup.exe",
+      "bytes": 3208966,
+      "sha256": "640B6A6FEF7E6DD34D92A78498C5C7EDE86E2E72E1A1E208DE1247A1C6139BBC"
+    }
+  }
+}

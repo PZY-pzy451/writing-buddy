@@ -1,6 +1,7 @@
 # Project visual polish Y6 implementation contract
 
 Updated: 2026-07-28
+Status: Accepted
 
 ## Goal
 

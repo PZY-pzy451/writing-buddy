@@ -4,14 +4,24 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-Project visual polish Y6 is active on `codex/project-visual-polish-y6`.
-The implementation contract in `docs/plans/019-project-visual-polish-y6.md`
-normalizes shared control sizes, icon tiers, empty states, hover stability,
-disabled readability, card geometry, and responsive behavior without changing
-business or persistence logic.
+No implementation milestone is currently active. Project visual polish Y6 is
+accepted on `codex/project-visual-polish-y6` at implementation commit
+`6a00b285`. Evidence:
+`docs/acceptance/027-project-visual-polish-y6-2026-07-28.md`.
 
 ## Completed
 
+- Shared 32/40/44-pixel control tiers, 16/18/20-pixel button icon tiers,
+  stable hover feedback, readable full-opacity disabled states, and shared
+  card geometry across the desktop client.
+- Semantic `AppEmptyState` full/panel/compact variants adopted by major
+  no-resource, search, review, version, reference, continuity, and AI
+  surfaces.
+- Y6 acceptance: Node 24, 97 frontend files / 327 tests, 51 Rust tests,
+  Paper/Midnight responsive checks at 1536/1280/1024, fresh Tauri packaging,
+  clean browser console, and isolated native close with exit code 0.
+- Project visual polish Y6 evidence in
+  `docs/acceptance/027-project-visual-polish-y6-2026-07-28.md`.
 - First-class scene rows below chapters with same-chapter reorder and
   cross-chapter movement.
 - Exact UTF-16 manuscript-slice planning with preservation of unlinked text,
@@ -278,8 +288,8 @@ business or persistence logic.
 
 ## Next
 
-Complete and accept the Y6 application visual-polish pass, then handle
-remaining person/world grouping drag and Y7 hardening as separate gates.
+Handle remaining person/world grouping drag and Y7 hardening as separate
+gates.
 
 ## Project Creation Y0–Y2 complete
 
