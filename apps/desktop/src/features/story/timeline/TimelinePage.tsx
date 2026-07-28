@@ -1,21 +1,27 @@
 import {
 	AlertTriangle,
 	CalendarClock,
+	Check,
 	LayoutList,
 	ListTree,
 	MapPin,
 	Minus,
 	Plus,
 	Sparkles,
-	UserRound
+	UserRound,
+	X
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
 	createStoryId,
+	commitStoryMutation,
 	DesktopStoryRepository,
+	findNarrativeCausalityConflicts,
 	parseTimelineEvent,
 	queryEvents,
+	reorderTimelineEvents,
 	runTimelineRules,
+	undoStoryMutation,
 	type StoryResource,
 	type Character,
 	type Foreshadowing,
@@ -24,8 +30,11 @@ import {
 	type StoryItem,
 	type TimelineEvent,
 	type TimelineMode,
-	type TravelLinkRule
+	type TravelLinkRule,
+	type NarrativeCausalityConflict,
+	type StoryMutationReceipt
 } from '@writing-buddy/story-kernel';
+import { useModalFocus } from '../../../accessibility/useModalFocus';
 import { desktopBridge } from '../../../platform/bridge';
 import type {
 	AiChapterSource,
@@ -34,7 +43,10 @@ import type {
 import { EventInspector } from './EventInspector';
 import { TimelineAiPanel } from './TimelineAiPanel';
 import { TimelineCanvas, type TimelineTrackKind } from './TimelineCanvas';
+import { TimelineReorderRail } from './TimelineReorderRail';
 import { VirtualTimelineList } from './VirtualTimelineList';
+import { StoryDragUndoToast } from '../shared/StoryDragUndoToast';
+import { useStoryDragUndoShortcut } from '../shared/useStoryDragUndoShortcut';
 import './TimelinePage.css';
 
 export interface TimelinePageData {
@@ -122,6 +134,56 @@ interface TimelinePageProps {
 	readonly onOpenEvidence?: OpenAiEvidence;
 }
 
+function CausalityConfirmDialog({
+	conflicts,
+	saving,
+	onCancel,
+	onConfirm
+}: {
+	readonly conflicts: readonly NarrativeCausalityConflict[];
+	readonly saving: boolean;
+	readonly onCancel: () => void;
+	readonly onConfirm: () => void;
+}): React.JSX.Element {
+	const dialogRef = useModalFocus(onCancel);
+	return (
+		<div className="timeline-causality-backdrop">
+			<section
+				ref={dialogRef}
+				tabIndex={-1}
+				role="alertdialog"
+				aria-modal="true"
+				aria-labelledby="timeline-causality-title"
+				className="timeline-causality-dialog"
+			>
+				<header>
+					<div><span className="eyebrow">CAUSALITY GUARD</span><h2 id="timeline-causality-title">确认因果顺序冲突</h2></div>
+					<button type="button" aria-label="关闭因果冲突确认" onClick={onCancel}><X size={18} /></button>
+				</header>
+				<div className="timeline-causality-warning">
+					<AlertTriangle size={19} />
+					<p>新的叙事顺序会让结果早于已声明的前置事件。这里只改变读者看到的顺序，不改变故事实际时间。</p>
+				</div>
+				<ul>
+					{conflicts.slice(0, 6).map(conflict => (
+						<li key={`${conflict.predecessorId}:${conflict.eventId}`}>
+							<strong>{conflict.eventTitle}</strong>
+							<span>将出现在前置事件“{conflict.predecessorTitle}”之前</span>
+						</li>
+					))}
+				</ul>
+				{conflicts.length > 6 ? <p>另有 {conflicts.length - 6} 条冲突。</p> : null}
+				<footer>
+					<button type="button" onClick={onCancel}>返回调整</button>
+					<button type="button" className="is-primary" disabled={saving} onClick={onConfirm}>
+						<Check size={17} />{saving ? '保存中…' : '仍然保存'}
+					</button>
+				</footer>
+			</section>
+		</div>
+	);
+}
+
 export function TimelinePage({
 	projectRoot,
 	loadData = defaultLoadData,
@@ -140,6 +202,11 @@ export function TimelinePage({
 	const [draftEvent, setDraftEvent] = useState<TimelineEvent>();
 	const [saving, setSaving] = useState(false);
 	const [aiOpen, setAiOpen] = useState(false);
+	const [pendingReorder, setPendingReorder] = useState<{
+		readonly updates: readonly TimelineEvent[];
+		readonly conflicts: readonly NarrativeCausalityConflict[];
+	}>();
+	const [reorderUndo, setReorderUndo] = useState<StoryMutationReceipt>();
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -219,6 +286,77 @@ export function TimelinePage({
 		}
 	};
 
+	const persistReorder = useCallback(async (updates: readonly TimelineEvent[]) => {
+		if (!projectRoot || !data || updates.length === 0) return;
+		setSaving(true);
+		setError(undefined);
+		try {
+			const currentById = new Map(data.events.map(event => [event.id, event]));
+			const before = updates.map(event => currentById.get(event.id))
+				.filter((event): event is TimelineEvent => event !== undefined);
+			const receipt = await commitStoryMutation({
+				repository: new DesktopStoryRepository(projectRoot, desktopBridge),
+				before: before as unknown as readonly StoryResource[],
+				after: updates as unknown as readonly StoryResource[],
+				description: '已调整叙事事件顺序'
+			});
+			const savedById = new Map(receipt.saved.map(resource => [
+				resource.id,
+				parseTimelineEvent(resource as unknown as Parameters<typeof parseTimelineEvent>[0])
+			]));
+			setData(current => current ? {
+				...current,
+				events: current.events.map(event => savedById.get(event.id) ?? event)
+			} : current);
+			setReorderUndo(receipt);
+			setPendingReorder(undefined);
+		} catch (reason) {
+			setError(reason instanceof Error && reason.name === 'StoryRevisionConflictError'
+				? '时间线已在其他位置发生变化，请刷新后重试。'
+				: '叙事顺序保存失败，原顺序没有改变。');
+		} finally {
+			setSaving(false);
+		}
+	}, [data, projectRoot]);
+
+	const requestReorder = (activeId: string, overId: string) => {
+		if (!data) return;
+		try {
+			const updates = reorderTimelineEvents({
+				events: data.events,
+				activeId,
+				overId
+			});
+			if (updates.length === 0) return;
+			const updatesById = new Map(updates.map(event => [event.id, event]));
+			const next = data.events.map(event => updatesById.get(event.id) ?? event);
+			const conflicts = findNarrativeCausalityConflicts(next);
+			if (conflicts.length > 0) {
+				setPendingReorder({ updates, conflicts });
+				return;
+			}
+			void persistReorder(updates);
+		} catch {
+			setError('无法识别时间线拖放目标，顺序没有改变。');
+		}
+	};
+
+	const undoReorder = useCallback(() => {
+		if (!reorderUndo || !projectRoot || saving) return;
+		setSaving(true);
+		void undoStoryMutation({
+			repository: new DesktopStoryRepository(projectRoot, desktopBridge),
+			receipt: reorderUndo
+		})
+			.then(async () => {
+				setReorderUndo(undefined);
+				await reload();
+			})
+			.catch(() => setError('无法撤销：时间线资料已发生其他变化。'))
+			.finally(() => setSaving(false));
+	}, [projectRoot, reload, reorderUndo, saving]);
+	useStoryDragUndoShortcut(Boolean(reorderUndo) && !saving, undoReorder);
+
 	return (
 		<main className="timeline-page" aria-label="多轨时间线">
 			<header className="timeline-header">
@@ -250,6 +388,13 @@ export function TimelinePage({
 				{error ? <div className="timeline-error" role="alert"><AlertTriangle size={17} />{error}<button type="button" onClick={() => void reload()}>重试</button></div> : null}
 			</div>
 			<section className="timeline-workspace">
+				<TimelineReorderRail
+					events={events}
+					mode={mode}
+					disabled={Boolean(readOnly || saving)}
+					onSelect={selectEvent}
+					onReorder={requestReorder}
+				/>
 				{!data ? (
 					<div className="timeline-loading">正在读取事件与轨道…</div>
 				) : view === 'tracks' ? (
@@ -306,6 +451,22 @@ export function TimelinePage({
 						? { ...current, events: accepted }
 						: current)}
 					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
+			{pendingReorder ? (
+				<CausalityConfirmDialog
+					conflicts={pendingReorder.conflicts}
+					saving={saving}
+					onCancel={() => setPendingReorder(undefined)}
+					onConfirm={() => void persistReorder(pendingReorder.updates)}
+				/>
+			) : null}
+			{reorderUndo ? (
+				<StoryDragUndoToast
+					message={reorderUndo.description}
+					busy={saving}
+					onUndo={undoReorder}
+					onDismiss={() => setReorderUndo(undefined)}
 				/>
 			) : null}
 			<footer className="timeline-legend">

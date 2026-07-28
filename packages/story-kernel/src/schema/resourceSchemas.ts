@@ -102,6 +102,7 @@ export const sceneSchema = z.object({
 	povCharacterId: idFor('character').optional(),
 	locationIds: z.array(idFor('location')),
 	participantIds: z.array(idFor('character')),
+	itemIds: z.array(idFor('item')).optional(),
 	goal: z.string().max(5000).optional(),
 	conflict: z.string().max(5000).optional(),
 	turn: z.string().max(5000).optional(),

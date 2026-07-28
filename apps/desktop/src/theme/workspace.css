@@ -2603,10 +2603,10 @@ button.tree-row {
 
 	.app-shell.is-story-studio {
 		grid-template:
-			"top top" var(--topbar-height)
-			"rail center" minmax(0, 1fr)
-			"status status" var(--status-height)
-			/ var(--rail-width) minmax(0, 1fr);
+			"top top top" var(--topbar-height)
+			"rail sidebar center" minmax(0, 1fr)
+			"status status status" var(--status-height)
+			/ var(--rail-width) 240px minmax(0, 1fr);
 	}
 
 	.project-sidebar {
@@ -2617,6 +2617,12 @@ button.tree-row {
 		bottom: var(--status-height);
 		width: min(320px, calc(100vw - var(--rail-width)));
 		box-shadow: var(--shadow-float);
+	}
+
+	.app-shell.is-story-studio .project-sidebar {
+		position: static;
+		width: auto;
+		box-shadow: none;
 	}
 
 	.app-shell:not(.mode-works):not(.mode-references) .project-sidebar {
@@ -2687,6 +2693,14 @@ button.tree-row {
 
 	.project-sidebar {
 		left: var(--rail-width);
+	}
+
+	.app-shell.is-story-studio {
+		grid-template:
+			"top top top" var(--topbar-height)
+			"rail sidebar center" minmax(0, 1fr)
+			"status status status" var(--status-height)
+			/ var(--rail-width) 220px minmax(0, 1fr);
 	}
 
 	.writer-header {

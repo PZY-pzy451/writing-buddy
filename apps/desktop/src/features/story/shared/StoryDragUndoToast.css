@@ -1,0 +1,63 @@
+.story-drag-undo-toast {
+	position: fixed;
+	z-index: 120;
+	right: 24px;
+	bottom: 24px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	max-width: min(460px, calc(100vw - 32px));
+	min-height: 52px;
+	padding: 6px 8px 6px 16px;
+	color: var(--surface-raised);
+	background: var(--text-primary);
+	border: 1px solid color-mix(in srgb, var(--surface-raised) 18%, transparent);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-float);
+}
+
+.story-drag-undo-toast > span {
+	min-width: 0;
+	font-size: 12px;
+	font-weight: 650;
+	line-height: 1.4;
+}
+
+.story-drag-undo-toast button {
+	display: inline-flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-width: 44px;
+	min-height: 44px;
+	padding: 0 10px;
+	cursor: pointer;
+	color: inherit;
+	font-weight: 700;
+	background: color-mix(in srgb, var(--surface-raised) 12%, transparent);
+	border: 0;
+	border-radius: var(--radius-control);
+}
+
+.story-drag-undo-toast button:last-child {
+	width: 44px;
+	padding: 0;
+}
+
+.story-drag-undo-toast button:hover {
+	background: color-mix(in srgb, var(--surface-raised) 20%, transparent);
+}
+
+.story-drag-undo-toast button:focus-visible {
+	outline: 2px solid var(--surface-raised);
+	outline-offset: 2px;
+}
+
+@media (max-width: 799px) {
+	.story-drag-undo-toast {
+		right: 12px;
+		bottom: 12px;
+		left: 12px;
+	}
+}

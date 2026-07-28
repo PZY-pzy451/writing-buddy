@@ -13,6 +13,7 @@
 - [Project data ordering contract](./011-project-data-ordering-contract.md)
 - [Project Creation Y0–Y2 implementation contract](./012-project-creation-y0-y2.md)
 - [Project structure drag Y3 implementation contract](./013-project-structure-drag-y3.md)
+- [Project association drag Y4 implementation contract](./014-project-association-drag-y4.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
 - [Phase 1.0B system layout and AI review follow-up](./phase-1.0b-system-layout-and-ai-review.md)
 - [StoryForge source map](./storyforge-source-map.md)

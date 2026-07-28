@@ -5,6 +5,7 @@ import {
 	Files,
 	Globe2,
 	KeyRound,
+	Link2,
 	Milestone,
 	Network,
 	PackageSearch,
@@ -29,6 +30,7 @@ const navigation: readonly {
 	{ id: 'plots', label: '剧情线与伏笔', description: '生命周期与回收风险', icon: Milestone, available: true },
 	{ id: 'information', label: '信息权限', description: '真相、读者与人物知识', icon: KeyRound, available: true }
 	,
+	{ id: 'associations', label: '关联编排', description: '拖放人物、物品与伏笔', icon: Link2, available: true },
 	{ id: 'continuity', label: '一致性审查', description: '规则、Kernel 与 AI', icon: ClipboardCheck, available: true },
 	{ id: 'extraction', label: 'AI 正文整理', description: '分批提取与冲突队列', icon: Files, available: true }
 ];

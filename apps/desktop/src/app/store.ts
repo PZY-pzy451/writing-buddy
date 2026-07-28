@@ -48,6 +48,7 @@ export type StoryViewId =
 	| 'assets'
 	| 'plots'
 	| 'information'
+	| 'associations'
 	| 'continuity'
 	| 'extraction';
 

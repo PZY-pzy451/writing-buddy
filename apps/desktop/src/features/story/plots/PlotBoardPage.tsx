@@ -1,8 +1,24 @@
 import {
+	closestCenter,
+	DndContext,
+	DragOverlay,
+	KeyboardSensor,
+	PointerSensor,
+	useDraggable,
+	useDroppable,
+	useSensor,
+	useSensors,
+	type DragEndEvent,
+	type DragStartEvent
+} from '@dnd-kit/core';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import {
 	AlertTriangle,
 	BookOpenCheck,
 	Columns3,
 	Eye,
+	GripVertical,
 	ListChecks,
 	Save,
 	Sparkles
@@ -10,15 +26,20 @@ import {
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
 	DesktopStoryRepository,
+	commitStoryMutation,
+	movePlotThreadStatus,
 	parseForeshadowing,
 	parsePlotThread,
 	plotThreadStatuses,
 	runPlotRules,
+	undoStoryMutation,
 	type Character,
 	type Foreshadowing,
 	type PlotThread,
 	type PlotThreadStatus,
-	type StoryScene
+	type StoryScene,
+	type StoryMutationReceipt,
+	type StoryResource
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
 import type {
@@ -27,6 +48,8 @@ import type {
 } from '../ai-context/AiChapterSource';
 import { ForeshadowingTable } from './ForeshadowingTable';
 import { PlotAiPanel } from './PlotAiPanel';
+import { StoryDragUndoToast } from '../shared/StoryDragUndoToast';
+import { useStoryDragUndoShortcut } from '../shared/useStoryDragUndoShortcut';
 import './PlotBoardPage.css';
 
 export interface PlotBoardData {
@@ -43,6 +66,114 @@ const statusLabels: Readonly<Record<PlotThreadStatus, string>> = {
 	resolved: '已解决',
 	abandoned: '已放弃'
 };
+
+function readPlotThread(
+	data: { readonly current?: Record<string, unknown> }
+): PlotThread | undefined {
+	const thread = data.current?.plotThread;
+	return thread && typeof thread === 'object' ? thread as PlotThread : undefined;
+}
+
+function readPlotStatus(
+	data: { readonly current?: Record<string, unknown> }
+): PlotThreadStatus | undefined {
+	const status = data.current?.plotStatus;
+	return typeof status === 'string' && plotThreadStatuses.includes(status as PlotThreadStatus)
+		? status as PlotThreadStatus
+		: undefined;
+}
+
+function PlotThreadCard({
+	thread,
+	currentOrder,
+	selected,
+	disabled,
+	onSelect
+}: {
+	readonly thread: PlotThread;
+	readonly currentOrder: number;
+	readonly selected: boolean;
+	readonly disabled: boolean;
+	readonly onSelect: () => void;
+}): React.JSX.Element {
+	const {
+		attributes,
+		isDragging,
+		listeners,
+		setActivatorNodeRef,
+		setNodeRef,
+		transform
+	} = useDraggable({
+		id: `plot-thread:${thread.id}`,
+		data: { plotThread: thread },
+		disabled
+	});
+	const start = thread.startPosition?.narrativeOrder ?? 0;
+	const end = thread.targetResolution?.narrativeOrder ?? Math.max(currentOrder, 1);
+	const coverage = Math.max(4, Math.min(
+		100,
+		((currentOrder - start) / Math.max(1, end - start)) * 100
+	));
+	return (
+		<article
+			ref={setNodeRef}
+			className={`plot-thread-card${selected ? ' is-active' : ''}${isDragging ? ' is-dragging' : ''}`}
+			style={transform ? {
+				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
+			} : undefined}
+		>
+			<button type="button" className="plot-thread-main" onClick={onSelect}>
+				<span className="eyebrow">{thread.tags[0] ?? 'PLOT THREAD'}</span>
+				<strong id={`plot-thread-title-${thread.id}`}>{thread.title}</strong>
+				<p>{thread.dramaticQuestion ?? thread.premise ?? '尚未补充戏剧问题。'}</p>
+				<span className="plot-coverage" aria-label={`章节覆盖 ${Math.round(coverage)}%`}><i style={{ width: `${coverage}%` }} /></span>
+				<small>{thread.sceneIds.length} 场景 · {thread.evidenceIds.length} 证据</small>
+			</button>
+			<button
+				ref={setActivatorNodeRef}
+				type="button"
+				className="plot-thread-drag-handle"
+				aria-label="拖动剧情线卡片"
+				disabled={disabled}
+				{...attributes}
+				{...listeners}
+				aria-describedby={`${attributes['aria-describedby'] ?? ''} plot-thread-title-${thread.id}`.trim()}
+			>
+				<GripVertical size={16} />
+			</button>
+		</article>
+	);
+}
+
+function PlotStatusColumn({
+	status,
+	activeThread,
+	children
+}: {
+	readonly status: PlotThreadStatus;
+	readonly activeThread?: PlotThread;
+	readonly children: React.ReactNode;
+}): React.JSX.Element {
+	const { isOver, setNodeRef } = useDroppable({
+		id: `plot-status:${status}`,
+		data: { plotStatus: status }
+	});
+	const same = activeThread?.status === status;
+	return (
+		<section
+			ref={setNodeRef}
+			className={`${activeThread ? same ? 'is-drop-current' : 'is-drop-valid' : ''}${isOver ? ' is-over' : ''}`}
+			aria-labelledby={`plot-column-${status}`}
+		>
+			{children}
+			{isOver && activeThread ? (
+				<span className="plot-drop-label">
+					{same ? '状态不变' : `松开移到“${statusLabels[status]}”`}
+				</span>
+			) : null}
+		</section>
+	);
+}
 
 const defaultLoadData = async (projectRoot: string): Promise<PlotBoardData> => {
 	const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
@@ -77,10 +208,20 @@ export function PlotBoardPage({
 	const [view, setView] = useState<'board' | 'foreshadowing'>('board');
 	const [currentOrder, setCurrentOrder] = useState(10);
 	const [selectedId, setSelectedId] = useState<string>();
-	const [draftStatus, setDraftStatus] = useState<PlotThreadStatus>('planned');
+	const [draftStatus, setDraftStatus] = useState<{
+		readonly threadId: string;
+		readonly status: PlotThreadStatus;
+	}>();
 	const [saving, setSaving] = useState(false);
 	const [error, setError] = useState<string>();
 	const [aiOpen, setAiOpen] = useState(false);
+	const [activeThread, setActiveThread] = useState<PlotThread>();
+	const [plotUndo, setPlotUndo] = useState<StoryMutationReceipt>();
+	const [announcement, setAnnouncement] = useState('');
+	const sensors = useSensors(
+		useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+	);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
@@ -103,23 +244,92 @@ export function PlotBoardPage({
 
 	const selected = data?.threads.find(thread => thread.id === selectedId);
 	const selectedClue = data?.foreshadowing.find(clue => clue.id === selectedId);
+	const selectedDraftStatus = selected
+		? draftStatus?.threadId === selected.id
+			? draftStatus.status
+			: selected.status
+		: 'planned';
 	const issues = useMemo(() => runPlotRules(data?.threads ?? [], data?.foreshadowing ?? [], currentOrder), [currentOrder, data]);
 
 	const chooseThread = (thread: PlotThread) => {
 		setSelectedId(thread.id);
-		setDraftStatus(thread.status);
+		setDraftStatus({ threadId: thread.id, status: thread.status });
 	};
 	const saveStatus = async () => {
 		if (!projectRoot || !data || !selected) return;
 		setSaving(true);
 		try {
 			const repository = new DesktopStoryRepository(projectRoot, desktopBridge);
-			const saved = parsePlotThread(await repository.save({ ...selected, status: draftStatus }, selected.revision) as never);
+			const saved = parsePlotThread(await repository.save({ ...selected, status: selectedDraftStatus }, selected.revision) as never);
 			setData({ ...data, threads: data.threads.map(thread => thread.id === saved.id ? saved : thread) });
 		} finally {
 			setSaving(false);
 		}
 	};
+	const moveThread = useCallback(async (thread: PlotThread, status: PlotThreadStatus) => {
+		if (!projectRoot || !data) return;
+		const next = movePlotThreadStatus(thread, status);
+		if (!next) {
+			setAnnouncement('剧情线状态没有改变。');
+			return;
+		}
+		setSaving(true);
+		setError(undefined);
+		try {
+			const receipt = await commitStoryMutation({
+				repository: new DesktopStoryRepository(projectRoot, desktopBridge),
+				before: [thread as unknown as StoryResource],
+				after: [next as unknown as StoryResource],
+				description: `已把“${thread.title}”移到“${statusLabels[status]}”`
+			});
+			const saved = parsePlotThread(receipt.saved[0] as never);
+			setData(current => current ? {
+				...current,
+				threads: current.threads.map(candidate => candidate.id === saved.id ? saved : candidate)
+			} : current);
+			setSelectedId(saved.id);
+			setDraftStatus({ threadId: saved.id, status: saved.status });
+			setPlotUndo(receipt);
+			setAnnouncement(receipt.description);
+		} catch (reason) {
+			setError(reason instanceof Error && reason.name === 'StoryRevisionConflictError'
+				? '剧情线已在其他位置发生变化，请刷新后重试。'
+				: '剧情线状态保存失败，原状态没有改变。');
+		} finally {
+			setSaving(false);
+		}
+	}, [data, projectRoot]);
+	const handlePlotDragStart = (event: DragStartEvent) => {
+		const thread = readPlotThread(event.active.data);
+		setActiveThread(thread);
+		if (thread) setAnnouncement(`已拾取剧情线${thread.title}，选择新的生命周期列。`);
+	};
+	const handlePlotDragEnd = (event: DragEndEvent) => {
+		const thread = readPlotThread(event.active.data);
+		const status = event.over ? readPlotStatus(event.over.data) : undefined;
+		setActiveThread(undefined);
+		if (!thread || !status) {
+			setAnnouncement('已取消，剧情线状态没有改变。');
+			return;
+		}
+		void moveThread(thread, status);
+	};
+	const undoPlotMove = useCallback(() => {
+		if (!plotUndo || !projectRoot || saving) return;
+		setSaving(true);
+		void undoStoryMutation({
+			repository: new DesktopStoryRepository(projectRoot, desktopBridge),
+			receipt: plotUndo
+		})
+			.then(async () => {
+				setPlotUndo(undefined);
+				setAnnouncement('已撤销最近一次剧情线移动。');
+				await reload();
+			})
+			.catch(() => setError('无法撤销：剧情线资料已发生其他变化。'))
+			.finally(() => setSaving(false));
+	}, [plotUndo, projectRoot, reload, saving]);
+	useStoryDragUndoShortcut(Boolean(plotUndo) && !saving, undoPlotMove);
 
 	return (
 		<main className="plot-board-page" aria-label="剧情线与伏笔">
@@ -141,36 +351,57 @@ export function PlotBoardPage({
 			<section className="plot-board-workspace">
 				<div className="plot-board-primary">
 					{view === 'board' ? (
-						<div className="plot-kanban" aria-label="剧情线看板">
-							{plotThreadStatuses.map(status => (
-								<section key={status} aria-labelledby={`plot-column-${status}`}>
-									<header><h2 id={`plot-column-${status}`}>{statusLabels[status]}</h2><span>{data?.threads.filter(thread => thread.status === status).length ?? 0}</span></header>
-									<div>
-										{(data?.threads ?? []).filter(thread => thread.status === status).map(thread => {
-											const start = thread.startPosition?.narrativeOrder ?? 0;
-											const end = thread.targetResolution?.narrativeOrder ?? Math.max(currentOrder, 1);
-											const coverage = Math.max(4, Math.min(100, ((currentOrder - start) / Math.max(1, end - start)) * 100));
-											return (
-												<button type="button" key={thread.id} className={selectedId === thread.id ? 'is-active' : ''} onClick={() => chooseThread(thread)}>
-													<span className="eyebrow">{thread.tags[0] ?? 'PLOT THREAD'}</span>
-													<strong>{thread.title}</strong>
-													<p>{thread.dramaticQuestion ?? thread.premise ?? '尚未补充戏剧问题。'}</p>
-													<span className="plot-coverage" aria-label={`章节覆盖 ${Math.round(coverage)}%`}><i style={{ width: `${coverage}%` }} /></span>
-													<small>{thread.sceneIds.length} 场景 · {thread.evidenceIds.length} 证据</small>
+						<DndContext
+							sensors={sensors}
+							collisionDetection={closestCenter}
+							onDragStart={handlePlotDragStart}
+							onDragEnd={handlePlotDragEnd}
+							onDragCancel={() => {
+								setActiveThread(undefined);
+								setAnnouncement('已取消，剧情线状态没有改变。');
+							}}
+							accessibility={{
+								screenReaderInstructions: {
+									draggable: '按空格拾取剧情线，使用方向键选择状态列，再按空格放下；按 Esc 取消。'
+								}
+							}}
+						>
+							<p className="sr-only" role="status" aria-live="polite">{announcement}</p>
+							<div className="plot-kanban" aria-label="剧情线看板">
+								{plotThreadStatuses.map(status => (
+									<PlotStatusColumn key={status} status={status} activeThread={activeThread}>
+										<header><h2 id={`plot-column-${status}`}>{statusLabels[status]}</h2><span>{data?.threads.filter(thread => thread.status === status).length ?? 0}</span></header>
+										<div>
+											{(data?.threads ?? []).filter(thread => thread.status === status).map(thread => (
+												<PlotThreadCard
+													key={thread.id}
+													thread={thread}
+													currentOrder={currentOrder}
+													selected={selectedId === thread.id}
+													disabled={Boolean(readOnly || saving)}
+													onSelect={() => chooseThread(thread)}
+												/>
+											))}
+											{(data?.threads.filter(thread => thread.status === status).length ?? 0) === 0 && status === 'planned' ? (
+												<button type="button" className="plot-ai-empty-card" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
+													<Sparkles size={19} />
+													<strong>用 AI 创建剧情线</strong>
+													<small>先生成候选，再由作者确认。</small>
 												</button>
-											);
-										})}
-										{(data?.threads.filter(thread => thread.status === status).length ?? 0) === 0 && status === 'planned' ? (
-											<button type="button" className="plot-ai-empty-card" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
-												<Sparkles size={19} />
-												<strong>用 AI 创建剧情线</strong>
-												<small>先生成候选，再由作者确认。</small>
-											</button>
-										) : null}
+											) : null}
+										</div>
+									</PlotStatusColumn>
+								))}
+							</div>
+							<DragOverlay modifiers={[restrictToWindowEdges]}>
+								{activeThread ? (
+									<div className="plot-thread-overlay">
+										<GripVertical size={17} />
+										<span><small>移动剧情线</small><strong>{activeThread.title}</strong></span>
 									</div>
-								</section>
-							))}
-						</div>
+								) : null}
+							</DragOverlay>
+						</DndContext>
 					) : <ForeshadowingTable items={data?.foreshadowing ?? []} currentOrder={currentOrder} onSelect={clue => setSelectedId(clue.id)} />}
 				</div>
 				<aside className="plot-inspector">
@@ -178,7 +409,7 @@ export function PlotBoardPage({
 						<>
 							<span className="eyebrow">PLOT INSPECTOR</span><h2>{selected.title}</h2>
 							<p>{selected.premise ?? selected.summary ?? '尚未补充剧情线说明。'}</p>
-							<label><span>生命周期</span><select value={draftStatus} onChange={event => setDraftStatus(event.target.value as PlotThreadStatus)}>{plotThreadStatuses.map(status => <option key={status} value={status}>{statusLabels[status]}</option>)}</select></label>
+							<label><span>生命周期</span><select value={selectedDraftStatus} onChange={event => setDraftStatus({ threadId: selected.id, status: event.target.value as PlotThreadStatus })}>{plotThreadStatuses.map(status => <option key={status} value={status}>{statusLabels[status]}</option>)}</select></label>
 							<section><h3>赌注</h3><p>{selected.stakes ?? '未定义'}</p></section>
 							<section><h3>计划覆盖</h3><p>起点 {selected.startPosition?.narrativeOrder ?? '—'} → 计划解决 {selected.targetResolution?.narrativeOrder ?? '—'}</p></section>
 							<section><h3>正文来源</h3>{selected.evidenceIds.map(id => <code key={id}>{id}</code>)}</section>
@@ -211,6 +442,14 @@ export function PlotBoardPage({
 						? { ...current, threads, foreshadowing }
 						: current)}
 					onOpenEvidence={onOpenEvidence}
+				/>
+			) : null}
+			{plotUndo ? (
+				<StoryDragUndoToast
+					message={plotUndo.description}
+					busy={saving}
+					onUndo={undoPlotMove}
+					onDismiss={() => setPlotUndo(undefined)}
 				/>
 			) : null}
 			<footer className="plot-board-legend"><BookOpenCheck size={13} />自动风险只创建审校问题，不修改剧情资料。</footer>

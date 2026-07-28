@@ -18,6 +18,7 @@ import { PlotBoardPage } from '../features/story/plots/PlotBoardPage';
 import { InformationControlPage } from '../features/story/information/InformationControlPage';
 import { ContinuityReviewPage } from '../features/story/continuity/ContinuityReviewPage';
 import { ManuscriptExtractionCenterPage } from '../features/story/extraction/ManuscriptExtractionCenterPage';
+import { StoryAssociationPage } from '../features/story/associations/StoryAssociationPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -125,6 +126,15 @@ export function StoryStudioRoute(): React.JSX.Element {
 	}
 	if (storyView === 'information') {
 		return <InformationControlPage projectRoot={projectRoot} />;
+	}
+	if (storyView === 'associations') {
+		return (
+			<StoryAssociationPage
+				projectRoot={projectRoot}
+				chapters={chapters}
+				readOnly={snapshot?.readOnly}
+			/>
+		);
 	}
 	if (storyView === 'continuity') {
 		return (

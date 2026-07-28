@@ -135,6 +135,7 @@
 }
 
 .plot-kanban > section {
+	position: relative;
 	min-height: 100%;
 	padding: 8px;
 	background: var(--surface-subtle);
@@ -164,6 +165,60 @@
 	gap: 8px;
 }
 
+.plot-thread-card {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 44px;
+	min-height: 150px;
+	overflow: hidden;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-card);
+	box-shadow: 0 4px 12px rgb(30 28 24 / 5%);
+}
+
+.plot-thread-card.is-dragging {
+	opacity: 0.3;
+}
+
+.plot-thread-main {
+	display: grid;
+	align-content: start;
+	gap: 7px;
+	min-width: 0;
+	padding: 13px 8px 13px 13px;
+	cursor: pointer;
+	color: var(--text-primary);
+	text-align: left;
+	background: transparent;
+	border: 0;
+}
+
+.plot-thread-main p,
+.plot-thread-main small {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.plot-thread-drag-handle {
+	display: grid;
+	place-items: center;
+	min-width: 44px;
+	min-height: 44px;
+	cursor: grab;
+	color: var(--text-muted);
+	background: color-mix(in srgb, var(--surface-subtle) 70%, transparent);
+	border: 0;
+	border-left: 1px solid var(--border-subtle);
+	touch-action: none;
+}
+
+.plot-thread-drag-handle:active {
+	cursor: grabbing;
+}
+
 .plot-kanban > section > div > button {
 	display: grid;
 	gap: 7px;
@@ -188,7 +243,8 @@
 }
 
 .plot-kanban button:hover,
-.plot-kanban button.is-active {
+.plot-thread-card:hover,
+.plot-thread-card.is-active {
 	border-color: var(--accent);
 	box-shadow: var(--focus-ring);
 }
@@ -212,6 +268,77 @@
 	display: block;
 	height: 100%;
 	background: var(--accent);
+}
+
+.plot-kanban > section.is-drop-valid {
+	outline: 1px dashed color-mix(in srgb, var(--accent) 55%, var(--border-subtle));
+	outline-offset: -3px;
+}
+
+.plot-kanban > section.is-drop-current {
+	opacity: 0.62;
+}
+
+.plot-kanban > section.is-over {
+	outline: 2px solid var(--accent);
+	outline-offset: -3px;
+	background: color-mix(in srgb, var(--accent-soft) 42%, var(--surface-subtle));
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+	opacity: 1;
+}
+
+.plot-kanban > section.is-over.is-drop-current {
+	outline-color: var(--text-muted);
+}
+
+.plot-drop-label {
+	position: sticky;
+	z-index: 10;
+	bottom: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 38px;
+	padding: 6px 9px;
+	margin-top: 10px;
+	color: var(--accent-strong);
+	font-size: 10px;
+	font-weight: 800;
+	text-align: center;
+	background: var(--surface-raised);
+	border: 1px solid var(--accent);
+	border-radius: 999px;
+	box-shadow: var(--shadow-float);
+}
+
+.plot-thread-overlay {
+	display: grid;
+	grid-template-columns: 28px minmax(150px, 1fr);
+	align-items: center;
+	gap: 8px;
+	min-width: 230px;
+	min-height: 64px;
+	padding: 9px 12px;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--accent);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-float);
+}
+
+.plot-thread-overlay span {
+	display: grid;
+	gap: 3px;
+}
+
+.plot-thread-overlay small {
+	color: var(--accent-strong);
+	font-size: 9px;
+	font-weight: 800;
+}
+
+.plot-thread-overlay strong {
+	font-size: 12px;
 }
 
 .plot-inspector {
@@ -345,6 +472,7 @@
 .plot-board-toolbar button:focus-visible,
 .plot-board-toolbar input:focus-visible,
 .plot-kanban button:focus-visible,
+.plot-thread-card button:focus-visible,
 .plot-inspector select:focus-visible,
 .plot-save:focus-visible,
 .foreshadowing-table button:focus-visible {
@@ -386,5 +514,11 @@
 
 	.plot-board-toolbar {
 		flex-wrap: wrap;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.plot-thread-card {
+		transition: none !important;
 	}
 }
