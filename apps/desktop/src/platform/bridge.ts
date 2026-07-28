@@ -2385,6 +2385,8 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 	};
 	const source = decoded.source;
 	const invalidVisibilityFixture = decoded.instruction?.includes('[QA_INVALID_SCHEMA]') ?? false;
+	const invalidSceneGroundingFixture =
+		decoded.instruction?.includes('[QA_SCENE_GROUNDING]') ?? false;
 	const content = source?.content ?? '';
 	const quote = content.slice(0, Math.min(24, content.length));
 	const evidence = quote ? { start: 0, end: quote.length, quote } : null;
@@ -2428,14 +2430,16 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 					id: `scene:ai-${suffix}`,
 					type,
 					title: 'AI 识别场景',
-					chapterId,
-					manuscriptRange: {
-						start: 0,
-						end: Math.max(1, quote.length),
-						revision: Number.isSafeInteger(sourceRevision) ? sourceRevision : 0,
-						quote: quote || '正文'
-					},
-					narrativeOrder: 0,
+					...(!invalidSceneGroundingFixture ? {
+						chapterId,
+						manuscriptRange: {
+							start: 0,
+							end: Math.max(1, quote.length),
+							revision: Number.isSafeInteger(sourceRevision) ? sourceRevision : 0,
+							quote: quote || '正文'
+						},
+						narrativeOrder: 0
+					} : {}),
 					locationIds: [],
 					participantIds: [],
 					plotThreadIds: [],
@@ -2565,7 +2569,9 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 			resource,
 			confidence: 0.84,
 			rationale: '浏览器演示：根据当前正文构建完整 Story Kernel 候选。',
-			evidence
+			evidence: invalidSceneGroundingFixture && type === 'scene' && quote
+				? { start: content.length + 10, end: content.length + 10 + quote.length, quote }
+				: evidence
 		}] : [];
 	});
 	const response = JSON.stringify({ candidates });

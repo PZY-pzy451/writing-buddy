@@ -201,6 +201,39 @@ function createResponse(): string {
 	});
 }
 
+function createSceneResponse(
+	candidates: readonly {
+		readonly id: string;
+		readonly title: string;
+		readonly evidence: { readonly start: number; readonly end: number; readonly quote: string } | null;
+		readonly positionalFields?: Readonly<Record<string, unknown>>;
+	}[]
+): string {
+	return JSON.stringify({
+		candidates: candidates.map(candidate => ({
+			operation: 'create',
+			resource: {
+				id: candidate.id,
+				type: 'scene',
+				title: candidate.title,
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				locationIds: [],
+				participantIds: [],
+				itemIds: [],
+				plotThreadIds: [],
+				revealInformationIds: [],
+				foreshadowingIds: [],
+				...candidate.positionalFields
+			},
+			confidence: 0.9,
+			rationale: '正文描述了完整场景。',
+			evidence: candidate.evidence
+		}))
+	});
+}
+
 function createHarness() {
 	const storage = new MemoryStorage();
 	const gateway = new MemoryStoryGateway();
@@ -355,5 +388,145 @@ describe('StoryKernelGenerationService', () => {
 		expect(schemaConflict?.details?.[0]?.message).toContain('不能使用“hidden”');
 		expect((await store.load())[0]?.candidates[0]?.conflicts[0]?.details)
 			.toEqual(schemaConflict?.details);
+	});
+
+	it('grounds a scene from the authoritative source and re-anchors a unique quote', async () => {
+		const { repository, service } = createHarness();
+		const sceneContent = '夜雨落在旧车站的玻璃顶上。';
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成场景候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: sceneContent,
+			baseOffset: 12,
+			targetTypes: ['scene'],
+			response: createSceneResponse([{
+				id: 'scene:rainy-old-station',
+				title: '夜雨旧站',
+				evidence: { start: 99, end: 101, quote: '夜雨' },
+				positionalFields: {
+					chapterId: 'chapter:model-invented',
+					manuscriptRange: {
+						start: 999,
+						end: 1_999,
+						revision: 999,
+						quote: '模型臆造的位置'
+					},
+					narrativeOrder: 999
+				}
+			}]),
+			now
+		});
+
+		const candidate = batch.candidates[0];
+		expect(candidate?.conflicts).toEqual([]);
+		expect(candidate?.evidence).toMatchObject({
+			resourceId: 'chapter:chapter-001',
+			range: { start: 12, end: 14 },
+			revisionId: '7',
+			quotePreview: '夜雨'
+		});
+		expect(candidate?.normalizedResource).toMatchObject({
+			id: 'scene:rainy-old-station',
+			type: 'scene',
+			chapterId: 'chapter:chapter-001',
+			manuscriptRange: {
+				start: 12,
+				end: 12 + sceneContent.length,
+				revision: 7,
+				quote: sceneContent
+			},
+			narrativeOrder: 0
+		});
+
+		await expect(service.confirm(batch.id, [candidate?.id ?? ''])).resolves.toMatchObject({
+			candidates: [expect.objectContaining({ status: 'accepted' })]
+		});
+		expect(await repository.get('scene', 'scene:rainy-old-station')).toMatchObject({
+			chapterId: 'chapter:chapter-001',
+			manuscriptRange: { start: 12, end: 12 + sceneContent.length }
+		});
+	});
+
+	it('blocks ambiguous evidence instead of guessing between repeated quotes', async () => {
+		const { service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成人物候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '林越回头，林越停步。',
+			targetTypes: ['character'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'character:lin-yue-repeat',
+						type: 'character',
+						title: '林越',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						factionIds: [],
+						goals: [],
+						desires: [],
+						fears: [],
+						values: [],
+						secrets: []
+					},
+					confidence: 0.9,
+					rationale: '正文明确出现人物。',
+					evidence: { start: 99, end: 101, quote: '林越' }
+				}]
+			}),
+			now
+		});
+
+		expect(batch.candidates[0]?.conflicts.map(item => item.code))
+			.toContain('invalid-evidence');
+		expect(batch.candidates[0]?.evidence).toBeUndefined();
+	});
+
+	it('blocks overlapping and multiple scene candidates for one source range', async () => {
+		const { repository, service } = createHarness();
+		await repository.save({
+			id: 'scene:existing',
+			type: 'scene',
+			title: '已有场景',
+			aliases: [],
+			tags: [],
+			schemaVersion: 1,
+			createdAt: now,
+			updatedAt: now,
+			revision: 0,
+			chapterId: 'chapter:chapter-001',
+			manuscriptRange: { start: 0, end: 2, revision: 7, quote: '夜雨' },
+			narrativeOrder: 0,
+			locationIds: [],
+			participantIds: [],
+			plotThreadIds: [],
+			revealInformationIds: [],
+			foreshadowingIds: [],
+			evidenceIds: []
+		}, 0);
+		const sceneContent = '夜雨落在旧车站。';
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成场景候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: sceneContent,
+			targetTypes: ['scene'],
+			response: createSceneResponse([
+				{ id: 'scene:first', title: '第一候选', evidence: null },
+				{ id: 'scene:second', title: '第二候选', evidence: null }
+			]),
+			now
+		});
+
+		for (const candidate of batch.candidates) {
+			expect(candidate.conflicts.map(item => item.message)).toEqual(expect.arrayContaining([
+				expect.stringContaining('当前正文范围已属于场景'),
+				expect.stringContaining('一次正文范围只能生成一个新场景候选')
+			]));
+		}
 	});
 });

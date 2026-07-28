@@ -4,10 +4,12 @@ Updated: 2026-07-28
 
 ## Active milestone
 
-No implementation milestone is currently active. Project visual polish Y6 is
-accepted on `codex/project-visual-polish-y6` at implementation commit
-`6a00b285`. Evidence:
-`docs/acceptance/027-project-visual-polish-y6-2026-07-28.md`.
+Story Kernel scene grounding repair is active on
+`codex/story-kernel-scene-grounding`. A generated scene candidate can be
+blocked when the model omits chapter/range/order fields or returns correct
+evidence text with inaccurate indices, despite the application already owning
+the authoritative source position. Contract:
+`docs/plans/020-story-kernel-scene-grounding.md`.
 
 ## Completed
 

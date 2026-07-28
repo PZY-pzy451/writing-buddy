@@ -116,6 +116,31 @@ function generatedCharacterResponse(): string {
 	});
 }
 
+function generatedSceneResponse(): string {
+	return JSON.stringify({
+		candidates: [{
+			operation: 'create',
+			resource: {
+				id: 'scene:rainy-old-station-ui',
+				type: 'scene',
+				title: '夜雨旧站',
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				locationIds: [],
+				participantIds: [],
+				itemIds: [],
+				plotThreadIds: [],
+				revealInformationIds: [],
+				foreshadowingIds: []
+			},
+			confidence: 0.9,
+			rationale: '正文描述了旧车站的夜雨场景。',
+			evidence: { start: 99, end: 101, quote: '夜雨' }
+		}]
+	});
+}
+
 describe('StoryKernelGeneratorPanel', () => {
 	afterEach(() => {
 		useAppStore.setState({ activeMode: 'works' });
@@ -219,6 +244,57 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(events).toEqual(['snapshot', 'commit']);
 		expect(gateway.resources.has('character:character:lin-yue-ui')).toBe(true);
 		expect(onCommitted).toHaveBeenCalledOnce();
+	});
+
+	it('explains local scene grounding and confirms a repaired scene candidate', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const response = generatedSceneResponse();
+
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="夜雨落在旧车站的玻璃顶上。"
+				repository={repository}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={(_messages, onProgress) => {
+					onProgress('streaming', response);
+					return Promise.resolve(response);
+				}}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+				preset={{
+					id: 'scene-grounding',
+					instruction: '从当前正文创建场景候选。',
+					targetTypes: ['scene']
+				}}
+			/>
+		);
+
+		expect(screen.getByText(/场景候选的位置由本地绑定/)).toBeInTheDocument();
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		const checkbox = await screen.findByRole('checkbox', { name: '选择 夜雨旧站' });
+		expect(checkbox).toBeEnabled();
+		expect(screen.queryByText('AI 返回的正文范围与引文不一致。')).not.toBeInTheDocument();
+		expect(screen.queryByText(/chapterId需要使用文本/)).not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect(gateway.resources.get('scene:scene:rainy-old-station-ui')).toMatchObject({
+			chapterId: 'chapter:chapter-001',
+			manuscriptRange: {
+				start: 0,
+				end: '夜雨落在旧车站的玻璃顶上。'.length,
+				revision: 3
+			},
+			narrativeOrder: 0
+		});
 	});
 
 	it('disables generation for a read-only project', () => {

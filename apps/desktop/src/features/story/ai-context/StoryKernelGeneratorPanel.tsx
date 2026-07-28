@@ -375,6 +375,12 @@ function StoryKernelGeneratorPanelContent(
 					? '仅使用当前选区生成；作者秘密不会加入发送上下文。'
 					: '使用当前章节生成；作者秘密不会加入发送上下文。'}
 			</p>
+			{targetTypes.includes('scene') ? (
+				<p className="kernel-generator-note is-scene-grounding">
+					<TextQuote size={18} aria-hidden="true" />
+					场景候选的位置由本地绑定到本次发送的正文范围；如只需局部场景，请先选中完整场景正文。
+				</p>
+			) : null}
 
 			<label className="kernel-generator-instruction">
 				<span>生成要求</span>

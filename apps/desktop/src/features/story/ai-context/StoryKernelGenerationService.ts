@@ -21,6 +21,8 @@ import {
 	type StoryResource
 } from '@writing-buddy/story-kernel';
 
+type SceneResource = Extract<StoryResource, { readonly type: 'scene' }>;
+
 export const STORY_KERNEL_GENERATIONS_PATH =
 	'.writing-buddy/ai/story-kernel-generation/index.json';
 
@@ -452,19 +454,30 @@ function anchorEvidence(input: {
 	readonly sourceRevision: string;
 	readonly value: { readonly start: number; readonly end: number; readonly quote: string };
 }): EvidenceRef | undefined {
+	let start = input.value.start;
+	let end = input.value.end;
 	if (
-		input.value.end <= input.value.start
-		|| input.content.slice(input.value.start, input.value.end) !== input.value.quote
+		end <= start
+		|| input.content.slice(start, end) !== input.value.quote
 	) {
-		return undefined;
+		const first = input.content.indexOf(input.value.quote);
+		const second = first >= 0
+			? input.content.indexOf(
+				input.value.quote,
+				first + Math.max(1, input.value.quote.length)
+			)
+			: -1;
+		if (first < 0 || second >= 0) return undefined;
+		start = first;
+		end = first + input.value.quote.length;
 	}
 	return parseEvidenceRef({
 		id: createStoryId('evidence'),
 		origin: 'ai-extracted',
 		resourceId: input.sourceResourceId,
 		range: {
-			start: input.baseOffset + input.value.start,
-			end: input.baseOffset + input.value.end
+			start: input.baseOffset + start,
+			end: input.baseOffset + end
 		},
 		revisionId: input.sourceRevision,
 		quotePreview: input.value.quote,
@@ -587,13 +600,60 @@ export class StoryKernelGenerationService {
 			...currentResources.map(resource => resource.id),
 			...responseIds
 		]);
+		const sourceRevision = Number(input.sourceRevision);
+		const sourceScenes = currentResources.filter((resource): resource is SceneResource => (
+			resource.type === 'scene'
+			&& resource.chapterId === input.sourceResourceId
+		));
+		const nextSceneNarrativeOrder = sourceScenes.reduce(
+			(maximum, scene) => Math.max(maximum, scene.narrativeOrder + 1),
+			0
+		);
+		const sceneCreateCount = responses.filter(response => (
+			response.operation === 'create'
+			&& response.resource.type === 'scene'
+		)).length;
 
-		const staged = responses.map(response => {
+		const staged = responses.map((response, responseIndex) => {
 			const rawResource = response.resource;
 			const resourceType = generationType(rawResource.type);
 			const resourceId = parseStoryId(String(rawResource.id));
 			const existing = currentById.get(resourceId);
 			const conflicts: StoryKernelGenerationConflict[] = [];
+			const sceneCreateIndex = responses.slice(0, responseIndex).filter(candidate => (
+				candidate.operation === 'create'
+				&& candidate.resource.type === 'scene'
+			)).length;
+			const sceneGrounding = resourceType === 'scene'
+				? existing?.type === 'scene'
+					? {
+						chapterId: existing.chapterId,
+						manuscriptRange: existing.manuscriptRange,
+						narrativeOrder: existing.narrativeOrder
+					}
+					: (
+						Number.isSafeInteger(sourceRevision)
+						&& sourceRevision >= 0
+						&& input.content.length > 0
+					)
+						? {
+							chapterId: input.sourceResourceId,
+							manuscriptRange: {
+								start: baseOffset,
+								end: baseOffset + input.content.length,
+								revision: sourceRevision,
+								quote: input.content.slice(0, 500)
+							},
+							narrativeOrder: nextSceneNarrativeOrder + sceneCreateIndex
+						}
+						: undefined
+				: undefined;
+			const groundedResource = sceneGrounding
+				? {
+					...rawResource,
+					...sceneGrounding
+				}
+				: rawResource;
 			if (!input.targetTypes.includes(resourceType)) {
 				conflicts.push(conflict(
 					'target-type-not-selected',
@@ -618,7 +678,7 @@ export class StoryKernelGenerationService {
 					`${resourceId} 不存在，不能执行更新。`
 				));
 			}
-			const evidence = response.evidence
+			let evidence = response.evidence
 				? anchorEvidence({
 					content: input.content,
 					baseOffset,
@@ -627,16 +687,52 @@ export class StoryKernelGenerationService {
 					value: response.evidence
 				})
 				: undefined;
+			if (resourceType === 'scene' && sceneGrounding && !evidence) {
+				evidence = parseEvidenceRef({
+					id: createStoryId('evidence'),
+					origin: 'ai-extracted',
+					resourceId: input.sourceResourceId,
+					range: {
+						start: sceneGrounding.manuscriptRange.start,
+						end: sceneGrounding.manuscriptRange.end
+					},
+					revisionId: input.sourceRevision,
+					quotePreview: input.content.slice(0, 500),
+					confirmedByAuthor: false
+				});
+			}
 			if (response.evidence && !evidence) {
 				conflicts.push(conflict(
 					'invalid-evidence',
 					'AI 返回的正文范围与引文不一致。'
 				));
 			}
+			if (
+				resourceType === 'scene'
+				&& response.operation === 'create'
+				&& sceneGrounding
+			) {
+				const overlap = sourceScenes.find(scene => (
+					scene.manuscriptRange.start < sceneGrounding.manuscriptRange.end
+					&& sceneGrounding.manuscriptRange.start < scene.manuscriptRange.end
+				));
+				if (overlap) {
+					conflicts.push(conflict(
+						'invalid-schema',
+						`当前正文范围已属于场景“${overlap.title}”，不能重复创建场景。`
+					));
+				}
+				if (sceneCreateCount > 1) {
+					conflicts.push(conflict(
+						'invalid-schema',
+						'一次正文范围只能生成一个新场景候选；请缩小选区后分别生成。'
+					));
+				}
+			}
 			let normalizedResource: StoryResource | undefined;
 			try {
 				normalizedResource = hydrateResource({
-					raw: rawResource,
+					raw: groundedResource,
 					resourceType,
 					...(existing ? { existing } : {}),
 					...(evidence ? { evidence } : {}),
@@ -649,7 +745,9 @@ export class StoryKernelGenerationService {
 					schemaConflictDetails(reason, rawResource)
 				));
 			}
-			for (const reference of collectStoryReferences(rawResource)) {
+			for (const reference of collectStoryReferences(
+				normalizedResource ?? groundedResource
+			)) {
 				if (!knownIds.has(reference)) {
 					conflicts.push(conflict(
 						'missing-reference',
@@ -682,7 +780,9 @@ export class StoryKernelGenerationService {
 			staged.map(candidate => [candidate.resourceId, candidate])
 		);
 		const candidates = staged.map(candidate => {
-			const dependencyBlocked = [...collectStoryReferences(candidate.rawResource)]
+			const dependencyBlocked = [...collectStoryReferences(
+				candidate.normalizedResource ?? candidate.rawResource
+			)]
 				.some(reference => {
 					const dependency = candidateByResourceId.get(reference as StoryId);
 					return dependency && dependency.conflicts.length > 0;
