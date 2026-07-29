@@ -1,6 +1,7 @@
 import { loader } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor/editor/editor.api.js';
 import EditorWorker from 'monaco-editor/editor/editor.worker.js?worker';
+import 'monaco-editor/editor/contrib/inlineCompletions/browser/inlineCompletions.contribution.js';
 import 'monaco-editor/languages/definitions/markdown/register.js';
 
 declare global {

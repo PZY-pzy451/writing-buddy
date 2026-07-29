@@ -10,6 +10,7 @@ import {
 	ShieldCheck,
 	SpellCheck2,
 	Trash2,
+	WandSparkles,
 	XCircle
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -48,6 +49,12 @@ export function AiSettingsSection(): React.JSX.Element {
 	);
 	const setInlineLanguageCheckEnabled = useAppStore(
 		state => state.setInlineLanguageCheckEnabled
+	);
+	const inlinePlotExpansionEnabled = useAppStore(
+		state => state.inlinePlotExpansionEnabled
+	);
+	const setInlinePlotExpansionEnabled = useAppStore(
+		state => state.setInlinePlotExpansionEnabled
 	);
 
 	useEffect(() => {
@@ -217,6 +224,29 @@ export function AiSettingsSection(): React.JSX.Element {
 						<strong>在正文中自动标出拼写、错别字与语病</strong>
 						<small>
 							默认关闭。旧请求会在继续输入时取消，AI 建议必须由你确认后才会修改正文。
+						</small>
+					</span>
+				</label>
+			</section>
+
+			<section aria-labelledby="ai-inline-plot-title">
+				<div className="setting-section-title">
+					<WandSparkles size={20} />
+					<div>
+						<h2 id="ai-inline-plot-title">Tab 自动情节拓展</h2>
+						<p>完整句末停笔 2.4 秒后，只发送光标前最多 4,000 字符。</p>
+					</div>
+				</div>
+				<label className="ai-inline-language-setting">
+					<input
+						type="checkbox"
+						checked={inlinePlotExpansionEnabled}
+						onChange={event => setInlinePlotExpansionEnabled(event.target.checked)}
+					/>
+					<span>
+						<strong>在正文中生成可按 Tab 接受的灰字预览</strong>
+						<small>
+							默认关闭。Esc 忽略预览；没有预览时，Tab 仍执行普通编辑器缩进。
 						</small>
 					</span>
 				</label>

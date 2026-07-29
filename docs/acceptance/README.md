@@ -32,6 +32,7 @@
 - [VS Code-style workspace resizing acceptance, 2026-07-29](./030-vscode-style-workspace-resizing-2026-07-29.md)
 - [Workspace layout shortcuts acceptance, 2026-07-29](./031-workspace-layout-shortcuts-2026-07-29.md)
 - [Inline AI language check acceptance, 2026-07-29](./032-inline-ai-language-check-2026-07-29.md)
+- [Inline Tab plot expansion acceptance, 2026-07-29](./033-inline-tab-plot-expansion-2026-07-29.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

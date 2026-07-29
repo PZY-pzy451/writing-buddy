@@ -1324,14 +1324,16 @@ button.tree-row {
 }
 
 .entity-highlight-controls,
-.inline-language-check-control {
+.inline-language-check-control,
+.inline-plot-expansion-control {
 	position: relative;
 	color: var(--text-secondary);
 	font-family: Inter, "Segoe UI", "Microsoft YaHei UI", sans-serif;
 }
 
 .entity-highlight-controls > summary,
-.inline-language-check-control > button {
+.inline-language-check-control > button,
+.inline-plot-expansion-control > button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -1351,27 +1353,33 @@ button.tree-row {
 }
 
 .entity-highlight-controls > summary span,
-.inline-language-check-control > button span {
+.inline-language-check-control > button span,
+.inline-plot-expansion-control > button span {
 	font-size: 11px;
 	font-weight: 700;
 }
 
 .entity-highlight-controls > summary small,
-.inline-language-check-control > button small {
+.inline-language-check-control > button small,
+.inline-plot-expansion-control > button small {
 	color: var(--text-muted);
 	font-size: 10px;
 }
 
 .entity-highlight-controls[open] > summary,
 .inline-language-check-control > button[data-open="true"],
-.inline-language-check-control > button[data-enabled="true"] {
+.inline-language-check-control > button[data-enabled="true"],
+.inline-plot-expansion-control > button[data-open="true"],
+.inline-plot-expansion-control > button[data-enabled="true"] {
 	color: var(--highlight-selected-fg);
 	background: var(--highlight-selected-bg);
 	border-color: color-mix(in srgb, var(--highlight-selected-fg) 42%, var(--border-subtle));
 }
 
 .inline-language-check-control > button[data-state="needs-setup"],
-.inline-language-check-control > button[data-state="error"] {
+.inline-language-check-control > button[data-state="error"],
+.inline-plot-expansion-control > button[data-state="needs-setup"],
+.inline-plot-expansion-control > button[data-state="error"] {
 	color: var(--warning);
 	border-color: color-mix(in srgb, var(--warning) 42%, var(--border-subtle));
 }
@@ -1493,13 +1501,17 @@ button.tree-row {
 .entity-highlight-controls input:focus-visible,
 .inline-language-check-control > button:focus-visible,
 .inline-language-check-control input:focus-visible,
-.inline-language-check-control button:focus-visible {
+.inline-language-check-control button:focus-visible,
+.inline-plot-expansion-control > button:focus-visible,
+.inline-plot-expansion-control input:focus-visible,
+.inline-plot-expansion-control button:focus-visible {
 	outline: 2px solid var(--highlight-focus);
 	outline-offset: 2px;
 	box-shadow: 0 0 0 4px var(--highlight-focus-halo);
 }
 
-.inline-language-check-popover {
+.inline-language-check-popover,
+.inline-plot-expansion-popover {
 	position: fixed;
 	z-index: 90;
 	display: grid;
@@ -1512,26 +1524,31 @@ button.tree-row {
 	box-shadow: var(--shadow-popover);
 }
 
-.inline-language-check-popover > header {
+.inline-language-check-popover > header,
+.inline-plot-expansion-popover > header {
 	display: grid;
 	gap: 3px;
 	padding: 2px 3px 9px;
 	border-bottom: 1px solid var(--border-subtle);
 }
 
-.inline-language-check-popover > header strong {
+.inline-language-check-popover > header strong,
+.inline-plot-expansion-popover > header strong {
 	font-size: 12px;
 }
 
 .inline-language-check-popover > header small,
 .inline-language-check-toggle small,
-.inline-language-issue-list > small {
+.inline-language-issue-list > small,
+.inline-plot-expansion-popover > header small,
+.inline-plot-expansion-toggle small {
 	color: var(--text-muted);
 	font-size: 10px;
 	line-height: 1.45;
 }
 
-.inline-language-check-toggle {
+.inline-language-check-toggle,
+.inline-plot-expansion-toggle {
 	display: grid;
 	grid-template-columns: 20px minmax(0, 1fr);
 	align-items: center;
@@ -1544,27 +1561,32 @@ button.tree-row {
 	border-radius: 9px;
 }
 
-.inline-language-check-toggle:hover {
+.inline-language-check-toggle:hover,
+.inline-plot-expansion-toggle:hover {
 	background: var(--highlight-hover-bg);
 	border-color: var(--highlight-hover-border);
 }
 
-.inline-language-check-toggle input {
+.inline-language-check-toggle input,
+.inline-plot-expansion-toggle input {
 	width: 18px;
 	height: 18px;
 	accent-color: var(--accent);
 }
 
-.inline-language-check-toggle span {
+.inline-language-check-toggle span,
+.inline-plot-expansion-toggle span {
 	display: grid;
 	gap: 2px;
 }
 
-.inline-language-check-toggle strong {
+.inline-language-check-toggle strong,
+.inline-plot-expansion-toggle strong {
 	font-size: 11px;
 }
 
-.inline-language-check-status {
+.inline-language-check-status,
+.inline-plot-expansion-status {
 	display: flex;
 	align-items: flex-start;
 	gap: 7px;
@@ -1578,18 +1600,22 @@ button.tree-row {
 	border-radius: 6px;
 }
 
-.inline-language-check-status.is-ready {
+.inline-language-check-status.is-ready,
+.inline-plot-expansion-status.is-ready {
 	color: var(--success);
 	border-left-color: var(--success);
 }
 
 .inline-language-check-status.is-needs-setup,
-.inline-language-check-status.is-error {
+.inline-language-check-status.is-error,
+.inline-plot-expansion-status.is-needs-setup,
+.inline-plot-expansion-status.is-error {
 	color: var(--warning);
 	border-left-color: var(--warning);
 }
 
-.inline-language-check-status svg {
+.inline-language-check-status svg,
+.inline-plot-expansion-status svg {
 	flex: 0 0 auto;
 	margin-top: 1px;
 }
@@ -1639,7 +1665,9 @@ button.tree-row {
 }
 
 .inline-language-issue-list button,
-.inline-language-check-actions button {
+.inline-language-check-actions button,
+.inline-plot-expansion-actions button,
+.inline-plot-expansion-candidate button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -1658,16 +1686,78 @@ button.tree-row {
 }
 
 .inline-language-issue-list button:hover:not(:disabled),
-.inline-language-check-actions button:hover:not(:disabled) {
+.inline-language-check-actions button:hover:not(:disabled),
+.inline-plot-expansion-actions button:hover:not(:disabled),
+.inline-plot-expansion-candidate button:hover:not(:disabled) {
 	background: var(--highlight-hover-bg);
 	border-color: var(--highlight-hover-border);
 }
 
-.inline-language-check-actions {
+.inline-language-check-actions,
+.inline-plot-expansion-actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 7px;
 	padding-top: 2px;
+}
+
+.inline-plot-expansion-status.is-paused,
+.inline-plot-expansion-status.is-waiting,
+.inline-plot-expansion-status.is-checking {
+	color: var(--accent);
+	border-left-color: var(--accent);
+}
+
+.inline-plot-expansion-keys {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+}
+
+.inline-plot-expansion-keys span {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--text-secondary);
+	font-size: 10px;
+}
+
+.inline-plot-expansion-keys kbd {
+	min-width: 34px;
+	padding: 3px 6px;
+	color: var(--text-primary);
+	font: 700 10px/1.2 Inter, "Segoe UI", sans-serif;
+	text-align: center;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-strong);
+	border-bottom-width: 2px;
+	border-radius: 5px;
+}
+
+.inline-plot-expansion-candidate {
+	display: grid;
+	gap: 6px;
+	padding: 10px;
+	background: color-mix(in srgb, var(--accent) 7%, var(--surface-canvas));
+	border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border-subtle));
+	border-radius: 8px;
+}
+
+.inline-plot-expansion-candidate > strong {
+	font-size: 11px;
+}
+
+.inline-plot-expansion-candidate > p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.inline-plot-expansion-candidate > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
 }
 
 @media (max-width: 849px) {
@@ -1678,13 +1768,15 @@ button.tree-row {
 	}
 
 	.entity-highlight-controls > summary,
-	.inline-language-check-control > button {
+	.inline-language-check-control > button,
+	.inline-plot-expansion-control > button {
 		min-width: 44px;
 		padding-inline: 9px;
 	}
 
 	.entity-highlight-controls > summary span,
-	.inline-language-check-control > button span {
+	.inline-language-check-control > button span,
+	.inline-plot-expansion-control > button span {
 		display: none;
 	}
 }

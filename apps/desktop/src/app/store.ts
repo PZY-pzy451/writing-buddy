@@ -102,6 +102,7 @@ interface PersistedWorkspace {
 	readonly accent: 'gold' | 'blue' | 'purple';
 	readonly focusMode: boolean;
 	readonly inlineLanguageCheckEnabled: boolean;
+	readonly inlinePlotExpansionEnabled: boolean;
 	readonly activeMode: RailMode;
 	readonly storyView: StoryViewId;
 	readonly sidebarOpen: boolean;
@@ -199,6 +200,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
 	readonly toggleFocus: () => void;
 	readonly setInlineLanguageCheckEnabled: (enabled: boolean) => void;
+	readonly setInlinePlotExpansionEnabled: (enabled: boolean) => void;
 	readonly toggleSidebar: () => void;
 	readonly toggleAssistant: () => void;
 	readonly openAssistant: () => void;
@@ -277,6 +279,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	accent: 'gold',
 	focusMode: false,
 	inlineLanguageCheckEnabled: false,
+	inlinePlotExpansionEnabled: false,
 	sidebarOpen: true,
 	sidebarWidth: 320,
 	assistantWidth: 360,
@@ -1031,6 +1034,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setInlineLanguageCheckEnabled(inlineLanguageCheckEnabled) {
 		set({ inlineLanguageCheckEnabled });
 	},
+	setInlinePlotExpansionEnabled(inlinePlotExpansionEnabled) {
+		set({ inlinePlotExpansionEnabled });
+	},
 	toggleSidebar() { set(state => ({ sidebarOpen: !state.sidebarOpen })); },
 	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
 	openAssistant() { set({ assistantOpen: true }); },
@@ -1060,6 +1066,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		accent: state.accent,
 		focusMode: state.focusMode,
 		inlineLanguageCheckEnabled: state.inlineLanguageCheckEnabled,
+		inlinePlotExpansionEnabled: state.inlinePlotExpansionEnabled,
 		activeMode: state.activeMode,
 		storyView: state.storyView,
 		sidebarOpen: state.sidebarOpen,

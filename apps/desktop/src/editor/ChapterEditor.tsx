@@ -29,6 +29,13 @@ import { SelectionActionMenu } from '../features/story/manuscript/SelectionActio
 import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
 import { InlineLanguageCheckControl } from '../features/review/inline/InlineLanguageCheckControl';
 import { useInlineLanguageCheck } from '../features/review/inline/useInlineLanguageCheck';
+import { InlinePlotExpansionControl } from '../features/story/ai-context/InlinePlotExpansionControl';
+import {
+	useInlinePlotExpansion
+} from '../features/story/ai-context/useInlinePlotExpansion';
+import type {
+	InlinePlotExpansionSuggestion
+} from '../features/story/ai-context/InlinePlotExpansionService';
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
 type MonacoApi = typeof MonacoNamespace;
@@ -82,6 +89,12 @@ export function ChapterEditor(): React.JSX.Element {
 	const setInlineLanguageCheckEnabled = useAppStore(
 		state => state.setInlineLanguageCheckEnabled
 	);
+	const inlinePlotExpansionEnabled = useAppStore(
+		state => state.inlinePlotExpansionEnabled
+	);
+	const setInlinePlotExpansionEnabled = useAppStore(
+		state => state.setInlinePlotExpansionEnabled
+	);
 	const setMode = useAppStore(state => state.setMode);
 	const syncStructureScenesForChapter = useAppStore(
 		state => state.syncStructureScenesForChapter
@@ -92,6 +105,17 @@ export function ChapterEditor(): React.JSX.Element {
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
 	const mentionDecorationIdsRef = useRef<readonly string[]>([]);
 	const inlineLanguageDecorationIdsRef = useRef<readonly string[]>([]);
+	const inlinePlotSuggestionRef = useRef<
+		InlinePlotExpansionSuggestion | undefined
+	>(undefined);
+	const inlinePlotHandlersRef = useRef<{
+		readonly reject: () => void;
+		readonly markAccepted: () => void;
+	} | undefined>(undefined);
+	const inlinePlotProviderRef = useRef<
+		MonacoNamespace.IDisposable | undefined
+	>(undefined);
+	const activeModelUriRef = useRef<string | undefined>(undefined);
 	const mentionsRef = useRef<readonly MentionLink[]>([]);
 	const lastMentionContentRef = useRef<{
 		readonly resourceId: string;
@@ -139,10 +163,54 @@ export function ChapterEditor(): React.JSX.Element {
 		content: session?.content ?? '',
 		cursorOffset: currentOffset
 	});
-
+	const inlinePlotExpansion = useInlinePlotExpansion({
+		enabled: inlinePlotExpansionEnabled
+			&& activeResource?.type === 'chapter'
+			&& Boolean(session),
+		ready: editorReady,
+		readOnly,
+		projectId: activeResource?.projectId ?? snapshot?.project.projectId ?? '',
+		resourceId: session?.state.resourceId ?? '',
+		content: session?.content ?? '',
+		cursorOffset: currentOffset,
+		selectionActive: selection !== undefined,
+		languageStatus: inlineLanguageCheck.status
+	});
 	const handleMount: OnMount = useCallback((editor, monaco: MonacoApi) => {
 		editorRef.current = editor;
 		monacoRef.current = monaco;
+		inlinePlotProviderRef.current?.dispose();
+		inlinePlotProviderRef.current = monaco.languages.registerInlineCompletionsProvider(
+			'markdown',
+			{
+				displayName: 'Writing Buddy Tab 情节拓展',
+				provideInlineCompletions(model, position) {
+					const suggestion = inlinePlotSuggestionRef.current;
+					if (
+						!suggestion
+						|| model.uri.toString() !== activeModelUriRef.current
+						|| model.getValue() !== suggestion.sourceContent
+						|| model.getOffsetAt(position) !== suggestion.cursorOffset
+					) {
+						return { items: [] };
+					}
+					const range = new monaco.Range(
+						position.lineNumber,
+						position.column,
+						position.lineNumber,
+						position.column
+					);
+					return {
+						items: [{
+							insertText: suggestion.insertion,
+							range,
+							completeBracketPairs: false
+						}]
+					};
+				},
+				disposeInlineCompletions() {}
+			}
+		);
 		setEditorReady(true);
 		const scheduleCursorPersistence = () => {
 			window.clearTimeout(cursorTimerRef.current);
@@ -174,6 +242,21 @@ export function ChapterEditor(): React.JSX.Element {
 		});
 		editor.onDidChangeCursorPosition(scheduleCursorPersistence);
 		editor.onDidScrollChange(scheduleCursorPersistence);
+		editor.onKeyDown(event => {
+			if (
+				event.keyCode === monaco.KeyCode.Escape
+				&& inlinePlotSuggestionRef.current
+			) {
+				event.preventDefault();
+				event.stopPropagation();
+				inlinePlotHandlersRef.current?.reject();
+				editor.trigger(
+					'writing-buddy.inline-plot',
+					'editor.action.inlineSuggest.hide',
+					undefined
+				);
+			}
+		});
 		editor.onMouseDown(event => {
 			const model = editor.getModel();
 			const position = event.target.position;
@@ -216,7 +299,47 @@ export function ChapterEditor(): React.JSX.Element {
 		}
 	}, [session, setCursorOffset, setSelection, updateCursor]);
 
-	useEffect(() => () => window.clearTimeout(cursorTimerRef.current), []);
+	useEffect(() => () => {
+		window.clearTimeout(cursorTimerRef.current);
+		inlinePlotProviderRef.current?.dispose();
+	}, []);
+
+	useEffect(() => {
+		const editor = editorRef.current;
+		inlinePlotSuggestionRef.current = inlinePlotExpansion.suggestion;
+		inlinePlotHandlersRef.current = {
+			reject: inlinePlotExpansion.reject,
+			markAccepted: inlinePlotExpansion.markAccepted
+		};
+		activeModelUriRef.current = session?.state.modelUri;
+		if (!editor) return;
+		if (inlinePlotExpansion.suggestion) {
+			queueMicrotask(() => {
+				if (
+					editorRef.current === editor
+					&& inlinePlotSuggestionRef.current === inlinePlotExpansion.suggestion
+				) {
+					editor.trigger(
+						'writing-buddy.inline-plot',
+						'editor.action.inlineSuggest.trigger',
+						undefined
+					);
+				}
+			});
+		} else {
+			editor.trigger(
+				'writing-buddy.inline-plot',
+				'editor.action.inlineSuggest.hide',
+				undefined
+			);
+		}
+	}, [
+		editorReady,
+		inlinePlotExpansion.markAccepted,
+		inlinePlotExpansion.reject,
+		inlinePlotExpansion.suggestion,
+		session?.state.modelUri
+	]);
 
 	useEffect(() => {
 		const monaco = monacoRef.current;
@@ -421,6 +544,27 @@ export function ChapterEditor(): React.JSX.Element {
 			text: issue.replacement
 		});
 	}, [readOnly, requestEditorEdit]);
+	const acceptInlinePlotExpansion = useCallback(() => {
+		const suggestion = inlinePlotSuggestionRef.current;
+		const currentSession = useAppStore.getState().session;
+		if (
+			readOnly
+			|| !suggestion
+			|| !currentSession
+			|| currentSession.state.resourceId !== suggestion.resourceId
+			|| currentSession.content !== suggestion.sourceContent
+		) {
+			return;
+		}
+		inlinePlotHandlersRef.current?.markAccepted();
+		requestEditorEdit({
+			id: crypto.randomUUID(),
+			resourceId: suggestion.resourceId,
+			start: suggestion.cursorOffset,
+			end: suggestion.cursorOffset,
+			text: suggestion.insertion
+		});
+	}, [readOnly, requestEditorEdit]);
 
 	useEffect(() => {
 		if (!mentionService || !storyChapterId) {
@@ -519,6 +663,18 @@ export function ChapterEditor(): React.JSX.Element {
 			<div className="chapter-editor-host">
 				{activeResource.type === 'chapter' ? (
 					<div className="editor-overlay-controls">
+						<InlinePlotExpansionControl
+							enabled={inlinePlotExpansionEnabled}
+							status={inlinePlotExpansion.status}
+							statusMessage={inlinePlotExpansion.statusMessage}
+							suggestion={inlinePlotExpansion.suggestion}
+							readOnly={readOnly}
+							onToggle={setInlinePlotExpansionEnabled}
+							onRetry={inlinePlotExpansion.retry}
+							onAccept={acceptInlinePlotExpansion}
+							onReject={inlinePlotExpansion.reject}
+							onOpenSettings={() => setMode('settings')}
+						/>
 						<InlineLanguageCheckControl
 							enabled={inlineLanguageCheckEnabled}
 							status={inlineLanguageCheck.status}
@@ -543,10 +699,23 @@ export function ChapterEditor(): React.JSX.Element {
 				language="markdown"
 				theme={monacoTheme}
 				value={session.content}
-				onChange={(value, event) => setContent(
-					value ?? '',
-					event.isUndoing ? 'undo' : event.isRedoing ? 'redo' : 'edit'
-				)}
+				onChange={(value, event) => {
+					const suggestion = inlinePlotSuggestionRef.current;
+					if (
+						suggestion
+						&& event.changes.some(change => (
+							change.rangeOffset === suggestion.cursorOffset
+							&& change.rangeLength === 0
+							&& change.text.replace(/\r\n/gu, '\n') === suggestion.insertion
+						))
+					) {
+						inlinePlotHandlersRef.current?.markAccepted();
+					}
+					setContent(
+						value ?? '',
+						event.isUndoing ? 'undo' : event.isRedoing ? 'redo' : 'edit'
+					);
+				}}
 				onMount={handleMount}
 				loading={<div className="editor-loading">正在准备书稿编辑器…</div>}
 				options={{
@@ -582,6 +751,16 @@ export function ChapterEditor(): React.JSX.Element {
 					quickSuggestions: false,
 					readOnly,
 					renderLineHighlight: 'none',
+					inlineSuggest: {
+						enabled: activeResource.type === 'chapter',
+						keepOnBlur: true,
+						minShowDelay: 0,
+						mode: 'prefix',
+						showToolbar: 'onHover',
+						suppressInSnippetMode: true,
+						suppressSuggestions: true,
+						syntaxHighlightingEnabled: false
+					},
 					scrollBeyondLastLine: false,
 					scrollbar: {
 						horizontal: 'hidden',

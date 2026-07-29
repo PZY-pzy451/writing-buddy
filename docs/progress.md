@@ -4,10 +4,22 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-No feature implementation is currently active. Inline AI spelling and grammar
-diagnostics are complete on `codex/story-kernel-scene-grounding`.
+Inline `Tab` plot expansion is complete on
+`codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Added opt-in, sentence-end `Tab` plot expansion with a 2.4-second idle
+  window, at most 4,000 UTF-16 units before the cursor, grammar-job priority,
+  stale cancellation, exact caching, and cooldown.
+- Monaco renders native ghost text; `Tab` accepts, `Esc` rejects, normal Tab
+  behavior remains when no preview is visible, and accepted text is normally
+  undoable without immediately scheduling another paid request.
+- Inline-plot acceptance: Node 24.14.0, 105 frontend files / 372 tests, 52
+  Rust tests, Paper/Midnight browser checks, clean stable-reload logs, fresh
+  Tauri packaging, and isolated native close with exit code 0.
+- Evidence in
+  `docs/acceptance/033-inline-tab-plot-expansion-2026-07-29.md`.
 
 - Added opt-in inline AI spelling and grammar checks for changed manuscript
   paragraphs, with 1.2-second debounce, 2,400 UTF-16-unit slices, stale-job

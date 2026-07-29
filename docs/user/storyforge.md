@@ -107,6 +107,21 @@ normal Monaco edit, so **Undo** restores the exact source text. Pure style,
 tone, imagery, pacing, and optional polishing suggestions belong in the
 explicit review or rewrite flows rather than inline diagnostics.
 
+### Inline Tab plot expansion
+
+The manuscript editor also offers opt-in **Tab 拓展**. After it is enabled,
+pause for 2.4 seconds at the end of a complete sentence to request one short
+continuation. Writing Buddy sends only the text before the cursor, capped at
+4,000 JavaScript UTF-16 code units, and displays the result as gray ghost text
+without changing the manuscript.
+
+Press **Tab** to insert a visible preview or **Esc** to ignore it. The control
+also provides mouse alternatives. When no preview is visible, **Tab** keeps
+the editor's normal indentation behavior. An accepted continuation is one
+normal Monaco edit, so **Ctrl+Z** restores the source. Startup and project open
+do not trigger a request, new edits cancel stale work, and plot expansion waits
+while the higher-priority inline grammar check is active.
+
 ## Grounded AI rewrite
 
 1. Open a chapter and select the text to revise.
