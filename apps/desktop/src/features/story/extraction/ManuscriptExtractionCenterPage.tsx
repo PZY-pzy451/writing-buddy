@@ -6,6 +6,7 @@ import {
 	CircleStop,
 	Clock3,
 	DatabaseZap,
+	ExternalLink,
 	FileSearch,
 	Filter,
 	LoaderCircle,
@@ -24,7 +25,8 @@ import {
 	DesktopStoryRepository,
 	type StoryRepository
 } from '@writing-buddy/story-kernel';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import type { AiChapterSource } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
@@ -33,7 +35,8 @@ import {
 	StoryKernelGenerationService,
 	StoryKernelGenerationStore,
 	type StoryKernelGenerationBatch,
-	type StoryKernelGenerationCandidate
+	type StoryKernelGenerationCandidate,
+	type StoryKernelConfirmationUndoReceipt
 } from '../ai-context/StoryKernelGenerationService';
 import {
 	ManuscriptExtractionRunner,
@@ -42,6 +45,10 @@ import {
 	type ManuscriptExtractionRun,
 	type ManuscriptExtractionSource
 } from './ManuscriptExtractionCenterService';
+import {
+	findStaleExtractionBatchIds,
+	groupChapterOrganizationCandidates
+} from './ChapterOrganizationModel';
 import './ManuscriptExtractionCenterPage.css';
 
 type ExtractionScope =
@@ -111,7 +118,8 @@ function safeMessage(reason: unknown): string {
 		'stale-source': '正文已发生变化，请刷新该章节后重新规划。',
 		invalidManuscriptExtractionSource: '章节为空、过大或版本信息无效。',
 		storyKernelGenerationCandidateBlocked: '所选候选仍有阻断冲突。',
-		storyKernelGenerationRevisionConflict: '资料已变化，请重新整理后确认。'
+		storyKernelGenerationRevisionConflict: '资料已变化，请重新整理后确认。',
+		storyKernelGenerationUndoConflict: '资料在确认后又被修改，为保护新内容，本次撤销已停止。'
 	};
 	return labels[code] ?? code;
 }
@@ -124,7 +132,12 @@ export function ManuscriptExtractionCenterPage(props: {
 	readonly repository?: StoryRepository;
 	readonly runStore?: ManuscriptExtractionRunStore;
 	readonly generationStore?: StoryKernelGenerationStore;
+	readonly onOpenEvidence?: (evidence: {
+		readonly resourceId: string;
+		readonly range?: { readonly start: number; readonly end: number };
+	}) => void;
 }): React.JSX.Element {
+	const openQuickCapture = useAppStore(state => state.openQuickCapture);
 	const chapters = props.chapters ?? emptyChapters;
 	const baseChapter = chapters.find(chapter => chapter.resourceId === props.activeChapterId)
 		?? chapters[0];
@@ -162,7 +175,9 @@ export function ManuscriptExtractionCenterPage(props: {
 		() => runStore ? new ManuscriptExtractionRunner(runStore) : undefined,
 		[runStore]
 	);
-	const [scope, setScope] = useState<ExtractionScope>('current-volume');
+	const [scope, setScope] = useState<ExtractionScope>(
+		props.activeChapterId ? 'current-chapter' : 'current-volume'
+	);
 	const [baseChapterId, setBaseChapterId] = useState(baseChapter?.resourceId ?? '');
 	const [selectedChapterIds, setSelectedChapterIds] = useState<readonly string[]>(
 		baseChapter ? [baseChapter.resourceId] : []
@@ -177,6 +192,10 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [batches, setBatches] = useState<readonly StoryKernelGenerationBatch[]>([]);
 	const [selectedCandidateIds, setSelectedCandidateIds] =
 		useState<ReadonlySet<string>>(new Set());
+	const [staleBatchIds, setStaleBatchIds] =
+		useState<ReadonlySet<string>>(new Set());
+	const [lastConfirmationReceipts, setLastConfirmationReceipts] =
+		useState<readonly StoryKernelConfirmationUndoReceipt[]>([]);
 	const [candidateType, setCandidateType] =
 		useState<StoryKernelGenerationResourceType | 'all'>('all');
 	const [conflictOnly, setConflictOnly] = useState(false);
@@ -185,19 +204,40 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [streamState, setStreamState] = useState<AiJobState>('created');
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [activeJobId, setActiveJobId] = useState<string>();
-	const [busyAction, setBusyAction] = useState<'run' | 'confirm'>();
+	const [busyAction, setBusyAction] = useState<'run' | 'confirm' | 'undo'>();
+	const [resolvingCandidateId, setResolvingCandidateId] = useState<string>();
 	const [notice, setNotice] = useState('');
 	const [error, setError] = useState('');
+
+	const refreshStaleState = useCallback(async (
+		nextBatches: readonly StoryKernelGenerationBatch[]
+	) => {
+		const projectRoot = props.projectRoot;
+		if (!projectRoot) {
+			setStaleBatchIds(new Set());
+			return;
+		}
+		const sourceIds = [...new Set(nextBatches.map(batch => batch.sourceResourceId))];
+		const currentRevisions = new Map<string, string>();
+		await Promise.all(sourceIds.map(async resourceId => {
+			const chapter = chapters.find(item => item.resourceId === resourceId);
+			if (!chapter) return;
+			const file = await desktopBridge.readText(projectRoot, chapter.path);
+			currentRevisions.set(resourceId, file.hash);
+		}));
+		setStaleBatchIds(findStaleExtractionBatchIds(nextBatches, currentRevisions));
+	}, [chapters, props.projectRoot]);
 
 	useEffect(() => {
 		let cancelled = false;
 		if (!runStore || !generationStore) return;
 		void Promise.all([runStore.load(), generationStore.load()])
-			.then(([loadedRuns, loadedBatches]) => {
+			.then(async ([loadedRuns, loadedBatches]) => {
 				if (cancelled) return;
 				setRuns(loadedRuns);
 				setSelectedRunId(loadedRuns.at(-1)?.id);
 				setBatches(loadedBatches);
+				await refreshStaleState(loadedBatches);
 			})
 			.catch(reason => {
 				if (!cancelled) setError(safeMessage(reason));
@@ -205,7 +245,7 @@ export function ManuscriptExtractionCenterPage(props: {
 		return () => {
 			cancelled = true;
 		};
-	}, [generationStore, runStore]);
+	}, [generationStore, refreshStaleState, runStore]);
 
 	const selectedRun = runs.find(run => run.id === selectedRunId) ?? runs.at(-1);
 	const completedChapterIds = useMemo(() => new Set(
@@ -246,12 +286,22 @@ export function ManuscriptExtractionCenterPage(props: {
 		)) ?? []
 	);
 	const runBatches = batches.filter(batch => runBatchIds.has(batch.id));
-	const candidates = runBatches
-		.flatMap(batch => batch.candidates.map(candidate => ({ batch, candidate })))
-		.filter(({ candidate }) => (
-			(candidateType === 'all' || candidate.resourceType === candidateType)
-			&& (!conflictOnly || candidate.conflicts.length > 0)
-		));
+	const candidateGroups = groupChapterOrganizationCandidates(runBatches)
+		.flatMap(group => {
+			if (candidateType !== 'all' && group.type !== candidateType) return [];
+			const entries = group.entries.filter(({ candidate }) => (
+				!conflictOnly || candidate.conflicts.length > 0
+			));
+			return entries.length > 0 ? [{ ...group, entries }] : [];
+		});
+	const visibleCandidateCount = candidateGroups.reduce(
+		(total, group) => total + group.entries.length,
+		0
+	);
+	const selectedHasStaleSource = runBatches.some(batch => (
+		staleBatchIds.has(batch.id)
+		&& batch.candidates.some(candidate => selectedCandidateIds.has(candidate.id))
+	));
 	const completedCount = selectedRun?.chapters.filter(chapter => (
 		chapter.status === 'completed'
 	)).length ?? 0;
@@ -293,6 +343,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setRuns(await runStore.load());
 			setSelectedRunId(run.id);
 			setSelectedCandidateIds(new Set());
+			setLastConfirmationReceipts([]);
 			setNotice(`已规划 ${run.chapters.length} 个章节；开始前预计 ${run.tokenEstimate.toLocaleString()} tokens。`);
 		} catch (reason) {
 			setError(safeMessage(reason));
@@ -368,7 +419,9 @@ export function ManuscriptExtractionCenterPage(props: {
 				))
 			});
 			setRuns(await runStore!.load());
-			setBatches(await generationStore.load());
+			const loadedBatches = await generationStore.load();
+			setBatches(loadedBatches);
+			await refreshStaleState(loadedBatches);
 			setNotice(result.status === 'completed'
 				? '全部章节已整理完成，候选仍需作者确认。'
 				: '运行已结束；已完成批次保留，可显式继续或重试。');
@@ -404,8 +457,13 @@ export function ManuscriptExtractionCenterPage(props: {
 		if (!props.projectRoot || !generationService || !generationStore) return;
 		const selected = [...selectedCandidateIds];
 		if (!selected.length) return;
+		if (selectedHasStaleSource) {
+			setError('正文已变化，旧候选不可确认；请使用最新正文重新整理本章。');
+			return;
+		}
 		setBusyAction('confirm');
 		setError('');
+		const confirmedReceipts: StoryKernelConfirmationUndoReceipt[] = [];
 		try {
 			const grouped = runBatches.map(batch => ({
 				batch,
@@ -417,12 +475,119 @@ export function ManuscriptExtractionCenterPage(props: {
 					'beforeDestructiveOperation',
 					`AI 正文整理确认前 · ${group.batch.sourceResourceId}`
 				);
-				await generationService.confirm(group.batch.id, group.ids);
+				const confirmation = await generationService.confirmWithReceipt(
+					group.batch.id,
+					group.ids
+				);
+				confirmedReceipts.push(confirmation.receipt);
+				setLastConfirmationReceipts([...confirmedReceipts]);
 			}
-			setBatches(await generationStore.load());
+			const loadedBatches = await generationStore.load();
+			setBatches(loadedBatches);
+			await refreshStaleState(loadedBatches);
 			setSelectedCandidateIds(new Set());
-			setNotice(`已确认 ${selected.length} 个候选；每个章节写入前均创建安全快照。`);
+			setNotice(`已确认 ${selected.length} 个候选；已创建安全快照，可撤销本次确认。`);
 		} catch (reason) {
+			if (confirmedReceipts.length > 0) {
+				setLastConfirmationReceipts([...confirmedReceipts]);
+			}
+			setError(safeMessage(reason));
+		} finally {
+			setBusyAction(undefined);
+		}
+	};
+
+	const replanStaleBatch = async (batch: StoryKernelGenerationBatch) => {
+		if (!runStore) return;
+		const chapter = chapters.find(item => item.resourceId === batch.sourceResourceId);
+		if (!chapter) return;
+		setPlanning(true);
+		setPlanningProgress(0);
+		setError('');
+		try {
+			const run = await planManuscriptExtractionRun({
+				instruction: batch.instruction,
+				targetTypes: batch.targetTypes,
+				chapters: [{
+					resourceId: chapter.resourceId,
+					title: chapter.title
+				}],
+				loadSource,
+				onChapterPlanned: completed => setPlanningProgress(completed)
+			});
+			await runStore.append(run);
+			setRuns(await runStore.load());
+			setSelectedRunId(run.id);
+			setSelectedCandidateIds(new Set());
+			setLastConfirmationReceipts([]);
+			setNotice('已按最新正文重新规划本章；尚未调用 AI，请确认 Token 后点击开始。');
+		} catch (reason) {
+			setError(safeMessage(reason));
+		} finally {
+			setPlanning(false);
+		}
+	};
+
+	const rejectCandidate = async (
+		batchId: string,
+		candidateId: string
+	) => {
+		if (!generationService || !generationStore) return;
+		setResolvingCandidateId(candidateId);
+		setError('');
+		try {
+			await generationService.reject(batchId, candidateId);
+			const loadedBatches = await generationStore.load();
+			setBatches(loadedBatches);
+			setSelectedCandidateIds(current => {
+				const next = new Set(current);
+				next.delete(candidateId);
+				return next;
+			});
+			setNotice('候选已拒绝，未写入 Story Kernel。');
+		} catch (reason) {
+			setError(safeMessage(reason));
+		} finally {
+			setResolvingCandidateId(undefined);
+		}
+	};
+
+	const deferCandidate = (
+		batch: StoryKernelGenerationBatch,
+		candidate: StoryKernelGenerationCandidate
+	) => {
+		const quickCaptureType = candidate.resourceType === 'character'
+			? 'character'
+			: candidate.resourceType === 'foreshadowing'
+				? 'foreshadowing'
+				: ['location', 'item', 'faction', 'worldRule'].includes(candidate.resourceType)
+					? 'world'
+					: 'idea';
+		openQuickCapture({
+			type: quickCaptureType,
+			text: `${candidate.title}\n${candidate.rationale}`.trim(),
+			chapterId: batch.sourceResourceId
+		});
+		setNotice('已填入“稍后整理”；保存速记后可继续处理当前候选。');
+	};
+
+	const undoLastConfirmation = async () => {
+		if (!generationService || !generationStore || lastConfirmationReceipts.length === 0) return;
+		setBusyAction('undo');
+		setError('');
+		let remaining = [...lastConfirmationReceipts];
+		try {
+			for (const receipt of [...lastConfirmationReceipts].reverse()) {
+				await generationService.undoConfirmation(receipt);
+				remaining = remaining.filter(item => item !== receipt);
+				setLastConfirmationReceipts([...remaining]);
+			}
+			const loadedBatches = await generationStore.load();
+			setBatches(loadedBatches);
+			await refreshStaleState(loadedBatches);
+			setNotice('已撤销刚才的确认：新建资料已移入可恢复回收站，更新资料已恢复旧版本。');
+		} catch (reason) {
+			setLastConfirmationReceipts(remaining);
 			setError(safeMessage(reason));
 		} finally {
 			setBusyAction(undefined);
@@ -634,60 +799,164 @@ export function ManuscriptExtractionCenterPage(props: {
 						<label><input type="checkbox" checked={conflictOnly} onChange={event => setConflictOnly(event.target.checked)} />只看冲突</label>
 						<button
 							type="button"
-							disabled={selectedCandidateIds.size === 0 || Boolean(busyAction) || props.readOnly}
+							disabled={
+								selectedCandidateIds.size === 0
+								|| selectedHasStaleSource
+								|| Boolean(busyAction)
+								|| props.readOnly
+							}
 							onClick={() => void confirmSelected()}
 						>
 							{busyAction === 'confirm' ? <LoaderCircle className="spin" size={16} /> : <Check size={16} />}
 							创建快照并确认 {selectedCandidateIds.size || ''}
 						</button>
+						{lastConfirmationReceipts.length > 0 ? (
+							<button
+								type="button"
+								className="extraction-undo-button"
+								disabled={Boolean(busyAction) || props.readOnly}
+								onClick={() => void undoLastConfirmation()}
+							>
+								{busyAction === 'undo'
+									? <LoaderCircle className="spin" size={16} />
+									: <RotateCcw size={16} />}
+								撤销刚才确认
+							</button>
+						) : null}
 					</div>
 				</header>
-				<div className="extraction-candidate-grid">
-					{candidates.map(({ batch, candidate }) => (
-						<article
-							key={candidate.id}
-							data-conflict={candidate.conflicts.length > 0 ? 'true' : 'false'}
-						>
+				<div className="extraction-candidate-groups">
+					{candidateGroups.map(group => (
+						<section className="extraction-candidate-group" key={group.type}>
 							<header>
-								<label>
-									<input
-										type="checkbox"
-										aria-label={`选择 ${candidate.title}`}
-										disabled={!candidateConfirmable(candidate) || Boolean(busyAction)}
-										checked={selectedCandidateIds.has(candidate.id)}
-										onChange={() => setSelectedCandidateIds(current => {
-											const next = new Set(current);
-											if (next.has(candidate.id)) next.delete(candidate.id);
-											else next.add(candidate.id);
-											return next;
-										})}
-									/>
-									<span>{typeLabels[candidate.resourceType]}</span>
-								</label>
-								<strong>{Math.round(candidate.confidence * 100)}%</strong>
+								<div>
+									<h3>{typeLabels[group.type]}</h3>
+									<span>{group.entries.length} 个候选</span>
+								</div>
+								<small>
+									{group.pendingCount} 待处理
+									{group.conflictCount > 0 ? ` · ${group.conflictCount} 冲突` : ''}
+									{group.resolvedCount > 0 ? ` · ${group.resolvedCount} 已处理` : ''}
+									{group.lowConfidenceCount > 0 ? ` · ${group.lowConfidenceCount} 低置信` : ''}
+								</small>
 							</header>
-							<h3>{candidate.title}</h3>
-							<p>{candidate.rationale}</p>
-							<small>{batch.sourceResourceId}</small>
-							{candidate.evidence ? <blockquote>{candidate.evidence.quotePreview}</blockquote> : null}
-							{candidate.conflicts.map(conflict => (
-								<p className="extraction-conflict" key={`${conflict.code}:${conflict.message}`}>
-									<AlertTriangle size={16} />{conflict.message}
-								</p>
-							))}
-							<span className="extraction-candidate-state">
-								{candidate.status === 'accepted'
-									? '已写入'
-									: candidate.status === 'rejected'
-										? '已拒绝'
-										: candidate.conflicts.length
-											? '需处理冲突'
-											: '待作者确认'}
-								<ChevronRight size={16} />
-							</span>
-						</article>
+							<div className="extraction-candidate-grid">
+								{group.entries.map(({ batch, candidate }) => {
+									const stale = staleBatchIds.has(batch.id);
+									const evidence = candidate.evidence;
+									return (
+										<article
+											key={candidate.id}
+											data-conflict={candidate.conflicts.length > 0 ? 'true' : 'false'}
+											data-stale={stale ? 'true' : 'false'}
+										>
+											<header>
+												<label>
+													<input
+														type="checkbox"
+														aria-label={`选择 ${candidate.title}`}
+														disabled={
+															stale
+															|| !candidateConfirmable(candidate)
+															|| Boolean(busyAction)
+														}
+														checked={selectedCandidateIds.has(candidate.id)}
+														onChange={() => setSelectedCandidateIds(current => {
+															const next = new Set(current);
+															if (next.has(candidate.id)) next.delete(candidate.id);
+															else next.add(candidate.id);
+															return next;
+														})}
+													/>
+													<span>{candidate.operation === 'create' ? '新建' : '更新'}</span>
+												</label>
+												<div>
+													{candidate.confidence < 0.6 ? <em>低置信</em> : null}
+													<strong>{Math.round(candidate.confidence * 100)}%</strong>
+												</div>
+											</header>
+											<h4>{candidate.title}</h4>
+											<p>{candidate.rationale}</p>
+											<small>{batch.sourceResourceId}</small>
+											{stale ? (
+												<div className="extraction-stale-warning">
+													<span>
+														<AlertTriangle size={16} />正文已变化，请重新整理后再确认
+													</span>
+													<button
+														type="button"
+														disabled={planning || Boolean(busyAction) || props.readOnly}
+														onClick={() => void replanStaleBatch(batch)}
+													>
+														<RotateCcw size={16} />用最新正文重新规划
+													</button>
+												</div>
+											) : null}
+											{evidence ? (
+												<div className="extraction-evidence">
+													<blockquote>{evidence.quotePreview}</blockquote>
+													<button
+														type="button"
+														aria-label="查看正文依据"
+														onClick={() => props.onOpenEvidence?.({
+															resourceId: evidence.resourceId,
+															range: evidence.range
+														})}
+													>
+														<ExternalLink size={16} />查看正文依据
+													</button>
+												</div>
+											) : null}
+											{candidate.conflicts.map(conflict => (
+												<p className="extraction-conflict" key={`${conflict.code}:${conflict.message}`}>
+													<AlertTriangle size={16} />{conflict.message}
+												</p>
+											))}
+											<div className="extraction-candidate-actions">
+												<span className="extraction-candidate-state">
+													{candidate.status === 'accepted'
+														? '已写入'
+														: candidate.status === 'rejected'
+															? '已拒绝'
+															: candidate.conflicts.length
+																? '需处理冲突'
+																: '待作者确认'}
+													<ChevronRight size={16} />
+												</span>
+												{candidate.status === 'pending' ? (
+													<>
+														<button
+															type="button"
+															aria-label="稍后整理"
+															disabled={Boolean(resolvingCandidateId)}
+															onClick={() => deferCandidate(batch, candidate)}
+														>
+															<Clock3 size={16} />稍后整理
+														</button>
+														<button
+															type="button"
+															aria-label="拒绝候选"
+															disabled={
+																props.readOnly
+																|| Boolean(resolvingCandidateId)
+															}
+															onClick={() => void rejectCandidate(batch.id, candidate.id)}
+														>
+															{resolvingCandidateId === candidate.id
+																? <LoaderCircle className="spin" size={16} />
+																: <CircleStop size={16} />}
+															拒绝
+														</button>
+													</>
+												) : null}
+											</div>
+										</article>
+									);
+								})}
+							</div>
+						</section>
 					))}
-					{candidates.length === 0 ? (
+					{visibleCandidateCount === 0 ? (
 						<div className="extraction-candidate-empty">
 							<DatabaseZap size={24} />
 							<strong>还没有符合筛选的候选</strong>

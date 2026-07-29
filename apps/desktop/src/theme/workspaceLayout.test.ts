@@ -70,7 +70,7 @@ describe('workspace grid contracts', () => {
 		expect(workspaceCss).toContain('grid-template-columns 180ms ease,');
 		expect(workspaceCss).toContain('grid-template-rows 180ms ease;');
 		expect(workspaceCss).toContain('@media (max-width: 1279px)');
-		expect(workspaceCss).toContain('@media (max-width: 1023px)');
+		expect(workspaceCss).toContain('@media (max-width: 1099px)');
 		expect(workspaceCss).toContain('.mode-planning');
 		expect(tokenCss).toContain('@media (prefers-reduced-motion: reduce)');
 		expect(tokenCss).toContain('transition-duration: 0.01ms !important;');

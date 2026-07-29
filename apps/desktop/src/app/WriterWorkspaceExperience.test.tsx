@@ -177,6 +177,27 @@ describe('quiet writer workspaces', () => {
 		expect(within(status).queryByText('我的小说')).not.toBeInTheDocument();
 	});
 
+	it('opens the existing extraction center for the current chapter without starting AI', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+
+		await user.click(screen.getByRole('button', { name: '更多章节操作' }));
+		await user.click(screen.getByRole('menuitem', { name: '整理本章' }));
+
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'references',
+			storyView: 'extraction'
+		});
+		expect(await screen.findByRole('main', { name: 'AI 从正文整理中心' }))
+			.toBeInTheDocument();
+		expect(screen.getByRole('radio', { name: '当前章' })).toHaveAttribute(
+			'aria-checked',
+			'true'
+		);
+		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
+	});
+
 	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {
 		const user = userEvent.setup();
 		render(<App />);

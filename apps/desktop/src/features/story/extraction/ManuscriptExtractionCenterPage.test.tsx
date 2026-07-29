@@ -35,7 +35,10 @@ describe('ManuscriptExtractionCenterPage', () => {
 			/>
 		);
 
-		fireEvent.click(screen.getByRole('radio', { name: '当前章' }));
+		expect(screen.getByRole('radio', { name: '当前章' })).toHaveAttribute(
+			'aria-checked',
+			'true'
+		);
 		fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
 		await screen.findByText(/已规划 1 个章节/u);
 
@@ -49,5 +52,28 @@ describe('ManuscriptExtractionCenterPage', () => {
 			expect(screen.getAllByText('AI 识别人物').length).toBeGreaterThan(0);
 		});
 		expect(screen.getAllByText('待作者确认').length).toBeGreaterThan(0);
+		expect(screen.getByRole('heading', { name: '人物' })).toBeInTheDocument();
+		expect(screen.getAllByRole('button', { name: '查看正文依据' }).length)
+			.toBeGreaterThan(0);
+		expect(screen.getAllByRole('button', { name: '稍后整理' }).length)
+			.toBeGreaterThan(0);
+		expect(screen.getAllByRole('button', { name: '拒绝候选' }).length)
+			.toBeGreaterThan(0);
+		const candidateCheckboxes = screen.getAllByRole('checkbox').filter(element => (
+			element.getAttribute('aria-label')?.startsWith('选择 ')
+		));
+		expect(candidateCheckboxes.every(element => (
+			!(element as HTMLInputElement).checked
+		))).toBe(true);
+		const confirmable = candidateCheckboxes.find(element => (
+			!(element as HTMLInputElement).disabled
+		));
+		expect(confirmable).toBeDefined();
+		if (!confirmable) throw new Error('confirmableCandidateMissing');
+		fireEvent.click(confirmable);
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/u }));
+		const undo = await screen.findByRole('button', { name: '撤销刚才确认' });
+		fireEvent.click(undo);
+		await screen.findByText(/已撤销刚才的确认/u);
 	});
 });

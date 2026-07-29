@@ -122,9 +122,11 @@ const client = new CdpClient(page.webSocketDebuggerUrl);
 await client.send('Page.enable');
 await client.send('Runtime.enable');
 
+const fixtureRoot = process.argv[5] ?? 'browser-fixture';
 const initialState = {
 	state: {
-		recentProjectRoot: process.argv[5] ?? 'C:\\StoryForge Gate C Browser Fixture',
+		recentProjectRoot: fixtureRoot,
+		recentProjectRoots: [fixtureRoot],
 		activeMode: 'references',
 		storyView: 'characters',
 		theme: 'paper',
@@ -134,9 +136,10 @@ const initialState = {
 		assistantWidth: 339,
 		dockHeight: 240,
 		openResourceIds: [],
-		documentViews: {}
+		documentViews: {},
+		writerSessions: {}
 	},
-	version: 0
+	version: 2
 };
 await client.send('Runtime.evaluate', {
 	expression: `localStorage.setItem('writing-buddy-next-workspace', ${JSON.stringify(JSON.stringify(initialState))})`
@@ -485,6 +488,48 @@ const aiQuickActionsGateGCaptures = [
 		name: '04-extraction-responsive-1024x688.png'
 	}
 ];
+const writerGateECaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.selection-contextual-ai-menu',
+		prepare: 'select-editor-contextual-ai',
+		width: 1536,
+		height: 960,
+		name: '01-contextual-selection-actions-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.extraction-center-page',
+		prepare: 'plan-current-chapter',
+		width: 1536,
+		height: 960,
+		name: '02-current-chapter-plan-1536x992.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.extraction-center-page',
+		prepare: 'run-current-extraction',
+		width: 1280,
+		height: 768,
+		name: '03-grouped-candidates-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writer-header',
+		selector: '.extraction-center-page',
+		prepare: 'plan-current-chapter',
+		width: 1024,
+		height: 688,
+		name: '04-chapter-organization-1024x720.png'
+	}
+];
 const captures = gate === 'gate-ai-actions-f'
 	? aiQuickActionsGateFCaptures
 	: gate === 'gate-ai-actions-g'
@@ -499,6 +544,8 @@ const captures = gate === 'gate-ai-actions-f'
 	? aiQuickActionsGateCCaptures
 	: gate.startsWith('gate-ai-actions')
 	? aiQuickActionsCaptures
+	: gate === 'gate-writer-e'
+	? writerGateECaptures
 	: gate.startsWith('gate-e')
 	? gateECaptures
 	: gate.startsWith('gate-f')
@@ -528,6 +575,73 @@ try {
 		});
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
+		if (capture.mode === 'works' && capture.resourceId) {
+			await waitForSelector(client, '.app-shell');
+			const writerReady = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					return Boolean(document.querySelector(
+						${JSON.stringify(capture.readySelector ?? capture.selector)}
+					));
+				})()`,
+				returnByValue: true
+			});
+			if (!writerReady.result.value) {
+				await waitForSelector(client, '.story-dashboard');
+				const continued = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+					const button = [...document.querySelectorAll('.dashboard-continue button')]
+						.find(item => item.textContent?.includes('继续上次位置'));
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+					returnByValue: true
+				});
+				if (!continued.result.value) throw new Error('Writer chapter could not be continued.');
+			}
+		}
+		if (capture.mode === 'references') {
+			await waitForSelector(
+				client,
+				gate === 'gate-writer-e' ? '.writer-header' : '.story-dashboard'
+			);
+			if (gate === 'gate-writer-e') {
+				await new Promise(resolveWait => setTimeout(resolveWait, 500));
+			}
+			const openedReferences = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					if (document.querySelector(${JSON.stringify(capture.readySelector ?? capture.selector)})) {
+						return true;
+					}
+					const button = [...document.querySelectorAll('.global-rail .rail-item')]
+						.find(item => item.textContent?.trim() === '资料');
+					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+					button.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!openedReferences.result.value) {
+				throw new Error('Reference workspace could not be opened.');
+			}
+			if (capture.view === 'extraction') {
+				await waitForSelector(client, '.story-reference-sidebar');
+				const openedExtraction = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						if (document.querySelector('.extraction-center-page')) return true;
+						const button = [...document.querySelectorAll('.story-reference-sidebar nav button')]
+							.find(item => item.textContent?.includes('AI 正文整理'));
+						if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+						button.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!openedExtraction.result.value) {
+					throw new Error('Chapter organization page could not be opened.');
+				}
+			}
+		}
 		const readyMs = await waitForSelector(client, capture.readySelector ?? capture.selector);
 		await new Promise(resolveWait => setTimeout(resolveWait, 300));
 		if (capture.prepare?.startsWith('select-editor')) {
@@ -559,6 +673,18 @@ try {
 					returnByValue: true
 				});
 				if (!result.result.value) throw new Error('Create-character selection action was not available.');
+			}
+			if (capture.prepare === 'select-editor-contextual-ai') {
+				const result = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const summary = document.querySelector('.selection-contextual-ai > summary');
+						if (!(summary instanceof HTMLElement)) return false;
+						summary.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!result.result.value) throw new Error('Contextual selection menu was not available.');
 			}
 			await waitForSelector(client, capture.selector);
 		}
@@ -842,20 +968,34 @@ try {
 			const prepared = await client.send('Runtime.evaluate', {
 				expression: `(async () => {
 					const tools = window.__WRITING_BUDDY_DEVTOOLS__;
-					if (!await tools?.enableBrowserAiFixture()) return false;
-					const scope = [...document.querySelectorAll('.extraction-scope-grid button')]
-						.find(item => item.textContent?.trim() === '当前卷');
-					if (!(scope instanceof HTMLButtonElement)) return false;
-					scope.click();
+					if (!await tools?.enableBrowserAiFixture()) return { ok: false, reason: 'fixture' };
 					const plan = document.querySelector('.extraction-plan-button');
-					if (!(plan instanceof HTMLButtonElement) || plan.disabled) return false;
+					if (!(plan instanceof HTMLButtonElement) || plan.disabled) {
+						return {
+							ok: false,
+							reason: 'plan',
+							disabled: plan instanceof HTMLButtonElement ? plan.disabled : undefined,
+							text: plan?.textContent,
+							shell: document.querySelector('.app-shell')?.className,
+							body: document.body.innerText.slice(0, 240),
+							scope: [...document.querySelectorAll('.extraction-scope-grid button')]
+								.map(item => ({
+									text: item.textContent?.trim(),
+									checked: item.getAttribute('aria-checked')
+								}))
+						};
+					}
 					plan.click();
-					return true;
+					return { ok: true };
 				})()`,
 				awaitPromise: true,
 				returnByValue: true
 			});
-			if (!prepared.result.value) throw new Error('Gate G extraction plan could not be created.');
+			if (!prepared.result.value?.ok) {
+				throw new Error(
+					`Gate G extraction plan could not be created: ${JSON.stringify(prepared.result.value)}`
+				);
+			}
 			await waitForSelector(client, '.extraction-run-card [data-status="planned"]');
 			if (capture.prepare === 'run-extraction') {
 				const started = await client.send('Runtime.evaluate', {
@@ -870,6 +1010,83 @@ try {
 				});
 				if (!started.result.value) throw new Error('Gate G extraction run could not be started.');
 				await waitForSelector(client, '.extraction-candidate-grid > article');
+			}
+		}
+		if (
+			capture.prepare === 'plan-current-chapter'
+			|| capture.prepare === 'run-current-extraction'
+		) {
+			const prepared = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					if (!document.querySelector('.extraction-center-page')) {
+						const summary = document.querySelector('.writer-tools-menu > summary');
+						if (!(summary instanceof HTMLElement)) return false;
+						summary.click();
+						const organize = document.querySelector(
+							'.writer-tools-menu [role="menuitem"][aria-label="整理本章"]'
+						);
+						if (!(organize instanceof HTMLButtonElement)) return false;
+						organize.click();
+						return 'opening';
+					}
+					const currentChapter = [...document.querySelectorAll('.extraction-scope-grid button')]
+						.find(item => item.textContent?.trim() === '当前章');
+					const plan = document.querySelector('.extraction-plan-button');
+					if (
+						!(currentChapter instanceof HTMLButtonElement)
+						|| currentChapter.getAttribute('aria-checked') !== 'true'
+						|| !(plan instanceof HTMLButtonElement)
+						|| plan.disabled
+					) return false;
+					plan.click();
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!prepared.result.value) {
+				throw new Error('Current-chapter extraction plan could not be created.');
+			}
+			if (prepared.result.value === 'opening') {
+				await waitForSelector(client, '.extraction-center-page');
+				const planned = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const currentChapter = [...document.querySelectorAll('.extraction-scope-grid button')]
+							.find(item => item.textContent?.trim() === '当前章');
+						const plan = document.querySelector('.extraction-plan-button');
+						if (
+							!(currentChapter instanceof HTMLButtonElement)
+							|| currentChapter.getAttribute('aria-checked') !== 'true'
+							|| !(plan instanceof HTMLButtonElement)
+							|| plan.disabled
+						) return false;
+						plan.click();
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!planned.result.value) {
+					throw new Error('Current-chapter scope was not preserved.');
+				}
+			}
+			await waitForSelector(client, '.extraction-run-card [data-status="planned"]');
+			if (capture.prepare === 'run-current-extraction') {
+				const started = await client.send('Runtime.evaluate', {
+					expression: `(async () => {
+						const tools = window.__WRITING_BUDDY_DEVTOOLS__;
+						if (!await tools?.enableBrowserAiFixture()) return false;
+						const button = [...document.querySelectorAll('.extraction-run-actions button')]
+							.find(item => item.textContent?.includes('开始逐章整理'));
+						if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
+						button.click();
+						return true;
+					})()`,
+					awaitPromise: true,
+					returnByValue: true
+				});
+				if (!started.result.value) {
+					throw new Error('Current-chapter extraction run could not be started.');
+				}
+				await waitForSelector(client, '.extraction-candidate-group');
 			}
 		}
 		if (capture.prepare === 'run-consistency-review') {

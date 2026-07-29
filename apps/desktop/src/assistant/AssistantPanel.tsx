@@ -26,8 +26,37 @@ import { ManuscriptContinuationPanel } from '../features/story/ai-context/Manusc
 import { ScenePlanningPanel } from '../features/story/ai-context/ScenePlanningPanel';
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
+import { resolveContextualWriterActions } from '../features/ai/contextual/ContextualActionResolver';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { workspaceResizeBounds } from '../shell/workspaceResize';
+
+function atParagraphEnd(content: string, cursorOffset: number): boolean {
+	const safeOffset = Math.max(0, Math.min(cursorOffset, content.length));
+	const nextLineBreak = content.indexOf('\n', safeOffset);
+	const lineTail = content.slice(
+		safeOffset,
+		nextLineBreak === -1 ? content.length : nextLineBreak
+	);
+	return lineTail.trim().length === 0;
+}
+
+function rewriteIcon(actionType: SelectionRewriteActionType): React.JSX.Element {
+	switch (actionType) {
+		case 'concise':
+			return <Lightbulb size={18} />;
+		case 'expand':
+			return <Maximize2 size={18} />;
+		case 'grammar':
+			return <ClipboardCheck size={18} />;
+		case 'dialogue':
+			return <UsersRound size={18} />;
+		case 'pacing':
+			return <BookMarked size={18} />;
+		case 'polish':
+		default:
+			return <WandSparkles size={18} />;
+	}
+}
 
 export function AssistantPanel(): React.JSX.Element {
 	const assistantIntent = useAppStore(state => state.assistantIntent);
@@ -84,6 +113,17 @@ function AssistantPanelContent(props: {
 			targetTypes: [props.initialIntent.targetType]
 		}
 		: undefined, [props.initialIntent]);
+	const contextualActions = useMemo(() => resolveContextualWriterActions({
+		workspace: 'writing',
+		hasProject: Boolean(snapshot),
+		activeResourceType: activeResource?.type,
+		selectionText: selection?.text,
+		cursorAtParagraphEnd: session
+			? atParagraphEnd(session.content, cursorOffset)
+			: false,
+		chapterHasDraft: Boolean(session?.content.trim()),
+		chapterHasPendingExtraction: false
+	}), [activeResource?.type, cursorOffset, selection?.text, session, snapshot]);
 
 	const activeChapter = snapshot?.project.volumes
 		.flatMap(volume => volume.chapters)
@@ -149,13 +189,38 @@ function AssistantPanelContent(props: {
 						<p>{selection?.text || '请先在正文中选择一段文字。'}</p>
 					</div>
 					<div className="quick-actions">
-						<button type="button" className={rewriteAction === 'polish' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('polish')}><WandSparkles size={18} />润色</button>
-						<button type="button" className={rewriteAction === 'concise' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('concise')}><Lightbulb size={18} />精简</button>
-						<button type="button" className={rewriteAction === 'expand' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('expand')}><Maximize2 size={18} />扩写</button>
-						<button type="button" className={rewriteAction === 'grammar' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('grammar')}><ClipboardCheck size={18} />语病</button>
-						<button type="button" className={rewriteAction === 'dialogue' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('dialogue')}><UsersRound size={18} />对话</button>
-						<button type="button" className={rewriteAction === 'pacing' ? 'is-active' : ''} disabled={!selection?.text} onClick={() => setRewriteAction('pacing')}><BookMarked size={18} />节奏</button>
+						{contextualActions.primary.map(action => action.kind === 'rewrite' && (
+							<button
+								key={action.id}
+								type="button"
+								className={rewriteAction === action.actionType ? 'is-active' : ''}
+								disabled={!selection?.text}
+								title={action.description}
+								onClick={() => setRewriteAction(action.actionType)}
+							>
+								{rewriteIcon(action.actionType)}{action.label}
+							</button>
+						))}
 					</div>
+					{contextualActions.secondary.length > 0 && (
+						<details className="assistant-more-actions">
+							<summary>更多 AI 操作</summary>
+							<div className="quick-actions">
+								{contextualActions.secondary.map(action => action.kind === 'rewrite' && (
+									<button
+										key={action.id}
+										type="button"
+										className={rewriteAction === action.actionType ? 'is-active' : ''}
+										disabled={!selection?.text}
+										title={action.description}
+										onClick={() => setRewriteAction(action.actionType)}
+									>
+										{rewriteIcon(action.actionType)}{action.label}
+									</button>
+								))}
+							</div>
+						</details>
+					)}
 					{snapshot && activeResource?.type === 'chapter' && session && selection?.text ? (
 						<SelectionRewritePanel
 							projectRoot={snapshot.root}

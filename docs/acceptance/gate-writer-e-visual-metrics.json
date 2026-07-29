@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-07-29T10:23:00.543Z",
+  "captures": [
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".selection-contextual-ai-menu",
+      "prepare": "select-editor-contextual-ai",
+      "width": 1536,
+      "height": 960,
+      "name": "01-contextual-selection-actions-1536x992.png",
+      "readyMs": 2484,
+      "selectorReadyMs": 9,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 330,
+        "height": 410
+      },
+      "gridColumns": "78px 304px 815px 339px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 270,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 1191
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".extraction-center-page",
+      "prepare": "plan-current-chapter",
+      "width": 1536,
+      "height": 960,
+      "name": "02-current-chapter-plan-1536x992.png",
+      "readyMs": 1325,
+      "selectorReadyMs": 5,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1158,
+        "height": 852
+      },
+      "gridColumns": "78px 300px 1158px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 549
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".extraction-center-page",
+      "prepare": "run-current-extraction",
+      "width": 1280,
+      "height": 768,
+      "name": "03-grouped-candidates-1280x800.png",
+      "readyMs": 1432,
+      "selectorReadyMs": 6,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 902,
+        "height": 660
+      },
+      "gridColumns": "78px 300px 902px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 242,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 757
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writer-header",
+      "selector": ".extraction-center-page",
+      "prepare": "plan-current-chapter",
+      "width": 1024,
+      "height": 688,
+      "name": "04-chapter-organization-1024x720.png",
+      "readyMs": 1181,
+      "selectorReadyMs": 5,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 114,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 549
+    }
+  ]
+}

@@ -949,10 +949,13 @@ export function ChapterEditor(): React.JSX.Element {
 							selection={selection}
 							readOnly={readOnly}
 							onLinked={mention => setMentions(current => [...current, mention])}
-							onRewrite={() => requestAssistantAction({
+							onRewrite={actionType => requestAssistantAction({
 								kind: 'rewrite',
-								actionType: 'polish'
+								actionType
 							})}
+							onAiMenuClosed={() => {
+								window.requestAnimationFrame(() => editorRef.current?.focus());
+							}}
 							onQuickCapture={() => openQuickCapture({
 								type: 'idea',
 								text: selection.text

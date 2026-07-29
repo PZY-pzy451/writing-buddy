@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A Gate D writer experience work is complete in the isolated worktree
+Phase 1.2A Gate E writer experience work is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
@@ -16,12 +16,33 @@ Phase 1.2A Gate D writer experience work is complete in the isolated worktree
   focus overlay are complete in this branch's dedicated feature commit.
 - Gate D Quick Capture, 待整理箱, portable TextAnchor association, exact
   MentionLink Entity Peek, and focus restoration are complete.
-- Contextual AI, Writer Navigator, chapter organization, new AI actions, and
-  new Story resource types remain out of scope.
-- Completed contract:
-  `docs/plans/028-phase-1.2a-gate-d-quick-capture-entity-peek.md`.
+- Gate E contextual presentation and author-triggered chapter organization
+  through the existing AI/extraction paths are complete.
+- Writer Navigator, save-state redesign, new AI actions, and new Story resource
+  types remain out of scope.
+- Active contract:
+  `docs/plans/029-phase-1.2a-gate-e-contextual-ai-chapter-organization.md`.
 
 ## Completed
+
+- Contextual AI presentation now resolves the current writing context locally,
+  keeps at most four primary actions visible, and reuses the existing rewrite
+  and continuation intents without adding an AI action or hidden classifier.
+- The chapter More menu opens the existing extraction center in current-
+  chapter scope without starting a paid job. Candidates are grouped by Story
+  type and start unselected, with exact Evidence, reject, Quick Capture defer,
+  stale-source blocking, conflict counts, and low-confidence handling.
+- Confirmation still creates the canonical pre-write snapshot. The latest
+  confirmation can be undone with revision guards: newly created resources
+  move to recoverable Trash and updated resources restore their prior content.
+- Real 1536×992, 1280×800, and 1024×720 targets have zero page overflow,
+  clipped interactive controls, or undersized Story controls.
+- Final gates: ESLint, TypeScript, 6 Gate E files / 26 targeted tests,
+  120 Vitest files / 427 complete tests, production build, Cargo format,
+  53 Rust tests, Tauri Release/NSIS packaging, and native responsive
+  startup/normal close all pass.
+- Evidence in
+  `docs/acceptance/040-phase-1.2a-gate-e-contextual-ai-chapter-organization-2026-07-29.md`.
 
 - Added project-owned Quick Capture state with strict parsing, expected-hash
   concurrency, atomic native writes, and snapshot/backup inclusion.
@@ -451,7 +472,8 @@ Phase 1.2A Gate D writer experience work is complete in the isolated worktree
 
 ## Next
 
-Gate D is complete. Stop before Gate E and await new user direction.
+Await explicit user direction before Gate F. Writer Navigator, save-state
+redesign, new AI actions, and new Story resource types remain deferred.
 
 ## Project Creation Y0–Y2 complete
 

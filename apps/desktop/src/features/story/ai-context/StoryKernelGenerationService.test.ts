@@ -46,6 +46,7 @@ class MemoryStorage implements StoryKernelGenerationStoragePort {
 
 class MemoryStoryGateway implements StoryStorageGateway {
 	readonly resources = new Map<string, unknown>();
+	readonly trash = new Map<string, unknown>();
 	commitCalls = 0;
 	failNextCommit = false;
 
@@ -99,12 +100,22 @@ class MemoryStoryGateway implements StoryStorageGateway {
 		return Promise.resolve(prepared.map(entry => entry.value));
 	}
 
-	moveStoryResourceToTrash(): Promise<void> {
+	moveStoryResourceToTrash(_root: string, type: string, id: string): Promise<void> {
+		const key = this.key(type, id);
+		const resource = this.resources.get(key);
+		if (!resource) return Promise.reject(new Error('storyResourceNotFound'));
+		this.trash.set(key, resource);
+		this.resources.delete(key);
 		return Promise.resolve();
 	}
 
-	restoreStoryResourceFromTrash(): Promise<unknown> {
-		return Promise.reject(new Error('storyTrashNotFound'));
+	restoreStoryResourceFromTrash(_root: string, type: string, id: string): Promise<unknown> {
+		const key = this.key(type, id);
+		const resource = this.trash.get(key);
+		if (!resource) return Promise.reject(new Error('storyTrashNotFound'));
+		this.resources.set(key, resource);
+		this.trash.delete(key);
+		return Promise.resolve(resource);
 	}
 }
 
@@ -292,6 +303,128 @@ describe('StoryKernelGenerationService', () => {
 			.toBe(1);
 		expect((await store.load())[0]?.candidates.every(candidate => candidate.status === 'accepted'))
 			.toBe(true);
+	});
+
+	it('returns an undo receipt and reverses newly created resources into recoverable Trash', async () => {
+		const { gateway, repository, service, store } = createHarness();
+		const batch = await stageValidBatch(service);
+		const selected = batch.candidates.map(candidate => candidate.id);
+
+		const confirmation = await service.confirmWithReceipt(
+			batch.id,
+			selected,
+			'2026-07-27T08:01:00.000Z'
+		);
+		expect(confirmation.receipt.entries).toHaveLength(4);
+		expect(confirmation.receipt.entries.every(entry => entry.before === undefined)).toBe(true);
+
+		const reverted = await service.undoConfirmation(
+			confirmation.receipt,
+			'2026-07-27T08:02:00.000Z'
+		);
+		expect(reverted.candidates.every(candidate => candidate.status === 'rejected')).toBe(true);
+		expect(await repository.get('character', 'character:lin-yue')).toBeUndefined();
+		expect(gateway.trash.size).toBe(4);
+		expect((await store.load())[0]?.candidates.every(candidate => (
+			candidate.status === 'rejected'
+		))).toBe(true);
+	});
+
+	it('restores an updated resource and refuses undo after a concurrent revision change', async () => {
+		const { gateway, repository, service } = createHarness();
+		const original = await repository.save({
+			id: 'location:old-station',
+			type: 'location',
+			title: '旧车站',
+			aliases: [],
+			tags: [],
+			schemaVersion: 1,
+			createdAt: now,
+			updatedAt: now,
+			revision: 0,
+			locationType: '废弃车站',
+			travelLinks: [],
+			factionIds: [],
+			rules: [],
+			evidenceIds: []
+		}, 0);
+		const originalAuthorFields = Object.fromEntries(
+			Object.entries(original).filter(([key]) => (
+				!['schemaVersion', 'createdAt', 'updatedAt', 'revision'].includes(key)
+			))
+		);
+		const batch = await service.stageFromResponse({
+			instruction: '只更新正文明确说明的地点。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '旧车站已经重新开放。',
+			targetTypes: ['location'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'update',
+					resource: {
+						...originalAuthorFields,
+						title: '重新开放的旧车站'
+					},
+					confidence: 0.95,
+					rationale: '正文明确说明车站重新开放。',
+					evidence: { start: 0, end: 9, quote: '旧车站已经重新开放' }
+				}]
+			}),
+			now
+		});
+		const confirmation = await service.confirmWithReceipt(
+			batch.id,
+			[batch.candidates[0]?.id ?? '']
+		);
+		expect((await repository.get('location', original.id))?.title)
+			.toBe('重新开放的旧车站');
+
+		await service.undoConfirmation(confirmation.receipt);
+		expect(await repository.get('location', original.id)).toMatchObject({
+			title: '旧车站',
+			revision: 3
+		});
+
+		const currentLocation = await repository.get('location', original.id);
+		if (!currentLocation) throw new Error('testLocationMissing');
+		const currentAuthorFields = Object.fromEntries(
+			Object.entries(currentLocation).filter(([key]) => (
+				!['schemaVersion', 'createdAt', 'updatedAt', 'revision'].includes(key)
+			))
+		);
+		const nextBatch = await service.stageFromResponse({
+			instruction: '再次更新地点。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '8',
+			content: '车站再次停运。',
+			targetTypes: ['location'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'update',
+					resource: {
+						...currentAuthorFields,
+						title: '再次停运的旧车站'
+					},
+					confidence: 0.9,
+					rationale: '正文明确说明再次停运。',
+					evidence: { start: 0, end: 6, quote: '车站再次停运' }
+				}]
+			})
+		});
+		const nextConfirmation = await service.confirmWithReceipt(
+			nextBatch.id,
+			[nextBatch.candidates[0]?.id ?? '']
+		);
+		const key = `location:${original.id}`;
+		const current = gateway.resources.get(key) as { readonly revision: number };
+		gateway.resources.set(key, { ...current, revision: current.revision + 1 });
+
+		await expect(service.undoConfirmation(nextConfirmation.receipt))
+			.rejects.toThrow('storyKernelGenerationUndoConflict');
+		expect(await repository.get('location', original.id)).toMatchObject({
+			title: '再次停运的旧车站'
+		});
 	});
 
 	it('blocks create collisions and all generated resources that depend on them', async () => {

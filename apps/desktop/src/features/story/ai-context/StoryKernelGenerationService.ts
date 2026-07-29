@@ -87,6 +87,24 @@ export interface StoryKernelGenerationBatch {
 	readonly updatedAt: string;
 }
 
+export interface StoryKernelConfirmationUndoEntry {
+	readonly candidateId: StoryId;
+	readonly resourceType: StoryKernelGenerationResourceType;
+	readonly resourceId: StoryId;
+	readonly before?: StoryResource;
+	readonly saved: StoryResource;
+}
+
+export interface StoryKernelConfirmationUndoReceipt {
+	readonly batchId: StoryId;
+	readonly entries: readonly StoryKernelConfirmationUndoEntry[];
+}
+
+export interface StoryKernelConfirmationResult {
+	readonly batch: StoryKernelGenerationBatch;
+	readonly receipt: StoryKernelConfirmationUndoReceipt;
+}
+
 interface StoryKernelGenerationFile {
 	readonly schemaVersion: 1;
 	readonly updatedAt: string;
@@ -929,6 +947,133 @@ export class StoryKernelGenerationService {
 		await this.store.save(
 			batches.map(candidate => candidate.id === batch.id ? updatedBatch : candidate)
 		);
+		return updatedBatch;
+	}
+
+	async confirmWithReceipt(
+		batchId: string,
+		candidateIds: readonly string[],
+		now = new Date().toISOString()
+	): Promise<StoryKernelConfirmationResult> {
+		const batches = await this.store.load();
+		const batch = batches.find(candidate => candidate.id === batchId);
+		if (!batch) throw new Error('storyKernelGenerationBatchNotFound');
+		const selectedIds = new Set(candidateIds);
+		const selected = batch.candidates.filter(candidate => selectedIds.has(candidate.id));
+		if (selected.length !== selectedIds.size) {
+			throw new Error('storyKernelGenerationCandidateNotFound');
+		}
+		const beforeByCandidateId = new Map<StoryId, StoryResource | undefined>();
+		for (const candidate of selected) {
+			beforeByCandidateId.set(
+				candidate.id,
+				await this.repository.get(candidate.resourceType, candidate.resourceId)
+			);
+		}
+
+		const confirmed = await this.confirm(batchId, candidateIds, now);
+		const confirmedById = new Map(
+			confirmed.candidates.map(candidate => [candidate.id, candidate])
+		);
+		const entries = selected.map(candidate => {
+			const confirmedCandidate = confirmedById.get(candidate.id);
+			if (!confirmedCandidate?.normalizedResource) {
+				throw new Error('storyKernelGenerationConfirmationReceiptMissing');
+			}
+			const before = beforeByCandidateId.get(candidate.id);
+			return {
+				candidateId: candidate.id,
+				resourceType: candidate.resourceType,
+				resourceId: candidate.resourceId,
+				...(before ? { before } : {}),
+				saved: confirmedCandidate.normalizedResource
+			};
+		});
+		return {
+			batch: confirmed,
+			receipt: {
+				batchId: confirmed.id,
+				entries
+			}
+		};
+	}
+
+	async undoConfirmation(
+		receipt: StoryKernelConfirmationUndoReceipt,
+		now = new Date().toISOString()
+	): Promise<StoryKernelGenerationBatch> {
+		if (receipt.entries.length === 0) {
+			throw new Error('invalidStoryKernelGenerationUndoReceipt');
+		}
+		const batches = await this.store.load();
+		const batch = batches.find(candidate => candidate.id === receipt.batchId);
+		if (!batch) throw new Error('storyKernelGenerationBatchNotFound');
+		const candidateById = new Map(batch.candidates.map(candidate => [candidate.id, candidate]));
+		for (const entry of receipt.entries) {
+			const candidate = candidateById.get(entry.candidateId);
+			const current = await this.repository.get(entry.resourceType, entry.resourceId);
+			if (
+				!candidate
+				|| candidate.status !== 'accepted'
+				|| !current
+				|| current.type !== entry.saved.type
+				|| current.id !== entry.saved.id
+				|| current.revision !== entry.saved.revision
+			) {
+				throw new Error('storyKernelGenerationUndoConflict');
+			}
+		}
+
+		const createdEntries = receipt.entries.filter(entry => entry.before === undefined);
+		const updatedEntries = receipt.entries.filter(
+			(entry): entry is StoryKernelConfirmationUndoEntry & { readonly before: StoryResource } => (
+				entry.before !== undefined
+			)
+		);
+		const movedToTrash: StoryKernelConfirmationUndoEntry[] = [];
+		let restoredUpdates: readonly StoryResource[] = [];
+		try {
+			for (const entry of createdEntries) {
+				await this.repository.moveToTrash(entry.resourceType, entry.resourceId);
+				movedToTrash.push(entry);
+			}
+			if (updatedEntries.length > 0) {
+				restoredUpdates = await this.repository.commit(updatedEntries.map(entry => ({
+					resource: entry.before,
+					expectedRevision: entry.saved.revision
+				})));
+			}
+		} catch (reason) {
+			for (const entry of [...movedToTrash].reverse()) {
+				await this.repository.restoreFromTrash(entry.resourceType, entry.resourceId);
+			}
+			throw reason;
+		}
+
+		const undoneIds = new Set(receipt.entries.map(entry => entry.candidateId));
+		const updatedBatch: StoryKernelGenerationBatch = {
+			...batch,
+			candidates: batch.candidates.map(candidate => undoneIds.has(candidate.id)
+				? { ...candidate, status: 'rejected' as const, updatedAt: now }
+				: candidate),
+			updatedAt: now
+		};
+		try {
+			await this.store.save(
+				batches.map(candidate => candidate.id === batch.id ? updatedBatch : candidate)
+			);
+		} catch (reason) {
+			if (updatedEntries.length > 0) {
+				await this.repository.commit(updatedEntries.map((entry, index) => ({
+					resource: entry.saved,
+					expectedRevision: restoredUpdates[index]?.revision
+				})));
+			}
+			for (const entry of [...movedToTrash].reverse()) {
+				await this.repository.restoreFromTrash(entry.resourceType, entry.resourceId);
+			}
+			throw reason;
+		}
 		return updatedBatch;
 	}
 

@@ -154,6 +154,7 @@ export function StoryStudioRoute(): React.JSX.Element {
 					? toStoryChapterId(activeResource.id)
 					: undefined}
 				readOnly={snapshot?.readOnly}
+				onOpenEvidence={openEvidence}
 			/>
 		);
 	}

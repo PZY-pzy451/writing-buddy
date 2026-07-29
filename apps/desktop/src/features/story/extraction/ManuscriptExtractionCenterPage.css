@@ -407,14 +407,59 @@
 	min-width: 126px;
 }
 
+.extraction-candidate-filters .extraction-undo-button {
+	color: var(--accent-strong);
+	background: var(--surface-raised);
+	border-color: color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+}
+
+.extraction-candidate-groups {
+	display: grid;
+	align-content: start;
+	gap: 18px;
+	min-height: 0;
+	padding: 1px 2px 15px;
+	overflow: auto;
+}
+
+.extraction-candidate-group {
+	display: grid;
+	gap: 10px;
+}
+
+.extraction-candidate-group > header {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 0 2px 8px;
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.extraction-candidate-group > header > div {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+}
+
+.extraction-candidate-group > header h3 {
+	margin: 0;
+	color: var(--text-primary);
+	font-size: 15px;
+}
+
+.extraction-candidate-group > header span,
+.extraction-candidate-group > header small {
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
 .extraction-candidate-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(240px, 1fr));
 	align-content: start;
 	gap: 10px;
 	min-height: 0;
-	padding: 1px 2px 15px;
-	overflow: auto;
 }
 
 .extraction-candidate-grid > article {
@@ -432,6 +477,10 @@
 .extraction-candidate-grid > article[data-conflict="true"] {
 	border-color: color-mix(in srgb, var(--warning) 42%, var(--border-subtle));
 	background: color-mix(in srgb, var(--warning) 5%, var(--surface-raised));
+}
+
+.extraction-candidate-grid > article[data-stale="true"] {
+	border-color: color-mix(in srgb, var(--danger) 38%, var(--border-subtle));
 }
 
 .extraction-candidate-grid article > header {
@@ -456,13 +505,29 @@
 	font-size: 11px;
 }
 
-.extraction-candidate-grid h3,
+.extraction-candidate-grid article > header > div {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.extraction-candidate-grid article > header em {
+	padding: 3px 6px;
+	border-radius: 999px;
+	color: var(--warning);
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 720;
+	background: color-mix(in srgb, var(--warning) 10%, transparent);
+}
+
+.extraction-candidate-grid h4,
 .extraction-candidate-grid p,
 .extraction-candidate-grid blockquote {
 	margin: 0;
 }
 
-.extraction-candidate-grid h3 {
+.extraction-candidate-grid h4 {
 	font-size: 15px;
 }
 
@@ -479,8 +544,56 @@
 	background: var(--surface-subtle);
 }
 
+.extraction-evidence {
+	display: grid;
+	gap: 5px;
+}
+
+.extraction-evidence button {
+	display: inline-flex;
+	align-items: center;
+	justify-self: start;
+	gap: 6px;
+	min-height: 44px;
+	padding: 0 8px;
+	border: 0;
+	color: var(--accent-strong);
+	font-size: 11px;
+	font-weight: 650;
+	background: transparent;
+}
+
 .extraction-candidate-grid article > small {
 	color: var(--text-muted);
+}
+
+.extraction-stale-warning {
+	display: grid;
+	gap: 7px;
+	padding: 7px 9px;
+	border-radius: var(--radius-control);
+	color: var(--danger);
+	font-size: 12px;
+	background: color-mix(in srgb, var(--danger) 7%, transparent);
+}
+
+.extraction-stale-warning > span,
+.extraction-stale-warning > button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.extraction-stale-warning > button {
+	justify-self: start;
+	min-height: 44px;
+	padding: 0 8px;
+	border: 1px solid color-mix(in srgb, var(--danger) 24%, var(--border-subtle));
+	border-radius: var(--radius-control);
+	color: var(--danger);
+	font-size: 11px;
+	font-weight: 650;
+	background: var(--surface-raised);
 }
 
 .extraction-conflict {
@@ -497,11 +610,39 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex: 1 1 auto;
+	min-height: 44px;
+	margin-top: auto;
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.extraction-candidate-actions {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 	margin-top: auto;
 	padding-top: 7px;
 	border-top: 1px solid var(--border-subtle);
-	color: var(--text-muted);
+}
+
+.extraction-candidate-actions > button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-height: 44px;
+	padding: 0 8px;
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+	color: var(--text-secondary);
 	font-size: 11px;
+	font-weight: 650;
+	background: var(--surface-subtle);
+}
+
+.extraction-candidate-actions > button:last-child {
+	color: var(--danger);
 }
 
 .extraction-candidate-empty {
@@ -642,6 +783,16 @@
 	.extraction-candidate-grid,
 	.extraction-chapter-checks {
 		grid-template-columns: 1fr;
+	}
+
+	.extraction-candidate-group > header {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.extraction-candidate-actions {
+		flex-wrap: wrap;
 	}
 
 	.extraction-scope-grid,

@@ -6,6 +6,7 @@ import {
 	CircleDot,
 	Compass,
 	Feather,
+	ListChecks,
 	MoreHorizontal,
 	Save
 } from 'lucide-react';
@@ -20,6 +21,7 @@ export function WriterHeader(): React.JSX.Element | null {
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
+	const setStoryView = useAppStore(state => state.setStoryView);
 	const focusMode = useAppStore(state => state.focusMode);
 
 	if (!snapshot || !activeResource) {
@@ -49,6 +51,11 @@ export function WriterHeader(): React.JSX.Element | null {
 		target: HTMLElement
 	) => {
 		requestAssistantAction({ kind: 'continuation', mode });
+		target.closest('details')?.removeAttribute('open');
+	};
+	const openChapterOrganization = async (target: HTMLElement) => {
+		if (session?.state.dirty) await save();
+		setStoryView('extraction');
 		target.closest('details')?.removeAttribute('open');
 	};
 
@@ -103,6 +110,19 @@ export function WriterHeader(): React.JSX.Element | null {
 										>
 											<Compass size={16} />
 											<span><strong>三种走向</strong><small>并排审阅三种后续方向</small></span>
+										</button>
+										<hr />
+										<button
+											type="button"
+											role="menuitem"
+											aria-label="整理本章"
+											onClick={event => void openChapterOrganization(event.currentTarget)}
+										>
+											<ListChecks size={16} />
+											<span>
+												<strong>整理本章</strong>
+												<small>先查看范围与 Token，不会自动调用 AI</small>
+											</span>
 										</button>
 										<hr />
 										<button

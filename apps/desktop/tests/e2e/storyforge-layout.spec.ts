@@ -55,7 +55,7 @@ describe('StoryForge professional layout contract', () => {
 
 		const workspaceCss = readFileSync(resolve(root, 'apps/desktop/src/theme/workspace.css'), 'utf8');
 		expect(workspaceCss).toContain('@media (max-width: 1279px)');
-		expect(workspaceCss).toContain('@media (max-width: 1023px)');
+		expect(workspaceCss).toContain('@media (max-width: 1099px)');
 		expect(workspaceCss).toContain('"rail sidebar center" minmax(0, 1fr)');
 		expect(workspaceCss).toContain('"rail center" minmax(0, 1fr)');
 	});

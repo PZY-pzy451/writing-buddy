@@ -8,13 +8,16 @@ import {
 	Sparkles,
 	UserPlus
 } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
 	createStoryId,
 	type MentionLink,
+	type SelectionRewriteActionType,
 	type StoryRepository,
 	type StoryResourceType
 } from '@writing-buddy/story-kernel';
+import { resolveContextualWriterActions } from '../../ai/contextual/ContextualActionResolver';
 import type { MentionService } from './MentionService';
 
 interface SelectionActionMenuProps {
@@ -26,7 +29,8 @@ interface SelectionActionMenuProps {
 	readonly selection: { readonly start: number; readonly end: number; readonly text: string };
 	readonly readOnly: boolean;
 	readonly onLinked: (mention: MentionLink) => void;
-	readonly onRewrite: () => void;
+	readonly onRewrite: (actionType: SelectionRewriteActionType) => void;
+	readonly onAiMenuClosed?: () => void;
 	readonly onQuickCapture?: () => void;
 	readonly onGenerateResource?: (type: StoryResourceType) => void;
 }
@@ -49,12 +53,26 @@ export function SelectionActionMenu({
 	readOnly,
 	onLinked,
 	onRewrite,
+	onAiMenuClosed,
 	onQuickCapture,
 	onGenerateResource
 }: SelectionActionMenuProps): React.JSX.Element {
+	const aiMenuRef = useRef<HTMLDetailsElement>(null);
+	const aiMenuWasOpenRef = useRef(false);
+	const [aiMenuOpen, setAiMenuOpen] = useState(false);
+	const [aiMenuPosition, setAiMenuPosition] = useState({ left: 12, bottom: 12 });
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState<string>();
 	const selectedTitle = selection.text.trim().slice(0, 160);
+	const contextualActions = resolveContextualWriterActions({
+		workspace: 'writing',
+		hasProject: true,
+		activeResourceType: 'chapter',
+		selectionText: selection.text,
+		cursorAtParagraphEnd: false,
+		chapterHasDraft: manuscript.trim().length > 0,
+		chapterHasPendingExtraction: false
+	});
 
 	const link = async (resourceId: string) => {
 		const mention = await mentionService.linkSelection({
@@ -137,14 +155,97 @@ export function SelectionActionMenu({
 					<Lightbulb size={16} />记录想法
 				</button>
 			)}
-			<button
-				type="button"
-				className="selection-action-ai"
-				disabled={readOnly || busy || !selectedTitle}
-				onClick={onRewrite}
+			<details
+				ref={aiMenuRef}
+				className="selection-contextual-ai"
+				onToggle={event => {
+					const open = event.currentTarget.open;
+					setAiMenuOpen(open);
+					if (aiMenuWasOpenRef.current && !open) onAiMenuClosed?.();
+					aiMenuWasOpenRef.current = open;
+				}}
+				onKeyDown={event => {
+					if (event.key !== 'Escape' || !aiMenuRef.current?.open) return;
+					aiMenuRef.current.open = false;
+				}}
 			>
-				<Sparkles size={16} />AI 润色
-			</button>
+				<summary
+					role="button"
+					aria-label="AI 选区操作"
+					aria-disabled={readOnly || busy || !selectedTitle}
+					onClick={event => {
+						if (readOnly || busy || !selectedTitle) {
+							event.preventDefault();
+							return;
+						}
+						if (!aiMenuRef.current?.open) {
+							const rect = event.currentTarget.getBoundingClientRect();
+							const menuWidth = Math.min(330, window.innerWidth - 24);
+							setAiMenuPosition({
+								left: Math.max(
+									12,
+									Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - 12)
+								),
+								bottom: Math.max(12, window.innerHeight - rect.top + 10)
+							});
+						}
+					}}
+				>
+					<Sparkles size={16} />AI 选区操作
+				</summary>
+			</details>
+			{aiMenuOpen && createPortal(
+				<div
+					className="selection-contextual-ai-menu"
+					role="menu"
+					aria-label="AI 选区操作"
+					style={aiMenuPosition}
+					onKeyDown={event => {
+						if (event.key === 'Escape' && aiMenuRef.current?.open) {
+							aiMenuRef.current.open = false;
+						}
+					}}
+				>
+					{contextualActions.primary.map(action => action.kind === 'rewrite' && (
+						<button
+							key={action.id}
+							type="button"
+							role="menuitem"
+							aria-label={action.label}
+							data-contextual-ai="primary"
+							onClick={() => {
+								onRewrite(action.actionType);
+								if (aiMenuRef.current) aiMenuRef.current.open = false;
+							}}
+						>
+							<strong>{action.label}</strong>
+							<span>{action.description}</span>
+						</button>
+					))}
+					{contextualActions.secondary.length > 0 && (
+						<div className="selection-contextual-ai-more">
+							<span>更多</span>
+							{contextualActions.secondary.map(action => action.kind === 'rewrite' && (
+								<button
+									key={action.id}
+									type="button"
+									role="menuitem"
+									aria-label={action.label}
+									data-contextual-ai="secondary"
+									onClick={() => {
+										onRewrite(action.actionType);
+										if (aiMenuRef.current) aiMenuRef.current.open = false;
+									}}
+								>
+									<strong>{action.label}</strong>
+									<span>{action.description}</span>
+								</button>
+							))}
+						</div>
+					)}
+				</div>,
+				document.body
+			)}
 			{creationActions.map(action => {
 				const Icon = action.icon;
 				return (
