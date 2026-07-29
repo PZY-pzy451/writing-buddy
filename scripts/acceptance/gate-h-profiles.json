@@ -1,0 +1,102 @@
+[
+  {
+    "id": "paper-pointer-wide",
+    "viewport": { "width": 1536, "height": 992 },
+    "theme": "paper",
+    "inputMethod": "pointer",
+    "reducedMotion": false,
+    "sidebarSteps": 3,
+    "tasks": [
+      "open-app",
+      "continue-writing",
+      "verify-position",
+      "write-300-and-save",
+      "focus-roundtrip",
+      "workspace-roundtrip",
+      "resize-and-close",
+      "second-start-continue",
+      "save-failure-recovery",
+      "verify-no-loss"
+    ]
+  },
+  {
+    "id": "paper-keyboard-medium",
+    "viewport": { "width": 1280, "height": 800 },
+    "theme": "paper",
+    "inputMethod": "keyboard",
+    "reducedMotion": false,
+    "sidebarSteps": 2,
+    "tasks": [
+      "open-app",
+      "continue-writing",
+      "verify-position",
+      "write-300-and-save",
+      "focus-roundtrip",
+      "workspace-roundtrip",
+      "resize-and-close",
+      "second-start-continue",
+      "save-failure-recovery",
+      "verify-no-loss"
+    ]
+  },
+  {
+    "id": "paper-compact",
+    "viewport": { "width": 1024, "height": 720 },
+    "theme": "paper",
+    "inputMethod": "pointer",
+    "reducedMotion": false,
+    "sidebarSteps": 1,
+    "tasks": [
+      "open-app",
+      "continue-writing",
+      "verify-position",
+      "write-300-and-save",
+      "focus-roundtrip",
+      "workspace-roundtrip",
+      "resize-and-close",
+      "second-start-continue",
+      "save-failure-recovery",
+      "verify-no-loss"
+    ]
+  },
+  {
+    "id": "midnight-reduced-wide",
+    "viewport": { "width": 1536, "height": 992 },
+    "theme": "midnight",
+    "inputMethod": "pointer",
+    "reducedMotion": true,
+    "sidebarSteps": 4,
+    "tasks": [
+      "open-app",
+      "continue-writing",
+      "verify-position",
+      "write-300-and-save",
+      "focus-roundtrip",
+      "workspace-roundtrip",
+      "resize-and-close",
+      "second-start-continue",
+      "save-failure-recovery",
+      "verify-no-loss"
+    ]
+  },
+  {
+    "id": "midnight-keyboard-medium",
+    "viewport": { "width": 1280, "height": 800 },
+    "theme": "midnight",
+    "inputMethod": "keyboard",
+    "reducedMotion": false,
+    "sidebarSteps": 2,
+    "tasks": [
+      "open-app",
+      "continue-writing",
+      "verify-position",
+      "write-300-and-save",
+      "focus-roundtrip",
+      "workspace-roundtrip",
+      "resize-and-close",
+      "second-start-continue",
+      "save-failure-recovery",
+      "verify-no-loss"
+    ]
+  }
+]

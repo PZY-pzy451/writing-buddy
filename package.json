@@ -19,6 +19,7 @@
     "self-test:full": "node scripts/self-test/run.mjs --all",
     "self-test:release": "node scripts/self-test/run.mjs --release",
     "acceptance:gate-g": "node scripts/acceptance/capture-phase-1.2a-gate-g.mjs",
+    "acceptance:gate-h": "node scripts/acceptance/validate-phase-1.2a-gate-h.mjs",
     "fixtures:generate": "node scripts/compatibility/generate-fixtures.mjs",
     "compatibility:report": "node scripts/compatibility/create-report.mjs",
     "tauri": "pnpm --filter @writing-buddy/desktop tauri",

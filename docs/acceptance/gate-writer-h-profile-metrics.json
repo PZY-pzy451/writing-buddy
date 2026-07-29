@@ -1,0 +1,434 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-29T14:26:55.647Z",
+  "method": "five-isolated-no-explanation-test-profiles",
+  "privacy": {
+    "recordsAuthorContent": false,
+    "recordsPaths": false,
+    "recordsPromptsOrAiOutput": false
+  },
+  "performanceBudgets": {
+    "shellVisibleMs": 2000,
+    "projectInteractiveMs": 5000,
+    "restoreToInputMs": 10000,
+    "workspaceSwitchMs": 150
+  },
+  "summary": {
+    "profileCount": 5,
+    "continueWritingFound": 5,
+    "inputWithoutExplanation": 5,
+    "focusModeCompleted": 5,
+    "saveStateUnderstood": 5,
+    "saveFailureRecovered": 5,
+    "secondStartRestored": 5,
+    "contentOrLayoutLoss": 0,
+    "blockingCrashes": 0
+  },
+  "profiles": [
+    {
+      "id": "paper-pointer-wide",
+      "inputMethod": "pointer",
+      "pass": true,
+      "reducedMotion": false,
+      "theme": "paper",
+      "viewport": {
+        "width": 1536,
+        "height": 992
+      },
+      "tasks": {
+        "open-app": true,
+        "continue-writing": true,
+        "verify-position": true,
+        "write-300-and-save": true,
+        "focus-roundtrip": true,
+        "workspace-roundtrip": true,
+        "resize-and-close": true,
+        "second-start-continue": true,
+        "save-failure-recovery": true,
+        "verify-no-loss": true
+      },
+      "timingsMs": {
+        "shellVisible": 2046,
+        "projectInteractive": 2078,
+        "restoreToInput": 106,
+        "focusEnter": 17,
+        "focusExit": 28,
+        "planningSwitch": 37,
+        "writingSwitch": 47,
+        "secondProjectInteractive": 1060,
+        "secondRestoreToInput": 113,
+        "saveFailureVisible": 20,
+        "saveRecovery": 18
+      },
+      "checks": {
+        "blockingCrash": false,
+        "chapterRestored": true,
+        "contentRestored": true,
+        "continueVisible": true,
+        "cursorLineDelta": 0,
+        "failureTextVisible": true,
+        "finalContentPresent": true,
+        "finalLayoutPresent": true,
+        "finalSaved": true,
+        "initialPositionAvailable": true,
+        "insertedCharacters": 418,
+        "layoutRestored": true,
+        "savedBeforeClose": true,
+        "scrollDelta": 0,
+        "sidebarAfter": 284,
+        "sidebarBefore": 272,
+        "firstViewport": {
+          "viewport": {
+            "width": 1536,
+            "height": 992
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 784
+        },
+        "secondViewport": {
+          "viewport": {
+            "width": 1536,
+            "height": 992
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 780
+        }
+      },
+      "budgets": {
+        "shellVisible": false,
+        "projectInteractive": true,
+        "restoreToInput": true,
+        "planningSwitch": true,
+        "writingSwitch": true
+      }
+    },
+    {
+      "id": "paper-keyboard-medium",
+      "inputMethod": "keyboard",
+      "pass": true,
+      "reducedMotion": false,
+      "theme": "paper",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "tasks": {
+        "open-app": true,
+        "continue-writing": true,
+        "verify-position": true,
+        "write-300-and-save": true,
+        "focus-roundtrip": true,
+        "workspace-roundtrip": true,
+        "resize-and-close": true,
+        "second-start-continue": true,
+        "save-failure-recovery": true,
+        "verify-no-loss": true
+      },
+      "timingsMs": {
+        "shellVisible": 1938,
+        "projectInteractive": 2005,
+        "restoreToInput": 146,
+        "focusEnter": 13,
+        "focusExit": 27,
+        "planningSwitch": 39,
+        "writingSwitch": 60,
+        "secondProjectInteractive": 1953,
+        "secondRestoreToInput": 132,
+        "saveFailureVisible": 16,
+        "saveRecovery": 22
+      },
+      "checks": {
+        "blockingCrash": false,
+        "chapterRestored": true,
+        "contentRestored": true,
+        "continueVisible": true,
+        "cursorLineDelta": 0,
+        "failureTextVisible": true,
+        "finalContentPresent": true,
+        "finalLayoutPresent": true,
+        "finalSaved": true,
+        "initialPositionAvailable": true,
+        "insertedCharacters": 421,
+        "layoutRestored": true,
+        "savedBeforeClose": true,
+        "scrollDelta": 0,
+        "sidebarAfter": 284,
+        "sidebarBefore": 272,
+        "firstViewport": {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 754
+        },
+        "secondViewport": {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 754
+        }
+      },
+      "budgets": {
+        "shellVisible": true,
+        "projectInteractive": true,
+        "restoreToInput": true,
+        "planningSwitch": true,
+        "writingSwitch": true
+      }
+    },
+    {
+      "id": "paper-compact",
+      "inputMethod": "pointer",
+      "pass": true,
+      "reducedMotion": false,
+      "theme": "paper",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "tasks": {
+        "open-app": true,
+        "continue-writing": true,
+        "verify-position": true,
+        "write-300-and-save": true,
+        "focus-roundtrip": true,
+        "workspace-roundtrip": true,
+        "resize-and-close": true,
+        "second-start-continue": true,
+        "save-failure-recovery": true,
+        "verify-no-loss": true
+      },
+      "timingsMs": {
+        "shellVisible": 1053,
+        "projectInteractive": 1096,
+        "restoreToInput": 110,
+        "focusEnter": 19,
+        "focusExit": 27,
+        "planningSwitch": 37,
+        "writingSwitch": 38,
+        "secondProjectInteractive": 1082,
+        "secondRestoreToInput": 122,
+        "saveFailureVisible": 25,
+        "saveRecovery": 17
+      },
+      "checks": {
+        "blockingCrash": false,
+        "chapterRestored": true,
+        "contentRestored": true,
+        "continueVisible": true,
+        "cursorLineDelta": 0,
+        "failureTextVisible": true,
+        "finalContentPresent": true,
+        "finalLayoutPresent": true,
+        "finalSaved": true,
+        "initialPositionAvailable": true,
+        "insertedCharacters": 413,
+        "layoutRestored": true,
+        "savedBeforeClose": true,
+        "scrollDelta": 0,
+        "sidebarAfter": 284,
+        "sidebarBefore": 272,
+        "firstViewport": {
+          "viewport": {
+            "width": 1024,
+            "height": 720
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 744
+        },
+        "secondViewport": {
+          "viewport": {
+            "width": 1024,
+            "height": 720
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 744
+        }
+      },
+      "budgets": {
+        "shellVisible": true,
+        "projectInteractive": true,
+        "restoreToInput": true,
+        "planningSwitch": true,
+        "writingSwitch": true
+      }
+    },
+    {
+      "id": "midnight-reduced-wide",
+      "inputMethod": "pointer",
+      "pass": true,
+      "reducedMotion": true,
+      "theme": "midnight",
+      "viewport": {
+        "width": 1536,
+        "height": 992
+      },
+      "tasks": {
+        "open-app": true,
+        "continue-writing": true,
+        "verify-position": true,
+        "write-300-and-save": true,
+        "focus-roundtrip": true,
+        "workspace-roundtrip": true,
+        "resize-and-close": true,
+        "second-start-continue": true,
+        "save-failure-recovery": true,
+        "verify-no-loss": true
+      },
+      "timingsMs": {
+        "shellVisible": 1932,
+        "projectInteractive": 2000,
+        "restoreToInput": 128,
+        "focusEnter": 23,
+        "focusExit": 29,
+        "planningSwitch": 41,
+        "writingSwitch": 48,
+        "secondProjectInteractive": 1525,
+        "secondRestoreToInput": 117,
+        "saveFailureVisible": 18,
+        "saveRecovery": 30
+      },
+      "checks": {
+        "blockingCrash": false,
+        "chapterRestored": true,
+        "contentRestored": true,
+        "continueVisible": true,
+        "cursorLineDelta": 0,
+        "failureTextVisible": true,
+        "finalContentPresent": true,
+        "finalLayoutPresent": true,
+        "finalSaved": true,
+        "initialPositionAvailable": true,
+        "insertedCharacters": 421,
+        "layoutRestored": true,
+        "savedBeforeClose": true,
+        "scrollDelta": 0,
+        "sidebarAfter": 284,
+        "sidebarBefore": 272,
+        "firstViewport": {
+          "viewport": {
+            "width": 1536,
+            "height": 992
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 784
+        },
+        "secondViewport": {
+          "viewport": {
+            "width": 1536,
+            "height": 992
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 780
+        }
+      },
+      "budgets": {
+        "shellVisible": true,
+        "projectInteractive": true,
+        "restoreToInput": true,
+        "planningSwitch": true,
+        "writingSwitch": true
+      }
+    },
+    {
+      "id": "midnight-keyboard-medium",
+      "inputMethod": "keyboard",
+      "pass": true,
+      "reducedMotion": false,
+      "theme": "midnight",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "tasks": {
+        "open-app": true,
+        "continue-writing": true,
+        "verify-position": true,
+        "write-300-and-save": true,
+        "focus-roundtrip": true,
+        "workspace-roundtrip": true,
+        "resize-and-close": true,
+        "second-start-continue": true,
+        "save-failure-recovery": true,
+        "verify-no-loss": true
+      },
+      "timingsMs": {
+        "shellVisible": 2041,
+        "projectInteractive": 2067,
+        "restoreToInput": 140,
+        "focusEnter": 13,
+        "focusExit": 28,
+        "planningSwitch": 42,
+        "writingSwitch": 60,
+        "secondProjectInteractive": 1107,
+        "secondRestoreToInput": 140,
+        "saveFailureVisible": 15,
+        "saveRecovery": 37
+      },
+      "checks": {
+        "blockingCrash": false,
+        "chapterRestored": true,
+        "contentRestored": true,
+        "continueVisible": true,
+        "cursorLineDelta": 0,
+        "failureTextVisible": true,
+        "finalContentPresent": true,
+        "finalLayoutPresent": true,
+        "finalSaved": true,
+        "initialPositionAvailable": true,
+        "insertedCharacters": 424,
+        "layoutRestored": true,
+        "savedBeforeClose": true,
+        "scrollDelta": 0,
+        "sidebarAfter": 284,
+        "sidebarBefore": 272,
+        "firstViewport": {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 754
+        },
+        "secondViewport": {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "pageOverflowX": 0,
+          "pageOverflowY": 0,
+          "clippedInteractive": 0,
+          "domNodes": 749
+        }
+      },
+      "budgets": {
+        "shellVisible": false,
+        "projectInteractive": true,
+        "restoreToInput": true,
+        "planningSwitch": true,
+        "writingSwitch": true
+      }
+    }
+  ]
+}

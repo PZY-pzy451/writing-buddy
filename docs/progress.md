@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A Gate G interaction feedback and accessibility is complete in the isolated worktree
+Phase 1.2A is complete through Gate H in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
@@ -23,12 +23,33 @@ Phase 1.2A Gate G interaction feedback and accessibility is complete in the isol
 - Gate G completes drag preview/result copy, documented shortcuts,
   focus/accessibility, responsive visual polish, and reduced motion without
   adding an AI action or Story resource type.
+- Gate H validates the completed writer-centered experience with five
+  isolated deterministic profiles and 50/50 no-explanation task instances.
 - Completed contract:
-  `docs/plans/031-phase-1.2a-gate-g-interaction-feedback-accessibility.md`.
-- Gate H real-profile/user acceptance is the next possible gate and remains
-  out of scope until a new explicit user direction.
+  `docs/plans/032-phase-1.2a-gate-h-real-experience-acceptance.md`.
+- Phase 1.2A is closed. No new feature phase is active without explicit user
+  direction.
 
 ## Completed
+
+- Five isolated Edge profiles completed the same ten visible-interface tasks:
+  Continue Writing, exact position verification, 300+ character input,
+  focus/planning round trips, sidebar resize, second-process restore, visible
+  save failure/retry, and final no-loss verification.
+- Gate H outcomes are 5/5 Continue, input, focus, save-state clarity,
+  save recovery, and second-start restore; content/layout loss and blocking
+  crashes are both zero.
+- Project-interactive, restore, and workspace-switch timings meet their
+  budgets in all profiles. Edge shell-visible time is 1,053–2,046 ms; two
+  cold launches miss the 2,000 ms target by 41–46 ms and remain an explicit
+  follow-up. Ten first/second-launch viewport checks have zero horizontal
+  overflow and zero clipped interactive controls.
+- Final gates: Node 24.14.0 / pnpm 10.32.1, 128 Vitest files / 470 tests,
+  change-aware self-test, Gate G and Gate H live-interface runners, frontend
+  build, Cargo format, 55 Rust tests, Tauri Release/NSIS, and native
+  responsive startup in 785 ms / normal close / exit code 0.
+- Evidence in
+  `docs/acceptance/043-phase-1.2a-gate-h-real-experience-2026-07-29.md`.
 
 - Added semantic, visible drag previews and polite live announcements across
   project structure and existing Story drag surfaces. Result Toast copy now

@@ -31,6 +31,7 @@
 - [Phase 1.2A Gate E contextual AI and chapter organization](./029-phase-1.2a-gate-e-contextual-ai-chapter-organization.md)
 - [Phase 1.2A Gate F save trust and Writer Navigator](./030-phase-1.2a-gate-f-save-trust-writer-navigator.md)
 - [Phase 1.2A Gate G interaction feedback and accessibility](./031-phase-1.2a-gate-g-interaction-feedback-accessibility.md)
+- [Phase 1.2A Gate H real experience acceptance](./032-phase-1.2a-gate-h-real-experience-acceptance.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
