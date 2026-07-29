@@ -62,7 +62,9 @@ export function resolveAssociationDrop(
 			allowed: true,
 			source,
 			target,
-			label: `将人物“${source.title}”关联到${target.type === 'chapter' ? '章节' : '场景'}“${target.title}”`
+			label: target.type === 'scene'
+				? '关联为当前场景出场人物'
+				: `关联人物到“${target.title}”并在确认时选择出场场景`
 		};
 	}
 	if (
@@ -86,7 +88,7 @@ export function resolveAssociationDrop(
 			allowed: true,
 			source,
 			target,
-			label: `设置伏笔“${source.title}”在“${target.title}”的作用`
+			label: `选择伏笔作用：埋下、提醒或标记为伏笔回收`
 		};
 	}
 	return {
@@ -94,7 +96,7 @@ export function resolveAssociationDrop(
 		source,
 		target,
 		reason: source.type === 'character'
-			? '人物只能关联到章节或场景'
+			? '人物不能移动到卷结构中；只能关联到章节或场景'
 			: source.type === 'foreshadowing'
 				? '伏笔只能关联到章节或场景'
 				: '物品只能关联到人物、章节或场景'
@@ -164,8 +166,12 @@ export class StoryAssociationService {
 			before,
 			after,
 			description: input.source.type === 'foreshadowing'
-				? `已设置伏笔“${input.source.title}”`
-				: `已关联“${input.source.title}”到场景“${input.scene.title}”`
+				? input.foreshadowingAction === 'payoff'
+					? `已将伏笔“${input.source.title}”标记为回收并更新伏笔状态；未创建独立状态事件，未改变章节顺序或父级。`
+					: `已更新伏笔“${input.source.title}”在场景“${input.scene.title}”的作用；未创建独立状态事件，未改变章节顺序或父级。`
+				: input.source.type === 'character'
+					? `已建立人物“${input.source.title}”与场景“${input.scene.title}”的出场关系；未创建状态事件，未改变章节顺序或父级。`
+					: `已建立物品“${input.source.title}”与场景“${input.scene.title}”的出现关系；未创建状态事件，未改变章节顺序或父级。`
 		});
 		return { kind: 'story', receipt };
 	}
@@ -206,7 +212,7 @@ export class StoryAssociationService {
 			kind: 'item-states',
 			before,
 			after,
-			description: `已把“${input.item.title}”转交给“${input.character.title}”`
+			description: `已建立“${input.item.title}”由“${input.character.title}”持有的关系，并创建转交状态事件；未改变章节顺序或父级。`
 		};
 	}
 

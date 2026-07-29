@@ -21,7 +21,11 @@ export function ProjectStructureUndoToast(): React.JSX.Element | null {
 
 	return (
 		<UndoToast
-			title="项目结构已更新"
+			title={undo.kind === 'scene'
+				? '场景已移动并保存'
+				: undo.entityType === 'chapter'
+					? '章节已移动并保存'
+					: '卷顺序已移动并保存'}
 			message={undo.description}
 			busy={busy}
 			onUndo={() => void undoMove()}

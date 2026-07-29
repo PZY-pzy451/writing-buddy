@@ -11,12 +11,12 @@ import {
 	Plus,
 	UserRoundPlus
 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAppStore } from '../../../app/store';
+import { openCreateMenuEvent } from './GlobalCreateRequest';
 
 const projectItems = [
 	{ label: '新建卷', Icon: FolderPlus },
-	{ label: '新建章节', Icon: FilePlus2 },
 	{ label: '新建场景', Icon: MapPinned },
 	{ label: '新建人物', Icon: UserRoundPlus },
 	{ label: '新建设定', Icon: Landmark },
@@ -37,27 +37,46 @@ function moveMenuFocus(menu: HTMLDivElement, direction: 'first' | 'last' | 'next
 	next?.focus();
 }
 
-export function GlobalCreateMenu(): React.JSX.Element {
+export function GlobalCreateMenu({
+	shortcutOnly = false
+}: {
+	readonly shortcutOnly?: boolean;
+}): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const openQuickCapture = useAppStore(state => state.openQuickCapture);
+	const openChapterCreator = useAppStore(state => state.openChapterCreator);
 	const [open, setOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const requestedFocus = useRef<'first' | 'chapter'>('first');
+	const shortcutOrigin = useRef<HTMLElement | null>(null);
+
+	const restoreFocus = useCallback(() => {
+		const target = shortcutOnly ? shortcutOrigin.current : triggerRef.current;
+		if (target?.isConnected) target.focus();
+	}, [shortcutOnly]);
 
 	useEffect(() => {
 		if (!open) return;
-		menuRef.current?.querySelector<HTMLButtonElement>('[role="menuitem"]')?.focus();
+		const selector = requestedFocus.current === 'chapter'
+			? '[data-create-item="chapter"]'
+			: '[role="menuitem"]';
+		menuRef.current?.querySelector<HTMLButtonElement>(selector)?.focus();
+		requestedFocus.current = 'first';
 		const close = (event: PointerEvent) => {
-			if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+			if (!rootRef.current?.contains(event.target as Node)) {
+				setOpen(false);
+				restoreFocus();
+			}
 		};
 		const closeOnEscape = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
 				setOpen(false);
-				triggerRef.current?.focus();
+				restoreFocus();
 			}
 		};
 		window.addEventListener('pointerdown', close);
@@ -66,17 +85,36 @@ export function GlobalCreateMenu(): React.JSX.Element {
 			window.removeEventListener('pointerdown', close);
 			window.removeEventListener('keydown', closeOnEscape);
 		};
-	}, [open]);
+	}, [open, restoreFocus]);
+
+	useEffect(() => {
+		const openFromShortcut = (event: Event) => {
+			const detail = (event as CustomEvent<{ readonly focus?: 'first' | 'chapter' }>).detail;
+			shortcutOrigin.current = document.activeElement instanceof HTMLElement
+				? document.activeElement
+				: null;
+			requestedFocus.current = detail?.focus ?? 'first';
+			setOpen(true);
+		};
+		window.addEventListener(openCreateMenuEvent, openFromShortcut);
+		return () => window.removeEventListener(openCreateMenuEvent, openFromShortcut);
+	}, []);
 
 	return (
-		<div className="global-create" ref={rootRef}>
+		<div
+			className={`global-create${shortcutOnly ? ' is-shortcut-only' : ''}${open ? ' is-open' : ''}`}
+			ref={rootRef}
+			hidden={shortcutOnly && !open}
+		>
 			<button
 				ref={triggerRef}
 				className="global-create-trigger"
+				hidden={shortcutOnly}
 				type="button"
 				aria-label="新建"
 				aria-haspopup="menu"
 				aria-expanded={open}
+				aria-keyshortcuts="Control+Shift+N Meta+Shift+N"
 				onClick={() => setOpen(value => !value)}
 			>
 				<Plus size={18} aria-hidden="true" />
@@ -109,6 +147,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 						type="button"
 						role="menuitem"
 						onClick={() => {
+							restoreFocus();
 							setOpen(false);
 							openProjectWizard();
 						}}
@@ -120,6 +159,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 						type="button"
 						role="menuitem"
 						onClick={() => {
+							restoreFocus();
 							setOpen(false);
 							void chooseProject();
 						}}
@@ -131,9 +171,32 @@ export function GlobalCreateMenu(): React.JSX.Element {
 					<button
 						type="button"
 						role="menuitem"
+						data-create-item="chapter"
+						disabled={!snapshot || snapshot.readOnly}
+						title={!snapshot
+							? '请先打开作品'
+							: snapshot.readOnly
+								? '只读作品不能新建章节'
+								: 'Ctrl+N'}
+						onClick={() => {
+							restoreFocus();
+							setOpen(false);
+							openChapterCreator();
+						}}
+					>
+						<FilePlus2 size={18} />
+						<span>
+							<strong>新建章节</strong>
+							<small>{snapshot ? '创建空白正文并添加到作品结构' : '打开作品后可用'}</small>
+						</span>
+					</button>
+					<button
+						type="button"
+						role="menuitem"
 						disabled={!snapshot || snapshot.readOnly}
 						title={!snapshot ? '请先打开作品' : snapshot.readOnly ? '只读作品不能新增记录' : 'Ctrl+Shift+Space'}
 						onClick={() => {
+							restoreFocus();
 							setOpen(false);
 							openQuickCapture();
 						}}

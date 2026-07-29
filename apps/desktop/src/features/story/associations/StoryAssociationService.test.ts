@@ -53,13 +53,23 @@ describe('StoryAssociationService', () => {
 		const scene = { type: 'scene', id: 'scene:station', title: '旧车站' } as const;
 		const holder = { type: 'character', id: 'character:zhou', title: '周屿' } as const;
 
-		expect(resolveAssociationDrop(character, scene)).toMatchObject({ allowed: true });
+		expect(resolveAssociationDrop(character, scene)).toMatchObject({
+			allowed: true,
+			label: '关联为当前场景出场人物'
+		});
 		expect(resolveAssociationDrop(character, holder)).toEqual({
 			allowed: false,
 			source: character,
 			target: holder,
-			reason: '人物只能关联到章节或场景'
+			reason: '人物不能移动到卷结构中；只能关联到章节或场景'
 		});
+		const foreshadowingIntent = resolveAssociationDrop(
+			{ type: 'foreshadowing', id: 'foreshadowing:clock', title: '停摆时钟' },
+			scene
+		);
+		expect(foreshadowingIntent.allowed).toBe(true);
+		expect(foreshadowingIntent.allowed && foreshadowingIntent.label)
+			.toContain('标记为伏笔回收');
 	});
 
 	it('records a confirmed holder transfer and restores the prior state on undo', async () => {
@@ -118,6 +128,8 @@ describe('StoryAssociationService', () => {
 				narrativeOrder: 10
 			}
 		});
+		expect(receipt.kind === 'item-states' && receipt.description).toContain('创建转交状态事件');
+		expect(receipt.kind === 'item-states' && receipt.description).toContain('未改变章节顺序或父级');
 		await service.undo(receipt);
 		expect(await store.load()).toEqual([]);
 	});

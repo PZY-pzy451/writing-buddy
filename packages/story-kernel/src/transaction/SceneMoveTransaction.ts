@@ -453,7 +453,7 @@ export function planSceneMove(input: {
 			|| left.narrativeOrder - right.narrativeOrder
 		)),
 		description: sameChapter
-			? `已将“${moved.title}”移到本章第 ${movedFinalOrder + 1} 个场景。`
-			: `已将“${moved.title}”移到目标章节第 ${movedFinalOrder + 1} 个场景。`
+			? `已将场景“${moved.title}”移到本章第 ${movedFinalOrder + 1} 位；改变顺序，父级未改变。`
+			: `已将场景“${moved.title}”移到目标章节第 ${movedFinalOrder + 1} 位；改变父级和正文顺序，关联锚点已同步。`
 	};
 }

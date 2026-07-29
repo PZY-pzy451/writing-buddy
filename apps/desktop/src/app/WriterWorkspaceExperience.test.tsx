@@ -2,9 +2,11 @@ import { act, fireEvent, render, screen, waitFor, within } from '@testing-librar
 import userEvent from '@testing-library/user-event';
 import { App } from './App';
 import { useAppStore } from './store';
+import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 
 function resetWorkspaceExperience(): void {
 	localStorage.clear();
+	aiGenerationStore.getState().close();
 	useAppStore.setState({
 		recentProjectRoot: undefined,
 		recentProjectRoots: [],
@@ -25,6 +27,9 @@ function resetWorkspaceExperience(): void {
 		loading: false,
 		error: undefined,
 		projectWizardOpen: false,
+		chapterCreatorOpen: false,
+		chapterCreateBusy: false,
+		recentlyClosedResources: [],
 		activeMode: 'works',
 		focusMode: false,
 		sidebarOpen: true,
@@ -224,6 +229,81 @@ describe('quiet writer workspaces', () => {
 			{ name: '作者导航器' }
 		)).not.toBeInTheDocument());
 		expect(trigger).toHaveFocus();
+	});
+
+	it('completes quick create, chapter create, AI and tab shortcuts with correct focus', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		const chapterButton = screen.getByRole('button', { name: '新建章节' });
+		chapterButton.focus();
+
+		fireEvent.keyDown(window, {
+			key: 'n',
+			code: 'KeyN',
+			ctrlKey: true,
+			shiftKey: true
+		});
+		const quickMenu = await screen.findByRole('menu', { name: '新建内容' });
+		expect(within(quickMenu).getByRole('menuitem', { name: /新建项目/ })).toHaveFocus();
+		fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
+		await waitFor(() => expect(screen.queryByRole(
+			'menu',
+			{ name: '新建内容' }
+		)).not.toBeInTheDocument());
+		expect(chapterButton).toHaveFocus();
+
+		fireEvent.keyDown(window, { key: 'a', code: 'KeyA', altKey: true });
+		const aiDialog = await screen.findByRole('dialog', { name: 'AI 快速生成' });
+		expect(within(aiDialog).getByText('一致性审查')).toBeInTheDocument();
+		expect(within(aiDialog).getByText('等待开始')).toBeInTheDocument();
+		await user.click(within(aiDialog).getByRole('button', { name: '关闭 AI 快速生成' }));
+		expect(chapterButton).toHaveFocus();
+
+		fireEvent.keyDown(window, { key: 'n', code: 'KeyN', ctrlKey: true });
+		const dialog = await screen.findByRole('dialog', { name: '新建章节' });
+		const title = within(dialog).getByRole('textbox', { name: '章节标题' });
+		expect(title).toHaveFocus();
+		await user.clear(title);
+		await user.type(title, '快捷创建的章节');
+		fireEvent.keyDown(title, { key: 'Enter', code: 'Enter', ctrlKey: true });
+		await screen.findByRole('heading', { level: 1, name: '快捷创建的章节' });
+		const createdId = useAppStore.getState().activeResource?.id;
+		expect(createdId).toBeTruthy();
+		expect(useAppStore.getState().tabs.length).toBeGreaterThanOrEqual(2);
+
+		fireEvent.keyDown(window, { key: 'Tab', code: 'Tab', ctrlKey: true });
+		await waitFor(() => {
+			expect(useAppStore.getState().activeResource?.id).not.toBe(createdId);
+		});
+		const switchedId = useAppStore.getState().activeResource?.id;
+		const openCount = useAppStore.getState().tabs.length;
+		fireEvent.keyDown(window, { key: 'w', code: 'KeyW', ctrlKey: true });
+		await waitFor(() => {
+			expect(useAppStore.getState().tabs).toHaveLength(openCount - 1);
+		});
+		expect(useAppStore.getState().recentlyClosedResources[0]?.id).toBe(switchedId);
+
+		fireEvent.keyDown(window, {
+			key: 't',
+			code: 'KeyT',
+			ctrlKey: true,
+			shiftKey: true
+		});
+		await waitFor(() => {
+			expect(useAppStore.getState().activeResource?.id).toBe(switchedId);
+		});
+
+		const tablist = screen.getByRole('tablist', { name: '已打开资源' });
+		const activeTab = within(tablist).getAllByRole('tab')
+			.find(tab => tab.getAttribute('aria-selected') === 'true');
+		expect(activeTab).toBeDefined();
+		activeTab?.focus();
+		fireEvent.keyDown(activeTab as HTMLButtonElement, { key: 'ArrowLeft' });
+		await waitFor(() => {
+			expect(useAppStore.getState().activeResource?.id).not.toBe(switchedId);
+		});
+		expect(document.activeElement).toHaveAttribute('role', 'tab');
 	});
 
 	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {

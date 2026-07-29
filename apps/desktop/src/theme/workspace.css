@@ -575,8 +575,9 @@ button.tree-row {
 }
 
 .tree-row:hover .tree-drag-handle,
+.tree-row:focus-within .tree-drag-handle,
 .tree-drag-handle:focus-visible,
-.tree-row.is-drag-source .tree-drag-handle {
+.tree-row[data-interaction-state="drag-source"] .tree-drag-handle {
 	opacity: 1;
 }
 
@@ -3412,6 +3413,129 @@ html.is-resizing-y * {
 	animation: quick-capture-fade 180ms ease-out;
 }
 
+.chapter-create-overlay {
+	position: fixed;
+	z-index: 112;
+	inset: 0;
+	display: grid;
+	padding: 20px;
+	background: rgb(25 23 20 / 36%);
+	backdrop-filter: blur(3px);
+	animation: quick-capture-fade 180ms ease-out;
+	place-items: center;
+}
+
+.chapter-create-dialog {
+	display: grid;
+	gap: 18px;
+	width: min(520px, 100%);
+	max-height: calc(100vh - 40px);
+	padding: 20px;
+	overflow: auto;
+	color: var(--text-primary);
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-dialog, 18px);
+	box-shadow: var(--shadow-dialog, var(--shadow-float));
+	animation: quick-capture-rise 200ms ease-out;
+}
+
+.chapter-create-dialog > header,
+.chapter-create-dialog > header > div,
+.chapter-create-dialog > footer,
+.chapter-create-dialog > footer > div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.chapter-create-dialog > header,
+.chapter-create-dialog > footer {
+	justify-content: space-between;
+}
+
+.chapter-create-dialog > header > div {
+	align-items: flex-start;
+}
+
+.chapter-create-dialog h2,
+.chapter-create-dialog p {
+	margin: 0;
+}
+
+.chapter-create-dialog h2 {
+	font: 22px Georgia, "Microsoft YaHei UI", serif;
+}
+
+.chapter-create-dialog header p,
+.chapter-create-dialog > footer > span,
+.chapter-create-dialog label small,
+.chapter-create-note {
+	color: var(--text-muted);
+	font-size: 12px;
+}
+
+.chapter-create-dialog label {
+	display: grid;
+	gap: 7px;
+	font-size: 13px;
+	font-weight: 750;
+}
+
+.chapter-create-dialog input,
+.chapter-create-dialog select {
+	width: 100%;
+	min-height: 44px;
+	padding: 0 12px;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+	outline: none;
+	transition:
+		border-color 120ms ease,
+		box-shadow 120ms ease;
+}
+
+.chapter-create-dialog input:focus,
+.chapter-create-dialog select:focus {
+	border-color: var(--highlight-focus);
+	box-shadow: 0 0 0 3px var(--highlight-focus-halo);
+}
+
+.chapter-create-dialog > footer {
+	padding-top: 16px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.chapter-create-dialog > footer button {
+	min-height: 44px;
+}
+
+@media (max-width: 640px), (max-height: 600px) {
+	.chapter-create-overlay {
+		padding: 8px;
+		align-items: end;
+	}
+
+	.chapter-create-dialog {
+		width: 100%;
+		max-height: calc(100vh - 16px);
+		padding: 16px;
+		border-radius: 16px 16px 8px 8px;
+	}
+
+	.chapter-create-dialog > footer {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.chapter-create-dialog > footer > div,
+	.chapter-create-dialog > footer button {
+		flex: 1;
+	}
+}
+
 .quick-capture-dialog {
 	display: grid;
 	gap: 16px;
@@ -3652,6 +3776,8 @@ html.is-resizing-y * {
 @media (prefers-reduced-motion: reduce) {
 	.quick-capture-overlay,
 	.quick-capture-dialog,
+	.chapter-create-overlay,
+	.chapter-create-dialog,
 	.entity-peek-card,
 	.selection-contextual-ai-menu,
 	.assistant-more-actions .quick-actions {
@@ -5547,6 +5673,28 @@ body,
 .global-create {
 	position: relative;
 	z-index: 62;
+}
+
+.global-create.is-shortcut-only:not(.is-open) {
+	display: none;
+}
+
+.global-create.is-shortcut-only.is-open {
+	position: fixed;
+	z-index: 118;
+	top: 52px;
+	right: 20px;
+}
+
+.global-create.is-shortcut-only > .global-create-trigger {
+	display: none;
+}
+
+.global-create.is-shortcut-only > .global-create-menu {
+	position: relative;
+	top: 0;
+	right: 0;
+	width: min(300px, calc(100vw - 32px));
 }
 
 .global-create-trigger {

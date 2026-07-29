@@ -128,6 +128,24 @@ pub struct CreatedProject {
     created_directory_count: usize,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateChapterRequest {
+    project_root: String,
+    expected_project_revision: String,
+    title: String,
+    volume_id: Option<String>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateChapterResult {
+    project: migration::WritingProject,
+    project_revision: String,
+    chapter: migration::ChapterDescriptor,
+    description: String,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderedLocation {
@@ -661,6 +679,138 @@ pub fn create_project(request: CreateProjectRequest) -> Result<CreatedProject, S
     result
 }
 
+fn create_chapter_on_disk(request: &CreateChapterRequest) -> Result<CreateChapterResult, String> {
+    let root = filesystem::canonical_project_root(&request.project_root)?;
+    let manifest_path = root.join(".writing-buddy").join("project.json");
+    let previous_bytes = fs::read(&manifest_path).map_err(|_| "manifestReadFailed".to_owned())?;
+    let current_revision = filesystem::sha256(&previous_bytes);
+    if request.expected_project_revision != current_revision {
+        return Err(format!("projectRevisionConflict:{current_revision}"));
+    }
+    let title = request.title.trim();
+    if title.is_empty()
+        || title.chars().count() > 120
+        || title.contains('\r')
+        || title.contains('\n')
+    {
+        return Err("chapterTitleInvalid".to_owned());
+    }
+    let mut project: migration::WritingProject =
+        serde_json::from_slice(&previous_bytes).map_err(|_| "invalidManifest".to_owned())?;
+    let nonce = format!(
+        "{}:{}:{}:{}",
+        project.project_id,
+        title,
+        Utc::now().timestamp_millis(),
+        std::process::id()
+    );
+    let chapter_id = creation_id("chapter", &nonce);
+    let sequence = (1..=9999)
+        .find(|index| {
+            !root
+                .join("chapters")
+                .join(format!("chapter-{index:03}.md"))
+                .exists()
+        })
+        .ok_or_else(|| "chapterFileLimitReached".to_owned())?;
+    let relative_path = format!("chapters/chapter-{sequence:03}.md");
+    let chapter_path = root.join(&relative_path);
+    let chapter = migration::ChapterDescriptor {
+        id: chapter_id,
+        title: title.to_owned(),
+        file: relative_path,
+        status: Some("draft".to_owned()),
+        target_words: None,
+        scene: migration::SceneMetadata::default(),
+    };
+    if project.volumes.is_empty() {
+        project.volumes.push(migration::VolumeDescriptor {
+            id: creation_id("volume", &format!("{nonce}:volume")),
+            title: "第一卷".to_owned(),
+            chapters: Vec::new(),
+        });
+    }
+    let volume_index = request
+        .volume_id
+        .as_ref()
+        .map(|volume_id| {
+            project
+                .volumes
+                .iter()
+                .position(|volume| volume.id == *volume_id)
+                .ok_or_else(|| "chapterVolumeMissing".to_owned())
+        })
+        .transpose()?
+        .unwrap_or(project.volumes.len() - 1);
+    project.volumes[volume_index].chapters.push(chapter.clone());
+
+    filesystem::write_bytes_atomic(&chapter_path, format!("# {title}\n\n").as_bytes())
+        .map_err(|_| "chapterFileWriteFailed".to_owned())?;
+    let write_result = (|| {
+        let mut next_bytes = serde_json::to_vec_pretty(&project)
+            .map_err(|_| "chapterManifestSerializeFailed".to_owned())?;
+        next_bytes.push(b'\n');
+        let next_content = String::from_utf8(next_bytes)
+            .map_err(|_| "chapterManifestSerializeFailed".to_owned())?;
+        filesystem::write_text_atomic(&AtomicWriteRequest {
+            project_root: root.to_string_lossy().into_owned(),
+            relative_path: ".writing-buddy/project.json".to_owned(),
+            content: next_content,
+            expected_hash: current_revision,
+            eol: "lf".to_owned(),
+            has_bom: false,
+            force: false,
+        })
+        .map_err(|error| {
+            if error.starts_with("externalChange:") {
+                "projectRevisionConflict".to_owned()
+            } else {
+                "chapterManifestWriteFailed".to_owned()
+            }
+        })
+    })();
+    let write_result = match write_result {
+        Ok(result) => result,
+        Err(error) => {
+            let _ = fs::remove_file(&chapter_path);
+            return Err(error);
+        }
+    };
+    let verified = migration::open_project(&root.to_string_lossy());
+    if !matches!(
+        verified.as_ref(),
+        Ok(snapshot)
+            if !snapshot.read_only
+                && snapshot.project_revision == write_result.hash
+                && snapshot
+                    .project
+                    .volumes
+                    .iter()
+                    .flat_map(|volume| volume.chapters.iter())
+                    .any(|candidate| candidate.id == chapter.id)
+    ) {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_bytes);
+        let _ = fs::remove_file(&chapter_path);
+        return Err("chapterCreateVerificationFailed".to_owned());
+    }
+    let verified = verified.map_err(|_| "chapterCreateVerificationFailed".to_owned())?;
+    Ok(CreateChapterResult {
+        project: verified.project,
+        project_revision: write_result.hash,
+        chapter,
+        description: format!("已创建“{title}”并保存。"),
+    })
+}
+
+#[tauri::command]
+pub fn create_chapter(
+    state: State<'_, AppState>,
+    request: CreateChapterRequest,
+) -> Result<CreateChapterResult, String> {
+    require_write_lock(&state, &request.project_root)?;
+    create_chapter_on_disk(&request)
+}
+
 fn project_move_error(code: &str) -> Result<(MoveCommand, String), String> {
     Err(code.to_owned())
 }
@@ -701,7 +851,7 @@ fn apply_project_structure_move(
             command.to.clone(),
             command.from.clone(),
             format!(
-                "已将“{}”移动到第 {} 位。",
+                "已将卷“{}”移动到第 {} 位；改变顺序，父级未改变。",
                 source.title,
                 command.to.index + 1
             ),
@@ -749,12 +899,21 @@ fn apply_project_structure_move(
                 container_id: command.from.container_id.clone(),
                 index: command.from.index,
             },
-            format!(
-                "已将“{}”移动到{}第 {} 位。",
-                source.title,
-                target_title,
-                command.to.index + 1
-            ),
+            if same_volume {
+                format!(
+                    "已将章节“{}”移动到“{}”第 {} 位；改变顺序，父级未改变。",
+                    source.title,
+                    target_title,
+                    command.to.index + 1
+                )
+            } else {
+                format!(
+                    "已将章节“{}”移动到“{}”第 {} 位；改变父级并改变顺序。",
+                    source.title,
+                    target_title,
+                    command.to.index + 1
+                )
+            },
         )
     } else {
         return project_move_error("projectMoveEntityTypeUnsupported");
@@ -1677,6 +1836,69 @@ mod tests {
                 .starts_with(".writing-buddy-project-staging-")
         }));
         let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn chapter_creation_writes_manuscript_and_manifest_then_reopens() {
+        let root = project_move_fixture("chapter-create");
+        let opened = migration::open_project(&root.to_string_lossy()).expect("open fixture");
+        let request = CreateChapterRequest {
+            project_root: root.to_string_lossy().into_owned(),
+            expected_project_revision: opened.project_revision,
+            title: "第五章 雨停以后".to_owned(),
+            volume_id: Some("volume-a11ce002".to_owned()),
+        };
+
+        let created = create_chapter_on_disk(&request).expect("create chapter");
+        assert_eq!(created.chapter.title, "第五章 雨停以后");
+        assert_eq!(
+            fs::read_to_string(root.join(&created.chapter.file)).expect("read manuscript"),
+            "# 第五章 雨停以后\n\n"
+        );
+        let reopened = migration::open_project(&root.to_string_lossy()).expect("reopen");
+        let target = reopened
+            .project
+            .volumes
+            .iter()
+            .find(|volume| volume.id == "volume-a11ce002")
+            .expect("target volume");
+        assert_eq!(
+            target.chapters.last().map(|chapter| chapter.id.as_str()),
+            Some(created.chapter.id.as_str())
+        );
+        assert_eq!(reopened.project_revision, created.project_revision);
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
+    }
+
+    #[test]
+    fn chapter_creation_rejects_stale_revision_without_writes() {
+        let root = project_move_fixture("chapter-create-stale");
+        let before = WalkDir::new(&root)
+            .into_iter()
+            .filter_map(Result::ok)
+            .filter(|entry| entry.file_type().is_file())
+            .map(|entry| entry.path().to_path_buf())
+            .collect::<BTreeSet<_>>();
+        let request = CreateChapterRequest {
+            project_root: root.to_string_lossy().into_owned(),
+            expected_project_revision: "stale".to_owned(),
+            title: "不会创建".to_owned(),
+            volume_id: None,
+        };
+
+        assert!(
+            create_chapter_on_disk(&request)
+                .expect_err("stale revision")
+                .starts_with("projectRevisionConflict:")
+        );
+        let after = WalkDir::new(&root)
+            .into_iter()
+            .filter_map(Result::ok)
+            .filter(|entry| entry.file_type().is_file())
+            .map(|entry| entry.path().to_path_buf())
+            .collect::<BTreeSet<_>>();
+        assert_eq!(after, before);
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
     }
 
     #[test]

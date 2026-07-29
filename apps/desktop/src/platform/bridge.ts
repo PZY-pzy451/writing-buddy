@@ -18,6 +18,8 @@ import type {
 	AtomicWriteResult,
 	BackupInspection,
 	BackupResult,
+	CreateChapterRequest,
+	CreateChapterResult,
 	CreateProjectRequest,
 	CreatedProject,
 	DesktopBridge,
@@ -68,6 +70,10 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	createProject(request: CreateProjectRequest): Promise<CreatedProject> {
 		return invoke<CreatedProject>('create_project', { request });
+	}
+
+	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult> {
+		return invoke<CreateChapterResult>('create_chapter', { request });
 	}
 
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
@@ -1244,6 +1250,71 @@ class BrowserDesktopBridge implements DesktopBridge {
 		const hash = browserHash(content);
 		browserReviewFile = { content, encoding: 'utf-8', eol: 'lf', hasBom: false, hash };
 		return { hash, byteLength: new TextEncoder().encode(content).byteLength, modifiedAt: new Date().toISOString() };
+	}
+
+	async createChapter(request: CreateChapterRequest): Promise<CreateChapterResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current) throw new Error('projectRootUnavailable');
+		if (current.readOnly) throw new Error('projectReadOnly');
+		if (current.projectRevision !== request.expectedProjectRevision) {
+			throw new Error('projectRevisionConflict');
+		}
+		const title = request.title.trim();
+		if (!title || title.length > 120 || /[\r\n]/.test(title)) {
+			throw new Error('chapterTitleInvalid');
+		}
+		const suffix = `browser-${++browserProjectRevisionSequence}`;
+		const chapter = {
+			id: `chapter-${suffix}`,
+			title,
+			file: `chapters/chapter-${suffix}.md`,
+			status: 'draft' as const,
+			scene: {
+				location: '',
+				time: '',
+				pov: '',
+				characters: [],
+				goal: '',
+				note: ''
+			}
+		};
+		const volumes = current.project.volumes.length > 0
+			? current.project.volumes.map(volume => (
+					volume.id === (request.volumeId ?? current.project.volumes.at(-1)?.id)
+						? { ...volume, chapters: [...volume.chapters, chapter] }
+						: volume
+				))
+			: [{
+				id: `volume-${suffix}`,
+				title: '第一卷',
+				chapters: [chapter]
+			}];
+		if (
+			request.volumeId
+			&& !current.project.volumes.some(volume => volume.id === request.volumeId)
+		) {
+			throw new Error('chapterVolumeMissing');
+		}
+		const projectRevision = `browser-project-revision-${browserProjectRevisionSequence}`;
+		const next = {
+			...current,
+			project: { ...current.project, volumes },
+			projectRevision,
+			wordCounts: { ...current.wordCounts, [chapter.id]: 0 }
+		};
+		browserFiles.set(chapter.file, `# ${title}\n\n`);
+		if (request.projectRoot === browserProject.root) {
+			browserProject = next;
+		} else {
+			browserCreatedProjects.set(request.projectRoot, next);
+		}
+		return {
+			project: next.project,
+			projectRevision,
+			chapter,
+			description: `已创建“${title}”并保存。`
+		};
 	}
 
 	async readQuickCaptureState(): Promise<TextFile | undefined> {

@@ -71,14 +71,15 @@ describe('project structure drag experience', () => {
 		});
 		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters.map(chapter => chapter.id))
 			.toEqual(['chapter-a11ce002', 'chapter-a11ce001']);
-		expect(screen.getByText('项目结构已更新')).toBeInTheDocument();
+		expect(screen.getByText('章节已移动并保存')).toBeInTheDocument();
+		expect(screen.getAllByText(/改变顺序，父级未改变/u)).toHaveLength(2);
 
 		await user.click(screen.getByRole('button', { name: '撤销' }));
 		await waitFor(() => {
 			expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters.map(chapter => chapter.id))
 				.toEqual(['chapter-a11ce001', 'chapter-a11ce002']);
 		});
-		expect(screen.queryByText('项目结构已更新')).not.toBeInTheDocument();
+		expect(screen.queryByText('章节已移动并保存')).not.toBeInTheDocument();
 	});
 
 	it('supports Ctrl+Z outside the editor after a cross-volume move', async () => {

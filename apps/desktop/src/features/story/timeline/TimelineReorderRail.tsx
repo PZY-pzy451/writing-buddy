@@ -7,6 +7,7 @@ import {
 	useSensor,
 	useSensors,
 	type DragEndEvent,
+	type DragOverEvent,
 	type DragStartEvent
 } from '@dnd-kit/core';
 import { restrictToHorizontalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
@@ -20,6 +21,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { GripVertical, ListTree, LockKeyhole } from 'lucide-react';
 import { useState } from 'react';
 import type { TimelineEvent, TimelineMode } from '@writing-buddy/story-kernel';
+import { timelineDropPreview } from './TimelineReorderFeedback';
 
 function SortableTimelineEvent({
 	event,
@@ -41,7 +43,8 @@ function SortableTimelineEvent({
 	} = useSortable({
 		id: event.id,
 		disabled,
-		data: { timelineEvent: event }
+		data: { timelineEvent: event },
+		transition: { duration: 160, easing: 'cubic-bezier(.2, .8, .2, 1)' }
 	});
 	return (
 		<article
@@ -85,6 +88,7 @@ export function TimelineReorderRail({
 	readonly onReorder: (activeId: string, overId: string) => void;
 }): React.JSX.Element {
 	const [active, setActive] = useState<TimelineEvent>();
+	const [dropPreview, setDropPreview] = useState<string>();
 	const [announcement, setAnnouncement] = useState('');
 	const sensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -101,12 +105,21 @@ export function TimelineReorderRail({
 	const handleStart = (event: DragStartEvent) => {
 		const picked = events.find(candidate => candidate.id === event.active.id);
 		setActive(picked);
+		setDropPreview(undefined);
 		if (picked) setAnnouncement(`已拾取${picked.title}，使用左右方向键调整位置。`);
+	};
+	const handleOver = (event: DragOverEvent) => {
+		const preview = event.over
+			? timelineDropPreview(events, String(event.over.id))
+			: undefined;
+		setDropPreview(preview);
+		if (preview) setAnnouncement(preview);
 	};
 	const handleEnd = (event: DragEndEvent) => {
 		const activeId = String(event.active.id);
 		const overId = event.over ? String(event.over.id) : undefined;
 		setActive(undefined);
+		setDropPreview(undefined);
 		if (!overId || activeId === overId) {
 			setAnnouncement('叙事顺序没有改变。');
 			return;
@@ -120,9 +133,11 @@ export function TimelineReorderRail({
 			collisionDetection={closestCenter}
 			autoScroll
 			onDragStart={handleStart}
+			onDragOver={handleOver}
 			onDragEnd={handleEnd}
 			onDragCancel={() => {
 				setActive(undefined);
+				setDropPreview(undefined);
 				setAnnouncement('已取消，叙事顺序没有改变。');
 			}}
 			accessibility={{
@@ -151,6 +166,9 @@ export function TimelineReorderRail({
 						))}
 					</SortableContext>
 				</div>
+				{active && dropPreview ? (
+					<p className="timeline-drop-preview" role="note">{dropPreview}</p>
+				) : null}
 				<p className="sr-only" role="status" aria-live="polite">{announcement}</p>
 			</section>
 			<DragOverlay modifiers={[restrictToHorizontalAxis, restrictToWindowEdges]}>

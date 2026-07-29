@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-07-29T12:56:28.458Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "captures": [
+    {
+      "name": "01-semantic-drag-preview-1536x992.png",
+      "width": 1536,
+      "height": 992,
+      "interaction": {
+        "drag": {
+          "label": "拖动章节：第一章 停摆的时钟",
+          "beforeOpacity": "0",
+          "x": 319.3333435058594,
+          "y": 353.3333435058594,
+          "afterHoverOpacity": "1",
+          "keyboardPickup": true,
+          "preview": {
+            "label": "移动到“第二卷 雾中来客”末尾",
+            "liveText": [
+              "移动到“第二卷 雾中来客”末尾",
+              "移动到“第二卷 雾中来客”末尾",
+              "不能放在这里：项目已经在这个位置。",
+              "已保存",
+              "已保存"
+            ]
+          },
+          "result": {
+            "title": "章节已移动并保存",
+            "message": "已将章节“第一章 停摆的时钟”移动到“第二卷 雾中来客”第 2 位；改变父级并改变顺序。",
+            "undoLabel": "撤销"
+          },
+          "undone": true
+        }
+      },
+      "viewport": {
+        "width": 1536,
+        "height": 992
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 62,
+      "domNodes": 709
+    },
+    {
+      "name": "02-chapter-shortcut-focus-1280x800.png",
+      "width": 1280,
+      "height": 800,
+      "interaction": {
+        "quickCreate": {
+          "firstItem": "新建项目从模板和初始结构开始",
+          "menuInsideViewport": true
+        },
+        "quickCreateFocusRestored": true,
+        "ai": {
+          "idle": true,
+          "focusInside": true
+        },
+        "aiFocusRestored": true,
+        "chapterDialog": {
+          "inputFocused": true,
+          "insideViewport": true,
+          "undersizedControls": []
+        },
+        "chapterFocusRestored": true
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 62,
+      "domNodes": 709
+    },
+    {
+      "name": "03-compact-reduced-motion-1024x720.png",
+      "width": 1024,
+      "height": 720,
+      "interaction": {
+        "focusMode": {
+          "editorVisible": true,
+          "globalNavigationVisible": false,
+          "exitButtonVisible": true
+        },
+        "reducedMotion": {
+          "matches": true,
+          "overlayAnimation": "1e-05s",
+          "dialogAnimation": "1e-05s",
+          "overlayAnimationName": "none",
+          "dialogAnimationName": "none"
+        }
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 62,
+      "domNodes": 709
+    }
+  ]
+}

@@ -169,7 +169,9 @@ function PlotStatusColumn({
 			{children}
 			{isOver && activeThread ? (
 				<span className="plot-drop-label">
-					{same ? '状态不变' : `松开移到“${statusLabels[status]}”`}
+					{same
+						? '状态不变'
+						: `移动到“${statusLabels[status]}”：创建生命周期状态变化，不改变章节顺序或父级`}
 				</span>
 			) : null}
 		</section>
@@ -281,7 +283,7 @@ export function PlotBoardPage({
 				repository: new DesktopStoryRepository(projectRoot, desktopBridge),
 				before: [thread as unknown as StoryResource],
 				after: [next as unknown as StoryResource],
-				description: `已把“${thread.title}”移到“${statusLabels[status]}”`
+				description: `已把“${thread.title}”移到“${statusLabels[status]}”并创建生命周期状态变化；未改变章节顺序或父级。`
 			});
 			const saved = parsePlotThread(receipt.saved[0] as never);
 			setData(current => current ? {
@@ -454,6 +456,7 @@ export function PlotBoardPage({
 			) : null}
 			{plotUndo ? (
 				<StoryDragUndoToast
+					title="剧情线状态已保存"
 					message={plotUndo.description}
 					busy={saving}
 					onUndo={undoPlotMove}

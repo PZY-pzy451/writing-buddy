@@ -147,7 +147,7 @@ export function applyProjectStructureMove(
 				from: command.to,
 				to: command.from
 			},
-			description: `已将“${source.title}”移动到第 ${command.to.index + 1} 位。`
+			description: `已将卷“${source.title}”移动到第 ${command.to.index + 1} 位；改变顺序，父级未改变。`
 		};
 	}
 
@@ -208,6 +208,8 @@ export function applyProjectStructureMove(
 				index: command.from.index
 			}
 		},
-		description: `已将“${source.title}”移动到${targetVolume.title}第 ${command.to.index + 1} 位。`
+		description: sourceVolumeIndex === targetVolumeIndex
+			? `已将章节“${source.title}”移动到“${targetVolume.title}”第 ${command.to.index + 1} 位；改变顺序，父级未改变。`
+			: `已将章节“${source.title}”移动到“${targetVolume.title}”第 ${command.to.index + 1} 位；改变父级并改变顺序。`
 	};
 }

@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A Gate F writer experience work is complete in the isolated worktree
+Phase 1.2A Gate G interaction feedback and accessibility is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
@@ -20,13 +20,33 @@ Phase 1.2A Gate F writer experience work is complete in the isolated worktree
   through the existing AI/extraction paths are complete.
 - Gate F save trust, recovery/close protection, Writer Navigator, unified
   local search, and TextAnchor location are complete.
-- Drop-feedback polish, new AI actions, and new Story resource types remain
-  out of scope.
+- Gate G completes drag preview/result copy, documented shortcuts,
+  focus/accessibility, responsive visual polish, and reduced motion without
+  adding an AI action or Story resource type.
 - Completed contract:
-  `docs/plans/030-phase-1.2a-gate-f-save-trust-writer-navigator.md`.
-- The branch is stopped before Gate G pending a new explicit user direction.
+  `docs/plans/031-phase-1.2a-gate-g-interaction-feedback-accessibility.md`.
+- Gate H real-profile/user acceptance is the next possible gate and remains
+  out of scope until a new explicit user direction.
 
 ## Completed
+
+- Added semantic, visible drag previews and polite live announcements across
+  project structure and existing Story drag surfaces. Result Toast copy now
+  states order, parent, relation, or state-event effects and exposes Undo.
+- Centralized the complete twelve-shortcut contract. `Ctrl/Cmd+N` creates a
+  real chapter through revision-safe native storage; quick create and Alt+A
+  open existing idle UI, and tab close/restore/switch plus arrow navigation
+  preserve resource state.
+- Dialogs restore exact focus, chapter controls meet 44 px targets, transition
+  timing is bounded, and reduced motion removes named animation.
+- Real 1536×992, 1280×800, and 1024×720 acceptance reports zero page overflow
+  and zero controls clipped outside scrollable regions; semantic preview,
+  saved result, Undo, focus restoration, F11, and reduced motion pass.
+- Final gates: Node 24.14.0 / pnpm 10.32.1, 127 Vitest files / 468 tests,
+  change-aware self-test, frontend build, Cargo format, 55 Rust tests, Tauri
+  Release/NSIS, and native PID 33200 responsive close / exit code 0.
+- Evidence in
+  `docs/acceptance/042-phase-1.2a-gate-g-interaction-feedback-accessibility-2026-07-29.md`.
 
 - Added one explicit save-state model across the writer header, top bar and
   status bar; persistent failure recovery, hash-safe conflict handling,

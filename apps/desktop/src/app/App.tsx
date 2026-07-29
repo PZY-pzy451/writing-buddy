@@ -15,6 +15,7 @@ import { TaskDock } from '../review/TaskDock';
 import { ExternalConflictDialog } from '../editor/ExternalConflictDialog';
 import { ProjectOpenErrorDialog } from '../features/projects/ui/ProjectOpenErrorDialog';
 import { ProjectCreationWizard } from '../features/projects/ui/ProjectCreationWizard';
+import { ChapterCreationDialog } from '../features/projects/ui/ChapterCreationDialog';
 import { ProjectWelcome } from '../features/projects/ui/ProjectWelcome';
 import { ProjectStructureUndoToast } from '../features/projects/ui/ProjectStructureUndoToast';
 import { StoryStudioRoute, StoryWorkspaceRoute } from './routes';
@@ -23,6 +24,9 @@ import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 import { dispatchWorkspaceShortcut } from '../shell/workspaceShortcuts';
+import { resolveWriterShortcut } from '../shell/writerShortcuts';
+import { requestGlobalCreateMenu } from '../features/projects/ui/GlobalCreateRequest';
+import { openAiQuickActions } from '../features/ai/drawer/openAiQuickActions';
 import { QuickCaptureDialog } from '../features/quick-capture/QuickCaptureDialog';
 import { SaveRecoveryBanner } from '../features/save/SaveRecoveryBanner';
 import { CloseProtectionDialog } from '../features/save/CloseProtectionDialog';
@@ -74,24 +78,11 @@ export function App(): React.JSX.Element {
 
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
+			if (event.defaultPrevented || event.isComposing) return;
 			const shortcutState = useAppStore.getState();
-			if (event.key === 'F11') {
-				event.preventDefault();
-				shortcutState.toggleFocus();
-				return;
-			}
 			if (event.key === 'Escape' && shortcutState.focusMode) {
 				event.preventDefault();
 				shortcutState.toggleFocus();
-				return;
-			}
-			if (
-				(event.ctrlKey || event.metaKey)
-				&& event.shiftKey
-				&& event.code === 'Space'
-			) {
-				event.preventDefault();
-				shortcutState.openQuickCapture();
 				return;
 			}
 			if (!shortcutState.focusMode && dispatchWorkspaceShortcut(event, {
@@ -101,32 +92,57 @@ export function App(): React.JSX.Element {
 			})) {
 				return;
 			}
-			const modifier = event.ctrlKey || event.metaKey;
-			const key = event.key.toLocaleLowerCase();
-			if (modifier && !event.shiftKey && !event.altKey && key === 'k') {
-				event.preventDefault();
-				shortcutState.openWriterNavigator();
-				return;
-			}
-			if (modifier && event.shiftKey && key === 'f') {
-				event.preventDefault();
-				shortcutState.setMode('search');
-				return;
-			}
-			if (modifier && key === 's') {
-				event.preventDefault();
-				void useAppStore.getState().save();
-			}
-			if (modifier && key === 'z') {
+			const command = resolveWriterShortcut(event);
+			if (!command) return;
+			if (document.querySelector('[aria-modal="true"]')) return;
+			if (command === 'undo') {
 				const target = event.target;
 				const editing = target instanceof HTMLElement
 					&& (target.matches('input, textarea, [contenteditable="true"]')
 						|| Boolean(target.closest('.monaco-editor')));
-				const state = useAppStore.getState();
-				if (!editing && state.structureUndo) {
+				if (!editing && shortcutState.structureUndo) {
 					event.preventDefault();
-					void state.undoProjectStructureMove();
+					void shortcutState.undoProjectStructureMove();
 				}
+				return;
+			}
+			event.preventDefault();
+			switch (command) {
+				case 'focus-mode':
+					shortcutState.toggleFocus();
+					break;
+				case 'quick-capture':
+					shortcutState.openQuickCapture();
+					break;
+				case 'writer-navigator':
+					shortcutState.openWriterNavigator();
+					break;
+				case 'full-search':
+					shortcutState.setMode('search');
+					break;
+				case 'new-chapter':
+					shortcutState.openChapterCreator();
+					break;
+				case 'quick-create':
+					requestGlobalCreateMenu();
+					break;
+				case 'ai-quick-actions':
+					openAiQuickActions();
+					break;
+				case 'save':
+					void shortcutState.save();
+					break;
+				case 'close-tab':
+					if (shortcutState.activeResource) {
+						shortcutState.closeResource(shortcutState.activeResource.id);
+					}
+					break;
+				case 'restore-tab':
+					void shortcutState.restoreLastClosedResource();
+					break;
+				case 'switch-tab':
+					void shortcutState.activateNextResource();
+					break;
 			}
 		};
 		window.addEventListener('keydown', handler);
@@ -245,6 +261,7 @@ export function App(): React.JSX.Element {
 			{!focusMode && <StatusBar />}
 			<AiGenerationDrawer />
 			<ProjectCreationWizard />
+			<ChapterCreationDialog />
 			<ProjectStructureUndoToast />
 			<QuickCaptureDialog />
 			<WriterNavigator key={snapshot?.root ?? 'no-project'} />

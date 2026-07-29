@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAppStore, type ThemeId } from '../app/store';
 import { AiSettingsSection } from '../features/ai/AiSettingsSection';
 import { workspaceShortcutDefinitions } from '../shell/workspaceShortcuts';
+import { writerShortcutDefinitions } from '../shell/writerShortcuts';
 
 const themes: readonly { id: ThemeId; label: string; description: string; swatches: readonly string[] }[] = [
 	{ id: 'paper', label: '纸页', description: '温暖纸张与深色产品外壳', swatches: ['#fbf8f1', '#172033', '#a5783d'] },
@@ -10,27 +11,6 @@ const themes: readonly { id: ThemeId; label: string; description: string; swatch
 	{ id: 'fog', label: '薄雾', description: '柔和、低刺激的灰白界面', swatches: ['#eef1f3', '#384454', '#6f8090'] },
 	{ id: 'focus', label: '专注', description: '极简画布与最低界面噪音', swatches: ['#f5f0e6', '#26231f', '#8d6b3d'] }
 ];
-
-const writerShortcuts = [
-	{
-		id: 'writer-navigator',
-		label: '作者导航器',
-		description: '跳转章节、正文、资料或运行本地命令。',
-		keys: ['Ctrl', 'K']
-	},
-	{
-		id: 'full-search',
-		label: '完整搜索页',
-		description: '打开当前作品的完整搜索结果页。',
-		keys: ['Ctrl', 'Shift', 'F']
-	},
-	{
-		id: 'save',
-		label: '保存当前正文',
-		description: '使用原子写入保存当前编辑内容。',
-		keys: ['Ctrl', 'S']
-	}
-] as const;
 
 export function SettingsPage(): React.JSX.Element {
 	const theme = useAppStore(state => state.theme);
@@ -97,13 +77,13 @@ export function SettingsPage(): React.JSX.Element {
 									</span>
 								</div>
 							))}
-							{writerShortcuts.map(shortcut => (
+							{writerShortcutDefinitions.map(shortcut => (
 								<div className="shortcut-row" key={shortcut.id}>
 									<span>
 										<strong>{shortcut.label}</strong>
 										<small>{shortcut.description}</small>
 									</span>
-									<span className="shortcut-keys" aria-label={shortcut.keys.join('+')}>
+									<span className="shortcut-keys" aria-label={shortcut.display}>
 										{shortcut.keys.map(key => <kbd key={key}>{key}</kbd>)}
 									</span>
 								</div>

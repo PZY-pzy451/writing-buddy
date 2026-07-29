@@ -177,6 +177,7 @@
 	padding: 20px;
 	background: rgb(25 23 20 / 36%);
 	backdrop-filter: blur(3px);
+	animation: interaction-fade-in 160ms ease-out;
 	place-items: center;
 }
 
@@ -190,6 +191,7 @@
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-dialog, 18px);
 	box-shadow: var(--shadow-dialog, var(--shadow-float));
+	animation: interaction-panel-in 200ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .interaction-association-menu-header {
@@ -254,6 +256,25 @@
 	border: 1px solid color-mix(in srgb, var(--highlight-success-fg) 36%, var(--border-subtle));
 	border-radius: var(--radius-card);
 	box-shadow: var(--shadow-popover, var(--shadow-float));
+	animation: interaction-toast-in 160ms cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes interaction-fade-in {
+	from { opacity: 0; }
+}
+
+@keyframes interaction-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+}
+
+@keyframes interaction-toast-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
 }
 
 .interaction-undo-toast-icon {

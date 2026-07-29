@@ -112,11 +112,9 @@ function RowDropIndicator({
 		<DropIndicator
 			state={feedback.intent.allowed ? 'valid' : 'invalid'}
 			placement={feedback.placement}
-			label={feedback.placement === 'inside' || !feedback.intent.allowed
-				? feedback.intent.allowed
-					? feedback.intent.label
-					: feedback.intent.reason
-				: undefined}
+			label={feedback.intent.allowed
+				? feedback.intent.label
+				: feedback.intent.reason}
 		/>
 	);
 }
@@ -144,7 +142,8 @@ function SortableVolumeRow({
 	} = useSortable({
 		id: volumeDragId(volume.id),
 		data: { structureItem: item },
-		disabled: Boolean(disabledReason)
+		disabled: Boolean(disabledReason),
+		transition: { duration: 160, easing: 'cubic-bezier(.2, .8, .2, 1)' }
 	});
 	const style: React.CSSProperties = {
 		transform: CSS.Transform.toString(transform),
@@ -215,7 +214,8 @@ function SortableChapterRow({
 	} = useSortable({
 		id: chapterDragId(chapter.id),
 		data: { structureItem: item },
-		disabled: Boolean(disabledReason)
+		disabled: Boolean(disabledReason),
+		transition: { duration: 160, easing: 'cubic-bezier(.2, .8, .2, 1)' }
 	});
 	const style: React.CSSProperties = {
 		transform: CSS.Transform.toString(transform),
@@ -277,7 +277,8 @@ function SortableSceneRow({
 	} = useSortable({
 		id: sceneDragId(scene.id),
 		data: { structureItem: item },
-		disabled: Boolean(disabledReason)
+		disabled: Boolean(disabledReason),
+		transition: { duration: 160, easing: 'cubic-bezier(.2, .8, .2, 1)' }
 	});
 	return (
 		<TreeRow
@@ -448,8 +449,18 @@ export function ProjectStructureTree({
 						const item = readDragItem(active.data);
 						return item ? `已拾取${item.title}` : '已拾取项目';
 					},
-					onDragOver: ({ over }) => over ? '已移动到新的候选位置' : '当前没有可放置位置',
-					onDragEnd: ({ over }) => over ? '已放下项目' : '项目未移动',
+					onDragOver: ({ over }) => over
+						? dropFeedback?.intent.allowed
+							? dropFeedback.intent.label
+							: dropFeedback && !dropFeedback.intent.allowed
+								? `不能放在这里：${dropFeedback.intent.reason}`
+								: '正在计算放置位置'
+						: '当前没有可放置位置',
+					onDragEnd: ({ over }) => over
+						? dropFeedback?.intent.allowed
+							? `正在保存：${dropFeedback.intent.label}`
+							: '项目未移动'
+						: '项目未移动',
 					onDragCancel: () => '已取消移动'
 				}
 			}}

@@ -299,7 +299,7 @@ export function TimelinePage({
 				repository: new DesktopStoryRepository(projectRoot, desktopBridge),
 				before: before as unknown as readonly StoryResource[],
 				after: updates as unknown as readonly StoryResource[],
-				description: '已调整叙事事件顺序'
+				description: '已调整叙事事件顺序；仅改变顺序，未改变实际时间、父级或资料关系。'
 			});
 			const savedById = new Map(receipt.saved.map(resource => [
 				resource.id,
@@ -469,6 +469,7 @@ export function TimelinePage({
 			) : null}
 			{reorderUndo ? (
 				<StoryDragUndoToast
+					title="叙事顺序已保存"
 					message={reorderUndo.description}
 					busy={saving}
 					onUndo={undoReorder}

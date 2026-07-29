@@ -1,4 +1,8 @@
-import type { TextFile, WritingProject } from '@writing-buddy/domain';
+import type {
+	ChapterDescriptor,
+	TextFile,
+	WritingProject
+} from '@writing-buddy/domain';
 import type {
 	AiBalance,
 	AiConnectionTestResult,
@@ -225,6 +229,20 @@ export interface CreatedProject {
 	readonly createdDirectoryCount: number;
 }
 
+export interface CreateChapterRequest {
+	readonly projectRoot: string;
+	readonly expectedProjectRevision: string;
+	readonly title: string;
+	readonly volumeId?: string;
+}
+
+export interface CreateChapterResult {
+	readonly project: WritingProject;
+	readonly projectRevision: string;
+	readonly chapter: ChapterDescriptor;
+	readonly description: string;
+}
+
 export type DragEntityType =
 	| 'volume'
 	| 'chapter'
@@ -367,6 +385,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	chooseProjectParentDirectory(): Promise<string | undefined>;
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
+	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult>;
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult>;
 	commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;

@@ -92,7 +92,7 @@ describe('guided project creation', () => {
 		expect(newProject).toBeEnabled();
 		expect(openProject).toBeEnabled();
 		expect(within(menu).getByRole('menuitem', { name: /新建章节/ })).toBeDisabled();
-		expect(within(menu).getAllByText('请先打开作品')).toHaveLength(6);
+		expect(within(menu).getAllByText('请先打开作品')).toHaveLength(5);
 		expect(newProject).toHaveFocus();
 		await user.keyboard('{ArrowDown}');
 		expect(openProject).toHaveFocus();

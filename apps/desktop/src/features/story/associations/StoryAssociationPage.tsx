@@ -197,7 +197,7 @@ function AssociationTarget({
 				<DropIndicator
 					state={verdict.allowed ? 'association' : 'invalid'}
 					placement="inside"
-					label={verdict.allowed ? '松开后确认关联' : verdict.reason}
+					label={verdict.allowed ? verdict.label : verdict.reason}
 				/>
 			) : null}
 		</div>
@@ -802,6 +802,7 @@ export function StoryAssociationPage({
 			) : null}
 			{undoReceipt ? (
 				<StoryDragUndoToast
+					title="资料关联已保存"
 					message={undoReceipt.kind === 'story'
 						? undoReceipt.receipt.description
 						: undoReceipt.description}

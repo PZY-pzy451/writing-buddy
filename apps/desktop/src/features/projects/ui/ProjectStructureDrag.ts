@@ -94,7 +94,7 @@ export function resolveProjectStructureDrop(
 			targetIndex = active.containerId === targetChapterId
 				? indexAfterRemoval(active.index, over.index, placement)
 				: over.index + (placement === 'after' ? 1 : 0);
-			label = `移到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
+			label = `移动到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
 		} else {
 			target = {
 				targetType: 'inside',
@@ -104,7 +104,7 @@ export function resolveProjectStructureDrop(
 			targetIndex = active.containerId === targetChapterId
 				? Math.max(0, targetScenes.length - 1)
 				: targetScenes.length;
-			label = `移到“${over.title}”的场景末尾（第 ${targetIndex + 1} 位）`;
+			label = `移动到“${over.title}”的场景末尾`;
 		}
 	} else if (active.entityType === 'volume') {
 		if (over.entityType !== 'volume') {
@@ -116,7 +116,7 @@ export function resolveProjectStructureDrop(
 			targetEntityId: over.entityId
 		};
 		targetIndex = indexAfterRemoval(active.index, over.index, placement);
-		label = `放到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
+		label = `移动到“${over.title}”${placement === 'before' ? '之前' : '之后'}`;
 	} else if (over.entityType === 'scene') {
 		return { allowed: false, reason: '卷和章节不能放入场景。' };
 	} else if (over.entityType === 'volume') {
@@ -132,7 +132,7 @@ export function resolveProjectStructureDrop(
 		targetIndex = active.containerId === over.entityId
 			? Math.max(0, destination.chapters.length - 1)
 			: destination.chapters.length;
-		label = `移到“${over.title}”末尾（第 ${targetIndex + 1} 位）`;
+		label = `移动到“${over.title}”末尾`;
 	} else {
 		target = {
 			targetType: placement,
@@ -142,7 +142,7 @@ export function resolveProjectStructureDrop(
 		targetIndex = active.containerId === over.containerId
 			? indexAfterRemoval(active.index, over.index, placement)
 			: over.index + (placement === 'after' ? 1 : 0);
-		label = `移到“${volumeTitle(project, over.containerId)}”第 ${targetIndex + 1} 位`;
+		label = `移动到“${volumeTitle(project, over.containerId)}”第 ${targetIndex + 1} 位`;
 	}
 
 	const decision = new DropRuleRegistry().evaluate(payload, target);

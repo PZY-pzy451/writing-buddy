@@ -49,10 +49,14 @@ describe('QuickCaptureDialog', () => {
 		));
 	});
 
-	it('closes on Escape and asks the manuscript to regain focus', async () => {
-		const closeQuickCapture = vi.fn();
-		const focus = vi.fn();
-		window.addEventListener('writing-buddy:focus-editor', focus);
+	it('closes once on Escape and restores the exact opening focus', async () => {
+		const trigger = document.createElement('button');
+		trigger.textContent = '打开快速记录';
+		document.body.append(trigger);
+		trigger.focus();
+		const closeQuickCapture = vi.fn(() => {
+			useAppStore.setState({ quickCaptureOpen: false });
+		});
 		useAppStore.setState({
 			quickCaptureOpen: true,
 			quickCaptureBusy: false,
@@ -64,7 +68,7 @@ describe('QuickCaptureDialog', () => {
 		fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
 
 		expect(closeQuickCapture).toHaveBeenCalledOnce();
-		await waitFor(() => expect(focus).toHaveBeenCalled());
-		window.removeEventListener('writing-buddy:focus-editor', focus);
+		await waitFor(() => expect(trigger).toHaveFocus());
+		trigger.remove();
 	});
 });

@@ -111,6 +111,26 @@ describe('resolveProjectStructureDrop', () => {
 		});
 	});
 
+	it('uses exact destination and position copy for cross-volume preview', () => {
+		const intent = resolveProjectStructureDrop(
+			project,
+			item({
+				entityId: 'chapter-a11ce004',
+				title: '第四章',
+				containerId: 'volume-a11ce002',
+				index: 0
+			}),
+			item({
+				entityId: 'chapter-a11ce003',
+				title: '第三章',
+				containerId: 'volume-a11ce001',
+				index: 2
+			}),
+			'before'
+		);
+		expect(intent.allowed && intent.label).toBe('移动到“第一卷”第 3 位');
+	});
+
 	it('drops a chapter on a volume by appending it', () => {
 		const intent = resolveProjectStructureDrop(
 			project,
@@ -128,6 +148,7 @@ describe('resolveProjectStructureDrop', () => {
 			containerId: 'volume-a11ce002',
 			index: 1
 		});
+		expect(intent.allowed && intent.label).toBe('移动到“第二卷”末尾');
 	});
 
 	it('treats dropping the last chapter on its current volume as no change', () => {

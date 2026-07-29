@@ -39,6 +39,7 @@ export function ProjectSidebar(): React.JSX.Element {
 	const openDashboard = useAppStore(state => state.openDashboard);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
+	const openChapterCreator = useAppStore(state => state.openChapterCreator);
 	const openProject = useAppStore(state => state.openProject);
 	const recentProjectRoots = useAppStore(state => state.recentProjectRoots) ?? [];
 	const sidebarWidth = useAppStore(state => state.sidebarWidth);
@@ -118,7 +119,17 @@ export function ProjectSidebar(): React.JSX.Element {
 			<section className="tree-section" aria-labelledby="work-content-heading">
 				<div className="section-label" id="work-content-heading">
 					<span>作品内容</span>
-					<button className="icon-button compact" type="button" aria-label="新建章节（迁移验收后启用）" disabled><Plus size={16} /></button>
+					<button
+						className="icon-button compact"
+						type="button"
+						aria-label="新建章节"
+						aria-keyshortcuts="Control+N Meta+N"
+						title="新建章节 (Ctrl+N)"
+						disabled={snapshot.readOnly}
+						onClick={openChapterCreator}
+					>
+						<Plus size={16} />
+					</button>
 				</div>
 				<div className="resource-tree">
 					<ProjectStructureTree

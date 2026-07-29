@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore, type QuickCaptureSeed } from '../../app/store';
+import { useModalFocus } from '../../accessibility/useModalFocus';
 import {
 	quickCaptureTypes,
 	type QuickCaptureType
@@ -26,12 +27,6 @@ const captureChoices: Readonly<Record<QuickCaptureType, {
 	character: { label: '人物', icon: UserRound },
 	world: { label: '设定', icon: Globe2 }
 };
-
-function restoreManuscriptFocus(): void {
-	window.requestAnimationFrame(() => {
-		window.dispatchEvent(new CustomEvent('writing-buddy:focus-editor'));
-	});
-}
 
 export function QuickCaptureDialog(): React.JSX.Element | null {
 	const open = useAppStore(state => state.quickCaptureOpen);
@@ -52,6 +47,7 @@ function QuickCaptureDialogContent({
 	const [type, setType] = useState<QuickCaptureType>(seed?.type ?? 'idea');
 	const [text, setText] = useState(seed?.text ?? '');
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	const dialogRef = useModalFocus(close);
 
 	useEffect(() => {
 		window.requestAnimationFrame(() => {
@@ -66,13 +62,10 @@ function QuickCaptureDialogContent({
 	const closeAndRestore = () => {
 		if (busy) return;
 		close();
-		restoreManuscriptFocus();
 	};
 	const saveAndRestore = async () => {
 		if (!text.trim() || busy) return;
-		if (await save(type, text)) {
-			restoreManuscriptFocus();
-		}
+		await save(type, text);
 	};
 	const chapterTitle = seed?.chapterId
 		? snapshot?.project.volumes
@@ -88,15 +81,14 @@ function QuickCaptureDialogContent({
 			}}
 		>
 			<section
+				ref={dialogRef}
 				className="quick-capture-dialog"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="quick-capture-title"
+				tabIndex={-1}
 				onKeyDown={event => {
-					if (event.key === 'Escape') {
-						event.preventDefault();
-						closeAndRestore();
-					} else if (
+					if (
 						event.key === 'Enter'
 						&& (event.ctrlKey || event.metaKey)
 					) {

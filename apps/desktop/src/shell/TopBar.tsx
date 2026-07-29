@@ -12,10 +12,8 @@ import {
 	Sparkles
 } from 'lucide-react';
 import { useAppStore } from '../app/store';
-import {
-	aiGenerationStore,
-	useAiGenerationStore
-} from '../features/ai/drawer/aiGenerationStore';
+import { useAiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
+import { openAiQuickActions } from '../features/ai/drawer/openAiQuickActions';
 import { GlobalCreateMenu } from '../features/projects/ui/GlobalCreateMenu';
 import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 
@@ -34,62 +32,8 @@ export function TopBar(): React.JSX.Element {
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
 	const resetWorkspaceLayout = useAppStore(state => state.resetWorkspaceLayout);
 	const activeResource = useAppStore(state => state.activeResource);
-	const resourceContent = useAppStore(state => state.resourceContent);
-	const selection = useAppStore(state => state.selection);
 	const drawerOpen = useAiGenerationStore(state => state.open);
 	const quietWriterHeader = activeMode === 'works' && Boolean(activeResource);
-
-	const openAiDrawer = () => {
-		const activeChapter = snapshot?.project.volumes
-			.flatMap(volume => volume.chapters)
-			.find(chapter => chapter.id === activeResource?.id);
-		const content = session?.content ?? resourceContent;
-		aiGenerationStore.getState().openAiAction(
-			'review.consistency',
-			{ instruction: '' },
-			{
-				currentResourceType: activeResource?.type,
-				baseRevision: session?.state.version ?? 0,
-				context: {
-					...(snapshot ? {
-						project: {
-							id: snapshot.project.projectId,
-							title: snapshot.project.title,
-							summary: `${snapshot.project.volumes.length} 卷作品；仅发送当前明确勾选的上下文。`
-						}
-					} : {}),
-					...(activeResource && content ? {
-						currentResource: {
-							id: activeResource.id,
-							title: activeResource.title,
-							summary: content
-						}
-					} : {}),
-					...(selection?.text ? {
-						selection: {
-							id: `${activeResource?.id ?? 'selection'}:${selection.start}-${selection.end}`,
-							title: '当前选区',
-							summary: selection.text,
-							start: selection.start,
-							end: selection.end
-						}
-					} : {}),
-					...(activeChapter ? {
-						scene: {
-							id: `${activeChapter.id}:scene`,
-							title: '当前场景信息',
-							summary: [
-								activeChapter.scene.location ? `地点：${activeChapter.scene.location}` : '',
-								activeChapter.scene.time ? `时间：${activeChapter.scene.time}` : '',
-								activeChapter.scene.pov ? `视角：${activeChapter.scene.pov}` : '',
-								activeChapter.scene.goal ? `目标：${activeChapter.scene.goal}` : ''
-							].filter(Boolean).join('\n') || '当前章节尚未设置场景信息。'
-						}
-					} : {})
-				}
-			}
-		);
-	};
 
 	if (focusMode) {
 		return (
@@ -141,7 +85,7 @@ export function TopBar(): React.JSX.Element {
 				<kbd>Ctrl K</kbd>
 			</button>
 			<div className="top-actions">
-				{!quietWriterHeader && <GlobalCreateMenu />}
+				<GlobalCreateMenu shortcutOnly={quietWriterHeader} />
 				<button
 					className="ghost-button"
 					type="button"
@@ -171,7 +115,8 @@ export function TopBar(): React.JSX.Element {
 						className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
 						type="button"
 						aria-label="AI 快速生成"
-						onClick={openAiDrawer}
+						onClick={openAiQuickActions}
+						aria-keyshortcuts="Alt+A"
 					>
 						<Sparkles size={18} />
 						<span>AI 快速生成</span>
@@ -189,7 +134,7 @@ export function TopBar(): React.JSX.Element {
 								{assistantOpen ? <PanelRightClose size={18} /> : <PanelRightOpen size={18} />}
 								{assistantOpen ? '收起写作助手' : '打开写作助手'}
 							</button>
-							<button type="button" role="menuitem" onClick={openAiDrawer}>
+							<button type="button" role="menuitem" onClick={openAiQuickActions}>
 								<Sparkles size={18} />AI 快速动作
 							</button>
 							<button type="button" role="menuitem" onClick={resetWorkspaceLayout}>

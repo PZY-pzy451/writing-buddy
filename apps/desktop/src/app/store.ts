@@ -128,6 +128,7 @@ type StructureUndoState = {
 } & ({
 	readonly kind: 'project';
 	readonly inverseCommand: MoveCommand;
+	readonly entityType: Extract<MoveCommand['entityType'], 'volume' | 'chapter'>;
 } | {
 	readonly kind: 'scene';
 	readonly receipt: ProjectSceneMoveUndoReceipt;
@@ -198,6 +199,9 @@ interface AppState extends PersistedWorkspace {
 	readonly quickCaptureBusy: boolean;
 	readonly quickCaptureSeed?: QuickCaptureSeed;
 	readonly projectWizardOpen: boolean;
+	readonly chapterCreatorOpen: boolean;
+	readonly chapterCreateBusy: boolean;
+	readonly recentlyClosedResources: readonly ResourceDescriptor[];
 	readonly structureMoveBusy: boolean;
 	readonly structureMoveAnnouncement?: string;
 	readonly structureScenes: readonly StoryScene[];
@@ -224,6 +228,9 @@ interface AppState extends PersistedWorkspace {
 	readonly chooseProject: () => Promise<void>;
 	readonly openProjectWizard: () => void;
 	readonly closeProjectWizard: () => void;
+	readonly openChapterCreator: () => void;
+	readonly closeChapterCreator: () => void;
+	readonly createChapter: (title: string, volumeId?: string) => Promise<boolean>;
 	readonly moveProjectStructure: (command: MoveCommand) => Promise<boolean>;
 	readonly undoProjectStructureMove: () => Promise<void>;
 	readonly dismissProjectStructureUndo: () => void;
@@ -242,6 +249,8 @@ interface AppState extends PersistedWorkspace {
 	readonly openStoryResource: (reference: StoryResourceReference) => Promise<void>;
 	readonly restoreStoryResource: () => Promise<void>;
 	readonly closeResource: (resourceId: string) => void;
+	readonly restoreLastClosedResource: () => Promise<boolean>;
+	readonly activateNextResource: () => Promise<boolean>;
 	readonly setContent: (content: string, change?: 'edit' | 'undo' | 'redo') => void;
 	readonly updateCursor: (cursor: CursorState) => void;
 	readonly requestEditorEdit: (edit: NonNullable<AppState['pendingEdit']>) => void;
@@ -464,6 +473,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	quickCaptureOpen: false,
 	quickCaptureBusy: false,
 	projectWizardOpen: false,
+	chapterCreatorOpen: false,
+	chapterCreateBusy: false,
+	recentlyClosedResources: [],
 	structureMoveBusy: false,
 	structureScenes: [],
 	sessionRestoreState: 'idle',
@@ -491,6 +503,95 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 
 	closeProjectWizard() {
 		set({ projectWizardOpen: false });
+	},
+
+	openChapterCreator() {
+		const snapshot = get().snapshot;
+		if (!snapshot) {
+			set({ error: '请先打开作品，再新建章节。' });
+			return;
+		}
+		if (snapshot.readOnly) {
+			set({ error: '当前作品以只读模式打开，不能新建章节。' });
+			return;
+		}
+		set({ chapterCreatorOpen: true, error: undefined });
+	},
+
+	closeChapterCreator() {
+		if (!get().chapterCreateBusy) {
+			set({ chapterCreatorOpen: false });
+		}
+	},
+
+	async createChapter(title, volumeId) {
+		const snapshot = get().snapshot;
+		if (!snapshot || snapshot.readOnly || get().chapterCreateBusy) return false;
+		const normalizedTitle = title.trim();
+		if (!normalizedTitle || normalizedTitle.length > 120 || /[\r\n]/.test(normalizedTitle)) {
+			set({ error: '章节标题需要为 1–120 个字符，且不能换行。' });
+			return false;
+		}
+		if (get().session?.state.dirty) {
+			await get().save();
+			if (get().session?.state.dirty) {
+				set({ error: '当前正文尚未保存，未创建新章节。' });
+				return false;
+			}
+		}
+		set({ chapterCreateBusy: true, error: undefined });
+		try {
+			const result = await desktopBridge.createChapter({
+				projectRoot: snapshot.root,
+				expectedProjectRevision: snapshot.projectRevision,
+				title: normalizedTitle,
+				...(volumeId ? { volumeId } : {})
+			});
+			const nextSnapshot: ProjectSnapshot = {
+				...snapshot,
+				project: result.project,
+				projectRevision: result.projectRevision,
+				wordCounts: {
+					...snapshot.wordCounts,
+					[result.chapter.id]: 0
+				}
+			};
+			const resource: ResourceDescriptor = {
+				id: result.chapter.id,
+				type: 'chapter',
+				title: result.chapter.title,
+				path: result.chapter.file,
+				projectId: result.project.projectId
+			};
+			set({
+				snapshot: nextSnapshot,
+				chapterCreatorOpen: false,
+				chapterCreateBusy: false,
+				structureMoveAnnouncement: result.description
+			});
+			await get().openResource(resource);
+			return true;
+		} catch (error) {
+			const code = error instanceof Error
+				? error.message.split(':')[0]
+				: 'chapterCreateFailed';
+			const copy: Readonly<Record<string, string>> = {
+				projectReadOnly: '当前作品以只读模式打开，不能新建章节。',
+				projectRevisionConflict: '作品结构已变化，请重新载入后再新建章节。',
+				chapterTitleInvalid: '章节标题需要为 1–120 个字符，且不能换行。',
+				chapterVolumeMissing: '目标卷已不存在，请重新选择。',
+				chapterFileLimitReached: '章节文件数量已达到当前项目上限。',
+				chapterFileWriteFailed: '无法写入新章节正文，项目结构未改变。',
+				chapterManifestWriteFailed: '无法保存新章节结构，正文文件已回滚。',
+				chapterCreateVerificationFailed: '新章节验证失败，已恢复创建前状态。',
+				chapterCreateFailed: '暂时无法创建章节。'
+			};
+			set({
+				chapterCreateBusy: false,
+				error: copy[code] ?? copy.chapterCreateFailed
+			});
+			return false;
+		}
 	},
 
 	async moveProjectStructure(command) {
@@ -567,12 +668,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				},
 				structureMoveBusy: false,
 				structureMoveAnnouncement: result.description,
-				structureUndo: {
-					kind: 'project',
-					inverseCommand: result.inverseCommand,
-					description: result.description,
-					expiresAt: Date.now() + 6000
-				}
+					structureUndo: {
+						kind: 'project',
+						inverseCommand: result.inverseCommand,
+						entityType: command.entityType,
+						description: result.description,
+						expiresAt: Date.now() + 6000
+					}
 			});
 			return true;
 		} catch (error) {
@@ -689,7 +791,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			projectOpenError: undefined,
 			pendingProjectRoot: root,
 			sessionRestoreState: 'restoring',
-			sessionRestoreNotice: undefined
+			sessionRestoreNotice: undefined,
+			recentlyClosedResources: [],
+			chapterCreatorOpen: false,
+			chapterCreateBusy: false
 		});
 		const result = mode === 'read-only'
 			? await projectOpenService.openProjectReadOnly(root)
@@ -1046,6 +1151,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			externalConflict: undefined,
 			saveState: { type: 'clean', savedAt: new Date().toISOString() },
 			error: undefined,
+			recentlyClosedResources: state.recentlyClosedResources.filter(
+				candidate => candidate.id !== resource.id
+			),
 			writerSessions: updateCurrentWriterSession(
 				state,
 				session => updateSessionResource(session, resource, openResourceIds)
@@ -1149,6 +1257,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	closeResource(resourceId) {
+		const closing = get().tabs.find(resource => resource.id === resourceId);
 		const session = get().session;
 		if (get().activeResource?.id === resourceId && session?.state.dirty) {
 			if (!window.confirm('当前内容尚未保存。确定要关闭这个标签并放弃未保存修改吗？')) {
@@ -1161,6 +1270,14 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		set(state => ({
 			tabs: tabs.state.resources,
 			openResourceIds,
+			recentlyClosedResources: closing
+				? [
+					closing,
+					...state.recentlyClosedResources.filter(
+						candidate => candidate.id !== closing.id
+					)
+				].slice(0, 12)
+				: state.recentlyClosedResources,
 			writerSessions: updateCurrentWriterSession(state, writerSession => {
 				const updated = touchWriterSession(writerSession, {
 					openTabs: openResourceIds.map(id => ({ resourceId: id })),
@@ -1382,6 +1499,28 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		} finally {
 			if (activeManuscriptSave === task) activeManuscriptSave = undefined;
 		}
+	},
+
+	async restoreLastClosedResource() {
+		const resource = get().recentlyClosedResources[0];
+		if (!resource) {
+			set({ writerNavigatorNotice: '没有可恢复的标签。' });
+			return false;
+		}
+		await get().openResource(resource);
+		return get().activeResource?.id === resource.id;
+	},
+
+	async activateNextResource() {
+		const resources = get().tabs;
+		if (resources.length < 2) return false;
+		const activeIndex = resources.findIndex(
+			resource => resource.id === get().activeResource?.id
+		);
+		const next = resources[(activeIndex + 1 + resources.length) % resources.length];
+		if (!next) return false;
+		await get().openResource(next);
+		return get().activeResource?.id === next.id;
 	},
 
 	async saveAs() {
