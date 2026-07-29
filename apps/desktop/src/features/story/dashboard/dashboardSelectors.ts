@@ -33,9 +33,18 @@ export interface StoryDashboardModel {
 export function selectStoryDashboardModel(
 	snapshot: ProjectSnapshot,
 	issues: readonly ReviewIssue[],
-	kernel: DashboardKernelData
+	kernel: DashboardKernelData,
+	preferredChapterId?: string
 ): StoryDashboardModel {
 	const chapters = flattenChapters(snapshot.project);
+	const recentChapter = chapters.find(chapter => chapter.id === preferredChapterId)
+		?? chapters[0];
+	const recentChapters = recentChapter
+		? [
+				recentChapter,
+				...chapters.filter(chapter => chapter.id !== recentChapter.id)
+			].slice(0, 3)
+		: [];
 	const totalWords = chapters.reduce(
 		(total, chapter) => total + (snapshot.wordCounts[chapter.id] ?? 0),
 		0
@@ -55,8 +64,8 @@ export function selectStoryDashboardModel(
 		title: snapshot.project.title,
 		chapterCount: chapters.length,
 		totalWords,
-		recentChapter: chapters[0],
-		recentChapters: chapters.slice(0, 3),
+		recentChapter,
+		recentChapters,
 		activePlotThreads,
 		overdueForeshadowing,
 		openReviewIssues,

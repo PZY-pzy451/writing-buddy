@@ -31,11 +31,25 @@ const projectSnapshot: ProjectSnapshot = {
 					goal: '找到遗失的笔记',
 					note: ''
 				}
+			}, {
+				id: 'chapter-two',
+				title: 'Second chapter',
+				file: 'chapters/chapter-two.md',
+				status: 'draft',
+				targetWords: 3000,
+				scene: {
+					location: 'North platform',
+					time: '00:06',
+					pov: 'Lin',
+					characters: ['Lin'],
+					goal: 'Continue the search',
+					note: ''
+				}
 			}]
 		}]
 	},
 	resources: [],
-	wordCounts: { 'chapter-one': 1260 },
+	wordCounts: { 'chapter-one': 1260, 'chapter-two': 420 },
 	integrityIssues: [],
 	readOnly: false
 };
@@ -146,10 +160,63 @@ describe('StoryDashboardPage', () => {
 
 		expect(await screen.findByText('失踪笔记')).toBeInTheDocument();
 		expect(screen.getByText('3 项待处理')).toBeInTheDocument();
-		const continueButton = screen.getByRole('button', { name: '继续写作' });
+		const continueButton = screen.getByRole('button', { name: '继续上次位置' });
 		continueButton.focus();
 		fireEvent.keyDown(continueButton, { key: 'Enter' });
 		fireEvent.click(continueButton);
 		await waitFor(() => expect(openResource).toHaveBeenCalled());
+	});
+
+	it('continues the persisted chapter and explains the restored writing position', async () => {
+		const openResource = vi.fn(() => Promise.resolve());
+		useAppStore.setState({
+			snapshot: projectSnapshot,
+			activeResource: undefined,
+			tabs: [],
+			issues: [],
+			openResource,
+			writerSessions: {
+				'project-dashboard': {
+					schemaVersion: 1,
+					projectId: 'project-dashboard',
+					activeWorkspace: 'writing',
+					activeChapterId: 'chapter-two',
+					activeSceneId: 'scene-two',
+					activeResourceId: 'chapter-two',
+					openTabs: [{ resourceId: 'chapter-two' }],
+					cursor: {
+						chapterId: 'chapter-two',
+						line: 18,
+						column: 4
+					},
+					scroll: {
+						chapterId: 'chapter-two',
+						scrollTop: 640
+					},
+					expandedTreeNodes: ['volume-one', 'references'],
+					panelState: {
+						projectSidebarWidth: 320,
+						assistantWidth: 360,
+						assistantVisible: false,
+						inspectorVisible: false,
+						sidebarVisible: true,
+						dockHeight: 240,
+						dockVisible: false
+					},
+					focusMode: false,
+					updatedAt: '2026-07-28T14:41:00.000Z'
+				}
+			}
+		} as never);
+		render(<StoryDashboardPage loadKernelData={() => Promise.resolve(emptyKernel)} />);
+
+		expect((await screen.findAllByText('Second chapter')).length).toBeGreaterThan(0);
+		expect(screen.getByText(/第 18 段/)).toBeInTheDocument();
+		expect(screen.getByText(/上次编辑/)).toBeInTheDocument();
+		const continueButton = screen.getByRole('button', { name: '继续上次位置' });
+		fireEvent.click(continueButton);
+		await waitFor(() => expect(openResource).toHaveBeenCalledWith(expect.objectContaining({
+			id: 'chapter-two'
+		})));
 	});
 });

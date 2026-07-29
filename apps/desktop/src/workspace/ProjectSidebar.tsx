@@ -11,7 +11,7 @@ import {
 	Trash2,
 	UserRound
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { countWords, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
@@ -43,8 +43,14 @@ export function ProjectSidebar(): React.JSX.Element {
 	const recentProjectRoots = useAppStore(state => state.recentProjectRoots) ?? [];
 	const sidebarWidth = useAppStore(state => state.sidebarWidth);
 	const setSidebarWidth = useAppStore(state => state.setSidebarWidth);
-	const [collapsedVolumes, setCollapsedVolumes] = useState<ReadonlySet<string>>(new Set());
-	const [referencesExpanded, setReferencesExpanded] = useState(true);
+	const expandedTreeNodes = useAppStore(state => state.expandedTreeNodes);
+	const setTreeNodeExpanded = useAppStore(state => state.setTreeNodeExpanded);
+	const collapsedVolumes = useMemo(() => new Set(
+		(snapshot?.project.volumes ?? [])
+			.map(volume => volume.id)
+			.filter(volumeId => !expandedTreeNodes.includes(volumeId))
+	), [expandedTreeNodes, snapshot]);
+	const referencesExpanded = expandedTreeNodes.includes('references');
 
 	const resources = useMemo(() => {
 		if (!snapshot) {
@@ -81,15 +87,7 @@ export function ProjectSidebar(): React.JSX.Element {
 	}
 
 	const toggleVolume = (volumeId: string) => {
-		setCollapsedVolumes(current => {
-			const next = new Set(current);
-			if (next.has(volumeId)) {
-				next.delete(volumeId);
-			} else {
-				next.add(volumeId);
-			}
-			return next;
-		});
+		setTreeNodeExpanded(volumeId, collapsedVolumes.has(volumeId));
 	};
 
 	const chapterWords = (chapterId: string): number => chapterId === activeResource?.id && session
@@ -141,7 +139,7 @@ export function ProjectSidebar(): React.JSX.Element {
 			</section>
 
 			<section className="tree-section" aria-labelledby="references-heading">
-				<button className="section-label section-toggle" type="button" onClick={() => setReferencesExpanded(value => !value)}>
+				<button className="section-label section-toggle" type="button" onClick={() => setTreeNodeExpanded('references', !referencesExpanded)}>
 					<span id="references-heading">{referencesExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />} 写作资料</span>
 					<span>{resources.length}</span>
 				</button>

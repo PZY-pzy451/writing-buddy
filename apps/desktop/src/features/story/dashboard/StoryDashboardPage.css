@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template:
 		"header header" 92px
-		"continue today" 180px
+		"continue today" 232px
 		"plot review" 220px
 		"recent recent" 210px
 		/ minmax(0, 526px) minmax(0, 538px);
@@ -114,9 +114,30 @@
 }
 
 .dashboard-continue > p {
-	margin: 5px 0 12px;
+	margin: 5px 0 7px;
 	color: var(--text-muted);
 	font-size: 12px;
+}
+
+.dashboard-restore-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px 12px;
+	margin: 0 0 9px;
+	color: var(--text-secondary);
+	font-size: 11px;
+}
+
+.dashboard-restore-meta span:last-child {
+	color: var(--success-strong, #387c53);
+}
+
+.dashboard-restore-notice {
+	margin: 0 0 9px !important;
+	padding: 6px 8px;
+	color: var(--warning-strong, #8b5a14) !important;
+	background: var(--warning-soft, #fff4d8);
+	border-radius: 6px;
 }
 
 .dashboard-actions,

@@ -92,6 +92,12 @@ export function StoryDashboardPage({
 }: StoryDashboardPageProps): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const issues = useAppStore(state => state.issues);
+	const writerSession = useAppStore(state => {
+		const projectId = state.snapshot?.project.projectId;
+		return projectId ? state.writerSessions[projectId] : undefined;
+	});
+	const sessionRestoreNotice = useAppStore(state => state.sessionRestoreNotice);
+	const structureScenes = useAppStore(state => state.structureScenes);
 	const openResource = useAppStore(state => state.openResource);
 	const openStoryResource = useAppStore(state => state.openStoryResource);
 	const setMode = useAppStore(state => state.setMode);
@@ -120,8 +126,10 @@ export function StoryDashboardPage({
 		? kernelState.data
 		: undefined;
 	const model = useMemo(() => (
-		snapshot && kernel ? selectStoryDashboardModel(snapshot, issues, kernel) : undefined
-	), [issues, kernel, snapshot]);
+		snapshot && kernel
+			? selectStoryDashboardModel(snapshot, issues, kernel, writerSession?.activeChapterId)
+			: undefined
+	), [issues, kernel, snapshot, writerSession?.activeChapterId]);
 
 	if (!snapshot) {
 		return (
@@ -150,6 +158,23 @@ export function StoryDashboardPage({
 	const pendingLabel = model
 		? model.pendingTotal === 0 ? '当前没有待处理问题' : `${model.pendingTotal} 项待处理`
 		: '';
+	const restoredSceneTitle = writerSession?.activeSceneId
+		? structureScenes.find(scene => scene.id === writerSession.activeSceneId)?.title
+		: undefined;
+	const restoredPosition = writerSession?.cursor
+		? [
+				restoredSceneTitle,
+				`第 ${writerSession.cursor.line} 段`
+			].filter(Boolean).join(' · ')
+		: restoredSceneTitle;
+	const lastEditedLabel = writerSession?.updatedAt
+		? new Intl.DateTimeFormat('zh-CN', {
+				month: 'numeric',
+				day: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit'
+			}).format(new Date(writerSession.updatedAt))
+		: undefined;
 
 	return (
 		<main
@@ -179,12 +204,20 @@ export function StoryDashboardPage({
 						<>
 							<strong className="dashboard-primary-value">{model.recentChapter.title}</strong>
 							<p>{model.recentChapter.scene.location || '尚未设置地点'} · {model.recentChapter.scene.pov || '尚未设置视角'}</p>
+							<div className="dashboard-restore-meta" aria-label="上次写作会话">
+								{restoredPosition && <span>{restoredPosition}</span>}
+								{lastEditedLabel && <span>上次编辑 {lastEditedLabel}</span>}
+								<span>已保存</span>
+							</div>
+							{sessionRestoreNotice && (
+								<p className="dashboard-restore-notice" role="status">{sessionRestoreNotice}</p>
+							)}
 							<div className="dashboard-actions">
 								<button type="button" onClick={() => openChapter(model.recentChapter)}>
-									继续写作<ArrowRight size={16} />
+									继续上次位置<ArrowRight size={16} />
 								</button>
 								<button type="button" className="secondary" onClick={() => openChapter(model.recentChapter)}>
-									打开章节计划
+									规划下一场
 								</button>
 							</div>
 						</>

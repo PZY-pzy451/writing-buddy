@@ -11,6 +11,7 @@ import type { MoveCommand, ProjectSnapshot } from '@writing-buddy/platform-ports
 import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
 import {
 	DesktopStoryRepository,
+	toStoryChapterId,
 	type SelectionRewriteActionType,
 	type ManuscriptContinuationMode,
 	type ScenePlanActionType,
@@ -44,6 +45,15 @@ import {
 import { parseStoryTabKey } from '../features/story/application/StoryResourceRegistry';
 import { desktopBridge } from '../platform/bridge';
 import { clampWorkspaceSize } from '../shell/workspaceResize';
+import {
+	parseWriterSession,
+	parseWriterSessionMap,
+	reconcileWriterSession,
+	workspaceForRailMode,
+	type WriterSessionMap,
+	type WriterSessionPanelState,
+	type WriterSessionState
+} from './writerSession';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -110,6 +120,8 @@ interface PersistedWorkspace {
 	readonly assistantWidth: number;
 	readonly dockHeight: number;
 	readonly documentViews: Readonly<Record<string, CursorState>>;
+	readonly expandedTreeNodes: readonly string[];
+	readonly writerSessions: WriterSessionMap;
 }
 
 interface AppState extends PersistedWorkspace {
@@ -144,6 +156,8 @@ interface AppState extends PersistedWorkspace {
 	readonly structureScenes: readonly StoryScene[];
 	readonly structureUndo?: StructureUndoState;
 	readonly lastSavedAt?: string;
+	readonly sessionRestoreState: 'idle' | 'restoring' | 'ready' | 'fallback';
+	readonly sessionRestoreNotice?: string;
 	readonly pendingEdit?: {
 		readonly id: string;
 		readonly resourceId: string;
@@ -211,6 +225,8 @@ interface AppState extends PersistedWorkspace {
 	readonly setSidebarWidth: (width: number) => void;
 	readonly setAssistantWidth: (width: number) => void;
 	readonly setDockHeight: (height: number) => void;
+	readonly setTreeNodeExpanded: (nodeId: string, expanded: boolean) => void;
+	readonly flushWriterSession: () => void;
 }
 
 const tabs = new ResourceTabManager();
@@ -220,6 +236,72 @@ const projectSceneMoveService = new ProjectSceneMoveService(desktopBridge);
 const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
+
+const defaultWriterPanelState: WriterSessionPanelState = {
+	projectSidebarWidth: 320,
+	assistantWidth: 360,
+	assistantVisible: false,
+	inspectorVisible: false,
+	sidebarVisible: true,
+	dockHeight: 240,
+	dockVisible: false
+};
+
+function updateCurrentWriterSession(
+	state: AppState,
+	update: (session: WriterSessionState) => WriterSessionState
+): WriterSessionMap {
+	const projectId = state.snapshot?.project.projectId;
+	const session = projectId ? state.writerSessions[projectId] : undefined;
+	if (!projectId || !session) return state.writerSessions;
+	return {
+		...state.writerSessions,
+		[projectId]: update(session)
+	};
+}
+
+function touchWriterSession(
+	session: WriterSessionState,
+	patch: Partial<WriterSessionState>
+): WriterSessionState {
+	return {
+		...session,
+		...patch,
+		updatedAt: new Date().toISOString()
+	};
+}
+
+function updateSessionResource(
+	session: WriterSessionState,
+	resource: ResourceDescriptor,
+	openResourceIds: readonly string[]
+): WriterSessionState {
+	const chapterChanged = resource.type === 'chapter'
+		&& resource.id !== session.activeChapterId;
+	const updated = touchWriterSession(session, {
+		activeResourceId: resource.id,
+		...(resource.type === 'chapter' ? { activeChapterId: resource.id } : {}),
+		openTabs: openResourceIds.map(resourceId => ({ resourceId }))
+	});
+	if (!chapterChanged) return updated;
+	const withoutStaleChapterPosition = { ...updated };
+	delete withoutStaleChapterPosition.activeSceneId;
+	delete withoutStaleChapterPosition.cursor;
+	delete withoutStaleChapterPosition.scroll;
+	return withoutStaleChapterPosition;
+}
+
+function updateSessionPanel(
+	session: WriterSessionState,
+	panelState: Partial<WriterSessionPanelState>
+): WriterSessionState {
+	return touchWriterSession(session, {
+		panelState: {
+			...session.panelState,
+			...panelState
+		}
+	});
+}
 
 const projectMoveErrorCopy: Readonly<Record<string, string>> = {
 	projectReadOnly: '当前作品以只读模式打开，不能调整结构。',
@@ -285,6 +367,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	assistantWidth: 360,
 	dockHeight: 240,
 	documentViews: {},
+	expandedTreeNodes: [],
+	writerSessions: {},
 	activeMode: 'works',
 	storyView: 'characters',
 	recentProjectRoots: [],
@@ -299,6 +383,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	projectWizardOpen: false,
 	structureMoveBusy: false,
 	structureScenes: [],
+	sessionRestoreState: 'idle',
 
 	async bootstrap() {
 		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
@@ -516,7 +601,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			loading: true,
 			error: undefined,
 			projectOpenError: undefined,
-			pendingProjectRoot: root
+			pendingProjectRoot: root,
+			sessionRestoreState: 'restoring',
+			sessionRestoreNotice: undefined
 		});
 		const result = mode === 'read-only'
 			? await projectOpenService.openProjectReadOnly(root)
@@ -525,7 +612,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({
 				loading: false,
 				projectOpenError: result.error,
-				projectOpenBusyAction: undefined
+				projectOpenBusyAction: undefined,
+				sessionRestoreState: 'idle'
 			});
 			return;
 		}
@@ -555,7 +643,83 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			} catch {
 				structureScenes = [];
 			}
-			const persistedResourceIds = get().openResourceIds;
+			const chapterIds = flattenChapters(snapshot.project).map(chapter => chapter.id);
+			const expandedTreeNodeIds = [
+				...snapshot.project.volumes.map(volume => volume.id),
+				'references'
+			];
+			const current = get();
+			const panelDefaults: WriterSessionPanelState = {
+				...defaultWriterPanelState,
+				projectSidebarWidth: current.sidebarWidth,
+				assistantWidth: current.assistantWidth,
+				sidebarVisible: current.sidebarOpen,
+				dockHeight: current.dockHeight
+			};
+			const legacyActiveResourceId = current.activeResourceId;
+			const legacyOpenResourceIds = current.openResourceIds;
+			const legacyChapterId = legacyActiveResourceId && chapterIds.includes(legacyActiveResourceId)
+				? legacyActiveResourceId
+				: legacyOpenResourceIds.find(resourceId => chapterIds.includes(resourceId));
+			const legacyCursor = legacyChapterId
+				? current.documentViews[`${snapshot.project.projectId}:${legacyChapterId}`]
+				: undefined;
+			const legacySession: WriterSessionState | undefined = (
+				Object.keys(current.writerSessions).length === 0
+				&& (legacyActiveResourceId || legacyOpenResourceIds.length)
+			) ? {
+					schemaVersion: 1,
+					projectId: snapshot.project.projectId,
+					activeWorkspace: workspaceForRailMode(current.activeMode),
+					...(legacyChapterId ? { activeChapterId: legacyChapterId } : {}),
+					...(legacyActiveResourceId ? { activeResourceId: legacyActiveResourceId } : {}),
+					openTabs: legacyOpenResourceIds.map(resourceId => ({ resourceId })),
+					...(legacyChapterId && legacyCursor ? {
+						cursor: {
+							chapterId: legacyChapterId,
+							line: legacyCursor.lineNumber,
+							column: legacyCursor.column
+						},
+						scroll: {
+							chapterId: legacyChapterId,
+							scrollTop: legacyCursor.scrollTop
+						}
+					} : {}),
+					expandedTreeNodes: current.expandedTreeNodes.length
+						? current.expandedTreeNodes
+						: expandedTreeNodeIds,
+					panelState: panelDefaults,
+					focusMode: false,
+					updatedAt: new Date().toISOString()
+				} : undefined;
+			const storedSession: unknown = current.writerSessions[snapshot.project.projectId]
+				?? legacySession;
+			const parsedStoredSession = parseWriterSession(storedSession);
+			const storedResourceIds = parsedStoredSession?.openTabs.map(tab => tab.resourceId) ?? [];
+			const storyTabIds = storedResourceIds.filter(resourceId => parseStoryTabKey(resourceId));
+			const resourceIds = [
+				...chapterIds,
+				...snapshot.resources.map(resource => resource.id),
+				...storyTabIds
+			];
+			const reconciled = reconcileWriterSession(storedSession, {
+				projectId: snapshot.project.projectId,
+				chapterIds,
+				resourceIds,
+				sceneIdsByChapter: Object.fromEntries(chapterIds.map(chapterId => [
+					chapterId,
+					structureScenes
+						.filter(scene => (
+							scene.chapterId === chapterId
+							|| scene.chapterId === toStoryChapterId(chapterId)
+						))
+						.map(scene => scene.id)
+				])),
+				expandedTreeNodeIds,
+				defaultPanelState: panelDefaults,
+				now: new Date().toISOString()
+			});
+			const persistedResourceIds = reconciled.session.openTabs.map(tab => tab.resourceId);
 			const restoredTabs = persistedResourceIds
 				.filter(resourceId => !parseStoryTabKey(resourceId))
 				.map(resourceId => toResource(snapshot, resourceId))
@@ -568,9 +732,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			);
 			const restoredStoryResults = await storyResourceOpenService.restoreStoryResources(
 				persistedResourceIds,
-				get().activeResourceId
+				reconciled.session.activeResourceId
 			);
-			const persistedActiveId = get().activeResourceId;
+			const persistedActiveId = reconciled.session.activeResourceId;
 			if (persistedActiveId) {
 				tabs.activate(persistedActiveId);
 			}
@@ -579,6 +743,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				: undefined;
 			const activeStoryResult = active
 				? restoredStoryResults.find(result => result.tab.id === active.id)
+				: undefined;
+			const restoredView = reconciled.session.cursor && reconciled.session.scroll
+				? {
+						lineNumber: reconciled.session.cursor.line,
+						column: reconciled.session.cursor.column,
+						scrollTop: reconciled.session.scroll.scrollTop
+					}
 				: undefined;
 			set({
 				snapshot,
@@ -589,11 +760,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					accent: snapshot.appearance.accentId
 				} : {}),
 				loading: false,
+				activeMode: 'works',
 				issues: restoredIssues,
 				reviewHash: reviewFile?.hash ?? '',
 				tabs: tabs.state.resources,
 				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
 				activeResource: undefined,
+				activeResourceId: undefined,
 				storyOpenResult: activeStoryResult,
 				session: undefined,
 				resourceContent: undefined,
@@ -605,19 +778,43 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				structureMoveBusy: false,
 				structureScenes,
 				structureMoveAnnouncement: undefined,
-				structureUndo: undefined
+				structureUndo: undefined,
+				focusMode: false,
+				sidebarOpen: reconciled.session.panelState.sidebarVisible,
+				sidebarWidth: clampWorkspaceSize(
+					'sidebar',
+					reconciled.session.panelState.projectSidebarWidth
+				),
+				assistantOpen: reconciled.session.panelState.assistantVisible,
+				assistantWidth: clampWorkspaceSize(
+					'assistant',
+					reconciled.session.panelState.assistantWidth
+				),
+				dockOpen: reconciled.session.panelState.dockVisible,
+				dockHeight: clampWorkspaceSize('dock', reconciled.session.panelState.dockHeight),
+				expandedTreeNodes: reconciled.session.expandedTreeNodes,
+				writerSessions: {
+					...current.writerSessions,
+					[snapshot.project.projectId]: reconciled.session
+				},
+				documentViews: restoredView && reconciled.session.activeChapterId
+					? {
+							...current.documentViews,
+							[`${snapshot.project.projectId}:${reconciled.session.activeChapterId}`]: restoredView
+						}
+					: current.documentViews,
+				sessionRestoreState: reconciled.notice ? 'fallback' : 'ready',
+				sessionRestoreNotice: reconciled.notice
 			});
 			void storyIndexService
 				.prepare(snapshot.root, !snapshot.readOnly)
 				.catch(() => undefined);
-			if (active) {
-				await get().openResource(active);
-			}
 		} catch (error) {
 			set({
 				loading: false,
 				projectOpenError: toPublicProjectOpenError(error, root),
-				projectOpenBusyAction: undefined
+				projectOpenBusyAction: undefined,
+				sessionRestoreState: 'idle'
 			});
 		}
 	},
@@ -704,28 +901,51 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		if (!resource.path) {
 			return;
 		}
+		const resourcePath = resource.path;
 		tabs.open(resource);
-		set({
+		const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+		set(state => ({
 			activeResource: resource,
 			activeResourceId: resource.id,
 			storyOpenResult: undefined,
 			tabs: tabs.state.resources,
-			openResourceIds: tabs.state.resources.map(candidate => candidate.id),
+			openResourceIds,
 			externalConflict: undefined,
-			error: undefined
-		});
+			error: undefined,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionResource(session, resource, openResourceIds)
+			)
+		}));
 		try {
 			if (resource.type === 'chapter' || resource.type === 'note') {
-				const file = await desktopBridge.readText(snapshot.root, resource.path);
+				const file = await desktopBridge.readText(snapshot.root, resourcePath);
 				const viewKey = `${snapshot.project.projectId}:${resource.id}`;
-				set({
-					session: new DocumentSession(resource.id, resource.path, file, get().documentViews[viewKey]),
+				const documentView = get().documentViews[viewKey];
+				set(state => ({
+					session: new DocumentSession(resource.id, resourcePath, file, documentView),
 					resourceContent: undefined,
-					resourceHash: undefined
-				});
+					resourceHash: undefined,
+					writerSessions: resource.type === 'chapter'
+						? updateCurrentWriterSession(state, writerSession => touchWriterSession(
+								writerSession,
+								{
+									cursor: {
+										chapterId: resource.id,
+										line: documentView?.lineNumber ?? 1,
+										column: documentView?.column ?? 1
+									},
+									scroll: {
+										chapterId: resource.id,
+										scrollTop: documentView?.scrollTop ?? 0
+									}
+								}
+							))
+						: state.writerSessions
+				}));
 			} else {
-				const content = await desktopBridge.readResource(snapshot.root, resource.path);
-				const file = await desktopBridge.readText(snapshot.root, resource.path);
+				const content = await desktopBridge.readResource(snapshot.root, resourcePath);
+				const file = await desktopBridge.readText(snapshot.root, resourcePath);
 				set({ session: undefined, resourceContent: content, resourceHash: file.hash });
 			}
 		} catch (error) {
@@ -740,18 +960,23 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 		try {
 			const result = await storyResourceOpenService.openStoryResource(reference);
-			set({
+			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+			set(state => ({
 				activeResource: result.tab,
 				activeResourceId: result.tab.id,
 				storyOpenResult: result,
 				tabs: tabs.state.resources,
-				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
+				openResourceIds,
 				session: undefined,
 				resourceContent: undefined,
 				resourceHash: undefined,
 				externalConflict: undefined,
-				error: undefined
-			});
+				error: undefined,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionResource(session, result.tab, openResourceIds)
+				)
+			}));
 		} catch (error) {
 			set({ error: error instanceof Error ? error.message : '无法打开 Story 资源。' });
 		}
@@ -764,14 +989,19 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 		try {
 			const result = await storyResourceOpenService.restoreFromTrash(missing.reference);
-			set({
+			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+			set(state => ({
 				activeResource: result.tab,
 				activeResourceId: result.tab.id,
 				storyOpenResult: result,
 				tabs: tabs.state.resources,
-				openResourceIds: tabs.state.resources.map(candidate => candidate.id),
-				error: undefined
-			});
+				openResourceIds,
+				error: undefined,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionResource(session, result.tab, openResourceIds)
+				)
+			}));
 		} catch (error) {
 			set({ error: error instanceof Error ? error.message : '资源不在可恢复区。' });
 		}
@@ -785,11 +1015,22 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			}
 		}
 		tabs.close(resourceId);
-		set({
-			tabs: tabs.state.resources,
-			openResourceIds: tabs.state.resources.map(candidate => candidate.id)
-		});
+		const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
 		const next = tabs.state.resources.find(resource => resource.id === tabs.state.activeId);
+		set(state => ({
+			tabs: tabs.state.resources,
+			openResourceIds,
+			writerSessions: updateCurrentWriterSession(state, writerSession => {
+				const updated = touchWriterSession(writerSession, {
+					openTabs: openResourceIds.map(id => ({ resourceId: id })),
+					...(next ? { activeResourceId: next.id } : {})
+				});
+				if (next) return updated;
+				const withoutActiveResource = { ...updated };
+				delete withoutActiveResource.activeResourceId;
+				return withoutActiveResource;
+			})
+		}));
 		if (next) {
 			void get().openResource(next);
 		} else {
@@ -815,7 +1056,14 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					: issue
 			))
 			: get().issues;
-		set({ session: session.copy(), issues });
+		set(state => ({
+			session: session.copy(),
+			issues,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				writerSession => touchWriterSession(writerSession, {})
+			)
+		}));
 		if (change === 'undo') {
 			get().setIssues(issues);
 		}
@@ -836,7 +1084,25 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			documentViews: {
 				...state.documentViews,
 				[viewKey]: cursor
-			}
+			},
+			writerSessions: session.state.resourceId === state.writerSessions[
+				state.snapshot?.project.projectId ?? ''
+			]?.activeChapterId
+				? updateCurrentWriterSession(state, writerSession => touchWriterSession(
+						writerSession,
+						{
+							cursor: {
+								chapterId: session.state.resourceId,
+								line: cursor.lineNumber,
+								column: cursor.column
+							},
+							scroll: {
+								chapterId: session.state.resourceId,
+								scrollTop: cursor.scrollTop
+							}
+						}
+					))
+				: state.writerSessions
 		}));
 	},
 
@@ -847,7 +1113,28 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 	requestEditorReveal(resourceId, offset) {
-		set({ pendingReveal: { resourceId, offset } });
+		set(state => {
+			const projectChapterId = state.snapshot
+				&& flattenChapters(state.snapshot.project).some(chapter => chapter.id === resourceId)
+				? resourceId
+				: undefined;
+			const scene = projectChapterId
+				? state.structureScenes.find(candidate => (
+						(candidate.chapterId === projectChapterId
+							|| candidate.chapterId === toStoryChapterId(projectChapterId))
+						&& candidate.manuscriptRange.start === offset
+					))
+				: undefined;
+			return {
+				pendingReveal: { resourceId, offset },
+				writerSessions: scene
+					? updateCurrentWriterSession(state, session => touchWriterSession(
+							session,
+							{ activeSceneId: scene.id }
+						))
+					: state.writerSessions
+			};
+		});
 	},
 	clearEditorReveal(resourceId, offset) {
 		const pending = get().pendingReveal;
@@ -1011,7 +1298,14 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setSelection(selection) { set({ selection }); },
 	setCursorOffset(cursorOffset) { set({ cursorOffset: Math.max(0, cursorOffset) }); },
 	setIssues(issues) {
-		set({ issues, dockOpen: true });
+		set(state => ({
+			issues,
+			dockOpen: true,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { dockVisible: true })
+			)
+		}));
 		window.clearTimeout(reviewPersistTimer);
 		reviewPersistTimer = window.setTimeout(() => {
 			const { snapshot, reviewHash } = get();
@@ -1026,7 +1320,17 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				}));
 		}, 150);
 	},
-	setMode(activeMode) { set({ activeMode }); },
+	setMode(activeMode) {
+		set(state => ({
+			activeMode,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => touchWriterSession(session, {
+					activeWorkspace: workspaceForRailMode(activeMode)
+				})
+			)
+		}));
+	},
 	setStoryView(storyView) { set({ activeMode: 'references', storyView }); },
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },
@@ -1037,24 +1341,113 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setInlinePlotExpansionEnabled(inlinePlotExpansionEnabled) {
 		set({ inlinePlotExpansionEnabled });
 	},
-	toggleSidebar() { set(state => ({ sidebarOpen: !state.sidebarOpen })); },
-	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
-	openAssistant() { set({ assistantOpen: true }); },
+	toggleSidebar() {
+		set(state => {
+			const sidebarOpen = !state.sidebarOpen;
+			return {
+				sidebarOpen,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionPanel(session, { sidebarVisible: sidebarOpen })
+				)
+			};
+		});
+	},
+	toggleAssistant() {
+		set(state => {
+			const assistantOpen = !state.assistantOpen;
+			return {
+				assistantOpen,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionPanel(session, { assistantVisible: assistantOpen })
+				)
+			};
+		});
+	},
+	openAssistant() {
+		set(state => ({
+			assistantOpen: true,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { assistantVisible: true })
+			)
+		}));
+	},
 	requestAssistantAction(request) {
-		set({
+		set(state => ({
 			assistantOpen: true,
 			assistantIntent: {
 				...request,
 				id: crypto.randomUUID()
-			}
+			},
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { assistantVisible: true })
+			)
+		}));
+	},
+	toggleDock() {
+		set(state => {
+			const dockOpen = !state.dockOpen;
+			return {
+				dockOpen,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionPanel(session, { dockVisible: dockOpen })
+				)
+			};
 		});
 	},
-	toggleDock() { set(state => ({ dockOpen: !state.dockOpen })); },
 	setSearch(search) { set({ search }); },
 	setError(error) { set({ error }); },
-	setSidebarWidth(sidebarWidth) { set({ sidebarWidth: clampWorkspaceSize('sidebar', sidebarWidth) }); },
-	setAssistantWidth(assistantWidth) { set({ assistantWidth: clampWorkspaceSize('assistant', assistantWidth) }); },
-	setDockHeight(dockHeight) { set({ dockHeight: clampWorkspaceSize('dock', dockHeight) }); }
+	setSidebarWidth(sidebarWidth) {
+		const width = clampWorkspaceSize('sidebar', sidebarWidth);
+		set(state => ({
+			sidebarWidth: width,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { projectSidebarWidth: width })
+			)
+		}));
+	},
+	setAssistantWidth(assistantWidth) {
+		const width = clampWorkspaceSize('assistant', assistantWidth);
+		set(state => ({
+			assistantWidth: width,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { assistantWidth: width })
+			)
+		}));
+	},
+	setDockHeight(dockHeight) {
+		const height = clampWorkspaceSize('dock', dockHeight);
+		set(state => ({
+			dockHeight: height,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { dockHeight: height })
+			)
+		}));
+	},
+	setTreeNodeExpanded(nodeId, expanded) {
+		set(state => {
+			const expandedTreeNodes = expanded
+				? [...new Set([...state.expandedTreeNodes, nodeId])]
+				: state.expandedTreeNodes.filter(candidate => candidate !== nodeId);
+			return {
+				expandedTreeNodes,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => touchWriterSession(session, { expandedTreeNodes })
+				)
+			};
+		});
+	},
+	flushWriterSession() {
+		set(state => ({ writerSessions: { ...state.writerSessions } }));
+	}
 }), {
 	name: 'writing-buddy-next-workspace',
 	partialize: state => ({
@@ -1073,8 +1466,26 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		sidebarWidth: state.sidebarWidth,
 		assistantWidth: state.assistantWidth,
 		dockHeight: state.dockHeight,
-		documentViews: state.documentViews
-	})
+		documentViews: state.documentViews,
+		expandedTreeNodes: state.expandedTreeNodes,
+		writerSessions: state.writerSessions
+	}),
+	version: 2,
+	merge: (persisted, current) => {
+		const workspace = persisted && typeof persisted === 'object'
+			? persisted as Partial<PersistedWorkspace>
+			: {};
+		return {
+			...current,
+			...workspace,
+			expandedTreeNodes: Array.isArray(workspace.expandedTreeNodes)
+				? workspace.expandedTreeNodes.filter(
+						(nodeId): nodeId is string => typeof nodeId === 'string'
+					)
+				: [],
+			writerSessions: parseWriterSessionMap(workspace.writerSessions)
+		};
+	}
 }));
 
 export function selectChapterWordCount(state: AppState): number {

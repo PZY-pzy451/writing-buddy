@@ -113,16 +113,22 @@ export function App(): React.JSX.Element {
 
 	useEffect(() => {
 		const beforeUnload = (event: BeforeUnloadEvent) => {
-			if (useAppStore.getState().session?.state.dirty) {
+			const state = useAppStore.getState();
+			state.flushWriterSession();
+			if (state.session?.state.dirty) {
 				event.preventDefault();
 			}
 		};
+		const pageHide = () => useAppStore.getState().flushWriterSession();
 		window.addEventListener('beforeunload', beforeUnload);
+		window.addEventListener('pagehide', pageHide);
 		let dispose: (() => void) | undefined;
 		if ('__TAURI_INTERNALS__' in window) {
 			void import('@tauri-apps/api/window')
 				.then(({ getCurrentWindow }) => getCurrentWindow().onCloseRequested(event => {
-					if (useAppStore.getState().session?.state.dirty
+					const state = useAppStore.getState();
+					state.flushWriterSession();
+					if (state.session?.state.dirty
 						&& !window.confirm('当前内容尚未保存。确定退出 Writing Buddy 吗？')) {
 						event.preventDefault();
 					}
@@ -131,6 +137,7 @@ export function App(): React.JSX.Element {
 		}
 		return () => {
 			window.removeEventListener('beforeunload', beforeUnload);
+			window.removeEventListener('pagehide', pageHide);
 			dispose?.();
 		};
 	}, []);

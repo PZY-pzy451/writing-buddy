@@ -33,7 +33,7 @@ describe('Writing Buddy product shell', () => {
 		const sidebar = await screen.findByRole('navigation', { name: '最近作品' });
 		await user.click(within(sidebar.parentElement as HTMLElement).getByRole('button', { name: '打开项目' }));
 		await screen.findByRole('main', { name: '作品仪表盘' });
-		await user.click(screen.getByRole('button', { name: '继续写作' }));
+		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 		await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: '第一章 停摆的时钟' })).toBeInTheDocument());
 		expect(screen.getByText('作品内容')).toBeInTheDocument();
 		expect(screen.getByText(/写作资料/)).toBeInTheDocument();

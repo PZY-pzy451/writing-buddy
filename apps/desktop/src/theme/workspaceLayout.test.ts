@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest';
 const workspaceCss = readFileSync(
 	'apps/desktop/src/theme/workspace.css',
 	'utf8'
-);
+).replaceAll('\r\n', '\n');
 const tokenCss = readFileSync(
 	'apps/desktop/src/theme/tokens.css',
 	'utf8'
-);
+).replaceAll('\r\n', '\n');
 
 describe('workspace grid contracts', () => {
 	it('lets dashboard and system pages override the closed dock editor rows', () => {

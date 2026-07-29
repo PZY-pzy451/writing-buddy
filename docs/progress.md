@@ -8,17 +8,31 @@ Phase 1.2A writer-centered core experience is active in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
-- Gate A source map and current UX/performance baseline are complete pending
-  their dedicated documentation commit.
-- Gate B will add Continue Writing and a validated per-project session restore
-  contract.
-- Gate C will add quiet writer workspaces, per-workspace layout memory, and a
-  temporary focus overlay.
+- Gate A source map and current UX/performance baseline are complete in
+  `8351dd64`.
+- Gate B Continue Writing and validated per-project session restore are
+  complete pending their dedicated feature commit.
+- Gate C quiet writer workspaces, per-workspace layout memory, and temporary
+  focus overlay are next.
 - This delivery stops before Gate D; Quick Capture, Entity Peek, contextual AI,
   Writer Navigator, chapter organization, new AI actions, and new Story
   resource types remain out of scope.
 
 ## Completed
+
+- Added a versioned, validated writer-session contract keyed by project ID,
+  with stable chapter/scene/resource IDs, tab set, cursor/scroll, tree
+  expansion, workspace, pane state, and updated time.
+- Recent project startup now lands on the story dashboard; **继续上次位置**
+  selects the persisted chapter and restores the session view.
+- Corrupt, foreign, deleted, or stale session targets reconcile to a safe
+  chapter position with readable fallback copy and no project write.
+- Real refresh acceptance restored chapter two, two open tabs, and a collapsed
+  second volume. Full frontend acceptance is green at 108 files / 390 tests.
+- Fresh Release EXE and NSIS artifacts were built; the native EXE remained
+  responsive with title `Writing Buddy` and closed normally with exit code 0.
+- Evidence in
+  `docs/acceptance/037-phase-1.2a-gate-b-session-restore-2026-07-29.md`.
 
 - Produced a fresh Windows x64 portable EXE and NSIS installer from source
   commit `8ae09c86`.
