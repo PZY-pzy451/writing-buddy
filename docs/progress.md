@@ -4,8 +4,19 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-No implementation milestone is active. The change-aware self-test framework
-is complete on `codex/story-kernel-scene-grounding`.
+Phase 1.2A writer-centered core experience is active in the isolated worktree
+`D:\develop_tool\writing-buddy-phase-1.2a` on
+`codex/phase-1.2a-writer-core`.
+
+- Gate A source map and current UX/performance baseline are complete pending
+  their dedicated documentation commit.
+- Gate B will add Continue Writing and a validated per-project session restore
+  contract.
+- Gate C will add quiet writer workspaces, per-workspace layout memory, and a
+  temporary focus overlay.
+- This delivery stops before Gate D; Quick Capture, Entity Peek, contextual AI,
+  Writer Navigator, chapter organization, new AI actions, and new Story
+  resource types remain out of scope.
 
 ## Completed
 
