@@ -35,6 +35,7 @@
 - [Inline Tab plot expansion acceptance, 2026-07-29](./033-inline-tab-plot-expansion-2026-07-29.md)
 - [AI snapshot reason contract acceptance, 2026-07-29](./034-ai-snapshot-reason-contract-2026-07-29.md)
 - [Change-aware self-test framework acceptance, 2026-07-29](./035-change-aware-self-test-framework-2026-07-29.md)
+- [Windows release delivery acceptance, 2026-07-29](./036-windows-release-delivery-2026-07-29.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

@@ -9,6 +9,17 @@ is complete on `codex/story-kernel-scene-grounding`.
 
 ## Completed
 
+- Produced a fresh Windows x64 portable EXE and NSIS installer from source
+  commit `8ae09c86`.
+- `self-test:release` passed 106 frontend files / 382 tests, production build,
+  52 Rust tests, Tauri Release compilation, and NSIS packaging.
+- The portable EXE reached input idle, remained responsive with title
+  `Writing Buddy`, accepted normal close, and exited with code 0.
+- Delivery copies have verified source-matching SHA-256 hashes under
+  `artifacts/release/8ae09c86/`; both are internal unsigned builds.
+- Evidence in
+  `docs/acceptance/036-windows-release-delivery-2026-07-29.md`.
+
 - Added `self-test`, `self-test:plan`, `self-test:full`, and
   `self-test:release` commands with Git worktree/base/latest-commit discovery.
 - Impact selection combines Vitest dependency analysis, changed
