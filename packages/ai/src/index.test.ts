@@ -3,6 +3,7 @@ import {
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
 	buildChapterReviewMessages,
+	buildInlineLanguageCheckMessages,
 	buildCharacterAnalysisMessages,
 	buildItemAnalysisMessages,
 	buildManuscriptContinuationMessages,
@@ -21,6 +22,7 @@ import {
 	nextAiJobState,
 	normalizeAiPreferences,
 	parseChapterReviewResponse,
+	parseInlineLanguageCheckResponse,
 	parseCharacterAnalysisResponse,
 	parseItemAnalysisResponse,
 	parseManuscriptContinuationResponse,
@@ -175,6 +177,58 @@ describe('AI core contracts', () => {
 					severity: 'suggestion',
 					title: '重复',
 					message: '可能重复。'
+				}]
+			})
+		})).toEqual([]);
+	});
+
+	it('builds a bounded inline-language request and keeps only exact minimal targets', () => {
+		const content = 'He typed somthing in the rain.';
+		const messages = buildInlineLanguageCheckMessages(content);
+		expect(messages).toHaveLength(2);
+		expect(messages[0]?.content).toContain('只报告明确的拼写');
+		expect(messages[1]?.content).toContain(content);
+		expect(messages[1]?.content).not.toContain('projectId');
+
+		const issues = parseInlineLanguageCheckResponse({
+			projectId: 'project',
+			resourceId: 'chapter',
+			content,
+			response: JSON.stringify({
+				issues: [{
+					start: 9,
+					end: 17,
+					target: 'somthing',
+					severity: 'warning',
+					title: '英文拼写错误',
+					message: 'something 缺少字母 e。',
+					replacement: 'something'
+				}]
+			})
+		});
+		expect(issues).toMatchObject([{
+			ruleId: 'ai-inline-language-check',
+			anchor: { start: 9, end: 17, target: 'somthing' },
+			replacement: 'something'
+		}]);
+	});
+
+	it('rejects oversized inline slices and ambiguous fallback targets', () => {
+		expect(() => buildInlineLanguageCheckMessages('字'.repeat(2_401)))
+			.toThrow('invalidInlineLanguageCheckContent');
+		expect(parseInlineLanguageCheckResponse({
+			projectId: 'project',
+			resourceId: 'chapter',
+			content: 'somthing and somthing',
+			response: JSON.stringify({
+				issues: [{
+					start: 99,
+					end: 107,
+					target: 'somthing',
+					severity: 'warning',
+					title: '英文拼写错误',
+					message: '拼写错误。',
+					replacement: 'something'
 				}]
 			})
 		})).toEqual([]);

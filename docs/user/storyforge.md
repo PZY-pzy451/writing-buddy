@@ -91,6 +91,22 @@ AI findings are candidates. They do not change manuscript text or confirm a
 story fact automatically. Review each finding, inspect both evidence sources,
 then explicitly apply, resolve or reject it.
 
+### Inline spelling and grammar
+
+The manuscript editor also has an opt-in **AI 语法** control. It is off by
+default and does not make a request when the application or a project opens.
+After it is enabled, Writing Buddy waits 1.2 seconds after an edit and sends
+only the changed paragraph to the configured DeepSeek provider. Each slice is
+limited to 2,400 JavaScript UTF-16 code units; a newer edit cancels stale work
+and exact completed slices are cached for the current application session.
+
+Clear spelling, typo, grammar, collocation, punctuation, and duplicated-word
+errors receive an editor squiggle. Open **AI 语法** to read the explanation and
+optional replacement. A replacement is never automatic: applying it creates a
+normal Monaco edit, so **Undo** restores the exact source text. Pure style,
+tone, imagery, pacing, and optional polishing suggestions belong in the
+explicit review or rewrite flows rather than inline diagnostics.
+
 ## Grounded AI rewrite
 
 1. Open a chapter and select the text to revise.

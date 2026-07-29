@@ -1,7 +1,9 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
+import type * as MonacoNamespace from 'monaco-editor';
 import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
+import { resolveAnchor, type ReviewIssue } from '@writing-buddy/review';
 import {
 	DesktopStoryRepository,
 	toStoryChapterId,
@@ -25,6 +27,11 @@ import {
 } from '../features/story/manuscript/EntityHighlightPreferences';
 import { SelectionActionMenu } from '../features/story/manuscript/SelectionActionMenu';
 import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
+import { InlineLanguageCheckControl } from '../features/review/inline/InlineLanguageCheckControl';
+import { useInlineLanguageCheck } from '../features/review/inline/useInlineLanguageCheck';
+
+const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
+type MonacoApi = typeof MonacoNamespace;
 
 const selectionResourceIntents: Readonly<Partial<Record<StoryResourceType, {
 	readonly targetType: StoryKernelGenerationResourceType;
@@ -68,13 +75,23 @@ export function ChapterEditor(): React.JSX.Element {
 	const pendingReveal = useAppStore(state => state.pendingReveal);
 	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
+	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
+	const inlineLanguageCheckEnabled = useAppStore(
+		state => state.inlineLanguageCheckEnabled
+	);
+	const setInlineLanguageCheckEnabled = useAppStore(
+		state => state.setInlineLanguageCheckEnabled
+	);
+	const setMode = useAppStore(state => state.setMode);
 	const syncStructureScenesForChapter = useAppStore(
 		state => state.syncStructureScenesForChapter
 	);
 	const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | undefined>(undefined);
+	const monacoRef = useRef<MonacoApi | undefined>(undefined);
 	const cursorTimerRef = useRef<number | undefined>(undefined);
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
 	const mentionDecorationIdsRef = useRef<readonly string[]>([]);
+	const inlineLanguageDecorationIdsRef = useRef<readonly string[]>([]);
 	const mentionsRef = useRef<readonly MentionLink[]>([]);
 	const lastMentionContentRef = useRef<{
 		readonly resourceId: string;
@@ -112,9 +129,20 @@ export function ChapterEditor(): React.JSX.Element {
 	const highlightKinds = projectRoot
 		? highlightOverrides.get(projectRoot) ?? defaultHighlightKinds
 		: defaultHighlightKinds;
+	const inlineLanguageCheck = useInlineLanguageCheck({
+		enabled: inlineLanguageCheckEnabled
+			&& activeResource?.type === 'chapter'
+			&& Boolean(session),
+		ready: editorReady,
+		projectId: activeResource?.projectId ?? snapshot?.project.projectId ?? '',
+		resourceId: session?.state.resourceId ?? '',
+		content: session?.content ?? '',
+		cursorOffset: currentOffset
+	});
 
-	const handleMount: OnMount = useCallback(editor => {
+	const handleMount: OnMount = useCallback((editor, monaco: MonacoApi) => {
 		editorRef.current = editor;
+		monacoRef.current = monaco;
 		setEditorReady(true);
 		const scheduleCursorPersistence = () => {
 			window.clearTimeout(cursorTimerRef.current);
@@ -189,6 +217,60 @@ export function ChapterEditor(): React.JSX.Element {
 	}, [session, setCursorOffset, setSelection, updateCursor]);
 
 	useEffect(() => () => window.clearTimeout(cursorTimerRef.current), []);
+
+	useEffect(() => {
+		const monaco = monacoRef.current;
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (!monaco || !editor || !model || activeResource?.type !== 'chapter') {
+			return;
+		}
+		inlineLanguageDecorationIdsRef.current = editor.deltaDecorations(
+			[...inlineLanguageDecorationIdsRef.current],
+			inlineLanguageCheck.issues.map(issue => ({
+				range: {
+					startLineNumber: model.getPositionAt(issue.anchor.start).lineNumber,
+					startColumn: model.getPositionAt(issue.anchor.start).column,
+					endLineNumber: model.getPositionAt(issue.anchor.end).lineNumber,
+					endColumn: model.getPositionAt(issue.anchor.end).column
+				},
+				options: {
+					hoverMessage: {
+						value: markerHoverMessage(issue)
+					}
+				}
+			}))
+		);
+		monaco.editor.setModelMarkers(
+			model,
+			INLINE_LANGUAGE_MARKER_OWNER,
+			inlineLanguageCheck.issues.map(issue => {
+				const start = model.getPositionAt(issue.anchor.start);
+				const end = model.getPositionAt(issue.anchor.end);
+				return {
+					startLineNumber: start.lineNumber,
+					startColumn: start.column,
+					endLineNumber: end.lineNumber,
+					endColumn: end.column,
+					severity: markerSeverity(monaco, issue),
+					message: markerMessage(issue),
+					source: 'AI 语法检查',
+					code: issue.id
+				};
+			})
+		);
+		return () => {
+			inlineLanguageDecorationIdsRef.current = editor.deltaDecorations(
+				[...inlineLanguageDecorationIdsRef.current],
+				[]
+			);
+			monaco.editor.setModelMarkers(model, INLINE_LANGUAGE_MARKER_OWNER, []);
+		};
+	}, [
+		activeResource?.type,
+		inlineLanguageCheck.issues,
+		session?.state.modelUri
+	]);
 
 	useEffect(() => {
 		const editor = editorRef.current;
@@ -321,6 +403,24 @@ export function ChapterEditor(): React.JSX.Element {
 			});
 		}
 	}, [requestAssistantAction]);
+	const applyInlineLanguageIssue = useCallback((issue: ReviewIssue) => {
+		if (readOnly || issue.replacement === undefined) return;
+		const currentSession = useAppStore.getState().session;
+		if (!currentSession || currentSession.state.resourceId !== issue.resourceId) {
+			return;
+		}
+		const resolved = resolveAnchor(currentSession.content, issue.anchor);
+		if (!resolved || currentSession.content.slice(resolved.start, resolved.end) !== issue.anchor.target) {
+			return;
+		}
+		requestEditorEdit({
+			id: crypto.randomUUID(),
+			resourceId: issue.resourceId,
+			start: resolved.start,
+			end: resolved.end,
+			text: issue.replacement
+		});
+	}, [readOnly, requestEditorEdit]);
 
 	useEffect(() => {
 		if (!mentionService || !storyChapterId) {
@@ -418,11 +518,24 @@ export function ChapterEditor(): React.JSX.Element {
 			)}
 			<div className="chapter-editor-host">
 				{activeResource.type === 'chapter' ? (
-					<EntityHighlightControls
-						mentions={mentions}
-						enabledKinds={highlightKinds}
-						onToggle={toggleHighlightKind}
-					/>
+					<div className="editor-overlay-controls">
+						<InlineLanguageCheckControl
+							enabled={inlineLanguageCheckEnabled}
+							status={inlineLanguageCheck.status}
+							statusMessage={inlineLanguageCheck.statusMessage}
+							issues={inlineLanguageCheck.issues}
+							readOnly={readOnly}
+							onToggle={setInlineLanguageCheckEnabled}
+							onRetry={inlineLanguageCheck.retry}
+							onOpenSettings={() => setMode('settings')}
+							onApply={applyInlineLanguageIssue}
+						/>
+						<EntityHighlightControls
+							mentions={mentions}
+							enabledKinds={highlightKinds}
+							onToggle={toggleHighlightKind}
+						/>
+					</div>
 				) : null}
 				<Editor
 				height="100%"
@@ -509,4 +622,32 @@ export function ChapterEditor(): React.JSX.Element {
 			</div>
 		</div>
 	);
+}
+
+function markerSeverity(
+	monaco: MonacoApi,
+	issue: ReviewIssue
+): MonacoNamespace.MarkerSeverity {
+	if (issue.severity === 'error') return monaco.MarkerSeverity.Error;
+	if (issue.severity === 'warning') return monaco.MarkerSeverity.Warning;
+	return monaco.MarkerSeverity.Info;
+}
+
+function markerMessage(issue: ReviewIssue): string {
+	const replacement = issue.replacement === undefined
+		? ''
+		: `\n建议替换：${issue.replacement}`;
+	return `${issue.title}\n${issue.message}${replacement}\n打开右上角“AI 语法”可查看并应用修正。`;
+}
+
+function markerHoverMessage(issue: ReviewIssue): string {
+	const replacement = issue.replacement === undefined
+		? ''
+		: `\n\n**建议替换：** ${escapeMarkdown(issue.replacement)}`;
+	return `**${escapeMarkdown(issue.title)}**\n\n${escapeMarkdown(issue.message)}${replacement}`
+		+ '\n\n打开右上角“AI 语法”可查看并应用修正。';
+}
+
+function escapeMarkdown(value: string): string {
+	return value.replace(/[\\`*_{}[\]()#+\-.!]/gu, '\\$&');
 }

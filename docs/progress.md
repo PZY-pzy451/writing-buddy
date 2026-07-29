@@ -4,10 +4,21 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-No unfinished implementation is active. The latest completed milestone is
-workspace layout shortcuts on `codex/story-kernel-scene-grounding`.
+No feature implementation is currently active. Inline AI spelling and grammar
+diagnostics are complete on `codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Added opt-in inline AI spelling and grammar checks for changed manuscript
+  paragraphs, with 1.2-second debounce, 2,400 UTF-16-unit slices, stale-job
+  cancellation, exact-result caching, cooldown, and strict response anchoring.
+- Clear findings render as Monaco squiggles with explanations. Replacements
+  require an explicit author action and remain normally undoable.
+- Inline-language acceptance: Node 24.14.0, 103 frontend files / 363 tests,
+  52 Rust tests, Paper/Midnight checks at 1280/1024, clean browser logs, fresh
+  Tauri packaging, and isolated native close with exit code 0.
+- Evidence in
+  `docs/acceptance/032-inline-ai-language-check-2026-07-29.md`.
 
 - Added global Ctrl/Cmd+B, Ctrl/Cmd+Alt/Option+B, and Ctrl/Cmd+J pane
   shortcuts that work with editor focus, preserve pane geometry, and expose

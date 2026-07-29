@@ -8,6 +8,7 @@ import {
 	RefreshCw,
 	ServerCog,
 	ShieldCheck,
+	SpellCheck2,
 	Trash2,
 	XCircle
 } from 'lucide-react';
@@ -18,6 +19,7 @@ import {
 	type AiProviderPreferences
 } from '@writing-buddy/ai';
 import { useAiStore } from './stores/aiStore';
+import { useAppStore } from '../../app/store';
 
 export function AiSettingsSection(): React.JSX.Element {
 	const {
@@ -41,6 +43,12 @@ export function AiSettingsSection(): React.JSX.Element {
 	const [revealed, setRevealed] = useState(false);
 	const [confirmDelete, setConfirmDelete] = useState(false);
 	const [notice, setNotice] = useState('');
+	const inlineLanguageCheckEnabled = useAppStore(
+		state => state.inlineLanguageCheckEnabled
+	);
+	const setInlineLanguageCheckEnabled = useAppStore(
+		state => state.setInlineLanguageCheckEnabled
+	);
 
 	useEffect(() => {
 		void initialize();
@@ -189,6 +197,29 @@ export function AiSettingsSection(): React.JSX.Element {
 						<CircleDollarSign size={16} />刷新余额
 					</button>
 				</div>
+			</section>
+
+			<section aria-labelledby="ai-inline-language-title">
+				<div className="setting-section-title">
+					<SpellCheck2 size={20} />
+					<div>
+						<h2 id="ai-inline-language-title">AI 内联语法检查</h2>
+						<p>明确开启后，停笔 1.2 秒只发送变化段落；每次最多 2,400 字符。</p>
+					</div>
+				</div>
+				<label className="ai-inline-language-setting">
+					<input
+						type="checkbox"
+						checked={inlineLanguageCheckEnabled}
+						onChange={event => setInlineLanguageCheckEnabled(event.target.checked)}
+					/>
+					<span>
+						<strong>在正文中自动标出拼写、错别字与语病</strong>
+						<small>
+							默认关闭。旧请求会在继续输入时取消，AI 建议必须由你确认后才会修改正文。
+						</small>
+					</span>
+				</label>
 			</section>
 
 			<section aria-labelledby="ai-account-title">

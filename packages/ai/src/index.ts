@@ -8,6 +8,7 @@ export const DEEPSEEK_RETIRED_MODEL_IDS = ['deepseek-chat', 'deepseek-reasoner']
 export const AI_MAX_OUTPUT_PRESETS = [512, 1024, 2048, 4096, 8192] as const;
 export const AI_JOB_QUEUE_LIMIT = 3;
 export const AI_CHAPTER_REVIEW_MAX_CHARS = 100_000;
+export const AI_INLINE_LANGUAGE_CHECK_MAX_CHARS = 2_400;
 export const STORYFORGE_SYSTEM_PROMPT = [
 	'你是 StoryForge 的测试生成器。',
 	'只回答用户在本面板明确输入的写作指令。',
@@ -20,6 +21,14 @@ export const CHAPTER_REVIEW_SYSTEM_PROMPT = [
 	'找出明确的错别字、语病、标点、重复、指代、逻辑或表达问题；不要续写正文。',
 	'仅返回 JSON 对象：{"issues":[{"start":0,"end":1,"target":"原文片段","severity":"info|suggestion|warning|error","title":"简短标题","message":"问题说明","replacement":"可选替换文本"}]}。',
 	'start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。'
+].join('');
+export const INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的中英文小说内联语法检查器。',
+	'只分析用户 JSON 中 content 字段提供的短文本切片，不请求、推断或提及项目、路径、账户、历史或切片外内容。',
+	'只报告明确的拼写、错别字、语法、词语搭配、标点或重复用词错误；不要提出纯风格、语气、意象、节奏或可选润色建议，不要续写正文。',
+	'每条问题只圈定可直接修正的最小原文范围，并尽量提供 replacement。',
+	'仅返回 JSON 对象：{"issues":[{"start":0,"end":1,"target":"错误原文","severity":"info|suggestion|warning|error","title":"简短标题","message":"问题说明","replacement":"可选替换文本"}]}。',
+	'start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 12 条。'
 ].join('');
 export const STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的长篇小说一致性对照分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和 Story Fact 摘要。',
@@ -128,6 +137,7 @@ export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
 export type AiJobType =
 	| 'storyforge-test'
 	| 'chapter-review'
+	| 'inline-language-check'
 	| 'selection-rewrite'
 	| 'manuscript-continuation'
 	| 'scene-plan-generation'
@@ -469,6 +479,10 @@ const chapterReviewResponseSchema = z.object({
 		message: z.string().min(1).max(500),
 		replacement: z.string().max(4_000).optional()
 	}).strict()).max(50)
+}).strict();
+
+const inlineLanguageCheckResponseSchema = z.object({
+	issues: chapterReviewResponseSchema.shape.issues.max(12)
 }).strict();
 
 const storyConsistencyEvidenceSchema = z.object({
@@ -2286,6 +2300,19 @@ export function buildChapterReviewMessages(content: string): readonly AiMessage[
 	];
 }
 
+export function buildInlineLanguageCheckMessages(content: string): readonly AiMessage[] {
+	if (!content.trim() || content.length > AI_INLINE_LANGUAGE_CHECK_MAX_CHARS) {
+		throw new Error('invalidInlineLanguageCheckContent');
+	}
+	return [
+		{ role: 'system', content: INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT },
+		{
+			role: 'user',
+			content: JSON.stringify({ schemaVersion: 1, content })
+		}
+	];
+}
+
 export function parseChapterReviewResponse(input: {
 	readonly projectId: string;
 	readonly resourceId: string;
@@ -2313,6 +2340,48 @@ export function parseChapterReviewResponse(input: {
 			projectId: input.projectId,
 			resourceId: input.resourceId,
 			ruleId: 'ai-chapter-review',
+			severity: candidate.severity,
+			status: 'open',
+			title: candidate.title,
+			message: candidate.message,
+			anchor: createTextAnchor(input.content, start, end),
+			...(candidate.replacement === undefined ? {} : { replacement: candidate.replacement }),
+			createdAt: now,
+			updatedAt: now,
+			origin: 'ai'
+		}];
+	});
+}
+
+export function parseInlineLanguageCheckResponse(input: {
+	readonly projectId: string;
+	readonly resourceId: string;
+	readonly content: string;
+	readonly response: string;
+}): readonly ReviewIssue[] {
+	const parsed = inlineLanguageCheckResponseSchema.parse(JSON.parse(input.response));
+	const now = new Date().toISOString();
+	return parsed.issues.flatMap((candidate, index): readonly ReviewIssue[] => {
+		let start = candidate.start;
+		let end = candidate.end;
+		if (end <= start || input.content.slice(start, end) !== candidate.target) {
+			const first = input.content.indexOf(candidate.target);
+			const second = first >= 0
+				? input.content.indexOf(candidate.target, first + Math.max(1, candidate.target.length))
+				: -1;
+			if (first < 0 || second >= 0) {
+				return [];
+			}
+			start = first;
+			end = first + candidate.target.length;
+		}
+		return [{
+			id: `ai-inline-language:${input.resourceId}:${start}:${hashText(
+				`${candidate.title}:${candidate.target}:${index}`
+			)}`,
+			projectId: input.projectId,
+			resourceId: input.resourceId,
+			ruleId: 'ai-inline-language-check',
 			severity: candidate.severity,
 			status: 'open',
 			title: candidate.title,

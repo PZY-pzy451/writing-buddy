@@ -23,6 +23,14 @@ pub const CHAPTER_REVIEW_SYSTEM_PROMPT: &str = concat!(
     "仅返回 JSON 对象：{\"issues\":[{\"start\":0,\"end\":1,\"target\":\"原文片段\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"简短标题\",\"message\":\"问题说明\",\"replacement\":\"可选替换文本\"}]}。",
     "start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 50 条。"
 );
+pub const INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的中英文小说内联语法检查器。",
+    "只分析用户 JSON 中 content 字段提供的短文本切片，不请求、推断或提及项目、路径、账户、历史或切片外内容。",
+    "只报告明确的拼写、错别字、语法、词语搭配、标点或重复用词错误；不要提出纯风格、语气、意象、节奏或可选润色建议，不要续写正文。",
+    "每条问题只圈定可直接修正的最小原文范围，并尽量提供 replacement。",
+    "仅返回 JSON 对象：{\"issues\":[{\"start\":0,\"end\":1,\"target\":\"错误原文\",\"severity\":\"info|suggestion|warning|error\",\"title\":\"简短标题\",\"message\":\"问题说明\",\"replacement\":\"可选替换文本\"}]}。",
+    "start 和 end 使用 JavaScript UTF-16 字符索引；每条 target 必须与 content 中对应原文完全一致，最多返回 12 条。"
+);
 pub const STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的长篇小说一致性对照分析器。只使用用户 JSON 中明确提供的章节正文、作者指令和 Story Fact 摘要。",
     "不得请求或推断项目路径、密钥、账户、隐藏历史或未提供的作者秘密。不得改写正文或 Story Kernel。",
@@ -126,6 +134,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。"
 );
 const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
+const INLINE_LANGUAGE_CHECK_MAX_CHARS: usize = 2_400;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -278,6 +287,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_chapter_review_input(&self.messages[1].content)
             }
+            AiJobType::InlineLanguageCheck => {
+                self.messages[0].content == INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_inline_language_check_input(&self.messages[1].content)
+            }
             AiJobType::SelectionRewrite => {
                 self.messages[0].content == SELECTION_REWRITE_SYSTEM_PROMPT
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
@@ -353,6 +367,7 @@ impl AiGenerateRequest {
 pub enum AiJobType {
     StoryforgeTest,
     ChapterReview,
+    InlineLanguageCheck,
     SelectionRewrite,
     ManuscriptContinuation,
     ScenePlanGeneration,
@@ -372,6 +387,7 @@ impl AiJobType {
         match self {
             Self::StoryforgeTest => "storyforge-test",
             Self::ChapterReview => "chapter-review",
+            Self::InlineLanguageCheck => "inline-language-check",
             Self::SelectionRewrite => "selection-rewrite",
             Self::ManuscriptContinuation => "manuscript-continuation",
             Self::ScenePlanGeneration => "scene-plan-generation",
@@ -432,6 +448,14 @@ fn validate_chapter_review_input(value: &str) -> bool {
         input.schema_version == 1
             && !input.content.trim().is_empty()
             && input.content.chars().count() <= CHAPTER_REVIEW_MAX_CHARS
+    })
+}
+
+fn validate_inline_language_check_input(value: &str) -> bool {
+    serde_json::from_str::<ChapterReviewInput>(value).is_ok_and(|input| {
+        input.schema_version == 1
+            && !input.content.trim().is_empty()
+            && input.content.encode_utf16().count() <= INLINE_LANGUAGE_CHECK_MAX_CHARS
     })
 }
 
@@ -1494,6 +1518,7 @@ mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
+        INLINE_LANGUAGE_CHECK_MAX_CHARS, INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT,
         ITEM_ANALYSIS_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
         PLOT_ANALYSIS_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
         SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT,
@@ -1565,6 +1590,33 @@ mod tests {
 
         request.messages[1].content =
             serde_json::json!({"schemaVersion": 1, "content": ""}).to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn inline_language_check_accepts_only_bounded_content_slices() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::InlineLanguageCheck;
+        request.messages[0].content = INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content =
+            serde_json::json!({"schemaVersion": 1, "content": "He typed somthing."}).to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+        assert_eq!(request.job_type.as_str(), "inline-language-check");
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "content": "字".repeat(INLINE_LANGUAGE_CHECK_MAX_CHARS + 1)
+        })
+        .to_string();
+        assert!(request.validate().is_err());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "content": "somthing",
+            "projectPath": "C:/secret"
+        })
+        .to_string();
         assert!(request.validate().is_err());
     }
 

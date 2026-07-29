@@ -1548,6 +1548,8 @@ class BrowserDesktopBridge implements DesktopBridge {
 		listener({ type: 'connection_opened', jobId: request.jobId });
 		const deltas = request.jobType === 'chapter-review'
 			? browserReviewDeltas(request)
+			: request.jobType === 'inline-language-check'
+				? browserInlineLanguageCheckDeltas(request)
 			: request.jobType === 'selection-rewrite'
 				? browserRewriteDeltas(request)
 				: request.jobType === 'manuscript-continuation'
@@ -1618,6 +1620,33 @@ function browserReviewDeltas(request: AiGenerateRequest): readonly string[] {
 			title: 'AI 表达建议',
 			message: '开篇意象较集中，可以适当压缩修饰语，让动作更快进入。',
 			replacement: target.replace('细密的声响像一封迟迟没有拆开的信', '雨声敲打着沉默的穹顶')
+		}] : []
+	});
+	const first = Math.ceil(response.length / 3);
+	const second = Math.ceil(response.length * 2 / 3);
+	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserInlineLanguageCheckDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as { content?: string };
+	const content = decoded.content ?? '';
+	const misspelling = /\bsomthing\b/iu.exec(content);
+	const duplicate = misspelling ? undefined : /的的/u.exec(content);
+	const match = misspelling ?? duplicate;
+	const target = match?.[0];
+	const start = match?.index ?? 0;
+	const response = JSON.stringify({
+		issues: target ? [{
+			start,
+			end: start + target.length,
+			target,
+			severity: 'warning',
+			title: misspelling ? '英文拼写错误' : '重复用词',
+			message: misspelling
+				? '“somthing” 应拼写为 “something”。'
+				: '相邻的“的”重复出现。',
+			replacement: misspelling ? 'something' : '的'
 		}] : []
 	});
 	const first = Math.ceil(response.length / 3);
