@@ -17,6 +17,10 @@
 
 - Run TypeScript compilation before tests.
 - Run the smallest relevant test first, then the complete acceptance command.
+- Use `pnpm self-test:plan` to inspect automatically selected impact coverage
+  and `pnpm self-test` while iterating on implementation changes.
+- Use `pnpm self-test:full` for cross-cutting milestones and
+  `pnpm self-test:release` when Windows packaging is in scope.
 - A migration milestone is not complete without durable evidence under `docs/acceptance/`.
 - M9 cutover requires the human session gates in the migration contract; automated checks cannot waive them.
 

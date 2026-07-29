@@ -4,10 +4,25 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-No implementation milestone is active. The AI snapshot reason contract repair
+No implementation milestone is active. The change-aware self-test framework
 is complete on `codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Added `self-test`, `self-test:plan`, `self-test:full`, and
+  `self-test:release` commands with Git worktree/base/latest-commit discovery.
+- Impact selection combines Vitest dependency analysis, changed
+  feature/package test roots, and explicit AI/snapshot/Story Kernel/project/
+  shell/native safety rules.
+- Global infrastructure changes promote to complete frontend acceptance;
+  Rust changes run complete Cargo gates; Release mode adds Tauri packaging.
+- Every execution writes an ignored JSON report with inputs, risk areas,
+  commands, timings, exit codes, and final status.
+- Self-test acceptance: 9 planner tests, real 6-file/19-test character impact
+  selection, 106 frontend files / 382 tests, production build, and 52 Rust
+  tests.
+- Evidence in
+  `docs/acceptance/035-change-aware-self-test-framework-2026-07-29.md`.
 
 - Unified every AI pre-write snapshot on the canonical
   `beforeDestructiveOperation` reason while preserving feature detail in the

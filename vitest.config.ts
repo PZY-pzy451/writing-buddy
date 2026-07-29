@@ -29,7 +29,8 @@ export default defineConfig({
 		include: [
 			'packages/**/*.test.ts',
 			'apps/desktop/**/*.test.ts?(x)',
-			'apps/desktop/tests/e2e/**/*.spec.ts?(x)'
+			'apps/desktop/tests/e2e/**/*.spec.ts?(x)',
+			'scripts/**/*.test.mjs'
 		],
 		coverage: {
 			provider: 'v8',
