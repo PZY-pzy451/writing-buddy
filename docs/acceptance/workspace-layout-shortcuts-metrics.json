@@ -1,0 +1,63 @@
+{
+  "date": "2026-07-29",
+  "feature": "Workspace layout shortcuts",
+  "shortcuts": {
+    "sidebar": "ControlOrMeta+B",
+    "assistant": "ControlOrMeta+Alt+B",
+    "dock": "ControlOrMeta+J"
+  },
+  "checks": [
+    {
+      "viewport": [1536, 992],
+      "editorFocused": true,
+      "initial": {
+        "sidebar": 320,
+        "assistant": 360,
+        "dock": 240,
+        "center": 778
+      },
+      "afterSidebarClose": {
+        "sidebar": 0,
+        "center": 1098
+      },
+      "afterAssistantClose": {
+        "assistant": null,
+        "center": 1458
+      },
+      "afterDockClose": {
+        "dock": null
+      },
+      "restored": {
+        "sidebar": 320,
+        "assistant": 360,
+        "dock": 240,
+        "center": 778
+      },
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    },
+    {
+      "viewport": [1024, 768],
+      "surface": "Story Studio",
+      "openSidebar": {
+        "centerX": 398,
+        "centerWidth": 626
+      },
+      "closedSidebar": {
+        "centerX": 78,
+        "centerWidth": 946
+      },
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    }
+  ],
+  "sidebarPersistence": {
+    "sidebarOpenBeforeReload": false,
+    "sidebarOpenAfterReload": false,
+    "restoredByShortcut": true
+  },
+  "settingsReference": {
+    "visibleMappings": ["Ctrl+B", "Ctrl+Alt+B", "Ctrl+J"],
+    "horizontalOverflow": 0
+  }
+}

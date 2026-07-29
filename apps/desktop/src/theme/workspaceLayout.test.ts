@@ -50,4 +50,19 @@ describe('workspace grid contracts', () => {
 		expect(tokenCss).toContain('--sidebar-width-user: 320px;');
 		expect(tokenCss).toContain('--assistant-width-user: 360px;');
 	});
+
+	it('removes closed sidebars from inline and compact story layouts', () => {
+		expect(workspaceCss).toContain(
+			'.app-shell.is-sidebar-closed {\n\t--sidebar-width: 0px;'
+		);
+		expect(workspaceCss).toContain(
+			'.is-sidebar-closed .project-sidebar {\n\tdisplay: none;'
+		);
+		expect(workspaceCss).toContain(
+			'.app-shell.is-story-studio.is-sidebar-closed {'
+		);
+		expect(workspaceCss).toContain(
+			'"rail center" minmax(0, 1fr)'
+		);
+	});
 });

@@ -5,9 +5,18 @@ Updated: 2026-07-29
 ## Active milestone
 
 No unfinished implementation is active. The latest completed milestone is
-VS Code-style workspace resizing on `codex/story-kernel-scene-grounding`.
+workspace layout shortcuts on `codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Added global Ctrl/Cmd+B, Ctrl/Cmd+Alt/Option+B, and Ctrl/Cmd+J pane
+  shortcuts that work with editor focus, preserve pane geometry, and expose
+  button/Settings discoverability.
+- Workspace shortcut acceptance: 101 frontend files / 351 tests, 51 Rust
+  tests, 1536/1024 interaction checks, fresh Tauri packaging, and isolated
+  native close with exit code 0.
+- Evidence in
+  `docs/acceptance/031-workspace-layout-shortcuts-2026-07-29.md`.
 
 - Project sidebar, writing assistant, and task dock now resize with pointer or
   keyboard controls, remain available in responsive layouts, persist exact

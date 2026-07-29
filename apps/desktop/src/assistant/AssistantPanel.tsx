@@ -105,7 +105,16 @@ function AssistantPanelContent(props: {
 					<span className="eyebrow">Writing Assistant</span>
 					<h2>写作助手</h2>
 				</div>
-				<button className="icon-button" type="button" onClick={toggleAssistant} aria-label="关闭写作助手"><X size={18} /></button>
+				<button
+					className="icon-button"
+					type="button"
+					onClick={toggleAssistant}
+					aria-label="关闭写作助手"
+					aria-keyshortcuts="Control+Alt+B Meta+Alt+B"
+					title="关闭写作助手 (Ctrl+Alt+B)"
+				>
+					<X size={18} />
+				</button>
 			</div>
 			<div className="assistant-tabs" role="tablist">
 				<button type="button" role="tab" aria-selected={tab === 'suggestions'} onClick={() => setTab('suggestions')}>建议</button>

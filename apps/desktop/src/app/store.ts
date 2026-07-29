@@ -103,6 +103,7 @@ interface PersistedWorkspace {
 	readonly focusMode: boolean;
 	readonly activeMode: RailMode;
 	readonly storyView: StoryViewId;
+	readonly sidebarOpen: boolean;
 	readonly sidebarWidth: number;
 	readonly assistantWidth: number;
 	readonly dockHeight: number;
@@ -196,6 +197,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setTheme: (theme: ThemeId) => void;
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
 	readonly toggleFocus: () => void;
+	readonly toggleSidebar: () => void;
 	readonly toggleAssistant: () => void;
 	readonly openAssistant: () => void;
 	readonly requestAssistantAction: (request: AssistantActionRequest) => void;
@@ -272,6 +274,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	theme: 'paper',
 	accent: 'gold',
 	focusMode: false,
+	sidebarOpen: true,
 	sidebarWidth: 320,
 	assistantWidth: 360,
 	dockHeight: 240,
@@ -1022,6 +1025,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
+	toggleSidebar() { set(state => ({ sidebarOpen: !state.sidebarOpen })); },
 	toggleAssistant() { set(state => ({ assistantOpen: !state.assistantOpen })); },
 	openAssistant() { set({ assistantOpen: true }); },
 	requestAssistantAction(request) {
@@ -1051,6 +1055,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		focusMode: state.focusMode,
 		activeMode: state.activeMode,
 		storyView: state.storyView,
+		sidebarOpen: state.sidebarOpen,
 		sidebarWidth: state.sidebarWidth,
 		assistantWidth: state.assistantWidth,
 		dockHeight: state.dockHeight,

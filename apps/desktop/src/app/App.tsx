@@ -22,6 +22,7 @@ import { StoryDashboardPage } from '../features/story/dashboard/StoryDashboardPa
 import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
+import { dispatchWorkspaceShortcut } from '../shell/workspaceShortcuts';
 import '../theme/visualPolish.css';
 
 export function App(): React.JSX.Element {
@@ -42,6 +43,7 @@ export function App(): React.JSX.Element {
 	const theme = useAppStore(state => state.theme);
 	const accent = useAppStore(state => state.accent);
 	const focusMode = useAppStore(state => state.focusMode);
+	const sidebarOpen = useAppStore(state => state.sidebarOpen);
 	const assistantOpen = useAppStore(state => state.assistantOpen);
 	const dockOpen = useAppStore(state => state.dockOpen);
 	const toggleDock = useAppStore(state => state.toggleDock);
@@ -57,6 +59,14 @@ export function App(): React.JSX.Element {
 
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
+			const shortcutState = useAppStore.getState();
+			if (dispatchWorkspaceShortcut(event, {
+				toggleSidebar: shortcutState.toggleSidebar,
+				toggleAssistant: shortcutState.toggleAssistant,
+				toggleDock: shortcutState.toggleDock
+			})) {
+				return;
+			}
 			const modifier = event.ctrlKey || event.metaKey;
 			const key = event.key.toLocaleLowerCase();
 			if (modifier && key === 's') {
@@ -137,7 +147,7 @@ export function App(): React.JSX.Element {
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${systemPageVisible ? 'is-system-page' : ''} ${welcomeVisible ? 'is-welcome' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${sidebarOpen ? '' : 'is-sidebar-closed'} ${systemPageVisible ? 'is-system-page' : ''} ${welcomeVisible ? 'is-welcome' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -170,7 +180,15 @@ export function App(): React.JSX.Element {
 				</div>
 				{workspaceDockVisible && <TaskDock />}
 				{!dockOpen && !focusMode && !systemPageVisible && (
-					<button className="dock-restore" type="button" onClick={toggleDock}><PanelBottomOpen size={18} />展开待处理区</button>
+					<button
+						className="dock-restore"
+						type="button"
+						onClick={toggleDock}
+						title="展开待处理区 (Ctrl+J)"
+						aria-keyshortcuts="Control+J Meta+J"
+					>
+						<PanelBottomOpen size={18} />展开待处理区
+					</button>
 				)}
 			</main>
 			{workspaceAssistantVisible && <AssistantPanel />}

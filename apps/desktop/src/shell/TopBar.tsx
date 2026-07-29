@@ -1,6 +1,8 @@
 import {
 	BookOpenText,
 	Focus,
+	PanelLeftClose,
+	PanelLeftOpen,
 	PanelRightClose,
 	PanelRightOpen,
 	Save,
@@ -22,6 +24,8 @@ export function TopBar(): React.JSX.Element {
 	const session = useAppStore(state => state.session);
 	const focusMode = useAppStore(state => state.focusMode);
 	const toggleFocus = useAppStore(state => state.toggleFocus);
+	const sidebarOpen = useAppStore(state => state.sidebarOpen);
+	const toggleSidebar = useAppStore(state => state.toggleSidebar);
 	const assistantOpen = useAppStore(state => state.assistantOpen);
 	const activeMode = useAppStore(state => state.activeMode);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
@@ -133,9 +137,28 @@ export function TopBar(): React.JSX.Element {
 					<span>AI 快速生成</span>
 				</button>
 				{['works', 'references'].includes(activeMode) && (
-					<button className="icon-button" type="button" onClick={toggleAssistant} aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}>
-						{assistantOpen ? <PanelRightClose size={20} /> : <PanelRightOpen size={20} />}
-					</button>
+					<>
+						<button
+							className="icon-button"
+							type="button"
+							onClick={toggleSidebar}
+							aria-label={sidebarOpen ? '收起作品侧栏' : '展开作品侧栏'}
+							aria-keyshortcuts="Control+B Meta+B"
+							title={`${sidebarOpen ? '收起作品侧栏' : '展开作品侧栏'} (Ctrl+B)`}
+						>
+							{sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeftOpen size={20} />}
+						</button>
+						<button
+							className="icon-button"
+							type="button"
+							onClick={toggleAssistant}
+							aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}
+							aria-keyshortcuts="Control+Alt+B Meta+Alt+B"
+							title={`${assistantOpen ? '收起写作助手' : '展开写作助手'} (Ctrl+Alt+B)`}
+						>
+							{assistantOpen ? <PanelRightClose size={20} /> : <PanelRightOpen size={20} />}
+						</button>
+					</>
 				)}
 				<span className="ai-state">本地优先</span>
 			</div>

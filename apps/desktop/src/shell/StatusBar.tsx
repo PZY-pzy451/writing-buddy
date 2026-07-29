@@ -18,7 +18,14 @@ export function StatusBar(): React.JSX.Element {
 			</div>
 			<div>
 				{session && <span>本章 {countWords(session.content).toLocaleString()} 字</span>}
-				<button type="button" onClick={toggleDock}><ListChecks size={16} />待处理 {issues.filter(issue => issue.status === 'open').length}</button>
+				<button
+					type="button"
+					onClick={toggleDock}
+					title="显示或隐藏任务区 (Ctrl+J)"
+					aria-keyshortcuts="Control+J Meta+J"
+				>
+					<ListChecks size={16} />待处理 {issues.filter(issue => issue.status === 'open').length}
+				</button>
 				<span className={session?.state.dirty ? 'status-warning' : 'status-success'}>
 					{session?.state.dirty ? <CircleAlert size={16} /> : <Check size={16} />}
 					{session?.state.dirty ? '尚未保存' : '已保存到本机'}

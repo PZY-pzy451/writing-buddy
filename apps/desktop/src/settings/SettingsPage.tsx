@@ -1,7 +1,8 @@
-import { Bot, Check, Palette, TextCursorInput } from 'lucide-react';
+import { Bot, Check, Keyboard, Palette, TextCursorInput } from 'lucide-react';
 import { useState } from 'react';
 import { useAppStore, type ThemeId } from '../app/store';
 import { AiSettingsSection } from '../features/ai/AiSettingsSection';
+import { workspaceShortcutDefinitions } from '../shell/workspaceShortcuts';
 
 const themes: readonly { id: ThemeId; label: string; description: string; swatches: readonly string[] }[] = [
 	{ id: 'paper', label: '纸页', description: '温暖纸张与深色产品外壳', swatches: ['#fbf8f1', '#172033', '#a5783d'] },
@@ -52,6 +53,28 @@ export function SettingsPage(): React.JSX.Element {
 						<div className="accent-picker">
 							{(['gold', 'blue', 'purple'] as const).map(candidate => (
 								<button key={candidate} className={`accent-swatch accent-${candidate} ${accent === candidate ? 'is-active' : ''}`} type="button" onClick={() => setAccent(candidate)} aria-label={`使用 ${candidate} 强调色`} />
+							))}
+						</div>
+					</section>
+					<section>
+						<div className="setting-section-title">
+							<Keyboard size={20} />
+							<div>
+								<h2>工作区快捷键</h2>
+								<p>在编辑器中也可直接显示或隐藏主要面板。</p>
+							</div>
+						</div>
+						<div className="shortcut-list" aria-label="工作区快捷键">
+							{workspaceShortcutDefinitions.map(shortcut => (
+								<div className="shortcut-row" key={shortcut.id}>
+									<span>
+										<strong>{shortcut.label}</strong>
+										<small>{shortcut.description}</small>
+									</span>
+									<span className="shortcut-keys" aria-label={shortcut.display}>
+										{shortcut.keys.map(key => <kbd key={key}>{key}</kbd>)}
+									</span>
+								</div>
 							))}
 						</div>
 					</section>

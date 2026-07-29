@@ -4,10 +4,23 @@ import { clampWorkspaceSize, workspaceResizeBounds } from './workspaceResize';
 describe('workspace resize bounds', () => {
 	beforeEach(() => {
 		useAppStore.setState({
+			sidebarOpen: true,
 			sidebarWidth: workspaceResizeBounds.sidebar.defaultValue,
 			assistantWidth: workspaceResizeBounds.assistant.defaultValue,
 			dockHeight: workspaceResizeBounds.dock.defaultValue
 		});
+	});
+
+	it('toggles sidebar visibility without discarding pane geometry', () => {
+		useAppStore.getState().setSidebarWidth(388);
+		useAppStore.getState().toggleSidebar();
+
+		expect(useAppStore.getState().sidebarOpen).toBe(false);
+		expect(useAppStore.getState().sidebarWidth).toBe(388);
+
+		useAppStore.getState().toggleSidebar();
+		expect(useAppStore.getState().sidebarOpen).toBe(true);
+		expect(useAppStore.getState().sidebarWidth).toBe(388);
 	});
 
 	it('clamps and rounds every persisted pane size', () => {

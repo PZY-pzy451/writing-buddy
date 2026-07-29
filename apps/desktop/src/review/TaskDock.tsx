@@ -138,7 +138,16 @@ export function TaskDock(): React.JSX.Element {
 						<Archive size={16} />备份记录
 					</button>
 				</div>
-				<button className="icon-button" type="button" onClick={toggleDock} aria-label="关闭任务区"><X size={18} /></button>
+				<button
+					className="icon-button"
+					type="button"
+					onClick={toggleDock}
+					aria-label="关闭任务区"
+					aria-keyshortcuts="Control+J Meta+J"
+					title="关闭任务区 (Ctrl+J)"
+				>
+					<X size={18} />
+				</button>
 			</header>
 
 			{tab === 'issues' && (
