@@ -8,7 +8,12 @@ import {
 } from '@writing-buddy/domain';
 import { DocumentSession, ResourceTabManager } from '@writing-buddy/project';
 import type { MoveCommand, ProjectSnapshot } from '@writing-buddy/platform-ports';
-import { parseReviewState, serializeReviewState, type ReviewIssue } from '@writing-buddy/review';
+import {
+	parseReviewState,
+	resolveAnchor,
+	serializeReviewState,
+	type ReviewIssue
+} from '@writing-buddy/review';
 import {
 	DesktopStoryRepository,
 	toStoryChapterId,
@@ -58,6 +63,22 @@ import {
 	createDefaultWriterWorkspaceLayouts,
 	updateWriterWorkspaceLayout
 } from './writerWorkspace';
+import {
+	captureAnchorForEditor,
+	type QuickCapture,
+	type QuickCaptureDraft,
+	type QuickCaptureStatus,
+	type QuickCaptureType
+} from '../features/quick-capture/QuickCaptureModel';
+import {
+	QuickCaptureStore,
+	type LoadedQuickCaptures
+} from '../features/quick-capture/QuickCaptureStore';
+import {
+	QuickCaptureConversionService,
+	type QuickCaptureConversionTarget
+} from '../features/quick-capture/QuickCaptureConversionService';
+import { MentionService } from '../features/story/manuscript/MentionService';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -107,6 +128,16 @@ type StructureUndoState = {
 	readonly receipt: ProjectSceneMoveUndoReceipt;
 });
 
+export type DockTab = 'issues' | 'inbox' | 'diff' | 'tasks' | 'backups';
+
+export interface QuickCaptureSeed {
+	readonly type: QuickCaptureType;
+	readonly text: string;
+	readonly chapterId?: string;
+	readonly sceneId?: string;
+	readonly anchor?: QuickCaptureDraft['anchor'];
+}
+
 interface PersistedWorkspace {
 	readonly recentProjectRoot?: string;
 	readonly recentProjectRoots: readonly string[];
@@ -154,6 +185,12 @@ interface AppState extends PersistedWorkspace {
 	readonly assistantOpen: boolean;
 	readonly assistantIntent?: AssistantActionIntent;
 	readonly dockOpen: boolean;
+	readonly dockTab: DockTab;
+	readonly quickCaptures: readonly QuickCapture[];
+	readonly quickCaptureHash: string;
+	readonly quickCaptureOpen: boolean;
+	readonly quickCaptureBusy: boolean;
+	readonly quickCaptureSeed?: QuickCaptureSeed;
 	readonly projectWizardOpen: boolean;
 	readonly structureMoveBusy: boolean;
 	readonly structureMoveAnnouncement?: string;
@@ -224,6 +261,24 @@ interface AppState extends PersistedWorkspace {
 	readonly openAssistant: () => void;
 	readonly requestAssistantAction: (request: AssistantActionRequest) => void;
 	readonly toggleDock: () => void;
+	readonly setDockTab: (tab: DockTab) => void;
+	readonly openQuickCaptureInbox: () => void;
+	readonly openQuickCapture: (seed?: Partial<QuickCaptureSeed>) => void;
+	readonly closeQuickCapture: () => void;
+	readonly saveQuickCapture: (
+		type: QuickCaptureType,
+		text: string
+	) => Promise<boolean>;
+	readonly setQuickCaptureStatus: (
+		id: string,
+		status: QuickCaptureStatus,
+		convertedResourceId?: string
+	) => Promise<boolean>;
+	readonly convertQuickCapture: (
+		id: string,
+		target: QuickCaptureConversionTarget
+	) => Promise<boolean>;
+	readonly jumpToQuickCaptureSource: (capture: QuickCapture) => Promise<boolean>;
 	readonly setSearch: (search: string) => void;
 	readonly setError: (error?: string) => void;
 	readonly setSidebarWidth: (width: number) => void;
@@ -240,6 +295,7 @@ const projectStructureMoveService = new ProjectStructureMoveService(desktopBridg
 const projectSceneMoveService = new ProjectSceneMoveService(desktopBridge);
 const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
+let quickCaptureStore: QuickCaptureStore | undefined;
 let reviewPersistTimer: number | undefined;
 
 const defaultWriterPanelState: WriterSessionPanelState =
@@ -384,6 +440,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	cursorOffset: 0,
 	assistantOpen: false,
 	dockOpen: false,
+	dockTab: 'issues',
+	quickCaptures: [],
+	quickCaptureHash: '',
+	quickCaptureOpen: false,
+	quickCaptureBusy: false,
 	projectWizardOpen: false,
 	structureMoveBusy: false,
 	structureScenes: [],
@@ -633,6 +694,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			let reviewFile: TextFile | undefined;
 			let restoredIssues: readonly ReviewIssue[] = [];
 			let structureScenes: readonly StoryScene[] = [];
+			let quickCaptureCollection: LoadedQuickCaptures = {
+				state: { schemaVersion: 1, captures: [] },
+				hash: ''
+			};
 			try {
 				reviewFile = await desktopBridge.readReviewState(snapshot.root);
 				if (reviewFile) {
@@ -646,6 +711,15 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				structureScenes = await projectSceneMoveService.listScenes(snapshot.root);
 			} catch {
 				structureScenes = [];
+			}
+			quickCaptureStore = new QuickCaptureStore(snapshot.root, desktopBridge);
+			try {
+				quickCaptureCollection = await quickCaptureStore.load();
+			} catch {
+				quickCaptureCollection = {
+					state: { schemaVersion: 1, captures: [] },
+					hash: ''
+				};
 			}
 			const chapterIds = flattenChapters(snapshot.project).map(chapter => chapter.id);
 			const expandedTreeNodeIds = [
@@ -818,7 +892,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					writingLayout.assistantWidth
 				),
 				dockOpen: writingLayout.dockVisible,
+				dockTab: 'issues',
 				dockHeight: clampWorkspaceSize('dock', writingLayout.dockHeight),
+				quickCaptures: quickCaptureCollection.state.captures,
+				quickCaptureHash: quickCaptureCollection.hash,
+				quickCaptureOpen: false,
+				quickCaptureBusy: false,
+				quickCaptureSeed: undefined,
 				expandedTreeNodes: reconciled.session.expandedTreeNodes,
 				writerSessions: {
 					...current.writerSessions,
@@ -1444,6 +1524,267 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				)
 			};
 		});
+	},
+	setDockTab(dockTab) {
+		set({ dockTab });
+	},
+	openQuickCaptureInbox() {
+		set(state => ({
+			dockOpen: true,
+			dockTab: 'inbox',
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { dockVisible: true })
+			)
+		}));
+	},
+	openQuickCapture(seed = {}) {
+		const state = get();
+		const snapshot = state.snapshot;
+		const session = state.session;
+		const activeResource = state.activeResource;
+		if (!snapshot || snapshot.readOnly) {
+			set({
+				error: snapshot?.readOnly
+					? '当前作品以只读模式打开，不能新增快速记录。'
+					: '请先打开一个作品。'
+			});
+			return;
+		}
+		const chapterId = activeResource?.type === 'chapter'
+			? toStoryChapterId(activeResource.id)
+			: undefined;
+		const sceneId = chapterId
+			? state.structureScenes.find(scene => (
+					scene.chapterId === chapterId
+					&& scene.manuscriptRange.start <= state.cursorOffset
+					&& state.cursorOffset < scene.manuscriptRange.end
+				))?.id
+			: undefined;
+		const anchor = session
+			? captureAnchorForEditor(
+					session.content,
+					state.cursorOffset,
+					state.selection
+						? {
+								start: state.selection.start,
+								end: state.selection.end
+							}
+						: undefined
+				)
+			: undefined;
+		set({
+			quickCaptureOpen: true,
+			quickCaptureSeed: {
+				type: seed.type ?? 'idea',
+				text: seed.text ?? state.selection?.text ?? '',
+				...(seed.chapterId ?? chapterId
+					? { chapterId: seed.chapterId ?? chapterId }
+					: {}),
+				...(seed.sceneId ?? sceneId ? { sceneId: seed.sceneId ?? sceneId } : {}),
+				...(seed.anchor ?? anchor ? { anchor: seed.anchor ?? anchor } : {})
+			},
+			error: undefined
+		});
+	},
+	closeQuickCapture() {
+		if (!get().quickCaptureBusy) {
+			set({ quickCaptureOpen: false, quickCaptureSeed: undefined });
+		}
+	},
+	async saveQuickCapture(type, text) {
+		const state = get();
+		const snapshot = state.snapshot;
+		const seed = state.quickCaptureSeed;
+		if (
+			!snapshot
+			|| snapshot.readOnly
+			|| !quickCaptureStore
+			|| !text.trim()
+			|| state.quickCaptureBusy
+		) {
+			return false;
+		}
+		set({ quickCaptureBusy: true, error: undefined });
+		try {
+			const saved = await quickCaptureStore.add({
+				state: {
+					schemaVersion: 1,
+					captures: state.quickCaptures
+				},
+				hash: state.quickCaptureHash
+			}, {
+				projectId: snapshot.project.projectId,
+				type,
+				text,
+				...(seed?.chapterId ? { chapterId: seed.chapterId } : {}),
+				...(seed?.sceneId ? { sceneId: seed.sceneId } : {}),
+				...(seed?.anchor ? { anchor: seed.anchor } : {})
+			});
+			set({
+				quickCaptures: saved.state.captures,
+				quickCaptureHash: saved.hash,
+				quickCaptureBusy: false,
+				quickCaptureOpen: false,
+				quickCaptureSeed: undefined
+			});
+			return true;
+		} catch (error) {
+			if (error instanceof Error && error.message.startsWith('externalChange')) {
+				try {
+					const reloaded = await quickCaptureStore.load();
+					set({
+						quickCaptures: reloaded.state.captures,
+						quickCaptureHash: reloaded.hash,
+						quickCaptureBusy: false,
+						error: '待整理箱已被其他窗口更新，已重新载入；请再次保存这条记录。'
+					});
+				} catch {
+					set({ quickCaptureBusy: false, error: '待整理箱已变化，暂时无法重新载入。' });
+				}
+			} else {
+				set({
+					quickCaptureBusy: false,
+					error: error instanceof Error ? error.message : '快速记录保存失败。'
+				});
+			}
+			return false;
+		}
+	},
+	async setQuickCaptureStatus(id, status, convertedResourceId) {
+		const state = get();
+		if (!quickCaptureStore || state.quickCaptureBusy) return false;
+		set({ quickCaptureBusy: true, error: undefined });
+		try {
+			const saved = await quickCaptureStore.setStatus({
+				state: {
+					schemaVersion: 1,
+					captures: state.quickCaptures
+				},
+				hash: state.quickCaptureHash
+			}, id, status, convertedResourceId);
+			set({
+				quickCaptures: saved.state.captures,
+				quickCaptureHash: saved.hash,
+				quickCaptureBusy: false
+			});
+			return true;
+		} catch (error) {
+			set({
+				quickCaptureBusy: false,
+				error: error instanceof Error ? error.message : '待整理箱更新失败。'
+			});
+			return false;
+		}
+	},
+	async convertQuickCapture(id, target) {
+		const state = get();
+		const snapshot = state.snapshot;
+		const capture = state.quickCaptures.find(candidate => candidate.id === id);
+		if (
+			!snapshot
+			|| snapshot.readOnly
+			|| !capture
+			|| !quickCaptureStore
+			|| state.quickCaptureBusy
+		) {
+			return false;
+		}
+		set({ quickCaptureBusy: true, error: undefined });
+		try {
+			await desktopBridge.createSnapshot(
+				snapshot.root,
+				'beforeDestructiveOperation',
+				`快速记录转为正式资料：${capture.text.slice(0, 40)}`
+			);
+			const repository = new DesktopStoryRepository(snapshot.root, desktopBridge);
+			const mentionService = new MentionService(snapshot.root, desktopBridge);
+			const conversion = new QuickCaptureConversionService(
+				repository,
+				mentionService
+			);
+			const converted = await conversion.convert(
+				capture,
+				target,
+				capture.chapterId
+					? async chapterId => {
+							const chapter = flattenChapters(snapshot.project).find(candidate => (
+								toStoryChapterId(candidate.id) === chapterId
+							));
+							if (!chapter) throw new Error('quickCaptureChapterMissing');
+							const current = get();
+							if (
+								current.activeResource?.id === chapter.id
+								&& current.session
+							) {
+								return {
+									content: current.session.content,
+									textRevision: current.session.state.version
+								};
+							}
+							const disk = await desktopBridge.readText(snapshot.root, chapter.file);
+							return { content: disk.content, textRevision: 0 };
+						}
+					: undefined
+			);
+			const saved = await quickCaptureStore.setStatus({
+				state: {
+					schemaVersion: 1,
+					captures: get().quickCaptures
+				},
+				hash: get().quickCaptureHash
+			}, capture.id, 'converted', converted.resource.id);
+			set({
+				quickCaptures: saved.state.captures,
+				quickCaptureHash: saved.hash,
+				quickCaptureBusy: false
+			});
+			if (capture.chapterId) {
+				window.dispatchEvent(new CustomEvent('writing-buddy:mentions-changed', {
+					detail: { chapterId: capture.chapterId }
+				}));
+			}
+			return true;
+		} catch (error) {
+			set({
+				quickCaptureBusy: false,
+				error: error instanceof Error ? error.message : '正式资料转换失败。'
+			});
+			return false;
+		}
+	},
+	async jumpToQuickCaptureSource(capture) {
+		const snapshot = get().snapshot;
+		if (!snapshot || !capture.chapterId || !capture.anchor) {
+			set({ error: '这条记录没有可跳转的正文位置。' });
+			return false;
+		}
+		const chapter = flattenChapters(snapshot.project).find(candidate => (
+			toStoryChapterId(candidate.id) === capture.chapterId
+		));
+		if (!chapter) {
+			set({ error: '关联章节已不存在。' });
+			return false;
+		}
+		try {
+			const descriptor = toChapterResource(snapshot, chapter.id);
+			if (!descriptor?.path) throw new Error('quickCaptureChapterMissing');
+			const current = get();
+			const content = current.activeResource?.id === descriptor.id && current.session
+				? current.session.content
+				: (await desktopBridge.readText(snapshot.root, descriptor.path)).content;
+			const range = resolveAnchor(content, capture.anchor);
+			if (!range) {
+				set({ error: '原文位置已经变化，无法可靠定位。' });
+				return false;
+			}
+			await get().openResource(descriptor);
+			get().requestEditorReveal(descriptor.id, range.start);
+			return true;
+		} catch {
+			set({ error: '暂时无法打开关联正文。' });
+			return false;
+		}
 	},
 	setSearch(search) { set({ search }); },
 	setError(error) { set({ error }); },

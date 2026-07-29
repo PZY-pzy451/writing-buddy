@@ -1,5 +1,5 @@
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeSet, HashSet},
     fs,
     path::{Path, PathBuf},
     process::Command,
@@ -982,6 +982,8 @@ fn snapshot_kind(relative: &str) -> Option<&'static str> {
         Some("item")
     } else if lower.starts_with(".writing-buddy/review/") {
         Some("reviewState")
+    } else if lower.starts_with(".writing-buddy/inbox/") {
+        Some("authorInbox")
     } else if lower.starts_with(".writing-buddy/ai/") {
         Some("aiState")
     } else if lower.starts_with(".writing-buddy/trash/") {
@@ -1321,6 +1323,85 @@ pub fn write_review_state(
     filesystem::write_text_atomic(&AtomicWriteRequest {
         project_root,
         relative_path: ".writing-buddy/review/next-issues.json".to_owned(),
+        content,
+        expected_hash,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    })
+}
+
+#[tauri::command]
+pub fn read_quick_capture_state(project_root: String) -> Result<Option<TextFile>, String> {
+    match filesystem::read_text(&project_root, ".writing-buddy/inbox/quick-captures.json") {
+        Ok(file) => Ok(Some(file)),
+        Err(error) if error == "resourceNotFound" => Ok(None),
+        Err(error) => Err(error),
+    }
+}
+
+fn valid_quick_capture_state(parsed: &serde_json::Value) -> bool {
+    let Some(captures) = parsed.get("captures").and_then(serde_json::Value::as_array) else {
+        return false;
+    };
+    if parsed.as_object().is_none_or(|value| value.len() != 2)
+        || parsed
+            .get("schemaVersion")
+            .and_then(serde_json::Value::as_u64)
+            != Some(1)
+        || captures.len() > 10_000
+    {
+        return false;
+    }
+    let mut ids = HashSet::new();
+    captures.iter().all(|capture| {
+        let Some(value) = capture.as_object() else {
+            return false;
+        };
+        let id = value.get("id").and_then(serde_json::Value::as_str);
+        let project_id = value.get("projectId").and_then(serde_json::Value::as_str);
+        let kind = value.get("type").and_then(serde_json::Value::as_str);
+        let text = value.get("text").and_then(serde_json::Value::as_str);
+        let status = value.get("status").and_then(serde_json::Value::as_str);
+        let created_at = value.get("createdAt").and_then(serde_json::Value::as_str);
+        let updated_at = value.get("updatedAt").and_then(serde_json::Value::as_str);
+        id.is_some_and(|id| {
+            id.starts_with("capture:") && id.len() <= 160 && ids.insert(id.to_owned())
+        }) && project_id.is_some_and(|id| !id.trim().is_empty() && id.len() <= 240)
+            && kind.is_some_and(|kind| {
+                matches!(
+                    kind,
+                    "idea" | "revision" | "foreshadowing" | "character" | "world"
+                )
+            })
+            && text.is_some_and(|text| !text.trim().is_empty() && text.len() <= 80_000)
+            && status.is_some_and(|status| {
+                matches!(status, "inbox" | "later" | "converted" | "dismissed")
+            })
+            && created_at.is_some_and(|value| value.ends_with('Z'))
+            && updated_at.is_some_and(|value| value.ends_with('Z'))
+    })
+}
+
+#[tauri::command]
+pub fn write_quick_capture_state(
+    state: State<'_, AppState>,
+    project_root: String,
+    content: String,
+    expected_hash: String,
+) -> Result<AtomicWriteResult, String> {
+    require_write_lock(&state, &project_root)?;
+    if content.len() > 2 * 1024 * 1024 {
+        return Err("quickCaptureStateTooLarge".to_owned());
+    }
+    let parsed: serde_json::Value =
+        serde_json::from_str(&content).map_err(|_| "quickCaptureStateInvalid".to_owned())?;
+    if !valid_quick_capture_state(&parsed) {
+        return Err("quickCaptureStateInvalid".to_owned());
+    }
+    filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root,
+        relative_path: ".writing-buddy/inbox/quick-captures.json".to_owned(),
         content,
         expected_hash,
         eol: "lf".to_owned(),
@@ -1734,5 +1815,42 @@ mod tests {
             snapshot_kind(".writing-buddy/ai/cache/context-pack.json"),
             None
         );
+        assert_eq!(
+            snapshot_kind(".writing-buddy/inbox/quick-captures.json"),
+            Some("authorInbox")
+        );
+    }
+
+    #[test]
+    fn quick_capture_state_validation_rejects_unknown_and_duplicate_records() {
+        let valid = json!({
+            "schemaVersion": 1,
+            "captures": [{
+                "id": "capture:idea-001",
+                "projectId": "project-001",
+                "type": "idea",
+                "text": "让玻璃顶在终章再次出现",
+                "status": "inbox",
+                "createdAt": "2026-07-29T00:00:00.000Z",
+                "updatedAt": "2026-07-29T00:00:00.000Z"
+            }]
+        });
+        assert!(valid_quick_capture_state(&valid));
+        assert!(!valid_quick_capture_state(&json!({
+            "schemaVersion": 1,
+            "captures": [{
+                "id": "capture:idea-001",
+                "projectId": "project-001",
+                "type": "unknown",
+                "text": "记录",
+                "status": "inbox",
+                "createdAt": "2026-07-29T00:00:00.000Z",
+                "updatedAt": "2026-07-29T00:00:00.000Z"
+            }]
+        })));
+        assert!(!valid_quick_capture_state(&json!({
+            "schemaVersion": 1,
+            "captures": [valid["captures"][0].clone(), valid["captures"][0].clone()]
+        })));
     }
 }

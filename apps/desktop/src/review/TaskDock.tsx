@@ -5,7 +5,10 @@ import {
 	CircleAlert,
 	ClipboardList,
 	Clock3,
+	FileInput,
 	Files,
+	Lightbulb,
+	Link2,
 	RotateCcw,
 	X
 } from 'lucide-react';
@@ -18,6 +21,9 @@ import { desktopBridge } from '../platform/bridge';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
+import type {
+	QuickCaptureConversionTarget
+} from '../features/quick-capture/QuickCaptureConversionService';
 
 const resolution = new ReviewResolutionService(new EditTransactionService());
 
@@ -32,11 +38,20 @@ export function TaskDock(): React.JSX.Element {
 	const reloadProject = useAppStore(state => state.reloadProject);
 	const dockHeight = useAppStore(state => state.dockHeight);
 	const setDockHeight = useAppStore(state => state.setDockHeight);
-	const [tab, setTab] = useState<'issues' | 'diff' | 'tasks' | 'backups'>('issues');
+	const tab = useAppStore(state => state.dockTab);
+	const setTab = useAppStore(state => state.setDockTab);
+	const quickCaptures = useAppStore(state => state.quickCaptures);
+	const quickCaptureBusy = useAppStore(state => state.quickCaptureBusy);
+	const setQuickCaptureStatus = useAppStore(state => state.setQuickCaptureStatus);
+	const convertQuickCapture = useAppStore(state => state.convertQuickCapture);
+	const jumpToQuickCaptureSource = useAppStore(state => state.jumpToQuickCaptureSource);
 	const [selectedId, setSelectedId] = useState<string>();
 	const [message, setMessage] = useState('');
 	const [lastBackup, setLastBackup] = useState<BackupResult>();
 	const [inspection, setInspection] = useState<BackupInspection>();
+	const [conversionTargets, setConversionTargets] = useState<
+		Readonly<Record<string, QuickCaptureConversionTarget>>
+	>({});
 
 	const selected = issues.find(issue => issue.id === selectedId) ?? issues[0];
 	const counts = useMemo(() => ({
@@ -44,9 +59,37 @@ export function TaskDock(): React.JSX.Element {
 		warning: issues.filter(issue => issue.severity === 'warning' || issue.severity === 'error').length,
 		ignored: issues.filter(issue => issue.status === 'ignored').length
 	}), [issues]);
+	const inboxGroups = useMemo(() => {
+		const active = quickCaptures.filter(capture => (
+			capture.status === 'inbox' || capture.status === 'later'
+		));
+		const linked = (snapshot?.project.volumes ?? []).flatMap(volume => (
+			volume.chapters.map(chapter => ({
+				id: chapter.id,
+				title: chapter.title,
+				captures: active.filter(capture => (
+					capture.chapterId === `chapter:${chapter.id}`
+				))
+			}))
+		));
+		return [
+			...linked,
+			{
+				id: 'unlinked',
+				title: '未关联章节',
+				captures: active.filter(capture => !capture.chapterId)
+			}
+		].filter(group => group.captures.length > 0);
+	}, [quickCaptures, snapshot?.project.volumes]);
 
 	const updateIssue = (issueId: string, nextIssue: typeof issues[number]) => {
 		setIssues(issues.map(issue => issue.id === issueId ? nextIssue : issue));
+	};
+	const defaultConversionTarget = (type: typeof quickCaptures[number]['type']):
+		QuickCaptureConversionTarget => {
+		if (type === 'character') return 'character';
+		if (type === 'world') return 'worldRule';
+		return 'foreshadowing';
 	};
 
 	const accept = () => {
@@ -127,6 +170,9 @@ export function TaskDock(): React.JSX.Element {
 				<div role="tablist">
 					<button type="button" role="tab" aria-selected={tab === 'issues'} onClick={() => setTab('issues')}>
 						<ClipboardList size={16} />待处理 <span>{counts.open}</span>
+					</button>
+					<button type="button" role="tab" aria-selected={tab === 'inbox'} onClick={() => setTab('inbox')}>
+						<Lightbulb size={16} />待整理 <span>{quickCaptures.filter(capture => capture.status === 'inbox' || capture.status === 'later').length}</span>
 					</button>
 					<button type="button" role="tab" aria-selected={tab === 'diff'} onClick={() => setTab('diff')}>
 						<Files size={16} />修改对比
@@ -210,6 +256,103 @@ export function TaskDock(): React.JSX.Element {
 				<div className="dock-body diff-dock">
 					<div><span>原文</span><pre>{selected?.anchor.target ?? '选择一个带建议的问题'}</pre></div>
 					<div><span>建议</span><pre>{selected?.replacement ?? '暂无替换内容'}</pre></div>
+				</div>
+			)}
+
+			{tab === 'inbox' && (
+				<div className="dock-body quick-capture-inbox">
+					{quickCaptures.filter(capture => (
+						capture.status === 'inbox' || capture.status === 'later'
+					)).length === 0 ? (
+							<AppEmptyState
+								icon={Lightbulb}
+								title="待整理箱是空的"
+								description="写作时按 Ctrl+Shift+Space，先把想法记下来。"
+								density="compact"
+								tone="positive"
+								className="dock-empty"
+							/>
+						) : (
+							inboxGroups.map(group => (
+									<section className="quick-capture-group" key={group.id}>
+										<header>
+											<strong>{group.title}</strong>
+											<span>{group.captures.length}</span>
+										</header>
+										<div>
+											{group.captures.map(capture => (
+												<article className="quick-capture-row" key={capture.id}>
+													<div>
+														<span data-capture-type={capture.type}>
+															{({
+																idea: '灵感',
+																revision: '待修改',
+																foreshadowing: '伏笔',
+																character: '人物',
+																world: '设定'
+															} as const)[capture.type]}
+														</span>
+														{capture.status === 'later' && <small>稍后处理</small>}
+													</div>
+													<p>{capture.text}</p>
+													<footer>
+														<label className="quick-capture-conversion">
+															<span className="sr-only">正式资料类型</span>
+															<select
+																aria-label="正式资料类型"
+																value={conversionTargets[capture.id] ?? defaultConversionTarget(capture.type)}
+																disabled={quickCaptureBusy}
+																onChange={event => setConversionTargets(current => ({
+																	...current,
+																	[capture.id]: event.target.value as QuickCaptureConversionTarget
+																}))}
+															>
+																<option value="character">人物</option>
+																<option value="location">地点</option>
+																<option value="item">物品</option>
+																<option value="foreshadowing">伏笔</option>
+																<option value="worldRule">世界规则</option>
+															</select>
+															<button
+																type="button"
+																disabled={quickCaptureBusy}
+																onClick={() => void convertQuickCapture(
+																	capture.id,
+																	conversionTargets[capture.id]
+																		?? defaultConversionTarget(capture.type)
+																)}
+															>
+																<FileInput size={16} />转为正式资料
+															</button>
+														</label>
+														<button
+															type="button"
+															disabled={quickCaptureBusy || !capture.anchor}
+															onClick={() => void jumpToQuickCaptureSource(capture)}
+														>
+															<Link2 size={16} />跳到原文
+														</button>
+														<button
+															type="button"
+															disabled={quickCaptureBusy}
+															onClick={() => void setQuickCaptureStatus(capture.id, 'later')}
+														>
+															稍后
+														</button>
+														<button
+															type="button"
+															disabled={quickCaptureBusy}
+															onClick={() => void setQuickCaptureStatus(capture.id, 'dismissed')}
+														>
+															忽略
+														</button>
+													</footer>
+												</article>
+											))}
+										</div>
+									</section>
+								))
+						)}
 				</div>
 			)}
 

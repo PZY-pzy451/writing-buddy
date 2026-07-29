@@ -2,6 +2,7 @@ import {
 	BookmarkPlus,
 	Eye,
 	Gem,
+	Lightbulb,
 	Link2,
 	MapPin,
 	Sparkles,
@@ -26,6 +27,7 @@ interface SelectionActionMenuProps {
 	readonly readOnly: boolean;
 	readonly onLinked: (mention: MentionLink) => void;
 	readonly onRewrite: () => void;
+	readonly onQuickCapture?: () => void;
 	readonly onGenerateResource?: (type: StoryResourceType) => void;
 }
 
@@ -47,6 +49,7 @@ export function SelectionActionMenu({
 	readOnly,
 	onLinked,
 	onRewrite,
+	onQuickCapture,
 	onGenerateResource
 }: SelectionActionMenuProps): React.JSX.Element {
 	const [busy, setBusy] = useState(false);
@@ -125,6 +128,15 @@ export function SelectionActionMenu({
 			<button type="button" disabled={readOnly || busy} onClick={() => void linkExisting()}>
 				<Link2 size={16} />链接已有资源
 			</button>
+			{onQuickCapture && (
+				<button
+					type="button"
+					disabled={readOnly || busy}
+					onClick={onQuickCapture}
+				>
+					<Lightbulb size={16} />记录想法
+				</button>
+			)}
 			<button
 				type="button"
 				className="selection-action-ai"

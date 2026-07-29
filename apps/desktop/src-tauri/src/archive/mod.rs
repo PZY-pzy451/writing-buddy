@@ -514,6 +514,8 @@ mod tests {
         .expect("story kernel generation directory");
         fs::create_dir_all(root.join(".writing-buddy").join("ai").join("tmp"))
             .expect("ai temp directory");
+        fs::create_dir_all(root.join(".writing-buddy").join("inbox"))
+            .expect("author inbox directory");
         fs::create_dir_all(root.join("chapters")).expect("chapters directory");
         fs::create_dir_all(root.join("story").join("characters")).expect("story directory");
         fs::create_dir_all(&destination).expect("restore directory");
@@ -558,6 +560,13 @@ mod tests {
         .expect("story kernel generation candidates");
         fs::write(
             root.join(".writing-buddy")
+                .join("inbox")
+                .join("quick-captures.json"),
+            r#"{"schemaVersion":1,"captures":[]}"#,
+        )
+        .expect("quick captures");
+        fs::write(
+            root.join(".writing-buddy")
                 .join("cache")
                 .join("story-index-v1.json"),
             "derived",
@@ -579,11 +588,12 @@ mod tests {
             None,
         )
         .expect("create backup");
-        assert_eq!(result.entry_count, 5);
+        assert_eq!(result.entry_count, 6);
         let (_, entries) = decode(&fs::read(&backup).expect("read backup")).expect("decode backup");
         assert!(entries.contains_key("story/characters/character%3Alin.json"));
         assert!(entries.contains_key(".writing-buddy/ai/pending-facts/index.json"));
         assert!(entries.contains_key(".writing-buddy/ai/story-kernel-generation/index.json"));
+        assert!(entries.contains_key(".writing-buddy/inbox/quick-captures.json"));
         assert!(!entries.contains_key(".writing-buddy/cache/story-index-v1.json"));
         assert!(!entries.contains_key(".writing-buddy/ai/tmp/job.json"));
         let inspection = inspect(backup.to_str().expect("backup path"));
@@ -596,7 +606,7 @@ mod tests {
                 false,
             )
             .expect("restore"),
-            5
+            6
         );
         assert_eq!(
             fs::read_to_string(destination.join("chapters").join("one.md"))

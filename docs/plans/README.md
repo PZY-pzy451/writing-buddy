@@ -27,6 +27,7 @@
 - [Inline Tab plot expansion](./025-inline-tab-plot-expansion.md)
 - [AI snapshot reason contract repair](./026-ai-snapshot-reason-contract.md)
 - [Change-aware self-test framework](./027-change-aware-self-test-framework.md)
+- [Phase 1.2A Gate D Quick Capture and Entity Peek](./028-phase-1.2a-gate-d-quick-capture-entity-peek.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

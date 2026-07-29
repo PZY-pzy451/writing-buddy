@@ -6,6 +6,7 @@ import {
 	FolderInput,
 	FolderPlus,
 	Landmark,
+	Lightbulb,
 	MapPinned,
 	Plus,
 	UserRoundPlus
@@ -40,6 +41,7 @@ export function GlobalCreateMenu(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
 	const chooseProject = useAppStore(state => state.chooseProject);
+	const openQuickCapture = useAppStore(state => state.openQuickCapture);
 	const [open, setOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -124,6 +126,23 @@ export function GlobalCreateMenu(): React.JSX.Element {
 					>
 						<FolderInput size={18} />
 						<span><strong>打开项目</strong><small>选择已有项目目录</small></span>
+					</button>
+					<div className="global-create-separator" role="separator" />
+					<button
+						type="button"
+						role="menuitem"
+						disabled={!snapshot || snapshot.readOnly}
+						title={!snapshot ? '请先打开作品' : snapshot.readOnly ? '只读作品不能新增记录' : 'Ctrl+Shift+Space'}
+						onClick={() => {
+							setOpen(false);
+							openQuickCapture();
+						}}
+					>
+						<Lightbulb size={18} />
+						<span>
+							<strong>快速记录</strong>
+							<small>{snapshot ? '写作中先记下来，稍后整理' : '打开作品后可用'}</small>
+						</span>
 					</button>
 					<div className="global-create-separator" role="separator" />
 					{projectItems.map(({ label, Icon }) => (

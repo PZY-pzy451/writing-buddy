@@ -119,6 +119,23 @@ class TauriDesktopBridge implements DesktopBridge {
 		return invoke<AtomicWriteResult>('write_review_state', { projectRoot, content, expectedHash });
 	}
 
+	readQuickCaptureState(projectRoot: string): Promise<TextFile | undefined> {
+		return invoke<TextFile | null>('read_quick_capture_state', { projectRoot })
+			.then(value => value ?? undefined);
+	}
+
+	writeQuickCaptureState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult> {
+		return invoke<AtomicWriteResult>('write_quick_capture_state', {
+			projectRoot,
+			content,
+			expectedHash
+		});
+	}
+
 	createSnapshot(projectRoot: string, reason: SnapshotReason, label?: string): Promise<string> {
 		return invoke<string>('create_snapshot', { projectRoot, reason, label });
 	}
@@ -1227,6 +1244,34 @@ class BrowserDesktopBridge implements DesktopBridge {
 		const hash = browserHash(content);
 		browserReviewFile = { content, encoding: 'utf-8', eol: 'lf', hasBom: false, hash };
 		return { hash, byteLength: new TextEncoder().encode(content).byteLength, modifiedAt: new Date().toISOString() };
+	}
+
+	async readQuickCaptureState(): Promise<TextFile | undefined> {
+		const content = browserFiles.get('.writing-buddy/inbox/quick-captures.json');
+		return content === undefined
+			? undefined
+			: {
+				content,
+				encoding: 'utf-8',
+				eol: 'lf',
+				hasBom: false,
+				hash: browserHash(content)
+			};
+	}
+
+	async writeQuickCaptureState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult> {
+		return this.writeTextAtomic({
+			projectRoot,
+			relativePath: '.writing-buddy/inbox/quick-captures.json',
+			content,
+			expectedHash,
+			eol: 'lf',
+			hasBom: false
+		});
 	}
 
 	async createSnapshot(

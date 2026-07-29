@@ -27,6 +27,12 @@ import {
 } from '../features/story/manuscript/EntityHighlightPreferences';
 import { SelectionActionMenu } from '../features/story/manuscript/SelectionActionMenu';
 import { storyReferenceFromId } from '../features/story/application/StoryResourceRegistry';
+import { EntityPeekCard } from '../features/story/manuscript/EntityPeekCard';
+import {
+	collectMentionCandidates,
+	EntityPeekService,
+	type EntityPeekResult
+} from '../features/story/manuscript/EntityPeekService';
 import { InlineLanguageCheckControl } from '../features/review/inline/InlineLanguageCheckControl';
 import { useInlineLanguageCheck } from '../features/review/inline/useInlineLanguageCheck';
 import { InlinePlotExpansionControl } from '../features/story/ai-context/InlinePlotExpansionControl';
@@ -39,6 +45,15 @@ import type {
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
 type MonacoApi = typeof MonacoNamespace;
+
+interface EntityPeekState {
+	readonly x: number;
+	readonly y: number;
+	readonly candidates: readonly MentionLink[];
+	readonly result?: EntityPeekResult;
+	readonly loading?: boolean;
+	readonly error?: string;
+}
 
 const selectionResourceIntents: Readonly<Partial<Record<StoryResourceType, {
 	readonly targetType: StoryKernelGenerationResourceType;
@@ -96,6 +111,7 @@ export function ChapterEditor(): React.JSX.Element {
 		state => state.setInlinePlotExpansionEnabled
 	);
 	const setMode = useAppStore(state => state.setMode);
+	const openQuickCapture = useAppStore(state => state.openQuickCapture);
 	const syncStructureScenesForChapter = useAppStore(
 		state => state.syncStructureScenesForChapter
 	);
@@ -117,6 +133,15 @@ export function ChapterEditor(): React.JSX.Element {
 	>(undefined);
 	const activeModelUriRef = useRef<string | undefined>(undefined);
 	const mentionsRef = useRef<readonly MentionLink[]>([]);
+	const highlightKindsRef = useRef<ReadonlySet<ManuscriptHighlightKind>>(new Set());
+	const entityPeekServiceRef = useRef<EntityPeekService | undefined>(undefined);
+	const entityPeekRequestRef = useRef(0);
+	const entityPeekHoverTimerRef = useRef<number | undefined>(undefined);
+	const openEntityPeekRef = useRef<(
+		candidates: readonly MentionLink[],
+		x: number,
+		y: number
+	) => void>(() => undefined);
 	const lastMentionContentRef = useRef<{
 		readonly resourceId: string;
 		readonly content: string;
@@ -126,6 +151,7 @@ export function ChapterEditor(): React.JSX.Element {
 	const [editorReady, setEditorReady] = useState(false);
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
 	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
+	const [entityPeek, setEntityPeek] = useState<EntityPeekState>();
 	const [highlightOverrides, setHighlightOverrides] = useState<
 		ReadonlyMap<string, ReadonlySet<ManuscriptHighlightKind>>
 	>(new Map());
@@ -139,6 +165,11 @@ export function ChapterEditor(): React.JSX.Element {
 	const mentionService = useMemo(() => projectRoot
 		? new MentionService(projectRoot, desktopBridge)
 		: undefined, [projectRoot]);
+	const entityPeekService = useMemo(() => (
+		storyRepository && mentionService
+			? new EntityPeekService(storyRepository, mentionService)
+			: undefined
+	), [mentionService, storyRepository]);
 	const storyChapterId = activeResource?.type === 'chapter'
 		? toStoryChapterId(activeResource.id)
 		: undefined;
@@ -153,6 +184,12 @@ export function ChapterEditor(): React.JSX.Element {
 	const highlightKinds = projectRoot
 		? highlightOverrides.get(projectRoot) ?? defaultHighlightKinds
 		: defaultHighlightKinds;
+	useEffect(() => {
+		highlightKindsRef.current = highlightKinds;
+	}, [highlightKinds]);
+	useEffect(() => {
+		entityPeekServiceRef.current = entityPeekService;
+	}, [entityPeekService]);
 	const inlineLanguageCheck = useInlineLanguageCheck({
 		enabled: inlineLanguageCheckEnabled
 			&& activeResource?.type === 'chapter'
@@ -176,6 +213,44 @@ export function ChapterEditor(): React.JSX.Element {
 		selectionActive: selection !== undefined,
 		languageStatus: inlineLanguageCheck.status
 	});
+	const openEntityPeek = useCallback((
+		candidates: readonly MentionLink[],
+		x: number,
+		y: number
+	) => {
+		const exact = candidates.filter(candidate => candidate.status === 'active');
+		if (!exact.length) return;
+		const request = ++entityPeekRequestRef.current;
+		if (exact.length > 1) {
+			setEntityPeek({ x, y, candidates: exact });
+			return;
+		}
+		const mention = exact[0];
+		const service = entityPeekServiceRef.current;
+		if (!mention || !service) return;
+		setEntityPeek({ x, y, candidates: exact, loading: true });
+		void service.load(mention)
+			.then(result => {
+				if (entityPeekRequestRef.current === request) {
+					setEntityPeek({ x, y, candidates: exact, result });
+				}
+			})
+			.catch(error => {
+				if (entityPeekRequestRef.current === request) {
+					setEntityPeek({
+						x,
+						y,
+						candidates: exact,
+						error: error instanceof Error && error.message === 'entityPeekResourceMissing'
+							? '关联资料已经不存在。'
+							: '暂时无法读取这条资料。'
+					});
+				}
+			});
+	}, []);
+	useEffect(() => {
+		openEntityPeekRef.current = openEntityPeek;
+	}, [openEntityPeek]);
 	const handleMount: OnMount = useCallback((editor, monaco: MonacoApi) => {
 		editorRef.current = editor;
 		monacoRef.current = monaco;
@@ -260,19 +335,47 @@ export function ChapterEditor(): React.JSX.Element {
 		editor.onMouseDown(event => {
 			const model = editor.getModel();
 			const position = event.target.position;
-			if (!model || !position) {
+			if (
+				!model
+				|| !position
+				|| (!event.event.ctrlKey && !event.event.metaKey)
+			) {
 				return;
 			}
 			const offset = model.getOffsetAt(position);
-			const mention = mentionsRef.current.find(candidate => (
-				candidate.status === 'active'
-					&& candidate.anchor.start <= offset
-					&& offset < candidate.anchor.end
-			));
-			const reference = mention ? storyReferenceFromId(mention.resourceId) : undefined;
-			if (reference) {
-				void useAppStore.getState().openStoryResource(reference);
+			const candidates = collectMentionCandidates(mentionsRef.current, offset);
+			if (candidates.length) {
+				event.event.preventDefault();
+				event.event.stopPropagation();
+				openEntityPeekRef.current(
+					candidates,
+					event.event.posx + 10,
+					event.event.posy + 10
+				);
 			}
+		});
+		editor.onMouseMove(event => {
+			window.clearTimeout(entityPeekHoverTimerRef.current);
+			const model = editor.getModel();
+			const position = event.target.position;
+			if (!model || !position || event.event.ctrlKey || event.event.metaKey) return;
+			const offset = model.getOffsetAt(position);
+			const candidates = collectMentionCandidates(mentionsRef.current, offset)
+				.filter(candidate => {
+					const kind = mentionHighlightKind(candidate.resourceId);
+					return kind ? highlightKindsRef.current.has(kind) : false;
+				});
+			if (!candidates.length) return;
+			entityPeekHoverTimerRef.current = window.setTimeout(() => {
+				openEntityPeekRef.current(
+					candidates,
+					event.event.posx + 10,
+					event.event.posy + 10
+				);
+			}, 420);
+		});
+		editor.onMouseLeave(() => {
+			window.clearTimeout(entityPeekHoverTimerRef.current);
 		});
 		if (session) {
 			editor.setPosition({
@@ -301,7 +404,14 @@ export function ChapterEditor(): React.JSX.Element {
 
 	useEffect(() => () => {
 		window.clearTimeout(cursorTimerRef.current);
+		window.clearTimeout(entityPeekHoverTimerRef.current);
 		inlinePlotProviderRef.current?.dispose();
+	}, []);
+
+	useEffect(() => {
+		const focusEditor = () => editorRef.current?.focus();
+		window.addEventListener('writing-buddy:focus-editor', focusEditor);
+		return () => window.removeEventListener('writing-buddy:focus-editor', focusEditor);
 	}, []);
 
 	useEffect(() => {
@@ -449,7 +559,7 @@ export function ChapterEditor(): React.JSX.Element {
 			const kind = mentionHighlightKind(mention.resourceId);
 			return mention.status === 'active' && Boolean(kind && highlightKinds.has(kind));
 		});
-		mentionsRef.current = highlightedMentions;
+		mentionsRef.current = mentions;
 		const editor = editorRef.current;
 		const model = editor?.getModel();
 		if (!editor || !model) {
@@ -470,7 +580,7 @@ export function ChapterEditor(): React.JSX.Element {
 							mention.resourceId
 						)}`,
 						hoverMessage: {
-							value: `链接到 **${mention.resourceId}** — 点击打开`
+							value: `链接到 **${mention.resourceId}** — Ctrl+点击速览`
 						}
 					}
 				}))
@@ -588,6 +698,22 @@ export function ChapterEditor(): React.JSX.Element {
 	}, [mentionService, storyChapterId]);
 
 	useEffect(() => {
+		if (!mentionService || !storyChapterId) return;
+		const refreshMentions = (event: Event) => {
+			const detail = (event as CustomEvent<{ readonly chapterId?: string }>).detail;
+			if (detail?.chapterId !== storyChapterId) return;
+			void mentionService.listMentionsForChapter(storyChapterId)
+				.then(setMentions)
+				.catch(() => undefined);
+		};
+		window.addEventListener('writing-buddy:mentions-changed', refreshMentions);
+		return () => window.removeEventListener(
+			'writing-buddy:mentions-changed',
+			refreshMentions
+		);
+	}, [mentionService, storyChapterId]);
+
+	useEffect(() => {
 		if (!mentionService
 			|| !storyChapterId
 			|| sessionContent === undefined
@@ -642,6 +768,38 @@ export function ChapterEditor(): React.JSX.Element {
 		scene.manuscriptRange.start <= currentOffset
 			&& currentOffset < scene.manuscriptRange.end
 	));
+	const closeEntityPeek = () => {
+		entityPeekRequestRef.current += 1;
+		setEntityPeek(undefined);
+		window.requestAnimationFrame(() => editorRef.current?.focus());
+	};
+	const openEntityPeekFull = () => {
+		const resourceId = entityPeek?.result?.resource.id;
+		const reference = resourceId ? storyReferenceFromId(resourceId) : undefined;
+		if (!reference) return;
+		setEntityPeek(undefined);
+		void useAppStore.getState().openStoryResource(reference);
+	};
+	const jumpToEntityBacklink = async (mention: MentionLink) => {
+		if (storyChapterId === mention.chapterId) {
+			useAppStore.getState().requestEditorReveal(activeResource.id, mention.anchor.start);
+			closeEntityPeek();
+			return;
+		}
+		const chapter = snapshot?.project.volumes
+			.flatMap(volume => volume.chapters)
+			.find(candidate => toStoryChapterId(candidate.id) === mention.chapterId);
+		if (!chapter || !snapshot) return;
+		await useAppStore.getState().openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		});
+		useAppStore.getState().requestEditorReveal(chapter.id, mention.anchor.start);
+		setEntityPeek(undefined);
+	};
 
 	return (
 		<div
@@ -795,9 +953,31 @@ export function ChapterEditor(): React.JSX.Element {
 								kind: 'rewrite',
 								actionType: 'polish'
 							})}
+							onQuickCapture={() => openQuickCapture({
+								type: 'idea',
+								text: selection.text
+							})}
 							onGenerateResource={generateResourceFromSelection}
 						/>
 					)}
+				{entityPeek && (
+					<EntityPeekCard
+						x={entityPeek.x}
+						y={entityPeek.y}
+						candidates={entityPeek.candidates}
+						result={entityPeek.result}
+						loading={entityPeek.loading}
+						error={entityPeek.error}
+						onSelect={mention => openEntityPeekRef.current(
+							[mention],
+							entityPeek.x,
+							entityPeek.y
+						)}
+						onClose={closeEntityPeek}
+						onOpenFull={openEntityPeekFull}
+						onJumpBacklink={mention => void jumpToEntityBacklink(mention)}
+					/>
+				)}
 			</div>
 		</div>
 	);

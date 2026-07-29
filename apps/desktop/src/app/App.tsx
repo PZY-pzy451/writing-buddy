@@ -23,6 +23,7 @@ import { AiGenerationDrawer } from '../features/ai/drawer/AiGenerationDrawer';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 import { dispatchWorkspaceShortcut } from '../shell/workspaceShortcuts';
+import { QuickCaptureDialog } from '../features/quick-capture/QuickCaptureDialog';
 import '../theme/visualPolish.css';
 
 export function App(): React.JSX.Element {
@@ -68,6 +69,15 @@ export function App(): React.JSX.Element {
 			if (event.key === 'Escape' && shortcutState.focusMode) {
 				event.preventDefault();
 				shortcutState.toggleFocus();
+				return;
+			}
+			if (
+				(event.ctrlKey || event.metaKey)
+				&& event.shiftKey
+				&& event.code === 'Space'
+			) {
+				event.preventDefault();
+				shortcutState.openQuickCapture();
 				return;
 			}
 			if (!shortcutState.focusMode && dispatchWorkspaceShortcut(event, {
@@ -218,6 +228,7 @@ export function App(): React.JSX.Element {
 			<AiGenerationDrawer />
 			<ProjectCreationWizard />
 			<ProjectStructureUndoToast />
+			<QuickCaptureDialog />
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">

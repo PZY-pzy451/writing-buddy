@@ -1,12 +1,25 @@
 import { FileSearch, History, Search } from 'lucide-react';
 import type { VersionSummary } from '@writing-buddy/platform-ports';
-import { useEffect, useState } from 'react';
+import {
+	DesktopStoryRepository,
+	storyResourceTypes,
+	toStoryChapterId,
+	type MentionLink,
+	type StoryResourceType
+} from '@writing-buddy/story-kernel';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { SettingsPage } from '../settings/SettingsPage';
 import { AiPlaygroundPage } from '../features/ai/AiPlaygroundPage';
 import { ReviewPage } from '../features/review/ReviewPage';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
+import { MentionService } from '../features/story/manuscript/MentionService';
+import {
+	EntityPeekService,
+	type EntityPeekResult
+} from '../features/story/manuscript/EntityPeekService';
+import { EntityPeekCard } from '../features/story/manuscript/EntityPeekCard';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
@@ -20,6 +33,49 @@ export function SystemPage(): React.JSX.Element | null {
 	const [selectedVersion, setSelectedVersion] = useState<string>();
 	const [versionText, setVersionText] = useState<string>();
 	const [versionMessage, setVersionMessage] = useState('');
+	const [storySearchResources, setStorySearchResources] = useState<readonly {
+		readonly id: string;
+		readonly type: StoryResourceType;
+		readonly title: string;
+	}[]>([]);
+	const [searchPeek, setSearchPeek] = useState<{
+		readonly x: number;
+		readonly y: number;
+		readonly result?: EntityPeekResult;
+		readonly loading?: boolean;
+		readonly error?: string;
+	}>();
+	const peekTriggerRef = useRef<HTMLElement | null>(null);
+	const storyRepository = useMemo(() => snapshot
+		? new DesktopStoryRepository(snapshot.root, desktopBridge)
+		: undefined, [snapshot]);
+	const mentionService = useMemo(() => snapshot
+		? new MentionService(snapshot.root, desktopBridge)
+		: undefined, [snapshot]);
+	const entityPeekService = useMemo(() => (
+		storyRepository && mentionService
+			? new EntityPeekService(storyRepository, mentionService)
+			: undefined
+	), [mentionService, storyRepository]);
+
+	useEffect(() => {
+		if (mode !== 'search' || !storyRepository) {
+			return;
+		}
+		let cancelled = false;
+		void Promise.all(storyResourceTypes.map(async type => (
+			(await storyRepository.list(type)).map(resource => ({
+				id: resource.id,
+				type,
+				title: resource.title
+			}))
+		))).then(groups => {
+			if (!cancelled) setStorySearchResources(groups.flat());
+		}).catch(() => {
+			if (!cancelled) setStorySearchResources([]);
+		});
+		return () => { cancelled = true; };
+	}, [mode, storyRepository]);
 
 	useEffect(() => {
 		if (mode === 'versions' && snapshot) {
@@ -65,6 +121,59 @@ export function SystemPage(): React.JSX.Element | null {
 			})),
 			...resources.filter(resource => !normalized || resource.title.toLocaleLowerCase().includes(normalized))
 		];
+		const storyResults = storySearchResources.filter(resource => (
+			!normalized
+			|| resource.title.toLocaleLowerCase().includes(normalized)
+			|| resource.id.toLocaleLowerCase().includes(normalized)
+		));
+		const closeSearchPeek = () => {
+			setSearchPeek(undefined);
+			window.requestAnimationFrame(() => peekTriggerRef.current?.focus());
+		};
+		const openSearchPeek = (
+			resourceId: string,
+			trigger: HTMLElement
+		) => {
+			if (!entityPeekService) return;
+			peekTriggerRef.current = trigger;
+			const rect = trigger.getBoundingClientRect();
+			const position = {
+				x: rect.right + 8,
+				y: rect.top
+			};
+			setSearchPeek({ ...position, loading: true });
+			void entityPeekService.loadResource(resourceId)
+				.then(result => setSearchPeek({ ...position, result }))
+				.catch(() => setSearchPeek({
+					...position,
+					error: '暂时无法读取这条资料。'
+				}));
+		};
+		const openFullSearchPeek = () => {
+			const resource = searchPeek?.result?.resource;
+			if (!resource) return;
+			setSearchPeek(undefined);
+			void useAppStore.getState().openStoryResource({
+				type: resource.type,
+				id: resource.id
+			});
+		};
+		const jumpSearchBacklink = async (mention: MentionLink) => {
+			if (!snapshot) return;
+			const chapter = snapshot.project.volumes
+				.flatMap(volume => volume.chapters)
+				.find(candidate => toStoryChapterId(candidate.id) === mention.chapterId);
+			if (!chapter) return;
+			await useAppStore.getState().openResource({
+				id: chapter.id,
+				type: 'chapter',
+				title: chapter.title,
+				path: chapter.file,
+				projectId: snapshot.project.projectId
+			});
+			useAppStore.getState().requestEditorReveal(chapter.id, mention.anchor.start);
+			setSearchPeek(undefined);
+		};
 		return (
 			<div className="system-page search-page">
 				<header><span className="eyebrow">Project Search</span><h1>搜索当前作品</h1><p>搜索章节标题和写作资料，不扫描项目外文件。</p></header>
@@ -74,7 +183,28 @@ export function SystemPage(): React.JSX.Element | null {
 							<FileSearch size={18} /><span><strong>{result.title}</strong><small>{result.path}</small></span>
 						</button>
 					))}
-					{results.length === 0 && (
+					{storyResults.map(result => (
+						<div className="search-story-result" key={result.id}>
+							<button
+								type="button"
+								onClick={() => void useAppStore.getState().openStoryResource({
+									type: result.type,
+									id: result.id
+								})}
+							>
+								<FileSearch size={18} />
+								<span><strong>{result.title}</strong><small>{result.id}</small></span>
+							</button>
+							<button
+								type="button"
+								aria-label={`速览 ${result.title}`}
+								onClick={event => openSearchPeek(result.id, event.currentTarget)}
+							>
+								速览
+							</button>
+						</div>
+					))}
+					{results.length === 0 && storyResults.length === 0 && (
 						<AppEmptyState
 							icon={Search}
 							title="没有找到匹配内容"
@@ -83,6 +213,20 @@ export function SystemPage(): React.JSX.Element | null {
 						/>
 					)}
 				</div>
+				{searchPeek && (
+					<EntityPeekCard
+						x={searchPeek.x}
+						y={searchPeek.y}
+						candidates={[]}
+						result={searchPeek.result}
+						loading={searchPeek.loading}
+						error={searchPeek.error}
+						onSelect={() => undefined}
+						onClose={closeSearchPeek}
+						onOpenFull={openFullSearchPeek}
+						onJumpBacklink={mention => void jumpSearchBacklink(mention)}
+					/>
+				)}
 			</div>
 		);
 	}

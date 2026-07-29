@@ -379,6 +379,12 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	writeResource(projectRoot: string, relativePath: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
 	readReviewState(projectRoot: string): Promise<TextFile | undefined>;
 	writeReviewState(projectRoot: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
+	readQuickCaptureState(projectRoot: string): Promise<TextFile | undefined>;
+	writeQuickCaptureState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult>;
 	createSnapshot(projectRoot: string, reason: SnapshotReason, label?: string): Promise<string>;
 	createBackup(projectRoot: string, destination?: string): Promise<BackupResult>;
 	chooseBackup(): Promise<string | undefined>;

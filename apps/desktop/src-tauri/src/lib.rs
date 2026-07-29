@@ -54,6 +54,8 @@ pub fn run() {
             commands::write_resource,
             commands::read_review_state,
             commands::write_review_state,
+            commands::read_quick_capture_state,
+            commands::write_quick_capture_state,
             commands::create_snapshot,
             commands::list_versions,
             commands::read_version_text,

@@ -9,6 +9,7 @@ describe('SelectionActionMenu', () => {
 		const user = userEvent.setup();
 		const onRewrite = vi.fn();
 		const onGenerateResource = vi.fn();
+		const onQuickCapture = vi.fn();
 
 		render(
 			<SelectionActionMenu
@@ -20,14 +21,17 @@ describe('SelectionActionMenu', () => {
 				readOnly={false}
 				onLinked={() => undefined}
 				onRewrite={onRewrite}
+				onQuickCapture={onQuickCapture}
 				onGenerateResource={onGenerateResource}
 			/>
 		);
 
 		await user.click(screen.getByRole('button', { name: 'AI 润色' }));
 		await user.click(screen.getByRole('button', { name: '创建人物' }));
+		await user.click(screen.getByRole('button', { name: '记录想法' }));
 
 		expect(onRewrite).toHaveBeenCalledOnce();
 		expect(onGenerateResource).toHaveBeenCalledWith('character');
+		expect(onQuickCapture).toHaveBeenCalledOnce();
 	});
 });

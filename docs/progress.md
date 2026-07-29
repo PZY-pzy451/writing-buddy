@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A writer-centered core experience is complete in the isolated worktree
+Phase 1.2A Gate D writer experience work is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
@@ -14,11 +14,30 @@ Phase 1.2A writer-centered core experience is complete in the isolated worktree
   complete in `a945dbac`.
 - Gate C quiet writer workspaces, per-workspace layout memory, and temporary
   focus overlay are complete in this branch's dedicated feature commit.
-- This delivery stops before Gate D; Quick Capture, Entity Peek, contextual AI,
-  Writer Navigator, chapter organization, new AI actions, and new Story
-  resource types remain out of scope.
+- Gate D Quick Capture, 待整理箱, portable TextAnchor association, exact
+  MentionLink Entity Peek, and focus restoration are complete.
+- Contextual AI, Writer Navigator, chapter organization, new AI actions, and
+  new Story resource types remain out of scope.
+- Completed contract:
+  `docs/plans/028-phase-1.2a-gate-d-quick-capture-entity-peek.md`.
 
 ## Completed
+
+- Added project-owned Quick Capture state with strict parsing, expected-hash
+  concurrency, atomic native writes, and snapshot/backup inclusion.
+- Added the global shortcut, status/global-create/selection entries, focus-safe
+  dialog, chapter-grouped 待整理箱, source jump, later/ignore, and deterministic
+  conversion to existing Story resources with exact source backlinks.
+- Added exact MentionLink Entity Peek for Ctrl/Cmd+click, opt-in highlighted
+  hover, overlap selection, and Story search preview without changing the
+  manuscript route.
+- Exact 1536×992, 1280×800, and 1024×720 browser acceptance has no page
+  overflow; 44 px inbox targets and clean browser errors were verified.
+- Final gates: ESLint, TypeScript, 118 Vitest files / 418 tests, frontend
+  build, Cargo format, 53 Rust tests, Tauri Release/NSIS packaging, and native
+  responsive startup/normal close all pass.
+- Evidence in
+  `docs/acceptance/039-phase-1.2a-gate-d-quick-capture-entity-peek-2026-07-29.md`.
 
 - Reframed the existing product around 写作 / 规划 / 资料 / 检查 / 历史 while
   preserving legacy routes, command IDs, Story resources, and AI actions.
@@ -432,8 +451,7 @@ Phase 1.2A writer-centered core experience is complete in the isolated worktree
 
 ## Next
 
-Handle remaining person/world grouping drag and Y7 hardening as separate
-gates.
+Gate D is complete. Stop before Gate E and await new user direction.
 
 ## Project Creation Y0–Y2 complete
 
