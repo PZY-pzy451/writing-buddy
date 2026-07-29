@@ -27,6 +27,7 @@ import { ScenePlanningPanel } from '../features/story/ai-context/ScenePlanningPa
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
 import { ResizeHandle } from '../shell/ResizeHandle';
+import { workspaceResizeBounds } from '../shell/workspaceResize';
 
 export function AssistantPanel(): React.JSX.Element {
 	const assistantIntent = useAppStore(state => state.assistantIntent);
@@ -339,6 +340,9 @@ function AssistantPanelContent(props: {
 				axis="x"
 				direction={-1}
 				value={assistantWidth}
+				min={workspaceResizeBounds.assistant.min}
+				max={workspaceResizeBounds.assistant.max}
+				defaultValue={workspaceResizeBounds.assistant.defaultValue}
 				onChange={setAssistantWidth}
 			/>
 		</aside>

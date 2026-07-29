@@ -1,13 +1,22 @@
 # Current progress
 
-Updated: 2026-07-28
+Updated: 2026-07-29
 
 ## Active milestone
 
-No implementation milestone is active. Project creation entry hardening is
-accepted on `codex/story-kernel-scene-grounding`.
+No unfinished implementation is active. The latest completed milestone is
+VS Code-style workspace resizing on `codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Project sidebar, writing assistant, and task dock now resize with pointer or
+  keyboard controls, remain available in responsive layouts, persist exact
+  sizes, and support double-click/Enter reset.
+- Workspace resizing acceptance: 99 frontend files / 344 tests, 51 Rust tests,
+  Paper/Midnight checks at 1536/1280/1024, fresh Tauri packaging, and isolated
+  native close with exit code 0.
+- Evidence in
+  `docs/acceptance/030-vscode-style-workspace-resizing-2026-07-29.md`.
 
 - Project creation is now explicitly labeled **新建项目** in the welcome,
   global create menu, compact project shelf, and four-step wizard.

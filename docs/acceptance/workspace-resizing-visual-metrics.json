@@ -1,0 +1,47 @@
+{
+  "date": "2026-07-29",
+  "feature": "VS Code-style workspace resizing",
+  "bounds": {
+    "sidebar": { "min": 220, "default": 320, "max": 440 },
+    "assistant": { "min": 280, "default": 360, "max": 480 },
+    "dock": { "min": 144, "default": 240, "max": 420 }
+  },
+  "checks": [
+    {
+      "viewport": [1536, 992],
+      "theme": "paper",
+      "before": { "sidebar": 320, "assistant": 360, "dock": 240 },
+      "afterPointerDrag": { "sidebar": 400, "assistant": 440, "dock": 326 },
+      "reloadPreserved": true,
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    },
+    {
+      "viewport": [1280, 900],
+      "theme": "paper",
+      "keyboardEnd": {
+        "sidebar": 440,
+        "assistant": 480,
+        "dock": 420,
+        "center": 282
+      },
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    },
+    {
+      "viewport": [1024, 768],
+      "theme": "paper",
+      "separatorsVisible": 3,
+      "keyboardResize": { "sidebar": 332, "assistant": 372, "dock": 252 },
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    },
+    {
+      "viewport": [1536, 992],
+      "theme": "midnight",
+      "geometry": { "sidebar": 332, "assistant": 372, "dock": 252 },
+      "horizontalOverflow": 0,
+      "consoleErrors": []
+    }
+  ]
+}

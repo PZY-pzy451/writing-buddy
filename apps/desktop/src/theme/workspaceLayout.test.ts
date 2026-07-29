@@ -5,6 +5,10 @@ const workspaceCss = readFileSync(
 	'apps/desktop/src/theme/workspace.css',
 	'utf8'
 );
+const tokenCss = readFileSync(
+	'apps/desktop/src/theme/tokens.css',
+	'utf8'
+);
 
 describe('workspace grid contracts', () => {
 	it('lets dashboard and system pages override the closed dock editor rows', () => {
@@ -18,5 +22,32 @@ describe('workspace grid contracts', () => {
 		expect(workspaceCss.slice(fullHeightRule)).toContain(
 			'grid-template-rows: minmax(0, 1fr);'
 		);
+	});
+
+	it('keeps responsive resize handles active and consumes persisted pane sizes', () => {
+		expect(workspaceCss).not.toContain(
+			'.product-resize-handle {\n\t\tdisplay: none;'
+		);
+		expect(workspaceCss).not.toContain(
+			'--sidebar-width: clamp(280px, calc(160px + 9.375vw), 304px);'
+		);
+		expect(workspaceCss).toContain(
+			'/ var(--rail-width) var(--sidebar-width) minmax(0, 1fr);'
+		);
+		expect(workspaceCss).toContain(
+			'width: clamp(280px, var(--assistant-width-user), calc(100vw - var(--rail-width) - 220px));'
+		);
+		expect(workspaceCss).toContain(
+			'--sidebar-width: clamp(220px, var(--sidebar-width-user), 440px);'
+		);
+		expect(workspaceCss).toContain(
+			'--dock-height: clamp(144px, var(--dock-height-user), 420px);'
+		);
+		expect(workspaceCss).toContain(
+			'/ var(--rail-width) var(--sidebar-width) minmax(280px, 1fr) var(--assistant-width);'
+		);
+		expect(tokenCss).not.toContain('--sidebar-width:');
+		expect(tokenCss).toContain('--sidebar-width-user: 320px;');
+		expect(tokenCss).toContain('--assistant-width-user: 360px;');
 	});
 });

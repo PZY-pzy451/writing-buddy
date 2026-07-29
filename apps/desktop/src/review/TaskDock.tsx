@@ -16,6 +16,7 @@ import { resolveAnchor, ReviewResolutionService } from '@writing-buddy/review';
 import { useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { ResizeHandle } from '../shell/ResizeHandle';
+import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 
 const resolution = new ReviewResolutionService(new EditTransactionService());
@@ -237,6 +238,9 @@ export function TaskDock(): React.JSX.Element {
 				axis="y"
 				direction={-1}
 				value={dockHeight}
+				min={workspaceResizeBounds.dock.min}
+				max={workspaceResizeBounds.dock.max}
+				defaultValue={workspaceResizeBounds.dock.defaultValue}
 				onChange={setDockHeight}
 			/>
 		</section>

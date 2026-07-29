@@ -43,6 +43,7 @@ import {
 } from '../features/story/application/StoryResourceOpenService';
 import { parseStoryTabKey } from '../features/story/application/StoryResourceRegistry';
 import { desktopBridge } from '../platform/bridge';
+import { clampWorkspaceSize } from '../shell/workspaceResize';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -1035,9 +1036,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	toggleDock() { set(state => ({ dockOpen: !state.dockOpen })); },
 	setSearch(search) { set({ search }); },
 	setError(error) { set({ error }); },
-	setSidebarWidth(sidebarWidth) { set({ sidebarWidth: Math.min(420, Math.max(240, sidebarWidth)) }); },
-	setAssistantWidth(assistantWidth) { set({ assistantWidth: Math.min(480, Math.max(280, assistantWidth)) }); },
-	setDockHeight(dockHeight) { set({ dockHeight: Math.min(420, Math.max(160, dockHeight)) }); }
+	setSidebarWidth(sidebarWidth) { set({ sidebarWidth: clampWorkspaceSize('sidebar', sidebarWidth) }); },
+	setAssistantWidth(assistantWidth) { set({ assistantWidth: clampWorkspaceSize('assistant', assistantWidth) }); },
+	setDockHeight(dockHeight) { set({ dockHeight: clampWorkspaceSize('dock', dockHeight) }); }
 }), {
 	name: 'writing-buddy-next-workspace',
 	partialize: state => ({

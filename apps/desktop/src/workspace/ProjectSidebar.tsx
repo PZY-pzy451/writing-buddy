@@ -15,6 +15,7 @@ import { useMemo, useState } from 'react';
 import { countWords, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { ResizeHandle } from '../shell/ResizeHandle';
+import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
 import { ProjectActionsMenu } from '../features/projects/ui/ProjectActionsMenu';
 import { ProjectStructureTree } from '../features/projects/ui/ProjectStructureTree';
@@ -178,6 +179,9 @@ export function ProjectSidebar(): React.JSX.Element {
 				axis="x"
 				direction={1}
 				value={sidebarWidth}
+				min={workspaceResizeBounds.sidebar.min}
+				max={workspaceResizeBounds.sidebar.max}
+				defaultValue={workspaceResizeBounds.sidebar.defaultValue}
 				onChange={setSidebarWidth}
 			/>
 		</aside>

@@ -5,15 +5,12 @@
 	color-scheme: light;
 	--topbar-height: 68px;
 	--rail-width: 78px;
-	--sidebar-width-user: 304px;
-	--assistant-width-user: 339px;
+	--sidebar-width-user: 320px;
+	--assistant-width-user: 360px;
 	--dock-height-user: 240px;
-	--sidebar-width: var(--sidebar-width-user);
-	--assistant-width: var(--assistant-width-user);
 	--status-height: 40px;
 	--tabs-height: 44px;
 	--header-height: 128px;
-	--dock-height: var(--dock-height-user);
 	--radius-control: 10px;
 	--radius-card: 14px;
 	--radius-panel: 16px;
