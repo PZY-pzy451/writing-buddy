@@ -3,7 +3,6 @@ import {
 	ChevronDown,
 	ChevronLeft,
 	ChevronRight,
-	CircleDot,
 	Compass,
 	Feather,
 	ListChecks,
@@ -13,6 +12,7 @@ import {
 import type { ManuscriptContinuationMode } from '@writing-buddy/story-kernel';
 import { countWords, findChapter, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
+import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 
 export function WriterHeader(): React.JSX.Element | null {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -20,6 +20,7 @@ export function WriterHeader(): React.JSX.Element | null {
 	const session = useAppStore(state => state.session);
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
+	const saveState = useAppStore(state => state.saveState);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const setStoryView = useAppStore(state => state.setStoryView);
 	const focusMode = useAppStore(state => state.focusMode);
@@ -74,10 +75,7 @@ export function WriterHeader(): React.JSX.Element | null {
 					<h1>{activeResource.title}</h1>
 				</div>
 				<div className="chapter-actions">
-					<span className={`save-indicator ${session?.state.dirty ? 'is-dirty' : ''}`}>
-						{session?.state.dirty ? <CircleDot size={16} /> : <Check size={16} />}
-						{session?.state.dirty ? '未保存' : '已保存'}
-					</span>
+					<SaveStateIndicator className="save-indicator" />
 					{!focusMode && activeResource.type === 'chapter' && (
 						<>
 							<span className="word-chip">本章 {chapterWords.toLocaleString()} 字</span>
@@ -147,7 +145,13 @@ export function WriterHeader(): React.JSX.Element | null {
 						</>
 					)}
 					{!focusMode && (
-						<button className="icon-button" type="button" onClick={() => void save()} disabled={!session?.state.dirty} aria-label="保存">
+						<button
+							className="icon-button"
+							type="button"
+							onClick={() => void save()}
+							disabled={!session?.state.dirty || saveState.type === 'saving'}
+							aria-label={saveState.type === 'saving' ? '正在保存' : '保存'}
+						>
 							<Save size={18} />
 						</button>
 					)}

@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A Gate E writer experience work is complete in the isolated worktree
+Phase 1.2A Gate F writer experience work is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
@@ -18,12 +18,35 @@ Phase 1.2A Gate E writer experience work is complete in the isolated worktree
   MentionLink Entity Peek, and focus restoration are complete.
 - Gate E contextual presentation and author-triggered chapter organization
   through the existing AI/extraction paths are complete.
-- Writer Navigator, save-state redesign, new AI actions, and new Story resource
-  types remain out of scope.
-- Active contract:
-  `docs/plans/029-phase-1.2a-gate-e-contextual-ai-chapter-organization.md`.
+- Gate F save trust, recovery/close protection, Writer Navigator, unified
+  local search, and TextAnchor location are complete.
+- Drop-feedback polish, new AI actions, and new Story resource types remain
+  out of scope.
+- Completed contract:
+  `docs/plans/030-phase-1.2a-gate-f-save-trust-writer-navigator.md`.
+- The branch is stopped before Gate G pending a new explicit user direction.
 
 ## Completed
+
+- Added one explicit save-state model across the writer header, top bar and
+  status bar; persistent failure recovery, hash-safe conflict handling,
+  queued concurrent saves, and close protection preserve manuscript truth.
+- Fixed the in-flight write hazard so only the exact payload sent to disk is
+  marked saved; edits typed during the write remain dirty.
+- Added the local-only `Ctrl/Cmd+K` Writer Navigator for chapters, scenes,
+  manuscript matches, existing Story resources, settings, recent stable IDs,
+  and local commands. `Ctrl/Cmd+Enter` previews and TextAnchor-backed Enter
+  navigation uses the existing resource/reveal path.
+- Real 1536×992, 1280×800, and 1024×720 interaction acceptance has zero page
+  overflow, clipped controls, or undersized targets; focus restoration,
+  command distinction, TextAnchor chapter navigation, and zero AI activation
+  pass.
+- Final gates: Node 24.14.0 / pnpm 10.32.1, ESLint, TypeScript, 124 Vitest
+  files / 446 tests, change-aware self-test, frontend build, Cargo format,
+  53 Rust tests, Tauri Release/NSIS packaging, and isolated native
+  startup/normal close with exit code 0.
+- Evidence in
+  `docs/acceptance/041-phase-1.2a-gate-f-save-trust-writer-navigator-2026-07-29.md`.
 
 - Contextual AI presentation now resolves the current writing context locally,
   keeps at most four primary actions visible, and reuses the existing rewrite
@@ -472,8 +495,8 @@ Phase 1.2A Gate E writer experience work is complete in the isolated worktree
 
 ## Next
 
-Await explicit user direction before Gate F. Writer Navigator, save-state
-redesign, new AI actions, and new Story resource types remain deferred.
+Complete Gate F through TDD, real responsive interaction, fresh native
+packaging, and the exact feature commit. Stop before Gate G.
 
 ## Project Creation Y0–Y2 complete
 

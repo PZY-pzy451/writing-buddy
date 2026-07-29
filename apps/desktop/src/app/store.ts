@@ -79,6 +79,11 @@ import {
 	type QuickCaptureConversionTarget
 } from '../features/quick-capture/QuickCaptureConversionService';
 import { MentionService } from '../features/story/manuscript/MentionService';
+import {
+	classifySaveFailure,
+	closeProtectionFor,
+	type SaveState
+} from '../features/save/SaveStateModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -156,6 +161,7 @@ interface PersistedWorkspace {
 	readonly documentViews: Readonly<Record<string, CursorState>>;
 	readonly expandedTreeNodes: readonly string[];
 	readonly writerSessions: WriterSessionMap;
+	readonly writerNavigatorRecentIds: readonly string[];
 }
 
 interface AppState extends PersistedWorkspace {
@@ -197,6 +203,10 @@ interface AppState extends PersistedWorkspace {
 	readonly structureScenes: readonly StoryScene[];
 	readonly structureUndo?: StructureUndoState;
 	readonly lastSavedAt?: string;
+	readonly saveState: SaveState;
+	readonly closeProtectionOpen: boolean;
+	readonly writerNavigatorOpen: boolean;
+	readonly writerNavigatorNotice?: string;
 	readonly sessionRestoreState: 'idle' | 'restoring' | 'ready' | 'fallback';
 	readonly sessionRestoreNotice?: string;
 	readonly pendingEdit?: {
@@ -240,11 +250,17 @@ interface AppState extends PersistedWorkspace {
 	readonly clearEditorReveal: (resourceId: string, offset: number) => void;
 	readonly setResourceContent: (content: string) => void;
 	readonly save: () => Promise<void>;
-	readonly saveAs: () => Promise<void>;
-	readonly forceSave: () => Promise<void>;
+	readonly saveAs: () => Promise<boolean>;
+	readonly forceSave: () => Promise<boolean>;
 	readonly reloadExternal: () => void;
 	readonly dismissExternalConflict: () => void;
 	readonly verifyExternalChange: () => Promise<void>;
+	readonly requestCloseProtection: () => boolean;
+	readonly dismissCloseProtection: () => void;
+	readonly openWriterNavigator: () => void;
+	readonly closeWriterNavigator: () => void;
+	readonly rememberWriterNavigatorResult: (resultId: string) => void;
+	readonly setWriterNavigatorNotice: (notice?: string) => void;
 	readonly reloadProject: () => Promise<void>;
 	readonly setSelection: (selection?: { start: number; end: number; text: string }) => void;
 	readonly setCursorOffset: (cursorOffset: number) => void;
@@ -297,6 +313,7 @@ const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let quickCaptureStore: QuickCaptureStore | undefined;
 let reviewPersistTimer: number | undefined;
+let activeManuscriptSave: Promise<void> | undefined;
 
 const defaultWriterPanelState: WriterSessionPanelState =
 	createDefaultWriterWorkspaceLayouts().writing;
@@ -429,6 +446,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	documentViews: {},
 	expandedTreeNodes: [],
 	writerSessions: {},
+	writerNavigatorRecentIds: [],
 	activeMode: 'works',
 	storyView: 'characters',
 	recentProjectRoots: [],
@@ -449,6 +467,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	structureMoveBusy: false,
 	structureScenes: [],
 	sessionRestoreState: 'idle',
+	saveState: { type: 'clean', savedAt: new Date().toISOString() },
+	closeProtectionOpen: false,
+	writerNavigatorOpen: false,
 
 	async bootstrap() {
 		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
@@ -899,6 +920,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				quickCaptureOpen: false,
 				quickCaptureBusy: false,
 				quickCaptureSeed: undefined,
+				saveState: { type: 'clean', savedAt: new Date().toISOString() },
+				closeProtectionOpen: false,
+				writerNavigatorOpen: false,
+				writerNavigatorNotice: undefined,
 				expandedTreeNodes: reconciled.session.expandedTreeNodes,
 				writerSessions: {
 					...current.writerSessions,
@@ -989,6 +1014,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			resourceContent: undefined,
 			resourceHash: undefined,
 			externalConflict: undefined,
+			saveState: { type: 'clean', savedAt: new Date().toISOString() },
 			error: undefined
 		});
 	},
@@ -1018,6 +1044,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			tabs: tabs.state.resources,
 			openResourceIds,
 			externalConflict: undefined,
+			saveState: { type: 'clean', savedAt: new Date().toISOString() },
 			error: undefined,
 			writerSessions: updateCurrentWriterSession(
 				state,
@@ -1033,6 +1060,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					session: new DocumentSession(resource.id, resourcePath, file, documentView),
 					resourceContent: undefined,
 					resourceHash: undefined,
+					saveState: { type: 'clean', savedAt: new Date().toISOString() },
 					writerSessions: resource.type === 'chapter'
 						? updateCurrentWriterSession(state, writerSession => touchWriterSession(
 								writerSession,
@@ -1053,7 +1081,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			} else {
 				const content = await desktopBridge.readResource(snapshot.root, resourcePath);
 				const file = await desktopBridge.readText(snapshot.root, resourcePath);
-				set({ session: undefined, resourceContent: content, resourceHash: file.hash });
+				set({
+					session: undefined,
+					resourceContent: content,
+					resourceHash: file.hash,
+					saveState: { type: 'clean', savedAt: new Date().toISOString() }
+				});
 			}
 		} catch (error) {
 			set({ error: error instanceof Error ? error.message : '无法打开资源。' });
@@ -1078,6 +1111,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				resourceContent: undefined,
 				resourceHash: undefined,
 				externalConflict: undefined,
+				saveState: { type: 'clean', savedAt: new Date().toISOString() },
 				error: undefined,
 				writerSessions: updateCurrentWriterSession(
 					state,
@@ -1165,6 +1199,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			: get().issues;
 		set(state => ({
 			session: session.copy(),
+			saveState: session.state.dirty
+				? { type: 'dirty' }
+				: { type: 'clean', savedAt: state.lastSavedAt ?? new Date().toISOString() },
 			issues,
 			writerSessions: updateCurrentWriterSession(
 				state,
@@ -1255,87 +1292,169 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async save() {
-		const { snapshot, activeResource, session, resourceContent, resourceHash } = get();
-		if (!snapshot || !activeResource?.path) {
+		if (activeManuscriptSave) {
+			await activeManuscriptSave;
+			if (get().session?.state.dirty) {
+				await get().save();
+			}
 			return;
 		}
-		try {
-			if (session) {
-				const result = await desktopBridge.writeTextAtomic(session.toWriteRequest(snapshot.root));
-				session.markSaved(result);
-				set({
-					session: session.copy(),
-					snapshot: {
-						...snapshot,
-						wordCounts: {
-							...snapshot.wordCounts,
-							[session.state.resourceId]: countWords(session.content)
-						}
-					},
-					lastSavedAt: result.modifiedAt,
-					error: undefined
-				});
-			} else if (resourceContent !== undefined && resourceHash) {
-				const result = await desktopBridge.writeResource(snapshot.root, activeResource.path, resourceContent, resourceHash);
-				set({ resourceHash: result.hash, lastSavedAt: result.modifiedAt, error: undefined });
+		const task = (async () => {
+			const { snapshot, activeResource, session, resourceContent, resourceHash } = get();
+			if (!snapshot || !activeResource?.path) {
+				return;
 			}
-		} catch (error) {
-			const message = error instanceof Error ? error.message : '保存失败。磁盘内容可能已经变化。';
-			if (session && message.startsWith('externalChange')) {
-				try {
-					const disk = await desktopBridge.readText(snapshot.root, session.state.path);
+			set({
+				saveState: { type: 'saving', startedAt: new Date().toISOString() },
+				error: undefined
+			});
+			try {
+				if (session) {
+					const request = session.toWriteRequest(snapshot.root);
+					const result = await desktopBridge.writeTextAtomic(request);
+					const currentSession = get().session;
+					if (currentSession?.state.resourceId !== session.state.resourceId) {
+						return;
+					}
+					currentSession.markSaved(result, request.content);
+					const dirty = currentSession.state.dirty;
+					set(current => ({
+						session: currentSession.copy(),
+						snapshot: current.snapshot ? {
+							...current.snapshot,
+							wordCounts: {
+								...current.snapshot.wordCounts,
+								[currentSession.state.resourceId]: countWords(currentSession.content)
+							}
+						} : current.snapshot,
+						lastSavedAt: result.modifiedAt,
+						saveState: dirty
+							? { type: 'dirty' }
+							: { type: 'clean', savedAt: result.modifiedAt },
+						error: undefined
+					}));
+				} else if (resourceContent !== undefined && resourceHash) {
+					const result = await desktopBridge.writeResource(
+						snapshot.root,
+						activeResource.path,
+						resourceContent,
+						resourceHash
+					);
+					if (get().activeResource?.id !== activeResource.id || get().session) {
+						return;
+					}
 					set({
-						externalConflict: { disk, detectedAt: new Date().toISOString() },
+						resourceHash: result.hash,
+						lastSavedAt: result.modifiedAt,
+						saveState: { type: 'clean', savedAt: result.modifiedAt },
 						error: undefined
 					});
-					return;
-				} catch {
-					// Preserve the original conflict when the disk copy cannot be reread.
 				}
+			} catch (error) {
+				const failure = classifySaveFailure(error);
+				if (session && failure.type === 'external_conflict') {
+					try {
+						const disk = await desktopBridge.readText(snapshot.root, session.state.path);
+						const detectedAt = new Date().toISOString();
+						set({
+							externalConflict: { disk, detectedAt },
+							saveState: { type: 'external_conflict', detectedAt },
+							error: undefined
+						});
+						return;
+					} catch {
+						// Keep the safe public save failure if the disk copy cannot be read.
+					}
+				}
+				set({
+					saveState: failure.type === 'offline'
+						? { type: 'offline', pendingChanges: 1 }
+						: failure.type === 'failed'
+							? failure
+							: { type: 'failed', errorCode: 'saveFailed', retryable: true },
+					error: undefined
+				});
 			}
-			set({ error: message });
+		})();
+		activeManuscriptSave = task;
+		try {
+			await task;
+		} finally {
+			if (activeManuscriptSave === task) activeManuscriptSave = undefined;
 		}
 	},
 
 	async saveAs() {
 		const { activeResource, session } = get();
 		if (!activeResource || !session) {
-			return;
+			return false;
 		}
-		const path = await desktopBridge.saveTextAs(
-			session.content,
-			session.state.originalEol,
-			session.state.hasBom,
-			`${activeResource.title}.md`
-		);
-		if (path) {
-			set({ error: undefined, lastSavedAt: new Date().toISOString() });
+		try {
+			const path = await desktopBridge.saveTextAs(
+				session.content,
+				session.state.originalEol,
+				session.state.hasBom,
+				`${activeResource.title}.md`
+			);
+			if (path) {
+				set({ error: undefined });
+				return true;
+			}
+		} catch (error) {
+			const failure = classifySaveFailure(error);
+			set({
+				saveState: failure.type === 'offline'
+					? { type: 'offline', pendingChanges: 1 }
+					: failure.type === 'failed'
+						? failure
+						: { type: 'failed', errorCode: 'saveCopyFailed', retryable: true }
+			});
 		}
+		return false;
 	},
 
 	async forceSave() {
 		const { snapshot, session } = get();
 		if (!snapshot || !session) {
-			return;
+			return false;
 		}
+		set({ saveState: { type: 'saving', startedAt: new Date().toISOString() } });
 		try {
-			const result = await desktopBridge.writeTextAtomic(session.toWriteRequest(snapshot.root, true));
-			session.markSaved(result);
+			const request = session.toWriteRequest(snapshot.root, true);
+			const result = await desktopBridge.writeTextAtomic(request);
+			const currentSession = get().session;
+			if (!currentSession || currentSession.state.resourceId !== session.state.resourceId) {
+				return true;
+			}
+			currentSession.markSaved(result, request.content);
 			set({
-				session: session.copy(),
+				session: currentSession.copy(),
 				snapshot: {
 					...snapshot,
 					wordCounts: {
 						...snapshot.wordCounts,
-						[session.state.resourceId]: countWords(session.content)
+						[currentSession.state.resourceId]: countWords(currentSession.content)
 					}
 				},
 				externalConflict: undefined,
 				lastSavedAt: result.modifiedAt,
+				saveState: currentSession.state.dirty
+					? { type: 'dirty' }
+					: { type: 'clean', savedAt: result.modifiedAt },
 				error: undefined
 			});
+			return true;
 		} catch (error) {
-			set({ error: error instanceof Error ? error.message : '覆盖保存失败。' });
+			const failure = classifySaveFailure(error);
+			set({
+				saveState: failure.type === 'offline'
+					? { type: 'offline', pendingChanges: 1 }
+					: failure.type === 'failed'
+						? failure
+						: { type: 'failed', errorCode: 'forceSaveFailed', retryable: true },
+				error: undefined
+			});
+			return false;
 		}
 	},
 
@@ -1356,17 +1475,23 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				}
 			} : snapshot,
 			externalConflict: undefined,
+			saveState: { type: 'clean', savedAt: new Date().toISOString() },
 			error: undefined
 		});
 	},
 
 	dismissExternalConflict() {
-		set({ externalConflict: undefined });
+		set({
+			externalConflict: undefined,
+			saveState: get().session?.state.dirty
+				? { type: 'dirty' }
+				: { type: 'clean', savedAt: get().lastSavedAt ?? new Date().toISOString() }
+		});
 	},
 
 	async verifyExternalChange() {
-		const { snapshot, session, externalConflict } = get();
-		if (!snapshot || !session || externalConflict) {
+		const { snapshot, session, externalConflict, saveState } = get();
+		if (!snapshot || !session || externalConflict || saveState.type === 'saving') {
 			return;
 		}
 		try {
@@ -1375,7 +1500,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				return;
 			}
 			if (session.state.dirty) {
-				set({ externalConflict: { disk, detectedAt: new Date().toISOString() } });
+				const detectedAt = new Date().toISOString();
+				set({
+					externalConflict: { disk, detectedAt },
+					saveState: { type: 'external_conflict', detectedAt }
+				});
 			} else {
 				session.reload(disk);
 				set({
@@ -1387,12 +1516,53 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 							[session.state.resourceId]: countWords(session.content)
 						}
 					},
-					lastSavedAt: new Date().toISOString()
+					lastSavedAt: new Date().toISOString(),
+					saveState: { type: 'clean', savedAt: new Date().toISOString() }
 				});
 			}
 		} catch (error) {
-			set({ error: error instanceof Error ? error.message : '无法检查磁盘变化。' });
+			const failure = classifySaveFailure(error);
+			set({
+				saveState: failure.type === 'offline'
+					? { type: 'offline', pendingChanges: session.state.dirty ? 1 : 0 }
+					: get().saveState
+			});
 		}
+	},
+
+	requestCloseProtection() {
+		const protection = closeProtectionFor(get().saveState);
+		if (protection.action === 'allow' && !get().session?.state.dirty) {
+			get().flushWriterSession();
+			return true;
+		}
+		set({ closeProtectionOpen: true });
+		return false;
+	},
+
+	dismissCloseProtection() {
+		set({ closeProtectionOpen: false });
+	},
+
+	openWriterNavigator() {
+		set({ writerNavigatorOpen: true, writerNavigatorNotice: undefined });
+	},
+
+	closeWriterNavigator() {
+		set({ writerNavigatorOpen: false });
+	},
+
+	rememberWriterNavigatorResult(resultId) {
+		set(state => ({
+			writerNavigatorRecentIds: [
+				resultId,
+				...state.writerNavigatorRecentIds.filter(id => id !== resultId)
+			].slice(0, 12)
+		}));
+	},
+
+	setWriterNavigatorNotice(writerNavigatorNotice) {
+		set({ writerNavigatorNotice });
 	},
 
 	async reloadProject() {
@@ -1879,7 +2049,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		dockHeight: state.dockHeight,
 		documentViews: state.documentViews,
 		expandedTreeNodes: state.expandedTreeNodes,
-		writerSessions: state.writerSessions
+		writerSessions: state.writerSessions,
+		writerNavigatorRecentIds: state.writerNavigatorRecentIds
 	}),
 	version: 2,
 	merge: (persisted, current) => {
@@ -1895,7 +2066,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 						(nodeId): nodeId is string => typeof nodeId === 'string'
 					)
 				: [],
-			writerSessions: parseWriterSessionMap(workspace.writerSessions)
+			writerSessions: parseWriterSessionMap(workspace.writerSessions),
+			writerNavigatorRecentIds: Array.isArray(workspace.writerNavigatorRecentIds)
+				? workspace.writerNavigatorRecentIds.filter(
+						(resultId): resultId is string => typeof resultId === 'string'
+					).slice(0, 12)
+				: []
 		};
 	}
 }));

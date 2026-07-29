@@ -63,7 +63,7 @@ describe('quiet writer workspaces', () => {
 		}
 		expect(within(navigation).queryByRole('button', { name: '作品' })).not.toBeInTheDocument();
 		expect(within(navigation).queryByRole('button', { name: '审校' })).not.toBeInTheDocument();
-		expect(screen.getByRole('textbox', { name: '搜索当前作品' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '打开作者导航器' })).toBeInTheDocument();
 		expect(within(navigation).getByRole('button', { name: '设置' })).toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '收起作品侧栏' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '展开写作助手' })).not.toBeInTheDocument();
@@ -196,6 +196,34 @@ describe('quiet writer workspaces', () => {
 			'true'
 		);
 		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
+	});
+
+	it('opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		const trigger = screen.getByRole('button', { name: '打开作者导航器' });
+		trigger.focus();
+
+		fireEvent.keyDown(window, { key: 'k', code: 'KeyK', ctrlKey: true });
+		const input = await screen.findByRole('combobox', { name: '作者导航器' });
+		expect(input).toHaveFocus();
+		await user.type(input, '第二章');
+		const option = await screen.findByRole('option', { name: /第二章/u });
+		expect(option).toHaveAttribute('aria-selected', 'true');
+		const chapterBeforePreview = useAppStore.getState().activeResourceId;
+
+		fireEvent.keyDown(input, { key: 'Enter', ctrlKey: true });
+		expect(await screen.findByRole('complementary', { name: '结果预览' }))
+			.toBeInTheDocument();
+		expect(useAppStore.getState().activeResourceId).toBe(chapterBeforePreview);
+
+		fireEvent.keyDown(input, { key: 'Escape' });
+		await waitFor(() => expect(screen.queryByRole(
+			'dialog',
+			{ name: '作者导航器' }
+		)).not.toBeInTheDocument());
+		expect(trigger).toHaveFocus();
 	});
 
 	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {

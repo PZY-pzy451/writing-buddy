@@ -109,9 +109,13 @@ export class DocumentSession {
 		};
 	}
 
-	markSaved(result: AtomicWriteResult): void {
-		this.savedContent = this.contentValue;
-		this.stateValue = { ...this.stateValue, diskHash: result.hash, dirty: false };
+	markSaved(result: AtomicWriteResult, persistedContent = this.contentValue): void {
+		this.savedContent = persistedContent;
+		this.stateValue = {
+			...this.stateValue,
+			diskHash: result.hash,
+			dirty: this.contentValue !== persistedContent
+		};
 	}
 
 	reload(file: TextFile): void {
@@ -156,8 +160,9 @@ export class DocumentSessionService {
 		if (!session) {
 			throw new Error(`Unknown document session: ${resourceId}`);
 		}
-		const result = await this.fileSystem.writeTextAtomic(session.toWriteRequest(projectRoot, force));
-		session.markSaved(result);
+		const request = session.toWriteRequest(projectRoot, force);
+		const result = await this.fileSystem.writeTextAtomic(request);
+		session.markSaved(result, request.content);
 	}
 
 	close(resourceId: string): boolean {

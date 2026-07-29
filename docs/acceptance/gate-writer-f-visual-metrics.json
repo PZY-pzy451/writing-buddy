@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-07-29T11:30:31.144Z",
+  "captures": [
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce002",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".writer-navigator",
+      "prepare": "open-writer-navigator-preview",
+      "query": "细密的声响",
+      "width": 1536,
+      "height": 960,
+      "name": "01-writer-navigator-preview-1536x992.png",
+      "verifyNavigation": true,
+      "readyMs": 3064,
+      "selectorReadyMs": 8,
+      "interaction": {
+        "query": "细密的声响",
+        "inputFocused": true,
+        "dialogInsideViewport": true,
+        "commandCount": 0,
+        "commandsVisuallyDistinct": false,
+        "aiSurfaceCount": 0,
+        "beforeChapter": "第二章 迷路的旅人",
+        "triggerWasFocusOrigin": true,
+        "focusRestored": true,
+        "navigation": {
+          "opened": true,
+          "result": true,
+          "activeChapter": "第一章 停摆的时钟",
+          "navigatorClosed": true
+        }
+      },
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 900,
+        "height": 660
+      },
+      "gridColumns": "78px 304px 1154px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 2,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 736
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce002",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".writer-navigator",
+      "prepare": "open-writer-navigator-preview",
+      "query": "旧火车站",
+      "width": 1280,
+      "height": 768,
+      "name": "02-writer-navigator-unified-search-1280x800.png",
+      "readyMs": 1961,
+      "selectorReadyMs": 7,
+      "interaction": {
+        "query": "旧火车站",
+        "inputFocused": true,
+        "dialogInsideViewport": true,
+        "commandCount": 0,
+        "commandsVisuallyDistinct": false,
+        "aiSurfaceCount": 0,
+        "beforeChapter": "第二章 迷路的旅人",
+        "triggerWasFocusOrigin": true,
+        "focusRestored": true
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 900,
+        "height": 640
+      },
+      "gridColumns": "78px 304px 898px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 3,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 767
+    },
+    {
+      "mode": "works",
+      "resourceId": "chapter-a11ce001",
+      "readySelector": ".writing-canvas .monaco-editor",
+      "selector": ".writer-navigator",
+      "prepare": "open-writer-navigator-command",
+      "query": "保存",
+      "width": 1024,
+      "height": 688,
+      "name": "03-writer-navigator-command-1024x720.png",
+      "readyMs": 1479,
+      "selectorReadyMs": 6,
+      "interaction": {
+        "query": "保存",
+        "inputFocused": true,
+        "dialogInsideViewport": true,
+        "commandCount": 1,
+        "commandsVisuallyDistinct": true,
+        "aiSurfaceCount": 0,
+        "beforeChapter": "第二章 迷路的旅人",
+        "triggerWasFocusOrigin": true,
+        "focusRestored": true
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 1000,
+        "height": 596
+      },
+      "gridColumns": "78px 946px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 11,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 726
+    }
+  ]
+}

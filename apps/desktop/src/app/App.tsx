@@ -24,7 +24,19 @@ import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 import { dispatchWorkspaceShortcut } from '../shell/workspaceShortcuts';
 import { QuickCaptureDialog } from '../features/quick-capture/QuickCaptureDialog';
+import { SaveRecoveryBanner } from '../features/save/SaveRecoveryBanner';
+import { CloseProtectionDialog } from '../features/save/CloseProtectionDialog';
+import { WriterNavigator } from '../features/writer-navigator/WriterNavigator';
 import '../theme/visualPolish.css';
+
+async function destroyCurrentApplicationWindow(): Promise<void> {
+	if ('__TAURI_INTERNALS__' in window) {
+		const { getCurrentWindow } = await import('@tauri-apps/api/window');
+		await getCurrentWindow().destroy();
+		return;
+	}
+	window.close();
+}
 
 export function App(): React.JSX.Element {
 	const bootstrap = useAppStore(state => state.bootstrap);
@@ -53,6 +65,8 @@ export function App(): React.JSX.Element {
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const dockHeight = useAppStore(state => state.dockHeight);
 	const sourceRevision = useAppStore(state => state.session?.state.version);
+	const writerNavigatorNotice = useAppStore(state => state.writerNavigatorNotice);
+	const setWriterNavigatorNotice = useAppStore(state => state.setWriterNavigatorNotice);
 
 	useEffect(() => {
 		void bootstrap();
@@ -89,6 +103,11 @@ export function App(): React.JSX.Element {
 			}
 			const modifier = event.ctrlKey || event.metaKey;
 			const key = event.key.toLocaleLowerCase();
+			if (modifier && !event.shiftKey && !event.altKey && key === 'k') {
+				event.preventDefault();
+				shortcutState.openWriterNavigator();
+				return;
+			}
 			if (modifier && event.shiftKey && key === 'f') {
 				event.preventDefault();
 				shortcutState.setMode('search');
@@ -140,7 +159,7 @@ export function App(): React.JSX.Element {
 		const beforeUnload = (event: BeforeUnloadEvent) => {
 			const state = useAppStore.getState();
 			state.flushWriterSession();
-			if (state.session?.state.dirty) {
+			if (state.saveState.type !== 'clean' || state.session?.state.dirty) {
 				event.preventDefault();
 			}
 		};
@@ -152,9 +171,7 @@ export function App(): React.JSX.Element {
 			void import('@tauri-apps/api/window')
 				.then(({ getCurrentWindow }) => getCurrentWindow().onCloseRequested(event => {
 					const state = useAppStore.getState();
-					state.flushWriterSession();
-					if (state.session?.state.dirty
-						&& !window.confirm('当前内容尚未保存。确定退出 Writing Buddy 吗？')) {
+					if (!state.requestCloseProtection()) {
 						event.preventDefault();
 					}
 				}))
@@ -187,6 +204,7 @@ export function App(): React.JSX.Element {
 			} as React.CSSProperties}
 		>
 			<TopBar />
+			<SaveRecoveryBanner />
 			{!focusMode && <GlobalRail />}
 			{!focusMode && <ProjectSidebar />}
 			<main className="center-workspace">
@@ -229,6 +247,19 @@ export function App(): React.JSX.Element {
 			<ProjectCreationWizard />
 			<ProjectStructureUndoToast />
 			<QuickCaptureDialog />
+			<WriterNavigator key={snapshot?.root ?? 'no-project'} />
+			<CloseProtectionDialog onExit={destroyCurrentApplicationWindow} />
+			{writerNavigatorNotice && (
+				<div className="navigator-notice" role="status">
+					<span>{writerNavigatorNotice}</span>
+					<button
+						type="button"
+						onClick={() => setWriterNavigatorNotice(undefined)}
+					>
+						关闭
+					</button>
+				</div>
+			)}
 			{loading && <div className="loading-overlay"><LoaderCircle size={28} className="spin" /><span>正在安全读取项目…</span></div>}
 			{error && (
 				<div className="error-toast" role="alert">

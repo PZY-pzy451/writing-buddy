@@ -1,6 +1,5 @@
 import {
 	BookOpenText,
-	Check,
 	Focus,
 	MoreHorizontal,
 	PanelLeftClose,
@@ -18,12 +17,13 @@ import {
 	useAiGenerationStore
 } from '../features/ai/drawer/aiGenerationStore';
 import { GlobalCreateMenu } from '../features/projects/ui/GlobalCreateMenu';
+import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 
 export function TopBar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
-	const search = useAppStore(state => state.search);
-	const setSearch = useAppStore(state => state.setSearch);
+	const openWriterNavigator = useAppStore(state => state.openWriterNavigator);
 	const save = useAppStore(state => state.save);
+	const saveState = useAppStore(state => state.saveState);
 	const session = useAppStore(state => state.session);
 	const focusMode = useAppStore(state => state.focusMode);
 	const toggleFocus = useAppStore(state => state.toggleFocus);
@@ -100,10 +100,7 @@ export function TopBar(): React.JSX.Element {
 					{activeResource && <><span>/</span><strong>{activeResource.title}</strong></>}
 				</div>
 				<div className="top-actions">
-					<span className={`focus-save-status ${session?.state.dirty ? 'is-dirty' : ''}`}>
-						{session?.state.dirty ? <Save size={16} /> : <Check size={16} />}
-						{session?.state.dirty ? '未保存' : '已保存'}
-					</span>
+					<SaveStateIndicator className="focus-save-status" compact />
 					<button
 						className="ghost-button focus-exit"
 						type="button"
@@ -132,28 +129,32 @@ export function TopBar(): React.JSX.Element {
 					{activeResource ? ` / ${activeResource.title}` : ''}
 				</span>
 			</div>
-			<label className="project-search">
+			<button
+				className="project-search"
+				type="button"
+				onClick={openWriterNavigator}
+				aria-label="打开作者导航器"
+				aria-keyshortcuts="Control+K Meta+K"
+			>
 				<Search size={18} aria-hidden="true" />
-				<span className="sr-only">搜索当前作品</span>
-				<input
-					value={search}
-					onChange={event => setSearch(event.target.value)}
-					placeholder="搜索当前作品"
-					aria-label="搜索当前作品"
-				/>
+				<span>搜索章节、正文、资料或命令</span>
 				<kbd>Ctrl K</kbd>
-			</label>
+			</button>
 			<div className="top-actions">
 				{!quietWriterHeader && <GlobalCreateMenu />}
 				<button
 					className="ghost-button"
 					type="button"
-					aria-label={session?.state.dirty ? '保存' : '已保存'}
+					aria-label={saveState.type === 'saving'
+						? '正在保存'
+						: session?.state.dirty ? '保存' : '已保存'}
 					onClick={() => void save()}
-					disabled={!session?.state.dirty}
+					disabled={!session?.state.dirty || saveState.type === 'saving'}
 				>
 					<Save size={18} />
-					<span>{session?.state.dirty ? '保存' : '已保存'}</span>
+					<span>{saveState.type === 'saving'
+						? '正在保存…'
+						: session?.state.dirty ? '保存' : '已保存'}</span>
 				</button>
 				<button
 					className={`ghost-button ${focusMode ? 'is-active' : ''}`}

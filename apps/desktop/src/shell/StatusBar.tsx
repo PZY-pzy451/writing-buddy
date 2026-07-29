@@ -1,6 +1,7 @@
-import { Check, CircleAlert, Lightbulb, ListChecks } from 'lucide-react';
+import { Lightbulb, ListChecks } from 'lucide-react';
 import { countWords } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
+import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 
 export function StatusBar(): React.JSX.Element {
 	const session = useAppStore(state => state.session);
@@ -46,10 +47,7 @@ export function StatusBar(): React.JSX.Element {
 				</button>
 			</div>
 			<div>
-				<span className={session?.state.dirty ? 'status-warning' : 'status-success'}>
-					{session?.state.dirty ? <CircleAlert size={16} /> : <Check size={16} />}
-					{session?.state.dirty ? '尚未保存' : '已保存'}
-				</span>
+				<SaveStateIndicator compact />
 			</div>
 		</footer>
 	);

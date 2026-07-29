@@ -127,7 +127,7 @@ const initialState = {
 	state: {
 		recentProjectRoot: fixtureRoot,
 		recentProjectRoots: [fixtureRoot],
-		activeMode: 'references',
+		activeMode: gate === 'gate-writer-f' ? 'works' : 'references',
 		storyView: 'characters',
 		theme: 'paper',
 		accent: 'gold',
@@ -135,7 +135,8 @@ const initialState = {
 		sidebarWidth: 304,
 		assistantWidth: 339,
 		dockHeight: 240,
-		openResourceIds: [],
+		openResourceIds: gate === 'gate-writer-f' ? ['chapter-a11ce002'] : [],
+		...(gate === 'gate-writer-f' ? { activeResourceId: 'chapter-a11ce002' } : {}),
 		documentViews: {},
 		writerSessions: {}
 	},
@@ -144,6 +145,14 @@ const initialState = {
 await client.send('Runtime.evaluate', {
 	expression: `localStorage.setItem('writing-buddy-next-workspace', ${JSON.stringify(JSON.stringify(initialState))})`
 });
+if (gate === 'gate-writer-f') {
+	await client.send('Page.addScriptToEvaluateOnNewDocument', {
+		source: `localStorage.setItem(
+			'writing-buddy-next-workspace',
+			${JSON.stringify(JSON.stringify(initialState))}
+		);`
+	});
+}
 
 const gateCCaptures = [
 	{ view: 'characters', selector: '.character-center', width: 1536, height: 960, name: '01-character-center-1536x992.png' },
@@ -530,6 +539,42 @@ const writerGateECaptures = [
 		name: '04-chapter-organization-1024x720.png'
 	}
 ];
+const writerGateFCaptures = [
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce002',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.writer-navigator',
+		prepare: 'open-writer-navigator-preview',
+		query: '细密的声响',
+		width: 1536,
+		height: 960,
+		name: '01-writer-navigator-preview-1536x992.png',
+		verifyNavigation: true
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce002',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.writer-navigator',
+		prepare: 'open-writer-navigator-preview',
+		query: '旧火车站',
+		width: 1280,
+		height: 768,
+		name: '02-writer-navigator-unified-search-1280x800.png'
+	},
+	{
+		mode: 'works',
+		resourceId: 'chapter-a11ce001',
+		readySelector: '.writing-canvas .monaco-editor',
+		selector: '.writer-navigator',
+		prepare: 'open-writer-navigator-command',
+		query: '保存',
+		width: 1024,
+		height: 688,
+		name: '03-writer-navigator-command-1024x720.png'
+	}
+];
 const captures = gate === 'gate-ai-actions-f'
 	? aiQuickActionsGateFCaptures
 	: gate === 'gate-ai-actions-g'
@@ -546,6 +591,8 @@ const captures = gate === 'gate-ai-actions-f'
 	? aiQuickActionsCaptures
 	: gate === 'gate-writer-e'
 	? writerGateECaptures
+	: gate === 'gate-writer-f'
+	? writerGateFCaptures
 	: gate.startsWith('gate-e')
 	? gateECaptures
 	: gate.startsWith('gate-f')
@@ -1126,6 +1173,65 @@ try {
 			});
 			await waitForSelector(client, '.continuity-evidence-list article.is-story-fact');
 		}
+		if (capture.prepare?.startsWith('open-writer-navigator')) {
+			const opened = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const trigger = document.querySelector('.project-search');
+					if (!(trigger instanceof HTMLButtonElement)) return false;
+					trigger.focus();
+					window.dispatchEvent(new KeyboardEvent('keydown', {
+						key: 'k',
+						code: 'KeyK',
+						ctrlKey: true,
+						bubbles: true
+					}));
+					return true;
+				})()`,
+				returnByValue: true
+			});
+			if (!opened.result.value) throw new Error('Writer Navigator shortcut trigger was unavailable.');
+			await waitForSelector(client, '.writer-navigator');
+			const queried = await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const input = document.querySelector('.writer-navigator-input input');
+					if (!(input instanceof HTMLInputElement)) return false;
+					const setter = Object.getOwnPropertyDescriptor(
+						HTMLInputElement.prototype,
+						'value'
+					)?.set;
+					setter?.call(input, ${JSON.stringify(capture.query ?? '')});
+					input.dispatchEvent(new Event('input', { bubbles: true }));
+					return document.activeElement === input;
+				})()`,
+				returnByValue: true
+			});
+			if (!queried.result.value) throw new Error('Writer Navigator query field did not retain focus.');
+			await waitForSelector(
+				client,
+				capture.prepare === 'open-writer-navigator-command'
+					? '.writer-navigator-results [data-result-kind="command"]'
+					: '.writer-navigator-results [role="option"]'
+			);
+			if (capture.prepare === 'open-writer-navigator-preview') {
+				await new Promise(resolveWait => setTimeout(resolveWait, 180));
+				const previewed = await client.send('Runtime.evaluate', {
+					expression: `(() => {
+						const input = document.querySelector('.writer-navigator-input input');
+						if (!(input instanceof HTMLInputElement)) return false;
+						input.dispatchEvent(new KeyboardEvent('keydown', {
+							key: 'Enter',
+							code: 'Enter',
+							ctrlKey: true,
+							bubbles: true
+						}));
+						return true;
+					})()`,
+					returnByValue: true
+				});
+				if (!previewed.result.value) throw new Error('Writer Navigator preview shortcut failed.');
+				await waitForSelector(client, '.writer-navigator-preview');
+			}
+		}
 		if (capture.prepare?.startsWith('generate-')) {
 			await client.send('Runtime.evaluate', {
 				expression: `(() => {
@@ -1173,7 +1279,7 @@ try {
 					.filter(element => {
 						const box = element.getBoundingClientRect();
 						const style = getComputedStyle(element);
-						const label = element.matches('input[type="checkbox"], input[type="radio"]')
+						const label = element.matches('input')
 							? element.closest('label')
 							: undefined;
 						const hasAccessibleLabelTarget = label
@@ -1218,10 +1324,103 @@ try {
 			captureBeyondViewport: false
 		});
 		await writeFile(resolve(outputRoot, capture.name), Buffer.from(screenshot.data, 'base64'));
+		let interaction;
+		if (capture.prepare?.startsWith('open-writer-navigator')) {
+			interaction = (await client.send('Runtime.evaluate', {
+				expression: `(() => {
+					const dialog = document.querySelector('.writer-navigator');
+					const trigger = document.querySelector('.project-search');
+					const input = document.querySelector('.writer-navigator-input input');
+					const commands = [...document.querySelectorAll(
+						'.writer-navigator-results [data-result-kind="command"]'
+					)];
+					const ordinary = document.querySelector(
+						'.writer-navigator-results [role="option"]:not([data-result-kind="command"])'
+					);
+					const dialogBox = dialog?.getBoundingClientRect();
+					const ordinaryStyle = ordinary ? getComputedStyle(ordinary) : undefined;
+					const commandStyle = commands[0] ? getComputedStyle(commands[0]) : undefined;
+					const aiSurfaceCount = document.querySelectorAll(
+						'.ai-generation-drawer, .ai-review-drawer, .continuation-panel'
+					).length;
+					const beforeChapter = document.querySelector('.writer-header h1')?.textContent?.trim();
+					const inputFocusedBeforeClose = document.activeElement === input;
+					input?.dispatchEvent(new KeyboardEvent('keydown', {
+						key: 'Escape',
+						code: 'Escape',
+						bubbles: true
+					}));
+					return {
+						query: ${JSON.stringify(capture.query ?? '')},
+						inputFocused: inputFocusedBeforeClose,
+						dialogInsideViewport: dialogBox
+							? dialogBox.left >= 0 && dialogBox.right <= innerWidth
+								&& dialogBox.top >= 0 && dialogBox.bottom <= innerHeight
+							: false,
+						commandCount: commands.length,
+						commandsVisuallyDistinct: Boolean(commandStyle && ordinaryStyle) && (
+							commandStyle.backgroundColor !== ordinaryStyle.backgroundColor
+							|| commandStyle.borderColor !== ordinaryStyle.borderColor
+							|| commandStyle.color !== ordinaryStyle.color
+							|| commandStyle.borderStyle !== ordinaryStyle.borderStyle
+						) || (commands.length > 0 && commandStyle?.borderStyle === 'dashed'),
+						aiSurfaceCount,
+						beforeChapter,
+						triggerWasFocusOrigin: trigger instanceof HTMLButtonElement
+					};
+				})()`,
+				returnByValue: true
+			})).result.value;
+			await new Promise(resolveWait => setTimeout(resolveWait, 80));
+			const focusRestored = await client.send('Runtime.evaluate', {
+				expression: `document.activeElement === document.querySelector('.project-search')`,
+				returnByValue: true
+			});
+			interaction.focusRestored = focusRestored.result.value;
+			if (capture.verifyNavigation) {
+				const navigation = await client.send('Runtime.evaluate', {
+					expression: `(async () => {
+						window.dispatchEvent(new KeyboardEvent('keydown', {
+							key: 'k',
+							code: 'KeyK',
+							ctrlKey: true,
+							bubbles: true
+						}));
+						await new Promise(resolveWait => setTimeout(resolveWait, 30));
+						const input = document.querySelector('.writer-navigator-input input');
+						if (!(input instanceof HTMLInputElement)) return { opened: false };
+						const setter = Object.getOwnPropertyDescriptor(
+							HTMLInputElement.prototype,
+							'value'
+						)?.set;
+						setter?.call(input, ${JSON.stringify(capture.query ?? '')});
+						input.dispatchEvent(new Event('input', { bubbles: true }));
+						await new Promise(resolveWait => setTimeout(resolveWait, 180));
+						const target = document.querySelector(
+							'.writer-navigator-results [data-result-kind="manuscript"]'
+						);
+						if (!(target instanceof HTMLButtonElement)) return { opened: true, result: false };
+						target.focus();
+						target.click();
+						await new Promise(resolveWait => setTimeout(resolveWait, 120));
+						return {
+							opened: true,
+							result: true,
+							activeChapter: document.querySelector('.writer-header h1')?.textContent?.trim(),
+							navigatorClosed: !document.querySelector('.writer-navigator')
+						};
+					})()`,
+					awaitPromise: true,
+					returnByValue: true
+				});
+				interaction.navigation = navigation.result.value;
+			}
+		}
 		metrics.push({
 			...capture,
 			readyMs: Math.round(performance.now() - startedAt),
 			selectorReadyMs: Math.round(readyMs),
+			...(interaction ? { interaction } : {}),
 			...layout.result.value
 		});
 	}
