@@ -234,7 +234,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 		try {
 			const service = new ScenePlanningService(repository, () => desktopBridge.createSnapshot(
 				props.projectRoot,
-				'ai-scene-plan',
+				'beforeDestructiveOperation',
 				`AI 细纲 · ${scene.title}`
 			));
 			const saved = await service.apply(

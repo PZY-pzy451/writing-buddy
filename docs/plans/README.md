@@ -25,6 +25,7 @@
 - [Workspace layout shortcuts](./023-workspace-layout-shortcuts.md)
 - [Inline AI language check](./024-inline-ai-language-check.md)
 - [Inline Tab plot expansion](./025-inline-tab-plot-expansion.md)
+- [AI snapshot reason contract repair](./026-ai-snapshot-reason-contract.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
 - [Phase 1.0B system layout and AI review follow-up](./phase-1.0b-system-layout-and-ai-review.md)
 - [StoryForge source map](./storyforge-source-map.md)

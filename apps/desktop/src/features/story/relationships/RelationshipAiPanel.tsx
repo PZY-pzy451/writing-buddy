@@ -208,7 +208,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 				new DesktopStoryRepository(props.projectRoot, desktopBridge),
 				label => desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-relationship-review',
+					'beforeDestructiveOperation',
 					label
 				)
 			);

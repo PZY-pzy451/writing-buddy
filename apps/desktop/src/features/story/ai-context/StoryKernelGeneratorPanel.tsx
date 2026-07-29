@@ -114,7 +114,8 @@ function errorMessage(reason: unknown): string {
 		storyKernelGenerationCandidateBlocked: '所选候选包含阻断冲突，暂时不能写入。',
 		storyKernelGenerationCreateCollision: '确认前资源已被创建，请重新生成或改为更新。',
 		storyKernelGenerationRevisionConflict: '确认前资源已被修改，请重新生成后再确认。',
-		storyKernelGenerationBatchNotFound: '候选批次已不存在，请重新生成。'
+		storyKernelGenerationBatchNotFound: '候选批次已不存在，请重新生成。',
+		invalidSnapshotReason: '安全快照参数不兼容，候选尚未写入。请更新应用后重试。'
 	};
 	return messages[code] ?? code;
 }
@@ -326,7 +327,7 @@ function StoryKernelGeneratorPanelContent(
 				? props.createSafetySnapshot()
 				: desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-story-kernel-generation',
+					'beforeDestructiveOperation',
 					'AI Story Kernel 生成前'
 				));
 			const confirmed = await service.confirm(batch.id, [...selectedIds]);

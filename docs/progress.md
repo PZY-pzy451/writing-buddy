@@ -4,10 +4,24 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Inline `Tab` plot expansion is complete on
-`codex/story-kernel-scene-grounding`.
+No implementation milestone is active. The AI snapshot reason contract repair
+is complete on `codex/story-kernel-scene-grounding`.
 
 ## Completed
+
+- Unified every AI pre-write snapshot on the canonical
+  `beforeDestructiveOperation` reason while preserving feature detail in the
+  snapshot label.
+- Narrowed desktop and shared AI apply ports to `SnapshotReason`, so invalid
+  feature-local values fail TypeScript validation before reaching Rust.
+- Snapshot failure leaves generated candidates pending with zero repository
+  writes, and the direct Story Kernel panel shows actionable localized copy
+  instead of raw `invalidSnapshotReason`.
+- Snapshot-contract acceptance: Node 24.14.0, 105 frontend files / 373 tests,
+  52 Rust tests, seven-type browser confirmation, clean warning/error logs,
+  fresh Tauri packaging, and isolated native close with exit code 0.
+- Evidence in
+  `docs/acceptance/034-ai-snapshot-reason-contract-2026-07-29.md`.
 
 - Added opt-in, sentence-end `Tab` plot expansion with a 2.4-second idle
   window, at most 4,000 UTF-16 units before the cursor, grammar-job priority,

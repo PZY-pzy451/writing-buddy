@@ -414,7 +414,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			for (const group of grouped) {
 				await desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-manuscript-extraction',
+					'beforeDestructiveOperation',
 					`AI 正文整理确认前 · ${group.batch.sourceResourceId}`
 				);
 				await generationService.confirm(group.batch.id, group.ids);

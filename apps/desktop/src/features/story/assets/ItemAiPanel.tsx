@@ -250,7 +250,7 @@ export function ItemAiPanel(props: {
 				new ItemStateFileStore(props.projectRoot, desktopBridge),
 				label => desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-item-review',
+					'beforeDestructiveOperation',
 					label
 				)
 			);

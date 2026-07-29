@@ -16,6 +16,7 @@ import type {
 	StorySaveEntry,
 	StoryStorageGateway
 } from '@writing-buddy/story-kernel';
+import type { SnapshotReason } from '@writing-buddy/version';
 
 export interface Disposable {
 	dispose(): void;
@@ -378,7 +379,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	writeResource(projectRoot: string, relativePath: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
 	readReviewState(projectRoot: string): Promise<TextFile | undefined>;
 	writeReviewState(projectRoot: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
-	createSnapshot(projectRoot: string, reason: string, label?: string): Promise<string>;
+	createSnapshot(projectRoot: string, reason: SnapshotReason, label?: string): Promise<string>;
 	createBackup(projectRoot: string, destination?: string): Promise<BackupResult>;
 	chooseBackup(): Promise<string | undefined>;
 	inspectBackup(path: string): Promise<BackupInspection>;

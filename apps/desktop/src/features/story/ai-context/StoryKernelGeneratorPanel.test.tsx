@@ -11,6 +11,7 @@ import {
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../../app/store';
+import { desktopBridge } from '../../../platform/bridge';
 import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 import { StoryKernelGeneratorPanel } from './StoryKernelGeneratorPanel';
 import {
@@ -167,6 +168,7 @@ function generatedLocationResponse(): string {
 
 describe('StoryKernelGeneratorPanel', () => {
 	afterEach(() => {
+		vi.restoreAllMocks();
 		useAppStore.setState({ activeMode: 'works' });
 	});
 
@@ -233,6 +235,12 @@ describe('StoryKernelGeneratorPanel', () => {
 		const store = new StoryKernelGenerationStore('D:/Novel', new MemoryStorage());
 		const onCommitted = vi.fn();
 		const response = generatedCharacterResponse();
+		const createSnapshot = vi
+			.spyOn(desktopBridge, 'createSnapshot')
+			.mockImplementation(() => {
+				events.push('snapshot');
+				return Promise.resolve('snapshot:test');
+			});
 
 		render(
 			<StoryKernelGeneratorPanel
@@ -245,10 +253,6 @@ describe('StoryKernelGeneratorPanel', () => {
 				runGeneration={(_messages, onProgress) => {
 					onProgress('streaming', response);
 					return Promise.resolve(response);
-				}}
-				createSafetySnapshot={() => {
-					events.push('snapshot');
-					return Promise.resolve('snapshot:test');
 				}}
 				onCommitted={onCommitted}
 			/>
@@ -265,9 +269,47 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
 		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(createSnapshot).toHaveBeenCalledWith(
+			'D:/Novel',
+			'beforeDestructiveOperation',
+			'AI Story Kernel 生成前'
+		);
 		expect(events).toEqual(['snapshot', 'commit']);
 		expect(gateway.resources.has('character:character:lin-yue-ui')).toBe(true);
 		expect(onCommitted).toHaveBeenCalledOnce();
+	});
+
+	it('keeps a valid character pending and localizes a rejected snapshot', async () => {
+		const gateway = new MemoryStoryGateway([]);
+		const response = generatedCharacterResponse();
+		vi.spyOn(desktopBridge, 'createSnapshot')
+			.mockRejectedValue(new Error('invalidSnapshotReason'));
+
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository('D:/Novel', gateway)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={(_messages, onProgress) => {
+					onProgress('streaming', response);
+					return Promise.resolve(response);
+				}}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		await screen.findByRole('checkbox', { name: '选择 林越' });
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+
+		expect(await screen.findByText(
+			'安全快照参数不兼容，候选尚未写入。请更新应用后重试。'
+		)).toBeInTheDocument();
+		expect(screen.queryByText('invalidSnapshotReason')).not.toBeInTheDocument();
+		expect(screen.getByText('待确认')).toBeInTheDocument();
+		expect(gateway.resources.size).toBe(0);
 	});
 
 	it('explains local scene grounding and confirms a repaired scene candidate', async () => {

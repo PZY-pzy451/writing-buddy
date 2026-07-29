@@ -244,7 +244,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 				new CharacterStateFileStore(props.projectRoot, desktopBridge),
 				label => desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-character-review',
+					'beforeDestructiveOperation',
 					label
 				)
 			);

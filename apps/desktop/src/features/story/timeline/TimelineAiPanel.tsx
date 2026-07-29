@@ -285,7 +285,7 @@ export function TimelineAiPanel(props: {
 				new DesktopStoryRepository(props.projectRoot, desktopBridge),
 				label => desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-timeline-review',
+					'beforeDestructiveOperation',
 					label
 				)
 			);

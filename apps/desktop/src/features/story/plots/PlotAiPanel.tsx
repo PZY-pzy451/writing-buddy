@@ -279,7 +279,7 @@ export function PlotAiPanel(props: {
 				new DesktopStoryRepository(props.projectRoot, desktopBridge),
 				label => desktopBridge.createSnapshot(
 					props.projectRoot,
-					'ai-plot-review',
+					'beforeDestructiveOperation',
 					label
 				)
 			);

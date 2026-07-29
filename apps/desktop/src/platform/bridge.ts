@@ -43,6 +43,7 @@ import {
 	type StoryResourceType,
 	type StorySaveEntry
 } from '@writing-buddy/story-kernel';
+import type { SnapshotReason } from '@writing-buddy/version';
 
 function isTauriRuntime(): boolean {
 	return '__TAURI_INTERNALS__' in window;
@@ -118,7 +119,7 @@ class TauriDesktopBridge implements DesktopBridge {
 		return invoke<AtomicWriteResult>('write_review_state', { projectRoot, content, expectedHash });
 	}
 
-	createSnapshot(projectRoot: string, reason: string, label?: string): Promise<string> {
+	createSnapshot(projectRoot: string, reason: SnapshotReason, label?: string): Promise<string> {
 		return invoke<string>('create_snapshot', { projectRoot, reason, label });
 	}
 
@@ -1228,7 +1229,11 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return { hash, byteLength: new TextEncoder().encode(content).byteLength, modifiedAt: new Date().toISOString() };
 	}
 
-	async createSnapshot(_projectRoot: string, _reason: string, label?: string): Promise<string> {
+	async createSnapshot(
+		_projectRoot: string,
+		_reason: SnapshotReason,
+		label?: string
+	): Promise<string> {
 		const id = `snapshot-${Date.now()}`;
 		browserVersions.unshift({ id, createdAt: new Date().toISOString(), label });
 		browserVersionContent.set(id, new Map(browserFiles));

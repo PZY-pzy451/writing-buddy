@@ -1,3 +1,4 @@
+import type { SnapshotReason } from '@writing-buddy/version';
 import {
 	type AiPreviewSelection,
 	type AiPreviewTransaction
@@ -5,7 +6,7 @@ import {
 
 export interface AiApplyPorts<T, R> {
 	readonly getCurrentRevision: (resourceId: string) => Promise<string | number>;
-	readonly createSnapshot: (reason: string, label: string) => Promise<string>;
+	readonly createSnapshot: (reason: SnapshotReason, label: string) => Promise<string>;
 	readonly applyCandidate: (
 		candidate: T,
 		selection: AiPreviewSelection,
@@ -42,7 +43,7 @@ export class AiApplyService {
 			};
 		}
 		const snapshotId = await ports.createSnapshot(
-			'ai-preview-apply',
+			'beforeDestructiveOperation',
 			`AI 候选：${transaction.actionId}`
 		);
 		const applying: AiPreviewTransaction<T> = {
