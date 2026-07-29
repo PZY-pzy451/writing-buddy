@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../src/app/App';
 import { useAppStore } from '../src/app/store';
@@ -58,7 +58,7 @@ describe('Writing Buddy product shell', () => {
 		render(<App />);
 		await screen.findByRole('navigation', { name: '全局导航' });
 
-		for (const label of ['搜索', '审校', '版本', 'AI 测试', '设置']) {
+		for (const label of ['检查', '历史', 'AI 测试', '设置']) {
 			await user.click(screen.getByRole('button', { name: label }));
 			expect(document.querySelector('.app-shell')).toHaveClass('is-system-page');
 			expect(screen.queryByRole('tablist', { name: '已打开资源' })).not.toBeInTheDocument();
@@ -66,5 +66,9 @@ describe('Writing Buddy product shell', () => {
 			expect(workspace?.children).toHaveLength(1);
 			expect(workspace?.firstElementChild).toHaveClass('canvas-surface');
 		}
+
+		fireEvent.keyDown(window, { key: 'f', code: 'KeyF', ctrlKey: true, shiftKey: true });
+		expect(useAppStore.getState().activeMode).toBe('search');
+		expect(document.querySelector('.app-shell')).toHaveClass('is-system-page');
 	});
 });

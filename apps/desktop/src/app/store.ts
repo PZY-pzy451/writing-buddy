@@ -54,9 +54,13 @@ import {
 	type WriterSessionPanelState,
 	type WriterSessionState
 } from './writerSession';
+import {
+	createDefaultWriterWorkspaceLayouts,
+	updateWriterWorkspaceLayout
+} from './writerWorkspace';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
-export type RailMode = 'works' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
+export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
 export type StoryViewId =
 	| 'characters'
 	| 'relationships'
@@ -110,7 +114,6 @@ interface PersistedWorkspace {
 	readonly openResourceIds: readonly string[];
 	readonly theme: ThemeId;
 	readonly accent: 'gold' | 'blue' | 'purple';
-	readonly focusMode: boolean;
 	readonly inlineLanguageCheckEnabled: boolean;
 	readonly inlinePlotExpansionEnabled: boolean;
 	readonly activeMode: RailMode;
@@ -126,6 +129,7 @@ interface PersistedWorkspace {
 
 interface AppState extends PersistedWorkspace {
 	readonly loading: boolean;
+	readonly focusMode: boolean;
 	readonly error?: string;
 	readonly projectOpenError?: PublicProjectOpenError;
 	readonly pendingProjectRoot?: string;
@@ -226,6 +230,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setAssistantWidth: (width: number) => void;
 	readonly setDockHeight: (height: number) => void;
 	readonly setTreeNodeExpanded: (nodeId: string, expanded: boolean) => void;
+	readonly resetWorkspaceLayout: () => void;
 	readonly flushWriterSession: () => void;
 }
 
@@ -237,15 +242,8 @@ const storyIndexService = new StoryIndexService(desktopBridge);
 let storyResourceOpenService: StoryResourceOpenService | undefined;
 let reviewPersistTimer: number | undefined;
 
-const defaultWriterPanelState: WriterSessionPanelState = {
-	projectSidebarWidth: 320,
-	assistantWidth: 360,
-	assistantVisible: false,
-	inspectorVisible: false,
-	sidebarVisible: true,
-	dockHeight: 240,
-	dockVisible: false
-};
+const defaultWriterPanelState: WriterSessionPanelState =
+	createDefaultWriterWorkspaceLayouts().writing;
 
 function updateCurrentWriterSession(
 	state: AppState,
@@ -295,11 +293,17 @@ function updateSessionPanel(
 	session: WriterSessionState,
 	panelState: Partial<WriterSessionPanelState>
 ): WriterSessionState {
+	const updatedPanelState = {
+		...session.panelState,
+		...panelState
+	};
 	return touchWriterSession(session, {
-		panelState: {
-			...session.panelState,
-			...panelState
-		}
+		panelState: updatedPanelState,
+		workspaceLayouts: updateWriterWorkspaceLayout(
+			session.workspaceLayouts,
+			session.activeWorkspace,
+			panelState
+		)
 	});
 }
 
@@ -363,7 +367,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	inlineLanguageCheckEnabled: false,
 	inlinePlotExpansionEnabled: false,
 	sidebarOpen: true,
-	sidebarWidth: 320,
+	sidebarWidth: defaultWriterPanelState.projectSidebarWidth,
 	assistantWidth: 360,
 	dockHeight: 240,
 	documentViews: {},
@@ -378,8 +382,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	reviewHash: '',
 	search: '',
 	cursorOffset: 0,
-	assistantOpen: true,
-	dockOpen: true,
+	assistantOpen: false,
+	dockOpen: false,
 	projectWizardOpen: false,
 	structureMoveBusy: false,
 	structureScenes: [],
@@ -650,11 +654,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			];
 			const current = get();
 			const panelDefaults: WriterSessionPanelState = {
-				...defaultWriterPanelState,
-				projectSidebarWidth: current.sidebarWidth,
-				assistantWidth: current.assistantWidth,
-				sidebarVisible: current.sidebarOpen,
-				dockHeight: current.dockHeight
+				...defaultWriterPanelState
 			};
 			const legacyActiveResourceId = current.activeResourceId;
 			const legacyOpenResourceIds = current.openResourceIds;
@@ -668,7 +668,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				Object.keys(current.writerSessions).length === 0
 				&& (legacyActiveResourceId || legacyOpenResourceIds.length)
 			) ? {
-					schemaVersion: 1,
+					schemaVersion: 2,
 					projectId: snapshot.project.projectId,
 					activeWorkspace: workspaceForRailMode(current.activeMode),
 					...(legacyChapterId ? { activeChapterId: legacyChapterId } : {}),
@@ -688,7 +688,27 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					expandedTreeNodes: current.expandedTreeNodes.length
 						? current.expandedTreeNodes
 						: expandedTreeNodeIds,
-					panelState: panelDefaults,
+					panelState: {
+						...panelDefaults,
+						projectSidebarWidth: current.sidebarWidth,
+						assistantWidth: current.assistantWidth,
+						assistantVisible: current.assistantOpen,
+						sidebarVisible: current.sidebarOpen,
+						dockHeight: current.dockHeight,
+						dockVisible: current.dockOpen
+					},
+					workspaceLayouts: updateWriterWorkspaceLayout(
+						createDefaultWriterWorkspaceLayouts(),
+						workspaceForRailMode(current.activeMode),
+						{
+							projectSidebarWidth: current.sidebarWidth,
+							assistantWidth: current.assistantWidth,
+							assistantVisible: current.assistantOpen,
+							sidebarVisible: current.sidebarOpen,
+							dockHeight: current.dockHeight,
+							dockVisible: current.dockOpen
+						}
+					),
 					focusMode: false,
 					updatedAt: new Date().toISOString()
 				} : undefined;
@@ -751,6 +771,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 						scrollTop: reconciled.session.scroll.scrollTop
 					}
 				: undefined;
+			const writingLayout = reconciled.session.workspaceLayouts.writing;
+			const dashboardSession: WriterSessionState = {
+				...reconciled.session,
+				activeWorkspace: 'writing',
+				panelState: writingLayout,
+				focusMode: false
+			};
 			set({
 				snapshot,
 				recentProjectRoot: snapshot.root,
@@ -780,22 +807,22 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				structureMoveAnnouncement: undefined,
 				structureUndo: undefined,
 				focusMode: false,
-				sidebarOpen: reconciled.session.panelState.sidebarVisible,
+				sidebarOpen: writingLayout.sidebarVisible,
 				sidebarWidth: clampWorkspaceSize(
 					'sidebar',
-					reconciled.session.panelState.projectSidebarWidth
+					writingLayout.projectSidebarWidth
 				),
-				assistantOpen: reconciled.session.panelState.assistantVisible,
+				assistantOpen: writingLayout.assistantVisible,
 				assistantWidth: clampWorkspaceSize(
 					'assistant',
-					reconciled.session.panelState.assistantWidth
+					writingLayout.assistantWidth
 				),
-				dockOpen: reconciled.session.panelState.dockVisible,
-				dockHeight: clampWorkspaceSize('dock', reconciled.session.panelState.dockHeight),
+				dockOpen: writingLayout.dockVisible,
+				dockHeight: clampWorkspaceSize('dock', writingLayout.dockHeight),
 				expandedTreeNodes: reconciled.session.expandedTreeNodes,
 				writerSessions: {
 					...current.writerSessions,
-					[snapshot.project.projectId]: reconciled.session
+					[snapshot.project.projectId]: dashboardSession
 				},
 				documentViews: restoredView && reconciled.session.activeChapterId
 					? {
@@ -1321,17 +1348,36 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}, 150);
 	},
 	setMode(activeMode) {
-		set(state => ({
-			activeMode,
-			writerSessions: updateCurrentWriterSession(
-				state,
-				session => touchWriterSession(session, {
-					activeWorkspace: workspaceForRailMode(activeMode)
-				})
-			)
-		}));
+		set(state => {
+			const workspace = workspaceForRailMode(activeMode);
+			const projectId = state.snapshot?.project.projectId;
+			const session = projectId ? state.writerSessions[projectId] : undefined;
+			const layout = session?.workspaceLayouts[workspace]
+				?? createDefaultWriterWorkspaceLayouts()[workspace];
+			return {
+				activeMode,
+				...(activeMode === 'planning' ? { storyView: 'plots' as const } : {}),
+				sidebarOpen: layout.sidebarVisible,
+				sidebarWidth: clampWorkspaceSize('sidebar', layout.projectSidebarWidth),
+				assistantOpen: layout.assistantVisible,
+				assistantWidth: clampWorkspaceSize('assistant', layout.assistantWidth),
+				dockOpen: layout.dockVisible,
+				dockHeight: clampWorkspaceSize('dock', layout.dockHeight),
+				writerSessions: updateCurrentWriterSession(
+					state,
+					writerSession => touchWriterSession(writerSession, {
+						activeWorkspace: workspace,
+						panelState: layout
+					})
+				)
+			};
+		});
 	},
-	setStoryView(storyView) { set({ activeMode: 'references', storyView }); },
+	setStoryView(storyView) {
+		const mode = get().activeMode === 'planning' ? 'planning' : 'references';
+		get().setMode(mode);
+		set({ storyView });
+	},
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },
 	toggleFocus() { set(state => ({ focusMode: !state.focusMode })); },
@@ -1445,6 +1491,31 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			};
 		});
 	},
+	resetWorkspaceLayout() {
+		set(state => {
+			const workspace = workspaceForRailMode(state.activeMode);
+			const layout = createDefaultWriterWorkspaceLayouts()[workspace];
+			return {
+				sidebarOpen: layout.sidebarVisible,
+				sidebarWidth: layout.projectSidebarWidth,
+				assistantOpen: layout.assistantVisible,
+				assistantWidth: layout.assistantWidth,
+				dockOpen: layout.dockVisible,
+				dockHeight: layout.dockHeight,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => touchWriterSession(session, {
+						panelState: layout,
+						workspaceLayouts: updateWriterWorkspaceLayout(
+							session.workspaceLayouts,
+							workspace,
+							layout
+						)
+					})
+				)
+			};
+		});
+	},
 	flushWriterSession() {
 		set(state => ({ writerSessions: { ...state.writerSessions } }));
 	}
@@ -1457,7 +1528,6 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		openResourceIds: state.openResourceIds,
 		theme: state.theme,
 		accent: state.accent,
-		focusMode: state.focusMode,
 		inlineLanguageCheckEnabled: state.inlineLanguageCheckEnabled,
 		inlinePlotExpansionEnabled: state.inlinePlotExpansionEnabled,
 		activeMode: state.activeMode,
@@ -1478,6 +1548,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		return {
 			...current,
 			...workspace,
+			focusMode: false,
 			expandedTreeNodes: Array.isArray(workspace.expandedTreeNodes)
 				? workspace.expandedTreeNodes.filter(
 						(nodeId): nodeId is string => typeof nodeId === 'string'

@@ -82,7 +82,7 @@ export function ProjectSidebar(): React.JSX.Element {
 		);
 	}
 
-	if (activeMode === 'references') {
+	if (activeMode === 'planning' || activeMode === 'references') {
 		return <StoryReferenceSidebar />;
 	}
 

@@ -1,29 +1,30 @@
-export const writerWorkspaceIds = [
-	'writing',
-	'planning',
-	'reference',
-	'review',
-	'history'
-] as const;
+import {
+	createDefaultWriterWorkspaceLayouts,
+	parseWriterWorkspaceLayouts,
+	updateWriterWorkspaceLayout,
+	writerWorkspaceIds,
+	type WriterWorkspaceId,
+	type WriterWorkspaceLayout,
+	type WriterWorkspaceLayoutMap
+} from './writerWorkspace';
 
-export type WriterWorkspaceId = typeof writerWorkspaceIds[number];
+export {
+	writerWorkspaceIds,
+	workspaceForRailMode
+} from './writerWorkspace';
+export type {
+	WriterWorkspaceId,
+	WriterWorkspaceLayoutMap
+} from './writerWorkspace';
 
 export interface WriterSessionTab {
 	readonly resourceId: string;
 }
 
-export interface WriterSessionPanelState {
-	readonly projectSidebarWidth: number;
-	readonly assistantWidth: number;
-	readonly assistantVisible: boolean;
-	readonly inspectorVisible: boolean;
-	readonly sidebarVisible: boolean;
-	readonly dockHeight: number;
-	readonly dockVisible: boolean;
-}
+export type WriterSessionPanelState = WriterWorkspaceLayout;
 
 export interface WriterSessionState {
-	readonly schemaVersion: 1;
+	readonly schemaVersion: 2;
 	readonly projectId: string;
 	readonly activeWorkspace: WriterWorkspaceId;
 	readonly activeChapterId?: string;
@@ -42,6 +43,7 @@ export interface WriterSessionState {
 	};
 	readonly expandedTreeNodes: readonly string[];
 	readonly panelState: WriterSessionPanelState;
+	readonly workspaceLayouts: WriterWorkspaceLayoutMap;
 	readonly focusMode: boolean;
 	readonly updatedAt: string;
 }
@@ -145,7 +147,7 @@ export function parseWriterSession(value: unknown): WriterSessionState | undefin
 	const cursor = parseCursor(value.cursor);
 	const scroll = parseScroll(value.scroll);
 	if (
-		value.schemaVersion !== 1
+		(value.schemaVersion !== 1 && value.schemaVersion !== 2)
 		|| typeof value.projectId !== 'string'
 		|| !writerWorkspaceIds.includes(value.activeWorkspace as WriterWorkspaceId)
 		|| (value.activeChapterId !== undefined && typeof value.activeChapterId !== 'string')
@@ -163,8 +165,15 @@ export function parseWriterSession(value: unknown): WriterSessionState | undefin
 	) {
 		return undefined;
 	}
+	const workspaceLayouts = value.schemaVersion === 1
+		? updateWriterWorkspaceLayout(
+				createDefaultWriterWorkspaceLayouts(),
+				value.activeWorkspace as WriterWorkspaceId,
+				panelState
+			)
+		: parseWriterWorkspaceLayouts(value.workspaceLayouts);
 	return {
-		schemaVersion: 1,
+		schemaVersion: 2,
 		projectId: value.projectId,
 		activeWorkspace: value.activeWorkspace as WriterWorkspaceId,
 		...(typeof value.activeChapterId === 'string'
@@ -183,6 +192,7 @@ export function parseWriterSession(value: unknown): WriterSessionState | undefin
 		...(scroll ? { scroll } : {}),
 		expandedTreeNodes: [...value.expandedTreeNodes] as string[],
 		panelState,
+		workspaceLayouts,
 		focusMode: value.focusMode,
 		updatedAt: value.updatedAt
 	};
@@ -206,8 +216,13 @@ export function parseWriterSessionMap(value: unknown): WriterSessionMap {
 
 function defaultSession(input: ReconcileWriterSessionInput): WriterSessionState {
 	const activeChapterId = input.chapterIds[0];
+	const workspaceLayouts = updateWriterWorkspaceLayout(
+		createDefaultWriterWorkspaceLayouts(),
+		'writing',
+		input.defaultPanelState
+	);
 	return {
-		schemaVersion: 1,
+		schemaVersion: 2,
 		projectId: input.projectId,
 		activeWorkspace: 'writing',
 		...(activeChapterId ? {
@@ -228,6 +243,7 @@ function defaultSession(input: ReconcileWriterSessionInput): WriterSessionState 
 		}),
 		expandedTreeNodes: [...input.expandedTreeNodeIds],
 		panelState: input.defaultPanelState,
+		workspaceLayouts,
 		focusMode: false,
 		updatedAt: input.now
 	};
@@ -336,11 +352,4 @@ export function reconcileWriterSession(
 			notice: '上次写作位置已变化，已回退到可用的章节位置。'
 		} : {})
 	};
-}
-
-export function workspaceForRailMode(mode: string): WriterWorkspaceId {
-	if (mode === 'references') return 'reference';
-	if (mode === 'review') return 'review';
-	if (mode === 'versions') return 'history';
-	return 'writing';
 }

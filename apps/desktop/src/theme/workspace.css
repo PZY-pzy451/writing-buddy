@@ -12,6 +12,9 @@
 	height: 100%;
 	color: var(--text-primary);
 	background: var(--surface-app);
+	transition:
+		grid-template-columns 180ms ease,
+		grid-template-rows 180ms ease;
 }
 
 .app-shell.is-sidebar-closed {
@@ -59,6 +62,10 @@
 	gap: 11px;
 	font-weight: 720;
 	letter-spacing: -0.01em;
+}
+
+.brand-name {
+	white-space: nowrap;
 }
 
 .brand-mark {
@@ -125,6 +132,103 @@
 	flex: 0 0 auto;
 	gap: 5px;
 	margin-left: auto;
+}
+
+.writer-more-menu {
+	position: relative;
+}
+
+.writer-more-menu > summary {
+	display: grid;
+	place-items: center;
+	width: 38px;
+	min-height: 38px;
+	color: var(--text-on-dark-muted);
+	cursor: pointer;
+	list-style: none;
+	border-radius: var(--radius-control);
+}
+
+.writer-more-menu > summary::-webkit-details-marker {
+	display: none;
+}
+
+.writer-more-menu > summary:hover,
+.writer-more-menu[open] > summary {
+	color: var(--text-on-dark);
+	background: rgb(255 255 255 / 9%);
+}
+
+.writer-more-menu > div {
+	position: absolute;
+	z-index: 70;
+	top: calc(100% + 8px);
+	right: 0;
+	display: grid;
+	gap: 3px;
+	width: 210px;
+	padding: 7px;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+	box-shadow: var(--shadow-float);
+}
+
+.writer-more-menu > div button {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	min-height: 40px;
+	padding: 0 10px;
+	color: var(--text-secondary);
+	text-align: left;
+	background: transparent;
+	border: 0;
+	border-radius: 7px;
+}
+
+.writer-more-menu > div button:hover,
+.writer-more-menu > div button:focus-visible {
+	color: var(--text-primary);
+	background: var(--highlight-hover-bg);
+}
+
+.focus-context,
+.focus-save-status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+}
+
+.focus-context {
+	color: var(--text-on-dark-muted);
+}
+
+.focus-context strong {
+	overflow: hidden;
+	color: var(--text-on-dark);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.focus-save-status {
+	color: #76d1a4;
+	font-size: 12px;
+}
+
+.focus-save-status.is-dirty {
+	color: #e5b974;
+}
+
+.focus-exit kbd {
+	padding: 2px 6px;
+	color: inherit;
+	font-size: 10px;
+	background: rgb(255 255 255 / 7%);
+	border: 1px solid rgb(255 255 255 / 12%);
+	border-radius: 4px;
 }
 
 .ghost-button,
@@ -755,8 +859,11 @@ button.tree-row {
 }
 
 .empty-sidebar-launcher button {
+	gap: 6px;
 	min-width: 0;
-	padding-inline: 9px;
+	padding-inline: 7px;
+	font-size: 13px;
+	white-space: nowrap;
 }
 
 .sidebar-recent-list {
@@ -1074,12 +1181,12 @@ button.tree-row {
 	background: var(--surface-subtle);
 }
 
-.ai-continuation-menu {
+.writer-tools-menu {
 	position: relative;
 	z-index: 12;
 }
 
-.ai-continuation-menu summary {
+.writer-tools-menu summary {
 	min-height: 44px;
 	display: inline-flex;
 	align-items: center;
@@ -1098,25 +1205,25 @@ button.tree-row {
 	transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
-.ai-continuation-menu summary::-webkit-details-marker {
+.writer-tools-menu summary::-webkit-details-marker {
 	display: none;
 }
 
-.ai-continuation-menu summary:hover {
+.writer-tools-menu summary:hover {
 	background: color-mix(in srgb, var(--accent) 15%, var(--surface-raised));
 	border-color: var(--accent);
 }
 
-.ai-continuation-menu summary:focus-visible {
+.writer-tools-menu summary:focus-visible {
 	outline: none;
 	box-shadow: var(--focus-ring);
 }
 
-.ai-continuation-menu[open] summary > svg:last-child {
+.writer-tools-menu[open] summary > svg:last-child {
 	transform: rotate(180deg);
 }
 
-.ai-continuation-menu > div {
+.writer-tools-menu > div {
 	position: absolute;
 	top: calc(100% + 8px);
 	right: 0;
@@ -1131,7 +1238,7 @@ button.tree-row {
 	backdrop-filter: blur(14px);
 }
 
-.ai-continuation-menu > div button {
+.writer-tools-menu > div button {
 	min-height: 54px;
 	display: grid;
 	grid-template-columns: 22px minmax(0, 1fr);
@@ -1146,29 +1253,36 @@ button.tree-row {
 	cursor: pointer;
 }
 
-.ai-continuation-menu > div button:hover,
-.ai-continuation-menu > div button:focus-visible {
+.writer-tools-menu > div button:hover,
+.writer-tools-menu > div button:focus-visible {
 	background: var(--surface-subtle);
 	border-color: var(--border-subtle);
 	outline: none;
 }
 
-.ai-continuation-menu > div button > svg {
+.writer-tools-menu > div button > svg {
 	color: var(--accent-strong);
 }
 
-.ai-continuation-menu > div button span {
+.writer-tools-menu > div button span {
 	display: grid;
 	gap: 3px;
 }
 
-.ai-continuation-menu > div button strong {
+.writer-tools-menu > div button strong {
 	font-size: 13px;
 }
 
-.ai-continuation-menu > div button small {
+.writer-tools-menu > div button small {
 	color: var(--text-secondary);
 	font-size: 11px;
+}
+
+.writer-tools-menu > div hr {
+	width: 100%;
+	margin: 3px 0;
+	border: 0;
+	border-top: 1px solid var(--border-subtle);
 }
 
 .canvas-surface {
@@ -2950,7 +3064,7 @@ html.is-resizing-y * {
 }
 
 .status-bar > div {
-	gap: 16px;
+	gap: 12px;
 }
 
 .status-bar span {
@@ -3095,6 +3209,7 @@ html.is-resizing-y * {
 }
 
 .is-focus-mode {
+	--header-height: 104px;
 	grid-template:
 		"top" var(--topbar-height)
 		"center" minmax(0, 1fr)
@@ -3105,22 +3220,28 @@ html.is-resizing-y * {
 	padding-inline: max(18px, calc((100vw - 1040px) / 2));
 }
 
-.is-focus-mode .brand-lockup,
-.is-focus-mode .project-search,
-.is-focus-mode .ai-state,
 .is-focus-mode .resource-tabs {
 	display: none;
 }
 
+.is-focus-mode .center-workspace {
+	grid-template-rows: var(--header-height) minmax(0, 1fr);
+}
+
 .is-focus-mode .writer-header,
 .is-focus-mode .writing-canvas {
-	width: min(100%, 888px);
+	width: min(100%, 820px);
 	margin-inline: auto;
 }
 
 .is-focus-mode .writer-header {
-	padding-inline: 48px;
+	gap: 8px;
+	padding: 14px 48px;
 	border-inline: 1px solid var(--border-subtle);
+}
+
+.is-focus-mode .writer-path {
+	display: none;
 }
 
 @media (max-width: 1599px) {
@@ -3223,12 +3344,12 @@ html.is-resizing-y * {
 		box-shadow: none;
 	}
 
-	.app-shell:not(.mode-works):not(.mode-references) .project-sidebar {
+	.app-shell:not(.mode-works):not(.mode-planning):not(.mode-references) .project-sidebar {
 		display: none;
 	}
 
 	.brand-lockup {
-		flex-basis: 150px;
+		flex-basis: 160px;
 	}
 
 	.project-search {

@@ -82,7 +82,7 @@ describe('manual and AI review experience', () => {
 				issues: [{ ...localFixture, id: 'ai-existing', title: 'AI 已有建议', origin: 'ai' }]
 			});
 		});
-		await user.click(screen.getByRole('button', { name: '审校' }));
+		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('button', { name: /手动运行审校/ }));
 
 		expect(await screen.findByText('重复标点')).toBeInTheDocument();
@@ -100,7 +100,7 @@ describe('manual and AI review experience', () => {
 		await screen.findByRole('main', { name: '作品仪表盘' });
 		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
-		await user.click(screen.getByRole('button', { name: '审校' }));
+		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('tab', { name: /AI 自动审校/ }));
 		await waitFor(() => expect(screen.getByRole('button', { name: /开始 AI 自动审校/ })).toBeEnabled());
 		await user.click(screen.getByRole('button', { name: /开始 AI 自动审校/ }));

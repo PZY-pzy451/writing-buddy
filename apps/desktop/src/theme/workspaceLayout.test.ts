@@ -65,4 +65,14 @@ describe('workspace grid contracts', () => {
 			'"rail center" minmax(0, 1fr)'
 		);
 	});
+
+	it('keeps quiet workspace transitions responsive and honors reduced motion', () => {
+		expect(workspaceCss).toContain('grid-template-columns 180ms ease,');
+		expect(workspaceCss).toContain('grid-template-rows 180ms ease;');
+		expect(workspaceCss).toContain('@media (max-width: 1279px)');
+		expect(workspaceCss).toContain('@media (max-width: 1023px)');
+		expect(workspaceCss).toContain('.mode-planning');
+		expect(tokenCss).toContain('@media (prefers-reduced-motion: reduce)');
+		expect(tokenCss).toContain('transition-duration: 0.01ms !important;');
+	});
 });

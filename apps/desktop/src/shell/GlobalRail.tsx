@@ -1,9 +1,9 @@
 import {
 	BookOpenText,
 	History,
-	LibraryBig,
 	ListChecks,
-	Search,
+	NotebookTabs,
+	PenLine,
 	Settings2,
 	Sparkles
 } from 'lucide-react';
@@ -14,11 +14,11 @@ const items: readonly {
 	readonly label: string;
 	readonly icon: React.ComponentType<{ size?: number }>;
 }[] = [
-	{ mode: 'works', label: '作品', icon: LibraryBig },
-	{ mode: 'search', label: '搜索', icon: Search },
+	{ mode: 'works', label: '写作', icon: PenLine },
+	{ mode: 'planning', label: '规划', icon: NotebookTabs },
 	{ mode: 'references', label: '资料', icon: BookOpenText },
-	{ mode: 'review', label: '审校', icon: ListChecks },
-	{ mode: 'versions', label: '版本', icon: History }
+	{ mode: 'review', label: '检查', icon: ListChecks },
+	{ mode: 'versions', label: '历史', icon: History }
 ];
 
 export function GlobalRail(): React.JSX.Element {

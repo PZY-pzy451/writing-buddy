@@ -4,21 +4,42 @@ Updated: 2026-07-29
 
 ## Active milestone
 
-Phase 1.2A writer-centered core experience is active in the isolated worktree
+Phase 1.2A writer-centered core experience is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-phase-1.2a` on
 `codex/phase-1.2a-writer-core`.
 
 - Gate A source map and current UX/performance baseline are complete in
   `8351dd64`.
 - Gate B Continue Writing and validated per-project session restore are
-  complete pending their dedicated feature commit.
+  complete in `a945dbac`.
 - Gate C quiet writer workspaces, per-workspace layout memory, and temporary
-  focus overlay are next.
+  focus overlay are complete in this branch's dedicated feature commit.
 - This delivery stops before Gate D; Quick Capture, Entity Peek, contextual AI,
   Writer Navigator, chapter organization, new AI actions, and new Story
   resource types remain out of scope.
 
 ## Completed
+
+- Reframed the existing product around 写作 / 规划 / 资料 / 检查 / 历史 while
+  preserving legacy routes, command IDs, Story resources, and AI actions.
+- Migrated writer sessions to schema version 2 with independent writing,
+  planning, reference, review, and history layouts; version 1 sessions migrate
+  safely.
+- Writing now defaults to a 272 px chapter sidebar with assistant and dock
+  closed. Workspace switching preserves the current resource, manual pane
+  changes persist independently, and reset restores the active preset.
+- Quiet writing moves project creation and AI generation out of permanent
+  high-weight positions. Focus is a non-persistent overlay entered/exited with
+  F11 and exited with Escape.
+- Real browser interaction verified chapter preservation, workspace switching,
+  layout persistence through reload/Continue, focus, and explicit exit.
+- Exact 1536×992, 1280×800, and 1024×720 rendering exposed and then verified
+  the repair of narrow top-bar/sidebar-launcher clipping.
+- Final gates: ESLint, TypeScript, 110 Vitest files / 400 tests, frontend build,
+  Cargo format, 52 Rust tests, Tauri Release/NSIS packaging, and native
+  responsive startup/normal close all pass.
+- Evidence in
+  `docs/acceptance/038-phase-1.2a-gate-c-writer-workspaces-2026-07-29.md`.
 
 - Added a versioned, validated writer-session contract keyed by project ID,
   with stable chapter/scene/resource IDs, tab set, cursor/scroll, tree

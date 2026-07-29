@@ -3,6 +3,10 @@ import { toStoryChapterId } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../platform/bridge';
 import { useAppStore } from './store';
 import type { WriterSessionState } from './writerSession';
+import {
+	createDefaultWriterWorkspaceLayouts,
+	updateWriterWorkspaceLayout
+} from './writerWorkspace';
 
 const panelState: WriterSessionState['panelState'] = {
 	projectSidebarWidth: 404,
@@ -20,7 +24,7 @@ function sessionFor(
 	openTabs: readonly string[] = [activeChapterId]
 ): WriterSessionState {
 	return {
-		schemaVersion: 1,
+		schemaVersion: 2,
 		projectId,
 		activeWorkspace: 'writing',
 		activeChapterId,
@@ -37,6 +41,11 @@ function sessionFor(
 		},
 		expandedTreeNodes: ['volume-a11ce002', 'references'],
 		panelState,
+		workspaceLayouts: updateWriterWorkspaceLayout(
+			createDefaultWriterWorkspaceLayouts(),
+			'writing',
+			panelState
+		),
 		focusMode: false,
 		updatedAt: '2026-07-28T14:41:00.000Z'
 	};

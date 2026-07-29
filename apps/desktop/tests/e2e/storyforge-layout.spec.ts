@@ -152,7 +152,11 @@ describe('StoryForge professional layout contract', () => {
 
 	it('keeps drawer toggles focused and restores focus after a modal closes', async () => {
 		const user = userEvent.setup();
-		useAppStore.setState({ assistantOpen: true, activeMode: 'works' });
+		useAppStore.setState({
+			assistantOpen: true,
+			activeMode: 'works',
+			snapshot: { project: { title: '测试作品' } } as never
+		});
 		const { unmount } = render(createElement(TopBar));
 		const drawerToggle = screen.getByRole('button', { name: '收起写作助手' });
 		drawerToggle.focus();

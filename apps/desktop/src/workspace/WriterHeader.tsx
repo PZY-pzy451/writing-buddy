@@ -6,11 +6,12 @@ import {
 	CircleDot,
 	Compass,
 	Feather,
+	MoreHorizontal,
 	Save
 } from 'lucide-react';
 import type { ManuscriptContinuationMode } from '@writing-buddy/story-kernel';
 import { countWords, findChapter, flattenChapters } from '@writing-buddy/domain';
-import { selectNovelWordCount, useAppStore } from '../app/store';
+import { useAppStore } from '../app/store';
 
 export function WriterHeader(): React.JSX.Element | null {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -19,7 +20,7 @@ export function WriterHeader(): React.JSX.Element | null {
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
-	const novelWords = useAppStore(selectNovelWordCount);
+	const focusMode = useAppStore(state => state.focusMode);
 
 	if (!snapshot || !activeResource) {
 		return null;
@@ -70,18 +71,18 @@ export function WriterHeader(): React.JSX.Element | null {
 						{session?.state.dirty ? <CircleDot size={16} /> : <Check size={16} />}
 						{session?.state.dirty ? '未保存' : '已保存'}
 					</span>
-					{activeResource.type === 'chapter' && (
+					{!focusMode && activeResource.type === 'chapter' && (
 						<>
 							<span className="word-chip">本章 {chapterWords.toLocaleString()} 字</span>
-							<span className="word-chip">全书 {novelWords.toLocaleString()} 字</span>
 							{!snapshot.readOnly ? (
-								<details className="ai-continuation-menu">
-									<summary>
-										<Feather size={18} />AI 续写<ChevronDown size={16} />
+								<details className="writer-tools-menu">
+									<summary aria-label="更多章节操作" role="button">
+										<MoreHorizontal size={18} /><span>更多</span><ChevronDown size={16} />
 									</summary>
-									<div>
+									<div role="menu">
 										<button
 											type="button"
+											role="menuitem"
 											onClick={event => openContinuation('continue-paragraph', event.currentTarget)}
 										>
 											<Feather size={16} />
@@ -89,6 +90,7 @@ export function WriterHeader(): React.JSX.Element | null {
 										</button>
 										<button
 											type="button"
+											role="menuitem"
 											onClick={event => openContinuation('finish-scene', event.currentTarget)}
 										>
 											<Check size={16} />
@@ -96,25 +98,39 @@ export function WriterHeader(): React.JSX.Element | null {
 										</button>
 										<button
 											type="button"
+											role="menuitem"
 											onClick={event => openContinuation('three-directions', event.currentTarget)}
 										>
 											<Compass size={16} />
 											<span><strong>三种走向</strong><small>并排审阅三种后续方向</small></span>
+										</button>
+										<hr />
+										<button
+											type="button"
+											role="menuitem"
+											disabled={index <= 0}
+											onClick={() => openChapterAt(index - 1)}
+										>
+											<ChevronLeft size={16} />上一章
+										</button>
+										<button
+											type="button"
+											role="menuitem"
+											disabled={index < 0 || index >= chapters.length - 1}
+											onClick={() => openChapterAt(index + 1)}
+										>
+											<ChevronRight size={16} />下一章
 										</button>
 									</div>
 								</details>
 							) : null}
 						</>
 					)}
-					<button className="icon-button" type="button" onClick={() => void save()} disabled={!session?.state.dirty} aria-label="保存">
-						<Save size={18} />
-					</button>
-					<button className="chapter-nav-button" type="button" disabled={index <= 0} onClick={() => openChapterAt(index - 1)}>
-						<ChevronLeft size={18} />上一章
-					</button>
-					<button className="chapter-nav-button" type="button" disabled={index < 0 || index >= chapters.length - 1} onClick={() => openChapterAt(index + 1)}>
-						下一章<ChevronRight size={18} />
-					</button>
+					{!focusMode && (
+						<button className="icon-button" type="button" onClick={() => void save()} disabled={!session?.state.dirty} aria-label="保存">
+							<Save size={18} />
+						</button>
+					)}
 				</div>
 			</div>
 		</header>

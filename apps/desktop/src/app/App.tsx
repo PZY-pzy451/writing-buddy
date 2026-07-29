@@ -60,7 +60,17 @@ export function App(): React.JSX.Element {
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
 			const shortcutState = useAppStore.getState();
-			if (dispatchWorkspaceShortcut(event, {
+			if (event.key === 'F11') {
+				event.preventDefault();
+				shortcutState.toggleFocus();
+				return;
+			}
+			if (event.key === 'Escape' && shortcutState.focusMode) {
+				event.preventDefault();
+				shortcutState.toggleFocus();
+				return;
+			}
+			if (!shortcutState.focusMode && dispatchWorkspaceShortcut(event, {
 				toggleSidebar: shortcutState.toggleSidebar,
 				toggleAssistant: shortcutState.toggleAssistant,
 				toggleDock: shortcutState.toggleDock
@@ -69,6 +79,11 @@ export function App(): React.JSX.Element {
 			}
 			const modifier = event.ctrlKey || event.metaKey;
 			const key = event.key.toLocaleLowerCase();
+			if (modifier && event.shiftKey && key === 'f') {
+				event.preventDefault();
+				shortcutState.setMode('search');
+				return;
+			}
 			if (modifier && key === 's') {
 				event.preventDefault();
 				void useAppStore.getState().save();
@@ -142,9 +157,9 @@ export function App(): React.JSX.Element {
 		};
 	}, []);
 
-	const systemPageVisible = !['works', 'references'].includes(activeMode);
+	const systemPageVisible = !['works', 'planning', 'references'].includes(activeMode);
 	const welcomeVisible = activeMode === 'works' && !snapshot;
-	const storyStudioVisible = activeMode === 'references' && Boolean(snapshot);
+	const storyStudioVisible = ['planning', 'references'].includes(activeMode) && Boolean(snapshot);
 	const showDashboard = !systemPageVisible && activeMode === 'works' && Boolean(snapshot) && !activeResource;
 	const workspaceAssistantVisible = Boolean(snapshot) && assistantOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;
 	const workspaceDockVisible = Boolean(snapshot) && dockOpen && !focusMode && !systemPageVisible && !showDashboard && !storyStudioVisible;

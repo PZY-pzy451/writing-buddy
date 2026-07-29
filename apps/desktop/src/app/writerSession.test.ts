@@ -4,6 +4,10 @@ import {
 	reconcileWriterSession,
 	type WriterSessionState
 } from './writerSession';
+import {
+	createDefaultWriterWorkspaceLayouts,
+	updateWriterWorkspaceLayout
+} from './writerWorkspace';
 
 const panelState = {
 	projectSidebarWidth: 336,
@@ -17,7 +21,7 @@ const panelState = {
 
 function session(overrides: Partial<WriterSessionState> = {}): WriterSessionState {
 	return {
-		schemaVersion: 1,
+		schemaVersion: 2,
 		projectId: 'project-one',
 		activeWorkspace: 'writing',
 		activeChapterId: 'chapter-two',
@@ -39,6 +43,11 @@ function session(overrides: Partial<WriterSessionState> = {}): WriterSessionStat
 		},
 		expandedTreeNodes: ['volume-one', 'references'],
 		panelState,
+		workspaceLayouts: updateWriterWorkspaceLayout(
+			createDefaultWriterWorkspaceLayouts(),
+			'writing',
+			panelState
+		),
 		focusMode: false,
 		updatedAt: '2026-07-28T14:41:00.000Z',
 		...overrides
@@ -64,6 +73,22 @@ describe('writer session contract', () => {
 		expect(parsed['project-one']?.activeChapterId).toBe('chapter-two');
 		expect(parsed['project-two']?.activeChapterId).toBe('chapter-nine');
 		expect(parseWriterSessionMap('{broken json')).toEqual({});
+	});
+
+	it('migrates the Gate B session into independent workspace presets', () => {
+		const legacy = {
+			...session(),
+			schemaVersion: 1,
+			workspaceLayouts: undefined
+		};
+		const parsed = parseWriterSessionMap({ 'project-one': legacy });
+
+		expect(parsed['project-one']).toMatchObject({
+			schemaVersion: 2,
+			panelState
+		});
+		expect(parsed['project-one']?.workspaceLayouts.writing).toEqual(panelState);
+		expect(parsed['project-one']?.workspaceLayouts.planning.assistantVisible).toBe(false);
 	});
 
 	it('restores stable chapter, scene, cursor, scroll, tree and pane state', () => {

@@ -1,10 +1,13 @@
 import {
 	BookOpenText,
+	Check,
 	Focus,
+	MoreHorizontal,
 	PanelLeftClose,
 	PanelLeftOpen,
 	PanelRightClose,
 	PanelRightOpen,
+	RotateCcw,
 	Save,
 	Search,
 	Sparkles
@@ -29,10 +32,12 @@ export function TopBar(): React.JSX.Element {
 	const assistantOpen = useAppStore(state => state.assistantOpen);
 	const activeMode = useAppStore(state => state.activeMode);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
+	const resetWorkspaceLayout = useAppStore(state => state.resetWorkspaceLayout);
 	const activeResource = useAppStore(state => state.activeResource);
 	const resourceContent = useAppStore(state => state.resourceContent);
 	const selection = useAppStore(state => state.selection);
 	const drawerOpen = useAiGenerationStore(state => state.open);
+	const quietWriterHeader = activeMode === 'works' && Boolean(activeResource);
 
 	const openAiDrawer = () => {
 		const activeChapter = snapshot?.project.volumes
@@ -86,6 +91,35 @@ export function TopBar(): React.JSX.Element {
 		);
 	};
 
+	if (focusMode) {
+		return (
+			<header className="top-bar focus-top-bar" data-tauri-drag-region>
+				<div className="focus-context" aria-label="当前专注章节">
+					<BookOpenText size={18} />
+					<span>{snapshot?.project.title ?? 'Writing Buddy'}</span>
+					{activeResource && <><span>/</span><strong>{activeResource.title}</strong></>}
+				</div>
+				<div className="top-actions">
+					<span className={`focus-save-status ${session?.state.dirty ? 'is-dirty' : ''}`}>
+						{session?.state.dirty ? <Save size={16} /> : <Check size={16} />}
+						{session?.state.dirty ? '未保存' : '已保存'}
+					</span>
+					<button
+						className="ghost-button focus-exit"
+						type="button"
+						aria-label="退出专注"
+						aria-keyshortcuts="Escape F11"
+						onClick={toggleFocus}
+					>
+						<Focus size={18} />
+						<span>退出专注</span>
+						<kbd>Esc</kbd>
+					</button>
+				</div>
+			</header>
+		);
+	}
+
 	return (
 		<header className="top-bar" data-tauri-drag-region>
 			<div className="brand-lockup">
@@ -93,7 +127,10 @@ export function TopBar(): React.JSX.Element {
 				<span className="brand-name">Writing Buddy</span>
 			</div>
 			<div className="project-crumb" aria-label="当前作品">
-				<span>{snapshot?.project.title ?? '尚未打开作品'}</span>
+				<span>
+					{snapshot?.project.title ?? '尚未打开作品'}
+					{activeResource ? ` / ${activeResource.title}` : ''}
+				</span>
 			</div>
 			<label className="project-search">
 				<Search size={18} aria-hidden="true" />
@@ -107,7 +144,7 @@ export function TopBar(): React.JSX.Element {
 				<kbd>Ctrl K</kbd>
 			</label>
 			<div className="top-actions">
-				<GlobalCreateMenu />
+				{!quietWriterHeader && <GlobalCreateMenu />}
 				<button
 					className="ghost-button"
 					type="button"
@@ -122,21 +159,44 @@ export function TopBar(): React.JSX.Element {
 					className={`ghost-button ${focusMode ? 'is-active' : ''}`}
 					type="button"
 					aria-label={focusMode ? '退出专注' : '专注模式'}
+					aria-keyshortcuts="F11"
 					onClick={toggleFocus}
 				>
 					<Focus size={18} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
-				<button
-					className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
-					type="button"
-					aria-label="AI 快速生成"
-					onClick={openAiDrawer}
-				>
-					<Sparkles size={18} />
-					<span>AI 快速生成</span>
-				</button>
-				{['works', 'references'].includes(activeMode) && (
+				{!quietWriterHeader && (
+					<button
+						className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
+						type="button"
+						aria-label="AI 快速生成"
+						onClick={openAiDrawer}
+					>
+						<Sparkles size={18} />
+						<span>AI 快速生成</span>
+					</button>
+				)}
+				{quietWriterHeader ? (
+					<details className="writer-more-menu">
+						<summary aria-label="更多写作操作" role="button"><MoreHorizontal size={20} /></summary>
+						<div role="menu">
+							<button type="button" role="menuitem" onClick={toggleSidebar}>
+								{sidebarOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
+								{sidebarOpen ? '收起章节树' : '展开章节树'}
+							</button>
+							<button type="button" role="menuitem" onClick={toggleAssistant}>
+								{assistantOpen ? <PanelRightClose size={18} /> : <PanelRightOpen size={18} />}
+								{assistantOpen ? '收起写作助手' : '打开写作助手'}
+							</button>
+							<button type="button" role="menuitem" onClick={openAiDrawer}>
+								<Sparkles size={18} />AI 快速动作
+							</button>
+							<button type="button" role="menuitem" onClick={resetWorkspaceLayout}>
+								<RotateCcw size={18} />恢复写作布局
+							</button>
+						</div>
+					</details>
+				) : Boolean(snapshot) && ['works', 'planning', 'references'].includes(activeMode) && (
 					<>
 						<button
 							className="icon-button"
@@ -158,9 +218,18 @@ export function TopBar(): React.JSX.Element {
 						>
 							{assistantOpen ? <PanelRightClose size={20} /> : <PanelRightOpen size={20} />}
 						</button>
+						<button
+							className="icon-button"
+							type="button"
+							onClick={resetWorkspaceLayout}
+							aria-label="恢复当前工作区默认布局"
+							title="恢复当前工作区默认布局"
+						>
+							<RotateCcw size={20} />
+						</button>
 					</>
 				)}
-				<span className="ai-state">本地优先</span>
+				{!quietWriterHeader && <span className="ai-state">本地优先</span>}
 			</div>
 		</header>
 	);
