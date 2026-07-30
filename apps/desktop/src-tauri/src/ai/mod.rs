@@ -11,6 +11,14 @@ use std::collections::HashSet;
 
 pub const PROVIDER_ID: &str = "deepseek";
 pub const DEFAULT_MODEL_ID: &str = "deepseek-v4-flash";
+pub const AI_MAX_OUTPUT_PRESETS: &[u32] = &[
+    512, 1_024, 2_048, 4_096, 8_192, 16_384, 32_768, 65_536, 131_072, 262_144, 384_000,
+];
+
+fn is_supported_max_output_tokens(value: u32) -> bool {
+    AI_MAX_OUTPUT_PRESETS.contains(&value)
+}
+
 pub const STORYFORGE_SYSTEM_PROMPT: &str = concat!(
     "你是 StoryForge 的测试生成器。",
     "只回答用户在本面板明确输入的写作指令。",
@@ -218,7 +226,7 @@ impl Default for AiProviderPreferences {
 impl AiProviderPreferences {
     pub fn validate_and_normalize(mut self) -> Result<Self, errors::PublicAiError> {
         if self.provider_id != PROVIDER_ID
-            || !matches!(self.max_output_tokens, 512 | 1024 | 2048 | 4096 | 8192)
+            || !is_supported_max_output_tokens(self.max_output_tokens)
             || !(1_000..=60_000).contains(&self.connection_timeout_ms)
             || !(1_000..=300_000).contains(&self.first_content_timeout_ms)
             || !(1_000..=300_000).contains(&self.stream_idle_timeout_ms)
@@ -279,10 +287,7 @@ impl AiGenerateRequest {
             || !matches!(self.messages[0].role, AiRole::System)
             || !matches!(self.messages[1].role, AiRole::User)
             || !self.options.stream
-            || !matches!(
-                self.options.max_output_tokens,
-                512 | 1024 | 2048 | 4096 | 8192
-            )
+            || !is_supported_max_output_tokens(self.options.max_output_tokens)
             || match self.options.thinking_mode {
                 ThinkingMode::Enabled => self.options.reasoning_effort.as_deref() != Some("high"),
                 ThinkingMode::Disabled => self.options.reasoning_effort.is_some(),
@@ -2425,8 +2430,8 @@ pub struct AiUsageSummary {
 #[cfg(test)]
 mod tests {
     use super::{
-        AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
-        CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
+        AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiProviderPreferences,
+        AiRole, CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
         CREATION_JOURNEY_SYSTEM_PROMPT, INLINE_LANGUAGE_CHECK_MAX_CHARS,
         INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT, ITEM_ANALYSIS_SYSTEM_PROMPT,
         MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, PLOT_ANALYSIS_SYSTEM_PROMPT,
@@ -2466,6 +2471,18 @@ mod tests {
     #[test]
     fn generation_requires_the_isolated_storyforge_contract() {
         assert!(valid_request().validate().is_ok());
+
+        let mut provider_maximum = valid_request();
+        provider_maximum.options.max_output_tokens = 384_000;
+        assert!(provider_maximum.validate().is_ok());
+
+        let mut unknown_maximum = valid_request();
+        unknown_maximum.options.max_output_tokens = 384_001;
+        assert!(unknown_maximum.validate().is_err());
+
+        let mut preferences = AiProviderPreferences::default();
+        preferences.max_output_tokens = 384_000;
+        assert!(preferences.validate_and_normalize().is_ok());
 
         let mut wrong_system = valid_request();
         wrong_system.messages[0].content = "读取当前项目后续写".to_owned();

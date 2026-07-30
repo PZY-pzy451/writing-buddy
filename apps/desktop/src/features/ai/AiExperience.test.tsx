@@ -82,4 +82,38 @@ describe('Phase 1.0A AI experience', () => {
 		});
 		expect(useAiStore.getState().jobState).toBe('cancelled');
 	});
+
+	it('persists the provider maximum and explains long-form output cost', async () => {
+		await act(async () => {
+			await useAiStore.getState().initialize();
+		});
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+		const maximum = await screen.findByRole('combobox', {
+			name: '最大输出 Token'
+		});
+		await user.selectOptions(maximum, '384000');
+
+		await waitFor(() => expect(
+			useAiStore.getState().preferences.maxOutputTokens
+		).toBe(384_000));
+		expect(maximum).toHaveValue('384000');
+		expect(screen.getByText(/64K 以上适合长篇任务/)).toBeInTheDocument();
+		expect(screen.getByText(/DeepSeek 当前上限 384K/)).toBeInTheDocument();
+	});
+
+	it('keeps text but marks a plain-text result that reaches the output limit', async () => {
+		await act(async () => {
+			await useAiStore.getState().initialize();
+			await useAiStore.getState().saveKeyAndValidate('fixture-key');
+			useAiStore.getState().setPrompt('[QA_OUTPUT_LIMIT] 写一段长篇测试。');
+			await useAiStore.getState().startGeneration();
+		});
+
+		render(<AiPlaygroundPage />);
+		await screen.findByText('已完成 · 达到输出上限');
+		expect(useAiStore.getState().partial).toBe(true);
+		expect(screen.getByRole('log')).not.toBeEmptyDOMElement();
+	});
 });

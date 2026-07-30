@@ -5377,6 +5377,16 @@ body,
 	font-weight: 650;
 }
 
+.ai-field > small {
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.ai-field > .ai-field-warning {
+	color: var(--warning);
+}
+
 .ai-field input,
 .ai-field select,
 .ai-field textarea {

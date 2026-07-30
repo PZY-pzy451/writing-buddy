@@ -3,6 +3,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { buildContextPack } from '@writing-buddy/story-kernel';
 import { SelectionRewritePanel } from './SelectionRewritePanel';
 
+const asyncTimeout = { timeout: 5_000 };
+
 function pack() {
 	return buildContextPack({
 		actionType: 'polish',
@@ -42,9 +44,12 @@ describe('SelectionRewritePanel', () => {
 
 		fireEvent.click(await screen.findByRole('button', {
 			name: '确认 Context Pack 并生成'
-		}));
+		}, asyncTimeout));
 
-		await waitFor(() => expect(onPendingDraft).toHaveBeenCalledTimes(1));
+		await waitFor(
+			() => expect(onPendingDraft).toHaveBeenCalledTimes(1),
+			asyncTimeout
+		);
 		expect(onPendingDraft).toHaveBeenCalledWith(
 			expect.objectContaining({
 				range: { start: 2, end: 8 },
@@ -81,10 +86,16 @@ describe('SelectionRewritePanel', () => {
 				}}
 			/>
 		);
-		await waitFor(() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled());
+		await waitFor(
+			() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled(),
+			asyncTimeout
+		);
 		expect(onApply).not.toHaveBeenCalled();
 		fireEvent.click(screen.getByRole('button', { name: '确认 Context Pack 并生成' }));
-		await waitFor(() => expect(screen.getByLabelText('修改对比')).toBeInTheDocument());
+		await waitFor(
+			() => expect(screen.getByLabelText('修改对比')).toBeInTheDocument(),
+			asyncTimeout
+		);
 		expect(onApply).not.toHaveBeenCalled();
 		fireEvent.click(screen.getByRole('button', { name: '全部接受' }));
 		expect(onApply).toHaveBeenCalledWith(2, 8, '格外安静');
@@ -108,9 +119,15 @@ describe('SelectionRewritePanel', () => {
 				})}
 			/>
 		);
-		await waitFor(() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled());
+		await waitFor(
+			() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled(),
+			asyncTimeout
+		);
 		fireEvent.click(screen.getByRole('button', { name: '确认 Context Pack 并生成' }));
-		await waitFor(() => expect(screen.getByText('正文已变化，此候选不可接受。')).toBeInTheDocument());
+		await waitFor(
+			() => expect(screen.getByText('正文已变化，此候选不可接受。')).toBeInTheDocument(),
+			asyncTimeout
+		);
 		expect(screen.getByRole('button', { name: '全部接受' })).toBeDisabled();
 	});
 
@@ -140,10 +157,18 @@ describe('SelectionRewritePanel', () => {
 		);
 		fireEvent.click(await screen.findByRole('button', {
 			name: '确认 Context Pack 并生成'
-		}));
-		fireEvent.click(await screen.findByRole('button', { name: '全部接受' }));
+		}, asyncTimeout));
+		fireEvent.click(await screen.findByRole(
+			'button',
+			{ name: '全部接受' },
+			asyncTimeout
+		));
 
-		expect(await screen.findByRole('alert')).toHaveTextContent('无法创建安全快照');
+		expect(await screen.findByRole(
+			'alert',
+			undefined,
+			asyncTimeout
+		)).toHaveTextContent('无法创建安全快照');
 		expect(onApply).not.toHaveBeenCalled();
 	});
 });

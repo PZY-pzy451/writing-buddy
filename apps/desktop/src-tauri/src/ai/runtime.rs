@@ -17,9 +17,18 @@ use crate::{
     secrets::SecretValue,
 };
 
-const HARD_JOB_LIMIT: Duration = Duration::from_secs(10 * 60);
+const MIN_HARD_JOB_LIMIT: Duration = Duration::from_secs(10 * 60);
+const MAX_HARD_JOB_LIMIT: Duration = Duration::from_secs(2 * 60 * 60);
+const OUTPUT_TOKENS_PER_DEADLINE_SECOND: u64 = 64;
 const DELTA_FLUSH_INTERVAL: Duration = Duration::from_millis(40);
 const DELTA_FLUSH_CHARS: usize = 48;
+
+fn hard_job_limit(max_output_tokens: u32) -> Duration {
+    let scaled_seconds = u64::from(max_output_tokens)
+        .div_ceil(OUTPUT_TOKENS_PER_DEADLINE_SECOND)
+        .clamp(MIN_HARD_JOB_LIMIT.as_secs(), MAX_HARD_JOB_LIMIT.as_secs());
+    Duration::from_secs(scaled_seconds)
+}
 
 pub async fn run_generation(
     request: AiGenerateRequest,
@@ -30,7 +39,7 @@ pub async fn run_generation(
     storage: AiStorage,
 ) {
     let started_at = StdInstant::now();
-    let hard_deadline = Instant::now() + HARD_JOB_LIMIT;
+    let hard_deadline = Instant::now() + hard_job_limit(request.options.max_output_tokens);
     send(
         &channel,
         AiStreamEvent::JobStarted {
@@ -518,4 +527,18 @@ enum AttemptOutcome {
         received_content: bool,
         usage: AiUsage,
     },
+}
+
+#[cfg(test)]
+mod tests {
+    use super::hard_job_limit;
+    use std::time::Duration;
+
+    #[test]
+    fn long_output_requests_receive_a_bounded_scaled_deadline() {
+        assert_eq!(hard_job_limit(2_048), Duration::from_secs(10 * 60));
+        assert!(hard_job_limit(65_536) > Duration::from_secs(10 * 60));
+        assert!(hard_job_limit(384_000) >= Duration::from_secs(90 * 60));
+        assert!(hard_job_limit(384_000) <= Duration::from_secs(2 * 60 * 60));
+    }
 }

@@ -2,6 +2,7 @@ import { Channel, invoke } from '@tauri-apps/api/core';
 import {
 	DEFAULT_AI_PREFERENCES,
 	createDeepSeekProviderDefinition,
+	normalizeAiPreferences,
 	type AiBalance,
 	type AiConnectionTestResult,
 	type AiGenerateRequest,
@@ -1984,7 +1985,7 @@ class BrowserDesktopBridge implements DesktopBridge {
 	}
 
 	async saveAiPreferences(preferences: AiProviderPreferences): Promise<AiProviderPreferences> {
-		browserAiPreferences = preferences;
+		browserAiPreferences = normalizeAiPreferences(preferences);
 		return browserAiPreferences;
 	}
 
@@ -2072,7 +2073,11 @@ class BrowserDesktopBridge implements DesktopBridge {
 			requests: browserAiUsageSummary.requests + 1
 		};
 		listener({ type: 'usage', jobId: request.jobId, usage });
-		listener({ type: 'completed', jobId: request.jobId, finishReason: 'stop' });
+		listener({
+			type: 'completed',
+			jobId: request.jobId,
+			finishReason: qaInstruction.includes('[QA_OUTPUT_LIMIT]') ? 'length' : 'stop'
+		});
 	}
 
 	async cancelAiJob(jobId: string): Promise<boolean> {

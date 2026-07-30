@@ -68,7 +68,14 @@ export async function runGroundedJsonJob(input: {
 			if (event.type === 'usage') usage = event.usage;
 			input.onProgress({ output, state, ...(usage ? { usage } : {}) });
 			if (event.type === 'completed') {
-				finish({ output, ...(usage ? { usage } : {}) });
+				if (event.finishReason === 'length') {
+					finish(
+						undefined,
+						new Error('AI 输出达到最大 Token 上限，结构化结果可能不完整。请提高最大输出 Token，或缩小单次生成范围后重试。')
+					);
+				} else {
+					finish({ output, ...(usage ? { usage } : {}) });
+				}
 			}
 			if (event.type === 'failed') finish(undefined, toAiRequestError(event.error));
 			if (event.type === 'cancelled') finish(undefined, toAiRequestError('cancelled'));

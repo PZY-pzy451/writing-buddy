@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import {
+	AI_LONG_FORM_OUTPUT_THRESHOLD,
 	AI_MAX_OUTPUT_PRESETS,
 	DEEPSEEK_DEFAULT_MODEL_ID,
 	type AiProviderPreferences
@@ -189,11 +190,21 @@ export function AiSettingsSection(): React.JSX.Element {
 							<option value="enabled">开启（reasoning effort: high）</option>
 						</select>
 					</label>
-					<label className="ai-field">
+					<label className="ai-field ai-max-output-field">
 						<span>最大输出 Token</span>
-						<select value={preferences.maxOutputTokens} onChange={event => update({ maxOutputTokens: Number(event.target.value) as AiProviderPreferences['maxOutputTokens'] })}>
+						<select
+							aria-label="最大输出 Token"
+							value={preferences.maxOutputTokens}
+							onChange={event => update({ maxOutputTokens: Number(event.target.value) as AiProviderPreferences['maxOutputTokens'] })}
+						>
 							{AI_MAX_OUTPUT_PRESETS.map(value => <option key={value} value={value}>{value.toLocaleString()}</option>)}
 						</select>
+						<small>DeepSeek 当前上限 384K；这里只设置上限，模型可以提前结束。</small>
+						{preferences.maxOutputTokens >= AI_LONG_FORM_OUTPUT_THRESHOLD && (
+							<small className="ai-field-warning" role="status">
+								64K 以上适合长篇任务，耗时与费用可能显著增加。建议按场景或章节生成。
+							</small>
+						)}
 					</label>
 				</div>
 				<div className="ai-button-row compact">

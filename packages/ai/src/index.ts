@@ -5,7 +5,20 @@ export const DEEPSEEK_PROVIDER_ID = 'deepseek' as const;
 export const DEEPSEEK_DEFAULT_MODEL_ID = 'deepseek-v4-flash';
 export const DEEPSEEK_PRO_MODEL_ID = 'deepseek-v4-pro';
 export const DEEPSEEK_RETIRED_MODEL_IDS = ['deepseek-chat', 'deepseek-reasoner'] as const;
-export const AI_MAX_OUTPUT_PRESETS = [512, 1024, 2048, 4096, 8192] as const;
+export const AI_MAX_OUTPUT_PRESETS = [
+	512,
+	1024,
+	2048,
+	4096,
+	8192,
+	16_384,
+	32_768,
+	65_536,
+	131_072,
+	262_144,
+	384_000
+] as const;
+export const AI_LONG_FORM_OUTPUT_THRESHOLD = 65_536;
 export const AI_JOB_QUEUE_LIMIT = 3;
 export const AI_CHAPTER_REVIEW_MAX_CHARS = 100_000;
 export const AI_INLINE_LANGUAGE_CHECK_MAX_CHARS = 2_400;
@@ -282,7 +295,13 @@ const preferencesSchema = z.object({
 		z.literal(1024),
 		z.literal(2048),
 		z.literal(4096),
-		z.literal(8192)
+		z.literal(8192),
+		z.literal(16_384),
+		z.literal(32_768),
+		z.literal(65_536),
+		z.literal(131_072),
+		z.literal(262_144),
+		z.literal(384_000)
 	]).optional(),
 	connectionTimeoutMs: z.number().int().min(1_000).max(60_000).optional(),
 	firstContentTimeoutMs: z.number().int().min(1_000).max(300_000).optional(),

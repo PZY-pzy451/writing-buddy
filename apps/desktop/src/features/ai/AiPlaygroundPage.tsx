@@ -138,7 +138,7 @@ function JobBadge(props: { readonly state: AiJobState; readonly partial: boolean
 		connecting: '正在连接',
 		thinking: '正在思考',
 		streaming: '流式输出',
-		completed: '已完成',
+		completed: props.partial ? '已完成 · 达到输出上限' : '已完成',
 		cancelled: props.partial ? '已停止 · 保留部分内容' : '已停止',
 		failed: props.partial ? '失败 · 保留部分内容' : '失败'
 	};

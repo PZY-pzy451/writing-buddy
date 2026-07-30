@@ -4,6 +4,29 @@ Updated: 2026-07-30
 
 ## Active milestone
 
+Long-output support and complete-novel acceptance are complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- DeepSeek maximum-output presets now extend through 384,000 tokens while the
+  default stays at 2,048.
+- Native request validation, preferences and runtime deadlines match the
+  shared TypeScript contract. Token-limited structured output fails before
+  parsing or project writes; plain text remains visible as partial output.
+- Completed `《零点回声》`: 3 acts, 12 chapters, 24 scenes, 29,770
+  non-whitespace characters, an importable Writing Buddy project and a
+  standalone manuscript.
+- Native acceptance passed project integrity, Creation Journey, Story Kernel
+  indexing, 384K preference boundaries, snapshot restore, backup restore,
+  four responsive profiles, normal close and second-process reopen.
+- Final gates: Node 24.18.0, ESLint, TypeScript, 157 Vitest files / 603 tests,
+  production build, Cargo format, 68 Rust tests with 2 explicit external gates
+  ignored, Tauri Release/NSIS and production startup/normal close.
+- Delivery:
+  `artifacts/release/long-output-complete-novel-2026-07-30/`; novel:
+  `artifacts/novels/zero-hour-echo/`; evidence:
+  `docs/acceptance/055-long-output-complete-novel-2026-07-30.md`.
+
 Phase 1.2C AI Draft Insertion Experience is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

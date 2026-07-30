@@ -24,7 +24,7 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		maxWorkers: 4,
+		maxWorkers: 2,
 		setupFiles: ['./apps/desktop/tests/setup.tsx'],
 		include: [
 			'packages/**/*.test.ts',

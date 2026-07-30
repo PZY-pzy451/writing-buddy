@@ -81,7 +81,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 				set({
 					jobState: nextState,
 					durationMs: state.startedAt ? Date.now() - state.startedAt : undefined,
-					partial: false
+					partial: event.finishReason === 'length'
 				});
 				void desktopBridge.getAiUsageSummary().then(usageSummary => set({ usageSummary }));
 				break;

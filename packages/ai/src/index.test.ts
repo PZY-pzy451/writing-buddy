@@ -1,4 +1,5 @@
 import {
+	AI_MAX_OUTPUT_PRESETS,
 	AiProviderRegistry,
 	DEFAULT_AI_PREFERENCES,
 	aggregateAiUsage,
@@ -79,6 +80,12 @@ describe('AI core contracts', () => {
 			...DEFAULT_AI_PREFERENCES,
 			maxOutputTokens: 8192
 		});
+		expect(AI_MAX_OUTPUT_PRESETS.at(-1)).toBe(384_000);
+		expect(normalizeAiPreferences({ maxOutputTokens: 384_000 })).toMatchObject({
+			...DEFAULT_AI_PREFERENCES,
+			maxOutputTokens: 384_000
+		});
+		expect(() => normalizeAiPreferences({ maxOutputTokens: 384_001 })).toThrow();
 		expect(normalizeAiPreferences({ defaultModelId: 'deepseek-chat' }).defaultModelId)
 			.toBe('deepseek-v4-flash');
 	});
