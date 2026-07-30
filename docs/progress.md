@@ -4,6 +4,25 @@ Updated: 2026-07-30
 
 ## Active milestone
 
+Phase 1.2B Genre-to-Draft Core Journey Gates A-C are active in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`, based on
+`01a440af73a764abc14e45f388b2a2f098e0bca1`.
+
+- Gate A baseline and architecture audit are complete.
+- The current Creation Journey v2 document will be extended; no second
+  outline store will be created.
+- `WritingProject.volumes[].chapters[]` and Story Kernel `StoryScene` remain
+  the canonical Chapter/Scene sources.
+- Gate B will add the genre brief, explicit grounded generation, strict
+  response repair, cancellation, and recovery.
+- Gate C will add the editable three-pane structured-outline workspace,
+  lock/reorder/undo, and reopen restoration.
+- Required plans:
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-source-map.md` and
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`.
+- Stop before Gate D.
+
 Phase 1.2C, Guided AI Story Development, is complete in
 `D:\develop_tool\writing-buddy-phase-1.2c` on
 `codex/phase-1.2c-guided-development`.
