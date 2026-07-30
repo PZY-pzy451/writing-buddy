@@ -9,6 +9,7 @@ import {
 	createTimelineAiActions,
 	createWorldAiActions,
 	createConsistencyReviewAction,
+	createGenreOutlineAiAction,
 	createGateGAiActions
 } from './AiActionRegistry';
 
@@ -138,5 +139,58 @@ describe('AiActionRegistry', () => {
 		expect(createGateGAiActions().every(action => (
 			action.contextPolicy.includeAuthorSecretsByDefault === false
 		))).toBe(true);
+	});
+
+	it('registers genre-to-outline generation on the existing outline registry', () => {
+		const registry = createDefaultAiActionRegistry();
+		const action = registry.get('outline.generateFromGenre');
+
+		expect(action).toMatchObject({
+			category: 'outline',
+			promptTemplateId: 'creation-journey.genre-to-outline',
+			applyPolicy: { type: 'create_resources', selectableItems: true }
+		});
+		expect(action.contextPolicy).toMatchObject({
+			requiredKinds: [],
+			includeAuthorSecretsByDefault: false
+		});
+		expect(registry.listAvailable({
+			hasProject: true,
+			currentResourceType: 'creation-journey'
+		}, 'outline').map(candidate => candidate.id)).toEqual([
+			'outline.generateFromGenre'
+		]);
+	});
+
+	it('keeps genre-to-outline action input and output schemas strict', () => {
+		const action = createGenreOutlineAiAction();
+		const output = {
+			operation: 'generate-from-genre',
+			outline: {
+				genre: '都市悬疑',
+				premise: '一名记者追查只有雨夜才出现的旧车站。'
+			},
+			storyBeats: Array.from({ length: 5 }, (_, index) => ({
+				title: `节点 ${index + 1}`,
+				summary: `推进 ${index + 1}`
+			})),
+			suggestedCharacters: [],
+			suggestedWorldRules: [],
+			warnings: []
+		};
+
+		expect(action.outputSchema.parse(output)).toEqual(output);
+		expect(() => action.outputSchema.parse({
+			...output,
+			projectId: 'project-secret'
+		})).toThrow();
+		expect(() => action.inputSchema.parse({
+			genre: '都市悬疑',
+			tones: [],
+			protagonistHints: [],
+			requiredElements: [],
+			excludedElements: [],
+			apiKey: 'forbidden'
+		})).toThrow();
 	});
 });

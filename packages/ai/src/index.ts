@@ -136,6 +136,7 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 export const CREATION_JOURNEY_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。',
 	'不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。',
+	'generate-from-genre 根据题材和可选作者约束返回一个可编辑故事总纲、5 至 8 个有序故事节拍、有限的资源建议与警告；repairAttempt 为 1 时只修正结构，不改变输入范围。',
 	'organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。',
 	'generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。',
 	'lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。',
@@ -2424,6 +2425,68 @@ const creationJourneyDevelopmentFields = {
 	lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24).optional()
 };
 
+const creationJourneyGenreStringListSchema = z.array(
+	z.string().trim().min(1).max(240)
+).max(12).refine(values => new Set(values).size === values.length);
+
+const creationJourneyGenreInputFields = {
+	genre: z.string().trim().min(1).max(240),
+	premise: z.string().trim().max(2_000).optional(),
+	scale: z.enum(['short', 'novella', 'novel', 'serial']).optional(),
+	tones: creationJourneyGenreStringListSchema,
+	protagonistHints: creationJourneyGenreStringListSchema,
+	requiredElements: creationJourneyGenreStringListSchema,
+	excludedElements: creationJourneyGenreStringListSchema,
+	endingPreference: z.enum([
+		'open',
+		'hopeful',
+		'tragic',
+		'bittersweet',
+		'surprising',
+		'unspecified'
+	]).optional(),
+	audience: z.string().trim().max(500).optional(),
+	structureTemplateId: z.string().trim().min(1).max(120).optional(),
+	repairAttempt: z.literal(1).optional()
+};
+
+const creationJourneyGeneratedOutlineSchema = z.object({
+	title: z.string().trim().min(1).max(160).optional(),
+	genre: z.string().trim().min(1).max(240),
+	premise: z.string().max(2_000),
+	themePromise: z.string().trim().min(1).max(2_000).optional(),
+	protagonistGoal: z.string().trim().min(1).max(2_000).optional(),
+	centralConflict: z.string().trim().min(1).max(2_000).optional(),
+	stakes: z.string().trim().min(1).max(2_000).optional(),
+	mysteryQuestion: z.string().trim().min(1).max(2_000).optional(),
+	endingDirection: z.string().trim().min(1).max(2_000).optional(),
+	structureTemplateId: z.string().trim().min(1).max(120).optional()
+}).strict();
+
+const creationJourneyGeneratedBeatSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	goal: z.string().max(1_000).optional(),
+	conflict: z.string().max(2_000).optional(),
+	outcome: z.string().max(2_000).optional(),
+	hook: z.string().max(2_000).optional(),
+	povHint: z.string().max(500).optional()
+}).strict();
+
+const creationJourneySuggestedResourceSchema = z.object({
+	title: z.string().trim().min(1).max(160),
+	summary: z.string().trim().min(1).max(2_000),
+	role: z.string().trim().min(1).max(160).optional(),
+	category: z.string().trim().min(1).max(160).optional()
+}).strict();
+
+const creationJourneyGenerationWarningSchema = z.object({
+	code: z.string().regex(/^[a-z][a-z0-9-]*$/u),
+	message: z.string().trim().min(1).max(1_000),
+	nodeIndexes: z.array(z.number().int().min(0).max(7)).max(8)
+		.refine(indexes => new Set(indexes).size === indexes.length)
+}).strict();
+
 const creationJourneyOutlineWithIdSchema = creationJourneyOutlineNodeSchema.extend({
 	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
 }).strict();
@@ -2476,6 +2539,11 @@ const creationJourneyRegenerationTargetSchema = z.discriminatedUnion('kind', [
 ]);
 
 const creationJourneyInputSchema = z.discriminatedUnion('operation', [
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('generate-from-genre'),
+		...creationJourneyGenreInputFields
+	}).strict(),
 	z.object({
 		schemaVersion: z.literal(1),
 		operation: z.literal('organize-core'),
@@ -2552,6 +2620,14 @@ const creationJourneyRegenerationResponseTargetSchema = z.discriminatedUnion('ki
 ]);
 
 const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
+	z.object({
+		operation: z.literal('generate-from-genre'),
+		outline: creationJourneyGeneratedOutlineSchema,
+		storyBeats: z.array(creationJourneyGeneratedBeatSchema).min(5).max(8),
+		suggestedCharacters: z.array(creationJourneySuggestedResourceSchema).max(12),
+		suggestedWorldRules: z.array(creationJourneySuggestedResourceSchema).max(12),
+		warnings: z.array(creationJourneyGenerationWarningSchema).max(24)
+	}).strict(),
 	z.object({
 		operation: z.literal('organize-core'),
 		core: creationJourneyCoreSchema

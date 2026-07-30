@@ -63,6 +63,37 @@ describe('CreationJourneyStore', () => {
 		expect(loaded.state.elements).toHaveLength(3);
 	});
 
+	it('uses a preferred genre start only for a missing journey', async () => {
+		const gateway = new MemoryGateway();
+		const store = new CreationJourneyStore(
+			'D:/Novel',
+			'novel-001',
+			gateway,
+			() => '2026-07-30T01:02:03.000Z',
+			'genre'
+		);
+
+		const missing = await store.load();
+		expect(missing.state).toMatchObject({
+			startRoute: 'genre',
+			stage: 'outline',
+			genreInput: {
+				genre: '',
+				mode: 'quick'
+			}
+		});
+
+		await store.save(missing, missing.state);
+		const restored = await new CreationJourneyStore(
+			'D:/Novel',
+			'novel-001',
+			gateway,
+			() => '2026-07-30T01:02:03.000Z',
+			'ideas'
+		).load();
+		expect(restored.state.startRoute).toBe('genre');
+	});
+
 	it('writes with the current hash and preserves the next hash', async () => {
 		const gateway = new MemoryGateway();
 		const store = new CreationJourneyStore('D:/Novel', 'novel-001', gateway);

@@ -4,6 +4,7 @@ import {
 	createCreationJourneyState,
 	parseCreationJourneyState,
 	serializeCreationJourneyState,
+	type CreationStartRoute,
 	type CreationJourneyState
 } from './CreationJourneyModel';
 
@@ -26,14 +27,18 @@ export class CreationJourneyStore {
 		private readonly projectRoot: string,
 		private readonly projectId: string,
 		private readonly gateway: CreationJourneyStorageGateway,
-		private readonly now: () => string = () => new Date().toISOString()
+		private readonly now: () => string = () => new Date().toISOString(),
+		private readonly preferredStartRoute?: CreationStartRoute
 	) {}
 
 	async load(): Promise<LoadedCreationJourney> {
 		const file = await this.gateway.readCreationJourneyState(this.projectRoot);
 		if (!file) {
 			return {
-				state: createCreationJourneyState(this.projectId, { now: this.now }),
+				state: createCreationJourneyState(this.projectId, {
+					now: this.now,
+					startRoute: this.preferredStartRoute
+				}),
 				hash: ''
 			};
 		}

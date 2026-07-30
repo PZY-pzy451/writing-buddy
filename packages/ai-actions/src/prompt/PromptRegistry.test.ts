@@ -1,10 +1,13 @@
 import {
 	CHAPTER_REVIEW_SYSTEM_PROMPT,
+	CREATION_JOURNEY_SYSTEM_PROMPT,
 	STORYFORGE_SYSTEM_PROMPT
 } from '@writing-buddy/ai';
 import {
 	PromptRegistry,
 	createConsistencyReviewPromptTemplate,
+	createDefaultPromptRegistry,
+	createGenreOutlinePromptTemplate,
 	createPlaygroundPromptTemplate
 } from './PromptRegistry';
 
@@ -77,5 +80,26 @@ describe('PromptRegistry', () => {
 			schemaVersion: 1,
 			content: '桥下的雾缓慢散开。'
 		}));
+	});
+
+	it('registers the bounded genre-to-outline prompt on the existing registry', () => {
+		const registry = createDefaultPromptRegistry();
+		const template = createGenreOutlinePromptTemplate();
+		const input = {
+			genre: '都市悬疑',
+			tones: ['克制'],
+			protagonistHints: [],
+			requiredElements: [],
+			excludedElements: ['超能力']
+		};
+
+		expect(registry.get(template.id)).toBeDefined();
+		expect(template.buildSystemPrompt(input)).toBe(CREATION_JOURNEY_SYSTEM_PROMPT);
+		expect(JSON.parse(template.buildUserPrompt(input, {} as never))).toEqual({
+			schemaVersion: 1,
+			operation: 'generate-from-genre',
+			...input
+		});
+		expect(template.outputSchemaName).toBe('GenerateOutlineResult');
 	});
 });

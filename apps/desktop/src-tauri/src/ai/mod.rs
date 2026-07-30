@@ -138,6 +138,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
 pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。",
     "不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。",
+    "generate-from-genre 根据题材和可选作者约束返回一个可编辑故事总纲、5 至 8 个有序故事节拍、有限的资源建议与警告；repairAttempt 为 1 时只修正结构，不改变输入范围。",
     "organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。",
     "generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。",
     "lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。",
@@ -1326,6 +1327,20 @@ fn validate_story_extraction_input(value: &str) -> bool {
     deny_unknown_fields
 )]
 enum CreationJourneyInput {
+    GenerateFromGenre {
+        schema_version: u8,
+        genre: String,
+        premise: Option<String>,
+        scale: Option<String>,
+        tones: Vec<String>,
+        protagonist_hints: Vec<String>,
+        required_elements: Vec<String>,
+        excluded_elements: Vec<String>,
+        ending_preference: Option<String>,
+        audience: Option<String>,
+        structure_template_id: Option<String>,
+        repair_attempt: Option<u8>,
+    },
     OrganizeCore {
         schema_version: u8,
         elements: Vec<CreationJourneyElement>,
@@ -1496,6 +1511,18 @@ struct CreationJourneyChapterContext {
 
 fn valid_creation_journey_text(value: &str, max_chars: usize) -> bool {
     !value.trim().is_empty() && value.chars().count() <= max_chars
+}
+
+fn valid_creation_journey_optional_text(value: Option<&str>, max_chars: usize) -> bool {
+    value.is_none_or(|text| text.chars().count() <= max_chars)
+}
+
+fn valid_creation_journey_string_list(values: &[String]) -> bool {
+    values.len() <= 12
+        && values.iter().collect::<HashSet<_>>().len() == values.len()
+        && values
+            .iter()
+            .all(|value| valid_creation_journey_text(value, 240))
 }
 
 fn valid_creation_journey_core(core: &CreationJourneyCore) -> bool {
@@ -1694,6 +1721,47 @@ fn validate_creation_journey_input(value: &str) -> bool {
         return false;
     }
     serde_json::from_str::<CreationJourneyInput>(value).is_ok_and(|input| match input {
+        CreationJourneyInput::GenerateFromGenre {
+            schema_version,
+            genre,
+            premise,
+            scale,
+            tones,
+            protagonist_hints,
+            required_elements,
+            excluded_elements,
+            ending_preference,
+            audience,
+            structure_template_id,
+            repair_attempt,
+        } => {
+            schema_version == 1
+                && valid_creation_journey_text(&genre, 240)
+                && valid_creation_journey_optional_text(premise.as_deref(), 2_000)
+                && scale
+                    .as_deref()
+                    .is_none_or(|value| matches!(value, "short" | "novella" | "novel" | "serial"))
+                && valid_creation_journey_string_list(&tones)
+                && valid_creation_journey_string_list(&protagonist_hints)
+                && valid_creation_journey_string_list(&required_elements)
+                && valid_creation_journey_string_list(&excluded_elements)
+                && ending_preference.as_deref().is_none_or(|value| {
+                    matches!(
+                        value,
+                        "open"
+                            | "hopeful"
+                            | "tragic"
+                            | "bittersweet"
+                            | "surprising"
+                            | "unspecified"
+                    )
+                })
+                && valid_creation_journey_optional_text(audience.as_deref(), 500)
+                && structure_template_id
+                    .as_deref()
+                    .is_none_or(|value| valid_creation_journey_text(value, 120))
+                && repair_attempt.is_none_or(|attempt| attempt == 1)
+        }
         CreationJourneyInput::OrganizeCore {
             schema_version,
             elements,
@@ -2681,6 +2749,44 @@ mod tests {
             serde_json::from_str(&request.messages[1].content).expect("valid journey request");
         unsafe_request["projectRoot"] = serde_json::json!("C:/secret");
         request.messages[1].content = unsafe_request.to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn creation_journey_accepts_bounded_genre_generation_and_one_repair_marker() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::CreationJourney;
+        request.messages[0].content = CREATION_JOURNEY_SYSTEM_PROMPT.to_owned();
+        request.options.response_format = ResponseFormat::JsonObject;
+        let brief = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "generate-from-genre",
+            "genre": "都市悬疑 + 科幻",
+            "premise": "记者追查一座会重置记忆的车站。",
+            "scale": "novel",
+            "tones": ["克制", "压迫"],
+            "protagonistHints": ["调查记者"],
+            "requiredElements": ["旧车站"],
+            "excludedElements": ["穿越"],
+            "endingPreference": "bittersweet",
+            "audience": "成年悬疑读者",
+            "structureTemplateId": "three-act"
+        });
+        request.messages[1].content = brief.to_string();
+        assert!(request.validate().is_ok());
+
+        let mut repair = brief.clone();
+        repair["repairAttempt"] = serde_json::json!(1);
+        request.messages[1].content = repair.to_string();
+        assert!(request.validate().is_ok());
+
+        repair["repairAttempt"] = serde_json::json!(2);
+        request.messages[1].content = repair.to_string();
+        assert!(request.validate().is_err());
+
+        let mut unsafe_brief = brief;
+        unsafe_brief["projectId"] = serde_json::json!("novel-secret");
+        request.messages[1].content = unsafe_brief.to_string();
         assert!(request.validate().is_err());
     }
 

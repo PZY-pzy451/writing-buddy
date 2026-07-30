@@ -1,4 +1,5 @@
 export const creationStartRoutes = [
+	'genre',
 	'ideas',
 	'synopsis',
 	'character-world',
@@ -47,11 +48,107 @@ export interface StoryDirection {
 	readonly tone: string;
 }
 
+export type StoryScale = 'short' | 'novella' | 'novel' | 'serial';
+export type EndingPreference =
+	| 'open'
+	| 'hopeful'
+	| 'tragic'
+	| 'bittersweet'
+	| 'surprising'
+	| 'unspecified';
+export type GenreControlMode = 'quick' | 'deep';
+
+export interface GenreToOutlineInput {
+	readonly projectId: string;
+	readonly genre: string;
+	readonly premise?: string;
+	readonly mode: GenreControlMode;
+	readonly scale?: StoryScale;
+	readonly tones: readonly string[];
+	readonly protagonistHints: readonly string[];
+	readonly requiredElements: readonly string[];
+	readonly excludedElements: readonly string[];
+	readonly endingPreference?: EndingPreference;
+	readonly audience?: string;
+	readonly structureTemplateId?: string;
+}
+
+export interface StoryOutline {
+	readonly id: string;
+	readonly projectId: string;
+	readonly title?: string;
+	readonly genre: string;
+	readonly premise: string;
+	readonly themePromise?: string;
+	readonly protagonistGoal?: string;
+	readonly centralConflict?: string;
+	readonly stakes?: string;
+	readonly mysteryQuestion?: string;
+	readonly endingDirection?: string;
+	readonly structureTemplateId?: string;
+	readonly status: 'draft' | 'confirmed' | 'needs_review';
+	readonly revision: number;
+	readonly createdAt: string;
+	readonly updatedAt: string;
+}
+
+export type OutlineNodeType = 'story_beat' | 'volume' | 'chapter' | 'scene';
+
 export interface StoryOutlineNode {
 	readonly id: string;
 	readonly title: string;
 	readonly summary: string;
 	readonly purpose: string;
+	readonly type?: OutlineNodeType;
+	readonly parentId?: string;
+	readonly order?: number;
+	readonly goal?: string;
+	readonly conflict?: string;
+	readonly outcome?: string;
+	readonly hook?: string;
+	readonly povHint?: string;
+	readonly povCharacterId?: string;
+	readonly locationId?: string;
+	readonly characterIds?: readonly string[];
+	readonly plotThreadIds?: readonly string[];
+	readonly foreshadowingIds?: readonly string[];
+	readonly status?: 'planned' | 'ready_to_write' | 'drafting' | 'drafted' | 'revising' | 'complete';
+	readonly source?: 'manual' | 'ai_generated' | 'ai_revised' | 'extracted_from_draft';
+	readonly revision?: number;
+}
+
+export interface SuggestedStoryResource {
+	readonly title: string;
+	readonly summary: string;
+	readonly role?: string;
+	readonly category?: string;
+}
+
+export interface OutlineGenerationWarning {
+	readonly code: string;
+	readonly message: string;
+	readonly nodeIndexes: readonly number[];
+}
+
+export interface GenreOutlineGenerationRecord {
+	readonly suggestedCharacters: readonly SuggestedStoryResource[];
+	readonly suggestedWorldRules: readonly SuggestedStoryResource[];
+	readonly warnings: readonly OutlineGenerationWarning[];
+	readonly generatedAt: string;
+}
+
+export interface GeneratedGenreOutline {
+	readonly outline: Omit<
+		StoryOutline,
+		'id' | 'projectId' | 'status' | 'revision' | 'createdAt' | 'updatedAt'
+	>;
+	readonly storyBeats: readonly Pick<
+		StoryOutlineNode,
+		'title' | 'summary' | 'goal' | 'conflict' | 'outcome' | 'hook' | 'povHint'
+	>[];
+	readonly suggestedCharacters: readonly SuggestedStoryResource[];
+	readonly suggestedWorldRules: readonly SuggestedStoryResource[];
+	readonly warnings: readonly OutlineGenerationWarning[];
 }
 
 export interface JourneyChapterProposal {
@@ -140,6 +237,9 @@ export interface CreationJourneyState {
 	readonly projectId: string;
 	readonly startRoute: CreationStartRoute;
 	readonly stage: CreationJourneyStage;
+	readonly genreInput?: GenreToOutlineInput;
+	readonly storyOutline?: StoryOutline;
+	readonly genreGeneration?: GenreOutlineGenerationRecord;
 	readonly elements: readonly StoryElement[];
 	readonly core: StoryCore;
 	readonly directions: readonly StoryDirection[];
@@ -169,6 +269,7 @@ const utcTimestamp = z.string().refine(value => {
 const elementIdSchema = z.string().regex(/^journey-element:[a-z0-9][a-z0-9-]*$/u);
 const directionIdSchema = z.string().regex(/^journey-direction:[a-z0-9][a-z0-9-]*$/u);
 const outlineIdSchema = z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u);
+const storyOutlineIdSchema = z.string().regex(/^journey-story-outline:[a-z0-9][a-z0-9-]*$/u);
 const chapterProposalIdSchema = z.string().regex(/^journey-chapter:[a-z0-9][a-z0-9-]*$/u);
 const guidanceQuestionIdSchema = z.string().regex(/^journey-question:[a-z0-9][a-z0-9-]*$/u);
 const guidanceOptionIdSchema = z.string().regex(/^journey-option:[a-z0-9][a-z0-9-]*$/u);
@@ -211,11 +312,128 @@ const storyDirectionSchema = z.object({
 	tone: z.string().max(500)
 }).strict();
 
+const boundedStringListSchema = z.array(
+	z.string().trim().min(1).max(240)
+).max(12).refine(values => new Set(values).size === values.length);
+
+const genreToOutlineInputSchema = z.object({
+	projectId: z.string().trim().min(1).max(240),
+	genre: z.string().trim().max(240),
+	premise: z.string().trim().max(2_000).optional(),
+	mode: z.enum(['quick', 'deep']),
+	scale: z.enum(['short', 'novella', 'novel', 'serial']).optional(),
+	tones: boundedStringListSchema,
+	protagonistHints: boundedStringListSchema,
+	requiredElements: boundedStringListSchema,
+	excludedElements: boundedStringListSchema,
+	endingPreference: z.enum([
+		'open',
+		'hopeful',
+		'tragic',
+		'bittersweet',
+		'surprising',
+		'unspecified'
+	]).optional(),
+	audience: z.string().trim().max(500).optional(),
+	structureTemplateId: z.string().trim().min(1).max(120).optional()
+}).strict();
+
+const storyOutlineSchema = z.object({
+	id: storyOutlineIdSchema,
+	projectId: z.string().trim().min(1).max(240),
+	title: z.string().trim().min(1).max(160).optional(),
+	genre: z.string().trim().min(1).max(240),
+	premise: z.string().max(2_000),
+	themePromise: z.string().trim().min(1).max(2_000).optional(),
+	protagonistGoal: z.string().trim().min(1).max(2_000).optional(),
+	centralConflict: z.string().trim().min(1).max(2_000).optional(),
+	stakes: z.string().trim().min(1).max(2_000).optional(),
+	mysteryQuestion: z.string().trim().min(1).max(2_000).optional(),
+	endingDirection: z.string().trim().min(1).max(2_000).optional(),
+	structureTemplateId: z.string().trim().min(1).max(120).optional(),
+	status: z.enum(['draft', 'confirmed', 'needs_review']),
+	revision: z.number().int().min(1),
+	createdAt: utcTimestamp,
+	updatedAt: utcTimestamp
+}).strict();
+
 const storyOutlineNodeSchema = z.object({
 	id: outlineIdSchema,
 	title: z.string().max(120),
 	summary: z.string().max(3_000),
-	purpose: z.string().max(1_000)
+	purpose: z.string().max(1_000),
+	type: z.enum(['story_beat', 'volume', 'chapter', 'scene']).optional(),
+	parentId: z.string().trim().min(1).max(240).optional(),
+	order: z.number().int().min(0).optional(),
+	goal: z.string().max(1_000).optional(),
+	conflict: z.string().max(2_000).optional(),
+	outcome: z.string().max(2_000).optional(),
+	hook: z.string().max(2_000).optional(),
+	povHint: z.string().max(500).optional(),
+	povCharacterId: z.string().trim().min(1).max(240).optional(),
+	locationId: z.string().trim().min(1).max(240).optional(),
+	characterIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	plotThreadIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	foreshadowingIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	status: z.enum([
+		'planned',
+		'ready_to_write',
+		'drafting',
+		'drafted',
+		'revising',
+		'complete'
+	]).optional(),
+	source: z.enum([
+		'manual',
+		'ai_generated',
+		'ai_revised',
+		'extracted_from_draft'
+	]).optional(),
+	revision: z.number().int().min(1).optional()
+}).strict();
+
+const suggestedStoryResourceSchema = z.object({
+	title: z.string().trim().min(1).max(160),
+	summary: z.string().trim().min(1).max(2_000),
+	role: z.string().trim().min(1).max(160).optional(),
+	category: z.string().trim().min(1).max(160).optional()
+}).strict();
+
+const outlineGenerationWarningSchema = z.object({
+	code: z.string().regex(/^[a-z][a-z0-9-]*$/u),
+	message: z.string().trim().min(1).max(1_000),
+	nodeIndexes: z.array(z.number().int().min(0).max(7)).max(8)
+		.refine(indexes => new Set(indexes).size === indexes.length)
+}).strict();
+
+const genreOutlineGenerationRecordSchema = z.object({
+	suggestedCharacters: z.array(suggestedStoryResourceSchema).max(12),
+	suggestedWorldRules: z.array(suggestedStoryResourceSchema).max(12),
+	warnings: z.array(outlineGenerationWarningSchema).max(24),
+	generatedAt: utcTimestamp
+}).strict();
+
+const generatedGenreOutlineSchema = z.object({
+	outline: storyOutlineSchema.omit({
+		id: true,
+		projectId: true,
+		status: true,
+		revision: true,
+		createdAt: true,
+		updatedAt: true
+	}),
+	storyBeats: z.array(z.object({
+		title: z.string().trim().min(1).max(120),
+		summary: z.string().trim().min(1).max(3_000),
+		goal: z.string().max(1_000).optional(),
+		conflict: z.string().max(2_000).optional(),
+		outcome: z.string().max(2_000).optional(),
+		hook: z.string().max(2_000).optional(),
+		povHint: z.string().max(500).optional()
+	}).strict()).min(5).max(8),
+	suggestedCharacters: z.array(suggestedStoryResourceSchema).max(12),
+	suggestedWorldRules: z.array(suggestedStoryResourceSchema).max(12),
+	warnings: z.array(outlineGenerationWarningSchema).max(24)
 }).strict();
 
 const journeyChapterProposalSchema = z.object({
@@ -299,6 +517,9 @@ const creationJourneyStateSchema = z.object({
 	projectId: z.string().trim().min(1).max(240),
 	startRoute: z.enum(creationStartRoutes),
 	stage: z.enum(creationJourneyStages),
+	genreInput: genreToOutlineInputSchema.optional(),
+	storyOutline: storyOutlineSchema.optional(),
+	genreGeneration: genreOutlineGenerationRecordSchema.optional(),
 	elements: z.array(storyElementSchema).min(3).max(8),
 	core: storyCoreSchema,
 	directions: z.array(storyDirectionSchema)
@@ -330,6 +551,29 @@ const creationJourneyStateSchema = z.object({
 		context.addIssue({ code: 'custom', message: 'duplicateJourneyId' });
 	}
 	const directionIds = new Set(state.directions.map(direction => direction.id));
+	if (
+		state.genreInput?.projectId !== undefined
+		&& state.genreInput.projectId !== state.projectId
+	) {
+		context.addIssue({ code: 'custom', message: 'foreignGenreInput' });
+	}
+	if (
+		state.storyOutline?.projectId !== undefined
+		&& state.storyOutline.projectId !== state.projectId
+	) {
+		context.addIssue({ code: 'custom', message: 'foreignStoryOutline' });
+	}
+	if (state.startRoute === 'genre' && !state.genreInput) {
+		context.addIssue({ code: 'custom', message: 'missingGenreInput' });
+	}
+	if (
+		state.storyOutline
+		&& state.outline.some((node, index) => (
+			node.type === 'story_beat' && node.order !== undefined && node.order !== index
+		))
+	) {
+		context.addIssue({ code: 'custom', message: 'invalidGenreOutlineOrder' });
+	}
 	if (state.selectedDirectionIds.some(id => !directionIds.has(id))) {
 		context.addIssue({ code: 'custom', message: 'unknownJourneyDirection' });
 	}
@@ -393,6 +637,7 @@ function defaultId(
 	prefix:
 		| 'journey-element'
 		| 'journey-direction'
+		| 'journey-story-outline'
 		| 'journey-outline'
 		| 'journey-chapter'
 		| 'journey-impact'
@@ -620,16 +865,29 @@ export function createCreationJourneyState(
 	dependencies: {
 		readonly id?: () => string;
 		readonly now?: () => string;
+		readonly startRoute?: CreationStartRoute;
 	} = {}
 ): CreationJourneyState {
 	const createdAt = timestamp(dependencies.now);
 	const createId = dependencies.id ?? (() => defaultId('journey-element'));
+	const startRoute = dependencies.startRoute ?? 'ideas';
 	return parseCreationJourneyState(JSON.stringify({
 		schemaVersion: 2,
 		revision: 0,
 		projectId,
-		startRoute: 'ideas',
-		stage: 'elements',
+		startRoute,
+		stage: startRoute === 'genre' ? 'outline' : 'elements',
+		...(startRoute === 'genre' ? {
+			genreInput: {
+				projectId,
+				genre: '',
+				mode: 'quick',
+				tones: [],
+				protagonistHints: [],
+				requiredElements: [],
+				excludedElements: []
+			}
+		} : {}),
 		elements: Array.from({ length: 3 }, () => ({
 			id: createId(),
 			category: 'other',
@@ -659,6 +917,103 @@ export function createCreationJourneyState(
 		createdAt,
 		updatedAt: createdAt
 	}));
+}
+
+export function updateGenreToOutlineInput(
+	state: CreationJourneyState,
+	patch: Partial<Omit<GenreToOutlineInput, 'projectId'>>,
+	now?: () => string
+): CreationJourneyState {
+	const current = state.genreInput ?? {
+		projectId: state.projectId,
+		genre: '',
+		mode: 'quick' as const,
+		tones: [],
+		protagonistHints: [],
+		requiredElements: [],
+		excludedElements: []
+	};
+	const parsed = genreToOutlineInputSchema.safeParse({
+		...current,
+		...patch,
+		projectId: state.projectId
+	});
+	if (!parsed.success) {
+		throw new Error('creationJourneyGenreInputInvalid');
+	}
+	return nextState(state, {
+		startRoute: 'genre',
+		stage: 'outline',
+		genreInput: parsed.data
+	}, now);
+}
+
+export function setGeneratedGenreOutline(
+	state: CreationJourneyState,
+	result: GeneratedGenreOutline,
+	dependencies: {
+		readonly id?: (
+			prefix: 'journey-story-outline' | 'journey-outline'
+		) => string;
+		readonly now?: () => string;
+	} = {}
+): CreationJourneyState {
+	if (!state.genreInput?.genre.trim()) {
+		throw new Error('creationJourneyGenreRequired');
+	}
+	if (state.locks.outlineNodeIds.length > 0) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	const parsed = generatedGenreOutlineSchema.safeParse(result);
+	if (!parsed.success) {
+		throw new Error('creationJourneyOutlineInvalid');
+	}
+	const createId = dependencies.id ?? (
+		(prefix: 'journey-story-outline' | 'journey-outline') => defaultId(prefix)
+	);
+	const generatedAt = timestamp(dependencies.now);
+	const createdAt = state.storyOutline?.createdAt ?? generatedAt;
+	const storyOutline: StoryOutline = {
+		id: state.storyOutline?.id ?? createId('journey-story-outline'),
+		projectId: state.projectId,
+		...parsed.data.outline,
+		status: 'draft',
+		revision: (state.storyOutline?.revision ?? 0) + 1,
+		createdAt,
+		updatedAt: generatedAt
+	};
+	const outline: StoryOutlineNode[] = parsed.data.storyBeats.map((node, order) => ({
+		id: createId('journey-outline'),
+		title: node.title,
+		summary: node.summary,
+		purpose: node.goal?.trim() || '推进故事结构',
+		type: 'story_beat',
+		order,
+		...(node.goal !== undefined ? { goal: node.goal } : {}),
+		...(node.conflict !== undefined ? { conflict: node.conflict } : {}),
+		...(node.outcome !== undefined ? { outcome: node.outcome } : {}),
+		...(node.hook !== undefined ? { hook: node.hook } : {}),
+		...(node.povHint !== undefined ? { povHint: node.povHint } : {}),
+		characterIds: [],
+		plotThreadIds: [],
+		foreshadowingIds: [],
+		status: 'planned',
+		source: 'ai_generated',
+		revision: 1
+	}));
+	return nextState(state, {
+		startRoute: 'genre',
+		stage: 'outline',
+		storyOutline,
+		outline,
+		chapters: [],
+		genreGeneration: {
+			suggestedCharacters: parsed.data.suggestedCharacters,
+			suggestedWorldRules: parsed.data.suggestedWorldRules,
+			warnings: parsed.data.warnings,
+			generatedAt
+		}
+	}, dependencies.now);
 }
 
 export function parseCreationJourneyState(content: string): CreationJourneyState {

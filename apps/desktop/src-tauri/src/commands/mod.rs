@@ -1502,6 +1502,12 @@ struct CreationJourneyState {
     project_id: String,
     start_route: String,
     stage: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    genre_input: Option<CreationJourneyGenreInput>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    story_outline: Option<CreationJourneyStoryOutline>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    genre_generation: Option<CreationJourneyGenreGeneration>,
     elements: Vec<CreationJourneyElement>,
     core: CreationJourneyCore,
     directions: Vec<CreationJourneyDirection>,
@@ -1514,6 +1520,85 @@ struct CreationJourneyState {
     stale: CreationJourneyStale,
     created_at: String,
     updated_at: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGenreInput {
+    project_id: String,
+    genre: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    premise: Option<String>,
+    mode: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    scale: Option<String>,
+    tones: Vec<String>,
+    protagonist_hints: Vec<String>,
+    required_elements: Vec<String>,
+    excluded_elements: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    ending_preference: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    audience: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    structure_template_id: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyStoryOutline {
+    id: String,
+    project_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    title: Option<String>,
+    genre: String,
+    premise: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    theme_promise: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    protagonist_goal: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    central_conflict: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    stakes: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    mystery_question: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    ending_direction: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    structure_template_id: Option<String>,
+    status: String,
+    revision: u64,
+    created_at: String,
+    updated_at: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneySuggestedResource {
+    title: String,
+    summary: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    role: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    category: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGenerationWarning {
+    code: String,
+    message: String,
+    node_indexes: Vec<u8>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGenreGeneration {
+    suggested_characters: Vec<CreationJourneySuggestedResource>,
+    suggested_world_rules: Vec<CreationJourneySuggestedResource>,
+    warnings: Vec<CreationJourneyGenerationWarning>,
+    generated_at: String,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
@@ -1558,6 +1643,38 @@ struct CreationJourneyOutlineNode {
     title: String,
     summary: String,
     purpose: String,
+    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
+    node_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    parent_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    order: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    goal: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    conflict: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    outcome: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    hook: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pov_hint: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pov_character_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    location_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    character_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    plot_thread_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    foreshadowing_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    status: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    source: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    revision: Option<u64>,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
@@ -1660,13 +1777,119 @@ fn valid_creation_journey_timestamp(value: &str) -> bool {
     value.ends_with('Z') && chrono::DateTime::parse_from_rfc3339(value).is_ok()
 }
 
+fn valid_creation_journey_optional_text(value: Option<&str>, max_chars: usize) -> bool {
+    value.is_none_or(|text| valid_creation_journey_text(text, max_chars, true))
+}
+
+fn valid_creation_journey_string_list(values: &[String], max_items: usize) -> bool {
+    values.len() <= max_items
+        && values.iter().collect::<HashSet<_>>().len() == values.len()
+        && values
+            .iter()
+            .all(|value| valid_creation_journey_text(value, 240, false))
+}
+
+fn valid_creation_journey_genre_input(input: &CreationJourneyGenreInput, project_id: &str) -> bool {
+    input.project_id == project_id
+        && valid_creation_journey_text(&input.genre, 240, true)
+        && valid_creation_journey_optional_text(input.premise.as_deref(), 2_000)
+        && matches!(input.mode.as_str(), "quick" | "deep")
+        && input
+            .scale
+            .as_deref()
+            .is_none_or(|value| matches!(value, "short" | "novella" | "novel" | "serial"))
+        && valid_creation_journey_string_list(&input.tones, 12)
+        && valid_creation_journey_string_list(&input.protagonist_hints, 12)
+        && valid_creation_journey_string_list(&input.required_elements, 12)
+        && valid_creation_journey_string_list(&input.excluded_elements, 12)
+        && input.ending_preference.as_deref().is_none_or(|value| {
+            matches!(
+                value,
+                "open" | "hopeful" | "tragic" | "bittersweet" | "surprising" | "unspecified"
+            )
+        })
+        && valid_creation_journey_optional_text(input.audience.as_deref(), 500)
+        && input
+            .structure_template_id
+            .as_deref()
+            .is_none_or(|value| valid_creation_journey_text(value, 120, false))
+}
+
+fn valid_creation_journey_story_outline(
+    outline: &CreationJourneyStoryOutline,
+    project_id: &str,
+) -> bool {
+    valid_creation_journey_id(&outline.id, "journey-story-outline:")
+        && outline.project_id == project_id
+        && valid_creation_journey_optional_text(outline.title.as_deref(), 160)
+        && valid_creation_journey_text(&outline.genre, 240, false)
+        && valid_creation_journey_text(&outline.premise, 2_000, true)
+        && [
+            (outline.theme_promise.as_deref(), 2_000),
+            (outline.protagonist_goal.as_deref(), 2_000),
+            (outline.central_conflict.as_deref(), 2_000),
+            (outline.stakes.as_deref(), 2_000),
+            (outline.mystery_question.as_deref(), 2_000),
+            (outline.ending_direction.as_deref(), 2_000),
+            (outline.structure_template_id.as_deref(), 120),
+        ]
+        .iter()
+        .all(|(value, max_chars)| valid_creation_journey_optional_text(*value, *max_chars))
+        && matches!(
+            outline.status.as_str(),
+            "draft" | "confirmed" | "needs_review"
+        )
+        && outline.revision >= 1
+        && valid_creation_journey_timestamp(&outline.created_at)
+        && valid_creation_journey_timestamp(&outline.updated_at)
+}
+
+fn valid_creation_journey_suggested_resource(resource: &CreationJourneySuggestedResource) -> bool {
+    valid_creation_journey_text(&resource.title, 160, false)
+        && valid_creation_journey_text(&resource.summary, 2_000, false)
+        && valid_creation_journey_optional_text(resource.role.as_deref(), 160)
+        && valid_creation_journey_optional_text(resource.category.as_deref(), 160)
+}
+
+fn valid_creation_journey_genre_generation(generation: &CreationJourneyGenreGeneration) -> bool {
+    generation.suggested_characters.len() <= 12
+        && generation.suggested_world_rules.len() <= 12
+        && generation
+            .suggested_characters
+            .iter()
+            .all(valid_creation_journey_suggested_resource)
+        && generation
+            .suggested_world_rules
+            .iter()
+            .all(valid_creation_journey_suggested_resource)
+        && generation.warnings.len() <= 24
+        && generation.warnings.iter().all(|warning| {
+            !warning.code.is_empty()
+                && warning.code.chars().enumerate().all(|(index, character)| {
+                    if index == 0 {
+                        character.is_ascii_lowercase()
+                    } else {
+                        character.is_ascii_lowercase()
+                            || character.is_ascii_digit()
+                            || character == '-'
+                    }
+                })
+                && valid_creation_journey_text(&warning.message, 1_000, false)
+                && warning.node_indexes.len() <= 8
+                && warning.node_indexes.iter().all(|index| *index <= 7)
+                && warning.node_indexes.iter().collect::<HashSet<_>>().len()
+                    == warning.node_indexes.len()
+        })
+        && valid_creation_journey_timestamp(&generation.generated_at)
+}
+
 fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
     if state.schema_version != 2
         || state.project_id.trim().is_empty()
         || state.project_id.chars().count() > 240
         || !matches!(
             state.start_route.as_str(),
-            "ideas" | "synopsis" | "character-world" | "outline" | "manuscript" | "blank"
+            "genre" | "ideas" | "synopsis" | "character-world" | "outline" | "manuscript" | "blank"
         )
         || !matches!(
             state.stage.as_str(),
@@ -1679,6 +1902,21 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
         || !(state.chapters.is_empty() || state.chapters.len() == 3)
         || !valid_creation_journey_timestamp(&state.created_at)
         || !valid_creation_journey_timestamp(&state.updated_at)
+    {
+        return false;
+    }
+    if (state.start_route == "genre" && state.genre_input.is_none())
+        || state
+            .genre_input
+            .as_ref()
+            .is_some_and(|input| !valid_creation_journey_genre_input(input, &state.project_id))
+        || state.story_outline.as_ref().is_some_and(|outline| {
+            !valid_creation_journey_story_outline(outline, &state.project_id)
+        })
+        || state
+            .genre_generation
+            .as_ref()
+            .is_some_and(|generation| !valid_creation_journey_genre_generation(generation))
     {
         return false;
     }
@@ -1745,12 +1983,54 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
         return false;
     }
     let mut outline_ids = HashSet::new();
-    if !state.outline.iter().all(|node| {
+    if !state.outline.iter().enumerate().all(|(index, node)| {
         valid_creation_journey_id(&node.id, "journey-outline:")
             && outline_ids.insert(node.id.as_str())
             && valid_creation_journey_text(&node.title, 120, true)
             && valid_creation_journey_text(&node.summary, 3_000, true)
             && valid_creation_journey_text(&node.purpose, 1_000, true)
+            && node
+                .node_type
+                .as_deref()
+                .is_none_or(|value| matches!(value, "story_beat" | "volume" | "chapter" | "scene"))
+            && node
+                .parent_id
+                .as_deref()
+                .is_none_or(|value| valid_creation_journey_text(value, 240, false))
+            && (node.node_type.as_deref() != Some("story_beat")
+                || node.order.is_none_or(|order| order == index as u64))
+            && valid_creation_journey_optional_text(node.goal.as_deref(), 1_000)
+            && valid_creation_journey_optional_text(node.conflict.as_deref(), 2_000)
+            && valid_creation_journey_optional_text(node.outcome.as_deref(), 2_000)
+            && valid_creation_journey_optional_text(node.hook.as_deref(), 2_000)
+            && valid_creation_journey_optional_text(node.pov_hint.as_deref(), 500)
+            && valid_creation_journey_optional_text(node.pov_character_id.as_deref(), 240)
+            && valid_creation_journey_optional_text(node.location_id.as_deref(), 240)
+            && node
+                .character_ids
+                .as_deref()
+                .is_none_or(|values| valid_creation_journey_string_list(values, 100))
+            && node
+                .plot_thread_ids
+                .as_deref()
+                .is_none_or(|values| valid_creation_journey_string_list(values, 100))
+            && node
+                .foreshadowing_ids
+                .as_deref()
+                .is_none_or(|values| valid_creation_journey_string_list(values, 100))
+            && node.status.as_deref().is_none_or(|value| {
+                matches!(
+                    value,
+                    "planned" | "ready_to_write" | "drafting" | "drafted" | "revising" | "complete"
+                )
+            })
+            && node.source.as_deref().is_none_or(|value| {
+                matches!(
+                    value,
+                    "manual" | "ai_generated" | "ai_revised" | "extracted_from_draft"
+                )
+            })
+            && node.revision.is_none_or(|revision| revision >= 1)
     }) {
         return false;
     }
@@ -2889,6 +3169,76 @@ mod tests {
         assert_eq!(
             parse_creation_journey_state(&stale_mismatch.to_string())
                 .expect_err("stale flags must match pending impacts"),
+            "creationJourneyStateInvalid"
+        );
+    }
+
+    #[test]
+    fn creation_journey_v2_accepts_project_owned_genre_outline_fields() {
+        let mut genre: serde_json::Value =
+            serde_json::from_str(&creation_journey_fixture("journey-contract"))
+                .expect("valid fixture");
+        genre["startRoute"] = json!("genre");
+        genre["genreInput"] = json!({
+            "projectId": "journey-contract",
+            "genre": "都市悬疑",
+            "premise": "记者追查一座会重置记忆的车站。",
+            "mode": "deep",
+            "scale": "novel",
+            "tones": ["克制"],
+            "protagonistHints": ["调查记者"],
+            "requiredElements": ["旧车站"],
+            "excludedElements": ["穿越"],
+            "endingPreference": "bittersweet",
+            "audience": "成年悬疑读者",
+            "structureTemplateId": "three-act"
+        });
+        genre["storyOutline"] = json!({
+            "id": "journey-story-outline:main",
+            "projectId": "journey-contract",
+            "title": "雨夜无日期",
+            "genre": "都市悬疑",
+            "premise": "记者追查一座会重置记忆的车站。",
+            "centralConflict": "公开真相会失去私人记忆",
+            "status": "draft",
+            "revision": 1,
+            "createdAt": "2026-07-30T01:00:00.000Z",
+            "updatedAt": "2026-07-30T01:00:00.000Z"
+        });
+        genre["genreGeneration"] = json!({
+            "suggestedCharacters": [{
+                "title": "无日期者",
+                "summary": "事故名单中被抹除的幸存者。",
+                "role": "deuteragonist"
+            }],
+            "suggestedWorldRules": [],
+            "warnings": [{
+                "code": "memory-cost",
+                "message": "需要保持记忆代价可追踪。",
+                "nodeIndexes": [1, 2]
+            }],
+            "generatedAt": "2026-07-30T01:00:00.000Z"
+        });
+        genre["outline"][0]["type"] = json!("story_beat");
+        genre["outline"][0]["order"] = json!(0);
+        genre["outline"][0]["goal"] = json!("建立调查目标");
+        genre["outline"][0]["conflict"] = json!("陌生人拒绝合作");
+        genre["outline"][0]["outcome"] = json!("得到事故车票");
+        genre["outline"][0]["hook"] = json!("车票日期消失");
+        genre["outline"][0]["povHint"] = json!("调查记者");
+        genre["outline"][0]["characterIds"] = json!([]);
+        genre["outline"][0]["plotThreadIds"] = json!([]);
+        genre["outline"][0]["foreshadowingIds"] = json!([]);
+        genre["outline"][0]["status"] = json!("planned");
+        genre["outline"][0]["source"] = json!("ai_generated");
+        genre["outline"][0]["revision"] = json!(1);
+
+        assert!(parse_creation_journey_state(&genre.to_string()).is_ok());
+
+        genre["genreInput"]["projectId"] = json!("foreign-project");
+        assert_eq!(
+            parse_creation_journey_state(&genre.to_string())
+                .expect_err("foreign genre input must be rejected"),
             "creationJourneyStateInvalid"
         );
     }

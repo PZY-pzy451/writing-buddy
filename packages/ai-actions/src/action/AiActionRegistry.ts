@@ -64,6 +64,73 @@ const consistencyInputSchema = z.object({
 	instruction: z.string().trim().max(500).default('')
 }).strict();
 
+const genreOutlineStringListSchema = z.array(
+	z.string().trim().min(1).max(240)
+).max(12);
+
+const genreOutlineInputSchema = z.object({
+	genre: z.string().trim().min(1).max(240),
+	premise: z.string().trim().max(2_000).optional(),
+	scale: z.enum(['short', 'novella', 'novel', 'serial']).optional(),
+	tones: genreOutlineStringListSchema,
+	protagonistHints: genreOutlineStringListSchema,
+	requiredElements: genreOutlineStringListSchema,
+	excludedElements: genreOutlineStringListSchema,
+	endingPreference: z.enum([
+		'open',
+		'hopeful',
+		'tragic',
+		'bittersweet',
+		'surprising',
+		'unspecified'
+	]).optional(),
+	audience: z.string().trim().max(500).optional(),
+	structureTemplateId: z.string().trim().min(1).max(120).optional()
+}).strict();
+
+const genreOutlineOutputSchema = z.object({
+	operation: z.literal('generate-from-genre'),
+	outline: z.object({
+		title: z.string().trim().min(1).max(160).optional(),
+		genre: z.string().trim().min(1).max(240),
+		premise: z.string().max(2_000),
+		themePromise: z.string().trim().min(1).max(2_000).optional(),
+		protagonistGoal: z.string().trim().min(1).max(2_000).optional(),
+		centralConflict: z.string().trim().min(1).max(2_000).optional(),
+		stakes: z.string().trim().min(1).max(2_000).optional(),
+		mysteryQuestion: z.string().trim().min(1).max(2_000).optional(),
+		endingDirection: z.string().trim().min(1).max(2_000).optional(),
+		structureTemplateId: z.string().trim().min(1).max(120).optional()
+	}).strict(),
+	storyBeats: z.array(z.object({
+		title: z.string().trim().min(1).max(120),
+		summary: z.string().trim().min(1).max(3_000),
+		goal: z.string().max(1_000).optional(),
+		conflict: z.string().max(2_000).optional(),
+		outcome: z.string().max(2_000).optional(),
+		hook: z.string().max(2_000).optional(),
+		povHint: z.string().max(500).optional()
+	}).strict()).min(5).max(8),
+	suggestedCharacters: z.array(z.object({
+		title: z.string().trim().min(1).max(160),
+		summary: z.string().trim().min(1).max(2_000),
+		role: z.string().trim().min(1).max(160).optional(),
+		category: z.string().trim().min(1).max(160).optional()
+	}).strict()).max(12),
+	suggestedWorldRules: z.array(z.object({
+		title: z.string().trim().min(1).max(160),
+		summary: z.string().trim().min(1).max(2_000),
+		role: z.string().trim().min(1).max(160).optional(),
+		category: z.string().trim().min(1).max(160).optional()
+	}).strict()).max(12),
+	warnings: z.array(z.object({
+		code: z.string().regex(/^[a-z][a-z0-9-]*$/u),
+		message: z.string().trim().min(1).max(1_000),
+		nodeIndexes: z.array(z.number().int().min(0).max(7)).max(8)
+			.refine(indexes => new Set(indexes).size === indexes.length)
+	}).strict()).max(24)
+}).strict();
+
 const manuscriptOrganizationInputSchema = z.object({
 	instruction: z.string().trim().min(1).max(2_000),
 	sourceResourceIds: z.array(
@@ -718,6 +785,40 @@ export function createConsistencyReviewAction(): AiActionDefinition<
 	};
 }
 
+export function createGenreOutlineAiAction(): AiActionDefinition<
+	z.infer<typeof genreOutlineInputSchema>,
+	z.infer<typeof genreOutlineOutputSchema>
+> {
+	return {
+		id: 'outline.generateFromGenre',
+		title: '根据题材生成小说大纲',
+		description: '根据作者明确提供的题材与可选条件，生成可编辑的结构化故事总纲。',
+		category: 'outline',
+		availability: scope => {
+			if (!scope.hasProject) {
+				return { available: false, reason: '请先创建或打开作品' };
+			}
+			if (scope.currentResourceType !== 'creation-journey') {
+				return { available: false, reason: '请在创作旅程的题材页面使用此动作' };
+			}
+			return { available: true };
+		},
+		inputSchema: genreOutlineInputSchema,
+		outputSchema: genreOutlineOutputSchema,
+		outputSchemaName: 'GenerateOutlineResult',
+		outputSchemaVersion: 1,
+		contextPolicy: {
+			requiredKinds: [],
+			optionalKinds: [],
+			maximumTokens: 16_000,
+			includeAuthorSecretsByDefault: false
+		},
+		applyPolicy: { type: 'create_resources', selectableItems: true },
+		promptTemplateId: 'creation-journey.genre-to-outline',
+		defaultModelClass: 'reasoning'
+	};
+}
+
 export function createGateGAiActions(): readonly AiActionDefinition[] {
 	return [{
 		id: 'manuscript.organize',
@@ -770,6 +871,7 @@ export function createGateGAiActions(): readonly AiActionDefinition[] {
 
 export function createDefaultAiActionRegistry(): AiActionRegistry {
 	const registry = new AiActionRegistry();
+	registry.register(createGenreOutlineAiAction());
 	registry.register(createConsistencyReviewAction());
 	for (const action of createCharacterAiActions()) registry.register(action);
 	for (const action of createRelationshipAiActions()) registry.register(action);

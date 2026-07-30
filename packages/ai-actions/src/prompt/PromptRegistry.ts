@@ -1,5 +1,6 @@
 import {
 	CHAPTER_REVIEW_SYSTEM_PROMPT,
+	CREATION_JOURNEY_SYSTEM_PROMPT,
 	STORYFORGE_SYSTEM_PROMPT,
 	type AiMessage
 } from '@writing-buddy/ai';
@@ -96,10 +97,26 @@ export function createConsistencyReviewPromptTemplate(): PromptTemplate {
 	};
 }
 
+export function createGenreOutlinePromptTemplate(): PromptTemplate {
+	return {
+		id: 'creation-journey.genre-to-outline',
+		version: 1,
+		schemaVersion: 1,
+		outputSchemaName: 'GenerateOutlineResult',
+		buildSystemPrompt: () => CREATION_JOURNEY_SYSTEM_PROMPT,
+		buildUserPrompt: input => JSON.stringify({
+			...(input as Readonly<Record<string, unknown>>),
+			schemaVersion: 1,
+			operation: 'generate-from-genre'
+		})
+	};
+}
+
 export function createDefaultPromptRegistry(): PromptRegistry {
 	const registry = new PromptRegistry();
 	registry.register(createPlaygroundPromptTemplate());
 	registry.register(createConsistencyReviewPromptTemplate());
+	registry.register(createGenreOutlinePromptTemplate());
 	return registry;
 }
 

@@ -53,6 +53,26 @@ describe('guided project creation', () => {
 		expect(within(dialog).getByRole('textbox', { name: /^作品名称/ })).toHaveAttribute('aria-invalid', 'true');
 	});
 
+	it('defaults to the genre-to-outline start while preserving the other truthful starts', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: '新建项目' }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		await user.type(within(dialog).getByLabelText('作品名称'), '无日期的人');
+		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+
+		const genreStart = within(dialog).getByRole('button', {
+			name: /根据题材生成小说大纲/
+		});
+		expect(genreStart).toHaveAttribute('aria-pressed', 'true');
+		expect(within(dialog).getByRole('button', { name: /我只有几个想法/ }))
+			.toBeInTheDocument();
+		expect(within(dialog).getByRole('button', { name: /空白项目/ }))
+			.toBeInTheDocument();
+	});
+
 	it('creates through five steps, preserves the manuscript start, and opens the first chapter', async () => {
 		const user = userEvent.setup();
 		render(<App />);

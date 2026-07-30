@@ -2014,6 +2014,8 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
 	const decoded = JSON.parse(userMessage) as {
 		readonly operation?: string;
+		readonly genre?: string;
+		readonly premise?: string;
 		readonly elements?: readonly { readonly text?: string }[];
 		readonly target?: {
 			readonly kind?: 'direction' | 'outline' | 'chapter';
@@ -2024,6 +2026,80 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 	const firstElement = decoded.elements?.find(element => element.text?.trim())?.text?.trim()
 		?? '旧车站玻璃顶';
 	switch (decoded.operation) {
+		case 'generate-from-genre': {
+			const genre = decoded.genre?.trim() || '都市悬疑';
+			const premise = decoded.premise?.trim() || '记者追查一座会重置记忆的车站。';
+			return browserJsonDeltas({
+				operation: 'generate-from-genre',
+				outline: {
+					title: '雨夜无日期',
+					genre,
+					premise,
+					themePromise: '当记忆可以被重置，选择仍然留下责任',
+					protagonistGoal: '查明旧车站事故与死亡日期的来源',
+					centralConflict: '每次接近真相都会失去一段私人记忆',
+					stakes: '失败会让整座城市永远忘记事故中的失踪者',
+					mysteryQuestion: '是谁在为城市标注死亡日期',
+					endingDirection: '记者公开真相，但主动放弃预知能力'
+				},
+				storyBeats: [{
+					title: '没有日期的人',
+					summary: '记者在旧车站遇见唯一没有死亡日期的陌生人。',
+					goal: '建立调查目标与异常规则',
+					conflict: '陌生人拒绝透露自己的身份',
+					outcome: '记者得到一张事故当夜的站台票',
+					hook: '车票日期正在随雨水消失',
+					povHint: '调查记者'
+				}, {
+					title: '重复的雨痕',
+					summary: '玻璃顶雨痕与站钟在午夜后恢复原状。',
+					goal: '验证车站会重置局部记忆',
+					conflict: '监控记录与记者的手写笔记互相矛盾',
+					outcome: '记者确认自己已经来过这里',
+					hook: '笔记写着不要相信明天的自己',
+					povHint: '调查记者'
+				}, {
+					title: '名单提前',
+					summary: '调查使一名证人的死亡日期突然提前。',
+					goal: '找到标注日期的触发条件',
+					conflict: '救证人会暴露没有日期的人',
+					outcome: '记者救下证人却失去关于姐姐的记忆',
+					hook: '名单上出现整座城市的同一天',
+					povHint: '调查记者'
+				}, {
+					title: '站长的条件',
+					summary: '站长提出用事故真相交换记者剩余的私人记忆。',
+					goal: '把外部谜题推向人物选择',
+					conflict: '公开真相与保留自我无法同时完成',
+					outcome: '记者假意接受并复制名单',
+					hook: '没有日期的人其实来自事故名单',
+					povHint: '调查记者'
+				}, {
+					title: '毁掉日期',
+					summary: '记者向全城公开名单并烧毁标注装置。',
+					goal: '完成调查与价值选择',
+					conflict: '装置只能用她最后的预知能力关闭',
+					outcome: '城市记住失踪者，未来重新变得未知',
+					hook: '雨停后，陌生人第一次拥有了明天',
+					povHint: '调查记者'
+				}],
+				suggestedCharacters: [{
+					title: '没有日期的人',
+					summary: '事故名单中被抹除的幸存者。',
+					role: 'deuteragonist'
+				}],
+				suggestedWorldRules: [{
+					title: '死亡日期标注规则',
+					summary: '只有记者可见，主动选择会改变日期。',
+					category: 'other'
+				}],
+				warnings: [{
+					code: 'memory-cost',
+					message: '记忆代价需要在中段保持可追踪，避免成为任意反转工具。',
+					nodeIndexes: [1, 2, 3]
+				}]
+			});
+		}
 		case 'organize-core':
 			return browserJsonDeltas({
 				operation: 'organize-core',

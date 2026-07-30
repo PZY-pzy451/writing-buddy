@@ -84,6 +84,7 @@ import {
 	closeProtectionFor,
 	type SaveState
 } from '../features/save/SaveStateModel';
+import type { CreationStartRoute } from '../features/creation-journey/CreationJourneyModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -200,6 +201,7 @@ interface AppState extends PersistedWorkspace {
 	readonly quickCaptureBusy: boolean;
 	readonly quickCaptureSeed?: QuickCaptureSeed;
 	readonly projectWizardOpen: boolean;
+	readonly creationJourneyStartRoute?: CreationStartRoute;
 	readonly chapterCreatorOpen: boolean;
 	readonly chapterCreateBusy: boolean;
 	readonly recentlyClosedResources: readonly ResourceDescriptor[];
@@ -246,7 +248,7 @@ interface AppState extends PersistedWorkspace {
 	readonly revealProjectDirectory: () => Promise<void>;
 	readonly dismissProjectOpenError: () => void;
 	readonly openDashboard: () => void;
-	readonly openCreationJourney: () => void;
+	readonly openCreationJourney: (startRoute?: CreationStartRoute) => void;
 	readonly materializeCreationJourney: (
 		journeyContent: string,
 		expectedJourneyHash: string
@@ -479,6 +481,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	quickCaptureOpen: false,
 	quickCaptureBusy: false,
 	projectWizardOpen: false,
+	creationJourneyStartRoute: undefined,
 	chapterCreatorOpen: false,
 	chapterCreateBusy: false,
 	recentlyClosedResources: [],
@@ -1130,10 +1133,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		});
 	},
 
-	openCreationJourney() {
+	openCreationJourney(startRoute) {
 		get().setMode('planning');
 		get().setStoryView('creation-journey');
 		set({
+			creationJourneyStartRoute: startRoute,
 			activeResource: undefined,
 			activeResourceId: undefined,
 			storyOpenResult: undefined,

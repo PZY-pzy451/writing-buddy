@@ -56,9 +56,10 @@ describe('Phase 1.2B creation journey experience', () => {
 
 		expect(await within(dialog).findByRole('heading', { name: '你现在从哪里开始？' }))
 			.toBeInTheDocument();
-		expect(within(dialog).getAllByRole('button', { name: /进入|打开/ })).toHaveLength(6);
-		expect(within(dialog).getByRole('button', { name: /我只有几个想法/ }))
-			.toHaveAttribute('aria-pressed', 'true');
+		expect(within(dialog).getAllByRole('button', { name: /进入|打开/ })).toHaveLength(7);
+		const ideasRoute = within(dialog).getByRole('button', { name: /我只有几个想法/ });
+		await user.click(ideasRoute);
+		expect(ideasRoute).toHaveAttribute('aria-pressed', 'true');
 		expect(aiSpy).not.toHaveBeenCalled();
 
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));

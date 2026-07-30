@@ -36,12 +36,14 @@ import {
 	selectStoryDirections,
 	serializeCreationJourneyState,
 	setCreationGuidanceQuestion,
+	setGeneratedGenreOutline,
 	setGeneratedStoryCore,
 	setJourneyChapterProposals,
 	setStoryDirections,
 	setStoryOutline,
 	toggleJourneyLock,
 	updateJourneyChapterProposal,
+	updateGenreToOutlineInput,
 	updateStoryCore,
 	updateStoryDirection,
 	updateStoryElement,
@@ -52,6 +54,8 @@ import {
 	type StoryCore,
 	type StoryElement
 } from './CreationJourneyModel';
+import { GenreToOutlineGenerationService } from './GenreToOutlineGenerationService';
+import { GenreToOutlineStart } from './GenreToOutlineStart';
 import {
 	CreationJourneyStore,
 	type LoadedCreationJourney
@@ -296,7 +300,9 @@ function journeyErrorCopy(error: unknown): string {
 		creationJourneyDirectionsInvalid: 'AI 返回的三个方向结构不完整，请重试。',
 		creationJourneyOutlineInvalid: 'AI 返回的总纲结构不完整，请重试。',
 		creationJourneyChaptersInvalid: 'AI 返回的章节结构不完整，请重试。',
-		invalidCreationJourneyResponse: 'AI 返回的结构不符合创作旅程，请重试。',
+		creationJourneyGenreRequired: '请先填写题材；其他条件都可以留空。',
+		creationJourneyGenreInputInvalid: '题材条件超出允许范围，请缩短后重试。',
+		invalidCreationJourneyResponse: 'AI 返回的结构未通过校验；已尝试修复一次，草稿和项目未改变。',
 		externalChange: '创作旅程已在其他窗口修改，请重新打开作品。',
 		cancelled: '已取消本次 AI 请求，没有改动旅程。'
 	};
@@ -305,6 +311,7 @@ function journeyErrorCopy(error: unknown): string {
 
 export function CreationJourneyPage(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
+	const preferredStartRoute = useAppStore(state => state.creationJourneyStartRoute);
 	const materialize = useAppStore(state => state.materializeCreationJourney);
 	const openResource = useAppStore(state => state.openResource);
 	const setMode = useAppStore(state => state.setMode);
@@ -329,6 +336,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const stateRef = useRef<CreationJourneyState | undefined>(undefined);
 	const saveTimerRef = useRef<number | undefined>(undefined);
 	const saveChainRef = useRef<Promise<void>>(Promise.resolve());
+	const genreGenerationRequestRef = useRef(false);
+	const genreCancellationRequestedRef = useRef(false);
 
 	useEffect(() => {
 		if (!snapshot) return;
@@ -336,7 +345,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 		const store = new CreationJourneyStore(
 			snapshot.root,
 			snapshot.project.projectId,
-			desktopBridge
+			desktopBridge,
+			undefined,
+			preferredStartRoute
 		);
 		storeRef.current = store;
 		void store.load().then(loaded => {
@@ -368,7 +379,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 			active = false;
 			window.clearTimeout(saveTimerRef.current);
 		};
-	}, [snapshot]);
+	}, [preferredStartRoute, snapshot]);
 
 	useEffect(() => {
 		headingRef.current?.focus();
@@ -453,6 +464,101 @@ export function CreationJourneyPage(): React.JSX.Element {
 			setError(undefined);
 		} catch (reason) {
 			setError(journeyErrorCopy(reason));
+		}
+	};
+
+	const runGenreToOutline = async () => {
+		const current = stateRef.current;
+		if (
+			!current?.genreInput
+			|| genreGenerationRequestRef.current
+			|| busyOperation
+		) {
+			return;
+		}
+		if (!current.genreInput.genre.trim()) {
+			setError(journeyErrorCopy(new Error('creationJourneyGenreRequired')));
+			return;
+		}
+		genreGenerationRequestRef.current = true;
+		genreCancellationRequestedRef.current = false;
+		setBusyOperation('generate-from-genre');
+		setError(undefined);
+		setStatus('正在整理题材');
+		try {
+			await persistLatest();
+			if (genreCancellationRequestedRef.current) throw new Error('cancelled');
+			const brief = current.genreInput;
+			const input: Extract<
+				CreationJourneyAiInput,
+				{ readonly operation: 'generate-from-genre' }
+			> = {
+				schemaVersion: 1,
+				operation: 'generate-from-genre',
+				genre: brief.genre.trim(),
+				...(brief.premise?.trim() ? { premise: brief.premise.trim() } : {}),
+				...(brief.scale ? { scale: brief.scale } : {}),
+				tones: [...brief.tones],
+				protagonistHints: [...brief.protagonistHints],
+				requiredElements: [...brief.requiredElements],
+				excludedElements: [...brief.excludedElements],
+				...(brief.endingPreference
+					? { endingPreference: brief.endingPreference }
+					: {}),
+				...(brief.audience?.trim() ? { audience: brief.audience.trim() } : {}),
+				...(brief.structureTemplateId
+					? { structureTemplateId: brief.structureTemplateId }
+					: {})
+			};
+			const service = new GenreToOutlineGenerationService(async request => {
+				if (request.repairAttempt === 1) {
+					setStatus('正在校验并修复大纲结构（最后一次）');
+				}
+				const result = await runGroundedJsonJob({
+					jobType: 'creation-journey',
+					messages: buildCreationJourneyMessages(request),
+					onJobId: id => {
+						setJobId(id);
+						if (id && genreCancellationRequestedRef.current) {
+							void desktopBridge.cancelAiJob(id);
+						}
+					},
+					onProgress: progress => {
+						if (progress.state === 'thinking') {
+							setStatus('正在构建故事核心');
+						}
+						if (progress.state === 'streaming') {
+							setStatus('正在生成结构节点');
+						}
+					}
+				});
+				return result.output;
+			});
+			const response = await service.generate(input);
+			const latest = stateRef.current;
+			if (!latest) return;
+			setStatus('正在校验大纲');
+			const next = setGeneratedGenreOutline(latest, {
+				outline: response.outline,
+				storyBeats: response.storyBeats,
+				suggestedCharacters: response.suggestedCharacters,
+				suggestedWorldRules: response.suggestedWorldRules,
+				warnings: response.warnings
+			});
+			applyState(next, true);
+			setStatus('结构化大纲已保存为可编辑草稿');
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus(
+				reason instanceof Error && reason.message === 'cancelled'
+					? '生成已取消；题材草稿保持不变'
+					: '生成未写入；题材草稿保持不变'
+			);
+		} finally {
+			genreGenerationRequestRef.current = false;
+			genreCancellationRequestedRef.current = false;
+			setBusyOperation(undefined);
+			setJobId(undefined);
 		}
 	};
 
@@ -796,6 +902,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 	};
 
 	const cancelAi = () => {
+		if (busyOperation === 'generate-from-genre') {
+			genreCancellationRequestedRef.current = true;
+		}
 		if (jobId) void desktopBridge.cancelAiJob(jobId);
 	};
 
@@ -826,6 +935,56 @@ export function CreationJourneyPage(): React.JSX.Element {
 				<LoaderCircle className="spin" size={24} />
 				<span>{error ?? status}</span>
 			</div>
+		);
+	}
+
+	if (state.startRoute === 'genre' && !state.storyOutline && state.genreInput) {
+		return (
+			<section
+				className="creation-journey genre-creation-journey"
+				aria-labelledby="creation-journey-heading"
+			>
+				<header className="creation-journey-header">
+					<div>
+						<span className="eyebrow">NOVEL CREATION JOURNEY</span>
+						<h1>从题材，到能继续掌控的故事结构</h1>
+						<p>只使用你明确提供的条件；生成结果先成为可编辑草稿。</p>
+					</div>
+					<div className="creation-journey-save" role="status" aria-live="polite">
+						<span className={status.includes('失败') ? 'is-error' : ''}>{status}</span>
+						{hash && <small>项目内保存</small>}
+					</div>
+				</header>
+				<div className="creation-journey-body">
+					{error && (
+						<div className="creation-journey-error" role="alert">
+							<AlertTriangle size={18} />
+							<span>{error}</span>
+							<button type="button" aria-label="关闭错误" onClick={() => setError(undefined)}>
+								<X size={16} />
+							</button>
+						</div>
+					)}
+					<GenreToOutlineStart
+						input={state.genreInput}
+						readOnly={snapshot.readOnly}
+						busy={busyOperation === 'generate-from-genre'}
+						status={status}
+						onChange={patch => {
+							const latest = stateRef.current;
+							if (!latest) return;
+							try {
+								applyState(updateGenreToOutlineInput(latest, patch));
+								setError(undefined);
+							} catch (reason) {
+								setError(journeyErrorCopy(reason));
+							}
+						}}
+						onGenerate={() => void runGenreToOutline()}
+						onCancel={cancelAi}
+					/>
+				</div>
+			</section>
 		);
 	}
 

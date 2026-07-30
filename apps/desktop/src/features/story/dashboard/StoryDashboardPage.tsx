@@ -237,7 +237,7 @@ export function StoryDashboardPage({
 									规划下一场
 								</button>
 								{journeyAvailable && (
-									<button type="button" className="secondary" onClick={openCreationJourney}>
+									<button type="button" className="secondary" onClick={() => openCreationJourney()}>
 										<Sparkles size={16} />查看创作旅程
 									</button>
 								)}
@@ -249,7 +249,7 @@ export function StoryDashboardPage({
 							{journeyAvailable ? (
 								<>
 									<span>你的创作旅程已经保存在项目中。</span>
-									<button type="button" onClick={openCreationJourney}>
+									<button type="button" onClick={() => openCreationJourney()}>
 										<Sparkles size={16} />继续创作旅程
 									</button>
 								</>

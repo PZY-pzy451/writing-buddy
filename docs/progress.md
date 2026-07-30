@@ -698,3 +698,27 @@ development or background AI behavior without explicit user direction.
   explicit states, visible focus and responsive layout.
 - Contract:
   `docs/plans/006-ai-quick-actions-gate-d-characters-relationships.md`.
+
+## Genre-to-Draft Gate B complete
+
+- Project creation now defaults to the truthful "generate from genre" route
+  while preserving every existing creation route and the same project tree.
+- Quick and deep author briefs persist in the existing Creation Journey v2
+  document. The request preview names both included fields and excluded
+  manuscripts, secrets, paths, and unrelated project records.
+- `outline.generateFromGenre`, Prompt Registry metadata, TypeScript AI
+  parsing, and Rust command validation share one strict response contract.
+- A synchronous request guard prevents rapid duplicate clicks. Invalid model
+  structure gets exactly one bounded repair attempt; cancellation and
+  connection failures are never retried as structural repairs.
+- Generated results remain editable, unmaterialized story beats. No Chapter,
+  Scene, character, or world resource is created by generation.
+- Gate B regression passed typecheck, lint, 140 Vitest files / 525 tests,
+  production build, Cargo format, and 62 Rust tests with two explicit external
+  gates ignored.
+
+## Next
+
+Implement Gate C only: the structured outline tree, cards, and inspector with
+project-owned ordering, centralized locks, save/reopen, and undo. Stop before
+Gate D resource development or draft generation.

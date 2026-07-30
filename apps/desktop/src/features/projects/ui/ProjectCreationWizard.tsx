@@ -62,6 +62,7 @@ const creationStartOptions: readonly {
 	readonly description: string;
 	readonly result: string;
 }[] = [
+	{ id: 'genre', title: '根据题材生成小说大纲', description: '提供题材与可选创作条件，生成一份由你继续编辑、排序和锁定的结构化大纲。', result: '进入题材创作旅程（推荐）' },
 	{ id: 'ideas', title: '我只有几个想法', description: '记录 3–8 个零散要素，再逐步确认故事核心、方向和总纲。', result: '进入完整创作旅程（推荐）' },
 	{ id: 'synopsis', title: '我已经有故事梗概', description: '保留现有规划与资料工具，不自动改写梗概。', result: '进入作品仪表盘' },
 	{ id: 'character-world', title: '我先有了人物或世界', description: '保留人物和世界资料入口，不强迫先完成数据库。', result: '进入作品仪表盘' },
@@ -92,13 +93,13 @@ function defaultDraft(): WizardDraft {
 		rootDirectory: '',
 		projectType: template.projectType,
 		language: 'zh-CN',
-		startRoute: 'ideas',
+		startRoute: 'genre',
 		templateId: template.id,
 		selectedInitialResources: resourcesForStartRoute(
 			template.initialResources
 				.filter(resource => resource.defaultSelected)
 				.map(resource => resource.id),
-			'ideas'
+			'genre'
 		),
 		themeId: template.defaultThemeId,
 		accentId: template.defaultAccentId,
@@ -131,7 +132,7 @@ function resourcesForStartRoute(
 ): InitialResourceId[] {
 	if (route === 'blank') return [];
 	const selected = new Set(resources);
-	if (route === 'ideas') {
+	if (route === 'genre' || route === 'ideas') {
 		selected.add('first-volume');
 		selected.delete('first-chapter');
 	}
@@ -294,8 +295,8 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 					.flatMap(volume => volume.chapters)
 					.find(candidate => candidate.id === created.firstChapterId)
 				: undefined;
-			if (draft.startRoute === 'ideas') {
-				openCreationJourney();
+			if (draft.startRoute === 'genre' || draft.startRoute === 'ideas') {
+				openCreationJourney(draft.startRoute);
 			} else if (chapter && state.snapshot && draft.writingMode === 'manuscriptFirst') {
 				await openResource({
 					id: chapter.id,
@@ -483,7 +484,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										onClick={() => selectStartRoute(option.id)}
 									>
 										<span className="creation-start-icon" aria-hidden="true">
-											{option.id === 'ideas'
+											{option.id === 'genre' || option.id === 'ideas'
 												? <Sparkles size={20} />
 												: <BookOpenText size={20} />}
 										</span>
