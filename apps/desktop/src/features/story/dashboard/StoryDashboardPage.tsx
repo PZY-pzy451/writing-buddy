@@ -101,11 +101,13 @@ export function StoryDashboardPage({
 	const openResource = useAppStore(state => state.openResource);
 	const openStoryResource = useAppStore(state => state.openStoryResource);
 	const setMode = useAppStore(state => state.setMode);
+	const openCreationJourney = useAppStore(state => state.openCreationJourney);
 	const setError = useAppStore(state => state.setError);
 	const [kernelState, setKernelState] = useState<{
 		readonly projectRoot: string;
 		readonly data: DashboardKernelLoad;
 	}>();
+	const [journeyAvailable, setJourneyAvailable] = useState(false);
 
 	useEffect(() => {
 		if (!snapshot) {
@@ -121,6 +123,21 @@ export function StoryDashboardPage({
 			cancelled = true;
 		};
 	}, [loadKernelData, snapshot]);
+
+	useEffect(() => {
+		if (!snapshot) return;
+		let active = true;
+		void desktopBridge.readCreationJourneyState(snapshot.root)
+			.then(file => {
+				if (active) setJourneyAvailable(Boolean(file));
+			})
+			.catch(() => {
+				if (active) setJourneyAvailable(false);
+			});
+		return () => {
+			active = false;
+		};
+	}, [snapshot]);
 
 	const kernel = kernelState && snapshot && kernelState.projectRoot === snapshot.root
 		? kernelState.data
@@ -224,7 +241,16 @@ export function StoryDashboardPage({
 					) : (
 						<div className="dashboard-empty-copy">
 							<strong>还没有章节</strong>
-							<button type="button" onClick={() => openChapter(undefined)}><Plus size={16} />创建第一章</button>
+							{journeyAvailable ? (
+								<>
+									<span>你的创作旅程已经保存在项目中。</span>
+									<button type="button" onClick={openCreationJourney}>
+										<Sparkles size={16} />继续创作旅程
+									</button>
+								</>
+							) : (
+								<button type="button" onClick={() => openChapter(undefined)}><Plus size={16} />创建第一章</button>
+							)}
 						</div>
 					)
 				) : <LoadingLines />}

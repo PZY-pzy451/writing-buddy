@@ -132,6 +132,13 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 	'有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。',
 	'最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。'
 ].join('');
+export const CREATION_JOURNEY_SYSTEM_PROMPT = [
+	'你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。',
+	'不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。',
+	'organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。',
+	'仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。',
+	'所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。'
+].join('');
 
 export type AiProviderId = typeof DEEPSEEK_PROVIDER_ID;
 export type AiJobType =
@@ -149,7 +156,8 @@ export type AiJobType =
 	| 'plot-analysis'
 	| 'story-consistency-analysis'
 	| 'story-extraction'
-	| 'story-kernel-generation';
+	| 'story-kernel-generation'
+	| 'creation-journey';
 export type AiThinkingMode = 'disabled' | 'enabled';
 export type AiReasoningEffort = 'high';
 export type AiResponseFormat = 'text' | 'json_object';
@@ -2285,6 +2293,127 @@ export function parseStoryKernelGenerationResponse(
 	response: string
 ): readonly StoryKernelGenerationCandidateResponse[] {
 	return storyKernelGenerationResponseSchema.parse(JSON.parse(response)).candidates;
+}
+
+const creationJourneyCoreSchema = z.object({
+	oneSentence: z.string().trim().min(1).max(2_000),
+	protagonist: z.string().trim().min(1).max(1_000),
+	goal: z.string().trim().min(1).max(1_000),
+	obstacle: z.string().trim().min(1).max(1_000),
+	stakes: z.string().trim().min(1).max(1_000),
+	mystery: z.string().trim().min(1).max(1_000),
+	readerExperience: z.string().trim().min(1).max(1_000),
+	endingDirection: z.string().trim().min(1).max(1_000)
+}).strict();
+
+const creationJourneyDirectionSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	premise: z.string().trim().min(1).max(2_000),
+	centralConflict: z.string().trim().min(1).max(2_000),
+	endingPromise: z.string().trim().min(1).max(2_000),
+	tone: z.string().trim().min(1).max(500)
+}).strict();
+
+const creationJourneyOutlineNodeSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	purpose: z.string().trim().min(1).max(1_000)
+}).strict();
+
+const creationJourneyInputSchema = z.discriminatedUnion('operation', [
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('organize-core'),
+		elements: z.array(z.object({
+			category: z.enum([
+				'character',
+				'place',
+				'object',
+				'event',
+				'mood',
+				'theme',
+				'question',
+				'other'
+			]),
+			text: z.string().trim().min(1).max(500)
+		}).strict()).min(3).max(8)
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('generate-directions'),
+		core: creationJourneyCoreSchema
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('generate-outline'),
+		core: creationJourneyCoreSchema,
+		selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2)
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('split-chapters'),
+		core: creationJourneyCoreSchema,
+		selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2),
+		outline: z.array(creationJourneyOutlineNodeSchema).min(5).max(8)
+	}).strict()
+]);
+
+const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
+	z.object({
+		operation: z.literal('organize-core'),
+		core: creationJourneyCoreSchema
+	}).strict(),
+	z.object({
+		operation: z.literal('generate-directions'),
+		directions: z.array(creationJourneyDirectionSchema).length(3)
+	}).strict(),
+	z.object({
+		operation: z.literal('generate-outline'),
+		nodes: z.array(creationJourneyOutlineNodeSchema).min(5).max(8)
+	}).strict(),
+	z.object({
+		operation: z.literal('split-chapters'),
+		chapters: z.array(z.object({
+			title: z.string().trim().min(1).max(120),
+			goal: z.string().trim().min(1).max(1_000),
+			summary: z.string().trim().min(1).max(3_000),
+			sourceNodeIndexes: z.array(z.number().int().min(0).max(7)).min(1).max(8)
+				.refine(indexes => new Set(indexes).size === indexes.length)
+		}).strict()).length(3)
+	}).strict()
+]);
+
+export type CreationJourneyAiInput = z.infer<typeof creationJourneyInputSchema>;
+export type CreationJourneyAiResponse = z.infer<typeof creationJourneyResponseSchema>;
+
+export function buildCreationJourneyMessages(
+	input: CreationJourneyAiInput
+): readonly AiMessage[] {
+	const parsed = creationJourneyInputSchema.safeParse(input);
+	if (!parsed.success) {
+		throw new Error('invalidCreationJourneyInput');
+	}
+	const payload = JSON.stringify(parsed.data);
+	if (
+		payload.length > 50_000
+		|| /projectRoot|apiKey|credential|absolutePath/iu.test(payload)
+	) {
+		throw new Error('invalidCreationJourneyInput');
+	}
+	return [
+		{ role: 'system', content: CREATION_JOURNEY_SYSTEM_PROMPT },
+		{ role: 'user', content: payload }
+	];
+}
+
+export function parseCreationJourneyResponse(
+	response: string
+): CreationJourneyAiResponse {
+	try {
+		return creationJourneyResponseSchema.parse(JSON.parse(response));
+	} catch {
+		throw new Error('invalidCreationJourneyResponse');
+	}
 }
 
 export function buildChapterReviewMessages(content: string): readonly AiMessage[] {

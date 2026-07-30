@@ -1,36 +1,43 @@
 # Current progress
 
-Updated: 2026-07-29
+Updated: 2026-07-30
 
 ## Active milestone
 
-Phase 1.2A is complete through Gate H in the isolated worktree
-`D:\develop_tool\writing-buddy-phase-1.2a` on
-`codex/phase-1.2a-writer-core`.
+No feature milestone is active. Phase 1.2B is complete in
+`D:\develop_tool\writing-buddy-phase-1.2b` on
+`codex/phase-1.2b-idea-outline`.
 
-- Gate A source map and current UX/performance baseline are complete in
-  `8351dd64`.
-- Gate B Continue Writing and validated per-project session restore are
-  complete in `a945dbac`.
-- Gate C quiet writer workspaces, per-workspace layout memory, and temporary
-  focus overlay are complete in this branch's dedicated feature commit.
-- Gate D Quick Capture, 待整理箱, portable TextAnchor association, exact
-  MentionLink Entity Peek, and focus restoration are complete.
-- Gate E contextual presentation and author-triggered chapter organization
-  through the existing AI/extraction paths are complete.
-- Gate F save trust, recovery/close protection, Writer Navigator, unified
-  local search, and TextAnchor location are complete.
-- Gate G completes drag preview/result copy, documented shortcuts,
-  focus/accessibility, responsive visual polish, and reduced motion without
-  adding an AI action or Story resource type.
-- Gate H validates the completed writer-centered experience with five
-  isolated deterministic profiles and 50/50 no-explanation task instances.
+- Phase 1.2A baseline:
+  `5c4e74e1edef0cd09a0f8bdf889b72c69d974421`.
+- Phase 1.2C, Guided AI Story Development, is the next proposed milestone but
+  has not started.
 - Completed contract:
-  `docs/plans/032-phase-1.2a-gate-h-real-experience-acceptance.md`.
-- Phase 1.2A is closed. No new feature phase is active without explicit user
-  direction.
+  `docs/plans/033-phase-1.2b-idea-to-outline-creation-journey.md`.
 
 ## Completed
+
+- Added the six truthful new-project starts, defaulting to **我只有几个想法**.
+  The idea route does not pre-create a chapter and does not invoke AI.
+- Added the complete author-led journey: 3–8 elements, editable story core,
+  exactly three directions, one-or-two direction choice, a 5–8 node
+  reorderable outline, exactly three chapter proposals, and one explicit
+  create-and-open confirmation.
+- Added a strict cross-language `creation-journey` AI contract. Four explicit
+  requests handle one bounded decision each; malformed counts, unknown keys,
+  paths, credentials, and incomplete structures fail before state changes.
+- Added project-owned, hash-safe journey persistence and one rollback-safe
+  native transaction that materializes exactly three chapters and reopens
+  both the manifest and journey state before success.
+- Real Edge acceptance passed at 1536×992, 1280×800, and 1024×720 with Paper,
+  Midnight, reduced motion, heading focus, 44 px controls, zero horizontal
+  overflow, zero clipped controls, and zero browser exceptions.
+- Final gates: 132 Vitest files / 487 tests, production build, complete and
+  release self-test modes, Cargo format, 58 Rust tests with 2 explicit
+  external gates ignored, Tauri Release/NSIS, and native portable startup /
+  normal close.
+- Evidence in
+  `docs/acceptance/044-phase-1.2b-idea-to-outline-creation-journey-2026-07-30.md`.
 
 - Five isolated Edge profiles completed the same ten visible-interface tasks:
   Continue Writing, exact position verification, 300+ character input,

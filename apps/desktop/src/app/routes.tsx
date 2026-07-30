@@ -19,6 +19,7 @@ import { InformationControlPage } from '../features/story/information/Informatio
 import { ContinuityReviewPage } from '../features/story/continuity/ContinuityReviewPage';
 import { ManuscriptExtractionCenterPage } from '../features/story/extraction/ManuscriptExtractionCenterPage';
 import { StoryAssociationPage } from '../features/story/associations/StoryAssociationPage';
+import { CreationJourneyPage } from '../features/creation-journey/CreationJourneyPage';
 
 export function StoryStudioRoute(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
@@ -63,6 +64,10 @@ export function StoryStudioRoute(): React.JSX.Element {
 			requestEditorReveal(chapter.id, evidence.range?.start ?? 0);
 		});
 	};
+
+	if (storyView === 'creation-journey') {
+		return <CreationJourneyPage />;
+	}
 
 	if (storyView === 'characters') {
 		return (

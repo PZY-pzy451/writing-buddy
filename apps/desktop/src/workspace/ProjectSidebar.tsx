@@ -19,6 +19,7 @@ import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
 import { ProjectActionsMenu } from '../features/projects/ui/ProjectActionsMenu';
 import { ProjectStructureTree } from '../features/projects/ui/ProjectStructureTree';
+import { CreationJourneySidebar } from '../features/creation-journey/CreationJourneySidebar';
 
 const resourceIcons = {
 	character: UserRound,
@@ -31,6 +32,7 @@ const resourceIcons = {
 export function ProjectSidebar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const activeMode = useAppStore(state => state.activeMode);
+	const storyView = useAppStore(state => state.storyView);
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
 	const search = useAppStore(state => state.search.trim().toLocaleLowerCase());
@@ -84,6 +86,9 @@ export function ProjectSidebar(): React.JSX.Element {
 	}
 
 	if (activeMode === 'planning' || activeMode === 'references') {
+		if (storyView === 'creation-journey') {
+			return <CreationJourneySidebar />;
+		}
 		return <StoryReferenceSidebar />;
 	}
 

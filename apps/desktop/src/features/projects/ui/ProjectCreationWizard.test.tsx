@@ -53,7 +53,7 @@ describe('guided project creation', () => {
 		expect(within(dialog).getByRole('textbox', { name: /^作品名称/ })).toHaveAttribute('aria-invalid', 'true');
 	});
 
-	it('creates through the four steps, restores project appearance, and opens the first chapter', async () => {
+	it('creates through five steps, preserves the manuscript start, and opens the first chapter', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
@@ -62,6 +62,9 @@ describe('guided project creation', () => {
 
 		await user.type(within(dialog).getByLabelText('作品名称'), '雾港来信');
 		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		expect(await within(dialog).findByRole('heading', { name: '你现在从哪里开始？' })).toBeInTheDocument();
+		await user.click(within(dialog).getByRole('button', { name: /我已经写了一部分正文/ }));
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		expect(await within(dialog).findByRole('heading', { name: '初始结构' })).toBeInTheDocument();
 
@@ -148,6 +151,7 @@ describe('guided project creation', () => {
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 		await user.type(within(dialog).getByLabelText('作品名称'), '未写入的新项目');
 		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));

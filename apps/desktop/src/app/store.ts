@@ -88,6 +88,7 @@ import {
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
 export type StoryViewId =
+	| 'creation-journey'
 	| 'characters'
 	| 'relationships'
 	| 'timeline'
@@ -245,6 +246,11 @@ interface AppState extends PersistedWorkspace {
 	readonly revealProjectDirectory: () => Promise<void>;
 	readonly dismissProjectOpenError: () => void;
 	readonly openDashboard: () => void;
+	readonly openCreationJourney: () => void;
+	readonly materializeCreationJourney: (
+		journeyContent: string,
+		expectedJourneyHash: string
+	) => Promise<boolean>;
 	readonly openResource: (resource: ResourceDescriptor) => Promise<void>;
 	readonly openStoryResource: (reference: StoryResourceReference) => Promise<void>;
 	readonly restoreStoryResource: () => Promise<void>;
@@ -1122,6 +1128,82 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			saveState: { type: 'clean', savedAt: new Date().toISOString() },
 			error: undefined
 		});
+	},
+
+	openCreationJourney() {
+		get().setMode('planning');
+		get().setStoryView('creation-journey');
+		set({
+			activeResource: undefined,
+			activeResourceId: undefined,
+			storyOpenResult: undefined,
+			session: undefined,
+			resourceContent: undefined,
+			resourceHash: undefined,
+			externalConflict: undefined,
+			error: undefined
+		});
+	},
+
+	async materializeCreationJourney(journeyContent, expectedJourneyHash) {
+		const snapshot = get().snapshot;
+		if (!snapshot || snapshot.readOnly) {
+			set({ error: '当前作品以只读模式打开，不能创建章节。' });
+			return false;
+		}
+		try {
+			const result = await desktopBridge.materializeCreationJourney({
+				projectRoot: snapshot.root,
+				expectedProjectRevision: snapshot.projectRevision,
+				journeyContent,
+				expectedJourneyHash
+			});
+			const nextSnapshot: ProjectSnapshot = {
+				...snapshot,
+				project: result.project,
+				projectRevision: result.projectRevision,
+				wordCounts: {
+					...snapshot.wordCounts,
+					...Object.fromEntries(result.chapters.map(chapter => [chapter.id, 0]))
+				}
+			};
+			const first = result.chapters[0];
+			if (!first) {
+				throw new Error('creationJourneyMaterializationInvalid');
+			}
+			set({
+				snapshot: nextSnapshot,
+				structureMoveAnnouncement: result.description,
+				error: undefined
+			});
+			get().setMode('works');
+			await get().openResource({
+				id: first.id,
+				type: 'chapter',
+				title: first.title,
+				path: first.file,
+				projectId: result.project.projectId
+			});
+			return true;
+		} catch (error) {
+			const code = error instanceof Error
+				? error.message.split(':')[0]
+				: 'creationJourneyMaterializationFailed';
+			const copy: Readonly<Record<string, string>> = {
+				projectRevisionConflict: '作品结构已变化，请重新载入后再创建章节。',
+				externalChange: '创作旅程已在其他窗口修改，请重新载入后再确认。',
+				creationJourneyProjectMismatch: '创作旅程不属于当前作品，未写入章节。',
+				creationJourneyMaterializationInvalid: '章节方案尚未满足确认条件。',
+				creationJourneyStateInvalid: '创作旅程结构无效，未写入章节。',
+				chapterFileWriteFailed: '章节文件写入失败，项目已恢复到创建前。',
+				chapterManifestWriteFailed: '章节结构保存失败，项目已恢复到创建前。',
+				creationJourneyWriteFailed: '旅程状态保存失败，项目已恢复到创建前。',
+				creationJourneyMaterializationVerificationFailed: '创建后验证失败，项目已恢复到创建前。',
+				creationJourneyMaterializationFailed: '暂时无法创建章节，项目未改变。'
+			};
+			set({ error: copy[code] ?? copy.creationJourneyMaterializationFailed });
+			return false;
+		}
 	},
 
 	async openResource(resource) {

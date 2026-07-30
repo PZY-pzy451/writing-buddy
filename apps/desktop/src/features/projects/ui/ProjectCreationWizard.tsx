@@ -6,6 +6,7 @@ import {
 	FileCheck2,
 	FolderOpen,
 	LayoutTemplate,
+	Lightbulb,
 	LoaderCircle,
 	Palette,
 	Sparkles,
@@ -28,6 +29,7 @@ import type {
 import { useModalFocus } from '../../../accessibility/useModalFocus';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import type { CreationStartRoute } from '../../creation-journey/CreationJourneyModel';
 import {
 	ProjectCreationError,
 	ProjectCreationService
@@ -48,9 +50,24 @@ const accents: readonly { id: ProjectAccentId; title: string; color: string }[] 
 ];
 const steps = [
 	{ title: '基础信息', Icon: BookOpenText },
+	{ title: '创作起点', Icon: Lightbulb },
 	{ title: '初始结构', Icon: LayoutTemplate },
 	{ title: '外观与写作方式', Icon: Palette },
 	{ title: '确认创建', Icon: FileCheck2 }
+] as const;
+
+const creationStartOptions: readonly {
+	readonly id: CreationStartRoute;
+	readonly title: string;
+	readonly description: string;
+	readonly result: string;
+}[] = [
+	{ id: 'ideas', title: '我只有几个想法', description: '记录 3–8 个零散要素，再逐步确认故事核心、方向和总纲。', result: '进入完整创作旅程（推荐）' },
+	{ id: 'synopsis', title: '我已经有故事梗概', description: '保留现有规划与资料工具，不自动改写梗概。', result: '进入作品仪表盘' },
+	{ id: 'character-world', title: '我先有了人物或世界', description: '保留人物和世界资料入口，不强迫先完成数据库。', result: '进入作品仪表盘' },
+	{ id: 'outline', title: '我已经有完整大纲', description: '直接整理项目结构和章节，不自动重写已有大纲。', result: '进入作品仪表盘' },
+	{ id: 'manuscript', title: '我已经写了一部分正文', description: '创建第一章并打开编辑器，方便粘贴或继续正文。', result: '打开第一章' },
+	{ id: 'blank', title: '空白项目', description: '只创建最小项目，不生成章节、设定或 AI 内容。', result: '进入空白作品' }
 ] as const;
 
 interface WizardDraft {
@@ -59,6 +76,7 @@ interface WizardDraft {
 	readonly rootDirectory: string;
 	readonly projectType: ProjectType;
 	readonly language: string;
+	readonly startRoute: CreationStartRoute;
 	readonly templateId: string;
 	readonly selectedInitialResources: readonly InitialResourceId[];
 	readonly themeId: ProjectThemeId;
@@ -74,10 +92,14 @@ function defaultDraft(): WizardDraft {
 		rootDirectory: '',
 		projectType: template.projectType,
 		language: 'zh-CN',
+		startRoute: 'ideas',
 		templateId: template.id,
-		selectedInitialResources: template.initialResources
-			.filter(resource => resource.defaultSelected)
-			.map(resource => resource.id),
+		selectedInitialResources: resourcesForStartRoute(
+			template.initialResources
+				.filter(resource => resource.defaultSelected)
+				.map(resource => resource.id),
+			'ideas'
+		),
 		themeId: template.defaultThemeId,
 		accentId: template.defaultAccentId,
 		writingMode: 'manuscriptFirst'
@@ -85,10 +107,39 @@ function defaultDraft(): WizardDraft {
 }
 
 function toRequest(draft: WizardDraft): CreateProjectRequest {
+	const selectedInitialResources = resourcesForStartRoute(
+		draft.selectedInitialResources,
+		draft.startRoute
+	);
 	return {
-		...draft,
-		selectedInitialResources: [...draft.selectedInitialResources]
+		name: draft.name,
+		description: draft.description,
+		rootDirectory: draft.rootDirectory,
+		projectType: draft.projectType,
+		language: draft.language,
+		templateId: draft.templateId,
+		selectedInitialResources,
+		themeId: draft.themeId,
+		accentId: draft.accentId,
+		writingMode: draft.writingMode
 	};
+}
+
+function resourcesForStartRoute(
+	resources: readonly InitialResourceId[],
+	route: CreationStartRoute
+): InitialResourceId[] {
+	if (route === 'blank') return [];
+	const selected = new Set(resources);
+	if (route === 'ideas') {
+		selected.add('first-volume');
+		selected.delete('first-chapter');
+	}
+	if (route === 'manuscript') {
+		selected.add('first-volume');
+		selected.add('first-chapter');
+	}
+	return [...selected];
 }
 
 const createErrorCopy: Readonly<Record<string, string>> = {
@@ -112,6 +163,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const openProject = useAppStore(state => state.openProject);
 	const openResource = useAppStore(state => state.openResource);
 	const openDashboard = useAppStore(state => state.openDashboard);
+	const openCreationJourney = useAppStore(state => state.openCreationJourney);
 	const setError = useAppStore(state => state.setError);
 	const currentProjectTitle = useAppStore(state => state.snapshot?.project.title);
 	const currentManuscriptDirty = useAppStore(state => Boolean(state.session?.state.dirty));
@@ -158,11 +210,30 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 			...current,
 			templateId: template.id,
 			projectType: template.projectType,
-			selectedInitialResources: template.initialResources
-				.filter(resource => resource.defaultSelected)
-				.map(resource => resource.id),
+			selectedInitialResources: resourcesForStartRoute(
+				template.initialResources
+					.filter(resource => resource.defaultSelected)
+					.map(resource => resource.id),
+				current.startRoute
+			),
 			themeId: template.defaultThemeId,
 			accentId: template.defaultAccentId
+		}));
+		setIssues([]);
+		setPreflight(undefined);
+	};
+
+	const selectStartRoute = (startRoute: CreationStartRoute) => {
+		setDraft(current => ({
+			...current,
+			startRoute,
+			selectedInitialResources: resourcesForStartRoute(
+				current.selectedInitialResources,
+				startRoute
+			),
+			writingMode: startRoute === 'manuscript'
+				? 'manuscriptFirst'
+				: 'planningFirst'
 		}));
 		setIssues([]);
 		setPreflight(undefined);
@@ -196,10 +267,10 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	};
 
 	const next = async () => {
-		if (step === 0 || step === 2) {
+		if (step === 0 || step === 3) {
 			if (!await runPreflight()) return;
 		}
-		setStep(current => Math.min(3, current + 1));
+		setStep(current => Math.min(4, current + 1));
 	};
 
 	const create = async () => {
@@ -223,7 +294,9 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 					.flatMap(volume => volume.chapters)
 					.find(candidate => candidate.id === created.firstChapterId)
 				: undefined;
-			if (chapter && state.snapshot && draft.writingMode === 'manuscriptFirst') {
+			if (draft.startRoute === 'ideas') {
+				openCreationJourney();
+			} else if (chapter && state.snapshot && draft.writingMode === 'manuscriptFirst') {
 				await openResource({
 					id: chapter.id,
 					type: 'chapter',
@@ -248,7 +321,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const submit = (event: React.FormEvent) => {
 		event.preventDefault();
 		if (busy) return;
-		if (step === 3) void create();
+		if (step === 4) void create();
 		else void next();
 	};
 
@@ -393,17 +466,60 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 					)}
 
 					{step === 1 && (
-						<div className="wizard-step-panel" aria-labelledby="wizard-structure-title">
+						<div className="wizard-step-panel" aria-labelledby="wizard-start-title">
 							<div className="wizard-step-title">
 								<span className="eyebrow">STEP 2</span>
+								<h3 id="wizard-start-title">你现在从哪里开始？</h3>
+								<p>选择最接近当前状态的一项。这里只决定起点，不会自动调用 AI。</p>
+							</div>
+							<fieldset className="creation-start-grid">
+								<legend className="sr-only">创作起点</legend>
+								{creationStartOptions.map(option => (
+									<button
+										type="button"
+										key={option.id}
+										className={draft.startRoute === option.id ? 'is-selected' : ''}
+										aria-pressed={draft.startRoute === option.id}
+										onClick={() => selectStartRoute(option.id)}
+									>
+										<span className="creation-start-icon" aria-hidden="true">
+											{option.id === 'ideas'
+												? <Sparkles size={20} />
+												: <BookOpenText size={20} />}
+										</span>
+										<span>
+											<strong>{option.title}</strong>
+											<small>{option.description}</small>
+											<em>{option.result}</em>
+										</span>
+										{draft.startRoute === option.id && <Check size={18} aria-label="已选择" />}
+									</button>
+								))}
+							</fieldset>
+						</div>
+					)}
+
+					{step === 2 && (
+						<div className="wizard-step-panel" aria-labelledby="wizard-structure-title">
+							<div className="wizard-step-title">
+								<span className="eyebrow">STEP 3</span>
 								<h3 id="wizard-structure-title">初始结构</h3>
-								<p>{selectedTemplate.title} 已提供推荐项，你可以逐项调整。</p>
+								<p>
+									{draft.startRoute === 'ideas'
+										? '创作旅程会在最终确认后一次性创建三章，因此这里不预建第一章。'
+										: `${selectedTemplate.title} 已提供推荐项，你可以逐项调整。`}
+								</p>
 							</div>
 							<div className="structure-card-grid">
 								{selectedTemplate.initialResources.map(resource => {
 									const selected = draft.selectedInitialResources.includes(resource.id);
-									const locked = resource.id === 'first-volume'
-										&& draft.selectedInitialResources.includes('first-chapter');
+									const locked = (
+										resource.id === 'first-volume'
+										&& draft.selectedInitialResources.includes('first-chapter')
+									) || (
+										draft.startRoute === 'ideas'
+										&& resource.id === 'first-chapter'
+									);
 									return (
 										<label key={resource.id} className={selected ? 'structure-card is-selected' : 'structure-card'}>
 											<input
@@ -429,10 +545,10 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						</div>
 					)}
 
-					{step === 2 && (
+					{step === 3 && (
 						<div className="wizard-step-panel" aria-labelledby="wizard-appearance-title">
 							<div className="wizard-step-title">
-								<span className="eyebrow">STEP 3</span>
+								<span className="eyebrow">STEP 4</span>
 								<h3 id="wizard-appearance-title">外观与写作方式</h3>
 								<p>主题会保存在项目中，下次打开时自动恢复。</p>
 							</div>
@@ -499,10 +615,10 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						</div>
 					)}
 
-					{step === 3 && (
+					{step === 4 && (
 						<div className="wizard-step-panel" aria-labelledby="wizard-review-title">
 							<div className="wizard-step-title">
-								<span className="eyebrow">STEP 4</span>
+								<span className="eyebrow">STEP 5</span>
 								<h3 id="wizard-review-title">确认创建</h3>
 								<p>写入前最后检查。不会覆盖同名目录，也不会自动调用 AI。</p>
 							</div>
@@ -513,6 +629,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								</div>
 								<dl>
 									<div><dt>模板</dt><dd>{selectedTemplate.title}</dd></div>
+									<div><dt>创作起点</dt><dd>{creationStartOptions.find(option => option.id === draft.startRoute)?.title}</dd></div>
 									<div><dt>主题</dt><dd>{themes.find(theme => theme.id === draft.themeId)?.title} · {accents.find(accent => accent.id === draft.accentId)?.title}</dd></div>
 									<div><dt>写作方式</dt><dd>{draft.writingMode === 'manuscriptFirst' ? '正文优先' : '故事规划优先'}</dd></div>
 									<div><dt>AI 快速入口</dt><dd>{draft.selectedInitialResources.includes('ai-quick-actions') ? '启用（不自动请求）' : '关闭'}</dd></div>
@@ -551,7 +668,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						</button>
 					)}
 					<button className="primary-button wizard-next" type="submit" disabled={busy}>
-						{step === 3 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建项目'}</> : <>下一步<ChevronRight size={18} /></>}
+						{step === 4 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建项目'}</> : <>下一步<ChevronRight size={18} /></>}
 					</button>
 				</footer>
 			</form>

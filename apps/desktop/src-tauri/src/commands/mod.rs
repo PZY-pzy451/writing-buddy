@@ -6,7 +6,7 @@ use std::{
     sync::atomic::{AtomicU64, Ordering},
 };
 
-use chrono::Utc;
+use chrono::{SecondsFormat, Utc};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use sha2::{Digest, Sha256};
@@ -1143,6 +1143,8 @@ fn snapshot_kind(relative: &str) -> Option<&'static str> {
         Some("reviewState")
     } else if lower.starts_with(".writing-buddy/inbox/") {
         Some("authorInbox")
+    } else if lower.starts_with(".writing-buddy/creation/") {
+        Some("creationJourney")
     } else if lower.starts_with(".writing-buddy/ai/") {
         Some("aiState")
     } else if lower.starts_with(".writing-buddy/trash/") {
@@ -1488,6 +1490,528 @@ pub fn write_review_state(
         has_bom: false,
         force: false,
     })
+}
+
+const CREATION_JOURNEY_RELATIVE_PATH: &str = ".writing-buddy/creation/journey.json";
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyState {
+    schema_version: u8,
+    revision: u64,
+    project_id: String,
+    start_route: String,
+    stage: String,
+    elements: Vec<CreationJourneyElement>,
+    core: CreationJourneyCore,
+    directions: Vec<CreationJourneyDirection>,
+    selected_direction_ids: Vec<String>,
+    outline: Vec<CreationJourneyOutlineNode>,
+    chapters: Vec<CreationJourneyChapter>,
+    stale: CreationJourneyStale,
+    created_at: String,
+    updated_at: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyElement {
+    id: String,
+    category: String,
+    text: String,
+    locked: bool,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyCore {
+    one_sentence: String,
+    protagonist: String,
+    goal: String,
+    obstacle: String,
+    stakes: String,
+    mystery: String,
+    reader_experience: String,
+    ending_direction: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    confirmed_at: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyDirection {
+    id: String,
+    title: String,
+    premise: String,
+    central_conflict: String,
+    ending_promise: String,
+    tone: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineNode {
+    id: String,
+    title: String,
+    summary: String,
+    purpose: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyChapter {
+    id: String,
+    title: String,
+    goal: String,
+    summary: String,
+    source_node_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    resource_id: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyStale {
+    directions: bool,
+    outline: bool,
+    chapters: bool,
+}
+
+fn valid_creation_journey_id(value: &str, prefix: &str) -> bool {
+    value.strip_prefix(prefix).is_some_and(|leaf| {
+        !leaf.is_empty()
+            && leaf.chars().all(|character| {
+                character.is_ascii_lowercase() || character.is_ascii_digit() || character == '-'
+            })
+    })
+}
+
+fn valid_creation_journey_text(value: &str, max_chars: usize, allow_empty: bool) -> bool {
+    (allow_empty || !value.trim().is_empty())
+        && value.chars().count() <= max_chars
+        && !value.contains('\0')
+}
+
+fn valid_creation_journey_timestamp(value: &str) -> bool {
+    value.ends_with('Z') && chrono::DateTime::parse_from_rfc3339(value).is_ok()
+}
+
+fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
+    if state.schema_version != 1
+        || state.project_id.trim().is_empty()
+        || state.project_id.chars().count() > 240
+        || !matches!(
+            state.start_route.as_str(),
+            "ideas" | "synopsis" | "character-world" | "outline" | "manuscript" | "blank"
+        )
+        || !matches!(
+            state.stage.as_str(),
+            "elements" | "core" | "directions" | "outline" | "chapters" | "writing"
+        )
+        || !(3..=8).contains(&state.elements.len())
+        || !(state.directions.is_empty() || state.directions.len() == 3)
+        || state.selected_direction_ids.len() > 2
+        || !(state.outline.is_empty() || (5..=8).contains(&state.outline.len()))
+        || !(state.chapters.is_empty() || state.chapters.len() == 3)
+        || !valid_creation_journey_timestamp(&state.created_at)
+        || !valid_creation_journey_timestamp(&state.updated_at)
+    {
+        return false;
+    }
+    let valid_core = [
+        (&state.core.one_sentence, 2_000),
+        (&state.core.protagonist, 1_000),
+        (&state.core.goal, 1_000),
+        (&state.core.obstacle, 1_000),
+        (&state.core.stakes, 1_000),
+        (&state.core.mystery, 1_000),
+        (&state.core.reader_experience, 1_000),
+        (&state.core.ending_direction, 1_000),
+    ]
+    .iter()
+    .all(|(value, max_chars)| valid_creation_journey_text(value, *max_chars, true))
+        && state
+            .core
+            .confirmed_at
+            .as_deref()
+            .is_none_or(valid_creation_journey_timestamp);
+    if !valid_core {
+        return false;
+    }
+
+    let valid_categories = [
+        "character",
+        "place",
+        "object",
+        "event",
+        "mood",
+        "theme",
+        "question",
+        "other",
+    ];
+    let mut element_ids = HashSet::new();
+    if !state.elements.iter().all(|element| {
+        valid_creation_journey_id(&element.id, "journey-element:")
+            && element_ids.insert(element.id.as_str())
+            && valid_categories.contains(&element.category.as_str())
+            && valid_creation_journey_text(&element.text, 500, true)
+    }) {
+        return false;
+    }
+    let mut direction_ids = HashSet::new();
+    if !state.directions.iter().all(|direction| {
+        valid_creation_journey_id(&direction.id, "journey-direction:")
+            && direction_ids.insert(direction.id.as_str())
+            && valid_creation_journey_text(&direction.title, 120, true)
+            && valid_creation_journey_text(&direction.premise, 2_000, true)
+            && valid_creation_journey_text(&direction.central_conflict, 2_000, true)
+            && valid_creation_journey_text(&direction.ending_promise, 2_000, true)
+            && valid_creation_journey_text(&direction.tone, 500, true)
+    }) || state
+        .selected_direction_ids
+        .iter()
+        .collect::<HashSet<_>>()
+        .len()
+        != state.selected_direction_ids.len()
+        || state
+            .selected_direction_ids
+            .iter()
+            .any(|id| !direction_ids.contains(id.as_str()))
+    {
+        return false;
+    }
+    let mut outline_ids = HashSet::new();
+    if !state.outline.iter().all(|node| {
+        valid_creation_journey_id(&node.id, "journey-outline:")
+            && outline_ids.insert(node.id.as_str())
+            && valid_creation_journey_text(&node.title, 120, true)
+            && valid_creation_journey_text(&node.summary, 3_000, true)
+            && valid_creation_journey_text(&node.purpose, 1_000, true)
+    }) {
+        return false;
+    }
+    let mut chapter_ids = HashSet::new();
+    if !state.chapters.iter().all(|chapter| {
+        valid_creation_journey_id(&chapter.id, "journey-chapter:")
+            && chapter_ids.insert(chapter.id.as_str())
+            && valid_creation_journey_text(&chapter.title, 120, true)
+            && !chapter.title.contains(['\r', '\n'])
+            && valid_creation_journey_text(&chapter.goal, 1_000, true)
+            && valid_creation_journey_text(&chapter.summary, 3_000, true)
+            && (1..=8).contains(&chapter.source_node_ids.len())
+            && chapter.source_node_ids.iter().collect::<HashSet<_>>().len()
+                == chapter.source_node_ids.len()
+            && chapter
+                .source_node_ids
+                .iter()
+                .all(|id| outline_ids.contains(id.as_str()))
+            && chapter.resource_id.as_deref().is_none_or(|id| {
+                valid_creation_journey_id(id, "chapter:")
+                    || valid_creation_journey_id(id, "chapter-")
+            })
+    }) {
+        return false;
+    }
+    let materialized_count = state
+        .chapters
+        .iter()
+        .filter(|chapter| chapter.resource_id.is_some())
+        .count();
+    (materialized_count == 0 || materialized_count == 3)
+        && (state.stage != "writing" || materialized_count == 3)
+}
+
+fn parse_creation_journey_state(content: &str) -> Result<CreationJourneyState, String> {
+    if content.len() > 1024 * 1024 {
+        return Err("creationJourneyStateTooLarge".to_owned());
+    }
+    let state: CreationJourneyState =
+        serde_json::from_str(content).map_err(|_| "creationJourneyStateInvalid".to_owned())?;
+    if !valid_creation_journey_state(&state) {
+        return Err("creationJourneyStateInvalid".to_owned());
+    }
+    Ok(state)
+}
+
+#[tauri::command]
+pub fn read_creation_journey_state(project_root: String) -> Result<Option<TextFile>, String> {
+    match filesystem::read_text(&project_root, CREATION_JOURNEY_RELATIVE_PATH) {
+        Ok(file) => Ok(Some(file)),
+        Err(error) if error == "resourceNotFound" => Ok(None),
+        Err(error) => Err(error),
+    }
+}
+
+#[tauri::command]
+pub fn write_creation_journey_state(
+    state: State<'_, AppState>,
+    project_root: String,
+    content: String,
+    expected_hash: String,
+) -> Result<AtomicWriteResult, String> {
+    require_write_lock(&state, &project_root)?;
+    parse_creation_journey_state(&content)?;
+    filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root,
+        relative_path: CREATION_JOURNEY_RELATIVE_PATH.to_owned(),
+        content,
+        expected_hash,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    })
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct MaterializeCreationJourneyRequest {
+    project_root: String,
+    expected_project_revision: String,
+    journey_content: String,
+    expected_journey_hash: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MaterializeCreationJourneyResult {
+    project: migration::WritingProject,
+    project_revision: String,
+    chapters: Vec<migration::ChapterDescriptor>,
+    journey_content: String,
+    journey_hash: String,
+    description: String,
+}
+
+fn restore_creation_journey_file(path: &Path, previous: Option<&[u8]>) {
+    if let Some(bytes) = previous {
+        let _ = filesystem::write_bytes_atomic(path, bytes);
+    } else if path.exists() {
+        let _ = fs::remove_file(path);
+    }
+}
+
+fn materialize_creation_journey_on_disk(
+    request: &MaterializeCreationJourneyRequest,
+) -> Result<MaterializeCreationJourneyResult, String> {
+    let root = filesystem::canonical_project_root(&request.project_root)?;
+    let manifest_path = root.join(".writing-buddy").join("project.json");
+    let journey_path = root.join(CREATION_JOURNEY_RELATIVE_PATH);
+    let previous_manifest =
+        fs::read(&manifest_path).map_err(|_| "manifestReadFailed".to_owned())?;
+    let current_project_revision = filesystem::sha256(&previous_manifest);
+    if request.expected_project_revision != current_project_revision {
+        return Err(format!(
+            "projectRevisionConflict:{current_project_revision}"
+        ));
+    }
+    let previous_journey = match fs::read(&journey_path) {
+        Ok(bytes) => Some(bytes),
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
+        Err(_) => return Err("creationJourneyReadFailed".to_owned()),
+    };
+    let current_journey_hash = previous_journey
+        .as_deref()
+        .map(filesystem::sha256)
+        .unwrap_or_default();
+    if request.expected_journey_hash != current_journey_hash {
+        return Err(format!("externalChange:{current_journey_hash}"));
+    }
+    let mut journey = parse_creation_journey_state(&request.journey_content)?;
+    let mut project: migration::WritingProject =
+        serde_json::from_slice(&previous_manifest).map_err(|_| "invalidManifest".to_owned())?;
+    if journey.project_id != project.project_id {
+        return Err("creationJourneyProjectMismatch".to_owned());
+    }
+    if journey.stage != "chapters"
+        || journey.chapters.len() != 3
+        || journey
+            .chapters
+            .iter()
+            .any(|chapter| chapter.resource_id.is_some())
+        || journey.stale.chapters
+        || journey.stale.outline
+        || journey.selected_direction_ids.is_empty()
+        || journey.chapters.iter().any(|chapter| {
+            !valid_creation_journey_text(&chapter.title, 120, false)
+                || !valid_creation_journey_text(&chapter.goal, 1_000, false)
+                || !valid_creation_journey_text(&chapter.summary, 3_000, false)
+        })
+        || project
+            .volumes
+            .iter()
+            .any(|volume| !volume.chapters.is_empty())
+    {
+        return Err("creationJourneyMaterializationInvalid".to_owned());
+    }
+
+    let mut sequences = Vec::new();
+    for sequence in 1..=9999 {
+        if !root
+            .join("chapters")
+            .join(format!("chapter-{sequence:03}.md"))
+            .exists()
+        {
+            sequences.push(sequence);
+            if sequences.len() == 3 {
+                break;
+            }
+        }
+    }
+    if sequences.len() != 3 {
+        return Err("chapterFileLimitReached".to_owned());
+    }
+    let nonce = format!(
+        "{}:{}:{}",
+        project.project_id,
+        Utc::now().timestamp_millis(),
+        std::process::id()
+    );
+    let chapters = journey
+        .chapters
+        .iter()
+        .zip(sequences)
+        .enumerate()
+        .map(
+            |(index, (proposal, sequence))| migration::ChapterDescriptor {
+                id: creation_id("chapter", &format!("{nonce}:{index}")),
+                title: proposal.title.trim().to_owned(),
+                file: format!("chapters/chapter-{sequence:03}.md"),
+                status: Some("draft".to_owned()),
+                target_words: None,
+                scene: migration::SceneMetadata::default(),
+            },
+        )
+        .collect::<Vec<_>>();
+    if project.volumes.is_empty() {
+        project.volumes.push(migration::VolumeDescriptor {
+            id: creation_id("volume", &format!("{nonce}:volume")),
+            title: "第一卷".to_owned(),
+            chapters: Vec::new(),
+        });
+    }
+    project.volumes[0].chapters = chapters.clone();
+    for (proposal, chapter) in journey.chapters.iter_mut().zip(&chapters) {
+        proposal.resource_id = Some(chapter.id.clone());
+    }
+    journey.stage = "writing".to_owned();
+    journey.revision = journey.revision.saturating_add(1);
+    journey.updated_at = Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true);
+    if !valid_creation_journey_state(&journey) {
+        return Err("creationJourneyMaterializationInvalid".to_owned());
+    }
+    let mut manifest_bytes = serde_json::to_vec_pretty(&project)
+        .map_err(|_| "chapterManifestSerializeFailed".to_owned())?;
+    manifest_bytes.push(b'\n');
+    let manifest_content = String::from_utf8(manifest_bytes)
+        .map_err(|_| "chapterManifestSerializeFailed".to_owned())?;
+    let mut journey_bytes = serde_json::to_vec_pretty(&journey)
+        .map_err(|_| "creationJourneyStateInvalid".to_owned())?;
+    journey_bytes.push(b'\n');
+    let journey_content =
+        String::from_utf8(journey_bytes).map_err(|_| "creationJourneyStateInvalid".to_owned())?;
+
+    let mut created_paths = Vec::new();
+    for chapter in &chapters {
+        let path = root.join(&chapter.file);
+        if let Err(error) =
+            filesystem::write_bytes_atomic(&path, format!("# {}\n\n", chapter.title).as_bytes())
+        {
+            for created in &created_paths {
+                let _ = fs::remove_file(created);
+            }
+            return Err(if error.is_empty() {
+                "chapterFileWriteFailed".to_owned()
+            } else {
+                "chapterFileWriteFailed".to_owned()
+            });
+        }
+        created_paths.push(path);
+    }
+    let manifest_write = filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root: root.to_string_lossy().into_owned(),
+        relative_path: ".writing-buddy/project.json".to_owned(),
+        content: manifest_content,
+        expected_hash: current_project_revision,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    });
+    let manifest_write = match manifest_write {
+        Ok(result) => result,
+        Err(_) => {
+            for path in &created_paths {
+                let _ = fs::remove_file(path);
+            }
+            return Err("chapterManifestWriteFailed".to_owned());
+        }
+    };
+    let journey_write = filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root: root.to_string_lossy().into_owned(),
+        relative_path: CREATION_JOURNEY_RELATIVE_PATH.to_owned(),
+        content: journey_content.clone(),
+        expected_hash: current_journey_hash,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    });
+    let journey_write = match journey_write {
+        Ok(result) => result,
+        Err(_) => {
+            let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_manifest);
+            for path in &created_paths {
+                let _ = fs::remove_file(path);
+            }
+            return Err("creationJourneyWriteFailed".to_owned());
+        }
+    };
+    let verified_project = migration::open_project(&root.to_string_lossy());
+    let verified_journey =
+        filesystem::read_text(&root.to_string_lossy(), CREATION_JOURNEY_RELATIVE_PATH).and_then(
+            |file| {
+                parse_creation_journey_state(&file.content)?;
+                Ok(file)
+            },
+        );
+    let verified = matches!(
+        (&verified_project, &verified_journey),
+        (Ok(snapshot), Ok(file))
+            if !snapshot.read_only
+                && snapshot.project_revision == manifest_write.hash
+                && file.hash == journey_write.hash
+                && chapters.iter().all(|chapter| snapshot
+                    .project
+                    .volumes
+                    .iter()
+                    .flat_map(|volume| &volume.chapters)
+                    .any(|candidate| candidate.id == chapter.id))
+    );
+    if !verified {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_manifest);
+        restore_creation_journey_file(&journey_path, previous_journey.as_deref());
+        for path in &created_paths {
+            let _ = fs::remove_file(path);
+        }
+        return Err("creationJourneyMaterializationVerificationFailed".to_owned());
+    }
+    let verified_project = verified_project
+        .map_err(|_| "creationJourneyMaterializationVerificationFailed".to_owned())?;
+    Ok(MaterializeCreationJourneyResult {
+        project: verified_project.project,
+        project_revision: manifest_write.hash,
+        chapters,
+        journey_content,
+        journey_hash: journey_write.hash,
+        description: "已创建 3 个开篇章节，并打开第一章。".to_owned(),
+    })
+}
+
+#[tauri::command]
+pub fn materialize_creation_journey(
+    state: State<'_, AppState>,
+    request: MaterializeCreationJourneyRequest,
+) -> Result<MaterializeCreationJourneyResult, String> {
+    require_write_lock(&state, &request.project_root)?;
+    materialize_creation_journey_on_disk(&request)
 }
 
 #[tauri::command]
@@ -2041,6 +2565,10 @@ mod tests {
             snapshot_kind(".writing-buddy/inbox/quick-captures.json"),
             Some("authorInbox")
         );
+        assert_eq!(
+            snapshot_kind(".writing-buddy/creation/journey.json"),
+            Some("creationJourney")
+        );
     }
 
     #[test]
@@ -2074,5 +2602,144 @@ mod tests {
             "schemaVersion": 1,
             "captures": [valid["captures"][0].clone(), valid["captures"][0].clone()]
         })));
+    }
+
+    fn creation_journey_fixture(project_id: &str) -> String {
+        json!({
+            "schemaVersion": 1,
+            "revision": 8,
+            "projectId": project_id,
+            "startRoute": "ideas",
+            "stage": "chapters",
+            "elements": [
+                {"id": "journey-element:station", "category": "place", "text": "旧车站玻璃顶", "locked": false},
+                {"id": "journey-element:reporter", "category": "character", "text": "失忆记者", "locked": false},
+                {"id": "journey-element:rain", "category": "event", "text": "每天重置的夜雨", "locked": false}
+            ],
+            "core": {
+                "oneSentence": "失忆记者必须在一夜内找回被抹去的车站事故真相。",
+                "protagonist": "失忆记者林越",
+                "goal": "找回事发当夜的记忆并公开真相",
+                "obstacle": "操控记忆的站长与不断重置的夜晚",
+                "stakes": "失败会让整座城市忘记失踪者",
+                "mystery": "玻璃顶上的雨痕为什么每天完全相同",
+                "readerExperience": "克制、悬疑、压迫",
+                "endingDirection": "公开真相但放弃最后一段私人记忆",
+                "confirmedAt": "2026-07-30T01:00:00.000Z"
+            },
+            "directions": [
+                {"id": "journey-direction:truth", "title": "公开真相", "premise": "调查事故", "centralConflict": "真相与记忆冲突", "endingPromise": "公开换遗忘", "tone": "克制悬疑"},
+                {"id": "journey-direction:loop", "title": "打破循环", "premise": "逃离雨夜", "centralConflict": "每次接近出口都会失忆", "endingPromise": "主动留下守门", "tone": "高概念惊悚"},
+                {"id": "journey-direction:family", "title": "寻找姐姐", "premise": "寻找失踪亲人", "centralConflict": "姐姐可能制造了循环", "endingPromise": "姐妹做出艰难选择", "tone": "情感悬疑"}
+            ],
+            "selectedDirectionIds": ["journey-direction:truth"],
+            "outline": [
+                {"id": "journey-outline:one", "title": "进入车站", "summary": "主角进入旧站", "purpose": "建立异常"},
+                {"id": "journey-outline:two", "title": "发现雨痕", "summary": "雨痕重复出现", "purpose": "提出谜题"},
+                {"id": "journey-outline:three", "title": "记忆缺口", "summary": "主角失去新记忆", "purpose": "提高代价"},
+                {"id": "journey-outline:four", "title": "站长阻拦", "summary": "站长暴露目的", "purpose": "正面冲突"},
+                {"id": "journey-outline:five", "title": "第一次选择", "summary": "主角决定继续调查", "purpose": "形成章节钩子"}
+            ],
+            "chapters": [
+                {"id": "journey-chapter:one", "title": "夜雨站台", "goal": "进入异常空间", "summary": "记者抵达旧车站", "sourceNodeIds": ["journey-outline:one", "journey-outline:two"]},
+                {"id": "journey-chapter:two", "title": "缺失的七分钟", "goal": "发现记忆代价", "summary": "记者发现记忆缺口", "sourceNodeIds": ["journey-outline:three"]},
+                {"id": "journey-chapter:three", "title": "站长的条件", "goal": "做出首次主动选择", "summary": "记者拒绝站长的交换", "sourceNodeIds": ["journey-outline:four", "journey-outline:five"]}
+            ],
+            "stale": {"directions": false, "outline": false, "chapters": false},
+            "createdAt": "2026-07-30T00:00:00.000Z",
+            "updatedAt": "2026-07-30T01:00:00.000Z"
+        })
+        .to_string()
+    }
+
+    #[test]
+    fn creation_journey_materializes_exactly_three_chapters_once() {
+        let parent = project_creation_parent("journey-materialize");
+        let mut create_request =
+            project_creation_request(&parent, "Journey Novel", "blank-longform");
+        create_request.selected_initial_resources = vec!["first-volume".to_owned()];
+        let created = create_project(create_request).expect("create empty journey project");
+        let before = migration::open_project(&created.root).expect("open empty project");
+        let journey_content = creation_journey_fixture(&created.project_id);
+        let request = MaterializeCreationJourneyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: before.project_revision,
+            journey_content: journey_content.clone(),
+            expected_journey_hash: String::new(),
+        };
+
+        let result =
+            materialize_creation_journey_on_disk(&request).expect("materialize three chapters");
+
+        assert_eq!(result.chapters.len(), 3);
+        assert_eq!(result.project.volumes[0].chapters.len(), 3);
+        assert!(result.chapters.iter().all(|chapter| {
+            Path::new(&created.root).join(&chapter.file).is_file()
+                && fs::read_to_string(Path::new(&created.root).join(&chapter.file))
+                    .is_ok_and(|content| content.starts_with(&format!("# {}", chapter.title)))
+        }));
+        let saved = parse_creation_journey_state(&result.journey_content)
+            .expect("parse materialized journey");
+        assert_eq!(saved.stage, "writing");
+        assert!(
+            saved
+                .chapters
+                .iter()
+                .all(|chapter| chapter.resource_id.is_some())
+        );
+
+        let retry = MaterializeCreationJourneyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: result.project_revision.clone(),
+            journey_content,
+            expected_journey_hash: result.journey_hash,
+        };
+        assert_eq!(
+            materialize_creation_journey_on_disk(&retry).expect_err("must not duplicate chapters"),
+            "creationJourneyMaterializationInvalid"
+        );
+        let reopened = migration::open_project(&created.root).expect("reopen materialized project");
+        assert_eq!(reopened.project.volumes[0].chapters.len(), 3);
+        let _ = fs::remove_dir_all(parent);
+    }
+
+    #[test]
+    fn invalid_creation_journey_leaves_project_and_files_unchanged() {
+        let parent = project_creation_parent("journey-invalid");
+        let mut create_request =
+            project_creation_request(&parent, "Invalid Journey", "blank-longform");
+        create_request.selected_initial_resources = vec!["first-volume".to_owned()];
+        let created = create_project(create_request).expect("create empty journey project");
+        let before = migration::open_project(&created.root).expect("open empty project");
+        let before_manifest =
+            fs::read(Path::new(&created.root).join(".writing-buddy/project.json"))
+                .expect("read manifest");
+        let mut invalid: serde_json::Value =
+            serde_json::from_str(&creation_journey_fixture(&created.project_id))
+                .expect("valid fixture");
+        invalid["chapters"].as_array_mut().expect("chapters").pop();
+        let request = MaterializeCreationJourneyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: before.project_revision,
+            journey_content: invalid.to_string(),
+            expected_journey_hash: String::new(),
+        };
+
+        assert_eq!(
+            materialize_creation_journey_on_disk(&request).expect_err("must reject invalid state"),
+            "creationJourneyStateInvalid"
+        );
+        assert_eq!(
+            fs::read(Path::new(&created.root).join(".writing-buddy/project.json"))
+                .expect("reread manifest"),
+            before_manifest
+        );
+        assert!(!Path::new(&created.root).join("chapters").exists());
+        assert!(
+            !Path::new(&created.root)
+                .join(CREATION_JOURNEY_RELATIVE_PATH)
+                .exists()
+        );
+        let _ = fs::remove_dir_all(parent);
     }
 }

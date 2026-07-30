@@ -133,6 +133,13 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。",
     "最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。"
 );
+pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
+    "你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。",
+    "不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。",
+    "organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。",
+    "仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。",
+    "所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。"
+);
 const CHAPTER_REVIEW_MAX_CHARS: usize = 100_000;
 const INLINE_LANGUAGE_CHECK_MAX_CHARS: usize = 2_400;
 
@@ -352,6 +359,11 @@ impl AiGenerateRequest {
                     && matches!(self.options.response_format, ResponseFormat::JsonObject)
                     && validate_story_kernel_generation_input(&self.messages[1].content)
             }
+            AiJobType::CreationJourney => {
+                self.messages[0].content == CREATION_JOURNEY_SYSTEM_PROMPT
+                    && matches!(self.options.response_format, ResponseFormat::JsonObject)
+                    && validate_creation_journey_input(&self.messages[1].content)
+            }
         };
         if !contract_valid {
             return Err(errors::PublicAiError::new(
@@ -380,6 +392,7 @@ pub enum AiJobType {
     StoryConsistencyAnalysis,
     StoryExtraction,
     StoryKernelGeneration,
+    CreationJourney,
 }
 
 impl AiJobType {
@@ -400,6 +413,7 @@ impl AiJobType {
             Self::StoryConsistencyAnalysis => "story-consistency-analysis",
             Self::StoryExtraction => "story-extraction",
             Self::StoryKernelGeneration => "story-kernel-generation",
+            Self::CreationJourney => "creation-journey",
         }
     }
 }
@@ -1301,6 +1315,169 @@ fn validate_story_extraction_input(value: &str) -> bool {
 }
 
 #[derive(Deserialize)]
+#[serde(
+    tag = "operation",
+    rename_all = "kebab-case",
+    rename_all_fields = "camelCase",
+    deny_unknown_fields
+)]
+enum CreationJourneyInput {
+    OrganizeCore {
+        schema_version: u8,
+        elements: Vec<CreationJourneyElement>,
+    },
+    GenerateDirections {
+        schema_version: u8,
+        core: CreationJourneyCore,
+    },
+    GenerateOutline {
+        schema_version: u8,
+        core: CreationJourneyCore,
+        selected_directions: Vec<CreationJourneyDirection>,
+    },
+    SplitChapters {
+        schema_version: u8,
+        core: CreationJourneyCore,
+        selected_directions: Vec<CreationJourneyDirection>,
+        outline: Vec<CreationJourneyOutlineNode>,
+    },
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyElement {
+    category: String,
+    text: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyCore {
+    one_sentence: String,
+    protagonist: String,
+    goal: String,
+    obstacle: String,
+    stakes: String,
+    mystery: String,
+    reader_experience: String,
+    ending_direction: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyDirection {
+    title: String,
+    premise: String,
+    central_conflict: String,
+    ending_promise: String,
+    tone: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineNode {
+    title: String,
+    summary: String,
+    purpose: String,
+}
+
+fn valid_creation_journey_text(value: &str, max_chars: usize) -> bool {
+    !value.trim().is_empty() && value.chars().count() <= max_chars
+}
+
+fn valid_creation_journey_core(core: &CreationJourneyCore) -> bool {
+    valid_creation_journey_text(&core.one_sentence, 2_000)
+        && valid_creation_journey_text(&core.protagonist, 1_000)
+        && valid_creation_journey_text(&core.goal, 1_000)
+        && valid_creation_journey_text(&core.obstacle, 1_000)
+        && valid_creation_journey_text(&core.stakes, 1_000)
+        && valid_creation_journey_text(&core.mystery, 1_000)
+        && valid_creation_journey_text(&core.reader_experience, 1_000)
+        && valid_creation_journey_text(&core.ending_direction, 1_000)
+}
+
+fn valid_creation_journey_direction(direction: &CreationJourneyDirection) -> bool {
+    valid_creation_journey_text(&direction.title, 120)
+        && valid_creation_journey_text(&direction.premise, 2_000)
+        && valid_creation_journey_text(&direction.central_conflict, 2_000)
+        && valid_creation_journey_text(&direction.ending_promise, 2_000)
+        && valid_creation_journey_text(&direction.tone, 500)
+}
+
+fn valid_creation_journey_outline_node(node: &CreationJourneyOutlineNode) -> bool {
+    valid_creation_journey_text(&node.title, 120)
+        && valid_creation_journey_text(&node.summary, 3_000)
+        && valid_creation_journey_text(&node.purpose, 1_000)
+}
+
+fn validate_creation_journey_input(value: &str) -> bool {
+    if value.len() > 50_000 {
+        return false;
+    }
+    let lowered = value.to_ascii_lowercase();
+    if ["projectroot", "apikey", "credential", "absolutepath"]
+        .iter()
+        .any(|marker| lowered.contains(marker))
+    {
+        return false;
+    }
+    serde_json::from_str::<CreationJourneyInput>(value).is_ok_and(|input| match input {
+        CreationJourneyInput::OrganizeCore {
+            schema_version,
+            elements,
+        } => {
+            let valid_categories = [
+                "character",
+                "place",
+                "object",
+                "event",
+                "mood",
+                "theme",
+                "question",
+                "other",
+            ];
+            schema_version == 1
+                && (3..=8).contains(&elements.len())
+                && elements.iter().all(|element| {
+                    valid_categories.contains(&element.category.as_str())
+                        && valid_creation_journey_text(&element.text, 500)
+                })
+        }
+        CreationJourneyInput::GenerateDirections {
+            schema_version,
+            core,
+        } => schema_version == 1 && valid_creation_journey_core(&core),
+        CreationJourneyInput::GenerateOutline {
+            schema_version,
+            core,
+            selected_directions,
+        } => {
+            schema_version == 1
+                && valid_creation_journey_core(&core)
+                && (1..=2).contains(&selected_directions.len())
+                && selected_directions
+                    .iter()
+                    .all(valid_creation_journey_direction)
+        }
+        CreationJourneyInput::SplitChapters {
+            schema_version,
+            core,
+            selected_directions,
+            outline,
+        } => {
+            schema_version == 1
+                && valid_creation_journey_core(&core)
+                && (1..=2).contains(&selected_directions.len())
+                && selected_directions
+                    .iter()
+                    .all(valid_creation_journey_direction)
+                && (5..=8).contains(&outline.len())
+                && outline.iter().all(valid_creation_journey_outline_node)
+        }
+    })
+}
+
+#[derive(Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 struct StoryKernelGenerationInput {
     schema_version: u8,
@@ -1518,13 +1695,14 @@ mod tests {
     use super::{
         AiGenerateRequest, AiGenerationOptions, AiJobType, AiMessage, AiRole,
         CHAPTER_REVIEW_SYSTEM_PROMPT, CHARACTER_ANALYSIS_SYSTEM_PROMPT,
-        INLINE_LANGUAGE_CHECK_MAX_CHARS, INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT,
-        ITEM_ANALYSIS_SYSTEM_PROMPT, MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT,
-        PLOT_ANALYSIS_SYSTEM_PROMPT, RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat,
-        SCENE_PLAN_SYSTEM_PROMPT, SELECTION_REWRITE_SYSTEM_PROMPT,
-        STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT, STORY_EXTRACTION_SYSTEM_PROMPT,
-        STORY_KERNEL_GENERATION_SYSTEM_PROMPT, STORYFORGE_SYSTEM_PROMPT,
-        TIMELINE_ANALYSIS_SYSTEM_PROMPT, ThinkingMode, WORLD_ANALYSIS_SYSTEM_PROMPT,
+        CREATION_JOURNEY_SYSTEM_PROMPT, INLINE_LANGUAGE_CHECK_MAX_CHARS,
+        INLINE_LANGUAGE_CHECK_SYSTEM_PROMPT, ITEM_ANALYSIS_SYSTEM_PROMPT,
+        MANUSCRIPT_CONTINUATION_SYSTEM_PROMPT, PLOT_ANALYSIS_SYSTEM_PROMPT,
+        RELATIONSHIP_ANALYSIS_SYSTEM_PROMPT, ResponseFormat, SCENE_PLAN_SYSTEM_PROMPT,
+        SELECTION_REWRITE_SYSTEM_PROMPT, STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT,
+        STORY_EXTRACTION_SYSTEM_PROMPT, STORY_KERNEL_GENERATION_SYSTEM_PROMPT,
+        STORYFORGE_SYSTEM_PROMPT, TIMELINE_ANALYSIS_SYSTEM_PROMPT, ThinkingMode,
+        WORLD_ANALYSIS_SYSTEM_PROMPT,
     };
 
     fn valid_request() -> AiGenerateRequest {
@@ -2151,6 +2329,31 @@ mod tests {
             "projectRoot": "C:/secret"
         })
         .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn creation_journey_accepts_one_bounded_author_decision() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::CreationJourney;
+        request.messages[0].content = CREATION_JOURNEY_SYSTEM_PROMPT.to_owned();
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "organize-core",
+            "elements": [
+                { "category": "place", "text": "旧车站玻璃顶" },
+                { "category": "character", "text": "失忆记者" },
+                { "category": "event", "text": "每天重置的夜雨" }
+            ]
+        })
+        .to_string();
+        request.options.response_format = ResponseFormat::JsonObject;
+        assert!(request.validate().is_ok());
+
+        let mut unsafe_request: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid journey request");
+        unsafe_request["projectRoot"] = serde_json::json!("C:/secret");
+        request.messages[1].content = unsafe_request.to_string();
         assert!(request.validate().is_err());
     }
 }

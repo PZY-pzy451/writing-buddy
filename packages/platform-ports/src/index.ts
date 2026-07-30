@@ -243,6 +243,22 @@ export interface CreateChapterResult {
 	readonly description: string;
 }
 
+export interface MaterializeCreationJourneyRequest {
+	readonly projectRoot: string;
+	readonly expectedProjectRevision: string;
+	readonly journeyContent: string;
+	readonly expectedJourneyHash: string;
+}
+
+export interface MaterializeCreationJourneyResult {
+	readonly project: WritingProject;
+	readonly projectRevision: string;
+	readonly chapters: readonly ChapterDescriptor[];
+	readonly journeyContent: string;
+	readonly journeyHash: string;
+	readonly description: string;
+}
+
 export type DragEntityType =
 	| 'volume'
 	| 'chapter'
@@ -386,6 +402,9 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
 	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult>;
+	materializeCreationJourney(
+		request: MaterializeCreationJourneyRequest
+	): Promise<MaterializeCreationJourneyResult>;
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult>;
 	commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;
@@ -400,6 +419,12 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	writeReviewState(projectRoot: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
 	readQuickCaptureState(projectRoot: string): Promise<TextFile | undefined>;
 	writeQuickCaptureState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult>;
+	readCreationJourneyState(projectRoot: string): Promise<TextFile | undefined>;
+	writeCreationJourneyState(
 		projectRoot: string,
 		content: string,
 		expectedHash: string

@@ -23,6 +23,8 @@ import type {
 	CreateProjectRequest,
 	CreatedProject,
 	DesktopBridge,
+	MaterializeCreationJourneyRequest,
+	MaterializeCreationJourneyResult,
 	ProjectCreationPreflight,
 	ProjectOpenMode,
 	ProjectRepairResult,
@@ -74,6 +76,12 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult> {
 		return invoke<CreateChapterResult>('create_chapter', { request });
+	}
+
+	materializeCreationJourney(
+		request: MaterializeCreationJourneyRequest
+	): Promise<MaterializeCreationJourneyResult> {
+		return invoke<MaterializeCreationJourneyResult>('materialize_creation_journey', { request });
 	}
 
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
@@ -136,6 +144,23 @@ class TauriDesktopBridge implements DesktopBridge {
 		expectedHash: string
 	): Promise<AtomicWriteResult> {
 		return invoke<AtomicWriteResult>('write_quick_capture_state', {
+			projectRoot,
+			content,
+			expectedHash
+		});
+	}
+
+	readCreationJourneyState(projectRoot: string): Promise<TextFile | undefined> {
+		return invoke<TextFile | null>('read_creation_journey_state', { projectRoot })
+			.then(value => value ?? undefined);
+	}
+
+	writeCreationJourneyState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult> {
+		return invoke<AtomicWriteResult>('write_creation_journey_state', {
 			projectRoot,
 			content,
 			expectedHash
@@ -1317,6 +1342,106 @@ class BrowserDesktopBridge implements DesktopBridge {
 		};
 	}
 
+	async materializeCreationJourney(
+		request: MaterializeCreationJourneyRequest
+	): Promise<MaterializeCreationJourneyResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current || current.readOnly) throw new Error('projectReadOnly');
+		if (current.projectRevision !== request.expectedProjectRevision) {
+			throw new Error('projectRevisionConflict');
+		}
+		const currentJourney = browserFiles.get('.writing-buddy/creation/journey.json');
+		if (
+			(currentJourney === undefined ? '' : browserHash(currentJourney))
+			!== request.expectedJourneyHash
+		) {
+			throw new Error('externalChange');
+		}
+		if (current.project.volumes.some(volume => volume.chapters.length > 0)) {
+			throw new Error('creationJourneyProjectAlreadyHasChapters');
+		}
+		const journey = JSON.parse(request.journeyContent) as {
+			stage: string;
+			revision: number;
+			updatedAt: string;
+			chapters: Array<{
+				title: string;
+				resourceId?: string;
+			}>;
+		};
+		if (
+			journey.stage !== 'chapters'
+			|| journey.chapters.length !== 3
+			|| journey.chapters.some(chapter => chapter.resourceId || !chapter.title.trim())
+		) {
+			throw new Error('creationJourneyMaterializationInvalid');
+		}
+		const suffix = `journey-${++browserProjectRevisionSequence}`;
+		const chapters = journey.chapters.map((proposal, index) => ({
+			id: `chapter-${suffix}-${index + 1}`,
+			title: proposal.title.trim(),
+			file: `chapters/chapter-${suffix}-${index + 1}.md`,
+			status: 'draft' as const,
+			scene: {
+				location: '',
+				time: '',
+				pov: '',
+				characters: [],
+				goal: '',
+				note: ''
+			}
+		}));
+		const volumes = current.project.volumes.length > 0
+			? current.project.volumes.map((volume, index) => (
+					index === 0 ? { ...volume, chapters } : volume
+				))
+			: [{
+				id: `volume-${suffix}`,
+				title: '第一卷',
+				chapters
+			}];
+		const materializedJourney = {
+			...journey,
+			stage: 'writing',
+			revision: journey.revision + 1,
+			updatedAt: new Date().toISOString(),
+			chapters: journey.chapters.map((proposal, index) => ({
+				...proposal,
+				resourceId: chapters[index].id
+			}))
+		};
+		const journeyContent = `${JSON.stringify(materializedJourney, null, 2)}\n`;
+		const journeyHash = browserHash(journeyContent);
+		const projectRevision = `browser-project-revision-${browserProjectRevisionSequence}`;
+		const next = {
+			...current,
+			project: { ...current.project, volumes },
+			projectRevision,
+			wordCounts: {
+				...current.wordCounts,
+				...Object.fromEntries(chapters.map(chapter => [chapter.id, 0]))
+			}
+		};
+		for (const chapter of chapters) {
+			browserFiles.set(chapter.file, `# ${chapter.title}\n\n`);
+		}
+		browserFiles.set('.writing-buddy/creation/journey.json', journeyContent);
+		if (request.projectRoot === browserProject.root) {
+			browserProject = next;
+		} else {
+			browserCreatedProjects.set(request.projectRoot, next);
+		}
+		return {
+			project: next.project,
+			projectRevision,
+			chapters,
+			journeyContent,
+			journeyHash,
+			description: '已创建 3 个开篇章节，并打开第一章。'
+		};
+	}
+
 	async readQuickCaptureState(): Promise<TextFile | undefined> {
 		const content = browserFiles.get('.writing-buddy/inbox/quick-captures.json');
 		return content === undefined
@@ -1338,6 +1463,34 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return this.writeTextAtomic({
 			projectRoot,
 			relativePath: '.writing-buddy/inbox/quick-captures.json',
+			content,
+			expectedHash,
+			eol: 'lf',
+			hasBom: false
+		});
+	}
+
+	async readCreationJourneyState(): Promise<TextFile | undefined> {
+		const content = browserFiles.get('.writing-buddy/creation/journey.json');
+		return content === undefined
+			? undefined
+			: {
+				content,
+				encoding: 'utf-8',
+				eol: 'lf',
+				hasBom: false,
+				hash: browserHash(content)
+			};
+	}
+
+	async writeCreationJourneyState(
+		projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult> {
+		return this.writeTextAtomic({
+			projectRoot,
+			relativePath: '.writing-buddy/creation/journey.json',
 			content,
 			expectedHash,
 			eol: 'lf',
@@ -1693,6 +1846,8 @@ class BrowserDesktopBridge implements DesktopBridge {
 													? browserStoryExtractionDeltas(request)
 													: request.jobType === 'story-kernel-generation'
 														? browserStoryKernelGenerationDeltas(request)
+														: request.jobType === 'creation-journey'
+															? browserCreationJourneyDeltas(request)
 														: request.jobType === 'story-consistency-analysis'
 															? browserStoryConsistencyAnalysisDeltas(request)
 															: ['雨水沿着锈蚀的站牌缓慢滑落，', '远处的信号灯把雾切成暗红色的薄片，', '空荡站台只剩钟摆般反复的滴水声。'];
@@ -1853,6 +2008,88 @@ function browserJsonDeltas(value: unknown): readonly string[] {
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
+}
+
+function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly string[] {
+	const userMessage = request.messages.find(message => message.role === 'user')?.content ?? '{}';
+	const decoded = JSON.parse(userMessage) as {
+		readonly operation?: string;
+		readonly elements?: readonly { readonly text?: string }[];
+	};
+	const firstElement = decoded.elements?.find(element => element.text?.trim())?.text?.trim()
+		?? '旧车站玻璃顶';
+	switch (decoded.operation) {
+		case 'organize-core':
+			return browserJsonDeltas({
+				operation: 'organize-core',
+				core: {
+					oneSentence: `失忆记者必须在一夜内解开“${firstElement}”背后的事故真相，否则整座城市会忘记失踪者。`,
+					protagonist: '失忆记者林越',
+					goal: '找回事发当夜的记忆并公开真相',
+					obstacle: '操控记忆的站长与不断重置的夜晚',
+					stakes: '失败会让整座城市永远忘记失踪者',
+					mystery: '玻璃顶上的雨痕为什么每天完全相同',
+					readerExperience: '克制、压迫，但始终保留人物选择的温度',
+					endingDirection: '林越公开真相，但必须放弃关于姐姐的最后记忆'
+				}
+			});
+		case 'generate-directions':
+			return browserJsonDeltas({
+				operation: 'generate-directions',
+				directions: [{
+					title: '公开真相',
+					premise: '调查一场被集体遗忘的事故。',
+					centralConflict: '真相会摧毁主角仅存的私人记忆。',
+					endingPromise: '以公开与遗忘的交换收束。',
+					tone: '克制悬疑'
+				}, {
+					title: '打破循环',
+					premise: '主角发现车站困在同一个雨夜。',
+					centralConflict: '每次接近出口都会失去一段记忆。',
+					endingPromise: '以主动留下守门结束循环。',
+					tone: '高概念惊悚'
+				}, {
+					title: '寻找姐姐',
+					premise: '事故真相指向主角失踪的姐姐。',
+					centralConflict: '姐姐可能正是循环的制造者。',
+					endingPromise: '以姐妹之间的艰难选择收束。',
+					tone: '情感悬疑'
+				}]
+			});
+		case 'generate-outline':
+			return browserJsonDeltas({
+				operation: 'generate-outline',
+				nodes: [
+					{ title: '雨夜抵达', summary: '林越为追查匿名线索进入停运的旧车站。', purpose: '建立异常空间与调查目标' },
+					{ title: '重复雨痕', summary: '她发现玻璃顶雨痕和站钟不断复原。', purpose: '提出核心悬念' },
+					{ title: '缺失七分钟', summary: '录音证明她刚刚经历过一段已经遗忘的调查。', purpose: '显露记忆代价' },
+					{ title: '站长的条件', summary: '站长提出用事故真相交换她关于姐姐的记忆。', purpose: '把外部谜题变成人物选择' },
+					{ title: '拒绝离站', summary: '林越决定留下证据并继续追查失踪者名单。', purpose: '形成开篇阶段的主动转折' }
+				]
+			});
+		case 'split-chapters':
+			return browserJsonDeltas({
+				operation: 'split-chapters',
+				chapters: [{
+					title: '夜雨站台',
+					goal: '让主角主动进入异常车站并抓住第一条线索。',
+					summary: '林越抵达停运车站，发现玻璃顶上的雨痕与匿名照片完全一致。',
+					sourceNodeIndexes: [0, 1]
+				}, {
+					title: '缺失的七分钟',
+					goal: '证明失忆正在发生，并让调查付出私人代价。',
+					summary: '录音和手写笔记显示林越已经调查过站长，却完全不记得。',
+					sourceNodeIndexes: [2]
+				}, {
+					title: '站长的条件',
+					goal: '让主角面对第一次不可逆选择并主动推进故事。',
+					summary: '站长提出交换，林越拒绝离站，决定保护失踪者名单。',
+					sourceNodeIndexes: [3, 4]
+				}]
+			});
+		default:
+			return browserJsonDeltas({ operation: 'organize-core', core: {} });
+	}
 }
 
 function browserEvidence(content: string, quote: string): {
