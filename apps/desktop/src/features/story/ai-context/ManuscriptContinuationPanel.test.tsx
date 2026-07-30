@@ -79,6 +79,33 @@ function baseProps() {
 }
 
 describe('ManuscriptContinuationPanel', () => {
+	it('hands a standard continuation to the inline draft surface without applying text', async () => {
+		const props = {
+			...baseProps(),
+			onPendingDraft: vi.fn(),
+			runContinuation: () => Promise.resolve({ output: continuationOutput() })
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认资料并生成候选'
+		}));
+
+		await waitFor(() => expect(props.onPendingDraft).toHaveBeenCalledTimes(1));
+		expect(props.onPendingDraft).toHaveBeenCalledWith(
+			expect.objectContaining({ title: '追随钟声' }),
+			expect.objectContaining({
+				cursorOffset: original.length,
+				sourceRevision: 4
+			}),
+			expect.stringContaining('林越抬起头')
+		);
+		expect(screen.getByRole('status')).toHaveTextContent('临时草稿已放到正文');
+		expect(screen.queryByRole('article', { name: '候选：追随钟声' })).not.toBeInTheDocument();
+		expect(props.onApply).not.toHaveBeenCalled();
+		expect(props.onBeforeApply).not.toHaveBeenCalled();
+	});
+
 	it('keeps author guidance, blocks duplicate requests and shows grounded review before insert', async () => {
 		const order: string[] = [];
 		let release: ((value: { output: string }) => void) | undefined;

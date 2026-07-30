@@ -14,6 +14,48 @@ function pack() {
 }
 
 describe('SelectionRewritePanel', () => {
+	it('hands the generated rewrite to the inline draft surface without replacing the selection', async () => {
+		const onApply = vi.fn();
+		const onPendingDraft = vi.fn();
+		render(
+			<SelectionRewritePanel
+				projectRoot="D:\fixture"
+				resourceId="chapter:one"
+				sourceRevision={4}
+				content="夜里非常非常安静。"
+				selection={{ start: 2, end: 8, text: '非常非常安静' }}
+				theme="vs"
+				actionType="polish"
+				onApply={onApply}
+				onReplaceDocument={vi.fn()}
+				onPendingDraft={onPendingDraft}
+				loadPack={() => Promise.resolve(pack())}
+				runRewrite={() => Promise.resolve({
+					output: JSON.stringify({
+						suggestion: '格外安静',
+						rationale: '删除重复表达。',
+						potentialImpact: '不改变情节。'
+					})
+				})}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认 Context Pack 并生成'
+		}));
+
+		await waitFor(() => expect(onPendingDraft).toHaveBeenCalledTimes(1));
+		expect(onPendingDraft).toHaveBeenCalledWith(
+			expect.objectContaining({
+				range: { start: 2, end: 8 },
+				suggestion: '格外安静'
+			})
+		);
+		expect(screen.getByRole('status')).toHaveTextContent('临时草稿已放到正文');
+		expect(screen.queryByLabelText('修改对比')).not.toBeInTheDocument();
+		expect(onApply).not.toHaveBeenCalled();
+	});
+
 	it('streams a candidate, shows a diff and applies only after author confirmation', async () => {
 		const onApply = vi.fn();
 		render(

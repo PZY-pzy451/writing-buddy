@@ -28,6 +28,9 @@ import { ScenePlanningPanel } from '../features/story/ai-context/ScenePlanningPa
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
 import {
+	createPendingDraftCandidate
+} from '../features/story/ai-context/InlineDraftCandidateModel';
+import {
 	isCursorAtParagraphEnd,
 	resolveContextualWriterActions
 } from '../features/ai/contextual/ContextualActionResolver';
@@ -99,6 +102,7 @@ function AssistantPanelContent(props: {
 	const setIssues = useAppStore(state => state.setIssues);
 	const save = useAppStore(state => state.save);
 	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
+	const setPendingDraftCandidate = useAppStore(state => state.setPendingDraftCandidate);
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const theme = useAppStore(state => state.theme);
 	const setAssistantWidth = useAppStore(state => state.setAssistantWidth);
@@ -284,6 +288,22 @@ function AssistantPanelContent(props: {
 							theme={['paper', 'fog'].includes(theme) ? 'vs' : 'vs-dark'}
 							actionType={rewriteAction}
 							onBeforeApply={prepareAiInsertionSnapshot}
+							onPendingDraft={candidate => setPendingDraftCandidate(
+								createPendingDraftCandidate({
+									actionId: `selection-rewrite:${rewriteAction}`,
+									projectId: snapshot.project.projectId,
+									chapterId: activeResource.id,
+									resourceId: activeResource.id,
+									mode: 'replace_selection',
+									start: candidate.range.start,
+									end: candidate.range.end,
+									baseDocumentRevision: candidate.sourceRevision,
+									currentContent: session.content,
+									content: candidate.suggestion,
+									targetSummary: `${activeChapter?.title ?? activeResource.title} / 替换当前选区`,
+									contextSummary: candidate.rationale
+								})
+							)}
 							onApply={(start, end, text) => requestEditorEdit({
 								id: crypto.randomUUID(),
 								resourceId: activeResource.id,
@@ -340,6 +360,22 @@ function AssistantPanelContent(props: {
 									readOnly={snapshot.readOnly}
 									theme={['paper', 'fog'].includes(theme) ? 'vs' : 'vs-dark'}
 									onBeforeApply={prepareAiInsertionSnapshot}
+									onPendingDraft={(candidate, batch, insertion) => (
+										setPendingDraftCandidate(createPendingDraftCandidate({
+											actionId: 'manuscript-continuation',
+											projectId: snapshot.project.projectId,
+											chapterId: activeResource.id,
+											resourceId: activeResource.id,
+											mode: 'insert_at_cursor',
+											start: batch.cursorOffset,
+											end: batch.cursorOffset,
+											baseDocumentRevision: batch.sourceRevision,
+											currentContent: session.content,
+											content: insertion,
+											targetSummary: `${activeChapter?.title ?? activeResource.title} / 当前光标之后`,
+											contextSummary: candidate.rationale
+										}))
+									)}
 									onApply={(start, end, text) => requestEditorEdit({
 										id: crypto.randomUUID(),
 										resourceId: activeResource.id,

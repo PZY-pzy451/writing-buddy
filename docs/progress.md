@@ -4,6 +4,27 @@ Updated: 2026-07-30
 
 ## Active milestone
 
+Phase 1.2C AI Draft Insertion Experience is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Cursor continuation and selection polish now hand valid grounded AI output
+  to one transient, editable inline draft instead of leaving the result in the
+  assistant sidebar or applying it immediately.
+- Pending text stays outside the Monaco model, manuscript word count,
+  autosave and persisted workspace until the author explicitly writes it.
+- Exact resource, revision, range and bounded anchors block stale writes.
+- Commit saves dirty author work first, creates the canonical safety snapshot,
+  revalidates, performs one Monaco edit, autosaves and exposes one native
+  transaction-level Undo.
+- Real in-app browser acceptance covered edit, discard, write, snapshot,
+  autosave and one-step Undo for both cursor and selection paths.
+- Final gates: Node 24.18.0, TypeScript, ESLint, 156 Vitest files / 596 tests,
+  production build, Cargo format, 67 Rust tests with 2 explicit external gates
+  ignored, Tauri Release/NSIS and portable startup/normal close.
+- Delivery: `artifacts/release/ai-draft-insertion-phase-1.2c/`; evidence:
+  `docs/acceptance/054-phase-1.2c-ai-draft-insertion-2026-07-30.md`.
+
 Phase 1.2B Genre-to-Draft Core Journey Gates A-I are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`, based on

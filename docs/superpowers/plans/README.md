@@ -6,3 +6,4 @@
 - [Genre-to-Draft source map](./2026-07-30-genre-to-draft-source-map.md)
 - [Genre-to-Draft UX baseline](./2026-07-30-genre-to-draft-ux-baseline.md)
 - [Genre-to-Draft Gate I validation](./2026-07-30-genre-to-draft-gate-i-validation.md)
+- [Phase 1.2C AI draft insertion](./2026-07-30-phase-1.2c-ai-draft-insertion.md)

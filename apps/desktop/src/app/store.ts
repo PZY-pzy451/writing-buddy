@@ -87,6 +87,9 @@ import {
 	type SaveState
 } from '../features/save/SaveStateModel';
 import type { CreationStartRoute } from '../features/creation-journey/CreationJourneyModel';
+import type {
+	PendingDraftCandidate
+} from '../features/story/ai-context/InlineDraftCandidateModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -234,6 +237,7 @@ interface AppState extends PersistedWorkspace {
 		readonly origin?: 'ai' | 'review';
 		readonly highlightDurationMs?: number;
 	};
+	readonly pendingDraftCandidate?: PendingDraftCandidate;
 	readonly pendingReveal?: {
 		readonly resourceId: string;
 		readonly offset: number;
@@ -279,6 +283,8 @@ interface AppState extends PersistedWorkspace {
 	readonly updateCursor: (cursor: CursorState) => void;
 	readonly requestEditorEdit: (edit: NonNullable<AppState['pendingEdit']>) => void;
 	readonly clearEditorEdit: (id: string) => void;
+	readonly setPendingDraftCandidate: (candidate?: PendingDraftCandidate) => void;
+	readonly clearPendingDraftCandidate: (id: string) => void;
 	readonly requestEditorReveal: (
 		resourceId: string,
 		offset: number,
@@ -1576,6 +1582,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	clearEditorEdit(id) {
 		if (get().pendingEdit?.id === id) {
 			set({ pendingEdit: undefined });
+		}
+	},
+	setPendingDraftCandidate(pendingDraftCandidate) { set({ pendingDraftCandidate }); },
+	clearPendingDraftCandidate(id) {
+		if (get().pendingDraftCandidate?.id === id) {
+			set({ pendingDraftCandidate: undefined });
 		}
 	},
 	requestEditorReveal(resourceId, offset, preserveSelection = false) {

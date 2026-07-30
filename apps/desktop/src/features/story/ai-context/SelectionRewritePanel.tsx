@@ -65,6 +65,7 @@ export interface SelectionRewritePanelProps {
 	readonly onApply: (start: number, end: number, text: string) => void;
 	readonly onReplaceDocument: (content: string) => void;
 	readonly onBeforeApply?: (label: string) => Promise<void>;
+	readonly onPendingDraft?: (candidate: RewriteCandidate) => void;
 	readonly onSaveNote?: (candidate: RewriteCandidate) => void;
 	readonly loadPack?: () => Promise<ContextPack>;
 	readonly runRewrite?: (
@@ -244,6 +245,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 			const next = createRewriteCandidate({ pack, response, ...(result.usage ? { usage: result.usage } : {}) });
 			setCandidate(next);
 			setDraft(next.suggestion);
+			props.onPendingDraft?.(next);
 			setUsage(result.usage);
 			setJobState('completed');
 		} catch (reason) {
@@ -305,6 +307,11 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		<section className="selection-rewrite-panel" aria-label="Grounded 选区改写">
 			{pack ? <ContextPackPreview pack={pack} onChange={setPack} /> : <p className="rewrite-loading">正在构建 Context Pack…</p>}
 			{error ? <p className="rewrite-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
+			{candidate && props.onPendingDraft ? (
+				<p className="ai-action-success" role="status">
+					<Check size={16} />AI 临时草稿已放到正文目标位置，可在原地修改、写入或丢弃。
+				</p>
+			) : null}
 			<div className="rewrite-generation-actions">
 				<button className="primary-button" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
 					{generating ? <Sparkles size={18} /> : <Send size={18} />}
@@ -316,7 +323,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 					</button>
 				) : null}
 			</div>
-			{candidate ? (
+			{candidate && !props.onPendingDraft ? (
 				<section className="rewrite-candidate">
 					<header>
 						<div><span className="eyebrow">AUTHOR CANDIDATE</span><h3>改写候选</h3></div>

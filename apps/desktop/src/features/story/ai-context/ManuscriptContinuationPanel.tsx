@@ -38,6 +38,7 @@ import {
 	createContinuationCandidate,
 	formatContinuationInsertion,
 	isContinuationCandidateStale,
+	type ContinuationCandidate,
 	type ContinuationCandidateBatch
 } from './ManuscriptContinuationService';
 import { loadGroundedContextCandidates } from './SelectionRewriteService';
@@ -70,6 +71,11 @@ export interface ManuscriptContinuationPanelProps {
 	readonly onApply: (start: number, end: number, text: string) => void;
 	readonly onReplaceDocument: (content: string) => void;
 	readonly onBeforeApply?: (label: string) => Promise<void>;
+	readonly onPendingDraft?: (
+		candidate: ContinuationCandidate,
+		batch: ContinuationCandidateBatch,
+		insertion: string
+	) => void;
 	readonly loadPack?: (guidance: string) => Promise<ContextPack>;
 	readonly runContinuation?: (
 		pack: ContextPack,
@@ -288,14 +294,32 @@ export function ManuscriptContinuationPanel(
 				? await props.runContinuation(pack, onProgress)
 				: await defaultRunContinuation(pack, onProgress, setActiveJobId);
 			const candidates = parseManuscriptContinuationResponse(result.output, props.mode);
-			setBatch(createContinuationCandidate({
+			const nextBatch = createContinuationCandidate({
 				mode: props.mode,
 				resourceId: props.resourceId,
 				sourceRevision: props.sourceRevision,
 				cursorOffset: props.cursorOffset,
 				currentContent: props.content,
 				response: { candidates }
-			}));
+			});
+			setBatch(nextBatch);
+			const candidate = nextBatch.candidates[0];
+			if (
+				props.onPendingDraft
+				&& props.mode === 'continue-paragraph'
+				&& candidate
+			) {
+				props.onPendingDraft(
+					candidate,
+					nextBatch,
+					formatContinuationInsertion(
+						props.content,
+						nextBatch.cursorOffset,
+						candidate.content
+					)
+				);
+				setSuccess('AI 临时草稿已放到正文目标位置，可在原地修改、写入或丢弃。');
+			}
 			setJobState('completed');
 		} catch (reason) {
 			setJobState('failed');
@@ -425,7 +449,7 @@ export function ManuscriptContinuationPanel(
 					</button>
 				) : null}
 			</div>
-			{batch ? (
+			{batch && !(props.onPendingDraft && props.mode === 'continue-paragraph') ? (
 				<div className="continuation-candidates">
 					{stale ? (
 						<p className="ai-action-stale">

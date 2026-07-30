@@ -1,5 +1,5 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
-import { Feather } from 'lucide-react';
+import { Check, Feather, RotateCcw, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
 import type * as MonacoNamespace from 'monaco-editor';
@@ -44,6 +44,12 @@ import type {
 	InlinePlotExpansionSuggestion
 } from '../features/story/ai-context/InlinePlotExpansionService';
 import { isCursorAtParagraphEnd } from '../features/ai/contextual/ContextualActionResolver';
+import { InlineDraftCard } from '../features/story/ai-context/InlineDraftCard';
+import {
+	editPendingDraftCandidate,
+	isPendingDraftCandidateStale,
+	resolvePendingDraftEdit
+} from '../features/story/ai-context/InlineDraftCandidateModel';
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
 type MonacoApi = typeof MonacoNamespace;
@@ -97,12 +103,18 @@ export function ChapterEditor(): React.JSX.Element {
 	const readOnly = useAppStore(state => state.snapshot?.readOnly ?? true);
 	const pendingEdit = useAppStore(state => state.pendingEdit);
 	const clearEditorEdit = useAppStore(state => state.clearEditorEdit);
+	const pendingDraftCandidate = useAppStore(state => state.pendingDraftCandidate);
+	const setPendingDraftCandidate = useAppStore(state => state.setPendingDraftCandidate);
+	const clearPendingDraftCandidate = useAppStore(state => state.clearPendingDraftCandidate);
+	const save = useAppStore(state => state.save);
 	const pendingReveal = useAppStore(state => state.pendingReveal);
 	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const openWriterTool = useAppStore(state => state.openWriterTool);
 	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
 	const sceneBarExpanded = useAppStore(state => state.sceneBarExpanded);
+	const assistantOpen = useAppStore(state => state.assistantOpen);
+	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const setSceneBarExpanded = useAppStore(state => state.setSceneBarExpanded);
 	const setActiveSceneId = useAppStore(state => state.setActiveSceneId);
 	const manuscriptDensity = useAppStore(state => state.manuscriptDensity);
@@ -131,6 +143,8 @@ export function ChapterEditor(): React.JSX.Element {
 	const inlineLanguageDecorationIdsRef = useRef<readonly string[]>([]);
 	const aiInsertDecorationIdsRef = useRef<readonly string[]>([]);
 	const aiInsertHighlightTimerRef = useRef<number | undefined>(undefined);
+	const inlineDraftZoneRef = useRef<string | undefined>(undefined);
+	const committingDraftRef = useRef(false);
 	const inlinePlotSuggestionRef = useRef<
 		InlinePlotExpansionSuggestion | undefined
 	>(undefined);
@@ -159,6 +173,16 @@ export function ChapterEditor(): React.JSX.Element {
 	const mentionTextRevisionRef = useRef(0);
 	const [currentOffset, setCurrentOffset] = useState(0);
 	const [editorReady, setEditorReady] = useState(false);
+	const [inlineDraftPosition, setInlineDraftPosition] = useState<{
+		readonly top: number;
+		readonly visible: boolean;
+		readonly height: number;
+		readonly right: number;
+	}>();
+	const [draftCommitNotice, setDraftCommitNotice] = useState<{
+		readonly contentAfterCommit: string;
+		readonly message: string;
+	}>();
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
 	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
 	const [entityPeek, setEntityPeek] = useState<EntityPeekState>();
@@ -178,6 +202,36 @@ export function ChapterEditor(): React.JSX.Element {
 			aiInsertDecorationIdsRef.current = [];
 		}
 	}, []);
+	const highlightAiEdit = useCallback((
+		model: MonacoEditor.ITextModel,
+		startOffset: number,
+		text: string,
+		durationMs = 10_000
+	) => {
+		const editor = editorRef.current;
+		if (!editor || !text.length) return;
+		clearAiInsertHighlight();
+		const insertedLength = text.replaceAll(/\r\n?/gu, '\n').length;
+		const endOffset = Math.min(model.getValueLength(), startOffset + insertedLength);
+		const start = model.getPositionAt(startOffset);
+		const end = model.getPositionAt(endOffset);
+		aiInsertDecorationIdsRef.current = editor.deltaDecorations([], [{
+			range: {
+				startLineNumber: start.lineNumber,
+				startColumn: start.column,
+				endLineNumber: end.lineNumber,
+				endColumn: end.column
+			},
+			options: {
+				inlineClassName: 'ai-insert-highlight',
+				hoverMessage: { value: 'AI 草稿刚刚写入；可用一次 Ctrl+Z 完整撤销。' }
+			}
+		}]);
+		aiInsertHighlightTimerRef.current = window.setTimeout(
+			clearAiInsertHighlight,
+			Math.max(1_000, Math.min(durationMs, 20_000))
+		);
+	}, [clearAiInsertHighlight]);
 	const projectRoot = snapshot?.root;
 	const storyRepository = useMemo(() => projectRoot
 		? new DesktopStoryRepository(projectRoot, desktopBridge)
@@ -198,6 +252,23 @@ export function ChapterEditor(): React.JSX.Element {
 		: undefined;
 	const sessionResourceId = session?.state.resourceId;
 	const sessionContent = session?.content;
+	const activePendingDraft = pendingDraftCandidate
+		&& pendingDraftCandidate.target.resourceId === sessionResourceId
+		&& !['applied', 'discarded'].includes(pendingDraftCandidate.status)
+		? pendingDraftCandidate
+		: undefined;
+	const pendingDraftStale = Boolean(
+		activePendingDraft
+		&& session
+		&& isPendingDraftCandidateStale(
+			activePendingDraft,
+			session.state.resourceId,
+			session.state.version,
+			session.content
+		)
+	);
+	const activePendingDraftId = activePendingDraft?.id;
+	const activePendingDraftTargetEnd = activePendingDraft?.target.range.end;
 	const defaultHighlightKinds = useMemo<ReadonlySet<ManuscriptHighlightKind>>(
 		() => projectRoot
 			? loadManuscriptHighlightKinds(projectRoot)
@@ -553,30 +624,11 @@ export function ChapterEditor(): React.JSX.Element {
 		}]);
 		editor.pushUndoStop();
 		if (pendingEdit.origin === 'ai' && pendingEdit.text.length > 0) {
-			clearAiInsertHighlight();
-			const insertedLength = pendingEdit.text.replaceAll(/\r\n?/gu, '\n').length;
-			const endOffset = Math.min(model.getValueLength(), startOffset + insertedLength);
-			const start = model.getPositionAt(startOffset);
-			const end = model.getPositionAt(endOffset);
-			aiInsertDecorationIdsRef.current = editor.deltaDecorations([], [{
-				range: {
-					startLineNumber: start.lineNumber,
-					startColumn: start.column,
-					endLineNumber: end.lineNumber,
-					endColumn: end.column
-				},
-				options: {
-					inlineClassName: 'ai-insert-highlight',
-					hoverMessage: { value: 'AI 候选刚刚插入；继续编辑后提示会消失。' }
-				}
-			}]);
-			const duration = Math.max(
-				1_000,
-				Math.min(pendingEdit.highlightDurationMs ?? 10_000, 20_000)
-			);
-			aiInsertHighlightTimerRef.current = window.setTimeout(
-				clearAiInsertHighlight,
-				duration
+			highlightAiEdit(
+				model,
+				startOffset,
+				pendingEdit.text,
+				pendingEdit.highlightDurationMs
 			);
 		}
 		editor.focus();
@@ -584,8 +636,85 @@ export function ChapterEditor(): React.JSX.Element {
 	}, [
 		clearAiInsertHighlight,
 		clearEditorEdit,
+		highlightAiEdit,
 		pendingEdit,
 		session?.state.resourceId
+	]);
+
+	useEffect(() => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (
+			!editor
+			|| !model
+			|| !activePendingDraftId
+			|| activePendingDraftTargetEnd === undefined
+		) {
+			setInlineDraftPosition(undefined);
+			return;
+		}
+		const spacer = document.createElement('div');
+		spacer.className = 'inline-draft-spacer';
+		const targetPosition = model.getPositionAt(activePendingDraftTargetEnd);
+		let zoneId: string | undefined;
+		editor.changeViewZones(accessor => {
+			zoneId = accessor.addZone({
+				afterLineNumber: targetPosition.lineNumber,
+				heightInPx: 470,
+				domNode: spacer
+			});
+		});
+		inlineDraftZoneRef.current = zoneId;
+		const lineHeight = manuscriptDensity === 'compact'
+			? 30
+			: manuscriptDensity === 'spacious' ? 38 : 34;
+		const updatePosition = () => {
+			const top = editor.getTopForLineNumber(targetPosition.lineNumber)
+				- editor.getScrollTop()
+				+ lineHeight;
+			const viewportHeight = editor.getLayoutInfo().height;
+			const editorRect = editor.getDomNode()?.getBoundingClientRect();
+			const assistantRect = assistantOpen
+				? document.querySelector('.assistant-panel')?.getBoundingClientRect()
+				: undefined;
+			setInlineDraftPosition({
+				top,
+				visible: top > -440 && top < viewportHeight - 24,
+				height: Math.max(180, viewportHeight - Math.max(0, top)),
+				right: editorRect && assistantRect
+					? Math.max(0, editorRect.right - assistantRect.left)
+					: 0
+			});
+		};
+		const scrollListener = editor.onDidScrollChange(updatePosition);
+		const layoutListener = editor.onDidLayoutChange(updatePosition);
+		editor.setScrollTop(Math.max(
+			0,
+			editor.getTopForLineNumber(targetPosition.lineNumber) - 12
+		));
+		updatePosition();
+		const frame = window.requestAnimationFrame(updatePosition);
+		return () => {
+			window.cancelAnimationFrame(frame);
+			scrollListener.dispose();
+			layoutListener.dispose();
+			setInlineDraftPosition(undefined);
+			if (zoneId) {
+				const currentZoneId = zoneId;
+				editor.changeViewZones(accessor => accessor.removeZone(currentZoneId));
+			}
+			if (inlineDraftZoneRef.current === zoneId) {
+				inlineDraftZoneRef.current = undefined;
+			}
+		};
+	}, [
+		activePendingDraftId,
+		activePendingDraftTargetEnd,
+		assistantOpen,
+		assistantWidth,
+		editorReady,
+		manuscriptDensity,
+		sessionResourceId
 	]);
 
 	useEffect(() => () => clearAiInsertHighlight(), [clearAiInsertHighlight]);
@@ -844,6 +973,163 @@ export function ChapterEditor(): React.JSX.Element {
 		&& !selection?.text
 		&& Boolean(session.content.trim())
 		&& isCursorAtParagraphEnd(session.content, storeCursorOffset);
+	const updateInlineDraft = (content: string) => {
+		if (!activePendingDraft || committingDraftRef.current) return;
+		setPendingDraftCandidate(editPendingDraftCandidate(activePendingDraft, content));
+	};
+	const discardInlineDraft = () => {
+		if (!activePendingDraft || committingDraftRef.current) return;
+		clearPendingDraftCandidate(activePendingDraft.id);
+		window.requestAnimationFrame(() => editorRef.current?.focus());
+	};
+	const commitInlineDraft = async () => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		const candidate = useAppStore.getState().pendingDraftCandidate;
+		if (!candidate || committingDraftRef.current) {
+			return;
+		}
+		if (!editor || !model || readOnly) {
+			setPendingDraftCandidate({
+				...candidate,
+				status: 'failed',
+				error: readOnly
+					? '当前章节以只读模式打开，不能写入临时草稿。'
+					: '正文编辑器尚未准备完成，请稍后重试。'
+			});
+			return;
+		}
+		committingDraftRef.current = true;
+		let editApplied = false;
+		try {
+			const before = useAppStore.getState();
+			const beforeSession = before.session;
+			if (
+				!beforeSession
+				|| before.activeResource?.type !== 'chapter'
+				|| before.snapshot?.readOnly
+				|| before.snapshot?.project.projectId !== candidate.target.projectId
+				|| beforeSession.state.resourceId !== candidate.target.resourceId
+			) {
+				throw new Error('当前章节不可写入，临时草稿仍然保留。');
+			}
+			resolvePendingDraftEdit(
+				candidate,
+				beforeSession.state.resourceId,
+				beforeSession.state.version,
+				beforeSession.content
+			);
+			const contentBeforeCommit = beforeSession.content;
+			setPendingDraftCandidate({ ...candidate, status: 'applying', error: undefined });
+			if (beforeSession.state.dirty || before.saveState.type !== 'clean') {
+				await save();
+			}
+
+			const saved = useAppStore.getState();
+			const savedSession = saved.session;
+			if (
+				!savedSession
+				|| saved.activeResource?.id !== candidate.target.resourceId
+				|| savedSession.state.resourceId !== candidate.target.resourceId
+				|| savedSession.content !== contentBeforeCommit
+				|| savedSession.state.dirty
+				|| saved.saveState.type !== 'clean'
+			) {
+				throw new Error('正文尚未安全保存，已停止 AI 写入。请先解决保存问题后重试。');
+			}
+
+			await desktopBridge.createSnapshot(
+				saved.snapshot?.root ?? '',
+				'beforeDestructiveOperation',
+				candidate.target.mode === 'replace_selection'
+					? 'AI 临时草稿替换选区前'
+					: 'AI 临时草稿写入光标前'
+			);
+
+			const verified = useAppStore.getState();
+			const verifiedSession = verified.session;
+			if (!verifiedSession) throw new Error('当前章节已经关闭，未写入临时草稿。');
+			const edit = resolvePendingDraftEdit(
+				candidate,
+				verifiedSession.state.resourceId,
+				verifiedSession.state.version,
+				verifiedSession.content
+			);
+			if (model.getValue() !== verifiedSession.content) {
+				throw new Error('编辑器与正文状态尚未同步，未写入临时草稿。');
+			}
+			const start = model.getPositionAt(edit.start);
+			const end = model.getPositionAt(edit.end);
+			editor.pushUndoStop();
+			const applied = editor.executeEdits('writing-buddy.ai-draft', [{
+				range: {
+					startLineNumber: start.lineNumber,
+					startColumn: start.column,
+					endLineNumber: end.lineNumber,
+					endColumn: end.column
+				},
+				text: edit.text,
+				forceMoveMarkers: true
+			}]);
+			editor.pushUndoStop();
+			if (!applied) throw new Error('编辑器未接受本次写入，临时草稿仍然保留。');
+			editApplied = true;
+			useAppStore.getState().setContent(model.getValue(), 'edit');
+			highlightAiEdit(model, edit.start, edit.text);
+			await useAppStore.getState().save();
+
+			const completed = useAppStore.getState();
+			if (
+				completed.session?.content !== model.getValue()
+				|| completed.session.state.dirty
+				|| completed.saveState.type !== 'clean'
+			) {
+				throw new Error('AI 草稿已撤回：自动保存未完成，请处理保存状态后重试。');
+			}
+			clearPendingDraftCandidate(candidate.id);
+			setDraftCommitNotice({
+				contentAfterCommit: model.getValue(),
+				message: 'AI 草稿已写入正文，并已创建安全快照与自动保存。'
+			});
+			editor.focus();
+		} catch (reason) {
+			if (editApplied) {
+				editor.trigger('writing-buddy.ai-draft', 'undo', undefined);
+				useAppStore.getState().setContent(model.getValue(), 'undo');
+				clearAiInsertHighlight();
+			}
+			const message = reason instanceof Error
+				? reason.message
+				: '临时草稿写入失败，正文未改变。';
+			if (useAppStore.getState().pendingDraftCandidate?.id === candidate.id) {
+				setPendingDraftCandidate({
+					...candidate,
+					status: 'failed',
+					error: message
+				});
+			}
+		} finally {
+			committingDraftRef.current = false;
+		}
+	};
+	const undoCommittedDraft = async () => {
+		const editor = editorRef.current;
+		const model = editor?.getModel();
+		if (
+			!editor
+			|| !model
+			|| !draftCommitNotice
+			|| session.content !== draftCommitNotice.contentAfterCommit
+		) {
+			return;
+		}
+		editor.trigger('writing-buddy.ai-draft', 'undo', undefined);
+		useAppStore.getState().setContent(model.getValue(), 'undo');
+		clearAiInsertHighlight();
+		await useAppStore.getState().save();
+		setDraftCommitNotice(undefined);
+		editor.focus();
+	};
 	const closeEntityPeek = () => {
 		entityPeekRequestRef.current += 1;
 		setEntityPeek(undefined);
@@ -1037,6 +1323,50 @@ export function ChapterEditor(): React.JSX.Element {
 					wrappingIndent: 'none'
 				}}
 				/>
+				{inlineDraftPosition?.visible && activePendingDraft
+					? (
+							<div
+								className="inline-draft-floating-host"
+								style={{
+									top: inlineDraftPosition.top,
+									height: inlineDraftPosition.height,
+									right: inlineDraftPosition.right
+								}}
+							>
+								<InlineDraftCard
+									candidate={activePendingDraft}
+									stale={pendingDraftStale}
+									onChange={updateInlineDraft}
+									onCommit={() => void commitInlineDraft()}
+									onDiscard={discardInlineDraft}
+								/>
+							</div>
+						)
+					: null}
+				{draftCommitNotice ? (
+					<div className="inline-draft-commit-notice" role="status">
+						<Check size={18} />
+						<span>{draftCommitNotice.message}</span>
+						<button
+							type="button"
+							disabled={session.content !== draftCommitNotice.contentAfterCommit}
+							title={session.content === draftCommitNotice.contentAfterCommit
+								? '一次撤销完整 AI 写入'
+								: '正文已继续编辑，请使用编辑器原生撤销'}
+							onClick={() => void undoCommittedDraft()}
+						>
+							<RotateCcw size={18} />撤销
+						</button>
+						<button
+							className="icon-button"
+							type="button"
+							aria-label="关闭 AI 写入提示"
+							onClick={() => setDraftCommitNotice(undefined)}
+						>
+							<X size={18} />
+						</button>
+					</div>
+				) : null}
 				{activeResource.type === 'chapter'
 					&& storyRepository
 					&& mentionService
