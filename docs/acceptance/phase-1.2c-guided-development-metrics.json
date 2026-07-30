@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T03:58:34.942Z",
+  "appUrl": "http://127.0.0.1:4174/",
+  "journey": {
+    "aiCalls": 5,
+    "chapterCount": 3,
+    "defaultStart": "我只有几个想法",
+    "firstChapterOpened": "夜雨站台",
+    "firstChapterPrecreated": false,
+    "firstChapterPrecreationDisabled": true,
+    "materializeCalls": 1,
+    "stage": "writing",
+    "startRouteCount": 6
+  },
+  "responsive": {
+    "elementsWide": {
+      "viewport": {
+        "width": 1536,
+        "height": 992
+      },
+      "pageOverflowX": 0,
+      "clippedInteractive": 0,
+      "clippedDetails": [],
+      "controlCount": 27,
+      "minControlHeight": 44,
+      "focusedHeading": true,
+      "focusedInDialog": false,
+      "alertCount": 0,
+      "theme": "paper"
+    },
+    "outlineMedium": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "clippedInteractive": 0,
+      "clippedDetails": [],
+      "controlCount": 39,
+      "minControlHeight": 44,
+      "focusedHeading": true,
+      "focusedInDialog": false,
+      "alertCount": 0,
+      "theme": "midnight"
+    },
+    "chaptersCompact": {
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "clippedInteractive": 0,
+      "clippedDetails": [],
+      "controlCount": 21,
+      "minControlHeight": 44,
+      "focusedHeading": true,
+      "focusedInDialog": false,
+      "alertCount": 0,
+      "theme": "paper"
+    },
+    "impactMedium": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "clippedInteractive": 0,
+      "clippedDetails": [],
+      "controlCount": 48,
+      "minControlHeight": 44,
+      "focusedHeading": false,
+      "focusedInDialog": true,
+      "alertCount": 0,
+      "theme": "midnight"
+    }
+  },
+  "development": {
+    "schemaVersion": 2,
+    "answerCount": 1,
+    "elementLocks": 1,
+    "coreLocks": [
+      "protagonist"
+    ],
+    "pendingImpacts": 9,
+    "keptImpacts": 1,
+    "updatedImpacts": 1,
+    "chapterResourceIds": [
+      "chapter-journey-3-1",
+      "chapter-journey-3-2",
+      "chapter-journey-3-3"
+    ],
+    "aiCalls": 6,
+    "focusRestored": true,
+    "impactCounts": {
+      "direction": 3,
+      "outline": 5,
+      "chapter": 3
+    }
+  },
+  "browserErrors": [],
+  "pass": true
+}

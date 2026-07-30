@@ -7,6 +7,7 @@ pub mod sse_parser;
 pub mod storage;
 
 use serde::{Deserialize, Serialize};
+use std::collections::HashSet;
 
 pub const PROVIDER_ID: &str = "deepseek";
 pub const DEFAULT_MODEL_ID: &str = "deepseek-v4-flash";
@@ -137,6 +138,8 @@ pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。",
     "不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。",
     "organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。",
+    "generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。",
+    "lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。",
     "仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。",
     "所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。"
 );
@@ -1325,21 +1328,42 @@ enum CreationJourneyInput {
     OrganizeCore {
         schema_version: u8,
         elements: Vec<CreationJourneyElement>,
+        guidance_answers: Option<Vec<CreationJourneyGuidanceAnswer>>,
+        locked_decisions: Option<Vec<CreationJourneyLockedDecision>>,
     },
     GenerateDirections {
         schema_version: u8,
         core: CreationJourneyCore,
+        guidance_answers: Option<Vec<CreationJourneyGuidanceAnswer>>,
+        locked_decisions: Option<Vec<CreationJourneyLockedDecision>>,
     },
     GenerateOutline {
         schema_version: u8,
         core: CreationJourneyCore,
         selected_directions: Vec<CreationJourneyDirection>,
+        guidance_answers: Option<Vec<CreationJourneyGuidanceAnswer>>,
+        locked_decisions: Option<Vec<CreationJourneyLockedDecision>>,
     },
     SplitChapters {
         schema_version: u8,
         core: CreationJourneyCore,
         selected_directions: Vec<CreationJourneyDirection>,
         outline: Vec<CreationJourneyOutlineNode>,
+        guidance_answers: Option<Vec<CreationJourneyGuidanceAnswer>>,
+        locked_decisions: Option<Vec<CreationJourneyLockedDecision>>,
+    },
+    GenerateGuidanceQuestion {
+        schema_version: u8,
+        stage: String,
+        context: CreationJourneyGuidanceContext,
+        guidance_answers: Vec<CreationJourneyGuidanceAnswer>,
+        locked_decisions: Vec<CreationJourneyLockedDecision>,
+    },
+    RegeneratePart {
+        schema_version: u8,
+        target: CreationJourneyRegenerationTarget,
+        guidance_answers: Vec<CreationJourneyGuidanceAnswer>,
+        locked_decisions: Vec<CreationJourneyLockedDecision>,
     },
 }
 
@@ -1381,6 +1405,94 @@ struct CreationJourneyOutlineNode {
     purpose: String,
 }
 
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidanceAnswer {
+    stage: String,
+    answer_text: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyLockedDecision {
+    key: String,
+    content: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyChapter {
+    title: String,
+    goal: String,
+    summary: String,
+    source_node_ids: Vec<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineWithId {
+    id: String,
+    title: String,
+    summary: String,
+    purpose: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidanceContext {
+    elements: Option<Vec<CreationJourneyElement>>,
+    core: Option<CreationJourneyCore>,
+    directions: Option<Vec<CreationJourneyDirection>>,
+    outline: Option<Vec<CreationJourneyOutlineNode>>,
+    chapters: Option<Vec<CreationJourneyChapter>>,
+}
+
+#[derive(Deserialize)]
+#[serde(
+    tag = "kind",
+    rename_all = "kebab-case",
+    rename_all_fields = "camelCase",
+    deny_unknown_fields
+)]
+enum CreationJourneyRegenerationTarget {
+    Direction {
+        id: String,
+        current: CreationJourneyDirection,
+        context: CreationJourneyDirectionContext,
+    },
+    Outline {
+        id: String,
+        current: CreationJourneyOutlineNode,
+        context: CreationJourneyOutlineContext,
+    },
+    Chapter {
+        id: String,
+        current: CreationJourneyChapter,
+        context: CreationJourneyChapterContext,
+    },
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyDirectionContext {
+    core: CreationJourneyCore,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineContext {
+    core: CreationJourneyCore,
+    selected_directions: Vec<CreationJourneyDirection>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyChapterContext {
+    core: CreationJourneyCore,
+    selected_directions: Vec<CreationJourneyDirection>,
+    outline: Vec<CreationJourneyOutlineWithId>,
+}
+
 fn valid_creation_journey_text(value: &str, max_chars: usize) -> bool {
     !value.trim().is_empty() && value.chars().count() <= max_chars
 }
@@ -1410,14 +1522,173 @@ fn valid_creation_journey_outline_node(node: &CreationJourneyOutlineNode) -> boo
         && valid_creation_journey_text(&node.purpose, 1_000)
 }
 
+fn valid_creation_journey_id(value: &str, prefix: &str) -> bool {
+    value.strip_prefix(prefix).is_some_and(|leaf| {
+        !leaf.is_empty()
+            && leaf.chars().all(|character| {
+                character.is_ascii_lowercase() || character.is_ascii_digit() || character == '-'
+            })
+    })
+}
+
+fn valid_creation_journey_development(
+    guidance_answers: &[CreationJourneyGuidanceAnswer],
+    locked_decisions: &[CreationJourneyLockedDecision],
+) -> bool {
+    guidance_answers.len() <= 12
+        && guidance_answers.iter().all(|answer| {
+            matches!(
+                answer.stage.as_str(),
+                "elements" | "core" | "directions" | "outline" | "chapters" | "writing"
+            ) && valid_creation_journey_text(&answer.answer_text, 1_000)
+        })
+        && locked_decisions.len() <= 24
+        && locked_decisions.iter().all(|decision| {
+            valid_creation_journey_text(&decision.key, 240)
+                && valid_creation_journey_text(&decision.content, 4_000)
+        })
+}
+
+fn valid_creation_journey_chapter(
+    chapter: &CreationJourneyChapter,
+    known_outline_ids: Option<&HashSet<&str>>,
+) -> bool {
+    valid_creation_journey_text(&chapter.title, 120)
+        && valid_creation_journey_text(&chapter.goal, 1_000)
+        && valid_creation_journey_text(&chapter.summary, 3_000)
+        && (1..=8).contains(&chapter.source_node_ids.len())
+        && chapter.source_node_ids.iter().collect::<HashSet<_>>().len()
+            == chapter.source_node_ids.len()
+        && chapter
+            .source_node_ids
+            .iter()
+            .all(|id| valid_creation_journey_id(id, "journey-outline:"))
+        && known_outline_ids.is_none_or(|ids| {
+            chapter
+                .source_node_ids
+                .iter()
+                .all(|id| ids.contains(id.as_str()))
+        })
+}
+
+fn valid_creation_journey_guidance_context(context: &CreationJourneyGuidanceContext) -> bool {
+    let has_context = context.elements.is_some()
+        || context.core.is_some()
+        || context.directions.is_some()
+        || context.outline.is_some()
+        || context.chapters.is_some();
+    has_context
+        && context.elements.as_ref().is_none_or(|elements| {
+            let categories = [
+                "character",
+                "place",
+                "object",
+                "event",
+                "mood",
+                "theme",
+                "question",
+                "other",
+            ];
+            (3..=8).contains(&elements.len())
+                && elements.iter().all(|element| {
+                    categories.contains(&element.category.as_str())
+                        && valid_creation_journey_text(&element.text, 500)
+                })
+        })
+        && context
+            .core
+            .as_ref()
+            .is_none_or(valid_creation_journey_core)
+        && context.directions.as_ref().is_none_or(|directions| {
+            directions.len() <= 3 && directions.iter().all(valid_creation_journey_direction)
+        })
+        && context.outline.as_ref().is_none_or(|outline| {
+            outline.len() <= 8 && outline.iter().all(valid_creation_journey_outline_node)
+        })
+        && context.chapters.as_ref().is_none_or(|chapters| {
+            chapters.len() <= 3
+                && chapters
+                    .iter()
+                    .all(|chapter| valid_creation_journey_chapter(chapter, None))
+        })
+}
+
+fn valid_creation_journey_regeneration_target(
+    target: &CreationJourneyRegenerationTarget,
+) -> Option<String> {
+    match target {
+        CreationJourneyRegenerationTarget::Direction {
+            id,
+            current,
+            context,
+        } => (valid_creation_journey_id(id, "journey-direction:")
+            && valid_creation_journey_direction(current)
+            && valid_creation_journey_core(&context.core))
+        .then(|| format!("direction:{id}")),
+        CreationJourneyRegenerationTarget::Outline {
+            id,
+            current,
+            context,
+        } => (valid_creation_journey_id(id, "journey-outline:")
+            && valid_creation_journey_outline_node(current)
+            && valid_creation_journey_core(&context.core)
+            && (1..=2).contains(&context.selected_directions.len())
+            && context
+                .selected_directions
+                .iter()
+                .all(valid_creation_journey_direction))
+        .then(|| format!("outline:{id}")),
+        CreationJourneyRegenerationTarget::Chapter {
+            id,
+            current,
+            context,
+        } => {
+            let outline_ids = context
+                .outline
+                .iter()
+                .map(|node| node.id.as_str())
+                .collect::<HashSet<_>>();
+            (valid_creation_journey_id(id, "journey-chapter:")
+                && (5..=8).contains(&context.outline.len())
+                && outline_ids.len() == context.outline.len()
+                && context.outline.iter().all(|node| {
+                    valid_creation_journey_id(&node.id, "journey-outline:")
+                        && valid_creation_journey_text(&node.title, 120)
+                        && valid_creation_journey_text(&node.summary, 3_000)
+                        && valid_creation_journey_text(&node.purpose, 1_000)
+                })
+                && valid_creation_journey_chapter(current, Some(&outline_ids))
+                && valid_creation_journey_core(&context.core)
+                && (1..=2).contains(&context.selected_directions.len())
+                && context
+                    .selected_directions
+                    .iter()
+                    .all(valid_creation_journey_direction))
+            .then(|| format!("chapter:{id}"))
+        }
+    }
+}
+
 fn validate_creation_journey_input(value: &str) -> bool {
     if value.len() > 50_000 {
         return false;
     }
     let lowered = value.to_ascii_lowercase();
-    if ["projectroot", "apikey", "credential", "absolutepath"]
-        .iter()
-        .any(|marker| lowered.contains(marker))
+    if [
+        "projectid",
+        "projectroot",
+        "apikey",
+        "credential",
+        "password",
+        "absolutepath",
+    ]
+    .iter()
+    .any(|marker| lowered.contains(marker))
+        || value.as_bytes().windows(3).any(|window| {
+            window[0].is_ascii_alphabetic()
+                && window[1] == b':'
+                && matches!(window[2], b'\\' | b'/')
+        })
     {
         return false;
     }
@@ -1425,6 +1696,8 @@ fn validate_creation_journey_input(value: &str) -> bool {
         CreationJourneyInput::OrganizeCore {
             schema_version,
             elements,
+            guidance_answers,
+            locked_decisions,
         } => {
             let valid_categories = [
                 "character",
@@ -1442,15 +1715,30 @@ fn validate_creation_journey_input(value: &str) -> bool {
                     valid_categories.contains(&element.category.as_str())
                         && valid_creation_journey_text(&element.text, 500)
                 })
+                && valid_creation_journey_development(
+                    guidance_answers.as_deref().unwrap_or_default(),
+                    locked_decisions.as_deref().unwrap_or_default(),
+                )
         }
         CreationJourneyInput::GenerateDirections {
             schema_version,
             core,
-        } => schema_version == 1 && valid_creation_journey_core(&core),
+            guidance_answers,
+            locked_decisions,
+        } => {
+            schema_version == 1
+                && valid_creation_journey_core(&core)
+                && valid_creation_journey_development(
+                    guidance_answers.as_deref().unwrap_or_default(),
+                    locked_decisions.as_deref().unwrap_or_default(),
+                )
+        }
         CreationJourneyInput::GenerateOutline {
             schema_version,
             core,
             selected_directions,
+            guidance_answers,
+            locked_decisions,
         } => {
             schema_version == 1
                 && valid_creation_journey_core(&core)
@@ -1458,12 +1746,18 @@ fn validate_creation_journey_input(value: &str) -> bool {
                 && selected_directions
                     .iter()
                     .all(valid_creation_journey_direction)
+                && valid_creation_journey_development(
+                    guidance_answers.as_deref().unwrap_or_default(),
+                    locked_decisions.as_deref().unwrap_or_default(),
+                )
         }
         CreationJourneyInput::SplitChapters {
             schema_version,
             core,
             selected_directions,
             outline,
+            guidance_answers,
+            locked_decisions,
         } => {
             schema_version == 1
                 && valid_creation_journey_core(&core)
@@ -1473,6 +1767,38 @@ fn validate_creation_journey_input(value: &str) -> bool {
                     .all(valid_creation_journey_direction)
                 && (5..=8).contains(&outline.len())
                 && outline.iter().all(valid_creation_journey_outline_node)
+                && valid_creation_journey_development(
+                    guidance_answers.as_deref().unwrap_or_default(),
+                    locked_decisions.as_deref().unwrap_or_default(),
+                )
+        }
+        CreationJourneyInput::GenerateGuidanceQuestion {
+            schema_version,
+            stage,
+            context,
+            guidance_answers,
+            locked_decisions,
+        } => {
+            schema_version == 1
+                && matches!(
+                    stage.as_str(),
+                    "elements" | "core" | "directions" | "outline" | "chapters"
+                )
+                && valid_creation_journey_guidance_context(&context)
+                && valid_creation_journey_development(&guidance_answers, &locked_decisions)
+        }
+        CreationJourneyInput::RegeneratePart {
+            schema_version,
+            target,
+            guidance_answers,
+            locked_decisions,
+        } => {
+            let target_key = valid_creation_journey_regeneration_target(&target);
+            schema_version == 1
+                && target_key.as_ref().is_some_and(|key| {
+                    !locked_decisions.iter().any(|decision| decision.key == *key)
+                })
+                && valid_creation_journey_development(&guidance_answers, &locked_decisions)
         }
     })
 }
@@ -2354,6 +2680,69 @@ mod tests {
             serde_json::from_str(&request.messages[1].content).expect("valid journey request");
         unsafe_request["projectRoot"] = serde_json::json!("C:/secret");
         request.messages[1].content = unsafe_request.to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn creation_journey_accepts_guidance_and_rejects_locked_regeneration() {
+        let core = serde_json::json!({
+            "oneSentence": "失忆记者必须在一夜内找回被抹去的车站真相。",
+            "protagonist": "失忆记者林越",
+            "goal": "找回记忆并公开真相",
+            "obstacle": "操控记忆的站长",
+            "stakes": "失败会让城市忘记失踪者",
+            "mystery": "雨痕为何每天相同",
+            "readerExperience": "克制而紧张的悬疑体验",
+            "endingDirection": "公开真相但失去私人记忆"
+        });
+        let direction = serde_json::json!({
+            "title": "公开真相",
+            "premise": "调查集体遗忘事故。",
+            "centralConflict": "真相会摧毁私人记忆。",
+            "endingPromise": "以公开与遗忘的交换收束。",
+            "tone": "克制悬疑"
+        });
+        let mut request = valid_request();
+        request.job_type = AiJobType::CreationJourney;
+        request.messages[0].content = CREATION_JOURNEY_SYSTEM_PROMPT.to_owned();
+        request.options.response_format = ResponseFormat::JsonObject;
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "generate-guidance-question",
+            "stage": "core",
+            "context": {
+                "core": core
+            },
+            "guidanceAnswers": [{
+                "stage": "elements",
+                "answerText": "车站只在雨夜出现。"
+            }],
+            "lockedDecisions": [{
+                "key": "core:stakes",
+                "content": "失败会让城市忘记失踪者"
+            }]
+        })
+        .to_string();
+        assert!(request.validate().is_ok());
+
+        request.messages[1].content = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "regenerate-part",
+            "target": {
+                "kind": "direction",
+                "id": "journey-direction:truth",
+                "current": direction,
+                "context": {
+                    "core": core
+                }
+            },
+            "guidanceAnswers": [],
+            "lockedDecisions": [{
+                "key": "direction:journey-direction:truth",
+                "content": "locked"
+            }]
+        })
+        .to_string();
         assert!(request.validate().is_err());
     }
 }

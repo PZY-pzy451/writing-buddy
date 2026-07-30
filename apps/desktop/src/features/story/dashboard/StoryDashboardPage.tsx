@@ -236,6 +236,11 @@ export function StoryDashboardPage({
 								<button type="button" className="secondary" onClick={() => openChapter(model.recentChapter)}>
 									规划下一场
 								</button>
+								{journeyAvailable && (
+									<button type="button" className="secondary" onClick={openCreationJourney}>
+										<Sparkles size={16} />查看创作旅程
+									</button>
+								)}
 							</div>
 						</>
 					) : (

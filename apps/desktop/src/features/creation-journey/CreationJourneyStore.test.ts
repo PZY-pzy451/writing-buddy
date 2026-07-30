@@ -5,7 +5,11 @@ import {
 	CreationJourneyStore,
 	type CreationJourneyStorageGateway
 } from './CreationJourneyStore';
-import { updateStoryElement } from './CreationJourneyModel';
+import {
+	createCreationJourneyState,
+	parseCreationJourneyState,
+	updateStoryElement
+} from './CreationJourneyModel';
 
 class MemoryGateway implements CreationJourneyStorageGateway {
 	file?: TextFile;
@@ -73,6 +77,33 @@ describe('CreationJourneyStore', () => {
 		expect(saved.hash).toBe('hash-1');
 		expect(gateway.writes).toBe(1);
 		expect(saved.state.elements[0]?.text).toBe('旧车站玻璃顶');
+	});
+
+	it('loads version 1 as version 2 and saves through the original expected hash', async () => {
+		const gateway = new MemoryGateway();
+		const current = createCreationJourneyState('novel-001', {
+			now: () => '2026-07-30T01:02:03.000Z'
+		});
+		const legacy = { ...current } as Record<string, unknown>;
+		delete legacy.guidance;
+		delete legacy.locks;
+		delete legacy.impacts;
+		gateway.file = {
+			content: JSON.stringify({ ...legacy, schemaVersion: 1 }),
+			hash: 'legacy-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		};
+		const store = new CreationJourneyStore('D:/Novel', 'novel-001', gateway);
+
+		const loaded = await store.load();
+		const saved = await store.save(loaded, loaded.state);
+
+		expect(loaded.hash).toBe('legacy-hash');
+		expect(loaded.state.schemaVersion).toBe(2);
+		expect(saved.hash).toBe('hash-1');
+		expect(parseCreationJourneyState(gateway.file.content).schemaVersion).toBe(2);
 	});
 
 	it('rejects a foreign project and does not overwrite concurrent work', async () => {

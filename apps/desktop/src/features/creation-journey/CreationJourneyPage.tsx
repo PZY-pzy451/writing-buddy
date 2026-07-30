@@ -6,6 +6,9 @@ import {
 	Check,
 	GripVertical,
 	LoaderCircle,
+	LockKeyhole,
+	LockKeyholeOpen,
+	MessageCircleQuestion,
 	Plus,
 	RefreshCw,
 	Sparkles,
@@ -24,16 +27,20 @@ import { runGroundedJsonJob } from '../story/ai-context/GroundedAiRunner';
 import {
 	addStoryElement,
 	advanceCreationJourney,
+	answerCreationGuidanceQuestion,
 	confirmStoryCore,
 	moveStoryElement,
 	moveStoryOutlineNode,
 	removeStoryElement,
+	resolveJourneyImpact,
 	selectStoryDirections,
 	serializeCreationJourneyState,
+	setCreationGuidanceQuestion,
 	setGeneratedStoryCore,
 	setJourneyChapterProposals,
 	setStoryDirections,
 	setStoryOutline,
+	toggleJourneyLock,
 	updateJourneyChapterProposal,
 	updateStoryCore,
 	updateStoryDirection,
@@ -41,6 +48,7 @@ import {
 	updateStoryOutlineNode,
 	type CreationJourneyStage,
 	type CreationJourneyState,
+	type JourneyImpact,
 	type StoryCore,
 	type StoryElement
 } from './CreationJourneyModel';
@@ -138,13 +146,148 @@ function coreForAi(core: StoryCore): Omit<StoryCore, 'confirmedAt'> {
 	};
 }
 
-function journeyId(prefix: 'journey-direction' | 'journey-outline' | 'journey-chapter'): string {
+type JourneyStageAiOperation =
+	| 'organize-core'
+	| 'generate-directions'
+	| 'generate-outline'
+	| 'split-chapters';
+
+type GuidanceQuestionInput = Extract<
+	CreationJourneyAiInput,
+	{ readonly operation: 'generate-guidance-question' }
+>;
+
+type RegeneratePartInput = Extract<
+	CreationJourneyAiInput,
+	{ readonly operation: 'regenerate-part' }
+>;
+
+function journeyId(
+	prefix:
+		| 'journey-direction'
+		| 'journey-outline'
+		| 'journey-chapter'
+		| 'journey-question'
+		| 'journey-option'
+): string {
 	return `${prefix}:${globalThis.crypto.randomUUID()}`;
+}
+
+function directionForAi(direction: CreationJourneyState['directions'][number]) {
+	return {
+		title: direction.title,
+		premise: direction.premise,
+		centralConflict: direction.centralConflict,
+		endingPromise: direction.endingPromise,
+		tone: direction.tone
+	};
+}
+
+function outlineForAi(node: CreationJourneyState['outline'][number]) {
+	return {
+		title: node.title,
+		summary: node.summary,
+		purpose: node.purpose
+	};
+}
+
+function chapterForAi(chapter: CreationJourneyState['chapters'][number]) {
+	return {
+		title: chapter.title,
+		goal: chapter.goal,
+		summary: chapter.summary,
+		sourceNodeIds: [...chapter.sourceNodeIds]
+	};
+}
+
+function guidanceAnswersForAi(state: CreationJourneyState) {
+	return state.guidance.answers.slice(-12).map(answer => ({
+		stage: answer.stage,
+		answerText: answer.answerText
+	}));
+}
+
+function lockedDecisionsForAi(state: CreationJourneyState) {
+	return [
+		...state.elements
+			.filter(element => element.locked)
+			.map(element => ({
+				key: `element:${element.id}`,
+				content: `${element.category}:${element.text}`
+			})),
+		...state.locks.coreFields.map(field => ({
+			key: `core:${field}`,
+			content: state.core[field]
+		})),
+		...state.locks.directionIds.flatMap(id => {
+			const direction = state.directions.find(candidate => candidate.id === id);
+			return direction ? [{
+				key: `direction:${id}`,
+				content: JSON.stringify(directionForAi(direction))
+			}] : [];
+		}),
+		...state.locks.outlineNodeIds.flatMap(id => {
+			const node = state.outline.find(candidate => candidate.id === id);
+			return node ? [{
+				key: `outline:${id}`,
+				content: JSON.stringify(outlineForAi(node))
+			}] : [];
+		}),
+		...state.locks.chapterIds.flatMap(id => {
+			const chapter = state.chapters.find(candidate => candidate.id === id);
+			return chapter ? [{
+				key: `chapter:${id}`,
+				content: JSON.stringify(chapterForAi(chapter))
+			}] : [];
+		})
+	].slice(0, 24);
+}
+
+function guidanceContextForAi(state: CreationJourneyState): GuidanceQuestionInput['context'] {
+	const elements = state.elements
+		.filter(element => element.text.trim())
+		.map(element => ({ category: element.category, text: element.text.trim() }));
+	const coreComplete = Object.values(coreForAi(state.core)).every(value => value.trim());
+	const directions = state.directions
+		.filter(direction => Object.values(directionForAi(direction)).every(value => value.trim()))
+		.map(directionForAi);
+	const outline = state.outline
+		.filter(node => Object.values(outlineForAi(node)).every(value => value.trim()))
+		.map(outlineForAi);
+	const chapters = state.chapters
+		.filter(chapter => (
+			chapter.title.trim()
+			&& chapter.goal.trim()
+			&& chapter.summary.trim()
+		))
+		.map(chapterForAi);
+	return {
+		...(elements.length >= 3 ? { elements } : {}),
+		...(coreComplete ? { core: coreForAi(state.core) } : {}),
+		...(directions.length > 0 ? { directions } : {}),
+		...(outline.length > 0 ? { outline } : {}),
+		...(chapters.length > 0 ? { chapters } : {})
+	};
+}
+
+function impactTargetLabel(state: CreationJourneyState, impact: JourneyImpact): string {
+	if (impact.targetKind === 'direction') {
+		return state.directions.find(item => item.id === impact.targetId)?.title ?? '故事方向';
+	}
+	if (impact.targetKind === 'outline') {
+		return state.outline.find(item => item.id === impact.targetId)?.title ?? '故事节点';
+	}
+	return state.chapters.find(item => item.id === impact.targetId)?.title ?? '章节提案';
 }
 
 function journeyErrorCopy(error: unknown): string {
 	const code = error instanceof Error ? error.message.split(':')[0] : '';
 	const copy: Readonly<Record<string, string>> = {
+		creationJourneyTargetLocked: '这项决定已锁定。请先解锁，再修改或让 AI 重生成。',
+		creationJourneyGuidanceQuestionInvalid: 'AI 返回的问题不完整，请重新生成。',
+		creationJourneyGuidanceAnswerInvalid: '请选择一个答案，或填写你的自定义答案。',
+		creationJourneyImpactNotPending: '这项影响已经处理，无需重复操作。',
+		creationJourneyMaterializedChapterLocked: '章节正文已经创建，AI 不会自动重写；请保留当前内容并在正文中手动调整。',
 		creationJourneyElementsIncomplete: '请先填写至少 3 个非空灵感要素。',
 		creationJourneyCoreIncomplete: '故事核心还有空白字段，请补充或修改后再确认。',
 		creationJourneyCoreConfirmationRequired: '请先确认故事核心。',
@@ -172,7 +315,15 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const [busyOperation, setBusyOperation] = useState<CreationJourneyAiInput['operation']>();
 	const [jobId, setJobId] = useState<string>();
 	const [draggedOutlineIndex, setDraggedOutlineIndex] = useState<number>();
+	const [guidanceChoiceId, setGuidanceChoiceId] = useState<string>();
+	const [customGuidanceAnswer, setCustomGuidanceAnswer] = useState('');
+	const [impactPanelOpen, setImpactPanelOpen] = useState(false);
+	const [impactSummaryDismissed, setImpactSummaryDismissed] = useState(false);
+	const [busyImpactId, setBusyImpactId] = useState<string>();
 	const headingRef = useRef<HTMLHeadingElement>(null);
+	const impactCloseRef = useRef<HTMLButtonElement>(null);
+	const impactDialogRef = useRef<HTMLDivElement>(null);
+	const impactOpenerRef = useRef<HTMLButtonElement>(null);
 	const storeRef = useRef<CreationJourneyStore | undefined>(undefined);
 	const loadedRef = useRef<LoadedCreationJourney | undefined>(undefined);
 	const stateRef = useRef<CreationJourneyState | undefined>(undefined);
@@ -223,6 +374,38 @@ export function CreationJourneyPage(): React.JSX.Element {
 		headingRef.current?.focus();
 	}, [state?.stage]);
 
+	const pendingImpactCount = state?.impacts.filter(impact => impact.status === 'pending').length ?? 0;
+
+	useEffect(() => {
+		if (!impactPanelOpen) return;
+		impactCloseRef.current?.focus();
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setImpactPanelOpen(false);
+				window.setTimeout(() => impactOpenerRef.current?.focus());
+				return;
+			}
+			if (event.key !== 'Tab') return;
+			const focusable = Array.from(
+				impactDialogRef.current?.querySelectorAll<HTMLElement>(
+					'button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+				) ?? []
+			);
+			if (focusable.length === 0) return;
+			const first = focusable[0];
+			const last = focusable.at(-1);
+			if (event.shiftKey && document.activeElement === first) {
+				event.preventDefault();
+				last?.focus();
+			} else if (!event.shiftKey && document.activeElement === last) {
+				event.preventDefault();
+				first?.focus();
+			}
+		};
+		window.addEventListener('keydown', onKeyDown);
+		return () => window.removeEventListener('keydown', onKeyDown);
+	}, [impactPanelOpen]);
+
 	const persistLatest = (): Promise<void> => {
 		window.clearTimeout(saveTimerRef.current);
 		const task = saveChainRef.current.then(async () => {
@@ -248,6 +431,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 	};
 
 	const applyState = (next: CreationJourneyState, immediate = false) => {
+		const previousPending = stateRef.current?.impacts
+			.filter(impact => impact.status === 'pending').length ?? 0;
+		const nextPending = next.impacts.filter(impact => impact.status === 'pending').length;
+		if (nextPending > previousPending) setImpactSummaryDismissed(false);
 		stateRef.current = next;
 		setState(next);
 		setStatus('有尚未写入项目的更改');
@@ -269,12 +456,16 @@ export function CreationJourneyPage(): React.JSX.Element {
 		}
 	};
 
-	const runAi = async (operation: CreationJourneyAiInput['operation']) => {
+	const runAi = async (operation: JourneyStageAiOperation) => {
 		const current = stateRef.current;
 		if (!current || busyOperation) return;
 		setError(undefined);
 		try {
 			await persistLatest();
+			const development = {
+				guidanceAnswers: guidanceAnswersForAi(current),
+				lockedDecisions: lockedDecisionsForAi(current)
+			};
 			const input: CreationJourneyAiInput = (() => {
 				if (operation === 'organize-core') {
 					return {
@@ -283,37 +474,35 @@ export function CreationJourneyPage(): React.JSX.Element {
 						elements: current.elements.map(element => ({
 							category: element.category,
 							text: element.text.trim()
-						}))
+						})),
+						...development
 					};
 				}
 				const core = coreForAi(current.core);
 				if (operation === 'generate-directions') {
-					return { schemaVersion: 1, operation, core };
+					return { schemaVersion: 1, operation, core, ...development };
 				}
 				const selectedDirections = current.selectedDirectionIds.map(id => {
 					const direction = current.directions.find(candidate => candidate.id === id);
 					if (!direction) throw new Error('creationJourneyDirectionDecisionRequired');
-					return {
-						title: direction.title,
-						premise: direction.premise,
-						centralConflict: direction.centralConflict,
-						endingPromise: direction.endingPromise,
-						tone: direction.tone
-					};
+					return directionForAi(direction);
 				});
 				if (operation === 'generate-outline') {
-					return { schemaVersion: 1, operation, core, selectedDirections };
+					return {
+						schemaVersion: 1,
+						operation,
+						core,
+						selectedDirections,
+						...development
+					};
 				}
 				return {
 					schemaVersion: 1,
 					operation,
 					core,
 					selectedDirections,
-					outline: current.outline.map(node => ({
-						title: node.title,
-						summary: node.summary,
-						purpose: node.purpose
-					}))
+					outline: current.outline.map(outlineForAi),
+					...development
 				};
 			})();
 			const messages = buildCreationJourneyMessages(input);
@@ -328,7 +517,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 					if (progress.state === 'streaming') setStatus('AI 正在返回结构化候选…');
 				}
 			});
-			const response = parseCreationJourneyResponse(result.output);
+			const response = parseCreationJourneyResponse(result.output, input);
 			if (response.operation !== operation) {
 				throw new Error('invalidCreationJourneyResponse');
 			}
@@ -378,6 +567,234 @@ export function CreationJourneyPage(): React.JSX.Element {
 		}
 	};
 
+	const runGuidanceQuestion = async () => {
+		const current = stateRef.current;
+		if (!current || busyOperation || current.stage === 'writing') return;
+		setError(undefined);
+		try {
+			const context = guidanceContextForAi(current);
+			if (Object.keys(context).length === 0) {
+				throw new Error('creationJourneyElementsIncomplete');
+			}
+			await persistLatest();
+			const input: GuidanceQuestionInput = {
+				schemaVersion: 1,
+				operation: 'generate-guidance-question',
+				stage: current.stage,
+				context,
+				guidanceAnswers: guidanceAnswersForAi(current),
+				lockedDecisions: lockedDecisionsForAi(current)
+			};
+			setBusyOperation(input.operation);
+			setStatus('AI 正在寻找当前最值得回答的一个问题…');
+			const result = await runGroundedJsonJob({
+				jobType: 'creation-journey',
+				messages: buildCreationJourneyMessages(input),
+				onJobId: setJobId,
+				onProgress: progress => {
+					if (progress.state === 'thinking') setStatus('AI 正在判断哪项选择最能推进故事…');
+					if (progress.state === 'streaming') setStatus('AI 正在返回三个可比较的答案…');
+				}
+			});
+			const response = parseCreationJourneyResponse(result.output, input);
+			if (response.operation !== 'generate-guidance-question') {
+				throw new Error('invalidCreationJourneyResponse');
+			}
+			const latest = stateRef.current;
+			if (!latest) return;
+			setGuidanceChoiceId(undefined);
+			setCustomGuidanceAnswer('');
+			applyState(setCreationGuidanceQuestion(latest, {
+				id: journeyId('journey-question'),
+				stage: current.stage,
+				prompt: response.question.prompt,
+				rationale: response.question.rationale,
+				options: response.question.options.map(option => ({
+					id: journeyId('journey-option'),
+					label: option.label,
+					description: option.description
+				})) as [
+					{ id: string; label: string; description: string },
+					{ id: string; label: string; description: string },
+					{ id: string; label: string; description: string }
+				]
+			}), true);
+			setStatus('问题已保存到项目；请选择或写下你的答案。');
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('本次问题未写入');
+		} finally {
+			setBusyOperation(undefined);
+			setJobId(undefined);
+		}
+	};
+
+	const confirmGuidanceAnswer = () => {
+		const current = stateRef.current;
+		if (!current?.guidance.currentQuestion) return;
+		try {
+			const next = customGuidanceAnswer.trim()
+				? answerCreationGuidanceQuestion(current, {
+					source: 'custom',
+					answerText: customGuidanceAnswer
+				})
+				: answerCreationGuidanceQuestion(current, {
+					source: 'option',
+					optionId: guidanceChoiceId ?? ''
+				});
+			applyState(next, true);
+			setGuidanceChoiceId(undefined);
+			setCustomGuidanceAnswer('');
+			setStatus('你的答案已保存；它会作为后续 AI 建议的约束。');
+			setError(undefined);
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+		}
+	};
+
+	const closeImpactPanel = () => {
+		setImpactPanelOpen(false);
+		window.setTimeout(() => impactOpenerRef.current?.focus());
+	};
+
+	const keepImpact = (impact: JourneyImpact) => {
+		const current = stateRef.current;
+		if (!current) return;
+		try {
+			applyState(resolveJourneyImpact(current, impact.id, 'kept'), true);
+			setStatus('已保留当前内容；只处理了这一项影响。');
+			setError(undefined);
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+		}
+	};
+
+	const buildRegenerateInput = (
+		current: CreationJourneyState,
+		impact: JourneyImpact
+	): RegeneratePartInput => {
+		const development = {
+			guidanceAnswers: guidanceAnswersForAi(current),
+			lockedDecisions: lockedDecisionsForAi(current)
+		};
+		if (impact.targetKind === 'direction') {
+			const direction = current.directions.find(item => item.id === impact.targetId);
+			if (!direction) throw new Error('creationJourneyDirectionNotFound');
+			return {
+				schemaVersion: 1,
+				operation: 'regenerate-part',
+				target: {
+					kind: 'direction',
+					id: direction.id,
+					current: directionForAi(direction),
+					context: { core: coreForAi(current.core) }
+				},
+				...development
+			};
+		}
+		const selectedDirections = current.selectedDirectionIds.map(id => {
+			const direction = current.directions.find(item => item.id === id);
+			if (!direction) throw new Error('creationJourneyDirectionDecisionRequired');
+			return directionForAi(direction);
+		});
+		if (impact.targetKind === 'outline') {
+			const node = current.outline.find(item => item.id === impact.targetId);
+			if (!node) throw new Error('creationJourneyOutlineNodeNotFound');
+			return {
+				schemaVersion: 1,
+				operation: 'regenerate-part',
+				target: {
+					kind: 'outline',
+					id: node.id,
+					current: outlineForAi(node),
+					context: {
+						core: coreForAi(current.core),
+						selectedDirections
+					}
+				},
+				...development
+			};
+		}
+		const chapter = current.chapters.find(item => item.id === impact.targetId);
+		if (!chapter) throw new Error('creationJourneyChapterNotFound');
+		if (chapter.resourceId) throw new Error('creationJourneyMaterializedChapterLocked');
+		return {
+			schemaVersion: 1,
+			operation: 'regenerate-part',
+			target: {
+				kind: 'chapter',
+				id: chapter.id,
+				current: chapterForAi(chapter),
+				context: {
+					core: coreForAi(current.core),
+					selectedDirections,
+					outline: current.outline.map(node => ({
+						id: node.id,
+						...outlineForAi(node)
+					}))
+				}
+			},
+			...development
+		};
+	};
+
+	const regenerateImpact = async (impact: JourneyImpact) => {
+		const current = stateRef.current;
+		if (!current || busyOperation) return;
+		setError(undefined);
+		try {
+			await persistLatest();
+			const input = buildRegenerateInput(current, impact);
+			setBusyOperation('regenerate-part');
+			setBusyImpactId(impact.id);
+			setStatus(`AI 正在只重生成“${impactTargetLabel(current, impact)}”…`);
+			const result = await runGroundedJsonJob({
+				jobType: 'creation-journey',
+				messages: buildCreationJourneyMessages(input),
+				onJobId: setJobId,
+				onProgress: progress => {
+					if (progress.state === 'thinking') setStatus('AI 正在保留锁定决定并检查上游约束…');
+					if (progress.state === 'streaming') setStatus('AI 正在返回这一项的替换候选…');
+				}
+			});
+			const response = parseCreationJourneyResponse(result.output, input);
+			if (response.operation !== 'regenerate-part') {
+				throw new Error('invalidCreationJourneyResponse');
+			}
+			const latest = stateRef.current;
+			if (!latest) return;
+			let next: CreationJourneyState;
+			if (response.target.kind === 'direction') {
+				next = updateStoryDirection(
+					latest,
+					response.target.id,
+					response.target.replacement
+				);
+			} else if (response.target.kind === 'outline') {
+				next = updateStoryOutlineNode(
+					latest,
+					response.target.id,
+					response.target.replacement
+				);
+			} else {
+				next = updateJourneyChapterProposal(
+					latest,
+					response.target.id,
+					response.target.replacement
+				);
+			}
+			applyState(next, true);
+			setStatus('这一项已更新；其他受影响内容保持原样。');
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('这一项未更新，原内容保持不变。');
+		} finally {
+			setBusyImpactId(undefined);
+			setBusyOperation(undefined);
+			setJobId(undefined);
+		}
+	};
+
 	const cancelAi = () => {
 		if (jobId) void desktopBridge.cancelAiJob(jobId);
 	};
@@ -415,6 +832,13 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const currentStageIndex = stageOrder.indexOf(state.stage);
 	const incompleteElements = state.elements.some(element => !element.text.trim());
 	const stale = state.stale.directions || state.stale.outline || state.stale.chapters;
+	const pendingImpacts = state.impacts.filter(impact => impact.status === 'pending');
+	const impactCounts = {
+		direction: pendingImpacts.filter(impact => impact.targetKind === 'direction').length,
+		outline: pendingImpacts.filter(impact => impact.targetKind === 'outline').length,
+		chapter: pendingImpacts.filter(impact => impact.targetKind === 'chapter').length
+	};
+	const question = state.guidance.currentQuestion;
 
 	return (
 		<section className="creation-journey" aria-labelledby="creation-journey-heading">
@@ -458,6 +882,23 @@ export function CreationJourneyPage(): React.JSX.Element {
 						{stageCopy[state.stage].title}
 					</h2>
 					<p>{stageCopy[state.stage].description}</p>
+					{state.stage !== 'writing' && (
+						<button
+							className="creation-guidance-trigger"
+							type="button"
+							disabled={
+								Boolean(busyOperation)
+								|| snapshot.readOnly
+								|| Object.keys(guidanceContextForAi(state)).length === 0
+							}
+							onClick={() => void runGuidanceQuestion()}
+						>
+							{busyOperation === 'generate-guidance-question'
+								? <LoaderCircle className="spin" size={18} />
+								: <MessageCircleQuestion size={18} />}
+							{question ? '换一个关键问题' : '让 AI 问一个关键问题'}
+						</button>
+					)}
 				</div>
 
 				{error && (
@@ -470,21 +911,104 @@ export function CreationJourneyPage(): React.JSX.Element {
 					</div>
 				)}
 
-				{stale && (
+				{question && (
+					<section className="creation-guidance-card" aria-labelledby="creation-guidance-question">
+						<div className="creation-guidance-card-heading">
+							<MessageCircleQuestion size={20} aria-hidden="true" />
+							<span>
+								<small>AI 只问一个问题 · {stageCopy[question.stage].short}</small>
+								<h3 id="creation-guidance-question">{question.prompt}</h3>
+							</span>
+						</div>
+						<p>{question.rationale}</p>
+						<div className="creation-guidance-options">
+							{question.options.map((option, index) => (
+								<button
+									type="button"
+									key={option.id}
+									className={guidanceChoiceId === option.id ? 'is-selected' : ''}
+									aria-pressed={guidanceChoiceId === option.id}
+									onClick={() => {
+										setGuidanceChoiceId(option.id);
+										setCustomGuidanceAnswer('');
+									}}
+								>
+									<span>{index + 1}</span>
+									<strong>{option.label}</strong>
+									<small>{option.description}</small>
+								</button>
+							))}
+						</div>
+						<label className="creation-guidance-custom">
+							<span>或者写下你的答案</span>
+							<textarea
+								value={customGuidanceAnswer}
+								maxLength={1_000}
+								placeholder="不必完整，一两句话也可以。"
+								onChange={event => {
+									setCustomGuidanceAnswer(event.target.value);
+									if (event.target.value) setGuidanceChoiceId(undefined);
+								}}
+							/>
+						</label>
+						<div className="creation-guidance-actions">
+							<small>确认后只会保存为后续建议的约束，不会自动改写故事。</small>
+							<button
+								className="primary-button"
+								type="button"
+								disabled={!guidanceChoiceId && !customGuidanceAnswer.trim()}
+								onClick={confirmGuidanceAnswer}
+							>
+								<Check size={18} />确认这个答案
+							</button>
+						</div>
+					</section>
+				)}
+
+				{stale && !impactSummaryDismissed && (
 					<div className="creation-journey-stale" role="note">
 						<RefreshCw size={18} />
 						<span>
-							<strong>上游内容已经修改</strong>
-							<small>已有下游草稿仍被保留，但需要重新生成或确认后才能创建章节。</small>
+							<strong>上游内容已修改，下游草稿仍保持原样</strong>
+							<small>
+								方向 {impactCounts.direction} 项 · 提纲 {impactCounts.outline} 项 · 章节 {impactCounts.chapter} 项待处理
+							</small>
 						</span>
+						<div className="creation-impact-summary-actions">
+							<button
+								ref={impactOpenerRef}
+								type="button"
+								onClick={() => setImpactPanelOpen(true)}
+							>
+								查看影响
+							</button>
+							<button type="button" onClick={() => setImpactSummaryDismissed(true)}>
+								暂不更新
+							</button>
+						</div>
 					</div>
+				)}
+
+				{stale && impactSummaryDismissed && (
+					<button
+						ref={impactOpenerRef}
+						className="creation-impact-reopen"
+						type="button"
+						onClick={() => setImpactPanelOpen(true)}
+					>
+						<RefreshCw size={18} />
+						{pendingImpactCount} 项影响待处理
+					</button>
 				)}
 
 				{state.stage === 'elements' && (
 					<div className="creation-elements-stage">
 						<div className="creation-element-list">
 							{state.elements.map((element, index) => (
-								<article className="creation-element-card" key={element.id}>
+								<article
+									className={`creation-element-card${element.locked ? ' is-locked' : ''}`}
+									key={element.id}
+								>
 									<div className="creation-element-order">
 										<GripVertical size={18} aria-hidden="true" />
 										<span>{index + 1}</span>
@@ -493,6 +1017,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<span className="sr-only">要素类型</span>
 										<select
 											value={element.category}
+											disabled={element.locked}
 											onChange={event => applyState(updateStoryElement(
 												state,
 												element.id,
@@ -508,6 +1033,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<span className="sr-only">灵感要素 {index + 1}</span>
 										<textarea
 											value={element.text}
+											disabled={element.locked}
 											maxLength={500}
 											placeholder="例如：一个只在雨夜出现的旧车站"
 											onChange={event => applyState(updateStoryElement(
@@ -519,13 +1045,25 @@ export function CreationJourneyPage(): React.JSX.Element {
 										/>
 									</label>
 									<div className="creation-reorder-actions">
-										<button type="button" aria-label={`上移要素 ${index + 1}`} disabled={index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
+										<button
+											type="button"
+											aria-label={element.locked ? `解锁要素 ${index + 1}` : `锁定要素 ${index + 1}`}
+											aria-pressed={element.locked}
+											onClick={() => applyState(updateStoryElement(
+												state,
+												element.id,
+												{ locked: !element.locked }
+											), true)}
+										>
+											{element.locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
+										</button>
+										<button type="button" aria-label={`上移要素 ${index + 1}`} disabled={element.locked || index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
 											<ArrowUp size={16} />
 										</button>
-										<button type="button" aria-label={`下移要素 ${index + 1}`} disabled={index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
+										<button type="button" aria-label={`下移要素 ${index + 1}`} disabled={element.locked || index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
 											<ArrowDown size={16} />
 										</button>
-										<button type="button" aria-label={`删除要素 ${index + 1}`} disabled={state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
+										<button type="button" aria-label={`删除要素 ${index + 1}`} disabled={element.locked || state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
 											<Trash2 size={16} />
 										</button>
 									</div>
@@ -551,32 +1089,61 @@ export function CreationJourneyPage(): React.JSX.Element {
 							<span><strong>AI 整理候选</strong><small>以下内容尚未确认，可直接编辑。</small></span>
 						</div>
 						<div className="creation-core-grid">
-							{coreFields.map(field => (
-								<label key={field.key} className={field.multiline ? 'is-wide' : ''}>
-									<span>{field.label}</span>
-									{field.multiline ? (
-										<textarea
-											value={state.core[field.key]}
-											maxLength={field.key === 'oneSentence' ? 2_000 : 1_000}
-											placeholder={field.placeholder}
-											onChange={event => applyState(updateStoryCore(state, {
-												[field.key]: event.target.value
-											}))}
-											onBlur={() => void persistLatest()}
-										/>
-									) : (
-										<input
-											value={state.core[field.key]}
-											maxLength={1_000}
-											placeholder={field.placeholder}
-											onChange={event => applyState(updateStoryCore(state, {
-												[field.key]: event.target.value
-											}))}
-											onBlur={() => void persistLatest()}
-										/>
-									)}
-								</label>
-							))}
+							{coreFields.map(field => {
+								const locked = state.locks.coreFields.includes(field.key);
+								const inputId = `creation-core-${field.key}`;
+								return (
+									<div
+										key={field.key}
+										className={[
+											'creation-core-field',
+											field.multiline ? 'is-wide' : '',
+											locked ? 'is-locked' : ''
+										].filter(Boolean).join(' ')}
+									>
+										<div className="creation-field-heading">
+											<label htmlFor={inputId}>{field.label}</label>
+											<button
+												type="button"
+												aria-label={locked ? `解锁${field.label}` : `锁定${field.label}`}
+												aria-pressed={locked}
+												onClick={() => applyState(toggleJourneyLock(state, {
+													kind: 'core',
+													field: field.key
+												}, !locked), true)}
+											>
+												{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
+												{locked ? '已锁定' : '锁定'}
+											</button>
+										</div>
+										{field.multiline ? (
+											<textarea
+												id={inputId}
+												value={state.core[field.key]}
+												disabled={locked}
+												maxLength={field.key === 'oneSentence' ? 2_000 : 1_000}
+												placeholder={field.placeholder}
+												onChange={event => applyState(updateStoryCore(state, {
+													[field.key]: event.target.value
+												}))}
+												onBlur={() => void persistLatest()}
+											/>
+										) : (
+											<input
+												id={inputId}
+												value={state.core[field.key]}
+												disabled={locked}
+												maxLength={1_000}
+												placeholder={field.placeholder}
+												onChange={event => applyState(updateStoryCore(state, {
+													[field.key]: event.target.value
+												}))}
+												onBlur={() => void persistLatest()}
+											/>
+										)}
+									</div>
+								);
+							})}
 						</div>
 						<div className="creation-stage-actions">
 							<button className="secondary-button" type="button" onClick={() => goToStage('elements')}>返回灵感</button>
@@ -612,8 +1179,16 @@ export function CreationJourneyPage(): React.JSX.Element {
 									{state.directions.map((direction, index) => {
 										const selected = state.selectedDirectionIds.includes(direction.id);
 										const selectionFull = state.selectedDirectionIds.length >= 2 && !selected;
+										const locked = state.locks.directionIds.includes(direction.id);
 										return (
-											<article className={selected ? 'creation-direction-card is-selected' : 'creation-direction-card'} key={direction.id}>
+											<article
+												className={[
+													'creation-direction-card',
+													selected ? 'is-selected' : '',
+													locked ? 'is-locked' : ''
+												].filter(Boolean).join(' ')}
+												key={direction.id}
+											>
 												<button
 													type="button"
 													className="creation-direction-select"
@@ -635,11 +1210,23 @@ export function CreationJourneyPage(): React.JSX.Element {
 													<span>{selected ? <Check size={16} /> : index + 1}</span>
 													<strong>{selected ? '已选择' : '选择此方向'}</strong>
 												</button>
-												<label><span>方向标题</span><input value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>故事前提</span><textarea value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>核心冲突</span><textarea value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>结局承诺</span><textarea value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>整体气质</span><input value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+												<button
+													className="creation-card-lock"
+													type="button"
+													aria-pressed={locked}
+													onClick={() => applyState(toggleJourneyLock(state, {
+														kind: 'direction',
+														id: direction.id
+													}, !locked), true)}
+												>
+													{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
+													{locked ? '已锁定方向' : '锁定方向'}
+												</button>
+												<label><span>方向标题</span><input disabled={locked} value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+												<label><span>故事前提</span><textarea disabled={locked} value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+												<label><span>核心冲突</span><textarea disabled={locked} value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+												<label><span>结局承诺</span><textarea disabled={locked} value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+												<label><span>整体气质</span><input disabled={locked} value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 											</article>
 										);
 									})}
@@ -663,11 +1250,17 @@ export function CreationJourneyPage(): React.JSX.Element {
 				{state.stage === 'outline' && (
 					<div className="creation-outline-stage">
 						<div className="creation-outline-list">
-							{state.outline.map((node, index) => (
+							{state.outline.map((node, index) => {
+								const locked = state.locks.outlineNodeIds.includes(node.id);
+								return (
 								<article
 									key={node.id}
-									className={draggedOutlineIndex === index ? 'creation-outline-card is-dragging' : 'creation-outline-card'}
-									draggable
+									className={[
+										'creation-outline-card',
+										draggedOutlineIndex === index ? 'is-dragging' : '',
+										locked ? 'is-locked' : ''
+									].filter(Boolean).join(' ')}
+									draggable={!locked}
 									onDragStart={() => setDraggedOutlineIndex(index)}
 									onDragEnd={() => setDraggedOutlineIndex(undefined)}
 									onDragOver={event => event.preventDefault()}
@@ -682,16 +1275,29 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<span>{index + 1}</span>
 									</div>
 									<div className="creation-outline-fields">
-										<label><span>节点标题</span><input value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>发生什么</span><textarea value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>叙事作用</span><input value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<button
+											className="creation-card-lock"
+											type="button"
+											aria-pressed={locked}
+											onClick={() => applyState(toggleJourneyLock(state, {
+												kind: 'outline',
+												id: node.id
+											}, !locked), true)}
+										>
+											{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
+											{locked ? '已锁定节点' : '锁定节点'}
+										</button>
+										<label><span>节点标题</span><input disabled={locked} value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>发生什么</span><textarea disabled={locked} value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>叙事作用</span><input disabled={locked} value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									</div>
 									<div className="creation-reorder-actions">
-										<button type="button" aria-label={`上移总纲节点 ${index + 1}`} disabled={index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
-										<button type="button" aria-label={`下移总纲节点 ${index + 1}`} disabled={index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
+										<button type="button" aria-label={`上移总纲节点 ${index + 1}`} disabled={locked || index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
+										<button type="button" aria-label={`下移总纲节点 ${index + 1}`} disabled={locked || index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
 									</div>
 								</article>
-							))}
+								);
+							})}
 						</div>
 						<div className="creation-stage-actions">
 							<button className="secondary-button" type="button" onClick={() => goToStage('directions')}>返回故事方向</button>
@@ -706,15 +1312,33 @@ export function CreationJourneyPage(): React.JSX.Element {
 				{state.stage === 'chapters' && (
 					<div className="creation-chapters-stage">
 						<div className="creation-chapter-grid">
-							{state.chapters.map((chapter, index) => (
-								<article className="creation-chapter-card" key={chapter.id}>
+							{state.chapters.map((chapter, index) => {
+								const locked = state.locks.chapterIds.includes(chapter.id);
+								return (
+								<article
+									className={`creation-chapter-card${locked ? ' is-locked' : ''}`}
+									key={chapter.id}
+								>
 									<span className="creation-chapter-number">第 {index + 1} 章</span>
-									<label><span>章节标题</span><input value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>本章目标</span><textarea value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>章节摘要</span><textarea value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<button
+										className="creation-card-lock"
+										type="button"
+										aria-pressed={locked}
+										onClick={() => applyState(toggleJourneyLock(state, {
+											kind: 'chapter',
+											id: chapter.id
+										}, !locked), true)}
+									>
+										{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
+										{locked ? '已锁定章节' : '锁定章节'}
+									</button>
+									<label><span>章节标题</span><input disabled={locked} value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>本章目标</span><textarea disabled={locked} value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>章节摘要</span><textarea disabled={locked} value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									<small>承接 {chapter.sourceNodeIds.length} 个总纲节点</small>
 								</article>
-							))}
+								);
+							})}
 						</div>
 						<div className="creation-transaction-note">
 							<Check size={18} />
@@ -751,6 +1375,110 @@ export function CreationJourneyPage(): React.JSX.Element {
 						}}>
 							<BookOpenText size={18} />打开第一章
 						</button>
+					</div>
+				)}
+
+				{impactPanelOpen && (
+					<div
+						className="creation-impact-overlay"
+						onMouseDown={event => {
+							if (event.target === event.currentTarget) closeImpactPanel();
+						}}
+					>
+						<div
+							ref={impactDialogRef}
+							className="creation-impact-dialog"
+							role="dialog"
+							aria-modal="true"
+							aria-labelledby="creation-impact-title"
+						>
+							<header>
+								<span>
+									<small>不会自动重写任何下游内容</small>
+									<h3 id="creation-impact-title">查看上游修改的影响</h3>
+								</span>
+								<button
+									ref={impactCloseRef}
+									type="button"
+									aria-label="关闭影响面板"
+									onClick={closeImpactPanel}
+								>
+									<X size={18} />
+								</button>
+							</header>
+							<div className="creation-impact-counts" aria-label="待处理影响统计">
+								<span><strong>{impactCounts.direction}</strong>方向</span>
+								<span><strong>{impactCounts.outline}</strong>提纲</span>
+								<span><strong>{impactCounts.chapter}</strong>章节</span>
+							</div>
+							<div className="creation-impact-list">
+								{pendingImpacts.length === 0 ? (
+									<div className="creation-impact-empty">
+										<Check size={20} />
+										<strong>所有影响都已处理</strong>
+										<p>保留或更新决定已经写入项目。</p>
+									</div>
+								) : pendingImpacts.map(impact => {
+									const targetLocked = (
+										(impact.targetKind === 'direction'
+											&& state.locks.directionIds.includes(impact.targetId))
+										|| (impact.targetKind === 'outline'
+											&& state.locks.outlineNodeIds.includes(impact.targetId))
+										|| (impact.targetKind === 'chapter'
+											&& state.locks.chapterIds.includes(impact.targetId))
+									);
+									const chapter = impact.targetKind === 'chapter'
+										? state.chapters.find(item => item.id === impact.targetId)
+										: undefined;
+									const materialized = Boolean(chapter?.resourceId);
+									return (
+										<article className="creation-impact-row" key={impact.id}>
+											<div className="creation-impact-row-copy">
+												<span>{impact.targetKind === 'direction'
+													? '故事方向'
+													: impact.targetKind === 'outline'
+														? '提纲节点'
+														: '章节提案'}</span>
+												<strong>{impactTargetLabel(state, impact)}</strong>
+												<small>上游决定发生变化，这一项可能需要重新核对。</small>
+												{targetLocked && (
+													<em><LockKeyhole size={16} />作者已锁定，AI 不会替换</em>
+												)}
+												{materialized && (
+													<em><BookOpenText size={16} />正文已创建，只能保留并手动修改正文</em>
+												)}
+											</div>
+											<div className="creation-impact-row-actions">
+												<button
+													type="button"
+													disabled={Boolean(busyOperation)}
+													onClick={() => keepImpact(impact)}
+												>
+													<Check size={18} />保留当前内容
+												</button>
+												{!materialized && (
+													<button
+														className="is-ai"
+														type="button"
+														disabled={Boolean(busyOperation) || targetLocked}
+														onClick={() => void regenerateImpact(impact)}
+													>
+														{busyImpactId === impact.id
+															? <LoaderCircle className="spin" size={18} />
+															: <Sparkles size={18} />}
+														AI 重新生成此项
+													</button>
+												)}
+											</div>
+										</article>
+									);
+								})}
+							</div>
+							<footer>
+								<span>每次只处理一项；关闭面板不会丢失待处理内容。</span>
+								<button type="button" onClick={closeImpactPanel}>完成查看</button>
+							</footer>
+						</div>
 					</div>
 				)}
 

@@ -4,18 +4,40 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-No feature milestone is active. Phase 1.2B is complete in
-`D:\develop_tool\writing-buddy-phase-1.2b` on
-`codex/phase-1.2b-idea-outline`.
+Phase 1.2C, Guided AI Story Development, is complete in
+`D:\develop_tool\writing-buddy-phase-1.2c` on
+`codex/phase-1.2c-guided-development`.
 
 - Phase 1.2A baseline:
   `5c4e74e1edef0cd09a0f8bdf889b72c69d974421`.
-- Phase 1.2C, Guided AI Story Development, is the next proposed milestone but
-  has not started.
-- Completed contract:
+- Phase 1.2B baseline:
+  `4eda09c9c73b91e1ca3014ff3edc015f7a98ffa9`.
+- Active contract:
+  `docs/plans/034-phase-1.2c-guided-ai-story-development.md`.
+- Previous completed contract:
   `docs/plans/033-phase-1.2b-idea-to-outline-creation-journey.md`.
 
 ## Completed
+
+- Completed the strict journey version-2 model with deterministic version-1
+  migration, persistent author answers, decision locks, exact downstream
+  impact records, target deduplication, and one-item keep/update audit.
+- Added one explicit AI question with exactly three choices plus a custom
+  answer, and exact-target regeneration. TypeScript, deterministic browser
+  fixtures, and Rust reject target mismatch, locked replacement, unsafe
+  context, unknown outline sources, paths, credentials, and malformed output.
+- Upstream edits preserve all direction, outline, chapter, and manuscript
+  content. Materialized chapters expose no AI replacement, and the project
+  dashboard keeps the completed creation journey reachable.
+- Real Edge acceptance passed the complete new-project-to-three-chapter path
+  and post-writing impact loop. At 1536×992, 1280×800, and 1024×720, Paper and
+  Midnight have zero page overflow, clipped controls, browser exceptions, or
+  controls below 44 px; modal focus entry and Escape restoration pass.
+- Final gates: Node 24.14.0, 135 Vitest files / 502 tests, production build,
+  complete and release self-tests, Cargo format, 60 Rust tests with 2 explicit
+  external gates ignored, Tauri Release/NSIS, and native portable startup.
+- Delivery: `artifacts/release/phase-1.2c/`, with hashes and evidence in
+  `docs/acceptance/045-phase-1.2c-guided-ai-story-development-2026-07-30.md`.
 
 - Added the six truthful new-project starts, defaulting to **我只有几个想法**.
   The idea route does not pre-create a chapter and does not invoke AI.
@@ -543,8 +565,8 @@ No feature milestone is active. Phase 1.2B is complete in
 
 ## Next
 
-Complete Gate F through TDD, real responsive interaction, fresh native
-packaging, and the exact feature commit. Stop before Gate G.
+Stop before Phase 1.2D. Do not expand into deep character/world/timeline
+development or background AI behavior without explicit user direction.
 
 ## Project Creation Y0–Y2 complete
 

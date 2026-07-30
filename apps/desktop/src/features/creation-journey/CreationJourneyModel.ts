@@ -63,8 +63,79 @@ export interface JourneyChapterProposal {
 	readonly resourceId?: string;
 }
 
+export const storyCoreFields = [
+	'oneSentence',
+	'protagonist',
+	'goal',
+	'obstacle',
+	'stakes',
+	'mystery',
+	'readerExperience',
+	'endingDirection'
+] as const;
+
+export type StoryCoreField = typeof storyCoreFields[number];
+export type JourneyImpactTargetKind = 'direction' | 'outline' | 'chapter';
+export type JourneyImpactSourceKind = 'element' | 'core' | 'direction-selection' | 'direction' | 'outline';
+
+export interface CreationGuidanceOption {
+	readonly id: string;
+	readonly label: string;
+	readonly description: string;
+}
+
+export interface CreationGuidanceQuestion {
+	readonly id: string;
+	readonly stage: CreationJourneyStage;
+	readonly prompt: string;
+	readonly rationale: string;
+	readonly options: readonly [
+		CreationGuidanceOption,
+		CreationGuidanceOption,
+		CreationGuidanceOption
+	];
+}
+
+export interface CreationGuidanceAnswer {
+	readonly questionId: string;
+	readonly stage: CreationJourneyStage;
+	readonly source: 'option' | 'custom';
+	readonly answerText: string;
+	readonly answeredAt: string;
+}
+
+export interface CreationJourneyGuidance {
+	readonly currentQuestion?: CreationGuidanceQuestion;
+	readonly answers: readonly CreationGuidanceAnswer[];
+}
+
+export interface CreationJourneyLocks {
+	readonly coreFields: readonly StoryCoreField[];
+	readonly directionIds: readonly string[];
+	readonly outlineNodeIds: readonly string[];
+	readonly chapterIds: readonly string[];
+}
+
+export interface JourneyImpact {
+	readonly id: string;
+	readonly sourceKind: JourneyImpactSourceKind;
+	readonly sourceId?: string;
+	readonly targetKind: JourneyImpactTargetKind;
+	readonly targetId: string;
+	readonly reason: string;
+	readonly status: 'pending' | 'kept' | 'updated';
+	readonly createdAt: string;
+	readonly resolvedAt?: string;
+}
+
+export type JourneyLockTarget =
+	| { readonly kind: 'core'; readonly field: StoryCoreField }
+	| { readonly kind: 'direction'; readonly id: string }
+	| { readonly kind: 'outline'; readonly id: string }
+	| { readonly kind: 'chapter'; readonly id: string };
+
 export interface CreationJourneyState {
-	readonly schemaVersion: 1;
+	readonly schemaVersion: 2;
 	readonly revision: number;
 	readonly projectId: string;
 	readonly startRoute: CreationStartRoute;
@@ -75,6 +146,9 @@ export interface CreationJourneyState {
 	readonly selectedDirectionIds: readonly string[];
 	readonly outline: readonly StoryOutlineNode[];
 	readonly chapters: readonly JourneyChapterProposal[];
+	readonly guidance: CreationJourneyGuidance;
+	readonly locks: CreationJourneyLocks;
+	readonly impacts: readonly JourneyImpact[];
 	readonly stale: {
 		readonly directions: boolean;
 		readonly outline: boolean;
@@ -96,6 +170,9 @@ const elementIdSchema = z.string().regex(/^journey-element:[a-z0-9][a-z0-9-]*$/u
 const directionIdSchema = z.string().regex(/^journey-direction:[a-z0-9][a-z0-9-]*$/u);
 const outlineIdSchema = z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u);
 const chapterProposalIdSchema = z.string().regex(/^journey-chapter:[a-z0-9][a-z0-9-]*$/u);
+const guidanceQuestionIdSchema = z.string().regex(/^journey-question:[a-z0-9][a-z0-9-]*$/u);
+const guidanceOptionIdSchema = z.string().regex(/^journey-option:[a-z0-9][a-z0-9-]*$/u);
+const impactIdSchema = z.string().regex(/^journey-impact:[a-z0-9][a-z0-9-]*$/u);
 
 const storyElementSchema = z.object({
 	id: elementIdSchema,
@@ -151,8 +228,73 @@ const journeyChapterProposalSchema = z.object({
 	resourceId: z.string().regex(/^chapter(?::|-)[a-z0-9][a-z0-9-]*$/u).optional()
 }).strict();
 
+const creationGuidanceOptionSchema = z.object({
+	id: guidanceOptionIdSchema,
+	label: z.string().trim().min(1).max(120),
+	description: z.string().trim().min(1).max(500)
+}).strict();
+
+const creationGuidanceQuestionSchema = z.object({
+	id: guidanceQuestionIdSchema,
+	stage: z.enum(creationJourneyStages),
+	prompt: z.string().trim().min(1).max(500),
+	rationale: z.string().trim().min(1).max(500),
+	options: z.tuple([
+		creationGuidanceOptionSchema,
+		creationGuidanceOptionSchema,
+		creationGuidanceOptionSchema
+	])
+}).strict().superRefine((question, context) => {
+	if (new Set(question.options.map(option => option.id)).size !== 3) {
+		context.addIssue({ code: 'custom', message: 'duplicateCreationGuidanceOption' });
+	}
+});
+
+const creationGuidanceAnswerSchema = z.object({
+	questionId: guidanceQuestionIdSchema,
+	stage: z.enum(creationJourneyStages),
+	source: z.enum(['option', 'custom']),
+	answerText: z.string().trim().min(1).max(1_000),
+	answeredAt: utcTimestamp
+}).strict();
+
+const creationJourneyGuidanceSchema = z.object({
+	currentQuestion: creationGuidanceQuestionSchema.optional(),
+	answers: z.array(creationGuidanceAnswerSchema).max(100)
+}).strict();
+
+const creationJourneyLocksSchema = z.object({
+	coreFields: z.array(z.enum(storyCoreFields))
+		.refine(fields => new Set(fields).size === fields.length),
+	directionIds: z.array(directionIdSchema)
+		.refine(ids => new Set(ids).size === ids.length),
+	outlineNodeIds: z.array(outlineIdSchema)
+		.refine(ids => new Set(ids).size === ids.length),
+	chapterIds: z.array(chapterProposalIdSchema)
+		.refine(ids => new Set(ids).size === ids.length)
+}).strict();
+
+const journeyImpactSchema = z.object({
+	id: impactIdSchema,
+	sourceKind: z.enum(['element', 'core', 'direction-selection', 'direction', 'outline']),
+	sourceId: z.string().trim().min(1).max(240).optional(),
+	targetKind: z.enum(['direction', 'outline', 'chapter']),
+	targetId: z.string().trim().min(1).max(240),
+	reason: z.string().trim().min(1).max(500),
+	status: z.enum(['pending', 'kept', 'updated']),
+	createdAt: utcTimestamp,
+	resolvedAt: utcTimestamp.optional()
+}).strict().superRefine((impact, context) => {
+	if (impact.status === 'pending' && impact.resolvedAt) {
+		context.addIssue({ code: 'custom', message: 'pendingJourneyImpactResolved' });
+	}
+	if (impact.status !== 'pending' && !impact.resolvedAt) {
+		context.addIssue({ code: 'custom', message: 'resolvedJourneyImpactMissingTime' });
+	}
+});
+
 const creationJourneyStateSchema = z.object({
-	schemaVersion: z.literal(1),
+	schemaVersion: z.literal(2),
 	revision: z.number().int().min(0),
 	projectId: z.string().trim().min(1).max(240),
 	startRoute: z.enum(creationStartRoutes),
@@ -167,6 +309,9 @@ const creationJourneyStateSchema = z.object({
 		.refine(nodes => nodes.length === 0 || (nodes.length >= 5 && nodes.length <= 8)),
 	chapters: z.array(journeyChapterProposalSchema)
 		.refine(chapters => chapters.length === 0 || chapters.length === 3),
+	guidance: creationJourneyGuidanceSchema,
+	locks: creationJourneyLocksSchema,
+	impacts: z.array(journeyImpactSchema).max(500),
 	stale: z.object({
 		directions: z.boolean(),
 		outline: z.boolean(),
@@ -189,10 +334,51 @@ const creationJourneyStateSchema = z.object({
 		context.addIssue({ code: 'custom', message: 'unknownJourneyDirection' });
 	}
 	const outlineIds = new Set(state.outline.map(node => node.id));
+	const chapterIds = new Set(state.chapters.map(chapter => chapter.id));
 	if (
 		state.chapters.some(chapter => chapter.sourceNodeIds.some(id => !outlineIds.has(id)))
 	) {
 		context.addIssue({ code: 'custom', message: 'unknownJourneyOutlineNode' });
+	}
+	if (
+		state.locks.directionIds.some(id => !directionIds.has(id))
+		|| state.locks.outlineNodeIds.some(id => !outlineIds.has(id))
+		|| state.locks.chapterIds.some(id => !chapterIds.has(id))
+	) {
+		context.addIssue({ code: 'custom', message: 'orphanJourneyLock' });
+	}
+	if (new Set(state.impacts.map(impact => impact.id)).size !== state.impacts.length) {
+		context.addIssue({ code: 'custom', message: 'duplicateJourneyImpactId' });
+	}
+	const pendingTargets = new Set<string>();
+	for (const impact of state.impacts) {
+		const knownTarget = (
+			(impact.targetKind === 'direction' && directionIds.has(impact.targetId))
+			|| (impact.targetKind === 'outline' && outlineIds.has(impact.targetId))
+			|| (impact.targetKind === 'chapter' && chapterIds.has(impact.targetId))
+		);
+		if (impact.status === 'pending' && !knownTarget) {
+			context.addIssue({ code: 'custom', message: 'orphanJourneyImpact' });
+		}
+		if (impact.status === 'pending') {
+			const key = `${impact.targetKind}:${impact.targetId}`;
+			if (pendingTargets.has(key)) {
+				context.addIssue({ code: 'custom', message: 'duplicatePendingJourneyImpact' });
+			}
+			pendingTargets.add(key);
+		}
+	}
+	const expectedStale = {
+		directions: [...pendingTargets].some(key => key.startsWith('direction:')),
+		outline: [...pendingTargets].some(key => key.startsWith('outline:')),
+		chapters: [...pendingTargets].some(key => key.startsWith('chapter:'))
+	};
+	if (
+		state.stale.directions !== expectedStale.directions
+		|| state.stale.outline !== expectedStale.outline
+		|| state.stale.chapters !== expectedStale.chapters
+	) {
+		context.addIssue({ code: 'custom', message: 'journeyStaleImpactMismatch' });
 	}
 	const materializedCount = state.chapters.filter(chapter => chapter.resourceId).length;
 	if (materializedCount !== 0 && materializedCount !== 3) {
@@ -203,7 +389,14 @@ const creationJourneyStateSchema = z.object({
 	}
 });
 
-function defaultId(prefix: 'journey-element' | 'journey-direction' | 'journey-outline' | 'journey-chapter'): string {
+function defaultId(
+	prefix:
+		| 'journey-element'
+		| 'journey-direction'
+		| 'journey-outline'
+		| 'journey-chapter'
+		| 'journey-impact'
+): string {
 	return `${prefix}:${globalThis.crypto.randomUUID()}`;
 }
 
@@ -235,6 +428,154 @@ function nextState(
 		revision: state.revision + 1,
 		updatedAt: timestamp(now)
 	}));
+}
+
+function staleFromImpacts(impacts: readonly JourneyImpact[]): CreationJourneyState['stale'] {
+	const pending = impacts.filter(impact => impact.status === 'pending');
+	return {
+		directions: pending.some(impact => impact.targetKind === 'direction'),
+		outline: pending.some(impact => impact.targetKind === 'outline'),
+		chapters: pending.some(impact => impact.targetKind === 'chapter')
+	};
+}
+
+function targetsForKinds(
+	state: CreationJourneyState,
+	targetKinds: readonly JourneyImpactTargetKind[]
+): readonly { readonly kind: JourneyImpactTargetKind; readonly id: string }[] {
+	const kinds = new Set(targetKinds);
+	return [
+		...(kinds.has('direction')
+			? state.directions.map(direction => ({ kind: 'direction' as const, id: direction.id }))
+			: []),
+		...(kinds.has('outline')
+			? state.outline.map(node => ({ kind: 'outline' as const, id: node.id }))
+			: []),
+		...(kinds.has('chapter')
+			? state.chapters.map(chapter => ({ kind: 'chapter' as const, id: chapter.id }))
+			: [])
+	];
+}
+
+function addPendingImpacts(
+	state: CreationJourneyState,
+	sourceKind: JourneyImpactSourceKind,
+	sourceId: string | undefined,
+	targetKinds: readonly JourneyImpactTargetKind[],
+	now?: () => string,
+	baseImpacts: readonly JourneyImpact[] = state.impacts
+): Pick<CreationJourneyState, 'impacts' | 'stale'> {
+	const createdAt = timestamp(now);
+	const impacts = [...baseImpacts];
+	for (const target of targetsForKinds(state, targetKinds)) {
+		const existingIndex = impacts.findIndex(impact => (
+			impact.status === 'pending'
+			&& impact.targetKind === target.kind
+			&& impact.targetId === target.id
+		));
+		const pending: JourneyImpact = {
+			id: existingIndex >= 0
+				? impacts[existingIndex].id
+				: defaultId('journey-impact'),
+			sourceKind,
+			...(sourceId ? { sourceId } : {}),
+			targetKind: target.kind,
+			targetId: target.id,
+			reason: `${sourceKind} changed and may affect this ${target.kind}`,
+			status: 'pending',
+			createdAt
+		};
+		if (existingIndex >= 0) {
+			impacts[existingIndex] = pending;
+		} else {
+			impacts.push(pending);
+		}
+	}
+	return {
+		impacts,
+		stale: staleFromImpacts(impacts)
+	};
+}
+
+function resolveTargetImpacts(
+	impacts: readonly JourneyImpact[],
+	targetKind: JourneyImpactTargetKind,
+	targetIds: readonly string[],
+	status: 'kept' | 'updated',
+	now?: () => string
+): readonly JourneyImpact[] {
+	const ids = new Set(targetIds);
+	const resolvedAt = timestamp(now);
+	return impacts.map(impact => (
+		impact.status === 'pending'
+		&& impact.targetKind === targetKind
+		&& ids.has(impact.targetId)
+			? { ...impact, status, resolvedAt }
+			: impact
+	));
+}
+
+function migrateLegacyCreationJourney(raw: unknown): unknown {
+	if (
+		typeof raw !== 'object'
+		|| raw === null
+		|| !('schemaVersion' in raw)
+		|| raw.schemaVersion !== 1
+	) {
+		return raw;
+	}
+	const legacy = raw as Record<string, unknown>;
+	const stale = typeof legacy.stale === 'object' && legacy.stale !== null
+		? legacy.stale as Record<string, unknown>
+		: {};
+	const updatedAt = typeof legacy.updatedAt === 'string' ? legacy.updatedAt : '';
+	const targetGroups: readonly [
+		JourneyImpactTargetKind,
+		unknown,
+		unknown,
+		JourneyImpactSourceKind
+	][] = [
+		['direction', legacy.directions, stale.directions, 'core'],
+		['outline', legacy.outline, stale.outline, 'direction-selection'],
+		['chapter', legacy.chapters, stale.chapters, 'outline']
+	];
+	let index = 0;
+	const impacts: JourneyImpact[] = [];
+	for (const [targetKind, items, isStale, sourceKind] of targetGroups) {
+		if (!isStale || !Array.isArray(items)) {
+			continue;
+		}
+		for (const item of items) {
+			if (typeof item !== 'object' || item === null) {
+				continue;
+			}
+			const itemId = (item as Record<string, unknown>).id;
+			if (typeof itemId !== 'string') continue;
+			index += 1;
+			impacts.push({
+				id: `journey-impact:migrated-${index}`,
+				sourceKind,
+				targetKind,
+				targetId: itemId,
+				reason: `Migrated version-1 ${targetKind} impact`,
+				status: 'pending',
+				createdAt: updatedAt
+			});
+		}
+	}
+	return {
+		...legacy,
+		schemaVersion: 2,
+		guidance: { answers: [] },
+		locks: {
+			coreFields: [],
+			directionIds: [],
+			outlineNodeIds: [],
+			chapterIds: []
+		},
+		impacts,
+		stale: staleFromImpacts(impacts)
+	};
 }
 
 function hasCompleteElements(state: CreationJourneyState): boolean {
@@ -284,7 +625,7 @@ export function createCreationJourneyState(
 	const createdAt = timestamp(dependencies.now);
 	const createId = dependencies.id ?? (() => defaultId('journey-element'));
 	return parseCreationJourneyState(JSON.stringify({
-		schemaVersion: 1,
+		schemaVersion: 2,
 		revision: 0,
 		projectId,
 		startRoute: 'ideas',
@@ -300,6 +641,16 @@ export function createCreationJourneyState(
 		selectedDirectionIds: [],
 		outline: [],
 		chapters: [],
+		guidance: {
+			answers: []
+		},
+		locks: {
+			coreFields: [],
+			directionIds: [],
+			outlineNodeIds: [],
+			chapterIds: []
+		},
+		impacts: [],
 		stale: {
 			directions: false,
 			outline: false,
@@ -312,7 +663,9 @@ export function createCreationJourneyState(
 
 export function parseCreationJourneyState(content: string): CreationJourneyState {
 	try {
-		const result = creationJourneyStateSchema.safeParse(JSON.parse(content));
+		const result = creationJourneyStateSchema.safeParse(
+			migrateLegacyCreationJourney(JSON.parse(content))
+		);
 		if (!result.success) {
 			throw new Error('creationJourneyStateInvalid');
 		}
@@ -335,19 +688,29 @@ export function updateStoryCore(
 	patch: Partial<Omit<StoryCore, 'confirmedAt'>>,
 	now?: () => string
 ): CreationJourneyState {
+	const changedFields = (Object.keys(patch) as StoryCoreField[])
+		.filter(field => patch[field] !== state.core[field]);
+	if (changedFields.some(field => state.locks.coreFields.includes(field))) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const core = {
 		...state.core,
 		...patch
 	};
 	delete core.confirmedAt;
+	const impactPatch = changedFields.length > 0
+		? addPendingImpacts(
+			state,
+			'core',
+			changedFields.join(','),
+			['direction', 'outline', 'chapter'],
+			now
+		)
+		: { impacts: state.impacts, stale: state.stale };
 	return nextState(state, {
 		stage: 'core',
 		core,
-		stale: {
-			directions: state.directions.length > 0,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		}
+		...impactPatch
 	}, now);
 }
 
@@ -388,13 +751,18 @@ export function selectStoryDirections(
 		uniqueIds.length !== state.selectedDirectionIds.length
 		|| uniqueIds.some((id, index) => id !== state.selectedDirectionIds[index])
 	);
+	const impactPatch = selectionChanged
+		? addPendingImpacts(
+			state,
+			'direction-selection',
+			undefined,
+			['outline', 'chapter'],
+			now
+		)
+		: { impacts: state.impacts, stale: state.stale };
 	return nextState(state, {
 		selectedDirectionIds: uniqueIds,
-		stale: selectionChanged ? {
-			...state.stale,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		} : state.stale
+		...impactPatch
 	}, now);
 }
 
@@ -444,22 +812,34 @@ export function updateStoryElement(
 	patch: Partial<Pick<StoryElement, 'category' | 'text' | 'locked'>>,
 	now?: () => string
 ): CreationJourneyState {
-	if (!state.elements.some(element => element.id === elementId)) {
+	const current = state.elements.find(element => element.id === elementId);
+	if (!current) {
 		throw new Error('creationJourneyElementNotFound');
 	}
+	const contentChanged = (
+		(patch.category !== undefined && patch.category !== current.category)
+		|| (patch.text !== undefined && patch.text !== current.text)
+	);
+	if (current.locked && contentChanged) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	const impactPatch = contentChanged
+		? addPendingImpacts(
+			state,
+			'element',
+			elementId,
+			['direction', 'outline', 'chapter'],
+			now
+		)
+		: { impacts: state.impacts, stale: state.stale };
 	return nextState(state, {
 		elements: state.elements.map(element => (
 			element.id === elementId ? { ...element, ...patch } : element
 		)),
-		core: {
-			...state.core,
-			confirmedAt: undefined
-		},
-		stale: {
-			directions: state.directions.length > 0,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		}
+		core: contentChanged
+			? { ...state.core, confirmedAt: undefined }
+			: state.core,
+		...impactPatch
 	}, now);
 }
 
@@ -471,11 +851,20 @@ export function addStoryElement(
 	if (state.elements.length >= 8) {
 		throw new Error('creationJourneyElementLimit');
 	}
+	const impactPatch = addPendingImpacts(
+		state,
+		'element',
+		undefined,
+		['direction', 'outline', 'chapter'],
+		now
+	);
 	return nextState(state, {
 		elements: [
 			...state.elements,
 			{ id: id(), category: 'other', text: '', locked: false }
-		]
+		],
+		core: { ...state.core, confirmedAt: undefined },
+		...impactPatch
 	}, now);
 }
 
@@ -487,11 +876,25 @@ export function removeStoryElement(
 	if (state.elements.length <= 3) {
 		throw new Error('creationJourneyElementMinimum');
 	}
+	const current = state.elements.find(element => element.id === elementId);
+	if (current?.locked) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const elements = state.elements.filter(element => element.id !== elementId);
 	if (elements.length === state.elements.length) {
 		throw new Error('creationJourneyElementNotFound');
 	}
-	return nextState(state, { elements }, now);
+	return nextState(state, {
+		elements,
+		core: { ...state.core, confirmedAt: undefined },
+		...addPendingImpacts(
+			state,
+			'element',
+			elementId,
+			['direction', 'outline', 'chapter'],
+			now
+		)
+	}, now);
 }
 
 function moveItem<T>(items: readonly T[], fromIndex: number, toIndex: number): readonly T[] {
@@ -517,8 +920,19 @@ export function moveStoryElement(
 	toIndex: number,
 	now?: () => string
 ): CreationJourneyState {
+	if (state.elements[fromIndex]?.locked) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	return nextState(state, {
-		elements: moveItem(state.elements, fromIndex, toIndex)
+		elements: moveItem(state.elements, fromIndex, toIndex),
+		core: { ...state.core, confirmedAt: undefined },
+		...addPendingImpacts(
+			state,
+			'element',
+			state.elements[fromIndex]?.id,
+			['direction', 'outline', 'chapter'],
+			now
+		)
 	}, now);
 }
 
@@ -534,14 +948,25 @@ export function setGeneratedStoryCore(
 	if (!parsedCore.success || !hasCompleteCore(parsedCore.data)) {
 		throw new Error('creationJourneyCoreInvalid');
 	}
+	const lockedCore = {
+		...parsedCore.data,
+		...Object.fromEntries(
+			state.locks.coreFields.map(field => [field, state.core[field]])
+		)
+	} as StoryCore;
+	if (!hasCompleteCore(lockedCore)) {
+		throw new Error('creationJourneyCoreInvalid');
+	}
 	return nextState(state, {
 		stage: 'core',
-		core: parsedCore.data,
-		stale: {
-			directions: state.directions.length > 0,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		}
+		core: lockedCore,
+		...addPendingImpacts(
+			state,
+			'core',
+			undefined,
+			['direction', 'outline', 'chapter'],
+			now
+		)
 	}, now);
 }
 
@@ -553,6 +978,9 @@ export function setStoryDirections(
 	if (!state.core.confirmedAt) {
 		throw new Error('creationJourneyCoreConfirmationRequired');
 	}
+	if (state.locks.directionIds.length > 0) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const parsed = z.array(storyDirectionSchema).length(3).safeParse(directions);
 	if (
 		!parsed.success
@@ -561,15 +989,30 @@ export function setStoryDirections(
 	) {
 		throw new Error('creationJourneyDirectionsInvalid');
 	}
+	const resolvedImpacts = resolveTargetImpacts(
+		state.impacts,
+		'direction',
+		state.directions.map(direction => direction.id),
+		'updated',
+		now
+	);
+	const staged = {
+		...state,
+		directions: parsed.data,
+		selectedDirectionIds: []
+	};
 	return nextState(state, {
 		stage: 'directions',
 		directions: parsed.data,
 		selectedDirectionIds: [],
-		stale: {
-			directions: false,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		}
+		...addPendingImpacts(
+			staged,
+			'core',
+			undefined,
+			['outline', 'chapter'],
+			now,
+			resolvedImpacts
+		)
 	}, now);
 }
 
@@ -585,18 +1028,32 @@ export function updateStoryDirection(
 	if (!state.directions.some(direction => direction.id === directionId)) {
 		throw new Error('creationJourneyDirectionNotFound');
 	}
+	if (state.locks.directionIds.includes(directionId)) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const parsed = z.array(storyDirectionSchema).length(3).safeParse(directions);
 	if (!parsed.success) {
 		throw new Error('creationJourneyDirectionsInvalid');
 	}
+	const resolvedImpacts = resolveTargetImpacts(
+		state.impacts,
+		'direction',
+		[directionId],
+		'updated',
+		now
+	);
+	const staged = { ...state, directions: parsed.data };
 	return nextState(state, {
 		stage: 'directions',
 		directions: parsed.data,
-		stale: {
-			directions: false,
-			outline: state.outline.length > 0,
-			chapters: state.chapters.length > 0
-		}
+		...addPendingImpacts(
+			staged,
+			'direction',
+			directionId,
+			['outline', 'chapter'],
+			now,
+			resolvedImpacts
+		)
 	}, now);
 }
 
@@ -612,6 +1069,9 @@ export function setStoryOutline(
 	) {
 		throw new Error('creationJourneyDirectionDecisionRequired');
 	}
+	if (state.locks.outlineNodeIds.length > 0) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const parsed = z.array(storyOutlineNodeSchema).min(5).max(8).safeParse(outline);
 	if (
 		!parsed.success
@@ -620,14 +1080,25 @@ export function setStoryOutline(
 	) {
 		throw new Error('creationJourneyOutlineInvalid');
 	}
+	const resolvedImpacts = resolveTargetImpacts(
+		state.impacts,
+		'outline',
+		state.outline.map(node => node.id),
+		'updated',
+		now
+	);
+	const staged = { ...state, outline: parsed.data };
 	return nextState(state, {
 		stage: 'outline',
 		outline: parsed.data,
-		stale: {
-			...state.stale,
-			outline: false,
-			chapters: state.chapters.length > 0
-		}
+		...addPendingImpacts(
+			staged,
+			'direction-selection',
+			undefined,
+			['chapter'],
+			now,
+			resolvedImpacts
+		)
 	}, now);
 }
 
@@ -637,12 +1108,25 @@ export function moveStoryOutlineNode(
 	toIndex: number,
 	now?: () => string
 ): CreationJourneyState {
+	const moved = state.outline[fromIndex];
+	if (moved && state.locks.outlineNodeIds.includes(moved.id)) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	const outline = moveItem(state.outline, fromIndex, toIndex);
+	const resolvedImpacts = moved
+		? resolveTargetImpacts(state.impacts, 'outline', [moved.id], 'updated', now)
+		: state.impacts;
+	const staged = { ...state, outline };
 	return nextState(state, {
-		outline: moveItem(state.outline, fromIndex, toIndex),
-		stale: {
-			...state.stale,
-			chapters: state.chapters.length > 0
-		}
+		outline,
+		...addPendingImpacts(
+			staged,
+			'outline',
+			moved?.id,
+			['chapter'],
+			now,
+			resolvedImpacts
+		)
 	}, now);
 }
 
@@ -655,14 +1139,30 @@ export function updateStoryOutlineNode(
 	if (!state.outline.some(node => node.id === nodeId)) {
 		throw new Error('creationJourneyOutlineNodeNotFound');
 	}
+	if (state.locks.outlineNodeIds.includes(nodeId)) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	const outline = state.outline.map(node => (
+		node.id === nodeId ? { ...node, ...patch } : node
+	));
+	const resolvedImpacts = resolveTargetImpacts(
+		state.impacts,
+		'outline',
+		[nodeId],
+		'updated',
+		now
+	);
+	const staged = { ...state, outline };
 	return nextState(state, {
-		outline: state.outline.map(node => (
-			node.id === nodeId ? { ...node, ...patch } : node
-		)),
-		stale: {
-			...state.stale,
-			chapters: state.chapters.length > 0
-		}
+		outline,
+		...addPendingImpacts(
+			staged,
+			'outline',
+			nodeId,
+			['chapter'],
+			now,
+			resolvedImpacts
+		)
 	}, now);
 }
 
@@ -674,6 +1174,12 @@ export function setJourneyChapterProposals(
 	if (state.outline.length < 5 || state.stale.outline) {
 		throw new Error('creationJourneyOutlineRequired');
 	}
+	if (state.chapters.some(chapter => chapter.resourceId)) {
+		throw new Error('creationJourneyMaterializedChapterLocked');
+	}
+	if (state.locks.chapterIds.length > 0) {
+		throw new Error('creationJourneyTargetLocked');
+	}
 	const parsed = z.array(journeyChapterProposalSchema).length(3).safeParse(chapters);
 	if (
 		!parsed.success
@@ -682,29 +1188,185 @@ export function setJourneyChapterProposals(
 	) {
 		throw new Error('creationJourneyChaptersInvalid');
 	}
+	const resolvedImpacts = resolveTargetImpacts(
+		state.impacts,
+		'chapter',
+		state.chapters.map(chapter => chapter.id),
+		'updated',
+		now
+	);
 	return nextState(state, {
 		stage: 'chapters',
 		chapters: parsed.data,
-		stale: {
-			...state.stale,
-			chapters: false
-		}
+		impacts: resolvedImpacts,
+		stale: staleFromImpacts(resolvedImpacts)
 	}, now);
 }
 
 export function updateJourneyChapterProposal(
 	state: CreationJourneyState,
 	chapterId: string,
-	patch: Partial<Pick<JourneyChapterProposal, 'title' | 'goal' | 'summary'>>,
+	patch: Partial<Pick<
+		JourneyChapterProposal,
+		'title' | 'goal' | 'summary' | 'sourceNodeIds'
+	>>,
 	now?: () => string
 ): CreationJourneyState {
 	if (!state.chapters.some(chapter => chapter.id === chapterId)) {
 		throw new Error('creationJourneyChapterNotFound');
 	}
+	const current = state.chapters.find(chapter => chapter.id === chapterId);
+	if (current?.resourceId) {
+		throw new Error('creationJourneyMaterializedChapterLocked');
+	}
+	if (state.locks.chapterIds.includes(chapterId)) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	const impacts = resolveTargetImpacts(
+		state.impacts,
+		'chapter',
+		[chapterId],
+		'updated',
+		now
+	);
 	return nextState(state, {
 		chapters: state.chapters.map(chapter => (
 			chapter.id === chapterId ? { ...chapter, ...patch } : chapter
-		))
+		)),
+		impacts,
+		stale: staleFromImpacts(impacts)
 	}, now);
 }
+
+export function setCreationGuidanceQuestion(
+	state: CreationJourneyState,
+	question: CreationGuidanceQuestion,
+	now?: () => string
+): CreationJourneyState {
+	const parsed = creationGuidanceQuestionSchema.safeParse(question);
+	if (!parsed.success) {
+		throw new Error('creationJourneyGuidanceQuestionInvalid');
+	}
+	return nextState(state, {
+		guidance: {
+			...state.guidance,
+			currentQuestion: parsed.data
+		}
+	}, now);
+}
+
+export function answerCreationGuidanceQuestion(
+	state: CreationJourneyState,
+	answer:
+		| { readonly source: 'option'; readonly optionId: string }
+		| { readonly source: 'custom'; readonly answerText: string },
+	now?: () => string
+): CreationJourneyState {
+	const question = state.guidance.currentQuestion;
+	if (!question) {
+		throw new Error('creationJourneyGuidanceQuestionMissing');
+	}
+	let answerText: string;
+	if (answer.source === 'option') {
+		const option = question.options.find(candidate => candidate.id === answer.optionId);
+		if (!option) {
+			throw new Error('creationJourneyGuidanceAnswerInvalid');
+		}
+		answerText = `${option.label}：${option.description}`;
+	} else {
+		answerText = answer.answerText.trim();
+		if (!answerText || answerText.length > 1_000) {
+			throw new Error('creationJourneyGuidanceAnswerInvalid');
+		}
+	}
+	return nextState(state, {
+		guidance: {
+			answers: [
+				...state.guidance.answers,
+				{
+					questionId: question.id,
+					stage: question.stage,
+					source: answer.source,
+					answerText,
+					answeredAt: timestamp(now)
+				}
+			]
+		}
+	}, now);
+}
+
+export function toggleJourneyLock(
+	state: CreationJourneyState,
+	target: JourneyLockTarget,
+	locked?: boolean,
+	now?: () => string
+): CreationJourneyState {
+	let key: keyof CreationJourneyLocks;
+	let value: string;
+	if (target.kind === 'core') {
+		key = 'coreFields';
+		value = target.field;
+	} else if (target.kind === 'direction') {
+		if (!state.directions.some(direction => direction.id === target.id)) {
+			throw new Error('creationJourneyDirectionNotFound');
+		}
+		key = 'directionIds';
+		value = target.id;
+	} else if (target.kind === 'outline') {
+		if (!state.outline.some(node => node.id === target.id)) {
+			throw new Error('creationJourneyOutlineNodeNotFound');
+		}
+		key = 'outlineNodeIds';
+		value = target.id;
+	} else {
+		if (!state.chapters.some(chapter => chapter.id === target.id)) {
+			throw new Error('creationJourneyChapterNotFound');
+		}
+		key = 'chapterIds';
+		value = target.id;
+	}
+	const values = state.locks[key] as readonly string[];
+	const shouldLock = locked ?? !values.includes(value);
+	const nextValues = shouldLock
+		? [...new Set([...values, value])]
+		: values.filter(item => item !== value);
+	return nextState(state, {
+		locks: {
+			...state.locks,
+			[key]: nextValues
+		}
+	}, now);
+}
+
+export function resolveJourneyImpact(
+	state: CreationJourneyState,
+	impactId: string,
+	resolution: 'kept' | 'updated',
+	now?: () => string
+): CreationJourneyState {
+	const impact = state.impacts.find(candidate => candidate.id === impactId);
+	if (!impact || impact.status !== 'pending') {
+		throw new Error('creationJourneyImpactNotPending');
+	}
+	if (impact.targetKind === 'chapter' && resolution === 'updated') {
+		const chapter = state.chapters.find(candidate => candidate.id === impact.targetId);
+		if (chapter?.resourceId) {
+			throw new Error('creationJourneyMaterializedChapterLocked');
+		}
+	}
+	const impacts = state.impacts.map(candidate => (
+		candidate.id === impactId
+			? {
+				...candidate,
+				status: resolution,
+				resolvedAt: timestamp(now)
+			}
+			: candidate
+	));
+	return nextState(state, {
+		impacts,
+		stale: staleFromImpacts(impacts)
+	}, now);
+}
+
 import { z } from 'zod';

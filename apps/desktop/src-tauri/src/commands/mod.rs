@@ -1508,6 +1508,9 @@ struct CreationJourneyState {
     selected_direction_ids: Vec<String>,
     outline: Vec<CreationJourneyOutlineNode>,
     chapters: Vec<CreationJourneyChapter>,
+    guidance: CreationJourneyGuidance,
+    locks: CreationJourneyLocks,
+    impacts: Vec<CreationJourneyImpact>,
     stale: CreationJourneyStale,
     created_at: String,
     updated_at: String,
@@ -1577,6 +1580,67 @@ struct CreationJourneyStale {
     chapters: bool,
 }
 
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidance {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    current_question: Option<CreationJourneyGuidanceQuestion>,
+    answers: Vec<CreationJourneyGuidanceAnswer>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidanceQuestion {
+    id: String,
+    stage: String,
+    prompt: String,
+    rationale: String,
+    options: Vec<CreationJourneyGuidanceOption>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidanceOption {
+    id: String,
+    label: String,
+    description: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyGuidanceAnswer {
+    question_id: String,
+    stage: String,
+    source: String,
+    answer_text: String,
+    answered_at: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyLocks {
+    core_fields: Vec<String>,
+    direction_ids: Vec<String>,
+    outline_node_ids: Vec<String>,
+    chapter_ids: Vec<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyImpact {
+    id: String,
+    source_kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    source_id: Option<String>,
+    target_kind: String,
+    target_id: String,
+    reason: String,
+    status: String,
+    created_at: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    resolved_at: Option<String>,
+}
+
 fn valid_creation_journey_id(value: &str, prefix: &str) -> bool {
     value.strip_prefix(prefix).is_some_and(|leaf| {
         !leaf.is_empty()
@@ -1597,7 +1661,7 @@ fn valid_creation_journey_timestamp(value: &str) -> bool {
 }
 
 fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
-    if state.schema_version != 1
+    if state.schema_version != 2
         || state.project_id.trim().is_empty()
         || state.project_id.chars().count() > 240
         || !matches!(
@@ -1710,6 +1774,152 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
                     || valid_creation_journey_id(id, "chapter-")
             })
     }) {
+        return false;
+    }
+    let valid_stage = |stage: &str| {
+        matches!(
+            stage,
+            "elements" | "core" | "directions" | "outline" | "chapters" | "writing"
+        )
+    };
+    let valid_guidance = state.guidance.answers.len() <= 100
+        && state.guidance.answers.iter().all(|answer| {
+            valid_creation_journey_id(&answer.question_id, "journey-question:")
+                && valid_stage(&answer.stage)
+                && matches!(answer.source.as_str(), "option" | "custom")
+                && valid_creation_journey_text(&answer.answer_text, 1_000, false)
+                && valid_creation_journey_timestamp(&answer.answered_at)
+        })
+        && state
+            .guidance
+            .current_question
+            .as_ref()
+            .is_none_or(|question| {
+                let mut option_ids = HashSet::new();
+                valid_creation_journey_id(&question.id, "journey-question:")
+                    && valid_stage(&question.stage)
+                    && valid_creation_journey_text(&question.prompt, 500, false)
+                    && valid_creation_journey_text(&question.rationale, 500, false)
+                    && question.options.len() == 3
+                    && question.options.iter().all(|option| {
+                        valid_creation_journey_id(&option.id, "journey-option:")
+                            && option_ids.insert(option.id.as_str())
+                            && valid_creation_journey_text(&option.label, 120, false)
+                            && valid_creation_journey_text(&option.description, 500, false)
+                    })
+            });
+    if !valid_guidance {
+        return false;
+    }
+    let valid_core_fields = [
+        "oneSentence",
+        "protagonist",
+        "goal",
+        "obstacle",
+        "stakes",
+        "mystery",
+        "readerExperience",
+        "endingDirection",
+    ];
+    if state.locks.core_fields.iter().collect::<HashSet<_>>().len() != state.locks.core_fields.len()
+        || state
+            .locks
+            .core_fields
+            .iter()
+            .any(|field| !valid_core_fields.contains(&field.as_str()))
+        || state
+            .locks
+            .direction_ids
+            .iter()
+            .collect::<HashSet<_>>()
+            .len()
+            != state.locks.direction_ids.len()
+        || state
+            .locks
+            .direction_ids
+            .iter()
+            .any(|id| !direction_ids.contains(id.as_str()))
+        || state
+            .locks
+            .outline_node_ids
+            .iter()
+            .collect::<HashSet<_>>()
+            .len()
+            != state.locks.outline_node_ids.len()
+        || state
+            .locks
+            .outline_node_ids
+            .iter()
+            .any(|id| !outline_ids.contains(id.as_str()))
+        || state.locks.chapter_ids.iter().collect::<HashSet<_>>().len()
+            != state.locks.chapter_ids.len()
+        || state
+            .locks
+            .chapter_ids
+            .iter()
+            .any(|id| !chapter_ids.contains(id.as_str()))
+    {
+        return false;
+    }
+    let mut impact_ids = HashSet::new();
+    let mut pending_targets = HashSet::new();
+    if state.impacts.len() > 500
+        || !state.impacts.iter().all(|impact| {
+            let target_has_valid_id = match impact.target_kind.as_str() {
+                "direction" => valid_creation_journey_id(&impact.target_id, "journey-direction:"),
+                "outline" => valid_creation_journey_id(&impact.target_id, "journey-outline:"),
+                "chapter" => valid_creation_journey_id(&impact.target_id, "journey-chapter:"),
+                _ => false,
+            };
+            let target_exists = match impact.target_kind.as_str() {
+                "direction" => direction_ids.contains(impact.target_id.as_str()),
+                "outline" => outline_ids.contains(impact.target_id.as_str()),
+                "chapter" => chapter_ids.contains(impact.target_id.as_str()),
+                _ => false,
+            };
+            let resolution_valid = match impact.status.as_str() {
+                "pending" => impact.resolved_at.is_none(),
+                "kept" | "updated" => impact
+                    .resolved_at
+                    .as_deref()
+                    .is_some_and(valid_creation_journey_timestamp),
+                _ => false,
+            };
+            let pending_unique = impact.status != "pending"
+                || pending_targets.insert(format!("{}:{}", impact.target_kind, impact.target_id));
+            valid_creation_journey_id(&impact.id, "journey-impact:")
+                && impact_ids.insert(impact.id.as_str())
+                && matches!(
+                    impact.source_kind.as_str(),
+                    "element" | "core" | "direction-selection" | "direction" | "outline"
+                )
+                && impact
+                    .source_id
+                    .as_deref()
+                    .is_none_or(|id| valid_creation_journey_text(id, 240, false))
+                && target_has_valid_id
+                && (impact.status != "pending" || target_exists)
+                && valid_creation_journey_text(&impact.reason, 500, false)
+                && valid_creation_journey_timestamp(&impact.created_at)
+                && resolution_valid
+                && pending_unique
+        })
+    {
+        return false;
+    }
+    let stale_matches_impacts = state.stale.directions
+        == pending_targets
+            .iter()
+            .any(|target| target.starts_with("direction:"))
+        && state.stale.outline
+            == pending_targets
+                .iter()
+                .any(|target| target.starts_with("outline:"))
+        && state.stale.chapters
+            == pending_targets
+                .iter()
+                .any(|target| target.starts_with("chapter:"));
+    if !stale_matches_impacts {
         return false;
     }
     let materialized_count = state
@@ -2606,7 +2816,7 @@ mod tests {
 
     fn creation_journey_fixture(project_id: &str) -> String {
         json!({
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "revision": 8,
             "projectId": project_id,
             "startRoute": "ideas",
@@ -2645,11 +2855,42 @@ mod tests {
                 {"id": "journey-chapter:two", "title": "缺失的七分钟", "goal": "发现记忆代价", "summary": "记者发现记忆缺口", "sourceNodeIds": ["journey-outline:three"]},
                 {"id": "journey-chapter:three", "title": "站长的条件", "goal": "做出首次主动选择", "summary": "记者拒绝站长的交换", "sourceNodeIds": ["journey-outline:four", "journey-outline:five"]}
             ],
+            "guidance": {"answers": []},
+            "locks": {
+                "coreFields": [],
+                "directionIds": [],
+                "outlineNodeIds": [],
+                "chapterIds": []
+            },
+            "impacts": [],
             "stale": {"directions": false, "outline": false, "chapters": false},
             "createdAt": "2026-07-30T00:00:00.000Z",
             "updatedAt": "2026-07-30T01:00:00.000Z"
         })
         .to_string()
+    }
+
+    #[test]
+    fn creation_journey_v2_rejects_orphan_locks_and_stale_mismatches() {
+        let mut orphan_lock: serde_json::Value =
+            serde_json::from_str(&creation_journey_fixture("journey-contract"))
+                .expect("valid fixture");
+        orphan_lock["locks"]["directionIds"] = json!(["journey-direction:missing"]);
+        assert_eq!(
+            parse_creation_journey_state(&orphan_lock.to_string())
+                .expect_err("orphan lock must be rejected"),
+            "creationJourneyStateInvalid"
+        );
+
+        let mut stale_mismatch: serde_json::Value =
+            serde_json::from_str(&creation_journey_fixture("journey-contract"))
+                .expect("valid fixture");
+        stale_mismatch["stale"]["directions"] = json!(true);
+        assert_eq!(
+            parse_creation_journey_state(&stale_mismatch.to_string())
+                .expect_err("stale flags must match pending impacts"),
+            "creationJourneyStateInvalid"
+        );
     }
 
     #[test]

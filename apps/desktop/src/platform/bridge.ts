@@ -2015,6 +2015,11 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 	const decoded = JSON.parse(userMessage) as {
 		readonly operation?: string;
 		readonly elements?: readonly { readonly text?: string }[];
+		readonly target?: {
+			readonly kind?: 'direction' | 'outline' | 'chapter';
+			readonly id?: string;
+			readonly current?: Record<string, unknown>;
+		};
 	};
 	const firstElement = decoded.elements?.find(element => element.text?.trim())?.text?.trim()
 		?? '旧车站玻璃顶';
@@ -2087,6 +2092,67 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 					sourceNodeIndexes: [3, 4]
 				}]
 			});
+		case 'generate-guidance-question':
+			return browserJsonDeltas({
+				operation: 'generate-guidance-question',
+				question: {
+					prompt: '如果主角失败，他最不能承受失去什么？',
+					rationale: '明确个人代价会让故事核心和后续选择更有力量。',
+					options: [{
+						label: '最后的记忆',
+						description: '失去与姐姐有关的最后一段私人记忆。'
+					}, {
+						label: '整座城市',
+						description: '城市会永久忘记所有失踪者。'
+					}, {
+						label: '自己的身份',
+						description: '主角会从记录和他人的记忆中消失。'
+					}]
+				}
+			});
+		case 'regenerate-part': {
+			const target = decoded.target;
+			if (target?.kind === 'direction') {
+				return browserJsonDeltas({
+					operation: 'regenerate-part',
+					target: {
+						kind: 'direction',
+						id: target.id,
+						replacement: {
+							...target.current,
+							premise: '林越必须在公开事故真相与保住最后记忆之间做出选择。'
+						}
+					}
+				});
+			}
+			if (target?.kind === 'outline') {
+				return browserJsonDeltas({
+					operation: 'regenerate-part',
+					target: {
+						kind: 'outline',
+						id: target.id,
+						replacement: {
+							...target.current,
+							summary: '林越循着重复雨痕找到一段只在午夜出现的站台记录。'
+						}
+					}
+				});
+			}
+			if (target?.kind === 'chapter') {
+				return browserJsonDeltas({
+					operation: 'regenerate-part',
+					target: {
+						kind: 'chapter',
+						id: target.id,
+						replacement: {
+							...target.current,
+							summary: '林越进入旧车站，并在重复的雨痕中发现第一次可验证的异常。'
+						}
+					}
+				});
+			}
+			return browserJsonDeltas({ operation: 'regenerate-part', target: {} });
+		}
 		default:
 			return browserJsonDeltas({ operation: 'organize-core', core: {} });
 	}

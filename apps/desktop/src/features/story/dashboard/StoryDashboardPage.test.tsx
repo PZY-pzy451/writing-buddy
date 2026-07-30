@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../../app/store';
+import { desktopBridge } from '../../../platform/bridge';
 import {
 	StoryDashboardPage,
 	type DashboardKernelLoad
@@ -60,6 +61,7 @@ const emptyKernel: DashboardKernelLoad = {
 	pendingFacts: []
 };
 const originalOpenResource = useAppStore.getState().openResource;
+const originalOpenCreationJourney = useAppStore.getState().openCreationJourney;
 
 function setDashboardState(snapshot: ProjectSnapshot = projectSnapshot): void {
 	useAppStore.setState({
@@ -77,7 +79,8 @@ afterEach(() => {
 		activeResource: undefined,
 		tabs: [],
 		issues: [],
-		openResource: originalOpenResource
+		openResource: originalOpenResource,
+		openCreationJourney: originalOpenCreationJourney
 	});
 });
 
@@ -218,5 +221,29 @@ describe('StoryDashboardPage', () => {
 		await waitFor(() => expect(openResource).toHaveBeenCalledWith(expect.objectContaining({
 			id: 'chapter-two'
 		})));
+	});
+
+	it('keeps the creation journey reachable after chapters have been materialized', async () => {
+		const openCreationJourney = vi.fn();
+		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue({
+			content: '{}',
+			hash: 'journey-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		useAppStore.setState({
+			snapshot: projectSnapshot,
+			activeResource: undefined,
+			tabs: [],
+			issues: [],
+			openCreationJourney
+		});
+
+		render(<StoryDashboardPage loadKernelData={() => Promise.resolve(emptyKernel)} />);
+
+		const journeyButton = await screen.findByRole('button', { name: '查看创作旅程' });
+		fireEvent.click(journeyButton);
+		expect(openCreationJourney).toHaveBeenCalledOnce();
 	});
 });

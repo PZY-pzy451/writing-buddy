@@ -136,6 +136,8 @@ export const CREATION_JOURNEY_SYSTEM_PROMPT = [
 	'你是 Writing Buddy 的作者主导小说创作旅程助手，只处理用户 JSON 中当前 operation 明确提供的内容。',
 	'不得请求、推断或提及项目路径、账户、密钥、隐藏历史、未提供的设定或正文；一次只帮助作者完成一个决定。',
 	'organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。',
+	'generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。',
+	'lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。',
 	'仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。',
 	'所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。'
 ].join('');
@@ -2320,41 +2322,159 @@ const creationJourneyOutlineNodeSchema = z.object({
 	purpose: z.string().trim().min(1).max(1_000)
 }).strict();
 
+const creationJourneyElementSchema = z.object({
+	category: z.enum([
+		'character',
+		'place',
+		'object',
+		'event',
+		'mood',
+		'theme',
+		'question',
+		'other'
+	]),
+	text: z.string().trim().min(1).max(500)
+}).strict();
+
+const creationJourneyGuidanceAnswerSchema = z.object({
+	stage: z.enum(['elements', 'core', 'directions', 'outline', 'chapters', 'writing']),
+	answerText: z.string().trim().min(1).max(1_000)
+}).strict();
+
+const creationJourneyLockedDecisionSchema = z.object({
+	key: z.string().trim().min(1).max(240),
+	content: z.string().trim().min(1).max(4_000)
+}).strict();
+
+const creationJourneyDevelopmentFields = {
+	guidanceAnswers: z.array(creationJourneyGuidanceAnswerSchema).max(12).optional(),
+	lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24).optional()
+};
+
+const creationJourneyOutlineWithIdSchema = creationJourneyOutlineNodeSchema.extend({
+	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
+}).strict();
+
+const creationJourneyChapterSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	goal: z.string().trim().min(1).max(1_000),
+	summary: z.string().trim().min(1).max(3_000),
+	sourceNodeIds: z.array(
+		z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
+	).min(1).max(8).refine(ids => new Set(ids).size === ids.length)
+}).strict();
+
+const creationJourneyGuidanceContextSchema = z.object({
+	elements: z.array(creationJourneyElementSchema).min(3).max(8).optional(),
+	core: creationJourneyCoreSchema.optional(),
+	directions: z.array(creationJourneyDirectionSchema).max(3).optional(),
+	outline: z.array(creationJourneyOutlineNodeSchema).max(8).optional(),
+	chapters: z.array(creationJourneyChapterSchema).max(3).optional()
+}).strict().refine(context => Object.keys(context).length > 0);
+
+const creationJourneyRegenerationTargetSchema = z.discriminatedUnion('kind', [
+	z.object({
+		kind: z.literal('direction'),
+		id: z.string().regex(/^journey-direction:[a-z0-9][a-z0-9-]*$/u),
+		current: creationJourneyDirectionSchema,
+		context: z.object({
+			core: creationJourneyCoreSchema
+		}).strict()
+	}).strict(),
+	z.object({
+		kind: z.literal('outline'),
+		id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+		current: creationJourneyOutlineNodeSchema,
+		context: z.object({
+			core: creationJourneyCoreSchema,
+			selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2)
+		}).strict()
+	}).strict(),
+	z.object({
+		kind: z.literal('chapter'),
+		id: z.string().regex(/^journey-chapter:[a-z0-9][a-z0-9-]*$/u),
+		current: creationJourneyChapterSchema,
+		context: z.object({
+			core: creationJourneyCoreSchema,
+			selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2),
+			outline: z.array(creationJourneyOutlineWithIdSchema).min(5).max(8)
+		}).strict()
+	}).strict()
+]);
+
 const creationJourneyInputSchema = z.discriminatedUnion('operation', [
 	z.object({
 		schemaVersion: z.literal(1),
 		operation: z.literal('organize-core'),
-		elements: z.array(z.object({
-			category: z.enum([
-				'character',
-				'place',
-				'object',
-				'event',
-				'mood',
-				'theme',
-				'question',
-				'other'
-			]),
-			text: z.string().trim().min(1).max(500)
-		}).strict()).min(3).max(8)
+		elements: z.array(creationJourneyElementSchema).min(3).max(8),
+		...creationJourneyDevelopmentFields
 	}).strict(),
 	z.object({
 		schemaVersion: z.literal(1),
 		operation: z.literal('generate-directions'),
-		core: creationJourneyCoreSchema
+		core: creationJourneyCoreSchema,
+		...creationJourneyDevelopmentFields
 	}).strict(),
 	z.object({
 		schemaVersion: z.literal(1),
 		operation: z.literal('generate-outline'),
 		core: creationJourneyCoreSchema,
-		selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2)
+		selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2),
+		...creationJourneyDevelopmentFields
 	}).strict(),
 	z.object({
 		schemaVersion: z.literal(1),
 		operation: z.literal('split-chapters'),
 		core: creationJourneyCoreSchema,
 		selectedDirections: z.array(creationJourneyDirectionSchema).min(1).max(2),
-		outline: z.array(creationJourneyOutlineNodeSchema).min(5).max(8)
+		outline: z.array(creationJourneyOutlineNodeSchema).min(5).max(8),
+		...creationJourneyDevelopmentFields
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('generate-guidance-question'),
+		stage: z.enum(['elements', 'core', 'directions', 'outline', 'chapters']),
+		context: creationJourneyGuidanceContextSchema,
+		guidanceAnswers: z.array(creationJourneyGuidanceAnswerSchema).max(12),
+		lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24)
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('regenerate-part'),
+		target: creationJourneyRegenerationTargetSchema,
+		guidanceAnswers: z.array(creationJourneyGuidanceAnswerSchema).max(12),
+		lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24)
+	}).strict()
+]);
+
+const creationJourneyGuidanceQuestionSchema = z.object({
+	prompt: z.string().trim().min(1).max(500),
+	rationale: z.string().trim().min(1).max(500),
+	options: z.array(z.object({
+		label: z.string().trim().min(1).max(120),
+		description: z.string().trim().min(1).max(500)
+	}).strict()).length(3)
+}).strict().superRefine((question, context) => {
+	if (new Set(question.options.map(option => option.label.toLocaleLowerCase())).size !== 3) {
+		context.addIssue({ code: 'custom', message: 'duplicateGuidanceOption' });
+	}
+});
+
+const creationJourneyRegenerationResponseTargetSchema = z.discriminatedUnion('kind', [
+	z.object({
+		kind: z.literal('direction'),
+		id: z.string().regex(/^journey-direction:[a-z0-9][a-z0-9-]*$/u),
+		replacement: creationJourneyDirectionSchema
+	}).strict(),
+	z.object({
+		kind: z.literal('outline'),
+		id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+		replacement: creationJourneyOutlineNodeSchema
+	}).strict(),
+	z.object({
+		kind: z.literal('chapter'),
+		id: z.string().regex(/^journey-chapter:[a-z0-9][a-z0-9-]*$/u),
+		replacement: creationJourneyChapterSchema
 	}).strict()
 ]);
 
@@ -2379,7 +2499,15 @@ const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
 			summary: z.string().trim().min(1).max(3_000),
 			sourceNodeIndexes: z.array(z.number().int().min(0).max(7)).min(1).max(8)
 				.refine(indexes => new Set(indexes).size === indexes.length)
-		}).strict()).length(3)
+			}).strict()).length(3)
+	}).strict(),
+	z.object({
+		operation: z.literal('generate-guidance-question'),
+		question: creationJourneyGuidanceQuestionSchema
+	}).strict(),
+	z.object({
+		operation: z.literal('regenerate-part'),
+		target: creationJourneyRegenerationResponseTargetSchema
 	}).strict()
 ]);
 
@@ -2393,10 +2521,17 @@ export function buildCreationJourneyMessages(
 	if (!parsed.success) {
 		throw new Error('invalidCreationJourneyInput');
 	}
+	if (parsed.data.operation === 'regenerate-part') {
+		const targetKey = `${parsed.data.target.kind}:${parsed.data.target.id}`;
+		if (parsed.data.lockedDecisions.some(decision => decision.key === targetKey)) {
+			throw new Error('invalidCreationJourneyInput');
+		}
+	}
 	const payload = JSON.stringify(parsed.data);
 	if (
 		payload.length > 50_000
-		|| /projectRoot|apiKey|credential|absolutePath/iu.test(payload)
+		|| /projectId|projectRoot|apiKey|credential|password|absolutePath/iu.test(payload)
+		|| /[a-z]:[\\/]|\\\\[^\\]/iu.test(payload)
 	) {
 		throw new Error('invalidCreationJourneyInput');
 	}
@@ -2407,10 +2542,37 @@ export function buildCreationJourneyMessages(
 }
 
 export function parseCreationJourneyResponse(
-	response: string
+	response: string,
+	input?: CreationJourneyAiInput
 ): CreationJourneyAiResponse {
 	try {
-		return creationJourneyResponseSchema.parse(JSON.parse(response));
+		const parsedResponse = creationJourneyResponseSchema.parse(JSON.parse(response));
+		if (parsedResponse.operation === 'regenerate-part') {
+			const parsedInput = creationJourneyInputSchema.safeParse(input);
+			if (
+				!parsedInput.success
+				|| parsedInput.data.operation !== 'regenerate-part'
+				|| parsedInput.data.target.kind !== parsedResponse.target.kind
+				|| parsedInput.data.target.id !== parsedResponse.target.id
+			) {
+				throw new Error('regenerationTargetMismatch');
+			}
+			if (
+				parsedInput.data.target.kind === 'chapter'
+				&& parsedResponse.target.kind === 'chapter'
+			) {
+				const knownIds = new Set(
+					parsedInput.data.target.context.outline.map(node => node.id)
+				);
+				if (
+					parsedResponse.target.replacement.sourceNodeIds
+						.some(id => !knownIds.has(id))
+				) {
+					throw new Error('unknownRegenerationOutlineNode');
+				}
+			}
+		}
+		return parsedResponse;
 	} catch {
 		throw new Error('invalidCreationJourneyResponse');
 	}

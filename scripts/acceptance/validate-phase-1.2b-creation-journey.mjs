@@ -5,24 +5,27 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const phase12c = process.argv.includes('--phase-1.2c');
+const phaseLabel = phase12c ? 'Phase 1.2C' : 'Phase 1.2B';
+const phaseSlug = phase12c ? 'phase-1.2c-guided-development' : 'phase-1.2b-creation-journey';
 const outputDirectory = join(
 	repositoryRoot,
 	'docs',
 	'acceptance',
 	'screenshots',
-	'phase-1.2b-creation-journey'
+	phaseSlug
 );
 const metricsPath = join(
 	repositoryRoot,
 	'docs',
 	'acceptance',
-	'phase-1.2b-creation-journey-metrics.json'
+	`${phaseSlug}-metrics.json`
 );
 const statusPath = join(
 	repositoryRoot,
 	'artifacts',
 	'acceptance',
-	'phase-1.2b-status.json'
+	`${phaseSlug}-status.json`
 );
 const edgePath = process.env.EDGE_PATH
 	?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
@@ -90,7 +93,7 @@ function delay(milliseconds) {
 }
 
 async function reportProgress(step) {
-	console.log(`[Phase 1.2B] ${step}`);
+	console.log(`[${phaseLabel}] ${step}`);
 	await mkdir(dirname(statusPath), { recursive: true });
 	await writeFile(statusPath, `${JSON.stringify({
 		step,
@@ -278,7 +281,8 @@ async function fillSelector(client, selector, value, index = 0) {
 }
 
 async function setTheme(client, theme) {
-	await evaluate(client, `import('/src/app/store.ts').then(({ useAppStore }) => {
+	await evaluate(client, `globalThis.__acceptanceSetThemePromise
+		= import('/src/app/store.ts').then(({ useAppStore }) => {
 		useAppStore.setState({ theme: ${JSON.stringify(theme)} });
 		return useAppStore.getState().theme;
 	})`);
@@ -337,6 +341,7 @@ async function collectJourneyMetrics(client) {
 				? Math.round(Math.min(...rectangles.map(rect => rect.height)))
 				: 0,
 			focusedHeading: document.activeElement?.id === 'creation-journey-heading',
+			focusedInDialog: Boolean(document.activeElement?.closest('.creation-impact-dialog')),
 			alertCount: document.querySelectorAll('.creation-journey [role="alert"]').length,
 			theme: document.querySelector('.app-shell')?.className.includes('theme-midnight')
 				? 'midnight'
@@ -355,13 +360,17 @@ async function assertResponsiveStage(client, metrics, expected) {
 	);
 	assert(metrics.controlCount > 0, `${expected.name}: no journey controls were visible.`);
 	assert(metrics.minControlHeight >= 44, `${expected.name}: control below 44px touch target.`);
-	assert(metrics.focusedHeading, `${expected.name}: stage heading did not receive focus.`);
+	if (expected.focus === 'dialog') {
+		assert(metrics.focusedInDialog, `${expected.name}: focus did not enter the dialog.`);
+	} else {
+		assert(metrics.focusedHeading, `${expected.name}: stage heading did not receive focus.`);
+	}
 	assert(metrics.alertCount === 0, `${expected.name}: visible journey error.`);
 	assert(metrics.theme === expected.theme, `${expected.name}: theme did not apply.`);
 }
 
 await mkdir(outputDirectory, { recursive: true });
-const profileDirectory = await mkdtemp(join(tmpdir(), 'writing-buddy-phase-1.2b-'));
+const profileDirectory = await mkdtemp(join(tmpdir(), `${phaseSlug}-`));
 let run;
 const evidence = {
 	schemaVersion: 1,
@@ -471,6 +480,56 @@ try {
 	].entries()) {
 		await fillSelector(run.client, '.creation-element-card textarea', idea, index);
 	}
+	await waitFor(
+		run.client,
+		`[...document.querySelectorAll('.creation-element-card textarea')]
+			.slice(0, 3).every(element => element.value.trim().length > 0)
+			&& ![...document.querySelectorAll('.creation-elements-stage .primary-button')]
+				.find(button => button.textContent?.includes('整理成故事核心'))?.disabled`,
+		'three committed story elements'
+	);
+	if (phase12c) {
+		const guidanceTrigger = await evaluate(run.client, `(() => {
+			const button = [...document.querySelectorAll('button')]
+				.find(candidate => candidate.textContent?.includes('AI 问一个关键问题'));
+			return {
+				found: Boolean(button),
+				disabled: button?.disabled,
+				text: button?.textContent?.replace(/\\s+/gu, ' ').trim()
+			};
+		})()`);
+		assert(
+			guidanceTrigger.found && !guidanceTrigger.disabled,
+			`Guidance trigger unavailable: ${JSON.stringify(guidanceTrigger)}`
+		);
+		await clickButton(run.client, '让 AI 问一个关键问题');
+		await waitFor(
+			run.client,
+			`document.querySelector('#creation-guidance-question')?.textContent
+				=== '如果主角失败，他最不能承受失去什么？'`,
+			'one explicit guidance question'
+		);
+		const guidanceContract = await evaluate(run.client, `(() => {
+			const card = document.querySelector('.creation-guidance-card');
+			return {
+				optionCount: card?.querySelectorAll('.creation-guidance-options > button').length ?? 0,
+				questionCount: document.querySelectorAll('#creation-guidance-question').length,
+				aiCalls: globalThis.__phase12bAiCalls
+			};
+		})()`);
+		assert(guidanceContract.questionCount === 1, 'Guidance rendered more than one question.');
+		assert(guidanceContract.optionCount === 3, 'Guidance did not render exactly three options.');
+		assert(guidanceContract.aiCalls === 1, 'Explicit guidance did not make exactly one AI call.');
+		await screenshot(run.client, '02a-one-question-three-options-paper-1536x992.png');
+		await clickButton(run.client, '最后的记忆', '.creation-guidance-card', 'contains');
+		await clickButton(run.client, '确认这个答案', '.creation-guidance-card');
+		await waitFor(
+			run.client,
+			`!document.querySelector('.creation-guidance-card')`,
+			'persisted guidance answer'
+		);
+		await clickButton(run.client, '锁定要素 1');
+	}
 	const elementsMetrics = await collectJourneyMetrics(run.client);
 	await assertResponsiveStage(run.client, elementsMetrics, {
 		name: 'elements-wide',
@@ -489,7 +548,13 @@ try {
 		'story core'
 	);
 	await reportProgress('Editable story core generated.');
-	assert(await evaluate(run.client, 'globalThis.__phase12bAiCalls === 1'), 'Core AI call count drifted.');
+	assert(
+		await evaluate(
+			run.client,
+			`globalThis.__phase12bAiCalls === ${phase12c ? 2 : 1}`
+		),
+		'Core AI call count drifted.'
+	);
 	assert(
 		await evaluate(
 			run.client,
@@ -498,6 +563,13 @@ try {
 		),
 		'Generated core was not editable and visible.'
 	);
+	if (phase12c) {
+		await clickButton(run.client, '锁定主角');
+		assert(
+			await evaluate(run.client, 'document.querySelector("#creation-core-protagonist")?.disabled === true'),
+			'Locked protagonist remained editable.'
+		);
+	}
 	await clickButton(run.client, '确认故事核心');
 	await waitFor(
 		run.client,
@@ -506,7 +578,10 @@ try {
 		'story directions decision'
 	);
 	assert(
-		await evaluate(run.client, 'globalThis.__phase12bAiCalls === 1'),
+		await evaluate(
+			run.client,
+			`globalThis.__phase12bAiCalls === ${phase12c ? 2 : 1}`
+		),
 		'Confirming the core triggered AI automatically.'
 	);
 	await clickButton(run.client, '生成 3 个故事方向');
@@ -517,7 +592,10 @@ try {
 	);
 	await reportProgress('Exactly three directions generated.');
 	assert(
-		await evaluate(run.client, 'globalThis.__phase12bAiCalls === 2'),
+		await evaluate(
+			run.client,
+			`globalThis.__phase12bAiCalls === ${phase12c ? 3 : 2}`
+		),
 		'Direction AI call count drifted.'
 	);
 	await screenshot(run.client, '03-three-directions-paper-1536x992.png');
@@ -568,7 +646,10 @@ try {
 	);
 	await reportProgress('Exactly three chapter proposals generated.');
 	assert(
-		await evaluate(run.client, 'globalThis.__phase12bAiCalls === 4'),
+		await evaluate(
+			run.client,
+			`globalThis.__phase12bAiCalls === ${phase12c ? 5 : 4}`
+		),
 		'The creation journey did not use exactly four explicit AI actions.'
 	);
 
@@ -630,14 +711,170 @@ try {
 		};
 	})`);
 	assert(finalContract.activeTitle === '夜雨站台', 'The first generated chapter was not opened.');
-	assert(finalContract.aiCalls === 4, 'AI call count changed during materialization.');
+	assert(
+		finalContract.aiCalls === (phase12c ? 5 : 4),
+		'AI call count changed during materialization.'
+	);
 	assert(finalContract.chapterCount === 3, 'Project manifest did not contain exactly three chapters.');
 	assert(finalContract.journeyChapterCount === 3, 'Journey did not retain exactly three chapters.');
 	assert(finalContract.materializeCalls === 1, 'Chapter transaction was not invoked exactly once.');
 	assert(finalContract.resourceIds.every(Boolean), 'Materialized chapters lack native resource IDs.');
 	assert(finalContract.stage === 'writing', 'Journey did not advance to writing.');
-	assert(run.browserErrors.length === 0, `Browser errors: ${run.browserErrors.join(' | ')}`);
 	await screenshot(run.client, '06-opened-first-chapter-paper-1024x720.png');
+
+	if (phase12c) {
+		await clickButton(run.client, '打开作品仪表盘');
+		await waitFor(
+			run.client,
+			`[...document.querySelectorAll('button')]
+				.some(button => button.textContent?.includes('查看创作旅程'))`,
+			'project dashboard journey entry'
+		);
+		await clickButton(run.client, '查看创作旅程', undefined, 'contains');
+		await waitFor(
+			run.client,
+			`Boolean(document.querySelector('.creation-journey-progress'))`,
+			'reopened creation journey'
+		);
+		await clickButton(run.client, '故事核心', '.creation-journey-progress', 'contains');
+		await waitFor(
+			run.client,
+			`document.querySelector('#creation-journey-heading')?.textContent
+				=== '把碎片收束成一个故事核心'`,
+			'return to the completed story core'
+		);
+		assert(
+			await evaluate(run.client, 'document.querySelector("#creation-core-protagonist")?.disabled === true'),
+			'Core lock was not persisted after materialization.'
+		);
+		await fillSelector(run.client, '#creation-core-stakes', '失败会让姐姐永远不存在');
+		await waitFor(
+			run.client,
+			`document.querySelector('.creation-journey-stale small')?.textContent
+				?.includes('方向 3 项 · 提纲 5 项 · 章节 3 项待处理')`,
+			'exact downstream impact counts'
+		);
+		const beforeImpactAiCalls = await evaluate(
+			run.client,
+			'globalThis.__phase12bAiCalls'
+		);
+		assert(beforeImpactAiCalls === 5, 'Upstream editing triggered AI automatically.');
+		await setViewport(run.client, 1280, 800, true);
+		await setTheme(run.client, 'midnight');
+		await evaluate(run.client, `(() => {
+			const opener = [...document.querySelectorAll('button')]
+				.find(button => button.textContent?.trim() === '查看影响');
+			opener?.focus();
+			opener?.click();
+			return Boolean(opener);
+		})()`);
+		await waitFor(
+			run.client,
+			`Boolean(document.querySelector('.creation-impact-dialog'))`,
+			'impact dialog'
+		);
+		const impactContract = await evaluate(run.client, `(() => ({
+			counts: [...document.querySelectorAll('.creation-impact-counts span')]
+				.map(item => item.textContent?.replace(/\\s+/gu, '')),
+			keepCount: [...document.querySelectorAll('.creation-impact-row button')]
+				.filter(button => button.textContent?.includes('保留当前内容')).length,
+			regenerateCount: [...document.querySelectorAll('.creation-impact-row button')]
+				.filter(button => button.textContent?.includes('AI 重新生成此项')).length,
+			materializedNotices: [...document.querySelectorAll('.creation-impact-row em')]
+				.filter(item => item.textContent?.includes('正文已创建，只能保留')).length
+		}))()`);
+		assert(
+			JSON.stringify(impactContract.counts) === JSON.stringify(['3方向', '5提纲', '3章节']),
+			`Unexpected impact counts: ${JSON.stringify(impactContract.counts)}`
+		);
+		assert(impactContract.keepCount === 11, 'Impact dialog did not list all 11 exact targets.');
+		assert(impactContract.regenerateCount === 8, 'Materialized chapters incorrectly allowed AI replacement.');
+		assert(impactContract.materializedNotices === 3, 'Materialized chapter safeguards were missing.');
+		const impactMetrics = await collectJourneyMetrics(run.client);
+		await assertResponsiveStage(run.client, impactMetrics, {
+			name: 'impact-medium',
+			width: 1280,
+			height: 800,
+			theme: 'midnight',
+			focus: 'dialog'
+		});
+		evidence.responsive.impactMedium = impactMetrics;
+		await screenshot(run.client, '07-impact-dialog-midnight-reduced-1280x800.png');
+		await clickButton(run.client, '保留当前内容', '.creation-impact-dialog', 'exact', 0);
+		await waitFor(
+			run.client,
+			`[...document.querySelectorAll('.creation-impact-row button')]
+				.filter(button => button.textContent?.includes('保留当前内容')).length === 10`,
+			'one kept impact'
+		);
+		await clickButton(run.client, 'AI 重新生成此项', '.creation-impact-dialog', 'exact', 0);
+		await waitFor(
+			run.client,
+			`globalThis.__phase12bAiCalls === 6
+				&& [...document.querySelectorAll('.creation-impact-row button')]
+					.filter(button => button.textContent?.includes('保留当前内容')).length === 9`,
+			'one regenerated impact'
+		);
+		await run.client.call('Input.dispatchKeyEvent', {
+			type: 'keyDown',
+			key: 'Escape',
+			code: 'Escape',
+			windowsVirtualKeyCode: 27
+		});
+		await run.client.call('Input.dispatchKeyEvent', {
+			type: 'keyUp',
+			key: 'Escape',
+			code: 'Escape',
+			windowsVirtualKeyCode: 27
+		});
+		await waitFor(
+			run.client,
+			`!document.querySelector('.creation-impact-dialog')
+				&& document.activeElement?.textContent?.trim() === '查看影响'`,
+			'impact dialog focus restoration'
+		);
+		const developmentContract = await evaluate(run.client, `Promise.all([
+			import('/src/app/store.ts'),
+			import('/src/platform/bridge.ts')
+		]).then(async ([{ useAppStore }, { desktopBridge }]) => {
+			const state = useAppStore.getState();
+			const journey = JSON.parse((await desktopBridge.readCreationJourneyState(
+				state.snapshot.root
+			)).content);
+			return {
+				schemaVersion: journey.schemaVersion,
+				answerCount: journey.guidance.answers.length,
+				elementLocks: journey.elements.filter(element => element.locked).length,
+				coreLocks: journey.locks.coreFields,
+				pendingImpacts: journey.impacts.filter(impact => impact.status === 'pending').length,
+				keptImpacts: journey.impacts.filter(impact => impact.status === 'kept').length,
+				updatedImpacts: journey.impacts.filter(impact => impact.status === 'updated').length,
+				chapterResourceIds: journey.chapters.map(chapter => chapter.resourceId)
+			};
+		})`);
+		assert(developmentContract.schemaVersion === 2, 'Journey was not persisted as schema v2.');
+		assert(developmentContract.answerCount === 1, 'Guidance answer was not persisted.');
+		assert(developmentContract.elementLocks === 1, 'Element lock was not persisted.');
+		assert(
+			developmentContract.coreLocks.includes('protagonist'),
+			'Core lock was not persisted.'
+		);
+		assert(developmentContract.pendingImpacts === 9, 'Single-item resolution touched other impacts.');
+		assert(developmentContract.keptImpacts === 1, 'Kept impact audit was not persisted.');
+		assert(developmentContract.updatedImpacts === 1, 'Regenerated impact audit was not persisted.');
+		assert(
+			developmentContract.chapterResourceIds.every(Boolean),
+			'Impact handling rewrote or detached materialized chapters.'
+		);
+		evidence.development = {
+			...developmentContract,
+			aiCalls: 6,
+			focusRestored: true,
+			impactCounts: { direction: 3, outline: 5, chapter: 3 }
+		};
+		await screenshot(run.client, '08-impact-pending-paper-1280x800.png');
+	}
+	assert(run.browserErrors.length === 0, `Browser errors: ${run.browserErrors.join(' | ')}`);
 
 	evidence.journey = {
 		aiCalls: finalContract.aiCalls,
@@ -653,7 +890,7 @@ try {
 	evidence.browserErrors = run.browserErrors;
 	evidence.pass = true;
 	await writeFile(metricsPath, `${JSON.stringify(evidence, null, 2)}\n`);
-	console.log(`Phase 1.2B creation journey acceptance passed: ${metricsPath}`);
+	console.log(`${phaseLabel} creation journey acceptance passed: ${metricsPath}`);
 } finally {
 	if (run) await stopBrowser(run);
 	const resolvedProfile = resolve(profileDirectory);
