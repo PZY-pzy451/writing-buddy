@@ -21,6 +21,7 @@ import {
 	parseCreationJourneyResponse,
 	type CreationJourneyAiInput
 } from '@writing-buddy/ai';
+import { flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
 import { runGroundedJsonJob } from '../story/ai-context/GroundedAiRunner';
@@ -76,6 +77,13 @@ import {
 	type OutlineImpactReport
 } from './OutlineAuthorControlModel';
 import { StructuredOutlineWorkspace } from './StructuredOutlineWorkspace';
+import {
+	createOutlineSemanticCheckInput,
+	outlineQualityIssuesFromAi,
+	runLocalOutlineChecks,
+	type OutlineManuscriptState,
+	type OutlineQualityIssue
+} from './OutlineQualityCheckModel';
 import {
 	CreationJourneyStore,
 	type LoadedCreationJourney
@@ -368,6 +376,8 @@ function journeyErrorCopy(error: unknown): string {
 		outlineHierarchyWriteFailed: '写入卷、章或场景时失败，项目已自动回滚。',
 		outlineHierarchyVerificationFailed: '写入后的完整性检查失败，项目已自动回滚。',
 		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。',
+		outlineSemanticCheckUnavailable: '请先补全结构化大纲，再运行语义检查。',
+		invalidCreationJourneyInput: '大纲内容过长或包含不安全字段，无法发送给 AI 检查。',
 		externalChange: '创作旅程已在其他窗口修改，请重新打开作品。',
 		cancelled: '已取消本次 AI 请求，没有改动旅程。'
 	};
@@ -408,6 +418,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const genreCancellationRequestedRef = useRef(false);
 	const outlineAlternativeRequestRef = useRef(false);
 	const hierarchyGenerationRequestRef = useRef(false);
+	const outlineSemanticCheckRequestRef = useRef(false);
 
 	useEffect(() => {
 		if (!snapshot) return;
@@ -1354,6 +1365,75 @@ export function CreationJourneyPage(): React.JSX.Element {
 		return ok;
 	};
 
+	const runLocalOutlineQualityCheck = async (): Promise<readonly OutlineQualityIssue[]> => {
+		const current = stateRef.current;
+		if (!current || !snapshot) throw new Error('creationJourneyStateInvalid');
+		const relevantIds = new Set(
+			current.outline
+				.filter(node => node.type === 'chapter' && node.resourceId)
+				.map(node => node.resourceId!)
+		);
+		const candidates = await Promise.all(flattenChapters(snapshot.project)
+			.filter(chapter => relevantIds.has(chapter.id))
+			.map(async (chapter): Promise<OutlineManuscriptState | undefined> => {
+				try {
+					const file = await desktopBridge.readText(snapshot.root, chapter.file);
+					return {
+						resourceId: chapter.id,
+						status: chapter.status,
+						hasContent: Boolean(file.content.trim())
+					};
+				} catch {
+					return undefined;
+				}
+			}));
+		return runLocalOutlineChecks(current, {
+			baseline: loadedRef.current?.state,
+			manuscripts: candidates.filter(
+				(candidate): candidate is OutlineManuscriptState => Boolean(candidate)
+			)
+		});
+	};
+
+	const runAiOutlineQualityCheck = async (): Promise<readonly OutlineQualityIssue[]> => {
+		const current = stateRef.current;
+		if (
+			!current
+			|| busyOperation
+			|| outlineSemanticCheckRequestRef.current
+		) return [];
+		outlineSemanticCheckRequestRef.current = true;
+		setBusyOperation('check-outline-semantics');
+		setError(undefined);
+		setStatus('AI 正在只读检查大纲语义，不会修改节点…');
+		try {
+			const input = createOutlineSemanticCheckInput(current);
+			const result = await runGroundedJsonJob({
+				jobType: 'creation-journey',
+				messages: buildCreationJourneyMessages(input),
+				onJobId: setJobId,
+				onProgress: progress => {
+					if (progress.state === 'thinking') setStatus('AI 正在比较目标、代价与冲突升级…');
+					if (progress.state === 'streaming') setStatus('AI 正在返回带证据的只读建议…');
+				}
+			});
+			const response = parseCreationJourneyResponse(result.output, input);
+			if (response.operation !== 'check-outline-semantics') {
+				throw new Error('invalidCreationJourneyResponse');
+			}
+			setStatus(`AI 语义检查完成：${response.issues.length} 条建议，大纲未修改`);
+			return outlineQualityIssuesFromAi(response);
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('AI 检查未完成；大纲保持不变');
+			throw reason;
+		} finally {
+			outlineSemanticCheckRequestRef.current = false;
+			setBusyOperation(undefined);
+			setJobId(undefined);
+		}
+	};
+
 	const cancelAi = () => {
 		if (busyOperation === 'generate-from-genre') {
 			genreCancellationRequestedRef.current = true;
@@ -1469,6 +1549,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 					onGenerateHierarchy={generateHierarchyExpansion}
 					onConfirmHierarchy={confirmHierarchyExpansion}
 					onMaterializeHierarchy={createWritableHierarchy}
+					onRunLocalOutlineCheck={runLocalOutlineQualityCheck}
+					onRunAiOutlineCheck={runAiOutlineQualityCheck}
 				/>
 			</section>
 		);

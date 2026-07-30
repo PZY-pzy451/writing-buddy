@@ -2224,6 +2224,11 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 		readonly elements?: readonly { readonly text?: string }[];
 		readonly expectedCount?: number;
 		readonly storyBeats?: readonly { readonly id?: string }[];
+		readonly nodes?: readonly {
+			readonly id?: string;
+			readonly summary?: string;
+			readonly conflict?: string;
+		}[];
 		readonly volume?: { readonly id?: string };
 		readonly chapter?: { readonly id?: string };
 		readonly target?: {
@@ -2427,6 +2432,30 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 						outcome: '记者带走名单，却失去一段关键记忆。'
 					}
 				}]
+			});
+		}
+		case 'check-outline-semantics': {
+			const node = decoded.nodes?.find(candidate => (
+				candidate.id && (candidate.conflict?.trim() || candidate.summary?.trim())
+			));
+			const field = node?.conflict?.trim() ? 'conflict' : 'summary';
+			const source = field === 'conflict' ? node?.conflict : node?.summary;
+			return browserJsonDeltas({
+				operation: 'check-outline-semantics',
+				issues: node?.id && source?.trim() ? [{
+					code: 'flat-conflict-escalation',
+					severity: 'suggestion',
+					title: '可以让冲突升级更清晰',
+					message: '当前节点已经有阻力，但与前后节点的代价梯度还可以更明确。',
+					nodeIds: [node.id],
+					evidence: [{
+						nodeId: node.id,
+						field,
+						quote: source.trim().slice(0, 240)
+					}],
+					impact: '如果阻力强度长期相近，中段紧张感可能停滞。',
+					suggestedAction: '让人物在这个节点作出会扩大下一节点代价的主动选择。'
+				}] : []
 			});
 		}
 		case 'expand-to-volumes': {

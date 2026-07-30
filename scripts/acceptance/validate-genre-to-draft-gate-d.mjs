@@ -310,7 +310,9 @@ async function collectMetrics(client, expectedMode) {
 		const treeRect = tree.getBoundingClientRect();
 		const cardsRect = cards.getBoundingClientRect();
 		const inspectorRect = inspector.getBoundingClientRect();
-		const primaryButtons = [...workspace.querySelectorAll('button.primary-button')]
+		const primaryButtons = [...workspace.querySelectorAll(
+			'button.primary-button, .structured-outline-ai-control > button'
+		)]
 			.filter(element => visible(element) && !element.disabled);
 		return {
 			missingWorkspace: false,

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T13:33:00.000Z",
+  "browser": {
+    "wide": {
+      "viewport": { "width": 1536, "height": 960 },
+      "documentOverflowX": 0,
+      "panel": {
+        "left": 438,
+        "top": 140,
+        "right": 1496,
+        "bottom": 872,
+        "width": 1058,
+        "height": 732,
+        "scrollHeight": 731,
+        "clientHeight": 731
+      },
+      "minActionHeight": 44
+    },
+    "narrow": {
+      "viewport": { "width": 390, "height": 844 },
+      "documentOverflowX": 0,
+      "panel": {
+        "left": 8,
+        "top": 8,
+        "right": 382,
+        "bottom": 836,
+        "width": 374,
+        "height": 828,
+        "scrollHeight": 827,
+        "clientHeight": 827
+      },
+      "sectionWidths": [345, 345],
+      "minActionHeight": 44
+    }
+  },
+  "qualityChecks": {
+    "localRuleCount": 9,
+    "fixtureNodeCount": 512,
+    "localBudgetMs": 100,
+    "localBudgetMet": true,
+    "explicitAiOnly": true,
+    "aiMutatesOutline": false,
+    "duplicateAiRequestGuard": true
+  },
+  "release": {
+    "selfTestSeconds": 285.5,
+    "frontendTestFiles": 154,
+    "frontendTests": 588,
+    "rustPassed": 67,
+    "rustIgnoredExternal": 2,
+    "portableWindowReadyMs": 607,
+    "portableExitCode": 0
+  }
+}

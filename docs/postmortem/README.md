@@ -4,3 +4,4 @@
 - [Running release artifact blocked the Windows bundle](./002-running-release-artifact-lock.md)
 - [Tauri close listener lacked destroy permission](./003-tauri-close-capability.md)
 - [Cargo release build exhausted memory](./004-cargo-release-memory-pressure.md)
+- [Browser acceptance must be serialized and preflighted](./005-serialize-browser-acceptance-preconditions.md)

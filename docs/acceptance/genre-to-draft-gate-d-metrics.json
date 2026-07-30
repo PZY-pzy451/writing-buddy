@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-30T07:19:43.262Z",
+  "generatedAt": "2026-07-30T13:26:04.200Z",
   "executable": "D:\\develop_tool\\writing-buddy-phase-1.2b\\apps\\desktop\\src-tauri\\target\\release\\writing-buddy-next.exe",
   "runtime": "tauri-webview2",
   "freshProject": {
-    "projectId": "project-71c88d09",
+    "projectId": "project-fcb805e4",
     "firstChapterId": null,
     "createdFileCount": 2,
     "createdDirectoryCount": 2
@@ -100,7 +100,7 @@
     "restoredHook": "通道里亮起旧时刻表"
   },
   "persisted": {
-    "hash": "6cb94edce2d84f9ebf5f8b6c869e4738b6b3ecd6e9a73cf3d1789fff8d3a9e65",
+    "hash": "1c4b17a0555e90d1dc1c42a82db202639dc6e38f57a224a92c8c4834e6714f6a",
     "revision": 7,
     "storyOutlineRevision": 6,
     "outlineIds": [
@@ -153,19 +153,19 @@
         "left": 398,
         "top": 133,
         "width": 292,
-        "height": 787
+        "height": 775
       },
       "cards": {
         "left": 690,
         "top": 133,
         "width": 478,
-        "height": 787
+        "height": 775
       },
       "inspector": {
         "left": 1167,
         "top": 133,
         "width": 369,
-        "height": 787
+        "height": 775
       },
       "expectedMode": "three-pane"
     },
@@ -187,19 +187,19 @@
         "left": 398,
         "top": 132,
         "width": 240,
-        "height": 596
+        "height": 584
       },
       "cards": {
         "left": 638,
         "top": 132,
         "width": 342,
-        "height": 596
+        "height": 584
       },
       "inspector": {
         "left": 980,
         "top": 132,
         "width": 300,
-        "height": 596
+        "height": 584
       },
       "expectedMode": "three-pane"
     },
@@ -241,9 +241,9 @@
   "runtimeErrors": [],
   "consoleErrors": [],
   "performance": {
-    "shellReadyMs": 651,
-    "firstWorkspaceReadyMs": 1017,
-    "acceptanceBeforeShutdownMs": 5791
+    "shellReadyMs": 739,
+    "firstWorkspaceReadyMs": 1118,
+    "acceptanceBeforeShutdownMs": 5758
   },
   "shutdown": {
     "mode": "window-close",

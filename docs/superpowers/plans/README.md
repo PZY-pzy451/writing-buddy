@@ -5,3 +5,4 @@
 - [StoryForge AI quick actions](./2026-07-27-storyforge-ai-quick-actions-implementation-plan.md)
 - [Genre-to-Draft source map](./2026-07-30-genre-to-draft-source-map.md)
 - [Genre-to-Draft UX baseline](./2026-07-30-genre-to-draft-ux-baseline.md)
+- [Genre-to-Draft Gate I validation](./2026-07-30-genre-to-draft-gate-i-validation.md)

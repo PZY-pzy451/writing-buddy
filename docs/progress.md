@@ -4,10 +4,10 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Phase 1.2B Genre-to-Draft Core Journey Gates A-G are complete in the isolated
+Phase 1.2B Genre-to-Draft Core Journey Gates A-I are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`, based on
-`01a440af73a764abc14e45f388b2a2f098e0bca1`.
+`5c1e0eeb feat: reconcile draft changes with story plans`.
 
 - Gate A baseline and architecture audit are complete.
 - Gate B's genre-first quick/deep input, Context Preview, strict structured
@@ -27,6 +27,12 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 - Gate G's paragraph-end Continue trigger, optional author guidance, exactly
   three grounded directions, candidate diff/reject, snapshot-before-insert,
   temporary AI highlight and revision-safe Undo are complete.
+- Gate H's grounded plan-versus-manuscript reconciliation, explicit outline
+  or StoryForge selection, snapshot-before-write and author-owned keep/defer
+  outcomes are complete.
+- Gate I's nine-rule offline outline checker, explicit read-only AI semantic
+  review, evidence validation, duplicate-request guard, responsive quality
+  panel and full project-to-editor validation are complete.
 - The existing Creation Journey v2 document was extended; no second outline
   store, AI runtime, project tree or Story Kernel was created.
 - `WritingProject.volumes[].chapters[]` and Story Kernel `StoryScene` remain
@@ -40,15 +46,17 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   and
   `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-f-editor-layout.md`
   and
-  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-g-contextual-ai.md`.
-- Final gates: Node 24.14.0, TypeScript, ESLint, 150 Vitest files / 569 tests,
-  production build, Cargo format, 66 Rust tests with 2 explicit external
-  gates ignored, responsive browser interaction at 1024/1280/1536, native
-  Windows startup/normal close, Release/NSIS packaging and SHA-256
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-g-contextual-ai.md`
+  and
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-i-validation.md`.
+- Final gates: Node 24.14.0, TypeScript, ESLint, 154 Vitest files / 588 tests,
+  production build, Cargo format, 67 Rust tests with 2 explicit external
+  gates ignored, responsive browser interaction at 390/1024/1280/1536,
+  native Windows startup/normal close, Release/NSIS packaging and SHA-256
   verification.
 - Evidence:
-  `docs/acceptance/051-genre-to-draft-gate-g-contextual-ai-2026-07-30.md`.
-- Gate H has not started. Stop for user review.
+  `docs/acceptance/053-genre-to-draft-gate-i-core-journey-2026-07-30.md`.
+- Delivery: `artifacts/release/genre-to-draft-gate-i/`.
 
 Phase 1.2C, Guided AI Story Development, is complete in
 `D:\develop_tool\writing-buddy-phase-1.2c` on

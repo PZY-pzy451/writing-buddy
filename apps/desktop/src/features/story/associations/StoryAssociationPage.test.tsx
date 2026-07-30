@@ -98,9 +98,9 @@ describe('StoryAssociationPage', () => {
 		);
 
 		expect(await screen.findByRole('heading', { name: '关联编排' })).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '拖动人物：林夏' })).toHaveAttribute('aria-roledescription', 'draggable');
-		expect(screen.getByRole('button', { name: '拖动物品：旧伞' })).toBeEnabled();
-		expect(screen.getByRole('button', { name: '拖动伏笔：旧车票' })).toBeEnabled();
+		expect(await screen.findByRole('button', { name: '拖动人物：林夏' })).toHaveAttribute('aria-roledescription', 'draggable');
+		expect(await screen.findByRole('button', { name: '拖动物品：旧伞' })).toBeEnabled();
+		expect(await screen.findByRole('button', { name: '拖动伏笔：旧车票' })).toBeEnabled();
 		expect(container.querySelector('[data-association-target="scene:scene:station"]')).toBeInTheDocument();
 		expect(container.querySelector('[data-association-target="character:character:lin"]')).toBeInTheDocument();
 		expect(screen.getByText('无 AI 请求 · 可撤销')).toBeInTheDocument();

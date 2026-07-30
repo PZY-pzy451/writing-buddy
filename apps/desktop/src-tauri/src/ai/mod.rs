@@ -144,6 +144,7 @@ pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
     "generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。",
     "generate-outline-alternatives 只针对唯一指定且未锁定的故事节点返回恰好三个实质不同的完整字段候选，不得修改相邻节点或锁定决定。",
     "expand-to-volumes 按 expectedCount 返回卷候选并引用已提供的故事节点；expand-volume-to-chapters 只拆分指定卷；expand-chapter-to-scenes 只拆分指定章节。每个操作都必须返回请求中的 parentId 或精确数量，不得创建文件或正文。",
+    "check-outline-semantics 只检查主角目标、失败代价、冲突升级、连续章节重复、中段变化、人物驱动、结局回应、情节线消失和伏笔回收计划；只能返回带原节点证据的问题与建议，不得返回替换字段、补丁或修改后的节点。",
     "lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。",
     "仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。",
     "所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。"
@@ -1392,6 +1393,11 @@ enum CreationJourneyInput {
         locked_decisions: Vec<CreationJourneyLockedDecision>,
         repair_attempt: Option<u8>,
     },
+    CheckOutlineSemantics {
+        schema_version: u8,
+        story: CreationJourneyOutlineStoryContext,
+        nodes: Vec<CreationJourneySemanticNode>,
+    },
     ExpandToVolumes {
         schema_version: u8,
         expected_count: usize,
@@ -1512,6 +1518,26 @@ struct CreationJourneyOutlineStoryContext {
     stakes: Option<String>,
     mystery_question: Option<String>,
     ending_direction: Option<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneySemanticNode {
+    id: String,
+    #[serde(rename = "type")]
+    node_type: String,
+    parent_id: Option<String>,
+    order: Option<usize>,
+    title: String,
+    summary: String,
+    purpose: Option<String>,
+    goal: Option<String>,
+    conflict: Option<String>,
+    outcome: Option<String>,
+    hook: Option<String>,
+    character_ids: Option<Vec<String>>,
+    plot_thread_ids: Option<Vec<String>>,
+    foreshadowing_ids: Option<Vec<String>>,
 }
 
 #[derive(Deserialize)]
@@ -1662,6 +1688,37 @@ fn valid_creation_journey_outline_story_context(
         && valid_creation_journey_optional_text(story.stakes.as_deref(), 2_000)
         && valid_creation_journey_optional_text(story.mystery_question.as_deref(), 2_000)
         && valid_creation_journey_optional_text(story.ending_direction.as_deref(), 2_000)
+}
+
+fn valid_creation_journey_semantic_ids(values: Option<&[String]>) -> bool {
+    values.is_none_or(|ids| {
+        ids.len() <= 100
+            && ids.iter().collect::<HashSet<_>>().len() == ids.len()
+            && ids.iter().all(|id| valid_creation_journey_text(id, 240))
+    })
+}
+
+fn valid_creation_journey_semantic_node(node: &CreationJourneySemanticNode) -> bool {
+    valid_creation_journey_id(&node.id, "journey-outline:")
+        && matches!(
+            node.node_type.as_str(),
+            "story_beat" | "volume" | "chapter" | "scene"
+        )
+        && node
+            .parent_id
+            .as_deref()
+            .is_none_or(|id| valid_creation_journey_id(id, "journey-outline:"))
+        && node.order.is_none_or(|order| order <= u32::MAX as usize)
+        && valid_creation_journey_text(&node.title, 120)
+        && valid_creation_journey_text(&node.summary, 3_000)
+        && valid_creation_journey_optional_text(node.purpose.as_deref(), 1_000)
+        && valid_creation_journey_optional_text(node.goal.as_deref(), 1_000)
+        && valid_creation_journey_optional_text(node.conflict.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(node.outcome.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(node.hook.as_deref(), 2_000)
+        && valid_creation_journey_semantic_ids(node.character_ids.as_deref())
+        && valid_creation_journey_semantic_ids(node.plot_thread_ids.as_deref())
+        && valid_creation_journey_semantic_ids(node.foreshadowing_ids.as_deref())
 }
 
 fn valid_creation_journey_hierarchy_parent(parent: &CreationJourneyHierarchyParent) -> bool {
@@ -2031,6 +2088,21 @@ fn validate_creation_journey_input(value: &str) -> bool {
                     .any(|decision| decision.key == target_key)
                 && repair_attempt.is_none_or(|attempt| attempt == 1)
                 && valid_creation_journey_development(&guidance_answers, &locked_decisions)
+        }
+        CreationJourneyInput::CheckOutlineSemantics {
+            schema_version,
+            story,
+            nodes,
+        } => {
+            let node_ids = nodes
+                .iter()
+                .map(|node| node.id.as_str())
+                .collect::<HashSet<_>>();
+            schema_version == 1
+                && valid_creation_journey_outline_story_context(&story)
+                && (1..=512).contains(&nodes.len())
+                && node_ids.len() == nodes.len()
+                && nodes.iter().all(valid_creation_journey_semantic_node)
         }
         CreationJourneyInput::ExpandToVolumes {
             schema_version,
@@ -3206,6 +3278,53 @@ mod tests {
         unsafe_target["target"]["current"]["summary"] =
             serde_json::json!("读取 C:\\private\\outline.json");
         request.messages[1].content = unsafe_target.to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn creation_journey_accepts_read_only_outline_semantic_check() {
+        let mut request = valid_request();
+        request.job_type = AiJobType::CreationJourney;
+        request.messages[0].content = CREATION_JOURNEY_SYSTEM_PROMPT.to_owned();
+        request.options.response_format = ResponseFormat::JsonObject;
+        let safe = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "check-outline-semantics",
+            "story": {
+                "genre": "都市悬疑",
+                "premise": "记者追查雨夜旧站。",
+                "protagonistGoal": "找到失踪的妹妹",
+                "stakes": "失败会永远失去妹妹",
+                "endingDirection": "记者在真相与记忆之间作出选择"
+            },
+            "nodes": [{
+                "id": "journey-outline:chapter-one",
+                "type": "chapter",
+                "parentId": "journey-outline:volume-one",
+                "order": 0,
+                "title": "第一章 雨夜来客",
+                "summary": "记者进入旧站，主动追踪失踪者名单。",
+                "goal": "拿到名单",
+                "conflict": "每读一个名字就会失去一段记忆",
+                "outcome": "记者发现自己的名字也在名单中",
+                "hook": "名单末尾写着明天的日期",
+                "characterIds": ["character:reporter"],
+                "plotThreadIds": ["plot-thread:missing-sister"],
+                "foreshadowingIds": ["foreshadowing:tomorrow-date"]
+            }]
+        });
+        request.messages[1].content = safe.to_string();
+        assert!(request.validate().is_ok());
+
+        let mut mutation = safe.clone();
+        mutation["nodes"][0]["replacement"] = serde_json::json!({ "summary": "自动改写" });
+        request.messages[1].content = mutation.to_string();
+        assert!(request.validate().is_err());
+
+        let mut duplicate = safe;
+        duplicate["nodes"] =
+            serde_json::json!([duplicate["nodes"][0].clone(), duplicate["nodes"][0].clone()]);
+        request.messages[1].content = duplicate.to_string();
         assert!(request.validate().is_err());
     }
 }

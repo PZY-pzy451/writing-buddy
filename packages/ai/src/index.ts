@@ -142,6 +142,7 @@ export const CREATION_JOURNEY_SYSTEM_PROMPT = [
 	'generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。',
 	'generate-outline-alternatives 只针对唯一指定且未锁定的故事节点返回恰好三个实质不同的完整字段候选，不得修改相邻节点或锁定决定。',
 	'expand-to-volumes 按 expectedCount 返回卷候选并引用已提供的故事节点；expand-volume-to-chapters 只拆分指定卷；expand-chapter-to-scenes 只拆分指定章节。每个操作都必须返回请求中的 parentId 或精确数量，不得创建文件或正文。',
+	'check-outline-semantics 只检查主角目标、失败代价、冲突升级、连续章节重复、中段变化、人物驱动、结局回应、情节线消失和伏笔回收计划；只能返回带原节点证据的问题与建议，不得返回替换字段、补丁或修改后的节点。',
 	'lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。',
 	'仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。',
 	'所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。'
@@ -2635,6 +2636,62 @@ const creationJourneyHierarchyStorySchema = z.object({
 	endingDirection: z.string().max(2_000).optional()
 }).strict();
 
+const creationJourneySemanticNodeSchema = z.object({
+	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+	type: z.enum(['story_beat', 'volume', 'chapter', 'scene']),
+	parentId: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u).optional(),
+	order: z.number().int().min(0).optional(),
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	purpose: z.string().max(1_000).optional(),
+	goal: z.string().max(1_000).optional(),
+	conflict: z.string().max(2_000).optional(),
+	outcome: z.string().max(2_000).optional(),
+	hook: z.string().max(2_000).optional(),
+	characterIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	plotThreadIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	foreshadowingIds: z.array(z.string().trim().min(1).max(240)).max(100).optional()
+}).strict();
+
+const creationJourneySemanticEvidenceFieldSchema = z.enum([
+	'title',
+	'summary',
+	'purpose',
+	'goal',
+	'conflict',
+	'outcome',
+	'hook'
+]);
+
+const creationJourneySemanticIssueCodeSchema = z.enum([
+	'unclear-protagonist-goal',
+	'unclear-failure-stakes',
+	'flat-conflict-escalation',
+	'repetitive-consecutive-chapters',
+	'unchanging-middle',
+	'events-not-character-driven',
+	'ending-does-not-answer-opening',
+	'plot-thread-disappears',
+	'foreshadowing-without-payoff'
+]);
+
+const creationJourneySemanticIssueSchema = z.object({
+	code: creationJourneySemanticIssueCodeSchema,
+	severity: z.enum(['suggestion', 'warning']),
+	title: z.string().trim().min(1).max(160),
+	message: z.string().trim().min(1).max(1_000),
+	nodeIds: z.array(
+		z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
+	).min(1).max(12).refine(ids => new Set(ids).size === ids.length),
+	evidence: z.array(z.object({
+		nodeId: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+		field: creationJourneySemanticEvidenceFieldSchema,
+		quote: z.string().trim().min(1).max(500)
+	}).strict()).min(1).max(8),
+	impact: z.string().trim().min(1).max(1_000),
+	suggestedAction: z.string().trim().min(1).max(1_000)
+}).strict();
+
 const creationJourneyHierarchyParentSchema = z.object({
 	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
 	title: z.string().trim().min(1).max(120),
@@ -2791,6 +2848,13 @@ const creationJourneyInputSchema = z.discriminatedUnion('operation', [
 	}).strict(),
 	z.object({
 		schemaVersion: z.literal(1),
+		operation: z.literal('check-outline-semantics'),
+		story: creationJourneyHierarchyStorySchema,
+		nodes: z.array(creationJourneySemanticNodeSchema).min(1).max(512)
+			.refine(nodes => new Set(nodes.map(node => node.id)).size === nodes.length)
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
 		operation: z.literal('expand-to-volumes'),
 		expectedCount: z.number().int().min(1).max(8),
 		story: creationJourneyHierarchyStorySchema,
@@ -2903,6 +2967,10 @@ const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
 			), 'duplicateOutlineAlternative')
 	}).strict(),
 	z.object({
+		operation: z.literal('check-outline-semantics'),
+		issues: z.array(creationJourneySemanticIssueSchema).max(64)
+	}).strict(),
+	z.object({
 		operation: z.literal('expand-to-volumes'),
 		volumes: z.array(creationJourneyVolumeCandidateSchema).min(1).max(8)
 	}).strict(),
@@ -2992,6 +3060,30 @@ export function parseCreationJourneyResponse(
 				|| parsedInput.data.target.id !== parsedResponse.targetId
 			) {
 				throw new Error('outlineAlternativeTargetMismatch');
+			}
+		}
+		if (parsedResponse.operation === 'check-outline-semantics') {
+			const parsedInput = creationJourneyInputSchema.safeParse(input);
+			if (!parsedInput.success || parsedInput.data.operation !== 'check-outline-semantics') {
+				throw new Error('outlineSemanticOperationMismatch');
+			}
+			const nodes = new Map(parsedInput.data.nodes.map(node => [node.id, node]));
+			for (const issue of parsedResponse.issues) {
+				if (issue.nodeIds.some(nodeId => !nodes.has(nodeId))) {
+					throw new Error('unknownOutlineSemanticNode');
+				}
+				for (const evidence of issue.evidence) {
+					const node = nodes.get(evidence.nodeId);
+					const source = node?.[evidence.field];
+					if (
+						!node
+						|| !issue.nodeIds.includes(evidence.nodeId)
+						|| typeof source !== 'string'
+						|| !source.includes(evidence.quote)
+					) {
+						throw new Error('invalidOutlineSemanticEvidence');
+					}
+				}
 			}
 		}
 		if (

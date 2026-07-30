@@ -1,12 +1,16 @@
 import {
+	AlertTriangle,
 	ArrowDown,
 	ArrowUp,
+	Bot,
 	Check,
+	CheckCircle2,
 	ChevronRight,
 	CircleDot,
 	FilePlus2,
 	GripVertical,
 	Layers3,
+	ListChecks,
 	LockKeyhole,
 	LockKeyholeOpen,
 	Play,
@@ -40,6 +44,7 @@ import {
 	type HierarchyExpansionPreview,
 	type HierarchyExpansionTarget
 } from './OutlineHierarchyExpansionModel';
+import type { OutlineQualityIssue } from './OutlineQualityCheckModel';
 
 interface StructuredOutlineWorkspaceProps {
 	readonly state: CreationJourneyState;
@@ -64,6 +69,8 @@ interface StructuredOutlineWorkspaceProps {
 	) => Promise<HierarchyExpansionPreview>;
 	readonly onConfirmHierarchy?: (preview: HierarchyExpansionPreview) => Promise<void>;
 	readonly onMaterializeHierarchy?: () => Promise<boolean>;
+	readonly onRunLocalOutlineCheck?: () => Promise<readonly OutlineQualityIssue[]>;
+	readonly onRunAiOutlineCheck?: () => Promise<readonly OutlineQualityIssue[]>;
 }
 
 const rootFields: readonly {
@@ -149,15 +156,57 @@ function outlineErrorCopy(reason: unknown): string {
 		outlineCandidateUndoStale: '采用后又发生了新修改，无法安全撤销本次 AI 采用。',
 		outlineCandidateSelectionRequired: '请至少选择一个发生变化的字段。',
 		outlineCandidateFieldUnchanged: '只能采用实际发生变化的字段。',
-		invalidCreationJourneyResponse: 'AI 返回的候选结构不完整；原节点保持不变。',
+		invalidCreationJourneyResponse: 'AI 返回的结构无法验证；当前大纲保持不变。',
 		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。',
 		outlineHierarchyExpansionConflict: '候选与现有同级节点重名，请取消后重新生成。',
 		outlineHierarchyPreviewStale: '结构在预览后发生变化，请重新生成拆分候选。',
 		outlineHierarchyIncomplete: '每个卷都需要章节，每个章节都需要至少一个场景。',
 		outlineHierarchyLocked: '请先解除卷、章或场景节点的锁定，再开始写作。',
-		outlineHierarchyMaterializationInvalid: '当前卷、章、场景结构无法安全创建。'
+		outlineHierarchyMaterializationInvalid: '当前卷、章、场景结构无法安全创建。',
+		outlineSemanticCheckUnavailable: '请先生成并补全结构化大纲，再运行语义检查。',
+		invalidCreationJourneyInput: '大纲内容过长或包含不安全字段，无法发送给 AI 检查。'
 	};
 	return messages[code] ?? '暂时无法完成这个大纲操作。';
+}
+
+function OutlineQualityIssueCard({
+	issue,
+	onLocate
+}: {
+	readonly issue: OutlineQualityIssue;
+	readonly onLocate: (nodeId: string) => void;
+}): React.JSX.Element {
+	const severityLabel = issue.severity === 'error'
+		? '错误'
+		: issue.severity === 'warning' ? '警告' : '建议';
+	return (
+		<article className={`outline-quality-issue is-${issue.severity}`}>
+			<button
+				type="button"
+				aria-label={`${issue.title}，定位节点`}
+				onClick={() => onLocate(issue.nodeIds[0])}
+			>
+				<span><AlertTriangle size={18} />{severityLabel}</span>
+				<strong>{issue.title}</strong>
+				<ChevronRight size={18} />
+			</button>
+			<p>{issue.message}</p>
+			<dl>
+				<div><dt>影响</dt><dd>{issue.impact}</dd></div>
+				<div><dt>建议</dt><dd>{issue.suggestedAction}</dd></div>
+			</dl>
+			{issue.evidence.length > 0 && (
+				<ul aria-label="问题证据">
+					{issue.evidence.map((evidence, index) => (
+						<li key={`${evidence.nodeId}:${evidence.field}:${index}`}>
+							<code>{evidence.field}</code>
+							<span>{evidence.quote}</span>
+						</li>
+					))}
+				</ul>
+			)}
+		</article>
+	);
 }
 
 export function StructuredOutlineWorkspace({
@@ -172,7 +221,9 @@ export function StructuredOutlineWorkspace({
 	canUndoAlternativeApply = false,
 	onGenerateHierarchy,
 	onConfirmHierarchy,
-	onMaterializeHierarchy
+	onMaterializeHierarchy,
+	onRunLocalOutlineCheck,
+	onRunAiOutlineCheck
 }: StructuredOutlineWorkspaceProps): React.JSX.Element {
 	const root = state.storyOutline;
 	const [selectedId, setSelectedId] = useState<string>();
@@ -195,6 +246,15 @@ export function StructuredOutlineWorkspace({
 	>();
 	const [hierarchyCount, setHierarchyCount] = useState(3);
 	const [materializationReviewOpen, setMaterializationReviewOpen] = useState(false);
+	const [qualityOpen, setQualityOpen] = useState(false);
+	const [qualityBusy, setQualityBusy] = useState<'local' | 'ai'>();
+	const [localQualityIssues, setLocalQualityIssues] =
+		useState<readonly OutlineQualityIssue[]>([]);
+	const [aiQualityIssues, setAiQualityIssues] =
+		useState<readonly OutlineQualityIssue[]>([]);
+	const [qualityCheckedRevision, setQualityCheckedRevision] = useState<number>();
+	const [aiQualityCheckedRevision, setAiQualityCheckedRevision] = useState<number>();
+	const qualityRequestRef = useRef<'local' | 'ai' | undefined>(undefined);
 	const editSnapshotRef = useRef<{
 		readonly key: string;
 		readonly state: CreationJourneyState;
@@ -207,6 +267,13 @@ export function StructuredOutlineWorkspace({
 	const hierarchyNodes = state.outline.filter(
 		node => node.type === 'volume' || node.type === 'chapter' || node.type === 'scene'
 	);
+	const qualityStale = (
+		qualityCheckedRevision !== undefined
+		&& qualityCheckedRevision !== state.revision
+	);
+	const blockingLocalIssueCount = localQualityIssues.filter(
+		issue => issue.severity === 'error'
+	).length;
 
 	useEffect(() => {
 		if (candidatePreview) candidateHeadingRef.current?.focus();
@@ -437,6 +504,48 @@ export function StructuredOutlineWorkspace({
 		}
 	};
 
+	const runLocalQualityCheck = async () => {
+		if (!onRunLocalOutlineCheck || qualityRequestRef.current) return;
+		qualityRequestRef.current = 'local';
+		setQualityOpen(true);
+		setQualityBusy('local');
+		setLocalError(undefined);
+		try {
+			const result = await onRunLocalOutlineCheck();
+			setLocalQualityIssues(result);
+			setAiQualityIssues([]);
+			setAiQualityCheckedRevision(undefined);
+			setQualityCheckedRevision(state.revision);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			qualityRequestRef.current = undefined;
+			setQualityBusy(undefined);
+		}
+	};
+
+	const runAiQualityCheck = async () => {
+		if (
+			!onRunAiOutlineCheck
+			|| qualityRequestRef.current
+			|| qualityStale
+			|| qualityCheckedRevision === undefined
+			|| blockingLocalIssueCount > 0
+		) return;
+		qualityRequestRef.current = 'ai';
+		setQualityBusy('ai');
+		setLocalError(undefined);
+		try {
+			setAiQualityIssues(await onRunAiOutlineCheck());
+			setAiQualityCheckedRevision(state.revision);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			qualityRequestRef.current = undefined;
+			setQualityBusy(undefined);
+		}
+	};
+
 	return (
 		<section className="structured-outline-workspace" aria-label="结构化大纲工作区">
 			<header className="structured-outline-toolbar">
@@ -445,6 +554,13 @@ export function StructuredOutlineWorkspace({
 					<h2 id="creation-journey-heading">{root.title ?? '未命名故事大纲'}</h2>
 				</div>
 				<div className="structured-outline-toolbar-actions">
+					<button
+						type="button"
+						disabled={!onRunLocalOutlineCheck || Boolean(qualityBusy)}
+						onClick={() => void runLocalQualityCheck()}
+					>
+						<ListChecks size={18} />检查大纲
+					</button>
 					<button
 						type="button"
 						disabled={readOnly || storyBeats.length >= 8}
@@ -523,6 +639,111 @@ export function StructuredOutlineWorkspace({
 			</header>
 
 			{localError && <div className="structured-outline-error" role="alert">{localError}</div>}
+
+			{qualityOpen && (
+				<section className="outline-quality-panel" aria-label="大纲检查结果">
+					<header>
+						<div>
+							<span className="eyebrow">OUTLINE CHECK</span>
+							<h3>大纲检查</h3>
+							<p>本地规则发现结构硬错误；AI 只提供语义建议，不会修改节点。</p>
+						</div>
+						<button
+							type="button"
+							aria-label="关闭大纲检查"
+							onClick={() => setQualityOpen(false)}
+						>
+							<X size={18} />
+						</button>
+					</header>
+					{qualityStale && (
+						<div className="outline-quality-stale" role="status">
+							<AlertTriangle size={18} />
+							<span>大纲已改变，当前结果已过期。请重新运行本地检查。</span>
+						</div>
+					)}
+					<div className="outline-quality-summary" aria-live="polite">
+						<span><ListChecks size={16} />本地 {localQualityIssues.length}</span>
+						<span><Bot size={16} />AI {aiQualityIssues.length}</span>
+						<span className={blockingLocalIssueCount > 0 ? 'has-error' : ''}>
+							<AlertTriangle size={16} />错误 {blockingLocalIssueCount}
+						</span>
+					</div>
+					<div className="outline-quality-columns">
+						<section aria-labelledby="outline-local-quality-heading">
+							<header>
+								<div>
+									<strong id="outline-local-quality-heading">本地规则</strong>
+									<small>离线、确定性、不会调用 AI</small>
+								</div>
+								<button
+									type="button"
+									disabled={qualityBusy === 'local'}
+									onClick={() => void runLocalQualityCheck()}
+								>
+									{qualityBusy === 'local' ? '检查中…' : '重新检查'}
+								</button>
+							</header>
+							{qualityCheckedRevision !== undefined && localQualityIssues.length === 0 && (
+								<p className="outline-quality-empty">
+									<CheckCircle2 size={18} />本地结构检查通过。
+								</p>
+							)}
+							<div className="outline-quality-list">
+								{localQualityIssues.map(issue => (
+									<OutlineQualityIssueCard
+										key={issue.id}
+										issue={issue}
+										onLocate={nodeId => setSelectedId(nodeId)}
+									/>
+								))}
+							</div>
+						</section>
+						<section aria-labelledby="outline-ai-quality-heading">
+							<header>
+								<div>
+									<strong id="outline-ai-quality-heading">AI 建议</strong>
+									<small>只有再次明确点击，才会调用 AI</small>
+								</div>
+								<button
+									type="button"
+									className="secondary-button"
+									disabled={
+										!onRunAiOutlineCheck
+										|| qualityBusy === 'ai'
+										|| qualityStale
+										|| qualityCheckedRevision === undefined
+										|| blockingLocalIssueCount > 0
+									}
+									onClick={() => void runAiQualityCheck()}
+								>
+									<Bot size={18} />{qualityBusy === 'ai' ? 'AI 检查中…' : 'AI 语义检查'}
+								</button>
+							</header>
+							{blockingLocalIssueCount > 0 && (
+								<p className="outline-quality-hint">先修复本地结构错误，再进行语义检查。</p>
+							)}
+							{aiQualityCheckedRevision === state.revision
+								&& aiQualityIssues.length === 0
+								&& qualityBusy !== 'ai'
+								&& (
+									<p className="outline-quality-empty">
+										<CheckCircle2 size={18} />AI 没有发现需要提醒的语义问题。
+									</p>
+								)}
+							<div className="outline-quality-list">
+								{aiQualityIssues.map(issue => (
+									<OutlineQualityIssueCard
+										key={issue.id}
+										issue={issue}
+										onLocate={nodeId => setSelectedId(nodeId)}
+									/>
+								))}
+							</div>
+						</section>
+					</div>
+				</section>
+			)}
 
 			{hierarchyPreview && (
 				<section className="outline-hierarchy-preview" aria-label="拆分预览">
@@ -874,6 +1095,7 @@ export function StructuredOutlineWorkspace({
 									</label>
 									<button
 										type="button"
+										className="primary-button"
 										disabled={
 											readOnly
 											|| lockedIds.has(selectedNode.id)

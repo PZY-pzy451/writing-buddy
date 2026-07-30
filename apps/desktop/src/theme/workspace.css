@@ -8358,6 +8358,7 @@ body,
 	}
 
 	.creation-journey-progress {
+		box-sizing: border-box;
 		grid-template-columns: repeat(6, minmax(0, 1fr));
 		width: 100%;
 		min-width: 0;
@@ -9575,6 +9576,250 @@ button.project-search:focus-visible {
 	border-bottom: 1px solid color-mix(in srgb, var(--highlight-conflict-fg) 28%, var(--border-subtle));
 }
 
+.outline-quality-panel {
+	position: absolute;
+	z-index: 20;
+	inset: 72px clamp(12px, 3vw, 40px) 48px;
+	display: grid;
+	grid-template-rows: auto auto auto minmax(0, 1fr);
+	gap: 14px;
+	min-width: 0;
+	padding: clamp(16px, 2.5vw, 28px);
+	overflow: hidden;
+	background: color-mix(in srgb, var(--surface-raised) 97%, var(--accent) 3%);
+	border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border-subtle));
+	border-radius: 16px;
+	box-shadow: var(--shadow-float);
+}
+
+.outline-quality-panel > header,
+.outline-quality-columns > section > header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.outline-quality-panel > header h3 {
+	margin: 2px 0 0;
+	font-family: var(--font-editor);
+	font-size: 22px;
+}
+
+.outline-quality-panel > header p {
+	margin: 5px 0 0;
+	color: var(--text-muted);
+	font-size: 12px;
+}
+
+.outline-quality-panel > header > button {
+	display: inline-grid;
+	flex: 0 0 auto;
+	width: 44px;
+	height: 44px;
+	place-items: center;
+	color: var(--text-secondary);
+	background: transparent;
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.outline-quality-stale,
+.outline-quality-summary,
+.outline-quality-empty {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.outline-quality-stale {
+	padding: 9px 12px;
+	color: var(--highlight-conflict-fg);
+	background: var(--highlight-conflict-bg);
+	border-radius: 9px;
+}
+
+.outline-quality-summary {
+	flex-wrap: wrap;
+}
+
+.outline-quality-summary > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 32px;
+	padding: 5px 10px;
+	color: var(--text-secondary);
+	background: var(--surface-subtle);
+	border-radius: 999px;
+}
+
+.outline-quality-summary > span.has-error {
+	color: var(--highlight-conflict-fg);
+	background: var(--highlight-conflict-bg);
+}
+
+.outline-quality-columns {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 14px;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.outline-quality-columns > section {
+	display: grid;
+	grid-template-rows: auto minmax(0, auto) minmax(0, 1fr);
+	gap: 10px;
+	min-width: 0;
+	min-height: 0;
+	padding: 14px;
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: 12px;
+}
+
+.outline-quality-columns > section > header > div {
+	display: grid;
+	gap: 3px;
+}
+
+.outline-quality-columns > section > header small,
+.outline-quality-hint {
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.outline-quality-columns > section > header > button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 44px;
+	padding: 8px 12px;
+	color: var(--text-secondary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.outline-quality-columns > section > header > button:disabled {
+	cursor: not-allowed;
+	color: var(--text-muted);
+	background: var(--surface-subtle);
+}
+
+.outline-quality-empty,
+.outline-quality-hint {
+	margin: 0;
+	padding: 10px 12px;
+	background: var(--surface-subtle);
+	border-radius: 9px;
+}
+
+.outline-quality-empty {
+	color: var(--highlight-success-fg);
+}
+
+.outline-quality-list {
+	display: grid;
+	align-content: start;
+	gap: 9px;
+	min-height: 0;
+	overflow: auto;
+	scrollbar-gutter: stable;
+}
+
+.outline-quality-issue {
+	min-width: 0;
+	padding: 10px 12px 12px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-left: 4px solid var(--accent);
+	border-radius: 10px;
+}
+
+.outline-quality-issue.is-error,
+.outline-quality-issue.is-warning {
+	border-left-color: var(--highlight-conflict-fg);
+}
+
+.outline-quality-issue > button {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	min-height: 44px;
+	padding: 4px 0;
+	cursor: pointer;
+	text-align: left;
+	color: var(--text-primary);
+	background: transparent;
+	border: 0;
+}
+
+.outline-quality-issue > button > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.outline-quality-issue > p {
+	margin: 4px 0 9px;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+.outline-quality-issue dl {
+	display: grid;
+	gap: 6px;
+	margin: 0;
+}
+
+.outline-quality-issue dl > div {
+	display: grid;
+	grid-template-columns: 42px minmax(0, 1fr);
+	gap: 7px;
+}
+
+.outline-quality-issue dt {
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.outline-quality-issue dd {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 11px;
+	line-height: 1.45;
+}
+
+.outline-quality-issue ul {
+	display: grid;
+	gap: 4px;
+	margin: 9px 0 0;
+	padding: 8px;
+	list-style: none;
+	background: var(--surface-subtle);
+	border-radius: 8px;
+}
+
+.outline-quality-issue li {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 7px;
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.outline-quality-issue li code {
+	color: var(--accent-strong);
+}
+
 .outline-hierarchy-preview {
 	position: absolute;
 	z-index: 18;
@@ -10495,6 +10740,7 @@ button.project-search:focus-visible {
 }
 
 .structured-outline-toolbar button:focus-visible,
+.outline-quality-panel button:focus-visible,
 .structured-outline-split-count input:focus-visible,
 .outline-hierarchy-preview button:focus-visible,
 .outline-hierarchy-materialization-dialog button:focus-visible,
@@ -10555,6 +10801,11 @@ button.project-search:focus-visible {
 	.outline-hierarchy-preview {
 		inset-inline: 12px;
 	}
+
+	.outline-quality-columns {
+		grid-template-columns: minmax(0, 1fr);
+		overflow: auto;
+	}
 }
 
 @media (max-width: 719px) {
@@ -10579,6 +10830,25 @@ button.project-search:focus-visible {
 	.outline-hierarchy-preview {
 		inset: 128px 8px 8px;
 		padding: 14px;
+	}
+
+	.outline-quality-panel {
+		position: fixed;
+		z-index: 80;
+		inset: 8px;
+		padding: 14px;
+		overflow: auto;
+	}
+
+	.outline-quality-columns,
+	.outline-quality-columns > section,
+	.outline-quality-list {
+		overflow: visible;
+	}
+
+	.outline-quality-panel > header,
+	.outline-quality-columns > section > header {
+		align-items: stretch;
 	}
 
 	.outline-hierarchy-preview > footer {
