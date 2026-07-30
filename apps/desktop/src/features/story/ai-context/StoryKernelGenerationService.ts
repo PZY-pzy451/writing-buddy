@@ -1,6 +1,8 @@
 import {
 	parseStoryKernelGenerationResponseWithDiagnostics,
 	storyKernelGenerationResourceTypes,
+	type ChapterPlanInput,
+	type ChapterReconciliationField,
 	type StoryKernelGenerationResponseDiagnostic,
 	type StoryKernelGenerationResourceType
 } from '@writing-buddy/ai';
@@ -75,6 +77,26 @@ export interface StoryKernelGenerationCandidate {
 	readonly updatedAt: string;
 }
 
+export type ChapterReconciliationStatus =
+	| 'pending'
+	| 'outline-updated'
+	| 'difference-kept'
+	| 'revise-draft';
+
+export interface ChapterReconciliationRecord {
+	readonly planNodeId: string;
+	readonly planRevision: number;
+	readonly actual: Readonly<Record<ChapterReconciliationField, string>>;
+	readonly differences: readonly {
+		readonly field: ChapterReconciliationField;
+		readonly planned: string;
+		readonly actual: string;
+		readonly evidence: EvidenceRef;
+	}[];
+	readonly status: ChapterReconciliationStatus;
+	readonly updatedAt: string;
+}
+
 export interface StoryKernelGenerationBatch {
 	readonly id: StoryId;
 	readonly schemaVersion: 1;
@@ -83,6 +105,7 @@ export interface StoryKernelGenerationBatch {
 	readonly baseOffset: number;
 	readonly instruction: string;
 	readonly targetTypes: readonly StoryKernelGenerationResourceType[];
+	readonly chapterReconciliation?: ChapterReconciliationRecord;
 	readonly responseDiagnostics?: readonly StoryKernelGenerationResponseDiagnostic[];
 	readonly candidates: readonly StoryKernelGenerationCandidate[];
 	readonly createdAt: string;
@@ -302,6 +325,70 @@ function parseResponseDiagnostic(value: unknown): StoryKernelGenerationResponseD
 	};
 }
 
+function parseChapterReconciliation(value: unknown): ChapterReconciliationRecord {
+	if (
+		!isRecord(value)
+		|| typeof value.planNodeId !== 'string'
+		|| !/^journey-outline:[a-z0-9][a-z0-9-]*$/u.test(value.planNodeId)
+		|| !Number.isSafeInteger(value.planRevision)
+		|| Number(value.planRevision) < 1
+		|| !isRecord(value.actual)
+		|| !Array.isArray(value.differences)
+		|| value.differences.length > 5
+		|| !['pending', 'outline-updated', 'difference-kept', 'revise-draft']
+			.includes(String(value.status))
+		|| !canonicalTimestamp(value.updatedAt)
+	) {
+		throw new Error('invalidChapterReconciliation');
+	}
+	const fields = ['summary', 'goal', 'conflict', 'outcome', 'hook'] as const;
+	const actualSource = value.actual;
+	if (
+		Object.keys(actualSource).length !== fields.length
+		|| Object.keys(actualSource).some(key => !fields.includes(
+			key as ChapterReconciliationField
+		))
+	) {
+		throw new Error('invalidChapterReconciliation');
+	}
+	const actual = Object.fromEntries(fields.map(field => {
+		const content = actualSource[field];
+		if (typeof content !== 'string') throw new Error('invalidChapterReconciliation');
+		return [field, content];
+	})) as unknown as Readonly<Record<ChapterReconciliationField, string>>;
+	const seen = new Set<string>();
+	const differences = value.differences.map(difference => {
+		if (
+			!isRecord(difference)
+			|| !fields.includes(difference.field as ChapterReconciliationField)
+			|| seen.has(String(difference.field))
+			|| typeof difference.planned !== 'string'
+			|| typeof difference.actual !== 'string'
+			|| difference.planned === difference.actual
+			|| difference.actual !== actual[difference.field as ChapterReconciliationField]
+		) {
+			throw new Error('invalidChapterReconciliation');
+		}
+		seen.add(String(difference.field));
+		return {
+			field: difference.field as ChapterReconciliationField,
+			planned: difference.planned,
+			actual: difference.actual,
+			evidence: parseEvidenceRef(
+				difference.evidence as Parameters<typeof parseEvidenceRef>[0]
+			)
+		};
+	});
+	return {
+		planNodeId: value.planNodeId,
+		planRevision: Number(value.planRevision),
+		actual,
+		differences,
+		status: value.status as ChapterReconciliationStatus,
+		updatedAt: value.updatedAt
+	};
+}
+
 function parseBatch(value: unknown): StoryKernelGenerationBatch {
 	if (
 		!isRecord(value)
@@ -335,6 +422,9 @@ function parseBatch(value: unknown): StoryKernelGenerationBatch {
 		baseOffset: Number(value.baseOffset),
 		instruction: value.instruction,
 		targetTypes: value.targetTypes.map(generationType),
+		...(value.chapterReconciliation === undefined
+			? {}
+			: { chapterReconciliation: parseChapterReconciliation(value.chapterReconciliation) }),
 		...(Array.isArray(value.responseDiagnostics) && value.responseDiagnostics.length > 0
 			? { responseDiagnostics: value.responseDiagnostics.map(parseResponseDiagnostic) }
 			: {}),
@@ -677,10 +767,16 @@ export class StoryKernelGenerationService {
 		readonly content: string;
 		readonly baseOffset?: number;
 		readonly targetTypes: readonly StoryKernelGenerationResourceType[];
+		readonly chapterPlan?: ChapterPlanInput;
 		readonly response: string;
 		readonly now?: string;
 	}): Promise<StoryKernelGenerationBatch> {
 		const parsedResponse = parseStoryKernelGenerationResponseWithDiagnostics(input.response);
+		if (
+			(input.chapterPlan !== undefined) !== (parsedResponse.reconciliation !== undefined)
+		) {
+			throw new Error('invalidChapterReconciliationResponse');
+		}
 		const responses = parsedResponse.candidates;
 		const firstDiagnostic = parsedResponse.diagnostics[0];
 		if (responses.length === 0 && firstDiagnostic) {
@@ -898,6 +994,39 @@ export class StoryKernelGenerationService {
 				]
 			};
 		});
+		const chapterReconciliation = input.chapterPlan && parsedResponse.reconciliation
+			? {
+				planNodeId: input.chapterPlan.nodeId,
+				planRevision: input.chapterPlan.revision,
+				actual: parsedResponse.reconciliation.actual,
+				differences: parsedResponse.reconciliation.differences.map(difference => {
+					if (
+						difference.planned !== input.chapterPlan?.[difference.field]
+						|| difference.actual !== parsedResponse.reconciliation?.actual[
+							difference.field
+						]
+					) {
+						throw new Error('invalidChapterReconciliationResponse');
+					}
+					const evidence = anchorEvidence({
+						content: input.content,
+						baseOffset,
+						sourceResourceId: input.sourceResourceId,
+						sourceRevision: input.sourceRevision,
+						value: difference.evidence
+					});
+					if (!evidence) throw new Error('invalidChapterReconciliationEvidence');
+					return {
+						field: difference.field,
+						planned: difference.planned,
+						actual: difference.actual,
+						evidence
+					};
+				}),
+				status: 'pending' as const,
+				updatedAt: now
+			}
+			: undefined;
 		const batch: StoryKernelGenerationBatch = {
 			id: createStoryId('generation-batch'),
 			schemaVersion: 1,
@@ -906,6 +1035,7 @@ export class StoryKernelGenerationService {
 			baseOffset,
 			instruction: input.instruction.trim(),
 			targetTypes: [...input.targetTypes],
+			...(chapterReconciliation ? { chapterReconciliation } : {}),
 			...(parsedResponse.diagnostics.length > 0
 				? { responseDiagnostics: parsedResponse.diagnostics }
 				: {}),
@@ -914,6 +1044,34 @@ export class StoryKernelGenerationService {
 			updatedAt: now
 		};
 		return this.store.append(batch);
+	}
+
+	async resolveChapterReconciliation(
+		batchId: string,
+		status: Exclude<ChapterReconciliationStatus, 'pending'>,
+		now = new Date().toISOString()
+	): Promise<StoryKernelGenerationBatch> {
+		const batches = await this.store.load();
+		const batch = batches.find(candidate => candidate.id === batchId);
+		if (!batch?.chapterReconciliation) {
+			throw new Error('chapterReconciliationNotFound');
+		}
+		if (batch.chapterReconciliation.status !== 'pending') {
+			throw new Error('chapterReconciliationAlreadyResolved');
+		}
+		const updated: StoryKernelGenerationBatch = {
+			...batch,
+			chapterReconciliation: {
+				...batch.chapterReconciliation,
+				status,
+				updatedAt: now
+			},
+			updatedAt: now
+		};
+		await this.store.save(
+			batches.map(candidate => candidate.id === batchId ? updated : candidate)
+		);
+		return updated;
 	}
 
 	async confirm(

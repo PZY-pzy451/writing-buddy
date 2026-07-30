@@ -1,5 +1,6 @@
 import {
 	AlertTriangle,
+	ArrowRightLeft,
 	Check,
 	CheckCircle2,
 	ChevronRight,
@@ -7,8 +8,10 @@ import {
 	Clock3,
 	DatabaseZap,
 	ExternalLink,
+	FilePenLine,
 	FileSearch,
 	Filter,
+	GitCompareArrows,
 	LoaderCircle,
 	Play,
 	RotateCcw,
@@ -19,6 +22,7 @@ import {
 	buildStoryKernelGenerationMessages,
 	storyKernelGenerationResourceTypes,
 	type AiJobState,
+	type ChapterReconciliationField,
 	type StoryKernelGenerationResourceType
 } from '@writing-buddy/ai';
 import {
@@ -28,6 +32,14 @@ import {
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	updateStoryOutlineNode,
+	updateStoryOutlineRoot
+} from '../../creation-journey/CreationJourneyModel';
+import {
+	CreationJourneyStore,
+	type LoadedCreationJourney
+} from '../../creation-journey/CreationJourneyStore';
 import type { AiChapterSource } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
 import {
@@ -46,6 +58,8 @@ import {
 	type ManuscriptExtractionSource
 } from './ManuscriptExtractionCenterService';
 import {
+	buildChapterReconciliationPatch,
+	findMaterializedChapterPlan,
 	findStaleExtractionBatchIds,
 	groupChapterOrganizationCandidates
 } from './ChapterOrganizationModel';
@@ -101,6 +115,13 @@ const defaultTypes: readonly StoryKernelGenerationResourceType[] = [
 	'plotThread',
 	'foreshadowing'
 ];
+const reconciliationFieldLabels: Readonly<Record<ChapterReconciliationField, string>> = {
+	summary: '章节概要',
+	goal: '章节目标',
+	conflict: '核心冲突',
+	outcome: '章节结果',
+	hook: '结尾钩子'
+};
 const emptyChapters: readonly AiChapterSource[] = [];
 
 function candidateConfirmable(candidate: StoryKernelGenerationCandidate): boolean {
@@ -119,19 +140,27 @@ function safeMessage(reason: unknown): string {
 		invalidManuscriptExtractionSource: '章节为空、过大或版本信息无效。',
 		storyKernelGenerationCandidateBlocked: '所选候选仍有阻断冲突。',
 		storyKernelGenerationRevisionConflict: '资料已变化，请重新整理后确认。',
-		storyKernelGenerationUndoConflict: '资料在确认后又被修改，为保护新内容，本次撤销已停止。'
+		storyKernelGenerationUndoConflict: '资料在确认后又被修改，为保护新内容，本次撤销已停止。',
+		chapterReconciliationPlanUnavailable: '当前章节没有可安全更新的规划节点。',
+		lockedChapterReconciliationPlan: '章节计划已锁定；可以查看差异，但不能由 AI 候选更新。',
+		staleChapterReconciliationPlan: '章节计划已变化，请使用最新计划重新整理本章。',
+		invalidChapterReconciliationSelection: '请选择仍然存在差异的大纲字段。',
+		invalidChapterReconciliationResponse: 'AI 未返回完整的计划与实际比较，请重试整理本章。',
+		invalidChapterReconciliationEvidence: 'AI 返回的差异没有可定位的正文依据。'
 	};
 	return labels[code] ?? code;
 }
 
 export function ManuscriptExtractionCenterPage(props: {
 	readonly projectRoot?: string;
+	readonly projectId?: string;
 	readonly chapters?: readonly AiChapterSource[];
 	readonly activeChapterId?: string;
 	readonly readOnly?: boolean;
 	readonly repository?: StoryRepository;
 	readonly runStore?: ManuscriptExtractionRunStore;
 	readonly generationStore?: StoryKernelGenerationStore;
+	readonly journeyStore?: CreationJourneyStore;
 	readonly onOpenEvidence?: (evidence: {
 		readonly resourceId: string;
 		readonly range?: { readonly start: number; readonly end: number };
@@ -171,6 +200,18 @@ export function ManuscriptExtractionCenterPage(props: {
 			: undefined,
 		[generationStore, repository]
 	);
+	const journeyStore = useMemo(
+		() => props.journeyStore ?? (
+			props.projectRoot && props.projectId
+				? new CreationJourneyStore(
+					props.projectRoot,
+					props.projectId,
+					desktopBridge
+				)
+				: undefined
+		),
+		[props.journeyStore, props.projectId, props.projectRoot]
+	);
 	const runner = useMemo(
 		() => runStore ? new ManuscriptExtractionRunner(runStore) : undefined,
 		[runStore]
@@ -190,8 +231,11 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [runs, setRuns] = useState<readonly ManuscriptExtractionRun[]>([]);
 	const [selectedRunId, setSelectedRunId] = useState<string>();
 	const [batches, setBatches] = useState<readonly StoryKernelGenerationBatch[]>([]);
+	const [journey, setJourney] = useState<LoadedCreationJourney>();
 	const [selectedCandidateIds, setSelectedCandidateIds] =
 		useState<ReadonlySet<string>>(new Set());
+	const [selectedReconciliationFields, setSelectedReconciliationFields] =
+		useState<Readonly<Record<string, readonly ChapterReconciliationField[]>>>({});
 	const [staleBatchIds, setStaleBatchIds] =
 		useState<ReadonlySet<string>>(new Set());
 	const [lastConfirmationReceipts, setLastConfirmationReceipts] =
@@ -219,14 +263,23 @@ export function ManuscriptExtractionCenterPage(props: {
 		}
 		const sourceIds = [...new Set(nextBatches.map(batch => batch.sourceResourceId))];
 		const currentRevisions = new Map<string, string>();
+		const loadedJourney = journeyStore ? await journeyStore.load() : undefined;
+		if (loadedJourney) setJourney(loadedJourney);
 		await Promise.all(sourceIds.map(async resourceId => {
 			const chapter = chapters.find(item => item.resourceId === resourceId);
 			if (!chapter) return;
 			const file = await desktopBridge.readText(projectRoot, chapter.path);
 			currentRevisions.set(resourceId, file.hash);
 		}));
-		setStaleBatchIds(findStaleExtractionBatchIds(nextBatches, currentRevisions));
-	}, [chapters, props.projectRoot]);
+		const currentPlanRevisions = new Map(
+			loadedJourney?.state.outline.map(node => [node.id, node.revision ?? 1]) ?? []
+		);
+		setStaleBatchIds(findStaleExtractionBatchIds(
+			nextBatches,
+			currentRevisions,
+			currentPlanRevisions
+		));
+	}, [chapters, journeyStore, props.projectRoot]);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -286,6 +339,19 @@ export function ManuscriptExtractionCenterPage(props: {
 		)) ?? []
 	);
 	const runBatches = batches.filter(batch => runBatchIds.has(batch.id));
+	const reconciliationBatches = runBatches.filter(batch => (
+		batch.chapterReconciliation !== undefined
+	));
+	const selectedReconciliations = reconciliationBatches.flatMap(batch => {
+		const fields = selectedReconciliationFields[batch.id] ?? [];
+		return fields.length > 0 ? [{ batch, fields }] : [];
+	});
+	const selectedReconciliationFieldCount = selectedReconciliations.reduce(
+		(total, selection) => total + selection.fields.length,
+		0
+	);
+	const totalSelectionCount = selectedCandidateIds.size
+		+ selectedReconciliationFieldCount;
 	const candidateGroups = groupChapterOrganizationCandidates(runBatches)
 		.flatMap(group => {
 			if (candidateType !== 'all' && group.type !== candidateType) return [];
@@ -300,7 +366,10 @@ export function ManuscriptExtractionCenterPage(props: {
 	);
 	const selectedHasStaleSource = runBatches.some(batch => (
 		staleBatchIds.has(batch.id)
-		&& batch.candidates.some(candidate => selectedCandidateIds.has(candidate.id))
+		&& (
+			batch.candidates.some(candidate => selectedCandidateIds.has(candidate.id))
+			|| (selectedReconciliationFields[batch.id]?.length ?? 0) > 0
+		)
 	));
 	const completedCount = selectedRun?.chapters.filter(chapter => (
 		chapter.status === 'completed'
@@ -320,6 +389,35 @@ export function ManuscriptExtractionCenterPage(props: {
 			sourceRevision: file.hash,
 			content: file.content
 		};
+	};
+
+	const markPendingReconciliationNeedsReview = async (
+		nextBatches: readonly StoryKernelGenerationBatch[]
+	) => {
+		if (!journeyStore) return;
+		const current = await journeyStore.load();
+		const hasCurrentDifference = nextBatches.some(batch => {
+			const reconciliation = batch.chapterReconciliation;
+			if (!reconciliation
+				|| reconciliation.status !== 'pending'
+				|| reconciliation.differences.length === 0
+			) {
+				return false;
+			}
+			return current.state.outline.some(node => (
+				node.id === reconciliation.planNodeId
+				&& (node.revision ?? 1) === reconciliation.planRevision
+			));
+		});
+		if (!hasCurrentDifference || current.state.storyOutline?.status === 'needs_review') {
+			setJourney(current);
+			return;
+		}
+		const saved = await journeyStore.save(
+			current,
+			updateStoryOutlineRoot(current.state, { status: 'needs_review' })
+		);
+		setJourney(saved);
 	};
 
 	const createPlan = async () => {
@@ -343,6 +441,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setRuns(await runStore.load());
 			setSelectedRunId(run.id);
 			setSelectedCandidateIds(new Set());
+			setSelectedReconciliationFields({});
 			setLastConfirmationReceipts([]);
 			setNotice(`已规划 ${run.chapters.length} 个章节；开始前预计 ${run.tokenEstimate.toLocaleString()} tokens。`);
 		} catch (reason) {
@@ -368,13 +467,23 @@ export function ManuscriptExtractionCenterPage(props: {
 					onStreamProgress
 				}) => {
 					const identities = await loadStoryKernelGenerationIdentities(repository);
+					const latestJourney = journeyStore ? await journeyStore.load() : journey;
+					if (latestJourney) setJourney(latestJourney);
+					const chapterPlan = latestJourney
+						? findMaterializedChapterPlan(
+							latestJourney.state.outline,
+							latestJourney.state.locks.outlineNodeIds,
+							source.resourceId
+						)
+						: undefined;
 					const messages = buildStoryKernelGenerationMessages({
 						instruction: run.instruction,
 						content: source.content,
 						resourceId: source.resourceId,
 						sourceRevision: source.sourceRevision,
 						targetTypes: run.targetTypes,
-						existingResources: identities
+						existingResources: identities,
+						...(chapterPlan ? { chapterPlan } : {})
 					});
 					let sampledLength = 0;
 					const response = await runGroundedJsonJob({
@@ -404,6 +513,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						sourceRevision: source.sourceRevision,
 						content: source.content,
 						targetTypes: run.targetTypes,
+						...(chapterPlan ? { chapterPlan } : {}),
 						response: response.output
 					});
 					return {
@@ -421,6 +531,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setRuns(await runStore!.load());
 			const loadedBatches = await generationStore.load();
 			setBatches(loadedBatches);
+			await markPendingReconciliationNeedsReview(loadedBatches);
 			await refreshStaleState(loadedBatches);
 			setNotice(result.status === 'completed'
 				? '全部章节已整理完成，候选仍需作者确认。'
@@ -456,25 +567,90 @@ export function ManuscriptExtractionCenterPage(props: {
 	const confirmSelected = async () => {
 		if (!props.projectRoot || !generationService || !generationStore) return;
 		const selected = [...selectedCandidateIds];
-		if (!selected.length) return;
+		if (totalSelectionCount === 0) return;
 		if (selectedHasStaleSource) {
-			setError('正文已变化，旧候选不可确认；请使用最新正文重新整理本章。');
+			setError('正文或章节计划已变化，旧候选不可确认；请使用最新内容重新整理本章。');
 			return;
 		}
 		setBusyAction('confirm');
 		setError('');
 		const confirmedReceipts: StoryKernelConfirmationUndoReceipt[] = [];
+		let journeySaved = false;
 		try {
 			const grouped = runBatches.map(batch => ({
 				batch,
 				ids: selected.filter(id => batch.candidates.some(candidate => candidate.id === id))
 			})).filter(group => group.ids.length > 0);
-			for (const group of grouped) {
+			const selectedBatches = [...new Map([
+				...grouped.map(group => [group.batch.id, group.batch] as const),
+				...selectedReconciliations.map(selection => [
+					selection.batch.id,
+					selection.batch
+				] as const)
+			]).values()];
+			for (const batch of selectedBatches) {
+				const chapter = chapters.find(item => item.resourceId === batch.sourceResourceId);
+				if (!chapter) throw new Error('stale-source');
+				const source = await desktopBridge.readText(props.projectRoot, chapter.path);
+				if (source.hash !== batch.sourceRevision) throw new Error('stale-source');
+			}
+
+			let loadedJourney: LoadedCreationJourney | undefined;
+			let nextJourney = undefined as LoadedCreationJourney['state'] | undefined;
+			if (selectedReconciliations.length > 0) {
+				if (!journeyStore) throw new Error('chapterReconciliationPlanUnavailable');
+				loadedJourney = await journeyStore.load();
+				nextJourney = loadedJourney.state;
+				for (const selection of selectedReconciliations) {
+					const reconciliation = selection.batch.chapterReconciliation;
+					if (!reconciliation) throw new Error('chapterReconciliationNotFound');
+					const plan = findMaterializedChapterPlan(
+						nextJourney.outline,
+						nextJourney.locks.outlineNodeIds,
+						selection.batch.sourceResourceId
+					);
+					if (!plan) throw new Error('chapterReconciliationPlanUnavailable');
+					const patch = buildChapterReconciliationPatch(
+						plan,
+						reconciliation,
+						selection.fields
+					);
+					nextJourney = updateStoryOutlineNode(
+						nextJourney,
+						reconciliation.planNodeId,
+						patch
+					);
+				}
+				const selectedReconciliationIds = new Set(
+					selectedReconciliations.map(selection => selection.batch.id)
+				);
+				const hasUnadoptedDifference = reconciliationBatches.some(batch => {
+					const reconciliation = batch.chapterReconciliation;
+					if (!reconciliation || reconciliation.status !== 'pending') return false;
+					if (!selectedReconciliationIds.has(batch.id)) {
+						return reconciliation.differences.length > 0;
+					}
+					const selectedFields = new Set(selectedReconciliationFields[batch.id] ?? []);
+					return reconciliation.differences.some(
+						difference => !selectedFields.has(difference.field)
+					);
+				});
+				if (hasUnadoptedDifference && nextJourney.storyOutline) {
+					nextJourney = updateStoryOutlineRoot(
+						nextJourney,
+						{ status: 'needs_review' }
+					);
+				}
+			}
+
+			for (const batch of selectedBatches) {
 				await desktopBridge.createSnapshot(
 					props.projectRoot,
 					'beforeDestructiveOperation',
-					`AI 正文整理确认前 · ${group.batch.sourceResourceId}`
+					`AI 正文整理确认前 · ${batch.sourceResourceId}`
 				);
+			}
+			for (const group of grouped) {
 				const confirmation = await generationService.confirmWithReceipt(
 					group.batch.id,
 					group.ids
@@ -482,14 +658,37 @@ export function ManuscriptExtractionCenterPage(props: {
 				confirmedReceipts.push(confirmation.receipt);
 				setLastConfirmationReceipts([...confirmedReceipts]);
 			}
+			if (loadedJourney && nextJourney && journeyStore) {
+				const saved = await journeyStore.save(loadedJourney, nextJourney);
+				journeySaved = true;
+				setJourney(saved);
+			}
+			for (const selection of selectedReconciliations) {
+				await generationService.resolveChapterReconciliation(
+					selection.batch.id,
+					'outline-updated'
+				);
+			}
 			const loadedBatches = await generationStore.load();
 			setBatches(loadedBatches);
 			await refreshStaleState(loadedBatches);
 			setSelectedCandidateIds(new Set());
-			setNotice(`已确认 ${selected.length} 个候选；已创建安全快照，可撤销本次确认。`);
+			setSelectedReconciliationFields({});
+			setNotice(
+				`已批量确认 ${totalSelectionCount} 项；写入前已创建安全快照。`
+			);
 		} catch (reason) {
-			if (confirmedReceipts.length > 0) {
-				setLastConfirmationReceipts([...confirmedReceipts]);
+			if (!journeySaved && confirmedReceipts.length > 0) {
+				const remaining = [...confirmedReceipts];
+				for (const receipt of [...confirmedReceipts].reverse()) {
+					try {
+						await generationService.undoConfirmation(receipt);
+						remaining.splice(remaining.indexOf(receipt), 1);
+					} catch {
+						break;
+					}
+				}
+				setLastConfirmationReceipts(remaining);
 			}
 			setError(safeMessage(reason));
 		} finally {
@@ -519,12 +718,58 @@ export function ManuscriptExtractionCenterPage(props: {
 			setRuns(await runStore.load());
 			setSelectedRunId(run.id);
 			setSelectedCandidateIds(new Set());
+			setSelectedReconciliationFields({});
 			setLastConfirmationReceipts([]);
 			setNotice('已按最新正文重新规划本章；尚未调用 AI，请确认 Token 后点击开始。');
 		} catch (reason) {
 			setError(safeMessage(reason));
 		} finally {
 			setPlanning(false);
+		}
+	};
+
+	const keepChapterDifference = async (batchId: string) => {
+		if (!generationService || !generationStore) return;
+		setResolvingCandidateId(batchId);
+		setError('');
+		try {
+			await generationService.resolveChapterReconciliation(
+				batchId,
+				'difference-kept'
+			);
+			const loadedBatches = await generationStore.load();
+			setBatches(loadedBatches);
+			if (journeyStore) {
+				const current = await journeyStore.load();
+				const hasPendingDifference = loadedBatches.some(batch => {
+					const reconciliation = batch.chapterReconciliation;
+					return reconciliation?.status === 'pending'
+						&& reconciliation.differences.length > 0
+						&& current.state.outline.some(node => (
+							node.id === reconciliation.planNodeId
+							&& (node.revision ?? 1) === reconciliation.planRevision
+						));
+				});
+				const synced = !hasPendingDifference
+					&& current.state.storyOutline?.status === 'needs_review'
+					? await journeyStore.save(
+						current,
+						updateStoryOutlineRoot(current.state, { status: 'draft' })
+					)
+					: current;
+				setJourney(synced);
+			}
+			setSelectedReconciliationFields(current => {
+				const next = { ...current };
+				delete next[batchId];
+				return next;
+			});
+			await refreshStaleState(loadedBatches);
+			setNotice('已按作者决定保留正文与计划的差异；没有修改正文或大纲。');
+		} catch (reason) {
+			setError(safeMessage(reason));
+		} finally {
+			setResolvingCandidateId(undefined);
 		}
 	};
 
@@ -585,7 +830,9 @@ export function ManuscriptExtractionCenterPage(props: {
 			const loadedBatches = await generationStore.load();
 			setBatches(loadedBatches);
 			await refreshStaleState(loadedBatches);
-			setNotice('已撤销刚才的确认：新建资料已移入可恢复回收站，更新资料已恢复旧版本。');
+			setNotice(
+				'已撤销刚才的资料确认；大纲更新仍保留，可从写入前快照恢复。'
+			);
 		} catch (reason) {
 			setLastConfirmationReceipts(remaining);
 			setError(safeMessage(reason));
@@ -720,6 +967,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							onChange={event => {
 								setSelectedRunId(event.target.value);
 								setSelectedCandidateIds(new Set());
+								setSelectedReconciliationFields({});
 							}}
 						>
 							{[...runs].reverse().map(run => (
@@ -784,11 +1032,223 @@ export function ManuscriptExtractionCenterPage(props: {
 				</section>
 			</div>
 
-			<section className="extraction-candidate-queue" aria-labelledby="candidate-queue-title">
+			<section
+				className="chapter-reconciliation-section"
+				aria-labelledby="chapter-reconciliation-title"
+			>
 				<header>
 					<div>
 						<span>03</span>
-						<div><h2 id="candidate-queue-title">统一冲突候选</h2><small>AI 结果不会自动写入 Story Kernel</small></div>
+						<div>
+							<h2 id="chapter-reconciliation-title">计划与实际</h2>
+							<small>正文不会自动服从计划；只更新你明确勾选的大纲字段</small>
+						</div>
+					</div>
+					{journey?.state.storyOutline?.status === 'needs_review' ? (
+						<strong className="chapter-needs-review">
+							<GitCompareArrows size={16} />needs_review
+						</strong>
+					) : null}
+				</header>
+				<div className="chapter-reconciliation-list">
+					{reconciliationBatches.map(batch => {
+						const reconciliation = batch.chapterReconciliation;
+						if (!reconciliation) return null;
+						const plan = journey
+							? findMaterializedChapterPlan(
+								journey.state.outline,
+								journey.state.locks.outlineNodeIds,
+								batch.sourceResourceId
+							)
+							: undefined;
+						const stale = staleBatchIds.has(batch.id);
+						const selectedFields = selectedReconciliationFields[batch.id] ?? [];
+						const firstEvidence = reconciliation.differences[0]?.evidence;
+						return (
+							<article
+								className="chapter-reconciliation-card"
+								data-stale={stale ? 'true' : 'false'}
+								key={batch.id}
+							>
+								<header>
+									<div>
+										<span><ArrowRightLeft size={16} />{plan?.title ?? batch.sourceResourceId}</span>
+										<strong>
+											{reconciliation.status === 'pending'
+												? '待作者决定'
+												: reconciliation.status === 'outline-updated'
+													? '已更新大纲'
+													: reconciliation.status === 'difference-kept'
+														? '已保留差异'
+														: '准备修改正文'}
+										</strong>
+									</div>
+									<small>
+										{reconciliation.differences.length === 0
+											? '正文与计划未发现明确差异'
+											: `${reconciliation.differences.length} 个待比较字段`}
+									</small>
+								</header>
+								<div className="chapter-plan-actual">
+									<div>
+										<span>计划</span>
+										<p>{plan?.summary || '当前没有可用章节计划。'}</p>
+									</div>
+									<ChevronRight size={18} />
+									<div>
+										<span>实际正文</span>
+										<p>{reconciliation.actual.summary || 'AI 未提取到明确的实际概要。'}</p>
+									</div>
+								</div>
+								{stale ? (
+									<div className="extraction-stale-warning">
+										<span><AlertTriangle size={16} />正文或计划已变化，旧比较不可确认</span>
+										<button
+											type="button"
+											disabled={planning || Boolean(busyAction) || props.readOnly}
+											onClick={() => void replanStaleBatch(batch)}
+										>
+											<RotateCcw size={16} />用最新内容重新整理
+										</button>
+									</div>
+								) : null}
+								<div className="chapter-difference-list">
+									{reconciliation.differences.map(difference => {
+										const checked = selectedFields.includes(difference.field);
+										return (
+											<article key={difference.field}>
+												<label>
+													<input
+														type="checkbox"
+														aria-label={`更新大纲字段 ${reconciliationFieldLabels[difference.field]}`}
+														checked={checked}
+														disabled={
+															stale
+															|| plan?.locked !== false
+															|| reconciliation.status !== 'pending'
+															|| Boolean(busyAction)
+														}
+														onChange={() => setSelectedReconciliationFields(current => {
+															const currentFields = current[batch.id] ?? [];
+															return {
+																...current,
+																[batch.id]: currentFields.includes(difference.field)
+																	? currentFields.filter(field => field !== difference.field)
+																	: [...currentFields, difference.field]
+															};
+														})}
+													/>
+													<span>{reconciliationFieldLabels[difference.field]}</span>
+												</label>
+												<div>
+													<small>计划</small>
+													<p>{difference.planned || '未规划'}</p>
+												</div>
+												<ChevronRight size={16} />
+												<div>
+													<small>实际</small>
+													<p>{difference.actual}</p>
+												</div>
+												<button
+													type="button"
+													aria-label={`查看 ${reconciliationFieldLabels[difference.field]} 正文依据`}
+													onClick={event => {
+														event.preventDefault();
+														props.onOpenEvidence?.({
+															resourceId: difference.evidence.resourceId,
+															range: difference.evidence.range
+														});
+													}}
+												>
+													<ExternalLink size={16} />正文依据
+												</button>
+											</article>
+										);
+									})}
+								</div>
+								{plan?.locked ? (
+									<p className="chapter-plan-locked">
+										<ShieldCheck size={16} />章节计划已锁定；差异可查看，但 AI 候选不能更新。
+									</p>
+								) : null}
+								<div className="chapter-reconciliation-actions">
+									<button
+										type="button"
+										disabled={
+											stale
+											|| plan?.locked !== false
+											|| reconciliation.status !== 'pending'
+											|| reconciliation.differences.length === 0
+											|| Boolean(busyAction)
+											|| props.readOnly
+										}
+										onClick={() => {
+											setSelectedReconciliationFields(current => ({
+												...current,
+												[batch.id]: reconciliation.differences.map(
+													difference => difference.field
+												)
+											}));
+											setNotice(
+												'已选择本章全部差异字段；点击“创建快照并批量确认”后才会更新大纲。'
+											);
+										}}
+									>
+										<ArrowRightLeft size={16} />更新大纲
+									</button>
+									<button
+										type="button"
+										disabled={!firstEvidence}
+										onClick={() => {
+											if (firstEvidence) {
+												props.onOpenEvidence?.({
+													resourceId: firstEvidence.resourceId,
+													range: firstEvidence.range
+												});
+											}
+											setNotice('已定位正文差异；修改正文后，旧候选会自动变为 Stale。');
+										}}
+									>
+										<FilePenLine size={16} />修改正文
+									</button>
+									<button
+										type="button"
+										disabled={
+											stale
+											|| reconciliation.status !== 'pending'
+											|| Boolean(resolvingCandidateId)
+											|| props.readOnly
+										}
+										onClick={() => void keepChapterDifference(batch.id)}
+									>
+										<Check size={16} />保留差异
+									</button>
+									<button
+										type="button"
+										disabled={reconciliation.status !== 'pending'}
+										onClick={() => setNotice('差异保持待处理；正文与大纲均未修改。')}
+									>
+										<Clock3 size={16} />稍后处理
+									</button>
+								</div>
+							</article>
+						);
+					})}
+					{reconciliationBatches.length === 0 ? (
+						<div className="chapter-reconciliation-empty">
+							<GitCompareArrows size={22} />
+							<strong>完成章节整理后显示计划与实际比较</strong>
+							<span>没有可用章节计划时仍可继续提取 StoryForge 资料。</span>
+						</div>
+					) : null}
+				</div>
+			</section>
+
+			<section className="extraction-candidate-queue" aria-labelledby="candidate-queue-title">
+				<header>
+					<div>
+						<span>04</span>
+						<div><h2 id="candidate-queue-title">资料与大纲候选</h2><small>AI 结果不会自动写入 Story Kernel 或大纲</small></div>
 					</div>
 					<div className="extraction-candidate-filters">
 						<Filter size={16} />
@@ -800,7 +1260,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						<button
 							type="button"
 							disabled={
-								selectedCandidateIds.size === 0
+								totalSelectionCount === 0
 								|| selectedHasStaleSource
 								|| Boolean(busyAction)
 								|| props.readOnly
@@ -808,7 +1268,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							onClick={() => void confirmSelected()}
 						>
 							{busyAction === 'confirm' ? <LoaderCircle className="spin" size={16} /> : <Check size={16} />}
-							创建快照并确认 {selectedCandidateIds.size || ''}
+							创建快照并批量确认 {totalSelectionCount || ''}
 						</button>
 						{lastConfirmationReceipts.length > 0 ? (
 							<button
@@ -820,7 +1280,7 @@ export function ManuscriptExtractionCenterPage(props: {
 								{busyAction === 'undo'
 									? <LoaderCircle className="spin" size={16} />
 									: <RotateCcw size={16} />}
-								撤销刚才确认
+								撤销资料确认
 							</button>
 						) : null}
 					</div>

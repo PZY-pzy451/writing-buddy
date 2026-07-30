@@ -131,6 +131,7 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 	'information 使用 truthStatement；truthStatus 只能是 confirmed|disputed|unknown；authorSecret 与 excludeFromAiByDefault 必须是布尔值，可选 truthEffectiveFrom/readerRevealAt。',
 	'引用已有资源时必须使用 existingResources 中的 ID；同一批新资源可以互相引用。update 只能使用 existingResources 中的 ID。',
 	'有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。',
+	'当用户 JSON 提供 chapterPlan 时，除 candidates 外必须返回 reconciliation：{"actual":{"summary":"实际概要","goal":"实际目标","conflict":"实际冲突","outcome":"实际结果","hook":"实际钩子"},"differences":[{"field":"summary|goal|conflict|outcome|hook","planned":"计划值","actual":"实际值","evidence":{"start":0,"end":1,"quote":"精确正文"}}]}。每个差异字段最多一条且必须有精确正文证据；未提供 chapterPlan 时不得返回 reconciliation。',
 	'最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。'
 ].join('');
 export const CREATION_JOURNEY_SYSTEM_PROMPT = [
@@ -935,8 +936,74 @@ const storyKernelGenerationCandidateSchema = z.object({
 	evidence: storyKernelGenerationEvidenceSchema.nullable()
 }).strict();
 
+export const chapterReconciliationFields = [
+	'summary',
+	'goal',
+	'conflict',
+	'outcome',
+	'hook'
+] as const;
+
+export type ChapterReconciliationField = typeof chapterReconciliationFields[number];
+
+export interface StoryKernelGenerationEvidenceResponse {
+	readonly start: number;
+	readonly end: number;
+	readonly quote: string;
+}
+
+export interface ChapterPlanInput {
+	readonly nodeId: string;
+	readonly revision: number;
+	readonly locked: boolean;
+	readonly title: string;
+	readonly summary: string;
+	readonly goal: string;
+	readonly conflict: string;
+	readonly outcome: string;
+	readonly hook: string;
+}
+
+export interface ChapterReconciliationResponse {
+	readonly actual: Readonly<Record<ChapterReconciliationField, string>>;
+	readonly differences: readonly {
+		readonly field: ChapterReconciliationField;
+		readonly planned: string;
+		readonly actual: string;
+		readonly evidence: StoryKernelGenerationEvidenceResponse;
+	}[];
+}
+
+const chapterReconciliationActualSchema = z.object({
+	summary: z.string().max(3_000),
+	goal: z.string().max(1_000),
+	conflict: z.string().max(2_000),
+	outcome: z.string().max(2_000),
+	hook: z.string().max(2_000)
+}).strict();
+
+const chapterReconciliationSchema = z.object({
+	actual: chapterReconciliationActualSchema,
+	differences: z.array(z.object({
+		field: z.enum(chapterReconciliationFields),
+		planned: z.string().max(3_000),
+		actual: z.string().min(1).max(3_000),
+		evidence: storyKernelGenerationEvidenceSchema
+	}).strict().refine(
+		difference => difference.evidence.end > difference.evidence.start
+			&& difference.planned !== difference.actual,
+		{ message: 'invalidChapterReconciliationDifference' }
+	)).max(chapterReconciliationFields.length)
+		.refine(
+			differences => new Set(differences.map(difference => difference.field)).size
+				=== differences.length,
+			{ message: 'duplicateChapterReconciliationField' }
+		)
+}).strict();
+
 const storyKernelGenerationResponseEnvelopeSchema = z.object({
-	candidates: z.array(z.unknown()).max(24)
+	candidates: z.array(z.unknown()).max(24),
+	reconciliation: chapterReconciliationSchema.optional()
 }).strict();
 
 export interface SelectionRewriteResponse {
@@ -1261,6 +1328,7 @@ export interface StoryKernelGenerationResponseDiagnostic {
 export interface StoryKernelGenerationResponseResult {
 	readonly candidates: readonly StoryKernelGenerationCandidateResponse[];
 	readonly diagnostics: readonly StoryKernelGenerationResponseDiagnostic[];
+	readonly reconciliation?: ChapterReconciliationResponse;
 }
 
 const groundedContextItemSchema = z.object({
@@ -2253,9 +2321,11 @@ export function buildStoryKernelGenerationMessages(input: {
 	readonly sourceRevision: string;
 	readonly targetTypes: readonly StoryKernelGenerationResourceType[];
 	readonly existingResources: readonly StoryKernelExistingResourceIdentity[];
+	readonly chapterPlan?: ChapterPlanInput;
 }): readonly AiMessage[] {
 	const targetTypes = [...new Set(input.targetTypes)];
 	const existingIds = new Set<string>();
+	const chapterPlan = input.chapterPlan;
 	if (
 		!input.instruction.trim()
 		|| input.instruction.length > 2_000
@@ -2269,7 +2339,23 @@ export function buildStoryKernelGenerationMessages(input: {
 		|| targetTypes.some(type => !storyKernelGenerationResourceTypes.includes(type))
 		|| input.existingResources.length > 500
 		|| /projectRoot|apiKey|credential|absolutePath/iu.test(
-			`${input.instruction}\n${input.content}`
+			`${input.instruction}\n${input.content}\n${chapterPlan ? JSON.stringify(chapterPlan) : ''}`
+		)
+		|| (
+			chapterPlan !== undefined
+			&& (
+				!/^(?:journey-outline):[a-z0-9][a-z0-9-]*$/u.test(chapterPlan.nodeId)
+				|| !Number.isSafeInteger(chapterPlan.revision)
+				|| chapterPlan.revision < 1
+				|| typeof chapterPlan.locked !== 'boolean'
+				|| !chapterPlan.title.trim()
+				|| chapterPlan.title.length > 120
+				|| chapterPlan.summary.length > 3_000
+				|| chapterPlan.goal.length > 1_000
+				|| chapterPlan.conflict.length > 2_000
+				|| chapterPlan.outcome.length > 2_000
+				|| chapterPlan.hook.length > 2_000
+			)
 		)
 	) {
 		throw new Error('invalidStoryKernelGenerationInput');
@@ -2297,7 +2383,8 @@ export function buildStoryKernelGenerationMessages(input: {
 			content: input.content
 		},
 		targetTypes,
-		existingResources: input.existingResources
+		existingResources: input.existingResources,
+		...(chapterPlan ? { chapterPlan } : {})
 	});
 	if (payload.length > 140_000) {
 		throw new Error('invalidStoryKernelGenerationInput');
@@ -2370,7 +2457,13 @@ export function parseStoryKernelGenerationResponseWithDiagnostics(
 				: 'invalidStoryKernelGenerationCandidate'
 		});
 	});
-	return { candidates, diagnostics };
+	return {
+		candidates,
+		diagnostics,
+		...(envelope.data.reconciliation
+			? { reconciliation: envelope.data.reconciliation }
+			: {})
+	};
 }
 
 const creationJourneyCoreSchema = z.object({

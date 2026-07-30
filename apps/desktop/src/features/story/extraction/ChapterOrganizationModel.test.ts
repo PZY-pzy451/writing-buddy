@@ -4,6 +4,8 @@ import type {
 	StoryKernelGenerationCandidate
 } from '../ai-context/StoryKernelGenerationService';
 import {
+	buildChapterReconciliationPatch,
+	findMaterializedChapterPlan,
 	findStaleExtractionBatchIds,
 	groupChapterOrganizationCandidates
 } from './ChapterOrganizationModel';
@@ -88,5 +90,119 @@ describe('ChapterOrganizationModel', () => {
 			['chapter:one', 'hash-new'],
 			['chapter:two', 'hash-two']
 		]))).toEqual(new Set(['generation:one']));
+	});
+
+	it('resolves a canonical materialized chapter plan and adopts only selected actual fields', () => {
+		const plan = findMaterializedChapterPlan([{
+			id: 'journey-outline:chapter-one',
+			title: '取得褪色车票',
+			summary: '林越从画师手中取得褪色车票。',
+			purpose: '推进调查',
+			type: 'chapter',
+			goal: '取得车票',
+			conflict: '画师拒绝交谈',
+			outcome: '林越获得车票',
+			hook: '车票背面出现名字',
+			source: 'ai_generated',
+			status: 'drafting',
+			revision: 4,
+			resourceId: 'chapter-one'
+		}], [], 'chapter:chapter-one');
+		expect(plan).toMatchObject({
+			nodeId: 'journey-outline:chapter-one',
+			revision: 4,
+			locked: false
+		});
+
+		const patch = buildChapterReconciliationPatch(plan!, {
+			planNodeId: 'journey-outline:chapter-one',
+			planRevision: 4,
+			actual: {
+				summary: '画师展示车票，但没有交给林越。',
+				goal: '取得车票',
+				conflict: '画师拒绝交出车票',
+				outcome: '林越只看到了车票',
+				hook: '车票仍留在画师手中'
+			},
+			differences: [{
+				field: 'outcome',
+				planned: '林越获得车票',
+				actual: '林越只看到了车票'
+			}],
+			status: 'pending'
+		}, ['outcome']);
+		expect(patch).toEqual({
+			outcome: '林越只看到了车票',
+			source: 'extracted_from_draft',
+			status: 'drafted'
+		});
+		expect(() => buildChapterReconciliationPatch(
+			{ ...plan!, revision: 5 },
+			{
+				planNodeId: 'journey-outline:chapter-one',
+				planRevision: 4,
+				actual: {
+					summary: '',
+					goal: '',
+					conflict: '',
+					outcome: '旧候选',
+					hook: ''
+				},
+				differences: [{
+					field: 'outcome',
+					planned: '',
+					actual: '旧候选'
+				}],
+				status: 'pending'
+			},
+			['outcome']
+		)).toThrow('staleChapterReconciliationPlan');
+	});
+
+	it('treats a changed plan revision as stale without invalidating unrelated batches', () => {
+		const reconciled = {
+			...batch('reconciled', 'chapter:one', 'hash-one', [candidate('lin', 'character')]),
+			chapterReconciliation: {
+				planNodeId: 'journey-outline:chapter-one',
+				planRevision: 4,
+				actual: { summary: '', goal: '', conflict: '', outcome: '', hook: '' },
+				differences: [],
+				status: 'pending',
+				updatedAt: '2026-07-29T08:00:00.000Z'
+			}
+		} as StoryKernelGenerationBatch;
+		const unrelated = batch(
+			'unrelated',
+			'chapter:two',
+			'hash-two',
+			[candidate('ticket', 'item')]
+		);
+		expect(findStaleExtractionBatchIds(
+			[reconciled, unrelated],
+			new Map([
+				['chapter:one', 'hash-one'],
+				['chapter:two', 'hash-two']
+			]),
+			new Map([['journey-outline:chapter-one', 5]])
+		)).toEqual(new Set(['generation:reconciled']));
+	});
+
+	it('does not relabel an explicitly resolved plan comparison as stale after its update', () => {
+		const reconciled = {
+			...batch('resolved', 'chapter:one', 'hash-one', [candidate('lin', 'character')]),
+			chapterReconciliation: {
+				planNodeId: 'journey-outline:chapter-one',
+				planRevision: 4,
+				actual: { summary: '', goal: '', conflict: '', outcome: '', hook: '' },
+				differences: [],
+				status: 'outline-updated',
+				updatedAt: '2026-07-29T08:00:00.000Z'
+			}
+		} as StoryKernelGenerationBatch;
+		expect(findStaleExtractionBatchIds(
+			[reconciled],
+			new Map([['chapter:one', 'hash-one']]),
+			new Map([['journey-outline:chapter-one', 5]])
+		)).toEqual(new Set());
 	});
 });

@@ -154,6 +154,7 @@ export function StoryStudioRoute(): React.JSX.Element {
 		return (
 			<ManuscriptExtractionCenterPage
 				projectRoot={projectRoot}
+				projectId={snapshot?.project.projectId}
 				chapters={chapters}
 				activeChapterId={activeResource?.type === 'chapter'
 					? toStoryChapterId(activeResource.id)

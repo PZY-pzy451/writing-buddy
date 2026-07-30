@@ -3200,6 +3200,16 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 			readonly content?: string;
 		};
 		readonly targetTypes?: readonly string[];
+		readonly chapterPlan?: {
+			readonly nodeId?: string;
+			readonly revision?: number;
+			readonly title?: string;
+			readonly summary?: string;
+			readonly goal?: string;
+			readonly conflict?: string;
+			readonly outcome?: string;
+			readonly hook?: string;
+		};
 		readonly existingResources?: readonly {
 			readonly id?: string;
 			readonly type?: string;
@@ -3433,7 +3443,30 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 			evidence
 		});
 	}
-	const response = JSON.stringify({ candidates: responseCandidates });
+	const actualOutcome = '正文中的实际结果与原计划不同，等待作者确认。';
+	const reconciliation = decoded.chapterPlan && evidence
+		? {
+			actual: {
+				summary: `正文实际发生：${quote}`,
+				goal: decoded.chapterPlan.goal ?? '',
+				conflict: decoded.chapterPlan.conflict ?? '',
+				outcome: actualOutcome,
+				hook: decoded.chapterPlan.hook ?? ''
+			},
+			differences: decoded.chapterPlan.outcome === actualOutcome
+				? []
+				: [{
+					field: 'outcome',
+					planned: decoded.chapterPlan.outcome ?? '',
+					actual: actualOutcome,
+					evidence
+				}]
+		}
+		: undefined;
+	const response = JSON.stringify({
+		candidates: responseCandidates,
+		...(reconciliation ? { reconciliation } : {})
+	});
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];

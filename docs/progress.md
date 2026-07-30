@@ -746,6 +746,36 @@ development or background AI behavior without explicit user direction.
 
 ## Next
 
-Implement Gate H only after explicit user direction. Preserve the Gate G
-snapshot-before-write, bounded-context privacy and revision-safe Undo
-contracts while extending the next stage. Stop here for user review.
+Gate H is complete. Stop before Gate I and wait for explicit user direction.
+
+## Genre-to-Draft Gate H complete
+
+- Extended the existing `story-kernel-generation` action with an optional,
+  bounded chapter-plan input and a strict plan-versus-actual reconciliation
+  response. Candidate-only calls remain backward compatible.
+- Added exact-Evidence, unique-field, planned/actual cross-checks and mirrored
+  privacy and bounds validation in TypeScript and Rust.
+- Persisted reconciliation inside the existing Story Kernel generation batch
+  with explicit pending, outline-updated, difference-kept and
+  manuscript-editing states. No second candidate or outline store was added.
+- Added plan-versus-actual review, calm `needs_review`, zero default
+  selections, explicit field checkboxes and the author choices
+  `更新大纲`, `修改正文`, `保留差异`, and `稍后处理`.
+- Extended the existing snapshot-backed batch confirmation across selected
+  StoryForge resources and selected outline fields. Manuscript hash, plan
+  revision, locks, journey hash and resource conflicts are checked before
+  writes; resource receipts provide rollback if the journey write fails.
+- Fixed responsive 1280×720 scrolling, false stale state after an accepted
+  outline update, and repeated organization after the plan already matches.
+- Browser acceptance completed a fresh 3-volume / 9-chapter / 27-scene
+  journey, selected one outline field plus one resource, created one snapshot,
+  confirmed both, and observed zero console warnings/errors.
+- Full and release self-tests passed with Node 24.14.0: ESLint, TypeScript,
+  150 Vitest files / 576 tests, production build, Cargo format, 66 Rust tests
+  with 2 external gates ignored, Tauri Release and NSIS.
+- The final portable executable reached input idle, remained responsive with
+  title `Writing Buddy`, closed normally and exited with code 0.
+- Delivery:
+  `artifacts/release/genre-to-draft-gate-h/`; acceptance:
+  `docs/acceptance/052-genre-to-draft-gate-h-reconciliation-2026-07-30.md`.
+- Gate I has not started.

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "gate": "Genre-to-Draft Gate H",
+  "status": "passed",
+  "capturedAt": "2026-07-30T19:10:00+08:00",
+  "baselineCommit": "93307ab8b017f5101c10fd817c2bfd3e443a03ed",
+  "browser": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "projectName": "Gate H 雨夜旧站",
+    "journey": {
+      "volumes": 3,
+      "chapters": 9,
+      "scenes": 27
+    },
+    "duplicateGenerationGuard": true,
+    "initialOutlineFieldSelectionCount": 0,
+    "initialResourceSelectionCount": 0,
+    "reportedDifferenceCount": 1,
+    "selectedOutlineFieldCount": 1,
+    "selectedResourceCandidateCount": 1,
+    "snapshotCount": 1,
+    "outlineResolution": "outline-updated",
+    "resourceResolution": "confirmed",
+    "repeatGenerationAfterAlignment": "no-explicit-differences",
+    "consoleErrorCount": 0,
+    "consoleWarningCount": 0,
+    "screenshots": [
+      "docs/acceptance/screenshots/genre-to-draft-gate-h/gate-h-plan-vs-actual-1280x720.jpg",
+      "docs/acceptance/screenshots/genre-to-draft-gate-h/gate-h-batch-confirmed-1280x720.jpg"
+    ]
+  },
+  "automated": {
+    "focusedVitestFiles": 5,
+    "focusedVitestTests": 51,
+    "fullVitestFiles": 150,
+    "fullVitestTests": 576,
+    "eslint": "passed",
+    "typescript": "passed",
+    "productionBuild": "passed",
+    "fullSelfTest": "passed",
+    "releaseSelfTest": "passed",
+    "cargoFmt": "passed",
+    "rustPassed": 66,
+    "rustFailed": 0,
+    "rustIgnoredExternalGates": 2,
+    "nodeVersion": "24.14.0"
+  },
+  "native": {
+    "pid": 46544,
+    "inputIdle": true,
+    "responsive": true,
+    "title": "Writing Buddy",
+    "mainWindowHandle": 787836,
+    "closeRequested": true,
+    "exitCode": 0
+  }
+}

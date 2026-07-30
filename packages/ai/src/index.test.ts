@@ -786,6 +786,83 @@ describe('AI core contracts', () => {
 		})).toThrow('invalidStoryKernelGenerationInput');
 	});
 
+	it('bounds a materialized chapter plan and parses evidence-backed reconciliation', () => {
+		const messages = buildStoryKernelGenerationMessages({
+			instruction: '整理本章并提取有正文依据的资料。',
+			content: '画师只展示了车票，没有把它交给林越。',
+			resourceId: 'chapter:chapter-one',
+			sourceRevision: 'hash:chapter-one',
+			targetTypes: ['timelineEvent', 'item'],
+			existingResources: [],
+			chapterPlan: {
+				nodeId: 'journey-outline:chapter-one',
+				revision: 4,
+				locked: false,
+				title: '取得褪色车票',
+				summary: '林越从画师手中取得褪色车票。',
+				goal: '取得车票',
+				conflict: '画师拒绝交谈',
+				outcome: '林越获得车票',
+				hook: '车票背面出现失踪者名字'
+			}
+		});
+		const payload = JSON.parse(messages[1]?.content ?? '{}') as Record<string, unknown>;
+		expect(payload.chapterPlan).toMatchObject({
+			nodeId: 'journey-outline:chapter-one',
+			revision: 4,
+			locked: false
+		});
+		expect(messages[1]?.content).not.toMatch(/projectRoot|apiKey|authorSecret/iu);
+
+		const parsed = parseStoryKernelGenerationResponseWithDiagnostics(JSON.stringify({
+			candidates: [],
+			reconciliation: {
+				actual: {
+					summary: '画师展示车票，但没有交给林越。',
+					goal: '取得车票',
+					conflict: '画师拒绝交出车票',
+					outcome: '林越只看到了车票',
+					hook: '车票仍留在画师手中'
+				},
+				differences: [{
+					field: 'outcome',
+					planned: '林越获得车票',
+					actual: '林越只看到了车票',
+					evidence: {
+						start: 0,
+						end: 20,
+						quote: '画师只展示了车票，没有把它交给林越。'
+					}
+				}]
+			}
+		}));
+		expect(parsed.reconciliation?.differences).toHaveLength(1);
+		expect(parsed.reconciliation?.differences[0]).toMatchObject({
+			field: 'outcome',
+			actual: '林越只看到了车票'
+		});
+
+		expect(() => buildStoryKernelGenerationMessages({
+			instruction: '整理本章。',
+			content: '正文。',
+			resourceId: 'chapter:chapter-one',
+			sourceRevision: 'hash:chapter-one',
+			targetTypes: ['timelineEvent'],
+			existingResources: [],
+			chapterPlan: {
+				nodeId: 'journey-outline:chapter-one',
+				revision: 4,
+				locked: false,
+				title: '标题',
+				summary: '包含 apiKey 的越界计划',
+				goal: '',
+				conflict: '',
+				outcome: '',
+				hook: ''
+			}
+		})).toThrow('invalidStoryKernelGenerationInput');
+	});
+
 	it('repairs omitted common empty arrays and isolates only malformed candidates', () => {
 		const result = parseStoryKernelGenerationResponseWithDiagnostics(JSON.stringify({
 			candidates: [{

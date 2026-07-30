@@ -1,6 +1,19 @@
+import type { TextFile } from '@writing-buddy/domain';
+import type { AtomicWriteResult } from '@writing-buddy/platform-ports';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	createCreationJourneyState,
+	parseCreationJourneyState,
+	serializeCreationJourneyState,
+	setGeneratedGenreOutline,
+	updateGenreToOutlineInput
+} from '../../creation-journey/CreationJourneyModel';
+import {
+	CreationJourneyStore,
+	type CreationJourneyStorageGateway
+} from '../../creation-journey/CreationJourneyStore';
 import { ManuscriptExtractionCenterPage } from './ManuscriptExtractionCenterPage';
 
 const chapters = [{
@@ -20,6 +33,108 @@ const chapters = [{
 	volumeId: 'volume-a11ce001',
 	volumeTitle: '第一卷'
 }];
+
+class MemoryJourneyGateway implements CreationJourneyStorageGateway {
+	file?: TextFile;
+	writes = 0;
+
+	constructor(content: string) {
+		this.file = {
+			content,
+			hash: 'journey-hash-0',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		};
+	}
+
+	readCreationJourneyState(): Promise<TextFile | undefined> {
+		return Promise.resolve(this.file);
+	}
+
+	writeCreationJourneyState(
+		_projectRoot: string,
+		content: string,
+		expectedHash: string
+	): Promise<AtomicWriteResult> {
+		if (expectedHash !== this.file?.hash) throw new Error('externalChange');
+		this.writes += 1;
+		this.file = {
+			content,
+			hash: `journey-hash-${this.writes}`,
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		};
+		return Promise.resolve({
+			hash: this.file.hash,
+			byteLength: content.length,
+			modifiedAt: '2026-07-30T10:00:00.000Z'
+		});
+	}
+}
+
+function materializedJourney(projectId: string): string {
+	const now = () => '2026-07-30T10:00:00.000Z';
+	let state = updateGenreToOutlineInput(
+		createCreationJourneyState(projectId, { startRoute: 'genre', now }),
+		{ genre: '都市悬疑' },
+		now
+	);
+	let id = 0;
+	state = setGeneratedGenreOutline(state, {
+		outline: {
+			title: '雨夜旧站',
+			genre: '都市悬疑',
+			premise: '记者追查只在雨夜出现的旧车站。'
+		},
+		storyBeats: Array.from({ length: 5 }, (_, index) => ({
+			title: `故事节点 ${index + 1}`,
+			summary: `推进调查 ${index + 1}`
+		})),
+		suggestedCharacters: [],
+		suggestedWorldRules: [],
+		warnings: []
+	}, {
+		id: prefix => `${prefix}:reconciliation-${++id}`,
+		now
+	});
+	return serializeCreationJourneyState(parseCreationJourneyState(JSON.stringify({
+		...state,
+		outline: [
+			...state.outline,
+			{
+				id: 'journey-outline:volume-one',
+				type: 'volume',
+				order: 0,
+				title: '第一卷',
+				summary: '记者进入旧车站。',
+				purpose: '建立谜团',
+				status: 'drafting',
+				source: 'ai_generated',
+				revision: 2,
+				resourceId: 'volume:volume-a11ce001'
+			},
+			{
+				id: 'journey-outline:chapter-one',
+				type: 'chapter',
+				parentId: 'journey-outline:volume-one',
+				order: 0,
+				title: '第一章 停摆的时钟',
+				summary: '林越在雨夜进入旧车站。',
+				purpose: '触发调查',
+				goal: '找到失踪者留下的线索',
+				conflict: '值班员拒绝提供站内记录',
+				outcome: '林越取得停摆时钟的维修单',
+				hook: '维修单上的日期来自未来',
+				status: 'drafting',
+				source: 'ai_generated',
+				revision: 4,
+				resourceId: 'chapter:chapter-a11ce001'
+			}
+		]
+	})));
+}
 
 describe('ManuscriptExtractionCenterPage', () => {
 	beforeEach(async () => {
@@ -71,9 +186,81 @@ describe('ManuscriptExtractionCenterPage', () => {
 		expect(confirmable).toBeDefined();
 		if (!confirmable) throw new Error('confirmableCandidateMissing');
 		fireEvent.click(confirmable);
-		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/u }));
-		const undo = await screen.findByRole('button', { name: '撤销刚才确认' });
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并批量确认 1/u }));
+		const undo = await screen.findByRole('button', { name: '撤销资料确认' });
 		fireEvent.click(undo);
-		await screen.findByText(/已撤销刚才的确认/u);
+		await screen.findByText(/已撤销刚才的资料确认/u);
+	});
+
+	it('compares a materialized chapter plan and batch-confirms only explicit outline fields', async () => {
+		const projectId = 'project-reconciliation';
+		const gateway = new MemoryJourneyGateway(materializedJourney(projectId));
+		const journeyStore = new CreationJourneyStore(
+			'browser-fixture-reconciliation',
+			projectId,
+			gateway
+		);
+		const snapshot = vi.spyOn(desktopBridge, 'createSnapshot');
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture-reconciliation"
+				projectId={projectId}
+				chapters={[chapters[0]]}
+				activeChapterId={chapters[0]?.resourceId}
+				journeyStore={journeyStore}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
+		await screen.findByText(/已规划 1 个章节/u);
+		fireEvent.click(screen.getByRole('button', { name: '开始逐章整理' }));
+
+		await screen.findByText(/全部章节已整理完成/u, {}, { timeout: 8_000 });
+		expect(await screen.findByRole('heading', { name: '计划与实际' }))
+			.toBeInTheDocument();
+		expect(screen.getByText('needs_review')).toBeInTheDocument();
+		expect(screen.getByText('林越取得停摆时钟的维修单')).toBeInTheDocument();
+		expect(screen.getByText('正文中的实际结果与原计划不同，等待作者确认。'))
+			.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '查看 章节结果 正文依据' }))
+			.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '更新大纲' })).toBeEnabled();
+
+		const outlineCheckbox = screen.getByRole('checkbox', {
+			name: '更新大纲字段 章节结果'
+		});
+		expect(outlineCheckbox).not.toBeChecked();
+		const resourceCheckbox = screen.getAllByRole('checkbox').find(element => (
+			element.getAttribute('aria-label')?.startsWith('选择 ')
+			&& !(element as HTMLInputElement).disabled
+		));
+		expect(resourceCheckbox).toBeDefined();
+		if (!resourceCheckbox) throw new Error('confirmableCandidateMissing');
+
+		fireEvent.click(outlineCheckbox);
+		fireEvent.click(resourceCheckbox);
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并批量确认 2/u }));
+		await screen.findByText(/已批量确认 2 项/u);
+
+		const reopened = await journeyStore.load();
+		expect(reopened.state.outline.find(node => node.id === 'journey-outline:chapter-one'))
+			.toMatchObject({
+				outcome: '正文中的实际结果与原计划不同，等待作者确认。',
+				source: 'extracted_from_draft',
+				status: 'drafted',
+				revision: 5
+			});
+		expect(snapshot).toHaveBeenCalledTimes(1);
+
+		fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
+		await waitFor(() => {
+			expect(screen.getByRole('button', { name: '开始逐章整理' })).toBeEnabled();
+		});
+		fireEvent.click(screen.getByRole('button', { name: '开始逐章整理' }));
+		expect(await screen.findByText(
+			'正文与计划未发现明确差异',
+			{},
+			{ timeout: 8_000 }
+		)).toBeInTheDocument();
 	});
 });

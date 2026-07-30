@@ -133,6 +133,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "information 使用 truthStatement；truthStatus 只能是 confirmed|disputed|unknown；authorSecret 与 excludeFromAiByDefault 必须是布尔值，可选 truthEffectiveFrom/readerRevealAt。",
     "引用已有资源时必须使用 existingResources 中的 ID；同一批新资源可以互相引用。update 只能使用 existingResources 中的 ID。",
     "有正文依据时 evidence 必须精确匹配 source.content 的 JavaScript UTF-16 索引；纯作者设定可为 null。",
+    "当用户 JSON 提供 chapterPlan 时，除 candidates 外必须返回 reconciliation：{\"actual\":{\"summary\":\"实际概要\",\"goal\":\"实际目标\",\"conflict\":\"实际冲突\",\"outcome\":\"实际结果\",\"hook\":\"实际钩子\"},\"differences\":[{\"field\":\"summary|goal|conflict|outcome|hook\",\"planned\":\"计划值\",\"actual\":\"实际值\",\"evidence\":{\"start\":0,\"end\":1,\"quote\":\"精确正文\"}}]}。每个差异字段最多一条且必须有精确正文证据；未提供 chapterPlan 时不得返回 reconciliation。",
     "最多返回 24 个候选。所有候选仅供作者审核，不得声称已经写入 Story Kernel。"
 );
 pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
@@ -2104,6 +2105,7 @@ struct StoryKernelGenerationInput {
     source: StoryKernelGenerationSource,
     target_types: Vec<String>,
     existing_resources: Vec<StoryKernelExistingResource>,
+    chapter_plan: Option<StoryKernelChapterPlan>,
 }
 
 #[derive(Deserialize)]
@@ -2122,6 +2124,21 @@ struct StoryKernelExistingResource {
     resource_type: String,
     title: String,
     revision: u64,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct StoryKernelChapterPlan {
+    node_id: String,
+    revision: u64,
+    #[serde(rename = "locked")]
+    _locked: bool,
+    title: String,
+    summary: String,
+    goal: String,
+    conflict: String,
+    outcome: String,
+    hook: String,
 }
 
 fn valid_story_kernel_generation_type(value: &str) -> bool {
@@ -2193,6 +2210,30 @@ fn validate_story_kernel_generation_input(value: &str) -> bool {
                     && !resource.title.trim().is_empty()
                     && resource.title.chars().count() <= 160
                     && resource.revision <= u32::MAX as u64
+            })
+            && input.chapter_plan.as_ref().is_none_or(|plan| {
+                plan.node_id.starts_with("journey-outline:")
+                    && valid_story_id(&plan.node_id)
+                    && (1..=u32::MAX as u64).contains(&plan.revision)
+                    && !plan.title.trim().is_empty()
+                    && plan.title.chars().count() <= 120
+                    && plan.summary.chars().count() <= 3_000
+                    && plan.goal.chars().count() <= 1_000
+                    && plan.conflict.chars().count() <= 2_000
+                    && plan.outcome.chars().count() <= 2_000
+                    && plan.hook.chars().count() <= 2_000
+                    && {
+                        let bounded = format!(
+                            "{}\n{}\n{}\n{}\n{}\n{}",
+                            plan.title,
+                            plan.summary,
+                            plan.goal,
+                            plan.conflict,
+                            plan.outcome,
+                            plan.hook
+                        );
+                        !contains_forbidden_context_key(&bounded)
+                    }
             })
     })
 }
@@ -2934,6 +2975,26 @@ mod tests {
         .to_string();
         request.options.response_format = ResponseFormat::JsonObject;
         assert!(request.validate().is_ok());
+
+        let mut plan_aware: serde_json::Value =
+            serde_json::from_str(&request.messages[1].content).expect("valid request");
+        plan_aware["chapterPlan"] = serde_json::json!({
+            "nodeId": "journey-outline:chapter-one",
+            "revision": 4,
+            "locked": false,
+            "title": "第一章 停摆的时钟",
+            "summary": "林越进入旧车站。",
+            "goal": "取得维修单",
+            "conflict": "值班员拒绝交谈",
+            "outcome": "林越取得维修单",
+            "hook": "维修单日期来自未来"
+        });
+        request.messages[1].content = plan_aware.to_string();
+        assert!(request.validate().is_ok());
+
+        plan_aware["chapterPlan"]["summary"] = serde_json::json!("apiKey");
+        request.messages[1].content = plan_aware.to_string();
+        assert!(request.validate().is_err());
 
         request.messages[1].content = serde_json::json!({
             "schemaVersion": 1,

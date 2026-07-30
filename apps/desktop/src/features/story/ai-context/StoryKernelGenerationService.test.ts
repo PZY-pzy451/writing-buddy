@@ -273,6 +273,134 @@ async function stageValidBatch(
 }
 
 describe('StoryKernelGenerationService', () => {
+	it('anchors, persists, reopens, and explicitly resolves chapter reconciliation', async () => {
+		const { service, store } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '整理本章并对照计划。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['timelineEvent'],
+			chapterPlan: {
+				nodeId: 'journey-outline:chapter-001',
+				revision: 4,
+				locked: false,
+				title: '找到沈青',
+				summary: '林越在旧车站找到沈青。',
+				goal: '找到沈青',
+				conflict: '车站被封锁',
+				outcome: '沈青答应同行',
+				hook: '沈青交出车票'
+			},
+			response: JSON.stringify({
+				candidates: [],
+				reconciliation: {
+					actual: {
+						summary: '林越在旧车站遇见沈青。',
+						goal: '找到沈青',
+						conflict: '车站被封锁',
+						outcome: '两人只完成初次相遇',
+						hook: '沈青仍未交出车票'
+					},
+					differences: [{
+						field: 'outcome',
+						planned: '沈青答应同行',
+						actual: '两人只完成初次相遇',
+						evidence: { start: 6, end: 10, quote: '遇见沈青' }
+					}]
+				}
+			}),
+			now
+		});
+
+		expect(batch.chapterReconciliation).toMatchObject({
+			planNodeId: 'journey-outline:chapter-001',
+			planRevision: 4,
+			status: 'pending'
+		});
+		expect(batch.chapterReconciliation?.differences[0]?.evidence).toMatchObject({
+			resourceId: 'chapter:chapter-001',
+			revisionId: '7',
+			quotePreview: '遇见沈青',
+			confirmedByAuthor: false
+		});
+		expect((await store.load())[0]?.chapterReconciliation).toEqual(
+			batch.chapterReconciliation
+		);
+
+		const resolved = await service.resolveChapterReconciliation(
+			batch.id,
+			'difference-kept',
+			'2026-07-27T08:02:00.000Z'
+		);
+		expect(resolved.chapterReconciliation?.status).toBe('difference-kept');
+		await expect(
+			service.resolveChapterReconciliation(batch.id, 'outline-updated')
+		).rejects.toThrow('chapterReconciliationAlreadyResolved');
+	});
+
+	it('rejects reconciliation values that diverge from the submitted plan or actual record', async () => {
+		const { service } = createHarness();
+		const common = {
+			instruction: '整理本章并对照计划。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['character'] as const,
+			chapterPlan: {
+				nodeId: 'journey-outline:chapter-one',
+				revision: 4,
+				locked: false,
+				title: '第一章',
+				summary: '林越前往旧车站。',
+				goal: '找到沈青',
+				conflict: '车站被封锁',
+				outcome: '沈青答应同行',
+				hook: '沈青交出车票'
+			},
+			now
+		};
+		const actual = {
+			summary: '林越在旧车站遇见沈青。',
+			goal: '找到沈青',
+			conflict: '车站被封锁',
+			outcome: '两人只完成初次相遇',
+			hook: '沈青仍未交出车票'
+		};
+		const evidence = { start: 6, end: 10, quote: '遇见沈青' };
+
+		await expect(service.stageFromResponse({
+			...common,
+			response: JSON.stringify({
+				candidates: [],
+				reconciliation: {
+					actual,
+					differences: [{
+						field: 'outcome',
+						planned: '并非输入计划',
+						actual: actual.outcome,
+						evidence
+					}]
+				}
+			})
+		})).rejects.toThrow('invalidChapterReconciliationResponse');
+		await expect(service.stageFromResponse({
+			...common,
+			response: JSON.stringify({
+				candidates: [],
+				reconciliation: {
+					actual,
+					differences: [{
+						field: 'outcome',
+						planned: common.chapterPlan.outcome,
+						actual: '与 actual.outcome 不一致',
+						evidence
+					}]
+				}
+			})
+		})).rejects.toThrow('invalidChapterReconciliationResponse');
+	});
+
 	it('keeps valid candidates when a later candidate is structurally incomplete', async () => {
 		const { service, store } = createHarness();
 		const response = JSON.parse(createResponse()) as {
