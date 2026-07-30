@@ -131,6 +131,89 @@ const genreOutlineOutputSchema = z.object({
 	}).strict()).max(24)
 }).strict();
 
+const outlineCandidateNodeSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	purpose: z.string().trim().min(1).max(1_000),
+	goal: z.string().max(1_000),
+	conflict: z.string().max(2_000),
+	outcome: z.string().max(2_000),
+	hook: z.string().max(2_000),
+	povHint: z.string().max(500)
+}).strict();
+
+const outlineAuthorControlInputSchema = z.object({
+	strategy: z.enum([
+		'balanced',
+		'strengthen-conflict',
+		'character-driven',
+		'replace-hook',
+		'reduce-cliches',
+		'tighten-pace'
+	]),
+	target: z.object({
+		id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+		current: outlineCandidateNodeSchema,
+		context: z.object({
+			story: z.object({
+				genre: z.string().trim().min(1).max(240),
+				premise: z.string().max(2_000),
+				themePromise: z.string().max(2_000).optional(),
+				protagonistGoal: z.string().max(2_000).optional(),
+				centralConflict: z.string().max(2_000).optional(),
+				stakes: z.string().max(2_000).optional(),
+				mysteryQuestion: z.string().max(2_000).optional(),
+				endingDirection: z.string().max(2_000).optional()
+			}).strict(),
+			previous: z.object({
+				title: z.string().trim().min(1).max(120),
+				summary: z.string().trim().min(1).max(3_000),
+				purpose: z.string().trim().min(1).max(1_000)
+			}).strict().optional(),
+			next: z.object({
+				title: z.string().trim().min(1).max(120),
+				summary: z.string().trim().min(1).max(3_000),
+				purpose: z.string().trim().min(1).max(1_000)
+			}).strict().optional()
+		}).strict()
+	}).strict(),
+	guidanceAnswers: z.array(z.object({
+		stage: z.string().trim().min(1).max(40),
+		answerText: z.string().trim().min(1).max(1_000)
+	}).strict()).max(12),
+	lockedDecisions: z.array(z.object({
+		key: z.string().trim().min(1).max(200),
+		content: z.string().max(4_000)
+	}).strict()).max(24)
+}).strict();
+
+const outlineAlternativesOutputSchema = z.object({
+	operation: z.literal('generate-outline-alternatives'),
+	targetId: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+	alternatives: z.array(z.object({
+		label: z.string().trim().min(1).max(120),
+		rationale: z.string().trim().min(1).max(1_000),
+		replacement: outlineCandidateNodeSchema
+	}).strict()).length(3)
+}).strict();
+
+const outlineImpactOutputSchema = z.object({
+	targetId: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+	changedFields: z.array(z.enum([
+		'title',
+		'summary',
+		'purpose',
+		'goal',
+		'conflict',
+		'outcome',
+		'hook',
+		'povHint'
+	])).min(1).max(8),
+	downstreamNodeIds: z.array(
+		z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
+	).max(8)
+}).strict();
+
 const manuscriptOrganizationInputSchema = z.object({
 	instruction: z.string().trim().min(1).max(2_000),
 	sourceResourceIds: z.array(
@@ -819,6 +902,59 @@ export function createGenreOutlineAiAction(): AiActionDefinition<
 	};
 }
 
+export function createOutlineAuthorControlAiActions(): readonly AiActionDefinition[] {
+	const availability = (scope: AiActionScope) => {
+		if (!scope.hasProject) {
+			return { available: false as const, reason: '请先创建或打开作品' };
+		}
+		if (scope.currentResourceType !== 'creation-journey') {
+			return { available: false as const, reason: '请在结构化大纲工作区选择一个节点' };
+		}
+		return { available: true as const };
+	};
+	const common = {
+		category: 'outline' as const,
+		availability,
+		inputSchema: outlineAuthorControlInputSchema,
+		contextPolicy: {
+			requiredKinds: [] as const,
+			optionalKinds: [] as const,
+			maximumTokens: 12_000,
+			includeAuthorSecretsByDefault: false as const
+		},
+		promptTemplateId: 'creation-journey.outline-author-control',
+		defaultModelClass: 'reasoning' as const
+	};
+	return [{
+		...common,
+		id: 'outline.regenerate_node',
+		title: '局部重生成节点',
+		description: '只针对当前未锁定节点生成可逐字段审核的替换候选。',
+		outputSchema: outlineAlternativesOutputSchema,
+		outputSchemaName: 'OutlineAlternativesResult',
+		outputSchemaVersion: 1,
+		applyPolicy: { type: 'field_patch', selectableFields: true }
+	}, {
+		...common,
+		id: 'outline.generate_alternatives',
+		title: '生成三个节点候选',
+		description: '为当前节点生成恰好三个实质不同且不会自动写入的候选。',
+		outputSchema: outlineAlternativesOutputSchema,
+		outputSchemaName: 'OutlineAlternativesResult',
+		outputSchemaVersion: 1,
+		applyPolicy: { type: 'field_patch', selectableFields: true }
+	}, {
+		...common,
+		id: 'outline.analyze_impact',
+		title: '分析大纲修改影响',
+		description: '只报告现有下游节点与物化内容，不自动传播修改。',
+		outputSchema: outlineImpactOutputSchema,
+		outputSchemaName: 'OutlineImpactReport',
+		outputSchemaVersion: 1,
+		applyPolicy: { type: 'analysis_only' }
+	}];
+}
+
 export function createGateGAiActions(): readonly AiActionDefinition[] {
 	return [{
 		id: 'manuscript.organize',
@@ -872,6 +1008,7 @@ export function createGateGAiActions(): readonly AiActionDefinition[] {
 export function createDefaultAiActionRegistry(): AiActionRegistry {
 	const registry = new AiActionRegistry();
 	registry.register(createGenreOutlineAiAction());
+	for (const action of createOutlineAuthorControlAiActions()) registry.register(action);
 	registry.register(createConsistencyReviewAction());
 	for (const action of createCharacterAiActions()) registry.register(action);
 	for (const action of createRelationshipAiActions()) registry.register(action);

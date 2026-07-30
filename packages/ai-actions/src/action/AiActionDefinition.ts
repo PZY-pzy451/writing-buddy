@@ -34,6 +34,9 @@ export type AiActionId =
 	| 'foreshadowing.generatePayoff'
 	| 'foreshadowing.extract'
 	| 'outline.generateFromGenre'
+	| 'outline.regenerate_node'
+	| 'outline.generate_alternatives'
+	| 'outline.analyze_impact'
 	| 'review.consistency'
 	| 'review.crossChapterConsistency'
 	| 'manuscript.organize';

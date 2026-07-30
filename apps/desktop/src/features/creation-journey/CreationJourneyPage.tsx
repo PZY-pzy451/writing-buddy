@@ -56,6 +56,17 @@ import {
 } from './CreationJourneyModel';
 import { GenreToOutlineGenerationService } from './GenreToOutlineGenerationService';
 import { GenreToOutlineStart } from './GenreToOutlineStart';
+import { OutlineAlternativeGenerationService } from './OutlineAlternativeGenerationService';
+import {
+	applyOutlineCandidateSelection,
+	createOutlineCandidatePreview,
+	undoOutlineCandidateApply,
+	type OutlineCandidateField,
+	type OutlineCandidatePreview,
+	type OutlineCandidateUndoReceipt,
+	type OutlineGenerationStrategy,
+	type OutlineImpactReport
+} from './OutlineAuthorControlModel';
 import { StructuredOutlineWorkspace } from './StructuredOutlineWorkspace';
 import {
 	CreationJourneyStore,
@@ -167,6 +178,11 @@ type RegeneratePartInput = Extract<
 	{ readonly operation: 'regenerate-part' }
 >;
 
+type GenerateOutlineAlternativesInput = Extract<
+	CreationJourneyAiInput,
+	{ readonly operation: 'generate-outline-alternatives' }
+>;
+
 function journeyId(
 	prefix:
 		| 'journey-direction'
@@ -189,6 +205,29 @@ function directionForAi(direction: CreationJourneyState['directions'][number]) {
 }
 
 function outlineForAi(node: CreationJourneyState['outline'][number]) {
+	return {
+		title: node.title,
+		summary: node.summary,
+		purpose: node.purpose
+	};
+}
+
+function outlineCandidateForAi(
+	node: CreationJourneyState['outline'][number]
+): GenerateOutlineAlternativesInput['target']['current'] {
+	return {
+		title: node.title,
+		summary: node.summary,
+		purpose: node.purpose,
+		goal: node.goal ?? '',
+		conflict: node.conflict ?? '',
+		outcome: node.outcome ?? '',
+		hook: node.hook ?? '',
+		povHint: node.povHint ?? ''
+	};
+}
+
+function outlineNeighborForAi(node: CreationJourneyState['outline'][number]) {
 	return {
 		title: node.title,
 		summary: node.summary,
@@ -304,6 +343,10 @@ function journeyErrorCopy(error: unknown): string {
 		creationJourneyGenreRequired: '请先填写题材；其他条件都可以留空。',
 		creationJourneyGenreInputInvalid: '题材条件超出允许范围，请缩短后重试。',
 		invalidCreationJourneyResponse: 'AI 返回的结构未通过校验；已尝试修复一次，草稿和项目未改变。',
+		outlineCandidateStale: '节点在候选生成后已改变，请重新生成候选。',
+		outlineCandidateUndoStale: '采用后又发生了新修改，无法安全撤销本次 AI 采用。',
+		outlineCandidateSelectionRequired: '请至少选择一个发生变化的字段。',
+		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。',
 		externalChange: '创作旅程已在其他窗口修改，请重新打开作品。',
 		cancelled: '已取消本次 AI 请求，没有改动旅程。'
 	};
@@ -328,6 +371,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const [impactPanelOpen, setImpactPanelOpen] = useState(false);
 	const [impactSummaryDismissed, setImpactSummaryDismissed] = useState(false);
 	const [busyImpactId, setBusyImpactId] = useState<string>();
+	const [outlineAlternativeUndo, setOutlineAlternativeUndo] =
+		useState<OutlineCandidateUndoReceipt>();
 	const headingRef = useRef<HTMLHeadingElement>(null);
 	const impactCloseRef = useRef<HTMLButtonElement>(null);
 	const impactDialogRef = useRef<HTMLDivElement>(null);
@@ -339,6 +384,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const saveChainRef = useRef<Promise<void>>(Promise.resolve());
 	const genreGenerationRequestRef = useRef(false);
 	const genreCancellationRequestedRef = useRef(false);
+	const outlineAlternativeRequestRef = useRef(false);
 
 	useEffect(() => {
 		if (!snapshot) return;
@@ -902,6 +948,209 @@ export function CreationJourneyPage(): React.JSX.Element {
 		}
 	};
 
+	const generateOutlineAlternatives = async (
+		nodeId: string,
+		strategy: OutlineGenerationStrategy
+	): Promise<OutlineCandidatePreview> => {
+		const current = stateRef.current;
+		if (
+			!current?.storyOutline
+			|| busyOperation
+			|| outlineAlternativeRequestRef.current
+		) {
+			throw new Error('outlineCandidateGenerationBusy');
+		}
+		if (current.locks.outlineNodeIds.includes(nodeId)) {
+			throw new Error('creationJourneyTargetLocked');
+		}
+		const targetIndex = current.outline.findIndex(node => node.id === nodeId);
+		const target = current.outline[targetIndex];
+		if (!target) throw new Error('creationJourneyOutlineNodeNotFound');
+		outlineAlternativeRequestRef.current = true;
+		setBusyOperation('generate-outline-alternatives');
+		setError(undefined);
+		setStatus(`AI 正在为“${target.title}”生成三个局部候选…`);
+		try {
+			await persistLatest();
+			const latest = stateRef.current;
+			if (!latest?.storyOutline || latest.revision !== current.revision) {
+				throw new Error('outlineCandidateStale');
+			}
+			const latestTarget = latest.outline[targetIndex];
+			if (!latestTarget || latestTarget.id !== nodeId) {
+				throw new Error('outlineCandidateStale');
+			}
+			const root = latest.storyOutline;
+			const previous = latest.outline[targetIndex - 1];
+			const next = latest.outline[targetIndex + 1];
+			const input: GenerateOutlineAlternativesInput = {
+				schemaVersion: 1,
+				operation: 'generate-outline-alternatives',
+				strategy,
+				target: {
+					id: latestTarget.id,
+					current: outlineCandidateForAi(latestTarget),
+					context: {
+						story: {
+							genre: root.genre,
+							premise: root.premise,
+							...(root.themePromise
+								? { themePromise: root.themePromise }
+								: {}),
+							...(root.protagonistGoal
+								? { protagonistGoal: root.protagonistGoal }
+								: {}),
+							...(root.centralConflict
+								? { centralConflict: root.centralConflict }
+								: {}),
+							...(root.stakes ? { stakes: root.stakes } : {}),
+							...(root.mysteryQuestion
+								? { mysteryQuestion: root.mysteryQuestion }
+								: {}),
+							...(root.endingDirection
+								? { endingDirection: root.endingDirection }
+								: {})
+						},
+						...(previous ? { previous: outlineNeighborForAi(previous) } : {}),
+						...(next ? { next: outlineNeighborForAi(next) } : {})
+					}
+				},
+				guidanceAnswers: guidanceAnswersForAi(latest),
+				lockedDecisions: lockedDecisionsForAi(latest)
+			};
+			const service = new OutlineAlternativeGenerationService(async request => {
+				if (request.repairAttempt === 1) {
+					setStatus('正在校验并修复三个候选的字段结构（最后一次）');
+				}
+				const result = await runGroundedJsonJob({
+					jobType: 'creation-journey',
+					messages: buildCreationJourneyMessages(request),
+					onJobId: setJobId,
+					onProgress: progress => {
+						if (progress.state === 'thinking') {
+							setStatus('AI 正在保留锁定决定并比较相邻节点…');
+						}
+						if (progress.state === 'streaming') {
+							setStatus('AI 正在返回三个可逐字段比较的候选…');
+						}
+					}
+				});
+				return result.output;
+			});
+			const response = await service.generate(input);
+			const unchanged = stateRef.current;
+			if (!unchanged || unchanged.revision !== latest.revision) {
+				throw new Error('outlineCandidateStale');
+			}
+			const preview = createOutlineCandidatePreview(
+				unchanged,
+				response.targetId,
+				response.alternatives
+			);
+			setStatus('三个候选已就绪；尚未写入任何字段。');
+			return preview;
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('局部候选未写入，原节点保持不变。');
+			throw reason;
+		} finally {
+			outlineAlternativeRequestRef.current = false;
+			setBusyOperation(undefined);
+			setJobId(undefined);
+		}
+	};
+
+	const applyOutlineAlternative = async (
+		preview: OutlineCandidatePreview,
+		alternativeIndex: number,
+		fields: readonly OutlineCandidateField[]
+	): Promise<OutlineImpactReport> => {
+		const projectSnapshot = snapshot;
+		if (!projectSnapshot) throw new Error('creationJourneyStateInvalid');
+		if (projectSnapshot.readOnly) throw new Error('projectReadOnly');
+		setError(undefined);
+		setStatus('正在校验版本并创建安全快照…');
+		try {
+			await persistLatest();
+			const beforeSnapshot = stateRef.current;
+			if (!beforeSnapshot) throw new Error('creationJourneyStateInvalid');
+			applyOutlineCandidateSelection(
+				beforeSnapshot,
+				preview,
+				alternativeIndex,
+				fields
+			);
+			await desktopBridge.createSnapshot(
+				projectSnapshot.root,
+				'beforeDestructiveOperation',
+				`AI 大纲局部采用 · ${fields.length} 个字段`
+			);
+			const current = stateRef.current;
+			const store = storeRef.current;
+			const loaded = loadedRef.current;
+			if (!current || !store || !loaded) {
+				throw new Error('creationJourneyStateInvalid');
+			}
+			const result = applyOutlineCandidateSelection(
+				current,
+				preview,
+				alternativeIndex,
+				fields
+			);
+			const saved = await store.save(loaded, result.state);
+			loadedRef.current = saved;
+			stateRef.current = saved.state;
+			setState(saved.state);
+			setHash(saved.hash);
+			setOutlineAlternativeUndo(result.undo);
+			setStatus('已创建安全快照并原子写入所选字段。');
+			return result.impact;
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('候选未写入，项目内容保持不变。');
+			throw reason;
+		}
+	};
+
+	const undoOutlineAlternative = async (): Promise<void> => {
+		const receipt = outlineAlternativeUndo;
+		if (!receipt) throw new Error('outlineCandidateUndoStale');
+		const projectSnapshot = snapshot;
+		if (!projectSnapshot) throw new Error('creationJourneyStateInvalid');
+		if (projectSnapshot.readOnly) throw new Error('projectReadOnly');
+		setError(undefined);
+		setStatus('正在撤销本次 AI 采用…');
+		try {
+			await persistLatest();
+			const beforeSnapshot = stateRef.current;
+			if (!beforeSnapshot) throw new Error('creationJourneyStateInvalid');
+			undoOutlineCandidateApply(beforeSnapshot, receipt);
+			await desktopBridge.createSnapshot(
+				projectSnapshot.root,
+				'beforeDestructiveOperation',
+				'撤销 AI 大纲局部采用'
+			);
+			const current = stateRef.current;
+			const store = storeRef.current;
+			const loaded = loadedRef.current;
+			if (!current || !store || !loaded) {
+				throw new Error('creationJourneyStateInvalid');
+			}
+			const restored = undoOutlineCandidateApply(current, receipt);
+			const saved = await store.save(loaded, restored);
+			loadedRef.current = saved;
+			stateRef.current = saved.state;
+			setState(saved.state);
+			setHash(saved.hash);
+			setOutlineAlternativeUndo(undefined);
+			setStatus('已撤销本次 AI 采用；其他内容保持不变。');
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('无法安全撤销；当前项目内容未改变。');
+			throw reason;
+		}
+	};
+
 	const cancelAi = () => {
 		if (busyOperation === 'generate-from-genre') {
 			genreCancellationRequestedRef.current = true;
@@ -1010,6 +1259,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 					status={status}
 					onChange={(next, immediate) => applyState(next, immediate)}
 					onSave={persistLatest}
+					onGenerateAlternatives={generateOutlineAlternatives}
+					onApplyAlternative={applyOutlineAlternative}
+					onUndoAlternativeApply={undoOutlineAlternative}
+					canUndoAlternativeApply={Boolean(outlineAlternativeUndo)}
 				/>
 			</section>
 		);

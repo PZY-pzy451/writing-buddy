@@ -1722,6 +1722,8 @@ export function restoreStructuredOutlineSnapshot(
 			updatedAt
 		},
 		outline,
+		impacts: [...snapshot.impacts],
+		stale: snapshot.stale,
 		locks: {
 			...state.locks,
 			outlineNodeIds: [...snapshot.locks.outlineNodeIds]

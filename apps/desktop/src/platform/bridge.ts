@@ -2186,6 +2186,40 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 					}]
 				}
 			});
+		case 'generate-outline-alternatives': {
+			const target = decoded.target;
+			const current = target?.current ?? {};
+			return browserJsonDeltas({
+				operation: 'generate-outline-alternatives',
+				targetId: target?.id,
+				alternatives: [{
+					label: '冲突升级',
+					rationale: '让当前线索立刻带来不可逆的私人代价。',
+					replacement: {
+						...current,
+						summary: '记者拿到名单，却发现自己的名字也在其中。',
+						conflict: '公开名单会立即抹去记者最后的私人记忆。',
+						hook: '名单末尾出现明天的日期。'
+					}
+				}, {
+					label: '人物驱动',
+					rationale: '把外部谜团转化为主角与搭档之间的主动选择。',
+					replacement: {
+						...current,
+						summary: '记者必须在保护搭档与公开名单之间做出选择。',
+						conflict: '搭档拒绝继续调查，并准备带走唯一证据。'
+					}
+				}, {
+					label: '节奏收紧',
+					rationale: '减少解释并提前呈现代价，让节点更快完成转折。',
+					replacement: {
+						...current,
+						title: '名单反噬',
+						outcome: '记者带走名单，却失去一段关键记忆。'
+					}
+				}]
+			});
+		}
 		case 'regenerate-part': {
 			const target = decoded.target;
 			if (target?.kind === 'direction') {

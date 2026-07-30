@@ -3,7 +3,13 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
-import { parseCreationJourneyState } from './CreationJourneyModel';
+import {
+	createCreationJourneyState,
+	parseCreationJourneyState,
+	serializeCreationJourneyState,
+	setGeneratedGenreOutline,
+	updateGenreToOutlineInput
+} from './CreationJourneyModel';
 import { CreationJourneyPage } from './CreationJourneyPage';
 
 describe('genre-to-outline journey experience', () => {
@@ -74,5 +80,129 @@ describe('genre-to-outline journey experience', () => {
 			expect(restored.outline).toHaveLength(5);
 			expect(restored.chapters).toEqual([]);
 		});
+	});
+
+	it('snapshots, atomically applies selected candidate fields, reports impact, and undoes', async () => {
+		const user = userEvent.setup();
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		let id = 0;
+		const initial = updateGenreToOutlineInput(
+			createCreationJourneyState('novel-author-control', { startRoute: 'genre' }),
+			{ genre: '都市悬疑' }
+		);
+		const generated = setGeneratedGenreOutline(initial, {
+			outline: {
+				title: '雨夜旧站',
+				genre: '都市悬疑',
+				premise: '记者追查只在雨夜出现的旧车站。'
+			},
+			storyBeats: Array.from({ length: 5 }, (_, index) => ({
+				title: `故事节点 ${index + 1}`,
+				summary: `推进调查 ${index + 1}`,
+				goal: `取得线索 ${index + 1}`,
+				conflict: `遭遇阻碍 ${index + 1}`,
+				outcome: `留下变化 ${index + 1}`,
+				hook: `雨痕变化 ${index + 1}`,
+				povHint: '记者'
+			})),
+			suggestedCharacters: [],
+			suggestedWorldRules: [],
+			warnings: []
+		}, {
+			id: prefix => `${prefix}:experience-${++id}`
+		});
+		let persisted = serializeCreationJourneyState(generated);
+		let hashIndex = 0;
+		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue({
+			content: persisted,
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false,
+			hash: 'author-control-hash-0'
+		});
+		const write = vi.spyOn(desktopBridge, 'writeCreationJourneyState')
+			.mockImplementation((_root, content) => {
+				persisted = content;
+				hashIndex += 1;
+				return Promise.resolve({
+					hash: `author-control-hash-${hashIndex}`,
+					byteLength: content.length,
+					modifiedAt: '2026-07-30T05:00:00.000Z'
+				});
+			});
+		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
+			.mockResolvedValueOnce('snapshot-apply')
+			.mockResolvedValueOnce('snapshot-undo');
+		write.mockClear();
+		createSnapshot.mockClear();
+		useAppStore.setState({
+			creationJourneyStartRoute: 'genre',
+			snapshot: {
+				root: 'D:/AuthorControlNovel',
+				project: {
+					schemaVersion: 1,
+					projectId: 'novel-author-control',
+					title: '雨夜旧站',
+					volumes: []
+				},
+				projectRevision: 'revision',
+				resources: [],
+				wordCounts: {},
+				integrityIssues: [],
+				readOnly: false
+			}
+		});
+
+		render(<CreationJourneyPage />);
+		const tree = await screen.findByRole('navigation', { name: '故事结构树' });
+		await user.click(within(tree).getAllByRole('button')[2]);
+		await user.click(screen.getByRole('button', { name: '生成 3 个局部候选' }));
+		const review = await screen.findByRole('region', { name: '局部候选审核' });
+		await user.click(within(review).getByRole('checkbox', { name: '采用 一句话概要' }));
+		await user.click(within(review).getByRole('button', { name: '采用已选 2 个字段' }));
+
+		const impact = await screen.findByRole('region', { name: '影响报告' });
+		await waitFor(() => {
+			const applied = parseCreationJourneyState(persisted);
+			expect(applied.outline[1].summary).toBe('推进调查 2');
+			expect(applied.outline[1].conflict)
+				.toBe('公开名单会立即抹去记者最后的私人记忆。');
+			expect(applied.outline[1].hook).toBe('名单末尾出现明天的日期。');
+		});
+		expect(createSnapshot).toHaveBeenNthCalledWith(
+			1,
+			'D:/AuthorControlNovel',
+			'beforeDestructiveOperation',
+			'AI 大纲局部采用 · 2 个字段'
+		);
+		expect(createSnapshot.mock.invocationCallOrder[0])
+			.toBeLessThan(write.mock.invocationCallOrder[0]);
+
+		await user.click(within(impact).getByRole('button', { name: '撤销本次 AI 采用' }));
+		await waitFor(() => {
+			const restored = parseCreationJourneyState(persisted);
+			expect(restored.outline[1].conflict).toBe('遭遇阻碍 2');
+			expect(restored.outline[1].hook).toBe('雨痕变化 2');
+		});
+		expect(createSnapshot).toHaveBeenNthCalledWith(
+			2,
+			'D:/AuthorControlNovel',
+			'beforeDestructiveOperation',
+			'撤销 AI 大纲局部采用'
+		);
+		expect(write).toHaveBeenCalledTimes(2);
+
+		const beforeFailedApply = persisted;
+		write.mockClear();
+		createSnapshot.mockRejectedValueOnce(new Error('invalidSnapshotReason'));
+		await user.click(screen.getByRole('button', { name: '生成 3 个局部候选' }));
+		const failedReview = await screen.findByRole('region', { name: '局部候选审核' });
+		await user.click(within(failedReview).getByRole('button', {
+			name: '采用已选 3 个字段'
+		}));
+		expect(await screen.findAllByText('安全快照创建失败；候选尚未写入。'))
+			.toHaveLength(2);
+		expect(write).not.toHaveBeenCalled();
+		expect(persisted).toBe(beforeFailedApply);
 	});
 });

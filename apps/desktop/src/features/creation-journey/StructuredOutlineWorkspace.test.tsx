@@ -8,6 +8,10 @@ import {
 	updateGenreToOutlineInput,
 	type CreationJourneyState
 } from './CreationJourneyModel';
+import {
+	analyzeOutlineCandidateImpact,
+	createOutlineCandidatePreview
+} from './OutlineAuthorControlModel';
 import { StructuredOutlineWorkspace } from './StructuredOutlineWorkspace';
 
 function generatedState(): CreationJourneyState {
@@ -90,5 +94,111 @@ describe('StructuredOutlineWorkspace', () => {
 		await user.click(screen.getByRole('button', { name: '保存大纲' }));
 		expect(save).toHaveBeenCalledTimes(1);
 		expect(screen.queryByText(/创建章节|生成场景/)).not.toBeInTheDocument();
+	});
+
+	it('reviews Current/A/B/C field diffs, partially adopts, reports impact, and undoes', async () => {
+		const user = userEvent.setup();
+		const generate = vi.fn((nodeId: string) => {
+			const state = generatedState();
+			const target = state.outline.find(node => node.id === nodeId)!;
+			return Promise.resolve(createOutlineCandidatePreview(state, target.id, [
+				{
+					label: '冲突升级',
+					rationale: '让线索带来直接代价。',
+					replacement: {
+						title: target.title,
+						summary: '记者拿到名单，却发现自己的名字也在其中。',
+						purpose: target.purpose,
+						goal: target.goal ?? '',
+						conflict: '公开名单会抹去最后的私人记忆。',
+						outcome: target.outcome ?? '',
+						hook: '名单末尾出现明天的日期。',
+						povHint: target.povHint ?? ''
+					}
+				},
+				{
+					label: '人物驱动',
+					rationale: '让主角主动选择。',
+					replacement: {
+						title: target.title,
+						summary: '记者必须在搭档与名单之间做出选择。',
+						purpose: target.purpose,
+						goal: target.goal ?? '',
+						conflict: '搭档拒绝继续调查。',
+						outcome: target.outcome ?? '',
+						hook: target.hook ?? '',
+						povHint: target.povHint ?? ''
+					}
+				},
+				{
+					label: '节奏收紧',
+					rationale: '提前转折。',
+					replacement: {
+						title: '名单反噬',
+						summary: target.summary,
+						purpose: target.purpose,
+						goal: target.goal ?? '',
+						conflict: target.conflict ?? '',
+						outcome: '记者失去关键记忆。',
+						hook: target.hook ?? '',
+						povHint: target.povHint ?? ''
+					}
+				}
+			]));
+		});
+		const apply = vi.fn((
+			preview: ReturnType<typeof createOutlineCandidatePreview>,
+			_index: number,
+			fields: readonly string[]
+		) => Promise.resolve(analyzeOutlineCandidateImpact(
+			generatedState(),
+			preview.targetId,
+			fields as never
+		)));
+		const undo = vi.fn(() => Promise.resolve());
+
+		render(
+			<StructuredOutlineWorkspace
+				state={generatedState()}
+				readOnly={false}
+				status="已保存到项目"
+				onChange={vi.fn()}
+				onSave={vi.fn()}
+				onGenerateAlternatives={generate}
+				onApplyAlternative={apply}
+				onUndoAlternativeApply={undo}
+				canUndoAlternativeApply={true}
+			/>
+		);
+
+		await user.click(screen.getByRole('button', { name: /选择故事节点 2/ }));
+		await user.selectOptions(screen.getByLabelText('局部生成策略'), 'strengthen-conflict');
+		await user.click(screen.getByRole('button', { name: '生成 3 个局部候选' }));
+
+		const review = await screen.findByRole('region', { name: '局部候选审核' });
+		expect(within(review).getByText('Current')).toBeInTheDocument();
+		expect(within(review).getByRole('tab', { name: /A · 冲突升级/ })).toHaveAttribute(
+			'aria-selected',
+			'true'
+		);
+		expect(within(review).getByRole('tab', { name: /B · 人物驱动/ })).toBeInTheDocument();
+		expect(within(review).getByRole('tab', { name: /C · 节奏收紧/ })).toBeInTheDocument();
+		expect(within(review).getByText('公开名单会抹去最后的私人记忆。'))
+			.toBeInTheDocument();
+
+		await user.click(within(review).getByRole('checkbox', { name: '采用 一句话概要' }));
+		await user.click(within(review).getByRole('button', { name: '采用已选 2 个字段' }));
+		expect(apply).toHaveBeenCalledTimes(1);
+		const [appliedPreview, appliedIndex, appliedFields] = apply.mock.calls[0];
+		expect(appliedPreview.targetId).toContain('journey-outline:');
+		expect(appliedIndex).toBe(0);
+		expect(appliedFields).toEqual(['conflict', 'hook']);
+
+		const impact = await screen.findByRole('region', { name: '影响报告' });
+		expect(within(impact).getByText(/只报告，不会自动重写/)).toBeInTheDocument();
+		expect(within(impact).getByText(/当前没有物化章节、场景或正文锚点/))
+			.toBeInTheDocument();
+		await user.click(within(impact).getByRole('button', { name: '撤销本次 AI 采用' }));
+		expect(undo).toHaveBeenCalledTimes(1);
 	});
 });

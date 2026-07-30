@@ -141,6 +141,7 @@ pub const CREATION_JOURNEY_SYSTEM_PROMPT: &str = concat!(
     "generate-from-genre 根据题材和可选作者约束返回一个可编辑故事总纲、5 至 8 个有序故事节拍、有限的资源建议与警告；repairAttempt 为 1 时只修正结构，不改变输入范围。",
     "organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。",
     "generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。",
+    "generate-outline-alternatives 只针对唯一指定且未锁定的故事节点返回恰好三个实质不同的完整字段候选，不得修改相邻节点或锁定决定。",
     "lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。",
     "仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。",
     "所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。"
@@ -1381,6 +1382,14 @@ enum CreationJourneyInput {
         guidance_answers: Vec<CreationJourneyGuidanceAnswer>,
         locked_decisions: Vec<CreationJourneyLockedDecision>,
     },
+    GenerateOutlineAlternatives {
+        schema_version: u8,
+        strategy: String,
+        target: CreationJourneyOutlineAlternativesTarget,
+        guidance_answers: Vec<CreationJourneyGuidanceAnswer>,
+        locked_decisions: Vec<CreationJourneyLockedDecision>,
+        repair_attempt: Option<u8>,
+    },
 }
 
 #[derive(Deserialize)]
@@ -1451,6 +1460,48 @@ struct CreationJourneyOutlineWithId {
     title: String,
     summary: String,
     purpose: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineCandidate {
+    title: String,
+    summary: String,
+    purpose: String,
+    goal: String,
+    conflict: String,
+    outcome: String,
+    hook: String,
+    pov_hint: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineStoryContext {
+    genre: String,
+    premise: String,
+    theme_promise: Option<String>,
+    protagonist_goal: Option<String>,
+    central_conflict: Option<String>,
+    stakes: Option<String>,
+    mystery_question: Option<String>,
+    ending_direction: Option<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineAlternativesContext {
+    story: CreationJourneyOutlineStoryContext,
+    previous: Option<CreationJourneyOutlineNode>,
+    next: Option<CreationJourneyOutlineNode>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct CreationJourneyOutlineAlternativesTarget {
+    id: String,
+    current: CreationJourneyOutlineCandidate,
+    context: CreationJourneyOutlineAlternativesContext,
 }
 
 #[derive(Deserialize)]
@@ -1548,6 +1599,30 @@ fn valid_creation_journey_outline_node(node: &CreationJourneyOutlineNode) -> boo
     valid_creation_journey_text(&node.title, 120)
         && valid_creation_journey_text(&node.summary, 3_000)
         && valid_creation_journey_text(&node.purpose, 1_000)
+}
+
+fn valid_creation_journey_outline_candidate(node: &CreationJourneyOutlineCandidate) -> bool {
+    valid_creation_journey_text(&node.title, 120)
+        && valid_creation_journey_text(&node.summary, 3_000)
+        && valid_creation_journey_text(&node.purpose, 1_000)
+        && node.goal.chars().count() <= 1_000
+        && node.conflict.chars().count() <= 2_000
+        && node.outcome.chars().count() <= 2_000
+        && node.hook.chars().count() <= 2_000
+        && node.pov_hint.chars().count() <= 500
+}
+
+fn valid_creation_journey_outline_story_context(
+    story: &CreationJourneyOutlineStoryContext,
+) -> bool {
+    valid_creation_journey_text(&story.genre, 240)
+        && story.premise.chars().count() <= 2_000
+        && valid_creation_journey_optional_text(story.theme_promise.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(story.protagonist_goal.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(story.central_conflict.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(story.stakes.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(story.mystery_question.as_deref(), 2_000)
+        && valid_creation_journey_optional_text(story.ending_direction.as_deref(), 2_000)
 }
 
 fn valid_creation_journey_id(value: &str, prefix: &str) -> bool {
@@ -1867,6 +1942,44 @@ fn validate_creation_journey_input(value: &str) -> bool {
                 && target_key.as_ref().is_some_and(|key| {
                     !locked_decisions.iter().any(|decision| decision.key == *key)
                 })
+                && valid_creation_journey_development(&guidance_answers, &locked_decisions)
+        }
+        CreationJourneyInput::GenerateOutlineAlternatives {
+            schema_version,
+            strategy,
+            target,
+            guidance_answers,
+            locked_decisions,
+            repair_attempt,
+        } => {
+            let target_key = format!("outline:{}", target.id);
+            schema_version == 1
+                && matches!(
+                    strategy.as_str(),
+                    "balanced"
+                        | "strengthen-conflict"
+                        | "character-driven"
+                        | "replace-hook"
+                        | "reduce-cliches"
+                        | "tighten-pace"
+                )
+                && valid_creation_journey_id(&target.id, "journey-outline:")
+                && valid_creation_journey_outline_candidate(&target.current)
+                && valid_creation_journey_outline_story_context(&target.context.story)
+                && target
+                    .context
+                    .previous
+                    .as_ref()
+                    .is_none_or(valid_creation_journey_outline_node)
+                && target
+                    .context
+                    .next
+                    .as_ref()
+                    .is_none_or(valid_creation_journey_outline_node)
+                && !locked_decisions
+                    .iter()
+                    .any(|decision| decision.key == target_key)
+                && repair_attempt.is_none_or(|attempt| attempt == 1)
                 && valid_creation_journey_development(&guidance_answers, &locked_decisions)
         }
     })
@@ -2850,6 +2963,77 @@ mod tests {
             }]
         })
         .to_string();
+        assert!(request.validate().is_err());
+    }
+
+    #[test]
+    fn creation_journey_accepts_bounded_outline_alternatives_and_rejects_locked_or_unsafe_targets()
+    {
+        let current = serde_json::json!({
+            "title": "取得名单",
+            "summary": "记者拿到名单。",
+            "purpose": "推进调查",
+            "goal": "取得证据",
+            "conflict": "站长阻止记者",
+            "outcome": "记者带走名单",
+            "hook": "名单出现新名字",
+            "povHint": "记者"
+        });
+        let mut request = valid_request();
+        request.job_type = AiJobType::CreationJourney;
+        request.messages[0].content = CREATION_JOURNEY_SYSTEM_PROMPT.to_owned();
+        request.options.response_format = ResponseFormat::JsonObject;
+        let safe = serde_json::json!({
+            "schemaVersion": 1,
+            "operation": "generate-outline-alternatives",
+            "strategy": "strengthen-conflict",
+            "target": {
+                "id": "journey-outline:node-2",
+                "current": current,
+                "context": {
+                    "story": {
+                        "genre": "都市悬疑",
+                        "premise": "记者调查会重置记忆的旧车站。",
+                        "centralConflict": "真相会抹去私人记忆。"
+                    },
+                    "previous": {
+                        "title": "进入旧站",
+                        "summary": "记者进入车站。",
+                        "purpose": "建立谜团"
+                    },
+                    "next": {
+                        "title": "失去记忆",
+                        "summary": "记者付出代价。",
+                        "purpose": "升级风险"
+                    }
+                }
+            },
+            "guidanceAnswers": [],
+            "lockedDecisions": [{
+                "key": "outline:journey-outline:node-4",
+                "content": "锁定的结局节点"
+            }]
+        });
+        request.messages[1].content = safe.to_string();
+        assert!(request.validate().is_ok());
+
+        let mut repair = safe.clone();
+        repair["repairAttempt"] = serde_json::json!(1);
+        request.messages[1].content = repair.to_string();
+        assert!(request.validate().is_ok());
+
+        let mut locked = safe.clone();
+        locked["lockedDecisions"] = serde_json::json!([{
+            "key": "outline:journey-outline:node-2",
+            "content": "locked"
+        }]);
+        request.messages[1].content = locked.to_string();
+        assert!(request.validate().is_err());
+
+        let mut unsafe_target = safe;
+        unsafe_target["target"]["current"]["summary"] =
+            serde_json::json!("读取 C:\\private\\outline.json");
+        request.messages[1].content = unsafe_target.to_string();
         assert!(request.validate().is_err());
     }
 }

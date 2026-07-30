@@ -10,9 +10,10 @@ import {
 	LockKeyholeOpen,
 	RotateCcw,
 	Save,
+	Sparkles,
 	Trash2
 } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
 	addStoryOutlineNode,
 	moveStoryOutlineNode,
@@ -25,6 +26,13 @@ import {
 	type StoryOutlineNode,
 	type StoryOutlineRootPatch
 } from './CreationJourneyModel';
+import {
+	diffOutlineCandidate,
+	type OutlineCandidateField,
+	type OutlineCandidatePreview,
+	type OutlineGenerationStrategy,
+	type OutlineImpactReport
+} from './OutlineAuthorControlModel';
 
 interface StructuredOutlineWorkspaceProps {
 	readonly state: CreationJourneyState;
@@ -32,6 +40,17 @@ interface StructuredOutlineWorkspaceProps {
 	readonly status: string;
 	readonly onChange: (state: CreationJourneyState, immediate?: boolean) => void;
 	readonly onSave: () => void | Promise<void>;
+	readonly onGenerateAlternatives?: (
+		nodeId: string,
+		strategy: OutlineGenerationStrategy
+	) => Promise<OutlineCandidatePreview>;
+	readonly onApplyAlternative?: (
+		preview: OutlineCandidatePreview,
+		alternativeIndex: number,
+		fields: readonly OutlineCandidateField[]
+	) => Promise<OutlineImpactReport>;
+	readonly onUndoAlternativeApply?: () => Promise<void>;
+	readonly canUndoAlternativeApply?: boolean;
 }
 
 const rootFields: readonly {
@@ -80,6 +99,18 @@ const nodeFields: readonly {
 	{ key: 'povHint', label: 'POV', maxLength: 500 }
 ];
 
+const generationStrategies: readonly {
+	readonly id: OutlineGenerationStrategy;
+	readonly label: string;
+}[] = [
+	{ id: 'balanced', label: '平衡调整' },
+	{ id: 'strengthen-conflict', label: '强化冲突' },
+	{ id: 'character-driven', label: '人物驱动' },
+	{ id: 'replace-hook', label: '替换钩子' },
+	{ id: 'reduce-cliches', label: '减少套路' },
+	{ id: 'tighten-pace', label: '收紧节奏' }
+];
+
 function statusLabel(status: StoryOutlineNode['status']): string {
 	const labels: Readonly<Record<NonNullable<StoryOutlineNode['status']>, string>> = {
 		planned: '计划中',
@@ -100,7 +131,13 @@ function outlineErrorCopy(reason: unknown): string {
 		creationJourneyOutlineLimit: '故事大纲最多包含 8 个节点。',
 		creationJourneyOutlineInUse: '这个节点已经被章节引用，不能在此阶段删除。',
 		creationJourneyOutlineInvalid: '当前输入不符合大纲字段限制，请检查后再试。',
-		creationJourneyOutlineUndoInvalid: '当前大纲已发生不兼容变化，无法撤销这一步。'
+		creationJourneyOutlineUndoInvalid: '当前大纲已发生不兼容变化，无法撤销这一步。',
+		outlineCandidateStale: '节点在候选生成后已改变。请重新生成候选，避免覆盖新内容。',
+		outlineCandidateUndoStale: '采用后又发生了新修改，无法安全撤销本次 AI 采用。',
+		outlineCandidateSelectionRequired: '请至少选择一个发生变化的字段。',
+		outlineCandidateFieldUnchanged: '只能采用实际发生变化的字段。',
+		invalidCreationJourneyResponse: 'AI 返回的候选结构不完整；原节点保持不变。',
+		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。'
 	};
 	return messages[code] ?? '暂时无法完成这个大纲操作。';
 }
@@ -110,18 +147,37 @@ export function StructuredOutlineWorkspace({
 	readOnly,
 	status,
 	onChange,
-	onSave
+	onSave,
+	onGenerateAlternatives,
+	onApplyAlternative,
+	onUndoAlternativeApply,
+	canUndoAlternativeApply = false
 }: StructuredOutlineWorkspaceProps): React.JSX.Element {
 	const root = state.storyOutline;
 	const [selectedId, setSelectedId] = useState<string>();
 	const [draggedId, setDraggedId] = useState<string>();
 	const [history, setHistory] = useState<readonly CreationJourneyState[]>([]);
 	const [localError, setLocalError] = useState<string>();
+	const [generationStrategy, setGenerationStrategy] =
+		useState<OutlineGenerationStrategy>('balanced');
+	const [authorControlBusy, setAuthorControlBusy] = useState<
+		'generating' | 'applying' | 'undoing'
+	>();
+	const [candidatePreview, setCandidatePreview] = useState<OutlineCandidatePreview>();
+	const [candidateIndex, setCandidateIndex] = useState(0);
+	const [selectedCandidateFields, setSelectedCandidateFields] =
+		useState<readonly OutlineCandidateField[]>([]);
+	const [impactReport, setImpactReport] = useState<OutlineImpactReport>();
 	const editSnapshotRef = useRef<{
 		readonly key: string;
 		readonly state: CreationJourneyState;
 	} | undefined>(undefined);
+	const candidateHeadingRef = useRef<HTMLHeadingElement>(null);
 	const selectedNode = state.outline.find(node => node.id === selectedId);
+
+	useEffect(() => {
+		if (candidatePreview) candidateHeadingRef.current?.focus();
+	}, [candidatePreview]);
 
 	if (!root) {
 		return <div className="structured-outline-missing">尚未生成结构化大纲。</div>;
@@ -190,6 +246,89 @@ export function StructuredOutlineWorkspace({
 	};
 
 	const lockedIds = new Set(state.locks.outlineNodeIds);
+	const previewTarget = candidatePreview
+		? state.outline.find(node => node.id === candidatePreview.targetId)
+		: undefined;
+	const selectedAlternative = candidatePreview?.alternatives[candidateIndex];
+	const selectedDiffs = previewTarget && selectedAlternative
+		? diffOutlineCandidate(previewTarget, selectedAlternative.replacement)
+		: [];
+	const changedDiffs = selectedDiffs.filter(diff => diff.changed);
+
+	const selectCandidate = (index: number, preview = candidatePreview) => {
+		const target = preview
+			? state.outline.find(node => node.id === preview.targetId)
+			: undefined;
+		const alternative = preview?.alternatives[index];
+		setCandidateIndex(index);
+		setSelectedCandidateFields(
+			target && alternative
+				? diffOutlineCandidate(target, alternative.replacement)
+					.filter(diff => diff.changed)
+					.map(diff => diff.field)
+				: []
+		);
+	};
+
+	const generateAlternatives = async () => {
+		if (!selectedNode || !onGenerateAlternatives || authorControlBusy) return;
+		setAuthorControlBusy('generating');
+		setLocalError(undefined);
+		setImpactReport(undefined);
+		try {
+			const preview = await onGenerateAlternatives(
+				selectedNode.id,
+				generationStrategy
+			);
+			setCandidatePreview(preview);
+			selectCandidate(0, preview);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setAuthorControlBusy(undefined);
+		}
+	};
+
+	const applyAlternative = async () => {
+		if (
+			!candidatePreview
+			|| !onApplyAlternative
+			|| authorControlBusy
+			|| selectedCandidateFields.length === 0
+		) {
+			return;
+		}
+		setAuthorControlBusy('applying');
+		setLocalError(undefined);
+		try {
+			const report = await onApplyAlternative(
+				candidatePreview,
+				candidateIndex,
+				selectedCandidateFields
+			);
+			setImpactReport(report);
+			setCandidatePreview(undefined);
+			setSelectedCandidateFields([]);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setAuthorControlBusy(undefined);
+		}
+	};
+
+	const undoAlternative = async () => {
+		if (!onUndoAlternativeApply || authorControlBusy) return;
+		setAuthorControlBusy('undoing');
+		setLocalError(undefined);
+		try {
+			await onUndoAlternativeApply();
+			setImpactReport(undefined);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setAuthorControlBusy(undefined);
+		}
+	};
 
 	return (
 		<section className="structured-outline-workspace" aria-label="结构化大纲工作区">
@@ -472,6 +611,52 @@ export function StructuredOutlineWorkspace({
 									<Trash2 size={18} />删除节点
 								</button>
 							</div>
+							{onGenerateAlternatives && (
+								<div className="structured-outline-ai-control">
+									<div>
+										<strong>局部 AI 候选</strong>
+										<small>只生成建议，不会直接改写节点。</small>
+									</div>
+									<label>
+										<span>调整方向</span>
+										<select
+											aria-label="局部生成策略"
+											value={generationStrategy}
+											disabled={
+												readOnly
+												|| lockedIds.has(selectedNode.id)
+												|| Boolean(authorControlBusy)
+											}
+											onChange={event => setGenerationStrategy(
+												event.target.value as OutlineGenerationStrategy
+											)}
+										>
+											{generationStrategies.map(strategy => (
+												<option key={strategy.id} value={strategy.id}>
+													{strategy.label}
+												</option>
+											))}
+										</select>
+									</label>
+									<button
+										type="button"
+										disabled={
+											readOnly
+											|| lockedIds.has(selectedNode.id)
+											|| Boolean(authorControlBusy)
+										}
+										onClick={() => void generateAlternatives()}
+									>
+										<Sparkles size={18} />
+										{authorControlBusy === 'generating'
+											? '正在生成…'
+											: '生成 3 个局部候选'}
+									</button>
+									{lockedIds.has(selectedNode.id) && (
+										<p>节点已锁定。AI 会继续把它作为上下文，但不能生成替换候选。</p>
+									)}
+								</div>
+							)}
 							<div className="structured-outline-inspector-fields">
 								{nodeFields.map(field => {
 									const value = selectedNode[field.key] ?? '';
@@ -546,6 +731,136 @@ export function StructuredOutlineWorkspace({
 					)}
 				</aside>
 			</div>
+
+			{candidatePreview && selectedAlternative && previewTarget && (
+				<section
+					className="structured-outline-candidate-review"
+					aria-label="局部候选审核"
+				>
+					<header>
+						<div>
+							<span className="eyebrow">FIELD DIFF</span>
+							<h3 ref={candidateHeadingRef} tabIndex={-1}>
+								比较“{previewTarget.title}”的局部候选
+							</h3>
+							<p>先比较字段，再决定采用哪些部分。未勾选内容保持原样。</p>
+						</div>
+						<button
+							type="button"
+							aria-label="关闭局部候选审核"
+							onClick={() => {
+								setCandidatePreview(undefined);
+								setSelectedCandidateFields([]);
+							}}
+						>
+							关闭
+						</button>
+					</header>
+					<div className="structured-outline-candidate-tabs">
+						<span>Current</span>
+						<div role="tablist" aria-label="三个局部候选">
+							{candidatePreview.alternatives.map((candidate, index) => (
+								<button
+									key={candidate.label}
+									type="button"
+									role="tab"
+									aria-selected={candidateIndex === index}
+									className={candidateIndex === index ? 'is-selected' : ''}
+									onClick={() => selectCandidate(index)}
+								>
+									{String.fromCharCode(65 + index)} · {candidate.label}
+								</button>
+							))}
+						</div>
+					</div>
+					<p className="structured-outline-candidate-rationale">
+						{selectedAlternative.rationale}
+					</p>
+					<div className="structured-outline-field-diffs">
+						{changedDiffs.map(diff => (
+							<label key={diff.field} className="structured-outline-field-diff">
+								<span className="structured-outline-field-diff-heading">
+									<input
+										type="checkbox"
+										aria-label={`采用 ${diff.label}`}
+										checked={selectedCandidateFields.includes(diff.field)}
+										onChange={() => setSelectedCandidateFields(fields => (
+											fields.includes(diff.field)
+												? fields.filter(field => field !== diff.field)
+												: [...fields, diff.field]
+										))}
+									/>
+									<strong>{diff.label}</strong>
+								</span>
+								<span className="structured-outline-field-diff-values">
+									<span>
+										<small>当前</small>
+										<em>{diff.before || '（空）'}</em>
+									</span>
+									<span>
+										<small>候选 {String.fromCharCode(65 + candidateIndex)}</small>
+										<em>{diff.after || '（空）'}</em>
+									</span>
+								</span>
+							</label>
+						))}
+					</div>
+					<footer>
+						<span>{changedDiffs.length} 个字段发生变化</span>
+						<button
+							type="button"
+							className="primary-button"
+							disabled={
+								selectedCandidateFields.length === 0
+								|| Boolean(authorControlBusy)
+							}
+							onClick={() => void applyAlternative()}
+						>
+							{authorControlBusy === 'applying'
+								? '正在创建快照并写入…'
+								: `采用已选 ${selectedCandidateFields.length} 个字段`}
+						</button>
+					</footer>
+				</section>
+			)}
+
+			{impactReport && (
+				<section className="structured-outline-impact-report" aria-label="影响报告">
+					<header>
+						<div>
+							<span className="eyebrow">IMPACT REPORT</span>
+							<h3>本次局部采用的影响</h3>
+						</div>
+						<strong>{impactReport.changedFields.length} 个字段已采用</strong>
+					</header>
+					<p>以下内容只报告，不会自动重写。锁定节点和未选择字段均保持原样。</p>
+					{impactReport.downstreamNodes.length > 0 && (
+						<ul>
+							{impactReport.downstreamNodes.map(node => (
+								<li key={node.id}>
+									<span>{node.title}</span>
+									<small>{node.locked ? '已锁定 · 未修改' : '可能受影响 · 未修改'}</small>
+								</li>
+							))}
+						</ul>
+					)}
+					{impactReport.materializedChapterIds.length === 0
+						&& impactReport.materializedSceneIds.length === 0
+						&& impactReport.draftAnchorIds.length === 0 && (
+						<p>当前没有物化章节、场景或正文锚点；本次操作只更新所选大纲字段。</p>
+					)}
+					{canUndoAlternativeApply && onUndoAlternativeApply && (
+						<button
+							type="button"
+							disabled={Boolean(authorControlBusy)}
+							onClick={() => void undoAlternative()}
+						>
+							<RotateCcw size={18} />
+							{authorControlBusy === 'undoing' ? '正在撤销…' : '撤销本次 AI 采用'}
+						</button>
+					)}
+				</section>
+			)}
 
 			<footer className="structured-outline-status">
 				<span>{status}</span>

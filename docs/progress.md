@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Phase 1.2B Genre-to-Draft Core Journey Gates A-C are complete in the isolated
+Phase 1.2B Genre-to-Draft Core Journey Gates A-D are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`, based on
 `01a440af73a764abc14e45f388b2a2f098e0bca1`.
@@ -15,20 +15,24 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   are complete.
 - Gate C's editable tree/card/inspector workspace, centralized locks,
   normalized ordering, undo, save and reopen restoration are complete.
+- Gate D's selected-node generation, exactly three alternatives, field-level
+  Current/A/B/C diff, partial adoption, pre-write snapshot, exact impact
+  report and revision-guarded undo are complete.
 - The existing Creation Journey v2 document was extended; no second outline
   store, AI runtime, project tree or Story Kernel was created.
 - `WritingProject.volumes[].chapters[]` and Story Kernel `StoryScene` remain
   the canonical Chapter/Scene sources.
 - Plans:
   `docs/superpowers/plans/2026-07-30-genre-to-draft-source-map.md` and
-  `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`.
-- Final gates: Node 24.14.0, TypeScript, ESLint, 142 Vitest files / 531 tests,
-  production build, Cargo format, 62 Rust tests with 2 explicit external
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`, plus
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-d-author-control.md`.
+- Final gates: Node 24.14.0, TypeScript, ESLint, 145 Vitest files / 543 tests,
+  production build, Cargo format, 63 Rust tests with 2 explicit external
   gates ignored, real Tauri WebView2 interaction/reopen/normal close,
   Release/NSIS packaging and SHA-256 delivery verification.
 - Evidence:
-  `docs/acceptance/047-genre-to-draft-gates-a-c-2026-07-30.md`.
-- Gate D was not started. Await user review.
+  `docs/acceptance/048-genre-to-draft-gate-d-2026-07-30.md`.
+- Gate E has not started. Stop for user review.
 
 Phase 1.2C, Guided AI Story Development, is complete in
 `D:\develop_tool\writing-buddy-phase-1.2c` on

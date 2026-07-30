@@ -139,6 +139,7 @@ export const CREATION_JOURNEY_SYSTEM_PROMPT = [
 	'generate-from-genre 根据题材和可选作者约束返回一个可编辑故事总纲、5 至 8 个有序故事节拍、有限的资源建议与警告；repairAttempt 为 1 时只修正结构，不改变输入范围。',
 	'organize-core 返回一个可编辑故事核心；generate-directions 返回恰好三个实质不同的方向；generate-outline 返回 5 至 8 个故事节点；split-chapters 返回恰好三个开篇章节。',
 	'generate-guidance-question 只返回一个关键问题和恰好三个不同选项，不得替作者回答；regenerate-part 只替换请求中唯一指定且未锁定的方向、节点或章节提案。',
+	'generate-outline-alternatives 只针对唯一指定且未锁定的故事节点返回恰好三个实质不同的完整字段候选，不得修改相邻节点或锁定决定。',
 	'lockedDecisions 是必须原样保留的作者决定；guidanceAnswers 只是已确认的创作约束，不得被改写。',
 	'仅返回与 operation 匹配的严格 JSON 对象，不得使用 Markdown、额外字段或 JSON 外文字。',
 	'所有结果都是待作者编辑和确认的候选，不得声称已确认、已保存、已创建章节或已修改正文。'
@@ -2491,6 +2492,44 @@ const creationJourneyOutlineWithIdSchema = creationJourneyOutlineNodeSchema.exte
 	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u)
 }).strict();
 
+const creationJourneyOutlineCandidateSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	purpose: z.string().trim().min(1).max(1_000),
+	goal: z.string().max(1_000),
+	conflict: z.string().max(2_000),
+	outcome: z.string().max(2_000),
+	hook: z.string().max(2_000),
+	povHint: z.string().max(500)
+}).strict();
+
+const creationJourneyOutlineNeighborSchema = z.object({
+	title: z.string().trim().min(1).max(120),
+	summary: z.string().trim().min(1).max(3_000),
+	purpose: z.string().trim().min(1).max(1_000)
+}).strict();
+
+const creationJourneyOutlineStoryContextSchema = z.object({
+	genre: z.string().trim().min(1).max(240),
+	premise: z.string().max(2_000),
+	themePromise: z.string().max(2_000).optional(),
+	protagonistGoal: z.string().max(2_000).optional(),
+	centralConflict: z.string().max(2_000).optional(),
+	stakes: z.string().max(2_000).optional(),
+	mysteryQuestion: z.string().max(2_000).optional(),
+	endingDirection: z.string().max(2_000).optional()
+}).strict();
+
+const creationJourneyOutlineAlternativesTargetSchema = z.object({
+	id: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+	current: creationJourneyOutlineCandidateSchema,
+	context: z.object({
+		story: creationJourneyOutlineStoryContextSchema,
+		previous: creationJourneyOutlineNeighborSchema.optional(),
+		next: creationJourneyOutlineNeighborSchema.optional()
+	}).strict()
+}).strict();
+
 const creationJourneyChapterSchema = z.object({
 	title: z.string().trim().min(1).max(120),
 	goal: z.string().trim().min(1).max(1_000),
@@ -2585,6 +2624,22 @@ const creationJourneyInputSchema = z.discriminatedUnion('operation', [
 		target: creationJourneyRegenerationTargetSchema,
 		guidanceAnswers: z.array(creationJourneyGuidanceAnswerSchema).max(12),
 		lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24)
+	}).strict(),
+	z.object({
+		schemaVersion: z.literal(1),
+		operation: z.literal('generate-outline-alternatives'),
+		strategy: z.enum([
+			'balanced',
+			'strengthen-conflict',
+			'character-driven',
+			'replace-hook',
+			'reduce-cliches',
+			'tighten-pace'
+		]),
+		target: creationJourneyOutlineAlternativesTargetSchema,
+		guidanceAnswers: z.array(creationJourneyGuidanceAnswerSchema).max(12),
+		lockedDecisions: z.array(creationJourneyLockedDecisionSchema).max(24),
+		repairAttempt: z.literal(1).optional()
 	}).strict()
 ]);
 
@@ -2618,6 +2673,12 @@ const creationJourneyRegenerationResponseTargetSchema = z.discriminatedUnion('ki
 		replacement: creationJourneyChapterSchema
 	}).strict()
 ]);
+
+const creationJourneyOutlineAlternativeSchema = z.object({
+	label: z.string().trim().min(1).max(120),
+	rationale: z.string().trim().min(1).max(1_000),
+	replacement: creationJourneyOutlineCandidateSchema
+}).strict();
 
 const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
 	z.object({
@@ -2657,6 +2718,14 @@ const creationJourneyResponseSchema = z.discriminatedUnion('operation', [
 	z.object({
 		operation: z.literal('regenerate-part'),
 		target: creationJourneyRegenerationResponseTargetSchema
+	}).strict(),
+	z.object({
+		operation: z.literal('generate-outline-alternatives'),
+		targetId: z.string().regex(/^journey-outline:[a-z0-9][a-z0-9-]*$/u),
+		alternatives: z.array(creationJourneyOutlineAlternativeSchema).length(3)
+			.refine(alternatives => (
+				new Set(alternatives.map(candidate => JSON.stringify(candidate.replacement))).size === 3
+			), 'duplicateOutlineAlternative')
 	}).strict()
 ]);
 
@@ -2670,9 +2739,14 @@ export function buildCreationJourneyMessages(
 	if (!parsed.success) {
 		throw new Error('invalidCreationJourneyInput');
 	}
-	if (parsed.data.operation === 'regenerate-part') {
-		const targetKey = `${parsed.data.target.kind}:${parsed.data.target.id}`;
-		if (parsed.data.lockedDecisions.some(decision => decision.key === targetKey)) {
+	if (
+		parsed.data.operation === 'regenerate-part'
+		|| parsed.data.operation === 'generate-outline-alternatives'
+	) {
+		const resolvedTargetKey = parsed.data.operation === 'regenerate-part'
+			? `${parsed.data.target.kind}:${parsed.data.target.id}`
+			: `outline:${parsed.data.target.id}`;
+		if (parsed.data.lockedDecisions.some(decision => decision.key === resolvedTargetKey)) {
 			throw new Error('invalidCreationJourneyInput');
 		}
 	}
@@ -2719,6 +2793,16 @@ export function parseCreationJourneyResponse(
 				) {
 					throw new Error('unknownRegenerationOutlineNode');
 				}
+			}
+		}
+		if (parsedResponse.operation === 'generate-outline-alternatives') {
+			const parsedInput = creationJourneyInputSchema.safeParse(input);
+			if (
+				!parsedInput.success
+				|| parsedInput.data.operation !== 'generate-outline-alternatives'
+				|| parsedInput.data.target.id !== parsedResponse.targetId
+			) {
+				throw new Error('outlineAlternativeTargetMismatch');
 			}
 		}
 		return parsedResponse;

@@ -9518,6 +9518,67 @@ button.project-search:focus-visible {
 	margin: 12px 0;
 }
 
+.structured-outline-ai-control {
+	display: grid;
+	gap: 10px;
+	margin: 12px 0 0;
+	padding: 12px;
+	background: color-mix(in srgb, var(--highlight-selected-bg) 72%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border-subtle));
+	border-radius: 10px;
+}
+
+.structured-outline-ai-control > div,
+.structured-outline-ai-control > label {
+	display: grid;
+	gap: 3px;
+}
+
+.structured-outline-ai-control small,
+.structured-outline-ai-control > label > span,
+.structured-outline-ai-control > p {
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.45;
+}
+
+.structured-outline-ai-control > p {
+	margin: 0;
+}
+
+.structured-outline-ai-control select,
+.structured-outline-ai-control > button {
+	width: 100%;
+	min-height: 44px;
+	padding: 8px 10px;
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.structured-outline-ai-control select {
+	color: var(--text-primary);
+	background: var(--surface-base);
+}
+
+.structured-outline-ai-control > button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	cursor: pointer;
+	color: white;
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+.structured-outline-ai-control > button:disabled,
+.structured-outline-ai-control select:disabled {
+	cursor: not-allowed;
+	color: var(--text-muted);
+	background: var(--surface-subtle);
+	border-color: var(--border-subtle);
+}
+
 .structured-outline-inspector-fields {
 	display: grid;
 	gap: 12px;
@@ -9610,6 +9671,217 @@ button.project-search:focus-visible {
 	border-radius: 999px;
 }
 
+.structured-outline-candidate-review,
+.structured-outline-impact-report {
+	min-width: 0;
+	max-height: min(48vh, 520px);
+	padding: 16px clamp(16px, 2vw, 28px);
+	overflow: auto;
+	scrollbar-gutter: stable;
+	background: var(--surface-raised);
+	border-top: 1px solid var(--border-strong);
+	box-shadow: 0 -12px 28px color-mix(in srgb, var(--text-primary) 7%, transparent);
+}
+
+.structured-outline-candidate-review > header,
+.structured-outline-impact-report > header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.structured-outline-candidate-review > header h3,
+.structured-outline-impact-report > header h3 {
+	margin: 2px 0 0;
+	font-family: var(--font-editor);
+	font-size: 19px;
+}
+
+.structured-outline-candidate-review > header p,
+.structured-outline-impact-report > p {
+	margin: 5px 0 0;
+	color: var(--text-secondary);
+	line-height: 1.55;
+}
+
+.structured-outline-candidate-review > header > button,
+.structured-outline-candidate-review > footer > button,
+.structured-outline-impact-report > button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	min-height: 44px;
+	padding: 8px 14px;
+	cursor: pointer;
+	color: var(--text-secondary);
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.structured-outline-candidate-tabs {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+.structured-outline-candidate-tabs > span {
+	display: grid;
+	place-items: center;
+	min-height: 44px;
+	padding: 7px 14px;
+	color: var(--text-secondary);
+	font-weight: 700;
+	background: var(--surface-subtle);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.structured-outline-candidate-tabs [role="tablist"] {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	flex: 1 1 auto;
+	gap: 8px;
+}
+
+.structured-outline-candidate-tabs [role="tab"] {
+	min-height: 44px;
+	padding: 7px 10px;
+	cursor: pointer;
+	color: var(--text-secondary);
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.structured-outline-candidate-tabs [role="tab"].is-selected {
+	color: var(--accent-strong);
+	background: var(--highlight-selected-bg);
+	border-color: color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+	box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+.structured-outline-candidate-rationale {
+	margin: 11px 0 0;
+	color: var(--text-secondary);
+}
+
+.structured-outline-field-diffs {
+	display: grid;
+	gap: 9px;
+	margin-top: 12px;
+}
+
+.structured-outline-field-diff {
+	display: grid;
+	grid-template-columns: minmax(140px, 0.28fr) minmax(0, 1fr);
+	gap: 12px;
+	padding: 11px;
+	cursor: pointer;
+	background: var(--surface-base);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+}
+
+.structured-outline-field-diff-heading {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+}
+
+.structured-outline-field-diff-heading input {
+	width: 20px;
+	height: 20px;
+	accent-color: var(--accent);
+}
+
+.structured-outline-field-diff-values {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 9px;
+}
+
+.structured-outline-field-diff-values > span {
+	display: grid;
+	align-content: start;
+	gap: 4px;
+	min-width: 0;
+	padding: 8px 9px;
+	background: var(--surface-subtle);
+	border-radius: 8px;
+}
+
+.structured-outline-field-diff-values small {
+	color: var(--text-muted);
+	font-size: 10px;
+	font-weight: 700;
+}
+
+.structured-outline-field-diff-values em {
+	color: var(--text-secondary);
+	font-style: normal;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+.structured-outline-candidate-review > footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	margin-top: 14px;
+}
+
+.structured-outline-candidate-review > footer > .primary-button {
+	color: white;
+	background: var(--accent);
+	border-color: var(--accent);
+}
+
+.structured-outline-impact-report {
+	display: grid;
+	gap: 12px;
+	max-height: min(38vh, 400px);
+}
+
+.structured-outline-impact-report > header > strong {
+	padding: 6px 10px;
+	color: var(--accent-strong);
+	background: var(--highlight-selected-bg);
+	border-radius: 999px;
+}
+
+.structured-outline-impact-report ul {
+	display: grid;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.structured-outline-impact-report li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	min-height: 40px;
+	padding: 8px 10px;
+	background: var(--surface-subtle);
+	border-radius: 8px;
+}
+
+.structured-outline-impact-report li small {
+	color: var(--text-muted);
+}
+
+.structured-outline-impact-report > button {
+	justify-self: start;
+}
+
 .structured-outline-status {
 	display: flex;
 	align-items: center;
@@ -9626,7 +9898,12 @@ button.project-search:focus-visible {
 .structured-outline-toolbar button:focus-visible,
 .structured-outline-tree button:focus-visible,
 .structured-outline-card-move button:focus-visible,
-.structured-outline-inspector-actions button:focus-visible {
+.structured-outline-inspector-actions button:focus-visible,
+.structured-outline-ai-control button:focus-visible,
+.structured-outline-ai-control select:focus-visible,
+.structured-outline-candidate-review button:focus-visible,
+.structured-outline-candidate-review input:focus-visible,
+.structured-outline-impact-report button:focus-visible {
 	outline: 3px solid color-mix(in srgb, var(--accent) 42%, transparent);
 	outline-offset: 2px;
 }
@@ -9708,6 +9985,28 @@ button.project-search:focus-visible {
 
 	.structured-outline-inspector-fields {
 		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.structured-outline-candidate-tabs {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.structured-outline-candidate-tabs [role="tablist"] {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.structured-outline-field-diff,
+	.structured-outline-field-diff-values {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.structured-outline-candidate-review > header,
+	.structured-outline-candidate-review > footer,
+	.structured-outline-impact-report > header,
+	.structured-outline-impact-report li {
+		align-items: stretch;
+		flex-direction: column;
 	}
 
 	.structured-outline-status {

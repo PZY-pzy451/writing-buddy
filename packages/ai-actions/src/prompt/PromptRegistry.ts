@@ -112,11 +112,27 @@ export function createGenreOutlinePromptTemplate(): PromptTemplate {
 	};
 }
 
+export function createOutlineAuthorControlPromptTemplate(): PromptTemplate {
+	return {
+		id: 'creation-journey.outline-author-control',
+		version: 1,
+		schemaVersion: 1,
+		outputSchemaName: 'OutlineAlternativesResult',
+		buildSystemPrompt: () => CREATION_JOURNEY_SYSTEM_PROMPT,
+		buildUserPrompt: input => JSON.stringify({
+			...(input as Readonly<Record<string, unknown>>),
+			schemaVersion: 1,
+			operation: 'generate-outline-alternatives'
+		})
+	};
+}
+
 export function createDefaultPromptRegistry(): PromptRegistry {
 	const registry = new PromptRegistry();
 	registry.register(createPlaygroundPromptTemplate());
 	registry.register(createConsistencyReviewPromptTemplate());
 	registry.register(createGenreOutlinePromptTemplate());
+	registry.register(createOutlineAuthorControlPromptTemplate());
 	return registry;
 }
 

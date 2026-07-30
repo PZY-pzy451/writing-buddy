@@ -8,6 +8,7 @@ import {
 	createConsistencyReviewPromptTemplate,
 	createDefaultPromptRegistry,
 	createGenreOutlinePromptTemplate,
+	createOutlineAuthorControlPromptTemplate,
 	createPlaygroundPromptTemplate
 } from './PromptRegistry';
 
@@ -101,5 +102,24 @@ describe('PromptRegistry', () => {
 			...input
 		});
 		expect(template.outputSchemaName).toBe('GenerateOutlineResult');
+	});
+
+	it('registers the strict three-candidate outline author-control prompt', () => {
+		const registry = createDefaultPromptRegistry();
+		const template = createOutlineAuthorControlPromptTemplate();
+		const input = {
+			strategy: 'balanced',
+			target: { id: 'journey-outline:node-1' },
+			guidanceAnswers: [],
+			lockedDecisions: []
+		};
+		expect(registry.get(template.id)).toBeDefined();
+		expect(template.buildSystemPrompt(input)).toBe(CREATION_JOURNEY_SYSTEM_PROMPT);
+		expect(JSON.parse(template.buildUserPrompt(input, {} as never))).toEqual({
+			schemaVersion: 1,
+			operation: 'generate-outline-alternatives',
+			...input
+		});
+		expect(template.outputSchemaName).toBe('OutlineAlternativesResult');
 	});
 });

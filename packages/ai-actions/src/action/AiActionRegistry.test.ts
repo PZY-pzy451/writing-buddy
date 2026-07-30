@@ -10,6 +10,7 @@ import {
 	createWorldAiActions,
 	createConsistencyReviewAction,
 	createGenreOutlineAiAction,
+	createOutlineAuthorControlAiActions,
 	createGateGAiActions
 } from './AiActionRegistry';
 
@@ -158,7 +159,10 @@ describe('AiActionRegistry', () => {
 			hasProject: true,
 			currentResourceType: 'creation-journey'
 		}, 'outline').map(candidate => candidate.id)).toEqual([
-			'outline.generateFromGenre'
+			'outline.generateFromGenre',
+			'outline.regenerate_node',
+			'outline.generate_alternatives',
+			'outline.analyze_impact'
 		]);
 	});
 
@@ -192,5 +196,25 @@ describe('AiActionRegistry', () => {
 			excludedElements: [],
 			apiKey: 'forbidden'
 		})).toThrow();
+	});
+
+	it('registers local outline alternatives, field apply, and impact analysis as author-controlled actions', () => {
+		const registry = createDefaultAiActionRegistry();
+		expect(createOutlineAuthorControlAiActions().map(action => action.id)).toEqual([
+			'outline.regenerate_node',
+			'outline.generate_alternatives',
+			'outline.analyze_impact'
+		]);
+		expect(registry.get('outline.generate_alternatives')).toMatchObject({
+			category: 'outline',
+			promptTemplateId: 'creation-journey.outline-author-control',
+			applyPolicy: { type: 'field_patch', selectableFields: true }
+		});
+		expect(registry.get('outline.analyze_impact')).toMatchObject({
+			applyPolicy: { type: 'analysis_only' }
+		});
+		expect(createOutlineAuthorControlAiActions().every(action => (
+			action.contextPolicy.includeAuthorSecretsByDefault === false
+		))).toBe(true);
 	});
 });
