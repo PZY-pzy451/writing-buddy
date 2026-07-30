@@ -22,6 +22,7 @@
     "acceptance:gate-h": "node scripts/acceptance/validate-phase-1.2a-gate-h.mjs",
     "acceptance:phase-1.2b": "node scripts/acceptance/validate-phase-1.2b-creation-journey.mjs",
     "acceptance:phase-1.2c": "node scripts/acceptance/validate-phase-1.2b-creation-journey.mjs --phase-1.2c",
+    "acceptance:genre-to-draft": "node scripts/acceptance/validate-genre-to-draft-gates-a-c.mjs",
     "fixtures:generate": "node scripts/compatibility/generate-fixtures.mjs",
     "compatibility:report": "node scripts/compatibility/create-report.mjs",
     "tauri": "pnpm --filter @writing-buddy/desktop tauri",

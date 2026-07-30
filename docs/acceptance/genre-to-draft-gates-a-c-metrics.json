@@ -1,0 +1,179 @@
+{
+  "generatedAt": "2026-07-30T06:21:34.260Z",
+  "executable": "D:\\develop_tool\\writing-buddy-phase-1.2b\\apps\\desktop\\src-tauri\\target\\release\\writing-buddy-next.exe",
+  "runtime": "tauri-webview2",
+  "freshProject": {
+    "projectId": "project-efbf625f",
+    "firstChapterId": null,
+    "createdFileCount": 2,
+    "createdDirectoryCount": 2
+  },
+  "interaction": {
+    "initialCardLabels": [
+      "大纲卡片 1 雨夜来信",
+      "大纲卡片 2 玻璃顶下的脚印",
+      "大纲卡片 3 错位时刻表",
+      "大纲卡片 4 站长室的第二把钥匙",
+      "大纲卡片 5 零点末班车"
+    ],
+    "cardTitlesAfterDrag": [
+      "玻璃顶下的脚印",
+      "错位时刻表（作者修订）",
+      "雨夜来信",
+      "站长室的第二把钥匙",
+      "零点末班车"
+    ]
+  },
+  "persisted": {
+    "hash": "34ce7e978b0d80f69a497f8afc4d26b6c4d756e8710c00cd39fcdfd85cfaaf0f",
+    "revision": 5,
+    "storyOutlineRevision": 4,
+    "outlineIds": [
+      "journey-outline:rain-beat-2",
+      "journey-outline:rain-beat-3",
+      "journey-outline:rain-beat-1",
+      "journey-outline:rain-beat-4",
+      "journey-outline:rain-beat-5"
+    ],
+    "outlineOrders": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "lockedIds": [
+      "journey-outline:rain-beat-3"
+    ],
+    "chapterCount": 0
+  },
+  "restored": {
+    "title": "雨夜车站：修订大纲",
+    "cardTitles": [
+      "玻璃顶下的脚印",
+      "错位时刻表（作者修订）",
+      "雨夜来信",
+      "站长室的第二把钥匙",
+      "零点末班车"
+    ],
+    "lockedCardCount": 1,
+    "chapterOrSceneNodes": 0
+  },
+  "captures": [
+    {
+      "name": "01-structured-outline-1536x992.png",
+      "missingWorkspace": false,
+      "viewport": {
+        "width": 1536,
+        "height": 992
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "workspaceOverflowX": 0,
+      "gridTemplateColumns": "291.833px 477.531px 368.635px",
+      "gridTemplateAreas": "none",
+      "primaryActionCount": 1,
+      "undersizedControls": [],
+      "tree": {
+        "left": 398,
+        "top": 133,
+        "width": 292,
+        "height": 787
+      },
+      "cards": {
+        "left": 690,
+        "top": 133,
+        "width": 478,
+        "height": 787
+      },
+      "inspector": {
+        "left": 1167,
+        "top": 133,
+        "width": 369,
+        "height": 787
+      },
+      "expectedMode": "three-pane"
+    },
+    {
+      "name": "02-structured-outline-1280x800.png",
+      "missingWorkspace": false,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "workspaceOverflowX": 0,
+      "gridTemplateColumns": "240px 342px 300px",
+      "gridTemplateAreas": "none",
+      "primaryActionCount": 1,
+      "undersizedControls": [],
+      "tree": {
+        "left": 398,
+        "top": 132,
+        "width": 240,
+        "height": 596
+      },
+      "cards": {
+        "left": 638,
+        "top": 132,
+        "width": 342,
+        "height": 596
+      },
+      "inspector": {
+        "left": 980,
+        "top": 132,
+        "width": 300,
+        "height": 596
+      },
+      "expectedMode": "three-pane"
+    },
+    {
+      "name": "03-structured-outline-stacked-1024x720.png",
+      "missingWorkspace": false,
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "workspaceOverflowX": 0,
+      "gridTemplateColumns": "230px 460.667px",
+      "gridTemplateAreas": "\"tree cards\" \"inspector inspector\"",
+      "primaryActionCount": 1,
+      "undersizedControls": [],
+      "tree": {
+        "left": 318,
+        "top": 132,
+        "width": 230,
+        "height": 360
+      },
+      "cards": {
+        "left": 548,
+        "top": 132,
+        "width": 461,
+        "height": 360
+      },
+      "inspector": {
+        "left": 318,
+        "top": 492,
+        "width": 691,
+        "height": 320
+      },
+      "expectedMode": "stacked-inspector"
+    }
+  ],
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "performance": {
+    "shellReadyMs": 654,
+    "firstWorkspaceReadyMs": 944,
+    "acceptanceBeforeShutdownMs": 3233
+  },
+  "shutdown": {
+    "mode": "window-close",
+    "exitCode": 0,
+    "closeRequestStatus": 0,
+    "closeRequestError": null
+  }
+}

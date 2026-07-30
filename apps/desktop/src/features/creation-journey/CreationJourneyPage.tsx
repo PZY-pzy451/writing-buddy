@@ -56,6 +56,7 @@ import {
 } from './CreationJourneyModel';
 import { GenreToOutlineGenerationService } from './GenreToOutlineGenerationService';
 import { GenreToOutlineStart } from './GenreToOutlineStart';
+import { StructuredOutlineWorkspace } from './StructuredOutlineWorkspace';
 import {
 	CreationJourneyStore,
 	type LoadedCreationJourney
@@ -984,6 +985,32 @@ export function CreationJourneyPage(): React.JSX.Element {
 						onCancel={cancelAi}
 					/>
 				</div>
+			</section>
+		);
+	}
+
+	if (state.startRoute === 'genre' && state.storyOutline) {
+		return (
+			<section
+				className="creation-journey structured-outline-journey"
+				aria-labelledby="creation-journey-heading"
+			>
+				{error && (
+					<div className="creation-journey-error" role="alert">
+						<AlertTriangle size={18} />
+						<span>{error}</span>
+						<button type="button" aria-label="关闭错误" onClick={() => setError(undefined)}>
+							<X size={16} />
+						</button>
+					</div>
+				)}
+				<StructuredOutlineWorkspace
+					state={state}
+					readOnly={snapshot.readOnly}
+					status={status}
+					onChange={(next, immediate) => applyState(next, immediate)}
+					onSave={persistLatest}
+				/>
 			</section>
 		);
 	}

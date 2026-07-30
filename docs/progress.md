@@ -4,24 +4,31 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Phase 1.2B Genre-to-Draft Core Journey Gates A-C are active in the isolated
+Phase 1.2B Genre-to-Draft Core Journey Gates A-C are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`, based on
 `01a440af73a764abc14e45f388b2a2f098e0bca1`.
 
 - Gate A baseline and architecture audit are complete.
-- The current Creation Journey v2 document will be extended; no second
-  outline store will be created.
+- Gate B's genre-first quick/deep input, Context Preview, strict structured
+  generation, one bounded repair, cancellation and duplicate-request guard
+  are complete.
+- Gate C's editable tree/card/inspector workspace, centralized locks,
+  normalized ordering, undo, save and reopen restoration are complete.
+- The existing Creation Journey v2 document was extended; no second outline
+  store, AI runtime, project tree or Story Kernel was created.
 - `WritingProject.volumes[].chapters[]` and Story Kernel `StoryScene` remain
   the canonical Chapter/Scene sources.
-- Gate B will add the genre brief, explicit grounded generation, strict
-  response repair, cancellation, and recovery.
-- Gate C will add the editable three-pane structured-outline workspace,
-  lock/reorder/undo, and reopen restoration.
-- Required plans:
+- Plans:
   `docs/superpowers/plans/2026-07-30-genre-to-draft-source-map.md` and
   `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`.
-- Stop before Gate D.
+- Final gates: Node 24.14.0, TypeScript, ESLint, 142 Vitest files / 531 tests,
+  production build, Cargo format, 62 Rust tests with 2 explicit external
+  gates ignored, real Tauri WebView2 interaction/reopen/normal close,
+  Release/NSIS packaging and SHA-256 delivery verification.
+- Evidence:
+  `docs/acceptance/047-genre-to-draft-gates-a-c-2026-07-30.md`.
+- Gate D was not started. Await user review.
 
 Phase 1.2C, Guided AI Story Development, is complete in
 `D:\develop_tool\writing-buddy-phase-1.2c` on

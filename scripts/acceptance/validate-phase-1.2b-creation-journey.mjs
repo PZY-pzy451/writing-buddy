@@ -420,7 +420,7 @@ try {
 		`document.querySelector('#wizard-start-title')?.textContent === '你现在从哪里开始？'`,
 		'creation start routes'
 	);
-	await reportProgress('Six-start project wizard ready.');
+	await reportProgress('Seven-start project wizard ready.');
 	const startRouteContract = await evaluate(run.client, `(() => {
 		const buttons = [...document.querySelectorAll('.creation-start-grid button')];
 		return {
@@ -430,13 +430,14 @@ try {
 			aiCalls: globalThis.__phase12bAiCalls
 		};
 	})()`);
-	assert(startRouteContract.count === 6, 'The project wizard did not expose six honest starts.');
+	assert(startRouteContract.count === 7, 'The project wizard did not expose seven honest starts.');
 	assert(
-		startRouteContract.selected.join('') === '我只有几个想法',
-		'Ideas was not the default creation start.'
+		startRouteContract.selected.join('') === '根据题材生成小说大纲',
+		'Genre-to-outline was not the default creation start.'
 	);
 	assert(startRouteContract.aiCalls === 0, 'Opening the creation start triggered AI.');
-	await screenshot(run.client, '01-six-honest-starts-paper-1536x992.png');
+	await screenshot(run.client, '01-seven-honest-starts-paper-1536x992.png');
+	await clickButton(run.client, '我只有几个想法', '[role="dialog"]', 'contains');
 
 	await clickButton(run.client, '下一步', '[role="dialog"]');
 	await waitFor(

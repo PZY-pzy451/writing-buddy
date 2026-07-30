@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T02:21:02.401Z",
+  "generatedAt": "2026-07-30T06:23:04.177Z",
   "appUrl": "http://127.0.0.1:4174/",
   "journey": {
     "aiCalls": 4,
     "chapterCount": 3,
-    "defaultStart": "我只有几个想法",
+    "defaultStart": "根据题材生成小说大纲",
     "firstChapterOpened": "夜雨站台",
     "firstChapterPrecreated": false,
     "firstChapterPrecreationDisabled": true,
     "materializeCalls": 1,
     "stage": "writing",
-    "startRouteCount": 6
+    "startRouteCount": 7
   },
   "responsive": {
     "elementsWide": {
@@ -22,9 +22,10 @@
       "pageOverflowX": 0,
       "clippedInteractive": 0,
       "clippedDetails": [],
-      "controlCount": 23,
+      "controlCount": 27,
       "minControlHeight": 44,
       "focusedHeading": true,
+      "focusedInDialog": false,
       "alertCount": 0,
       "theme": "paper"
     },
@@ -36,9 +37,10 @@
       "pageOverflowX": 0,
       "clippedInteractive": 0,
       "clippedDetails": [],
-      "controlCount": 33,
+      "controlCount": 39,
       "minControlHeight": 44,
       "focusedHeading": true,
+      "focusedInDialog": false,
       "alertCount": 0,
       "theme": "midnight"
     },
@@ -50,9 +52,10 @@
       "pageOverflowX": 0,
       "clippedInteractive": 0,
       "clippedDetails": [],
-      "controlCount": 17,
+      "controlCount": 21,
       "minControlHeight": 44,
       "focusedHeading": true,
+      "focusedInDialog": false,
       "alertCount": 0,
       "theme": "paper"
     }

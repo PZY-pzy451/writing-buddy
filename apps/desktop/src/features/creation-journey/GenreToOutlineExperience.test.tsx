@@ -56,14 +56,17 @@ describe('genre-to-outline journey experience', () => {
 		expect(within(preview).getByText('全部正文')).toBeInTheDocument();
 		await user.click(within(preview).getByRole('button', { name: '确认并生成' }));
 
-		expect(await screen.findByRole('heading', { name: '调整故事节点的顺序' }))
+		expect(await screen.findByRole('region', { name: '结构化大纲工作区' }))
 			.toBeInTheDocument();
 		expect(aiSpy).toHaveBeenCalledTimes(1);
 		const request = aiSpy.mock.calls[0]?.[0];
 		const userPayload = request?.messages.find(message => message.role === 'user')?.content ?? '';
 		expect(userPayload).toContain('都市悬疑');
 		expect(userPayload).not.toMatch(/projectId|D:|apiKey|credential/iu);
-		expect(screen.getAllByLabelText('节点标题')).toHaveLength(5);
+		expect(screen.getAllByTestId('outline-card-title')).toHaveLength(5);
+		const tree = screen.getByRole('navigation', { name: '故事结构树' });
+		await user.click(within(tree).getAllByRole('button')[1]);
+		expect(screen.getByLabelText('节点标题')).toBeInTheDocument();
 
 		await waitFor(() => {
 			const restored = parseCreationJourneyState(persisted);

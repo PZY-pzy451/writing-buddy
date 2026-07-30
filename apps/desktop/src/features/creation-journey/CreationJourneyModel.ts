@@ -357,6 +357,10 @@ const storyOutlineSchema = z.object({
 	updatedAt: utcTimestamp
 }).strict();
 
+const storyResourceIdListSchema = z.array(
+	z.string().trim().min(1).max(240)
+).max(100).refine(ids => new Set(ids).size === ids.length);
+
 const storyOutlineNodeSchema = z.object({
 	id: outlineIdSchema,
 	title: z.string().max(120),
@@ -372,9 +376,9 @@ const storyOutlineNodeSchema = z.object({
 	povHint: z.string().max(500).optional(),
 	povCharacterId: z.string().trim().min(1).max(240).optional(),
 	locationId: z.string().trim().min(1).max(240).optional(),
-	characterIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
-	plotThreadIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
-	foreshadowingIds: z.array(z.string().trim().min(1).max(240)).max(100).optional(),
+	characterIds: storyResourceIdListSchema.optional(),
+	plotThreadIds: storyResourceIdListSchema.optional(),
+	foreshadowingIds: storyResourceIdListSchema.optional(),
 	status: z.enum([
 		'planned',
 		'ready_to_write',
@@ -1464,16 +1468,45 @@ export function moveStoryOutlineNode(
 	now?: () => string
 ): CreationJourneyState {
 	const moved = state.outline[fromIndex];
-	if (moved && state.locks.outlineNodeIds.includes(moved.id)) {
+	const affectedNodes = state.outline.slice(
+		Math.min(fromIndex, toIndex),
+		Math.max(fromIndex, toIndex) + 1
+	);
+	if (
+		moved
+		&& affectedNodes.some(node => state.locks.outlineNodeIds.includes(node.id))
+	) {
 		throw new Error('creationJourneyTargetLocked');
 	}
-	const outline = moveItem(state.outline, fromIndex, toIndex);
+	const reordered = moveItem(state.outline, fromIndex, toIndex);
+	const outline = state.storyOutline
+		? reordered.map((node, order) => {
+			const positionChanged = node.order !== order;
+			return {
+				...node,
+				order,
+				...(positionChanged
+					? { revision: (node.revision ?? 0) + 1 }
+					: {})
+			};
+		})
+		: reordered;
 	const resolvedImpacts = moved
 		? resolveTargetImpacts(state.impacts, 'outline', [moved.id], 'updated', now)
 		: state.impacts;
 	const staged = { ...state, outline };
 	return nextState(state, {
 		outline,
+		...(state.storyOutline
+			? {
+				storyOutline: {
+					...state.storyOutline,
+					status: 'draft' as const,
+					revision: state.storyOutline.revision + 1,
+					updatedAt: timestamp(now)
+				}
+			}
+			: {}),
 		...addPendingImpacts(
 			staged,
 			'outline',
@@ -1498,7 +1531,15 @@ export function updateStoryOutlineNode(
 		throw new Error('creationJourneyTargetLocked');
 	}
 	const outline = state.outline.map(node => (
-		node.id === nodeId ? { ...node, ...patch } : node
+		node.id === nodeId
+			? {
+				...node,
+				...patch,
+				...(state.storyOutline
+					? { revision: (node.revision ?? 0) + 1 }
+					: {})
+			}
+			: node
 	));
 	const resolvedImpacts = resolveTargetImpacts(
 		state.impacts,
@@ -1510,6 +1551,16 @@ export function updateStoryOutlineNode(
 	const staged = { ...state, outline };
 	return nextState(state, {
 		outline,
+		...(state.storyOutline
+			? {
+				storyOutline: {
+					...state.storyOutline,
+					status: 'draft' as const,
+					revision: state.storyOutline.revision + 1,
+					updatedAt: timestamp(now)
+				}
+			}
+			: {}),
 		...addPendingImpacts(
 			staged,
 			'outline',
@@ -1518,6 +1569,163 @@ export function updateStoryOutlineNode(
 			now,
 			resolvedImpacts
 		)
+	}, now);
+}
+
+export type StoryOutlineRootPatch = Partial<Omit<
+	StoryOutline,
+	'id' | 'projectId' | 'revision' | 'createdAt' | 'updatedAt'
+>>;
+
+export function updateStoryOutlineRoot(
+	state: CreationJourneyState,
+	patch: StoryOutlineRootPatch,
+	now?: () => string
+): CreationJourneyState {
+	if (!state.storyOutline) {
+		throw new Error('creationJourneyStoryOutlineNotFound');
+	}
+	const updatedAt = timestamp(now);
+	const parsed = storyOutlineSchema.safeParse({
+		...state.storyOutline,
+		...patch,
+		id: state.storyOutline.id,
+		projectId: state.projectId,
+		status: patch.status ?? 'draft',
+		revision: state.storyOutline.revision + 1,
+		updatedAt
+	});
+	if (!parsed.success) {
+		throw new Error('creationJourneyOutlineInvalid');
+	}
+	return nextState(state, { storyOutline: parsed.data }, now);
+}
+
+export function addStoryOutlineNode(
+	state: CreationJourneyState,
+	now?: () => string,
+	id: () => string = () => defaultId('journey-outline')
+): CreationJourneyState {
+	if (!state.storyOutline) {
+		throw new Error('creationJourneyStoryOutlineNotFound');
+	}
+	if (state.outline.length >= 8) {
+		throw new Error('creationJourneyOutlineLimit');
+	}
+	const created: StoryOutlineNode = {
+		id: id(),
+		type: 'story_beat',
+		order: state.outline.length,
+		title: '新故事节点',
+		summary: '',
+		purpose: '',
+		goal: '',
+		conflict: '',
+		outcome: '',
+		hook: '',
+		povHint: '',
+		characterIds: [],
+		plotThreadIds: [],
+		foreshadowingIds: [],
+		status: 'planned',
+		source: 'manual',
+		revision: 1
+	};
+	const updatedAt = timestamp(now);
+	return nextState(state, {
+		outline: [...state.outline, created],
+		storyOutline: {
+			...state.storyOutline,
+			status: 'draft',
+			revision: state.storyOutline.revision + 1,
+			updatedAt
+		}
+	}, now);
+}
+
+export function removeStoryOutlineNode(
+	state: CreationJourneyState,
+	nodeId: string,
+	now?: () => string
+): CreationJourneyState {
+	if (!state.storyOutline) {
+		throw new Error('creationJourneyStoryOutlineNotFound');
+	}
+	if (state.outline.length <= 5) {
+		throw new Error('creationJourneyOutlineMinimum');
+	}
+	if (state.locks.outlineNodeIds.includes(nodeId)) {
+		throw new Error('creationJourneyTargetLocked');
+	}
+	if (state.chapters.some(chapter => chapter.sourceNodeIds.includes(nodeId))) {
+		throw new Error('creationJourneyOutlineInUse');
+	}
+	const filtered = state.outline.filter(node => node.id !== nodeId);
+	if (filtered.length === state.outline.length) {
+		throw new Error('creationJourneyOutlineNodeNotFound');
+	}
+	const outline = filtered.map((node, order) => ({
+		...node,
+		order,
+		...(node.order !== order
+			? { revision: (node.revision ?? 0) + 1 }
+			: {})
+	}));
+	const impacts = state.impacts.filter(impact => !(
+		impact.targetKind === 'outline' && impact.targetId === nodeId
+	));
+	const updatedAt = timestamp(now);
+	return nextState(state, {
+		outline,
+		impacts,
+		stale: staleFromImpacts(impacts),
+		locks: {
+			...state.locks,
+			outlineNodeIds: state.locks.outlineNodeIds.filter(id => id !== nodeId)
+		},
+		storyOutline: {
+			...state.storyOutline,
+			status: 'draft',
+			revision: state.storyOutline.revision + 1,
+			updatedAt
+		}
+	}, now);
+}
+
+export function restoreStructuredOutlineSnapshot(
+	state: CreationJourneyState,
+	snapshot: CreationJourneyState,
+	now?: () => string
+): CreationJourneyState {
+	if (
+		!state.storyOutline
+		|| !snapshot.storyOutline
+		|| state.projectId !== snapshot.projectId
+		|| state.storyOutline.id !== snapshot.storyOutline.id
+		|| state.chapters.length > 0
+		|| snapshot.chapters.length > 0
+	) {
+		throw new Error('creationJourneyOutlineUndoInvalid');
+	}
+	const updatedAt = timestamp(now);
+	const currentById = new Map(state.outline.map(node => [node.id, node]));
+	const outline = snapshot.outline.map((node, order) => ({
+		...node,
+		order,
+		revision: (currentById.get(node.id)?.revision ?? node.revision ?? 0) + 1
+	}));
+	return nextState(state, {
+		storyOutline: {
+			...snapshot.storyOutline,
+			status: 'draft',
+			revision: state.storyOutline.revision + 1,
+			updatedAt
+		},
+		outline,
+		locks: {
+			...state.locks,
+			outlineNodeIds: [...snapshot.locks.outlineNodeIds]
+		}
 	}, now);
 }
 

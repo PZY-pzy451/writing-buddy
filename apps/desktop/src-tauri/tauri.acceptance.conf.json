@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Writing Buddy",
+        "width": 1536,
+        "height": 960,
+        "minWidth": 1024,
+        "minHeight": 688,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false,
+        "maximized": false,
+        "decorations": true,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --remote-debugging-port=9751"
+      }
+    ]
+  },
+  "bundle": {
+    "active": false
+  }
+}
