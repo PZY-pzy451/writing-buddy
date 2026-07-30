@@ -136,6 +136,16 @@ export function looksLikeDialogue(selectionText: string): boolean {
 	return lines.length === 1 && quotedLength / text.length >= 0.5;
 }
 
+export function isCursorAtParagraphEnd(content: string, cursorOffset: number): boolean {
+	const safeOffset = Math.max(0, Math.min(cursorOffset, content.length));
+	const nextLineBreak = content.indexOf('\n', safeOffset);
+	const lineTail = content.slice(
+		safeOffset,
+		nextLineBreak === -1 ? content.length : nextLineBreak
+	);
+	return lineTail.trim().length === 0;
+}
+
 export function resolveContextualWriterActions(
 	context: WriterUiContext
 ): ContextualActionGroup {

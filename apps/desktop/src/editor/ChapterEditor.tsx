@@ -1,4 +1,5 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
+import { Feather } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
 import type * as MonacoNamespace from 'monaco-editor';
@@ -42,6 +43,7 @@ import {
 import type {
 	InlinePlotExpansionSuggestion
 } from '../features/story/ai-context/InlinePlotExpansionService';
+import { isCursorAtParagraphEnd } from '../features/ai/contextual/ContextualActionResolver';
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
 type MonacoApi = typeof MonacoNamespace;
@@ -89,6 +91,7 @@ export function ChapterEditor(): React.JSX.Element {
 	const setContent = useAppStore(state => state.setContent);
 	const setSelection = useAppStore(state => state.setSelection);
 	const setCursorOffset = useAppStore(state => state.setCursorOffset);
+	const storeCursorOffset = useAppStore(state => state.cursorOffset);
 	const updateCursor = useAppStore(state => state.updateCursor);
 	const theme = useAppStore(state => state.theme);
 	const readOnly = useAppStore(state => state.snapshot?.readOnly ?? true);
@@ -126,6 +129,8 @@ export function ChapterEditor(): React.JSX.Element {
 	const sceneDecorationIdsRef = useRef<readonly string[]>([]);
 	const mentionDecorationIdsRef = useRef<readonly string[]>([]);
 	const inlineLanguageDecorationIdsRef = useRef<readonly string[]>([]);
+	const aiInsertDecorationIdsRef = useRef<readonly string[]>([]);
+	const aiInsertHighlightTimerRef = useRef<number | undefined>(undefined);
 	const inlinePlotSuggestionRef = useRef<
 		InlinePlotExpansionSuggestion | undefined
 	>(undefined);
@@ -160,6 +165,19 @@ export function ChapterEditor(): React.JSX.Element {
 	const [highlightOverrides, setHighlightOverrides] = useState<
 		ReadonlyMap<string, ReadonlySet<ManuscriptHighlightKind>>
 	>(new Map());
+	const clearAiInsertHighlight = useCallback(() => {
+		window.clearTimeout(aiInsertHighlightTimerRef.current);
+		aiInsertHighlightTimerRef.current = undefined;
+		const editor = editorRef.current;
+		if (editor) {
+			aiInsertDecorationIdsRef.current = editor.deltaDecorations(
+				[...aiInsertDecorationIdsRef.current],
+				[]
+			);
+		} else {
+			aiInsertDecorationIdsRef.current = [];
+		}
+	}, []);
 	const projectRoot = snapshot?.root;
 	const storyRepository = useMemo(() => projectRoot
 		? new DesktopStoryRepository(projectRoot, desktopBridge)
@@ -518,8 +536,12 @@ export function ChapterEditor(): React.JSX.Element {
 		if (!editor || !model || !pendingEdit || pendingEdit.resourceId !== session?.state.resourceId) {
 			return;
 		}
+		const source = pendingEdit.origin === 'ai'
+			? 'writing-buddy.ai'
+			: 'writing-buddy.review';
+		const startOffset = Math.max(0, Math.min(pendingEdit.start, model.getValueLength()));
 		editor.pushUndoStop();
-		editor.executeEdits('writing-buddy.review', [{
+		editor.executeEdits(source, [{
 			range: {
 				startLineNumber: model.getPositionAt(pendingEdit.start).lineNumber,
 				startColumn: model.getPositionAt(pendingEdit.start).column,
@@ -530,9 +552,43 @@ export function ChapterEditor(): React.JSX.Element {
 			forceMoveMarkers: true
 		}]);
 		editor.pushUndoStop();
+		if (pendingEdit.origin === 'ai' && pendingEdit.text.length > 0) {
+			clearAiInsertHighlight();
+			const insertedLength = pendingEdit.text.replaceAll(/\r\n?/gu, '\n').length;
+			const endOffset = Math.min(model.getValueLength(), startOffset + insertedLength);
+			const start = model.getPositionAt(startOffset);
+			const end = model.getPositionAt(endOffset);
+			aiInsertDecorationIdsRef.current = editor.deltaDecorations([], [{
+				range: {
+					startLineNumber: start.lineNumber,
+					startColumn: start.column,
+					endLineNumber: end.lineNumber,
+					endColumn: end.column
+				},
+				options: {
+					inlineClassName: 'ai-insert-highlight',
+					hoverMessage: { value: 'AI 候选刚刚插入；继续编辑后提示会消失。' }
+				}
+			}]);
+			const duration = Math.max(
+				1_000,
+				Math.min(pendingEdit.highlightDurationMs ?? 10_000, 20_000)
+			);
+			aiInsertHighlightTimerRef.current = window.setTimeout(
+				clearAiInsertHighlight,
+				duration
+			);
+		}
 		editor.focus();
 		clearEditorEdit(pendingEdit.id);
-	}, [clearEditorEdit, pendingEdit, session?.state.resourceId]);
+	}, [
+		clearAiInsertHighlight,
+		clearEditorEdit,
+		pendingEdit,
+		session?.state.resourceId
+	]);
+
+	useEffect(() => () => clearAiInsertHighlight(), [clearAiInsertHighlight]);
 
 	useEffect(() => {
 		const editor = editorRef.current;
@@ -783,6 +839,11 @@ export function ChapterEditor(): React.JSX.Element {
 		scene.manuscriptRange.start <= currentOffset
 			&& currentOffset < scene.manuscriptRange.end
 	));
+	const canContinueFromCursor = activeResource.type === 'chapter'
+		&& !readOnly
+		&& !selection?.text
+		&& Boolean(session.content.trim())
+		&& isCursorAtParagraphEnd(session.content, storeCursorOffset);
 	const closeEntityPeek = () => {
 		entityPeekRequestRef.current += 1;
 		setEntityPeek(undefined);
@@ -844,6 +905,20 @@ export function ChapterEditor(): React.JSX.Element {
 			<div className="chapter-editor-host">
 				{activeResource.type === 'chapter' ? (
 					<div className="editor-overlay-controls">
+						{canContinueFromCursor ? (
+							<button
+								className="contextual-continue-trigger"
+								type="button"
+								aria-label="从当前光标继续写作"
+								title="从当前光标继续写作"
+								onClick={() => requestAssistantAction({
+									kind: 'continuation',
+									mode: 'continue-paragraph'
+								})}
+							>
+								<Feather size={16} /><span>继续</span>
+							</button>
+						) : null}
 						<InlinePlotExpansionControl
 							enabled={inlinePlotExpansionEnabled}
 							status={inlinePlotExpansion.status}
@@ -881,6 +956,7 @@ export function ChapterEditor(): React.JSX.Element {
 				theme={monacoTheme}
 				value={session.content}
 				onChange={(value, event) => {
+					clearAiInsertHighlight();
 					const suggestion = inlinePlotSuggestionRef.current;
 					if (
 						suggestion

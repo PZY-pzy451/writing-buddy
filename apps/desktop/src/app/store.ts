@@ -231,6 +231,8 @@ interface AppState extends PersistedWorkspace {
 		readonly start: number;
 		readonly end: number;
 		readonly text: string;
+		readonly origin?: 'ai' | 'review';
+		readonly highlightDurationMs?: number;
 	};
 	readonly pendingReveal?: {
 		readonly resourceId: string;

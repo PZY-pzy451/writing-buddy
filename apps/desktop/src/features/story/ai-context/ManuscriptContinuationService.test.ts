@@ -1,5 +1,6 @@
 import { EditTransactionService } from '@writing-buddy/project';
 import {
+	buildContinuationDiff,
 	ContinuationService,
 	createContinuationCandidate,
 	isContinuationCandidateStale
@@ -40,5 +41,18 @@ describe('ContinuationService', () => {
 		expect(() => new ContinuationService(new EditTransactionService())
 			.accept(value, value.candidates[0].id, 4, '雨落在别处。'))
 			.toThrow('staleContinuationCandidate');
+	});
+
+	it('builds an insertion diff around the locked cursor without changing the source', () => {
+		const current = '雨落在站台。';
+		const diff = buildContinuationDiff(
+			current,
+			current.length,
+			'\n\n林越沿着钟声走进雾里。'
+		);
+
+		expect(diff.original).toBe(current);
+		expect(diff.modified).toBe(`${current}\n\n林越沿着钟声走进雾里。`);
+		expect(current).toBe('雨落在站台。');
 	});
 });

@@ -71,4 +71,37 @@ describe('SelectionRewritePanel', () => {
 		await waitFor(() => expect(screen.getByText('正文已变化，此候选不可接受。')).toBeInTheDocument());
 		expect(screen.getByRole('button', { name: '全部接受' })).toBeDisabled();
 	});
+
+	it('does not replace the selection when the safety snapshot fails', async () => {
+		const onApply = vi.fn();
+		render(
+			<SelectionRewritePanel
+				projectRoot="D:\\fixture"
+				resourceId="chapter:one"
+				sourceRevision={4}
+				content="夜里非常非常安静。"
+				selection={{ start: 2, end: 8, text: '非常非常安静' }}
+				theme="vs"
+				actionType="polish"
+				onApply={onApply}
+				onReplaceDocument={vi.fn()}
+				onBeforeApply={() => Promise.reject(new Error('无法创建安全快照。'))}
+				loadPack={() => Promise.resolve(pack())}
+				runRewrite={() => Promise.resolve({
+					output: JSON.stringify({
+						suggestion: '格外安静',
+						rationale: '精简',
+						potentialImpact: ''
+					})
+				})}
+			/>
+		);
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认 Context Pack 并生成'
+		}));
+		fireEvent.click(await screen.findByRole('button', { name: '全部接受' }));
+
+		expect(await screen.findByRole('alert')).toHaveTextContent('无法创建安全快照');
+		expect(onApply).not.toHaveBeenCalled();
+	});
 });

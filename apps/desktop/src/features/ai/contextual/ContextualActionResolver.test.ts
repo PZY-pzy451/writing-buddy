@@ -1,4 +1,5 @@
 import {
+	isCursorAtParagraphEnd,
 	looksLikeDialogue,
 	resolveContextualWriterActions,
 	type WriterUiContext
@@ -15,6 +16,13 @@ const baseContext: WriterUiContext = {
 };
 
 describe('ContextualActionResolver', () => {
+	it('shows Continue only when an empty selection is at the paragraph end', () => {
+		const content = '雨落在站台。\n林墨抬起头。';
+		expect(isCursorAtParagraphEnd(content, '雨落在站台。'.length)).toBe(true);
+		expect(isCursorAtParagraphEnd(content, content.indexOf('抬'))).toBe(false);
+		expect(isCursorAtParagraphEnd(content, content.length)).toBe(true);
+	});
+
 	it('keeps the no-selection writing surface to the three existing continuation modes', () => {
 		const group = resolveContextualWriterActions(baseContext);
 

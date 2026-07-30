@@ -52,10 +52,65 @@
 }
 
 .candidate-diff-view {
-	height: 240px;
-	overflow: hidden;
+	max-height: 360px;
+	overflow: auto;
 	border: 1px solid var(--border-subtle);
 	border-radius: 10px;
+	padding: 9px;
+	background: var(--surface-subtle);
+}
+
+.candidate-diff-grid {
+	display: grid;
+	gap: 8px;
+}
+
+.candidate-diff-grid > section {
+	display: grid;
+	gap: 6px;
+	min-width: 0;
+}
+
+.candidate-diff-grid > section > strong {
+	color: var(--text-secondary);
+	font-size: 11px;
+	letter-spacing: 0.04em;
+}
+
+.candidate-diff-view pre {
+	margin: 0;
+	padding: 10px;
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+	font: 12px/1.65 "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", serif;
+}
+
+.candidate-diff-view del,
+.candidate-diff-view ins,
+.candidate-diff-view .diff-insertion-point {
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+.candidate-diff-view del {
+	background: color-mix(in srgb, var(--danger) 15%, transparent);
+	box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--danger) 60%, transparent);
+}
+
+.candidate-diff-view ins {
+	background: color-mix(in srgb, var(--success) 16%, transparent);
+	box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--success) 60%, transparent);
+}
+
+.candidate-diff-view .diff-insertion-point {
+	padding: 1px 4px;
+	color: var(--text-muted);
+	background: var(--surface-subtle);
+	border: 1px dashed var(--border-strong);
 }
 
 .rewrite-draft {
@@ -161,6 +216,6 @@
 
 @media (max-width: 1120px) {
 	.candidate-diff-view {
-		height: 210px;
+		max-height: 320px;
 	}
 }

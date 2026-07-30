@@ -234,6 +234,21 @@ export interface EditTransaction {
 	readonly createdAt: string;
 }
 
+function normalizeEditLineEndings(content: string): string {
+	return content.replaceAll(/\r\n?/gu, '\n');
+}
+
+export function areEditContentsEquivalent(left: string, right: string): boolean {
+	return left === right
+		|| normalizeEditLineEndings(left) === normalizeEditLineEndings(right);
+}
+
+function adaptEditLineEndings(content: string, current: string): string {
+	if (!current.includes('\n')) return content;
+	const eol = current.includes('\r\n') ? '\r\n' : '\n';
+	return normalizeEditLineEndings(content).replaceAll('\n', eol);
+}
+
 export class EditTransactionService {
 	private readonly undoStack: EditTransaction[] = [];
 	private readonly redoStack: EditTransaction[] = [];
@@ -253,21 +268,31 @@ export class EditTransactionService {
 
 	undo(current: string): { readonly content: string; readonly transaction: EditTransaction } | undefined {
 		const transaction = this.undoStack.at(-1);
-		if (!transaction || transaction.after !== current) {
+		if (!transaction || !areEditContentsEquivalent(transaction.after, current)) {
 			return undefined;
 		}
 		this.undoStack.pop();
 		this.redoStack.push(transaction);
-		return { content: transaction.before, transaction };
+		return {
+			content: transaction.after === current
+				? transaction.before
+				: adaptEditLineEndings(transaction.before, current),
+			transaction
+		};
 	}
 
 	redo(current: string): { readonly content: string; readonly transaction: EditTransaction } | undefined {
 		const transaction = this.redoStack.at(-1);
-		if (!transaction || transaction.before !== current) {
+		if (!transaction || !areEditContentsEquivalent(transaction.before, current)) {
 			return undefined;
 		}
 		this.redoStack.pop();
 		this.undoStack.push(transaction);
-		return { content: transaction.after, transaction };
+		return {
+			content: transaction.before === current
+				? transaction.after
+				: adaptEditLineEndings(transaction.after, current),
+			transaction
+		};
 	}
 }

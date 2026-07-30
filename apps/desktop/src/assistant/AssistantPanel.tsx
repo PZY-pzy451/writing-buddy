@@ -27,10 +27,14 @@ import { ManuscriptContinuationPanel } from '../features/story/ai-context/Manusc
 import { ScenePlanningPanel } from '../features/story/ai-context/ScenePlanningPanel';
 import { PendingFactsReview } from '../features/story/ai-context/PendingFactsReview';
 import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKernelGeneratorPanel';
-import { resolveContextualWriterActions } from '../features/ai/contextual/ContextualActionResolver';
+import {
+	isCursorAtParagraphEnd,
+	resolveContextualWriterActions
+} from '../features/ai/contextual/ContextualActionResolver';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { workspaceResizeBounds } from '../shell/workspaceResize';
 import type { WriterToolId } from '../app/writerWorkspace';
+import { desktopBridge } from '../platform/bridge';
 
 const writerToolLabels: Readonly<Record<WriterToolId, string>> = {
 	outline: '细纲',
@@ -50,16 +54,6 @@ function tabForTool(
 	if (tool === 'review') return 'review';
 	if (tool === 'characters' || tool === 'references') return 'context';
 	return 'suggestions';
-}
-
-function atParagraphEnd(content: string, cursorOffset: number): boolean {
-	const safeOffset = Math.max(0, Math.min(cursorOffset, content.length));
-	const nextLineBreak = content.indexOf('\n', safeOffset);
-	const lineTail = content.slice(
-		safeOffset,
-		nextLineBreak === -1 ? content.length : nextLineBreak
-	);
-	return lineTail.trim().length === 0;
 }
 
 function rewriteIcon(actionType: SelectionRewriteActionType): React.JSX.Element {
@@ -103,6 +97,7 @@ function AssistantPanelContent(props: {
 	const cursorOffset = useAppStore(state => state.cursorOffset);
 	const issues = useAppStore(state => state.issues);
 	const setIssues = useAppStore(state => state.setIssues);
+	const save = useAppStore(state => state.save);
 	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const theme = useAppStore(state => state.theme);
@@ -113,7 +108,11 @@ function AssistantPanelContent(props: {
 	const toolLabel = writerToolLabels[props.initialTool];
 	const tab = tabForTool(props.initialTool, props.initialIntent);
 	const [suggestionKind, setSuggestionKind] = useState<'rewrite' | 'continuation'>(
-		props.initialIntent?.kind === 'continuation' ? 'continuation' : 'rewrite'
+		props.initialIntent?.kind === 'continuation'
+			? 'continuation'
+			: props.initialIntent?.kind === 'rewrite' || selection?.text
+				? 'rewrite'
+				: 'continuation'
 	);
 	const [rewriteAction, setRewriteAction] = useState<SelectionRewriteActionType>(
 		props.initialIntent?.kind === 'rewrite' ? props.initialIntent.actionType : 'polish'
@@ -141,7 +140,7 @@ function AssistantPanelContent(props: {
 		activeResourceType: activeResource?.type,
 		selectionText: selection?.text,
 		cursorAtParagraphEnd: session
-			? atParagraphEnd(session.content, cursorOffset)
+			? isCursorAtParagraphEnd(session.content, cursorOffset)
 			: false,
 		chapterHasDraft: Boolean(session?.content.trim()),
 		chapterHasPendingExtraction: false
@@ -157,6 +156,37 @@ function AssistantPanelContent(props: {
 		}
 		const result = runLocalReview(snapshot.project.projectId, activeResource.id, session.content);
 		setIssues(replaceReviewIssuesForResource(issues, result.issues, activeResource.id, 'local'));
+	};
+
+	const prepareAiInsertionSnapshot = async (label: string) => {
+		const before = useAppStore.getState();
+		const expectedRoot = before.snapshot?.root;
+		const expectedResourceId = before.activeResource?.id;
+		if (
+			!expectedRoot
+			|| !expectedResourceId
+			|| before.snapshot?.readOnly
+			|| before.activeResource?.type !== 'chapter'
+			|| before.session?.state.resourceId !== expectedResourceId
+		) {
+			throw new Error('当前章节不可写入，未创建快照。');
+		}
+		await save();
+		const current = useAppStore.getState();
+		if (
+			current.snapshot?.root !== expectedRoot
+			|| current.activeResource?.id !== expectedResourceId
+			|| current.session?.state.resourceId !== expectedResourceId
+			|| current.session.state.dirty
+			|| current.saveState.type !== 'clean'
+		) {
+			throw new Error('正文尚未安全保存，已停止 AI 写入。请先解决保存问题后重试。');
+		}
+		await desktopBridge.createSnapshot(
+			expectedRoot,
+			'beforeDestructiveOperation',
+			label
+		);
 	};
 
 	return (
@@ -253,12 +283,15 @@ function AssistantPanelContent(props: {
 							selection={selection}
 							theme={['paper', 'fog'].includes(theme) ? 'vs' : 'vs-dark'}
 							actionType={rewriteAction}
+							onBeforeApply={prepareAiInsertionSnapshot}
 							onApply={(start, end, text) => requestEditorEdit({
 								id: crypto.randomUUID(),
 								resourceId: activeResource.id,
 								start,
 								end,
-								text
+								text,
+								origin: 'ai',
+								highlightDurationMs: 10_000
 							})}
 							onReplaceDocument={content => requestEditorEdit({
 								id: crypto.randomUUID(),
@@ -297,6 +330,7 @@ function AssistantPanelContent(props: {
 							</div>
 							{snapshot && activeResource?.type === 'chapter' && session ? (
 								<ManuscriptContinuationPanel
+									key={`${activeResource.id}:${continuationMode}`}
 									projectRoot={snapshot.root}
 									resourceId={activeResource.id}
 									sourceRevision={session.state.version}
@@ -304,12 +338,16 @@ function AssistantPanelContent(props: {
 									cursorOffset={cursorOffset}
 									mode={continuationMode}
 									readOnly={snapshot.readOnly}
+									theme={['paper', 'fog'].includes(theme) ? 'vs' : 'vs-dark'}
+									onBeforeApply={prepareAiInsertionSnapshot}
 									onApply={(start, end, text) => requestEditorEdit({
 										id: crypto.randomUUID(),
 										resourceId: activeResource.id,
 										start,
 										end,
-										text
+										text,
+										origin: 'ai',
+										highlightDurationMs: 10_000
 									})}
 									onReplaceDocument={content => requestEditorEdit({
 										id: crypto.randomUUID(),

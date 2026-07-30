@@ -225,6 +225,36 @@ describe('quiet writer workspaces', () => {
 		);
 	});
 
+	it('offers a low-weight contextual Continue at a paragraph end', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => {
+			const session = useAppStore.getState().session;
+			if (!session) throw new Error('writer session missing');
+			useAppStore.setState({
+				cursorOffset: session.content.length,
+				selection: undefined
+			});
+		});
+
+		const trigger = await screen.findByRole('button', {
+			name: '从当前光标继续写作'
+		});
+		await user.click(trigger);
+
+		expect(useAppStore.getState()).toMatchObject({
+			assistantOpen: true,
+			writerTool: 'ai',
+			assistantIntent: {
+				kind: 'continuation',
+				mode: 'continue-paragraph'
+			}
+		});
+		expect(screen.getByRole('complementary', { name: 'AI工具' }))
+			.toBeInTheDocument();
+	});
+
 	it('opens the existing extraction center for the current chapter without starting AI', async () => {
 		const user = userEvent.setup();
 		render(<App />);

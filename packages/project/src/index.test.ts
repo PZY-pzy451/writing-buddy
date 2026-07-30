@@ -43,6 +43,18 @@ describe('resource tabs and edit transactions', () => {
 		expect(edits.undo('新文本')?.content).toBe('旧文本');
 		expect(edits.redo('旧文本')?.content).toBe('新文本');
 	});
+
+	it('treats Monaco LF normalization as the same edit without ignoring text changes', () => {
+		const edits = new EditTransactionService();
+		edits.apply('one', '第一段\r\n\r\n第二段', '第一段\r\n\r\n第二段\r\n\r\nAI 候选');
+
+		expect(edits.undo('第一段\n\n第二段\n\nAI 候选')?.content)
+			.toBe('第一段\n\n第二段');
+
+		const changed = new EditTransactionService();
+		changed.apply('one', '第一段\r\n\r\n第二段', '第一段\r\n\r\n第二段\r\n\r\nAI 候选');
+		expect(changed.undo('第一段\n\n第二段\n\nAI 候选！')).toBeUndefined();
+	});
 });
 
 describe('document save completion', () => {

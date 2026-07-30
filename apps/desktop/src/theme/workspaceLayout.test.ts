@@ -94,4 +94,16 @@ describe('workspace grid contracts', () => {
 			'@media (min-width: 850px) and (max-width: 1099px)'
 		);
 	});
+
+	it('keeps contextual AI insertion discoverable and temporarily highlighted', () => {
+		expect(workspaceCss).toContain('.contextual-continue-trigger');
+		expect(workspaceCss).toContain('min-height: 44px;');
+		expect(workspaceCss).toContain('.ai-insert-highlight');
+		expect(workspaceCss).toContain('@keyframes ai-insert-highlight-fade');
+	});
+
+	it('keeps the AI candidate panel above editor overlay controls', () => {
+		expect(workspaceCss).toMatch(/\.assistant-panel\s*\{[^}]*z-index:\s*60;/su);
+		expect(workspaceCss).not.toContain('z-index: 40;');
+	});
 });

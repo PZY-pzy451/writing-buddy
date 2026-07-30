@@ -1,6 +1,7 @@
 import {
 	AlertTriangle,
 	Check,
+	ClipboardList,
 	Compass,
 	RotateCcw,
 	Send,
@@ -10,24 +11,32 @@ import {
 import {
 	buildManuscriptContinuationMessages,
 	parseManuscriptContinuationResponse,
-	type AiJobState
+	type AiJobState,
+	type AiUsage
 } from '@writing-buddy/ai';
-import { EditTransactionService } from '@writing-buddy/project';
+import {
+	areEditContentsEquivalent,
+	EditTransactionService
+} from '@writing-buddy/project';
 import {
 	DesktopStoryRepository,
 	DeterministicContextPackBuilder,
 	serializeContextPackForAi,
 	toStoryChapterId,
+	withContextItemIncluded,
 	type ContextPack,
 	type ManuscriptContinuationMode,
 	type StoryScene
 } from '@writing-buddy/story-kernel';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
+import { CandidateDiffView } from './CandidateDiffView';
 import { ContextPackPreview } from './ContextPackPreview';
 import {
+	buildContinuationDiff,
 	ContinuationService,
 	createContinuationCandidate,
+	formatContinuationInsertion,
 	isContinuationCandidateStale,
 	type ContinuationCandidateBatch
 } from './ManuscriptContinuationService';
@@ -35,7 +44,6 @@ import { loadGroundedContextCandidates } from './SelectionRewriteService';
 import { runGroundedJsonJob } from './GroundedAiRunner';
 import './AiActionPanels.css';
 
-const continuationService = new ContinuationService(new EditTransactionService());
 const contextBuilder = new DeterministicContextPackBuilder();
 
 const modeInstructions: Readonly<Record<ManuscriptContinuationMode, string>> = {
@@ -43,6 +51,12 @@ const modeInstructions: Readonly<Record<ManuscriptContinuationMode, string>> = {
 	'finish-scene': '收束当前场景的目标与冲突，给出一个可继续衔接下一场的场景结尾。',
 	'three-directions': '基于同一处光标生成三种实质不同的后续走向，分别强调推进、悬念或人物选择。'
 };
+
+type ContinuationProgress = (
+	output: string,
+	state: AiJobState,
+	usage?: AiUsage
+) => void;
 
 export interface ManuscriptContinuationPanelProps {
 	readonly projectRoot: string;
@@ -52,15 +66,23 @@ export interface ManuscriptContinuationPanelProps {
 	readonly cursorOffset: number;
 	readonly mode: ManuscriptContinuationMode;
 	readonly readOnly: boolean;
+	readonly theme: 'vs' | 'vs-dark';
 	readonly onApply: (start: number, end: number, text: string) => void;
 	readonly onReplaceDocument: (content: string) => void;
+	readonly onBeforeApply?: (label: string) => Promise<void>;
+	readonly loadPack?: (guidance: string) => Promise<ContextPack>;
+	readonly runContinuation?: (
+		pack: ContextPack,
+		onProgress: ContinuationProgress
+	) => Promise<{ readonly output: string; readonly usage?: AiUsage }>;
 }
 
 async function buildContinuationPack(
 	props: Pick<
 		ManuscriptContinuationPanelProps,
 		'projectRoot' | 'resourceId' | 'sourceRevision' | 'content' | 'cursorOffset' | 'mode'
-	>
+	>,
+	guidance: string
 ): Promise<ContextPack> {
 	const repository = new DesktopStoryRepository(props.projectRoot, desktopBridge);
 	const chapterId = toStoryChapterId(props.resourceId);
@@ -88,9 +110,13 @@ async function buildContinuationPack(
 		chapterId,
 		selectionStart: Math.max(start, Math.min(props.cursorOffset, end - 1))
 	});
+	const trimmedGuidance = guidance.trim();
+	const instruction = trimmedGuidance
+		? `${modeInstructions[props.mode]}\n作者明确要求：${trimmedGuidance}`
+		: modeInstructions[props.mode];
 	return contextBuilder.build({
 		actionType: props.mode,
-		instruction: modeInstructions[props.mode],
+		instruction,
 		sourceKind: props.mode === 'finish-scene' ? 'scene-manuscript' : 'manuscript-excerpt',
 		sourceTitle: props.mode === 'finish-scene' ? '当前场景正文' : '光标前文',
 		selection: {
@@ -105,31 +131,108 @@ async function buildContinuationPack(
 	});
 }
 
+async function defaultRunContinuation(
+	pack: ContextPack,
+	onProgress: ContinuationProgress,
+	onJobId: (jobId: string | undefined) => void
+): Promise<{ readonly output: string; readonly usage?: AiUsage }> {
+	return runGroundedJsonJob({
+		jobType: 'manuscript-continuation',
+		messages: buildManuscriptContinuationMessages(serializeContextPackForAi(pack)),
+		onJobId,
+		onProgress: progress => onProgress(
+			progress.output,
+			progress.state,
+			progress.usage
+		)
+	});
+}
+
+function insertionLocation(content: string, cursorOffset: number): string {
+	const safeOffset = Math.max(0, Math.min(cursorOffset, content.length));
+	const before = content.slice(0, safeOffset);
+	const line = before.split('\n').length;
+	const lastBreak = before.lastIndexOf('\n');
+	const column = safeOffset - lastBreak;
+	return `插入位置：第 ${line} 行，第 ${column} 列`;
+}
+
+function withoutAuthorSecrets(pack: ContextPack): ContextPack {
+	return pack.items
+		.filter(item => item.authorSecret && item.included)
+		.reduce(
+			(current, item) => withContextItemIncluded(current, item.id, false),
+			pack
+		);
+}
+
 export function ManuscriptContinuationPanel(
 	props: ManuscriptContinuationPanelProps
 ): React.JSX.Element {
+	const service = useMemo(
+		() => new ContinuationService(new EditTransactionService()),
+		[]
+	);
+	const [guidance, setGuidance] = useState('');
+	const [loadedGuidance, setLoadedGuidance] = useState<string>();
 	const [pack, setPack] = useState<ContextPack>();
 	const [batch, setBatch] = useState<ContinuationCandidateBatch>();
 	const [jobState, setJobState] = useState<AiJobState>('created');
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [lastAppliedContent, setLastAppliedContent] = useState<string>();
+	const [rejectedCandidateIds, setRejectedCandidateIds] = useState<ReadonlySet<string>>(
+		() => new Set()
+	);
+	const [diffCandidateId, setDiffCandidateId] = useState<string>();
+	const [acceptingCandidateId, setAcceptingCandidateId] = useState<string>();
+	const [success, setSuccess] = useState<string>();
 	const [error, setError] = useState<string>();
-	const { content, cursorOffset, mode, projectRoot, resourceId, sourceRevision } = props;
+	const generatingRef = useRef(false);
+	const contentRef = useRef(props.content);
+	const revisionRef = useRef(props.sourceRevision);
+	const loadPackOverride = props.loadPack;
+	const projectRoot = props.projectRoot;
+	const resourceId = props.resourceId;
+	const sourceRevision = props.sourceRevision;
+	const content = props.content;
+	const cursorOffset = props.cursorOffset;
+	const mode = props.mode;
 
 	useEffect(() => {
-		let cancelled = false;
-		void buildContinuationPack({
-			content,
-			cursorOffset,
-			mode,
+		contentRef.current = props.content;
+		revisionRef.current = props.sourceRevision;
+	}, [props.content, props.sourceRevision]);
+
+	const load = useCallback(async () => {
+		if (loadPackOverride) return loadPackOverride(guidance);
+		return buildContinuationPack({
 			projectRoot,
 			resourceId,
-			sourceRevision
-		}).then(value => {
+			sourceRevision,
+			content,
+			cursorOffset,
+			mode
+		}, guidance);
+	}, [
+		content,
+		cursorOffset,
+		guidance,
+		loadPackOverride,
+		mode,
+		projectRoot,
+		resourceId,
+		sourceRevision
+	]);
+
+	useEffect(() => {
+		if (batch) return;
+		let cancelled = false;
+		void load().then(value => {
 			if (!cancelled) {
-				setPack(value);
-				setBatch(undefined);
+				setPack(withoutAuthorSecrets(value));
+				setLoadedGuidance(guidance.trim());
+				setJobState('created');
 				setError(undefined);
 			}
 		}).catch(reason => {
@@ -140,33 +243,50 @@ export function ManuscriptContinuationPanel(
 		return () => {
 			cancelled = true;
 		};
-	}, [content, cursorOffset, mode, projectRoot, resourceId, sourceRevision]);
+	}, [batch, guidance, load]);
 
 	const generating = !['created', 'completed', 'cancelled', 'failed'].includes(jobState);
 	const packReady = pack?.source.resourceId === props.resourceId
 		&& pack.source.revision === props.sourceRevision
 		&& pack.actionType === props.mode
+		&& loadedGuidance === guidance.trim()
 		&& (props.mode === 'finish-scene' || pack.source.end === props.cursorOffset);
 	const stale = useMemo(() => batch
 		? isContinuationCandidateStale(batch, props.sourceRevision, props.content)
 		: false, [batch, props.content, props.sourceRevision]);
+	const includedGrounding = useMemo(() => pack?.items.filter(item => (
+		item.included
+		&& !item.required
+		&& !item.authorSecret
+	)) ?? [], [pack]);
+	const includedSecrets = useMemo(() => pack?.items.filter(item => (
+		item.included && item.authorSecret
+	)) ?? [], [pack]);
 
 	const generate = async () => {
-		if (!pack || generating || props.readOnly) return;
+		if (
+			!pack
+			|| generatingRef.current
+			|| generating
+			|| props.readOnly
+			|| !packReady
+		) return;
+		generatingRef.current = true;
 		setBatch(undefined);
+		setRejectedCandidateIds(new Set());
+		setDiffCandidateId(undefined);
 		setError(undefined);
+		setSuccess(undefined);
 		setStreamedLength(0);
-		setJobState('created');
+		setJobState('queued');
 		try {
-			const result = await runGroundedJsonJob({
-				jobType: 'manuscript-continuation',
-				messages: buildManuscriptContinuationMessages(serializeContextPackForAi(pack)),
-				onJobId: setActiveJobId,
-				onProgress: progress => {
-					setJobState(progress.state);
-					setStreamedLength(progress.output.length);
-				}
-			});
+			const onProgress: ContinuationProgress = (output, state) => {
+				setJobState(state);
+				setStreamedLength(output.length);
+			};
+			const result = props.runContinuation
+				? await props.runContinuation(pack, onProgress)
+				: await defaultRunContinuation(pack, onProgress, setActiveJobId);
 			const candidates = parseManuscriptContinuationResponse(result.output, props.mode);
 			setBatch(createContinuationCandidate({
 				mode: props.mode,
@@ -180,34 +300,65 @@ export function ManuscriptContinuationPanel(
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '续写候选生成失败。');
+		} finally {
+			generatingRef.current = false;
 		}
 	};
 
-	const accept = (candidateId: string) => {
-		if (!batch) return;
+	const accept = async (candidateId: string) => {
+		if (
+			!batch
+			|| acceptingCandidateId
+			|| rejectedCandidateIds.has(candidateId)
+		) return;
+		const candidate = batch.candidates.find(value => value.id === candidateId);
+		if (!candidate) return;
+		setAcceptingCandidateId(candidateId);
+		setError(undefined);
+		setSuccess(undefined);
 		try {
-			const result = continuationService.accept(
+			await props.onBeforeApply?.(`AI 续写：${candidate.title}`);
+			const currentContent = contentRef.current;
+			const currentRevision = revisionRef.current;
+			if (isContinuationCandidateStale(batch, currentRevision, currentContent)) {
+				throw new Error('安全快照创建后正文已经变化，请重新生成候选。');
+			}
+			const result = service.accept(
 				batch,
 				candidateId,
-				props.sourceRevision,
-				props.content
+				currentRevision,
+				currentContent
 			);
 			props.onApply(batch.cursorOffset, batch.cursorOffset, result.insertion);
 			setLastAppliedContent(result.content);
 			setBatch({ ...batch, status: 'accepted' });
-			setError(undefined);
+			setSuccess('安全快照已创建，候选已插入；如不满意可立即撤销。');
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '候选已经过期。');
+		} finally {
+			setAcceptingCandidateId(undefined);
 		}
 	};
 
+	const reject = (candidateId: string) => {
+		setRejectedCandidateIds(current => new Set([...current, candidateId]));
+		if (diffCandidateId === candidateId) setDiffCandidateId(undefined);
+	};
+
 	const undo = () => {
-		if (!lastAppliedContent) return;
+		if (
+			!lastAppliedContent
+			|| !areEditContentsEquivalent(props.content, lastAppliedContent)
+		) {
+			setError('正文在插入后又被编辑，已停止自动撤销以保护后续修改。');
+			return;
+		}
 		try {
-			const result = continuationService.undo(lastAppliedContent);
+			const result = service.undo(props.content);
 			props.onReplaceDocument(result.content);
 			setLastAppliedContent(undefined);
 			setBatch(undefined);
+			setSuccess(undefined);
 			setError(undefined);
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '无法撤销本次续写。');
@@ -220,13 +371,40 @@ export function ManuscriptContinuationPanel(
 				<Compass size={18} />
 				<div>
 					<strong>续写位置已锁定</strong>
-					<span>光标偏移 {props.cursorOffset} · 生成只会产生候选，不会自动写入正文</span>
+					<span>{insertionLocation(props.content, props.cursorOffset)} · 生成只会产生候选，不会自动写入正文</span>
 				</div>
 			</div>
+			<label className="continuation-guidance">
+				<span>告诉 AI 接下来发生什么</span>
+				<textarea
+					value={guidance}
+					maxLength={600}
+					aria-label="告诉 AI 接下来发生什么"
+					placeholder="留空则让 AI 自由继续"
+					onChange={event => {
+						setGuidance(event.target.value);
+						setPack(undefined);
+						setLoadedGuidance(undefined);
+						setBatch(undefined);
+						setRejectedCandidateIds(new Set());
+						setDiffCandidateId(undefined);
+						setSuccess(undefined);
+					}}
+				/>
+				<small>{guidance.trim() && loadedGuidance === guidance.trim()
+					? `作者明确要求：${guidance.trim()}`
+					: guidance.trim()
+						? '正在更新作者指令…'
+						: '可选引导，不填写也可以自由续写。'}</small>
+			</label>
 			{pack && packReady
-				? <ContextPackPreview pack={pack} onChange={setPack} />
+				? <ContextPackPreview
+					pack={pack}
+					onChange={value => setPack(withoutAuthorSecrets(value))}
+				/>
 				: <p className="ai-action-loading"><Sparkles size={16} />正在构建续写上下文…</p>}
 			{error ? <p className="ai-action-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
+			{success ? <p className="ai-action-success" role="status"><Check size={16} />{success}</p> : null}
 			<div className="ai-action-toolbar">
 				<button
 					className="primary-button"
@@ -254,37 +432,108 @@ export function ManuscriptContinuationPanel(
 							<AlertTriangle size={16} />正文或光标锚点已变化，请重新生成候选。
 						</p>
 					) : null}
-					{batch.candidates.map((candidate, index) => (
-						<article className="continuation-candidate" key={candidate.id}>
-							<header>
-								<span>方向 {index + 1}</span>
-								<strong>{candidate.title}</strong>
-							</header>
-							<p className="continuation-copy">{candidate.content}</p>
-							<p className="ai-action-rationale">{candidate.rationale}</p>
-							<button
-								type="button"
-								disabled={stale || batch.status !== 'candidate' || props.readOnly}
-								onClick={() => accept(candidate.id)}
+					{batch.candidates.map((candidate, index) => {
+						const rejected = rejectedCandidateIds.has(candidate.id);
+						const insertion = formatContinuationInsertion(
+							props.content,
+							batch.cursorOffset,
+							candidate.content
+						);
+						const diff = buildContinuationDiff(
+							props.content,
+							batch.cursorOffset,
+							insertion
+						);
+						return (
+							<article
+								className={`continuation-candidate ${rejected ? 'is-rejected' : ''}`}
+								key={candidate.id}
+								aria-label={`候选：${candidate.title}`}
 							>
-								<Check size={16} />插入此候选
-							</button>
-						</article>
-					))}
+								<header>
+									<span>方向 {index + 1}</span>
+									<strong>{candidate.title}</strong>
+									{rejected ? <em>已拒绝</em> : null}
+								</header>
+								<p className="continuation-copy">{candidate.content}</p>
+								<p className="ai-action-rationale">{candidate.rationale}</p>
+								<div className="continuation-grounding">
+									<strong>{insertionLocation(props.content, batch.cursorOffset)}</strong>
+									{includedGrounding.length > 0 ? (
+										<p>
+											依据：{includedGrounding.map(item => item.title).join('、')}
+										</p>
+									) : <p>依据：仅使用当前正文与作者指令</p>}
+									<p className={includedSecrets.length > 0 ? 'is-warning' : ''}>
+										{includedSecrets.length > 0
+											? `已明确使用作者秘密：${includedSecrets.map(item => item.title).join('、')}`
+											: '未使用作者秘密'}
+									</p>
+								</div>
+								{diffCandidateId === candidate.id && !rejected ? (
+									<CandidateDiffView
+										original={diff.original}
+										modified={diff.modified}
+										theme={props.theme}
+									/>
+								) : null}
+								<div className="continuation-candidate-actions">
+									<button
+										type="button"
+										disabled={rejected || stale || batch.status !== 'candidate' || props.readOnly}
+										onClick={() => void accept(candidate.id)}
+									>
+										<Check size={16} />
+										{acceptingCandidateId === candidate.id ? '创建快照中…' : '插入'}
+									</button>
+									<button
+										type="button"
+										disabled={rejected}
+										aria-expanded={diffCandidateId === candidate.id}
+										onClick={() => setDiffCandidateId(current => (
+											current === candidate.id ? undefined : candidate.id
+										))}
+									>
+										<ClipboardList size={16} />查看差异
+									</button>
+									<button
+										type="button"
+										disabled={rejected || batch.status !== 'candidate'}
+										onClick={() => reject(candidate.id)}
+									>
+										<X size={16} />拒绝
+									</button>
+								</div>
+							</article>
+						);
+					})}
 					{batch.status === 'candidate' ? (
 						<button
 							className="ai-action-reject"
 							type="button"
-							onClick={() => setBatch({ ...batch, status: 'rejected' })}
+							onClick={() => setRejectedCandidateIds(
+								new Set(batch.candidates.map(candidate => candidate.id))
+							)}
 						>
 							<X size={16} />全部放弃
 						</button>
 					) : null}
 				</div>
 			) : null}
-			{batch?.status === 'accepted' && lastAppliedContent ? (
-				<button className="ai-action-undo" type="button" onClick={undo}>
-					<RotateCcw size={16} />撤销本次插入
+			{lastAppliedContent ? (
+				<button
+					className="ai-action-undo"
+					type="button"
+					disabled={!areEditContentsEquivalent(props.content, lastAppliedContent)}
+					title={areEditContentsEquivalent(props.content, lastAppliedContent)
+						? '恢复插入前的正文'
+						: '正文已继续编辑；请使用编辑器原生撤销选择需要恢复的内容'}
+					onClick={undo}
+				>
+					<RotateCcw size={16} />
+					{areEditContentsEquivalent(props.content, lastAppliedContent)
+						? '撤销本次插入'
+						: '正文已继续编辑，自动撤销已停用'}
 				</button>
 			) : null}
 		</section>

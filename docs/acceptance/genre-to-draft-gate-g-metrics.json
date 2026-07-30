@@ -1,0 +1,57 @@
+{
+  "gate": "Genre-to-Draft Gate G",
+  "capturedAt": "2026-07-30T10:11:46.044Z",
+  "viewports": [
+    {
+      "assistant": {
+        "left": 612,
+        "right": 972,
+        "width": 360
+      },
+      "height": 720,
+      "horizontalOverflow": 0,
+      "minActionHeight": 44,
+      "minActionWidth": 89,
+      "visibleActionCount": 3,
+      "width": 1024
+    },
+    {
+      "assistant": {
+        "left": 868,
+        "right": 1228,
+        "width": 360
+      },
+      "height": 800,
+      "horizontalOverflow": 0,
+      "minActionHeight": 44,
+      "minActionWidth": 89,
+      "visibleActionCount": 6,
+      "width": 1280
+    },
+    {
+      "assistant": {
+        "left": 1124,
+        "right": 1484,
+        "width": 360
+      },
+      "height": 960,
+      "horizontalOverflow": 0,
+      "minActionHeight": 44,
+      "minActionWidth": 89,
+      "visibleActionCount": 6,
+      "width": 1536
+    }
+  ],
+  "interaction": {
+    "contextualContinue": true,
+    "guidanceCommitted": true,
+    "threeCandidateCount": 3,
+    "rejectedCandidate": true,
+    "diffVisible": true,
+    "snapshotBeforeInsert": true,
+    "aiHighlightFragments": 2,
+    "undoAvailable": true,
+    "undoRestoredOriginal": true,
+    "consoleWarningsOrErrors": 0
+  }
+}

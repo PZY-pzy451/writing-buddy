@@ -93,13 +93,29 @@ export function isContinuationCandidateStale(
 		) !== candidate.anchorAfter;
 }
 
-function formatInsertion(currentContent: string, cursorOffset: number, content: string): string {
+export function formatContinuationInsertion(
+	currentContent: string,
+	cursorOffset: number,
+	content: string
+): string {
 	const candidate = content.trim();
 	const before = currentContent.slice(0, cursorOffset);
 	const after = currentContent.slice(cursorOffset);
 	const prefix = before.trim() && !before.endsWith('\n\n') ? '\n\n' : '';
 	const suffix = after.trim() && !after.startsWith('\n\n') ? '\n\n' : '';
 	return `${prefix}${candidate}${suffix}`;
+}
+
+export function buildContinuationDiff(
+	currentContent: string,
+	cursorOffset: number,
+	insertion: string
+): { readonly original: string; readonly modified: string } {
+	const safeOffset = Math.max(0, Math.min(cursorOffset, currentContent.length));
+	return {
+		original: currentContent,
+		modified: `${currentContent.slice(0, safeOffset)}${insertion}${currentContent.slice(safeOffset)}`
+	};
 }
 
 export class ContinuationService {
@@ -121,7 +137,11 @@ export class ContinuationService {
 		if (!selected) {
 			throw new Error('continuationCandidateNotFound');
 		}
-		const insertion = formatInsertion(currentContent, batch.cursorOffset, selected.content);
+		const insertion = formatContinuationInsertion(
+			currentContent,
+			batch.cursorOffset,
+			selected.content
+		);
 		const content = `${currentContent.slice(0, batch.cursorOffset)}${insertion}${currentContent.slice(batch.cursorOffset)}`;
 		return {
 			content,

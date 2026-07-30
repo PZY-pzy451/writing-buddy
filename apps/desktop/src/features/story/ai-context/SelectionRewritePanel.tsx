@@ -7,7 +7,10 @@ import {
 	Sparkles,
 	X
 } from 'lucide-react';
-import { EditTransactionService } from '@writing-buddy/project';
+import {
+	areEditContentsEquivalent,
+	EditTransactionService
+} from '@writing-buddy/project';
 import {
 	DesktopStoryRepository,
 	DeterministicContextPackBuilder,
@@ -27,7 +30,7 @@ import {
 	type AiStreamEvent,
 	type AiUsage
 } from '@writing-buddy/ai';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
 import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 import { CandidateDiffView } from './CandidateDiffView';
@@ -41,7 +44,6 @@ import {
 } from './SelectionRewriteService';
 import './SelectionRewritePanel.css';
 
-const rewriteService = new SelectionRewriteService(new EditTransactionService());
 const contextBuilder = new DeterministicContextPackBuilder();
 const actionInstructions: Readonly<Record<SelectionRewriteActionType, string>> = {
 	polish: '保持事实、视角和人物语气，只润色当前选区。',
@@ -62,6 +64,7 @@ export interface SelectionRewritePanelProps {
 	readonly actionType: SelectionRewriteActionType;
 	readonly onApply: (start: number, end: number, text: string) => void;
 	readonly onReplaceDocument: (content: string) => void;
+	readonly onBeforeApply?: (label: string) => Promise<void>;
 	readonly onSaveNote?: (candidate: RewriteCandidate) => void;
 	readonly loadPack?: () => Promise<ContextPack>;
 	readonly runRewrite?: (
@@ -138,6 +141,10 @@ async function loadCharacterStateRecords(projectRoot: string): Promise<readonly 
 }
 
 export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.JSX.Element {
+	const rewriteService = useMemo(
+		() => new SelectionRewriteService(new EditTransactionService()),
+		[]
+	);
 	const [pack, setPack] = useState<ContextPack>();
 	const [candidate, setCandidate] = useState<RewriteCandidate>();
 	const [draft, setDraft] = useState('');
@@ -147,6 +154,14 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 	const [lastAppliedContent, setLastAppliedContent] = useState<string>();
 	const [error, setError] = useState<string>();
 	const [activeJobId, setActiveJobId] = useState<string>();
+	const generatingRef = useRef(false);
+	const acceptingRef = useRef(false);
+	const contentRef = useRef(props.content);
+	const revisionRef = useRef(props.sourceRevision);
+	useEffect(() => {
+		contentRef.current = props.content;
+		revisionRef.current = props.sourceRevision;
+	}, [props.content, props.sourceRevision]);
 	const loadPackOverride = props.loadPack;
 	const projectRoot = props.projectRoot;
 	const resourceId = props.resourceId;
@@ -209,8 +224,9 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 	const generating = !['created', 'completed', 'cancelled', 'failed'].includes(jobState);
 
 	const generate = async () => {
-		if (!pack || generating) return;
-		setJobState('created');
+		if (!pack || generatingRef.current || generating) return;
+		generatingRef.current = true;
+		setJobState('queued');
 		setStreamedLength(0);
 		setUsage(undefined);
 		setCandidate(undefined);
@@ -233,6 +249,8 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '生成候选失败。');
+		} finally {
+			generatingRef.current = false;
 		}
 	};
 
@@ -241,23 +259,40 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		await desktopBridge.cancelAiJob(activeJobId);
 	};
 
-	const accept = (replacement: string) => {
-		if (!candidate) return;
+	const accept = async (replacement: string) => {
+		if (!candidate || acceptingRef.current) return;
+		acceptingRef.current = true;
 		try {
-			const applied = rewriteService.accept(candidate, props.sourceRevision, props.content, replacement);
+			if (props.onBeforeApply) {
+				await props.onBeforeApply(`AI 选区改写：${actionInstructions[props.actionType]}`);
+			}
+			const applied = rewriteService.accept(
+				candidate,
+				revisionRef.current,
+				contentRef.current,
+				replacement
+			);
 			props.onApply(candidate.range.start, candidate.range.end, applied.replacement);
 			setLastAppliedContent(applied.content);
 			setCandidate({ ...candidate, status: 'accepted' });
 			setError(undefined);
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '候选已经过期。');
+		} finally {
+			acceptingRef.current = false;
 		}
 	};
 
 	const undo = () => {
-		if (!lastAppliedContent) return;
+		if (
+			!lastAppliedContent
+			|| !areEditContentsEquivalent(props.content, lastAppliedContent)
+		) {
+			setError('正文在接受后又被编辑，已停止自动撤销以保护后续修改。');
+			return;
+		}
 		try {
-			const result = rewriteService.undo(lastAppliedContent);
+			const result = rewriteService.undo(props.content);
 			props.onReplaceDocument(result.content);
 			setLastAppliedContent(undefined);
 			setCandidate(undefined);
@@ -292,15 +327,28 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 					<label className="rewrite-draft"><span>可编辑候选（编辑后接受即为部分接受）</span><textarea value={draft} onChange={event => setDraft(event.target.value)} /></label>
 					<div className="rewrite-rationale"><strong>依据</strong><p>{candidate.rationale}</p><strong>潜在影响</strong><p>{candidate.potentialImpact || '未发现对既有事实的直接影响。'}</p></div>
 					<div className="rewrite-actions">
-						<button type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => accept(candidate.suggestion)}><Check size={16} />全部接受</button>
-						<button type="button" disabled={stale || candidate.status !== 'candidate' || draft === candidate.suggestion} onClick={() => accept(draft)}><ClipboardList size={16} />接受编辑内容</button>
+						<button type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => void accept(candidate.suggestion)}><Check size={16} />全部接受</button>
+						<button type="button" disabled={stale || candidate.status !== 'candidate' || draft === candidate.suggestion} onClick={() => void accept(draft)}><ClipboardList size={16} />接受编辑内容</button>
 						{props.onSaveNote ? <button type="button" onClick={() => props.onSaveNote?.(candidate)}><ClipboardList size={16} />保存到笔记</button> : null}
 						<button type="button" onClick={() => setCandidate({ ...candidate, status: 'rejected' })}><X size={16} />拒绝</button>
 					</div>
 				</section>
 			) : null}
-			{candidate?.status === 'accepted' && lastAppliedContent ? (
-				<button className="rewrite-undo" type="button" onClick={undo}><RotateCcw size={16} />撤销本次接受</button>
+			{lastAppliedContent ? (
+				<button
+					className="rewrite-undo"
+					type="button"
+					disabled={!areEditContentsEquivalent(props.content, lastAppliedContent)}
+					title={areEditContentsEquivalent(props.content, lastAppliedContent)
+						? '恢复接受前的正文'
+						: '正文已继续编辑；请使用编辑器原生撤销'}
+					onClick={undo}
+				>
+					<RotateCcw size={16} />
+					{areEditContentsEquivalent(props.content, lastAppliedContent)
+						? '撤销本次接受'
+						: '正文已继续编辑，自动撤销已停用'}
+				</button>
 			) : null}
 			{usage?.totalTokens && !candidate ? <small className="rewrite-usage">本次生成使用 {usage.totalTokens} tokens</small> : null}
 		</section>
