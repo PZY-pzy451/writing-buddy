@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeSet, HashSet},
+    collections::{BTreeSet, HashMap, HashSet},
     fs,
     path::{Path, PathBuf},
     process::Command,
@@ -1660,6 +1660,10 @@ struct CreationJourneyOutlineNode {
     #[serde(skip_serializing_if = "Option::is_none")]
     pov_hint: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    location_hint: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    character_hints: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pov_character_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     location_id: Option<String>,
@@ -1675,6 +1679,8 @@ struct CreationJourneyOutlineNode {
     source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     revision: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    resource_id: Option<String>,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
@@ -1898,7 +1904,19 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
         || !(3..=8).contains(&state.elements.len())
         || !(state.directions.is_empty() || state.directions.len() == 3)
         || state.selected_direction_ids.len() > 2
-        || !(state.outline.is_empty() || (5..=8).contains(&state.outline.len()))
+        || state.outline.len() > 512
+        || !(state.outline.is_empty()
+            || (5..=8).contains(
+                &state
+                    .outline
+                    .iter()
+                    .filter(|node| {
+                        node.node_type
+                            .as_deref()
+                            .is_none_or(|node_type| node_type == "story_beat")
+                    })
+                    .count(),
+            ))
         || !(state.chapters.is_empty() || state.chapters.len() == 3)
         || !valid_creation_journey_timestamp(&state.created_at)
         || !valid_creation_journey_timestamp(&state.updated_at)
@@ -1983,7 +2001,17 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
         return false;
     }
     let mut outline_ids = HashSet::new();
-    if !state.outline.iter().enumerate().all(|(index, node)| {
+    let mut story_beat_order = 0_u64;
+    if !state.outline.iter().all(|node| {
+        let is_story_beat = node
+            .node_type
+            .as_deref()
+            .is_none_or(|node_type| node_type == "story_beat");
+        let valid_order =
+            !is_story_beat || node.order.is_none_or(|order| order == story_beat_order);
+        if is_story_beat {
+            story_beat_order = story_beat_order.saturating_add(1);
+        }
         valid_creation_journey_id(&node.id, "journey-outline:")
             && outline_ids.insert(node.id.as_str())
             && valid_creation_journey_text(&node.title, 120, true)
@@ -1997,13 +2025,20 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
                 .parent_id
                 .as_deref()
                 .is_none_or(|value| valid_creation_journey_text(value, 240, false))
-            && (node.node_type.as_deref() != Some("story_beat")
-                || node.order.is_none_or(|order| order == index as u64))
+            && valid_order
             && valid_creation_journey_optional_text(node.goal.as_deref(), 1_000)
             && valid_creation_journey_optional_text(node.conflict.as_deref(), 2_000)
             && valid_creation_journey_optional_text(node.outcome.as_deref(), 2_000)
             && valid_creation_journey_optional_text(node.hook.as_deref(), 2_000)
             && valid_creation_journey_optional_text(node.pov_hint.as_deref(), 500)
+            && valid_creation_journey_optional_text(node.location_hint.as_deref(), 500)
+            && node.character_hints.as_deref().is_none_or(|values| {
+                values.len() <= 24
+                    && values.iter().collect::<HashSet<_>>().len() == values.len()
+                    && values
+                        .iter()
+                        .all(|value| valid_creation_journey_text(value, 160, false))
+            })
             && valid_creation_journey_optional_text(node.pov_character_id.as_deref(), 240)
             && valid_creation_journey_optional_text(node.location_id.as_deref(), 240)
             && node
@@ -2031,7 +2066,78 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
                 )
             })
             && node.revision.is_none_or(|revision| revision >= 1)
+            && node
+                .resource_id
+                .as_deref()
+                .is_none_or(|id| match node.node_type.as_deref() {
+                    Some("volume") => {
+                        valid_creation_journey_id(id, "volume:")
+                            || valid_creation_journey_id(id, "volume-")
+                    }
+                    Some("chapter") => {
+                        valid_creation_journey_id(id, "chapter:")
+                            || valid_creation_journey_id(id, "chapter-")
+                    }
+                    Some("scene") => valid_creation_journey_id(id, "scene:"),
+                    _ => false,
+                })
     }) {
+        return false;
+    }
+    let outline_by_id = state
+        .outline
+        .iter()
+        .map(|node| (node.id.as_str(), node))
+        .collect::<HashMap<_, _>>();
+    let hierarchy_nodes = state
+        .outline
+        .iter()
+        .filter(|node| {
+            matches!(
+                node.node_type.as_deref(),
+                Some("volume" | "chapter" | "scene")
+            )
+        })
+        .collect::<Vec<_>>();
+    let valid_hierarchy_parent =
+        hierarchy_nodes
+            .iter()
+            .all(|node| match node.node_type.as_deref() {
+                Some("volume") => node.parent_id.is_none(),
+                Some("chapter") => node.parent_id.as_deref().is_some_and(|parent_id| {
+                    outline_by_id
+                        .get(parent_id)
+                        .is_some_and(|parent| parent.node_type.as_deref() == Some("volume"))
+                }),
+                Some("scene") => node.parent_id.as_deref().is_some_and(|parent_id| {
+                    outline_by_id
+                        .get(parent_id)
+                        .is_some_and(|parent| parent.node_type.as_deref() == Some("chapter"))
+                }),
+                _ => false,
+            });
+    let mut sibling_orders = HashMap::<String, Vec<u64>>::new();
+    for node in &hierarchy_nodes {
+        let Some(order) = node.order else {
+            return false;
+        };
+        sibling_orders
+            .entry(format!(
+                "{}:{}",
+                node.node_type.as_deref().unwrap_or_default(),
+                node.parent_id.as_deref().unwrap_or("root")
+            ))
+            .or_default()
+            .push(order);
+    }
+    let valid_hierarchy_order = sibling_orders.values_mut().all(|orders| {
+        orders.sort_unstable();
+        orders
+            .iter()
+            .enumerate()
+            .all(|(index, order)| *order == index as u64)
+    });
+    if !valid_hierarchy_parent || !valid_hierarchy_order {
         return false;
     }
     let mut chapter_ids = HashSet::new();
@@ -2207,8 +2313,17 @@ fn valid_creation_journey_state(state: &CreationJourneyState) -> bool {
         .iter()
         .filter(|chapter| chapter.resource_id.is_some())
         .count();
+    let materialized_hierarchy_count = hierarchy_nodes
+        .iter()
+        .filter(|node| node.resource_id.is_some())
+        .count();
     (materialized_count == 0 || materialized_count == 3)
-        && (state.stage != "writing" || materialized_count == 3)
+        && (materialized_hierarchy_count == 0
+            || materialized_hierarchy_count == hierarchy_nodes.len())
+        && (state.stage != "writing"
+            || materialized_count == 3
+            || (!hierarchy_nodes.is_empty()
+                && materialized_hierarchy_count == hierarchy_nodes.len()))
 }
 
 fn parse_creation_journey_state(content: &str) -> Result<CreationJourneyState, String> {
@@ -2502,6 +2617,487 @@ pub fn materialize_creation_journey(
 ) -> Result<MaterializeCreationJourneyResult, String> {
     require_write_lock(&state, &request.project_root)?;
     materialize_creation_journey_on_disk(&request)
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct MaterializeOutlineHierarchyRequest {
+    project_root: String,
+    expected_project_revision: String,
+    journey_content: String,
+    expected_journey_hash: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MaterializeOutlineHierarchyResult {
+    project: migration::WritingProject,
+    project_revision: String,
+    chapters: Vec<migration::ChapterDescriptor>,
+    scene_ids: Vec<String>,
+    journey_content: String,
+    journey_hash: String,
+    description: String,
+}
+
+struct OutlineHierarchyTransactionFile {
+    path: PathBuf,
+    original: Option<Vec<u8>>,
+    bytes: Vec<u8>,
+}
+
+fn rollback_outline_hierarchy_files(
+    files: &[OutlineHierarchyTransactionFile],
+    committed: usize,
+) -> Result<(), String> {
+    let mut failed = false;
+    for file in files[..committed].iter().rev() {
+        let result = if let Some(original) = &file.original {
+            filesystem::write_bytes_atomic(&file.path, original)
+        } else if file.path.exists() {
+            fs::remove_file(&file.path).map_err(|_| "outlineHierarchyRollbackFailed".to_owned())
+        } else {
+            Ok(())
+        };
+        failed |= result.is_err();
+    }
+    if failed {
+        Err("outlineHierarchyRollbackFailed".to_owned())
+    } else {
+        Ok(())
+    }
+}
+
+fn write_outline_hierarchy_transaction(
+    files: &[OutlineHierarchyTransactionFile],
+) -> Result<(), String> {
+    let mut committed = 0_usize;
+    for file in files {
+        if filesystem::write_bytes_atomic(&file.path, &file.bytes).is_err() {
+            return rollback_outline_hierarchy_files(files, committed)
+                .and(Err("outlineHierarchyWriteFailed".to_owned()));
+        }
+        committed += 1;
+    }
+    Ok(())
+}
+
+fn utf16_len(value: &str) -> usize {
+    value.encode_utf16().count()
+}
+
+fn story_creation_id(prefix: &str, seed: &str) -> String {
+    let digest = hex::encode(Sha256::digest(seed.as_bytes()));
+    format!("{prefix}:{}", &digest[..16])
+}
+
+fn normalized_hierarchy_title(value: &str) -> String {
+    value
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+        .to_lowercase()
+}
+
+fn materialize_outline_hierarchy_on_disk(
+    request: &MaterializeOutlineHierarchyRequest,
+) -> Result<MaterializeOutlineHierarchyResult, String> {
+    let root = filesystem::canonical_project_root(&request.project_root)?;
+    let manifest_path = root.join(".writing-buddy").join("project.json");
+    let journey_path = root.join(CREATION_JOURNEY_RELATIVE_PATH);
+    let previous_manifest =
+        fs::read(&manifest_path).map_err(|_| "manifestReadFailed".to_owned())?;
+    let current_project_revision = filesystem::sha256(&previous_manifest);
+    if request.expected_project_revision != current_project_revision {
+        return Err(format!(
+            "projectRevisionConflict:{current_project_revision}"
+        ));
+    }
+    let previous_journey = match fs::read(&journey_path) {
+        Ok(bytes) => Some(bytes),
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
+        Err(_) => return Err("creationJourneyReadFailed".to_owned()),
+    };
+    let current_journey_hash = previous_journey
+        .as_deref()
+        .map(filesystem::sha256)
+        .unwrap_or_default();
+    if request.expected_journey_hash != current_journey_hash {
+        return Err(format!("externalChange:{current_journey_hash}"));
+    }
+    let mut journey = parse_creation_journey_state(&request.journey_content)?;
+    let mut project: migration::WritingProject =
+        serde_json::from_slice(&previous_manifest).map_err(|_| "invalidManifest".to_owned())?;
+    if journey.project_id != project.project_id {
+        return Err("creationJourneyProjectMismatch".to_owned());
+    }
+
+    let mut volume_nodes = journey
+        .outline
+        .iter()
+        .filter(|node| node.node_type.as_deref() == Some("volume"))
+        .collect::<Vec<_>>();
+    volume_nodes.sort_by_key(|node| node.order.unwrap_or(u64::MAX));
+    let mut chapter_nodes = journey
+        .outline
+        .iter()
+        .filter(|node| node.node_type.as_deref() == Some("chapter"))
+        .collect::<Vec<_>>();
+    chapter_nodes.sort_by_key(|node| {
+        let parent_order = volume_nodes
+            .iter()
+            .position(|volume| Some(volume.id.as_str()) == node.parent_id.as_deref())
+            .unwrap_or(usize::MAX);
+        (parent_order, node.order.unwrap_or(u64::MAX))
+    });
+    let mut scene_nodes = journey
+        .outline
+        .iter()
+        .filter(|node| node.node_type.as_deref() == Some("scene"))
+        .collect::<Vec<_>>();
+    scene_nodes.sort_by_key(|node| {
+        let parent_order = chapter_nodes
+            .iter()
+            .position(|chapter| Some(chapter.id.as_str()) == node.parent_id.as_deref())
+            .unwrap_or(usize::MAX);
+        (parent_order, node.order.unwrap_or(u64::MAX))
+    });
+    let hierarchy_ids = volume_nodes
+        .iter()
+        .chain(&chapter_nodes)
+        .chain(&scene_nodes)
+        .map(|node| node.id.as_str())
+        .collect::<HashSet<_>>();
+    if volume_nodes.is_empty()
+        || chapter_nodes.is_empty()
+        || scene_nodes.is_empty()
+        || volume_nodes.iter().any(|volume| {
+            !chapter_nodes
+                .iter()
+                .any(|chapter| chapter.parent_id.as_deref() == Some(volume.id.as_str()))
+        })
+        || chapter_nodes.iter().any(|chapter| {
+            !scene_nodes
+                .iter()
+                .any(|scene| scene.parent_id.as_deref() == Some(chapter.id.as_str()))
+        })
+        || hierarchy_ids.len() != volume_nodes.len() + chapter_nodes.len() + scene_nodes.len()
+        || volume_nodes
+            .iter()
+            .chain(&chapter_nodes)
+            .chain(&scene_nodes)
+            .any(|node| node.resource_id.is_some())
+    {
+        return Err("outlineHierarchyMaterializationInvalid".to_owned());
+    }
+    if journey
+        .locks
+        .outline_node_ids
+        .iter()
+        .any(|id| hierarchy_ids.contains(id.as_str()))
+    {
+        return Err("outlineHierarchyLocked".to_owned());
+    }
+    let existing_titles = project
+        .volumes
+        .iter()
+        .flat_map(|volume| {
+            std::iter::once(normalized_hierarchy_title(&volume.title)).chain(
+                volume
+                    .chapters
+                    .iter()
+                    .map(|chapter| normalized_hierarchy_title(&chapter.title)),
+            )
+        })
+        .collect::<HashSet<_>>();
+    if volume_nodes
+        .iter()
+        .chain(&chapter_nodes)
+        .any(|node| existing_titles.contains(&normalized_hierarchy_title(&node.title)))
+    {
+        return Err("outlineHierarchyCanonicalConflict".to_owned());
+    }
+
+    let chapter_count = chapter_nodes.len();
+    let mut sequences = Vec::with_capacity(chapter_count);
+    for sequence in 1..=9999 {
+        if !root
+            .join("chapters")
+            .join(format!("chapter-{sequence:03}.md"))
+            .exists()
+        {
+            sequences.push(sequence);
+            if sequences.len() == chapter_count {
+                break;
+            }
+        }
+    }
+    if sequences.len() != chapter_count {
+        return Err("chapterFileLimitReached".to_owned());
+    }
+    let nonce = format!(
+        "{}:{}:{}",
+        project.project_id,
+        Utc::now().timestamp_millis(),
+        std::process::id()
+    );
+    let mut canonical_ids = HashMap::<String, String>::new();
+    for (index, volume) in volume_nodes.iter().enumerate() {
+        canonical_ids.insert(
+            volume.id.clone(),
+            creation_id("volume", &format!("{nonce}:volume:{index}")),
+        );
+    }
+    for (index, chapter) in chapter_nodes.iter().enumerate() {
+        canonical_ids.insert(
+            chapter.id.clone(),
+            creation_id("chapter", &format!("{nonce}:chapter:{index}")),
+        );
+    }
+    for (index, scene) in scene_nodes.iter().enumerate() {
+        canonical_ids.insert(
+            scene.id.clone(),
+            story_creation_id("scene", &format!("{nonce}:scene:{index}")),
+        );
+    }
+
+    let chapters = chapter_nodes
+        .iter()
+        .zip(&sequences)
+        .map(|(node, sequence)| migration::ChapterDescriptor {
+            id: canonical_ids
+                .get(&node.id)
+                .cloned()
+                .expect("chapter canonical ID is prepared"),
+            title: node.title.trim().to_owned(),
+            file: format!("chapters/chapter-{sequence:03}.md"),
+            status: Some("draft".to_owned()),
+            target_words: None,
+            scene: migration::SceneMetadata {
+                location: String::new(),
+                time: String::new(),
+                pov: node
+                    .pov_hint
+                    .as_deref()
+                    .unwrap_or_default()
+                    .trim()
+                    .to_owned(),
+                characters: Vec::new(),
+                goal: node.goal.as_deref().unwrap_or_default().trim().to_owned(),
+                note: node.summary.trim().to_owned(),
+            },
+        })
+        .collect::<Vec<_>>();
+    let chapter_by_projection = chapter_nodes
+        .iter()
+        .zip(&chapters)
+        .map(|(node, chapter)| (node.id.as_str(), chapter))
+        .collect::<HashMap<_, _>>();
+    let new_volumes = volume_nodes
+        .iter()
+        .map(|volume| migration::VolumeDescriptor {
+            id: canonical_ids
+                .get(&volume.id)
+                .cloned()
+                .expect("volume canonical ID is prepared"),
+            title: volume.title.trim().to_owned(),
+            chapters: chapter_nodes
+                .iter()
+                .filter(|chapter| chapter.parent_id.as_deref() == Some(volume.id.as_str()))
+                .filter_map(|chapter| {
+                    chapter_by_projection
+                        .get(chapter.id.as_str())
+                        .map(|descriptor| (*descriptor).clone())
+                })
+                .collect(),
+        })
+        .collect::<Vec<_>>();
+    project.volumes.retain(|volume| !volume.chapters.is_empty());
+    project.volumes.extend(new_volumes.clone());
+
+    let timestamp = Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true);
+    let mut chapter_files = Vec::<OutlineHierarchyTransactionFile>::new();
+    let mut story_files = Vec::<OutlineHierarchyTransactionFile>::new();
+    let mut scene_ids = Vec::with_capacity(scene_nodes.len());
+    for (chapter_node, chapter) in chapter_nodes.iter().zip(&chapters) {
+        let mut manuscript = format!("# {}\n\n", chapter.title);
+        let mut chapter_scenes = scene_nodes
+            .iter()
+            .filter(|scene| scene.parent_id.as_deref() == Some(chapter_node.id.as_str()))
+            .collect::<Vec<_>>();
+        chapter_scenes.sort_by_key(|scene| scene.order.unwrap_or(u64::MAX));
+        for (narrative_order, scene) in chapter_scenes.iter().enumerate() {
+            let scene_id = canonical_ids
+                .get(&scene.id)
+                .cloned()
+                .expect("scene canonical ID is prepared");
+            let start = utf16_len(&manuscript);
+            let section = format!(
+                "## {}\n\n<!-- writing-buddy-scene:{scene_id} -->\n\n",
+                scene.title.trim()
+            );
+            let end = start + utf16_len(&section);
+            manuscript.push_str(&section);
+            let quote = section.chars().take(500).collect::<String>();
+            let story_scene = json!({
+                "id": scene_id,
+                "type": "scene",
+                "title": scene.title.trim(),
+                "summary": scene.summary.trim(),
+                "aliases": [],
+                "tags": [],
+                "schemaVersion": 1,
+                "createdAt": timestamp,
+                "updatedAt": timestamp,
+                "revision": 0,
+                "chapterId": format!("chapter:{}", chapter.id),
+                "manuscriptRange": {
+                    "start": start,
+                    "end": end,
+                    "revision": 0,
+                    "quote": quote
+                },
+                "narrativeOrder": narrative_order,
+                "locationIds": [],
+                "participantIds": [],
+                "goal": scene.goal.as_deref().unwrap_or_default().trim(),
+                "conflict": scene.conflict.as_deref().unwrap_or_default().trim(),
+                "turn": scene.outcome.as_deref().unwrap_or_default().trim(),
+                "outcome": scene.hook.as_deref().unwrap_or_default().trim(),
+                "plotThreadIds": [],
+                "revealInformationIds": [],
+                "foreshadowingIds": [],
+                "evidenceIds": []
+            });
+            let prepared = crate::story::storage::prepare_resource(
+                &root,
+                &crate::story::storage::StorySaveEntry {
+                    resource: story_scene,
+                    expected_revision: Some(0),
+                    expected_absent: true,
+                },
+            )
+            .map_err(|_| "outlineHierarchyMaterializationInvalid".to_owned())?;
+            story_files.push(OutlineHierarchyTransactionFile {
+                path: prepared.target,
+                original: prepared.original,
+                bytes: prepared.bytes,
+            });
+            scene_ids.push(scene_id);
+        }
+        chapter_files.push(OutlineHierarchyTransactionFile {
+            path: root.join(&chapter.file),
+            original: None,
+            bytes: manuscript.into_bytes(),
+        });
+    }
+
+    let volume_total = volume_nodes.len();
+    let chapter_total = chapter_nodes.len();
+    let scene_total = scene_nodes.len();
+    drop(chapter_by_projection);
+    drop(hierarchy_ids);
+    drop(scene_nodes);
+    drop(chapter_nodes);
+    drop(volume_nodes);
+    for node in &mut journey.outline {
+        if let Some(resource_id) = canonical_ids.get(&node.id) {
+            node.resource_id = Some(resource_id.clone());
+        }
+    }
+    journey.stage = "writing".to_owned();
+    journey.revision = journey.revision.saturating_add(1);
+    journey.updated_at = timestamp;
+    if !valid_creation_journey_state(&journey) {
+        return Err("outlineHierarchyMaterializationInvalid".to_owned());
+    }
+
+    let mut manifest_bytes = serde_json::to_vec_pretty(&project)
+        .map_err(|_| "outlineHierarchySerializeFailed".to_owned())?;
+    manifest_bytes.push(b'\n');
+    let mut journey_bytes = serde_json::to_vec_pretty(&journey)
+        .map_err(|_| "outlineHierarchySerializeFailed".to_owned())?;
+    journey_bytes.push(b'\n');
+    let journey_content = String::from_utf8(journey_bytes.clone())
+        .map_err(|_| "outlineHierarchySerializeFailed".to_owned())?;
+    let mut transaction = Vec::new();
+    transaction.extend(chapter_files);
+    transaction.extend(story_files);
+    transaction.push(OutlineHierarchyTransactionFile {
+        path: manifest_path.clone(),
+        original: Some(previous_manifest),
+        bytes: manifest_bytes.clone(),
+    });
+    transaction.push(OutlineHierarchyTransactionFile {
+        path: journey_path.clone(),
+        original: previous_journey,
+        bytes: journey_bytes.clone(),
+    });
+    write_outline_hierarchy_transaction(&transaction)?;
+
+    let project_revision = filesystem::sha256(&manifest_bytes);
+    let journey_hash = filesystem::sha256(&journey_bytes);
+    let verified_project = migration::open_project(&root.to_string_lossy());
+    let verified_journey = fs::read(&journey_path)
+        .map_err(|_| "outlineHierarchyVerificationFailed".to_owned())
+        .and_then(|bytes| {
+            let content = String::from_utf8(bytes)
+                .map_err(|_| "outlineHierarchyVerificationFailed".to_owned())?;
+            parse_creation_journey_state(&content)
+                .map_err(|_| "outlineHierarchyVerificationFailed".to_owned())
+        });
+    let verified_scenes = scene_ids.iter().all(|scene_id| {
+        crate::story::storage::get_resource(&root.to_string_lossy(), "scene", scene_id).is_ok()
+    });
+    let verified = matches!(
+        (&verified_project, &verified_journey),
+        (Ok(snapshot), Ok(journey))
+            if !snapshot.read_only
+                && snapshot.project_revision == project_revision
+                && journey.stage == "writing"
+                && chapters.iter().all(|chapter| snapshot
+                    .project
+                    .volumes
+                    .iter()
+                    .flat_map(|volume| &volume.chapters)
+                    .any(|candidate| candidate.id == chapter.id))
+    ) && verified_scenes;
+    if !verified {
+        let _ = rollback_outline_hierarchy_files(&transaction, transaction.len());
+        return Err("outlineHierarchyVerificationFailed".to_owned());
+    }
+    let verified_project =
+        verified_project.map_err(|_| "outlineHierarchyVerificationFailed".to_owned())?;
+    Ok(MaterializeOutlineHierarchyResult {
+        project: verified_project.project,
+        project_revision,
+        chapters,
+        scene_ids,
+        journey_content,
+        journey_hash,
+        description: format!(
+            "已创建 {} 卷、{} 章和 {} 个场景。",
+            volume_total, chapter_total, scene_total
+        ),
+    })
+}
+
+#[tauri::command]
+pub fn materialize_outline_hierarchy(
+    state: State<'_, AppState>,
+    request: MaterializeOutlineHierarchyRequest,
+) -> Result<MaterializeOutlineHierarchyResult, String> {
+    require_write_lock(&state, &request.project_root)?;
+    let _transaction = state
+        .story_transactions
+        .lock()
+        .map_err(|_| "storyTransactionLockFailed".to_owned())?;
+    let root = filesystem::canonical_project_root(&request.project_root)?;
+    let result = materialize_outline_hierarchy_on_disk(&request)?;
+    if let Ok(mut indexes) = state.story_indexes.lock() {
+        indexes.remove(&root);
+    }
+    Ok(result)
 }
 
 #[tauri::command]
@@ -3150,6 +3746,73 @@ mod tests {
         .to_string()
     }
 
+    fn writable_hierarchy_fixture(project_id: &str, locked: bool) -> String {
+        let mut state: serde_json::Value =
+            serde_json::from_str(&creation_journey_fixture(project_id)).expect("valid journey");
+        state["stage"] = json!("outline");
+        state["chapters"] = json!([]);
+        state["outline"]
+            .as_array_mut()
+            .expect("outline array")
+            .extend([
+                json!({
+                    "id": "journey-outline:volume-one",
+                    "type": "volume",
+                    "order": 0,
+                    "title": "第一卷 雨夜来客",
+                    "summary": "记者发现旧车站与失踪案有关。",
+                    "purpose": "建立谜团",
+                    "goal": "进入旧站",
+                    "conflict": "记忆开始消退",
+                    "outcome": "记者决定继续调查",
+                    "hook": "玻璃顶出现第二组雨痕",
+                    "status": "planned",
+                    "source": "ai_generated",
+                    "revision": 1
+                }),
+                json!({
+                    "id": "journey-outline:chapter-one",
+                    "type": "chapter",
+                    "parentId": "journey-outline:volume-one",
+                    "order": 0,
+                    "title": "第一章 夜雨名单",
+                    "summary": "记者在旧站取得失踪者名单。",
+                    "purpose": "取得名单",
+                    "goal": "拍下名单",
+                    "conflict": "站长阻止",
+                    "outcome": "发现自己的名字",
+                    "hook": "停运列车亮灯",
+                    "povHint": "记者",
+                    "status": "planned",
+                    "source": "ai_generated",
+                    "revision": 1
+                }),
+                json!({
+                    "id": "journey-outline:scene-one",
+                    "type": "scene",
+                    "parentId": "journey-outline:chapter-one",
+                    "order": 0,
+                    "title": "玻璃顶下的名单",
+                    "summary": "记者潜入候车厅拍摄名单。",
+                    "purpose": "取得证据",
+                    "goal": "拍下名单",
+                    "conflict": "站长封锁出口",
+                    "outcome": "名单出现记者姓名",
+                    "hook": "停运列车亮灯",
+                    "povHint": "记者",
+                    "locationHint": "旧车站候车厅",
+                    "characterHints": ["记者", "站长"],
+                    "status": "ready_to_write",
+                    "source": "ai_generated",
+                    "revision": 1
+                }),
+            ]);
+        if locked {
+            state["locks"]["outlineNodeIds"] = json!(["journey-outline:chapter-one"]);
+        }
+        state.to_string()
+    }
+
     #[test]
     fn creation_journey_v2_rejects_orphan_locks_and_stale_mismatches() {
         let mut orphan_lock: serde_json::Value =
@@ -3326,6 +3989,136 @@ mod tests {
             before_manifest
         );
         assert!(!Path::new(&created.root).join("chapters").exists());
+        assert!(
+            !Path::new(&created.root)
+                .join(CREATION_JOURNEY_RELATIVE_PATH)
+                .exists()
+        );
+        let _ = fs::remove_dir_all(parent);
+    }
+
+    #[test]
+    fn outline_hierarchy_materializes_canonical_chapters_and_story_scenes() {
+        let parent = project_creation_parent("outline-hierarchy-materialize");
+        let mut create_request =
+            project_creation_request(&parent, "Writable Outline", "blank-longform");
+        create_request.selected_initial_resources = vec!["first-volume".to_owned()];
+        let created = create_project(create_request).expect("create empty hierarchy project");
+        let before = migration::open_project(&created.root).expect("open empty project");
+        let request = MaterializeOutlineHierarchyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: before.project_revision,
+            journey_content: writable_hierarchy_fixture(&created.project_id, false),
+            expected_journey_hash: String::new(),
+        };
+
+        let result =
+            materialize_outline_hierarchy_on_disk(&request).expect("materialize hierarchy");
+
+        assert_eq!(result.project.volumes.len(), 1);
+        assert_eq!(result.chapters.len(), 1);
+        assert_eq!(result.scene_ids.len(), 1);
+        let chapter = &result.chapters[0];
+        let manuscript = fs::read_to_string(Path::new(&created.root).join(&chapter.file))
+            .expect("read generated manuscript");
+        assert!(manuscript.contains("<!-- writing-buddy-scene:scene:"));
+        let scene =
+            crate::story::storage::get_resource(&created.root, "scene", &result.scene_ids[0])
+                .expect("read canonical scene")
+                .expect("canonical scene exists");
+        assert_eq!(scene["chapterId"], json!(format!("chapter:{}", chapter.id)));
+        assert_eq!(scene["revision"], json!(1));
+        let end = scene["manuscriptRange"]["end"].as_u64().expect("range end") as usize;
+        assert!(end <= manuscript.encode_utf16().count());
+        let saved = parse_creation_journey_state(&result.journey_content)
+            .expect("parse materialized hierarchy journey");
+        assert_eq!(saved.stage, "writing");
+        assert!(
+            saved
+                .outline
+                .iter()
+                .filter(|node| matches!(
+                    node.node_type.as_deref(),
+                    Some("volume" | "chapter" | "scene")
+                ))
+                .all(|node| node.resource_id.is_some())
+        );
+        let _ = fs::remove_dir_all(parent);
+    }
+
+    #[test]
+    fn outline_hierarchy_rejects_locked_nodes_without_writing() {
+        let parent = project_creation_parent("outline-hierarchy-locked");
+        let mut create_request =
+            project_creation_request(&parent, "Locked Outline", "blank-longform");
+        create_request.selected_initial_resources = vec!["first-volume".to_owned()];
+        let created = create_project(create_request).expect("create locked hierarchy project");
+        let before = migration::open_project(&created.root).expect("open empty project");
+        let manifest_path = Path::new(&created.root).join(".writing-buddy/project.json");
+        let before_manifest = fs::read(&manifest_path).expect("read manifest");
+        let request = MaterializeOutlineHierarchyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: before.project_revision,
+            journey_content: writable_hierarchy_fixture(&created.project_id, true),
+            expected_journey_hash: String::new(),
+        };
+
+        assert_eq!(
+            materialize_outline_hierarchy_on_disk(&request)
+                .expect_err("locked hierarchy must not materialize"),
+            "outlineHierarchyLocked"
+        );
+        assert_eq!(
+            fs::read(manifest_path).expect("reread manifest"),
+            before_manifest
+        );
+        assert!(
+            !Path::new(&created.root)
+                .join(CREATION_JOURNEY_RELATIVE_PATH)
+                .exists()
+        );
+        let _ = fs::remove_dir_all(parent);
+    }
+
+    #[test]
+    fn outline_hierarchy_rolls_back_chapters_when_story_write_fails() {
+        let parent = project_creation_parent("outline-hierarchy-rollback");
+        let mut create_request =
+            project_creation_request(&parent, "Rollback Outline", "blank-longform");
+        create_request.selected_initial_resources = vec!["first-volume".to_owned()];
+        let created = create_project(create_request).expect("create rollback hierarchy project");
+        let before = migration::open_project(&created.root).expect("open empty project");
+        let manifest_path = Path::new(&created.root).join(".writing-buddy/project.json");
+        let before_manifest = fs::read(&manifest_path).expect("read manifest");
+        let story_path = Path::new(&created.root).join("story");
+        fs::create_dir_all(&story_path).expect("create story directory");
+        let scenes_path = story_path.join("scenes");
+        if scenes_path.exists() {
+            fs::remove_dir_all(&scenes_path).expect("remove scene directory");
+        }
+        fs::write(&scenes_path, b"not a directory").expect("block scene directory");
+        let request = MaterializeOutlineHierarchyRequest {
+            project_root: created.root.clone(),
+            expected_project_revision: before.project_revision,
+            journey_content: writable_hierarchy_fixture(&created.project_id, false),
+            expected_journey_hash: String::new(),
+        };
+
+        assert_eq!(
+            materialize_outline_hierarchy_on_disk(&request)
+                .expect_err("story write must fail and roll back"),
+            "outlineHierarchyWriteFailed"
+        );
+        assert_eq!(
+            fs::read(manifest_path).expect("reread manifest"),
+            before_manifest
+        );
+        assert_eq!(
+            fs::read_dir(Path::new(&created.root).join("chapters"))
+                .map(|entries| entries.count())
+                .unwrap_or_default(),
+            0
+        );
         assert!(
             !Path::new(&created.root)
                 .join(CREATION_JOURNEY_RELATIVE_PATH)

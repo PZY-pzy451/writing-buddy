@@ -47,6 +47,8 @@
 - [Phase 1.2C guided AI story development acceptance, 2026-07-30](./045-phase-1.2c-guided-ai-story-development-2026-07-30.md)
 - [Story Kernel generation resilience acceptance, 2026-07-30](./046-story-kernel-generation-resilience-2026-07-30.md)
 - [Genre-to-Draft Gates A–C acceptance, 2026-07-30](./047-genre-to-draft-gates-a-c-2026-07-30.md)
+- [Genre-to-Draft Gate D author control acceptance, 2026-07-30](./048-genre-to-draft-gate-d-2026-07-30.md)
+- [Genre-to-Draft Gate E writable scenes acceptance, 2026-07-30](./049-genre-to-draft-gate-e-writable-scenes-2026-07-30.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

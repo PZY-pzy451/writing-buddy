@@ -6,12 +6,15 @@ import {
 	CircleDot,
 	FilePlus2,
 	GripVertical,
+	Layers3,
 	LockKeyhole,
 	LockKeyholeOpen,
+	Play,
 	RotateCcw,
 	Save,
 	Sparkles,
-	Trash2
+	Trash2,
+	X
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -33,6 +36,10 @@ import {
 	type OutlineGenerationStrategy,
 	type OutlineImpactReport
 } from './OutlineAuthorControlModel';
+import {
+	type HierarchyExpansionPreview,
+	type HierarchyExpansionTarget
+} from './OutlineHierarchyExpansionModel';
 
 interface StructuredOutlineWorkspaceProps {
 	readonly state: CreationJourneyState;
@@ -51,6 +58,12 @@ interface StructuredOutlineWorkspaceProps {
 	) => Promise<OutlineImpactReport>;
 	readonly onUndoAlternativeApply?: () => Promise<void>;
 	readonly canUndoAlternativeApply?: boolean;
+	readonly onGenerateHierarchy?: (
+		target: HierarchyExpansionTarget,
+		expectedCount: number
+	) => Promise<HierarchyExpansionPreview>;
+	readonly onConfirmHierarchy?: (preview: HierarchyExpansionPreview) => Promise<void>;
+	readonly onMaterializeHierarchy?: () => Promise<boolean>;
 }
 
 const rootFields: readonly {
@@ -137,7 +150,12 @@ function outlineErrorCopy(reason: unknown): string {
 		outlineCandidateSelectionRequired: '请至少选择一个发生变化的字段。',
 		outlineCandidateFieldUnchanged: '只能采用实际发生变化的字段。',
 		invalidCreationJourneyResponse: 'AI 返回的候选结构不完整；原节点保持不变。',
-		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。'
+		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。',
+		outlineHierarchyExpansionConflict: '候选与现有同级节点重名，请取消后重新生成。',
+		outlineHierarchyPreviewStale: '结构在预览后发生变化，请重新生成拆分候选。',
+		outlineHierarchyIncomplete: '每个卷都需要章节，每个章节都需要至少一个场景。',
+		outlineHierarchyLocked: '请先解除卷、章或场景节点的锁定，再开始写作。',
+		outlineHierarchyMaterializationInvalid: '当前卷、章、场景结构无法安全创建。'
 	};
 	return messages[code] ?? '暂时无法完成这个大纲操作。';
 }
@@ -151,7 +169,10 @@ export function StructuredOutlineWorkspace({
 	onGenerateAlternatives,
 	onApplyAlternative,
 	onUndoAlternativeApply,
-	canUndoAlternativeApply = false
+	canUndoAlternativeApply = false,
+	onGenerateHierarchy,
+	onConfirmHierarchy,
+	onMaterializeHierarchy
 }: StructuredOutlineWorkspaceProps): React.JSX.Element {
 	const root = state.storyOutline;
 	const [selectedId, setSelectedId] = useState<string>();
@@ -168,12 +189,24 @@ export function StructuredOutlineWorkspace({
 	const [selectedCandidateFields, setSelectedCandidateFields] =
 		useState<readonly OutlineCandidateField[]>([]);
 	const [impactReport, setImpactReport] = useState<OutlineImpactReport>();
+	const [hierarchyPreview, setHierarchyPreview] = useState<HierarchyExpansionPreview>();
+	const [hierarchyBusy, setHierarchyBusy] = useState<
+		'generating' | 'confirming' | 'materializing'
+	>();
+	const [hierarchyCount, setHierarchyCount] = useState(3);
+	const [materializationReviewOpen, setMaterializationReviewOpen] = useState(false);
 	const editSnapshotRef = useRef<{
 		readonly key: string;
 		readonly state: CreationJourneyState;
 	} | undefined>(undefined);
 	const candidateHeadingRef = useRef<HTMLHeadingElement>(null);
 	const selectedNode = state.outline.find(node => node.id === selectedId);
+	const storyBeats = state.outline.filter(
+		node => (node.type ?? 'story_beat') === 'story_beat'
+	);
+	const hierarchyNodes = state.outline.filter(
+		node => node.type === 'volume' || node.type === 'chapter' || node.type === 'scene'
+	);
 
 	useEffect(() => {
 		if (candidatePreview) candidateHeadingRef.current?.focus();
@@ -254,6 +287,38 @@ export function StructuredOutlineWorkspace({
 		? diffOutlineCandidate(previewTarget, selectedAlternative.replacement)
 		: [];
 	const changedDiffs = selectedDiffs.filter(diff => diff.changed);
+	const hierarchyTarget: HierarchyExpansionTarget | undefined = !selectedNode
+		? { kind: 'story' }
+		: selectedNode.type === 'volume'
+			? { kind: 'volume', id: selectedNode.id }
+			: selectedNode.type === 'chapter'
+				? { kind: 'chapter', id: selectedNode.id }
+				: undefined;
+	const hierarchyPrimaryLabel = !selectedNode
+		? '拆分为卷'
+		: selectedNode.type === 'volume'
+			? '拆分为章节'
+			: selectedNode.type === 'chapter'
+				? '生成场景'
+				: selectedNode.type === 'scene'
+					? '开始写作'
+					: undefined;
+	const volumeCount = hierarchyNodes.filter(node => node.type === 'volume').length;
+	const chapterCount = hierarchyNodes.filter(node => node.type === 'chapter').length;
+	const sceneCount = hierarchyNodes.filter(node => node.type === 'scene').length;
+	const hierarchyComplete = volumeCount > 0
+		&& chapterCount > 0
+		&& sceneCount > 0
+		&& hierarchyNodes
+			.filter(node => node.type === 'volume')
+			.every(volume => hierarchyNodes.some(
+				chapter => chapter.type === 'chapter' && chapter.parentId === volume.id
+			))
+		&& hierarchyNodes
+			.filter(node => node.type === 'chapter')
+			.every(chapter => hierarchyNodes.some(
+				scene => scene.type === 'scene' && scene.parentId === chapter.id
+			));
 
 	const selectCandidate = (index: number, preview = candidatePreview) => {
 		const target = preview
@@ -330,6 +395,48 @@ export function StructuredOutlineWorkspace({
 		}
 	};
 
+	const generateHierarchy = async () => {
+		if (!hierarchyTarget || !onGenerateHierarchy || hierarchyBusy) return;
+		setHierarchyBusy('generating');
+		setLocalError(undefined);
+		try {
+			setHierarchyPreview(await onGenerateHierarchy(hierarchyTarget, hierarchyCount));
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setHierarchyBusy(undefined);
+		}
+	};
+
+	const confirmHierarchy = async () => {
+		if (!hierarchyPreview || !onConfirmHierarchy || hierarchyBusy) return;
+		setHierarchyBusy('confirming');
+		setLocalError(undefined);
+		try {
+			await onConfirmHierarchy(hierarchyPreview);
+			setSelectedId(hierarchyPreview.candidates[0]?.id);
+			setHierarchyPreview(undefined);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setHierarchyBusy(undefined);
+		}
+	};
+
+	const materializeHierarchy = async () => {
+		if (!onMaterializeHierarchy || hierarchyBusy || !hierarchyComplete) return;
+		setHierarchyBusy('materializing');
+		setLocalError(undefined);
+		try {
+			const applied = await onMaterializeHierarchy();
+			if (applied) setMaterializationReviewOpen(false);
+		} catch (reason) {
+			setLocalError(outlineErrorCopy(reason));
+		} finally {
+			setHierarchyBusy(undefined);
+		}
+	};
+
 	return (
 		<section className="structured-outline-workspace" aria-label="结构化大纲工作区">
 			<header className="structured-outline-toolbar">
@@ -340,7 +447,7 @@ export function StructuredOutlineWorkspace({
 				<div className="structured-outline-toolbar-actions">
 					<button
 						type="button"
-						disabled={readOnly || state.outline.length >= 8}
+						disabled={readOnly || storyBeats.length >= 8}
 						onClick={() => {
 							const next = apply(
 								() => addStoryOutlineNode(state),
@@ -362,22 +469,134 @@ export function StructuredOutlineWorkspace({
 					</button>
 					<button
 						type="button"
-						className="primary-button"
+						className="secondary-button"
 						disabled={readOnly}
 						onClick={() => void onSave()}
 					>
 						<Save size={18} />保存大纲
 					</button>
+					{hierarchyTarget && !hierarchyPreview && !candidatePreview && (
+						<label className="structured-outline-split-count">
+							<span>数量</span>
+							<input
+								type="number"
+								min={1}
+								max={hierarchyTarget.kind === 'story'
+									? 8
+									: hierarchyTarget.kind === 'volume' ? 24 : 12}
+								value={hierarchyCount}
+								disabled={readOnly || Boolean(hierarchyBusy)}
+								onChange={event => setHierarchyCount(Math.max(
+									1,
+									Math.min(Number(event.target.max), Number(event.target.value) || 1)
+								))}
+								aria-label="拆分候选数量"
+							/>
+						</label>
+					)}
+					{hierarchyPrimaryLabel && !hierarchyPreview && !candidatePreview && (
+						<button
+							type="button"
+							className="primary-button"
+							disabled={
+								readOnly
+								|| Boolean(hierarchyBusy)
+								|| materializationReviewOpen
+								|| (selectedNode?.type === 'scene' && !hierarchyComplete)
+								|| (selectedNode?.type === 'scene' && Boolean(selectedNode.resourceId))
+							}
+							onClick={() => {
+								if (selectedNode?.type === 'scene') {
+									setMaterializationReviewOpen(true);
+								} else {
+									void generateHierarchy();
+								}
+							}}
+						>
+							{selectedNode?.type === 'scene'
+								? <Play size={18} />
+								: <Layers3 size={18} />}
+							{hierarchyBusy === 'generating' ? '正在生成候选…' : hierarchyPrimaryLabel}
+						</button>
+					)}
 				</div>
 			</header>
 
 			{localError && <div className="structured-outline-error" role="alert">{localError}</div>}
 
+			{hierarchyPreview && (
+				<section className="outline-hierarchy-preview" aria-label="拆分预览">
+					<header>
+						<div>
+							<span className="eyebrow">SPLIT PREVIEW</span>
+							<h3>确认后才加入规划结构</h3>
+						</div>
+						<button
+							type="button"
+							aria-label="关闭拆分预览"
+							onClick={() => setHierarchyPreview(undefined)}
+						>
+							<X size={18} />
+						</button>
+					</header>
+					<div className="outline-hierarchy-preview-summary">
+						<strong>预计创建 {hierarchyPreview.createCount} 个{
+							hierarchyPreview.childType === 'volume'
+								? '卷'
+								: hierarchyPreview.childType === 'chapter' ? '章节' : '场景'
+						}</strong>
+						<span>保留现有 {hierarchyPreview.existingPreservedIds.length} 个</span>
+						<span>保留锁定 {hierarchyPreview.lockedPreservedIds.length} 个</span>
+						<span className={hierarchyPreview.conflicts.length ? 'has-conflict' : ''}>
+							发现 {hierarchyPreview.conflicts.length} 个冲突
+						</span>
+					</div>
+					<div className="outline-hierarchy-preview-list">
+						{hierarchyPreview.candidates.map((candidate, index) => (
+							<article key={candidate.id}>
+								<span>{index + 1}</span>
+								<div>
+									<strong>{candidate.title}</strong>
+									<p>{candidate.summary}</p>
+									<small>目标：{candidate.goal || '待补充'} · 冲突：{candidate.conflict || '待补充'}</small>
+								</div>
+							</article>
+						))}
+					</div>
+					{hierarchyPreview.conflicts.length > 0 && (
+						<ul className="outline-hierarchy-conflicts">
+							{hierarchyPreview.conflicts.map((conflict, index) => (
+								<li key={`${conflict.code}-${index}`}>
+									“{conflict.title}”与现有同级节点重复
+								</li>
+							))}
+						</ul>
+					)}
+					<footer>
+						<span>此步骤只保存规划投影，不创建正文文件。</span>
+						<button type="button" onClick={() => setHierarchyPreview(undefined)}>
+							取消
+						</button>
+						<button
+							type="button"
+							className="primary-button"
+							disabled={
+								hierarchyPreview.conflicts.length > 0
+								|| Boolean(hierarchyBusy)
+							}
+							onClick={() => void confirmHierarchy()}
+						>
+							{hierarchyBusy === 'confirming' ? '正在确认…' : '确认拆分'}
+						</button>
+					</footer>
+				</section>
+			)}
+
 			<div className="structured-outline-grid">
 				<nav className="structured-outline-tree" aria-label="故事结构树">
 					<header>
 						<strong>故事结构</strong>
-						<small>{state.outline.length} 个故事节点</small>
+						<small>{storyBeats.length} 个故事节点 · {hierarchyNodes.length} 个层级节点</small>
 					</header>
 					<button
 						type="button"
@@ -401,7 +620,11 @@ export function StructuredOutlineWorkspace({
 										type="button"
 										className={selectedId === node.id ? 'is-selected' : ''}
 										aria-label={`选择${node.title || `未命名节点 ${index + 1}`}`}
-										draggable={!readOnly && !locked}
+										draggable={
+											!readOnly
+											&& !locked
+											&& (node.type ?? 'story_beat') === 'story_beat'
+										}
 										onClick={() => setSelectedId(node.id)}
 										onDragStart={() => setDraggedId(node.id)}
 										onDragEnd={() => setDraggedId(undefined)}
@@ -411,7 +634,9 @@ export function StructuredOutlineWorkspace({
 											setDraggedId(undefined);
 										}}
 									>
-										<span className="structured-outline-tree-index">{index + 1}</span>
+										<span className="structured-outline-tree-index">
+											{node.type === 'volume' ? '卷' : node.type === 'chapter' ? '章' : node.type === 'scene' ? '景' : index + 1}
+										</span>
 										<span>
 											<strong>{node.title || '未命名节点'}</strong>
 											<small>{statusLabel(node.status)}</small>
@@ -435,12 +660,12 @@ export function StructuredOutlineWorkspace({
 						<span>{root.status === 'confirmed' ? <Check size={16} /> : <CircleDot size={16} />}{root.status === 'confirmed' ? '已确认' : '草稿'}</span>
 					</header>
 					<div className="structured-outline-card-list">
-						{state.outline.map((node, index) => {
+						{storyBeats.map((node, index) => {
 							const locked = lockedIds.has(node.id);
-							const previousLocked = index > 0 && lockedIds.has(state.outline[index - 1].id);
+							const previousLocked = index > 0 && lockedIds.has(storyBeats[index - 1].id);
 							const nextLocked = (
-								index < state.outline.length - 1
-								&& lockedIds.has(state.outline[index + 1].id)
+								index < storyBeats.length - 1
+								&& lockedIds.has(storyBeats[index + 1].id)
 							);
 							return (
 								<article
@@ -501,7 +726,7 @@ export function StructuredOutlineWorkspace({
 												readOnly
 												|| locked
 												|| nextLocked
-												|| index === state.outline.length - 1
+										|| index === storyBeats.length - 1
 											}
 											onClick={event => {
 												event.stopPropagation();
@@ -569,7 +794,15 @@ export function StructuredOutlineWorkspace({
 						<>
 							<header>
 								<div>
-									<span className="eyebrow">STORY BEAT {selectedNode.order! + 1}</span>
+									<span className="eyebrow">{
+										selectedNode.type === 'volume'
+											? `VOLUME ${(selectedNode.order ?? 0) + 1}`
+											: selectedNode.type === 'chapter'
+												? `CHAPTER ${(selectedNode.order ?? 0) + 1}`
+												: selectedNode.type === 'scene'
+													? `SCENE ${(selectedNode.order ?? 0) + 1}`
+													: `STORY BEAT ${(selectedNode.order ?? 0) + 1}`
+									}</span>
 									<strong>{selectedNode.title || '未命名节点'}</strong>
 								</div>
 								<span>版本 {selectedNode.revision ?? 1}</span>
@@ -598,7 +831,8 @@ export function StructuredOutlineWorkspace({
 									disabled={
 										readOnly
 										|| lockedIds.has(selectedNode.id)
-										|| state.outline.length <= 5
+										|| storyBeats.length <= 5
+										|| (selectedNode.type ?? 'story_beat') !== 'story_beat'
 									}
 									onClick={() => {
 										const removed = apply(
@@ -611,7 +845,7 @@ export function StructuredOutlineWorkspace({
 									<Trash2 size={18} />删除节点
 								</button>
 							</div>
-							{onGenerateAlternatives && (
+							{onGenerateAlternatives && (selectedNode.type ?? 'story_beat') === 'story_beat' && (
 								<div className="structured-outline-ai-control">
 									<div>
 										<strong>局部 AI 候选</strong>
@@ -731,6 +965,64 @@ export function StructuredOutlineWorkspace({
 					)}
 				</aside>
 			</div>
+
+			{materializationReviewOpen && (
+				<section
+					className="outline-hierarchy-materialization-dialog"
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="outline-materialization-title"
+				>
+					<div className="outline-hierarchy-materialization-card">
+						<header>
+							<div>
+								<span className="eyebrow">ATOMIC APPLY</span>
+								<h3 id="outline-materialization-title">创建可写卷、章节和场景</h3>
+							</div>
+							<button
+								type="button"
+								aria-label="关闭创建确认"
+								onClick={() => setMaterializationReviewOpen(false)}
+							>
+								<X size={18} />
+							</button>
+						</header>
+						<p>确认后将创建正式项目结构与正文场景锚点。失败时会整体回滚。</p>
+						<dl>
+							<div><dt>新卷</dt><dd>{volumeCount}</dd></div>
+							<div><dt>新章节</dt><dd>{chapterCount}</dd></div>
+							<div><dt>新场景</dt><dd>{sceneCount}</dd></div>
+						</dl>
+						<ul>
+							<li>先校验项目与旅程版本</li>
+							<li>锁定节点不会被覆盖</li>
+							<li>写入前创建安全快照</li>
+							<li>项目树、正文与 Story Scene 同步提交</li>
+							<li>完成后可在 12 秒内撤销</li>
+						</ul>
+						<footer>
+							<button
+								type="button"
+								onClick={() => setMaterializationReviewOpen(false)}
+								disabled={Boolean(hierarchyBusy)}
+							>
+								返回检查
+							</button>
+							<button
+								type="button"
+								className="primary-button"
+								disabled={Boolean(hierarchyBusy)}
+								onClick={() => void materializeHierarchy()}
+							>
+								<Play size={18} />
+								{hierarchyBusy === 'materializing'
+									? '正在创建并验证…'
+									: '确认创建并开始写作'}
+							</button>
+						</footer>
+					</div>
+				</section>
+			)}
 
 			{candidatePreview && selectedAlternative && previewTarget && (
 				<section

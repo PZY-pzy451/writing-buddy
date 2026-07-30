@@ -57,6 +57,14 @@ import {
 import { GenreToOutlineGenerationService } from './GenreToOutlineGenerationService';
 import { GenreToOutlineStart } from './GenreToOutlineStart';
 import { OutlineAlternativeGenerationService } from './OutlineAlternativeGenerationService';
+import { OutlineHierarchyGenerationService } from './OutlineHierarchyGenerationService';
+import {
+	applyHierarchyExpansionPreview,
+	buildHierarchyExpansionPreview,
+	validateWritableHierarchy,
+	type HierarchyExpansionPreview,
+	type HierarchyExpansionTarget
+} from './OutlineHierarchyExpansionModel';
 import {
 	applyOutlineCandidateSelection,
 	createOutlineCandidatePreview,
@@ -346,6 +354,19 @@ function journeyErrorCopy(error: unknown): string {
 		outlineCandidateStale: '节点在候选生成后已改变，请重新生成候选。',
 		outlineCandidateUndoStale: '采用后又发生了新修改，无法安全撤销本次 AI 采用。',
 		outlineCandidateSelectionRequired: '请至少选择一个发生变化的字段。',
+		outlineHierarchyTargetInvalid: '请选择可拆分的故事、卷或章节节点。',
+		outlineHierarchyAlreadyMaterialized: '这个层级已经建立，已有内容不会被重复生成或覆盖。',
+		outlineHierarchyCandidateCountInvalid: 'AI 返回的拆分数量不符合要求；已尝试修复一次，请重试。',
+		outlineHierarchyDuplicateId: '拆分候选包含重复节点，请重新生成。',
+		outlineHierarchyExpansionConflict: '候选与现有同级节点重名，请调整条件后重新生成。',
+		outlineHierarchyPreviewStale: '结构在预览后发生变化，请重新生成拆分候选。',
+		outlineHierarchyIncomplete: '每个卷都需要章节，每个章节都需要至少一个场景。',
+		outlineHierarchyLocked: '当前结构包含锁定节点，不会覆盖；请先解除锁定再创建正文。',
+		outlineHierarchyCanonicalConflict: '项目中已存在同名卷或章节，不会覆盖；请先修改名称。',
+		outlineHierarchyMaterializationInvalid: '当前卷、章、场景结构无法安全创建。',
+		outlineHierarchyMaterializationFailed: '卷、章、场景创建失败，项目已保持原状。',
+		outlineHierarchyWriteFailed: '写入卷、章或场景时失败，项目已自动回滚。',
+		outlineHierarchyVerificationFailed: '写入后的完整性检查失败，项目已自动回滚。',
 		invalidSnapshotReason: '安全快照创建失败；候选尚未写入。',
 		externalChange: '创作旅程已在其他窗口修改，请重新打开作品。',
 		cancelled: '已取消本次 AI 请求，没有改动旅程。'
@@ -357,6 +378,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const preferredStartRoute = useAppStore(state => state.creationJourneyStartRoute);
 	const materialize = useAppStore(state => state.materializeCreationJourney);
+	const materializeHierarchy = useAppStore(state => state.materializeOutlineHierarchy);
 	const openResource = useAppStore(state => state.openResource);
 	const setMode = useAppStore(state => state.setMode);
 	const [state, setState] = useState<CreationJourneyState>();
@@ -385,6 +407,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const genreGenerationRequestRef = useRef(false);
 	const genreCancellationRequestedRef = useRef(false);
 	const outlineAlternativeRequestRef = useRef(false);
+	const hierarchyGenerationRequestRef = useRef(false);
 
 	useEffect(() => {
 		if (!snapshot) return;
@@ -1151,6 +1174,186 @@ export function CreationJourneyPage(): React.JSX.Element {
 		}
 	};
 
+	const generateHierarchyExpansion = async (
+		target: HierarchyExpansionTarget,
+		expectedCount: number
+	): Promise<HierarchyExpansionPreview> => {
+		if (hierarchyGenerationRequestRef.current) {
+			throw new Error('aiGenerationInProgress');
+		}
+		const current = stateRef.current;
+		if (!current?.storyOutline) throw new Error('creationJourneyOutlineRequired');
+		if (snapshot?.readOnly) throw new Error('projectReadOnly');
+		hierarchyGenerationRequestRef.current = true;
+		setError(undefined);
+		const operation = target.kind === 'story'
+			? 'expand-to-volumes'
+			: target.kind === 'volume'
+				? 'expand-volume-to-chapters'
+				: 'expand-chapter-to-scenes';
+		setBusyOperation(operation);
+		setStatus(target.kind === 'story'
+			? '正在构建卷结构候选…'
+			: target.kind === 'volume'
+				? '正在拆分章节候选…'
+				: '正在拆分场景候选…');
+		try {
+			const root = current.storyOutline;
+			const story = {
+				genre: root.genre,
+				premise: root.premise,
+				...(root.themePromise ? { themePromise: root.themePromise } : {}),
+				...(root.protagonistGoal ? { protagonistGoal: root.protagonistGoal } : {}),
+				...(root.centralConflict ? { centralConflict: root.centralConflict } : {}),
+				...(root.stakes ? { stakes: root.stakes } : {}),
+				...(root.mysteryQuestion ? { mysteryQuestion: root.mysteryQuestion } : {}),
+				...(root.endingDirection ? { endingDirection: root.endingDirection } : {})
+			};
+			const parent = target.kind === 'story'
+				? undefined
+				: current.outline.find(node => node.id === target.id);
+			if (target.kind !== 'story' && (!parent || parent.type !== target.kind)) {
+				throw new Error('outlineHierarchyTargetInvalid');
+			}
+			const input = target.kind === 'story'
+				? {
+						schemaVersion: 1 as const,
+						operation: 'expand-to-volumes' as const,
+						expectedCount,
+						story,
+						storyBeats: current.outline
+							.filter(node => (node.type ?? 'story_beat') === 'story_beat')
+							.map(node => ({
+								id: node.id,
+								title: node.title,
+								summary: node.summary,
+								purpose: node.purpose
+							})),
+						lockedDecisions: lockedDecisionsForAi(current)
+					}
+				: target.kind === 'volume'
+					? {
+							schemaVersion: 1 as const,
+							operation: 'expand-volume-to-chapters' as const,
+							expectedCount,
+							story,
+							volume: {
+								id: parent!.id,
+								title: parent!.title,
+								summary: parent!.summary,
+								goal: parent!.goal ?? '',
+								conflict: parent!.conflict ?? '',
+								outcome: parent!.outcome ?? '',
+								hook: parent!.hook ?? ''
+							},
+							lockedDecisions: lockedDecisionsForAi(current)
+						}
+					: {
+							schemaVersion: 1 as const,
+							operation: 'expand-chapter-to-scenes' as const,
+							expectedCount,
+							story,
+							chapter: {
+								id: parent!.id,
+								title: parent!.title,
+								summary: parent!.summary,
+								goal: parent!.goal ?? '',
+								conflict: parent!.conflict ?? '',
+								outcome: parent!.outcome ?? '',
+								hook: parent!.hook ?? '',
+								...(parent!.povHint ? { povHint: parent!.povHint } : {})
+							},
+							lockedDecisions: lockedDecisionsForAi(current)
+						};
+			const service = new OutlineHierarchyGenerationService(async request => {
+				if (request.repairAttempt === 1) {
+					setStatus('正在修复拆分候选的字段结构（最后一次）…');
+				}
+				const result = await runGroundedJsonJob({
+					jobType: 'creation-journey',
+					messages: buildCreationJourneyMessages(request),
+					onJobId: setJobId,
+					onProgress: progress => {
+						if (progress.state === 'thinking') {
+							setStatus('AI 正在检查锁定决定与结构连续性…');
+						}
+						if (progress.state === 'streaming') {
+							setStatus('AI 正在返回可确认的结构候选…');
+						}
+					}
+				});
+				return result.output;
+			});
+			const response = await service.generate(input);
+			const unchanged = stateRef.current;
+			if (!unchanged || unchanged.revision !== current.revision) {
+				throw new Error('outlineHierarchyPreviewStale');
+			}
+			const candidates = response.operation === 'expand-to-volumes'
+				? response.volumes
+				: response.operation === 'expand-volume-to-chapters'
+					? response.chapters
+					: response.scenes.map(scene => ({
+							title: scene.title,
+							summary: scene.summary,
+							goal: scene.goal,
+							conflict: scene.obstacle,
+							outcome: scene.change,
+							hook: scene.hook,
+							povHint: scene.povHint,
+							locationHint: scene.locationHint,
+							characterHints: scene.characterHints
+						}));
+			const preview = buildHierarchyExpansionPreview(
+				unchanged,
+				target,
+				candidates,
+				() => `journey-outline:${globalThis.crypto.randomUUID()}`
+			);
+			setStatus(`已生成 ${preview.createCount} 个候选；尚未写入项目结构。`);
+			return preview;
+		} catch (reason) {
+			setError(journeyErrorCopy(reason));
+			setStatus('拆分候选未采用，当前结构保持不变。');
+			throw reason;
+		} finally {
+			hierarchyGenerationRequestRef.current = false;
+			setBusyOperation(undefined);
+			setJobId(undefined);
+		}
+	};
+
+	const confirmHierarchyExpansion = async (
+		preview: HierarchyExpansionPreview
+	): Promise<void> => {
+		const current = stateRef.current;
+		const store = storeRef.current;
+		const loaded = loadedRef.current;
+		if (!current || !store || !loaded) throw new Error('creationJourneyStateInvalid');
+		const next = applyHierarchyExpansionPreview(current, preview);
+		const saved = await store.save(loaded, next);
+		loadedRef.current = saved;
+		stateRef.current = saved.state;
+		setState(saved.state);
+		setHash(saved.hash);
+		setStatus(`已确认 ${preview.createCount} 个${preview.childType === 'volume' ? '卷' : preview.childType === 'chapter' ? '章节' : '场景'}规划；尚未写入正文。`);
+	};
+
+	const createWritableHierarchy = async (): Promise<boolean> => {
+		await persistLatest();
+		const current = stateRef.current;
+		const loaded = loadedRef.current;
+		if (!current || !loaded) throw new Error('creationJourneyStateInvalid');
+		validateWritableHierarchy(current);
+		setStatus('正在创建安全快照并原子写入卷、章节和场景…');
+		const ok = await materializeHierarchy(
+			serializeCreationJourneyState(current),
+			loaded.hash
+		);
+		if (!ok) setStatus('卷、章节和场景未创建，项目保持原样。');
+		return ok;
+	};
+
 	const cancelAi = () => {
 		if (busyOperation === 'generate-from-genre') {
 			genreCancellationRequestedRef.current = true;
@@ -1263,6 +1466,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 					onApplyAlternative={applyOutlineAlternative}
 					onUndoAlternativeApply={undoOutlineAlternative}
 					canUndoAlternativeApply={Boolean(outlineAlternativeUndo)}
+					onGenerateHierarchy={generateHierarchyExpansion}
+					onConfirmHierarchy={confirmHierarchyExpansion}
+					onMaterializeHierarchy={createWritableHierarchy}
 				/>
 			</section>
 		);

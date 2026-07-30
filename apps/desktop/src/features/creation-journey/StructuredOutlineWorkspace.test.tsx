@@ -12,6 +12,11 @@ import {
 	analyzeOutlineCandidateImpact,
 	createOutlineCandidatePreview
 } from './OutlineAuthorControlModel';
+import {
+	applyHierarchyExpansionPreview,
+	buildHierarchyExpansionPreview,
+	type HierarchyExpansionPreview
+} from './OutlineHierarchyExpansionModel';
 import { StructuredOutlineWorkspace } from './StructuredOutlineWorkspace';
 
 function generatedState(): CreationJourneyState {
@@ -39,6 +44,37 @@ function generatedState(): CreationJourneyState {
 	}, {
 		id: prefix => `${prefix}:ui-${++id}`
 	});
+}
+
+function writableHierarchyState(): CreationJourneyState {
+	let state = generatedState();
+	state = applyHierarchyExpansionPreview(
+		state,
+		buildHierarchyExpansionPreview(
+			state,
+			{ kind: 'story' },
+			[{ title: '第一卷', summary: '调查开始。' }],
+			() => 'journey-outline:volume-ui'
+		)
+	);
+	state = applyHierarchyExpansionPreview(
+		state,
+		buildHierarchyExpansionPreview(
+			state,
+			{ kind: 'volume', id: 'journey-outline:volume-ui' },
+			[{ title: '第一章', summary: '记者进入旧站。' }],
+			() => 'journey-outline:chapter-ui'
+		)
+	);
+	return applyHierarchyExpansionPreview(
+		state,
+		buildHierarchyExpansionPreview(
+			state,
+			{ kind: 'chapter', id: 'journey-outline:chapter-ui' },
+			[{ title: '进入候车厅', summary: '记者发现失踪者名单。' }],
+			() => 'journey-outline:scene-ui'
+		)
+	);
 }
 
 describe('StructuredOutlineWorkspace', () => {
@@ -200,5 +236,91 @@ describe('StructuredOutlineWorkspace', () => {
 			.toBeInTheDocument();
 		await user.click(within(impact).getByRole('button', { name: '撤销本次 AI 采用' }));
 		expect(undo).toHaveBeenCalledTimes(1);
+	});
+
+	it('previews a split, reports preservation and conflicts, and mutates only on confirmation', async () => {
+		const user = userEvent.setup();
+		const generate = vi.fn((target: { readonly kind: 'story' }) => (
+			Promise.resolve(buildHierarchyExpansionPreview(
+				generatedState(),
+				target,
+				[{
+					title: '第一卷 雨夜来客',
+					summary: '记者发现旧车站与失踪案有关。',
+					goal: '建立谜团',
+					conflict: '记忆开始消退',
+					outcome: '记者决定进入旧站',
+					hook: '玻璃顶出现第二组雨痕'
+				}],
+				() => 'journey-outline:volume-ui'
+			))
+		));
+		const confirm = vi.fn();
+
+		function Harness() {
+			const [state, setState] = useState(generatedState);
+			const confirmPreview = (preview: HierarchyExpansionPreview) => {
+				confirm(preview);
+				setState(current => applyHierarchyExpansionPreview(current, preview));
+				return Promise.resolve();
+			};
+			return (
+				<StructuredOutlineWorkspace
+					state={state}
+					readOnly={false}
+					status="已保存到项目"
+					onChange={setState}
+					onSave={vi.fn()}
+					onGenerateHierarchy={generate as never}
+					onConfirmHierarchy={confirmPreview}
+					onMaterializeHierarchy={() => Promise.resolve(true)}
+				/>
+			);
+		}
+
+		render(<Harness />);
+		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
+		expect(screen.getAllByRole('button', { name: '拆分为卷' })).toHaveLength(1);
+		await user.click(screen.getByRole('button', { name: '拆分为卷' }));
+
+		const preview = await screen.findByRole('region', { name: '拆分预览' });
+		expect(within(preview).getByText('预计创建 1 个卷')).toBeInTheDocument();
+		expect(within(preview).getByText('保留锁定 0 个')).toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: /选择第一卷 雨夜来客/ }))
+			.not.toBeInTheDocument();
+		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
+
+		await user.click(within(preview).getByRole('button', { name: '确认拆分' }));
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(await screen.findByRole('button', { name: '选择第一卷 雨夜来客' }))
+			.toBeInTheDocument();
+		expect(screen.getAllByTestId('outline-card-title')).toHaveLength(5);
+	});
+
+	it('keeps exactly one enabled primary action in the atomic apply dialog', async () => {
+		const user = userEvent.setup();
+		const materialize = vi.fn(() => Promise.resolve(true));
+
+		render(
+			<StructuredOutlineWorkspace
+				state={writableHierarchyState()}
+				readOnly={false}
+				status="已保存到项目"
+				onChange={vi.fn()}
+				onSave={vi.fn()}
+				onMaterializeHierarchy={materialize}
+			/>
+		);
+
+		await user.click(screen.getByRole('button', { name: '选择进入候车厅' }));
+		await user.click(screen.getByRole('button', { name: '开始写作' }));
+
+		expect(screen.getByRole('dialog', { name: '创建可写卷、章节和场景' }))
+			.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '开始写作' })).toBeDisabled();
+		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
+
+		await user.click(screen.getByRole('button', { name: '确认创建并开始写作' }));
+		expect(materialize).toHaveBeenCalledTimes(1);
 	});
 });

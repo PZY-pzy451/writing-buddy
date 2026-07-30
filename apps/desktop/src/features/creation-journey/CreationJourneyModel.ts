@@ -107,6 +107,8 @@ export interface StoryOutlineNode {
 	readonly outcome?: string;
 	readonly hook?: string;
 	readonly povHint?: string;
+	readonly locationHint?: string;
+	readonly characterHints?: readonly string[];
 	readonly povCharacterId?: string;
 	readonly locationId?: string;
 	readonly characterIds?: readonly string[];
@@ -115,6 +117,7 @@ export interface StoryOutlineNode {
 	readonly status?: 'planned' | 'ready_to_write' | 'drafting' | 'drafted' | 'revising' | 'complete';
 	readonly source?: 'manual' | 'ai_generated' | 'ai_revised' | 'extracted_from_draft';
 	readonly revision?: number;
+	readonly resourceId?: string;
 }
 
 export interface SuggestedStoryResource {
@@ -374,6 +377,9 @@ const storyOutlineNodeSchema = z.object({
 	outcome: z.string().max(2_000).optional(),
 	hook: z.string().max(2_000).optional(),
 	povHint: z.string().max(500).optional(),
+	locationHint: z.string().max(500).optional(),
+	characterHints: z.array(z.string().trim().min(1).max(160)).max(24)
+		.refine(values => new Set(values).size === values.length).optional(),
 	povCharacterId: z.string().trim().min(1).max(240).optional(),
 	locationId: z.string().trim().min(1).max(240).optional(),
 	characterIds: storyResourceIdListSchema.optional(),
@@ -393,7 +399,10 @@ const storyOutlineNodeSchema = z.object({
 		'ai_revised',
 		'extracted_from_draft'
 	]).optional(),
-	revision: z.number().int().min(1).optional()
+	revision: z.number().int().min(1).optional(),
+	resourceId: z.string().regex(
+		/^(?:volume|chapter)(?::|-)[a-z0-9][a-z0-9-]*$|^scene:[a-z0-9][a-z0-9-]*$/u
+	).optional()
 }).strict();
 
 const suggestedStoryResourceSchema = z.object({
@@ -530,8 +539,11 @@ const creationJourneyStateSchema = z.object({
 		.refine(directions => directions.length === 0 || directions.length === 3),
 	selectedDirectionIds: z.array(directionIdSchema).max(2)
 		.refine(ids => new Set(ids).size === ids.length),
-	outline: z.array(storyOutlineNodeSchema)
-		.refine(nodes => nodes.length === 0 || (nodes.length >= 5 && nodes.length <= 8)),
+	outline: z.array(storyOutlineNodeSchema).max(512)
+		.refine(nodes => {
+			const storyBeats = nodes.filter(node => (node.type ?? 'story_beat') === 'story_beat');
+			return nodes.length === 0 || (storyBeats.length >= 5 && storyBeats.length <= 8);
+		}),
 	chapters: z.array(journeyChapterProposalSchema)
 		.refine(chapters => chapters.length === 0 || chapters.length === 3),
 	guidance: creationJourneyGuidanceSchema,
@@ -572,8 +584,10 @@ const creationJourneyStateSchema = z.object({
 	}
 	if (
 		state.storyOutline
-		&& state.outline.some((node, index) => (
-			node.type === 'story_beat' && node.order !== undefined && node.order !== index
+		&& state.outline
+			.filter(node => (node.type ?? 'story_beat') === 'story_beat')
+			.some((node, index) => (
+				node.order !== undefined && node.order !== index
 		))
 	) {
 		context.addIssue({ code: 'custom', message: 'invalidGenreOutlineOrder' });
@@ -582,6 +596,44 @@ const creationJourneyStateSchema = z.object({
 		context.addIssue({ code: 'custom', message: 'unknownJourneyDirection' });
 	}
 	const outlineIds = new Set(state.outline.map(node => node.id));
+	const outlineById = new Map(state.outline.map(node => [node.id, node]));
+	const hierarchyNodes = state.outline.filter(node => (
+		node.type === 'volume' || node.type === 'chapter' || node.type === 'scene'
+	));
+	for (const node of hierarchyNodes) {
+		const parent = node.parentId ? outlineById.get(node.parentId) : undefined;
+		const validParent = (
+			(node.type === 'volume' && node.parentId === undefined)
+			|| (node.type === 'chapter' && parent?.type === 'volume')
+			|| (node.type === 'scene' && parent?.type === 'chapter')
+		);
+		if (!validParent) {
+			context.addIssue({ code: 'custom', message: 'invalidOutlineHierarchyParent' });
+		}
+		if (
+			(node.type === 'volume' && node.resourceId && !/^volume(?::|-)/u.test(node.resourceId))
+			|| (node.type === 'chapter' && node.resourceId && !/^chapter(?::|-)/u.test(node.resourceId))
+			|| (node.type === 'scene' && node.resourceId && !/^scene:/u.test(node.resourceId))
+		) {
+			context.addIssue({ code: 'custom', message: 'invalidOutlineHierarchyResource' });
+		}
+	}
+	const siblingGroups = new Map<string, StoryOutlineNode[]>();
+	for (const node of hierarchyNodes) {
+		const key = `${node.type}:${node.parentId ?? 'root'}`;
+		siblingGroups.set(key, [...(siblingGroups.get(key) ?? []), node]);
+	}
+	for (const siblings of siblingGroups.values()) {
+		const orders = siblings.map(node => node.order);
+		if (
+			orders.some(order => order === undefined)
+			|| new Set(orders).size !== orders.length
+			|| [...orders].sort((left, right) => (left ?? 0) - (right ?? 0))
+				.some((order, index) => order !== index)
+		) {
+			context.addIssue({ code: 'custom', message: 'invalidOutlineHierarchyOrder' });
+		}
+	}
 	const chapterIds = new Set(state.chapters.map(chapter => chapter.id));
 	if (
 		state.chapters.some(chapter => chapter.sourceNodeIds.some(id => !outlineIds.has(id)))
@@ -629,10 +681,24 @@ const creationJourneyStateSchema = z.object({
 		context.addIssue({ code: 'custom', message: 'journeyStaleImpactMismatch' });
 	}
 	const materializedCount = state.chapters.filter(chapter => chapter.resourceId).length;
+	const materializedHierarchyCount = hierarchyNodes.filter(node => node.resourceId).length;
 	if (materializedCount !== 0 && materializedCount !== 3) {
 		context.addIssue({ code: 'custom', message: 'partialJourneyMaterialization' });
 	}
-	if (state.stage === 'writing' && materializedCount !== 3) {
+	if (
+		materializedHierarchyCount !== 0
+		&& materializedHierarchyCount !== hierarchyNodes.length
+	) {
+		context.addIssue({ code: 'custom', message: 'partialOutlineHierarchyMaterialization' });
+	}
+	if (
+		state.stage === 'writing'
+		&& materializedCount !== 3
+		&& (
+			hierarchyNodes.length === 0
+			|| materializedHierarchyCount !== hierarchyNodes.length
+		)
+	) {
 		context.addIssue({ code: 'custom', message: 'journeyWritingWithoutChapters' });
 	}
 });
@@ -1609,13 +1675,16 @@ export function addStoryOutlineNode(
 	if (!state.storyOutline) {
 		throw new Error('creationJourneyStoryOutlineNotFound');
 	}
-	if (state.outline.length >= 8) {
+	const storyBeatCount = state.outline.filter(
+		node => (node.type ?? 'story_beat') === 'story_beat'
+	).length;
+	if (storyBeatCount >= 8) {
 		throw new Error('creationJourneyOutlineLimit');
 	}
 	const created: StoryOutlineNode = {
 		id: id(),
 		type: 'story_beat',
-		order: state.outline.length,
+		order: storyBeatCount,
 		title: '新故事节点',
 		summary: '',
 		purpose: '',
@@ -1651,7 +1720,10 @@ export function removeStoryOutlineNode(
 	if (!state.storyOutline) {
 		throw new Error('creationJourneyStoryOutlineNotFound');
 	}
-	if (state.outline.length <= 5) {
+	const storyBeats = state.outline.filter(
+		node => (node.type ?? 'story_beat') === 'story_beat'
+	);
+	if (storyBeats.length <= 5) {
 		throw new Error('creationJourneyOutlineMinimum');
 	}
 	if (state.locks.outlineNodeIds.includes(nodeId)) {
@@ -1664,13 +1736,18 @@ export function removeStoryOutlineNode(
 	if (filtered.length === state.outline.length) {
 		throw new Error('creationJourneyOutlineNodeNotFound');
 	}
-	const outline = filtered.map((node, order) => ({
-		...node,
-		order,
-		...(node.order !== order
-			? { revision: (node.revision ?? 0) + 1 }
-			: {})
-	}));
+	let storyBeatOrder = 0;
+	const outline = filtered.map(node => {
+		if ((node.type ?? 'story_beat') !== 'story_beat') return node;
+		const order = storyBeatOrder++;
+		return {
+			...node,
+			order,
+			...(node.order !== order
+				? { revision: (node.revision ?? 0) + 1 }
+				: {})
+		};
+	});
 	const impacts = state.impacts.filter(impact => !(
 		impact.targetKind === 'outline' && impact.targetId === nodeId
 	));

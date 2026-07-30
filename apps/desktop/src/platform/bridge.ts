@@ -25,6 +25,8 @@ import type {
 	DesktopBridge,
 	MaterializeCreationJourneyRequest,
 	MaterializeCreationJourneyResult,
+	MaterializeOutlineHierarchyRequest,
+	MaterializeOutlineHierarchyResult,
 	ProjectCreationPreflight,
 	ProjectOpenMode,
 	ProjectRepairResult,
@@ -82,6 +84,12 @@ class TauriDesktopBridge implements DesktopBridge {
 		request: MaterializeCreationJourneyRequest
 	): Promise<MaterializeCreationJourneyResult> {
 		return invoke<MaterializeCreationJourneyResult>('materialize_creation_journey', { request });
+	}
+
+	materializeOutlineHierarchy(
+		request: MaterializeOutlineHierarchyRequest
+	): Promise<MaterializeOutlineHierarchyResult> {
+		return invoke<MaterializeOutlineHierarchyResult>('materialize_outline_hierarchy', { request });
 	}
 
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult> {
@@ -1442,6 +1450,203 @@ class BrowserDesktopBridge implements DesktopBridge {
 		};
 	}
 
+	async materializeOutlineHierarchy(
+		request: MaterializeOutlineHierarchyRequest
+	): Promise<MaterializeOutlineHierarchyResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current || current.readOnly) throw new Error('projectReadOnly');
+		if (current.projectRevision !== request.expectedProjectRevision) {
+			throw new Error('projectRevisionConflict');
+		}
+		const currentJourney = browserFiles.get('.writing-buddy/creation/journey.json');
+		if (
+			(currentJourney === undefined ? '' : browserHash(currentJourney))
+			!== request.expectedJourneyHash
+		) {
+			throw new Error('externalChange');
+		}
+		const journey = JSON.parse(request.journeyContent) as {
+			projectId: string;
+			stage: string;
+			revision: number;
+			updatedAt: string;
+			locks: { outlineNodeIds: string[] };
+			outline: Array<{
+				id: string;
+				type?: 'story_beat' | 'volume' | 'chapter' | 'scene';
+				parentId?: string;
+				order?: number;
+				title: string;
+				summary: string;
+				goal?: string;
+				conflict?: string;
+				outcome?: string;
+				hook?: string;
+				povHint?: string;
+				locationHint?: string;
+				characterHints?: string[];
+				resourceId?: string;
+			}>;
+		};
+		const volumes = journey.outline.filter(node => node.type === 'volume');
+		const chaptersByVolume = new Map(volumes.map(volume => [
+			volume.id,
+			journey.outline.filter(node => node.type === 'chapter' && node.parentId === volume.id)
+				.sort((left, right) => (left.order ?? 0) - (right.order ?? 0))
+		]));
+		const scenesByChapter = new Map(
+			journey.outline.filter(node => node.type === 'chapter').map(chapter => [
+				chapter.id,
+				journey.outline.filter(node => node.type === 'scene' && node.parentId === chapter.id)
+					.sort((left, right) => (left.order ?? 0) - (right.order ?? 0))
+			])
+		);
+		const hierarchyNodes = journey.outline.filter(node => (
+			node.type === 'volume' || node.type === 'chapter' || node.type === 'scene'
+		));
+		if (
+			journey.projectId !== current.project.projectId
+			|| volumes.length < 1
+			|| hierarchyNodes.some(node => node.resourceId)
+			|| journey.locks.outlineNodeIds.some(id => hierarchyNodes.some(node => node.id === id))
+			|| [...chaptersByVolume.values()].some(chapters => chapters.length < 1)
+			|| [...scenesByChapter.values()].some(scenes => scenes.length < 1)
+		) {
+			throw new Error('outlineHierarchyMaterializationInvalid');
+		}
+		const suffix = `outline-${++browserProjectRevisionSequence}`;
+		const canonicalIds = new Map<string, string>();
+		volumes.forEach((volume, index) => {
+			canonicalIds.set(
+				volume.id,
+				`volume-${browserHash(`${suffix}:volume:${index}`).slice(-8)}`
+			);
+		});
+		const plannedChapters = volumes.flatMap(volume => chaptersByVolume.get(volume.id) ?? []);
+		plannedChapters.forEach((chapter, index) => {
+			canonicalIds.set(
+				chapter.id,
+				`chapter-${browserHash(`${suffix}:chapter:${index}`).slice(-8)}`
+			);
+		});
+		const plannedScenes = plannedChapters.flatMap(chapter => scenesByChapter.get(chapter.id) ?? []);
+		plannedScenes.forEach((scene, index) => {
+			canonicalIds.set(
+				scene.id,
+				`scene:${browserHash(`${suffix}:scene:${index}`).slice(-16)}`
+			);
+		});
+
+		const chapterDescriptors = plannedChapters.map((chapter, index) => ({
+			id: canonicalIds.get(chapter.id)!,
+			title: chapter.title.trim(),
+			file: `chapters/outline-${suffix}-${index + 1}.md`,
+			status: 'draft' as const,
+			scene: {
+				location: '',
+				time: '',
+				pov: chapter.povHint?.trim() ?? '',
+				characters: [],
+				goal: chapter.goal?.trim() ?? '',
+				note: chapter.summary.trim()
+			}
+		}));
+		const chapterByProjection = new Map(
+			plannedChapters.map((chapter, index) => [chapter.id, chapterDescriptors[index]])
+		);
+		const newVolumes = volumes.map(volume => ({
+			id: canonicalIds.get(volume.id)!,
+			title: volume.title.trim(),
+			chapters: (chaptersByVolume.get(volume.id) ?? [])
+				.map(chapter => chapterByProjection.get(chapter.id)!)
+		}));
+		const retainedVolumes = current.project.volumes.filter(volume => volume.chapters.length > 0);
+		const nextVolumes = [...retainedVolumes, ...newVolumes];
+		const sceneIds: string[] = [];
+		const timestamp = new Date().toISOString();
+		for (const plannedChapter of plannedChapters) {
+			const descriptor = chapterByProjection.get(plannedChapter.id)!;
+			let manuscript = `# ${descriptor.title}\n\n`;
+			for (const [index, scene] of (scenesByChapter.get(plannedChapter.id) ?? []).entries()) {
+				const sceneId = canonicalIds.get(scene.id)!;
+				const start = manuscript.length;
+				const section = `## ${scene.title.trim()}\n\n<!-- writing-buddy-scene:${sceneId} -->\n\n`;
+				manuscript += section;
+				const storyScene = {
+					id: sceneId,
+					type: 'scene',
+					title: scene.title.trim(),
+					summary: scene.summary.trim(),
+					aliases: [],
+					tags: [],
+					schemaVersion: 1,
+					createdAt: timestamp,
+					updatedAt: timestamp,
+					revision: 1,
+					chapterId: `chapter:${descriptor.id}`,
+					manuscriptRange: {
+						start,
+						end: start + section.length,
+						revision: 0,
+						quote: section.slice(0, 500)
+					},
+					narrativeOrder: index,
+					locationIds: [],
+					participantIds: [],
+					goal: scene.goal?.trim(),
+					conflict: scene.conflict?.trim(),
+					turn: scene.outcome?.trim(),
+					outcome: scene.hook?.trim(),
+					plotThreadIds: [],
+					revealInformationIds: [],
+					foreshadowingIds: [],
+					evidenceIds: []
+				};
+				browserStoryResources.set(browserStoryKey('scene', sceneId), storyScene);
+				sceneIds.push(sceneId);
+			}
+			browserFiles.set(descriptor.file, manuscript);
+		}
+		const materializedJourney = {
+			...journey,
+			stage: 'writing',
+			revision: journey.revision + 1,
+			updatedAt: timestamp,
+			outline: journey.outline.map(node => {
+				const resourceId = canonicalIds.get(node.id);
+				return resourceId ? { ...node, resourceId } : node;
+			})
+		};
+		const journeyContent = `${JSON.stringify(materializedJourney, null, 2)}\n`;
+		const journeyHash = browserHash(journeyContent);
+		const projectRevision = `browser-project-revision-${browserProjectRevisionSequence}`;
+		const next = {
+			...current,
+			project: { ...current.project, volumes: nextVolumes },
+			projectRevision,
+			wordCounts: {
+				...current.wordCounts,
+				...Object.fromEntries(chapterDescriptors.map(chapter => [chapter.id, 0]))
+			}
+		};
+		browserFiles.set('.writing-buddy/creation/journey.json', journeyContent);
+		if (request.projectRoot === browserProject.root) {
+			browserProject = next;
+		} else {
+			browserCreatedProjects.set(request.projectRoot, next);
+		}
+		return {
+			project: next.project,
+			projectRevision,
+			chapters: chapterDescriptors,
+			sceneIds,
+			journeyContent,
+			journeyHash,
+			description: `已创建 ${newVolumes.length} 卷、${chapterDescriptors.length} 章和 ${sceneIds.length} 个场景。`
+		};
+	}
+
 	async readQuickCaptureState(): Promise<TextFile | undefined> {
 		const content = browserFiles.get('.writing-buddy/inbox/quick-captures.json');
 		return content === undefined
@@ -2017,6 +2222,10 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 		readonly genre?: string;
 		readonly premise?: string;
 		readonly elements?: readonly { readonly text?: string }[];
+		readonly expectedCount?: number;
+		readonly storyBeats?: readonly { readonly id?: string }[];
+		readonly volume?: { readonly id?: string };
+		readonly chapter?: { readonly id?: string };
 		readonly target?: {
 			readonly kind?: 'direction' | 'outline' | 'chapter';
 			readonly id?: string;
@@ -2218,6 +2427,56 @@ function browserCreationJourneyDeltas(request: AiGenerateRequest): readonly stri
 						outcome: '记者带走名单，却失去一段关键记忆。'
 					}
 				}]
+			});
+		}
+		case 'expand-to-volumes': {
+			const count = Math.max(1, Math.min(8, decoded.expectedCount ?? 3));
+			const beatIds = decoded.storyBeats?.map(beat => beat.id).filter(Boolean) as string[] ?? [];
+			return browserJsonDeltas({
+				operation: 'expand-to-volumes',
+				volumes: Array.from({ length: count }, (_, index) => ({
+					title: `第${index + 1}卷 · ${['雨夜来客', '无日期的人', '回声尽头'][index] ?? `旧站谜局 ${index + 1}`}`,
+					summary: `第 ${index + 1} 卷推动调查升级，并让记忆代价变得不可逆。`,
+					goal: index === 0 ? '建立异常规则与调查目标' : '推进真相并迫使主角选择',
+					conflict: '每次接近真相都会失去一段私人记忆',
+					outcome: '主角主动承担下一阶段调查的代价',
+					hook: '旧车站留下一个指向下一卷的新日期',
+					sourceNodeIds: [beatIds[index % Math.max(1, beatIds.length)] ?? 'journey-outline:beat-1']
+				}))
+			});
+		}
+		case 'expand-volume-to-chapters': {
+			const count = Math.max(1, Math.min(24, decoded.expectedCount ?? 4));
+			return browserJsonDeltas({
+				operation: 'expand-volume-to-chapters',
+				parentId: decoded.volume?.id,
+				chapters: Array.from({ length: count }, (_, index) => ({
+					title: `第${index + 1}章 · ${['夜雨名单', '缺失七分钟', '站长的条件', '停运列车'][index] ?? `旧站线索 ${index + 1}`}`,
+					summary: `记者取得第 ${index + 1} 条可验证线索，同时付出新的记忆代价。`,
+					goal: '取得能推进调查的明确证据',
+					conflict: '站长封锁证据并诱导记者离开',
+					outcome: '记者保住证据但失去一段私人记忆',
+					hook: '停运轨道传来列车进站声',
+					povHint: '调查记者'
+				}))
+			});
+		}
+		case 'expand-chapter-to-scenes': {
+			const count = Math.max(1, Math.min(12, decoded.expectedCount ?? 3));
+			return browserJsonDeltas({
+				operation: 'expand-chapter-to-scenes',
+				parentId: decoded.chapter?.id,
+				scenes: Array.from({ length: count }, (_, index) => ({
+					title: `场景 ${index + 1} · ${['进入候车厅', '争夺名单', '列车亮灯'][index] ?? `继续调查 ${index + 1}`}`,
+					summary: `记者在旧车站完成第 ${index + 1} 个行动并面对新的变化。`,
+					goal: '取得失踪者名单的有效证据',
+					obstacle: '站长封锁出口并切断照明',
+					change: '记者发现名单上也有自己的名字',
+					hook: '停运列车在黑暗中亮灯',
+					povHint: '调查记者',
+					locationHint: '旧车站候车厅',
+					characterHints: ['调查记者', '站长']
+				}))
 			});
 		}
 		case 'regenerate-part': {

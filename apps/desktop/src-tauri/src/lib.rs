@@ -34,6 +34,7 @@ pub fn run() {
             commands::create_project,
             commands::create_chapter,
             commands::materialize_creation_journey,
+            commands::materialize_outline_hierarchy,
             commands::move_project_structure,
             commands::open_project,
             commands::repair_project,

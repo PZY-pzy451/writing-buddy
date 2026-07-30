@@ -21,7 +21,9 @@ export function ProjectStructureUndoToast(): React.JSX.Element | null {
 
 	return (
 		<UndoToast
-			title={undo.kind === 'scene'
+			title={undo.kind === 'snapshot'
+				? '卷、章和场景已创建'
+				: undo.kind === 'scene'
 				? '场景已移动并保存'
 				: undo.entityType === 'chapter'
 					? '章节已移动并保存'

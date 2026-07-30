@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Phase 1.2B Genre-to-Draft Core Journey Gates A-D are complete in the isolated
+Phase 1.2B Genre-to-Draft Core Journey Gates A-E are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`, based on
 `01a440af73a764abc14e45f388b2a2f098e0bca1`.
@@ -18,21 +18,26 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 - Gate D's selected-node generation, exactly three alternatives, field-level
   Current/A/B/C diff, partial adoption, pre-write snapshot, exact impact
   report and revision-guarded undo are complete.
+- Gate E's previewed volume/chapter/scene expansion, conflict and lock checks,
+  pre-write snapshot, atomic canonical materialization, project-tree sync and
+  12-second snapshot undo are complete.
 - The existing Creation Journey v2 document was extended; no second outline
   store, AI runtime, project tree or Story Kernel was created.
 - `WritingProject.volumes[].chapters[]` and Story Kernel `StoryScene` remain
   the canonical Chapter/Scene sources.
 - Plans:
   `docs/superpowers/plans/2026-07-30-genre-to-draft-source-map.md` and
-  `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`, plus
-  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-d-author-control.md`.
-- Final gates: Node 24.14.0, TypeScript, ESLint, 145 Vitest files / 543 tests,
-  production build, Cargo format, 63 Rust tests with 2 explicit external
-  gates ignored, real Tauri WebView2 interaction/reopen/normal close,
-  Release/NSIS packaging and SHA-256 delivery verification.
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-ux-baseline.md`,
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-d-author-control.md`
+  and
+  `docs/superpowers/plans/2026-07-30-genre-to-draft-gate-e-writable-scenes.md`.
+- Final gates: Node 24.14.0, TypeScript, ESLint, 149 Vitest files / 555 tests,
+  production build, Cargo format, 66 Rust tests with 2 explicit external
+  gates ignored, real browser author journey, native Windows
+  startup/normal close, Release/NSIS packaging and SHA-256 verification.
 - Evidence:
-  `docs/acceptance/048-genre-to-draft-gate-d-2026-07-30.md`.
-- Gate E has not started. Stop for user review.
+  `docs/acceptance/049-genre-to-draft-gate-e-writable-scenes-2026-07-30.md`.
+- Gate F has not started. Stop for user review.
 
 Phase 1.2C, Guided AI Story Development, is complete in
 `D:\develop_tool\writing-buddy-phase-1.2c` on

@@ -259,6 +259,23 @@ export interface MaterializeCreationJourneyResult {
 	readonly description: string;
 }
 
+export interface MaterializeOutlineHierarchyRequest {
+	readonly projectRoot: string;
+	readonly expectedProjectRevision: string;
+	readonly journeyContent: string;
+	readonly expectedJourneyHash: string;
+}
+
+export interface MaterializeOutlineHierarchyResult {
+	readonly project: WritingProject;
+	readonly projectRevision: string;
+	readonly chapters: readonly ChapterDescriptor[];
+	readonly sceneIds: readonly string[];
+	readonly journeyContent: string;
+	readonly journeyHash: string;
+	readonly description: string;
+}
+
 export type DragEntityType =
 	| 'volume'
 	| 'chapter'
@@ -405,6 +422,9 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	materializeCreationJourney(
 		request: MaterializeCreationJourneyRequest
 	): Promise<MaterializeCreationJourneyResult>;
+	materializeOutlineHierarchy(
+		request: MaterializeOutlineHierarchyRequest
+	): Promise<MaterializeOutlineHierarchyResult>;
 	moveProjectStructure(request: ProjectStructureMoveRequest): Promise<ProjectStructureMoveResult>;
 	commitSceneMove(request: SceneMoveCommitRequest): Promise<SceneMoveCommitResult>;
 	openProject(projectRoot: string, mode?: ProjectOpenMode): Promise<ProjectSnapshot>;

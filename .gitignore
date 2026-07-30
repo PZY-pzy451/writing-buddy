@@ -14,3 +14,4 @@ apps/desktop/src-tauri/target/
 .vscode/
 artifacts/
 tmp/
+.tmp/

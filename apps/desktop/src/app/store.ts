@@ -134,6 +134,9 @@ type StructureUndoState = {
 } | {
 	readonly kind: 'scene';
 	readonly receipt: ProjectSceneMoveUndoReceipt;
+} | {
+	readonly kind: 'snapshot';
+	readonly snapshotId: string;
 });
 
 export type DockTab = 'issues' | 'inbox' | 'diff' | 'tasks' | 'backups';
@@ -250,6 +253,10 @@ interface AppState extends PersistedWorkspace {
 	readonly openDashboard: () => void;
 	readonly openCreationJourney: (startRoute?: CreationStartRoute) => void;
 	readonly materializeCreationJourney: (
+		journeyContent: string,
+		expectedJourneyHash: string
+	) => Promise<boolean>;
+	readonly materializeOutlineHierarchy: (
 		journeyContent: string,
 		expectedJourneyHash: string
 	) => Promise<boolean>;
@@ -705,6 +712,24 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			return;
 		}
 		set({ structureMoveBusy: true, error: undefined });
+		if (undo.kind === 'snapshot') {
+			try {
+				await desktopBridge.restoreVersion(snapshot.root, undo.snapshotId);
+				set({
+					structureMoveBusy: false,
+					structureMoveAnnouncement: `已撤销：${undo.description}`,
+					structureUndo: undefined
+				});
+				await get().reloadProject();
+			} catch {
+				set({
+					structureMoveBusy: false,
+					structureUndo: undefined,
+					error: '无法恢复拆分前快照，请前往“版本”页面重试。'
+				});
+			}
+			return;
+		}
 		if (undo.kind === 'scene') {
 			try {
 				const result = await projectSceneMoveService.undo(snapshot, undo.receipt);
@@ -1206,6 +1231,73 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				creationJourneyMaterializationFailed: '暂时无法创建章节，项目未改变。'
 			};
 			set({ error: copy[code] ?? copy.creationJourneyMaterializationFailed });
+			return false;
+		}
+	},
+
+	async materializeOutlineHierarchy(journeyContent, expectedJourneyHash) {
+		const snapshot = get().snapshot;
+		if (!snapshot || snapshot.readOnly) {
+			set({ error: '当前作品以只读模式打开，不能创建卷、章节和场景。' });
+			return false;
+		}
+		try {
+			const snapshotId = await desktopBridge.createSnapshot(
+				snapshot.root,
+				'beforeDestructiveOperation',
+				'大纲拆分为可写场景前'
+			);
+			const result = await desktopBridge.materializeOutlineHierarchy({
+				projectRoot: snapshot.root,
+				expectedProjectRevision: snapshot.projectRevision,
+				journeyContent,
+				expectedJourneyHash
+			});
+			const nextSnapshot: ProjectSnapshot = {
+				...snapshot,
+				project: result.project,
+				projectRevision: result.projectRevision,
+				wordCounts: {
+					...snapshot.wordCounts,
+					...Object.fromEntries(result.chapters.map(chapter => [chapter.id, 0]))
+				}
+			};
+			const first = result.chapters[0];
+			if (!first) throw new Error('outlineHierarchyMaterializationInvalid');
+			set({
+				snapshot: nextSnapshot,
+				structureMoveAnnouncement: result.description,
+				structureUndo: {
+					kind: 'snapshot',
+					snapshotId,
+					description: result.description,
+					expiresAt: Date.now() + 12_000
+				},
+				error: undefined
+			});
+			get().setMode('works');
+			await get().openResource({
+				id: first.id,
+				type: 'chapter',
+				title: first.title,
+				path: first.file,
+				projectId: result.project.projectId
+			});
+			return true;
+		} catch (error) {
+			const code = error instanceof Error
+				? error.message.split(':')[0]
+				: 'outlineHierarchyMaterializationFailed';
+			const copy: Readonly<Record<string, string>> = {
+				projectRevisionConflict: '作品结构已变化，请重新载入后再创建。',
+				externalChange: '大纲已在其他窗口修改，请重新载入后再确认。',
+				outlineHierarchyMaterializationInvalid: '卷、章或场景结构尚未满足创建条件。',
+				outlineHierarchyLocked: '仍有锁定的卷、章或场景，请解锁后再创建。',
+				outlineHierarchyWriteFailed: '写入失败，项目已恢复到创建前。',
+				outlineHierarchyVerificationFailed: '创建后验证失败，项目已恢复到创建前。',
+				outlineHierarchyMaterializationFailed: '暂时无法创建卷、章节和场景。'
+			};
+			set({ error: copy[code] ?? copy.outlineHierarchyMaterializationFailed });
 			return false;
 		}
 	},
