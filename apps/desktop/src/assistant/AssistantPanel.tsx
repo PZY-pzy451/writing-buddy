@@ -9,6 +9,7 @@ import {
 	ListTree,
 	Maximize2,
 	MapPin,
+	Pin,
 	UsersRound,
 	WandSparkles,
 	X
@@ -29,6 +30,27 @@ import { StoryKernelGeneratorPanel } from '../features/story/ai-context/StoryKer
 import { resolveContextualWriterActions } from '../features/ai/contextual/ContextualActionResolver';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { workspaceResizeBounds } from '../shell/workspaceResize';
+import type { WriterToolId } from '../app/writerWorkspace';
+
+const writerToolLabels: Readonly<Record<WriterToolId, string>> = {
+	outline: '细纲',
+	characters: '人物',
+	references: '资料',
+	ai: 'AI',
+	review: '检查'
+};
+
+function tabForTool(
+	tool: WriterToolId,
+	intent?: AssistantActionIntent
+): 'suggestions' | 'outline' | 'review' | 'context' | 'kernel' {
+	if (intent?.kind === 'story-kernel') return 'kernel';
+	if (intent?.kind === 'scene-plan') return 'outline';
+	if (tool === 'outline') return 'outline';
+	if (tool === 'review') return 'review';
+	if (tool === 'characters' || tool === 'references') return 'context';
+	return 'suggestions';
+}
 
 function atParagraphEnd(content: string, cursorOffset: number): boolean {
 	const safeOffset = Math.max(0, Math.min(cursorOffset, content.length));
@@ -60,16 +82,19 @@ function rewriteIcon(actionType: SelectionRewriteActionType): React.JSX.Element 
 
 export function AssistantPanel(): React.JSX.Element {
 	const assistantIntent = useAppStore(state => state.assistantIntent);
+	const writerTool = useAppStore(state => state.writerTool);
 	return (
 		<AssistantPanelContent
-			key={assistantIntent?.id ?? 'assistant-default'}
+			key={`${writerTool}:${assistantIntent?.id ?? 'assistant-default'}`}
 			initialIntent={assistantIntent}
+			initialTool={writerTool}
 		/>
 	);
 }
 
 function AssistantPanelContent(props: {
 	readonly initialIntent?: AssistantActionIntent;
+	readonly initialTool: WriterToolId;
 }): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const activeResource = useAppStore(state => state.activeResource);
@@ -82,14 +107,11 @@ function AssistantPanelContent(props: {
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const theme = useAppStore(state => state.theme);
 	const setAssistantWidth = useAppStore(state => state.setAssistantWidth);
-	const toggleAssistant = useAppStore(state => state.toggleAssistant);
-	const [tab, setTab] = useState<'suggestions' | 'outline' | 'review' | 'context' | 'kernel'>(
-		props.initialIntent?.kind === 'story-kernel'
-			? 'kernel'
-			: props.initialIntent?.kind === 'scene-plan'
-				? 'outline'
-				: 'suggestions'
-	);
+	const closeWriterTool = useAppStore(state => state.closeWriterTool);
+	const writerToolPinned = useAppStore(state => state.writerToolPinned);
+	const toggleWriterToolPinned = useAppStore(state => state.toggleWriterToolPinned);
+	const toolLabel = writerToolLabels[props.initialTool];
+	const tab = tabForTool(props.initialTool, props.initialIntent);
 	const [suggestionKind, setSuggestionKind] = useState<'rewrite' | 'continuation'>(
 		props.initialIntent?.kind === 'continuation' ? 'continuation' : 'rewrite'
 	);
@@ -135,35 +157,36 @@ function AssistantPanelContent(props: {
 		}
 		const result = runLocalReview(snapshot.project.projectId, activeResource.id, session.content);
 		setIssues(replaceReviewIssuesForResource(issues, result.issues, activeResource.id, 'local'));
-		setTab('review');
 	};
 
 	return (
-		<aside className="assistant-panel">
+		<aside className="assistant-panel" aria-label={`${toolLabel}工具`}>
 			<div className="assistant-heading">
 				<div>
-					<span className="eyebrow">Writing Assistant</span>
-					<h2>写作助手</h2>
+					<span className="eyebrow">Writer tools</span>
+					<h2>{toolLabel}</h2>
 				</div>
+				<button
+					className={`icon-button ${writerToolPinned ? 'is-active' : ''}`}
+					type="button"
+					onClick={toggleWriterToolPinned}
+					aria-pressed={writerToolPinned}
+					aria-label={`${writerToolPinned ? '取消固定' : '固定'}${toolLabel}工具面板`}
+					title={writerToolPinned ? '取消固定；之后可按 Esc 收起' : '固定面板'}
+				>
+					<Pin size={18} />
+				</button>
 				<button
 					className="icon-button"
 					type="button"
-					onClick={toggleAssistant}
-					aria-label="关闭写作助手"
+					onClick={closeWriterTool}
+					aria-label={`关闭${toolLabel}工具面板`}
 					aria-keyshortcuts="Control+Alt+B Meta+Alt+B"
-					title="关闭写作助手 (Ctrl+Alt+B)"
+					title={`关闭${toolLabel}工具面板 (Ctrl+Alt+B)`}
 				>
 					<X size={18} />
 				</button>
 			</div>
-			<div className="assistant-tabs" role="tablist">
-				<button type="button" role="tab" aria-selected={tab === 'suggestions'} onClick={() => setTab('suggestions')}>建议</button>
-				<button type="button" role="tab" aria-selected={tab === 'outline'} onClick={() => setTab('outline')}>细纲</button>
-				<button type="button" role="tab" aria-selected={tab === 'review'} onClick={() => setTab('review')}>审校</button>
-				<button type="button" role="tab" aria-selected={tab === 'context'} onClick={() => setTab('context')}>上下文</button>
-				<button type="button" role="tab" aria-selected={tab === 'kernel'} onClick={() => setTab('kernel')}>内核</button>
-			</div>
-
 			{tab === 'suggestions' && (
 				<div className="assistant-scroll">
 					<div className="assistant-mode-switch" aria-label="建议类型">
@@ -372,13 +395,23 @@ function AssistantPanelContent(props: {
 
 			{tab === 'context' && (
 				<div className="assistant-scroll context-list">
-					<ContextCard icon={<MapPin size={18} />} label="场景" value={activeChapter?.scene.location || '未设置'} />
-					<ContextCard icon={<BookMarked size={18} />} label="时间" value={activeChapter?.scene.time || '未设置'} />
-					<ContextCard icon={<UsersRound size={18} />} label="视角人物" value={activeChapter?.scene.pov || '未设置'} />
-					<ContextCard icon={<UsersRound size={18} />} label="出场人物" value={activeChapter?.scene.characters.join('、') || '未设置'} />
-					<ContextCard icon={<Lightbulb size={18} />} label="本章目标" value={activeChapter?.scene.goal || '未设置'} />
-					<ContextCard icon={<BookMarked size={18} />} label="备注" value={activeChapter?.scene.note || '未设置'} />
-					{snapshot && activeResource?.type === 'chapter' && session ? (
+					{props.initialTool === 'characters' ? (
+						<>
+							<ContextCard icon={<UsersRound size={18} />} label="视角人物" value={activeChapter?.scene.pov || '未设置'} />
+							<ContextCard icon={<UsersRound size={18} />} label="出场人物" value={activeChapter?.scene.characters.join('、') || '未设置'} />
+						</>
+					) : (
+						<>
+							<ContextCard icon={<MapPin size={18} />} label="地点" value={activeChapter?.scene.location || '未设置'} />
+							<ContextCard icon={<BookMarked size={18} />} label="时间" value={activeChapter?.scene.time || '未设置'} />
+							<ContextCard icon={<Lightbulb size={18} />} label="本章目标" value={activeChapter?.scene.goal || '未设置'} />
+							<ContextCard icon={<BookMarked size={18} />} label="备注" value={activeChapter?.scene.note || '未设置'} />
+						</>
+					)}
+					{props.initialTool === 'references'
+						&& snapshot
+						&& activeResource?.type === 'chapter'
+						&& session ? (
 						<PendingFactsReview
 							projectRoot={snapshot.root}
 							resourceId={activeResource.id}

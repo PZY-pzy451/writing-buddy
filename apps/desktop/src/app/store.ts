@@ -61,7 +61,9 @@ import {
 } from './writerSession';
 import {
 	createDefaultWriterWorkspaceLayouts,
-	updateWriterWorkspaceLayout
+	updateWriterWorkspaceLayout,
+	type ManuscriptDensity,
+	type WriterToolId
 } from './writerWorkspace';
 import {
 	captureAnchorForEditor,
@@ -195,6 +197,10 @@ interface AppState extends PersistedWorkspace {
 	readonly cursorOffset: number;
 	readonly search: string;
 	readonly assistantOpen: boolean;
+	readonly writerTool: WriterToolId;
+	readonly writerToolPinned: boolean;
+	readonly sceneBarExpanded: boolean;
+	readonly manuscriptDensity: ManuscriptDensity;
 	readonly assistantIntent?: AssistantActionIntent;
 	readonly dockOpen: boolean;
 	readonly dockTab: DockTab;
@@ -229,6 +235,7 @@ interface AppState extends PersistedWorkspace {
 	readonly pendingReveal?: {
 		readonly resourceId: string;
 		readonly offset: number;
+		readonly preserveSelection?: boolean;
 	};
 	readonly bootstrap: () => Promise<void>;
 	readonly chooseProject: () => Promise<void>;
@@ -270,7 +277,11 @@ interface AppState extends PersistedWorkspace {
 	readonly updateCursor: (cursor: CursorState) => void;
 	readonly requestEditorEdit: (edit: NonNullable<AppState['pendingEdit']>) => void;
 	readonly clearEditorEdit: (id: string) => void;
-	readonly requestEditorReveal: (resourceId: string, offset: number) => void;
+	readonly requestEditorReveal: (
+		resourceId: string,
+		offset: number,
+		preserveSelection?: boolean
+	) => void;
 	readonly clearEditorReveal: (resourceId: string, offset: number) => void;
 	readonly setResourceContent: (content: string) => void;
 	readonly save: () => Promise<void>;
@@ -299,6 +310,12 @@ interface AppState extends PersistedWorkspace {
 	readonly toggleSidebar: () => void;
 	readonly toggleAssistant: () => void;
 	readonly openAssistant: () => void;
+	readonly openWriterTool: (tool: WriterToolId) => void;
+	readonly closeWriterTool: () => void;
+	readonly toggleWriterToolPinned: () => void;
+	readonly setSceneBarExpanded: (expanded: boolean) => void;
+	readonly setManuscriptDensity: (density: ManuscriptDensity) => void;
+	readonly setActiveSceneId: (sceneId?: string) => void;
 	readonly requestAssistantAction: (request: AssistantActionRequest) => void;
 	readonly toggleDock: () => void;
 	readonly setDockTab: (tab: DockTab) => void;
@@ -481,6 +498,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	search: '',
 	cursorOffset: 0,
 	assistantOpen: false,
+	writerTool: 'outline',
+	writerToolPinned: false,
+	sceneBarExpanded: true,
+	manuscriptDensity: 'comfortable',
 	dockOpen: false,
 	dockTab: 'issues',
 	quickCaptures: [],
@@ -1047,6 +1068,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					writingLayout.projectSidebarWidth
 				),
 				assistantOpen: writingLayout.assistantVisible,
+				writerTool: writingLayout.assistantTool ?? 'outline',
+				writerToolPinned: writingLayout.assistantPinned ?? false,
+				sceneBarExpanded: writingLayout.sceneBarExpanded ?? true,
+				manuscriptDensity: writingLayout.manuscriptDensity ?? 'comfortable',
 				assistantWidth: clampWorkspaceSize(
 					'assistant',
 					writingLayout.assistantWidth
@@ -1551,7 +1576,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({ pendingEdit: undefined });
 		}
 	},
-	requestEditorReveal(resourceId, offset) {
+	requestEditorReveal(resourceId, offset, preserveSelection = false) {
 		set(state => {
 			const projectChapterId = state.snapshot
 				&& flattenChapters(state.snapshot.project).some(chapter => chapter.id === resourceId)
@@ -1565,7 +1590,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					))
 				: undefined;
 			return {
-				pendingReveal: { resourceId, offset },
+				pendingReveal: { resourceId, offset, preserveSelection },
 				writerSessions: scene
 					? updateCurrentWriterSession(state, session => touchWriterSession(
 							session,
@@ -1927,6 +1952,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				sidebarOpen: layout.sidebarVisible,
 				sidebarWidth: clampWorkspaceSize('sidebar', layout.projectSidebarWidth),
 				assistantOpen: layout.assistantVisible,
+				writerTool: layout.assistantTool ?? 'outline',
+				writerToolPinned: layout.assistantPinned ?? false,
+				sceneBarExpanded: layout.sceneBarExpanded ?? true,
+				manuscriptDensity: layout.manuscriptDensity ?? 'comfortable',
 				assistantWidth: clampWorkspaceSize('assistant', layout.assistantWidth),
 				dockOpen: layout.dockVisible,
 				dockHeight: clampWorkspaceSize('dock', layout.dockHeight),
@@ -1987,16 +2016,95 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			)
 		}));
 	},
-	requestAssistantAction(request) {
+	openWriterTool(writerTool) {
 		set(state => ({
 			assistantOpen: true,
+			writerTool,
+			assistantIntent: undefined,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, {
+					assistantVisible: true,
+					assistantTool: writerTool
+				})
+			)
+		}));
+	},
+	closeWriterTool() {
+		set(state => ({
+			assistantOpen: false,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { assistantVisible: false })
+			)
+		}));
+	},
+	toggleWriterToolPinned() {
+		set(state => {
+			const writerToolPinned = !state.writerToolPinned;
+			return {
+				writerToolPinned,
+				writerSessions: updateCurrentWriterSession(
+					state,
+					session => updateSessionPanel(session, {
+						assistantPinned: writerToolPinned
+					})
+				)
+			};
+		});
+	},
+	setSceneBarExpanded(sceneBarExpanded) {
+		set(state => ({
+			sceneBarExpanded,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { sceneBarExpanded })
+			)
+		}));
+	},
+	setManuscriptDensity(manuscriptDensity) {
+		set(state => ({
+			manuscriptDensity,
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => updateSessionPanel(session, { manuscriptDensity })
+			)
+		}));
+	},
+	setActiveSceneId(activeSceneId) {
+		set(state => ({
+			writerSessions: updateCurrentWriterSession(
+				state,
+				session => {
+					if (activeSceneId) {
+						return touchWriterSession(session, { activeSceneId });
+					}
+					const withoutScene = touchWriterSession(session, {});
+					delete (withoutScene as { activeSceneId?: string }).activeSceneId;
+					return withoutScene;
+				}
+			)
+		}));
+	},
+	requestAssistantAction(request) {
+		const writerTool: WriterToolId = request.kind === 'scene-plan'
+			? 'outline'
+			: request.kind === 'story-kernel'
+				? 'references'
+				: 'ai';
+		set(state => ({
+			assistantOpen: true,
+			writerTool,
 			assistantIntent: {
 				...request,
 				id: crypto.randomUUID()
 			},
 			writerSessions: updateCurrentWriterSession(
 				state,
-				session => updateSessionPanel(session, { assistantVisible: true })
+				session => updateSessionPanel(session, {
+					assistantVisible: true,
+					assistantTool: writerTool
+				})
 			)
 		}));
 	},
@@ -2327,6 +2435,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				sidebarOpen: layout.sidebarVisible,
 				sidebarWidth: layout.projectSidebarWidth,
 				assistantOpen: layout.assistantVisible,
+				writerTool: layout.assistantTool ?? 'outline',
+				writerToolPinned: layout.assistantPinned ?? false,
+				sceneBarExpanded: layout.sceneBarExpanded ?? true,
+				manuscriptDensity: layout.manuscriptDensity ?? 'comfortable',
 				assistantWidth: layout.assistantWidth,
 				dockOpen: layout.dockVisible,
 				dockHeight: layout.dockHeight,

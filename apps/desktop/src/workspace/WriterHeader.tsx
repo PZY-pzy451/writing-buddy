@@ -1,4 +1,5 @@
 import {
+	AlignJustify,
 	Check,
 	ChevronDown,
 	ChevronLeft,
@@ -24,6 +25,8 @@ export function WriterHeader(): React.JSX.Element | null {
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const setStoryView = useAppStore(state => state.setStoryView);
 	const focusMode = useAppStore(state => state.focusMode);
+	const manuscriptDensity = useAppStore(state => state.manuscriptDensity);
+	const setManuscriptDensity = useAppStore(state => state.setManuscriptDensity);
 
 	if (!snapshot || !activeResource) {
 		return null;
@@ -139,6 +142,28 @@ export function WriterHeader(): React.JSX.Element | null {
 										>
 											<ChevronRight size={16} />下一章
 										</button>
+										<hr />
+										<span className="writer-menu-label">
+											<AlignJustify size={16} />正文排版
+										</span>
+										{([
+											['compact', '紧凑'],
+											['comfortable', '舒适'],
+											['spacious', '宽松']
+										] as const).map(([density, label]) => (
+											<button
+												key={density}
+												type="button"
+												role="menuitemradio"
+												aria-checked={manuscriptDensity === density}
+												onClick={() => setManuscriptDensity(density)}
+											>
+												{manuscriptDensity === density
+													? <Check size={16} />
+													: <span className="writer-menu-icon-placeholder" />}
+												{label}
+											</button>
+										))}
 									</div>
 								</details>
 							) : null}

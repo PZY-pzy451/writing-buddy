@@ -35,6 +35,10 @@ function resetWorkspaceExperience(): void {
 		sidebarOpen: true,
 		sidebarWidth: 320,
 		assistantOpen: true,
+		writerTool: 'outline',
+		writerToolPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		assistantWidth: 360,
 		dockOpen: true,
 		dockHeight: 240
@@ -180,6 +184,45 @@ describe('quiet writer workspaces', () => {
 		expect(within(status).getByText(/本章 \d+ 字/)).toBeInTheDocument();
 		expect(within(status).getByText('已保存')).toBeInTheDocument();
 		expect(within(status).queryByText('我的小说')).not.toBeInTheDocument();
+	});
+
+	it('keeps a stable five-item tool rail and switches one remembered panel on demand', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+
+		const rail = screen.getByRole('navigation', { name: '写作工具' });
+		for (const label of ['细纲', '人物', '资料', 'AI', '检查工具']) {
+			expect(within(rail).getByRole('button', { name: label })).toBeInTheDocument();
+		}
+		expect(screen.queryByRole('complementary', { name: '细纲工具' }))
+			.not.toBeInTheDocument();
+
+		await user.click(within(rail).getByRole('button', { name: '细纲' }));
+		const outlinePanel = screen.getByRole('complementary', { name: '细纲工具' });
+		expect(outlinePanel).toBeInTheDocument();
+		expect(within(outlinePanel).queryByRole('tablist')).not.toBeInTheDocument();
+		expect(useAppStore.getState()).toMatchObject({
+			assistantOpen: true,
+			writerTool: 'outline'
+		});
+
+		await user.click(within(rail).getByRole('button', { name: '检查工具' }));
+		expect(screen.queryByRole('complementary', { name: '细纲工具' }))
+			.not.toBeInTheDocument();
+		expect(screen.getByRole('complementary', { name: '检查工具' }))
+			.toBeInTheDocument();
+		expect(useAppStore.getState().writerTool).toBe('review');
+
+		await user.click(screen.getByRole('button', { name: '固定检查工具面板' }));
+		expect(useAppStore.getState().writerToolPinned).toBe(true);
+		await user.click(screen.getByRole('button', { name: '关闭检查工具面板' }));
+		expect(screen.queryByRole('complementary', { name: '检查工具' }))
+			.not.toBeInTheDocument();
+		expect(screen.getByRole('navigation', { name: '写作工具' })).toBeInTheDocument();
+		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
+			'"assistantTool":"review"'
+		);
 	});
 
 	it('opens the existing extraction center for the current chapter without starting AI', async () => {

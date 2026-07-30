@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "gate": "Genre-to-Draft Gate F",
+  "capturedAt": "2026-07-30",
+  "browser": {
+    "viewport1024x720": {
+      "horizontalOverflowPx": 0,
+      "projectSidebarPx": 220,
+      "manuscriptCanvasPx": 680,
+      "writerToolRailPx": 52,
+      "sceneControlsMinHeightPx": 44,
+      "toolControlsMinWidthPx": 44,
+      "toolControlsMinHeightPx": 52
+    },
+    "viewport1280x800": {
+      "horizontalOverflowPx": 0,
+      "manuscriptCanvasPx": 760,
+      "onDemandPanelPx": 360,
+      "writerToolRailPx": 52,
+      "assistantPanelCount": 1,
+      "duplicateAssistantTabLists": 0
+    },
+    "viewport1536x960": {
+      "horizontalOverflowPx": 0,
+      "manuscriptCanvasPx": 760,
+      "onDemandPanelPx": 360,
+      "writerToolRailPx": 52,
+      "panelPosition": "relative"
+    },
+    "sceneBar": {
+      "expandedHeightPx": 158.67,
+      "collapsedHeightPx": 44.67
+    },
+    "manuscriptDensity": {
+      "compact": {
+        "maxWidthPx": 680,
+        "fontSizePx": 17,
+        "lineHeightPx": 30
+      },
+      "comfortable": {
+        "maxWidthPx": 760,
+        "fontSizePx": 18,
+        "lineHeightPx": 34
+      },
+      "spacious": {
+        "maxWidthPx": 820,
+        "fontSizePx": 19,
+        "lineHeightPx": 38
+      }
+    },
+    "focusMode": {
+      "canvasPx": 820,
+      "writerToolRailVisible": false,
+      "assistantPanelVisible": false,
+      "restoredPinnedTool": "characters"
+    },
+    "workspaceRestore": {
+      "restoredTool": "characters",
+      "restoredPinned": true,
+      "restoredDensity": "comfortable"
+    }
+  },
+  "nativeSmoke": {
+    "windowTitle": "Writing Buddy",
+    "waitForInputIdle": true,
+    "responding": true,
+    "normalClose": true,
+    "exitCode": 0
+  }
+}

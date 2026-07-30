@@ -35,6 +35,7 @@ export function ProjectSidebar(): React.JSX.Element {
 	const storyView = useAppStore(state => state.storyView);
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
+	const selection = useAppStore(state => state.selection);
 	const search = useAppStore(state => state.search.trim().toLocaleLowerCase());
 	const openResource = useAppStore(state => state.openResource);
 	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
@@ -147,7 +148,11 @@ export function ProjectSidebar(): React.JSX.Element {
 						onOpenChapter={resource => void openResource(resource)}
 						onOpenScene={(resource, offset) => {
 							void openResource(resource).then(() => {
-								requestEditorReveal(resource.id, offset);
+								requestEditorReveal(
+									resource.id,
+									offset,
+									Boolean(selection && selection.end > selection.start)
+								);
 							});
 						}}
 					/>

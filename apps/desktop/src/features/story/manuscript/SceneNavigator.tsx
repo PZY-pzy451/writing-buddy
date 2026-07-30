@@ -1,5 +1,10 @@
 import {
+	Check,
+	ChevronDown,
+	ChevronRight,
+	EyeOff,
 	Link2Off,
+	ListTree,
 	MapPin,
 	Plus
 } from 'lucide-react';
@@ -20,7 +25,12 @@ interface SceneNavigatorProps {
 	readonly currentOffset: number;
 	readonly selection?: { readonly start: number; readonly end: number };
 	readonly readOnly?: boolean;
-	readonly onNavigate: (offset: number) => void;
+	readonly expanded?: boolean;
+	readonly onExpandedChange?: (expanded: boolean) => void;
+	readonly onNavigate: (offset: number, preserveSelection?: boolean) => void;
+	readonly onActiveSceneChange?: (sceneId?: string) => void;
+	readonly onOpenOutline?: () => void;
+	readonly onCompleteScene?: (sceneId: string) => void;
 	readonly onScenesChange?: (scenes: readonly StoryScene[]) => void;
 }
 
@@ -31,12 +41,31 @@ export function SceneNavigator({
 	currentOffset,
 	selection,
 	readOnly = false,
+	expanded,
+	onExpandedChange,
 	onNavigate,
+	onActiveSceneChange,
+	onOpenOutline,
+	onCompleteScene,
 	onScenesChange
 }: SceneNavigatorProps): React.JSX.Element {
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
+	const [internalExpanded, setInternalExpanded] = useState(true);
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState<string>();
+	const sceneBarExpanded = expanded ?? internalExpanded;
+	const current = useMemo(() => scenes.find(scene => (
+		scene.manuscriptRange.start <= currentOffset
+			&& currentOffset < scene.manuscriptRange.end
+	)), [currentOffset, scenes]);
+	const currentIndex = current
+		? scenes.findIndex(scene => scene.id === current.id)
+		: -1;
+
+	const setExpanded = (next: boolean) => {
+		setInternalExpanded(next);
+		onExpandedChange?.(next);
+	};
 
 	const reload = useCallback(async () => {
 		try {
@@ -71,15 +100,12 @@ export function SceneNavigator({
 		};
 	}, [chapterId, onScenesChange, service]);
 
-	const current = useMemo(() => scenes.find(scene => (
-		scene.manuscriptRange.start <= currentOffset
-			&& currentOffset < scene.manuscriptRange.end
-	)), [currentOffset, scenes]);
+	useEffect(() => {
+		onActiveSceneChange?.(current?.id);
+	}, [current?.id, onActiveSceneChange]);
 
 	const createFromSelection = async () => {
-		if (!selection || readOnly) {
-			return;
-		}
+		if (!selection || readOnly) return;
 		setBusy(true);
 		try {
 			await service.createScene({
@@ -114,41 +140,127 @@ export function SceneNavigator({
 		}
 	};
 
+	const navigate = (scene: StoryScene) => {
+		onActiveSceneChange?.(scene.id);
+		const preserveSelection = Boolean(
+			selection && selection.end > selection.start
+		);
+		if (preserveSelection) {
+			onNavigate(scene.manuscriptRange.start, true);
+		} else {
+			onNavigate(scene.manuscriptRange.start);
+		}
+	};
+
+	if (!sceneBarExpanded) {
+		return (
+			<nav className="scene-navigator is-collapsed" aria-label="场景导航">
+				<button
+					type="button"
+					className="scene-bar-show"
+					aria-label="显示当前场景条"
+					onClick={() => setExpanded(true)}
+				>
+					<ChevronRight size={18} />
+					<span>{current
+						? `场景 ${currentIndex + 1} · ${current.title}`
+						: '显示当前场景'}</span>
+				</button>
+				{error && <span className="scene-error" role="status">{error}</span>}
+			</nav>
+		);
+	}
+
 	return (
 		<nav className="scene-navigator" aria-label="场景导航">
-			<span className="scene-navigator-label"><MapPin size={16} />场景</span>
-			<div className="scene-chip-list">
-				{scenes.length ? scenes.map(scene => (
+			<div className="current-scene-heading">
+				<div>
+					<span className="scene-navigator-label">
+						<MapPin size={16} />当前场景
+					</span>
+					<strong>
+						{current
+							? `场景 ${currentIndex + 1} · ${current.title}`
+							: scenes.length ? '光标尚未进入场景' : '本章还没有场景'}
+					</strong>
+				</div>
+				<div className="current-scene-actions">
 					<button
-						key={scene.id}
 						type="button"
-						className={current?.id === scene.id ? 'is-current' : ''}
-						aria-current={current?.id === scene.id ? 'true' : undefined}
-						onClick={() => onNavigate(scene.manuscriptRange.start)}
+						disabled={!current}
+						aria-label="完成当前场景"
+						onClick={() => current && onCompleteScene?.(current.id)}
 					>
-						{scene.title}
+						<Check size={16} />完成场景
 					</button>
-				)) : <span className="scene-empty">选中文字即可建立场景</span>}
+					<button
+						type="button"
+						aria-label="查看当前场景细纲"
+						onClick={onOpenOutline}
+					>
+						<ListTree size={16} />查看细纲
+					</button>
+					<button
+						type="button"
+						aria-label="隐藏当前场景条"
+						onClick={() => setExpanded(false)}
+					>
+						<EyeOff size={16} />隐藏
+					</button>
+				</div>
 			</div>
-			{error && <span className="scene-error" role="status">{error}</span>}
-			<button
-				type="button"
-				className="scene-action"
-				disabled={!selection || readOnly || busy}
-				onClick={() => void createFromSelection()}
-				aria-label="将选区设为场景"
-			>
-				<Plus size={16} />选区建场景
-			</button>
-			<button
-				type="button"
-				className="scene-action is-danger"
-				disabled={!current || readOnly || busy}
-				onClick={() => void unlinkCurrent()}
-				aria-label="解除当前场景关联"
-			>
-				<Link2Off size={16} />解除关联
-			</button>
+
+			{current && (
+				<dl className="current-scene-brief">
+					<div><dt>目标</dt><dd>{current.goal || '未设置'}</dd></div>
+					<div><dt>冲突</dt><dd>{current.conflict || '未设置'}</dd></div>
+					<div><dt>结尾</dt><dd>{current.outcome || current.turn || '未设置'}</dd></div>
+				</dl>
+			)}
+
+			<div className="scene-navigation-row">
+				<button
+					type="button"
+					className="scene-list-label"
+					aria-expanded="true"
+					disabled
+				>
+					<ChevronDown size={16} />本章场景
+				</button>
+				<div className="scene-chip-list">
+					{scenes.length ? scenes.map(scene => (
+						<button
+							key={scene.id}
+							type="button"
+							className={current?.id === scene.id ? 'is-current' : ''}
+							aria-current={current?.id === scene.id ? 'true' : undefined}
+							aria-label={`转到场景：${scene.title}`}
+							onClick={() => navigate(scene)}
+						>
+							{scene.title}
+						</button>
+					)) : <span className="scene-empty">选中文字即可建立场景</span>}
+				</div>
+				{error && <span className="scene-error" role="status">{error}</span>}
+				<button
+					type="button"
+					className="scene-action"
+					disabled={!selection || readOnly || busy}
+					onClick={() => void createFromSelection()}
+					aria-label="将选区设为场景"
+				>
+					<Plus size={16} />选区建场景
+				</button>
+				<button
+					type="button"
+					className="scene-action is-danger"
+					disabled={!current || readOnly || busy}
+					onClick={() => void unlinkCurrent()}
+					aria-label="解除当前场景关联"
+				>
+					<Link2Off size={16} />解除关联
+				</button>
+			</div>
 		</nav>
 	);
 }

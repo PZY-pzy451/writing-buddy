@@ -75,4 +75,23 @@ describe('workspace grid contracts', () => {
 		expect(tokenCss).toContain('@media (prefers-reduced-motion: reduce)');
 		expect(tokenCss).toContain('transition-duration: 0.01ms !important;');
 	});
+
+	it('reserves a stable editor tool rail and bounded manuscript density widths', () => {
+		expect(workspaceCss).toContain('--writer-tool-rail-width: 52px;');
+		expect(workspaceCss).toContain('grid-area: writer-tools;');
+		expect(workspaceCss).toContain('width 180ms ease');
+		expect(workspaceCss).toContain('.manuscript-density-compact .writing-canvas');
+		expect(workspaceCss).toContain('width: min(100%, 680px);');
+		expect(workspaceCss).toContain('.manuscript-density-comfortable .writing-canvas');
+		expect(workspaceCss).toContain('width: min(100%, 760px);');
+		expect(workspaceCss).toContain('.manuscript-density-spacious .writing-canvas');
+		expect(workspaceCss).toContain('width: min(100%, 820px);');
+		expect(workspaceCss).toContain('@media (max-width: 1439px)');
+		expect(workspaceCss).toContain(
+			'right: var(--writer-tool-rail-width);'
+		);
+		expect(workspaceCss).toContain(
+			'@media (min-width: 850px) and (max-width: 1099px)'
+		);
+	});
 });

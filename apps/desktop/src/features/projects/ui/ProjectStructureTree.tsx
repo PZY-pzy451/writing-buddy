@@ -261,9 +261,11 @@ function SortableSceneRow({
 	scene,
 	disabledReason,
 	feedback,
+	active,
 	onOpen
 }: SortableRowProps & {
 	readonly scene: StoryScene;
+	readonly active: boolean;
 	readonly onOpen: () => void;
 }): React.JSX.Element {
 	const {
@@ -283,7 +285,8 @@ function SortableSceneRow({
 	return (
 		<TreeRow
 			nodeRef={setNodeRef}
-			className="tree-row scene-row"
+			className={`tree-row scene-row${active ? ' is-active' : ''}`}
+			selected={active}
 			state={interactionState(isDragging, feedback)}
 			style={{
 				transform: CSS.Transform.toString(transform),
@@ -330,6 +333,10 @@ export function ProjectStructureTree({
 	const moveBusy = useAppStore(state => state.structureMoveBusy);
 	const persistedAnnouncement = useAppStore(state => state.structureMoveAnnouncement);
 	const scenes = useAppStore(state => state.structureScenes);
+	const activeSceneId = useAppStore(state => {
+		const projectId = state.snapshot?.project.projectId;
+		return projectId ? state.writerSessions[projectId]?.activeSceneId : undefined;
+	});
 	const hasUnsavedDocument = useAppStore(state => state.session?.state.dirty ?? false);
 	const [activeItem, setActiveItem] = useState<ProjectStructureDragItem>();
 	const [dropFeedback, setDropFeedback] = useState<DropFeedback>();
@@ -577,6 +584,7 @@ export function ProjectStructureTree({
 																			projectRevision: snapshot.projectRevision
 																		}}
 																		scene={scene}
+																		active={activeSceneId === scene.id}
 																		disabledReason={sceneDisabledReason}
 																		feedback={dropFeedback?.overId === scene.id
 																			? dropFeedback

@@ -97,7 +97,12 @@ export function ChapterEditor(): React.JSX.Element {
 	const pendingReveal = useAppStore(state => state.pendingReveal);
 	const clearEditorReveal = useAppStore(state => state.clearEditorReveal);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
+	const openWriterTool = useAppStore(state => state.openWriterTool);
 	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
+	const sceneBarExpanded = useAppStore(state => state.sceneBarExpanded);
+	const setSceneBarExpanded = useAppStore(state => state.setSceneBarExpanded);
+	const setActiveSceneId = useAppStore(state => state.setActiveSceneId);
+	const manuscriptDensity = useAppStore(state => state.manuscriptDensity);
 	const inlineLanguageCheckEnabled = useAppStore(
 		state => state.inlineLanguageCheckEnabled
 	);
@@ -394,7 +399,9 @@ export function ChapterEditor(): React.JSX.Element {
 				const reveal = useAppStore.getState().pendingReveal;
 				if (reveal?.resourceId === session.state.resourceId) {
 					const revealPosition = model.getPositionAt(reveal.offset);
-					editor.setPosition(revealPosition);
+					if (!reveal.preserveSelection) {
+						editor.setPosition(revealPosition);
+					}
 					editor.revealPositionInCenter(revealPosition);
 					useAppStore.getState().clearEditorReveal(reveal.resourceId, reveal.offset);
 				}
@@ -605,14 +612,19 @@ export function ChapterEditor(): React.JSX.Element {
 		});
 	}, [projectRoot]);
 
-	const navigateToOffset = useCallback((offset: number) => {
+	const navigateToOffset = useCallback((
+		offset: number,
+		preserveSelection = false
+	) => {
 		const editor = editorRef.current;
 		const model = editor?.getModel();
 		if (!editor || !model) {
 			return false;
 		}
 		const position = model.getPositionAt(offset);
-		editor.setPosition(position);
+		if (!preserveSelection) {
+			editor.setPosition(position);
+		}
 		editor.revealPositionInCenter(position);
 		editor.focus();
 		setCurrentOffset(offset);
@@ -754,7 +766,10 @@ export function ChapterEditor(): React.JSX.Element {
 			|| pendingReveal.resourceId !== session?.state.resourceId) {
 			return;
 		}
-		if (navigateToOffset(pendingReveal.offset)) {
+		if (navigateToOffset(
+			pendingReveal.offset,
+			pendingReveal.preserveSelection
+		)) {
 			clearEditorReveal(pendingReveal.resourceId, pendingReveal.offset);
 		}
 	}, [clearEditorReveal, navigateToOffset, pendingReveal, session?.state.resourceId]);
@@ -814,7 +829,15 @@ export function ChapterEditor(): React.JSX.Element {
 					currentOffset={currentOffset}
 					selection={selection ? { start: selection.start, end: selection.end } : undefined}
 					readOnly={readOnly}
+					expanded={sceneBarExpanded}
+					onExpandedChange={setSceneBarExpanded}
 					onNavigate={navigateToOffset}
+					onActiveSceneChange={setActiveSceneId}
+					onOpenOutline={() => openWriterTool('outline')}
+					onCompleteScene={() => requestAssistantAction({
+						kind: 'continuation',
+						mode: 'finish-scene'
+					})}
 					onScenesChange={updateScenes}
 				/>
 			)}
@@ -886,7 +909,9 @@ export function ChapterEditor(): React.JSX.Element {
 					folding: false,
 					fontFamily: '"Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", SimSun, serif',
 					fontLigatures: false,
-					fontSize: 18,
+					fontSize: manuscriptDensity === 'compact'
+						? 17
+						: manuscriptDensity === 'spacious' ? 19 : 18,
 					glyphMargin: activeResource.type === 'chapter',
 					hideCursorInOverviewRuler: true,
 					hover: {
@@ -895,7 +920,9 @@ export function ChapterEditor(): React.JSX.Element {
 						sticky: true
 					},
 					lineDecorationsWidth: 0,
-					lineHeight: 34,
+					lineHeight: manuscriptDensity === 'compact'
+						? 30
+						: manuscriptDensity === 'spacious' ? 38 : 34,
 					lineNumbers: 'off',
 					links: false,
 					matchBrackets: 'never',

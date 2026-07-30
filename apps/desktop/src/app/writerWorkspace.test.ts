@@ -11,6 +11,10 @@ describe('writer workspace layout contract', () => {
 		expect(layouts.writing).toMatchObject({
 			sidebarVisible: true,
 			assistantVisible: false,
+			assistantTool: 'outline',
+			assistantPinned: false,
+			sceneBarExpanded: true,
+			manuscriptDensity: 'comfortable',
 			dockVisible: false,
 			inspectorVisible: false
 		});
@@ -48,6 +52,12 @@ describe('writer workspace layout contract', () => {
 		});
 
 		expect(parsed.writing.projectSidebarWidth).toBe(410);
+		expect(parsed.writing).toMatchObject({
+			assistantTool: 'outline',
+			assistantPinned: false,
+			sceneBarExpanded: true,
+			manuscriptDensity: 'comfortable'
+		});
 		expect(parsed.planning).toEqual(createDefaultWriterWorkspaceLayouts().planning);
 		expect(parsed.history).toEqual(createDefaultWriterWorkspaceLayouts().history);
 	});

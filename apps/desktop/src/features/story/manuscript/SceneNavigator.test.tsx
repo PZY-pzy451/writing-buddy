@@ -12,7 +12,12 @@ import {
 import type { CreateSceneInput } from './SceneService';
 
 function scene(): StoryScene {
-	return parseStoryScene(validResources.scene);
+	return parseStoryScene({
+		...validResources.scene,
+		goal: '取得站长留下的线索',
+		conflict: '画师拒绝交谈',
+		outcome: '获得褪色车票'
+	});
 }
 
 function serviceFixture() {
@@ -55,7 +60,7 @@ describe('SceneNavigator', () => {
 			/>
 		);
 
-		const sceneButton = await screen.findByRole('button', { name: '雨夜车站' });
+		const sceneButton = await screen.findByRole('button', { name: /雨夜车站/u });
 		expect(sceneButton).toHaveAttribute('aria-current', 'true');
 		fireEvent.click(sceneButton);
 		expect(onNavigate).toHaveBeenCalledWith(0);
@@ -101,5 +106,70 @@ describe('SceneNavigator', () => {
 			end: 48
 		})));
 		expect(onScenesChange).toHaveBeenCalled();
+	});
+
+	it('shows a collapsible current-scene brief with direct outline and completion actions', async () => {
+		const fixture = serviceFixture();
+		const onOpenOutline = vi.fn();
+		const onCompleteScene = vi.fn();
+		render(
+			<SceneNavigator
+				service={fixture.service}
+				chapterId="chapter:chapter-001"
+				manuscript={'夜'.repeat(80)}
+				currentOffset={4}
+				onNavigate={() => undefined}
+				onOpenOutline={onOpenOutline}
+				onCompleteScene={onCompleteScene}
+			/>
+		);
+
+		expect(await screen.findByText('场景 1 · 雨夜车站')).toBeInTheDocument();
+		expect(screen.getByText('取得站长留下的线索')).toBeInTheDocument();
+		expect(screen.getByText('画师拒绝交谈')).toBeInTheDocument();
+		expect(screen.getByText('获得褪色车票')).toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '查看当前场景细纲' }));
+		fireEvent.click(screen.getByRole('button', { name: '完成当前场景' }));
+		expect(onOpenOutline).toHaveBeenCalledTimes(1);
+		expect(onCompleteScene).toHaveBeenCalledWith('scene:station-rain');
+
+		fireEvent.click(screen.getByRole('button', { name: '隐藏当前场景条' }));
+		expect(screen.queryByText('取得站长留下的线索')).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '显示当前场景条' })).toBeInTheDocument();
+	});
+
+	it('preserves an editor selection while changing the active scene anchor', async () => {
+		const fixture = serviceFixture();
+		const second = parseStoryScene({
+			...validResources.scene,
+			id: 'scene:ticket',
+			title: '褪色车票',
+			narrativeOrder: 1,
+			manuscriptRange: {
+				start: 32,
+				end: 64,
+				revision: 0,
+				quote: '褪色车票'
+			}
+		});
+		fixture.listScenesForChapter.mockResolvedValue([scene(), second]);
+		const onNavigate = vi.fn();
+		const onActiveSceneChange = vi.fn();
+		render(
+			<SceneNavigator
+				service={fixture.service}
+				chapterId="chapter:chapter-001"
+				manuscript={'夜'.repeat(80)}
+				currentOffset={4}
+				selection={{ start: 4, end: 8 }}
+				onNavigate={onNavigate}
+				onActiveSceneChange={onActiveSceneChange}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: '转到场景：褪色车票' }));
+		expect(onNavigate).toHaveBeenCalledWith(32, true);
+		expect(onActiveSceneChange).toHaveBeenCalledWith('scene:ticket');
 	});
 });

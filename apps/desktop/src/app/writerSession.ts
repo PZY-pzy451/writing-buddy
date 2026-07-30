@@ -13,6 +13,8 @@ export {
 	workspaceForRailMode
 } from './writerWorkspace';
 export type {
+	ManuscriptDensity,
+	WriterToolId,
 	WriterWorkspaceId,
 	WriterWorkspaceLayoutMap
 } from './writerWorkspace';

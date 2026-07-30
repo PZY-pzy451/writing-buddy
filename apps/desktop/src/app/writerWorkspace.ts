@@ -8,10 +8,32 @@ export const writerWorkspaceIds = [
 
 export type WriterWorkspaceId = typeof writerWorkspaceIds[number];
 
+export const writerToolIds = [
+	'outline',
+	'characters',
+	'references',
+	'ai',
+	'review'
+] as const;
+
+export type WriterToolId = typeof writerToolIds[number];
+
+export const manuscriptDensityIds = [
+	'compact',
+	'comfortable',
+	'spacious'
+] as const;
+
+export type ManuscriptDensity = typeof manuscriptDensityIds[number];
+
 export interface WriterWorkspaceLayout {
 	readonly projectSidebarWidth: number;
 	readonly assistantWidth: number;
 	readonly assistantVisible: boolean;
+	readonly assistantTool?: WriterToolId;
+	readonly assistantPinned?: boolean;
+	readonly sceneBarExpanded?: boolean;
+	readonly manuscriptDensity?: ManuscriptDensity;
 	readonly inspectorVisible: boolean;
 	readonly sidebarVisible: boolean;
 	readonly dockHeight: number;
@@ -27,6 +49,10 @@ const defaults: WriterWorkspaceLayoutMap = {
 		projectSidebarWidth: 272,
 		assistantWidth: 360,
 		assistantVisible: false,
+		assistantTool: 'outline',
+		assistantPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		inspectorVisible: false,
 		sidebarVisible: true,
 		dockHeight: 240,
@@ -36,6 +62,10 @@ const defaults: WriterWorkspaceLayoutMap = {
 		projectSidebarWidth: 320,
 		assistantWidth: 360,
 		assistantVisible: false,
+		assistantTool: 'outline',
+		assistantPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		inspectorVisible: true,
 		sidebarVisible: true,
 		dockHeight: 240,
@@ -45,6 +75,10 @@ const defaults: WriterWorkspaceLayoutMap = {
 		projectSidebarWidth: 300,
 		assistantWidth: 360,
 		assistantVisible: false,
+		assistantTool: 'references',
+		assistantPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		inspectorVisible: true,
 		sidebarVisible: true,
 		dockHeight: 240,
@@ -54,6 +88,10 @@ const defaults: WriterWorkspaceLayoutMap = {
 		projectSidebarWidth: 300,
 		assistantWidth: 360,
 		assistantVisible: false,
+		assistantTool: 'review',
+		assistantPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		inspectorVisible: true,
 		sidebarVisible: false,
 		dockHeight: 260,
@@ -63,6 +101,10 @@ const defaults: WriterWorkspaceLayoutMap = {
 		projectSidebarWidth: 272,
 		assistantWidth: 360,
 		assistantVisible: false,
+		assistantTool: 'outline',
+		assistantPinned: false,
+		sceneBarExpanded: true,
+		manuscriptDensity: 'comfortable',
 		inspectorVisible: false,
 		sidebarVisible: false,
 		dockHeight: 240,
@@ -88,7 +130,10 @@ function isRecord(value: unknown): value is Readonly<Record<string, unknown>> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function parseLayout(value: unknown): WriterWorkspaceLayout | undefined {
+function parseLayout(
+	value: unknown,
+	fallback: WriterWorkspaceLayout
+): WriterWorkspaceLayout | undefined {
 	if (!isRecord(value)) return undefined;
 	if (
 		typeof value.projectSidebarWidth !== 'number'
@@ -111,6 +156,20 @@ function parseLayout(value: unknown): WriterWorkspaceLayout | undefined {
 		projectSidebarWidth: value.projectSidebarWidth,
 		assistantWidth: value.assistantWidth,
 		assistantVisible: value.assistantVisible,
+		assistantTool: writerToolIds.includes(value.assistantTool as WriterToolId)
+			? value.assistantTool as WriterToolId
+			: fallback.assistantTool ?? 'outline',
+		assistantPinned: typeof value.assistantPinned === 'boolean'
+			? value.assistantPinned
+			: fallback.assistantPinned ?? false,
+		sceneBarExpanded: typeof value.sceneBarExpanded === 'boolean'
+			? value.sceneBarExpanded
+			: fallback.sceneBarExpanded ?? true,
+		manuscriptDensity: manuscriptDensityIds.includes(
+			value.manuscriptDensity as ManuscriptDensity
+		)
+			? value.manuscriptDensity as ManuscriptDensity
+			: fallback.manuscriptDensity ?? 'comfortable',
 		inspectorVisible: value.inspectorVisible,
 		sidebarVisible: value.sidebarVisible,
 		dockHeight: value.dockHeight,
@@ -123,7 +182,7 @@ export function parseWriterWorkspaceLayouts(value: unknown): WriterWorkspaceLayo
 	if (!isRecord(value)) return fallback;
 	return Object.fromEntries(writerWorkspaceIds.map(workspace => [
 		workspace,
-		parseLayout(value[workspace]) ?? fallback[workspace]
+		parseLayout(value[workspace], fallback[workspace]) ?? fallback[workspace]
 	])) as WriterWorkspaceLayoutMap;
 }
 

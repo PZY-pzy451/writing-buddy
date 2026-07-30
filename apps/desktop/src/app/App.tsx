@@ -7,6 +7,7 @@ import { StatusBar } from '../shell/StatusBar';
 import { ProjectSidebar } from '../workspace/ProjectSidebar';
 import { ResourceTabs } from '../workspace/ResourceTabs';
 import { WriterHeader } from '../workspace/WriterHeader';
+import { WriterToolRail } from '../workspace/WriterToolRail';
 import { SystemPage } from '../workspace/SystemPage';
 import { ChapterEditor } from '../editor/ChapterEditor';
 import { ResourceEditor } from '../resources/ResourceEditor';
@@ -62,6 +63,7 @@ export function App(): React.JSX.Element {
 	const focusMode = useAppStore(state => state.focusMode);
 	const sidebarOpen = useAppStore(state => state.sidebarOpen);
 	const assistantOpen = useAppStore(state => state.assistantOpen);
+	const manuscriptDensity = useAppStore(state => state.manuscriptDensity);
 	const dockOpen = useAppStore(state => state.dockOpen);
 	const toggleDock = useAppStore(state => state.toggleDock);
 	const verifyExternalChange = useAppStore(state => state.verifyExternalChange);
@@ -83,6 +85,16 @@ export function App(): React.JSX.Element {
 			if (event.key === 'Escape' && shortcutState.focusMode) {
 				event.preventDefault();
 				shortcutState.toggleFocus();
+				return;
+			}
+			if (
+				event.key === 'Escape'
+				&& shortcutState.assistantOpen
+				&& !shortcutState.writerToolPinned
+				&& !document.querySelector('[aria-modal="true"]')
+			) {
+				event.preventDefault();
+				shortcutState.closeWriterTool();
 				return;
 			}
 			if (!shortcutState.focusMode && dispatchWorkspaceShortcut(event, {
@@ -209,10 +221,13 @@ export function App(): React.JSX.Element {
 	const showTextEditor = !systemPageVisible && !storyStudioVisible && (activeResource?.type === 'chapter' || activeResource?.type === 'note');
 	const showStoryResource = !systemPageVisible && !storyStudioVisible && activeResource?.type === 'story';
 	const showResourceEditor = !systemPageVisible && !storyStudioVisible && activeResource && !showTextEditor && !showStoryResource;
+	const writerToolRailVisible = showTextEditor
+		&& activeResource?.type === 'chapter'
+		&& !focusMode;
 
 	return (
 		<div
-			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} ${focusMode ? 'is-focus-mode' : ''} ${sidebarOpen ? '' : 'is-sidebar-closed'} ${systemPageVisible ? 'is-system-page' : ''} ${welcomeVisible ? 'is-welcome' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
+			className={`app-shell theme-${theme} accent-${accent} mode-${activeMode} manuscript-density-${manuscriptDensity} ${focusMode ? 'is-focus-mode' : ''} ${sidebarOpen ? '' : 'is-sidebar-closed'} ${systemPageVisible ? 'is-system-page' : ''} ${welcomeVisible ? 'is-welcome' : ''} ${showDashboard ? 'is-dashboard' : ''} ${storyStudioVisible ? 'is-story-studio' : ''} ${writerToolRailVisible ? 'has-writer-tools' : ''} ${workspaceAssistantVisible ? '' : 'is-assistant-closed'} ${workspaceDockVisible ? '' : 'is-dock-closed'}`}
 			style={{
 				'--sidebar-width-user': `${sidebarWidth}px`,
 				'--assistant-width-user': `${assistantWidth}px`,
@@ -258,6 +273,7 @@ export function App(): React.JSX.Element {
 				)}
 			</main>
 			{workspaceAssistantVisible && <AssistantPanel />}
+			{writerToolRailVisible && <WriterToolRail />}
 			{!focusMode && <StatusBar />}
 			<AiGenerationDrawer />
 			<ProjectCreationWizard />

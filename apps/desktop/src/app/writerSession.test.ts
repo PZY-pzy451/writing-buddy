@@ -87,7 +87,13 @@ describe('writer session contract', () => {
 			schemaVersion: 2,
 			panelState
 		});
-		expect(parsed['project-one']?.workspaceLayouts.writing).toEqual(panelState);
+		expect(parsed['project-one']?.workspaceLayouts.writing).toMatchObject({
+			...panelState,
+			assistantTool: 'outline',
+			assistantPinned: false,
+			sceneBarExpanded: true,
+			manuscriptDensity: 'comfortable'
+		});
 		expect(parsed['project-one']?.workspaceLayouts.planning.assistantVisible).toBe(false);
 	});
 
