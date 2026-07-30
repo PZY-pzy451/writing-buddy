@@ -1,6 +1,7 @@
 import {
-	parseStoryKernelGenerationResponse,
+	parseStoryKernelGenerationResponseWithDiagnostics,
 	storyKernelGenerationResourceTypes,
+	type StoryKernelGenerationResponseDiagnostic,
 	type StoryKernelGenerationResourceType
 } from '@writing-buddy/ai';
 import type { TextFile } from '@writing-buddy/domain';
@@ -82,6 +83,7 @@ export interface StoryKernelGenerationBatch {
 	readonly baseOffset: number;
 	readonly instruction: string;
 	readonly targetTypes: readonly StoryKernelGenerationResourceType[];
+	readonly responseDiagnostics?: readonly StoryKernelGenerationResponseDiagnostic[];
 	readonly candidates: readonly StoryKernelGenerationCandidate[];
 	readonly createdAt: string;
 	readonly updatedAt: string;
@@ -280,12 +282,39 @@ function parseCandidate(value: unknown): StoryKernelGenerationCandidate {
 	};
 }
 
+function parseResponseDiagnostic(value: unknown): StoryKernelGenerationResponseDiagnostic {
+	if (
+		!isRecord(value)
+		|| !Number.isSafeInteger(value.candidateIndex)
+		|| Number(value.candidateIndex) < 0
+		|| Number(value.candidateIndex) > 23
+		|| typeof value.path !== 'string'
+		|| !/^candidates\.\d+(?:\.[A-Za-z0-9_-]+)*$/u.test(value.path)
+		|| typeof value.code !== 'string'
+		|| !/^[A-Za-z][A-Za-z0-9:-]{0,119}$/u.test(value.code)
+	) {
+		throw new Error('invalidStoryKernelGenerationResponseDiagnostic');
+	}
+	return {
+		candidateIndex: Number(value.candidateIndex),
+		path: value.path,
+		code: value.code
+	};
+}
+
 function parseBatch(value: unknown): StoryKernelGenerationBatch {
 	if (
 		!isRecord(value)
 		|| value.schemaVersion !== 1
 		|| !Array.isArray(value.targetTypes)
 		|| !Array.isArray(value.candidates)
+		|| (
+			value.responseDiagnostics !== undefined
+			&& (
+				!Array.isArray(value.responseDiagnostics)
+				|| value.responseDiagnostics.length > 24
+			)
+		)
 		|| typeof value.sourceRevision !== 'string'
 		|| typeof value.instruction !== 'string'
 		|| !Number.isSafeInteger(value.baseOffset)
@@ -306,6 +335,9 @@ function parseBatch(value: unknown): StoryKernelGenerationBatch {
 		baseOffset: Number(value.baseOffset),
 		instruction: value.instruction,
 		targetTypes: value.targetTypes.map(generationType),
+		...(Array.isArray(value.responseDiagnostics) && value.responseDiagnostics.length > 0
+			? { responseDiagnostics: value.responseDiagnostics.map(parseResponseDiagnostic) }
+			: {}),
 		candidates: value.candidates.map(parseCandidate),
 		createdAt: value.createdAt,
 		updatedAt: value.updatedAt
@@ -648,7 +680,12 @@ export class StoryKernelGenerationService {
 		readonly response: string;
 		readonly now?: string;
 	}): Promise<StoryKernelGenerationBatch> {
-		const responses = parseStoryKernelGenerationResponse(input.response);
+		const parsedResponse = parseStoryKernelGenerationResponseWithDiagnostics(input.response);
+		const responses = parsedResponse.candidates;
+		const firstDiagnostic = parsedResponse.diagnostics[0];
+		if (responses.length === 0 && firstDiagnostic) {
+			throw new Error(`${firstDiagnostic.code}:${firstDiagnostic.path}`);
+		}
 		const now = input.now ?? new Date().toISOString();
 		const baseOffset = input.baseOffset ?? 0;
 		const currentResources = await loadCurrentResources(this.repository);
@@ -869,6 +906,9 @@ export class StoryKernelGenerationService {
 			baseOffset,
 			instruction: input.instruction.trim(),
 			targetTypes: [...input.targetTypes],
+			...(parsedResponse.diagnostics.length > 0
+				? { responseDiagnostics: parsedResponse.diagnostics }
+				: {}),
 			candidates,
 			createdAt: now,
 			updatedAt: now

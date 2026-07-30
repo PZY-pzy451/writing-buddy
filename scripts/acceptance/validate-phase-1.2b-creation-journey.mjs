@@ -723,6 +723,106 @@ try {
 	await screenshot(run.client, '06-opened-first-chapter-paper-1024x720.png');
 
 	if (phase12c) {
+		await run.client.call('Input.dispatchKeyEvent', {
+			type: 'keyDown',
+			key: 'b',
+			code: 'KeyB',
+			modifiers: 3,
+			windowsVirtualKeyCode: 66
+		});
+		await run.client.call('Input.dispatchKeyEvent', {
+			type: 'keyUp',
+			key: 'b',
+			code: 'KeyB',
+			modifiers: 3,
+			windowsVirtualKeyCode: 66
+		});
+		await waitFor(
+			run.client,
+			`Boolean(document.querySelector('.assistant-panel'))`,
+			'writing assistant shortcut'
+		);
+		await clickButton(run.client, '内核', '.assistant-tabs');
+		await waitFor(
+			run.client,
+			`Boolean(document.querySelector('.kernel-generator'))`,
+			'Story Kernel generator'
+		);
+		await fillSelector(
+			run.client,
+			'.kernel-generator-instruction textarea',
+			'根据正文生成候选 [QA_PARTIAL_INVALID_RESOURCE]'
+		);
+		const beforeStoryKernelAiCalls = await evaluate(
+			run.client,
+			'globalThis.__phase12bAiCalls'
+		);
+		const rapidClickContract = await evaluate(run.client, `(() => {
+			const button = [...document.querySelectorAll('.kernel-generator button')]
+				.find(candidate => candidate.textContent?.includes('生成 Story Kernel 候选'));
+			if (!button || button.disabled) return { found: Boolean(button), disabled: true };
+			button.click();
+			button.click();
+			return { found: true, disabled: button.disabled };
+		})()`);
+		assert(rapidClickContract.found, 'Story Kernel generate action was not visible.');
+		await waitFor(
+			run.client,
+			`document.querySelector('.kernel-generator-warning')?.textContent
+				?.includes('结构不完整，已安全隔离')`,
+			'partial Story Kernel response isolation'
+		);
+		const storyKernelContract = await evaluate(run.client, `(() => {
+			const generator = document.querySelector('.kernel-generator');
+			const warning = generator?.querySelector('.kernel-generator-warning');
+			const candidateTitles = [...(generator?.querySelectorAll(
+				'.kernel-candidate-list article strong'
+			) ?? [])].map(element => element.textContent?.trim());
+			const generateButton = [...(generator?.querySelectorAll('button') ?? [])]
+				.find(candidate => candidate.textContent?.includes('生成 Story Kernel 候选'));
+			return {
+				aiCalls: globalThis.__phase12bAiCalls,
+				candidateTitles,
+				generateDisabledAfterCompletion: generateButton?.disabled ?? true,
+				hasRawSchemaError: generator?.textContent
+					?.includes('invalidStoryKernelGenerationResource') ?? false,
+				hasSettingsGuidance: generator?.textContent
+					?.includes('检查 AI 设置') ?? false,
+				warning: warning?.textContent?.replace(/\\s+/gu, ' ').trim()
+			};
+		})()`);
+		assert(
+			storyKernelContract.aiCalls === beforeStoryKernelAiCalls + 1,
+			'Rapid Story Kernel clicks started more than one AI request.'
+		);
+		assert(
+			storyKernelContract.candidateTitles.includes('可修复的候选地点'),
+			'The locally repairable Story Kernel candidate was not preserved.'
+		);
+		assert(
+			!storyKernelContract.candidateTitles.some(title => title?.includes('invalid')),
+			'The malformed Story Kernel candidate remained visible.'
+		);
+		assert(
+			!storyKernelContract.generateDisabledAfterCompletion,
+			'Story Kernel generation did not return to an idle retryable state.'
+		);
+		assert(!storyKernelContract.hasRawSchemaError, 'Raw Story Kernel schema error leaked into the UI.');
+		assert(
+			!storyKernelContract.hasSettingsGuidance,
+			'Response structure failure was incorrectly presented as an AI settings problem.'
+		);
+		evidence.storyKernelGeneration = {
+			...storyKernelContract,
+			requestsStartedByRapidClicks: storyKernelContract.aiCalls - beforeStoryKernelAiCalls
+		};
+		await evaluate(run.client, `(() => {
+			const warning = document.querySelector('.kernel-generator-warning');
+			warning?.scrollIntoView({ block: 'center' });
+			return Boolean(warning);
+		})()`);
+		await screenshot(run.client, '06a-story-kernel-partial-response-paper-1024x720.png');
+		await clickButton(run.client, '关闭写作助手');
 		await clickButton(run.client, '打开作品仪表盘');
 		await waitFor(
 			run.client,
@@ -758,7 +858,7 @@ try {
 			run.client,
 			'globalThis.__phase12bAiCalls'
 		);
-		assert(beforeImpactAiCalls === 5, 'Upstream editing triggered AI automatically.');
+		assert(beforeImpactAiCalls === 6, 'Upstream editing triggered AI automatically.');
 		await setViewport(run.client, 1280, 800, true);
 		await setTheme(run.client, 'midnight');
 		await evaluate(run.client, `(() => {
@@ -810,7 +910,7 @@ try {
 		await clickButton(run.client, 'AI 重新生成此项', '.creation-impact-dialog', 'exact', 0);
 		await waitFor(
 			run.client,
-			`globalThis.__phase12bAiCalls === 6
+			`globalThis.__phase12bAiCalls === 7
 				&& [...document.querySelectorAll('.creation-impact-row button')]
 					.filter(button => button.textContent?.includes('保留当前内容')).length === 9`,
 			'one regenerated impact'
@@ -868,7 +968,7 @@ try {
 		);
 		evidence.development = {
 			...developmentContract,
-			aiCalls: 6,
+			aiCalls: 7,
 			focusRestored: true,
 			impactCounts: { direction: 3, outline: 5, chapter: 3 }
 		};

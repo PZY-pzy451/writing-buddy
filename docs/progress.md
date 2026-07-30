@@ -17,6 +17,24 @@ Phase 1.2C, Guided AI Story Development, is complete in
 - Previous completed contract:
   `docs/plans/033-phase-1.2b-idea-to-outline-creation-journey.md`.
 
+The Story Kernel generation resilience patch is also complete:
+
+- A synchronous guard prevents rapid repeated clicks from starting duplicate
+  generation requests.
+- Missing common resource arrays are safely normalized; malformed candidates
+  are isolated individually while valid candidates remain reviewable.
+- Fully malformed output is described as an AI response-structure problem,
+  not an AI settings or connection failure.
+- Real Edge acceptance admitted one request for two same-tick clicks, retained
+  eight valid or repairable candidates, isolated the ninth, and recorded no
+  browser exceptions or raw schema/settings guidance.
+- Final gates: 135 Vitest files / 507 tests, production build, Cargo format,
+  60 Rust tests with 2 explicit external gates ignored, Tauri Release/NSIS,
+  and portable startup/normal close.
+- Delivery:
+  `artifacts/release/story-kernel-resilience-2026-07-30/`; evidence:
+  `docs/acceptance/046-story-kernel-generation-resilience-2026-07-30.md`.
+
 ## Completed
 
 - Completed the strict journey version-2 model with deterministic version-1

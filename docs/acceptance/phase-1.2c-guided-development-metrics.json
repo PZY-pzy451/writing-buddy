@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T03:58:34.942Z",
+  "generatedAt": "2026-07-30T04:21:16.056Z",
   "appUrl": "http://127.0.0.1:4174/",
   "journey": {
     "aiCalls": 5,
@@ -75,6 +75,24 @@
       "theme": "midnight"
     }
   },
+  "storyKernelGeneration": {
+    "aiCalls": 6,
+    "candidateTitles": [
+      "AI 识别人物",
+      "AI 识别地点",
+      "AI 识别物品",
+      "AI 识别事件",
+      "AI 识别关系",
+      "AI 识别剧情线",
+      "AI 识别信息",
+      "可修复的候选地点"
+    ],
+    "generateDisabledAfterCompletion": false,
+    "hasRawSchemaError": false,
+    "hasSettingsGuidance": false,
+    "warning": "AI 返回的第 9 项候选结构不完整，已安全隔离；其余候选仍可审核确认。",
+    "requestsStartedByRapidClicks": 1
+  },
   "development": {
     "schemaVersion": 2,
     "answerCount": 1,
@@ -90,7 +108,7 @@
       "chapter-journey-3-2",
       "chapter-journey-3-3"
     ],
-    "aiCalls": 6,
+    "aiCalls": 7,
     "focusRestored": true,
     "impactCounts": {
       "direction": 3,

@@ -35,6 +35,7 @@
 }
 
 .kernel-generator-note,
+.kernel-generator-warning,
 .kernel-generator-error,
 .kernel-generator-empty {
 	display: flex;
@@ -48,6 +49,11 @@
 	background: var(--surface-canvas);
 	border: 1px solid var(--border-subtle);
 	border-radius: 9px;
+}
+
+.kernel-generator-warning {
+	color: var(--warning);
+	border-color: color-mix(in srgb, var(--warning) 38%, var(--border-subtle));
 }
 
 .kernel-generator-error {

@@ -27,7 +27,7 @@ import {
 	toStoryChapterId,
 	type StoryRepository
 } from '@writing-buddy/story-kernel';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import {
@@ -118,6 +118,30 @@ function errorMessage(reason: unknown): string {
 		invalidSnapshotReason: '安全快照参数不兼容，候选尚未写入。请更新应用后重试。'
 	};
 	return messages[code] ?? code;
+}
+
+type StoryKernelGenerationFailurePresentation = Omit<AiFailurePresentation, 'code'> & {
+	readonly code: AiFailurePresentation['code'] | 'invalid_story_kernel_response';
+};
+
+function describeStoryKernelGenerationFailure(
+	reason: unknown
+): StoryKernelGenerationFailurePresentation {
+	const value = reason instanceof Error ? reason.message : String(reason);
+	if (
+		value.startsWith('invalidStoryKernelGeneration')
+		|| value.startsWith('forbiddenStoryKernelSystemField:')
+	) {
+		return {
+			code: 'invalid_story_kernel_response',
+			message: 'AI 返回的候选缺少 Story Kernel 必填字段，本次没有写入项目。',
+			retryable: true,
+			title: '候选结构不完整',
+			guidance: '这不是 AI 设置或连接问题。可使用相同条件重试；若反复出现，请减少一次生成的资源类型。',
+			recoveryAction: 'retry'
+		};
+	}
+	return describeAiFailure(reason);
 }
 
 async function defaultRunGeneration(
@@ -223,10 +247,13 @@ function StoryKernelGeneratorPanelContent(
 	const [jobState, setJobState] = useState<AiJobState>('created');
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [busyAction, setBusyAction] = useState<'confirm' | 'reject'>();
+	const [generationStarting, setGenerationStarting] = useState(false);
 	const [error, setError] = useState('');
-	const [generationFailure, setGenerationFailure] = useState<AiFailurePresentation>();
+	const [generationFailure, setGenerationFailure] =
+		useState<StoryKernelGenerationFailurePresentation>();
 	const [activeJobId, setActiveJobId] = useState<string>();
-	const generating = !terminalStates.includes(jobState);
+	const generationGuardRef = useRef(false);
+	const generating = generationStarting || !terminalStates.includes(jobState);
 
 	useEffect(() => {
 		if (presetId) return;
@@ -255,7 +282,14 @@ function StoryKernelGeneratorPanelContent(
 	};
 
 	const generate = async () => {
-		if (generating || !instruction.trim() || targetTypes.length === 0) return;
+		if (
+			generationGuardRef.current
+			|| generating
+			|| !instruction.trim()
+			|| targetTypes.length === 0
+		) return;
+		generationGuardRef.current = true;
+		setGenerationStarting(true);
 		const selectedSource = props.selection?.text
 			? { content: props.selection.text, baseOffset: props.selection.start }
 			: { content: props.content, baseOffset: 0 };
@@ -305,7 +339,10 @@ function StoryKernelGeneratorPanelContent(
 			setJobState('completed');
 		} catch (reason) {
 			setJobState('failed');
-			setGenerationFailure(describeAiFailure(reason));
+			setGenerationFailure(describeStoryKernelGenerationFailure(reason));
+		} finally {
+			generationGuardRef.current = false;
+			setGenerationStarting(false);
 		}
 	};
 
@@ -481,6 +518,14 @@ function StoryKernelGeneratorPanelContent(
 						</div>
 					) : null}
 				</section>
+			) : null}
+			{batch?.responseDiagnostics?.length ? (
+				<p className="kernel-generator-warning" role="status">
+					<AlertTriangle size={16} />
+					AI 返回的第 {batch.responseDiagnostics
+						.map(item => item.candidateIndex + 1)
+						.join('、')} 项候选结构不完整，已安全隔离；其余候选仍可审核确认。
+				</p>
 			) : null}
 
 			{batch ? (

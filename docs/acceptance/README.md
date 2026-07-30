@@ -45,6 +45,7 @@
 - [Phase 1.2A Gate H real experience acceptance, 2026-07-29](./043-phase-1.2a-gate-h-real-experience-2026-07-29.md)
 - [Phase 1.2B idea-to-outline creation journey acceptance, 2026-07-30](./044-phase-1.2b-idea-to-outline-creation-journey-2026-07-30.md)
 - [Phase 1.2C guided AI story development acceptance, 2026-07-30](./045-phase-1.2c-guided-ai-story-development-2026-07-30.md)
+- [Story Kernel generation resilience acceptance, 2026-07-30](./046-story-kernel-generation-resilience-2026-07-30.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

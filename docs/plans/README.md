@@ -34,6 +34,7 @@
 - [Phase 1.2A Gate H real experience acceptance](./032-phase-1.2a-gate-h-real-experience-acceptance.md)
 - [Phase 1.2B Idea-to-Outline Creation Journey](./033-phase-1.2b-idea-to-outline-creation-journey.md)
 - [Phase 1.2C Guided AI Story Development](./034-phase-1.2c-guided-ai-story-development.md)
+- [Story Kernel generation resilience](./035-story-kernel-generation-resilience.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

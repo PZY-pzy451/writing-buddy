@@ -273,6 +273,47 @@ async function stageValidBatch(
 }
 
 describe('StoryKernelGenerationService', () => {
+	it('keeps valid candidates when a later candidate is structurally incomplete', async () => {
+		const { service, store } = createHarness();
+		const response = JSON.parse(createResponse()) as {
+			candidates: Array<Record<string, unknown>>;
+		};
+		response.candidates.push({
+			operation: 'create',
+			resource: {
+				id: 'location:broken',
+				type: 'location',
+				title: null,
+				aliases: [],
+				tags: [],
+				evidenceIds: []
+			},
+			confidence: 0.8,
+			rationale: '结构不完整。',
+			evidence: null
+		});
+
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['character', 'location', 'relationship'],
+			response: JSON.stringify(response),
+			now
+		});
+
+		expect(batch.candidates).toHaveLength(4);
+		expect(batch.responseDiagnostics).toEqual([{
+			candidateIndex: 4,
+			path: 'candidates.4.resource',
+			code: 'invalidStoryKernelGenerationResource'
+		}]);
+		await expect(store.load()).resolves.toEqual([
+			expect.objectContaining({ responseDiagnostics: batch.responseDiagnostics })
+		]);
+	});
+
 	it('stages complete resources, validates dependencies, then confirms one atomic batch', async () => {
 		const { gateway, repository, service, store } = createHarness();
 		const batch = await stageValidBatch(service);

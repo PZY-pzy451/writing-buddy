@@ -121,6 +121,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "resource 禁止包含 schemaVersion、createdAt、updatedAt、revision；evidenceIds 必须为空，系统会生成证据与版本字段。",
     "支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。",
     "公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。",
+    "每个候选都必须重复提供 aliases、tags、evidenceIds 三个数组，即使为空也不能省略；无法构造完整资源时应省略该候选，不得返回半成品。",
     "character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。",
     "scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。",
     "location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。",

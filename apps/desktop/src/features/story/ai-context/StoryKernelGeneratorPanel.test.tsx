@@ -8,7 +8,7 @@ import {
 	type StorySaveEntry,
 	type StoryStorageGateway
 } from '@writing-buddy/story-kernel';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
@@ -226,6 +226,112 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		expect(await screen.findByDisplayValue('从当前选区创建地点候选。')).toBeInTheDocument();
 		expect(runGeneration).not.toHaveBeenCalled();
+	});
+
+	it('blocks repeated generation clicks before the first stream event', async () => {
+		let resolveGeneration: (value: string) => void = () => undefined;
+		const runGeneration = vi.fn(() => new Promise<string>(resolve => {
+			resolveGeneration = resolve;
+		}));
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+			/>
+		);
+
+		const button = screen.getByRole('button', { name: '生成 Story Kernel 候选' });
+		await act(async () => {
+			button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			await Promise.resolve();
+		});
+
+		await waitFor(() => expect(runGeneration).toHaveBeenCalledOnce());
+		expect(button).toBeDisabled();
+		resolveGeneration(generatedCharacterResponse());
+		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
+	});
+
+	it('keeps valid candidates and explains an isolated malformed candidate', async () => {
+		const valid = JSON.parse(generatedCharacterResponse()) as {
+			candidates: Array<Record<string, unknown>>;
+		};
+		valid.candidates.push({
+			operation: 'create',
+			resource: {
+				id: 'location:broken-ui',
+				type: 'location',
+				title: null
+			},
+			confidence: 0.8,
+			rationale: '结构不完整。',
+			evidence: null
+		});
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={() => Promise.resolve(JSON.stringify(valid))}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+
+		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
+		expect(screen.getByText(/第 2 项候选结构不完整，已安全隔离/)).toBeInTheDocument();
+		expect(screen.queryByText('生成未完成')).not.toBeInTheDocument();
+	});
+
+	it('classifies a fully malformed batch as a response issue, not an AI setting issue', async () => {
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={() => Promise.resolve(JSON.stringify({
+					candidates: [{
+						operation: 'create',
+						resource: {
+							id: 'location:broken-ui',
+							type: 'location',
+							title: null
+						},
+						confidence: 0.8,
+						rationale: '结构不完整。',
+						evidence: null
+					}]
+				}))}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+
+		expect(await screen.findByText('候选结构不完整')).toBeInTheDocument();
+		expect(screen.getByText(/这不是 AI 设置或连接问题/)).toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: '检查 AI 设置' })).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '使用相同条件重试' })).toBeEnabled();
 	});
 
 	it('keeps generated resources pending until snapshot-backed author confirmation', async () => {

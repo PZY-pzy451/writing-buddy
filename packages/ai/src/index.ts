@@ -119,6 +119,7 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 	'resource 禁止包含 schemaVersion、createdAt、updatedAt、revision；evidenceIds 必须为空，系统会生成证据与版本字段。',
 	'支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。',
 	'公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。',
+	'每个候选都必须重复提供 aliases、tags、evidenceIds 三个数组，即使为空也不能省略；无法构造完整资源时应省略该候选，不得返回半成品。',
 	'character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。',
 	'scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。',
 	'location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。',
@@ -923,14 +924,16 @@ const storyKernelGenerationResourceSchema = z.record(z.string(), z.unknown())
 		}
 	});
 
-const storyKernelGenerationResponseSchema = z.object({
-	candidates: z.array(z.object({
-		operation: z.enum(['create', 'update']),
-		resource: storyKernelGenerationResourceSchema,
-		confidence: z.number().min(0).max(1),
-		rationale: z.string().min(1).max(2_000),
-		evidence: storyKernelGenerationEvidenceSchema.nullable()
-	}).strict()).max(24)
+const storyKernelGenerationCandidateSchema = z.object({
+	operation: z.enum(['create', 'update']),
+	resource: storyKernelGenerationResourceSchema,
+	confidence: z.number().min(0).max(1),
+	rationale: z.string().min(1).max(2_000),
+	evidence: storyKernelGenerationEvidenceSchema.nullable()
+}).strict();
+
+const storyKernelGenerationResponseEnvelopeSchema = z.object({
+	candidates: z.array(z.unknown()).max(24)
 }).strict();
 
 export interface SelectionRewriteResponse {
@@ -1244,6 +1247,17 @@ export interface StoryKernelGenerationCandidateResponse {
 		readonly end: number;
 		readonly quote: string;
 	} | null;
+}
+
+export interface StoryKernelGenerationResponseDiagnostic {
+	readonly candidateIndex: number;
+	readonly path: string;
+	readonly code: string;
+}
+
+export interface StoryKernelGenerationResponseResult {
+	readonly candidates: readonly StoryKernelGenerationCandidateResponse[];
+	readonly diagnostics: readonly StoryKernelGenerationResponseDiagnostic[];
 }
 
 const groundedContextItemSchema = z.object({
@@ -2294,7 +2308,66 @@ export function buildStoryKernelGenerationMessages(input: {
 export function parseStoryKernelGenerationResponse(
 	response: string
 ): readonly StoryKernelGenerationCandidateResponse[] {
-	return storyKernelGenerationResponseSchema.parse(JSON.parse(response)).candidates;
+	const result = parseStoryKernelGenerationResponseWithDiagnostics(response);
+	const firstDiagnostic = result.diagnostics[0];
+	if (firstDiagnostic) {
+		throw new Error(`${firstDiagnostic.code}:${firstDiagnostic.path}`);
+	}
+	return result.candidates;
+}
+
+function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {
+	if (typeof value !== 'object' || value === null || Array.isArray(value)) return value;
+	const candidate = value as Record<string, unknown>;
+	const rawResource = candidate.resource;
+	if (
+		typeof rawResource !== 'object'
+		|| rawResource === null
+		|| Array.isArray(rawResource)
+	) {
+		return value;
+	}
+	const resource = { ...rawResource } as Record<string, unknown>;
+	for (const field of ['aliases', 'tags', 'evidenceIds'] as const) {
+		if (resource[field] === undefined) resource[field] = [];
+	}
+	return { ...candidate, resource };
+}
+
+export function parseStoryKernelGenerationResponseWithDiagnostics(
+	response: string
+): StoryKernelGenerationResponseResult {
+	let decoded: unknown;
+	try {
+		decoded = JSON.parse(response);
+	} catch {
+		throw new Error('invalidStoryKernelGenerationResponse:json');
+	}
+	const envelope = storyKernelGenerationResponseEnvelopeSchema.safeParse(decoded);
+	if (!envelope.success) {
+		throw new Error('invalidStoryKernelGenerationResponse:envelope');
+	}
+	const candidates: StoryKernelGenerationCandidateResponse[] = [];
+	const diagnostics: StoryKernelGenerationResponseDiagnostic[] = [];
+	envelope.data.candidates.forEach((candidate, candidateIndex) => {
+		const parsed = storyKernelGenerationCandidateSchema.safeParse(
+			normalizeStoryKernelGenerationCandidate(candidate)
+		);
+		if (parsed.success) {
+			candidates.push(parsed.data);
+			return;
+		}
+		const issue = parsed.error.issues[0];
+		diagnostics.push({
+			candidateIndex,
+			path: ['candidates', candidateIndex, ...(issue?.path ?? [])].join('.'),
+			code: issue?.message === 'invalidStoryKernelGenerationResource'
+				|| issue?.message?.startsWith('forbiddenStoryKernelSystemField:')
+				? issue.message
+				: 'invalidStoryKernelGenerationCandidate'
+		});
+	});
+	return { candidates, diagnostics };
 }
 
 const creationJourneyCoreSchema = z.object({

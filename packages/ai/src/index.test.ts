@@ -32,6 +32,7 @@ import {
 	parseSelectionRewriteResponse,
 	parseStoryExtractionResponse,
 	parseStoryKernelGenerationResponse,
+	parseStoryKernelGenerationResponseWithDiagnostics,
 	parseStoryConsistencyAnalysisResponse,
 	parseTimelineAnalysisResponse,
 	parseWorldAnalysisResponse,
@@ -783,6 +784,68 @@ describe('AI core contracts', () => {
 			targetTypes: ['character'],
 			existingResources: []
 		})).toThrow('invalidStoryKernelGenerationInput');
+	});
+
+	it('repairs omitted common empty arrays and isolates only malformed candidates', () => {
+		const result = parseStoryKernelGenerationResponseWithDiagnostics(JSON.stringify({
+			candidates: [{
+				operation: 'create',
+				resource: {
+					id: 'character:lin-yue',
+					type: 'character',
+					title: '林越',
+					factionIds: [],
+					goals: [],
+					desires: [],
+					fears: [],
+					values: [],
+					secrets: []
+				},
+				confidence: 0.94,
+				rationale: '正文明确出现。',
+				evidence: { start: 0, end: 2, quote: '林越' }
+			}, {
+				operation: 'create',
+				resource: {
+					id: 'location:old-station',
+					type: 'location',
+					title: null,
+					aliases: [],
+					tags: [],
+					evidenceIds: []
+				},
+				confidence: 0.8,
+				rationale: '第三方结构缺失。',
+				evidence: null
+			}]
+		}));
+
+		expect(result.candidates).toHaveLength(1);
+		expect(result.candidates[0]?.resource).toMatchObject({
+			aliases: [],
+			tags: [],
+			evidenceIds: []
+		});
+		expect(result.diagnostics).toEqual([{
+			candidateIndex: 1,
+			path: 'candidates.1.resource',
+			code: 'invalidStoryKernelGenerationResource'
+		}]);
+		expect(() => parseStoryKernelGenerationResponse(JSON.stringify({
+			candidates: [{
+				operation: 'create',
+				resource: {
+					id: 'location:old-station',
+					type: 'location',
+					title: null
+				},
+				confidence: 0.8,
+				rationale: '缺少标题。',
+				evidence: null
+			}]
+		}))).toThrow(
+			'invalidStoryKernelGenerationResource:candidates.0.resource'
+		);
 	});
 });
 

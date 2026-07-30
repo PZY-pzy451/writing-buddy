@@ -2842,6 +2842,8 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 		decoded.instruction?.includes('[QA_SCENE_GROUNDING]') ?? false;
 	const invalidOptionalNullFixture =
 		decoded.instruction?.includes('[QA_OPTIONAL_NULL]') ?? false;
+	const partialInvalidResourceFixture =
+		decoded.instruction?.includes('[QA_PARTIAL_INVALID_RESOURCE]') ?? false;
 	const content = source?.content ?? '';
 	const quote = content.slice(0, Math.min(24, content.length));
 	const evidence = quote ? { start: 0, end: quote.length, quote } : null;
@@ -3030,7 +3032,39 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 				: evidence
 		}] : [];
 	});
-	const response = JSON.stringify({ candidates });
+	const responseCandidates: unknown[] = [...candidates];
+	if (partialInvalidResourceFixture) {
+		responseCandidates.push({
+			operation: 'create',
+			resource: {
+				id: `location:ai-repairable-${suffix}`,
+				type: 'location',
+				title: '可修复的候选地点',
+				locationType: '正文场景',
+				travelLinks: [],
+				factionIds: [],
+				rules: []
+			},
+			confidence: 0.8,
+			rationale: '浏览器验收：缺失的通用数组可由本地安全补为空数组。',
+			evidence
+		});
+		responseCandidates.push({
+			operation: 'create',
+			resource: {
+				id: `location:ai-invalid-${suffix}`,
+				type: 'location',
+				locationType: '正文场景',
+				travelLinks: [],
+				factionIds: [],
+				rules: []
+			},
+			confidence: 0.8,
+			rationale: '浏览器验收：缺少标题的候选必须被隔离。',
+			evidence
+		});
+	}
+	const response = JSON.stringify({ candidates: responseCandidates });
 	const first = Math.ceil(response.length / 3);
 	const second = Math.ceil(response.length * 2 / 3);
 	return [response.slice(0, first), response.slice(first, second), response.slice(second)];
