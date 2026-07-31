@@ -461,7 +461,7 @@ function StoryKernelGeneratorPanelContent(
 					onClick={() => void generate()}
 				>
 					{generating ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
-					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '生成 Story Kernel 候选'}
+					{generating ? `AI 生成中 · ${streamedLength} 字符` : '生成 Story Kernel 候选'}
 				</button>
 				{generating && activeJobId ? (
 					<button className="secondary-button" type="button" onClick={() => void cancel()}>

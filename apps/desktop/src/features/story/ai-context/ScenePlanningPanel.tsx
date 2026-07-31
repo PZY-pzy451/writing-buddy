@@ -274,7 +274,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 					onClick={() => void generate()}
 				>
 					{generating ? <Sparkles size={18} /> : <Send size={18} />}
-					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '确认资料并生成细纲'}
+					{generating ? `AI 生成中 · ${streamedLength} 字符` : '确认资料并生成细纲'}
 				</button>
 				{generating && activeJobId ? (
 					<button

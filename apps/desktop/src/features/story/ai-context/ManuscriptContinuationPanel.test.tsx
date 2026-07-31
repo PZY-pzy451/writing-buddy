@@ -4,6 +4,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { ManuscriptContinuationPanel } from './ManuscriptContinuationPanel';
 
 const original = '雨落在站台。';
+const scaffold = [
+	'# 第一章 · 迟到的声音',
+	'',
+	'## 场景 1 · 零点来电',
+	'',
+	'<!-- writing-buddy-scene:scene:one -->',
+	''
+].join('\n');
 
 function pack(guidance = ''): ContextPack {
 	return buildContextPack({
@@ -61,6 +69,30 @@ function continuationOutput(count = 1): string {
 	return JSON.stringify({ candidates: candidates.slice(0, count) });
 }
 
+function openingPack(): ContextPack {
+	return buildContextPack({
+		actionType: 'continue-paragraph',
+		instruction: '当前章节尚无正文。依据已确认的首个场景结构起草开篇。',
+		sourceKind: 'manuscript-excerpt',
+		sourceTitle: '章节与场景结构（尚无正文）',
+		selection: {
+			text: scaffold,
+			resourceId: 'chapter:one',
+			revision: 4,
+			start: 0,
+			end: scaffold.length
+		},
+		candidates: [{
+			id: 'context:scene:one',
+			priority: 'P2',
+			kind: 'scene',
+			title: '零点来电',
+			content: '顾言在法证室听见一通迟到的电话。'
+		}],
+		budgetTokens: 1_024
+	});
+}
+
 function baseProps() {
 	return {
 		projectRoot: 'D:\\fixture',
@@ -79,6 +111,57 @@ function baseProps() {
 }
 
 describe('ManuscriptContinuationPanel', () => {
+	it('shows a calm next step instead of a red failure for an unplanned empty chapter', async () => {
+		const props = {
+			...baseProps(),
+			content: '# 第一章',
+			cursorOffset: 0,
+			loadPack: () => Promise.reject(new Error(
+				'当前光标前还没有正文。请先输入一句开头，或创建场景后让 AI 起草。'
+			))
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		const panel = screen.getByRole('region', { name: '作者确认续写' });
+		expect(await within(panel).findByRole('status')).toHaveTextContent(
+			'请先输入一句开头，或创建场景后让 AI 起草'
+		);
+		expect(within(panel).queryByRole('alert')).not.toBeInTheDocument();
+		expect(within(panel).queryByText('正在构建续写上下文…')).not.toBeInTheDocument();
+	});
+
+	it('turns a scaffold-only chapter into an author-confirmed opening draft', async () => {
+		const props = {
+			...baseProps(),
+			content: scaffold,
+			cursorOffset: 0,
+			loadPack: () => Promise.resolve(openingPack()),
+			onPendingDraft: vi.fn(),
+			runContinuation: () => Promise.resolve({ output: continuationOutput() })
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		expect(await screen.findByText('将从首个场景开始起草')).toBeInTheDocument();
+		expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+		const generate = screen.getByRole('button', {
+			name: '确认资料并生成开篇'
+		});
+		await waitFor(() => expect(generate).toBeEnabled());
+		fireEvent.click(generate);
+
+		await waitFor(() => expect(props.onPendingDraft).toHaveBeenCalledTimes(1));
+		expect(props.onPendingDraft).toHaveBeenCalledWith(
+			expect.objectContaining({ title: '追随钟声' }),
+			expect.objectContaining({
+				cursorOffset: scaffold.length,
+				sourceRevision: 4
+			}),
+			expect.stringContaining('林越抬起头')
+		);
+		expect(props.onApply).not.toHaveBeenCalled();
+		expect(props.onBeforeApply).not.toHaveBeenCalled();
+	});
+
 	it('hands a standard continuation to the inline draft surface without applying text', async () => {
 		const props = {
 			...baseProps(),
@@ -203,6 +286,7 @@ describe('ManuscriptContinuationPanel', () => {
 		fireEvent.click(generate);
 		fireEvent.click(generate);
 		expect(runContinuation).toHaveBeenCalledTimes(1);
+		expect(screen.getByRole('button', { name: 'AI 生成中 · 0 字符' })).toBeDisabled();
 		release?.({ output: continuationOutput() });
 
 		const candidate = await screen.findByRole('article', { name: '候选：追随钟声' });

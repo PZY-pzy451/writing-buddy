@@ -41,11 +41,13 @@ import {
 	type ContinuationCandidate,
 	type ContinuationCandidateBatch
 } from './ManuscriptContinuationService';
+import { resolveManuscriptContinuationTarget } from './ManuscriptContinuationTarget';
 import { loadGroundedContextCandidates } from './SelectionRewriteService';
 import { runGroundedJsonJob } from './GroundedAiRunner';
 import './AiActionPanels.css';
 
 const contextBuilder = new DeterministicContextPackBuilder();
+const emptyContinuationSourceMessage = '当前光标前还没有正文。请先输入一句开头，或创建场景后让 AI 起草。';
 
 const modeInstructions: Readonly<Record<ManuscriptContinuationMode, string>> = {
 	'continue-paragraph': '沿着当前段落的动作、感官与叙事视角续写一小段，不引入上下文中没有依据的新设定。',
@@ -93,38 +95,62 @@ async function buildContinuationPack(
 	const repository = new DesktopStoryRepository(props.projectRoot, desktopBridge);
 	const chapterId = toStoryChapterId(props.resourceId);
 	const scenes = await repository.list<StoryScene>('scene');
+	const target = resolveManuscriptContinuationTarget(
+		props.content,
+		props.cursorOffset,
+		props.mode
+	);
 	const scene = scenes.find(candidate => (
 		candidate.chapterId === chapterId
-		&& candidate.manuscriptRange.start <= props.cursorOffset
-		&& props.cursorOffset <= candidate.manuscriptRange.end
+		&& candidate.manuscriptRange.start <= target.cursorOffset
+		&& target.cursorOffset <= candidate.manuscriptRange.end
 	));
+	const firstScene = [...scenes]
+		.filter(candidate => candidate.chapterId === chapterId)
+		.sort((left, right) => (
+			left.narrativeOrder - right.narrativeOrder
+			|| left.manuscriptRange.start - right.manuscriptRange.start
+		))[0];
 	if (props.mode === 'finish-scene' && !scene) {
 		throw new Error('请先把光标放在已建立的场景中，再使用“完成场景”。');
 	}
 	const end = props.mode === 'finish-scene'
 		? scene!.manuscriptRange.end
-		: props.cursorOffset;
+		: target.cursorOffset;
 	const start = props.mode === 'finish-scene'
 		? scene!.manuscriptRange.start
-		: Math.max(scene?.manuscriptRange.start ?? 0, props.cursorOffset - 4_000);
+		: target.openingDraft
+			? 0
+			: Math.max(scene?.manuscriptRange.start ?? 0, target.cursorOffset - 4_000);
 	const source = props.content.slice(start, end);
 	if (!source.trim()) {
-		throw new Error('光标前没有可用于续写的正文。');
+		throw new Error(emptyContinuationSourceMessage);
 	}
 	const candidates = await loadGroundedContextCandidates({
 		repository,
 		chapterId,
-		selectionStart: Math.max(start, Math.min(props.cursorOffset, end - 1))
+		selectionStart: target.openingDraft && firstScene
+			? firstScene.manuscriptRange.start
+			: Math.max(start, Math.min(target.cursorOffset, end - 1))
 	});
 	const trimmedGuidance = guidance.trim();
-	const instruction = trimmedGuidance
-		? `${modeInstructions[props.mode]}\n作者明确要求：${trimmedGuidance}`
+	const baseInstruction = target.openingDraft
+		? props.mode === 'three-directions'
+			? '当前章节尚无正文。依据已确认的章节与首个场景结构，生成三种实质不同的开篇走向；不得声称承接不存在的前文。'
+			: '当前章节尚无正文。依据已确认的章节与首个场景结构起草本章开篇的一小段；不得声称承接不存在的前文。'
 		: modeInstructions[props.mode];
+	const instruction = trimmedGuidance
+		? `${baseInstruction}\n作者明确要求：${trimmedGuidance}`
+		: baseInstruction;
 	return contextBuilder.build({
 		actionType: props.mode,
 		instruction,
 		sourceKind: props.mode === 'finish-scene' ? 'scene-manuscript' : 'manuscript-excerpt',
-		sourceTitle: props.mode === 'finish-scene' ? '当前场景正文' : '光标前文',
+		sourceTitle: props.mode === 'finish-scene'
+			? '当前场景正文'
+			: target.openingDraft
+				? '章节与场景结构（尚无正文）'
+				: '光标前文',
 		selection: {
 			text: source,
 			resourceId: props.resourceId,
@@ -215,6 +241,10 @@ export function ManuscriptContinuationPanel(
 	const content = props.content;
 	const cursorOffset = props.cursorOffset;
 	const mode = props.mode;
+	const target = useMemo(
+		() => resolveManuscriptContinuationTarget(props.content, props.cursorOffset, props.mode),
+		[props.content, props.cursorOffset, props.mode]
+	);
 
 	useEffect(() => {
 		contentRef.current = props.content;
@@ -267,7 +297,7 @@ export function ManuscriptContinuationPanel(
 		&& pack.source.revision === props.sourceRevision
 		&& pack.actionType === props.mode
 		&& loadedGuidance === guidance.trim()
-		&& (props.mode === 'finish-scene' || pack.source.end === props.cursorOffset);
+		&& (props.mode === 'finish-scene' || pack.source.end === target.cursorOffset);
 	const stale = useMemo(() => batch && batch.status !== 'accepted'
 		? isContinuationCandidateStale(batch, props.sourceRevision, props.content)
 		: false, [batch, props.content, props.sourceRevision]);
@@ -279,6 +309,7 @@ export function ManuscriptContinuationPanel(
 	const includedSecrets = useMemo(() => pack?.items.filter(item => (
 		item.included && item.authorSecret
 	)) ?? [], [pack]);
+	const emptyContextHint = error === emptyContinuationSourceMessage;
 
 	const generate = async () => {
 		if (
@@ -309,7 +340,7 @@ export function ManuscriptContinuationPanel(
 				mode: props.mode,
 				resourceId: props.resourceId,
 				sourceRevision: props.sourceRevision,
-				cursorOffset: props.cursorOffset,
+				cursorOffset: target.cursorOffset,
 				currentContent: props.content,
 				response: { candidates }
 			});
@@ -405,8 +436,14 @@ export function ManuscriptContinuationPanel(
 			<div className="ai-action-intro">
 				<Compass size={18} />
 				<div>
-					<strong>续写位置已锁定</strong>
-					<span>{insertionLocation(props.content, props.cursorOffset)} · 生成只会产生候选，不会自动写入正文</span>
+					<strong>{target.openingDraft ? '将从首个场景开始起草' : '续写位置已锁定'}</strong>
+					<span>
+						{insertionLocation(props.content, target.cursorOffset)}
+						{' · '}
+						{target.openingDraft
+							? '依据已确认场景生成候选，确认前不会写入正文'
+							: '生成只会产生候选，不会自动写入正文'}
+					</span>
 				</div>
 			</div>
 			<label className="continuation-guidance">
@@ -415,7 +452,9 @@ export function ManuscriptContinuationPanel(
 					value={guidance}
 					maxLength={600}
 					aria-label="告诉 AI 接下来发生什么"
-					placeholder="留空则让 AI 自由继续"
+					placeholder={target.openingDraft
+						? '例如：从异常声音切入，保持克制悬疑'
+						: '留空则让 AI 自由继续'}
 					onChange={event => {
 						setGuidance(event.target.value);
 						setPack(undefined);
@@ -430,15 +469,26 @@ export function ManuscriptContinuationPanel(
 					? `作者明确要求：${guidance.trim()}`
 					: guidance.trim()
 						? '正在更新作者指令…'
-						: '可选引导，不填写也可以自由续写。'}</small>
+						: target.openingDraft
+							? '可选引导；不填写时会从首个已确认场景起草。'
+							: '可选引导，不填写也可以自由续写。'}</small>
 			</label>
 			{pack && packReady
 				? <ContextPackPreview
 					pack={pack}
 					onChange={value => setPack(withoutAuthorSecrets(value))}
-				/>
-				: <p className="ai-action-loading"><Sparkles size={16} />正在构建续写上下文…</p>}
-			{error ? <p className="ai-action-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
+					/>
+				: error
+					? null
+					: <p className="ai-action-loading"><Sparkles size={16} />正在构建续写上下文…</p>}
+			{emptyContextHint ? (
+				<p className="ai-action-hint" role="status">
+					<Compass size={16} />{emptyContinuationSourceMessage}
+				</p>
+			) : null}
+			{error && !emptyContextHint
+				? <p className="ai-action-error" role="alert"><AlertTriangle size={16} />{error}</p>
+				: null}
 			{success ? <p className="ai-action-success" role="status"><Check size={16} />{success}</p> : null}
 			<div className="ai-action-toolbar">
 				<button
@@ -448,7 +498,11 @@ export function ManuscriptContinuationPanel(
 					onClick={() => void generate()}
 				>
 					{generating ? <Sparkles size={18} /> : <Send size={18} />}
-					{generating ? `DeepSeek 生成中 · ${streamedLength} 字符` : '确认资料并生成候选'}
+					{generating
+						? `AI 生成中 · ${streamedLength} 字符`
+						: target.openingDraft
+							? '确认资料并生成开篇'
+							: '确认资料并生成候选'}
 				</button>
 				{generating && activeJobId ? (
 					<button

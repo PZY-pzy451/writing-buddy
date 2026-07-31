@@ -158,6 +158,7 @@ async function clickButton(client, label, options = {}) {
 		const button = buttons[${index}];
 		if (button && !button.disabled) {
 			button.scrollIntoView({ block: 'center', inline: 'center' });
+			window.__writingBuddyPromoPointer?.(button, true);
 			button.click();
 		}
 		return { count: buttons.length, disabled: button?.disabled ?? true };
@@ -187,6 +188,7 @@ async function clickAria(client, label, scopeSelector = undefined) {
 		);
 		if (!element || element.disabled) return false;
 		element.scrollIntoView({ block: 'center', inline: 'center' });
+		window.__writingBuddyPromoPointer?.(element, true);
 		element.click();
 		return true;
 	})()`);
@@ -203,6 +205,9 @@ async function fillSelector(client, selector, value, index = 0) {
 		const prototype = element instanceof HTMLTextAreaElement
 			? HTMLTextAreaElement.prototype
 			: HTMLInputElement.prototype;
+		element.scrollIntoView({ block: 'center', inline: 'center' });
+		element.focus();
+		window.__writingBuddyPromoPointer?.(element, true);
 		Object.getOwnPropertyDescriptor(prototype, 'value').set.call(
 			element,
 			${JSON.stringify(value)}
@@ -218,6 +223,9 @@ async function selectValue(client, selector, value) {
 	const changed = await evaluate(client, `(() => {
 		const element = document.querySelector(${JSON.stringify(selector)});
 		if (!(element instanceof HTMLSelectElement)) return false;
+		element.scrollIntoView({ block: 'center', inline: 'center' });
+		element.focus();
+		window.__writingBuddyPromoPointer?.(element, true);
 		Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value').set.call(
 			element,
 			${JSON.stringify(value)}
@@ -238,10 +246,78 @@ async function screenshot(client, path) {
 	await writeFile(path, Buffer.from(capture.data, 'base64'));
 }
 
+async function installInteractionOverlay(client) {
+	await evaluate(client, `(() => {
+		if (document.querySelector('#writing-buddy-promo-pointer')) return;
+		const style = document.createElement('style');
+		style.textContent = \`
+			#writing-buddy-promo-pointer {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 30px;
+				height: 38px;
+				z-index: 2147483647;
+				pointer-events: none;
+				transform: translate3d(72px, 72px, 0);
+				transition: transform 180ms cubic-bezier(.2, .75, .25, 1);
+				filter: drop-shadow(0 2px 4px rgba(17, 28, 49, .35));
+			}
+			#writing-buddy-promo-pointer svg {
+				display: block;
+				width: 25px;
+				height: 31px;
+			}
+			#writing-buddy-promo-pointer span {
+				position: absolute;
+				left: -10px;
+				top: -10px;
+				width: 34px;
+				height: 34px;
+				border: 3px solid rgba(190, 107, 53, .72);
+				border-radius: 999px;
+				opacity: 0;
+				transform: scale(.35);
+			}
+			#writing-buddy-promo-pointer.is-clicking span {
+				animation: writing-buddy-promo-click 520ms ease-out;
+			}
+			@keyframes writing-buddy-promo-click {
+				0% { opacity: .95; transform: scale(.35); }
+				100% { opacity: 0; transform: scale(1.35); }
+			}
+		\`;
+		document.head.append(style);
+		const pointer = document.createElement('div');
+		pointer.id = 'writing-buddy-promo-pointer';
+		pointer.setAttribute('aria-hidden', 'true');
+		pointer.innerHTML = \`
+			<svg viewBox="0 0 28 34" aria-hidden="true">
+				<path d="M3 2.5 23.5 20l-9.2 1.8 5.4 8.4-4.8 2.8-5.1-8.3L3 31Z"
+					fill="#fff" stroke="#111c31" stroke-width="2.2"
+					stroke-linejoin="round"/>
+			</svg>
+			<span></span>
+		\`;
+		document.body.append(pointer);
+		window.__writingBuddyPromoPointer = (element, clicked = false) => {
+			const rect = element.getBoundingClientRect();
+			const x = Math.round(rect.left + Math.min(rect.width * .5, rect.width - 18));
+			const y = Math.round(rect.top + Math.min(rect.height * .5, rect.height - 18));
+			pointer.style.transform = \`translate3d(\${x}px, \${y}px, 0)\`;
+			if (!clicked) return;
+			pointer.classList.remove('is-clicking');
+			void pointer.offsetWidth;
+			pointer.classList.add('is-clicking');
+		};
+	})()`);
+}
+
 async function focusEditorAtEnd(client) {
 	const center = await evaluate(client, `(() => {
 		const editor = document.querySelector('.monaco-editor');
 		if (!editor) return null;
+		window.__writingBuddyPromoPointer?.(editor, true);
 		const rect = editor.getBoundingClientRect();
 		return {
 			x: Math.round(rect.left + Math.min(rect.width - 40, rect.width * 0.62)),
@@ -348,11 +424,16 @@ async function writeChapterWithAi(client, chapterTitle, chapterNumber) {
 			match: 'contains'
 		});
 	}
+	const generationButtonLabel = chapterNumber === 1
+		? '确认资料并生成候选'
+		: '确认资料并生成开篇';
 	await waitFor(
 		client,
 		`Boolean(document.querySelector('.continuation-panel'))
 			&& [...document.querySelectorAll('.continuation-panel button')]
-				.some(button => button.textContent?.includes('确认资料并生成候选')
+				.some(button => button.textContent?.includes(
+					${JSON.stringify(generationButtonLabel)}
+				)
 					&& !button.disabled)`,
 		`${chapterTitle} continuation context`
 	);
@@ -368,12 +449,14 @@ async function writeChapterWithAi(client, chapterTitle, chapterNumber) {
 	await waitFor(
 		client,
 		`[...document.querySelectorAll('.continuation-panel button')]
-			.some(button => button.textContent?.includes('确认资料并生成候选')
+			.some(button => button.textContent?.includes(
+				${JSON.stringify(generationButtonLabel)}
+			)
 				&& !button.disabled)`,
 		`${chapterTitle} updated author guidance`
 	);
 	await delay(1800);
-	await clickButton(client, '确认资料并生成候选', {
+	await clickButton(client, generationButtonLabel, {
 		scopeSelector: '.continuation-panel'
 	});
 	await waitFor(
@@ -473,6 +556,7 @@ try {
 		windowId: windowInfo.windowId,
 		bounds: { windowState: 'maximized' }
 	}).catch(() => undefined);
+	await installInteractionOverlay(client);
 
 	await waitFor(
 		client,
@@ -693,7 +777,9 @@ try {
 	await waitFor(
 		client,
 		`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))
-			&& document.body.innerText.includes('3 个章节')`,
+			&& document.body.innerText.includes('3 个章节')
+			&& document.querySelector('main[aria-label="作品仪表盘"]')
+				?.innerText.includes('26,210')`,
 		'completed project dashboard'
 	);
 	await screenshot(client, join(outputDirectory, '12-completed-dashboard.png'));

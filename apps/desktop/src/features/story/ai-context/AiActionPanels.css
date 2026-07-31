@@ -123,6 +123,7 @@
 }
 
 .ai-action-loading,
+.ai-action-hint,
 .ai-action-error,
 .ai-action-stale,
 .ai-action-success {
@@ -139,6 +140,12 @@
 .ai-action-loading {
 	color: var(--text-secondary);
 	background: var(--surface-subtle);
+}
+
+.ai-action-hint {
+	color: var(--text-secondary);
+	background: color-mix(in srgb, var(--accent) 7%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .ai-action-error,

@@ -4,6 +4,33 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+Empty-chapter drafting and the polished zero-to-complete-novel promotion are
+complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Scaffold-only materialized chapters now open the first confirmed scene as an
+  AI opening-draft target instead of showing a false no-prose continuation
+  error. Truly empty, unplanned chapters receive calm guidance.
+- The author-control boundary remains explicit: generation creates one
+  editable temporary draft; only confirmation writes it and creates the safety
+  snapshot.
+- Real interface acceptance passed with the cursor at the start of a
+  scaffold-only chapter, correct grounded context, the visible
+  `确认资料并生成开篇` action and zero console warnings/errors.
+- New public cut: 1:42, 2560×1440, H.264 High, 24 fps, Chinese AAC narration,
+  burned captions and standalone SRT. It starts with the completed outcome,
+  then shows the true empty-project-to-three-chapter workflow and ends on the
+  resolved 3-chapter / 26,210-character dashboard.
+- Final gates: Node 24.14.0, ESLint, TypeScript, 158 Vitest files / 618 tests,
+  production Vite build, Cargo format, 68 Rust tests / 2 ignored, Tauri
+  Release/NSIS, production portable responsive/title/normal-close smoke and
+  zero diagnostic WebView ports.
+- Delivery:
+  `artifacts/release/empty-chapter-promo-polish-2026-07-31/`; video:
+  `artifacts/promo/zero-to-complete-novel-polished-2026-07-31/`; evidence:
+  `docs/acceptance/059-empty-chapter-drafting-promo-polish-2026-07-31.md`.
+
 The zero-to-complete-novel promotional recording is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

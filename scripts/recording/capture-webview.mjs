@@ -108,7 +108,7 @@ if (process.argv.includes('--stop')) {
 const cdpPort = Number(valueAfter('--cdp-port', '9223'));
 const ffmpegPath = resolve(valueAfter('--ffmpeg', 'artifacts/promo/recording-tools/ffmpeg.exe'));
 const outputPath = resolve(valueAfter('--output', 'artifacts/promo/webview-recording.mp4'));
-const frameRate = Number(valueAfter('--framerate', '10'));
+const frameRate = Number(valueAfter('--framerate', '24'));
 const maxSeconds = Number(valueAfter('--max-seconds', '900'));
 const quality = Number(valueAfter('--quality', '90'));
 const videoWidth = Number(valueAfter('--video-width', '2560'));
