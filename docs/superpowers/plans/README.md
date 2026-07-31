@@ -12,3 +12,4 @@
 - [Zero-to-complete novel promotional recording](./2026-07-31-zero-to-complete-novel-promo-recording.md)
 - [Empty chapter drafting and promotional video polish](./2026-07-31-empty-chapter-drafting-and-promo-polish.md)
 - [Story Kernel structural defaults repair](./2026-07-31-story-kernel-structural-defaults.md)
+- [Story Kernel persisted candidate recovery](./2026-07-31-story-kernel-persisted-candidate-recovery.md)

@@ -2610,18 +2610,10 @@ export function parseStoryKernelGenerationResponse(
 	return result.candidates;
 }
 
-function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {
-	if (typeof value !== 'object' || value === null || Array.isArray(value)) return value;
-	const candidate = value as Record<string, unknown>;
-	const rawResource = candidate.resource;
-	if (
-		typeof rawResource !== 'object'
-		|| rawResource === null
-		|| Array.isArray(rawResource)
-	) {
-		return value;
-	}
-	const resource = { ...rawResource } as Record<string, unknown>;
+export function normalizeStoryKernelGenerationResourceDefaults(
+	value: Readonly<Record<string, unknown>>
+): Readonly<Record<string, unknown>> {
+	const resource = { ...value };
 	for (const field of ['aliases', 'tags', 'evidenceIds'] as const) {
 		if (resource[field] === undefined) resource[field] = [];
 	}
@@ -2659,7 +2651,26 @@ function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {
 			}
 		}
 	}
-	return { ...candidate, resource };
+	return resource;
+}
+
+function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {
+	if (typeof value !== 'object' || value === null || Array.isArray(value)) return value;
+	const candidate = value as Record<string, unknown>;
+	const rawResource = candidate.resource;
+	if (
+		typeof rawResource !== 'object'
+		|| rawResource === null
+		|| Array.isArray(rawResource)
+	) {
+		return value;
+	}
+	return {
+		...candidate,
+		resource: normalizeStoryKernelGenerationResourceDefaults(
+			rawResource as Record<string, unknown>
+		)
+	};
 }
 
 export function parseStoryKernelGenerationResponseWithDiagnostics(

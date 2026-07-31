@@ -23,6 +23,10 @@ class MemoryStorage implements StoryKernelGenerationStoragePort {
 	private content: string | undefined;
 	private hash = '';
 
+	constructor(content?: string) {
+		this.content = content;
+	}
+
 	readText(): Promise<TextFile> {
 		if (this.content === undefined) return Promise.reject(new Error('readFailed'));
 		return Promise.resolve({
@@ -182,6 +186,51 @@ function generatedItemWithoutDefaultsResponse(): string {
 			confidence: 0.95,
 			rationale: '正文明确描述了蓝色信封。',
 			evidence: { start: 0, end: 4, quote: '蓝色信封' }
+		}]
+	});
+}
+
+function persistedOldItemBatch(): string {
+	const timestamp = '2026-07-27T08:00:00.000Z';
+	return JSON.stringify({
+		schemaVersion: 1,
+		updatedAt: timestamp,
+		batches: [{
+			id: 'generation-batch:old-item-ui',
+			schemaVersion: 1,
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '3',
+			baseOffset: 0,
+			instruction: '从当前正文创建物品候选。',
+			targetTypes: ['item'],
+			candidates: [{
+				id: 'generation-candidate:old-blue-envelope-ui',
+				operation: 'create',
+				resourceType: 'item',
+				resourceId: 'item:blue-envelope-old-ui',
+				title: '旧批次蓝色信封',
+				rawResource: {
+					id: 'item:blue-envelope-old-ui',
+					type: 'item',
+					title: '旧批次蓝色信封',
+					aliases: [],
+					tags: [],
+					evidenceIds: [],
+					description: '旧版本生成但尚未确认的蓝色信封。'
+				},
+				confidence: 0.95,
+				rationale: '正文明确描述了蓝色信封。',
+				conflicts: [{
+					code: 'invalid-schema',
+					message: '字段结构不符合 Story Kernel，修正前无法确认写入。',
+					blocking: true
+				}],
+				status: 'pending',
+				createdAt: timestamp,
+				updatedAt: timestamp
+			}],
+			createdAt: timestamp,
+			updatedAt: timestamp
 		}]
 	});
 }
@@ -582,6 +631,47 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(gateway.resources.get('item:item:blue-envelope-ui')).toMatchObject({
 			id: 'item:blue-envelope-ui',
 			title: '蓝色信封',
+			unique: false,
+			restrictions: []
+		});
+	});
+
+	it('reopens and confirms an old item candidate without another AI request', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const runGeneration = vi.fn(() => Promise.resolve(''));
+
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="蓝色信封躺在桌上。"
+				repository={repository}
+				store={new StoryKernelGenerationStore(
+					'D:/Novel',
+					new MemoryStorage(persistedOldItemBatch())
+				)}
+				runGeneration={runGeneration}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+			/>
+		);
+
+		const checkbox = await screen.findByRole('checkbox', { name: '选择 旧批次蓝色信封' });
+		expect(checkbox).toBeEnabled();
+		expect(checkbox).toBeChecked();
+		expect(runGeneration).not.toHaveBeenCalled();
+		expect(screen.queryByText('字段结构不符合 Story Kernel，修正前无法确认写入。'))
+			.not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect(gateway.resources.get('item:item:blue-envelope-old-ui')).toMatchObject({
 			unique: false,
 			restrictions: []
 		});

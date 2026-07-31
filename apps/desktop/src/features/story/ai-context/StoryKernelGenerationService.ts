@@ -1,4 +1,5 @@
 import {
+	normalizeStoryKernelGenerationResourceDefaults,
 	parseStoryKernelGenerationResponseWithDiagnostics,
 	storyKernelGenerationResourceTypes,
 	type ChapterPlanInput,
@@ -25,6 +26,9 @@ import {
 } from '@writing-buddy/story-kernel';
 
 type SceneResource = Extract<StoryResource, { readonly type: 'scene' }>;
+
+const invalidResourceStructureMessage =
+	'字段结构不符合 Story Kernel，修正前无法确认写入。';
 
 export const STORY_KERNEL_GENERATIONS_PATH =
 	'.writing-buddy/ai/story-kernel-generation/index.json';
@@ -275,12 +279,30 @@ function parseCandidate(value: unknown): StoryKernelGenerationCandidate {
 	) {
 		throw new Error('invalidStoryKernelGenerationCandidate');
 	}
-	const normalizedResource = value.normalizedResource === undefined
+	const rawResource = normalizeStoryKernelGenerationResourceDefaults(value.rawResource);
+	let normalizedResource = value.normalizedResource === undefined
 		? undefined
 		: StorySchemaRegistry.parse(resourceType, value.normalizedResource);
 	const evidence = value.evidence === undefined
 		? undefined
 		: parseEvidenceRef(value.evidence as Parameters<typeof parseEvidenceRef>[0]);
+	let conflicts = value.conflicts.map(parseConflict);
+	if (normalizedResource === undefined && value.operation === 'create') {
+		try {
+			normalizedResource = hydrateResource({
+				raw: rawResource,
+				resourceType,
+				...(evidence ? { evidence } : {}),
+				now: value.updatedAt
+			});
+			conflicts = conflicts.filter(item => !(
+				item.code === 'invalid-schema'
+				&& item.message === invalidResourceStructureMessage
+			));
+		} catch {
+			// Persisted malformed candidates remain blocked by their original diagnostics.
+		}
+	}
 	return {
 		id: parseStoryId(requiredString(value.id, 'invalidStoryKernelGenerationCandidate')),
 		operation: value.operation as 'create' | 'update',
@@ -290,7 +312,7 @@ function parseCandidate(value: unknown): StoryKernelGenerationCandidate {
 			'invalidStoryKernelGenerationCandidate'
 		)),
 		title: value.title,
-		rawResource: value.rawResource,
+		rawResource,
 		...(normalizedResource ? { normalizedResource } : {}),
 		...(expectedRevision === undefined
 			? {}
@@ -298,7 +320,7 @@ function parseCandidate(value: unknown): StoryKernelGenerationCandidate {
 		confidence: value.confidence,
 		rationale: value.rationale,
 		...(evidence ? { evidence } : {}),
-		conflicts: value.conflicts.map(parseConflict),
+		conflicts,
 		status: status as StoryKernelGenerationCandidateStatus,
 		createdAt: value.createdAt,
 		updatedAt: value.updatedAt
@@ -936,7 +958,7 @@ export class StoryKernelGenerationService {
 			} catch (reason) {
 				conflicts.push(conflict(
 					'invalid-schema',
-					'字段结构不符合 Story Kernel，修正前无法确认写入。',
+					invalidResourceStructureMessage,
 					schemaConflictDetails(reason, rawResource)
 				));
 			}

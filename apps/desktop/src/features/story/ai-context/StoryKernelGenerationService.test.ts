@@ -19,6 +19,10 @@ class MemoryStorage implements StoryKernelGenerationStoragePort {
 	private content: string | undefined;
 	private hash = '';
 
+	constructor(content?: string) {
+		this.content = content;
+	}
+
 	readText(): Promise<TextFile> {
 		if (this.content === undefined) return Promise.reject(new Error('readFailed'));
 		return Promise.resolve({
@@ -273,6 +277,134 @@ async function stageValidBatch(
 }
 
 describe('StoryKernelGenerationService', () => {
+	it('recovers a persisted old item candidate without another AI request', async () => {
+		const storage = new MemoryStorage(JSON.stringify({
+			schemaVersion: 1,
+			updatedAt: now,
+			batches: [{
+				id: 'generation-batch:old-item-defaults',
+				schemaVersion: 1,
+				sourceResourceId: 'chapter:chapter-001',
+				sourceRevision: '7',
+				baseOffset: 0,
+				instruction: '提取蓝色信封。',
+				targetTypes: ['item'],
+				candidates: [{
+					id: 'generation-candidate:old-blue-envelope',
+					operation: 'create',
+					resourceType: 'item',
+					resourceId: 'item:blue-envelope',
+					title: '蓝色信封',
+					rawResource: {
+						id: 'item:blue-envelope',
+						type: 'item',
+						title: '蓝色信封',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						description: '一只等待开启的蓝色信封。'
+					},
+					confidence: 0.95,
+					rationale: '正文明确描述了蓝色信封。',
+					conflicts: [{
+						code: 'invalid-schema',
+						message: '字段结构不符合 Story Kernel，修正前无法确认写入。',
+						blocking: true,
+						details: [{
+							path: 'unique',
+							message: 'unique不符合 Story Kernel 约束：Invalid input',
+							expected: '布尔值',
+							actual: '未提供'
+						}]
+					}],
+					status: 'pending',
+					createdAt: now,
+					updatedAt: now
+				}],
+				createdAt: now,
+				updatedAt: now
+			}]
+		}));
+		const gateway = new MemoryStoryGateway();
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const store = new StoryKernelGenerationStore('D:/Novel', storage);
+		const service = new StoryKernelGenerationService(store, repository);
+
+		const reopened = await store.load();
+		expect(reopened[0]?.candidates[0]).toMatchObject({
+			conflicts: [],
+			normalizedResource: {
+				type: 'item',
+				title: '蓝色信封',
+				unique: false,
+				restrictions: []
+			}
+		});
+
+		const confirmed = await service.confirm(
+			reopened[0].id,
+			[reopened[0].candidates[0].id],
+			'2026-07-27T08:01:00.000Z'
+		);
+		expect(confirmed.candidates[0]?.status).toBe('accepted');
+		await expect(repository.get('item', 'item:blue-envelope')).resolves.toMatchObject({
+			unique: false,
+			restrictions: []
+		});
+	});
+
+	it('does not recover a persisted item with explicit wrong field types', async () => {
+		const storage = new MemoryStorage(JSON.stringify({
+			schemaVersion: 1,
+			updatedAt: now,
+			batches: [{
+				id: 'generation-batch:bad-item-types',
+				schemaVersion: 1,
+				sourceResourceId: 'chapter:chapter-001',
+				sourceRevision: '7',
+				baseOffset: 0,
+				instruction: '提取蓝色信封。',
+				targetTypes: ['item'],
+				candidates: [{
+					id: 'generation-candidate:bad-blue-envelope',
+					operation: 'create',
+					resourceType: 'item',
+					resourceId: 'item:blue-envelope',
+					title: '蓝色信封',
+					rawResource: {
+						id: 'item:blue-envelope',
+						type: 'item',
+						title: '蓝色信封',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						unique: 'yes',
+						restrictions: {}
+					},
+					confidence: 0.95,
+					rationale: '正文明确描述了蓝色信封。',
+					conflicts: [{
+						code: 'invalid-schema',
+						message: '字段结构不符合 Story Kernel，修正前无法确认写入。',
+						blocking: true
+					}],
+					status: 'pending',
+					createdAt: now,
+					updatedAt: now
+				}],
+				createdAt: now,
+				updatedAt: now
+			}]
+		}));
+		const store = new StoryKernelGenerationStore('D:/Novel', storage);
+
+		const reopened = await store.load();
+		expect(reopened[0]?.candidates[0]?.normalizedResource).toBeUndefined();
+		expect(reopened[0]?.candidates[0]?.conflicts).toEqual([
+			expect.objectContaining({ code: 'invalid-schema' })
+		]);
+	});
+
 	it('anchors, persists, reopens, and explicitly resolves chapter reconciliation', async () => {
 		const { service, store } = createHarness();
 		const batch = await service.stageFromResponse({

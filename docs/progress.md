@@ -4,6 +4,26 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+Story Kernel persisted candidate recovery is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Pending `create` candidates saved by an older build now receive the same
+  conservative structural defaults as new AI responses when they reopen.
+- Recovery is local and deterministic: it performs no new AI call, invents no
+  author content, and does not write project Story resources before approval.
+- Only the stale structural-schema conflict is removed after successful strict
+  hydration. Explicit wrong types and all unrelated conflicts remain blocked.
+- A visible UI regression reopens `旧批次蓝色信封`, confirms generation was
+  not called, then proves snapshot-before-write still protects confirmation.
+- Final gates: ESLint, TypeScript, 158 Vitest files / 625 tests, production
+  Vite build, Cargo format, 68 Rust tests / 2 ignored, Tauri Release/NSIS and
+  production portable responsive/title/no-debug-port smoke.
+- Delivery:
+  `artifacts/release/story-kernel-persisted-candidate-recovery-2026-07-31/`;
+  evidence:
+  `docs/acceptance/061-story-kernel-persisted-candidate-recovery-2026-07-31.md`.
+
 Story Kernel structural defaults repair is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
