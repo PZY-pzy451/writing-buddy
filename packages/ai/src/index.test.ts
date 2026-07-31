@@ -261,6 +261,36 @@ describe('AI core contracts', () => {
 		}))).toThrow('invalidSelectionRewriteContext');
 	});
 
+	it('repairs equivalent selection rewrite output and rejects missing prose', () => {
+		expect(parseSelectionRewriteResponse([
+			'```json',
+			JSON.stringify({
+				data: {
+					result: {
+						rewrite: { text: '雨丝落上寂静的站台。' },
+						reason: '删除重复表达。',
+						impact: '不改变情节。'
+					}
+				}
+			}),
+			'```'
+		].join('\n'))).toEqual({
+			suggestion: '雨丝落上寂静的站台。',
+			rationale: '删除重复表达。',
+			potentialImpact: '不改变情节。'
+		});
+		expect(parseSelectionRewriteResponse(JSON.stringify({
+			text: '雨停了。'
+		}))).toEqual({
+			suggestion: '雨停了。',
+			rationale: 'AI 未提供改写依据，请在写入前核对候选。',
+			potentialImpact: ''
+		});
+		expect(() => parseSelectionRewriteResponse(JSON.stringify({
+			result: { tokens: [1, 2, 3] }
+		}))).toThrow('invalidSelectionRewriteResponse:candidate');
+	});
+
 	it('builds bounded continuation requests and enforces three distinct directions', () => {
 		const context = JSON.stringify({
 			schemaVersion: 1,
@@ -283,6 +313,51 @@ describe('AI core contracts', () => {
 		expect(() => parseManuscriptContinuationResponse(JSON.stringify({
 			candidates: [{ title: '唯一走向', content: '林越离开。', rationale: '不足三种。' }]
 		}), 'three-directions')).toThrow('invalidContinuationCandidateCount');
+	});
+
+	it('repairs equivalent continuation response wrappers without changing manuscript text', () => {
+		const parsed = parseManuscriptContinuationResponse([
+			'```json',
+			JSON.stringify({
+				result: {
+					data: {
+						candidate: {
+							direction: '追随钟声',
+							text: ['林越抬起头。', '他循着钟声走向站台尽头。'],
+							reason: '延续当前场景线索。'
+						}
+					}
+				}
+			}),
+			'```'
+		].join('\n'), 'continue-paragraph');
+
+		expect(parsed).toEqual([{
+			title: '追随钟声',
+			content: '林越抬起头。\n\n他循着钟声走向站台尽头。',
+			rationale: '延续当前场景线索。'
+		}]);
+	});
+
+	it('adds only neutral review metadata when structured output contains manuscript text', () => {
+		expect(parseManuscriptContinuationResponse(JSON.stringify([
+			{ continuation: { text: '林越推开了站台尽头的门。' } }
+		]), 'continue-paragraph')).toEqual([{
+			title: '续写候选 1',
+			content: '林越推开了站台尽头的门。',
+			rationale: 'AI 未提供生成依据，请在写入前核对正文。'
+		}]);
+	});
+
+	it('rejects malformed continuation structures before draft creation', () => {
+		expect(() => parseManuscriptContinuationResponse(
+			'```json\n{"candidates":[{"content":{"tokens":[1,2]}}]}\n```',
+			'continue-paragraph'
+		)).toThrow('invalidManuscriptContinuationResponse:candidate');
+		expect(() => parseManuscriptContinuationResponse(
+			'not structured JSON',
+			'continue-paragraph'
+		)).toThrow('invalidManuscriptContinuationResponse:json');
 	});
 
 	it('builds and validates selectable scene-plan fields', () => {
@@ -930,6 +1005,44 @@ describe('AI core contracts', () => {
 		}))).toThrow(
 			'invalidStoryKernelGenerationResource:candidates.0.resource'
 		);
+	});
+
+	it('unwraps fenced Story Kernel transport output without weakening resource validation', () => {
+		const result = parseStoryKernelGenerationResponseWithDiagnostics([
+			'```json',
+			JSON.stringify({
+				result: {
+					candidate: {
+						operation: 'create',
+						resource: {
+							id: 'location:old-station-roof',
+							type: 'location',
+							title: '旧车站玻璃顶',
+							travelLinks: [],
+							factionIds: [],
+							rules: []
+						},
+						confidence: 0.9,
+						rationale: '原文明确出现地点。',
+						evidence: null
+					}
+				}
+			}),
+			'```'
+		].join('\n'));
+
+		expect(result.diagnostics).toEqual([]);
+		expect(result.candidates).toHaveLength(1);
+		expect(result.candidates[0]?.resource).toMatchObject({
+			id: 'location:old-station-roof',
+			aliases: [],
+			tags: [],
+			evidenceIds: []
+		});
+
+		expect(() => parseStoryKernelGenerationResponse(
+			'```json\n{"result":{"candidate":{"operation":"create","resource":{"id":"location:bad","type":"location","title":null},"confidence":0.9,"rationale":"缺少标题。","evidence":null}}}\n```'
+		)).toThrow('invalidStoryKernelGenerationResource');
 	});
 });
 

@@ -141,6 +141,14 @@ async function loadCharacterStateRecords(projectRoot: string): Promise<readonly 
 	}
 }
 
+function selectionRewriteGenerationError(reason: unknown): string {
+	if (!(reason instanceof Error)) return '生成候选失败。';
+	if (reason.message.startsWith('invalidSelectionRewriteResponse:')) {
+		return 'AI 返回的改写候选结构不完整，未写入正文。请重新生成。';
+	}
+	return reason.message;
+}
+
 export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.JSX.Element {
 	const rewriteService = useMemo(
 		() => new SelectionRewriteService(new EditTransactionService()),
@@ -250,7 +258,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 			setJobState('completed');
 		} catch (reason) {
 			setJobState('failed');
-			setError(reason instanceof Error ? reason.message : '生成候选失败。');
+			setError(selectionRewriteGenerationError(reason));
 		} finally {
 			generatingRef.current = false;
 		}

@@ -106,6 +106,72 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
+	it('repairs an equivalent wrapped response before handing off the inline draft', async () => {
+		const props = {
+			...baseProps(),
+			onPendingDraft: vi.fn(),
+			runContinuation: () => Promise.resolve({
+				output: [
+					'```json',
+					JSON.stringify({
+						result: {
+							candidate: {
+								direction: '打开站台门',
+								text: '林越推开站台尽头的铁门。',
+								reason: '延续当前动作。'
+							}
+						}
+					}),
+					'```'
+				].join('\n')
+			})
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认资料并生成候选'
+		}));
+
+		await waitFor(() => expect(props.onPendingDraft).toHaveBeenCalledTimes(1));
+		expect(props.onPendingDraft).toHaveBeenCalledWith(
+			expect.objectContaining({
+				title: '打开站台门',
+				content: '林越推开站台尽头的铁门。',
+				rationale: '延续当前动作。'
+			}),
+			expect.any(Object),
+			expect.stringContaining('林越推开站台尽头的铁门。')
+		);
+		expect(props.onApply).not.toHaveBeenCalled();
+		expect(props.onBeforeApply).not.toHaveBeenCalled();
+	});
+
+	it('keeps malformed generated data out of the manuscript with localized guidance', async () => {
+		const props = {
+			...baseProps(),
+			onPendingDraft: vi.fn(),
+			runContinuation: () => Promise.resolve({
+				output: JSON.stringify({
+					candidates: [{ content: { tokens: [1, 2, 3] } }]
+				})
+			})
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认资料并生成候选'
+		}));
+
+		expect(await screen.findByRole('alert')).toHaveTextContent(
+			'AI 返回的正文候选结构不完整，未写入正文'
+		);
+		expect(screen.queryByText(/invalidManuscriptContinuationResponse/u))
+			.not.toBeInTheDocument();
+		expect(props.onPendingDraft).not.toHaveBeenCalled();
+		expect(props.onApply).not.toHaveBeenCalled();
+		expect(props.onBeforeApply).not.toHaveBeenCalled();
+	});
+
 	it('keeps author guidance, blocks duplicate requests and shows grounded review before insert', async () => {
 		const order: string[] = [];
 		let release: ((value: { output: string }) => void) | undefined;

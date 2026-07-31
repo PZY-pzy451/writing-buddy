@@ -172,6 +172,17 @@ function withoutAuthorSecrets(pack: ContextPack): ContextPack {
 		);
 }
 
+function continuationGenerationError(reason: unknown): string {
+	if (!(reason instanceof Error)) return '续写候选生成失败。';
+	if (reason.message.startsWith('invalidManuscriptContinuationResponse:')) {
+		return 'AI 返回的正文候选结构不完整，未写入正文。请重试；若持续出现，请缩短本次作者指令。';
+	}
+	if (reason.message === 'invalidContinuationCandidateCount') {
+		return 'AI 返回的候选数量不符合本次模式，未写入正文。请重新生成。';
+	}
+	return reason.message;
+}
+
 export function ManuscriptContinuationPanel(
 	props: ManuscriptContinuationPanelProps
 ): React.JSX.Element {
@@ -323,7 +334,7 @@ export function ManuscriptContinuationPanel(
 			setJobState('completed');
 		} catch (reason) {
 			setJobState('failed');
-			setError(reason instanceof Error ? reason.message : '续写候选生成失败。');
+			setError(continuationGenerationError(reason));
 		} finally {
 			generatingRef.current = false;
 		}

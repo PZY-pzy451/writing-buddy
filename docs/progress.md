@@ -4,6 +4,24 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+The AI-generated manuscript response repair is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Continuation, three directions, inline Tab expansion and selection rewrite
+  now repair bounded JSON fences, known wrappers and explicit equivalent field
+  names before creating an author-reviewed inline draft.
+- Story Kernel generation accepts the same pure transport variations without
+  weakening resource schemas or atomic confirmation.
+- Malformed or empty prose is localized and blocked with zero snapshot,
+  manuscript apply or repository writes.
+- Validation: ESLint, TypeScript, 157 Vitest files / 613 tests, production
+  frontend build, Cargo format, 68 Rust tests with 2 explicit external gates
+  ignored, Tauri Release/NSIS and portable startup/normal close.
+- Delivery:
+  `artifacts/release/ai-generated-manuscript-repair-2026-07-31/`; evidence:
+  `docs/acceptance/057-ai-generated-manuscript-response-repair-2026-07-31.md`.
+
 The complete-novel promotional recording is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

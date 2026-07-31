@@ -1450,12 +1450,146 @@ export function parseManuscriptContinuationResponse(
 	response: string,
 	mode: ManuscriptContinuationMode
 ): readonly ManuscriptContinuationCandidateResponse[] {
-	const parsed = manuscriptContinuationResponseSchema.parse(JSON.parse(response));
+	const parsed = manuscriptContinuationResponseSchema.safeParse(
+		normalizeManuscriptContinuationResponse(
+			decodeBoundedJsonResponse(
+				response,
+				64_000,
+				'invalidManuscriptContinuationResponse:json'
+			)
+		)
+	);
+	if (!parsed.success) {
+		throw new Error('invalidManuscriptContinuationResponse:candidate');
+	}
 	const expectedCount = mode === 'three-directions' ? 3 : 1;
-	if (parsed.candidates.length !== expectedCount) {
+	if (parsed.data.candidates.length !== expectedCount) {
 		throw new Error('invalidContinuationCandidateCount');
 	}
-	return parsed.candidates;
+	return parsed.data.candidates;
+}
+
+function decodeBoundedJsonResponse(
+	response: string,
+	maxLength: number,
+	errorCode: string
+): unknown {
+	let source = response.replace(/^\uFEFF/u, '').trim();
+	if (!source || source.length > maxLength) {
+		throw new Error(errorCode);
+	}
+	const fenced = /^```(?:json)?\s*([\s\S]*?)\s*```$/iu.exec(source);
+	if (fenced) source = fenced[1]?.trim() ?? '';
+	try {
+		return JSON.parse(source);
+	} catch {
+		throw new Error(errorCode);
+	}
+}
+
+function structuredResponseRecord(value: unknown): Record<string, unknown> | undefined {
+	return typeof value === 'object' && value !== null && !Array.isArray(value)
+		? value as Record<string, unknown>
+		: undefined;
+}
+
+function structuredResponseContent(value: unknown): string | undefined {
+	if (typeof value === 'string') return value.trim() || undefined;
+	if (
+		Array.isArray(value)
+		&& value.length > 0
+		&& value.every(item => typeof item === 'string')
+	) {
+		return value.map(item => item.trim()).filter(Boolean).join('\n\n') || undefined;
+	}
+	const record = structuredResponseRecord(value);
+	if (!record) return undefined;
+	for (const field of ['text', 'content', 'value'] as const) {
+		if (typeof record[field] === 'string' && record[field].trim()) {
+			return record[field].trim();
+		}
+	}
+	return undefined;
+}
+
+function structuredResponseText(
+	candidate: Record<string, unknown>,
+	fields: readonly string[]
+): string | undefined {
+	for (const field of fields) {
+		const value = candidate[field];
+		if (typeof value === 'string' && value.trim()) return value.trim();
+	}
+	return undefined;
+}
+
+function normalizeManuscriptContinuationCandidate(
+	value: unknown,
+	index: number
+): unknown {
+	if (typeof value === 'string') {
+		const content = value.trim();
+		return content
+			? {
+				title: `续写候选 ${index + 1}`,
+				content,
+				rationale: 'AI 未提供生成依据，请在写入前核对正文。'
+			}
+			: value;
+	}
+	const candidate = structuredResponseRecord(value);
+	if (!candidate) return value;
+	const content = ['content', 'text', 'manuscript', 'continuation']
+		.map(field => structuredResponseContent(candidate[field]))
+		.find((item): item is string => item !== undefined);
+	if (!content) return value;
+	return {
+		title: structuredResponseText(candidate, ['title', 'direction', 'name'])
+			?? `续写候选 ${index + 1}`,
+		content,
+		rationale: structuredResponseText(
+			candidate,
+			['rationale', 'reason', 'explanation']
+		) ?? 'AI 未提供生成依据，请在写入前核对正文。'
+	};
+}
+
+function normalizeManuscriptContinuationResponse(decoded: unknown): unknown {
+	let value = decoded;
+	for (let depth = 0; depth < 2; depth++) {
+		const record = structuredResponseRecord(value);
+		if (!record || Array.isArray(record.candidates)) break;
+		const wrapper = ['result', 'data', 'response', 'output']
+			.map(field => record[field])
+			.find(item => Array.isArray(item) || structuredResponseRecord(item));
+		if (wrapper === undefined) break;
+		value = wrapper;
+	}
+	if (Array.isArray(value)) {
+		return {
+			candidates: value.map(normalizeManuscriptContinuationCandidate)
+		};
+	}
+	const record = structuredResponseRecord(value);
+	if (!record) return value;
+	const rawCandidates = Array.isArray(record.candidates)
+		? record.candidates
+		: Array.isArray(record.candidate)
+			? record.candidate
+			: record.candidate !== undefined
+				? [record.candidate]
+				: structuredResponseContent(
+					record.content
+						?? record.text
+						?? record.manuscript
+						?? record.continuation
+				)
+					? [record]
+					: undefined;
+	if (!rawCandidates) return value;
+	return {
+		candidates: rawCandidates.map(normalizeManuscriptContinuationCandidate)
+	};
 }
 
 export function buildScenePlanMessages(contextPackJson: string): readonly AiMessage[] {
@@ -2299,7 +2433,56 @@ export function buildSelectionRewriteMessages(contextPackJson: string): readonly
 }
 
 export function parseSelectionRewriteResponse(response: string): SelectionRewriteResponse {
-	return selectionRewriteResponseSchema.parse(JSON.parse(response));
+	const parsed = selectionRewriteResponseSchema.safeParse(
+		normalizeSelectionRewriteResponse(
+			decodeBoundedJsonResponse(
+				response,
+				32_000,
+				'invalidSelectionRewriteResponse:json'
+			)
+		)
+	);
+	if (!parsed.success) {
+		throw new Error('invalidSelectionRewriteResponse:candidate');
+	}
+	return parsed.data;
+}
+
+function normalizeSelectionRewriteResponse(decoded: unknown): unknown {
+	let value = decoded;
+	for (let depth = 0; depth < 3; depth++) {
+		const record = structuredResponseRecord(value);
+		if (!record) return value;
+		const suggestion = structuredResponseContent(
+			record.suggestion
+				?? record.rewrite
+				?? record.rewrittenText
+				?? record.content
+				?? record.text
+		);
+		if (suggestion) {
+			const rationale = structuredResponseText(
+				record,
+				['rationale', 'reason', 'explanation']
+			);
+			const potentialImpact = structuredResponseText(
+				record,
+				['potentialImpact', 'impact', 'potential_impact']
+			);
+			return {
+				suggestion,
+				rationale: rationale
+					?? 'AI 未提供改写依据，请在写入前核对候选。',
+				...(potentialImpact ? { potentialImpact } : {})
+			};
+		}
+		const wrapper = ['result', 'data', 'response', 'output']
+			.map(field => record[field])
+			.find(item => structuredResponseRecord(item));
+		if (wrapper === undefined) return value;
+		value = wrapper;
+	}
+	return value;
 }
 
 export function buildStoryExtractionMessages(input: {
@@ -2447,13 +2630,14 @@ function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {
 export function parseStoryKernelGenerationResponseWithDiagnostics(
 	response: string
 ): StoryKernelGenerationResponseResult {
-	let decoded: unknown;
-	try {
-		decoded = JSON.parse(response);
-	} catch {
-		throw new Error('invalidStoryKernelGenerationResponse:json');
-	}
-	const envelope = storyKernelGenerationResponseEnvelopeSchema.safeParse(decoded);
+	const decoded = decodeBoundedJsonResponse(
+		response,
+		4_000_000,
+		'invalidStoryKernelGenerationResponse:json'
+	);
+	const envelope = storyKernelGenerationResponseEnvelopeSchema.safeParse(
+		normalizeStoryKernelGenerationResponseEnvelope(decoded)
+	);
 	if (!envelope.success) {
 		throw new Error('invalidStoryKernelGenerationResponse:envelope');
 	}
@@ -2484,6 +2668,41 @@ export function parseStoryKernelGenerationResponseWithDiagnostics(
 			? { reconciliation: envelope.data.reconciliation }
 			: {})
 	};
+}
+
+function normalizeStoryKernelGenerationResponseEnvelope(decoded: unknown): unknown {
+	let value = decoded;
+	let reconciliation: unknown;
+	for (let depth = 0; depth < 2; depth++) {
+		if (Array.isArray(value)) return { candidates: value };
+		const record = structuredResponseRecord(value);
+		if (!record) return value;
+		reconciliation ??= record.reconciliation;
+		if (Array.isArray(record.candidates)) {
+			return {
+				candidates: record.candidates,
+				...(record.reconciliation !== undefined
+					? { reconciliation: record.reconciliation }
+					: reconciliation !== undefined
+						? { reconciliation }
+						: {})
+			};
+		}
+		if (record.candidate !== undefined) {
+			return {
+				candidates: Array.isArray(record.candidate)
+					? record.candidate
+					: [record.candidate],
+				...(reconciliation !== undefined ? { reconciliation } : {})
+			};
+		}
+		const wrapper = ['result', 'data', 'response', 'output']
+			.map(field => record[field])
+			.find(item => Array.isArray(item) || structuredResponseRecord(item));
+		if (wrapper === undefined) return value;
+		value = wrapper;
+	}
+	return value;
 }
 
 const creationJourneyCoreSchema = z.object({

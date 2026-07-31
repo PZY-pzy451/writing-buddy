@@ -113,7 +113,7 @@ describe('inline Tab plot expansion', () => {
 		expect(cache.get({ ...value, documentContent: `${source}变更` })).toBeUndefined();
 	});
 
-	it('runs one thinking-disabled 512-token continuation request', async () => {
+	it('runs one thinking-disabled request and repairs equivalent generated data', async () => {
 		const startAiGeneration = vi.fn((
 			request: AiGenerateRequest,
 			listener: (event: AiStreamEvent) => void
@@ -122,13 +122,19 @@ describe('inline Tab plot expansion', () => {
 			listener({
 				type: 'content_delta',
 				jobId: request.jobId,
-				text: JSON.stringify({
-					candidates: [{
-						title: '追随钟声',
-						content: '林墨抬起头，循着钟声走向站台尽头。',
-						rationale: '延续时钟线索并推进人物行动。'
-					}]
-				})
+				text: [
+					'```json',
+					JSON.stringify({
+						data: {
+							candidate: {
+								direction: '追随钟声',
+								text: '林墨抬起头，循着钟声走向站台尽头。',
+								explanation: '延续时钟线索并推进人物行动。'
+							}
+						}
+					}),
+					'```'
+				].join('\n')
 			});
 			listener({ type: 'completed', jobId: request.jobId });
 			return Promise.resolve();
