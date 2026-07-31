@@ -1007,6 +1007,82 @@ describe('AI core contracts', () => {
 		);
 	});
 
+	it('repairs neutral Story Kernel type fields without overwriting explicit semantics', () => {
+		const result = parseStoryKernelGenerationResponseWithDiagnostics(JSON.stringify({
+			candidates: [{
+				operation: 'create',
+				resource: {
+					id: 'item:blue-envelope',
+					type: 'item',
+					title: '蓝色信封',
+					description: '一只等待开启的蓝色信封。'
+				},
+				confidence: 0.95,
+				rationale: '正文明确出现物品。',
+				evidence: null
+			}, {
+				operation: 'create',
+				resource: {
+					id: 'item:only-key',
+					type: 'item',
+					title: '唯一钥匙',
+					unique: true,
+					restrictions: ['不可复制']
+				},
+				confidence: 0.9,
+				rationale: '正文明确说明只有一把。',
+				evidence: null
+			}, {
+				operation: 'create',
+				resource: {
+					id: 'scene:quiet-room',
+					type: 'scene',
+					title: '静室'
+				},
+				confidence: 0.85,
+				rationale: '正文形成一个场景。',
+				evidence: null
+			}, {
+				operation: 'create',
+				resource: {
+					id: 'timeline-event:alarm',
+					type: 'timelineEvent',
+					title: '警报响起'
+				},
+				confidence: 0.82,
+				rationale: '正文出现警报。',
+				evidence: null
+			}]
+		}));
+
+		expect(result.diagnostics).toEqual([]);
+		expect(result.candidates[0]?.resource).toMatchObject({
+			aliases: [],
+			tags: [],
+			evidenceIds: [],
+			unique: false,
+			restrictions: []
+		});
+		expect(result.candidates[1]?.resource).toMatchObject({
+			unique: true,
+			restrictions: ['不可复制']
+		});
+		expect(result.candidates[2]?.resource).toMatchObject({
+			locationIds: [],
+			participantIds: [],
+			plotThreadIds: [],
+			revealInformationIds: [],
+			foreshadowingIds: []
+		});
+		expect(result.candidates[3]?.resource).toMatchObject({
+			participantIds: [],
+			locationIds: [],
+			itemIds: [],
+			predecessorIds: [],
+			consequenceIds: []
+		});
+	});
+
 	it('unwraps fenced Story Kernel transport output without weakening resource validation', () => {
 		const result = parseStoryKernelGenerationResponseWithDiagnostics([
 			'```json',

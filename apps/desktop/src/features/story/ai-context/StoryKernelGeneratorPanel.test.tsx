@@ -166,6 +166,26 @@ function generatedLocationResponse(): string {
 	});
 }
 
+function generatedItemWithoutDefaultsResponse(): string {
+	return JSON.stringify({
+		candidates: [{
+			operation: 'create',
+			resource: {
+				id: 'item:blue-envelope-ui',
+				type: 'item',
+				title: '蓝色信封',
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				description: '一只等待开启的蓝色信封。'
+			},
+			confidence: 0.95,
+			rationale: '正文明确描述了蓝色信封。',
+			evidence: { start: 0, end: 4, quote: '蓝色信封' }
+		}]
+	});
+}
+
 describe('StoryKernelGeneratorPanel', () => {
 	afterEach(() => {
 		vi.restoreAllMocks();
@@ -516,6 +536,55 @@ describe('StoryKernelGeneratorPanel', () => {
 		});
 		expect(gateway.resources.get('location:location:old-station-roof-ui'))
 			.not.toHaveProperty('mapPoint');
+	});
+
+	it('confirms an item candidate after repairing omitted item defaults', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const response = generatedItemWithoutDefaultsResponse();
+
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="蓝色信封躺在桌上。"
+				repository={repository}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={(_messages, onProgress) => {
+					onProgress('streaming', response);
+					return Promise.resolve(response);
+				}}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+				preset={{
+					id: 'item-missing-defaults',
+					instruction: '从当前正文创建物品候选。',
+					targetTypes: ['item']
+				}}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		const checkbox = await screen.findByRole('checkbox', { name: '选择 蓝色信封' });
+		expect(checkbox).toBeEnabled();
+		expect(screen.queryByText(/unique不符合 Story Kernel/)).not.toBeInTheDocument();
+		expect(screen.queryByText(/restrictions需要使用列表/)).not.toBeInTheDocument();
+		expect(screen.queryByText('字段结构不符合 Story Kernel，修正前无法确认写入。'))
+			.not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect(gateway.resources.get('item:item:blue-envelope-ui')).toMatchObject({
+			id: 'item:blue-envelope-ui',
+			title: '蓝色信封',
+			unique: false,
+			restrictions: []
+		});
 	});
 
 	it('disables generation for a read-only project', () => {

@@ -134,6 +134,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。",
     "location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。",
     "item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。",
+    "item 的 unique 无明确唯一性依据时必须为 false；restrictions 无限制时必须为 []，两者都不得省略。",
     "timelineEvent 使用 narrativePosition、eventType、participantIds/locationIds/itemIds/predecessorIds/consequenceIds/plotThreadIds/informationIds，以及可选故事时间字段。",
     "relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。",
     "plotThread 的 status 只能是 planned|active|at-risk|resolved|abandoned；participantIds、sceneIds 必须为数组，可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。",

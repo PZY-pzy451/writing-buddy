@@ -59,6 +59,7 @@
 - [AI-generated manuscript response repair acceptance, 2026-07-31](./057-ai-generated-manuscript-response-repair-2026-07-31.md)
 - [Zero-to-complete novel promotional recording acceptance, 2026-07-31](./058-zero-to-complete-novel-promotional-recording-2026-07-31.md)
 - [Empty chapter drafting and promotional polish acceptance, 2026-07-31](./059-empty-chapter-drafting-promo-polish-2026-07-31.md)
+- [Story Kernel structural defaults acceptance, 2026-07-31](./060-story-kernel-structural-defaults-2026-07-31.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

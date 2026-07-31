@@ -442,6 +442,92 @@ describe('StoryKernelGenerationService', () => {
 		]);
 	});
 
+	it('stages an item with conservative defaults when AI omits item-only fields', async () => {
+		const { repository, service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '提取正文中的蓝色信封。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['item'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'item:blue-envelope',
+						type: 'item',
+						title: '蓝色信封',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						description: '一只等待开启的蓝色信封。'
+					},
+					confidence: 0.95,
+					rationale: '正文明确出现该物品。',
+					evidence: null
+				}]
+			}),
+			now
+		});
+
+		expect(batch.candidates).toHaveLength(1);
+		expect(batch.candidates[0]).toMatchObject({
+			conflicts: [],
+			normalizedResource: {
+				type: 'item',
+				title: '蓝色信封',
+				unique: false,
+				restrictions: []
+			}
+		});
+
+		const confirmed = await service.confirm(
+			batch.id,
+			[batch.candidates[0].id],
+			'2026-07-27T08:01:00.000Z'
+		);
+		expect(confirmed.candidates[0]?.status).toBe('accepted');
+		await expect(repository.get('item', 'item:blue-envelope')).resolves.toMatchObject({
+			unique: false,
+			restrictions: []
+		});
+	});
+
+	it('keeps explicitly malformed item fields blocked instead of coercing them', async () => {
+		const { service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '提取正文中的蓝色信封。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: ['item'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'item:blue-envelope',
+						type: 'item',
+						title: '蓝色信封',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						unique: 'yes',
+						restrictions: {}
+					},
+					confidence: 0.95,
+					rationale: '正文明确出现该物品。',
+					evidence: null
+				}]
+			}),
+			now
+		});
+
+		expect(batch.candidates[0]?.normalizedResource).toBeUndefined();
+		expect(batch.candidates[0]?.conflicts).toEqual([
+			expect.objectContaining({ code: 'invalid-schema' })
+		]);
+	});
+
 	it('stages complete resources, validates dependencies, then confirms one atomic batch', async () => {
 		const { gateway, repository, service, store } = createHarness();
 		const batch = await stageValidBatch(service);

@@ -4,6 +4,27 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+Story Kernel structural defaults repair is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Item candidates that omit `unique` and `restrictions` now use conservative
+  local defaults (`false` and `[]`) and remain confirmable.
+- Explicit item semantics are preserved, while wrong explicit types remain
+  blocked by the strict Story Kernel schema.
+- Neutral missing arrays for generated scenes and timeline events are safely
+  normalized without inventing IDs, positions or story facts.
+- The TypeScript and native Rust prompts explicitly require item defaults.
+- A visible UI integration regression reproduces `蓝色信封`, confirms the
+  checkbox is enabled, creates the safety snapshot and writes the normalized
+  resource.
+- Final gates: ESLint, TypeScript, 158 Vitest files / 622 tests, production
+  Vite build, Cargo format, 68 Rust tests / 2 ignored, Tauri Release/NSIS and
+  production portable responsive/title/normal-close smoke.
+- Delivery: `artifacts/release/story-kernel-structural-repair-2026-07-31/`;
+  evidence:
+  `docs/acceptance/060-story-kernel-structural-defaults-2026-07-31.md`.
+
 Empty-chapter drafting and the polished zero-to-complete-novel promotion are
 complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
