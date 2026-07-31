@@ -41,6 +41,7 @@ import {
 	type StoryMutationReceipt,
 	type StoryResource
 } from '@writing-buddy/story-kernel';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import type {
@@ -207,6 +208,8 @@ export function PlotBoardPage({
 	readonly readOnly?: boolean;
 	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
+	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
+	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<PlotBoardData>();
 	const [view, setView] = useState<'board' | 'foreshadowing'>('board');
 	const [currentOrder, setCurrentOrder] = useState(10);
@@ -221,6 +224,15 @@ export function PlotBoardPage({
 	const [activeThread, setActiveThread] = useState<PlotThread>();
 	const [plotUndo, setPlotUndo] = useState<StoryMutationReceipt>();
 	const [announcement, setAnnouncement] = useState('');
+
+	useEffect(() => {
+		if (contextualCreateIntent !== 'plot') return;
+		const timer = window.setTimeout(() => {
+			if (projectRoot && !readOnly) setAiOpen(true);
+			consumeContextualCreate('plot');
+		}, 0);
+		return () => window.clearTimeout(timer);
+	}, [consumeContextualCreate, contextualCreateIntent, projectRoot, readOnly]);
 	const sensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
 		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })

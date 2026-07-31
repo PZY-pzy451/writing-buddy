@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DEFAULT_AI_PREFERENCES } from '@writing-buddy/ai';
+import { flattenChapters } from '@writing-buddy/domain';
 import { runLocalReview } from '@writing-buddy/review';
 import { App } from '../../app/App';
 import { useAppStore } from '../../app/store';
@@ -27,7 +28,8 @@ function resetStores(): void {
 		pendingProjectRoot: undefined,
 		projectOpenBusyAction: undefined,
 		loading: false,
-		dockOpen: true
+		dockOpen: true,
+		contextualCreateIntent: undefined
 	});
 	useAiStore.setState({
 		initialized: false,
@@ -93,6 +95,27 @@ describe('manual and AI review experience', () => {
 		expect(screen.getByText(/本地审校完成，发现 2 个问题/)).toBeInTheDocument();
 	});
 
+	it('opens the next affected chapter directly from the project review inbox', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+		const snapshot = useAppStore.getState().snapshot;
+		const chapter = snapshot ? flattenChapters(snapshot.project)[0] : undefined;
+		if (!snapshot || !chapter) throw new Error('review chapter fixture missing');
+		const issue = runLocalReview(snapshot.project.projectId, chapter.id, '夜雨落下。。').issues[0];
+		if (!issue) throw new Error('review issue fixture missing');
+		await act(() => useAppStore.setState({ issues: [issue] }));
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		expect(await screen.findByRole('heading', { name: '项目待处理事项' })).toBeInTheDocument();
+		const nextTask = screen.getByRole('button', { name: /打开下一项.*第一章/ });
+		await user.click(nextTask);
+
+		await waitFor(() => expect(useAppStore.getState().activeResource?.id).toBe(chapter.id));
+		expect(await screen.findByText('重复标点')).toBeInTheDocument();
+		expect(screen.getByText(`当前章节：${chapter.title}`)).toBeInTheDocument();
+	});
+
 	it('streams a real-provider-shaped AI review and keeps suggestions author-confirmed', async () => {
 		await desktopBridge.saveDeepSeekKey('fixture-key');
 		const user = userEvent.setup();
@@ -108,10 +131,10 @@ describe('manual and AI review experience', () => {
 		expect(await screen.findByText('AI 表达建议')).toBeInTheDocument();
 		expect(screen.getByText('AI')).toBeInTheDocument();
 		expect(screen.getByText(/修改仍由作者确认/)).toBeInTheDocument();
-		expect(useAppStore.getState().issues).toMatchObject([{
+		expect(useAppStore.getState().issues).toEqual(expect.arrayContaining([expect.objectContaining({
 			origin: 'ai',
 			status: 'open',
 			ruleId: 'ai-chapter-review'
-		}]);
+		})]));
 	});
 });

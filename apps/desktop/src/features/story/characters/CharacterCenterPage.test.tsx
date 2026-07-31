@@ -9,6 +9,7 @@ import {
 	CharacterCenterPage,
 	type CharacterCenterData
 } from './CharacterCenterPage';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
@@ -165,5 +166,20 @@ describe('CharacterCenterPage', () => {
 		expect(screen.getByRole('heading', { name: '唐砚' })).toBeInTheDocument();
 		expect(screen.getByRole('heading', { name: '温禾' })).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();
+	});
+
+	it('consumes a global create intent by opening the assistant without starting AI', async () => {
+		useAppStore.setState({ contextualCreateIntent: 'character' });
+		render(
+			<CharacterCenterPage
+				projectRoot="D:/Fixture"
+				loadData={() => Promise.resolve({ characters: [], states: [] })}
+			/>
+		);
+
+		expect(await screen.findByRole('complementary', { name: 'AI 人物助手' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '生成候选' })).toBeDisabled();
+		expect(screen.queryByRole('heading', { name: '顾遥' })).not.toBeInTheDocument();
+		expect(useAppStore.getState().contextualCreateIntent).toBeUndefined();
 	});
 });

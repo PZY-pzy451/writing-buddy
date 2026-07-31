@@ -4,24 +4,70 @@ import {
 	ChevronDown,
 	FilePlus2,
 	FolderInput,
-	FolderPlus,
 	Landmark,
 	Lightbulb,
 	MapPinned,
+	PackagePlus,
 	Plus,
+	Route,
 	UserRoundPlus
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useAppStore } from '../../../app/store';
+import { useAppStore, type ContextualCreateIntent, type RailMode } from '../../../app/store';
 import { openCreateMenuEvent } from './GlobalCreateRequest';
 
-const projectItems = [
-	{ label: '新建卷', Icon: FolderPlus },
-	{ label: '新建场景', Icon: MapPinned },
-	{ label: '新建人物', Icon: UserRoundPlus },
-	{ label: '新建设定', Icon: Landmark },
-	{ label: '新建时间事件', Icon: CalendarPlus }
+interface ContextualCreateAction {
+	readonly id: 'structure' | ContextualCreateIntent;
+	readonly label: string;
+	readonly description: string;
+	readonly Icon: LucideIcon;
+}
+
+const contextualCreateActions: readonly ContextualCreateAction[] = [
+	{
+		id: 'structure',
+		label: '规划卷、章与场景',
+		description: '打开故事结构，继续拆分大纲',
+		Icon: MapPinned
+	},
+	{
+		id: 'plot',
+		label: '创建剧情线或伏笔',
+		description: '打开剧情助手，先生成候选再确认',
+		Icon: Route
+	},
+	{
+		id: 'character',
+		label: '创建人物',
+		description: '打开人物助手，补充角色资料',
+		Icon: UserRoundPlus
+	},
+	{
+		id: 'worldbuilding',
+		label: '创建地点或设定',
+		description: '打开世界助手，建立地点与规则',
+		Icon: Landmark
+	},
+	{
+		id: 'asset',
+		label: '创建物品',
+		description: '打开物品助手，记录关键资产',
+		Icon: PackagePlus
+	},
+	{
+		id: 'timeline',
+		label: '创建时间事件',
+		description: '打开时间线助手，安排事件顺序',
+		Icon: CalendarPlus
+	}
 ] as const;
+
+const contextualOrder: Readonly<Record<Extract<RailMode, 'planning' | 'references'> | 'default', readonly ContextualCreateAction['id'][]>> = {
+	planning: ['structure', 'plot', 'character', 'worldbuilding', 'asset', 'timeline'],
+	references: ['character', 'worldbuilding', 'asset', 'timeline', 'plot', 'structure'],
+	default: ['structure', 'character', 'plot', 'worldbuilding', 'asset', 'timeline']
+};
 
 function moveMenuFocus(menu: HTMLDivElement, direction: 'first' | 'last' | 'next' | 'previous'): void {
 	const items = [...menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)')];
@@ -47,6 +93,9 @@ export function GlobalCreateMenu({
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const openQuickCapture = useAppStore(state => state.openQuickCapture);
 	const openChapterCreator = useAppStore(state => state.openChapterCreator);
+	const activeMode = useAppStore(state => state.activeMode);
+	const setRailMode = useAppStore(state => state.setMode);
+	const requestContextualCreate = useAppStore(state => state.requestContextualCreate);
 	const [open, setOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -58,6 +107,14 @@ export function GlobalCreateMenu({
 		const target = shortcutOnly ? shortcutOrigin.current : triggerRef.current;
 		if (target?.isConnected) target.focus();
 	}, [shortcutOnly]);
+	const contextualActions = (contextualOrder[
+		activeMode === 'planning' || activeMode === 'references' ? activeMode : 'default'
+	]).map(id => contextualCreateActions.find(action => action.id === id)!);
+	const runAndClose = (action: () => void) => {
+		restoreFocus();
+		setOpen(false);
+		action();
+	};
 
 	useEffect(() => {
 		if (!open) return;
@@ -146,11 +203,7 @@ export function GlobalCreateMenu({
 					<button
 						type="button"
 						role="menuitem"
-						onClick={() => {
-							restoreFocus();
-							setOpen(false);
-							openProjectWizard();
-						}}
+						onClick={() => runAndClose(openProjectWizard)}
 					>
 						<BookPlus size={18} />
 						<span><strong>新建项目</strong><small>从模板和初始结构开始</small></span>
@@ -158,11 +211,7 @@ export function GlobalCreateMenu({
 					<button
 						type="button"
 						role="menuitem"
-						onClick={() => {
-							restoreFocus();
-							setOpen(false);
-							void chooseProject();
-						}}
+						onClick={() => runAndClose(() => void chooseProject())}
 					>
 						<FolderInput size={18} />
 						<span><strong>打开项目</strong><small>选择已有项目目录</small></span>
@@ -178,11 +227,7 @@ export function GlobalCreateMenu({
 							: snapshot.readOnly
 								? '只读作品不能新建章节'
 								: 'Ctrl+N'}
-						onClick={() => {
-							restoreFocus();
-							setOpen(false);
-							openChapterCreator();
-						}}
+						onClick={() => runAndClose(openChapterCreator)}
 					>
 						<FilePlus2 size={18} />
 						<span>
@@ -195,11 +240,7 @@ export function GlobalCreateMenu({
 						role="menuitem"
 						disabled={!snapshot || snapshot.readOnly}
 						title={!snapshot ? '请先打开作品' : snapshot.readOnly ? '只读作品不能新增记录' : 'Ctrl+Shift+Space'}
-						onClick={() => {
-							restoreFocus();
-							setOpen(false);
-							openQuickCapture();
-						}}
+						onClick={() => runAndClose(openQuickCapture)}
 					>
 						<Lightbulb size={18} />
 						<span>
@@ -207,22 +248,33 @@ export function GlobalCreateMenu({
 							<small>{snapshot ? '写作中先记下来，稍后整理' : '打开作品后可用'}</small>
 						</span>
 					</button>
-					<div className="global-create-separator" role="separator" />
-					{projectItems.map(({ label, Icon }) => (
-						<button
-							key={label}
-							type="button"
-							role="menuitem"
-							disabled
-							title={snapshot ? '将在项目结构编排阶段启用' : '请先打开作品'}
-						>
-							<Icon size={18} />
-							<span>
-								<strong>{label}</strong>
-								<small>{snapshot ? '下一阶段启用' : '请先打开作品'}</small>
-							</span>
-						</button>
-					))}
+					{snapshot && (
+						<>
+							<div className="global-create-separator" role="separator" />
+							{contextualActions.map(({ id, label, description, Icon }) => (
+								<button
+									key={id}
+									type="button"
+									role="menuitem"
+									disabled={snapshot.readOnly}
+									title={snapshot.readOnly ? '只读作品不能创建内容' : description}
+									onClick={() => runAndClose(() => {
+										if (id === 'structure') {
+											setRailMode('planning');
+										} else {
+											requestContextualCreate(id);
+										}
+									})}
+								>
+									<Icon size={18} />
+									<span>
+										<strong>{label}</strong>
+										<small>{snapshot.readOnly ? '当前作品为只读' : description}</small>
+									</span>
+								</button>
+							))}
+						</>
+					)}
 				</div>
 			)}
 		</div>

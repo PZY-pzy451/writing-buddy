@@ -106,6 +106,13 @@ export type StoryViewId =
 	| 'continuity'
 	| 'extraction';
 
+export type ContextualCreateIntent =
+	| 'character'
+	| 'worldbuilding'
+	| 'asset'
+	| 'plot'
+	| 'timeline';
+
 export type AssistantActionRequest =
 	| {
 		readonly kind: 'rewrite';
@@ -205,6 +212,7 @@ interface AppState extends PersistedWorkspace {
 	readonly sceneBarExpanded: boolean;
 	readonly manuscriptDensity: ManuscriptDensity;
 	readonly assistantIntent?: AssistantActionIntent;
+	readonly contextualCreateIntent?: ContextualCreateIntent;
 	readonly dockOpen: boolean;
 	readonly dockTab: DockTab;
 	readonly quickCaptures: readonly QuickCapture[];
@@ -311,6 +319,8 @@ interface AppState extends PersistedWorkspace {
 	readonly setIssues: (issues: readonly ReviewIssue[]) => void;
 	readonly setMode: (mode: RailMode) => void;
 	readonly setStoryView: (view: StoryViewId) => void;
+	readonly requestContextualCreate: (intent: ContextualCreateIntent) => void;
+	readonly consumeContextualCreate: (intent: ContextualCreateIntent) => void;
 	readonly setTheme: (theme: ThemeId) => void;
 	readonly setAccent: (accent: 'gold' | 'blue' | 'purple') => void;
 	readonly toggleFocus: () => void;
@@ -511,6 +521,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	writerToolPinned: false,
 	sceneBarExpanded: true,
 	manuscriptDensity: 'comfortable',
+	contextualCreateIntent: undefined,
 	dockOpen: false,
 	dockTab: 'issues',
 	quickCaptures: [],
@@ -1997,6 +2008,29 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		const mode = get().activeMode === 'planning' ? 'planning' : 'references';
 		get().setMode(mode);
 		set({ storyView });
+	},
+	requestContextualCreate(contextualCreateIntent) {
+		const target: Readonly<Record<ContextualCreateIntent, {
+			readonly mode: Extract<RailMode, 'planning' | 'references'>;
+			readonly storyView: StoryViewId;
+		}>> = {
+			character: { mode: 'references', storyView: 'characters' },
+			worldbuilding: { mode: 'references', storyView: 'worldbuilding' },
+			asset: { mode: 'references', storyView: 'assets' },
+			plot: { mode: 'planning', storyView: 'plots' },
+			timeline: { mode: 'references', storyView: 'timeline' }
+		};
+		const destination = target[contextualCreateIntent];
+		get().setMode(destination.mode);
+		set({
+			storyView: destination.storyView,
+			contextualCreateIntent
+		});
+	},
+	consumeContextualCreate(intent) {
+		set(state => state.contextualCreateIntent === intent
+			? { contextualCreateIntent: undefined }
+			: {});
 	},
 	setTheme(theme) { set({ theme }); },
 	setAccent(accent) { set({ accent }); },

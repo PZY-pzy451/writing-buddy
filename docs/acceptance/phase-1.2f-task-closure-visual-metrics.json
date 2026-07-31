@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-07-31T14:58:24.433Z",
+  "appUrl": "http://127.0.0.1:4178/",
+  "menu": {
+    "labels": [
+      "新建项目从模板和初始结构开始",
+      "打开项目选择已有项目目录",
+      "新建章节创建空白正文并添加到作品结构",
+      "快速记录写作中先记下来，稍后整理",
+      "规划卷、章与场景打开故事结构，继续拆分大纲",
+      "创建人物打开人物助手，补充角色资料",
+      "创建剧情线或伏笔打开剧情助手，先生成候选再确认",
+      "创建地点或设定打开世界助手，建立地点与规则",
+      "创建物品打开物品助手，记录关键资产",
+      "创建时间事件打开时间线助手，安排事件顺序"
+    ],
+    "disabledContextual": 0,
+    "legacyPlaceholders": false
+  },
+  "assistant": {
+    "activeRail": "故事库",
+    "activeStoryView": "人物",
+    "hasCandidates": false,
+    "generateLabel": "生成候选"
+  },
+  "reviewInbox": {
+    "title": "项目待处理事项",
+    "primaryActions": [
+      "打开章节：第一章 停摆的时钟"
+    ],
+    "taskAction": "打开章节：第一章 停摆的时钟",
+    "runDisabled": true
+  },
+  "openedTask": {
+    "target": "第一章 停摆的时钟",
+    "runEnabled": true,
+    "runPrimary": true
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-contextual-create-menu-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 54
+    },
+    {
+      "name": "02-character-assistant-1280x800.png",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 64
+    },
+    {
+      "name": "03-review-inbox-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 22
+    },
+    {
+      "name": "04-review-task-opened-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 20
+    },
+    {
+      "name": "05-review-compact-820x720.png",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 20
+    }
+  ]
+}

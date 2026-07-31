@@ -35,6 +35,7 @@ import {
 	type StoryMutationReceipt
 } from '@writing-buddy/story-kernel';
 import { useModalFocus } from '../../../accessibility/useModalFocus';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import { AppEmptyState } from '../../shared/presentation/AppEmptyState';
 import type {
@@ -193,6 +194,8 @@ export function TimelinePage({
 	readOnly,
 	onOpenEvidence
 }: TimelinePageProps): React.JSX.Element {
+	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
+	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<TimelinePageData>();
 	const [error, setError] = useState<string>();
 	const [mode, setMode] = useState<TimelineMode>('story-time');
@@ -208,6 +211,15 @@ export function TimelinePage({
 		readonly conflicts: readonly NarrativeCausalityConflict[];
 	}>();
 	const [reorderUndo, setReorderUndo] = useState<StoryMutationReceipt>();
+
+	useEffect(() => {
+		if (contextualCreateIntent !== 'timeline') return;
+		const timer = window.setTimeout(() => {
+			if (projectRoot && !readOnly) setAiOpen(true);
+			consumeContextualCreate('timeline');
+		}, 0);
+		return () => window.clearTimeout(timer);
+	}, [consumeContextualCreate, contextualCreateIntent, projectRoot, readOnly]);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {

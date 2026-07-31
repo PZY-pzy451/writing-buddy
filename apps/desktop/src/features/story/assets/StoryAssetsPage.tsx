@@ -22,6 +22,7 @@ import {
 	type Location,
 	type StoryItem
 } from '@writing-buddy/story-kernel';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import { ItemTransferDialog } from './ItemTransferDialog';
 import { ItemAiPanel } from './ItemAiPanel';
@@ -83,6 +84,8 @@ export function StoryAssetsPage({
 	readonly readOnly?: boolean;
 	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
+	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
+	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<StoryAssetsData>();
 	const [selectedId, setSelectedId] = useState<string>();
 	const [search, setSearch] = useState('');
@@ -90,6 +93,15 @@ export function StoryAssetsPage({
 	const [transferOpen, setTransferOpen] = useState(false);
 	const [error, setError] = useState<string>();
 	const [aiOpen, setAiOpen] = useState(false);
+
+	useEffect(() => {
+		if (contextualCreateIntent !== 'asset') return;
+		const timer = window.setTimeout(() => {
+			if (projectRoot && !readOnly) setAiOpen(true);
+			consumeContextualCreate('asset');
+		}, 0);
+		return () => window.clearTimeout(timer);
+	}, [consumeContextualCreate, contextualCreateIntent, projectRoot, readOnly]);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {

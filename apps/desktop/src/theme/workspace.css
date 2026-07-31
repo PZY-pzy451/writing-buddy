@@ -5787,6 +5787,102 @@ body,
 	--system-page-content-max: 1480px;
 }
 
+.review-task-overview {
+	display: grid;
+	grid-template-columns: minmax(260px, 1fr) auto minmax(230px, auto);
+	align-items: center;
+	gap: 16px;
+	margin-top: 18px;
+	padding: 16px 18px;
+	background: color-mix(in srgb, var(--accent-soft) 28%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border-subtle));
+	border-radius: var(--radius-card);
+}
+
+.review-task-heading,
+.review-task-action,
+.review-task-action > span {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	min-width: 0;
+}
+
+.review-task-heading > span {
+	display: grid;
+	flex: 0 0 auto;
+	place-items: center;
+	width: 42px;
+	height: 42px;
+	color: var(--accent-strong);
+	background: var(--surface-raised);
+	border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border-subtle));
+	border-radius: 11px;
+}
+
+.review-task-heading h2,
+.review-task-heading p {
+	margin: 0;
+}
+
+.review-task-heading h2 {
+	font-size: 16px;
+}
+
+.review-task-heading p {
+	margin-top: 4px;
+	color: var(--text-muted);
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.review-task-metrics {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(68px, 1fr));
+	gap: 8px;
+}
+
+.review-task-metrics > div {
+	display: grid;
+	gap: 2px;
+	min-width: 68px;
+	padding: 8px 11px;
+	background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+	border: 1px solid var(--border-subtle);
+	border-radius: 9px;
+}
+
+.review-task-metrics strong {
+	font-size: 17px;
+}
+
+.review-task-metrics span,
+.review-task-action small {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.review-task-action {
+	justify-content: flex-end;
+}
+
+.review-task-action > span {
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+}
+
+.review-task-action > span strong {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.review-task-action > button {
+	min-height: 44px;
+	max-width: 100%;
+}
+
 .review-mode-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6318,6 +6414,15 @@ body,
 		grid-template-columns: 1fr;
 	}
 
+	.review-task-overview {
+		grid-template-columns: minmax(260px, 1fr) auto;
+	}
+
+	.review-task-action {
+		grid-column: 1 / -1;
+		justify-content: flex-start;
+	}
+
 	.review-run-panel {
 		position: static;
 	}
@@ -6355,6 +6460,18 @@ body,
 
 	.review-mode-grid {
 		grid-template-columns: 1fr;
+	}
+
+	.review-task-overview {
+		grid-template-columns: 1fr;
+	}
+
+	.review-task-metrics {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.review-task-action {
+		grid-column: auto;
 	}
 
 	.review-mode-grid > button {

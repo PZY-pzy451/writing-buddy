@@ -15,6 +15,7 @@ import {
 	type CharacterRole,
 	type StateRecord
 } from '@writing-buddy/story-kernel';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import { CharacterEditor } from './CharacterEditor';
 import { CharacterStateTimeline } from './CharacterStateTimeline';
@@ -76,6 +77,8 @@ export function CharacterCenterPage({
 	onOpenEvidence,
 	readOnly = false
 }: CharacterCenterPageProps): React.JSX.Element {
+	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
+	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<CharacterCenterData>();
 	const [error, setError] = useState<string>();
 	const [selectedId, setSelectedId] = useState<string>();
@@ -89,6 +92,15 @@ export function CharacterCenterPage({
 	const [listScrollTop, setListScrollTop] = useState(0);
 	const [listViewportHeight, setListViewportHeight] = useState(600);
 	const [aiOpen, setAiOpen] = useState(false);
+
+	useEffect(() => {
+		if (contextualCreateIntent !== 'character') return;
+		const timer = window.setTimeout(() => {
+			if (projectRoot && !readOnly) setAiOpen(true);
+			consumeContextualCreate('character');
+		}, 0);
+		return () => window.clearTimeout(timer);
+	}, [consumeContextualCreate, contextualCreateIntent, projectRoot, readOnly]);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {

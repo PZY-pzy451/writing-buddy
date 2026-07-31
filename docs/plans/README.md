@@ -37,6 +37,7 @@
 - [Story Kernel generation resilience](./035-story-kernel-generation-resilience.md)
 - [AI-generated manuscript response repair](./036-ai-generated-manuscript-response-repair.md)
 - [Phase 1.2E market-oriented feature hierarchy](./037-phase-1.2e-market-oriented-feature-hierarchy.md)
+- [Phase 1.2F task-to-action closure](./038-phase-1.2f-task-to-action-closure.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { AI_CHAPTER_REVIEW_MAX_CHARS, type AiJobState } from '@writing-buddy/ai';
+import { flattenChapters, type ChapterDescriptor } from '@writing-buddy/domain';
 import {
 	replaceReviewIssuesForResource,
 	runLocalReview,
@@ -32,6 +33,7 @@ export function ReviewPage(): React.JSX.Element {
 	const session = useAppStore(state => state.session);
 	const issues = useAppStore(state => state.issues);
 	const setIssues = useAppStore(state => state.setIssues);
+	const openResource = useAppStore(state => state.openResource);
 	const setRailMode = useAppStore(state => state.setMode);
 	const dockOpen = useAppStore(state => state.dockOpen);
 	const toggleDock = useAppStore(state => state.toggleDock);
@@ -55,6 +57,24 @@ export function ReviewPage(): React.JSX.Element {
 	const isChapter = activeResource?.type === 'chapter' && Boolean(session);
 	const configured = status?.secret.configured ?? false;
 	const active = activeJobStates.includes(jobState);
+	const chapters = useMemo(
+		() => snapshot ? flattenChapters(snapshot.project) : [],
+		[snapshot]
+	);
+	const projectOpenIssues = useMemo(
+		() => issues.filter(issue => issue.status === 'open'),
+		[issues]
+	);
+	const affectedChapterIds = useMemo(
+		() => new Set(projectOpenIssues.map(issue => issue.resourceId)),
+		[projectOpenIssues]
+	);
+	const affectedChapters = useMemo(
+		() => chapters.filter(chapter => affectedChapterIds.has(chapter.id)),
+		[affectedChapterIds, chapters]
+	);
+	const nextChapter = affectedChapters[0] ?? chapters[0];
+	const projectAiIssues = projectOpenIssues.filter(issue => issue.origin === 'ai');
 
 	useEffect(() => {
 		void initialize();
@@ -141,6 +161,16 @@ export function ReviewPage(): React.JSX.Element {
 			toggleDock();
 		}
 	};
+	const openReviewChapter = async (chapter: ChapterDescriptor) => {
+		if (!snapshot) return;
+		await openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		});
+	};
 
 	return (
 		<div className="system-page review-page">
@@ -149,6 +179,40 @@ export function ReviewPage(): React.JSX.Element {
 				<h1>审校中心</h1>
 				<p>选择本地手动审校或 AI 自动审校。两种模式都只生成待确认建议，不会自动修改正文。</p>
 			</header>
+
+			<section className="review-task-overview" aria-labelledby="review-task-overview-title">
+				<div className="review-task-heading">
+					<span><ListChecks size={20} /></span>
+					<div>
+						<h2 id="review-task-overview-title">项目待处理事项</h2>
+						<p>{projectOpenIssues.length
+							? `优先定位仍有问题的章节，再决定运行哪一种审校。`
+							: '目前没有遗留问题，可以选择一个章节开始新一轮检查。'}</p>
+					</div>
+				</div>
+				<div className="review-task-metrics" aria-label="项目审校概况">
+					<ReviewMetric label="待处理" value={projectOpenIssues.length} />
+					<ReviewMetric label="涉及章节" value={affectedChapters.length} />
+					<ReviewMetric label="AI 建议" value={projectAiIssues.length} />
+				</div>
+				<div className="review-task-action">
+					{isChapter ? (
+						<>
+							<CheckCircle2 size={18} />
+							<span><small>当前检查目标</small><strong>{activeResource.title}</strong></span>
+						</>
+					) : nextChapter ? (
+						<button className="primary-button" type="button" onClick={() => void openReviewChapter(nextChapter)}>
+							<ClipboardCheck size={18} />
+							{affectedChapterIds.has(nextChapter.id) ? '打开下一项' : '打开章节'}：{nextChapter.title}
+						</button>
+					) : (
+						<button className="primary-button" type="button" onClick={() => setRailMode('planning')}>
+							<ListChecks size={18} />先规划第一个章节
+						</button>
+					)}
+				</div>
+			</section>
 
 			<div className="review-mode-grid" role="tablist" aria-label="审校模式">
 				<button
@@ -223,13 +287,13 @@ export function ReviewPage(): React.JSX.Element {
 
 					<div className="review-run-actions">
 						{mode === 'manual' ? (
-							<button className="primary-button" type="button" onClick={runManual} disabled={!isChapter}>
+							<button className={isChapter ? 'primary-button' : 'secondary-button'} type="button" onClick={runManual} disabled={!isChapter}>
 								<ClipboardCheck size={18} />手动运行审校
 							</button>
 						) : (
 							<>
 								<button
-									className="primary-button"
+									className={isChapter ? 'primary-button' : 'secondary-button'}
 									type="button"
 									onClick={() => void runAi()}
 									disabled={!isChapter || !configured || active || Boolean(session && session.content.length > AI_CHAPTER_REVIEW_MAX_CHARS)}

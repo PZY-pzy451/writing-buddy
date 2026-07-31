@@ -4,6 +4,28 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+Phase 1.2F task-to-action closure is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Check now begins with a project task inbox and can directly open the first
+  affected or available chapter. Running local or AI review remains a separate
+  author action.
+- The global New menu no longer contains permanently disabled future entries.
+  Structure, plot/foreshadowing, character, world, item and timeline intents
+  route into existing planning or Story Library workflows.
+- Contextual entity actions open the relevant assistant but perform no AI call,
+  snapshot or project write until the author explicitly acts and confirms.
+- Responsive browser acceptance passed at 1440×900, 1280×800, 1024×720 and
+  820×720 with no page overflow, clipped controls or runtime errors.
+- Final gates: 160 Vitest files / 633 tests, production Vite build, Cargo
+  format, 68 Rust tests / 2 ignored, Tauri Release/NSIS and native portable
+  responsive/title/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2f-task-to-action-closure-2026-07-31/`;
+  evidence:
+  `docs/acceptance/063-phase-1.2f-task-to-action-closure-2026-07-31.md`.
+
 Phase 1.2E market-oriented feature hierarchy is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

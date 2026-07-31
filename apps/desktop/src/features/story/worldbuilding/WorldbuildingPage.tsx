@@ -20,6 +20,7 @@ import {
 	type Location,
 	type WorldRule
 } from '@writing-buddy/story-kernel';
+import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import { LocationTree } from './LocationTree';
 import { WorldRuleEditor } from './WorldRuleEditor';
@@ -66,12 +67,23 @@ export function WorldbuildingPage({
 	readonly readOnly?: boolean;
 	readonly onOpenEvidence?: OpenAiEvidence;
 }): React.JSX.Element {
+	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
+	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<WorldbuildingData>();
 	const [section, setSection] = useState<'locations' | 'factions' | 'rules'>('locations');
 	const [selectedId, setSelectedId] = useState<string>();
 	const [error, setError] = useState<string>();
 	const [saving, setSaving] = useState(false);
 	const [aiOpen, setAiOpen] = useState(false);
+
+	useEffect(() => {
+		if (contextualCreateIntent !== 'worldbuilding') return;
+		const timer = window.setTimeout(() => {
+			if (projectRoot && !readOnly) setAiOpen(true);
+			consumeContextualCreate('worldbuilding');
+		}, 0);
+		return () => window.clearTimeout(timer);
+	}, [consumeContextualCreate, contextualCreateIntent, projectRoot, readOnly]);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
