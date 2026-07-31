@@ -4,6 +4,35 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+The zero-to-complete-novel promotional recording is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Replaced the previous already-complete-project demo with a real desktop
+  journey that begins on the empty welcome screen before the target directory
+  exists.
+- Created `《零点回声》` through Writing Buddy, generated and confirmed an
+  editable outline, materialized 1 volume / 3 chapters / 6 scenes, combined
+  direct author writing with three reviewed AI drafts, and explicitly wrote
+  each candidate into the manuscript.
+- Independently audited the final native files: 3 chapters, 6 scene anchors
+  and 30,441 non-whitespace characters. The completed dashboard shows 3
+  chapters and 26,210 author-facing characters.
+- Accepted promotional cut: 2:44, 2560×1440, H.264 High, 24 fps, burned
+  Chinese captions and separate SRT/ASS. Full decode and representative-frame
+  review passed.
+- Added reproducible recording, diagnostic fixture and compositor scripts.
+  The compositor now uses an exclusive lock and PID-scoped temporary output
+  after concurrent ffmpeg output corruption was diagnosed.
+- Validation: Node 24.14.0, ESLint, TypeScript, 157 Vitest files / 613 tests,
+  production Vite build, Cargo format, 68 Rust tests / 2 ignored, Tauri
+  Release/NSIS, production portable responsive/title/normal-close smoke and
+  no diagnostic port 9223.
+- Delivery:
+  `artifacts/promo/zero-to-complete-novel-2026-07-31/`; Windows binaries:
+  `artifacts/release/zero-to-complete-novel-promo-2026-07-31/`; evidence:
+  `docs/acceptance/058-zero-to-complete-novel-promotional-recording-2026-07-31.md`.
+
 The AI-generated manuscript response repair is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
