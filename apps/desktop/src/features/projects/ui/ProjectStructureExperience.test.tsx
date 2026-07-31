@@ -39,7 +39,7 @@ describe('project structure drag experience', () => {
 
 	it('exposes focused drag handles and disables reordering while filtering', async () => {
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 
 		expect(screen.getByRole('button', { name: '拖动卷：第一卷 灰城之下' })).toBeEnabled();
 		expect(screen.getByRole('button', { name: '拖动章节：第一章 停摆的时钟' })).toBeEnabled();
@@ -55,7 +55,7 @@ describe('project structure drag experience', () => {
 	it('persists a move and restores the exact order with the toast undo action', async () => {
 		const user = userEvent.setup();
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 		const snapshot = useAppStore.getState().snapshot;
 		expect(snapshot).toBeDefined();
 
@@ -85,7 +85,7 @@ describe('project structure drag experience', () => {
 	it('supports Ctrl+Z outside the editor after a cross-volume move', async () => {
 		const user = userEvent.setup();
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 		const snapshot = useAppStore.getState().snapshot;
 
 		await act(async () => {

@@ -2,8 +2,7 @@ import {
 	BookOpenText,
 	ClipboardCheck,
 	ListTree,
-	Sparkles,
-	UsersRound
+	Sparkles
 } from 'lucide-react';
 import { useAppStore } from '../app/store';
 import type { WriterToolId } from '../app/writerWorkspace';
@@ -19,12 +18,6 @@ const tools: readonly {
 		label: '细纲',
 		description: '查看当前场景和章节细纲',
 		icon: ListTree
-	},
-	{
-		id: 'characters',
-		label: '人物',
-		description: '查看当前场景相关人物',
-		icon: UsersRound
 	},
 	{
 		id: 'references',

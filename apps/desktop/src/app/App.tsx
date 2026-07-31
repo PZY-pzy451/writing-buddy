@@ -73,6 +73,8 @@ export function App(): React.JSX.Element {
 	const sourceRevision = useAppStore(state => state.session?.state.version);
 	const writerNavigatorNotice = useAppStore(state => state.writerNavigatorNotice);
 	const setWriterNavigatorNotice = useAppStore(state => state.setWriterNavigatorNotice);
+	const projectWizardOpen = useAppStore(state => state.projectWizardOpen);
+	const projectWizardStartRoute = useAppStore(state => state.projectWizardStartRoute);
 
 	useEffect(() => {
 		void bootstrap();
@@ -276,7 +278,7 @@ export function App(): React.JSX.Element {
 			{writerToolRailVisible && <WriterToolRail />}
 			{!focusMode && <StatusBar />}
 			<AiGenerationDrawer />
-			<ProjectCreationWizard />
+			<ProjectCreationWizard key={`${projectWizardOpen ? 'open' : 'closed'}:${projectWizardStartRoute ?? 'default'}`} />
 			<ChapterCreationDialog />
 			<ProjectStructureUndoToast />
 			<QuickCaptureDialog />

@@ -54,7 +54,7 @@ describe('project open integration', () => {
 		expect(screen.queryByText(/Alice/)).not.toBeInTheDocument();
 
 		await user.click(screen.getByRole('button', { name: '只读打开' }));
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 		expect(openProject).toHaveBeenNthCalledWith(2, projectRoot, 'read-only');
 		expect(useAppStore.getState().snapshot?.readOnly).toBe(true);
 	});
@@ -65,7 +65,7 @@ describe('project open integration', () => {
 		resetForProjectOpen(projectRoot);
 
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 
 		expect(openProject).toHaveBeenCalledWith(projectRoot, 'read-write');
 		expect(useAppStore.getState().recentProjectRoot).toBe('browser-fixture');

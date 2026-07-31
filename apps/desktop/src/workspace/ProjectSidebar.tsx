@@ -1,15 +1,7 @@
 import {
 	BookOpen,
-	ChevronDown,
-	ChevronRight,
 	FolderOpen,
-	Gem,
-	Globe2,
-	History,
-	NotebookPen,
-	Plus,
-	Trash2,
-	UserRound
+	Plus
 } from 'lucide-react';
 import { useMemo } from 'react';
 import { countWords, flattenChapters } from '@writing-buddy/domain';
@@ -19,20 +11,10 @@ import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { StoryReferenceSidebar } from '../features/story/navigation/StoryReferenceSidebar';
 import { ProjectActionsMenu } from '../features/projects/ui/ProjectActionsMenu';
 import { ProjectStructureTree } from '../features/projects/ui/ProjectStructureTree';
-import { CreationJourneySidebar } from '../features/creation-journey/CreationJourneySidebar';
-
-const resourceIcons = {
-	character: UserRound,
-	worldbuilding: Globe2,
-	timeline: History,
-	item: Gem,
-	note: NotebookPen
-} as const;
 
 export function ProjectSidebar(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
 	const activeMode = useAppStore(state => state.activeMode);
-	const storyView = useAppStore(state => state.storyView);
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
 	const selection = useAppStore(state => state.selection);
@@ -54,14 +36,6 @@ export function ProjectSidebar(): React.JSX.Element {
 			.map(volume => volume.id)
 			.filter(volumeId => !expandedTreeNodes.includes(volumeId))
 	), [expandedTreeNodes, snapshot]);
-	const referencesExpanded = expandedTreeNodes.includes('references');
-
-	const resources = useMemo(() => {
-		if (!snapshot) {
-			return [];
-		}
-		return snapshot.resources.filter(resource => !search || resource.title.toLocaleLowerCase().includes(search));
-	}, [search, snapshot]);
 
 	if (!snapshot) {
 		return (
@@ -71,7 +45,7 @@ export function ProjectSidebar(): React.JSX.Element {
 					<h2>作品书架</h2>
 				</div>
 				<div className="empty-sidebar-launcher">
-					<button className="primary-button" type="button" onClick={openProjectWizard}><Plus size={18} />新建项目</button>
+					<button className="secondary-button" type="button" onClick={() => openProjectWizard()}><Plus size={18} />新建项目</button>
 					<button className="secondary-button" type="button" onClick={() => void chooseProject()}><FolderOpen size={18} />打开项目</button>
 				</div>
 				<nav className="sidebar-recent-list" aria-label="最近作品">
@@ -87,9 +61,6 @@ export function ProjectSidebar(): React.JSX.Element {
 	}
 
 	if (activeMode === 'planning' || activeMode === 'references') {
-		if (storyView === 'creation-journey') {
-			return <CreationJourneySidebar />;
-		}
 		return <StoryReferenceSidebar />;
 	}
 
@@ -159,35 +130,6 @@ export function ProjectSidebar(): React.JSX.Element {
 				</div>
 			</section>
 
-			<section className="tree-section" aria-labelledby="references-heading">
-				<button className="section-label section-toggle" type="button" onClick={() => setTreeNodeExpanded('references', !referencesExpanded)}>
-					<span id="references-heading">{referencesExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />} 写作资料</span>
-					<span>{resources.length}</span>
-				</button>
-				{referencesExpanded && (
-					<div className="resource-tree reference-tree">
-						{resources.map(resource => {
-							const Icon = resourceIcons[resource.type];
-							return (
-								<button
-									type="button"
-									key={resource.id}
-									className={`tree-row ${activeResource?.id === resource.id ? 'is-active' : ''}`}
-									onClick={() => void openResource({ ...resource, projectId: snapshot.project.projectId })}
-								>
-									<Icon size={18} />
-									<span>{resource.title}</span>
-									<small>{resource.type === 'character' ? '人物' : ''}</small>
-								</button>
-							);
-						})}
-						<button className="tree-row muted-row" type="button">
-							<Trash2 size={18} />
-							<span>回收站</span>
-						</button>
-					</div>
-				)}
-			</section>
 			<footer className="sidebar-footer">
 				<span>项目副本</span>
 				<strong>{snapshot.readOnly ? '只读预检' : '安全写入'}</strong>

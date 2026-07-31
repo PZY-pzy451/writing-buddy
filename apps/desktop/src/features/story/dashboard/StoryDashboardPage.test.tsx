@@ -68,7 +68,8 @@ function setDashboardState(snapshot: ProjectSnapshot = projectSnapshot): void {
 		snapshot,
 		activeResource: undefined,
 		tabs: [],
-		issues: []
+		issues: [],
+		writerSessions: {}
 	});
 }
 
@@ -79,6 +80,7 @@ afterEach(() => {
 		activeResource: undefined,
 		tabs: [],
 		issues: [],
+		writerSessions: {},
 		openResource: originalOpenResource,
 		openCreationJourney: originalOpenCreationJourney
 	});
@@ -89,7 +91,7 @@ describe('StoryDashboardPage', () => {
 		setDashboardState();
 		render(<StoryDashboardPage loadKernelData={() => new Promise(() => undefined)} />);
 
-		expect(screen.getByRole('main', { name: '作品仪表盘' })).toHaveAttribute('aria-busy', 'true');
+		expect(screen.getByRole('main', { name: '写作首页' })).toHaveAttribute('aria-busy', 'true');
 		expect(screen.getAllByLabelText('正在加载').length).toBeGreaterThanOrEqual(3);
 	});
 
@@ -101,8 +103,8 @@ describe('StoryDashboardPage', () => {
 		});
 		render(<StoryDashboardPage loadKernelData={() => Promise.resolve(emptyKernel)} />);
 
-		expect(await screen.findByRole('button', { name: '创建第一章' })).toBeEnabled();
-		expect(screen.getByText('还没有活跃剧情线')).toBeInTheDocument();
+		expect(await screen.findByRole('button', { name: '根据题材规划故事' })).toBeEnabled();
+		expect(screen.getByText('建立可写的故事结构')).toBeInTheDocument();
 		expect(screen.getByText('当前没有待处理问题')).toBeInTheDocument();
 	});
 
@@ -117,8 +119,8 @@ describe('StoryDashboardPage', () => {
 			/>
 		);
 
-		expect(await screen.findByText('剧情线暂时无法读取')).toBeInTheDocument();
-		expect(screen.getByText('今日目标')).toBeInTheDocument();
+		expect(await screen.findByText('当前章节')).toBeInTheDocument();
+		expect(screen.getByText('下一步任务')).toBeInTheDocument();
 		expect(screen.getByText('当前没有待处理问题')).toBeInTheDocument();
 	});
 
@@ -161,7 +163,7 @@ describe('StoryDashboardPage', () => {
 			/>
 		);
 
-		expect(await screen.findByText('失踪笔记')).toBeInTheDocument();
+		expect(await screen.findByText('找到遗失的笔记')).toBeInTheDocument();
 		expect(screen.getByText('3 项待处理')).toBeInTheDocument();
 		const continueButton = screen.getByRole('button', { name: '继续上次位置' });
 		continueButton.focus();
@@ -223,8 +225,7 @@ describe('StoryDashboardPage', () => {
 		})));
 	});
 
-	it('keeps the creation journey reachable after chapters have been materialized', async () => {
-		const openCreationJourney = vi.fn();
+	it('keeps the complete planning workspace reachable after chapters are materialized', async () => {
 		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue({
 			content: '{}',
 			hash: 'journey-hash',
@@ -237,13 +238,16 @@ describe('StoryDashboardPage', () => {
 			activeResource: undefined,
 			tabs: [],
 			issues: [],
-			openCreationJourney
+			activeMode: 'works'
 		});
 
 		render(<StoryDashboardPage loadKernelData={() => Promise.resolve(emptyKernel)} />);
 
-		const journeyButton = await screen.findByRole('button', { name: '查看创作旅程' });
-		fireEvent.click(journeyButton);
-		expect(openCreationJourney).toHaveBeenCalledOnce();
+		const planningButton = await screen.findByRole('button', { name: '打开作品全貌' });
+		fireEvent.click(planningButton);
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'planning',
+			storyView: 'creation-journey'
+		});
 	});
 });

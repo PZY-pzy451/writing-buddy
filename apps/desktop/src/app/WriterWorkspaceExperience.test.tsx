@@ -27,6 +27,7 @@ function resetWorkspaceExperience(): void {
 		loading: false,
 		error: undefined,
 		projectWizardOpen: false,
+		projectWizardStartRoute: undefined,
 		chapterCreatorOpen: false,
 		chapterCreateBusy: false,
 		recentlyClosedResources: [],
@@ -51,7 +52,7 @@ async function openFixtureAndContinue(user: ReturnType<typeof userEvent.setup>):
 		'button',
 		{ name: '打开项目' }
 	));
-	await screen.findByRole('main', { name: '作品仪表盘' });
+	await screen.findByRole('main', { name: '写作首页' });
 	await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 	await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
 }
@@ -67,13 +68,17 @@ describe('quiet writer workspaces', () => {
 		render(<App />);
 		const navigation = await screen.findByRole('navigation', { name: '全局导航' });
 
-		for (const label of ['写作', '规划', '资料', '检查', '历史']) {
+		for (const label of ['写作', '规划', '故事库', '检查', '历史']) {
 			expect(within(navigation).getByRole('button', { name: label })).toBeInTheDocument();
 		}
 		expect(within(navigation).queryByRole('button', { name: '作品' })).not.toBeInTheDocument();
 		expect(within(navigation).queryByRole('button', { name: '审校' })).not.toBeInTheDocument();
 		expect(screen.getByRole('button', { name: '打开作者导航器' })).toBeInTheDocument();
-		expect(within(navigation).getByRole('button', { name: '设置' })).toBeInTheDocument();
+		expect(within(navigation).queryByRole('button', { name: /AI/u })).not.toBeInTheDocument();
+		expect(within(navigation).queryByRole('button', { name: '设置' })).not.toBeInTheDocument();
+		await userEvent.setup().click(screen.getByRole('button', { name: '更多全局操作' }));
+		expect(screen.getByRole('menuitem', { name: '设置' })).toBeInTheDocument();
+		expect(screen.getByRole('menuitem', { name: 'AI 连接测试' })).toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '收起作品侧栏' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '展开写作助手' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '恢复当前工作区默认布局' })).not.toBeInTheDocument();
@@ -186,15 +191,16 @@ describe('quiet writer workspaces', () => {
 		expect(within(status).queryByText('我的小说')).not.toBeInTheDocument();
 	});
 
-	it('keeps a stable five-item tool rail and switches one remembered panel on demand', async () => {
+	it('keeps a stable four-item tool rail and switches one remembered panel on demand', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
 
 		const rail = screen.getByRole('navigation', { name: '写作工具' });
-		for (const label of ['细纲', '人物', '资料', 'AI', '检查工具']) {
+		for (const label of ['细纲', '资料', 'AI', '检查工具']) {
 			expect(within(rail).getByRole('button', { name: label })).toBeInTheDocument();
 		}
+		expect(within(rail).queryByRole('button', { name: '人物' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('complementary', { name: '细纲工具' }))
 			.not.toBeInTheDocument();
 

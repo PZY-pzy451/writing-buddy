@@ -1,4 +1,10 @@
-import { BookOpenText, FolderInput, FolderOpen, Plus } from 'lucide-react';
+import {
+	BookOpenText,
+	FileInput,
+	FileText,
+	FolderOpen,
+	Sparkles
+} from 'lucide-react';
 import { useAppStore } from '../../../app/store';
 
 function projectNameFromRoot(root: string): string {
@@ -18,18 +24,27 @@ export function ProjectWelcome(): React.JSX.Element {
 				<div>
 					<span className="eyebrow">WRITING BUDDY</span>
 					<h1 id="welcome-title">开始你的故事</h1>
-					<p>创建一个新的 Writing Buddy 项目，或打开已有项目。所有内容默认保存在本地。</p>
+					<p>从题材、大纲、已有正文或空白作品开始。所有内容默认保存在本地。</p>
 				</div>
+				<h2 className="welcome-question">你想怎样开始？</h2>
 				<div className="welcome-actions">
-					<button className="primary-button" type="button" onClick={openProjectWizard}>
-						<Plus size={18} />新建项目
+					<button className="primary-button welcome-genre-action" type="button" onClick={() => openProjectWizard('genre')}>
+						<Sparkles size={18} />根据题材生成大纲
 					</button>
-					<button className="secondary-button" type="button" onClick={() => void chooseProject()}>
-						<FolderOpen size={18} />打开项目
+				</div>
+				<div className="welcome-start-options" aria-label="其他创作起点">
+					<button type="button" onClick={() => openProjectWizard('outline')}>
+						<FileInput size={18} /><span><strong>导入已有大纲</strong><small>创建后整理卷章结构</small></span>
+					</button>
+					<button type="button" onClick={() => openProjectWizard('manuscript')}>
+						<FileText size={18} /><span><strong>导入已有正文</strong><small>直接打开第一章</small></span>
+					</button>
+					<button type="button" onClick={() => openProjectWizard('blank')}>
+						<BookOpenText size={18} /><span><strong>创建空白作品</strong><small>不生成任何内容</small></span>
 					</button>
 				</div>
 				<button className="ghost-button welcome-import" type="button" onClick={() => void chooseProject()}>
-					<FolderInput size={16} />导入旧项目
+					<FolderOpen size={16} />打开已有 Writing Buddy 作品
 				</button>
 			</section>
 

@@ -3,66 +3,54 @@ import {
 	History,
 	ListChecks,
 	NotebookTabs,
-	PenLine,
-	Settings2,
-	Sparkles
+	PenLine
 } from 'lucide-react';
-import { type RailMode, useAppStore } from '../app/store';
+import { useAppStore } from '../app/store';
+import {
+	deriveAuthorProductStage,
+	primaryModePresentation,
+	type AuthorPrimaryMode
+} from '../features/market-hierarchy/ProductHierarchy';
 
 const items: readonly {
-	readonly mode: RailMode;
+	readonly mode: AuthorPrimaryMode;
 	readonly label: string;
 	readonly icon: React.ComponentType<{ size?: number }>;
 }[] = [
 	{ mode: 'works', label: '写作', icon: PenLine },
 	{ mode: 'planning', label: '规划', icon: NotebookTabs },
-	{ mode: 'references', label: '资料', icon: BookOpenText },
+	{ mode: 'references', label: '故事库', icon: BookOpenText },
 	{ mode: 'review', label: '检查', icon: ListChecks },
 	{ mode: 'versions', label: '历史', icon: History }
 ];
 
 export function GlobalRail(): React.JSX.Element {
 	const activeMode = useAppStore(state => state.activeMode);
+	const snapshot = useAppStore(state => state.snapshot);
 	const setMode = useAppStore(state => state.setMode);
+	const stage = deriveAuthorProductStage(snapshot);
 
 	return (
 		<nav className="global-rail" aria-label="全局导航">
 			<div className="rail-primary">
 				{items.map(item => {
 					const Icon = item.icon;
+					const presentation = primaryModePresentation(stage, item.mode);
 					return (
 						<button
 							key={item.mode}
 							type="button"
-							className={`rail-item ${activeMode === item.mode ? 'is-active' : ''}`}
+							className={`rail-item ${activeMode === item.mode ? 'is-active' : ''} ${presentation.muted ? 'is-progressive-muted' : ''}`}
 							onClick={() => setMode(item.mode)}
+							disabled={presentation.disabled}
 							aria-current={activeMode === item.mode ? 'page' : undefined}
+							title={presentation.hint}
 						>
 							<Icon size={20} />
 							<span>{item.label}</span>
 						</button>
 					);
 				})}
-			</div>
-			<div className="rail-secondary">
-				<button
-					type="button"
-					className={`rail-item rail-ai ${activeMode === 'ai' ? 'is-active' : ''}`}
-					onClick={() => setMode('ai')}
-					aria-current={activeMode === 'ai' ? 'page' : undefined}
-					title="打开 StoryForge AI 测试台"
-				>
-					<Sparkles size={18} />
-					<span>AI 测试</span>
-				</button>
-				<button
-					type="button"
-					className={`rail-item ${activeMode === 'settings' ? 'is-active' : ''}`}
-					onClick={() => setMode('settings')}
-				>
-					<Settings2 size={20} />
-					<span>设置</span>
-				</button>
 			</div>
 		</nav>
 	);

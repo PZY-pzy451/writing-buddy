@@ -47,7 +47,7 @@ async function openFixtureAndContinue(user: ReturnType<typeof userEvent.setup>):
 		'button',
 		{ name: '打开项目' }
 	));
-	await screen.findByRole('main', { name: '作品仪表盘' });
+	await screen.findByRole('main', { name: '写作首页' });
 	await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 	await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
 }

@@ -4,6 +4,30 @@ Updated: 2026-07-31
 
 ## Active milestone
 
+Phase 1.2E market-oriented feature hierarchy is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The product now presents five primary author destinations only: Writing,
+  Planning, Story Library, Check and History. Settings, Quick Capture and AI
+  diagnostics remain compatible global actions behind More.
+- New-project onboarding has one primary genre-to-outline action plus three
+  secondary starts. Existing-project home is task-led rather than a module
+  dashboard.
+- Planning and Story Library are separate, keyboard-usable spaces. The writing
+  sidebar is structure-only and the contextual writer rail is exactly four
+  tools: outline, references, AI and check.
+- Stage-aware presentation keeps irrelevant long-form tools quiet without
+  deleting routes or migrating project data.
+- Final gates: exact-browser UI checks at 1440×900 and 1024×720, ESLint,
+  TypeScript, 160 Vitest files / 629 tests, production Vite build, Cargo
+  format, 68 Rust tests / 2 ignored, Tauri Release/NSIS and production portable
+  responsive/title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2e-market-oriented-hierarchy-2026-07-31/`;
+  evidence:
+  `docs/acceptance/062-phase-1.2e-market-oriented-feature-hierarchy-2026-07-31.md`.
+
 Story Kernel persisted candidate recovery is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

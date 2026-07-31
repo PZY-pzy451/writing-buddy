@@ -74,15 +74,15 @@ describe('StoryForge professional layout contract', () => {
 	it('moves through resource navigation with arrows, Home and End', () => {
 		useAppStore.setState({ storyView: 'characters', activeMode: 'references' });
 		render(createElement(StoryReferenceSidebar));
-		const first = screen.getByRole('button', { name: /人物中心/ });
+		const first = screen.getByRole('button', { name: /当前相关/ });
 		first.focus();
 		fireEvent.keyDown(first, { key: 'ArrowDown' });
-		const second = screen.getByRole('button', { name: /人物关系/ });
+		const second = screen.getByRole('button', { name: /待完善/ });
 		expect(second).toHaveFocus();
-		expect(useAppStore.getState().storyView).toBe('relationships');
-		fireEvent.keyDown(second, { key: 'End' });
-		expect(screen.getByRole('button', { name: /AI 正文整理/ })).toHaveFocus();
 		expect(useAppStore.getState().storyView).toBe('extraction');
+		fireEvent.keyDown(second, { key: 'End' });
+		expect(screen.getByRole('button', { name: /人物知识/ })).toHaveFocus();
+		expect(useAppStore.getState().storyView).toBe('information');
 	});
 
 	it('moves through directed matrix cells and timeline rows by keyboard', () => {

@@ -66,7 +66,7 @@ describe('manual and AI review experience', () => {
 	it('runs local review without removing AI-origin issues from the same chapter', async () => {
 		const user = userEvent.setup();
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
 		act(() => useAppStore.getState().setContent('夜雨落下。。  林墨推开门。'));
@@ -97,7 +97,7 @@ describe('manual and AI review experience', () => {
 		await desktopBridge.saveDeepSeekKey('fixture-key');
 		const user = userEvent.setup();
 		render(<App />);
-		await screen.findByRole('main', { name: '作品仪表盘' });
+		await screen.findByRole('main', { name: '写作首页' });
 		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
 		await user.click(screen.getByRole('button', { name: '检查' }));

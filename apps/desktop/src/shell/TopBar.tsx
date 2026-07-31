@@ -9,10 +9,11 @@ import {
 	RotateCcw,
 	Save,
 	Search,
+	Settings2,
+	StickyNote,
 	Sparkles
 } from 'lucide-react';
 import { useAppStore } from '../app/store';
-import { useAiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { openAiQuickActions } from '../features/ai/drawer/openAiQuickActions';
 import { GlobalCreateMenu } from '../features/projects/ui/GlobalCreateMenu';
 import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
@@ -31,8 +32,9 @@ export function TopBar(): React.JSX.Element {
 	const activeMode = useAppStore(state => state.activeMode);
 	const toggleAssistant = useAppStore(state => state.toggleAssistant);
 	const resetWorkspaceLayout = useAppStore(state => state.resetWorkspaceLayout);
+	const openQuickCapture = useAppStore(state => state.openQuickCapture);
+	const setMode = useAppStore(state => state.setMode);
 	const activeResource = useAppStore(state => state.activeResource);
-	const drawerOpen = useAiGenerationStore(state => state.open);
 	const quietWriterHeader = activeMode === 'works' && Boolean(activeResource);
 
 	if (focusMode) {
@@ -110,22 +112,18 @@ export function TopBar(): React.JSX.Element {
 					<Focus size={18} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
-				{!quietWriterHeader && (
-					<button
-						className={`ghost-button ai-quick-open ${drawerOpen ? 'is-active' : ''}`}
-						type="button"
-						aria-label="AI 快速生成"
-						onClick={openAiQuickActions}
-						aria-keyshortcuts="Alt+A"
+				<details className="writer-more-menu">
+					<summary aria-label={quietWriterHeader ? '更多写作操作' : '更多全局操作'} role="button"><MoreHorizontal size={20} /></summary>
+					<div
+						role="menu"
+						onClickCapture={event => {
+							if ((event.target as HTMLElement).closest('[role="menuitem"]')) {
+								event.currentTarget.closest('details')?.removeAttribute('open');
+							}
+						}}
 					>
-						<Sparkles size={18} />
-						<span>AI 快速生成</span>
-					</button>
-				)}
-				{quietWriterHeader ? (
-					<details className="writer-more-menu">
-						<summary aria-label="更多写作操作" role="button"><MoreHorizontal size={20} /></summary>
-						<div role="menu">
+						{quietWriterHeader && (
+							<>
 							<button type="button" role="menuitem" onClick={toggleSidebar}>
 								{sidebarOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
 								{sidebarOpen ? '收起章节树' : '展开章节树'}
@@ -140,9 +138,20 @@ export function TopBar(): React.JSX.Element {
 							<button type="button" role="menuitem" onClick={resetWorkspaceLayout}>
 								<RotateCcw size={18} />恢复写作布局
 							</button>
-						</div>
-					</details>
-				) : Boolean(snapshot) && ['works', 'planning', 'references'].includes(activeMode) && (
+							</>
+						)}
+						<button type="button" role="menuitem" onClick={() => openQuickCapture()}>
+							<StickyNote size={18} />快速记录
+						</button>
+						<button type="button" role="menuitem" onClick={() => setMode('settings')}>
+							<Settings2 size={18} />设置
+						</button>
+						<button type="button" role="menuitem" onClick={() => setMode('ai')}>
+							<Sparkles size={18} />AI 连接测试
+						</button>
+					</div>
+				</details>
+				{!quietWriterHeader && Boolean(snapshot) && ['works', 'planning', 'references'].includes(activeMode) && (
 					<>
 						<button
 							className="icon-button"

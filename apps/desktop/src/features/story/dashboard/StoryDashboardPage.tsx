@@ -1,13 +1,12 @@
 import {
 	ArrowRight,
 	BookOpenText,
-	CalendarDays,
 	CheckCircle2,
 	Clock3,
+	Compass,
 	FileText,
-	Flag,
 	ListChecks,
-	Plus,
+	Target,
 	Sparkles
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -99,7 +98,6 @@ export function StoryDashboardPage({
 	const sessionRestoreNotice = useAppStore(state => state.sessionRestoreNotice);
 	const structureScenes = useAppStore(state => state.structureScenes);
 	const openResource = useAppStore(state => state.openResource);
-	const openStoryResource = useAppStore(state => state.openStoryResource);
 	const setMode = useAppStore(state => state.setMode);
 	const openCreationJourney = useAppStore(state => state.openCreationJourney);
 	const setError = useAppStore(state => state.setError);
@@ -192,22 +190,47 @@ export function StoryDashboardPage({
 				minute: '2-digit'
 			}).format(new Date(writerSession.updatedAt))
 		: undefined;
+	const nextStep = !model
+		? undefined
+		: !model.recentChapter
+			? {
+				title: '建立可写的故事结构',
+				description: '先确定故事核心和章节，再进入第一场正文。',
+				label: '前往规划',
+				run: () => openCreationJourney(journeyAvailable ? undefined : 'genre')
+			}
+			: model.totalWords === 0
+				? {
+					title: '写下第一场',
+					description: '章节已经就绪，从当前目标开始写第一段。',
+					label: '打开当前章节',
+					run: () => openChapter(model.recentChapter)
+				}
+				: model.pendingTotal > 0
+					? {
+						title: '整理并检查本章',
+						description: `${model.pendingTotal} 项内容等待确认，正文不会被自动修改。`,
+						label: '查看待处理事项',
+						run: () => setMode('review')
+					}
+					: {
+						title: '规划下一场',
+						description: '当前内容已安全保存，可以继续推进故事结构。',
+						label: '打开故事规划',
+						run: () => setMode('planning')
+					};
 
 	return (
 		<main
 			className="story-dashboard"
-			aria-label="作品仪表盘"
+			aria-label="写作首页"
 			aria-busy={!model}
 		>
 			<header className="dashboard-header">
 				<div>
-					<span className="dashboard-eyebrow">STORYFORGE OVERVIEW</span>
+					<span className="dashboard-eyebrow">WRITING HOME</span>
 					<h1>{snapshot.project.title}</h1>
-					<p>从故事全局继续写作，关注真正需要推进和确认的内容。</p>
-				</div>
-				<div className="dashboard-project-meta">
-					<span>{model?.chapterCount ?? '—'} 章</span>
-					<span>{model?.totalWords.toLocaleString() ?? '—'} 字</span>
+					<p>继续当前任务；只在需要时打开规划、资料和检查。</p>
 				</div>
 			</header>
 
@@ -234,76 +257,55 @@ export function StoryDashboardPage({
 									继续上次位置<ArrowRight size={16} />
 								</button>
 								<button type="button" className="secondary" onClick={() => openChapter(model.recentChapter)}>
-									规划下一场
+									查看当前场景
 								</button>
-								{journeyAvailable && (
-									<button type="button" className="secondary" onClick={() => openCreationJourney()}>
-										<Sparkles size={16} />查看创作旅程
-									</button>
-								)}
+								<button type="button" className="secondary" onClick={() => setMode('planning')}>
+									打开作品全貌
+								</button>
 							</div>
 						</>
 					) : (
 						<div className="dashboard-empty-copy">
 							<strong>还没有章节</strong>
-							{journeyAvailable ? (
-								<>
-									<span>你的创作旅程已经保存在项目中。</span>
-									<button type="button" onClick={() => openCreationJourney()}>
-										<Sparkles size={16} />继续创作旅程
-									</button>
-								</>
-							) : (
-								<button type="button" onClick={() => openChapter(undefined)}><Plus size={16} />创建第一章</button>
-							)}
+							<span>{journeyAvailable ? '你的创作旅程已经保存在项目中。' : '从题材或故事设想开始，不需要先建立完整资料库。'}</span>
+							<button type="button" onClick={() => openCreationJourney(journeyAvailable ? undefined : 'genre')}>
+								<Sparkles size={16} />{journeyAvailable ? '继续创作旅程' : '根据题材规划故事'}
+							</button>
 						</div>
 					)
 				) : <LoadingLines />}
 			</section>
 
-			<section className="dashboard-card dashboard-today" aria-labelledby="dashboard-today-title">
+			<section className="dashboard-card dashboard-current" aria-labelledby="dashboard-current-title">
 				<div className="dashboard-card-heading">
-					<span className="dashboard-card-icon"><CalendarDays size={18} /></span>
-					<div><span>PROGRESS</span><h2 id="dashboard-today-title">今日目标</h2></div>
+					<span className="dashboard-card-icon"><Target size={18} /></span>
+					<div><span>CURRENT TASK</span><h2 id="dashboard-current-title">当前章节</h2></div>
 				</div>
 				{model ? (
-					<div className="dashboard-stat-grid">
-						<div><strong>{model.totalWords.toLocaleString()}</strong><span>项目总字数</span></div>
-						<div><strong>{model.chapterCount}</strong><span>章节</span></div>
-						<div><strong>{snapshot.readOnly ? '只读' : '可写'}</strong><span>项目状态</span></div>
-					</div>
+					model.recentChapter ? (
+						<dl className="dashboard-task-list">
+							<div><dt>目标</dt><dd>{model.recentChapter.scene.goal || '尚未设置'}</dd></div>
+							<div><dt>地点</dt><dd>{model.recentChapter.scene.location || '尚未设置'}</dd></div>
+							<div><dt>视角</dt><dd>{model.recentChapter.scene.pov || '尚未设置'}</dd></div>
+						</dl>
+					) : <span className="dashboard-recent-empty">建立章节后，这里会显示当前写作任务。</span>
 				) : <LoadingLines />}
 			</section>
 
-			<section className="dashboard-card dashboard-plot" aria-labelledby="dashboard-plot-title">
+			<section className="dashboard-card dashboard-next" aria-labelledby="dashboard-next-title">
 				<div className="dashboard-card-heading">
-					<span className="dashboard-card-icon"><Flag size={18} /></span>
-					<div><span>NARRATIVE</span><h2 id="dashboard-plot-title">活跃剧情线</h2></div>
+					<span className="dashboard-card-icon"><Compass size={18} /></span>
+					<div><span>NEXT</span><h2 id="dashboard-next-title">下一步任务</h2></div>
 				</div>
-				{!model ? <LoadingLines /> : kernel?.plotError ? (
-					<div className="dashboard-card-error"><strong>剧情线暂时无法读取</strong><span>其他卡片仍可正常使用。</span></div>
-				) : model.activePlotThreads.length ? (
-					<ul className="dashboard-compact-list">
-						{model.activePlotThreads.slice(0, 3).map(thread => (
-							<li key={thread.id}>
-								<button
-									type="button"
-									onClick={() => void openStoryResource({ type: 'plotThread', id: thread.id })}
-								>
-									<span>{thread.title}</span><ArrowRight size={16} />
-								</button>
-							</li>
-						))}
-					</ul>
-				) : (
-					<div className="dashboard-empty-copy">
-						<strong>还没有活跃剧情线</strong>
-						<span>建立主线后，这里会显示最近推进和风险。</span>
-						<button type="button" onClick={() => setError('剧情线创建器将在后续 Gate 开放。')}>
-							<Plus size={16} />创建剧情线
+				{nextStep ? (
+					<div className="dashboard-next-task">
+						<strong>{nextStep.title}</strong>
+						<p>{nextStep.description}</p>
+						<button type="button" className="dashboard-text-action" onClick={nextStep.run}>
+							{nextStep.label}<ArrowRight size={16} />
 						</button>
 					</div>
-				)}
+				) : <LoadingLines />}
 			</section>
 
 			<section className="dashboard-card dashboard-review" aria-labelledby="dashboard-review-title">

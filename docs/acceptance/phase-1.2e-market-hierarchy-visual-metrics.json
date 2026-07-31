@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-07-31T13:33:31.488Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "welcome": {
+    "labels": [
+      "根据题材生成大纲",
+      "导入已有大纲创建后整理卷章结构",
+      "导入已有正文直接打开第一章",
+      "创建空白作品不生成任何内容",
+      "打开已有 Writing Buddy 作品"
+    ],
+    "primary": [
+      "根据题材生成大纲"
+    ],
+    "rail": [
+      "写作",
+      "规划",
+      "故事库",
+      "检查",
+      "历史"
+    ]
+  },
+  "writingHome": {
+    "taskHeadings": [
+      "继续写作",
+      "当前章节",
+      "下一步任务",
+      "待处理审校",
+      "最近活动"
+    ],
+    "hasAiTopAction": false,
+    "primaryActions": [
+      "继续上次位置",
+      "第一章 停摆的时钟旧火车站94 字",
+      "第二章 迷路的旅人第三站台61 字",
+      "第三章 深夜的访客信号塔54 字"
+    ]
+  },
+  "library": {
+    "groups": [
+      "现在需要",
+      "全部资料"
+    ],
+    "entries": [
+      "当前相关",
+      "待完善",
+      "人物",
+      "人物关系",
+      "地点与世界规则",
+      "物品",
+      "事件与时间线",
+      "人物知识"
+    ],
+    "muted": 0
+  },
+  "captures": [
+    {
+      "name": "01-welcome-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 24
+    },
+    {
+      "name": "02-writing-home-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 44
+    },
+    {
+      "name": "03-planning-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 50
+    },
+    {
+      "name": "04-story-library-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 55
+    }
+  ]
+}

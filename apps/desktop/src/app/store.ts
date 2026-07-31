@@ -213,6 +213,7 @@ interface AppState extends PersistedWorkspace {
 	readonly quickCaptureBusy: boolean;
 	readonly quickCaptureSeed?: QuickCaptureSeed;
 	readonly projectWizardOpen: boolean;
+	readonly projectWizardStartRoute?: CreationStartRoute;
 	readonly creationJourneyStartRoute?: CreationStartRoute;
 	readonly chapterCreatorOpen: boolean;
 	readonly chapterCreateBusy: boolean;
@@ -245,7 +246,7 @@ interface AppState extends PersistedWorkspace {
 	};
 	readonly bootstrap: () => Promise<void>;
 	readonly chooseProject: () => Promise<void>;
-	readonly openProjectWizard: () => void;
+	readonly openProjectWizard: (startRoute?: CreationStartRoute) => void;
 	readonly closeProjectWizard: () => void;
 	readonly openChapterCreator: () => void;
 	readonly closeChapterCreator: () => void;
@@ -517,6 +518,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	quickCaptureOpen: false,
 	quickCaptureBusy: false,
 	projectWizardOpen: false,
+	projectWizardStartRoute: undefined,
 	creationJourneyStartRoute: undefined,
 	chapterCreatorOpen: false,
 	chapterCreateBusy: false,
@@ -542,12 +544,16 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
-	openProjectWizard() {
-		set({ projectWizardOpen: true, error: undefined });
+	openProjectWizard(startRoute) {
+		set({
+			projectWizardOpen: true,
+			projectWizardStartRoute: startRoute,
+			error: undefined
+		});
 	},
 
 	closeProjectWizard() {
-		set({ projectWizardOpen: false });
+		set({ projectWizardOpen: false, projectWizardStartRoute: undefined });
 	},
 
 	openChapterCreator() {
@@ -1962,7 +1968,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				?? createDefaultWriterWorkspaceLayouts()[workspace];
 			return {
 				activeMode,
-				...(activeMode === 'planning' ? { storyView: 'plots' as const } : {}),
+				...(activeMode === 'planning'
+					? { storyView: 'creation-journey' as const }
+					: activeMode === 'references'
+						? { storyView: 'characters' as const }
+						: {}),
 				sidebarOpen: layout.sidebarVisible,
 				sidebarWidth: clampWorkspaceSize('sidebar', layout.projectSidebarWidth),
 				assistantOpen: layout.assistantVisible,

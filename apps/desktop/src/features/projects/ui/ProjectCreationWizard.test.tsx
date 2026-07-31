@@ -21,6 +21,7 @@ function resetWorkspace(): void {
 		pendingProjectRoot: undefined,
 		projectOpenBusyAction: undefined,
 		projectWizardOpen: false,
+		projectWizardStartRoute: undefined,
 		loading: false,
 		error: undefined,
 		activeMode: 'works',
@@ -43,7 +44,7 @@ describe('guided project creation', () => {
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
 		expect(within(welcome).getByRole('heading', { name: '开始你的故事' })).toBeInTheDocument();
 
-		await user.click(within(welcome).getByRole('button', { name: '新建项目' }));
+		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 		expect(within(dialog).getByRole('navigation', { name: '创建步骤' })).toBeInTheDocument();
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
@@ -53,11 +54,32 @@ describe('guided project creation', () => {
 		expect(within(dialog).getByRole('textbox', { name: /^作品名称/ })).toHaveAttribute('aria-invalid', 'true');
 	});
 
+	it('offers four truthful starting paths with genre as the only primary action', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+
+		expect(within(welcome).getByRole('button', { name: '根据题材生成大纲' }))
+			.toHaveClass('primary-button');
+		expect(document.querySelectorAll('.app-shell .primary-button')).toHaveLength(1);
+		for (const label of ['导入已有大纲', '导入已有正文', '创建空白作品']) {
+			expect(within(welcome).getByRole('button', { name: new RegExp(label, 'u') }))
+				.not.toHaveClass('primary-button');
+		}
+
+		await user.click(within(welcome).getByRole('button', { name: /导入已有大纲/u }));
+		expect(useAppStore.getState()).toMatchObject({
+			projectWizardOpen: true,
+			projectWizardStartRoute: 'outline'
+		});
+		expect(await screen.findByRole('dialog', { name: '新建项目' })).toBeInTheDocument();
+	});
+
 	it('defaults to the genre-to-outline start while preserving the other truthful starts', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
-		await user.click(within(welcome).getByRole('button', { name: '新建项目' }));
+		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 		await user.type(within(dialog).getByLabelText('作品名称'), '无日期的人');
 		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
@@ -77,7 +99,7 @@ describe('guided project creation', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
-		await user.click(within(welcome).getByRole('button', { name: '新建项目' }));
+		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 
 		await user.type(within(dialog).getByLabelText('作品名称'), '雾港来信');
@@ -127,7 +149,7 @@ describe('guided project creation', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
-		await user.click(within(welcome).getByRole('button', { name: '打开项目' }));
+		await user.click(within(welcome).getByRole('button', { name: '打开已有 Writing Buddy 作品' }));
 		await screen.findByRole('heading', { name: '作品大纲' });
 
 		const trigger = screen.getByRole('button', { name: '项目菜单' });

@@ -48,7 +48,7 @@ describe('Phase 1.2B creation journey experience', () => {
 		render(<App />);
 
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
-		await user.click(within(welcome).getByRole('button', { name: '新建项目' }));
+		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 		await user.type(within(dialog).getByLabelText('作品名称'), '雨夜记忆');
 		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));

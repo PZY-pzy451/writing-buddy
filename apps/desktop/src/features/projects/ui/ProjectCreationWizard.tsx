@@ -107,6 +107,23 @@ function defaultDraft(): WizardDraft {
 	};
 }
 
+function draftWithStartRoute(
+	current: WizardDraft,
+	startRoute: CreationStartRoute
+): WizardDraft {
+	return {
+		...current,
+		startRoute,
+		selectedInitialResources: resourcesForStartRoute(
+			current.selectedInitialResources,
+			startRoute
+		),
+		writingMode: startRoute === 'manuscript'
+			? 'manuscriptFirst'
+			: 'planningFirst'
+	};
+}
+
 function toRequest(draft: WizardDraft): CreateProjectRequest {
 	const selectedInitialResources = resourcesForStartRoute(
 		draft.selectedInitialResources,
@@ -169,7 +186,11 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const currentProjectTitle = useAppStore(state => state.snapshot?.project.title);
 	const currentManuscriptDirty = useAppStore(state => Boolean(state.session?.state.dirty));
 	const [step, setStep] = useState(0);
-	const [draft, setDraft] = useState<WizardDraft>(defaultDraft);
+	const [draft, setDraft] = useState<WizardDraft>(() => {
+		const initial = defaultDraft();
+		const requested = useAppStore.getState().projectWizardStartRoute;
+		return requested ? draftWithStartRoute(initial, requested) : initial;
+	});
 	const [preflight, setPreflight] = useState<ProjectCreationPreflight>();
 	const [issues, setIssues] = useState<readonly ProjectCreationIssue[]>([]);
 	const [busy, setBusy] = useState(false);
@@ -225,17 +246,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	};
 
 	const selectStartRoute = (startRoute: CreationStartRoute) => {
-		setDraft(current => ({
-			...current,
-			startRoute,
-			selectedInitialResources: resourcesForStartRoute(
-				current.selectedInitialResources,
-				startRoute
-			),
-			writingMode: startRoute === 'manuscript'
-				? 'manuscriptFirst'
-				: 'planningFirst'
-		}));
+		setDraft(current => draftWithStartRoute(current, startRoute));
 		setIssues([]);
 		setPreflight(undefined);
 	};
