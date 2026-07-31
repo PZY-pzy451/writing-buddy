@@ -8,3 +8,4 @@
 - [Genre-to-Draft Gate I validation](./2026-07-30-genre-to-draft-gate-i-validation.md)
 - [Phase 1.2C AI draft insertion](./2026-07-30-phase-1.2c-ai-draft-insertion.md)
 - [Long output and complete novel acceptance](./2026-07-30-long-output-complete-novel-acceptance.md)
+- [Complete novel promotional recording](./2026-07-31-complete-novel-promo-recording.md)

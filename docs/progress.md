@@ -1,8 +1,39 @@
 # Current progress
 
-Updated: 2026-07-30
+Updated: 2026-07-31
 
 ## Active milestone
+
+The complete-novel promotional recording is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Recorded the real Writing Buddy Windows client with a disposable copy of
+  `《零点回声》`, including project overview, Creation Journey, chapter
+  manuscript, grounded AI context, three candidate directions, explicit
+  insertion, safety snapshot, character context, final chapter and closing
+  project statistics.
+- Added a direct WebView recorder because Windows GDI capture omitted
+  compositor-hosted tool panels. The final source has the complete visible
+  application, including AI and character sidebars.
+- Added a diagnostic-only deterministic AI fixture for reproducible promotion
+  footage. Production AI behavior and release builds remain unchanged.
+- Fixed a real rehearsal defect where an accepted AI insertion displayed both
+  success and a stale-candidate warning after the host manuscript revision
+  changed. The accepted state now remains successful and has a focused
+  regression test.
+- Final promotional cut: 2560×1440 H.264, 24 fps, 6:27, burned-in Chinese
+  captions, separate SRT, title/outro cards and a shot list. The brief cursor
+  preflight warning was removed from the public cut.
+- Validation: ESLint, TypeScript, 157 Vitest files / 604 tests, production
+  frontend build, Cargo format, 68 Rust tests with 2 explicit external gates
+  ignored, static complete-novel acceptance, Tauri Release/NSIS, portable
+  startup/Alt+F4 exit 0 and full MP4 decode.
+- Delivery:
+  `artifacts/promo/complete-novel-writing-2026-07-31/`; evidence:
+  `docs/acceptance/056-complete-novel-promotional-recording-2026-07-31.md`.
+  Updated Windows binaries:
+  `artifacts/release/complete-novel-promo-2026-07-31/`.
 
 Long-output support and complete-novel acceptance are complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

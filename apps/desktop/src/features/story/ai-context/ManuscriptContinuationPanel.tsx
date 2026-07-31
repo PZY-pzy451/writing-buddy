@@ -257,7 +257,7 @@ export function ManuscriptContinuationPanel(
 		&& pack.actionType === props.mode
 		&& loadedGuidance === guidance.trim()
 		&& (props.mode === 'finish-scene' || pack.source.end === props.cursorOffset);
-	const stale = useMemo(() => batch
+	const stale = useMemo(() => batch && batch.status !== 'accepted'
 		? isContinuationCandidateStale(batch, props.sourceRevision, props.content)
 		: false, [batch, props.content, props.sourceRevision]);
 	const includedGrounding = useMemo(() => pack?.items.filter(item => (

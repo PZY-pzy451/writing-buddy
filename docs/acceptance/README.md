@@ -55,6 +55,7 @@
 - [Genre-to-Draft Gate I core journey acceptance, 2026-07-30](./053-genre-to-draft-gate-i-core-journey-2026-07-30.md)
 - [Phase 1.2C AI Draft Insertion acceptance, 2026-07-30](./054-phase-1.2c-ai-draft-insertion-2026-07-30.md)
 - [Long output and complete novel acceptance, 2026-07-30](./055-long-output-complete-novel-2026-07-30.md)
+- [Complete novel promotional recording acceptance, 2026-07-31](./056-complete-novel-promotional-recording-2026-07-31.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

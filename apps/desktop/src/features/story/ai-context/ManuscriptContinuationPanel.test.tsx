@@ -153,6 +153,31 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(order).toEqual(['snapshot', 'insert']);
 	});
 
+	it('keeps an accepted insertion successful after the host updates the manuscript', async () => {
+		const props = {
+			...baseProps(),
+			runContinuation: () => Promise.resolve({ output: continuationOutput() })
+		};
+		const view = render(<ManuscriptContinuationPanel {...props} />);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '确认资料并生成候选'
+		}));
+		const candidate = await screen.findByRole('article', { name: '候选：追随钟声' });
+		fireEvent.click(within(candidate).getByRole('button', { name: '插入' }));
+
+		expect(await screen.findByRole('status')).toHaveTextContent('安全快照已创建');
+		view.rerender(<ManuscriptContinuationPanel
+			{...props}
+			content={`${original}\n\n候选已经写入正文。`}
+			sourceRevision={5}
+		/>);
+
+		expect(screen.getByRole('status')).toHaveTextContent('安全快照已创建');
+		expect(screen.queryByText('正文或光标锚点已变化，请重新生成候选。'))
+			.not.toBeInTheDocument();
+	});
+
 	it('shows exactly three directions and rejects one without mutating the manuscript', async () => {
 		const props = {
 			...baseProps(),
