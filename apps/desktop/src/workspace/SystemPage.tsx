@@ -1,4 +1,12 @@
-import { FileSearch, History, Search } from 'lucide-react';
+import {
+	Download,
+	FileSearch,
+	FileText,
+	History,
+	Search,
+	ShieldCheck
+} from 'lucide-react';
+import { countWords } from '@writing-buddy/domain';
 import type { VersionSummary } from '@writing-buddy/platform-ports';
 import {
 	DesktopStoryRepository,
@@ -20,6 +28,10 @@ import {
 	type EntityPeekResult
 } from '../features/story/manuscript/EntityPeekService';
 import { EntityPeekCard } from '../features/story/manuscript/EntityPeekCard';
+import {
+	chapterExportFormatLabels,
+	type ChapterExportFormat
+} from '../features/export/ChapterExportModel';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
@@ -29,6 +41,9 @@ export function SystemPage(): React.JSX.Element | null {
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
 	const reloadProject = useAppStore(state => state.reloadProject);
+	const exportActiveChapter = useAppStore(state => state.exportActiveChapter);
+	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
+	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
 	const [versions, setVersions] = useState<readonly VersionSummary[]>([]);
 	const [selectedVersion, setSelectedVersion] = useState<string>();
 	const [versionText, setVersionText] = useState<string>();
@@ -255,47 +270,127 @@ export function SystemPage(): React.JSX.Element | null {
 		setVersionMessage(`已恢复 ${restored} 个受管资源。`);
 		await reloadProject();
 	};
+	const exportChapter = async (format: ChapterExportFormat) => {
+		const exported = await exportActiveChapter(format);
+		if (exported) {
+			setVersionMessage(`当前章节已导出为${chapterExportFormatLabels[format]}。`);
+		}
+	};
+	const activeChapterReady = activeResource?.type === 'chapter' && Boolean(session);
+	const projectExportReceipts = snapshot
+		? chapterExportReceipts.filter(receipt => (
+			receipt.projectId === snapshot.project.projectId
+		)).slice(0, 8)
+		: [];
 
 	return (
 		<div className="system-page versions-page">
 			<header>
-				<span className="eyebrow">Versions</span>
-				<h1>版本与恢复</h1>
-				<p>快照保存内容寻址副本；恢复前自动创建兼容的 .wbbackup。</p>
-				<div className="page-actions">
-					<button className="primary-button" type="button" onClick={() => void createSnapshot()} disabled={!snapshot || snapshot.readOnly}>创建安全快照</button>
-					<button className="secondary-button" type="button" onClick={() => void restoreSelected()} disabled={!selectedVersion || snapshot?.readOnly}>恢复所选版本</button>
-				</div>
+				<span className="eyebrow">History</span>
+				<h1>历史与导出</h1>
+				<p>导出可交付副本，并用快照保护每次重要修改。</p>
 				{versionMessage && <span className="success-message">{versionMessage}</span>}
 			</header>
-			{versions.length === 0 ? (
-				<AppEmptyState
-					icon={History}
-					title="还没有安全快照"
-					description="创建第一个快照后，可以在这里比较并恢复受管资源。"
-					className="system-empty"
-				/>
-			) : (
-				<div className="version-workspace">
-					<div className="version-list">
-						{versions.map(version => (
-							<button
-								key={version.id}
-								type="button"
-								className={selectedVersion === version.id ? 'is-active' : ''}
-								onClick={() => setSelectedVersion(version.id)}
-							>
-								<History size={18} />
-								<span><strong>{version.label || '未命名快照'}</strong><small>{new Date(version.createdAt).toLocaleString()}</small></span>
-							</button>
-						))}
-					</div>
-					<div className="version-diff">
-						<div><span>所选快照</span><pre>{versionText ?? '该快照不包含当前资源。'}</pre></div>
-						<div><span>当前内容</span><pre>{session?.content ?? '请先打开一个章节或笔记进行对比。'}</pre></div>
-					</div>
+			<section className="history-export-card" aria-labelledby="history-export-title">
+				<div className="history-card-icon"><Download size={22} /></div>
+				<div className="history-card-copy">
+					<span className="eyebrow">当前任务</span>
+					<h2 id="history-export-title">导出当前章节</h2>
+					{activeChapterReady ? (
+						<p>
+							<strong>{activeResource?.title}</strong>
+							<span>{countWords(session?.content ?? '').toLocaleString()} 字 · 导出前自动保存原稿</span>
+						</p>
+					) : (
+						<p><strong>尚未打开章节</strong><span>回到“写作”打开章节后即可导出。</span></p>
+					)}
 				</div>
+				<div className="history-export-actions">
+					<button
+						className="primary-button"
+						type="button"
+						disabled={!activeChapterReady || chapterExportBusy}
+						onClick={() => void exportChapter('markdown')}
+					>
+						<Download size={18} />
+						{chapterExportBusy ? '正在导出…' : '导出 Markdown'}
+					</button>
+					<button
+						className="secondary-button"
+						type="button"
+						disabled={!activeChapterReady || chapterExportBusy}
+						onClick={() => void exportChapter('plain-text')}
+					>
+						<FileText size={18} />导出纯文本
+					</button>
+				</div>
+			</section>
+
+			{projectExportReceipts.length > 0 && (
+				<section className="history-receipts" aria-labelledby="history-receipts-title">
+					<header>
+						<div>
+							<span className="eyebrow">Export receipts</span>
+							<h2 id="history-receipts-title">最近导出</h2>
+						</div>
+						<small>仅在文件写入成功后记录</small>
+					</header>
+					<ol>
+						{projectExportReceipts.map(receipt => (
+							<li key={receipt.id}>
+								<span className="history-receipt-icon"><FileText size={16} /></span>
+								<span className="history-receipt-main">
+									<strong>{receipt.chapterTitle}</strong>
+									<code title={receipt.destination}>{receipt.destination}</code>
+								</span>
+								<span className="history-receipt-meta">
+									<strong>{chapterExportFormatLabels[receipt.format]}</strong>
+									<small>{receipt.wordCount.toLocaleString()} 字 · {new Date(receipt.exportedAt).toLocaleString()}</small>
+								</span>
+							</li>
+						))}
+					</ol>
+				</section>
 			)}
+
+			<section className="history-safety" aria-labelledby="history-safety-title">
+				<header>
+					<div className="history-safety-heading">
+						<span className="history-card-icon"><ShieldCheck size={20} /></span>
+						<div><h2 id="history-safety-title">安全快照</h2><p>比较受管内容；恢复前会自动创建兼容的 .wbbackup。</p></div>
+					</div>
+					<div className="page-actions">
+						<button className="secondary-button" type="button" onClick={() => void createSnapshot()} disabled={!snapshot || snapshot.readOnly}>创建安全快照</button>
+						<button className="secondary-button" type="button" onClick={() => void restoreSelected()} disabled={!selectedVersion || snapshot?.readOnly}>恢复所选版本</button>
+					</div>
+				</header>
+				{versions.length === 0 ? (
+					<div className="history-empty">
+						<History size={22} />
+						<span><strong>还没有安全快照</strong><small>创建第一个快照后，可在这里比较并恢复受管资源。</small></span>
+					</div>
+				) : (
+					<div className="version-workspace">
+						<div className="version-list">
+							{versions.map(version => (
+								<button
+									key={version.id}
+									type="button"
+									className={selectedVersion === version.id ? 'is-active' : ''}
+									onClick={() => setSelectedVersion(version.id)}
+								>
+									<History size={18} />
+									<span><strong>{version.label || '未命名快照'}</strong><small>{new Date(version.createdAt).toLocaleString()}</small></span>
+								</button>
+							))}
+						</div>
+						<div className="version-diff">
+							<div><span>所选快照</span><pre>{versionText ?? '该快照不包含当前资源。'}</pre></div>
+							<div><span>当前内容</span><pre>{session?.content ?? '请先打开一个章节或笔记进行对比。'}</pre></div>
+						</div>
+					</div>
+				)}
+			</section>
 		</div>
 	);
 }

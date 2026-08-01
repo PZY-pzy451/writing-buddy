@@ -121,8 +121,20 @@ class TauriDesktopBridge implements DesktopBridge {
 		return invoke<AtomicWriteResult>('write_text_atomic', { request });
 	}
 
-	saveTextAs(content: string, eol: 'lf' | 'crlf', hasBom: boolean, suggestedName: string): Promise<string | undefined> {
-		return invoke<string | null>('save_text_as', { content, eol, hasBom, suggestedName })
+	saveTextAs(
+		content: string,
+		eol: 'lf' | 'crlf',
+		hasBom: boolean,
+		suggestedName: string,
+		format?: 'markdown' | 'plain-text'
+	): Promise<string | undefined> {
+		return invoke<string | null>('save_text_as', {
+			content,
+			eol,
+			hasBom,
+			suggestedName,
+			format
+		})
 			.then(value => value ?? undefined);
 	}
 
@@ -1261,7 +1273,12 @@ class BrowserDesktopBridge implements DesktopBridge {
 		};
 	}
 
-	async saveTextAs(_content: string, _eol: 'lf' | 'crlf', _hasBom: boolean, suggestedName: string): Promise<string> {
+	async saveTextAs(
+		_content: string,
+		_eol: 'lf' | 'crlf',
+		_hasBom: boolean,
+		suggestedName: string
+	): Promise<string> {
 		return `browser-downloads/${suggestedName}`;
 	}
 

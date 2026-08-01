@@ -90,6 +90,13 @@ import type { CreationStartRoute } from '../features/creation-journey/CreationJo
 import type {
 	PendingDraftCandidate
 } from '../features/story/ai-context/InlineDraftCandidateModel';
+import {
+	buildChapterExportContent,
+	parseChapterExportReceipts,
+	suggestedChapterExportName,
+	type ChapterExportFormat,
+	type ChapterExportReceipt
+} from '../features/export/ChapterExportModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -180,6 +187,7 @@ interface PersistedWorkspace {
 	readonly expandedTreeNodes: readonly string[];
 	readonly writerSessions: WriterSessionMap;
 	readonly writerNavigatorRecentIds: readonly string[];
+	readonly chapterExportReceipts: readonly ChapterExportReceipt[];
 }
 
 interface AppState extends PersistedWorkspace {
@@ -235,6 +243,7 @@ interface AppState extends PersistedWorkspace {
 	readonly closeProtectionOpen: boolean;
 	readonly writerNavigatorOpen: boolean;
 	readonly writerNavigatorNotice?: string;
+	readonly chapterExportBusy: boolean;
 	readonly sessionRestoreState: 'idle' | 'restoring' | 'ready' | 'fallback';
 	readonly sessionRestoreNotice?: string;
 	readonly pendingEdit?: {
@@ -303,6 +312,7 @@ interface AppState extends PersistedWorkspace {
 	readonly setResourceContent: (content: string) => void;
 	readonly save: () => Promise<void>;
 	readonly saveAs: () => Promise<boolean>;
+	readonly exportActiveChapter: (format?: ChapterExportFormat) => Promise<boolean>;
 	readonly forceSave: () => Promise<boolean>;
 	readonly reloadExternal: () => void;
 	readonly dismissExternalConflict: () => void;
@@ -540,6 +550,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	saveState: { type: 'clean', savedAt: new Date().toISOString() },
 	closeProtectionOpen: false,
 	writerNavigatorOpen: false,
+	chapterExportBusy: false,
+	chapterExportReceipts: [],
 
 	async bootstrap() {
 		const root = get().recentProjectRoot ?? (get().recentProjectRoots ?? [])[0];
@@ -1786,6 +1798,66 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		return false;
 	},
 
+	async exportActiveChapter(format = 'markdown') {
+		const initial = get();
+		if (initial.chapterExportBusy) return false;
+		if (
+			!initial.snapshot
+			|| initial.activeResource?.type !== 'chapter'
+			|| !initial.session
+		) {
+			set({ error: '请先打开一个章节，再进行导出。' });
+			return false;
+		}
+		set({ chapterExportBusy: true, error: undefined });
+		try {
+			if (initial.session.state.dirty) {
+				await get().save();
+			}
+			const current = get();
+			if (
+				!current.snapshot
+				|| current.activeResource?.type !== 'chapter'
+				|| !current.session
+			) {
+				set({ error: '当前章节已经关闭，未执行导出。' });
+				return false;
+			}
+			if (current.session.state.dirty) {
+				set({ error: '正文尚未安全保存，未执行导出。' });
+				return false;
+			}
+			const destination = await desktopBridge.saveTextAs(
+				buildChapterExportContent(current.session.content, format),
+				current.session.state.originalEol,
+				current.session.state.hasBom,
+				suggestedChapterExportName(current.activeResource.title, format),
+				format
+			);
+			if (!destination) return false;
+			const receipt: ChapterExportReceipt = {
+				id: `export:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 9)}`,
+				projectId: current.snapshot.project.projectId,
+				chapterId: current.activeResource.id,
+				chapterTitle: current.activeResource.title,
+				format,
+				destination,
+				exportedAt: new Date().toISOString(),
+				wordCount: countWords(current.session.content)
+			};
+			set(state => ({
+				chapterExportReceipts: [receipt, ...state.chapterExportReceipts].slice(0, 100),
+				writerNavigatorNotice: `已导出《${receipt.chapterTitle}》，可在“历史”查看路径。`
+			}));
+			return true;
+		} catch {
+			set({ error: '章节导出失败，原稿未受影响。请检查目标位置后重试。' });
+			return false;
+		} finally {
+			set({ chapterExportBusy: false });
+		}
+	},
+
 	async forceSave() {
 		const { snapshot, session } = get();
 		if (!snapshot || !session) {
@@ -2537,7 +2609,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		documentViews: state.documentViews,
 		expandedTreeNodes: state.expandedTreeNodes,
 		writerSessions: state.writerSessions,
-		writerNavigatorRecentIds: state.writerNavigatorRecentIds
+		writerNavigatorRecentIds: state.writerNavigatorRecentIds,
+		chapterExportReceipts: state.chapterExportReceipts
 	}),
 	version: 2,
 	merge: (persisted, current) => {
@@ -2558,7 +2631,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				? workspace.writerNavigatorRecentIds.filter(
 						(resultId): resultId is string => typeof resultId === 'string'
 					).slice(0, 12)
-				: []
+				: [],
+			chapterExportReceipts: parseChapterExportReceipts(
+				workspace.chapterExportReceipts
+			)
 		};
 	}
 }));

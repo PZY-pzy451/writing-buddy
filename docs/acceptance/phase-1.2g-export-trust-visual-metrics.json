@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-08-01T03:30:31.499Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "writerMenu": {
+    "organize": true,
+    "export": true,
+    "exportHint": "保存为 Markdown，并在历史中记录路径"
+  },
+  "history": {
+    "title": "历史与导出",
+    "primaryActions": [
+      "导出 Markdown"
+    ],
+    "receiptPath": "browser-downloads/第一章 停摆的时钟.txt",
+    "receiptFormat": "纯文本",
+    "snapshotAction": "创建安全快照恢复所选版本"
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-chapter-completion-menu-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 68
+    },
+    {
+      "name": "02-history-export-receipt-1280x800.png",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 21
+    },
+    {
+      "name": "03-history-export-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 21
+    },
+    {
+      "name": "04-history-export-820x720.png",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 21
+    }
+  ]
+}

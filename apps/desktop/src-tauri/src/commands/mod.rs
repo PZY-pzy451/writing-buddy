@@ -1070,18 +1070,22 @@ pub fn save_text_as(
     eol: String,
     has_bom: bool,
     suggested_name: String,
+    format: Option<String>,
 ) -> Result<Option<String>, String> {
     let file_name = Path::new(&suggested_name)
         .file_name()
         .and_then(|value| value.to_str())
         .filter(|value| !value.is_empty())
         .unwrap_or("chapter.md");
-    let Some(path) = rfd::FileDialog::new()
+    let dialog = rfd::FileDialog::new()
         .set_title("将写作副本另存为")
-        .set_file_name(file_name)
-        .add_filter("Markdown", &["md"])
-        .save_file()
-    else {
+        .set_file_name(file_name);
+    let dialog = if format.as_deref() == Some("plain-text") {
+        dialog.add_filter("纯文本", &["txt"])
+    } else {
+        dialog.add_filter("Markdown", &["md"])
+    };
+    let Some(path) = dialog.save_file() else {
         return Ok(None);
     };
     let bytes = filesystem::encode_text(&content, &eol, has_bom)?;

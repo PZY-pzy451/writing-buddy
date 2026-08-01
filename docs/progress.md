@@ -1,8 +1,30 @@
 # Current progress
 
-Updated: 2026-07-31
+Updated: 2026-08-01
 
 ## Active milestone
+
+Phase 1.2G chapter completion and export trust is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The author can export the active chapter as Markdown from the chapter menu or
+  choose Markdown/plain text from `历史与导出`.
+- Dirty-save failure and dialog cancellation are fail-before-write: they create
+  neither a copy nor a false export receipt.
+- Successful exports persist a project-scoped receipt with chapter, format,
+  word count, timestamp and exact destination. Snapshot/restore remains intact.
+- The extended chapter menu is viewport-bounded and scrollable. Browser
+  acceptance passed at 1440×900, 1280×800, 1024×720 and 820×720 with no page
+  overflow, clipped controls or runtime errors.
+- Final gates: 161 Vitest files / 639 tests, production Vite build, Cargo format,
+  68 Rust tests / 2 ignored, Tauri Release/NSIS and portable title/WebView/
+  no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2g-chapter-export-trust-2026-08-01/`; evidence:
+  `docs/acceptance/064-phase-1.2g-chapter-export-trust-2026-08-01.md`.
+
+## Previous milestones
 
 Phase 1.2F task-to-action closure is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on

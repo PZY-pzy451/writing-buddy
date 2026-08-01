@@ -5,6 +5,7 @@ import {
 	ChevronLeft,
 	ChevronRight,
 	Compass,
+	Download,
 	Feather,
 	ListChecks,
 	MoreHorizontal,
@@ -22,6 +23,8 @@ export function WriterHeader(): React.JSX.Element | null {
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
 	const saveState = useAppStore(state => state.saveState);
+	const exportActiveChapter = useAppStore(state => state.exportActiveChapter);
+	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const setStoryView = useAppStore(state => state.setStoryView);
 	const focusMode = useAppStore(state => state.focusMode);
@@ -60,6 +63,10 @@ export function WriterHeader(): React.JSX.Element | null {
 	const openChapterOrganization = async (target: HTMLElement) => {
 		if (session?.state.dirty) await save();
 		setStoryView('extraction');
+		target.closest('details')?.removeAttribute('open');
+	};
+	const exportChapter = async (target: HTMLElement) => {
+		await exportActiveChapter('markdown');
 		target.closest('details')?.removeAttribute('open');
 	};
 
@@ -123,6 +130,19 @@ export function WriterHeader(): React.JSX.Element | null {
 											<span>
 												<strong>整理本章</strong>
 												<small>先查看范围与 Token，不会自动调用 AI</small>
+											</span>
+										</button>
+										<button
+											type="button"
+											role="menuitem"
+											aria-label="导出章节"
+											disabled={chapterExportBusy}
+											onClick={event => void exportChapter(event.currentTarget)}
+										>
+											<Download size={16} />
+											<span>
+												<strong>{chapterExportBusy ? '正在导出…' : '导出章节'}</strong>
+												<small>保存为 Markdown，并在历史中记录路径</small>
 											</span>
 										</button>
 										<hr />

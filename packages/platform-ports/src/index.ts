@@ -259,6 +259,8 @@ export interface MaterializeCreationJourneyResult {
 	readonly description: string;
 }
 
+export type TextSaveFormat = 'markdown' | 'plain-text';
+
 export interface MaterializeOutlineHierarchyRequest {
 	readonly projectRoot: string;
 	readonly expectedProjectRevision: string;
@@ -432,7 +434,13 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	revealProjectDirectory(projectRoot: string): Promise<void>;
 	readText(projectRoot: string, relativePath: string): Promise<TextFile>;
 	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult>;
-	saveTextAs(content: string, eol: 'lf' | 'crlf', hasBom: boolean, suggestedName: string): Promise<string | undefined>;
+	saveTextAs(
+		content: string,
+		eol: 'lf' | 'crlf',
+		hasBom: boolean,
+		suggestedName: string,
+		format?: TextSaveFormat
+	): Promise<string | undefined>;
 	readResource(projectRoot: string, relativePath: string): Promise<string>;
 	writeResource(projectRoot: string, relativePath: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
 	readReviewState(projectRoot: string): Promise<TextFile | undefined>;

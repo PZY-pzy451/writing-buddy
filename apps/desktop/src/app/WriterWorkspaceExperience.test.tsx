@@ -1,8 +1,10 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 import { App } from './App';
 import { useAppStore } from './store';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
+import { desktopBridge } from '../platform/bridge';
 
 function resetWorkspaceExperience(): void {
 	localStorage.clear();
@@ -30,6 +32,8 @@ function resetWorkspaceExperience(): void {
 		projectWizardStartRoute: undefined,
 		chapterCreatorOpen: false,
 		chapterCreateBusy: false,
+		chapterExportBusy: false,
+		chapterExportReceipts: [],
 		recentlyClosedResources: [],
 		activeMode: 'works',
 		focusMode: false,
@@ -61,6 +65,7 @@ describe('quiet writer workspaces', () => {
 	beforeEach(resetWorkspaceExperience);
 
 	afterEach(() => {
+		vi.restoreAllMocks();
 		localStorage.clear();
 	});
 
@@ -280,6 +285,78 @@ describe('quiet writer workspaces', () => {
 			'true'
 		);
 		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
+	});
+
+	it('exports the active chapter from the writer menu and records a durable receipt', async () => {
+		const user = userEvent.setup();
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs').mockResolvedValue(
+			'D:\\Exports\\第一章 停摆的时钟.md'
+		);
+		render(<App />);
+		await openFixtureAndContinue(user);
+
+		await user.click(screen.getByRole('button', { name: '更多章节操作' }));
+		await user.click(screen.getByRole('menuitem', { name: '导出章节' }));
+
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
+		expect(saveTextAs.mock.calls[0]?.slice(3)).toEqual([
+			'第一章 停摆的时钟.md',
+			'markdown'
+		]);
+		expect(useAppStore.getState().chapterExportReceipts[0]).toMatchObject({
+			chapterTitle: '第一章 停摆的时钟',
+			format: 'markdown',
+			destination: 'D:\\Exports\\第一章 停摆的时钟.md'
+		});
+		expect(await screen.findByText(/已导出《第一章 停摆的时钟》/u)).toBeInTheDocument();
+		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
+			'第一章 停摆的时钟.md'
+		);
+	});
+
+	it('does not export or create a receipt when dirty manuscript saving fails', async () => {
+		const user = userEvent.setup();
+		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('offline'));
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs');
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('尚未安全写入的正文'));
+
+		await user.click(screen.getByRole('button', { name: '更多章节操作' }));
+		await user.click(screen.getByRole('menuitem', { name: '导出章节' }));
+
+		await waitFor(() => expect(writeTextAtomic).toHaveBeenCalledTimes(1));
+		expect(saveTextAs).not.toHaveBeenCalled();
+		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(0);
+		expect(await screen.findByText('正文尚未安全保存，未执行导出。'))
+			.toBeInTheDocument();
+	});
+
+	it('offers Markdown and plain-text export in History without recording cancellation', async () => {
+		const user = userEvent.setup();
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs')
+			.mockResolvedValueOnce(undefined)
+			.mockResolvedValueOnce('D:\\Exports\\第一章 停摆的时钟.txt');
+		render(<App />);
+		await openFixtureAndContinue(user);
+		await user.click(screen.getByRole('button', { name: '历史' }));
+
+		expect(await screen.findByRole('heading', { name: '历史与导出' })).toBeInTheDocument();
+		expect(screen.getByText(/导出前自动保存原稿/u)).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '导出 Markdown' }));
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
+		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(0);
+
+		await user.click(screen.getByRole('button', { name: '导出纯文本' }));
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(2));
+		expect(saveTextAs.mock.calls[1]?.slice(3)).toEqual([
+			'第一章 停摆的时钟.txt',
+			'plain-text'
+		]);
+		expect(await screen.findByRole('heading', { name: '最近导出' })).toBeInTheDocument();
+		expect(screen.getByText('D:\\Exports\\第一章 停摆的时钟.txt')).toBeInTheDocument();
+		expect(screen.getByText('纯文本')).toBeInTheDocument();
 	});
 
 	it('opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape', async () => {
