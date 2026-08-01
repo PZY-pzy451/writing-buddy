@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-08-01T04:24:00.792Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "welcome": {
+    "primaryCount": 1,
+    "text": "WRITING BUDDY开始你的故事从题材、大纲、已有正文或空白作品开始。所有内容默认保存在本地。你想怎样开始？根据题材生成大纲导入已有大纲预览后创建章节结构导入已有正文原样写入并打开第一章创建空白作品不生成任何内容打开已有 Writing Buddy 作品RECENT最近使用0/3创建第一个项目后会显示在这里"
+  },
+  "outlinePreview": {
+    "text": "添加已有大纲文件支持 UTF-8 的 .md、.markdown、.txt，最大 5 MiB替换文件零点回声大纲.md0.1 KiB · Markdown2 章第一章 · 迟到四十七秒第二章 · 城市回声协议查看原文预览# 零点回声 ## 第一章 · 迟到四十七秒 旧站台恢复供电。 ## 第二章 · 城市回声协议 顾言追踪异常信号。原始大纲会完整保存在项目中，章节标题只来自明确标记。移除文件",
+    "chapterItems": 2,
+    "primaryActions": [
+      "下一步"
+    ]
+  },
+  "outlineWide": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "pageOverflowX": 0,
+    "dialogOverflowX": 0,
+    "visibleControls": 43,
+    "shortImportControls": []
+  },
+  "outlineNarrow": {
+    "viewport": {
+      "width": 820,
+      "height": 720
+    },
+    "pageOverflowX": 0,
+    "dialogOverflowX": 0,
+    "visibleControls": 42,
+    "shortImportControls": []
+  },
+  "review": "零点回声导入验收D:\\WritingBuddy\\Projects\\零点回声导入验收模板空白长篇创作起点我已经有完整大纲主题纸页 · 琥珀写作方式故事规划优先AI 快速入口启用（不自动请求）初始资源5 项导入文件零点回声大纲.md导入结果2 个章节 + 原始大纲创建规模11 个目录 · 5 个文件安全创建事务同级 staging 写入 → 重新读取验证 → 原子保存到目标目录",
+  "handoff": {
+    "first": true,
+    "second": true,
+    "dialogClosed": true
+  }
+}

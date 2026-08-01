@@ -107,6 +107,10 @@ describe('guided project creation', () => {
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		expect(await within(dialog).findByRole('heading', { name: '你现在从哪里开始？' })).toBeInTheDocument();
 		await user.click(within(dialog).getByRole('button', { name: /我已经写了一部分正文/ }));
+		expect(within(dialog).getByText('添加已有正文文件')).toBeInTheDocument();
+		await user.click(within(dialog).getByRole('button', { name: /选择文件/ }));
+		expect(await within(dialog).findByText('已有正文.txt')).toBeInTheDocument();
+		expect(within(dialog).getByText(/正文将原样写入第一章/)).toBeInTheDocument();
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		expect(await within(dialog).findByRole('heading', { name: '初始结构' })).toBeInTheDocument();
 
@@ -117,13 +121,43 @@ describe('guided project creation', () => {
 		expect(await within(dialog).findByRole('heading', { name: '确认创建' })).toBeInTheDocument();
 		expect(within(dialog).getByText(/3 个文件/)).toBeInTheDocument();
 
-		await user.click(within(dialog).getByRole('button', { name: /创建项目/ }));
+		expect(within(dialog).getByText('已有正文.txt')).toBeInTheDocument();
+		await user.click(within(dialog).getByRole('button', { name: /创建并导入/ }));
 		await waitFor(() => {
 			expect(screen.getByRole('heading', { level: 1, name: '第一章' })).toBeInTheDocument();
 		});
 		expect(document.querySelector('.app-shell')).toHaveClass('theme-midnight');
 		expect(useAppStore.getState().recentProjectRoots[0]).toContain('雾港来信');
 		expect(useAppStore.getState().snapshot?.appearance?.themeId).toBe('midnight');
+		expect(useAppStore.getState().session?.content).toContain('雨落在旧站台的玻璃顶上。');
+	});
+
+	it('previews an outline, creates its chapter structure, and opens the dashboard', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: /导入已有大纲/u }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		await user.type(within(dialog).getByLabelText('作品名称'), '零点回声导入版');
+		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /选择文件/ }));
+
+		expect(await within(dialog).findByText('零点回声大纲.md')).toBeInTheDocument();
+		expect(within(dialog).getByText('2 章')).toBeInTheDocument();
+		expect(within(dialog).getByText('第一章 · 迟到四十七秒')).toBeInTheDocument();
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+
+		expect(within(dialog).getByText('2 个章节 + 原始大纲')).toBeInTheDocument();
+		expect(within(dialog).getByText(/5 个文件/)).toBeInTheDocument();
+		await user.click(within(dialog).getByRole('button', { name: /创建并导入/ }));
+
+		await screen.findByRole('heading', { name: '作品大纲' });
+		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters.map(chapter => chapter.title))
+			.toEqual(['第一章 · 迟到四十七秒', '第二章 · 城市回声协议']);
+		expect(useAppStore.getState().activeResource).toBeUndefined();
 	});
 
 	it('keeps the global create menu useful without an open project', async () => {

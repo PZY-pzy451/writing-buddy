@@ -4,6 +4,8 @@ import {
 	ChevronLeft,
 	ChevronRight,
 	FileCheck2,
+	FileText,
+	FileUp,
 	FolderOpen,
 	LayoutTemplate,
 	Lightbulb,
@@ -12,7 +14,7 @@ import {
 	Sparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
 	projectTemplateRegistry,
 	type InitialResourceId,
@@ -30,6 +32,11 @@ import { useModalFocus } from '../../../accessibility/useModalFocus';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import type { CreationStartRoute } from '../../creation-journey/CreationJourneyModel';
+import {
+	analyzeDraftImport,
+	toProjectImportSource,
+	type DraftImportAnalysis
+} from '../application/DraftImportModel';
 import {
 	ProjectCreationError,
 	ProjectCreationService
@@ -66,8 +73,8 @@ const creationStartOptions: readonly {
 	{ id: 'ideas', title: '我只有几个想法', description: '记录 3–8 个零散要素，再逐步确认故事核心、方向和总纲。', result: '进入完整创作旅程（推荐）' },
 	{ id: 'synopsis', title: '我已经有故事梗概', description: '保留现有规划与资料工具，不自动改写梗概。', result: '进入作品仪表盘' },
 	{ id: 'character-world', title: '我先有了人物或世界', description: '保留人物和世界资料入口，不强迫先完成数据库。', result: '进入作品仪表盘' },
-	{ id: 'outline', title: '我已经有完整大纲', description: '直接整理项目结构和章节，不自动重写已有大纲。', result: '进入作品仪表盘' },
-	{ id: 'manuscript', title: '我已经写了一部分正文', description: '创建第一章并打开编辑器，方便粘贴或继续正文。', result: '打开第一章' },
+	{ id: 'outline', title: '我已经有完整大纲', description: '选择本地大纲，预览识别结果后创建章节；原始文件会保留。', result: '导入章节并进入作品仪表盘' },
+	{ id: 'manuscript', title: '我已经写了一部分正文', description: '选择本地正文，内容不经 AI 改写，原样写入第一章。', result: '导入并打开第一章' },
 	{ id: 'blank', title: '空白项目', description: '只创建最小项目，不生成章节、设定或 AI 内容。', result: '进入空白作品' }
 ] as const;
 
@@ -124,7 +131,10 @@ function draftWithStartRoute(
 	};
 }
 
-function toRequest(draft: WizardDraft): CreateProjectRequest {
+function toRequest(
+	draft: WizardDraft,
+	importAnalysis?: DraftImportAnalysis
+): CreateProjectRequest {
 	const selectedInitialResources = resourcesForStartRoute(
 		draft.selectedInitialResources,
 		draft.startRoute
@@ -139,7 +149,8 @@ function toRequest(draft: WizardDraft): CreateProjectRequest {
 		selectedInitialResources,
 		themeId: draft.themeId,
 		accentId: draft.accentId,
-		writingMode: draft.writingMode
+		writingMode: draft.writingMode,
+		...(importAnalysis ? { importSource: toProjectImportSource(importAnalysis) } : {})
 	};
 }
 
@@ -157,6 +168,10 @@ function resourcesForStartRoute(
 		selected.add('first-volume');
 		selected.add('first-chapter');
 	}
+	if (route === 'outline') {
+		selected.add('first-volume');
+		selected.delete('first-chapter');
+	}
 	return [...selected];
 }
 
@@ -168,6 +183,15 @@ const createErrorCopy: Readonly<Record<string, string>> = {
 	projectStagingWriteFailed: '写入项目结构时中断，临时内容已清理。',
 	projectStagingVerifyFailed: '项目结构校验失败，未保留半成品。',
 	projectAtomicRenameFailed: '最终保存项目时失败，未覆盖任何现有目录。',
+	importUnsupportedFormat: '仅支持 UTF-8 编码的 Markdown（.md/.markdown）或文本（.txt）文件。',
+	importSourceTooLarge: '文件超过 5 MiB，请拆分后再导入。',
+	importSourceBinary: '所选文件包含二进制内容，无法作为大纲或正文导入。',
+	importSourceInvalidUtf8: '所选文件不是有效的 UTF-8 文本。',
+	importSourceEmpty: '所选文件没有可导入的文字。',
+	importOutlineHasNoChapters: '没有识别到明确的章节标题。请使用“第一章 / Chapter 1 / 1. 标题”等行标记章节。',
+	importOutlineTooManyChapters: '一次最多导入 200 章，请拆分大纲后重试。',
+	importChapterTitleTooLong: '大纲中有超过 120 个字符的章节标题，请缩短后重试。',
+	importSourceReadFailed: '无法读取所选文件，请检查文件权限后重试。',
 	projectCreationFailed: '暂时无法创建项目，请检查保存位置后重试。'
 };
 
@@ -193,17 +217,26 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	});
 	const [preflight, setPreflight] = useState<ProjectCreationPreflight>();
 	const [issues, setIssues] = useState<readonly ProjectCreationIssue[]>([]);
+	const [importAnalysis, setImportAnalysis] = useState<DraftImportAnalysis>();
+	const [importError, setImportError] = useState('');
 	const [busy, setBusy] = useState(false);
 	const [status, setStatus] = useState('');
+	const contentRef = useRef<HTMLElement>(null);
 
-	const request = useMemo(() => toRequest(draft), [draft]);
-	const isDirty = JSON.stringify(draft) !== JSON.stringify(defaultDraft());
+	useEffect(() => {
+		contentRef.current?.scrollTo?.({ top: 0 });
+	}, [step]);
+
+	const request = useMemo(() => toRequest(draft, importAnalysis), [draft, importAnalysis]);
+	const isDirty = Boolean(importAnalysis) || JSON.stringify(draft) !== JSON.stringify(defaultDraft());
 
 	const reset = () => {
 		setStep(0);
 		setDraft(defaultDraft());
 		setPreflight(undefined);
 		setIssues([]);
+		setImportAnalysis(undefined);
+		setImportError('');
 		setBusy(false);
 		setStatus('');
 	};
@@ -247,6 +280,10 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 
 	const selectStartRoute = (startRoute: CreationStartRoute) => {
 		setDraft(current => draftWithStartRoute(current, startRoute));
+		if (startRoute !== draft.startRoute) {
+			setImportAnalysis(undefined);
+			setImportError('');
+		}
 		setIssues([]);
 		setPreflight(undefined);
 	};
@@ -254,6 +291,34 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const browse = async () => {
 		const root = await creationService.chooseParentDirectory();
 		if (root) updateDraft('rootDirectory', root);
+	};
+
+	const chooseImport = async () => {
+		if (draft.startRoute !== 'outline' && draft.startRoute !== 'manuscript') return;
+		setBusy(true);
+		setImportError('');
+		setStatus(draft.startRoute === 'outline' ? '请选择 UTF-8 大纲文件…' : '请选择 UTF-8 正文文件…');
+		try {
+			const file = await creationService.chooseImportedText(draft.startRoute);
+			if (!file) {
+				setStatus(importAnalysis ? '已取消选择，保留当前导入文件。' : '已取消选择，尚未添加文件。');
+				return;
+			}
+			const analysis = analyzeDraftImport(file, draft.startRoute);
+			setImportAnalysis(analysis);
+			setIssues([]);
+			setPreflight(undefined);
+			setStatus(draft.startRoute === 'outline'
+				? `已识别 ${analysis.chapters.length} 章；请核对预览。`
+				: `已读取 ${analysis.wordCount.toLocaleString()} 字；正文不会被改写。`);
+		} catch (error) {
+			const code = error instanceof Error ? error.message.split(':')[0] : 'importSourceReadFailed';
+			const message = createErrorCopy[code] ?? createErrorCopy.importSourceReadFailed;
+			setImportError(message);
+			setStatus(message);
+		} finally {
+			setBusy(false);
+		}
 	};
 
 	const runPreflight = async (): Promise<boolean> => {
@@ -279,6 +344,12 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	};
 
 	const next = async () => {
+		if (step === 1 && (draft.startRoute === 'outline' || draft.startRoute === 'manuscript') && !importAnalysis) {
+			const message = draft.startRoute === 'outline' ? '请先选择并核对大纲文件。' : '请先选择并核对正文文件。';
+			setImportError(message);
+			setStatus(message);
+			return;
+		}
 		if (step === 0 || step === 3) {
 			if (!await runPreflight()) return;
 		}
@@ -296,7 +367,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 			}
 		}
 		setBusy(true);
-		setStatus('正在安全创建项目并验证可重新打开…');
+		setStatus(importAnalysis ? '正在安全创建、导入并验证可重新打开…' : '正在安全创建项目并验证可重新打开…');
 		try {
 			const created = await creationService.create(request);
 			await openProject(created.root);
@@ -308,7 +379,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 				: undefined;
 			if (draft.startRoute === 'genre' || draft.startRoute === 'ideas') {
 				openCreationJourney(draft.startRoute);
-			} else if (chapter && state.snapshot && draft.writingMode === 'manuscriptFirst') {
+			} else if (chapter && state.snapshot && draft.writingMode === 'manuscriptFirst' && draft.startRoute !== 'outline') {
 				await openResource({
 					id: chapter.id,
 					type: 'chapter',
@@ -391,7 +462,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 					})}
 				</nav>
 
-				<section className="wizard-content">
+				<section ref={contentRef} className="wizard-content">
 					{step === 0 && (
 						<div className="wizard-step-panel" aria-labelledby="wizard-basics-title">
 							<div className="wizard-step-title">
@@ -508,6 +579,55 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									</button>
 								))}
 							</fieldset>
+							{(draft.startRoute === 'outline' || draft.startRoute === 'manuscript') && (
+								<section className={`draft-import-card ${importAnalysis ? 'is-ready' : ''}`} aria-labelledby="draft-import-title">
+									<div className="draft-import-heading">
+										<span className="draft-import-icon" aria-hidden="true">
+											{importAnalysis ? <FileText size={22} /> : <FileUp size={22} />}
+										</span>
+										<div>
+											<strong id="draft-import-title">
+												{draft.startRoute === 'outline' ? '添加已有大纲文件' : '添加已有正文文件'}
+											</strong>
+											<small>支持 UTF-8 的 .md、.markdown、.txt，最大 5 MiB</small>
+										</div>
+										<button className={importAnalysis ? 'secondary-button' : 'primary-button'} type="button" onClick={() => void chooseImport()} disabled={busy}>
+											<FileUp size={18} />{importAnalysis ? '替换文件' : '选择文件'}
+										</button>
+									</div>
+									{importAnalysis && (
+										<div className="draft-import-review">
+											<div className="draft-import-file">
+												<span><strong>{importAnalysis.file.fileName}</strong><small>{(importAnalysis.file.byteLength / 1024).toFixed(1)} KiB · {importAnalysis.file.format === 'markdown' ? 'Markdown' : '纯文本'}</small></span>
+												<span className="draft-import-metrics">
+													{draft.startRoute === 'outline'
+														? `${importAnalysis.chapters.length} 章`
+														: `${importAnalysis.wordCount.toLocaleString()} 字 · ${importAnalysis.paragraphCount} 段`}
+												</span>
+											</div>
+											{draft.startRoute === 'outline' && (
+												<ol className="draft-import-chapters" aria-label="识别到的章节">
+													{importAnalysis.chapters.slice(0, 5).map((chapter, index) => <li key={`${index}:${chapter.title}`}>{chapter.title}</li>)}
+													{importAnalysis.chapters.length > 5 && <li>另有 {importAnalysis.chapters.length - 5} 章…</li>}
+												</ol>
+											)}
+											<details className="draft-import-preview">
+												<summary>查看原文预览</summary>
+												<pre>{importAnalysis.preview}</pre>
+											</details>
+											<div className="draft-import-safety"><Check size={16} /><span>{draft.startRoute === 'outline' ? '原始大纲会完整保存在项目中，章节标题只来自明确标记。' : '正文将原样写入第一章，不会调用 AI 或改写内容。'}</span></div>
+											<button className="text-button draft-import-remove" type="button" onClick={() => {
+												setImportAnalysis(undefined);
+												setImportError('');
+												setPreflight(undefined);
+												setStatus('已移除导入文件。');
+											}}>移除文件</button>
+										</div>
+									)}
+									{importError && <p className="wizard-inline-error" role="alert">{importError}</p>}
+									{fieldIssue(issues, 'importSource') && <p className="wizard-inline-error" role="alert">{fieldIssue(issues, 'importSource')}</p>}
+								</section>
+							)}
 						</div>
 					)}
 
@@ -646,6 +766,8 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									<div><dt>写作方式</dt><dd>{draft.writingMode === 'manuscriptFirst' ? '正文优先' : '故事规划优先'}</dd></div>
 									<div><dt>AI 快速入口</dt><dd>{draft.selectedInitialResources.includes('ai-quick-actions') ? '启用（不自动请求）' : '关闭'}</dd></div>
 									<div><dt>初始资源</dt><dd>{draft.selectedInitialResources.length} 项</dd></div>
+									{importAnalysis && <div><dt>导入文件</dt><dd>{importAnalysis.file.fileName}</dd></div>}
+									{importAnalysis && <div><dt>导入结果</dt><dd>{importAnalysis.kind === 'outline' ? `${importAnalysis.chapters.length} 个章节 + 原始大纲` : `${importAnalysis.wordCount.toLocaleString()} 字写入第一章`}</dd></div>}
 									<div><dt>创建规模</dt><dd>{preflight?.createdDirectoryCount ?? '—'} 个目录 · {preflight?.createdFileCount ?? '—'} 个文件</dd></div>
 								</dl>
 								<div className="creation-safety-note">
@@ -680,7 +802,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						</button>
 					)}
 					<button className="primary-button wizard-next" type="submit" disabled={busy}>
-						{step === 4 ? <><Sparkles size={18} />{busy ? '正在创建…' : '创建项目'}</> : <>下一步<ChevronRight size={18} /></>}
+						{step === 4 ? <><Sparkles size={18} />{busy ? (importAnalysis ? '正在导入…' : '正在创建…') : (importAnalysis ? '创建并导入' : '创建项目')}</> : <>下一步<ChevronRight size={18} /></>}
 					</button>
 				</footer>
 			</form>

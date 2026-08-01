@@ -4,31 +4,45 @@ Updated: 2026-08-01
 
 ## Active milestone
 
+Phase 1.2I safe local outline and manuscript import is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Welcome-page outline/manuscript imports now select real local Markdown/text
+  files, show a deterministic preview and require confirmation before writing.
+- Manuscript text is preserved exactly in the first chapter. Outline imports
+  materialize explicit headings as chapters and retain the exact original file
+  under `.writing-buddy/imports/` without any AI call.
+- Native validation bounds format, UTF-8, binary content, file size and chapter
+  count. The complete import participates in staging, reopen verification and
+  atomic rename, so failure leaves no partial target project.
+- Browser review moved the active import task above unrelated starts and fixed
+  retained scroll position between wizard steps. 1440×900 and 820×720 pass
+  without horizontal overflow or sub-44 px import controls.
+- Final gates: 162 Vitest files / 648 tests, production Vite build, Cargo format,
+  71 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2i-safe-draft-import-2026-08-01/`;
+  evidence:
+  `docs/acceptance/066-phase-1.2i-safe-local-draft-import-2026-08-01.md`.
+
+## Previous milestones
+
 Phase 1.2H whole-work export and backup trust center is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
 
-- `历史与导出` now leads with one `导出作品` primary action and assembles every
-  volume/chapter in canonical order as Markdown or plain text. Current-chapter
-  export remains available as a secondary action.
-- Dirty-save failure, export failure and dialog cancellation are fail-before-
-  receipt. Successful receipts distinguish whole work/chapter while migrating
-  Phase 1.2G records that did not yet carry a scope.
-- Existing `.wbbackup` create/select/inspect/confirmed-restore is now visible
-  beside export and snapshots in History, using the same reusable component as
-  the task dock.
-- Browser acceptance found and fixed a collapsed 2 px backup row. The rerun
-  acceptance passed at 1440×900, 1280×800, 1024×720 and 820×720 with no page
-  overflow, clipped controls, sub-44 px History controls or runtime errors.
+- `历史与导出` leads with whole-work Markdown/plain-text export in canonical
+  project order while current-chapter export remains secondary.
+- Export receipts distinguish work/chapter scope, and History exposes the
+  inspected, confirmed `.wbbackup` workflow.
 - Final gates: 161 Vitest files / 643 tests, production Vite build, Cargo format,
-  68 Rust tests / 2 ignored, Tauri Release/NSIS and portable title/WebView/
-  no-debug-port/normal-close smoke.
+  68 Rust tests / 2 ignored, Tauri Release/NSIS and native portable smoke.
 - Delivery:
   `artifacts/release/phase-1.2h-whole-work-export-backup-2026-08-01/`;
   evidence:
   `docs/acceptance/065-phase-1.2h-whole-work-export-backup-2026-08-01.md`.
-
-## Previous milestones
 
 Phase 1.2G chapter completion and export trust is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

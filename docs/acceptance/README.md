@@ -102,6 +102,7 @@
 - [Phase 1.2F task closure visual metrics](./phase-1.2f-task-closure-visual-metrics.json)
 - [Phase 1.2G export trust visual metrics](./phase-1.2g-export-trust-visual-metrics.json)
 - [Phase 1.2H work export and backup visual metrics](./phase-1.2h-work-export-backup-visual-metrics.json)
+- [Phase 1.2I draft import visual metrics](./phase-1.2i-draft-import-visual-metrics.json)
 - [Gate F performance report](./storyforge-performance.json)
 - [Gate F data recovery report](./storyforge-data-recovery.md)
 - [Gate F final desktop evidence](./storyforge-final-desktop.json)

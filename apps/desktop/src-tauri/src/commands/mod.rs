@@ -1,6 +1,7 @@
 use std::{
     collections::{BTreeSet, HashMap, HashSet},
     fs,
+    io::Read,
     path::{Path, PathBuf},
     process::Command,
     sync::atomic::{AtomicU64, Ordering},
@@ -96,6 +97,35 @@ pub struct CreateProjectRequest {
     theme_id: String,
     accent_id: String,
     writing_mode: String,
+    #[serde(default)]
+    import_source: Option<ProjectImportSource>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ProjectImportSource {
+    kind: String,
+    file_name: String,
+    format: String,
+    content: String,
+    byte_length: usize,
+    chapters: Vec<ImportedOutlineChapter>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ImportedOutlineChapter {
+    title: String,
+    note: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ImportedTextFile {
+    file_name: String,
+    format: &'static str,
+    content: String,
+    byte_length: usize,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -280,6 +310,80 @@ pub fn choose_project_parent_directory() -> Option<String> {
         .map(|path| path.to_string_lossy().into_owned())
 }
 
+const IMPORT_MAX_BYTES: usize = 5 * 1024 * 1024;
+
+fn imported_text_from_path(path: &Path) -> Result<ImportedTextFile, String> {
+    let file = fs::File::open(path).map_err(|_| "importSourceReadFailed".to_owned())?;
+    let metadata = file
+        .metadata()
+        .map_err(|_| "importSourceReadFailed".to_owned())?;
+    if !metadata.is_file() {
+        return Err("importSourceNotFile".to_owned());
+    }
+    let metadata_length = usize::try_from(metadata.len()).unwrap_or(usize::MAX);
+    if metadata_length == 0 {
+        return Err("importSourceEmpty".to_owned());
+    }
+    if metadata_length > IMPORT_MAX_BYTES {
+        return Err("importSourceTooLarge".to_owned());
+    }
+    let extension = path
+        .extension()
+        .and_then(|value| value.to_str())
+        .map(str::to_ascii_lowercase)
+        .ok_or_else(|| "importUnsupportedFormat".to_owned())?;
+    let format = match extension.as_str() {
+        "md" | "markdown" => "markdown",
+        "txt" => "plain-text",
+        _ => return Err("importUnsupportedFormat".to_owned()),
+    };
+    let mut bytes = Vec::with_capacity(metadata_length.min(IMPORT_MAX_BYTES));
+    file.take((IMPORT_MAX_BYTES + 1) as u64)
+        .read_to_end(&mut bytes)
+        .map_err(|_| "importSourceReadFailed".to_owned())?;
+    if bytes.len() > IMPORT_MAX_BYTES {
+        return Err("importSourceTooLarge".to_owned());
+    }
+    let byte_length = bytes.len();
+    if bytes.contains(&0) {
+        return Err("importSourceBinary".to_owned());
+    }
+    let decoded = String::from_utf8(bytes).map_err(|_| "importSourceInvalidUtf8".to_owned())?;
+    let content = decoded
+        .strip_prefix('\u{feff}')
+        .unwrap_or(&decoded)
+        .to_owned();
+    if content.trim().is_empty() {
+        return Err("importSourceEmpty".to_owned());
+    }
+    let file_name = path
+        .file_name()
+        .and_then(|value| value.to_str())
+        .ok_or_else(|| "importSourceNameInvalid".to_owned())?
+        .to_owned();
+    Ok(ImportedTextFile {
+        file_name,
+        format,
+        content,
+        byte_length,
+    })
+}
+
+#[tauri::command]
+pub fn choose_imported_text(kind: String) -> Result<Option<ImportedTextFile>, String> {
+    let title = match kind.as_str() {
+        "outline" => "选择已有大纲",
+        "manuscript" => "选择已有正文",
+        _ => return Err("importKindInvalid".to_owned()),
+    };
+    rfd::FileDialog::new()
+        .set_title(title)
+        .add_filter("Markdown 或文本", &["md", "markdown", "txt"])
+        .pick_file()
+        .map(|path| imported_text_from_path(&path))
+        .transpose()
+}
+
 fn creation_issue(
     field: &'static str,
     code: &'static str,
@@ -290,6 +394,65 @@ fn creation_issue(
         code,
         message,
     }
+}
+
+fn validate_import_source(source: &ProjectImportSource) -> Result<(), &'static str> {
+    if !matches!(source.kind.as_str(), "outline" | "manuscript") {
+        return Err("importKindInvalid");
+    }
+    if source.file_name.trim().is_empty()
+        || source.file_name.chars().count() > 255
+        || Path::new(&source.file_name)
+            .file_name()
+            .and_then(|value| value.to_str())
+            != Some(source.file_name.as_str())
+    {
+        return Err("importSourceNameInvalid");
+    }
+    let extension = Path::new(&source.file_name)
+        .extension()
+        .and_then(|value| value.to_str())
+        .map(str::to_ascii_lowercase)
+        .ok_or("importUnsupportedFormat")?;
+    let format_matches = matches!(
+        (source.format.as_str(), extension.as_str()),
+        ("markdown", "md" | "markdown") | ("plain-text", "txt")
+    );
+    if !format_matches {
+        return Err("importUnsupportedFormat");
+    }
+    let content_bytes = source.content.len();
+    if source.content.trim().is_empty() || source.byte_length == 0 {
+        return Err("importSourceEmpty");
+    }
+    if content_bytes > IMPORT_MAX_BYTES
+        || source.byte_length > IMPORT_MAX_BYTES
+        || source.byte_length < content_bytes
+        || source.byte_length.saturating_sub(content_bytes) > 3
+    {
+        return Err("importSourceTooLarge");
+    }
+    if source.content.contains('\0') {
+        return Err("importSourceBinary");
+    }
+    if source.kind == "manuscript" && !source.chapters.is_empty() {
+        return Err("importManuscriptPlanInvalid");
+    }
+    if source.kind == "outline" {
+        if source.chapters.is_empty() || source.chapters.len() > 200 {
+            return Err("importOutlinePlanInvalid");
+        }
+        if source.chapters.iter().any(|chapter| {
+            let title = chapter.title.trim();
+            title.is_empty()
+                || title.chars().count() > 120
+                || title.contains(['\r', '\n'])
+                || chapter.note.chars().count() > 4_000
+        }) {
+            return Err("importOutlinePlanInvalid");
+        }
+    }
+    Ok(())
 }
 
 fn valid_project_name(name: &str) -> Result<(), ProjectCreationIssue> {
@@ -345,8 +508,15 @@ fn creation_directories(request: &CreateProjectRequest) -> BTreeSet<&'static str
         .map(String::as_str)
         .collect::<BTreeSet<_>>();
     let mut directories = BTreeSet::from(["", ".writing-buddy"]);
-    if selected.contains("first-chapter") {
+    if selected.contains("first-chapter") || request.import_source.is_some() {
         directories.insert("chapters");
+    }
+    if request
+        .import_source
+        .as_ref()
+        .is_some_and(|source| source.kind == "outline")
+    {
+        directories.insert(".writing-buddy/imports");
     }
     if selected.contains("character-category") {
         directories.insert("references");
@@ -376,17 +546,29 @@ fn creation_directories(request: &CreateProjectRequest) -> BTreeSet<&'static str
 }
 
 fn creation_file_count(request: &CreateProjectRequest) -> usize {
-    2 + usize::from(
-        request
-            .selected_initial_resources
-            .iter()
-            .any(|value| value == "first-chapter"),
-    ) + usize::from(
-        request
-            .selected_initial_resources
-            .iter()
-            .any(|value| value == "sample-content"),
-    )
+    let chapter_count = match request.import_source.as_ref() {
+        Some(source) if source.kind == "outline" => source.chapters.len(),
+        Some(_) => 1,
+        None => usize::from(
+            request
+                .selected_initial_resources
+                .iter()
+                .any(|value| value == "first-chapter"),
+        ),
+    };
+    2 + chapter_count
+        + usize::from(
+            request
+                .import_source
+                .as_ref()
+                .is_some_and(|source| source.kind == "outline"),
+        )
+        + usize::from(
+            request
+                .selected_initial_resources
+                .iter()
+                .any(|value| value == "sample-content"),
+        )
 }
 
 #[tauri::command]
@@ -462,6 +644,24 @@ pub fn preflight_project_creation(request: CreateProjectRequest) -> ProjectCreat
             "firstChapterRequiresVolume",
             "创建第一章草稿时必须同时创建第一卷。",
         ));
+    }
+    if let Some(source) = &request.import_source {
+        if let Err(code) = validate_import_source(source) {
+            issues.push(creation_issue(
+                "importSource",
+                code,
+                "导入文件或章节结构无效，请重新选择文件。",
+            ));
+        }
+        if !selected.contains("first-volume")
+            || (source.kind == "manuscript" && !selected.contains("first-chapter"))
+        {
+            issues.push(creation_issue(
+                "selectedInitialResources",
+                "importRequiresInitialStructure",
+                "导入内容需要同时创建第一卷和对应章节。",
+            ));
+        }
     }
 
     let parent = match filesystem::canonical_project_root(&request.root_directory) {
@@ -551,16 +751,38 @@ fn create_project_in_staging(
     );
     let project_id = creation_id("project", &nonce);
     let volume_id = creation_id("volume", &format!("{nonce}:volume"));
-    let first_chapter_id = selected
-        .contains("first-chapter")
-        .then(|| creation_id("chapter", &format!("{nonce}:chapter")));
-    let chapters = first_chapter_id
-        .as_ref()
-        .map(|chapter_id| {
-            vec![json!({
+    let chapter_plans = match request.import_source.as_ref() {
+        Some(source) if source.kind == "outline" => source
+            .chapters
+            .iter()
+            .map(|chapter| (chapter.title.trim().to_owned(), chapter.note.clone()))
+            .collect::<Vec<_>>(),
+        Some(_) => vec![("第一章".to_owned(), String::new())],
+        None if selected.contains("first-chapter") => {
+            vec![("第一章".to_owned(), String::new())]
+        }
+        None => Vec::new(),
+    };
+    let chapter_entries = chapter_plans
+        .iter()
+        .enumerate()
+        .map(|(index, (title, note))| {
+            (
+                creation_id("chapter", &format!("{nonce}:chapter:{index}")),
+                title.clone(),
+                format!("chapters/chapter-{:03}.md", index + 1),
+                note.clone(),
+            )
+        })
+        .collect::<Vec<_>>();
+    let first_chapter_id = chapter_entries.first().map(|entry| entry.0.clone());
+    let chapters = chapter_entries
+        .iter()
+        .map(|(chapter_id, title, file, note)| {
+            json!({
                 "id": chapter_id,
-                "title": "第一章",
-                "file": "chapters/chapter-001.md",
+                "title": title,
+                "file": file,
                 "status": "draft",
                 "scene": {
                     "location": "",
@@ -568,11 +790,11 @@ fn create_project_in_staging(
                     "pov": "",
                     "characters": [],
                     "goal": "",
-                    "note": ""
+                    "note": note
                 }
-            })]
+            })
         })
-        .unwrap_or_default();
+        .collect::<Vec<_>>();
     let volumes = if selected.contains("first-volume") {
         vec![json!({
             "id": volume_id,
@@ -604,13 +826,42 @@ fn create_project_in_staging(
             "accentId": request.accent_id,
             "writingMode": request.writing_mode,
             "aiQuickActionsEnabled": selected.contains("ai-quick-actions"),
+            "importSource": request.import_source.as_ref().map(|source| json!({
+                "kind": source.kind,
+                "fileName": source.file_name,
+                "format": source.format,
+                "byteLength": source.byte_length,
+                "chapterCount": source.chapters.len(),
+                "importedAt": Utc::now().to_rfc3339()
+            })),
             "createdAt": Utc::now().to_rfc3339()
         }),
     )?;
-    if first_chapter_id.is_some() {
+    for (index, (_, title, file, _)) in chapter_entries.iter().enumerate() {
+        let content = match request.import_source.as_ref() {
+            Some(source) if source.kind == "manuscript" && index == 0 => {
+                source.content.as_bytes().to_vec()
+            }
+            _ => format!("# {title}\n\n").into_bytes(),
+        };
+        filesystem::write_bytes_atomic(&staging.join(file), &content)?;
+    }
+    if let Some(source) = request
+        .import_source
+        .as_ref()
+        .filter(|source| source.kind == "outline")
+    {
+        let extension = if source.format == "markdown" {
+            "md"
+        } else {
+            "txt"
+        };
         filesystem::write_bytes_atomic(
-            &staging.join("chapters").join("chapter-001.md"),
-            "# 第一章\n\n".as_bytes(),
+            &staging
+                .join(".writing-buddy")
+                .join("imports")
+                .join(format!("original-outline.{extension}")),
+            source.content.as_bytes(),
         )?;
     }
     if selected.contains("sample-content") {
@@ -3313,6 +3564,7 @@ mod tests {
             theme_id: "paper".to_owned(),
             accent_id: "gold".to_owned(),
             writing_mode: "manuscriptFirst".to_owned(),
+            import_source: None,
         }
     }
 
@@ -3430,6 +3682,110 @@ mod tests {
                 .to_string_lossy()
                 .starts_with(".writing-buddy-project-staging-")
         }));
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn imported_text_reader_accepts_utf8_bom_and_rejects_binary_or_oversized_sources() {
+        let root = project_creation_parent("import-reader");
+        let markdown = root.join("outline.md");
+        fs::write(&markdown, b"\xef\xbb\xbf## First chapter\nNotes").expect("write markdown");
+        let imported = imported_text_from_path(&markdown).expect("read import");
+        assert_eq!(imported.file_name, "outline.md");
+        assert_eq!(imported.format, "markdown");
+        assert_eq!(imported.content, "## First chapter\nNotes");
+
+        let binary = root.join("binary.txt");
+        fs::write(&binary, b"text\0payload").expect("write binary");
+        assert_eq!(
+            imported_text_from_path(&binary).expect_err("reject binary"),
+            "importSourceBinary"
+        );
+
+        let unsupported = root.join("outline.docx");
+        fs::write(&unsupported, b"not a docx").expect("write unsupported");
+        assert_eq!(
+            imported_text_from_path(&unsupported).expect_err("reject format"),
+            "importUnsupportedFormat"
+        );
+
+        let oversized = root.join("oversized.md");
+        fs::File::create(&oversized)
+            .expect("create oversized source")
+            .set_len((IMPORT_MAX_BYTES + 1) as u64)
+            .expect("size oversized source");
+        assert_eq!(
+            imported_text_from_path(&oversized).expect_err("reject oversized source"),
+            "importSourceTooLarge"
+        );
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn manuscript_import_is_verified_and_preserves_the_selected_text() {
+        let root = project_creation_parent("manuscript-import");
+        let content = "雨落在旧站台。\r\n\r\nSomething changed.";
+        let mut request = project_creation_request(&root, "Imported Manuscript", "blank-longform");
+        request.import_source = Some(ProjectImportSource {
+            kind: "manuscript".to_owned(),
+            file_name: "draft.txt".to_owned(),
+            format: "plain-text".to_owned(),
+            content: content.to_owned(),
+            byte_length: content.len(),
+            chapters: Vec::new(),
+        });
+
+        let created = create_project(request).expect("create imported manuscript");
+        assert_eq!(
+            fs::read_to_string(Path::new(&created.root).join("chapters/chapter-001.md"))
+                .expect("read imported chapter"),
+            content
+        );
+        assert_eq!(created.created_file_count, 3);
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn outline_import_materializes_chapters_and_preserves_original_in_one_transaction() {
+        let root = project_creation_parent("outline-import");
+        let content = "# Outline\n\n## 第一章 雨夜\n顾言收到信。\n\n## 第二章 回声\n信号重现。";
+        let mut request = project_creation_request(&root, "Imported Outline", "blank-longform");
+        request
+            .selected_initial_resources
+            .retain(|value| value != "first-chapter");
+        request.writing_mode = "planningFirst".to_owned();
+        request.import_source = Some(ProjectImportSource {
+            kind: "outline".to_owned(),
+            file_name: "outline.md".to_owned(),
+            format: "markdown".to_owned(),
+            content: content.to_owned(),
+            byte_length: content.len(),
+            chapters: vec![
+                ImportedOutlineChapter {
+                    title: "第一章 雨夜".to_owned(),
+                    note: "顾言收到信。".to_owned(),
+                },
+                ImportedOutlineChapter {
+                    title: "第二章 回声".to_owned(),
+                    note: "信号重现。".to_owned(),
+                },
+            ],
+        });
+
+        let created = create_project(request).expect("create imported outline");
+        let reopened = migration::open_project(&created.root).expect("reopen imported outline");
+        let chapters = &reopened.project.volumes[0].chapters;
+        assert_eq!(chapters.len(), 2);
+        assert_eq!(chapters[0].title, "第一章 雨夜");
+        assert_eq!(chapters[0].scene.note, "顾言收到信。");
+        assert_eq!(
+            fs::read_to_string(
+                Path::new(&created.root).join(".writing-buddy/imports/original-outline.md")
+            )
+            .expect("read original outline"),
+            content
+        );
+        assert_eq!(created.created_file_count, 5);
         let _ = fs::remove_dir_all(root);
     }
 

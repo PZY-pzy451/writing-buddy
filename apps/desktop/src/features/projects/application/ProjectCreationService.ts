@@ -2,12 +2,14 @@ import type {
 	CreateProjectRequest,
 	CreatedProject,
 	DesktopBridge,
+	ImportedTextFile,
+	ProjectImportKind,
 	ProjectCreationPreflight
 } from '@writing-buddy/platform-ports';
 
 type ProjectCreationGateway = Pick<
 	DesktopBridge,
-	'chooseProjectParentDirectory' | 'preflightProjectCreation' | 'createProject'
+	'chooseProjectParentDirectory' | 'chooseImportedText' | 'preflightProjectCreation' | 'createProject'
 >;
 
 export class ProjectCreationError extends Error {
@@ -22,6 +24,10 @@ export class ProjectCreationService {
 
 	chooseParentDirectory(): Promise<string | undefined> {
 		return this.gateway.chooseProjectParentDirectory();
+	}
+
+	chooseImportedText(kind: ProjectImportKind): Promise<ImportedTextFile | undefined> {
+		return this.gateway.chooseImportedText(kind);
 	}
 
 	preflight(request: CreateProjectRequest): Promise<ProjectCreationPreflight> {

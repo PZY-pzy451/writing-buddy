@@ -178,6 +178,25 @@ export type ProjectOpenMode = 'read-write' | 'read-only';
 export type ProjectThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type ProjectAccentId = 'gold' | 'blue' | 'purple';
 export type ProjectWritingMode = 'manuscriptFirst' | 'planningFirst';
+export type ProjectImportKind = 'outline' | 'manuscript';
+export type ImportedTextFormat = 'markdown' | 'plain-text';
+
+export interface ImportedTextFile {
+	readonly fileName: string;
+	readonly format: ImportedTextFormat;
+	readonly content: string;
+	readonly byteLength: number;
+}
+
+export interface ImportedOutlineChapter {
+	readonly title: string;
+	readonly note: string;
+}
+
+export interface ProjectImportSource extends ImportedTextFile {
+	readonly kind: ProjectImportKind;
+	readonly chapters: readonly ImportedOutlineChapter[];
+}
 
 export interface ProjectAppearance {
 	readonly themeId: ProjectThemeId;
@@ -197,6 +216,7 @@ export interface CreateProjectRequest {
 	readonly themeId: ProjectThemeId;
 	readonly accentId: ProjectAccentId;
 	readonly writingMode: ProjectWritingMode;
+	readonly importSource?: ProjectImportSource;
 }
 
 export type ProjectCreationField =
@@ -204,6 +224,7 @@ export type ProjectCreationField =
 	| 'rootDirectory'
 	| 'templateId'
 	| 'selectedInitialResources'
+	| 'importSource'
 	| 'themeId'
 	| 'request';
 
@@ -418,6 +439,7 @@ export interface StoryIndexGateway {
 export interface DesktopBridge extends StoryStorageGateway, MentionStorageGateway, StoryIndexGateway {
 	chooseProject(): Promise<string | undefined>;
 	chooseProjectParentDirectory(): Promise<string | undefined>;
+	chooseImportedText(kind: ProjectImportKind): Promise<ImportedTextFile | undefined>;
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
 	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult>;

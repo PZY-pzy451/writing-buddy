@@ -40,6 +40,7 @@
 - [Phase 1.2F task-to-action closure](./038-phase-1.2f-task-to-action-closure.md)
 - [Phase 1.2G chapter completion and export trust](./039-phase-1.2g-chapter-completion-export.md)
 - [Phase 1.2H whole-work export and backup trust center](./040-phase-1.2h-whole-work-export-backup.md)
+- [Phase 1.2I safe local outline and manuscript import](./041-phase-1.2i-safe-local-draft-import.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

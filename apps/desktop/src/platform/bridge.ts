@@ -24,11 +24,13 @@ import type {
 	CreateProjectRequest,
 	CreatedProject,
 	DesktopBridge,
+	ImportedTextFile,
 	MaterializeCreationJourneyRequest,
 	MaterializeCreationJourneyResult,
 	MaterializeOutlineHierarchyRequest,
 	MaterializeOutlineHierarchyResult,
 	ProjectCreationPreflight,
+	ProjectImportKind,
 	ProjectOpenMode,
 	ProjectRepairResult,
 	ProjectSnapshot,
@@ -67,6 +69,10 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	chooseProjectParentDirectory(): Promise<string | undefined> {
 		return invoke<string | null>('choose_project_parent_directory').then(value => value ?? undefined);
+	}
+
+	chooseImportedText(kind: ProjectImportKind): Promise<ImportedTextFile | undefined> {
+		return invoke<ImportedTextFile | null>('choose_imported_text', { kind }).then(value => value ?? undefined);
 	}
 
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight> {
@@ -980,6 +986,18 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return 'D:\\WritingBuddy\\Projects';
 	}
 
+	async chooseImportedText(kind: ProjectImportKind): Promise<ImportedTextFile> {
+		const content = kind === 'outline'
+			? '# 零点回声\n\n## 第一章 · 迟到四十七秒\n旧站台恢复供电。\n\n## 第二章 · 城市回声协议\n顾言追踪异常信号。'
+			: '雨落在旧站台的玻璃顶上。\n\n顾言把那封没有寄件人的信放在灯下。';
+		return {
+			fileName: kind === 'outline' ? '零点回声大纲.md' : '已有正文.txt',
+			format: kind === 'outline' ? 'markdown' : 'plain-text',
+			content,
+			byteLength: new TextEncoder().encode(content).byteLength
+		};
+	}
+
 	async preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight> {
 		const issues: ProjectCreationPreflight['issues'][number][] = [];
 		const name = request.name.trim();
@@ -1003,6 +1021,20 @@ class BrowserDesktopBridge implements DesktopBridge {
 				message: '创建第一章草稿时必须同时创建第一卷。'
 			});
 		}
+		if (request.importSource) {
+			const source = request.importSource;
+			const validFile = source.fileName.length > 0
+				&& source.byteLength > 0
+				&& source.byteLength <= 5 * 1024 * 1024
+				&& source.content.trim().length > 0
+				&& !source.content.includes('\0')
+				&& (source.kind === 'manuscript'
+					? source.chapters.length === 0
+					: source.chapters.length > 0 && source.chapters.length <= 200);
+			if (!validFile) {
+				issues.push({ field: 'importSource', code: 'importSourceInvalid', message: '导入文件或章节结构无效，请重新选择文件。' });
+			}
+		}
 		const targetRoot = request.rootDirectory && name
 			? `${request.rootDirectory.replace(/[\\/]+$/, '')}\\${name}`
 			: undefined;
@@ -1011,7 +1043,8 @@ class BrowserDesktopBridge implements DesktopBridge {
 		}
 		const selected = new Set(request.selectedInitialResources);
 		const directories = new Set(['', '.writing-buddy']);
-		if (selected.has('first-chapter')) directories.add('chapters');
+		if (selected.has('first-chapter') || request.importSource) directories.add('chapters');
+		if (request.importSource?.kind === 'outline') directories.add('.writing-buddy/imports');
 		if (selected.has('character-category')) {
 			directories.add('references');
 			directories.add('references/characters');
@@ -1037,7 +1070,11 @@ class BrowserDesktopBridge implements DesktopBridge {
 		return {
 			valid: issues.length === 0,
 			...(targetRoot ? { targetRoot } : {}),
-			createdFileCount: 2 + Number(selected.has('first-chapter')) + Number(selected.has('sample-content')),
+			createdFileCount: 2
+				+ (request.importSource?.kind === 'outline'
+					? request.importSource.chapters.length + 1
+					: Number(Boolean(request.importSource) || selected.has('first-chapter')))
+				+ Number(selected.has('sample-content')),
 			createdDirectoryCount: directories.size,
 			issues
 		};
@@ -1052,22 +1089,26 @@ class BrowserDesktopBridge implements DesktopBridge {
 			(total * 31 + (character.codePointAt(0) ?? 0)) | 0
 		), 17)).toString(16).padStart(8, '0').slice(-8);
 		const projectId = `project-${suffix}`;
-		const firstChapter = request.selectedInitialResources.includes('first-chapter')
-			? {
-				id: `chapter-${suffix}`,
-				title: '第一章',
-				file: 'chapters/chapter-001.md',
-				status: 'draft' as const,
-				scene: {
-					location: '',
-					time: '',
-					pov: '',
-					characters: [],
-					goal: '',
-					note: ''
-				}
+		const chapterPlans = request.importSource?.kind === 'outline'
+			? request.importSource.chapters
+			: (request.importSource || request.selectedInitialResources.includes('first-chapter'))
+				? [{ title: '第一章', note: '' }]
+				: [];
+		const chapters = chapterPlans.map((plan, index) => ({
+			id: `chapter-${suffix}-${index + 1}`,
+			title: plan.title,
+			file: `chapters/chapter-${String(index + 1).padStart(3, '0')}.md`,
+			status: 'draft' as const,
+			scene: {
+				location: '',
+				time: '',
+				pov: '',
+				characters: [],
+				goal: '',
+				note: plan.note
 			}
-			: undefined;
+		}));
+		const firstChapter = chapters[0];
 		const snapshot: ProjectSnapshot = {
 			root: preflight.targetRoot,
 			projectRevision: `browser-created-revision-${++browserProjectRevisionSequence}`,
@@ -1079,7 +1120,7 @@ class BrowserDesktopBridge implements DesktopBridge {
 					? [{
 						id: `volume-${suffix}`,
 						title: '第一卷',
-						chapters: firstChapter ? [firstChapter] : []
+						chapters
 					}]
 					: []
 			},
@@ -1090,14 +1131,19 @@ class BrowserDesktopBridge implements DesktopBridge {
 				aiQuickActionsEnabled: request.selectedInitialResources.includes('ai-quick-actions')
 			},
 			resources: [],
-			wordCounts: firstChapter ? { [firstChapter.id]: 0 } : {},
+			wordCounts: Object.fromEntries(chapters.map(chapter => [chapter.id, 0])),
 			integrityIssues: [],
 			readOnly: false
 		};
 		browserCreatedProjects.set(preflight.targetRoot, snapshot);
-		if (firstChapter) {
-			browserFiles.set(firstChapter.file, '# 第一章\n\n');
-		}
+		chapters.forEach((chapter, index) => {
+			browserFiles.set(
+				chapter.file,
+				request.importSource?.kind === 'manuscript' && index === 0
+					? request.importSource.content
+					: `# ${chapter.title}\n\n`
+			);
+		});
 		return {
 			root: preflight.targetRoot,
 			projectId,

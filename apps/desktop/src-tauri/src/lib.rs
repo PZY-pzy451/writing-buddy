@@ -30,6 +30,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::choose_project,
             commands::choose_project_parent_directory,
+            commands::choose_imported_text,
             commands::preflight_project_creation,
             commands::create_project,
             commands::create_chapter,

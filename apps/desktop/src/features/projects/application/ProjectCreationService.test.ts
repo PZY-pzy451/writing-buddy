@@ -25,9 +25,10 @@ const request: CreateProjectRequest = {
 function gateway(
 	preflight: ProjectCreationPreflight,
 	created?: CreatedProject
-): Pick<DesktopBridge, 'chooseProjectParentDirectory' | 'preflightProjectCreation' | 'createProject'> {
+): Pick<DesktopBridge, 'chooseProjectParentDirectory' | 'chooseImportedText' | 'preflightProjectCreation' | 'createProject'> {
 	return {
 		chooseProjectParentDirectory: vi.fn(() => Promise.resolve('D:\\WritingBuddy\\Projects')),
+		chooseImportedText: vi.fn(() => Promise.resolve(undefined)),
 		preflightProjectCreation: vi.fn(() => Promise.resolve(preflight)),
 		createProject: vi.fn(() => created
 			? Promise.resolve(created)
