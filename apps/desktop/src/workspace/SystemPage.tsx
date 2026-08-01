@@ -6,7 +6,6 @@ import {
 	Search,
 	ShieldCheck
 } from 'lucide-react';
-import { countWords } from '@writing-buddy/domain';
 import type { VersionSummary } from '@writing-buddy/platform-ports';
 import {
 	DesktopStoryRepository,
@@ -16,7 +15,7 @@ import {
 	type StoryResourceType
 } from '@writing-buddy/story-kernel';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useAppStore } from '../app/store';
+import { selectNovelWordCount, useAppStore } from '../app/store';
 import { desktopBridge } from '../platform/bridge';
 import { SettingsPage } from '../settings/SettingsPage';
 import { AiPlaygroundPage } from '../features/ai/AiPlaygroundPage';
@@ -32,6 +31,7 @@ import {
 	chapterExportFormatLabels,
 	type ChapterExportFormat
 } from '../features/export/ChapterExportModel';
+import { ProjectBackupPanel } from '../features/backup/ProjectBackupPanel';
 
 export function SystemPage(): React.JSX.Element | null {
 	const mode = useAppStore(state => state.activeMode);
@@ -42,8 +42,10 @@ export function SystemPage(): React.JSX.Element | null {
 	const session = useAppStore(state => state.session);
 	const reloadProject = useAppStore(state => state.reloadProject);
 	const exportActiveChapter = useAppStore(state => state.exportActiveChapter);
+	const exportWholeWork = useAppStore(state => state.exportWholeWork);
 	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
 	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
+	const novelWordCount = useAppStore(selectNovelWordCount);
 	const [versions, setVersions] = useState<readonly VersionSummary[]>([]);
 	const [selectedVersion, setSelectedVersion] = useState<string>();
 	const [versionText, setVersionText] = useState<string>();
@@ -276,7 +278,17 @@ export function SystemPage(): React.JSX.Element | null {
 			setVersionMessage(`当前章节已导出为${chapterExportFormatLabels[format]}。`);
 		}
 	};
+	const exportWork = async (format: ChapterExportFormat) => {
+		const exported = await exportWholeWork(format);
+		if (exported) {
+			setVersionMessage(`整部作品已导出为${chapterExportFormatLabels[format]}。`);
+		}
+	};
 	const activeChapterReady = activeResource?.type === 'chapter' && Boolean(session);
+	const projectChapterCount = snapshot?.project.volumes.reduce((total, volume) => (
+		total + volume.chapters.length
+	), 0) ?? 0;
+	const wholeWorkReady = Boolean(snapshot && projectChapterCount > 0);
 	const projectExportReceipts = snapshot
 		? chapterExportReceipts.filter(receipt => (
 			receipt.projectId === snapshot.project.projectId
@@ -288,32 +300,48 @@ export function SystemPage(): React.JSX.Element | null {
 			<header>
 				<span className="eyebrow">History</span>
 				<h1>历史与导出</h1>
-				<p>导出可交付副本，并用快照保护每次重要修改。</p>
+				<p>交付整部作品，并用可校验备份与快照保护每次重要修改。</p>
 				{versionMessage && <span className="success-message">{versionMessage}</span>}
 			</header>
 			<section className="history-export-card" aria-labelledby="history-export-title">
 				<div className="history-card-icon"><Download size={22} /></div>
 				<div className="history-card-copy">
 					<span className="eyebrow">当前任务</span>
-					<h2 id="history-export-title">导出当前章节</h2>
-					{activeChapterReady ? (
+					<h2 id="history-export-title">导出整部作品</h2>
+					{wholeWorkReady ? (
 						<p>
-							<strong>{activeResource?.title}</strong>
-							<span>{countWords(session?.content ?? '').toLocaleString()} 字 · 导出前自动保存原稿</span>
+							<strong>{snapshot?.project.title}</strong>
+							<span>{projectChapterCount} 章 · {novelWordCount.toLocaleString()} 字 · 导出前自动保存当前原稿</span>
 						</p>
 					) : (
-						<p><strong>尚未打开章节</strong><span>回到“写作”打开章节后即可导出。</span></p>
+						<p><strong>作品还没有章节</strong><span>创建并写下第一个章节后即可导出整部作品。</span></p>
 					)}
 				</div>
 				<div className="history-export-actions">
 					<button
 						className="primary-button"
 						type="button"
+						disabled={!wholeWorkReady || chapterExportBusy}
+						onClick={() => void exportWork('markdown')}
+					>
+						<Download size={18} />
+						{chapterExportBusy ? '正在导出…' : '导出作品'}
+					</button>
+					<button
+						className="secondary-button"
+						type="button"
+						disabled={!wholeWorkReady || chapterExportBusy}
+						onClick={() => void exportWork('plain-text')}
+					>
+						<FileText size={18} />作品纯文本
+					</button>
+					<button
+						className="secondary-button"
+						type="button"
 						disabled={!activeChapterReady || chapterExportBusy}
 						onClick={() => void exportChapter('markdown')}
 					>
-						<Download size={18} />
-						{chapterExportBusy ? '正在导出…' : '导出 Markdown'}
+						<FileText size={18} />当前章 Markdown
 					</button>
 					<button
 						className="secondary-button"
@@ -321,7 +349,7 @@ export function SystemPage(): React.JSX.Element | null {
 						disabled={!activeChapterReady || chapterExportBusy}
 						onClick={() => void exportChapter('plain-text')}
 					>
-						<FileText size={18} />导出纯文本
+						<FileText size={18} />当前章纯文本
 					</button>
 				</div>
 			</section>
@@ -340,18 +368,25 @@ export function SystemPage(): React.JSX.Element | null {
 							<li key={receipt.id}>
 								<span className="history-receipt-icon"><FileText size={16} /></span>
 								<span className="history-receipt-main">
-									<strong>{receipt.chapterTitle}</strong>
+									<span className="history-receipt-title">
+										<strong>{receipt.title}</strong>
+										<small>{receipt.scope === 'work' ? '整部作品' : '当前章节'}</small>
+									</span>
 									<code title={receipt.destination}>{receipt.destination}</code>
 								</span>
 								<span className="history-receipt-meta">
 									<strong>{chapterExportFormatLabels[receipt.format]}</strong>
-									<small>{receipt.wordCount.toLocaleString()} 字 · {new Date(receipt.exportedAt).toLocaleString()}</small>
+									<small>{receipt.scope === 'work' ? `${receipt.chapterCount} 章 · ` : ''}{receipt.wordCount.toLocaleString()} 字 · {new Date(receipt.exportedAt).toLocaleString()}</small>
 								</span>
 							</li>
 						))}
 					</ol>
 				</section>
 			)}
+
+			<section className="history-backup" aria-label="项目便携备份">
+				<ProjectBackupPanel />
+			</section>
 
 			<section className="history-safety" aria-labelledby="history-safety-title">
 				<header>

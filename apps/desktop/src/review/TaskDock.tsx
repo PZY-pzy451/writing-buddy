@@ -14,16 +14,15 @@ import {
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { EditTransactionService } from '@writing-buddy/project';
-import type { BackupInspection, BackupResult } from '@writing-buddy/platform-ports';
 import { resolveAnchor, ReviewResolutionService } from '@writing-buddy/review';
 import { useAppStore } from '../app/store';
-import { desktopBridge } from '../platform/bridge';
 import { ResizeHandle } from '../shell/ResizeHandle';
 import { workspaceResizeBounds } from '../shell/workspaceResize';
 import { AppEmptyState } from '../features/shared/presentation/AppEmptyState';
 import type {
 	QuickCaptureConversionTarget
 } from '../features/quick-capture/QuickCaptureConversionService';
+import { ProjectBackupPanel } from '../features/backup/ProjectBackupPanel';
 
 const resolution = new ReviewResolutionService(new EditTransactionService());
 
@@ -35,7 +34,6 @@ export function TaskDock(): React.JSX.Element {
 	const setContent = useAppStore(state => state.setContent);
 	const requestEditorEdit = useAppStore(state => state.requestEditorEdit);
 	const toggleDock = useAppStore(state => state.toggleDock);
-	const reloadProject = useAppStore(state => state.reloadProject);
 	const dockHeight = useAppStore(state => state.dockHeight);
 	const setDockHeight = useAppStore(state => state.setDockHeight);
 	const tab = useAppStore(state => state.dockTab);
@@ -46,9 +44,6 @@ export function TaskDock(): React.JSX.Element {
 	const convertQuickCapture = useAppStore(state => state.convertQuickCapture);
 	const jumpToQuickCaptureSource = useAppStore(state => state.jumpToQuickCaptureSource);
 	const [selectedId, setSelectedId] = useState<string>();
-	const [message, setMessage] = useState('');
-	const [lastBackup, setLastBackup] = useState<BackupResult>();
-	const [inspection, setInspection] = useState<BackupInspection>();
 	const [conversionTargets, setConversionTargets] = useState<
 		Readonly<Record<string, QuickCaptureConversionTarget>>
 	>({});
@@ -125,43 +120,6 @@ export function TaskDock(): React.JSX.Element {
 		const result = resolution.restore(selected, session.content);
 		updateIssue(selected.id, result.issue);
 		setContent(result.content);
-	};
-
-	const createBackup = async () => {
-		if (!snapshot) {
-			return;
-		}
-		const result = await desktopBridge.createBackup(snapshot.root);
-		const checked = await desktopBridge.inspectBackup(result.path);
-		setLastBackup(result);
-		setInspection(checked);
-		setMessage(`备份已创建并校验：${result.entryCount} 个文件，${Math.round(result.byteLength / 1024)} KB`);
-	};
-
-	const chooseBackup = async () => {
-		const path = await desktopBridge.chooseBackup();
-		if (!path) {
-			return;
-		}
-		const checked = await desktopBridge.inspectBackup(path);
-		setLastBackup({
-			path,
-			hash: '',
-			byteLength: 0,
-			entryCount: checked.entryCount
-		});
-		setInspection(checked);
-		setMessage(checked.valid ? '所选备份已通过完整性检查。' : '所选备份未通过完整性检查。');
-	};
-
-	const restoreBackup = async () => {
-		if (!snapshot || !lastBackup || !inspection?.valid
-			|| !window.confirm('恢复备份会替换当前项目副本中的文件。系统会先创建恢复前快照。确定继续吗？')) {
-			return;
-		}
-		const restored = await desktopBridge.restoreBackup(lastBackup.path, snapshot.root, true);
-		setMessage(`已从校验通过的备份恢复 ${restored} 个文件。`);
-		await reloadProject();
 	};
 
 	return (
@@ -366,22 +324,7 @@ export function TaskDock(): React.JSX.Element {
 
 			{tab === 'backups' && (
 				<div className="dock-body backup-dock">
-					<div>
-						<Archive size={24} />
-						<strong>项目副本备份</strong>
-						<span>创建前会通过 Rust 校验项目根路径和可用空间。</span>
-					</div>
-					<button className="primary-button" type="button" onClick={() => void createBackup()}>创建 .wbbackup</button>
-					<button className="secondary-button" type="button" onClick={() => void chooseBackup()}>选择已有备份</button>
-					<button className="secondary-button" type="button" onClick={() => void restoreBackup()} disabled={!inspection?.valid}>恢复最近备份</button>
-					{message && <p>{message}</p>}
-					{inspection && (
-						<p className={inspection.valid ? 'success-message' : 'error-message'}>
-							{inspection.valid
-								? `格式 v${inspection.formatVersion}，校验通过`
-								: `备份不可用：${inspection.issues.join('、')}`}
-						</p>
-					)}
+					<ProjectBackupPanel density="compact" />
 				</div>
 			)}
 			<ResizeHandle

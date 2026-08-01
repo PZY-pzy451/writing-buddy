@@ -92,8 +92,10 @@ import type {
 } from '../features/story/ai-context/InlineDraftCandidateModel';
 import {
 	buildChapterExportContent,
+	buildWorkExportContent,
 	parseChapterExportReceipts,
 	suggestedChapterExportName,
+	suggestedWorkExportName,
 	type ChapterExportFormat,
 	type ChapterExportReceipt
 } from '../features/export/ChapterExportModel';
@@ -313,6 +315,7 @@ interface AppState extends PersistedWorkspace {
 	readonly save: () => Promise<void>;
 	readonly saveAs: () => Promise<boolean>;
 	readonly exportActiveChapter: (format?: ChapterExportFormat) => Promise<boolean>;
+	readonly exportWholeWork: (format?: ChapterExportFormat) => Promise<boolean>;
 	readonly forceSave: () => Promise<boolean>;
 	readonly reloadExternal: () => void;
 	readonly dismissExternalConflict: () => void;
@@ -1838,8 +1841,11 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			const receipt: ChapterExportReceipt = {
 				id: `export:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 9)}`,
 				projectId: current.snapshot.project.projectId,
+				scope: 'chapter',
+				title: current.activeResource.title,
 				chapterId: current.activeResource.id,
 				chapterTitle: current.activeResource.title,
+				chapterCount: 1,
 				format,
 				destination,
 				exportedAt: new Date().toISOString(),
@@ -1847,11 +1853,95 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			};
 			set(state => ({
 				chapterExportReceipts: [receipt, ...state.chapterExportReceipts].slice(0, 100),
-				writerNavigatorNotice: `已导出《${receipt.chapterTitle}》，可在“历史”查看路径。`
+				writerNavigatorNotice: `已导出《${receipt.title}》，可在“历史”查看路径。`
 			}));
 			return true;
 		} catch {
 			set({ error: '章节导出失败，原稿未受影响。请检查目标位置后重试。' });
+			return false;
+		} finally {
+			set({ chapterExportBusy: false });
+		}
+	},
+
+	async exportWholeWork(format = 'markdown') {
+		const initial = get();
+		if (initial.chapterExportBusy) return false;
+		if (!initial.snapshot) {
+			set({ error: '请先打开一个作品，再进行导出。' });
+			return false;
+		}
+		const initialChapters = flattenChapters(initial.snapshot.project);
+		if (initialChapters.length === 0) {
+			set({ error: '当前作品还没有章节，未执行导出。' });
+			return false;
+		}
+		set({ chapterExportBusy: true, error: undefined });
+		try {
+			if (
+				initial.activeResource?.type === 'chapter'
+				&& initial.session?.state.dirty
+			) {
+				await get().save();
+			}
+			const current = get();
+			if (!current.snapshot) {
+				set({ error: '当前作品已经关闭，未执行导出。' });
+				return false;
+			}
+			if (
+				current.activeResource?.type === 'chapter'
+				&& current.session?.state.dirty
+			) {
+				set({ error: '正文尚未安全保存，未执行导出。' });
+				return false;
+			}
+			const project = current.snapshot.project;
+			const projectRoot = current.snapshot.root;
+			const volumes = await Promise.all(project.volumes.map(async volume => ({
+				title: volume.title,
+				chapters: await Promise.all(volume.chapters.map(async chapter => ({
+					title: chapter.title,
+					content: (await desktopBridge.readText(
+						projectRoot,
+						chapter.file
+					)).content
+				})))
+			})));
+			const wordCount = volumes.reduce((volumeTotal, volume) => (
+				volumeTotal + volume.chapters.reduce((chapterTotal, chapter) => (
+					chapterTotal + countWords(chapter.content)
+				), 0)
+			), 0);
+			const chapterCount = volumes.reduce((total, volume) => (
+				total + volume.chapters.length
+			), 0);
+			const destination = await desktopBridge.saveTextAs(
+				buildWorkExportContent(project.title, volumes, format),
+				'lf',
+				false,
+				suggestedWorkExportName(project.title, format),
+				format
+			);
+			if (!destination) return false;
+			const receipt: ChapterExportReceipt = {
+				id: `export:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 9)}`,
+				projectId: project.projectId,
+				scope: 'work',
+				title: project.title,
+				chapterCount,
+				format,
+				destination,
+				exportedAt: new Date().toISOString(),
+				wordCount
+			};
+			set(state => ({
+				chapterExportReceipts: [receipt, ...state.chapterExportReceipts].slice(0, 100),
+				writerNavigatorNotice: `已导出整部《${receipt.title}》，共 ${receipt.chapterCount} 章。`
+			}));
+			return true;
+		} catch {
+			set({ error: '作品导出失败，原稿未受影响。请检查章节文件和目标位置后重试。' });
 			return false;
 		} finally {
 			set({ chapterExportBusy: false });

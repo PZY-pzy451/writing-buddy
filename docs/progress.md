@@ -4,6 +4,32 @@ Updated: 2026-08-01
 
 ## Active milestone
 
+Phase 1.2H whole-work export and backup trust center is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- `历史与导出` now leads with one `导出作品` primary action and assembles every
+  volume/chapter in canonical order as Markdown or plain text. Current-chapter
+  export remains available as a secondary action.
+- Dirty-save failure, export failure and dialog cancellation are fail-before-
+  receipt. Successful receipts distinguish whole work/chapter while migrating
+  Phase 1.2G records that did not yet carry a scope.
+- Existing `.wbbackup` create/select/inspect/confirmed-restore is now visible
+  beside export and snapshots in History, using the same reusable component as
+  the task dock.
+- Browser acceptance found and fixed a collapsed 2 px backup row. The rerun
+  acceptance passed at 1440×900, 1280×800, 1024×720 and 820×720 with no page
+  overflow, clipped controls, sub-44 px History controls or runtime errors.
+- Final gates: 161 Vitest files / 643 tests, production Vite build, Cargo format,
+  68 Rust tests / 2 ignored, Tauri Release/NSIS and portable title/WebView/
+  no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2h-whole-work-export-backup-2026-08-01/`;
+  evidence:
+  `docs/acceptance/065-phase-1.2h-whole-work-export-backup-2026-08-01.md`.
+
+## Previous milestones
+
 Phase 1.2G chapter completion and export trust is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -23,8 +49,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 - Delivery:
   `artifacts/release/phase-1.2g-chapter-export-trust-2026-08-01/`; evidence:
   `docs/acceptance/064-phase-1.2g-chapter-export-trust-2026-08-01.md`.
-
-## Previous milestones
 
 Phase 1.2F task-to-action closure is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on

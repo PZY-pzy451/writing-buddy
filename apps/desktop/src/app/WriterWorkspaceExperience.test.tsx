@@ -333,6 +333,28 @@ describe('quiet writer workspaces', () => {
 			.toBeInTheDocument();
 	});
 
+	it('blocks whole-work export when the active manuscript cannot be saved safely', async () => {
+		const user = userEvent.setup();
+		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('offline'));
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs');
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('尚未安全写入的整书正文'));
+
+		let exported = true;
+		await act(async () => {
+			exported = await useAppStore.getState().exportWholeWork('markdown');
+		});
+
+		expect(exported).toBe(false);
+		expect(writeTextAtomic).toHaveBeenCalledTimes(1);
+		expect(saveTextAs).not.toHaveBeenCalled();
+		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(0);
+		expect(await screen.findByText('正文尚未安全保存，未执行导出。'))
+			.toBeInTheDocument();
+	});
+
 	it('offers Markdown and plain-text export in History without recording cancellation', async () => {
 		const user = userEvent.setup();
 		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs')
@@ -343,12 +365,12 @@ describe('quiet writer workspaces', () => {
 		await user.click(screen.getByRole('button', { name: '历史' }));
 
 		expect(await screen.findByRole('heading', { name: '历史与导出' })).toBeInTheDocument();
-		expect(screen.getByText(/导出前自动保存原稿/u)).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '导出 Markdown' }));
+		expect(screen.getByText(/导出前自动保存当前原稿/u)).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '导出作品' }));
 		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
 		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(0);
 
-		await user.click(screen.getByRole('button', { name: '导出纯文本' }));
+		await user.click(screen.getByRole('button', { name: '当前章纯文本' }));
 		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(2));
 		expect(saveTextAs.mock.calls[1]?.slice(3)).toEqual([
 			'第一章 停摆的时钟.txt',
@@ -357,6 +379,65 @@ describe('quiet writer workspaces', () => {
 		expect(await screen.findByRole('heading', { name: '最近导出' })).toBeInTheDocument();
 		expect(screen.getByText('D:\\Exports\\第一章 停摆的时钟.txt')).toBeInTheDocument();
 		expect(screen.getByText('纯文本')).toBeInTheDocument();
+	});
+
+	it('exports the whole work in project order and records its delivery scope', async () => {
+		const user = userEvent.setup();
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs').mockResolvedValue(
+			'D:\\Exports\\我的小说.md'
+		);
+		render(<App />);
+		await openFixtureAndContinue(user);
+		await user.click(screen.getByRole('button', { name: '历史' }));
+
+		expect(await screen.findByText(/3 章/u)).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '导出作品' }));
+
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
+		const [content, eol, hasBom, suggestedName, format] = saveTextAs.mock.calls[0] ?? [];
+		expect({ eol, hasBom, suggestedName, format }).toEqual({
+			eol: 'lf',
+			hasBom: false,
+			suggestedName: '我的小说.md',
+			format: 'markdown'
+		});
+		expect(content).toMatch(/^# 我的小说/u);
+		expect(content).toContain('## 第一卷 灰城之下');
+		expect(content).toContain('### 第一章 停摆的时钟');
+		expect(content).toContain('### 第三章 深夜的访客');
+		expect(content.indexOf('第一章 停摆的时钟')).toBeLessThan(
+			content.indexOf('第三章 深夜的访客')
+		);
+		expect(useAppStore.getState().chapterExportReceipts[0]).toMatchObject({
+			scope: 'work',
+			title: '我的小说',
+			chapterCount: 3,
+			format: 'markdown',
+			destination: 'D:\\Exports\\我的小说.md'
+		});
+		expect(await screen.findByText('整部作品')).toBeInTheDocument();
+		expect(screen.getByText('D:\\Exports\\我的小说.md')).toBeInTheDocument();
+	});
+
+	it('creates and validates a portable project backup from History', async () => {
+		const user = userEvent.setup();
+		const createBackup = vi.spyOn(desktopBridge, 'createBackup');
+		const inspectBackup = vi.spyOn(desktopBridge, 'inspectBackup');
+		render(<App />);
+		await openFixtureAndContinue(user);
+		await user.click(screen.getByRole('button', { name: '历史' }));
+
+		expect(await screen.findByRole('heading', { name: '项目便携备份' }))
+			.toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '创建备份' }));
+
+		await waitFor(() => expect(createBackup).toHaveBeenCalledWith('browser-fixture'));
+		await waitFor(() => expect(inspectBackup).toHaveBeenCalledWith(
+			'browser-fixture.wbbackup'
+		));
+		expect(await screen.findByText(/备份已创建并校验/u)).toBeInTheDocument();
+		expect(screen.getByText(/校验通过/u)).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '恢复所选备份' })).toBeEnabled();
 	});
 
 	it('opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape', async () => {
