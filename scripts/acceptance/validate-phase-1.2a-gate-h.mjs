@@ -155,6 +155,8 @@ async function waitForTarget(port) {
 async function launchProfile(profileDirectory, port, profile) {
 	const startedAt = performance.now();
 	const child = spawn(edgePath, [
+		'--headless=new',
+		'--disable-gpu',
 		`--remote-debugging-port=${port}`,
 		`--user-data-dir=${profileDirectory}`,
 		'--no-first-run',
@@ -181,6 +183,7 @@ async function launchProfile(profileDirectory, port, profile) {
 	await client.call('Page.enable');
 	await client.call('Runtime.enable');
 	await client.call('DOM.enable');
+	await client.call('Page.bringToFront');
 	await client.call('Emulation.setDeviceMetricsOverride', {
 		width: profile.viewport.width,
 		height: profile.viewport.height,
@@ -311,12 +314,12 @@ async function activateButton(client, label, inputMethod, scopeSelector) {
 		`Could not keyboard-focus button “${label}”.`
 	);
 	const key = {
-		key: 'Enter',
-		code: 'Enter',
-		text: '\r',
-		unmodifiedText: '\r',
-		windowsVirtualKeyCode: 13,
-		nativeVirtualKeyCode: 13
+		key: ' ',
+		code: 'Space',
+		text: ' ',
+		unmodifiedText: ' ',
+		windowsVirtualKeyCode: 32,
+		nativeVirtualKeyCode: 32
 	};
 	await client.call('Input.dispatchKeyEvent', { type: 'keyDown', ...key });
 	await client.call('Input.dispatchKeyEvent', {
@@ -530,12 +533,12 @@ async function prepareProfile(profileDirectory, port, profile) {
 		);
 		await clickButton(
 			run.client,
-			'打开项目',
+			'打开已有 Writing Buddy 作品',
 			'main[aria-label="开始使用 Writing Buddy"]'
 		);
 		await waitFor(
 			run.client,
-			`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))`,
+			`Boolean(document.querySelector('main[aria-label="写作首页"]'))`,
 			'prepared project dashboard'
 		);
 		await clickButton(run.client, '继续上次位置');
@@ -644,7 +647,7 @@ async function runProfile(profile, profileIndex) {
 		evidence.tasks['open-app'] = true;
 		await waitFor(
 			firstRun.client,
-			`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))`,
+			`Boolean(document.querySelector('main[aria-label="写作首页"]'))`,
 			'first-start project dashboard'
 		);
 		evidence.timingsMs.projectInteractive = Math.round(
@@ -666,12 +669,30 @@ async function runProfile(profile, profileIndex) {
 			'继续上次位置',
 			profile.inputMethod
 		);
-		await waitFor(
-			firstRun.client,
-			`Boolean(document.querySelector('.writing-canvas .monaco-editor'))`,
-			'first-start editor input',
-			20_000
-		);
+		try {
+			await waitFor(
+				firstRun.client,
+				`Boolean(document.querySelector('.writing-canvas .monaco-editor'))`,
+				'first-start editor input',
+				20_000
+			);
+		} catch (error) {
+			const diagnostic = await evaluate(firstRun.client, `import('/src/app/store.ts').then(
+				({ useAppStore }) => {
+					const state = useAppStore.getState();
+					return {
+						activeElement: document.activeElement?.textContent?.replace(/\\s+/gu, ' ').trim(),
+						activeResourceId: state.activeResource?.id ?? null,
+						error: state.error ?? null,
+						mainLabels: [...document.querySelectorAll('main')]
+							.map(main => main.getAttribute('aria-label')),
+						projectOpenError: state.projectOpenError?.code ?? null
+					};
+				}
+			)`);
+			console.error('[Gate H] Continue diagnostic', diagnostic);
+			throw error;
+		}
 		evidence.timingsMs.restoreToInput = Math.round(
 			performance.now() - continueStartedAt
 		);
@@ -813,7 +834,7 @@ async function runProfile(profile, profileIndex) {
 		);
 		await waitFor(
 			secondRun.client,
-			`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))`,
+			`Boolean(document.querySelector('main[aria-label="写作首页"]'))`,
 			'second-start project dashboard'
 		);
 		evidence.timingsMs.secondProjectInteractive = Math.round(

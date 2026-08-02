@@ -1,14 +1,22 @@
 {
-  "generatedAt": "2026-08-02T09:33:00.804Z",
+  "generatedAt": "2026-08-02T11:43:35.336Z",
   "appUrl": "http://127.0.0.1:1420/",
   "receipt": {
     "title": "我的小说",
     "destination": "browser-downloads/我的小说.docx",
-    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 17:32:59"
+    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 19:43:33"
+  },
+  "unconfirmed": {
+    "status": "attention",
+    "detail": "这次Word整书导出的精确源指纹与当前版本一致；请由作者确认它是否就是准备发布或提交的版本。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
   },
   "matching": {
     "status": "passed",
-    "detail": "最近一次Word整书导出的源指纹与当前项目结构及逐章正文哈希完全一致；未回读目标文件。",
+    "detail": "作者已确认这次Word整书导出作为发布版本；其源指纹与当前项目结构及逐章正文哈希完全一致，未回读目标文件。",
     "context": [
       "3 章",
       "209 字"
@@ -16,7 +24,7 @@
   },
   "stale": {
     "status": "attention",
-    "detail": "最近整书回执为 3 章、200 字，但项目结构或正文内容已经变化；相同字数也不会视为同一版本。",
+    "detail": "作者已确认的发布版本与当前项目结构或正文内容不再一致；请重新导出并确认新的版本。",
     "context": [
       "3 章",
       "209 字"
@@ -39,8 +47,8 @@
       "occludedScopedControls": []
     },
     {
-      "name": "02-publish-exact-match-1440x900.png",
-      "surface": "publish-exact-match",
+      "name": "02-publish-exact-unconfirmed-1440x900.png",
+      "surface": "publish-exact-unconfirmed",
       "viewport": {
         "width": 1440,
         "height": 900
@@ -53,8 +61,22 @@
       "occludedScopedControls": []
     },
     {
-      "name": "03-publish-exact-match-1024x720.png",
-      "surface": "publish-exact-match",
+      "name": "03-publish-confirmed-1440x900.png",
+      "surface": "publish-confirmed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "04-publish-confirmed-1024x720.png",
+      "surface": "publish-confirmed",
       "viewport": {
         "width": 1024,
         "height": 720
@@ -67,8 +89,8 @@
       "occludedScopedControls": []
     },
     {
-      "name": "04-publish-exact-match-820x720.png",
-      "surface": "publish-exact-match",
+      "name": "05-publish-confirmed-820x720.png",
+      "surface": "publish-confirmed",
       "viewport": {
         "width": 820,
         "height": 720
@@ -81,7 +103,7 @@
       "occludedScopedControls": []
     },
     {
-      "name": "05-publish-stale-same-count-820x720.png",
+      "name": "06-publish-stale-confirmed-820x720.png",
       "surface": "publish-stale-same-count",
       "viewport": {
         "width": 820,

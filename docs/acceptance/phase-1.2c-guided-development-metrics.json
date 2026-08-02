@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T04:21:16.056Z",
-  "appUrl": "http://127.0.0.1:4174/",
+  "generatedAt": "2026-08-02T11:35:55.361Z",
+  "appUrl": "http://127.0.0.1:1420/",
   "journey": {
     "aiCalls": 5,
     "chapterCount": 3,
-    "defaultStart": "我只有几个想法",
+    "defaultStart": "根据题材生成小说大纲",
     "firstChapterOpened": "夜雨站台",
     "firstChapterPrecreated": false,
     "firstChapterPrecreationDisabled": true,
     "materializeCalls": 1,
     "stage": "writing",
-    "startRouteCount": 6
+    "startRouteCount": 7
   },
   "responsive": {
     "elementsWide": {
@@ -79,18 +79,13 @@
     "aiCalls": 6,
     "candidateTitles": [
       "AI 识别人物",
-      "AI 识别地点",
-      "AI 识别物品",
-      "AI 识别事件",
-      "AI 识别关系",
-      "AI 识别剧情线",
-      "AI 识别信息",
-      "可修复的候选地点"
+      "可修复的候选地点",
+      "AI 返回了未勾选的 location 类型。"
     ],
     "generateDisabledAfterCompletion": false,
     "hasRawSchemaError": false,
     "hasSettingsGuidance": false,
-    "warning": "AI 返回的第 9 项候选结构不完整，已安全隔离；其余候选仍可审核确认。",
+    "warning": "AI 返回的第 3 项候选结构不完整，已安全隔离；其余候选仍可审核确认。",
     "requestsStartedByRapidClicks": 1
   },
   "development": {

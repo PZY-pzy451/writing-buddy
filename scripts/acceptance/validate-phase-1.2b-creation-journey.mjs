@@ -29,7 +29,7 @@ const statusPath = join(
 );
 const edgePath = process.env.EDGE_PATH
 	?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-const appUrl = process.env.WRITING_BUDDY_URL ?? 'http://127.0.0.1:4174/';
+const appUrl = process.env.WRITING_BUDDY_URL ?? 'http://127.0.0.1:1420/';
 const debuggingPort = Number(process.env.WRITING_BUDDY_CDP_PORT ?? 9731);
 
 class CdpClient {
@@ -407,10 +407,17 @@ try {
 					return materialize(...args);
 				};
 			});
+		}),
+		import('/src/app/store.ts').then(({ useAppStore }) => {
+			globalThis.__phase12bStore = useAppStore;
 		})
 	])`);
 
-	await clickButton(run.client, '新建项目', 'main[aria-label="开始使用 Writing Buddy"]');
+	await clickButton(
+		run.client,
+		'根据题材生成大纲',
+		'main[aria-label="开始使用 Writing Buddy"]'
+	);
 	await waitFor(run.client, `Boolean(document.querySelector('[role="dialog"]'))`, 'project wizard');
 	await fillSelector(run.client, 'input[aria-label="作品名称"]', '雨夜记忆');
 	await clickButton(run.client, '浏览', '[role="dialog"]');
@@ -724,26 +731,19 @@ try {
 	await screenshot(run.client, '06-opened-first-chapter-paper-1024x720.png');
 
 	if (phase12c) {
-		await run.client.call('Input.dispatchKeyEvent', {
-			type: 'keyDown',
-			key: 'b',
-			code: 'KeyB',
-			modifiers: 3,
-			windowsVirtualKeyCode: 66
-		});
-		await run.client.call('Input.dispatchKeyEvent', {
-			type: 'keyUp',
-			key: 'b',
-			code: 'KeyB',
-			modifiers: 3,
-			windowsVirtualKeyCode: 66
-		});
+		await evaluate(run.client, `(() => {
+			globalThis.__phase12bStore.getState().requestAssistantAction({
+				kind: 'story-kernel',
+				targetType: 'character',
+				instruction: '从当前正文生成一个人物候选；保留原文证据。'
+			});
+			return true;
+		})()`);
 		await waitFor(
 			run.client,
 			`Boolean(document.querySelector('.assistant-panel'))`,
-			'writing assistant shortcut'
+			'contextual Story Kernel assistant'
 		);
-		await clickButton(run.client, '内核', '.assistant-tabs');
 		await waitFor(
 			run.client,
 			`Boolean(document.querySelector('.kernel-generator'))`,
@@ -823,15 +823,19 @@ try {
 			return Boolean(warning);
 		})()`);
 		await screenshot(run.client, '06a-story-kernel-partial-response-paper-1024x720.png');
-		await clickButton(run.client, '关闭写作助手');
-		await clickButton(run.client, '打开作品仪表盘');
+		await clickButton(run.client, '关闭资料工具面板');
+		await clickButton(run.client, '规划', '.global-rail');
 		await waitFor(
 			run.client,
-			`[...document.querySelectorAll('button')]
-				.some(button => button.textContent?.includes('查看创作旅程'))`,
-			'project dashboard journey entry'
+			`Boolean(document.querySelector('nav[aria-label="规划页面"]'))`,
+			'planning navigation'
 		);
-		await clickButton(run.client, '查看创作旅程', undefined, 'contains');
+		await clickButton(
+			run.client,
+			'故事结构',
+			'nav[aria-label="规划页面"]',
+			'contains'
+		);
 		await waitFor(
 			run.client,
 			`Boolean(document.querySelector('.creation-journey-progress'))`,

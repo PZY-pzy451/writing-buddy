@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T02:26:50.666Z",
+  "generatedAt": "2026-08-02T11:42:37.397Z",
   "appUrl": "http://127.0.0.1:1420/",
   "initialLabel": "今日写作进度 0 / 1,000 字，打开设置",
   "restoredGoal": "今日写作进度 0 / 1,200 字，打开设置",
@@ -57,30 +57,30 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 73,
+      "visibleControls": 77,
       "shortGoalControls": [],
       "goalOccludingControls": [],
       "goal": {
         "rect": {
-          "x": 769.046875,
+          "x": 668.046875,
           "y": 172.140625,
           "width": 193.953125,
           "height": 44,
           "top": 172.140625,
-          "right": 963,
+          "right": 862,
           "bottom": 216.140625,
-          "left": 769.046875
+          "left": 668.046875
         },
         "label": "今日写作进度 13 / 1,200 字，打开设置",
         "popover": {
-          "x": 643,
+          "x": 542,
           "y": 224.140625,
           "width": 320,
           "height": 186,
           "top": 224.140625,
-          "right": 963,
+          "right": 862,
           "bottom": 410.140625,
-          "left": 643
+          "left": 542
         },
         "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
       },
@@ -112,30 +112,30 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 73,
+      "visibleControls": 77,
       "shortGoalControls": [],
       "goalOccludingControls": [],
       "goal": {
         "rect": {
-          "x": 535.046875,
-          "y": 183.796875,
+          "x": 434.046875,
+          "y": 221.75,
           "width": 193.953125,
           "height": 44,
-          "top": 183.796875,
-          "right": 729,
-          "bottom": 227.796875,
-          "left": 535.046875
+          "top": 221.75,
+          "right": 628,
+          "bottom": 265.75,
+          "left": 434.046875
         },
         "label": "今日写作进度 13 / 1,200 字，打开设置",
         "popover": {
-          "x": 409,
-          "y": 235.796875,
+          "x": 308,
+          "y": 273.75,
           "width": 320,
           "height": 186,
-          "top": 235.796875,
-          "right": 729,
-          "bottom": 421.796875,
-          "left": 409
+          "top": 273.75,
+          "right": 628,
+          "bottom": 459.75,
+          "left": 308
         },
         "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
       },
@@ -143,12 +143,12 @@
         "text": "第一章 停摆的时钟",
         "rect": {
           "x": 316,
-          "y": 178.203125,
-          "width": 152.640625,
-          "height": 50.59375,
-          "top": 178.203125,
-          "right": 468.640625,
-          "bottom": 228.796875,
+          "y": 140.265625,
+          "width": 51.640625,
+          "height": 126.484375,
+          "top": 140.265625,
+          "right": 367.640625,
+          "bottom": 266.75,
           "left": 316
         },
         "display": "block",
@@ -167,30 +167,30 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 72,
+      "visibleControls": 76,
       "shortGoalControls": [],
       "goalOccludingControls": [],
       "goal": {
         "rect": {
-          "x": 482.046875,
+          "x": 407,
           "y": 174.078125,
           "width": 121.953125,
           "height": 44,
           "top": 174.078125,
-          "right": 604,
+          "right": 528.953125,
           "bottom": 218.078125,
-          "left": 482.046875
+          "left": 407
         },
         "label": "今日写作进度 13 / 1,200 字，打开设置",
         "popover": {
-          "x": 344,
+          "x": 407,
           "y": 226.078125,
           "width": 260,
           "height": 186,
           "top": 226.078125,
-          "right": 604,
+          "right": 667,
           "bottom": 412.078125,
-          "left": 344
+          "left": 407
         },
         "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
       },
@@ -199,10 +199,10 @@
         "rect": {
           "x": 344,
           "y": 142.9375,
-          "width": 412,
+          "width": 437.953125,
           "height": 24.140625,
           "top": 142.9375,
-          "right": 756,
+          "right": 781.953125,
           "bottom": 167.078125,
           "left": 344
         },

@@ -249,7 +249,7 @@ try {
 
 	await clickButton(client, '历史');
 	await waitFor(client, `Boolean(document.querySelector('.history-export-card'))`, 'history export card');
-	await clickButton(client, '导出纯文本');
+	await clickButton(client, '当前章纯文本');
 	await waitFor(client, `Boolean(document.querySelector('.history-receipts li'))`, 'export receipt');
 	const history = await evaluate(client, `(() => ({
 		title: document.querySelector('.versions-page h1')?.textContent.trim(),
@@ -262,7 +262,7 @@ try {
 			.replace(/\\s+/gu, ' ').trim()
 	}))()`);
 	assert(history.title === '历史与导出', `Unexpected History title: ${JSON.stringify(history)}`);
-	assert(history.primaryActions.length === 1 && history.primaryActions[0] === '导出 Markdown',
+	assert(history.primaryActions.length === 1 && history.primaryActions[0] === '导出 Word 文档',
 		`History should expose one primary action: ${JSON.stringify(history)}`);
 	assert(history.receiptPath?.endsWith('.txt') && history.receiptFormat === '纯文本',
 		`Export receipt is incomplete: ${JSON.stringify(history)}`);

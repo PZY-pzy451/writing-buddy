@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-08-02T11:50:34.097Z",
+  "captures": [
+    {
+      "view": "characters",
+      "selector": ".character-center",
+      "width": 1536,
+      "height": 960,
+      "name": "01-character-center-1536x992.png",
+      "readyMs": 2077,
+      "selectorReadyMs": 0,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1158,
+        "height": 852
+      },
+      "gridColumns": "78px 300px 1158px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 12,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 486
+    },
+    {
+      "view": "relationships",
+      "selector": ".relationship-page",
+      "width": 1536,
+      "height": 960,
+      "name": "02-relationship-graph-1536x992.png",
+      "readyMs": 1199,
+      "selectorReadyMs": 6,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1158,
+        "height": 852
+      },
+      "gridColumns": "78px 300px 1158px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 12,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 445
+    },
+    {
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1536,
+      "height": 960,
+      "name": "03-timeline-1536x992.png",
+      "readyMs": 1322,
+      "selectorReadyMs": 13,
+      "viewport": {
+        "width": 1536,
+        "height": 960
+      },
+      "root": {
+        "width": 1158,
+        "height": 852
+      },
+      "gridColumns": "78px 300px 1158px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 20,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 560
+    },
+    {
+      "view": "relationships",
+      "selector": ".relationship-page",
+      "width": 1280,
+      "height": 768,
+      "name": "04-relationship-1280x800.png",
+      "readyMs": 1240,
+      "selectorReadyMs": 4,
+      "viewport": {
+        "width": 1280,
+        "height": 768
+      },
+      "root": {
+        "width": 902,
+        "height": 660
+      },
+      "gridColumns": "78px 300px 902px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 20,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 445
+    },
+    {
+      "view": "timeline",
+      "selector": ".timeline-page",
+      "width": 1024,
+      "height": 688,
+      "name": "05-timeline-1024x720.png",
+      "readyMs": 1327,
+      "selectorReadyMs": 4,
+      "viewport": {
+        "width": 1024,
+        "height": 688
+      },
+      "root": {
+        "width": 706,
+        "height": 580
+      },
+      "gridColumns": "78px 240px 706px",
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "overflowingElements": 64,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "undersizedStoryControls": 0,
+      "undersizedStoryControlDetails": [],
+      "domNodes": 560
+    }
+  ]
+}

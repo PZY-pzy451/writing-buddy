@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-31T13:33:31.488Z",
+  "generatedAt": "2026-08-02T11:37:35.837Z",
   "appUrl": "http://127.0.0.1:1420/",
   "welcome": {
     "labels": [
       "根据题材生成大纲",
-      "导入已有大纲创建后整理卷章结构",
-      "导入已有正文直接打开第一章",
+      "导入已有大纲预览后创建章节结构",
+      "导入已有正文文字不经 AI 改写并打开第一章",
       "创建空白作品不生成任何内容",
       "打开已有 Writing Buddy 作品"
     ],
@@ -30,6 +30,7 @@
     ],
     "hasAiTopAction": false,
     "primaryActions": [
+      "保存目标",
       "继续上次位置",
       "第一章 停摆的时钟旧火车站94 字",
       "第二章 迷路的旅人第三站台61 字",
@@ -76,7 +77,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 44
+      "visibleControls": 45
     },
     {
       "name": "03-planning-1024x720.png",

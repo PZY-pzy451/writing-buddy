@@ -323,14 +323,15 @@ async function openFixture(client) {
 	await waitFor(
 		client,
 		`[...document.querySelectorAll('button')].some(button => (
-			button.textContent?.replace(/\\s+/gu, ' ').trim() === '打开项目'
+			button.textContent?.replace(/\\s+/gu, ' ').trim() === '打开已有 Writing Buddy 作品'
 		))`,
-		'project opener'
+		'welcome project opener'
 	);
 	const openerClicked = await evaluate(client, `(() => {
 		const welcome = document.querySelector('main[aria-label="开始使用 Writing Buddy"]');
+		if (!welcome) return false;
 		const opener = [...welcome.querySelectorAll('button')].find(button => (
-			button.textContent?.replace(/\\s+/gu, ' ').trim() === '打开项目'
+			button.textContent?.replace(/\\s+/gu, ' ').trim() === '打开已有 Writing Buddy 作品'
 		));
 		opener?.click();
 		return Boolean(opener);
@@ -338,7 +339,7 @@ async function openFixture(client) {
 	assert(openerClicked, 'The project welcome opener was not available.');
 	await waitFor(
 		client,
-		`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))`,
+		`Boolean(document.querySelector('main[aria-label="写作首页"]'))`,
 		'project dashboard'
 	);
 	await clickButton(client, '继续上次位置');
@@ -401,13 +402,13 @@ async function validateDragFeedback(client) {
 		client,
 		`Boolean(
 			document.querySelector('.writing-canvas .monaco-editor')
-			|| document.querySelector('main[aria-label="作品仪表盘"]')
+			|| document.querySelector('main[aria-label="写作首页"]')
 		)`,
 		'workspace reload'
 	);
 	const dashboardVisible = await evaluate(
 		client,
-		`Boolean(document.querySelector('main[aria-label="作品仪表盘"]'))`
+		`Boolean(document.querySelector('main[aria-label="写作首页"]'))`
 	);
 	if (dashboardVisible) {
 		await clickButton(client, '继续上次位置');

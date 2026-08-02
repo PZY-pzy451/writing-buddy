@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-31T14:58:24.433Z",
-  "appUrl": "http://127.0.0.1:4178/",
+  "generatedAt": "2026-08-02T11:38:04.681Z",
+  "appUrl": "http://127.0.0.1:1420/",
   "menu": {
     "labels": [
       "新建项目从模板和初始结构开始",
@@ -48,7 +48,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 54
+      "visibleControls": 56
     },
     {
       "name": "02-character-assistant-1280x800.png",
@@ -72,7 +72,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 22
+      "visibleControls": 24
     },
     {
       "name": "04-review-task-opened-1024x720.png",
@@ -84,7 +84,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 20
+      "visibleControls": 22
     },
     {
       "name": "05-review-compact-820x720.png",
@@ -96,7 +96,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 20
+      "visibleControls": 22
     }
   ]
 }

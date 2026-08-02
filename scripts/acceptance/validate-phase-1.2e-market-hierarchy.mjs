@@ -240,7 +240,11 @@ try {
 	})()`);
 	assert(welcome.primary.length === 1, `Expected one welcome primary action: ${JSON.stringify(welcome)}`);
 	assert(welcome.primary[0] === '根据题材生成大纲', 'Genre start is not the primary action.');
-	for (const label of ['导入已有大纲创建后整理卷章结构', '导入已有正文直接打开第一章', '创建空白作品不生成任何内容']) {
+	for (const label of [
+		'导入已有大纲预览后创建章节结构',
+		'导入已有正文文字不经 AI 改写并打开第一章',
+		'创建空白作品不生成任何内容'
+	]) {
 		assert(welcome.labels.includes(label), `Missing welcome route: ${label}`);
 	}
 	assert(

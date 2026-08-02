@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T03:30:31.499Z",
+  "generatedAt": "2026-08-02T11:39:20.875Z",
   "appUrl": "http://127.0.0.1:1420/",
   "writerMenu": {
     "organize": true,
@@ -9,7 +9,7 @@
   "history": {
     "title": "历史与导出",
     "primaryActions": [
-      "导出 Markdown"
+      "导出 Word 文档"
     ],
     "receiptPath": "browser-downloads/第一章 停摆的时钟.txt",
     "receiptFormat": "纯文本",
@@ -27,7 +27,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 68
+      "visibleControls": 74
     },
     {
       "name": "02-history-export-receipt-1280x800.png",
@@ -39,7 +39,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 21
+      "visibleControls": 27
     },
     {
       "name": "03-history-export-1024x720.png",
@@ -51,7 +51,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 21
+      "visibleControls": 27
     },
     {
       "name": "04-history-export-820x720.png",
@@ -63,7 +63,7 @@
       "pageOverflowY": 0,
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
-      "visibleControls": 21
+      "visibleControls": 27
     }
   ]
 }

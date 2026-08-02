@@ -191,6 +191,8 @@
 
 @media (max-width: 849px) {
 	.daily-writing-goal.is-header .daily-goal-popover {
+		left: 0;
+		right: auto;
 		width: min(260px, calc(100vw - 32px));
 	}
 

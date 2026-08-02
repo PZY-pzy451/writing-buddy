@@ -199,7 +199,10 @@ try {
 	}))()`);
 	assert(welcome.primaryCount === 1, `Expected one welcome primary action: ${JSON.stringify(welcome)}`);
 	assert(welcome.text.includes('导入已有大纲预览后创建章节结构'), 'Outline import promise is missing.');
-	assert(welcome.text.includes('导入已有正文原样写入并打开第一章'), 'Manuscript import promise is missing.');
+	assert(
+		welcome.text.includes('导入已有正文文字不经 AI 改写并打开第一章'),
+		'Manuscript import promise is missing.'
+	);
 
 	await clickButton(client, '导入已有大纲预览后创建章节结构');
 	await waitFor(client, `Boolean(document.querySelector('.project-wizard'))`, 'project wizard');

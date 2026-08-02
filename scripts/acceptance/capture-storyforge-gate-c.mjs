@@ -600,10 +600,25 @@ const captures = gate === 'gate-ai-actions-f'
 	: gate.startsWith('gate-d')
 		? gateDCaptures
 		: gateCCaptures;
+const storyNavigationLabels = {
+	assets: '物品',
+	characters: '人物',
+	continuity: '结构检查',
+	extraction: '待完善',
+	information: '人物知识',
+	plots: '剧情线与伏笔',
+	relationships: '人物关系',
+	timeline: '事件与时间线',
+	worldbuilding: '地点与世界规则'
+};
+const planningViews = new Set(['continuity', 'plots']);
 const metrics = [];
 
 try {
 	for (const capture of captures) {
+		const captureMode = capture.mode === 'works'
+			? 'works'
+			: planningViews.has(capture.view) ? 'planning' : 'references';
 		await client.send('Emulation.setDeviceMetricsOverride', {
 			width: capture.width,
 			height: capture.height,
@@ -613,7 +628,7 @@ try {
 		await client.send('Runtime.evaluate', {
 			expression: `(() => {
 				const persisted = JSON.parse(localStorage.getItem('writing-buddy-next-workspace'));
-				persisted.state.activeMode = ${JSON.stringify(capture.mode ?? 'references')};
+				persisted.state.activeMode = ${JSON.stringify(captureMode)};
 				persisted.state.storyView = ${JSON.stringify(capture.view)};
 				persisted.state.openResourceIds = ${JSON.stringify(capture.resourceId ? [capture.resourceId] : [])};
 				persisted.state.activeResourceId = ${JSON.stringify(capture.resourceId)};
@@ -622,7 +637,7 @@ try {
 		});
 		const startedAt = performance.now();
 		await client.send('Page.reload', { ignoreCache: true });
-		if (capture.mode === 'works' && capture.resourceId) {
+		if (captureMode === 'works' && capture.resourceId) {
 			await waitForSelector(client, '.app-shell');
 			const writerReady = await client.send('Runtime.evaluate', {
 				expression: `(() => {
@@ -647,45 +662,45 @@ try {
 				if (!continued.result.value) throw new Error('Writer chapter could not be continued.');
 			}
 		}
-		if (capture.mode === 'references') {
-			await waitForSelector(
-				client,
-				gate === 'gate-writer-e' ? '.writer-header' : '.story-dashboard'
-			);
-			if (gate === 'gate-writer-e') {
-				await new Promise(resolveWait => setTimeout(resolveWait, 500));
-			}
-			const openedReferences = await client.send('Runtime.evaluate', {
+		if (captureMode === 'references' || captureMode === 'planning') {
+			await waitForSelector(client, '.story-dashboard');
+			const railLabel = captureMode === 'planning' ? '规划' : '故事库';
+			const openedWorkspace = await client.send('Runtime.evaluate', {
 				expression: `(() => {
 					if (document.querySelector(${JSON.stringify(capture.readySelector ?? capture.selector)})) {
 						return true;
 					}
 					const button = [...document.querySelectorAll('.global-rail .rail-item')]
-						.find(item => item.textContent?.trim() === '资料');
+						.find(item => item.textContent?.trim() === ${JSON.stringify(railLabel)});
 					if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
 					button.click();
 					return true;
 				})()`,
 				returnByValue: true
 			});
-			if (!openedReferences.result.value) {
-				throw new Error('Reference workspace could not be opened.');
+			if (!openedWorkspace.result.value) {
+				throw new Error(`${railLabel} workspace could not be opened.`);
 			}
-			if (capture.view === 'extraction') {
+			const navigationLabel = storyNavigationLabels[capture.view];
+			if (navigationLabel) {
 				await waitForSelector(client, '.story-reference-sidebar');
-				const openedExtraction = await client.send('Runtime.evaluate', {
+				const openedView = await client.send('Runtime.evaluate', {
 					expression: `(() => {
-						if (document.querySelector('.extraction-center-page')) return true;
+						if (document.querySelector(${JSON.stringify(capture.readySelector ?? capture.selector)})) {
+							return true;
+						}
+						const label = ${JSON.stringify(navigationLabel)};
 						const button = [...document.querySelectorAll('.story-reference-sidebar nav button')]
-							.find(item => item.textContent?.includes('AI 正文整理'));
+							.find(item => item.getAttribute('aria-label')?.startsWith(label + '，')
+								|| item.textContent?.includes(label));
 						if (!(button instanceof HTMLButtonElement) || button.disabled) return false;
 						button.click();
 						return true;
 					})()`,
 					returnByValue: true
 				});
-				if (!openedExtraction.result.value) {
-					throw new Error('Chapter organization page could not be opened.');
+				if (!openedView.result.value) {
+					throw new Error(`${navigationLabel} view could not be opened.`);
 				}
 			}
 		}
@@ -1318,6 +1333,15 @@ try {
 			})()`,
 			returnByValue: true
 		});
+		if (layout.result.value.pageOverflowX > 0 || layout.result.value.pageOverflowY > 0) {
+			throw new Error(`Page overflowed for ${capture.name}: ${JSON.stringify(layout.result.value)}`);
+		}
+		if (layout.result.value.clippedInteractive > 0) {
+			throw new Error(`Interactive controls were clipped for ${capture.name}: ${JSON.stringify(layout.result.value.clippedInteractiveDetails)}`);
+		}
+		if (layout.result.value.undersizedStoryControls > 0) {
+			throw new Error(`Story controls were below 44px for ${capture.name}: ${JSON.stringify(layout.result.value.undersizedStoryControlDetails)}`);
+		}
 		const screenshot = await client.send('Page.captureScreenshot', {
 			format: 'png',
 			fromSurface: true,
