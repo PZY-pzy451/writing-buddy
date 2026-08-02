@@ -176,6 +176,24 @@ pub struct CreateChapterResult {
     description: String,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpdateChapterStatusRequest {
+    project_root: String,
+    expected_project_revision: String,
+    chapter_id: String,
+    status: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpdateChapterStatusResult {
+    project: migration::WritingProject,
+    project_revision: String,
+    chapter: migration::ChapterDescriptor,
+    description: String,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderedLocation {
@@ -1079,6 +1097,119 @@ pub fn create_chapter(
 ) -> Result<CreateChapterResult, String> {
     require_write_lock(&state, &request.project_root)?;
     create_chapter_on_disk(&request)
+}
+
+fn chapter_status_label(status: &str) -> &'static str {
+    match status {
+        "revision" => "修订中",
+        "completed" => "已完成",
+        _ => "初稿",
+    }
+}
+
+fn update_chapter_status_on_disk(
+    request: &UpdateChapterStatusRequest,
+) -> Result<UpdateChapterStatusResult, String> {
+    let root = filesystem::canonical_project_root(&request.project_root)?;
+    let manifest_path = root.join(".writing-buddy").join("project.json");
+    let previous_bytes = fs::read(&manifest_path).map_err(|_| "manifestReadFailed".to_owned())?;
+    let current_revision = filesystem::sha256(&previous_bytes);
+    if request.expected_project_revision != current_revision {
+        return Err(format!("projectRevisionConflict:{current_revision}"));
+    }
+    if !matches!(request.status.as_str(), "draft" | "revision" | "completed") {
+        return Err("chapterStatusInvalid".to_owned());
+    }
+    let mut project: migration::WritingProject =
+        serde_json::from_slice(&previous_bytes).map_err(|_| "invalidManifest".to_owned())?;
+    let unchanged_chapter = {
+        let chapter = project
+            .volumes
+            .iter_mut()
+            .flat_map(|volume| volume.chapters.iter_mut())
+            .find(|chapter| chapter.id == request.chapter_id)
+            .ok_or_else(|| "chapterStatusChapterMissing".to_owned())?;
+        if chapter.status.as_deref().unwrap_or("draft") == request.status {
+            Some(chapter.clone())
+        } else {
+            chapter.status = Some(request.status.clone());
+            None
+        }
+    };
+    if let Some(chapter) = unchanged_chapter {
+        return Ok(UpdateChapterStatusResult {
+            project,
+            project_revision: current_revision,
+            chapter: chapter.clone(),
+            description: format!(
+                "“{}”已经是{}。",
+                chapter.title,
+                chapter_status_label(&request.status)
+            ),
+        });
+    }
+
+    let mut next_bytes = serde_json::to_vec_pretty(&project)
+        .map_err(|_| "chapterStatusSerializeFailed".to_owned())?;
+    next_bytes.push(b'\n');
+    let next_content =
+        String::from_utf8(next_bytes).map_err(|_| "chapterStatusSerializeFailed".to_owned())?;
+    let write_result = filesystem::write_text_atomic(&AtomicWriteRequest {
+        project_root: root.to_string_lossy().into_owned(),
+        relative_path: ".writing-buddy/project.json".to_owned(),
+        content: next_content,
+        expected_hash: current_revision,
+        eol: "lf".to_owned(),
+        has_bom: false,
+        force: false,
+    })
+    .map_err(|error| {
+        if error.starts_with("externalChange:") {
+            "projectRevisionConflict".to_owned()
+        } else {
+            "chapterStatusWriteFailed".to_owned()
+        }
+    })?;
+    let verified = migration::open_project(&root.to_string_lossy()).map_err(|_| {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_bytes);
+        "chapterStatusVerificationFailed".to_owned()
+    })?;
+    let verified_chapter = verified
+        .project
+        .volumes
+        .iter()
+        .flat_map(|volume| volume.chapters.iter())
+        .find(|chapter| {
+            chapter.id == request.chapter_id && chapter.status.as_deref() == Some(&request.status)
+        })
+        .cloned();
+    if verified.read_only
+        || verified.project_revision != write_result.hash
+        || verified_chapter.is_none()
+    {
+        let _ = filesystem::write_bytes_atomic(&manifest_path, &previous_bytes);
+        return Err("chapterStatusVerificationFailed".to_owned());
+    }
+    let chapter = verified_chapter.expect("verified chapter checked above");
+    Ok(UpdateChapterStatusResult {
+        project: verified.project,
+        project_revision: write_result.hash,
+        description: format!(
+            "已将“{}”标记为{}。",
+            chapter.title,
+            chapter_status_label(&request.status)
+        ),
+        chapter,
+    })
+}
+
+#[tauri::command]
+pub fn update_chapter_status(
+    state: State<'_, AppState>,
+    request: UpdateChapterStatusRequest,
+) -> Result<UpdateChapterStatusResult, String> {
+    require_write_lock(&state, &request.project_root)?;
+    update_chapter_status_on_disk(&request)
 }
 
 fn project_move_error(code: &str) -> Result<(MoveCommand, String), String> {
@@ -3948,6 +4079,85 @@ mod tests {
             .map(|entry| entry.path().to_path_buf())
             .collect::<BTreeSet<_>>();
         assert_eq!(after, before);
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
+    }
+
+    #[test]
+    fn chapter_status_update_is_atomic_and_reopens_verified_state() {
+        let root = project_move_fixture("chapter-status");
+        let opened = migration::open_project(&root.to_string_lossy()).expect("open fixture");
+        let manuscript_path = root.join("chapters/1.md");
+        let manuscript_before = fs::read(&manuscript_path).expect("read manuscript");
+        let request = UpdateChapterStatusRequest {
+            project_root: root.to_string_lossy().into_owned(),
+            expected_project_revision: opened.project_revision,
+            chapter_id: "chapter-a11ce001".to_owned(),
+            status: "completed".to_owned(),
+        };
+
+        let updated = update_chapter_status_on_disk(&request).expect("update chapter status");
+        assert_eq!(updated.chapter.status.as_deref(), Some("completed"));
+        assert_eq!(
+            updated
+                .project
+                .volumes
+                .iter()
+                .flat_map(|volume| volume.chapters.iter())
+                .find(|chapter| chapter.id == "chapter-a11ce001")
+                .and_then(|chapter| chapter.status.as_deref()),
+            Some("completed")
+        );
+        assert_ne!(updated.project_revision, request.expected_project_revision);
+        assert_eq!(
+            fs::read(&manuscript_path).expect("re-read manuscript"),
+            manuscript_before
+        );
+        let reopened = migration::open_project(&root.to_string_lossy()).expect("reopen");
+        assert_eq!(reopened.project_revision, updated.project_revision);
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
+    }
+
+    #[test]
+    fn chapter_status_update_rejects_invalid_input_without_writes() {
+        let root = project_move_fixture("chapter-status-invalid");
+        let opened = migration::open_project(&root.to_string_lossy()).expect("open fixture");
+        let manifest_path = root.join(".writing-buddy/project.json");
+        let before = fs::read(&manifest_path).expect("read manifest");
+        let project_root = root.to_string_lossy().into_owned();
+
+        for (chapter_id, status, revision, expected_code) in [
+            (
+                "chapter-a11ce001",
+                "published",
+                opened.project_revision.as_str(),
+                "chapterStatusInvalid",
+            ),
+            (
+                "chapter:missing",
+                "completed",
+                opened.project_revision.as_str(),
+                "chapterStatusChapterMissing",
+            ),
+            (
+                "chapter-a11ce001",
+                "completed",
+                "stale",
+                "projectRevisionConflict",
+            ),
+        ] {
+            let error = update_chapter_status_on_disk(&UpdateChapterStatusRequest {
+                project_root: project_root.clone(),
+                expected_project_revision: revision.to_owned(),
+                chapter_id: chapter_id.to_owned(),
+                status: status.to_owned(),
+            })
+            .expect_err("invalid update must fail");
+            assert!(
+                error.starts_with(expected_code),
+                "unexpected error: {error}"
+            );
+            assert_eq!(fs::read(&manifest_path).expect("re-read manifest"), before);
+        }
         let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
     }
 

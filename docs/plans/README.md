@@ -46,6 +46,7 @@
 - [Phase 1.2L whole-work consistency pass](./044-phase-1.2l-whole-work-consistency.md)
 - [Phase 1.2M scene-linked plot grid](./045-phase-1.2m-scene-linked-plot-grid.md)
 - [Phase 1.2N publish readiness](./046-phase-1.2n-publish-readiness.md)
+- [Phase 1.2O chapter lifecycle](./047-phase-1.2o-chapter-lifecycle.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

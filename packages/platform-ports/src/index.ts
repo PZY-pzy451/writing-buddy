@@ -1,5 +1,6 @@
 import type {
 	ChapterDescriptor,
+	ChapterStatus,
 	TextFile,
 	WritingProject
 } from '@writing-buddy/domain';
@@ -295,6 +296,20 @@ export interface MaterializeCreationJourneyResult {
 	readonly description: string;
 }
 
+export interface UpdateChapterStatusRequest {
+	readonly projectRoot: string;
+	readonly expectedProjectRevision: string;
+	readonly chapterId: string;
+	readonly status: ChapterStatus;
+}
+
+export interface UpdateChapterStatusResult {
+	readonly project: WritingProject;
+	readonly projectRevision: string;
+	readonly chapter: ChapterDescriptor;
+	readonly description: string;
+}
+
 export type TextSaveFormat = 'markdown' | 'plain-text';
 
 export interface MaterializeOutlineHierarchyRequest {
@@ -458,6 +473,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 	preflightProjectCreation(request: CreateProjectRequest): Promise<ProjectCreationPreflight>;
 	createProject(request: CreateProjectRequest): Promise<CreatedProject>;
 	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult>;
+	updateChapterStatus(request: UpdateChapterStatusRequest): Promise<UpdateChapterStatusResult>;
 	materializeCreationJourney(
 		request: MaterializeCreationJourneyRequest
 	): Promise<MaterializeCreationJourneyResult>;

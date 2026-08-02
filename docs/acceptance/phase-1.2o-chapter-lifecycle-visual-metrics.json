@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-08-02T08:44:03.626Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "menu": {
+    "help": "状态只由你确认，不会自动判断正文质量或修改正文。",
+    "options": [
+      {
+        "label": "初稿",
+        "checked": "true",
+        "height": 54
+      },
+      {
+        "label": "修订中",
+        "checked": "false",
+        "height": 54
+      },
+      {
+        "label": "已完成",
+        "checked": "false",
+        "height": 54
+      }
+    ]
+  },
+  "completed": {
+    "status": "completed",
+    "label": "章节状态：已完成",
+    "menuClosed": true
+  },
+  "completion": {
+    "status": "attention",
+    "text": "章节完成度待确认2/3 章尚未标记完成；这不会自动改写正文。打开第一处"
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-chapter-status-draft-1440x900.png",
+      "surface": "chapter-status-draft",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "02-chapter-status-menu-1440x900.png",
+      "surface": "chapter-status-menu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "03-chapter-status-completed-1440x900.png",
+      "surface": "chapter-status-completed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "04-chapter-status-menu-1024x720.png",
+      "surface": "chapter-status-menu-responsive",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "05-chapter-status-menu-820x720.png",
+      "surface": "chapter-status-menu-responsive",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    }
+  ]
+}

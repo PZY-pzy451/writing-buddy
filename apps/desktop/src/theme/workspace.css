@@ -1375,6 +1375,70 @@ button.tree-row {
 	height: 16px;
 }
 
+.chapter-status-control > div {
+	width: min(292px, calc(100vw - 24px));
+}
+
+.chapter-status-control summary,
+.chapter-status-readonly {
+	color: var(--text-secondary);
+	background: var(--surface-subtle);
+	border-color: var(--border-subtle);
+}
+
+.chapter-status-control[data-status="revision"] summary,
+.chapter-status-readonly[data-status="revision"] {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 8%, var(--surface-raised));
+	border-color: color-mix(in srgb, var(--warning) 32%, var(--border-subtle));
+}
+
+.chapter-status-control[data-status="completed"] summary,
+.chapter-status-readonly[data-status="completed"] {
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 8%, var(--surface-raised));
+	border-color: color-mix(in srgb, var(--success) 32%, var(--border-subtle));
+}
+
+.chapter-status-control summary[aria-disabled="true"] {
+	cursor: progress;
+	opacity: 0.8;
+}
+
+.chapter-status-readonly {
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 0 12px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.chapter-status-help {
+	margin: 2px 4px 4px;
+	padding: 8px 9px;
+	color: var(--text-secondary);
+	background: var(--surface-subtle);
+	border-radius: 8px;
+	font-size: 11px;
+	line-height: 1.55;
+}
+
+.chapter-status-control > div button[aria-checked="true"] {
+	background: color-mix(in srgb, var(--accent) 9%, var(--surface-raised));
+	border-color: color-mix(in srgb, var(--accent) 28%, var(--border-subtle));
+}
+
+.chapter-status-control > div button:disabled {
+	cursor: progress;
+	opacity: 0.8;
+}
+
 .canvas-surface {
 	position: relative;
 	min-width: 0;

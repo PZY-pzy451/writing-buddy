@@ -34,6 +34,7 @@ function resetWorkspaceExperience(): void {
 		projectWizardStartRoute: undefined,
 		chapterCreatorOpen: false,
 		chapterCreateBusy: false,
+		chapterStatusBusy: false,
 		chapterExportBusy: false,
 		chapterExportReceipts: [],
 		writingProgress: {},
@@ -321,6 +322,92 @@ describe('quiet writer workspaces', () => {
 			'true'
 		);
 		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
+	});
+
+	it('saves dirty prose before changing chapter status and updates publish readiness immediately', async () => {
+		const user = userEvent.setup();
+		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		let statusRevision = 0;
+		const updateChapterStatus = vi.spyOn(desktopBridge, 'updateChapterStatus')
+			.mockImplementation(request => {
+				const snapshot = useAppStore.getState().snapshot;
+				if (!snapshot) throw new Error('fixture snapshot missing');
+				let updatedChapter = snapshot.project.volumes[0]?.chapters[0];
+				const volumes = snapshot.project.volumes.map(volume => ({
+					...volume,
+					chapters: volume.chapters.map(chapter => {
+						if (chapter.id !== request.chapterId) return chapter;
+						updatedChapter = { ...chapter, status: request.status };
+						return updatedChapter;
+					})
+				}));
+				if (!updatedChapter) throw new Error('fixture chapter missing');
+				return Promise.resolve({
+					project: { ...snapshot.project, volumes },
+					projectRevision: `status-revision-${++statusRevision}`,
+					chapter: updatedChapter,
+					description: '已将章节标记为已完成。'
+				});
+			});
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('夜雨落下，林墨确认本章结尾。'));
+
+		await user.click(screen.getByRole('button', { name: '章节状态：初稿' }));
+		const statusMenu = screen.getByRole('menu', { name: '选择章节状态' });
+		expect(within(statusMenu).getByText(/不会自动判断正文质量/u)).toBeInTheDocument();
+		await user.click(within(statusMenu).getByRole('menuitemradio', { name: /已完成/u }));
+
+		await waitFor(() => expect(updateChapterStatus).toHaveBeenCalledTimes(1));
+		expect(writeTextAtomic).toHaveBeenCalledTimes(1);
+		expect(writeTextAtomic.mock.invocationCallOrder[0]).toBeLessThan(
+			updateChapterStatus.mock.invocationCallOrder[0] ?? Number.MAX_SAFE_INTEGER
+		);
+		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters[0]?.status)
+			.toBe('completed');
+		expect(screen.getByRole('button', { name: '章节状态：已完成' })).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '章节状态：已完成' }));
+		await user.click(screen.getByRole('menuitemradio', { name: /修订中/u }));
+		await waitFor(() => expect(updateChapterStatus).toHaveBeenCalledTimes(2));
+		expect(screen.getByRole('button', { name: '章节状态：修订中' })).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '章节状态：修订中' }));
+		await user.click(screen.getByRole('menuitemradio', { name: /已完成/u }));
+		await waitFor(() => expect(updateChapterStatus).toHaveBeenCalledTimes(3));
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		await user.click(await screen.findByRole('button', { name: /查看发布清单/u }));
+		expect(screen.getByText(/2\/3 章尚未标记完成/u)).toBeInTheDocument();
+	});
+
+	it('does not change chapter status when dirty manuscript saving fails', async () => {
+		const user = userEvent.setup();
+		vi.spyOn(desktopBridge, 'writeTextAtomic').mockRejectedValue(new Error('offline'));
+		const updateChapterStatus = vi.spyOn(desktopBridge, 'updateChapterStatus');
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('尚未安全保存的章节结尾'));
+
+		await user.click(screen.getByRole('button', { name: '章节状态：初稿' }));
+		await user.click(screen.getByRole('menuitemradio', { name: /已完成/u }));
+
+		expect(await screen.findByText('当前正文尚未安全保存，未修改章节状态。'))
+			.toBeInTheDocument();
+		expect(updateChapterStatus).not.toHaveBeenCalled();
+		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters[0]?.status)
+			.toBe('draft');
+	});
+
+	it('shows chapter status without an edit control for read-only projects', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => {
+			const snapshot = useAppStore.getState().snapshot;
+			if (snapshot) useAppStore.setState({ snapshot: { ...snapshot, readOnly: true } });
+		});
+
+		expect(screen.queryByRole('button', { name: '章节状态：初稿' })).not.toBeInTheDocument();
+		expect(screen.getByTitle('只读作品不能修改章节状态')).toHaveTextContent('初稿');
 	});
 
 	it('exports the active chapter from the writer menu and records a durable receipt', async () => {

@@ -1,6 +1,7 @@
 import {
 	AlignJustify,
 	Check,
+	CheckCircle2,
 	ChevronDown,
 	ChevronLeft,
 	ChevronRight,
@@ -8,14 +9,33 @@ import {
 	Download,
 	Feather,
 	ListChecks,
+	LoaderCircle,
 	MoreHorizontal,
+	PencilLine,
+	CircleDashed,
 	Save
 } from 'lucide-react';
 import type { ManuscriptContinuationMode } from '@writing-buddy/story-kernel';
-import { countWords, findChapter, flattenChapters } from '@writing-buddy/domain';
+import {
+	countWords,
+	findChapter,
+	flattenChapters,
+	type ChapterStatus
+} from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 import { DailyWritingGoalControl } from '../features/progress/DailyWritingGoalControl';
+
+const chapterStatuses: readonly {
+	readonly id: ChapterStatus;
+	readonly label: string;
+	readonly description: string;
+	readonly Icon: typeof CircleDashed;
+}[] = [
+	{ id: 'draft', label: '初稿', description: '内容仍在创作，可继续增删。', Icon: CircleDashed },
+	{ id: 'revision', label: '修订中', description: '正在整理结构、语言或一致性。', Icon: PencilLine },
+	{ id: 'completed', label: '已完成', description: '由你确认本章可进入交付检查。', Icon: CheckCircle2 }
+];
 
 export function WriterHeader(): React.JSX.Element | null {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -26,6 +46,8 @@ export function WriterHeader(): React.JSX.Element | null {
 	const saveState = useAppStore(state => state.saveState);
 	const exportActiveChapter = useAppStore(state => state.exportActiveChapter);
 	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
+	const chapterStatusBusy = useAppStore(state => state.chapterStatusBusy);
+	const updateChapterStatus = useAppStore(state => state.updateChapterStatus);
 	const requestAssistantAction = useAppStore(state => state.requestAssistantAction);
 	const setStoryView = useAppStore(state => state.setStoryView);
 	const focusMode = useAppStore(state => state.focusMode);
@@ -40,6 +62,10 @@ export function WriterHeader(): React.JSX.Element | null {
 	const chapters = flattenChapters(snapshot.project);
 	const index = chapters.findIndex(chapter => chapter.id === activeResource.id);
 	const chapterWords = session ? countWords(session.content) : 0;
+	const chapterStatus = found?.chapter.status ?? 'draft';
+	const chapterStatusOption = chapterStatuses.find(option => option.id === chapterStatus)
+		?? chapterStatuses[0];
+	const ChapterStatusIcon = chapterStatusOption.Icon;
 
 	const openChapterAt = (targetIndex: number) => {
 		const chapter = chapters[targetIndex];
@@ -70,6 +96,11 @@ export function WriterHeader(): React.JSX.Element | null {
 		await exportActiveChapter('markdown');
 		target.closest('details')?.removeAttribute('open');
 	};
+	const chooseChapterStatus = async (status: ChapterStatus, target: HTMLElement) => {
+		if (!found || chapterStatusBusy) return;
+		const updated = await updateChapterStatus(found.chapter.id, status);
+		if (updated) target.closest('details')?.removeAttribute('open');
+	};
 
 	return (
 		<header className="writer-header">
@@ -91,6 +122,48 @@ export function WriterHeader(): React.JSX.Element | null {
 						<>
 							<DailyWritingGoalControl placement="header" />
 							<span className="word-chip">本章 {chapterWords.toLocaleString()} 字</span>
+							{chapterStatusOption && (
+								snapshot.readOnly ? (
+									<span className="chapter-status-readonly" data-status={chapterStatus} title="只读作品不能修改章节状态">
+										<ChapterStatusIcon size={16} />{chapterStatusOption.label}
+									</span>
+								) : (
+									<details className="writer-tools-menu chapter-status-control" data-status={chapterStatus}>
+										<summary
+											role="button"
+											aria-label={`章节状态：${chapterStatusOption.label}`}
+											aria-disabled={chapterStatusBusy}
+											onClick={event => {
+												if (chapterStatusBusy) event.preventDefault();
+											}}
+										>
+											{chapterStatusBusy
+												? <LoaderCircle className="spin" size={16} />
+												: <ChapterStatusIcon size={16} />}
+											<span>{chapterStatusBusy ? '正在更新…' : chapterStatusOption.label}</span>
+											<ChevronDown size={16} />
+										</summary>
+										<div role="menu" aria-label="选择章节状态">
+											<p className="chapter-status-help">
+												状态只由你确认，不会自动判断正文质量或修改正文。
+											</p>
+											{chapterStatuses.map(({ id, label, description, Icon }) => (
+												<button
+													key={id}
+													type="button"
+													role="menuitemradio"
+													aria-checked={chapterStatus === id}
+													disabled={chapterStatusBusy}
+													onClick={event => void chooseChapterStatus(id, event.currentTarget)}
+												>
+													{chapterStatus === id ? <Check size={18} /> : <Icon size={18} />}
+													<span><strong>{label}</strong><small>{description}</small></span>
+												</button>
+											))}
+										</div>
+									</details>
+								)
+							)}
 							{!snapshot.readOnly ? (
 								<details className="writer-tools-menu">
 									<summary aria-label="更多章节操作" role="button">

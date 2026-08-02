@@ -35,6 +35,7 @@ pub fn run() {
             commands::preflight_project_creation,
             commands::create_project,
             commands::create_chapter,
+            commands::update_chapter_status,
             commands::materialize_creation_journey,
             commands::materialize_outline_hierarchy,
             commands::move_project_structure,

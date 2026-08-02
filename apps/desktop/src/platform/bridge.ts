@@ -42,6 +42,8 @@ import type {
 	StoryIndexQuery,
 	StoryIndexQueryResult,
 	StoryIndexStatus,
+	UpdateChapterStatusRequest,
+	UpdateChapterStatusResult,
 	VersionSummary,
 	VersionText
 } from '@writing-buddy/platform-ports';
@@ -86,6 +88,10 @@ class TauriDesktopBridge implements DesktopBridge {
 
 	createChapter(request: CreateChapterRequest): Promise<CreateChapterResult> {
 		return invoke<CreateChapterResult>('create_chapter', { request });
+	}
+
+	updateChapterStatus(request: UpdateChapterStatusRequest): Promise<UpdateChapterStatusResult> {
+		return invoke<UpdateChapterStatusResult>('update_chapter_status', { request });
 	}
 
 	materializeCreationJourney(
@@ -1521,6 +1527,48 @@ class BrowserDesktopBridge implements DesktopBridge {
 			journeyContent,
 			journeyHash,
 			description: '已创建 3 个开篇章节，并打开第一章。'
+		};
+	}
+
+	async updateChapterStatus(
+		request: UpdateChapterStatusRequest
+	): Promise<UpdateChapterStatusResult> {
+		const current = browserCreatedProjects.get(request.projectRoot)
+			?? (request.projectRoot === browserProject.root ? browserProject : undefined);
+		if (!current) throw new Error('projectRootUnavailable');
+		if (current.readOnly) throw new Error('projectReadOnly');
+		if (current.projectRevision !== request.expectedProjectRevision) {
+			throw new Error('projectRevisionConflict');
+		}
+		if (!['draft', 'revision', 'completed'].includes(request.status)) {
+			throw new Error('chapterStatusInvalid');
+		}
+		let updatedChapter: UpdateChapterStatusResult['chapter'] | undefined;
+		const volumes = current.project.volumes.map(volume => ({
+			...volume,
+			chapters: volume.chapters.map(chapter => {
+				if (chapter.id !== request.chapterId) return chapter;
+				updatedChapter = { ...chapter, status: request.status };
+				return updatedChapter;
+			})
+		}));
+		if (!updatedChapter) throw new Error('chapterStatusChapterMissing');
+		const projectRevision = `browser-project-revision-${++browserProjectRevisionSequence}`;
+		const next = {
+			...current,
+			project: { ...current.project, volumes },
+			projectRevision
+		};
+		if (request.projectRoot === browserProject.root) {
+			browserProject = next;
+		} else {
+			browserCreatedProjects.set(request.projectRoot, next);
+		}
+		return {
+			project: next.project,
+			projectRevision,
+			chapter: updatedChapter,
+			description: `章节状态已更新为“${request.status}”。`
 		};
 	}
 

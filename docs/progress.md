@@ -4,6 +4,25 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2O chapter lifecycle is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The writing header now exposes one explicit, reversible
+  `初稿 / 修订中 / 已完成` control, while read-only projects retain a truthful
+  status label without an edit action.
+- Dirty prose saves first; the native command changes only the manifest through
+  revision checking, atomic write, reopen verification and exact-byte rollback.
+- Six Edge/CDP captures at 1440×900, 1024×720 and 820×720 pass with no page
+  overflow, clipping, sub-44 px status controls, occlusion or runtime errors.
+- Final gates: 167 Vitest files / 682 tests, production Vite build, Cargo format,
+  76 Rust tests / 2 ignored, full and release self-tests, Tauri Release/NSIS and
+  portable PID 24568 title/WebView/no-debug-port/normal-close smoke.
+- Delivery: `artifacts/release/phase-1.2o-chapter-lifecycle-2026-08-02/`;
+  evidence: `docs/acceptance/072-phase-1.2o-chapter-lifecycle-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2N publish readiness is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -24,8 +43,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2n-publish-readiness-2026-08-02/`;
   evidence:
   `docs/acceptance/071-phase-1.2n-publish-readiness-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2M scene-linked plot grid is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

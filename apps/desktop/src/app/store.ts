@@ -2,6 +2,7 @@ import {
 	countWords,
 	findChapter,
 	flattenChapters,
+	type ChapterStatus,
 	type CursorState,
 	type ResourceDescriptor,
 	type TextFile
@@ -246,6 +247,7 @@ interface AppState extends PersistedWorkspace {
 	readonly creationJourneyStartRoute?: CreationStartRoute;
 	readonly chapterCreatorOpen: boolean;
 	readonly chapterCreateBusy: boolean;
+	readonly chapterStatusBusy: boolean;
 	readonly recentlyClosedResources: readonly ResourceDescriptor[];
 	readonly structureMoveBusy: boolean;
 	readonly structureMoveAnnouncement?: string;
@@ -281,6 +283,7 @@ interface AppState extends PersistedWorkspace {
 	readonly openChapterCreator: () => void;
 	readonly closeChapterCreator: () => void;
 	readonly createChapter: (title: string, volumeId?: string) => Promise<boolean>;
+	readonly updateChapterStatus: (chapterId: string, status: ChapterStatus) => Promise<boolean>;
 	readonly moveProjectStructure: (command: MoveCommand) => Promise<boolean>;
 	readonly undoProjectStructureMove: () => Promise<void>;
 	readonly dismissProjectStructureUndo: () => void;
@@ -559,6 +562,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	creationJourneyStartRoute: undefined,
 	chapterCreatorOpen: false,
 	chapterCreateBusy: false,
+	chapterStatusBusy: false,
 	recentlyClosedResources: [],
 	structureMoveBusy: false,
 	structureScenes: [],
@@ -679,6 +683,66 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({
 				chapterCreateBusy: false,
 				error: copy[code] ?? copy.chapterCreateFailed
+			});
+			return false;
+		}
+	},
+
+	async updateChapterStatus(chapterId, status) {
+		const snapshot = get().snapshot;
+		if (!snapshot || get().chapterStatusBusy) return false;
+		if (snapshot.readOnly) {
+			set({ error: '当前作品以只读模式打开，不能修改章节状态。' });
+			return false;
+		}
+		const chapter = flattenChapters(snapshot.project).find(candidate => candidate.id === chapterId);
+		if (!chapter) {
+			set({ error: '目标章节已不存在，请重新载入作品。' });
+			return false;
+		}
+		if ((chapter.status ?? 'draft') === status) return true;
+		if (get().session?.state.dirty) {
+			await get().save();
+			const saved = get();
+			if (saved.session?.state.dirty || saved.saveState.type !== 'clean') {
+				set({ error: '当前正文尚未安全保存，未修改章节状态。' });
+				return false;
+			}
+		}
+		set({ chapterStatusBusy: true, error: undefined });
+		try {
+			const result = await desktopBridge.updateChapterStatus({
+				projectRoot: snapshot.root,
+				expectedProjectRevision: snapshot.projectRevision,
+				chapterId,
+				status
+			});
+			set({
+				snapshot: {
+					...snapshot,
+					project: result.project,
+					projectRevision: result.projectRevision
+				},
+				chapterStatusBusy: false,
+				structureMoveAnnouncement: result.description
+			});
+			return true;
+		} catch (error) {
+			const code = error instanceof Error
+				? error.message.split(':')[0]
+				: 'chapterStatusUpdateFailed';
+			const copy: Readonly<Record<string, string>> = {
+				projectReadOnly: '当前作品以只读模式打开，不能修改章节状态。',
+				projectRevisionConflict: '作品结构已变化，请重新载入后再修改章节状态。',
+				chapterStatusInvalid: '章节状态无效，未写入作品。',
+				chapterStatusChapterMissing: '目标章节已不存在，请重新载入作品。',
+				chapterStatusWriteFailed: '无法保存章节状态，作品保持不变。',
+				chapterStatusVerificationFailed: '章节状态验证失败，已恢复修改前状态。',
+				chapterStatusUpdateFailed: '暂时无法修改章节状态。'
+			};
+			set({
+				chapterStatusBusy: false,
+				error: copy[code] ?? copy.chapterStatusUpdateFailed
 			});
 			return false;
 		}
@@ -902,7 +966,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			sessionRestoreNotice: undefined,
 			recentlyClosedResources: [],
 			chapterCreatorOpen: false,
-			chapterCreateBusy: false
+			chapterCreateBusy: false,
+			chapterStatusBusy: false
 		});
 		const result = mode === 'read-only'
 			? await projectOpenService.openProjectReadOnly(root)
