@@ -212,6 +212,14 @@ async function setViewport(client, width, height, reducedMotion) {
 			value: reducedMotion ? 'reduce' : 'no-preference'
 		}]
 	});
+	await waitFor(
+		client,
+		`innerWidth === ${width} && innerHeight === ${height}`,
+		`${width}×${height} viewport`
+	);
+	await evaluate(client, `new Promise(resolve => requestAnimationFrame(
+		() => requestAnimationFrame(resolve)
+	))`);
 }
 
 const normalizeTextExpression = `

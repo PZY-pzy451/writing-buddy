@@ -8787,13 +8787,15 @@ body,
 
 .creation-journey-progress {
 	display: grid;
-	grid-template-columns: repeat(6, minmax(104px, 1fr));
+	box-sizing: border-box;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
 	gap: 1px;
+	width: 100%;
+	min-width: 0;
 	padding: 0 clamp(18px, 3vw, 42px);
-	overflow-x: auto;
+	overflow-x: hidden;
 	background: var(--border-subtle);
 	border-bottom: 1px solid var(--border-subtle);
-	scrollbar-width: thin;
 }
 
 .creation-journey-progress > button {
@@ -8801,7 +8803,7 @@ body,
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	min-width: 104px;
+	min-width: 0;
 	min-height: 54px;
 	padding: 6px 10px;
 	cursor: pointer;

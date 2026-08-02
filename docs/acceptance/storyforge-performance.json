@@ -1,6 +1,6 @@
 {
     "schemaVersion":  1,
-    "generatedAt":  "2026-08-02T14:30:19.7520833Z",
+    "generatedAt":  "2026-08-02T16:04:31.9335141Z",
     "fixture":  {
                     "schemaVersion":  1,
                     "fixtureId":  "storyforge-large-project-v1",
@@ -36,11 +36,11 @@
                                    "scenes":  10000
                                },
                    "metricsMs":  {
-                                     "filteredGraph":  0.1906,
-                                     "projectInteractive":  430.5865,
-                                     "resourceSwitch":  0.5962,
-                                     "singleResourceSave":  0.006,
-                                     "timelineFeedback":  4.2667
+                                     "filteredGraph":  0.2,
+                                     "projectInteractive":  433.8994,
+                                     "resourceSwitch":  0.6689,
+                                     "singleResourceSave":  0.0079,
+                                     "timelineFeedback":  4.7289
                                  },
                    "schemaVersion":  1,
                    "thresholdsMs":  {
