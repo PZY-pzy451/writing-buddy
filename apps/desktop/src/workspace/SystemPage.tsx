@@ -29,7 +29,8 @@ import {
 import { EntityPeekCard } from '../features/story/manuscript/EntityPeekCard';
 import {
 	chapterExportFormatLabels,
-	type ChapterExportFormat
+	type ChapterExportFormat,
+	type WorkExportFormat
 } from '../features/export/ChapterExportModel';
 import { ProjectBackupPanel } from '../features/backup/ProjectBackupPanel';
 
@@ -45,6 +46,11 @@ export function SystemPage(): React.JSX.Element | null {
 	const exportWholeWork = useAppStore(state => state.exportWholeWork);
 	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
 	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
+	const exportError = useAppStore(state => (
+		state.error?.includes('导出') || state.error?.includes('正文尚未安全保存')
+			? state.error
+			: undefined
+	));
 	const novelWordCount = useAppStore(selectNovelWordCount);
 	const [versions, setVersions] = useState<readonly VersionSummary[]>([]);
 	const [selectedVersion, setSelectedVersion] = useState<string>();
@@ -278,7 +284,7 @@ export function SystemPage(): React.JSX.Element | null {
 			setVersionMessage(`当前章节已导出为${chapterExportFormatLabels[format]}。`);
 		}
 	};
-	const exportWork = async (format: ChapterExportFormat) => {
+	const exportWork = async (format: WorkExportFormat) => {
 		const exported = await exportWholeWork(format);
 		if (exported) {
 			setVersionMessage(`整部作品已导出为${chapterExportFormatLabels[format]}。`);
@@ -322,10 +328,18 @@ export function SystemPage(): React.JSX.Element | null {
 						className="primary-button"
 						type="button"
 						disabled={!wholeWorkReady || chapterExportBusy}
-						onClick={() => void exportWork('markdown')}
+						onClick={() => void exportWork('docx')}
 					>
 						<Download size={18} />
-						{chapterExportBusy ? '正在导出…' : '导出作品'}
+						{chapterExportBusy ? '正在导出…' : '导出 Word 文档'}
+					</button>
+					<button
+						className="secondary-button"
+						type="button"
+						disabled={!wholeWorkReady || chapterExportBusy}
+						onClick={() => void exportWork('markdown')}
+					>
+						<FileText size={18} />作品 Markdown
 					</button>
 					<button
 						className="secondary-button"
@@ -352,6 +366,7 @@ export function SystemPage(): React.JSX.Element | null {
 						<FileText size={18} />当前章纯文本
 					</button>
 				</div>
+				{exportError && <p className="history-export-error" role="alert">{exportError}</p>}
 			</section>
 
 			{projectExportReceipts.length > 0 && (

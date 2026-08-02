@@ -24,6 +24,7 @@ import type {
 	CreateProjectRequest,
 	CreatedProject,
 	DesktopBridge,
+	DocxExportDocument,
 	ImportedTextFile,
 	MaterializeCreationJourneyRequest,
 	MaterializeCreationJourneyResult,
@@ -141,6 +142,11 @@ class TauriDesktopBridge implements DesktopBridge {
 			suggestedName,
 			format
 		})
+			.then(value => value ?? undefined);
+	}
+
+	saveDocxAs(document: DocxExportDocument, suggestedName: string): Promise<string | undefined> {
+		return invoke<string | null>('save_docx_as', { document, suggestedName })
 			.then(value => value ?? undefined);
 	}
 
@@ -1325,6 +1331,10 @@ class BrowserDesktopBridge implements DesktopBridge {
 		_hasBom: boolean,
 		suggestedName: string
 	): Promise<string> {
+		return `browser-downloads/${suggestedName}`;
+	}
+
+	async saveDocxAs(_document: DocxExportDocument, suggestedName: string): Promise<string> {
 		return `browser-downloads/${suggestedName}`;
 	}
 

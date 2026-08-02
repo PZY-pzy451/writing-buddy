@@ -92,12 +92,14 @@ import type {
 } from '../features/story/ai-context/InlineDraftCandidateModel';
 import {
 	buildChapterExportContent,
+	buildWorkDocxDocument,
 	buildWorkExportContent,
 	parseChapterExportReceipts,
 	suggestedChapterExportName,
 	suggestedWorkExportName,
 	type ChapterExportFormat,
-	type ChapterExportReceipt
+	type ChapterExportReceipt,
+	type WorkExportFormat
 } from '../features/export/ChapterExportModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
@@ -315,7 +317,7 @@ interface AppState extends PersistedWorkspace {
 	readonly save: () => Promise<void>;
 	readonly saveAs: () => Promise<boolean>;
 	readonly exportActiveChapter: (format?: ChapterExportFormat) => Promise<boolean>;
-	readonly exportWholeWork: (format?: ChapterExportFormat) => Promise<boolean>;
+	readonly exportWholeWork: (format?: WorkExportFormat) => Promise<boolean>;
 	readonly forceSave: () => Promise<boolean>;
 	readonly reloadExternal: () => void;
 	readonly dismissExternalConflict: () => void;
@@ -1864,7 +1866,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
-	async exportWholeWork(format = 'markdown') {
+	async exportWholeWork(format: WorkExportFormat = 'docx') {
 		const initial = get();
 		if (initial.chapterExportBusy) return false;
 		if (!initial.snapshot) {
@@ -1916,13 +1918,19 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			const chapterCount = volumes.reduce((total, volume) => (
 				total + volume.chapters.length
 			), 0);
-			const destination = await desktopBridge.saveTextAs(
-				buildWorkExportContent(project.title, volumes, format),
-				'lf',
-				false,
-				suggestedWorkExportName(project.title, format),
-				format
-			);
+			const suggestedName = suggestedWorkExportName(project.title, format);
+			const destination = format === 'docx'
+				? await desktopBridge.saveDocxAs(
+					buildWorkDocxDocument(project.title, volumes),
+					suggestedName
+				)
+				: await desktopBridge.saveTextAs(
+					buildWorkExportContent(project.title, volumes, format),
+					'lf',
+					false,
+					suggestedName,
+					format
+				);
 			if (!destination) return false;
 			const receipt: ChapterExportReceipt = {
 				id: `export:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 9)}`,

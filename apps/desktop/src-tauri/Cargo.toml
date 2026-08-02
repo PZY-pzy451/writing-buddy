@@ -21,8 +21,10 @@ tauri-build = { version = "=2.6.3", features = [] }
 
 [dependencies]
 chrono = { version = "=0.4.45", features = ["serde"] }
+flate2 = { version = "=1.1.9", default-features = false, features = ["rust_backend"] }
 futures-util = "=0.3.33"
 hex = "=0.4.3"
+quick-xml = "=0.41.0"
 reqwest = { version = "=0.13.4", default-features = false, features = ["json", "rustls", "stream"] }
 rfd = "=0.17.2"
 serde = { version = "=1.0.229", features = ["derive"] }
@@ -37,6 +39,7 @@ windows-sys = { version = "=0.61.2", features = [
     "Win32_Security_Credentials",
     "Win32_Storage_FileSystem",
 ] }
+zip = { version = "=8.6.0", default-features = false, features = ["deflate-flate2"] }
 
 [profile.dev]
 incremental = true

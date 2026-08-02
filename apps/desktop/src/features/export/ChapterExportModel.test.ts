@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	buildChapterExportContent,
+	buildWorkDocxDocument,
 	buildWorkExportContent,
 	parseChapterExportReceipts,
 	suggestedChapterExportName,
@@ -23,6 +24,23 @@ describe('ChapterExportModel', () => {
 		expect(suggestedWorkExportName('零点回声：第一部/终稿?', 'markdown'))
 			.toBe('零点回声：第一部-终稿-.md');
 		expect(suggestedWorkExportName('  ', 'plain-text')).toBe('novel.txt');
+		expect(suggestedWorkExportName('零点回声', 'docx')).toBe('零点回声.docx');
+	});
+
+	it('builds a structured Word request without duplicate headings or scene anchors', () => {
+		expect(buildWorkDocxDocument('零点\n回声', [{
+			title: '第一卷',
+			chapters: [{
+				title: '第一章 雨夜',
+				content: '# 第一章 雨夜\n\n<!-- wb:scene id="scene:one" -->\n正文。'
+			}]
+		}])).toEqual({
+			title: '零点 回声',
+			volumes: [{
+				title: '第一卷',
+				chapters: [{ title: '第一章 雨夜', content: '正文。' }]
+			}]
+		});
 	});
 
 	it('assembles every volume and chapter in order without editor-only anchors', () => {
@@ -75,6 +93,16 @@ describe('ChapterExportModel', () => {
 			exportedAt: '2026-08-01T12:00:00.000Z',
 			wordCount: 50000
 		}, {
+			id: 'export:3',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '零点回声 Word',
+			chapterCount: 12,
+			format: 'docx',
+			destination: 'D:\\Exports\\零点回声.docx',
+			exportedAt: '2026-08-01T13:00:00.000Z',
+			wordCount: 50000
+		}, {
 			id: 'invalid',
 			format: 'pdf'
 		}])).toEqual([{
@@ -98,6 +126,16 @@ describe('ChapterExportModel', () => {
 			format: 'markdown',
 			destination: 'D:\\Exports\\零点回声.md',
 			exportedAt: '2026-08-01T12:00:00.000Z',
+			wordCount: 50000
+		}, {
+			id: 'export:3',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '零点回声 Word',
+			chapterCount: 12,
+			format: 'docx',
+			destination: 'D:\\Exports\\零点回声.docx',
+			exportedAt: '2026-08-01T13:00:00.000Z',
 			wordCount: 50000
 		}]);
 	});

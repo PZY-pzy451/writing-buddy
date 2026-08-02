@@ -1,0 +1,567 @@
+{
+  "generatedAt": "2026-08-01T05:17:24.595Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "beforeExport": {
+    "title": "历史与导出",
+    "primaryActions": [
+      "导出 Word 文档"
+    ],
+    "exportActions": [
+      "导出 Word 文档",
+      "作品 Markdown",
+      "作品纯文本",
+      "当前章 Markdown",
+      "当前章纯文本"
+    ],
+    "projectSummary": "3 章 · 209 字 · 导出前自动保存当前原稿",
+    "backupMounted": true,
+    "backupActions": [
+      "创建备份",
+      "选择已有备份",
+      "恢复所选备份"
+    ]
+  },
+  "history": {
+    "receiptTitle": "我的小说",
+    "receiptScope": "整部作品",
+    "receiptPath": "browser-downloads/我的小说.docx",
+    "receiptMeta": "Word 文档3 章 · 200 字 · 2026/8/1 13:17:23",
+    "backupStatus": "browser-fixture.wbbackup备份已创建并校验：11 个文件，1 KB。格式 v1 · 11 个文件 · 校验通过",
+    "restoreEnabled": true
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-history-work-export-backup-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 27,
+      "backupPanel": {
+        "rect": {
+          "x": 122.1875,
+          "y": 582.421875,
+          "width": 1258.625,
+          "height": 179.140625,
+          "top": 582.421875,
+          "right": 1380.8125,
+          "bottom": 761.5625,
+          "left": 122.1875
+        },
+        "display": "grid",
+        "position": "static",
+        "padding": "18px",
+        "children": [
+          {
+            "className": "project-backup-heading",
+            "rect": {
+              "x": 140.1875,
+              "y": 600.421875,
+              "width": 781.625,
+              "height": 69.140625,
+              "top": 600.421875,
+              "right": 921.8125,
+              "bottom": 669.5625,
+              "left": 140.1875
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-actions",
+            "rect": {
+              "x": 941.8125,
+              "y": 612.984375,
+              "width": 421,
+              "height": 44,
+              "top": 612.984375,
+              "right": 1362.8125,
+              "bottom": 656.984375,
+              "left": 941.8125
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-status",
+            "rect": {
+              "x": 140.1875,
+              "y": 683.5625,
+              "width": 1222.625,
+              "height": 60,
+              "top": 683.5625,
+              "right": 1362.8125,
+              "bottom": 743.5625,
+              "left": 140.1875
+            },
+            "display": "grid",
+            "position": "static"
+          }
+        ]
+      },
+      "historySections": [
+        {
+          "className": "history-export-card",
+          "rect": {
+            "x": 121.1875,
+            "y": 249.59375,
+            "width": 1260.625,
+            "height": 132.828125,
+            "top": 249.59375,
+            "right": 1381.8125,
+            "bottom": 382.421875,
+            "left": 121.1875
+          },
+          "childCount": 3
+        },
+        {
+          "className": "history-receipts",
+          "rect": {
+            "x": 121.1875,
+            "y": 400.421875,
+            "width": 1260.625,
+            "height": 163,
+            "top": 400.421875,
+            "right": 1381.8125,
+            "bottom": 563.421875,
+            "left": 121.1875
+          },
+          "childCount": 2
+        },
+        {
+          "className": "history-backup",
+          "rect": {
+            "x": 121.1875,
+            "y": 581.421875,
+            "width": 1260.625,
+            "height": 181.140625,
+            "top": 581.421875,
+            "right": 1381.8125,
+            "bottom": 762.5625,
+            "left": 121.1875
+          },
+          "childCount": 1
+        },
+        {
+          "className": "history-safety",
+          "rect": {
+            "x": 121.1875,
+            "y": 780.5625,
+            "width": 1260.625,
+            "height": 212.796875,
+            "top": 780.5625,
+            "right": 1381.8125,
+            "bottom": 993.359375,
+            "left": 121.1875
+          },
+          "childCount": 2
+        }
+      ],
+      "shortHistoryControls": []
+    },
+    {
+      "name": "02-history-work-export-backup-1280x800.png",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 27,
+      "backupPanel": {
+        "rect": {
+          "x": 117.390625,
+          "y": 584.59375,
+          "width": 1108.21875,
+          "height": 179.140625,
+          "top": 584.59375,
+          "right": 1225.609375,
+          "bottom": 763.734375,
+          "left": 117.390625
+        },
+        "display": "grid",
+        "position": "static",
+        "padding": "18px",
+        "children": [
+          {
+            "className": "project-backup-heading",
+            "rect": {
+              "x": 135.390625,
+              "y": 602.59375,
+              "width": 631.21875,
+              "height": 69.140625,
+              "top": 602.59375,
+              "right": 766.609375,
+              "bottom": 671.734375,
+              "left": 135.390625
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-actions",
+            "rect": {
+              "x": 786.609375,
+              "y": 615.15625,
+              "width": 421,
+              "height": 44,
+              "top": 615.15625,
+              "right": 1207.609375,
+              "bottom": 659.15625,
+              "left": 786.609375
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-status",
+            "rect": {
+              "x": 135.390625,
+              "y": 685.734375,
+              "width": 1072.21875,
+              "height": 60,
+              "top": 685.734375,
+              "right": 1207.609375,
+              "bottom": 745.734375,
+              "left": 135.390625
+            },
+            "display": "grid",
+            "position": "static"
+          }
+        ]
+      },
+      "historySections": [
+        {
+          "className": "history-export-card",
+          "rect": {
+            "x": 116.390625,
+            "y": 249.59375,
+            "width": 1110.21875,
+            "height": 135,
+            "top": 249.59375,
+            "right": 1226.609375,
+            "bottom": 384.59375,
+            "left": 116.390625
+          },
+          "childCount": 3
+        },
+        {
+          "className": "history-receipts",
+          "rect": {
+            "x": 116.390625,
+            "y": 402.59375,
+            "width": 1110.21875,
+            "height": 163,
+            "top": 402.59375,
+            "right": 1226.609375,
+            "bottom": 565.59375,
+            "left": 116.390625
+          },
+          "childCount": 2
+        },
+        {
+          "className": "history-backup",
+          "rect": {
+            "x": 116.390625,
+            "y": 583.59375,
+            "width": 1110.21875,
+            "height": 181.140625,
+            "top": 583.59375,
+            "right": 1226.609375,
+            "bottom": 764.734375,
+            "left": 116.390625
+          },
+          "childCount": 1
+        },
+        {
+          "className": "history-safety",
+          "rect": {
+            "x": 116.390625,
+            "y": 782.734375,
+            "width": 1110.21875,
+            "height": 212.796875,
+            "top": 782.734375,
+            "right": 1226.609375,
+            "bottom": 995.53125,
+            "left": 116.390625
+          },
+          "childCount": 2
+        }
+      ],
+      "shortHistoryControls": []
+    },
+    {
+      "name": "03-history-work-export-backup-1024x720.png",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 27,
+      "backupPanel": {
+        "rect": {
+          "x": 109.71875,
+          "y": 642.421875,
+          "width": 867.5625,
+          "height": 237.140625,
+          "top": 642.421875,
+          "right": 977.28125,
+          "bottom": 879.5625,
+          "left": 109.71875
+        },
+        "display": "grid",
+        "position": "static",
+        "padding": "18px",
+        "children": [
+          {
+            "className": "project-backup-heading",
+            "rect": {
+              "x": 127.71875,
+              "y": 660.421875,
+              "width": 831.5625,
+              "height": 69.140625,
+              "top": 660.421875,
+              "right": 959.28125,
+              "bottom": 729.5625,
+              "left": 127.71875
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-actions",
+            "rect": {
+              "x": 127.71875,
+              "y": 743.5625,
+              "width": 831.5625,
+              "height": 44,
+              "top": 743.5625,
+              "right": 959.28125,
+              "bottom": 787.5625,
+              "left": 127.71875
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-status",
+            "rect": {
+              "x": 127.71875,
+              "y": 801.5625,
+              "width": 831.5625,
+              "height": 60,
+              "top": 801.5625,
+              "right": 959.28125,
+              "bottom": 861.5625,
+              "left": 127.71875
+            },
+            "display": "grid",
+            "position": "static"
+          }
+        ]
+      },
+      "historySections": [
+        {
+          "className": "history-export-card",
+          "rect": {
+            "x": 108.71875,
+            "y": 249.59375,
+            "width": 869.5625,
+            "height": 192.828125,
+            "top": 249.59375,
+            "right": 978.28125,
+            "bottom": 442.421875,
+            "left": 108.71875
+          },
+          "childCount": 3
+        },
+        {
+          "className": "history-receipts",
+          "rect": {
+            "x": 108.71875,
+            "y": 460.421875,
+            "width": 869.5625,
+            "height": 163,
+            "top": 460.421875,
+            "right": 978.28125,
+            "bottom": 623.421875,
+            "left": 108.71875
+          },
+          "childCount": 2
+        },
+        {
+          "className": "history-backup",
+          "rect": {
+            "x": 108.71875,
+            "y": 641.421875,
+            "width": 869.5625,
+            "height": 239.140625,
+            "top": 641.421875,
+            "right": 978.28125,
+            "bottom": 880.5625,
+            "left": 108.71875
+          },
+          "childCount": 1
+        },
+        {
+          "className": "history-safety",
+          "rect": {
+            "x": 108.71875,
+            "y": 898.5625,
+            "width": 869.5625,
+            "height": 272.796875,
+            "top": 898.5625,
+            "right": 978.28125,
+            "bottom": 1171.359375,
+            "left": 108.71875
+          },
+          "childCount": 2
+        }
+      ],
+      "shortHistoryControls": []
+    },
+    {
+      "name": "04-history-work-export-backup-820x720.png",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 27,
+      "backupPanel": {
+        "rect": {
+          "x": 79,
+          "y": 695.421875,
+          "width": 707,
+          "height": 237.140625,
+          "top": 695.421875,
+          "right": 786,
+          "bottom": 932.5625,
+          "left": 79
+        },
+        "display": "grid",
+        "position": "static",
+        "padding": "18px",
+        "children": [
+          {
+            "className": "project-backup-heading",
+            "rect": {
+              "x": 97,
+              "y": 713.421875,
+              "width": 671,
+              "height": 69.140625,
+              "top": 713.421875,
+              "right": 768,
+              "bottom": 782.5625,
+              "left": 97
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-actions",
+            "rect": {
+              "x": 97,
+              "y": 796.5625,
+              "width": 671,
+              "height": 44,
+              "top": 796.5625,
+              "right": 768,
+              "bottom": 840.5625,
+              "left": 97
+            },
+            "display": "flex",
+            "position": "static"
+          },
+          {
+            "className": "project-backup-status",
+            "rect": {
+              "x": 97,
+              "y": 854.5625,
+              "width": 671,
+              "height": 60,
+              "top": 854.5625,
+              "right": 768,
+              "bottom": 914.5625,
+              "left": 97
+            },
+            "display": "grid",
+            "position": "static"
+          }
+        ]
+      },
+      "historySections": [
+        {
+          "className": "history-export-card",
+          "rect": {
+            "x": 78,
+            "y": 249.59375,
+            "width": 709,
+            "height": 245.828125,
+            "top": 249.59375,
+            "right": 787,
+            "bottom": 495.421875,
+            "left": 78
+          },
+          "childCount": 3
+        },
+        {
+          "className": "history-receipts",
+          "rect": {
+            "x": 78,
+            "y": 513.421875,
+            "width": 709,
+            "height": 163,
+            "top": 513.421875,
+            "right": 787,
+            "bottom": 676.421875,
+            "left": 78
+          },
+          "childCount": 2
+        },
+        {
+          "className": "history-backup",
+          "rect": {
+            "x": 78,
+            "y": 694.421875,
+            "width": 709,
+            "height": 239.140625,
+            "top": 694.421875,
+            "right": 787,
+            "bottom": 933.5625,
+            "left": 78
+          },
+          "childCount": 1
+        },
+        {
+          "className": "history-safety",
+          "rect": {
+            "x": 78,
+            "y": 951.5625,
+            "width": 709,
+            "height": 272.796875,
+            "top": 951.5625,
+            "right": 787,
+            "bottom": 1224.359375,
+            "left": 78
+          },
+          "childCount": 2
+        }
+      ],
+      "shortHistoryControls": []
+    }
+  ]
+}

@@ -73,8 +73,8 @@ const creationStartOptions: readonly {
 	{ id: 'ideas', title: '我只有几个想法', description: '记录 3–8 个零散要素，再逐步确认故事核心、方向和总纲。', result: '进入完整创作旅程（推荐）' },
 	{ id: 'synopsis', title: '我已经有故事梗概', description: '保留现有规划与资料工具，不自动改写梗概。', result: '进入作品仪表盘' },
 	{ id: 'character-world', title: '我先有了人物或世界', description: '保留人物和世界资料入口，不强迫先完成数据库。', result: '进入作品仪表盘' },
-	{ id: 'outline', title: '我已经有完整大纲', description: '选择本地大纲，预览识别结果后创建章节；原始文件会保留。', result: '导入章节并进入作品仪表盘' },
-	{ id: 'manuscript', title: '我已经写了一部分正文', description: '选择本地正文，内容不经 AI 改写，原样写入第一章。', result: '导入并打开第一章' },
+	{ id: 'outline', title: '我已经有完整大纲', description: '选择本地大纲，预览识别结果后创建章节；项目会保留文字副本。', result: '导入章节并进入作品仪表盘' },
+	{ id: 'manuscript', title: '我已经写了一部分正文', description: '选择本地正文，导入文字不经 AI 改写，写入第一章。', result: '导入并打开第一章' },
 	{ id: 'blank', title: '空白项目', description: '只创建最小项目，不生成章节、设定或 AI 内容。', result: '进入空白作品' }
 ] as const;
 
@@ -183,7 +183,7 @@ const createErrorCopy: Readonly<Record<string, string>> = {
 	projectStagingWriteFailed: '写入项目结构时中断，临时内容已清理。',
 	projectStagingVerifyFailed: '项目结构校验失败，未保留半成品。',
 	projectAtomicRenameFailed: '最终保存项目时失败，未覆盖任何现有目录。',
-	importUnsupportedFormat: '仅支持 UTF-8 编码的 Markdown（.md/.markdown）或文本（.txt）文件。',
+	importUnsupportedFormat: '仅支持 Word（.docx）、UTF-8 Markdown（.md/.markdown）或文本（.txt）文件。',
 	importSourceTooLarge: '文件超过 5 MiB，请拆分后再导入。',
 	importSourceBinary: '所选文件包含二进制内容，无法作为大纲或正文导入。',
 	importSourceInvalidUtf8: '所选文件不是有效的 UTF-8 文本。',
@@ -192,6 +192,12 @@ const createErrorCopy: Readonly<Record<string, string>> = {
 	importOutlineTooManyChapters: '一次最多导入 200 章，请拆分大纲后重试。',
 	importChapterTitleTooLong: '大纲中有超过 120 个字符的章节标题，请缩短后重试。',
 	importSourceReadFailed: '无法读取所选文件，请检查文件权限后重试。',
+	importDocxInvalid: '所选 Word 文档已损坏或不是有效的 .docx 文件。',
+	importDocxEncrypted: '暂不支持加密或设有密码的 Word 文档，请解除保护后重试。',
+	importDocxTooManyEntries: 'Word 文档包含过多内部文件，无法安全导入。',
+	importDocxMainDocumentMissing: 'Word 文档缺少可读取的正文。',
+	importDocxXmlTooLarge: 'Word 文档解压后的正文过大，请拆分后重试。',
+	importDocxInvalidXml: 'Word 文档正文结构异常，无法安全提取文字。',
 	projectCreationFailed: '暂时无法创建项目，请检查保存位置后重试。'
 };
 
@@ -297,7 +303,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 		if (draft.startRoute !== 'outline' && draft.startRoute !== 'manuscript') return;
 		setBusy(true);
 		setImportError('');
-		setStatus(draft.startRoute === 'outline' ? '请选择 UTF-8 大纲文件…' : '请选择 UTF-8 正文文件…');
+		setStatus(draft.startRoute === 'outline' ? '请选择 Word 或 UTF-8 大纲文件…' : '请选择 Word 或 UTF-8 正文文件…');
 		try {
 			const file = await creationService.chooseImportedText(draft.startRoute);
 			if (!file) {
@@ -589,7 +595,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 											<strong id="draft-import-title">
 												{draft.startRoute === 'outline' ? '添加已有大纲文件' : '添加已有正文文件'}
 											</strong>
-											<small>支持 UTF-8 的 .md、.markdown、.txt，最大 5 MiB</small>
+											<small>支持 .docx、UTF-8 .md/.markdown/.txt，文件与提取文字均最大 5 MiB</small>
 										</div>
 										<button className={importAnalysis ? 'secondary-button' : 'primary-button'} type="button" onClick={() => void chooseImport()} disabled={busy}>
 											<FileUp size={18} />{importAnalysis ? '替换文件' : '选择文件'}
@@ -598,7 +604,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									{importAnalysis && (
 										<div className="draft-import-review">
 											<div className="draft-import-file">
-												<span><strong>{importAnalysis.file.fileName}</strong><small>{(importAnalysis.file.byteLength / 1024).toFixed(1)} KiB · {importAnalysis.file.format === 'markdown' ? 'Markdown' : '纯文本'}</small></span>
+												<span><strong>{importAnalysis.file.fileName}</strong><small>{(importAnalysis.file.byteLength / 1024).toFixed(1)} KiB · {importAnalysis.file.format === 'markdown' ? 'Markdown' : importAnalysis.file.format === 'word-document' ? 'Word 文档' : '纯文本'}</small></span>
 												<span className="draft-import-metrics">
 													{draft.startRoute === 'outline'
 														? `${importAnalysis.chapters.length} 章`
@@ -615,7 +621,11 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 												<summary>查看原文预览</summary>
 												<pre>{importAnalysis.preview}</pre>
 											</details>
-											<div className="draft-import-safety"><Check size={16} /><span>{draft.startRoute === 'outline' ? '原始大纲会完整保存在项目中，章节标题只来自明确标记。' : '正文将原样写入第一章，不会调用 AI 或改写内容。'}</span></div>
+											<div className="draft-import-safety"><Check size={16} /><span>{importAnalysis.file.format === 'word-document'
+												? (draft.startRoute === 'outline'
+													? '将保留提取后的文字副本；图片、批注、脚注、修订记录与版式不会导入，章节标题只来自明确标记。'
+													: '提取文字将写入第一章，不会调用 AI；图片、批注、脚注、修订记录与版式不会导入。')
+												: (draft.startRoute === 'outline' ? '原始大纲文字会完整保存在项目中，章节标题只来自明确标记。' : '正文将原样写入第一章，不会调用 AI 或改写内容。')}</span></div>
 											<button className="text-button draft-import-remove" type="button" onClick={() => {
 												setImportAnalysis(undefined);
 												setImportError('');
@@ -767,7 +777,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									<div><dt>AI 快速入口</dt><dd>{draft.selectedInitialResources.includes('ai-quick-actions') ? '启用（不自动请求）' : '关闭'}</dd></div>
 									<div><dt>初始资源</dt><dd>{draft.selectedInitialResources.length} 项</dd></div>
 									{importAnalysis && <div><dt>导入文件</dt><dd>{importAnalysis.file.fileName}</dd></div>}
-									{importAnalysis && <div><dt>导入结果</dt><dd>{importAnalysis.kind === 'outline' ? `${importAnalysis.chapters.length} 个章节 + 原始大纲` : `${importAnalysis.wordCount.toLocaleString()} 字写入第一章`}</dd></div>}
+									{importAnalysis && <div><dt>导入结果</dt><dd>{importAnalysis.kind === 'outline' ? `${importAnalysis.chapters.length} 个章节 + ${importAnalysis.file.format === 'word-document' ? '大纲文字副本' : '原始大纲'}` : `${importAnalysis.wordCount.toLocaleString()} 字写入第一章`}</dd></div>}
 									<div><dt>创建规模</dt><dd>{preflight?.createdDirectoryCount ?? '—'} 个目录 · {preflight?.createdFileCount ?? '—'} 个文件</dd></div>
 								</dl>
 								<div className="creation-safety-note">

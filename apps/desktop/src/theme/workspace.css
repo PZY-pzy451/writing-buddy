@@ -5264,6 +5264,14 @@ body,
 	min-height: 44px;
 }
 
+.history-export-error {
+	grid-column: 2 / -1;
+	margin: 0;
+	color: var(--highlight-danger-fg);
+	font-size: 12px;
+	line-height: 1.5;
+}
+
 .history-receipts,
 .history-backup,
 .history-safety {
@@ -5591,6 +5599,10 @@ body,
 	.history-export-actions {
 		grid-column: 1 / -1;
 		justify-content: flex-start;
+	}
+
+	.history-export-error {
+		grid-column: 1 / -1;
 	}
 
 	.history-safety > header {

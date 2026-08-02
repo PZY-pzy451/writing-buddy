@@ -179,7 +179,22 @@ export type ProjectThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type ProjectAccentId = 'gold' | 'blue' | 'purple';
 export type ProjectWritingMode = 'manuscriptFirst' | 'planningFirst';
 export type ProjectImportKind = 'outline' | 'manuscript';
-export type ImportedTextFormat = 'markdown' | 'plain-text';
+export type ImportedTextFormat = 'markdown' | 'plain-text' | 'word-document';
+
+export interface DocxExportChapter {
+	readonly title: string;
+	readonly content: string;
+}
+
+export interface DocxExportVolume {
+	readonly title: string;
+	readonly chapters: readonly DocxExportChapter[];
+}
+
+export interface DocxExportDocument {
+	readonly title: string;
+	readonly volumes: readonly DocxExportVolume[];
+}
 
 export interface ImportedTextFile {
 	readonly fileName: string;
@@ -463,6 +478,7 @@ export interface DesktopBridge extends StoryStorageGateway, MentionStorageGatewa
 		suggestedName: string,
 		format?: TextSaveFormat
 	): Promise<string | undefined>;
+	saveDocxAs(document: DocxExportDocument, suggestedName: string): Promise<string | undefined>;
 	readResource(projectRoot: string, relativePath: string): Promise<string>;
 	writeResource(projectRoot: string, relativePath: string, content: string, expectedHash: string): Promise<AtomicWriteResult>;
 	readReviewState(projectRoot: string): Promise<TextFile | undefined>;

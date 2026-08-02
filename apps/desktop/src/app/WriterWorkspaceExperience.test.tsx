@@ -355,10 +355,11 @@ describe('quiet writer workspaces', () => {
 			.toBeInTheDocument();
 	});
 
-	it('offers Markdown and plain-text export in History without recording cancellation', async () => {
+	it('offers Word and text exports in History without recording cancellation', async () => {
 		const user = userEvent.setup();
+		const saveDocxAs = vi.spyOn(desktopBridge, 'saveDocxAs')
+			.mockResolvedValueOnce(undefined);
 		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs')
-			.mockResolvedValueOnce(undefined)
 			.mockResolvedValueOnce('D:\\Exports\\第一章 停摆的时钟.txt');
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -366,19 +367,57 @@ describe('quiet writer workspaces', () => {
 
 		expect(await screen.findByRole('heading', { name: '历史与导出' })).toBeInTheDocument();
 		expect(screen.getByText(/导出前自动保存当前原稿/u)).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '导出作品' }));
-		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
+		await user.click(screen.getByRole('button', { name: '导出 Word 文档' }));
+		await waitFor(() => expect(saveDocxAs).toHaveBeenCalledTimes(1));
 		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(0);
 
 		await user.click(screen.getByRole('button', { name: '当前章纯文本' }));
-		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(2));
-		expect(saveTextAs.mock.calls[1]?.slice(3)).toEqual([
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
+		expect(saveTextAs.mock.calls[0]?.slice(3)).toEqual([
 			'第一章 停摆的时钟.txt',
 			'plain-text'
 		]);
 		expect(await screen.findByRole('heading', { name: '最近导出' })).toBeInTheDocument();
 		expect(screen.getByText('D:\\Exports\\第一章 停摆的时钟.txt')).toBeInTheDocument();
 		expect(screen.getByText('纯文本')).toBeInTheDocument();
+	});
+
+	it('exports a structured Word work and records a Word delivery receipt', async () => {
+		const user = userEvent.setup();
+		const saveDocxAs = vi.spyOn(desktopBridge, 'saveDocxAs').mockResolvedValue(
+			'D:\\Exports\\我的小说.docx'
+		);
+		render(<App />);
+		await openFixtureAndContinue(user);
+		await user.click(screen.getByRole('button', { name: '历史' }));
+
+		await user.click(screen.getByRole('button', { name: '导出 Word 文档' }));
+
+		await waitFor(() => expect(saveDocxAs).toHaveBeenCalledTimes(1));
+		const [document, suggestedName] = saveDocxAs.mock.calls[0] ?? [];
+		expect(suggestedName).toBe('我的小说.docx');
+		expect(document).toMatchObject({
+			title: '我的小说',
+			volumes: [{
+				title: '第一卷 灰城之下',
+				chapters: [
+					{ title: '第一章 停摆的时钟' },
+					{ title: '第二章 迷路的旅人' }
+				]
+			}, {
+				title: '第二卷 雾中来客',
+				chapters: [
+					{ title: '第三章 深夜的访客' }
+				]
+			}]
+		});
+		expect(useAppStore.getState().chapterExportReceipts[0]).toMatchObject({
+			scope: 'work',
+			chapterCount: 3,
+			format: 'docx',
+			destination: 'D:\\Exports\\我的小说.docx'
+		});
+		expect(screen.getByText('D:\\Exports\\我的小说.docx')).toBeInTheDocument();
 	});
 
 	it('exports the whole work in project order and records its delivery scope', async () => {
@@ -391,7 +430,7 @@ describe('quiet writer workspaces', () => {
 		await user.click(screen.getByRole('button', { name: '历史' }));
 
 		expect(await screen.findByText(/3 章/u)).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '导出作品' }));
+		await user.click(screen.getByRole('button', { name: '作品 Markdown' }));
 
 		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(1));
 		const [content, eol, hasBom, suggestedName, format] = saveTextAs.mock.calls[0] ?? [];

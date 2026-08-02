@@ -37,7 +37,7 @@ export function ProjectWelcome(): React.JSX.Element {
 						<FileInput size={18} /><span><strong>导入已有大纲</strong><small>预览后创建章节结构</small></span>
 					</button>
 					<button type="button" onClick={() => openProjectWizard('manuscript')}>
-						<FileText size={18} /><span><strong>导入已有正文</strong><small>原样写入并打开第一章</small></span>
+						<FileText size={18} /><span><strong>导入已有正文</strong><small>文字不经 AI 改写并打开第一章</small></span>
 					</button>
 					<button type="button" onClick={() => openProjectWizard('blank')}>
 						<BookOpenText size={18} /><span><strong>创建空白作品</strong><small>不生成任何内容</small></span>

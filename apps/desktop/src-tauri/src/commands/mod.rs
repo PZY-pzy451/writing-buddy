@@ -335,8 +335,23 @@ fn imported_text_from_path(path: &Path) -> Result<ImportedTextFile, String> {
     let format = match extension.as_str() {
         "md" | "markdown" => "markdown",
         "txt" => "plain-text",
+        "docx" => "word-document",
         _ => return Err("importUnsupportedFormat".to_owned()),
     };
+    if format == "word-document" {
+        let content = crate::docx::extract_document_text(file)?;
+        let file_name = path
+            .file_name()
+            .and_then(|value| value.to_str())
+            .ok_or_else(|| "importSourceNameInvalid".to_owned())?
+            .to_owned();
+        return Ok(ImportedTextFile {
+            file_name,
+            format,
+            content,
+            byte_length: metadata_length,
+        });
+    }
     let mut bytes = Vec::with_capacity(metadata_length.min(IMPORT_MAX_BYTES));
     file.take((IMPORT_MAX_BYTES + 1) as u64)
         .read_to_end(&mut bytes)
@@ -378,7 +393,7 @@ pub fn choose_imported_text(kind: String) -> Result<Option<ImportedTextFile>, St
     };
     rfd::FileDialog::new()
         .set_title(title)
-        .add_filter("Markdown 或文本", &["md", "markdown", "txt"])
+        .add_filter("Word、Markdown 或文本", &["docx", "md", "markdown", "txt"])
         .pick_file()
         .map(|path| imported_text_from_path(&path))
         .transpose()
@@ -416,7 +431,7 @@ fn validate_import_source(source: &ProjectImportSource) -> Result<(), &'static s
         .ok_or("importUnsupportedFormat")?;
     let format_matches = matches!(
         (source.format.as_str(), extension.as_str()),
-        ("markdown", "md" | "markdown") | ("plain-text", "txt")
+        ("markdown", "md" | "markdown") | ("plain-text", "txt") | ("word-document", "docx")
     );
     if !format_matches {
         return Err("importUnsupportedFormat");
@@ -425,11 +440,15 @@ fn validate_import_source(source: &ProjectImportSource) -> Result<(), &'static s
     if source.content.trim().is_empty() || source.byte_length == 0 {
         return Err("importSourceEmpty");
     }
-    if content_bytes > IMPORT_MAX_BYTES
-        || source.byte_length > IMPORT_MAX_BYTES
-        || source.byte_length < content_bytes
-        || source.byte_length.saturating_sub(content_bytes) > 3
-    {
+    let invalid_size = if source.format == "word-document" {
+        content_bytes > crate::docx::DOCX_MAX_TEXT_BYTES || source.byte_length > IMPORT_MAX_BYTES
+    } else {
+        content_bytes > IMPORT_MAX_BYTES
+            || source.byte_length > IMPORT_MAX_BYTES
+            || source.byte_length < content_bytes
+            || source.byte_length.saturating_sub(content_bytes) > 3
+    };
+    if invalid_size {
         return Err("importSourceTooLarge");
     }
     if source.content.contains('\0') {
@@ -1340,6 +1359,32 @@ pub fn save_text_as(
         return Ok(None);
     };
     let bytes = filesystem::encode_text(&content, &eol, has_bom)?;
+    filesystem::write_bytes_atomic(&path, &bytes)?;
+    Ok(Some(path.to_string_lossy().into_owned()))
+}
+
+#[tauri::command]
+pub fn save_docx_as(
+    document: crate::docx::DocxExportDocument,
+    suggested_name: String,
+) -> Result<Option<String>, String> {
+    let file_name = Path::new(&suggested_name)
+        .file_name()
+        .and_then(|value| value.to_str())
+        .filter(|value| !value.is_empty())
+        .unwrap_or("writing-buddy-work.docx");
+    let Some(path) = rfd::FileDialog::new()
+        .set_title("将整部作品导出为 Word 文档")
+        .set_file_name(file_name)
+        .add_filter("Word 文档", &["docx"])
+        .save_file()
+    else {
+        return Ok(None);
+    };
+    let bytes = crate::docx::build_document_bytes(
+        &document,
+        &Utc::now().to_rfc3339_opts(SecondsFormat::Secs, true),
+    )?;
     filesystem::write_bytes_atomic(&path, &bytes)?;
     Ok(Some(path.to_string_lossy().into_owned()))
 }
@@ -3702,8 +3747,15 @@ mod tests {
             "importSourceBinary"
         );
 
-        let unsupported = root.join("outline.docx");
-        fs::write(&unsupported, b"not a docx").expect("write unsupported");
+        let invalid_docx = root.join("outline.docx");
+        fs::write(&invalid_docx, b"not a docx").expect("write invalid docx");
+        assert_eq!(
+            imported_text_from_path(&invalid_docx).expect_err("reject invalid docx"),
+            "importDocxInvalid"
+        );
+
+        let unsupported = root.join("outline.pdf");
+        fs::write(&unsupported, b"not supported").expect("write unsupported");
         assert_eq!(
             imported_text_from_path(&unsupported).expect_err("reject format"),
             "importUnsupportedFormat"
@@ -3718,6 +3770,34 @@ mod tests {
             imported_text_from_path(&oversized).expect_err("reject oversized source"),
             "importSourceTooLarge"
         );
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn imported_text_reader_extracts_bounded_word_paragraphs() {
+        let root = project_creation_parent("word-import-reader");
+        let path = root.join("outline.docx");
+        let document = crate::docx::DocxExportDocument {
+            title: "零点回声".to_owned(),
+            volumes: vec![crate::docx::DocxExportVolume {
+                title: "第一卷".to_owned(),
+                chapters: vec![crate::docx::DocxExportChapter {
+                    title: "第一章 雨夜".to_owned(),
+                    content: "顾言收到蓝色信封。".to_owned(),
+                }],
+            }],
+        };
+        let bytes = crate::docx::build_document_bytes(&document, "2026-08-01T00:00:00Z")
+            .expect("build word fixture");
+        fs::write(&path, &bytes).expect("write word fixture");
+
+        let imported = imported_text_from_path(&path).expect("read Word import");
+        assert_eq!(imported.file_name, "outline.docx");
+        assert_eq!(imported.format, "word-document");
+        assert_eq!(imported.byte_length, bytes.len());
+        assert!(imported.content.contains("第一章 雨夜"));
+        assert!(imported.content.contains("顾言收到蓝色信封。"));
+
         let _ = fs::remove_dir_all(root);
     }
 

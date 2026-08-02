@@ -25,6 +25,7 @@
 	"acceptance:phase-1.2f": "node scripts/acceptance/validate-phase-1.2f-task-closure.mjs",
 	"acceptance:phase-1.2g": "node scripts/acceptance/validate-phase-1.2g-export-trust.mjs",
 	"acceptance:phase-1.2h": "node scripts/acceptance/validate-phase-1.2h-work-export-backup.mjs",
+	"acceptance:phase-1.2j": "node scripts/acceptance/validate-phase-1.2j-word-interoperability.mjs",
     "acceptance:genre-to-draft": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:genre-to-draft:gate-d": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:complete-novel": "node scripts/acceptance/validate-complete-novel.mjs",

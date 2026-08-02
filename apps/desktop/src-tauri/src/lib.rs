@@ -1,6 +1,7 @@
 mod ai;
 mod archive;
 mod commands;
+mod docx;
 mod filesystem;
 mod logging;
 mod migration;
@@ -54,6 +55,7 @@ pub fn run() {
             commands::read_text,
             commands::write_text_atomic,
             commands::save_text_as,
+            commands::save_docx_as,
             commands::read_resource,
             commands::write_resource,
             commands::read_review_state,

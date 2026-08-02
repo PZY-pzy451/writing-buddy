@@ -1,8 +1,35 @@
 # Current progress
 
-Updated: 2026-08-01
+Updated: 2026-08-02
 
 ## Active milestone
+
+Phase 1.2J Word interoperability is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Native Word import accepts bounded `.docx` archives, extracts visible body
+  text without AI rewriting and rejects encrypted, malformed, empty, oversized
+  or structurally invalid packages before project creation.
+- The import review states which Word features are intentionally not preserved.
+  Manuscript text enters the first chapter; explicit Word outline headings reuse
+  the deterministic chapter analyzer and atomic staging/reopen/rename flow.
+- History now leads with one `导出 Word 文档` action. Structured OOXML preserves
+  work, volume and chapter hierarchy, escapes author text and strips internal
+  scene anchors; Markdown/plain text remain secondary exports.
+- Cancellation and dirty-save failures produce neither a file nor a false
+  receipt. Successful Word deliveries use the existing durable receipt model.
+- Four responsive Edge/CDP views pass with no page overflow, clipped controls,
+  sub-44 px History actions or runtime errors.
+- Final gates: 162 Vitest files / 651 tests, production Vite build, Cargo format,
+  74 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2j-word-interoperability-2026-08-02/`;
+  evidence:
+  `docs/acceptance/067-phase-1.2j-word-interoperability-2026-08-02.md`.
+
+## Previous milestones
 
 Phase 1.2I safe local outline and manuscript import is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
@@ -26,8 +53,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2i-safe-draft-import-2026-08-01/`;
   evidence:
   `docs/acceptance/066-phase-1.2i-safe-local-draft-import-2026-08-01.md`.
-
-## Previous milestones
 
 Phase 1.2H whole-work export and backup trust center is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

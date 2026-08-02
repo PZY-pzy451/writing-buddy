@@ -6,3 +6,4 @@
 - [Cargo release build exhausted memory](./004-cargo-release-memory-pressure.md)
 - [Browser acceptance must be serialized and preflighted](./005-serialize-browser-acceptance-preconditions.md)
 - [Concurrent ffmpeg output corruption](./006-concurrent-ffmpeg-output-corruption.md)
+- [Security fixture triggered antivirus quarantine](./007-security-fixture-antivirus-false-positive.md)

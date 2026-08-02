@@ -1,4 +1,8 @@
+import type { DocxExportDocument } from '@writing-buddy/platform-ports';
+
 export type ChapterExportFormat = 'markdown' | 'plain-text';
+export type WorkExportFormat = ChapterExportFormat | 'docx';
+export type ManuscriptExportFormat = WorkExportFormat;
 
 export type ManuscriptExportScope = 'chapter' | 'work';
 
@@ -20,18 +24,19 @@ export interface ChapterExportReceipt {
 	readonly chapterId?: string;
 	readonly chapterTitle?: string;
 	readonly chapterCount: number;
-	readonly format: ChapterExportFormat;
+	readonly format: ManuscriptExportFormat;
 	readonly destination: string;
 	readonly exportedAt: string;
 	readonly wordCount: number;
 }
 
-export const chapterExportFormatLabels: Readonly<Record<ChapterExportFormat, string>> = {
+export const chapterExportFormatLabels: Readonly<Record<ManuscriptExportFormat, string>> = {
 	markdown: 'Markdown',
-	'plain-text': '纯文本'
+	'plain-text': '纯文本',
+	docx: 'Word 文档'
 };
 
-const validFormats = new Set<ChapterExportFormat>(['markdown', 'plain-text']);
+const validFormats = new Set<ManuscriptExportFormat>(['markdown', 'plain-text', 'docx']);
 
 export function buildChapterExportContent(
 	content: string,
@@ -90,6 +95,29 @@ export function buildWorkExportContent(
 	return `${sections.join('\n\n').trimEnd()}\n`;
 }
 
+export function buildWorkDocxDocument(
+	title: string,
+	volumes: readonly WorkExportVolume[]
+): DocxExportDocument {
+	return {
+		title: singleLineTitle(title, '未命名作品'),
+		volumes: volumes.map((volume, volumeIndex) => ({
+			title: singleLineTitle(volume.title, `第 ${volumeIndex + 1} 卷`),
+			chapters: volume.chapters.map((chapter, chapterIndex) => {
+				const chapterTitle = singleLineTitle(chapter.title, `第 ${chapterIndex + 1} 章`);
+				const source = stripMatchingOpeningHeading(
+					stripSceneAnchors(chapter.content),
+					chapterTitle
+				);
+				return {
+					title: chapterTitle,
+					content: buildChapterExportContent(source, 'plain-text').trim()
+				};
+			})
+		}))
+	};
+}
+
 export function suggestedChapterExportName(
 	title: string,
 	format: ChapterExportFormat
@@ -104,14 +132,14 @@ export function suggestedChapterExportName(
 
 export function suggestedWorkExportName(
 	title: string,
-	format: ChapterExportFormat
+	format: WorkExportFormat
 ): string {
 	const base = title
 		.replace(/[<>:"/\\|?*\u0000-\u001f]/gu, '-')
 		.replace(/[.\s]+$/gu, '')
 		.trim()
 		.slice(0, 96) || 'novel';
-	return `${base}.${format === 'markdown' ? 'md' : 'txt'}`;
+	return `${base}.${format === 'markdown' ? 'md' : format === 'docx' ? 'docx' : 'txt'}`;
 }
 
 export function parseChapterExportReceipts(

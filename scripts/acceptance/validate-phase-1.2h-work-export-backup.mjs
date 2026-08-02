@@ -5,22 +5,28 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const wordInteroperabilityPhase = process.env.PHASE_1_2J_WORD_INTEROPERABILITY === '1';
+const phaseSlug = wordInteroperabilityPhase
+	? 'phase-1.2j-word-interoperability'
+	: 'phase-1.2h-work-export-backup';
 const outputDirectory = join(
 	repositoryRoot,
 	'docs',
 	'acceptance',
 	'screenshots',
-	'phase-1.2h-work-export-backup'
+	phaseSlug
 );
 const metricsPath = join(
 	repositoryRoot,
 	'docs',
 	'acceptance',
-	'phase-1.2h-work-export-backup-visual-metrics.json'
+	`${phaseSlug}-visual-metrics.json`
 );
 const edgePath = process.env.EDGE_PATH
 	?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-const port = Number(process.env.PHASE_1_2H_CDP_PORT ?? 9415);
+const port = Number(process.env.PHASE_1_2J_CDP_PORT
+	?? process.env.PHASE_1_2H_CDP_PORT
+	?? (wordInteroperabilityPhase ? 9417 : 9415));
 const appUrl = process.env.WRITING_BUDDY_URL ?? 'http://127.0.0.1:1420/';
 
 class CdpClient {
@@ -227,7 +233,7 @@ async function collectMetrics(client) {
 }
 
 await mkdir(outputDirectory, { recursive: true });
-const profileDirectory = await mkdtemp(join(tmpdir(), 'writing-buddy-phase-1.2h-'));
+const profileDirectory = await mkdtemp(join(tmpdir(), `writing-buddy-${phaseSlug}-`));
 const edge = spawn(edgePath, [
 	`--remote-debugging-port=${port}`,
 	`--user-data-dir=${profileDirectory}`,
@@ -282,10 +288,14 @@ try {
 			.map(button => button.textContent.replace(/\\s+/gu, ' ').trim())
 	}))()`);
 	assert(beforeExport.title === '历史与导出', `Unexpected History title: ${JSON.stringify(beforeExport)}`);
+	const primaryExportAction = beforeExport.primaryActions[0];
 	assert(beforeExport.primaryActions.length === 1
-		&& beforeExport.primaryActions[0] === '导出作品',
+		&& (wordInteroperabilityPhase
+			? primaryExportAction === '导出 Word 文档'
+			: ['导出作品', '导出 Word 文档'].includes(primaryExportAction)),
 	`History should expose one primary action: ${JSON.stringify(beforeExport)}`);
-	assert(beforeExport.exportActions.includes('作品纯文本')
+	assert((!wordInteroperabilityPhase || beforeExport.exportActions.includes('作品 Markdown'))
+		&& beforeExport.exportActions.includes('作品纯文本')
 		&& beforeExport.exportActions.includes('当前章 Markdown')
 		&& beforeExport.exportActions.includes('当前章纯文本'),
 	`Missing export alternatives: ${JSON.stringify(beforeExport)}`);
@@ -297,7 +307,7 @@ try {
 		&& beforeExport.backupActions.includes('恢复所选备份'),
 	`Missing backup actions: ${JSON.stringify(beforeExport)}`);
 
-	await clickButton(client, '导出作品');
+	await clickButton(client, primaryExportAction);
 	await waitFor(client, `Boolean(document.querySelector('.history-receipts li'))`, 'work export receipt');
 	await clickButton(client, '创建备份');
 	await waitFor(
@@ -317,7 +327,11 @@ try {
 	}))()`);
 	assert(history.receiptTitle === '我的小说' && history.receiptScope === '整部作品',
 		`Work receipt scope is incomplete: ${JSON.stringify(history)}`);
-	assert(history.receiptPath?.endsWith('我的小说.md') && history.receiptMeta?.includes('3 章'),
+	const exportedWord = primaryExportAction === '导出 Word 文档';
+	const expectedExtension = exportedWord ? '.docx' : '.md';
+	assert(history.receiptPath?.endsWith(`我的小说${expectedExtension}`)
+		&& history.receiptMeta?.includes('3 章')
+		&& (!exportedWord || history.receiptMeta?.includes('Word 文档')),
 		`Work receipt delivery evidence is incomplete: ${JSON.stringify(history)}`);
 	assert(history.backupStatus?.includes('校验通过') && history.restoreEnabled,
 		`Backup trust state is incomplete: ${JSON.stringify(history)}`);
@@ -361,7 +375,7 @@ try {
 		runtimeErrors,
 		captures
 	}, null, 2)}\n`);
-	console.log(`Phase 1.2H browser acceptance passed: ${metricsPath}`);
+	console.log(`${wordInteroperabilityPhase ? 'Phase 1.2J' : 'Phase 1.2H'} browser acceptance passed: ${metricsPath}`);
 } finally {
 	client?.close();
 	if (edge.pid) {

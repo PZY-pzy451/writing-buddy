@@ -4037,6 +4037,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b"
 
 [[package]]
+name = "typed-path"
+version = "0.12.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e28f89b80c87b8fb0cf04ab448d5dd0dd0ade2f8891bae878de66a75a28600e"
+
+[[package]]
 name = "typeid"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4876,8 +4882,10 @@ name = "writing-buddy-next"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "flate2",
  "futures-util",
  "hex",
+ "quick-xml",
  "reqwest",
  "rfd",
  "serde",
@@ -4889,6 +4897,7 @@ dependencies = [
  "tokio-util",
  "walkdir",
  "windows-sys 0.61.2",
+ "zip",
 ]
 
 [[package]]
@@ -5037,6 +5046,19 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.119",
+]
+
+[[package]]
+name = "zip"
+version = "8.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2d04a6b5381502aa6087c94c669499eb1602eb9c5e8198e534de571f7154809b"
+dependencies = [
+ "crc32fast",
+ "flate2",
+ "indexmap 2.14.0",
+ "memchr",
+ "typed-path",
 ]
 
 [[package]]

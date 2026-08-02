@@ -160,6 +160,40 @@ describe('guided project creation', () => {
 		expect(useAppStore.getState().activeResource).toBeUndefined();
 	});
 
+	it('previews an extracted Word outline with truthful format limitations', async () => {
+		const content = '第一章 雨夜\n顾言收到信。\n\n第二章 回声\n信号重现。';
+		vi.spyOn(desktopBridge, 'chooseImportedText').mockResolvedValue({
+			fileName: '零点回声大纲.docx',
+			format: 'word-document',
+			content,
+			byteLength: 18_240
+		});
+		const user = userEvent.setup();
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: /导入已有大纲/u }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		await user.type(within(dialog).getByLabelText('作品名称'), 'Word 大纲导入');
+		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /选择文件/ }));
+
+		expect(await within(dialog).findByText('零点回声大纲.docx')).toBeInTheDocument();
+		expect(within(dialog).getByText(/Word 文档/u)).toBeInTheDocument();
+		expect(within(dialog).getByText(/图片、批注、脚注、修订记录与版式不会导入/u))
+			.toBeInTheDocument();
+		expect(within(dialog).getByText('2 章')).toBeInTheDocument();
+
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /创建并导入/ }));
+
+		await screen.findByRole('heading', { name: '作品大纲' });
+		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters.map(chapter => chapter.title))
+			.toEqual(['第一章 雨夜', '第二章 回声']);
+	});
+
 	it('keeps the global create menu useful without an open project', async () => {
 		const user = userEvent.setup();
 		render(<App />);

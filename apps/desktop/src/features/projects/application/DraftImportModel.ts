@@ -64,7 +64,11 @@ export function analyzeDraftImport(
 ): DraftImportAnalysis {
 	const content = file.content.replace(/^\uFEFF/, '');
 	if (!content.trim()) throw new Error('importSourceEmpty');
-	if (file.byteLength <= 0 || file.byteLength > IMPORT_MAX_BYTES) {
+	if (
+		file.byteLength <= 0
+		|| file.byteLength > IMPORT_MAX_BYTES
+		|| new TextEncoder().encode(content).byteLength > IMPORT_MAX_BYTES
+	) {
 		throw new Error('importSourceTooLarge');
 	}
 	if (content.includes('\0')) throw new Error('importSourceBinary');
