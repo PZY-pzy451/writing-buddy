@@ -4,6 +4,30 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2L whole-work consistency pass is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The primary Check page now opens the grounded full-work consistency task
+  directly; the compatibility Planning route remains available.
+- Saved, non-empty chapters are covered in ordered batches under the unchanged
+  2–12 source / 160,000-character native contract. Boundary chapters overlap
+  when possible, and unsafe or excessive plans fail before the first AI call.
+- Multi-batch findings remain in memory until every request succeeds. Stop or
+  failure preserves existing results; success deduplicates and hands off once.
+- A synchronous run guard plus separate Stop control prevents rapid repeated AI
+  clicks. Five responsive captures pass with no overflow, clipping, sub-44 px
+  controls, occlusion, covered panel edge or runtime errors.
+- Final gates: 165 Vitest files / 667 tests, production Vite build, Cargo format,
+  74 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2l-whole-work-consistency-2026-08-02/`;
+  evidence:
+  `docs/acceptance/069-phase-1.2l-whole-work-consistency-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2K daily writing progress is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -24,8 +48,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2k-daily-writing-progress-2026-08-02/`;
   evidence:
   `docs/acceptance/068-phase-1.2k-daily-writing-progress-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2J Word interoperability is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

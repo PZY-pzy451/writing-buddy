@@ -6267,6 +6267,50 @@ body,
 	max-width: 100%;
 }
 
+.review-whole-work-card {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 14px;
+	margin-top: 12px;
+	padding: 15px 16px;
+	background: color-mix(in srgb, var(--accent) 5%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border-subtle));
+	border-radius: var(--radius-card);
+}
+
+.review-whole-work-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	color: var(--accent-strong);
+	background: color-mix(in srgb, var(--accent) 12%, var(--surface-raised));
+	border-radius: var(--radius-control);
+}
+
+.review-whole-work-card h2,
+.review-whole-work-card p {
+	margin: 0;
+}
+
+.review-whole-work-card h2 {
+	font-size: 15px;
+}
+
+.review-whole-work-card p {
+	margin-top: 4px;
+	color: var(--text-secondary);
+	font-size: 12px;
+	line-height: 1.55;
+}
+
+.review-whole-work-card > button {
+	min-height: 44px;
+	white-space: nowrap;
+}
+
 .review-mode-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6807,6 +6851,15 @@ body,
 		justify-content: flex-start;
 	}
 
+	.review-whole-work-card {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.review-whole-work-card > button {
+		grid-column: 1 / -1;
+		width: 100%;
+	}
+
 	.review-run-panel {
 		position: static;
 	}
@@ -6856,6 +6909,14 @@ body,
 
 	.review-task-action {
 		grid-column: auto;
+	}
+
+	.review-whole-work-card {
+		grid-template-columns: 1fr;
+	}
+
+	.review-whole-work-icon {
+		display: none;
 	}
 
 	.review-mode-grid > button {

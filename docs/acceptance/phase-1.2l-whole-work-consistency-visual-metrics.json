@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-08-02T03:14:00.469Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "reviewEntry": {
+    "title": "全书一致性",
+    "description": "跨章节核对人物状态、时间、地点、物品、信息权限与因果；结果保留原文证据，只进入待处理列表。",
+    "action": "打开全书扫描",
+    "actionDisabled": false
+  },
+  "defaultScope": {
+    "title": "AI 跨章对照审查",
+    "selected": "全书扫描按顺序分批覆盖全部已写章节",
+    "start": "开始全书扫描",
+    "boundary": "发送边界清晰每批发送 2–12 个连续章节与 21 条非秘密 Story Fact；作者秘密、隐藏伏笔真相、项目路径和密钥不会发送。"
+  },
+  "selectedMode": {
+    "checked": 2,
+    "checkboxes": 3,
+    "start": "开始对照审查"
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "surface": "review-center",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "panelOccludedAtLeftEdge": false
+    },
+    {
+      "name": "02-whole-work-panel-1440x900.png",
+      "surface": "whole-work-panel",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "panelOccludedAtLeftEdge": false,
+      "panel": {
+        "x": 920,
+        "y": 68,
+        "width": 520,
+        "height": 792,
+        "top": 68,
+        "right": 1440,
+        "bottom": 860,
+        "left": 920
+      }
+    },
+    {
+      "name": "03-whole-work-panel-1024x720.png",
+      "surface": "whole-work-panel",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "panelOccludedAtLeftEdge": false,
+      "panel": {
+        "x": 464,
+        "y": 68,
+        "width": 560,
+        "height": 612,
+        "top": 68,
+        "right": 1024,
+        "bottom": 680,
+        "left": 464
+      }
+    },
+    {
+      "name": "04-whole-work-panel-820x720.png",
+      "surface": "whole-work-panel",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "panelOccludedAtLeftEdge": false,
+      "panel": {
+        "x": 260,
+        "y": 68,
+        "width": 560,
+        "height": 612,
+        "top": 68,
+        "right": 820,
+        "bottom": 680,
+        "left": 260
+      }
+    },
+    {
+      "name": "05-selected-panel-820x720.png",
+      "surface": "selected-panel",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "panelOccludedAtLeftEdge": false,
+      "panel": {
+        "x": 260,
+        "y": 68,
+        "width": 560,
+        "height": 612,
+        "top": 68,
+        "right": 820,
+        "bottom": 680,
+        "left": 260
+      }
+    }
+  ]
+}

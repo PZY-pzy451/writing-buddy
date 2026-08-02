@@ -116,6 +116,22 @@ describe('manual and AI review experience', () => {
 		expect(screen.getByText(`当前章节：${chapter.title}`)).toBeInTheDocument();
 	});
 
+	it('opens whole-work consistency directly from the primary Check page', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		expect(await screen.findByRole('heading', { name: '全书一致性' })).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '打开全书扫描' }));
+
+		expect(await screen.findByRole('main', { name: '长篇一致性审查' })).toBeInTheDocument();
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'planning',
+			storyView: 'continuity'
+		});
+	});
+
 	it('streams a real-provider-shaped AI review and keeps suggestions author-confirmed', async () => {
 		await desktopBridge.saveDeepSeekKey('fixture-key');
 		const user = userEvent.setup();

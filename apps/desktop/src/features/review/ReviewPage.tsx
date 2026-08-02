@@ -1,4 +1,5 @@
 import {
+	BookOpenCheck,
 	Bot,
 	CheckCircle2,
 	ClipboardCheck,
@@ -35,6 +36,7 @@ export function ReviewPage(): React.JSX.Element {
 	const setIssues = useAppStore(state => state.setIssues);
 	const openResource = useAppStore(state => state.openResource);
 	const setRailMode = useAppStore(state => state.setMode);
+	const setStoryView = useAppStore(state => state.setStoryView);
 	const dockOpen = useAppStore(state => state.dockOpen);
 	const toggleDock = useAppStore(state => state.toggleDock);
 	const {
@@ -171,6 +173,10 @@ export function ReviewPage(): React.JSX.Element {
 			projectId: snapshot.project.projectId
 		});
 	};
+	const openWholeWorkConsistency = () => {
+		setRailMode('planning');
+		setStoryView('continuity');
+	};
 
 	return (
 		<div className="system-page review-page">
@@ -212,6 +218,22 @@ export function ReviewPage(): React.JSX.Element {
 						</button>
 					)}
 				</div>
+			</section>
+
+			<section className="review-whole-work-card" aria-labelledby="review-whole-work-title">
+				<span className="review-whole-work-icon"><BookOpenCheck size={22} /></span>
+				<div>
+					<h2 id="review-whole-work-title">全书一致性</h2>
+					<p>跨章节核对人物状态、时间、地点、物品、信息权限与因果；结果保留原文证据，只进入待处理列表。</p>
+				</div>
+				<button
+					className="secondary-button"
+					type="button"
+					disabled={chapters.length < 2 || snapshot?.readOnly}
+					onClick={openWholeWorkConsistency}
+				>
+					<BookOpenCheck size={18} />打开全书扫描
+				</button>
 			</section>
 
 			<div className="review-mode-grid" role="tablist" aria-label="审校模式">
