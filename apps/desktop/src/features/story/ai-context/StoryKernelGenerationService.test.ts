@@ -249,6 +249,102 @@ function createSceneResponse(
 	});
 }
 
+function createEveryResourceTypeResponse(): string {
+	const position = {
+		chapterId: 'chapter:chapter-001',
+		narrativeOrder: 0
+	};
+	const resources: readonly Record<string, unknown>[] = [
+		{
+			id: 'character:stress-protagonist',
+			type: 'character',
+			title: '压测主角',
+			role: 'protagonist'
+		},
+		{
+			id: 'character:stress-supporting',
+			type: 'character',
+			title: '压测配角',
+			role: 'supporting'
+		},
+		{
+			id: 'scene:stress-scene',
+			type: 'scene',
+			title: '压测场景'
+		},
+		{
+			id: 'location:stress-station',
+			type: 'location',
+			title: '压测车站',
+			mapPoint: null
+		},
+		{
+			id: 'faction:stress-watch',
+			type: 'faction',
+			title: '压测守望会'
+		},
+		{
+			id: 'item:stress-envelope',
+			type: 'item',
+			title: '压测信封',
+			unique: null,
+			restrictions: null
+		},
+		{
+			id: 'world-rule:stress-silence',
+			type: 'worldRule',
+			title: '压测静默规则',
+			statement: '零点后不得播报真实姓名。'
+		},
+		{
+			id: 'timeline-event:stress-arrival',
+			type: 'timelineEvent',
+			title: '压测抵达',
+			narrativePosition: position,
+			eventType: 'arrival'
+		},
+		{
+			id: 'relationship:stress-pair',
+			type: 'relationship',
+			title: '压测同盟',
+			sourceCharacterId: 'character:stress-protagonist',
+			targetCharacterId: 'character:stress-supporting',
+			relationshipType: '同盟',
+			visibility: 'private',
+			effectiveFrom: position,
+			history: []
+		},
+		{
+			id: 'plot-thread:stress-signal',
+			type: 'plotThread',
+			title: '压测信号线',
+			status: 'active'
+		},
+		{
+			id: 'foreshadowing:stress-code',
+			type: 'foreshadowing',
+			title: '压测密码',
+			readerVisibility: 0.2
+		},
+		{
+			id: 'information:stress-truth',
+			type: 'information',
+			title: '压测真相',
+			truthStatement: '信号来自已停运的车站。',
+			authorSecret: true
+		}
+	];
+	return JSON.stringify({
+		candidates: resources.map(resource => ({
+			operation: 'create',
+			resource,
+			confidence: 0.9,
+			rationale: '正文提供了可核对的信息。',
+			evidence: null
+		}))
+	});
+}
+
 function createHarness() {
 	const storage = new MemoryStorage();
 	const gateway = new MemoryStoryGateway();
@@ -277,6 +373,52 @@ async function stageValidBatch(
 }
 
 describe('StoryKernelGenerationService', () => {
+	it('stages and atomically confirms every generatable resource type with repaired safe defaults', async () => {
+		const expectedTypes = [
+			'character',
+			'scene',
+			'location',
+			'faction',
+			'item',
+			'worldRule',
+			'timelineEvent',
+			'relationship',
+			'plotThread',
+			'foreshadowing',
+			'information'
+		] as const;
+		const { gateway, service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '提取全部 Story Kernel 类型。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content,
+			targetTypes: expectedTypes,
+			response: createEveryResourceTypeResponse(),
+			now
+		});
+
+		expect(new Set(batch.candidates.map(candidate => candidate.resourceType)))
+			.toEqual(new Set(expectedTypes));
+		expect(batch.candidates).toHaveLength(12);
+		expect(batch.candidates.every(candidate => (
+			candidate.conflicts.length === 0 && candidate.normalizedResource !== undefined
+		))).toBe(true);
+		expect(batch.candidates.find(candidate => candidate.resourceType === 'item')?.normalizedResource)
+			.toMatchObject({ unique: false, restrictions: [] });
+		expect(batch.candidates.find(candidate => candidate.resourceType === 'location')?.normalizedResource)
+			.not.toHaveProperty('mapPoint');
+
+		const confirmed = await service.confirm(
+			batch.id,
+			batch.candidates.map(candidate => candidate.id),
+			'2026-07-27T08:01:00.000Z'
+		);
+		expect(gateway.commitCalls).toBe(1);
+		expect(gateway.resources).toHaveLength(12);
+		expect(confirmed.candidates.every(candidate => candidate.status === 'accepted')).toBe(true);
+	});
+
 	it('recovers a persisted old item candidate without another AI request', async () => {
 		const storage = new MemoryStorage(JSON.stringify({
 			schemaVersion: 1,

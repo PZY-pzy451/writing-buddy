@@ -71,6 +71,7 @@ const browserSteps = [
 	['phase-1.2o', 'scripts/acceptance/validate-phase-1.2o-chapter-lifecycle.mjs'],
 	['phase-1.2p', 'scripts/acceptance/validate-phase-1.2p-delivery-freshness.mjs'],
 	['phase-1.2q', 'scripts/acceptance/validate-phase-1.2q-author-confirmed-release.mjs'],
+	['phase-1.2s-user-detail', 'scripts/acceptance/validate-user-detail-soak.mjs'],
 	[
 		'storyforge-gate-c',
 		'scripts/acceptance/capture-storyforge-gate-c.mjs',

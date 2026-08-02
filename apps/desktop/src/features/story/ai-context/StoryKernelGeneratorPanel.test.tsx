@@ -297,7 +297,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(runGeneration).not.toHaveBeenCalled();
 	});
 
-	it('blocks repeated generation clicks before the first stream event', async () => {
+	it('blocks one hundred repeated generation clicks before the first stream event', async () => {
 		let resolveGeneration: (value: string) => void = () => undefined;
 		const runGeneration = vi.fn(() => new Promise<string>(resolve => {
 			resolveGeneration = resolve;
@@ -319,8 +319,9 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		const button = screen.getByRole('button', { name: '生成 Story Kernel 候选' });
 		await act(async () => {
-			button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-			button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
 			await Promise.resolve();
 		});
 

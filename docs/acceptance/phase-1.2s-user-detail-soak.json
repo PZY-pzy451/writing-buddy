@@ -1,0 +1,728 @@
+{
+  "generatedAt": "2026-08-02T13:33:57.066Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "perspectives": [
+    "first-time-author",
+    "returning-author",
+    "long-form-author",
+    "keyboard-author",
+    "compact-screen-author",
+    "interrupted-author"
+  ],
+  "welcomeFocus": {
+    "tag": "BUTTON",
+    "label": "打开作者导航器"
+  },
+  "longManuscript": {
+    "pastePayloadLength": 510,
+    "longPayloadLength": 100019,
+    "pasteMilliseconds": 114,
+    "renderMilliseconds": 99,
+    "saveMilliseconds": 42,
+    "activeMode": "works",
+    "storyView": "characters",
+    "contentLength": 100661,
+    "hasLongMarker": true,
+    "saveState": "clean",
+    "dirty": false,
+    "projectRoot": "browser-fixture",
+    "activeResourceId": "chapter-a11ce001",
+    "resourcePath": "chapters/chapter-001.md"
+  },
+  "resize": {
+    "attempts": 40,
+    "bounds": {
+      "min": 220,
+      "max": 440,
+      "value": 272
+    },
+    "samples": [
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "pointer",
+        "before": 272,
+        "after": 300
+      },
+      {
+        "method": "pointer",
+        "before": 300,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      },
+      {
+        "method": "keyboard",
+        "before": 272,
+        "after": 284
+      },
+      {
+        "method": "keyboard",
+        "before": 284,
+        "after": 272
+      }
+    ]
+  },
+  "workspaceTransitions": [
+    {
+      "index": 1,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 2,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 3,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 4,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 5,
+      "label": "历史",
+      "mode": "versions"
+    },
+    {
+      "index": 6,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 7,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 8,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 9,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 10,
+      "label": "历史",
+      "mode": "versions"
+    },
+    {
+      "index": 11,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 12,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 13,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 14,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 15,
+      "label": "历史",
+      "mode": "versions"
+    },
+    {
+      "index": 16,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 17,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 18,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 19,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 20,
+      "label": "历史",
+      "mode": "versions"
+    },
+    {
+      "index": 21,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 22,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 23,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 24,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 25,
+      "label": "历史",
+      "mode": "versions"
+    },
+    {
+      "index": 26,
+      "label": "写作",
+      "mode": "works"
+    },
+    {
+      "index": 27,
+      "label": "规划",
+      "mode": "planning"
+    },
+    {
+      "index": 28,
+      "label": "故事库",
+      "mode": "references"
+    },
+    {
+      "index": 29,
+      "label": "检查",
+      "mode": "review"
+    },
+    {
+      "index": 30,
+      "label": "历史",
+      "mode": "versions"
+    }
+  ],
+  "workspaceReloads": [
+    {
+      "afterTransition": 10,
+      "requested": "versions",
+      "restored": "works"
+    },
+    {
+      "afterTransition": 20,
+      "requested": "versions",
+      "restored": "works"
+    },
+    {
+      "afterTransition": 30,
+      "requested": "versions",
+      "restored": "works"
+    }
+  ],
+  "planningViews": [
+    "故事结构",
+    "剧情线与伏笔",
+    "结构检查"
+  ],
+  "libraryViews": [
+    "当前相关",
+    "待完善",
+    "人物",
+    "人物关系",
+    "地点与世界规则",
+    "物品",
+    "事件与时间线",
+    "人物知识"
+  ],
+  "menuItems": [
+    "快速记录",
+    "设置",
+    "AI 连接测试"
+  ],
+  "dialogFocus": "记录内容",
+  "finalState": {
+    "activeMode": "works",
+    "storyView": "information",
+    "contentLength": 100661,
+    "hasLongMarker": true,
+    "saveState": "clean",
+    "dirty": false,
+    "projectRoot": "browser-fixture",
+    "activeResourceId": "chapter-a11ce001",
+    "resourcePath": "chapters/chapter-001.md"
+  },
+  "browserFixtureRehydratedAfterReload": true,
+  "audits": [
+    {
+      "name": "welcome-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 24,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "writing-home-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 42,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "long-editor-after-40-resizes",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 72,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1,
+      "editorAccessibility": {
+        "inputFound": true,
+        "label": "Editor content",
+        "role": "textbox"
+      }
+    },
+    {
+      "name": "planning-故事结构",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 50,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "planning-剧情线与伏笔",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 35,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "planning-结构检查",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 32,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-当前相关",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 38,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-待完善",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 52,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-人物",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 55,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-人物关系",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 35,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-地点与世界规则",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 38,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-物品",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 35,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-事件与时间线",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 48,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "library-人物知识",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 35,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "quick-capture-dialog",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 43,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 1,
+      "activePrimaryNavigation": 1
+    },
+    {
+      "name": "settings-1024x720",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 25,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 0
+    },
+    {
+      "name": "final-reopen-editor",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 71,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1,
+      "editorAccessibility": {
+        "inputFound": true,
+        "label": "Editor content",
+        "role": "textbox"
+      }
+    }
+  ]
+}

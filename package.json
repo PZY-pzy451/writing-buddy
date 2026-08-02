@@ -38,6 +38,8 @@
     "acceptance:genre-to-draft": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:genre-to-draft:gate-d": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:complete-novel": "node scripts/acceptance/validate-complete-novel.mjs",
+    "acceptance:user-detail": "node scripts/acceptance/validate-user-detail-soak.mjs",
+    "acceptance:user-stress": "node scripts/acceptance/run-user-stress.mjs",
     "fixtures:generate": "node scripts/compatibility/generate-fixtures.mjs",
     "compatibility:report": "node scripts/compatibility/create-report.mjs",
     "tauri": "pnpm --filter @writing-buddy/desktop tauri",
