@@ -80,6 +80,17 @@ creation.
   user intent, action, result, recovery and load sample.
 - All stress samples pass their budgets without data loss, raw error leakage,
   stuck busy state, unbounded duplicate work or orphan processes.
-- The previous 25-step full regression remains green after new fixes.
+- The expanded 26-step full regression remains green after the new gates.
 - Phase 1.2S produces a dated acceptance note, current progress update, Git
   commit and refreshed production EXE/installer with hashes.
+
+## Completion
+
+- User-detail soak: passed, including 100,661-character save/reopen, 40 resize
+  attempts, 30 workspace transitions, 17 audits and all Planning/Story Library
+  views.
+- Stress matrix: passed 2 browser, 5 performance, 10 recovery and 5 final
+  portable launch samples.
+- Full regression: 26/26 steps passed from a clean source state in 644,991 ms.
+- Evidence:
+  `docs/acceptance/076-phase-1.2s-user-centered-detail-stress-2026-08-02.md`.

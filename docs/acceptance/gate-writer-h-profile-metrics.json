@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-02T13:45:11.613Z",
+  "generatedAt": "2026-08-02T14:31:21.009Z",
   "method": "five-isolated-no-explanation-test-profiles",
   "privacy": {
     "recordsAuthorContent": false,
@@ -48,17 +48,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 1921,
-        "projectInteractive": 1996,
-        "restoreToInput": 131,
-        "focusEnter": 16,
-        "focusExit": 27,
-        "planningSwitch": 31,
-        "writingSwitch": 67,
-        "secondProjectInteractive": 1205,
-        "secondRestoreToInput": 163,
-        "saveFailureVisible": 31,
-        "saveRecovery": 45
+        "shellVisible": 1063,
+        "projectInteractive": 1133,
+        "restoreToInput": 140,
+        "focusEnter": 17,
+        "focusExit": 28,
+        "planningSwitch": 32,
+        "writingSwitch": 55,
+        "secondProjectInteractive": 2018,
+        "secondRestoreToInput": 138,
+        "saveFailureVisible": 18,
+        "saveRecovery": 40
       },
       "checks": {
         "blockingCrash": false,
@@ -85,7 +85,7 @@
           "pageOverflowX": 0,
           "pageOverflowY": 0,
           "clippedInteractive": 0,
-          "domNodes": 863
+          "domNodes": 861
         },
         "secondViewport": {
           "viewport": {
@@ -129,17 +129,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 1169,
-        "projectInteractive": 1199,
-        "restoreToInput": 144,
-        "focusEnter": 14,
-        "focusExit": 30,
-        "planningSwitch": 48,
-        "writingSwitch": 44,
-        "secondProjectInteractive": 1189,
-        "secondRestoreToInput": 155,
-        "saveFailureVisible": 27,
-        "saveRecovery": 43
+        "shellVisible": 1157,
+        "projectInteractive": 1206,
+        "restoreToInput": 154,
+        "focusEnter": 15,
+        "focusExit": 29,
+        "planningSwitch": 47,
+        "writingSwitch": 41,
+        "secondProjectInteractive": 2004,
+        "secondRestoreToInput": 147,
+        "saveFailureVisible": 19,
+        "saveRecovery": 40
       },
       "checks": {
         "blockingCrash": false,
@@ -210,17 +210,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 1943,
-        "projectInteractive": 2009,
-        "restoreToInput": 138,
+        "shellVisible": 1055,
+        "projectInteractive": 1122,
+        "restoreToInput": 135,
         "focusEnter": 20,
         "focusExit": 31,
-        "planningSwitch": 31,
-        "writingSwitch": 44,
-        "secondProjectInteractive": 1152,
-        "secondRestoreToInput": 132,
-        "saveFailureVisible": 24,
-        "saveRecovery": 23
+        "planningSwitch": 30,
+        "writingSwitch": 46,
+        "secondProjectInteractive": 2016,
+        "secondRestoreToInput": 144,
+        "saveFailureVisible": 16,
+        "saveRecovery": 25
       },
       "checks": {
         "blockingCrash": false,
@@ -247,7 +247,7 @@
           "pageOverflowX": 0,
           "pageOverflowY": 0,
           "clippedInteractive": 0,
-          "domNodes": 823
+          "domNodes": 821
         },
         "secondViewport": {
           "viewport": {
@@ -291,17 +291,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 1932,
-        "projectInteractive": 1999,
-        "restoreToInput": 155,
-        "focusEnter": 26,
-        "focusExit": 33,
-        "planningSwitch": 36,
-        "writingSwitch": 56,
-        "secondProjectInteractive": 1482,
-        "secondRestoreToInput": 158,
+        "shellVisible": 1019,
+        "projectInteractive": 1066,
+        "restoreToInput": 157,
+        "focusEnter": 27,
+        "focusExit": 36,
+        "planningSwitch": 49,
+        "writingSwitch": 52,
+        "secondProjectInteractive": 1166,
+        "secondRestoreToInput": 165,
         "saveFailureVisible": 33,
-        "saveRecovery": 37
+        "saveRecovery": 39
       },
       "checks": {
         "blockingCrash": false,
@@ -372,17 +372,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 1118,
-        "projectInteractive": 1136,
-        "restoreToInput": 149,
-        "focusEnter": 16,
-        "focusExit": 32,
+        "shellVisible": 1948,
+        "projectInteractive": 2018,
+        "restoreToInput": 151,
+        "focusEnter": 14,
+        "focusExit": 31,
         "planningSwitch": 47,
-        "writingSwitch": 37,
-        "secondProjectInteractive": 1964,
-        "secondRestoreToInput": 150,
-        "saveFailureVisible": 21,
-        "saveRecovery": 28
+        "writingSwitch": 42,
+        "secondProjectInteractive": 2056,
+        "secondRestoreToInput": 155,
+        "saveFailureVisible": 17,
+        "saveRecovery": 24
       },
       "checks": {
         "blockingCrash": false,

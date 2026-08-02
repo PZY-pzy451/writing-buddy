@@ -4,27 +4,42 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2S user-centered detail and stress testing is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The author-detail gate covers first-time, returning, long-form, keyboard,
+  compact-screen and interrupted use across Writing, Planning, all Story Library
+  views, Check, History, Settings and quick capture.
+- The final clean run against `3342ca4` passed all 26 recorded steps in 644,991
+  ms: 167 Vitest files / 690 tests, 77 Rust tests plus both ignored gates, 19
+  browser journeys, native reopen, complete novel, recovery and EXE smoke.
+- Stress passed two 100,661-character browser runs, 80 resize attempts, 60
+  workspace transitions, five large-project samples, 10/10 recovery cycles and
+  5/5 final portable launches. Large-project interactive P95 was 452.4253 ms.
+- Story Kernel covers all 11 generatable resource types and deduplicates 100
+  rapid generation attempts to one in-flight request.
+- Production portable SHA-256 is
+  `EE5F71277B0D2EFFCB5C41A26B102CA7EB64050C1E51FEBD2B91E10A6E59B3D1`.
+- Delivery: `artifacts/release/full-regression-2026-08-02/`; evidence:
+  `docs/acceptance/076-phase-1.2s-user-centered-detail-stress-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2R full regression and bug convergence is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
 
-- One `pnpm acceptance:full-regression` command now covers source, Rust,
-  performance, 18 browser journeys, isolated native journeys, a complete novel,
+- One `pnpm acceptance:full-regression` command covers source, Rust,
+  performance, browser journeys, isolated native journeys, a complete novel,
   recovery, production packaging and portable smoke with a machine-readable
   aggregate report.
-- Product fixes reposition the compact daily-goal popover and make the timeline
-  own its intended horizontal overflow. Acceptance now hard-fails clipping,
+- Product fixes repositioned the compact daily-goal popover and made the
+  timeline own its intended horizontal overflow. Acceptance hard-fails clipping,
   follows the current information architecture and waits for real reload events.
-- The final clean run against `f969512` passed all 25 recorded steps in 653,272
-  ms: 167 Vitest files / 689 tests, 77 Rust tests plus both ignored gates, all
-  browser phases, native reopen, 12 chapters / 24 scenes, recovery and EXE smoke.
-- Production and acceptance executables are isolated. The production portable
-  was restored byte-for-byte before smoke and has SHA-256
-  `A45AC8CD7DAD652F843048A4BDB0A8CE89976860CFA135672EAFE24EDDD8F3DA`.
-- Delivery: `artifacts/release/full-regression-2026-08-02/`; evidence:
+- Its clean run against `f969512` passed all 25 recorded steps in 653,272 ms.
+- Evidence:
   `docs/acceptance/075-phase-1.2r-full-regression-bug-convergence-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2Q author-confirmed release candidate is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
