@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-08-02T04:18:04.552Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "grid": {
+    "selectedTab": "场景网格",
+    "headers": [
+      "章节与场景",
+      "遗失笔记活跃",
+      "封存站台风险"
+    ],
+    "rows": 1,
+    "links": 1,
+    "summary": "1 个场景2 条剧情线1 个有效推进0 个未关联场景与剧情线关联一致；网格只展示，不会自动改写资料。",
+    "inspectorInitiallyClosed": true
+  },
+  "inspector": {
+    "title": "雨夜旧车站",
+    "hasFourBeats": true,
+    "close": true,
+    "open": true
+  },
+  "manuscript": {
+    "mode": true
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-scene-plot-grid-1440x900.png",
+      "surface": "scene-grid",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "gridScrollsInternally": false
+    },
+    {
+      "name": "02-scene-plot-grid-1024x720.png",
+      "surface": "scene-grid",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "gridScrollsInternally": false
+    },
+    {
+      "name": "03-scene-plot-grid-820x720.png",
+      "surface": "scene-grid",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "gridScrollsInternally": true
+    },
+    {
+      "name": "04-filtered-empty-820x720.png",
+      "surface": "filtered-empty",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "gridScrollsInternally": false
+    },
+    {
+      "name": "05-scene-inspector-820x720.png",
+      "surface": "scene-inspector",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": [],
+      "gridScrollsInternally": false
+    }
+  ]
+}

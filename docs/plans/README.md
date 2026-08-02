@@ -44,6 +44,7 @@
 - [Phase 1.2J Word interoperability](./042-phase-1.2j-word-interoperability.md)
 - [Phase 1.2K daily writing progress](./043-phase-1.2k-daily-writing-progress.md)
 - [Phase 1.2L whole-work consistency pass](./044-phase-1.2l-whole-work-consistency.md)
+- [Phase 1.2M scene-linked plot grid](./045-phase-1.2m-scene-linked-plot-grid.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

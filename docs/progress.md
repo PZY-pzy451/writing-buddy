@@ -4,6 +4,30 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2M scene-linked plot grid is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- The Planning plot workspace now maps real Story Kernel scenes as rows and real
+  plot threads as columns without creating or migrating project data.
+- Search and task filters expose unlinked scenes, missing scene beats and
+  reciprocal, one-sided or dangling associations instead of hiding data damage.
+- Scene detail shows goal, conflict, turn and outcome and opens the exact
+  manuscript range through the existing evidence-navigation contract.
+- Narrow layouts show the full grid first and switch to a closable detail view,
+  preventing background controls from remaining focusable under an overlay.
+- Five responsive captures pass with no page overflow, clipping, sub-44 px
+  controls, occlusion or runtime errors; 820 px uses only internal grid scrolling.
+- Final gates: 166 Vitest files / 670 tests, production Vite build, Cargo format,
+  74 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2m-scene-plot-grid-2026-08-02/`;
+  evidence:
+  `docs/acceptance/070-phase-1.2m-scene-linked-plot-grid-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2L whole-work consistency pass is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -25,8 +49,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2l-whole-work-consistency-2026-08-02/`;
   evidence:
   `docs/acceptance/069-phase-1.2l-whole-work-consistency-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2K daily writing progress is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

@@ -118,6 +118,10 @@
 	box-shadow: 0 10px 28px rgb(37 33 28 / 6%);
 }
 
+.plot-board-workspace.is-scene-grid:not(.has-scene-inspector) {
+	grid-template-columns: minmax(0, 1fr);
+}
+
 .plot-board-primary {
 	min-width: 0;
 	min-height: 0;
@@ -342,11 +346,36 @@
 }
 
 .plot-inspector {
+	position: relative;
 	min-height: 0;
 	padding: 20px;
 	overflow: auto;
 	background: var(--surface-base);
 	border-left: 1px solid var(--border-subtle);
+}
+
+.plot-inspector.is-scene-inspector {
+	padding-top: 54px;
+}
+
+.plot-inspector-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: grid;
+	place-items: center;
+	width: 44px;
+	height: 44px;
+	cursor: pointer;
+	color: var(--text-muted);
+	background: transparent;
+	border: 0;
+	border-radius: var(--radius-control);
+}
+
+.plot-inspector-close:hover {
+	color: var(--text-primary);
+	background: var(--surface-subtle);
 }
 
 .plot-inspector h2 {
@@ -461,6 +490,326 @@
 	background: color-mix(in srgb, var(--warning) 5%, transparent);
 }
 
+.scene-plot-grid-shell {
+	display: grid;
+	grid-template-rows: auto auto minmax(0, 1fr) auto;
+	width: 100%;
+	height: 100%;
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
+	background: var(--surface-canvas);
+}
+
+.scene-plot-grid-summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px 14px 8px;
+}
+
+.scene-plot-grid-summary > div,
+.scene-plot-grid-summary > p,
+.scene-plot-grid-key {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.scene-plot-grid-summary span {
+	color: var(--text-muted);
+	font-size: 11px;
+}
+
+.scene-plot-grid-summary span strong {
+	color: var(--text-primary);
+	font-size: 14px;
+}
+
+.scene-plot-grid-summary .is-warning,
+.scene-plot-grid-summary > p.is-warning {
+	color: var(--warning);
+}
+
+.scene-plot-grid-summary > p {
+	justify-content: flex-end;
+	max-width: 460px;
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.45;
+	text-align: right;
+}
+
+.scene-plot-grid-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 0 14px 10px;
+}
+
+.scene-plot-grid-controls label {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	width: min(320px, 100%);
+	min-height: 44px;
+	padding: 0 11px;
+	color: var(--text-muted);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-control);
+}
+
+.scene-plot-grid-controls input {
+	width: 100%;
+	height: 44px;
+	min-width: 0;
+	color: var(--text-primary);
+	background: transparent;
+	border: 0;
+	outline: 0;
+}
+
+.scene-plot-grid-controls > div {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px;
+	overflow-x: auto;
+	background: var(--surface-subtle);
+	border-radius: 8px;
+}
+
+.scene-plot-grid-controls button,
+.scene-plot-grid-empty button {
+	min-height: 44px;
+	padding: 0 11px;
+	cursor: pointer;
+	color: var(--text-muted);
+	font-size: 11px;
+	font-weight: 700;
+	white-space: nowrap;
+	background: transparent;
+	border: 0;
+	border-radius: 6px;
+}
+
+.scene-plot-grid-controls button.is-active {
+	color: var(--accent-strong);
+	background: var(--surface-raised);
+	box-shadow: 0 2px 8px rgb(30 28 24 / 8%);
+}
+
+.scene-plot-grid-scroll {
+	min-width: 0;
+	min-height: 0;
+	overflow: auto;
+	border-top: 1px solid var(--border-subtle);
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.scene-plot-grid {
+	width: max-content;
+	min-width: 100%;
+	border-spacing: 0;
+	border-collapse: separate;
+	font-size: 11px;
+}
+
+.scene-plot-grid th,
+.scene-plot-grid td {
+	min-width: 168px;
+	padding: 0;
+	vertical-align: top;
+	text-align: left;
+	background: var(--surface-canvas);
+	border-right: 1px solid var(--border-subtle);
+	border-bottom: 1px solid var(--border-subtle);
+}
+
+.scene-plot-grid thead th {
+	position: sticky;
+	z-index: 5;
+	top: 0;
+	height: 54px;
+	padding: 9px 11px;
+	background: var(--surface-subtle);
+}
+
+.scene-plot-grid thead th strong,
+.scene-plot-grid thead th small {
+	display: block;
+}
+
+.scene-plot-grid thead th strong {
+	max-width: 180px;
+	overflow: hidden;
+	font-size: 12px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.scene-plot-grid thead th small {
+	margin-top: 3px;
+	color: var(--text-muted);
+	font-weight: 500;
+}
+
+.scene-plot-grid th:first-child {
+	position: sticky;
+	z-index: 4;
+	left: 0;
+	width: 286px;
+	min-width: 286px;
+	max-width: 286px;
+	background: var(--surface-raised);
+	box-shadow: 6px 0 14px rgb(37 33 28 / 5%);
+}
+
+.scene-plot-grid thead th:first-child {
+	z-index: 7;
+	background: var(--surface-subtle);
+}
+
+.scene-plot-grid tbody tr.is-selected th,
+.scene-plot-grid tbody tr.is-selected td {
+	background: color-mix(in srgb, var(--accent) 5%, var(--surface-canvas));
+}
+
+.scene-plot-grid tbody tr.is-selected th:first-child {
+	background: color-mix(in srgb, var(--accent) 8%, var(--surface-raised));
+}
+
+.scene-plot-grid tbody th > button {
+	display: grid;
+	gap: 5px;
+	width: 100%;
+	min-height: 116px;
+	padding: 11px 13px;
+	cursor: pointer;
+	color: var(--text-primary);
+	text-align: left;
+	background: transparent;
+	border: 0;
+}
+
+.scene-plot-grid tbody th button > small {
+	color: var(--accent-strong);
+	font-size: 10px;
+}
+
+.scene-plot-grid tbody th button > strong {
+	font-size: 13px;
+}
+
+.scene-plot-grid tbody th button > span {
+	display: grid;
+	grid-template-columns: 34px minmax(0, 1fr);
+	gap: 4px;
+	color: var(--text-muted);
+	font-size: 10px;
+	line-height: 1.35;
+}
+
+.scene-plot-grid tbody th button > span b {
+	color: var(--text-secondary);
+}
+
+.scene-plot-grid tbody th button > em {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--warning);
+	font-size: 10px;
+	font-style: normal;
+}
+
+.scene-plot-grid td {
+	height: 116px;
+	padding: 9px;
+	vertical-align: middle;
+}
+
+.scene-plot-link {
+	display: grid;
+	place-items: center;
+	gap: 3px;
+	width: 100%;
+	min-width: 140px;
+	min-height: 76px;
+	padding: 8px;
+	cursor: pointer;
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 8%, var(--surface-raised));
+	border: 1px solid color-mix(in srgb, var(--success) 28%, var(--border-subtle));
+	border-radius: 8px;
+}
+
+.scene-plot-link.is-scene-only,
+.scene-plot-link.is-thread-only {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 7%, var(--surface-raised));
+	border-color: color-mix(in srgb, var(--warning) 28%, var(--border-subtle));
+}
+
+.scene-plot-link small {
+	color: currentColor;
+	font-size: 9px;
+}
+
+.scene-plot-no-link,
+.scene-plot-no-thread {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	min-height: 44px;
+	color: var(--text-muted);
+}
+
+.scene-plot-grid-key {
+	min-height: 34px;
+	padding: 0 14px;
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.scene-plot-grid-key span {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.scene-plot-grid-empty {
+	display: grid;
+	place-content: center;
+	justify-items: center;
+	gap: 8px;
+	min-height: 240px;
+	padding: 24px;
+	color: var(--text-muted);
+	text-align: center;
+}
+
+.scene-plot-grid-empty strong {
+	color: var(--text-primary);
+}
+
+.scene-plot-grid-empty p {
+	max-width: 420px;
+	margin: 0;
+	font-size: 11px;
+	line-height: 1.6;
+}
+
+.scene-plot-grid-empty button {
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+}
+
 .plot-board-legend {
 	display: flex;
 	align-items: center;
@@ -475,7 +824,12 @@
 .plot-thread-card button:focus-visible,
 .plot-inspector select:focus-visible,
 .plot-save:focus-visible,
-.foreshadowing-table button:focus-visible {
+.foreshadowing-table button:focus-visible,
+.scene-plot-grid-controls button:focus-visible,
+.scene-plot-grid-controls input:focus-visible,
+.scene-plot-grid tbody button:focus-visible,
+.scene-plot-grid-empty button:focus-visible,
+.plot-inspector-close:focus-visible {
 	outline: 2px solid var(--accent);
 	outline-offset: 2px;
 }
@@ -499,6 +853,17 @@
 		width: min(300px, calc(100% - 24px));
 		box-shadow: var(--shadow-float);
 	}
+
+	.plot-board-workspace.is-scene-grid.has-scene-inspector .plot-board-primary {
+		display: none;
+	}
+
+	.plot-board-workspace.is-scene-grid.has-scene-inspector .plot-inspector {
+		position: relative;
+		inset: auto;
+		width: 100%;
+		box-shadow: none;
+	}
 }
 
 @media (max-width: 1023px) {
@@ -514,6 +879,26 @@
 
 	.plot-board-toolbar {
 		flex-wrap: wrap;
+	}
+
+	.scene-plot-grid-summary,
+	.scene-plot-grid-controls {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.scene-plot-grid-summary > p {
+		justify-content: flex-start;
+		max-width: none;
+		text-align: left;
+	}
+
+	.scene-plot-grid-controls label {
+		width: 100%;
+	}
+
+	.scene-plot-grid-controls > div {
+		width: 100%;
 	}
 }
 

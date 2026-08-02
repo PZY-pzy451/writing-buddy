@@ -15,13 +15,16 @@ import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import {
 	AlertTriangle,
+	BookOpen,
 	BookOpenCheck,
 	Columns3,
 	Eye,
+	Grid3X3,
 	GripVertical,
 	ListChecks,
 	Save,
-	Sparkles
+	Sparkles,
+	X
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -30,6 +33,7 @@ import {
 	movePlotThreadStatus,
 	parseForeshadowing,
 	parsePlotThread,
+	parseStoryId,
 	plotThreadStatuses,
 	runPlotRules,
 	undoStoryMutation,
@@ -50,6 +54,8 @@ import type {
 } from '../ai-context/AiChapterSource';
 import { ForeshadowingTable } from './ForeshadowingTable';
 import { PlotAiPanel } from './PlotAiPanel';
+import { ScenePlotGrid } from './ScenePlotGrid';
+import { buildScenePlotGrid } from './ScenePlotGridModel';
 import { StoryDragUndoToast } from '../shared/StoryDragUndoToast';
 import { useStoryDragUndoShortcut } from '../shared/useStoryDragUndoShortcut';
 import './PlotBoardPage.css';
@@ -211,7 +217,7 @@ export function PlotBoardPage({
 	const contextualCreateIntent = useAppStore(state => state.contextualCreateIntent);
 	const consumeContextualCreate = useAppStore(state => state.consumeContextualCreate);
 	const [data, setData] = useState<PlotBoardData>();
-	const [view, setView] = useState<'board' | 'foreshadowing'>('board');
+	const [view, setView] = useState<'board' | 'grid' | 'foreshadowing'>('board');
 	const [currentOrder, setCurrentOrder] = useState(10);
 	const [selectedId, setSelectedId] = useState<string>();
 	const [draftStatus, setDraftStatus] = useState<{
@@ -246,7 +252,10 @@ export function PlotBoardPage({
 		try {
 			const loaded = await loadData(projectRoot);
 			setData(loaded);
-			setSelectedId(current => current ?? loaded.threads[0]?.id);
+			setSelectedId(current => current
+				?? loaded.threads[0]?.id
+				?? loaded.scenes?.[0]?.id
+				?? loaded.foreshadowing[0]?.id);
 			setError(undefined);
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '剧情资料读取失败。');
@@ -259,6 +268,10 @@ export function PlotBoardPage({
 
 	const selected = data?.threads.find(thread => thread.id === selectedId);
 	const selectedClue = data?.foreshadowing.find(clue => clue.id === selectedId);
+	const selectedScene = data?.scenes?.find(scene => scene.id === selectedId);
+	const selectedSceneGridRow = useMemo(() => selectedScene
+		? buildScenePlotGrid([selectedScene], data?.threads ?? [], chapters).rows[0]
+		: undefined, [chapters, data?.threads, selectedScene]);
 	const selectedDraftStatus = selected
 		? draftStatus?.threadId === selected.id
 			? draftStatus.status
@@ -269,6 +282,14 @@ export function PlotBoardPage({
 	const chooseThread = (thread: PlotThread) => {
 		setSelectedId(thread.id);
 		setDraftStatus({ threadId: thread.id, status: thread.status });
+	};
+	const chooseView = (next: 'board' | 'grid' | 'foreshadowing') => {
+		setView(next);
+		setSelectedId(next === 'grid'
+			? undefined
+			: next === 'foreshadowing'
+				? data?.foreshadowing[0]?.id
+				: data?.threads[0]?.id);
 	};
 	const saveStatus = async () => {
 		if (!projectRoot || !data || !selected) return;
@@ -352,8 +373,9 @@ export function PlotBoardPage({
 				<div><span className="eyebrow">NARRATIVE CONTROL</span><h1>剧情线与伏笔</h1><p>以章节覆盖和生命周期识别停滞、风险与逾期回收。</p></div>
 				<div className="plot-board-toolbar">
 					<div role="tablist" aria-label="剧情资料视图">
-						<button type="button" role="tab" aria-selected={view === 'board'} className={view === 'board' ? 'is-active' : ''} onClick={() => setView('board')}><Columns3 size={16} />剧情线</button>
-						<button type="button" role="tab" aria-selected={view === 'foreshadowing'} className={view === 'foreshadowing' ? 'is-active' : ''} onClick={() => setView('foreshadowing')}><Eye size={16} />伏笔表</button>
+						<button type="button" role="tab" aria-selected={view === 'board'} className={view === 'board' ? 'is-active' : ''} onClick={() => chooseView('board')}><Columns3 size={16} />剧情线</button>
+						<button type="button" role="tab" aria-selected={view === 'grid'} className={view === 'grid' ? 'is-active' : ''} onClick={() => chooseView('grid')}><Grid3X3 size={16} />场景网格</button>
+						<button type="button" role="tab" aria-selected={view === 'foreshadowing'} className={view === 'foreshadowing' ? 'is-active' : ''} onClick={() => chooseView('foreshadowing')}><Eye size={16} />伏笔表</button>
 					</div>
 					<label><span>当前叙事位置</span><input type="number" aria-label="当前叙事位置" min={0} value={currentOrder} onChange={event => setCurrentOrder(Number(event.target.value))} /></label>
 					<button type="button" className="plot-ai-button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 剧情线与伏笔</button>
@@ -363,7 +385,7 @@ export function PlotBoardPage({
 				{error ? <div role="alert"><AlertTriangle size={16} />{error}</div> : null}
 				{issues.length ? <div role="status"><AlertTriangle size={16} />{issues.length} 条生命周期风险</div> : null}
 			</div>
-			<section className="plot-board-workspace">
+			<section className={`plot-board-workspace${view === 'grid' ? ' is-scene-grid' : ''}${selectedScene ? ' has-scene-inspector' : ''}`}>
 				<div className="plot-board-primary">
 					{view === 'board' ? (
 						<DndContext
@@ -417,10 +439,58 @@ export function PlotBoardPage({
 								) : null}
 							</DragOverlay>
 						</DndContext>
+					) : view === 'grid' ? (
+						<ScenePlotGrid
+							scenes={data?.scenes ?? []}
+							threads={data?.threads ?? []}
+							chapters={chapters}
+							selectedSceneId={selectedScene?.id}
+							onSelectScene={scene => setSelectedId(scene.id)}
+						/>
 					) : <ForeshadowingTable items={data?.foreshadowing ?? []} currentOrder={currentOrder} onSelect={clue => setSelectedId(clue.id)} />}
 				</div>
-				<aside className="plot-inspector">
-					{selected ? (
+				{view !== 'grid' || selectedScene ? <aside className={`plot-inspector${selectedScene ? ' is-scene-inspector' : ''}`}>
+					{selectedScene ? (
+						<>
+							<button
+								type="button"
+								className="plot-inspector-close"
+								aria-label="关闭场景详情"
+								onClick={() => setSelectedId(undefined)}
+							>
+								<X size={18} />
+							</button>
+							<span className="eyebrow">SCENE BEATS</span><h2>{selectedScene.title}</h2>
+							<p>{selectedScene.summary ?? '这个场景还没有概要。'}</p>
+							<section><h3>目标</h3><p>{selectedScene.goal ?? '待补充'}</p></section>
+							<section><h3>冲突</h3><p>{selectedScene.conflict ?? '待补充'}</p></section>
+							<section><h3>转折</h3><p>{selectedScene.turn ?? '待补充'}</p></section>
+							<section><h3>结果</h3><p>{selectedScene.outcome ?? '待补充'}</p></section>
+							<section><h3>关联剧情线</h3><p>{selectedSceneGridRow && (
+								selectedSceneGridRow.links.length || selectedSceneGridRow.unknownThreadIds.length
+							)
+								? [
+									...selectedSceneGridRow.links.map(link => `${link.thread.title}${link.health === 'reciprocal' ? '' : '（待同步）'}`),
+									...selectedSceneGridRow.unknownThreadIds.map(id => `${id}（未知引用）`)
+								].join(' · ')
+								: '尚未关联'}</p></section>
+							<button
+								type="button"
+								className="plot-save"
+								disabled={!onOpenEvidence}
+								onClick={() => onOpenEvidence?.({
+									resourceId: parseStoryId(selectedScene.chapterId),
+									range: {
+										start: selectedScene.manuscriptRange.start,
+										end: selectedScene.manuscriptRange.end
+									},
+									quotePreview: selectedScene.manuscriptRange.quote
+								})}
+							>
+								<BookOpen size={16} />打开场景正文
+							</button>
+						</>
+					) : selected ? (
 						<>
 							<span className="eyebrow">PLOT INSPECTOR</span><h2>{selected.title}</h2>
 							<p>{selected.premise ?? selected.summary ?? '尚未补充剧情线说明。'}</p>
@@ -445,7 +515,7 @@ export function PlotBoardPage({
 							className="plot-inspector-empty"
 						/>
 					)}
-				</aside>
+				</aside> : null}
 			</section>
 			{aiOpen && projectRoot ? (
 				<PlotAiPanel

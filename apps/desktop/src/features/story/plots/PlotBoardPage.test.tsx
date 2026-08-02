@@ -1,6 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { parseForeshadowing, parsePlotThread } from '@writing-buddy/story-kernel';
+import {
+	parseForeshadowing,
+	parsePlotThread,
+	parseStoryScene
+} from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
 import { PlotBoardPage } from './PlotBoardPage';
 
@@ -53,5 +57,57 @@ describe('PlotBoardPage', () => {
 		expect(screen.getByText('剧情前提')).toBeInTheDocument();
 		expect(screen.getByText(/AI 建议/)).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();
+	});
+
+	it('maps real scenes to plot threads and locates the selected scene manuscript', async () => {
+		const user = userEvent.setup();
+		const onOpenEvidence = vi.fn();
+		render(
+			<PlotBoardPage
+				projectRoot="fixture"
+				chapters={[{
+					resourceId: 'chapter:first', chapterId: 'first', title: '第一章 · 雨夜旧站',
+					path: 'chapters/first.md', narrativeOrder: 0
+				}]}
+				onOpenEvidence={onOpenEvidence}
+				loadData={() => Promise.resolve({
+					threads: [
+						parsePlotThread({
+							...base, id: 'plot-thread:notebook', type: 'plotThread', title: '遗失笔记',
+							status: 'active', sceneIds: ['scene:meeting']
+						}),
+						parsePlotThread({
+							...base, id: 'plot-thread:secret', type: 'plotThread', title: '秘密调查',
+							status: 'at-risk', sceneIds: ['scene:meeting']
+						})
+					],
+					foreshadowing: [],
+					scenes: [parseStoryScene({
+						...base, id: 'scene:meeting', type: 'scene', title: '站台会面',
+						chapterId: 'chapter:first',
+						manuscriptRange: { start: 12, end: 42, revision: 0, quote: '雨落在站台上。' },
+						narrativeOrder: 1, locationIds: [], participantIds: [],
+						goal: '找到笔记', conflict: '站长拒绝交谈', turn: '蓝色信封出现', outcome: '得到新线索',
+						plotThreadIds: ['plot-thread:notebook'], revealInformationIds: [],
+						foreshadowingIds: []
+					})]
+				})}
+			/>
+		);
+
+		await screen.findByRole('button', { name: /遗失笔记/ });
+		await user.click(screen.getByRole('tab', { name: '场景网格' }));
+		expect(screen.getByRole('table', { name: '场景与剧情线关联表' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '站台会面推进遗失笔记：关联正常' })).toBeEnabled();
+		await user.click(screen.getByRole('button', { name: '查看场景节拍：站台会面' }));
+		expect(screen.getByRole('heading', { name: '站台会面' })).toBeInTheDocument();
+		expect(screen.getByText('蓝色信封出现')).toBeInTheDocument();
+		expect(screen.getByText(/秘密调查（待同步）/)).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '打开场景正文' }));
+		expect(onOpenEvidence).toHaveBeenCalledWith({
+			resourceId: 'chapter:first',
+			range: { start: 12, end: 42 },
+			quotePreview: '雨落在站台上。'
+		});
 	});
 });
