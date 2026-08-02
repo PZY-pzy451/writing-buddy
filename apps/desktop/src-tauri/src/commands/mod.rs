@@ -4048,6 +4048,29 @@ mod tests {
             Some(created.chapter.id.as_str())
         );
         assert_eq!(reopened.project_revision, created.project_revision);
+        assert_eq!(
+            reopened.manuscript_revisions.get(&created.chapter.id),
+            Some(&filesystem::sha256(
+                format!("# {}\n\n", created.chapter.title).as_bytes()
+            ))
+        );
+        let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
+    }
+
+    #[test]
+    fn project_snapshot_omits_an_unreadable_manuscript_revision() {
+        let root = project_move_fixture("manuscript-revision-missing");
+        fs::remove_file(root.join("chapters").join("2.md")).expect("remove chapter fixture");
+
+        let opened = migration::open_project(&root.to_string_lossy()).expect("open fixture");
+
+        assert!(opened.manuscript_revisions.contains_key("chapter-a11ce001"));
+        assert!(!opened.manuscript_revisions.contains_key("chapter-a11ce002"));
+        assert!(opened.integrity_issues.iter().any(|issue| {
+            issue.code == "missingChapterFile" && issue.path.as_deref() == Some("chapters/2.md")
+        }));
+        assert!(opened.read_only);
+
         let _ = fs::remove_dir_all(root.parent().expect("fixture parent"));
     }
 

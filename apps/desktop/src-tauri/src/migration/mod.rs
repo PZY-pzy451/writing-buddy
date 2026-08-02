@@ -107,6 +107,7 @@ pub struct ProjectSnapshot {
     pub resources: Vec<ResourceDescriptor>,
     pub integrity_issues: Vec<IntegrityIssue>,
     pub word_counts: HashMap<String, usize>,
+    pub manuscript_revisions: HashMap<String, String>,
     pub read_only: bool,
 }
 
@@ -446,10 +447,12 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
     };
 
     let mut word_counts = HashMap::new();
+    let mut manuscript_revisions = HashMap::new();
     for chapter in project.volumes.iter().flat_map(|volume| &volume.chapters) {
         match filesystem::read_text(project_root, &chapter.file) {
             Ok(file) => {
                 word_counts.insert(chapter.id.clone(), count_words(&file.content));
+                manuscript_revisions.insert(chapter.id.clone(), file.hash);
             }
             Err(_) => issues.push(IntegrityIssue {
                 severity: "error".to_owned(),
@@ -468,6 +471,7 @@ pub fn open_project(project_root: &str) -> Result<ProjectSnapshot, String> {
         resources: collect_resources(&root),
         integrity_issues: issues,
         word_counts,
+        manuscript_revisions,
         read_only,
     })
 }

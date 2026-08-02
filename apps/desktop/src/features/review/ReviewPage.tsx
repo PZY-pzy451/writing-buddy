@@ -24,12 +24,15 @@ import {
 	type ReviewIssue
 } from '@writing-buddy/review';
 import { useAppStore } from '../../app/store';
+import { desktopBridge } from '../../platform/bridge';
 import { useAiStore } from '../ai/stores/aiStore';
+import { createWorkSourceFingerprint } from '../export/ChapterExportModel';
 import {
 	selectPublishReadiness,
 	type PublishReadinessAction,
 	type PublishReadinessCheck,
-	type PublishReadinessModel
+	type PublishReadinessModel,
+	type PublishSourceInspection
 } from './PublishReadinessModel';
 import { useReviewAutomationStore } from './stores/reviewAutomationStore';
 
@@ -71,6 +74,19 @@ export function ReviewPage(): React.JSX.Element {
 	const [mode, setMode] = useState<ReviewMode>('manual');
 	const [notice, setNotice] = useState('');
 	const [publishExpanded, setPublishExpanded] = useState(false);
+	const sourceInspectionKey = snapshot
+		? [snapshot.root, snapshot.projectRevision, session?.state.diskHash ?? ''].join('\u0000')
+		: '';
+	const sourceInspectionRequestKey = `${sourceInspectionKey}\u0000${publishExpanded ? 'open' : 'closed'}`;
+	const [sourceInspectionState, setSourceInspectionState] = useState<{
+		readonly key: string;
+		readonly inspection: PublishSourceInspection;
+	}>({ key: '', inspection: { status: 'checking' } });
+	const sourceInspection = useMemo<PublishSourceInspection>(() => (
+		sourceInspectionState.key === sourceInspectionRequestKey
+			? sourceInspectionState.inspection
+			: { status: 'checking' }
+	), [sourceInspectionRequestKey, sourceInspectionState]);
 	const isChapter = activeResource?.type === 'chapter' && Boolean(session);
 	const configured = status?.secret.configured ?? false;
 	const active = activeJobStates.includes(jobState);
@@ -92,12 +108,66 @@ export function ReviewPage(): React.JSX.Element {
 	);
 	const nextChapter = affectedChapters[0] ?? chapters[0];
 	const projectAiIssues = projectOpenIssues.filter(issue => issue.origin === 'ai');
+
+	useEffect(() => {
+		if (!snapshot) return;
+		let cancelled = false;
+		const expectedSnapshot = snapshot;
+		const key = sourceInspectionRequestKey;
+		void (async () => {
+			try {
+				const liveSnapshot = await desktopBridge.openProject(
+					expectedSnapshot.root,
+					'read-only'
+				);
+				if (
+					liveSnapshot.project.projectId !== expectedSnapshot.project.projectId
+					|| liveSnapshot.projectRevision !== expectedSnapshot.projectRevision
+				) {
+					if (!cancelled) {
+						setSourceInspectionState({
+							key,
+							inspection: { status: 'stale-project' }
+						});
+					}
+					return;
+				}
+				const liveChapters = flattenChapters(liveSnapshot.project);
+				const revisions = liveSnapshot.manuscriptRevisions ?? {};
+				const sourceChapters = await Promise.all(liveChapters.map(async chapter => ({
+					id: chapter.id,
+					path: chapter.file,
+					hash: revisions[chapter.id]
+						?? (await desktopBridge.readText(liveSnapshot.root, chapter.file)).hash
+				})));
+				const fingerprint = await createWorkSourceFingerprint(
+					liveSnapshot.projectRevision,
+					sourceChapters
+				);
+				if (!cancelled) {
+					setSourceInspectionState({
+						key,
+						inspection: { status: 'ready', fingerprint }
+					});
+				}
+			} catch {
+				if (!cancelled) {
+					setSourceInspectionState({ key, inspection: { status: 'unavailable' } });
+				}
+			}
+		})();
+		return () => {
+			cancelled = true;
+		};
+	}, [snapshot, sourceInspectionRequestKey]);
+
 	const publishReadiness = useMemo(() => snapshot
 		? selectPublishReadiness({
 			snapshot,
 			saveState,
 			issues,
 			receipts: chapterExportReceipts,
+			sourceInspection,
 			...(activeResource?.type === 'chapter' && session
 				? {
 					activeChapter: {
@@ -107,7 +177,7 @@ export function ReviewPage(): React.JSX.Element {
 				}
 				: {})
 		})
-		: undefined, [activeResource, chapterExportReceipts, issues, saveState, session, snapshot]);
+		: undefined, [activeResource, chapterExportReceipts, issues, saveState, session, snapshot, sourceInspection]);
 
 	useEffect(() => {
 		void initialize();

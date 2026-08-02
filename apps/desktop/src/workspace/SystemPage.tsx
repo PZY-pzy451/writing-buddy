@@ -391,7 +391,14 @@ export function SystemPage(): React.JSX.Element | null {
 								</span>
 								<span className="history-receipt-meta">
 									<strong>{chapterExportFormatLabels[receipt.format]}</strong>
-									<small>{receipt.scope === 'work' ? `${receipt.chapterCount} 章 · ` : ''}{receipt.wordCount.toLocaleString()} 字 · {new Date(receipt.exportedAt).toLocaleString()}</small>
+									<small>
+										{receipt.scope === 'work' ? `${receipt.chapterCount} 章 · ` : ''}
+										{receipt.wordCount.toLocaleString()} 字
+										{receipt.scope === 'work'
+											? receipt.sourceFingerprint ? ' · 精确源指纹' : ' · 旧回执'
+											: ''}
+										{' · '}{new Date(receipt.exportedAt).toLocaleString()}
+									</small>
 								</span>
 							</li>
 						))}

@@ -3,6 +3,7 @@ import {
 	buildChapterExportContent,
 	buildWorkDocxDocument,
 	buildWorkExportContent,
+	createWorkSourceFingerprint,
 	parseChapterExportReceipts,
 	suggestedChapterExportName,
 	suggestedWorkExportName
@@ -72,6 +73,48 @@ describe('ChapterExportModel', () => {
 		].join('\n\n'));
 	});
 
+	it('fingerprints exact manifest and ordered manuscript revisions', async () => {
+		const chapters = [{
+			id: 'chapter-one',
+			path: 'chapters/one.md',
+			hash: 'a'.repeat(64)
+		}, {
+			id: 'chapter-two',
+			path: 'chapters/two.md',
+			hash: 'b'.repeat(64)
+		}];
+		const original = await createWorkSourceFingerprint('manifest-one', chapters);
+
+		expect(original).toMatch(/^sha256:[0-9a-f]{64}$/u);
+		expect(await createWorkSourceFingerprint('manifest-one', chapters)).toBe(original);
+		expect(await createWorkSourceFingerprint('manifest-two', chapters)).not.toBe(original);
+		expect(await createWorkSourceFingerprint('manifest-one', chapters.slice().reverse())).not.toBe(original);
+		expect(await createWorkSourceFingerprint('manifest-one', [
+			{ ...chapters[0], hash: 'c'.repeat(64) },
+			chapters[1]
+		])).not.toBe(original);
+		expect(await createWorkSourceFingerprint('manifest-one', [
+			{ ...chapters[0], path: 'chapters/renamed.md' },
+			chapters[1]
+		])).not.toBe(original);
+	});
+
+	it('rejects incomplete or ambiguous source revisions before hashing', async () => {
+		await expect(createWorkSourceFingerprint('', [])).rejects.toThrow(
+			'workSourceFingerprintInputInvalid'
+		);
+		await expect(createWorkSourceFingerprint('manifest', [{
+			id: 'chapter-one',
+			path: 'chapters/one.md',
+			hash: 'not-a-sha256'
+		}])).rejects.toThrow('workSourceFingerprintInputInvalid');
+		await expect(createWorkSourceFingerprint('manifest', [{
+			id: 'chapter-one', path: 'chapters/one.md', hash: 'a'.repeat(64)
+		}, {
+			id: 'chapter-one', path: 'chapters/two.md', hash: 'b'.repeat(64)
+		}])).rejects.toThrow('workSourceFingerprintInputInvalid');
+	});
+
 	it('migrates legacy chapter receipts and keeps valid whole-work receipts', () => {
 		expect(parseChapterExportReceipts([{
 			id: 'export:1',
@@ -91,7 +134,8 @@ describe('ChapterExportModel', () => {
 			format: 'markdown',
 			destination: 'D:\\Exports\\零点回声.md',
 			exportedAt: '2026-08-01T12:00:00.000Z',
-			wordCount: 50000
+			wordCount: 50000,
+			sourceFingerprint: 'invalid'
 		}, {
 			id: 'export:3',
 			projectId: 'project:1',
@@ -101,7 +145,8 @@ describe('ChapterExportModel', () => {
 			format: 'docx',
 			destination: 'D:\\Exports\\零点回声.docx',
 			exportedAt: '2026-08-01T13:00:00.000Z',
-			wordCount: 50000
+			wordCount: 50000,
+			sourceFingerprint: `sha256:${'c'.repeat(64)}`
 		}, {
 			id: 'invalid',
 			format: 'pdf'
@@ -136,7 +181,8 @@ describe('ChapterExportModel', () => {
 			format: 'docx',
 			destination: 'D:\\Exports\\零点回声.docx',
 			exportedAt: '2026-08-01T13:00:00.000Z',
-			wordCount: 50000
+			wordCount: 50000,
+			sourceFingerprint: `sha256:${'c'.repeat(64)}`
 		}]);
 	});
 });

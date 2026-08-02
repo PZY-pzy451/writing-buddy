@@ -540,7 +540,10 @@ describe('quiet writer workspaces', () => {
 			format: 'docx',
 			destination: 'D:\\Exports\\我的小说.docx'
 		});
+		expect(useAppStore.getState().chapterExportReceipts[0]?.sourceFingerprint)
+			.toMatch(/^sha256:[0-9a-f]{64}$/u);
 		expect(screen.getByText('D:\\Exports\\我的小说.docx')).toBeInTheDocument();
+		expect(screen.getByText(/精确源指纹/u)).toBeInTheDocument();
 	});
 
 	it('exports the whole work in project order and records its delivery scope', async () => {
@@ -577,6 +580,8 @@ describe('quiet writer workspaces', () => {
 			format: 'markdown',
 			destination: 'D:\\Exports\\我的小说.md'
 		});
+		expect(useAppStore.getState().chapterExportReceipts[0]?.sourceFingerprint)
+			.toMatch(/^sha256:[0-9a-f]{64}$/u);
 		expect(await screen.findByText('整部作品')).toBeInTheDocument();
 		expect(screen.getByText('D:\\Exports\\我的小说.md')).toBeInTheDocument();
 	});

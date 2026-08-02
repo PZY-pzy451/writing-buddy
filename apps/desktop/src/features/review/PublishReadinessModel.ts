@@ -33,11 +33,18 @@ export interface PublishReadinessModel {
 	readonly checks: readonly PublishReadinessCheck[];
 }
 
+export type PublishSourceInspection =
+	| { readonly status: 'checking' }
+	| { readonly status: 'ready'; readonly fingerprint: string }
+	| { readonly status: 'stale-project' }
+	| { readonly status: 'unavailable' };
+
 export interface PublishReadinessInput {
 	readonly snapshot: ProjectSnapshot;
 	readonly saveState: SaveState;
 	readonly issues: readonly ReviewIssue[];
 	readonly receipts: readonly ChapterExportReceipt[];
+	readonly sourceInspection: PublishSourceInspection;
 	readonly activeChapter?: {
 		readonly resourceId: string;
 		readonly wordCount: number;
@@ -137,10 +144,12 @@ export function selectPublishReadiness(
 		))
 		.slice()
 		.sort((left, right) => receiptTimestamp(right) - receiptTimestamp(left))[0];
+	const sourceReady = input.sourceInspection.status === 'ready';
 	const matchingReceipt = Boolean(
 		latestWorkReceipt
-		&& latestWorkReceipt.chapterCount === chapters.length
-		&& latestWorkReceipt.wordCount === wordCount
+		&& input.saveState.type === 'clean'
+		&& sourceReady
+		&& latestWorkReceipt.sourceFingerprint === input.sourceInspection.fingerprint
 	);
 
 	const checks: PublishReadinessCheck[] = [
@@ -260,16 +269,26 @@ export function selectPublishReadiness(
 					id: 'delivery',
 					title: '整书交付回执',
 					status: 'passed',
-					detail: `最近一次${formatLabel(latestWorkReceipt)}整书导出的章节数与字数规模相符；这不是逐字校验。`,
+					detail: `最近一次${formatLabel(latestWorkReceipt)}整书导出的源指纹与当前项目结构及逐章正文哈希完全一致；未回读目标文件。`,
 					action: { type: 'history', label: '查看交付记录' }
 				}
 			: {
 					id: 'delivery',
 					title: '整书交付回执',
 					status: 'attention',
-					detail: latestWorkReceipt
-						? `最近整书回执为 ${latestWorkReceipt.chapterCount} 章、${latestWorkReceipt.wordCount.toLocaleString()} 字，与当前 ${chapters.length} 章、${wordCount.toLocaleString()} 字规模不同。`
-						: '还没有整书导出回执；最终导出会先保存当前原稿。',
+					detail: input.saveState.type !== 'clean'
+						? '当前正文仍有未安全保存的修改，旧交付不能视为当前版本。'
+						: input.sourceInspection.status === 'checking'
+							? '正在只读核对本地项目结构与逐章正文哈希。'
+							: input.sourceInspection.status === 'stale-project'
+								? '磁盘上的项目结构已变化，请重新打开项目后再核对交付。'
+								: input.sourceInspection.status === 'unavailable'
+									? '暂时无法读取完整的本地源指纹；不会把旧交付误报为最新。'
+									: latestWorkReceipt?.sourceFingerprint
+										? `最近整书回执为 ${latestWorkReceipt.chapterCount} 章、${latestWorkReceipt.wordCount.toLocaleString()} 字，但项目结构或正文内容已经变化；相同字数也不会视为同一版本。`
+										: latestWorkReceipt
+											? '最近整书回执来自旧版本，未包含逐章内容指纹，需要重新导出后才能精确核对。'
+											: '还没有整书导出回执；最终导出会先保存当前原稿并记录精确源指纹。',
 					action: { type: 'history', label: latestWorkReceipt ? '重新导出整书' : '前往整书导出' }
 				}
 	];

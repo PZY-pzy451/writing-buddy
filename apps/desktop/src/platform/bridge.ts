@@ -48,7 +48,7 @@ import type {
 	VersionText
 } from '@writing-buddy/platform-ports';
 import { applyProjectStructureMove } from '@writing-buddy/project';
-import type { TextFile } from '@writing-buddy/domain';
+import { flattenChapters, type TextFile } from '@writing-buddy/domain';
 import {
 	parseMentionLink,
 	type MentionSaveEntry,
@@ -1285,7 +1285,17 @@ class BrowserDesktopBridge implements DesktopBridge {
 	}
 
 	async openProject(projectRoot: string, mode: ProjectOpenMode = 'read-write'): Promise<ProjectSnapshot> {
-		return { ...(browserCreatedProjects.get(projectRoot) ?? browserProject), readOnly: mode === 'read-only' };
+		const snapshot = browserCreatedProjects.get(projectRoot) ?? browserProject;
+		return {
+			...snapshot,
+			manuscriptRevisions: Object.fromEntries(
+				flattenChapters(snapshot.project).flatMap(chapter => {
+					const content = browserFiles.get(chapter.file);
+					return content === undefined ? [] : [[chapter.id, browserHash(content)]];
+				})
+			),
+			readOnly: mode === 'read-only'
+		};
 	}
 
 	async repairProject(): Promise<ProjectRepairResult> {

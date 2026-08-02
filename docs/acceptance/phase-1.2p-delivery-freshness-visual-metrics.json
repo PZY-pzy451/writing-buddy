@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-08-02T09:33:00.804Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "receipt": {
+    "title": "我的小说",
+    "destination": "browser-downloads/我的小说.docx",
+    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 17:32:59"
+  },
+  "matching": {
+    "status": "passed",
+    "detail": "最近一次Word整书导出的源指纹与当前项目结构及逐章正文哈希完全一致；未回读目标文件。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
+  },
+  "stale": {
+    "status": "attention",
+    "detail": "最近整书回执为 3 章、200 字，但项目结构或正文内容已经变化；相同字数也不会视为同一版本。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-history-exact-receipt-1440x900.png",
+      "surface": "history-exact-receipt",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "02-publish-exact-match-1440x900.png",
+      "surface": "publish-exact-match",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "03-publish-exact-match-1024x720.png",
+      "surface": "publish-exact-match",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "04-publish-exact-match-820x720.png",
+      "surface": "publish-exact-match",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "05-publish-stale-same-count-820x720.png",
+      "surface": "publish-stale-same-count",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    }
+  ]
+}

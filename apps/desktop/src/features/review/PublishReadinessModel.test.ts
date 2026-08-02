@@ -3,6 +3,8 @@ import { createTextAnchor, type ReviewIssue } from '@writing-buddy/review';
 import type { ChapterExportReceipt } from '../export/ChapterExportModel';
 import { selectPublishReadiness } from './PublishReadinessModel';
 
+const currentFingerprint = `sha256:${'a'.repeat(64)}`;
+
 function snapshot(): ProjectSnapshot {
 	return {
 		root: 'D:\\novel',
@@ -47,6 +49,7 @@ function receipt(patch: Partial<ChapterExportReceipt> = {}): ChapterExportReceip
 		destination: 'D:\\Exports\\雾港来信.docx',
 		exportedAt: '2026-08-02T08:00:00.000Z',
 		wordCount: 2000,
+		sourceFingerprint: currentFingerprint,
 		...patch
 	};
 }
@@ -74,7 +77,8 @@ describe('PublishReadinessModel', () => {
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [],
-			receipts: [receipt()]
+			receipts: [receipt()],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
 		expect(result).toMatchObject({
@@ -86,7 +90,7 @@ describe('PublishReadinessModel', () => {
 			wordCount: 2000
 		});
 		expect(result.checks.find(check => check.id === 'delivery')?.detail)
-			.toContain('不是逐字校验');
+			.toContain('逐章正文哈希完全一致');
 	});
 
 	it('uses the active unsaved word count and blocks empty chapters plus dirty saving', () => {
@@ -96,6 +100,7 @@ describe('PublishReadinessModel', () => {
 			saveState: { type: 'dirty' },
 			issues: [],
 			receipts: [],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint },
 			activeChapter: { resourceId: 'chapter-one', wordCount: 950 }
 		});
 
@@ -116,13 +121,15 @@ describe('PublishReadinessModel', () => {
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [issue('error'), issue('warning')],
-			receipts: [receipt()]
+			receipts: [receipt()],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 		const attention = selectPublishReadiness({
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [issue('suggestion')],
-			receipts: [receipt()]
+			receipts: [receipt()],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
 		expect(blocked.checks.find(check => check.id === 'review')).toMatchObject({
@@ -152,7 +159,8 @@ describe('PublishReadinessModel', () => {
 			},
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [],
-			receipts: [receipt()]
+			receipts: [receipt()],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
 		expect(result.status).toBe('attention');
@@ -163,7 +171,7 @@ describe('PublishReadinessModel', () => {
 		expect(result.checks.find(check => check.id === 'integrity')?.detail).toContain('只读');
 	});
 
-	it('compares only the newest whole-work receipt with current counts', () => {
+	it('compares only the newest whole-work receipt with the exact source fingerprint', () => {
 		const result = selectPublishReadiness({
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
@@ -173,9 +181,11 @@ describe('PublishReadinessModel', () => {
 				receipt({
 					id: 'receipt-new',
 					exportedAt: '2026-08-02T09:00:00.000Z',
-					wordCount: 1900
+					wordCount: 2000,
+					sourceFingerprint: `sha256:${'b'.repeat(64)}`
 				})
-			]
+			],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
 		expect(result.status).toBe('attention');
@@ -183,6 +193,30 @@ describe('PublishReadinessModel', () => {
 			status: 'attention',
 			action: { type: 'history', label: '重新导出整书' }
 		});
+		expect(result.checks.find(check => check.id === 'delivery')?.detail)
+			.toContain('相同字数也不会视为同一版本');
+	});
+
+	it('does not trust legacy receipts or a source inspection that cannot finish', () => {
+		const legacy = selectPublishReadiness({
+			snapshot: snapshot(),
+			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
+			issues: [],
+			receipts: [receipt({ sourceFingerprint: undefined })],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
+		});
+		const unavailable = selectPublishReadiness({
+			snapshot: snapshot(),
+			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
+			issues: [],
+			receipts: [receipt()],
+			sourceInspection: { status: 'unavailable' }
+		});
+
+		expect(legacy.checks.find(check => check.id === 'delivery')?.detail)
+			.toContain('未包含逐章内容指纹');
+		expect(unavailable.checks.find(check => check.id === 'delivery')?.detail)
+			.toContain('不会把旧交付误报为最新');
 	});
 
 	it('blocks a project without chapters and routes it to planning', () => {
@@ -195,7 +229,8 @@ describe('PublishReadinessModel', () => {
 			},
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [],
-			receipts: []
+			receipts: [],
+			sourceInspection: { status: 'checking' }
 		});
 
 		expect(result.status).toBe('blocked');

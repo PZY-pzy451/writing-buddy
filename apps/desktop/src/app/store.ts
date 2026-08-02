@@ -95,6 +95,7 @@ import {
 	buildChapterExportContent,
 	buildWorkDocxDocument,
 	buildWorkExportContent,
+	createWorkSourceFingerprint,
 	parseChapterExportReceipts,
 	suggestedChapterExportName,
 	suggestedWorkExportName,
@@ -2005,16 +2006,34 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			}
 			const project = current.snapshot.project;
 			const projectRoot = current.snapshot.root;
-			const volumes = await Promise.all(project.volumes.map(async volume => ({
+			const sourceVolumes = await Promise.all(project.volumes.map(async volume => ({
 				title: volume.title,
-				chapters: await Promise.all(volume.chapters.map(async chapter => ({
-					title: chapter.title,
-					content: (await desktopBridge.readText(
-						projectRoot,
-						chapter.file
-					)).content
-				})))
+				chapters: await Promise.all(volume.chapters.map(async chapter => {
+					const file = await desktopBridge.readText(projectRoot, chapter.file);
+					return {
+						id: chapter.id,
+						path: chapter.file,
+						hash: file.hash,
+						title: chapter.title,
+						content: file.content
+					};
+				}))
 			})));
+			const volumes = sourceVolumes.map(volume => ({
+				title: volume.title,
+				chapters: volume.chapters.map(chapter => ({
+					title: chapter.title,
+					content: chapter.content
+				}))
+			}));
+			const sourceFingerprint = await createWorkSourceFingerprint(
+				current.snapshot.projectRevision,
+				sourceVolumes.flatMap(volume => volume.chapters.map(chapter => ({
+					id: chapter.id,
+					path: chapter.path,
+					hash: chapter.hash
+				})))
+			);
 			const wordCount = volumes.reduce((volumeTotal, volume) => (
 				volumeTotal + volume.chapters.reduce((chapterTotal, chapter) => (
 					chapterTotal + countWords(chapter.content)
@@ -2046,7 +2065,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				format,
 				destination,
 				exportedAt: new Date().toISOString(),
-				wordCount
+				wordCount,
+				sourceFingerprint
 			};
 			set(state => ({
 				chapterExportReceipts: [receipt, ...state.chapterExportReceipts].slice(0, 100),
@@ -2254,6 +2274,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				?? createDefaultWriterWorkspaceLayouts()[workspace];
 			return {
 				activeMode,
+				writerNavigatorNotice: undefined,
 				...(activeMode === 'planning'
 					? { storyView: 'creation-journey' as const }
 					: activeMode === 'references'

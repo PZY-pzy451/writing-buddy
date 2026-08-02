@@ -165,6 +165,8 @@ export interface ProjectSnapshot {
 		readonly path: string;
 	}[];
 	readonly wordCounts: Readonly<Record<string, number>>;
+	/** SHA-256 of the exact readable manuscript file bytes, keyed by chapter ID. */
+	readonly manuscriptRevisions?: Readonly<Record<string, string>>;
 	readonly integrityIssues: readonly {
 		readonly severity: 'info' | 'warning' | 'error';
 		readonly code: string;

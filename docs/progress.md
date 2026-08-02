@@ -4,6 +4,26 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2P verifiable delivery freshness is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Whole-work export receipts now contain a SHA-256 fingerprint over the exact
+  manifest revision and ordered chapter IDs, paths and raw-file hashes.
+- Check performs a fresh read-only local inspection. Exact matches pass; legacy
+  receipts, unsaved prose, unavailable inspection and equal-count source
+  changes remain explicit attention states.
+- Five Edge/CDP captures at 1440×900, 1024×720 and 820×720 pass with no page
+  overflow, clipping, sub-44 px publish controls, occlusion or runtime errors.
+- Final gates: 167 Vitest files / 686 tests, production Vite build, Cargo format,
+  77 Rust tests / 2 ignored, full and release self-tests, Tauri Release/NSIS and
+  portable PID 35788 title/WebView/no-debug-port/normal-close smoke.
+- Delivery: `artifacts/release/phase-1.2p-delivery-freshness-2026-08-02/`;
+  evidence:
+  `docs/acceptance/073-phase-1.2p-verifiable-delivery-freshness-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2O chapter lifecycle is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -20,8 +40,6 @@ Phase 1.2O chapter lifecycle is complete in the isolated worktree
   portable PID 24568 title/WebView/no-debug-port/normal-close smoke.
 - Delivery: `artifacts/release/phase-1.2o-chapter-lifecycle-2026-08-02/`;
   evidence: `docs/acceptance/072-phase-1.2o-chapter-lifecycle-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2N publish readiness is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

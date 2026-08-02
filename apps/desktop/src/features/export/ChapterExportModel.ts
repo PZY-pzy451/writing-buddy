@@ -16,6 +16,12 @@ export interface WorkExportVolume {
 	readonly chapters: readonly WorkExportChapter[];
 }
 
+export interface WorkSourceChapterRevision {
+	readonly id: string;
+	readonly path: string;
+	readonly hash: string;
+}
+
 export interface ChapterExportReceipt {
 	readonly id: string;
 	readonly projectId: string;
@@ -28,6 +34,8 @@ export interface ChapterExportReceipt {
 	readonly destination: string;
 	readonly exportedAt: string;
 	readonly wordCount: number;
+	/** Exact local source state used for a whole-work export. */
+	readonly sourceFingerprint?: string;
 }
 
 export const chapterExportFormatLabels: Readonly<Record<ManuscriptExportFormat, string>> = {
@@ -37,6 +45,49 @@ export const chapterExportFormatLabels: Readonly<Record<ManuscriptExportFormat, 
 };
 
 const validFormats = new Set<ManuscriptExportFormat>(['markdown', 'plain-text', 'docx']);
+const sha256FingerprintPattern = /^sha256:[0-9a-f]{64}$/u;
+const sha256RevisionPattern = /^[0-9a-f]{64}$/u;
+
+export function isWorkSourceFingerprint(value: unknown): value is string {
+	return typeof value === 'string' && sha256FingerprintPattern.test(value);
+}
+
+export async function createWorkSourceFingerprint(
+	projectRevision: string,
+	chapters: readonly WorkSourceChapterRevision[]
+): Promise<string> {
+	if (!projectRevision || chapters.length === 0) {
+		throw new Error('workSourceFingerprintInputInvalid');
+	}
+	const chapterIds = new Set<string>();
+	for (const chapter of chapters) {
+		if (
+			!chapter.id
+			|| !chapter.path
+			|| !sha256RevisionPattern.test(chapter.hash)
+			|| chapterIds.has(chapter.id)
+		) {
+			throw new Error('workSourceFingerprintInputInvalid');
+		}
+		chapterIds.add(chapter.id);
+	}
+	const subtle = globalThis.crypto?.subtle;
+	if (!subtle) throw new Error('workSourceFingerprintUnavailable');
+	const source = JSON.stringify({
+		schemaVersion: 1,
+		projectRevision,
+		chapters: chapters.map(chapter => ({
+			id: chapter.id,
+			path: chapter.path,
+			hash: chapter.hash
+		}))
+	});
+	const digest = new Uint8Array(await subtle.digest(
+		'SHA-256',
+		new TextEncoder().encode(source)
+	));
+	return `sha256:${Array.from(digest, byte => byte.toString(16).padStart(2, '0')).join('')}`;
+}
 
 export function buildChapterExportContent(
 	content: string,
@@ -192,7 +243,10 @@ export function parseChapterExportReceipts(
 			format: value.format,
 			destination: value.destination,
 			exportedAt: value.exportedAt,
-			wordCount: Math.floor(value.wordCount ?? 0)
+			wordCount: Math.floor(value.wordCount ?? 0),
+			...(scope === 'work' && isWorkSourceFingerprint(value.sourceFingerprint)
+				? { sourceFingerprint: value.sourceFingerprint }
+				: {})
 		}];
 	}).slice(0, 100);
 }

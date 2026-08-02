@@ -161,6 +161,37 @@ describe('manual and AI review experience', () => {
 			.toBeInTheDocument();
 	});
 
+	it('passes an exact whole-work receipt then invalidates it after a same-word-count structure change', async () => {
+		const user = userEvent.setup();
+		vi.spyOn(desktopBridge, 'saveDocxAs').mockResolvedValue('D:\\Exports\\我的小说.docx');
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+
+		await act(async () => {
+			expect(await useAppStore.getState().exportWholeWork('docx')).toBe(true);
+		});
+		expect(useAppStore.getState().chapterExportReceipts[0]?.sourceFingerprint)
+			.toMatch(/^sha256:[0-9a-f]{64}$/u);
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		expect(screen.queryByText(/已导出整部《我的小说》/u)).not.toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		expect(await screen.findByText(/逐章正文哈希完全一致/u)).toBeInTheDocument();
+
+		const before = useAppStore.getState();
+		const chapter = before.snapshot ? flattenChapters(before.snapshot.project)[0] : undefined;
+		if (!chapter) throw new Error('delivery fingerprint chapter fixture missing');
+		const wordCounts = before.snapshot?.wordCounts;
+		const nextStatus = chapter.status === 'completed' ? 'revision' : 'completed';
+		await act(async () => {
+			expect(await useAppStore.getState().updateChapterStatus(chapter.id, nextStatus)).toBe(true);
+		});
+
+		expect(useAppStore.getState().snapshot?.wordCounts).toEqual(wordCounts);
+		expect(await screen.findByText(/相同字数也不会视为同一版本/u))
+			.toBeInTheDocument();
+	});
+
 	it('saves dirty prose from the publish blocker and recomputes the checklist', async () => {
 		const user = userEvent.setup();
 		render(<App />);
