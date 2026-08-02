@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-02T12:33:42.293Z",
+  "generatedAt": "2026-08-02T13:46:57.213Z",
   "appUrl": "http://127.0.0.1:1420/",
   "receipt": {
     "title": "我的小说",
     "destination": "browser-downloads/我的小说.docx",
-    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 20:33:39"
+    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 21:46:54"
   },
   "unconfirmed": {
     "status": "attention",
@@ -33,7 +33,7 @@
   "historyConfirmation": {
     "title": "我的小说",
     "badge": "已确认发布版本",
-    "confirmedAt": "作者确认于 2026/8/2 20:33:39",
+    "confirmedAt": "作者确认于 2026/8/2 21:46:54",
     "action": "取消发布确认"
   },
   "revoked": {

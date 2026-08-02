@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T13:33:57.066Z",
+  "generatedAt": "2026-08-02T14:23:37.739Z",
   "appUrl": "http://127.0.0.1:1420/",
   "perspectives": [
     "first-time-author",
@@ -16,9 +16,9 @@
   "longManuscript": {
     "pastePayloadLength": 510,
     "longPayloadLength": 100019,
-    "pasteMilliseconds": 114,
-    "renderMilliseconds": 99,
-    "saveMilliseconds": 42,
+    "pasteMilliseconds": 108,
+    "renderMilliseconds": 100,
+    "saveMilliseconds": 39,
     "activeMode": "works",
     "storyView": "characters",
     "contentLength": 100661,

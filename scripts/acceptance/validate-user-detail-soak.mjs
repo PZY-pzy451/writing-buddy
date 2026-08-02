@@ -619,6 +619,12 @@ try {
 	assert(menuItems.includes('快速记录') && menuItems.includes('设置'), `Global recovery actions were missing: ${JSON.stringify(menuItems)}.`);
 	await clickNamed(client, '快速记录', { root: '.writer-more-menu' });
 	await waitFor(client, `Boolean(document.querySelector('[role="dialog"][aria-modal="true"]'))`, 'quick capture dialog');
+	await waitFor(
+		client,
+		`document.activeElement?.getAttribute('aria-label') === '记录内容'`,
+		'quick capture author-input focus',
+		2_000
+	);
 	const dialogFocus = await evaluate(client, `document.activeElement?.getAttribute('aria-label')`);
 	assert(dialogFocus === '记录内容', `Quick capture did not focus its author input: ${dialogFocus}.`);
 	audits.push(await collectAudit(client, 'quick-capture-dialog'));
