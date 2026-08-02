@@ -6311,6 +6311,250 @@ body,
 	white-space: nowrap;
 }
 
+.publish-readiness {
+	margin-top: 12px;
+	background: var(--surface-raised);
+	border: 1px solid var(--border-subtle);
+	border-left: 4px solid var(--success);
+	border-radius: var(--radius-card);
+	overflow: hidden;
+}
+
+.publish-readiness[data-status="attention"] {
+	border-left-color: var(--warning);
+}
+
+.publish-readiness[data-status="blocked"] {
+	border-left-color: var(--danger);
+}
+
+.publish-readiness-summary {
+	display: grid;
+	grid-template-columns: auto minmax(260px, 1fr) auto auto;
+	align-items: center;
+	gap: 14px;
+	padding: 16px;
+}
+
+.publish-readiness-icon,
+.publish-readiness-row-icon {
+	display: grid;
+	flex: 0 0 auto;
+	place-items: center;
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 10%, var(--surface-canvas));
+	border-radius: 11px;
+}
+
+.publish-readiness-icon {
+	width: 44px;
+	height: 44px;
+}
+
+.publish-readiness[data-status="attention"] .publish-readiness-icon,
+.publish-readiness-row[data-status="attention"] .publish-readiness-row-icon {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 11%, var(--surface-canvas));
+}
+
+.publish-readiness[data-status="blocked"] .publish-readiness-icon,
+.publish-readiness-row[data-status="blocked"] .publish-readiness-row-icon {
+	color: var(--danger);
+	background: color-mix(in srgb, var(--danger) 10%, var(--surface-canvas));
+}
+
+.publish-readiness-copy,
+.publish-readiness-copy > div {
+	min-width: 0;
+}
+
+.publish-readiness-copy > div {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 2px;
+}
+
+.publish-readiness-copy h2,
+.publish-readiness-copy p {
+	margin: 0;
+}
+
+.publish-readiness-copy h2 {
+	font-size: 17px;
+}
+
+.publish-readiness-copy > strong {
+	display: block;
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+.publish-readiness-copy p {
+	margin-top: 3px;
+	color: var(--text-muted);
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.publish-readiness-state {
+	display: inline-flex;
+	align-items: center;
+	min-height: 24px;
+	padding: 0 8px;
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 9%, var(--surface-canvas));
+	border: 1px solid color-mix(in srgb, var(--success) 28%, var(--border-subtle));
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+}
+
+.publish-readiness[data-status="attention"] .publish-readiness-state {
+	color: var(--warning);
+	background: color-mix(in srgb, var(--warning) 9%, var(--surface-canvas));
+	border-color: color-mix(in srgb, var(--warning) 28%, var(--border-subtle));
+}
+
+.publish-readiness[data-status="blocked"] .publish-readiness-state {
+	color: var(--danger);
+	background: color-mix(in srgb, var(--danger) 8%, var(--surface-canvas));
+	border-color: color-mix(in srgb, var(--danger) 28%, var(--border-subtle));
+}
+
+.publish-readiness-metrics {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(64px, 1fr));
+	gap: 7px;
+}
+
+.publish-readiness-metrics > div {
+	display: grid;
+	gap: 1px;
+	min-width: 64px;
+	padding: 7px 10px;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 8px;
+}
+
+.publish-readiness-metrics strong {
+	font-size: 16px;
+}
+
+.publish-readiness-metrics span {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.publish-readiness-toggle {
+	min-height: 44px;
+	white-space: nowrap;
+}
+
+.publish-readiness-toggle svg {
+	transition: transform var(--transition-fast);
+}
+
+.publish-readiness-toggle[aria-expanded="true"] svg {
+	transform: rotate(180deg);
+}
+
+.publish-readiness-checklist {
+	padding: 0 16px 16px;
+	border-top: 1px solid var(--border-subtle);
+}
+
+.publish-readiness-context {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	padding: 12px 0;
+}
+
+.publish-readiness-context > span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 28px;
+	padding: 0 9px;
+	color: var(--text-secondary);
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.publish-readiness-context p {
+	flex: 1 1 320px;
+	margin: 0 0 0 4px;
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.publish-readiness-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 9px;
+}
+
+.publish-readiness-row {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+	padding: 12px;
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+}
+
+.publish-readiness-row[data-status="blocked"] {
+	border-color: color-mix(in srgb, var(--danger) 32%, var(--border-subtle));
+}
+
+.publish-readiness-row[data-status="attention"] {
+	border-color: color-mix(in srgb, var(--warning) 30%, var(--border-subtle));
+}
+
+.publish-readiness-row-icon {
+	width: 34px;
+	height: 34px;
+}
+
+.publish-readiness-row > div {
+	min-width: 0;
+}
+
+.publish-readiness-row header {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 7px;
+}
+
+.publish-readiness-row header > span {
+	color: var(--text-muted);
+	font-size: 10px;
+	font-weight: 700;
+}
+
+.publish-readiness-row p {
+	margin: 4px 0 0;
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.publish-readiness-row > button {
+	min-height: 44px;
+	white-space: nowrap;
+}
+
 .review-mode-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6860,6 +7104,19 @@ body,
 		width: 100%;
 	}
 
+	.publish-readiness-summary {
+		grid-template-columns: auto minmax(260px, 1fr) auto;
+	}
+
+	.publish-readiness-toggle {
+		grid-column: 2 / -1;
+		justify-self: end;
+	}
+
+	.publish-readiness-list {
+		grid-template-columns: 1fr;
+	}
+
 	.review-run-panel {
 		position: static;
 	}
@@ -6917,6 +7174,25 @@ body,
 
 	.review-whole-work-icon {
 		display: none;
+	}
+
+	.publish-readiness-summary {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.publish-readiness-metrics,
+	.publish-readiness-toggle {
+		grid-column: 1 / -1;
+		width: 100%;
+	}
+
+	.publish-readiness-row {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.publish-readiness-row > button {
+		grid-column: 1 / -1;
+		width: 100%;
 	}
 
 	.review-mode-grid > button {

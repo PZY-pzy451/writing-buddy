@@ -1,20 +1,23 @@
 import {
+	AlertTriangle,
 	BookOpenCheck,
 	Bot,
 	CheckCircle2,
+	ChevronDown,
 	ClipboardCheck,
 	ExternalLink,
 	FileWarning,
 	KeyRound,
 	ListChecks,
 	LoaderCircle,
+	OctagonX,
 	ShieldCheck,
 	Sparkles,
 	Square
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { AI_CHAPTER_REVIEW_MAX_CHARS, type AiJobState } from '@writing-buddy/ai';
-import { flattenChapters, type ChapterDescriptor } from '@writing-buddy/domain';
+import { countWords, flattenChapters, type ChapterDescriptor } from '@writing-buddy/domain';
 import {
 	replaceReviewIssuesForResource,
 	runLocalReview,
@@ -22,6 +25,12 @@ import {
 } from '@writing-buddy/review';
 import { useAppStore } from '../../app/store';
 import { useAiStore } from '../ai/stores/aiStore';
+import {
+	selectPublishReadiness,
+	type PublishReadinessAction,
+	type PublishReadinessCheck,
+	type PublishReadinessModel
+} from './PublishReadinessModel';
 import { useReviewAutomationStore } from './stores/reviewAutomationStore';
 
 type ReviewMode = 'manual' | 'ai';
@@ -33,10 +42,15 @@ export function ReviewPage(): React.JSX.Element {
 	const activeResource = useAppStore(state => state.activeResource);
 	const session = useAppStore(state => state.session);
 	const issues = useAppStore(state => state.issues);
+	const saveState = useAppStore(state => state.saveState);
+	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
 	const setIssues = useAppStore(state => state.setIssues);
 	const openResource = useAppStore(state => state.openResource);
+	const save = useAppStore(state => state.save);
 	const setRailMode = useAppStore(state => state.setMode);
 	const setStoryView = useAppStore(state => state.setStoryView);
+	const openWriterTool = useAppStore(state => state.openWriterTool);
+	const requestEditorReveal = useAppStore(state => state.requestEditorReveal);
 	const dockOpen = useAppStore(state => state.dockOpen);
 	const toggleDock = useAppStore(state => state.toggleDock);
 	const {
@@ -56,6 +70,7 @@ export function ReviewPage(): React.JSX.Element {
 	} = useReviewAutomationStore();
 	const [mode, setMode] = useState<ReviewMode>('manual');
 	const [notice, setNotice] = useState('');
+	const [publishExpanded, setPublishExpanded] = useState(false);
 	const isChapter = activeResource?.type === 'chapter' && Boolean(session);
 	const configured = status?.secret.configured ?? false;
 	const active = activeJobStates.includes(jobState);
@@ -77,6 +92,22 @@ export function ReviewPage(): React.JSX.Element {
 	);
 	const nextChapter = affectedChapters[0] ?? chapters[0];
 	const projectAiIssues = projectOpenIssues.filter(issue => issue.origin === 'ai');
+	const publishReadiness = useMemo(() => snapshot
+		? selectPublishReadiness({
+			snapshot,
+			saveState,
+			issues,
+			receipts: chapterExportReceipts,
+			...(activeResource?.type === 'chapter' && session
+				? {
+					activeChapter: {
+						resourceId: activeResource.id,
+						wordCount: countWords(session.content)
+					}
+				}
+				: {})
+		})
+		: undefined, [activeResource, chapterExportReceipts, issues, saveState, session, snapshot]);
 
 	useEffect(() => {
 		void initialize();
@@ -177,6 +208,42 @@ export function ReviewPage(): React.JSX.Element {
 		setRailMode('planning');
 		setStoryView('continuity');
 	};
+	const openPublishChapter = async (resourceId: string, reviewOffset?: number) => {
+		const chapter = chapters.find(candidate => candidate.id === resourceId);
+		if (!chapter) {
+			openWholeWorkConsistency();
+			return;
+		}
+		await openReviewChapter(chapter);
+		setRailMode('works');
+		if (reviewOffset !== undefined) {
+			requestEditorReveal(chapter.id, reviewOffset);
+			openWriterTool('review');
+		}
+	};
+	const runPublishAction = async (action: PublishReadinessAction) => {
+		switch (action.type) {
+			case 'save':
+				await save();
+				return;
+			case 'planning':
+				setRailMode('planning');
+				return;
+			case 'chapter':
+				await openPublishChapter(action.resourceId);
+				return;
+			case 'review':
+				if (action.resourceId) {
+					await openPublishChapter(action.resourceId, action.offset);
+				} else {
+					openWholeWorkConsistency();
+				}
+				return;
+			case 'history':
+				setRailMode('versions');
+				return;
+		}
+	};
 
 	return (
 		<div className="system-page review-page">
@@ -219,6 +286,15 @@ export function ReviewPage(): React.JSX.Element {
 					)}
 				</div>
 			</section>
+
+			{publishReadiness && (
+				<PublishReadinessPanel
+					model={publishReadiness}
+					expanded={publishExpanded}
+					onToggle={() => setPublishExpanded(expanded => !expanded)}
+					onAction={action => void runPublishAction(action)}
+				/>
+			)}
 
 			<section className="review-whole-work-card" aria-labelledby="review-whole-work-title">
 				<span className="review-whole-work-icon"><BookOpenCheck size={22} /></span>
@@ -364,6 +440,112 @@ export function ReviewPage(): React.JSX.Element {
 				</section>
 			</div>
 		</div>
+	);
+}
+
+function PublishReadinessPanel(props: {
+	readonly model: PublishReadinessModel;
+	readonly expanded: boolean;
+	readonly onToggle: () => void;
+	readonly onAction: (action: PublishReadinessAction) => void;
+}): React.JSX.Element {
+	const statusLabel = props.model.status === 'blocked'
+		? '有阻断项'
+		: props.model.status === 'attention' ? '待作者确认' : '检查通过';
+	return (
+		<section
+			className="publish-readiness"
+			data-status={props.model.status}
+			aria-labelledby="publish-readiness-title"
+		>
+			<div className="publish-readiness-summary">
+				<span className="publish-readiness-icon">
+					{props.model.status === 'blocked'
+						? <OctagonX size={22} />
+						: props.model.status === 'attention'
+							? <AlertTriangle size={22} />
+							: <CheckCircle2 size={22} />}
+				</span>
+				<div className="publish-readiness-copy">
+					<span className="eyebrow">Final Pass</span>
+					<div>
+						<h2 id="publish-readiness-title">发布前检查</h2>
+						<span className="publish-readiness-state">{statusLabel}</span>
+					</div>
+					<strong>{props.model.title}</strong>
+					<p>{props.model.summary}</p>
+				</div>
+				<div className="publish-readiness-metrics" aria-label="发布检查概况">
+					<ReviewMetric label="阻断" value={props.model.blockedCount} />
+					<ReviewMetric label="待确认" value={props.model.attentionCount} />
+					<ReviewMetric label="已通过" value={props.model.passedCount} />
+				</div>
+				<button
+					className="secondary-button publish-readiness-toggle"
+					type="button"
+					aria-expanded={props.expanded}
+					aria-controls="publish-readiness-checklist"
+					onClick={props.onToggle}
+				>
+					{props.expanded ? '收起清单' : '查看发布清单'}
+					<ChevronDown size={18} aria-hidden="true" />
+				</button>
+			</div>
+			{props.expanded && (
+				<div id="publish-readiness-checklist" className="publish-readiness-checklist">
+					<div className="publish-readiness-context">
+						<span>{props.model.chapterCount} 章</span>
+						<span>{props.model.wordCount.toLocaleString()} 字</span>
+						<p>检查只读取当前本地状态；不会运行 AI、修改正文或创建导出文件。</p>
+					</div>
+					<div className="publish-readiness-list">
+						{props.model.checks.map(check => (
+							<PublishReadinessRow
+								key={check.id}
+								check={check}
+								onAction={props.onAction}
+							/>
+						))}
+					</div>
+				</div>
+			)}
+		</section>
+	);
+}
+
+function PublishReadinessRow(props: {
+	readonly check: PublishReadinessCheck;
+	readonly onAction: (action: PublishReadinessAction) => void;
+}): React.JSX.Element {
+	const label = props.check.status === 'blocked'
+		? '阻断'
+		: props.check.status === 'attention' ? '待确认' : '已通过';
+	return (
+		<article className="publish-readiness-row" data-status={props.check.status}>
+			<span className="publish-readiness-row-icon">
+				{props.check.status === 'blocked'
+					? <OctagonX size={18} />
+					: props.check.status === 'attention'
+						? <AlertTriangle size={18} />
+						: <CheckCircle2 size={18} />}
+			</span>
+			<div>
+				<header>
+					<strong>{props.check.title}</strong>
+					<span>{label}</span>
+				</header>
+				<p>{props.check.detail}</p>
+			</div>
+			{props.check.action && (
+				<button
+					className="secondary-button"
+					type="button"
+					onClick={() => props.onAction(props.check.action!)}
+				>
+					{props.check.action.label}<ExternalLink size={16} aria-hidden="true" />
+				</button>
+			)}
+		</article>
 	);
 }
 

@@ -23,6 +23,8 @@ function resetStores(): void {
 		tabs: [],
 		activeMode: 'works',
 		issues: [],
+		chapterExportReceipts: [],
+		saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 		error: undefined,
 		projectOpenError: undefined,
 		pendingProjectRoot: undefined,
@@ -130,6 +132,85 @@ describe('manual and AI review experience', () => {
 			activeMode: 'planning',
 			storyView: 'continuity'
 		});
+	});
+
+	it('expands an explainable publish checklist and routes final delivery to History', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		expect(await screen.findByRole('heading', { name: '发布前检查' }))
+			.toBeInTheDocument();
+		expect(screen.getByText('可以继续，但需作者确认')).toBeInTheDocument();
+		expect(screen.queryByText('正文覆盖')).not.toBeInTheDocument();
+
+		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+
+		expect(screen.getByText('正文覆盖')).toBeInTheDocument();
+		expect(screen.getByText('保存安全')).toBeInTheDocument();
+		expect(screen.getByText('章节完成度')).toBeInTheDocument();
+		expect(screen.getByText('项目完整性')).toBeInTheDocument();
+		expect(screen.getByText('审校待办')).toBeInTheDocument();
+		expect(screen.getByText('整书交付回执')).toBeInTheDocument();
+		expect(screen.getByText(/不会运行 AI、修改正文或创建导出文件/u))
+			.toBeInTheDocument();
+
+		await user.click(screen.getByRole('button', { name: /前往整书导出/ }));
+		expect(await screen.findByRole('heading', { name: '历史与导出' }))
+			.toBeInTheDocument();
+	});
+
+	it('saves dirty prose from the publish blocker and recomputes the checklist', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
+		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+		act(() => useAppStore.getState().setContent('夜雨落下，林墨继续向前。'));
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		expect(screen.getByText('当前正文包含尚未写入项目的修改。'))
+			.toBeInTheDocument();
+
+		await user.click(screen.getByRole('button', { name: /立即保存/ }));
+
+		await waitFor(() => expect(useAppStore.getState().saveState.type).toBe('clean'));
+		expect(screen.getByText('当前正文已经安全写入本地项目。'))
+			.toBeInTheDocument();
+	});
+
+	it('opens the exact review target from the publish checklist', async () => {
+		const user = userEvent.setup();
+		const reveal = vi.spyOn(useAppStore.getState(), 'requestEditorReveal');
+		render(<App />);
+		await screen.findByRole('main', { name: '写作首页' });
+		const snapshot = useAppStore.getState().snapshot;
+		const chapter = snapshot ? flattenChapters(snapshot.project)[0] : undefined;
+		if (!snapshot || !chapter) throw new Error('publish review fixture missing');
+		const reviewIssue = runLocalReview(
+			snapshot.project.projectId,
+			chapter.id,
+			'夜雨落下。。'
+		).issues[0];
+		if (!reviewIssue) throw new Error('publish issue fixture missing');
+		act(() => {
+			useAppStore.setState({ issues: [reviewIssue] });
+		});
+
+		await user.click(screen.getByRole('button', { name: '检查' }));
+		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		await user.click(screen.getByRole('button', { name: /查看待办/ }));
+
+		expect(await screen.findByRole('heading', { level: 1, name: chapter.title }))
+			.toBeInTheDocument();
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'works',
+			writerTool: 'review',
+			assistantOpen: true
+		});
+		expect(reveal).toHaveBeenCalledWith(chapter.id, reviewIssue.anchor.start);
 	});
 
 	it('streams a real-provider-shaped AI review and keeps suggestions author-confirmed', async () => {

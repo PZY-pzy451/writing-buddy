@@ -4,6 +4,29 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2N publish readiness is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Check now contains a local, explainable publication gate covering manuscript
+  presence, safe saves, chapter completion, project integrity, unresolved review
+  issues and whole-work delivery receipts.
+- Blockers, author decisions and passed checks are text-labelled; actions route
+  to save, the exact chapter/evidence, Planning, consistency review or History.
+- Receipt matching is deliberately limited to chapter-count and word-count scale
+  evidence and never claims byte-identical or full-AI verification.
+- Six responsive captures pass with no page overflow, clipping, sub-44 px
+  publish controls, occlusion or runtime errors; the 820 px checklist is single-column.
+- Final gates: 167 Vitest files / 679 tests, production Vite build, Cargo format,
+  74 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2n-publish-readiness-2026-08-02/`;
+  evidence:
+  `docs/acceptance/071-phase-1.2n-publish-readiness-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2M scene-linked plot grid is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -25,8 +48,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2m-scene-plot-grid-2026-08-02/`;
   evidence:
   `docs/acceptance/070-phase-1.2m-scene-linked-plot-grid-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2L whole-work consistency pass is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

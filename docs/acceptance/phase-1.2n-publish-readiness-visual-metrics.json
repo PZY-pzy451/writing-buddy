@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-08-02T04:44:19.681Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "summary": {
+    "status": "attention",
+    "title": "可以继续，但需作者确认",
+    "state": "待作者确认",
+    "metrics": [
+      "0阻断",
+      "2待确认",
+      "4已通过"
+    ],
+    "collapsed": true,
+    "toggleExpanded": "false"
+  },
+  "checklist": {
+    "rows": [
+      {
+        "title": "正文覆盖",
+        "status": "passed"
+      },
+      {
+        "title": "保存安全",
+        "status": "passed"
+      },
+      {
+        "title": "章节完成度",
+        "status": "attention",
+        "action": "打开第一处"
+      },
+      {
+        "title": "项目完整性",
+        "status": "passed"
+      },
+      {
+        "title": "审校待办",
+        "status": "passed"
+      },
+      {
+        "title": "整书交付回执",
+        "status": "attention",
+        "action": "前往整书导出"
+      }
+    ],
+    "localOnly": "检查只读取当前本地状态；不会运行 AI、修改正文或创建导出文件。"
+  },
+  "handoff": {
+    "heading": "历史与导出",
+    "primary": "导出 Word 文档"
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-publish-summary-1440x900.png",
+      "surface": "publish-summary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "02-publish-checklist-1440x900.png",
+      "surface": "publish-checklist",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "03-publish-checklist-1024x720.png",
+      "surface": "publish-checklist",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "04-publish-checklist-820x720.png",
+      "surface": "publish-checklist",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "05-publish-checklist-rows-820x720.png",
+      "surface": "publish-checklist-narrow-rows",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    }
+  ]
+}

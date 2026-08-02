@@ -29,6 +29,7 @@
 	"acceptance:phase-1.2k": "node scripts/acceptance/validate-phase-1.2k-daily-writing-progress.mjs",
 	"acceptance:phase-1.2l": "node scripts/acceptance/validate-phase-1.2l-whole-work-consistency.mjs",
 	"acceptance:phase-1.2m": "node scripts/acceptance/validate-phase-1.2m-scene-plot-grid.mjs",
+	"acceptance:phase-1.2n": "node scripts/acceptance/validate-phase-1.2n-publish-readiness.mjs",
     "acceptance:genre-to-draft": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:genre-to-draft:gate-d": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:complete-novel": "node scripts/acceptance/validate-complete-novel.mjs",
