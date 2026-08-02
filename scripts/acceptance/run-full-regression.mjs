@@ -189,9 +189,10 @@ async function archiveRelease(report) {
 	if (installers.length !== 1) {
 		throw new Error(`Expected one NSIS installer, found ${installers.length}.`);
 	}
-	await mkdir(releaseRoot, { recursive: true });
-	const portableTarget = join(releaseRoot, 'Writing-Buddy-Portable.exe');
-	const installerTarget = join(releaseRoot, installers[0]);
+	const sourceBoundReleaseRoot = join(releaseRoot, report.source.commit.slice(0, 8));
+	await mkdir(sourceBoundReleaseRoot, { recursive: true });
+	const portableTarget = join(sourceBoundReleaseRoot, 'Writing-Buddy-Portable.exe');
+	const installerTarget = join(sourceBoundReleaseRoot, installers[0]);
 	await copyFile(executablePath, portableTarget);
 	await copyFile(join(nsisRoot, installers[0]), installerTarget);
 	const artifacts = [];
@@ -201,9 +202,12 @@ async function archiveRelease(report) {
 			sha256: await sha256(path)
 		});
 	}
-	report.release = { directory: relative(repositoryRoot, releaseRoot).replaceAll('\\', '/'), artifacts };
+	report.release = {
+		directory: relative(repositoryRoot, sourceBoundReleaseRoot).replaceAll('\\', '/'),
+		artifacts
+	};
 	await writeFile(
-		join(releaseRoot, 'SHA256.json'),
+		join(sourceBoundReleaseRoot, 'SHA256.json'),
 		`${JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), artifacts }, undefined, 2)}\n`,
 		'utf8'
 	);

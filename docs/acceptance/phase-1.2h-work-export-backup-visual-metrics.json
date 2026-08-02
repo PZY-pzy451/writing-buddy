@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:31:55.486Z",
+  "generatedAt": "2026-08-02T16:16:56.297Z",
   "appUrl": "http://127.0.0.1:1420/",
   "beforeExport": {
     "title": "历史与导出",
@@ -25,7 +25,7 @@
     "receiptTitle": "我的小说",
     "receiptScope": "整部作品",
     "receiptPath": "browser-downloads/我的小说.docx",
-    "receiptMeta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 22:31:54",
+    "receiptMeta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/3 00:16:55",
     "backupStatus": "browser-fixture.wbbackup备份已创建并校验：11 个文件，1 KB。格式 v1 · 11 个文件 · 校验通过",
     "restoreEnabled": true
   },

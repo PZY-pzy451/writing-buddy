@@ -34,3 +34,5 @@ application is upgraded, without regenerating or editing project files by hand.
   previously blocked candidate.
 - Prompt parity, focused frontend tests, TypeScript and full self-test pass.
 - A new production portable and installer are built and smoke-tested.
+- Release artifacts are archived in a source-bound subdirectory so a running
+  previous portable never has to be closed or overwritten during verification.
