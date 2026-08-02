@@ -1,10 +1,12 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
+import { countWords } from '@writing-buddy/domain';
 import { App } from './App';
 import { useAppStore } from './store';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
 import { desktopBridge } from '../platform/bridge';
+import { localDateKey } from '../features/progress/DailyWritingProgressModel';
 
 function resetWorkspaceExperience(): void {
 	localStorage.clear();
@@ -34,6 +36,7 @@ function resetWorkspaceExperience(): void {
 		chapterCreateBusy: false,
 		chapterExportBusy: false,
 		chapterExportReceipts: [],
+		writingProgress: {},
 		recentlyClosedResources: [],
 		activeMode: 'works',
 		focusMode: false,
@@ -169,6 +172,39 @@ describe('quiet writer workspaces', () => {
 		});
 		expect(useAppStore.getState().writerSessions['project-a11ce001']
 			?.workspaceLayouts.writing.sidebarVisible).toBe(false);
+	});
+
+	it('tracks net manuscript growth, reverses undo and persists the project goal', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		const initial = useAppStore.getState().session?.content ?? '';
+		const expanded = `${initial}\n\n雨声越过空站台，林墨继续向前。`;
+		const addedWords = countWords(expanded) - countWords(initial);
+		const projectId = useAppStore.getState().snapshot?.project.projectId ?? '';
+
+		act(() => useAppStore.getState().setContent(expanded));
+		expect(useAppStore.getState().writingProgress[projectId]?.days).toContainEqual({
+			date: localDateKey(),
+			words: addedWords
+		});
+		expect(screen.getByRole('contentinfo', { name: '工作区状态' })).toHaveTextContent(
+			`今日 ${addedWords} / 1,000 字`
+		);
+
+		act(() => useAppStore.getState().setContent(initial, 'undo'));
+		expect(useAppStore.getState().writingProgress[projectId]?.days).toContainEqual({
+			date: localDateKey(),
+			words: 0
+		});
+		act(() => {
+			useAppStore.getState().setContent(expanded, 'redo');
+			expect(useAppStore.getState().setDailyWritingGoal(1_200)).toBe(true);
+		});
+		expect(useAppStore.getState().writingProgress[projectId]?.goal).toBe(1_200);
+		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
+			'"writingProgress"'
+		);
 	});
 
 	it('keeps the writing chrome quiet until the author asks for more tools', async () => {

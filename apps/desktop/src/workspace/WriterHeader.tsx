@@ -15,6 +15,7 @@ import type { ManuscriptContinuationMode } from '@writing-buddy/story-kernel';
 import { countWords, findChapter, flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../app/store';
 import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
+import { DailyWritingGoalControl } from '../features/progress/DailyWritingGoalControl';
 
 export function WriterHeader(): React.JSX.Element | null {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -88,6 +89,7 @@ export function WriterHeader(): React.JSX.Element | null {
 					<SaveStateIndicator className="save-indicator" />
 					{!focusMode && activeResource.type === 'chapter' && (
 						<>
+							<DailyWritingGoalControl placement="header" />
 							<span className="word-chip">本章 {chapterWords.toLocaleString()} 字</span>
 							{!snapshot.readOnly ? (
 								<details className="writer-tools-menu">

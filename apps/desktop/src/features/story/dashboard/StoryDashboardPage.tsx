@@ -18,6 +18,7 @@ import {
 } from '@writing-buddy/story-kernel';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import { DailyWritingGoalControl } from '../../progress/DailyWritingGoalControl';
 import {
 	selectStoryDashboardModel,
 	type DashboardKernelData,
@@ -232,6 +233,7 @@ export function StoryDashboardPage({
 					<h1>{snapshot.project.title}</h1>
 					<p>继续当前任务；只在需要时打开规划、资料和检查。</p>
 				</div>
+				<DailyWritingGoalControl placement="dashboard" />
 			</header>
 
 			<section className="dashboard-card dashboard-continue" aria-labelledby="dashboard-continue-title">

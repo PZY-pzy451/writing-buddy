@@ -421,6 +421,12 @@
 		padding: 22px;
 	}
 
+	.dashboard-header {
+		align-items: stretch;
+		flex-direction: column;
+		gap: 14px;
+	}
+
 	.dashboard-recent-list {
 		grid-template-columns: 1fr;
 	}

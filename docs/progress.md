@@ -4,6 +4,29 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2K daily writing progress is complete in the isolated
+worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Project-scoped daily goals and a bounded local-day ledger now persist on the
+  current machine without changing project files.
+- The editor counts signed net manuscript word changes. Existing/imported prose
+  does not inflate progress, and undo or failed AI rollback reverses credit.
+- Writing Home, the chapter header and the status bar share one progress source;
+  goal editing is a keyboard-usable secondary disclosure with inline validation.
+- Browser acceptance proved goal and word progress across two application
+  reloads. Four responsive views pass with no overflow, clipping, sub-44 px
+  controls, disclosure occlusion or runtime errors.
+- Final gates: 164 Vitest files / 659 tests, production Vite build, Cargo format,
+  74 Rust tests / 2 ignored, full self-test, Tauri Release/NSIS and portable
+  title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2k-daily-writing-progress-2026-08-02/`;
+  evidence:
+  `docs/acceptance/068-phase-1.2k-daily-writing-progress-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2J Word interoperability is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -28,8 +51,6 @@ worktree `D:\develop_tool\writing-buddy-genre-to-draft` on
   `artifacts/release/phase-1.2j-word-interoperability-2026-08-02/`;
   evidence:
   `docs/acceptance/067-phase-1.2j-word-interoperability-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2I safe local outline and manuscript import is complete in the isolated
 worktree `D:\develop_tool\writing-buddy-genre-to-draft` on

@@ -1,6 +1,7 @@
 import { Lightbulb, ListChecks } from 'lucide-react';
 import { countWords } from '@writing-buddy/domain';
-import { useAppStore } from '../app/store';
+import { useShallow } from 'zustand/react/shallow';
+import { selectTodayWritingProgress, useAppStore } from '../app/store';
 import { SaveStateIndicator } from '../features/save/SaveStateIndicator';
 
 export function StatusBar(): React.JSX.Element {
@@ -10,6 +11,8 @@ export function StatusBar(): React.JSX.Element {
 	const openQuickCapture = useAppStore(state => state.openQuickCapture);
 	const openQuickCaptureInbox = useAppStore(state => state.openQuickCaptureInbox);
 	const quickCaptures = useAppStore(state => state.quickCaptures);
+	const snapshot = useAppStore(state => state.snapshot);
+	const todayProgress = useAppStore(useShallow(selectTodayWritingProgress));
 	const inboxCount = quickCaptures.filter(capture => (
 		capture.status === 'inbox' || capture.status === 'later'
 	)).length;
@@ -17,9 +20,10 @@ export function StatusBar(): React.JSX.Element {
 	return (
 		<footer className="status-bar" aria-label="工作区状态">
 			<div>
-				{session
-					? <span>本章 {countWords(session.content).toLocaleString()} 字</span>
+				{snapshot
+					? <span>今日 {todayProgress.words.toLocaleString()} / {todayProgress.goal.toLocaleString()} 字</span>
 					: <span>本地优先</span>}
+				{session && <span>本章 {countWords(session.content).toLocaleString()} 字</span>}
 				<button
 					type="button"
 					onClick={() => openQuickCapture()}

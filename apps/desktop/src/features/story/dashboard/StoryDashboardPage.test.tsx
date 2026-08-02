@@ -69,7 +69,8 @@ function setDashboardState(snapshot: ProjectSnapshot = projectSnapshot): void {
 		activeResource: undefined,
 		tabs: [],
 		issues: [],
-		writerSessions: {}
+		writerSessions: {},
+		writingProgress: {}
 	});
 }
 
@@ -81,6 +82,7 @@ afterEach(() => {
 		tabs: [],
 		issues: [],
 		writerSessions: {},
+		writingProgress: {},
 		openResource: originalOpenResource,
 		openCreationJourney: originalOpenCreationJourney
 	});

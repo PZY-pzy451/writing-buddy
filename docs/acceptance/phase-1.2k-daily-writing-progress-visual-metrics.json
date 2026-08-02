@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-08-02T02:26:50.666Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "initialLabel": "今日写作进度 0 / 1,000 字，打开设置",
+  "restoredGoal": "今日写作进度 0 / 1,200 字，打开设置",
+  "writerGoalLabel": "今日写作进度 13 / 1,200 字，打开设置",
+  "persistedLabel": "今日写作进度 13 / 1,200 字，打开设置",
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "surface": "dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 47,
+      "shortGoalControls": [],
+      "goalOccludingControls": [],
+      "goal": {
+        "rect": {
+          "x": 1151,
+          "y": 94,
+          "width": 238,
+          "height": 44,
+          "top": 94,
+          "right": 1389,
+          "bottom": 138,
+          "left": 1151
+        },
+        "label": "今日写作进度 0 / 1,200 字，打开设置",
+        "popover": {
+          "x": 1069,
+          "y": 146,
+          "width": 320,
+          "height": 229.5,
+          "top": 146,
+          "right": 1389,
+          "bottom": 375.5,
+          "left": 1069
+        },
+        "message": "还差 1,200 字当前完成 0% · 仅记录正文净增字数"
+      },
+      "statusText": "今日 0 / 1,200 字快速记录待整理 0待处理 0"
+    },
+    {
+      "name": "02-writer-goal-1280x800.png",
+      "surface": "writer",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 73,
+      "shortGoalControls": [],
+      "goalOccludingControls": [],
+      "goal": {
+        "rect": {
+          "x": 769.046875,
+          "y": 172.140625,
+          "width": 193.953125,
+          "height": 44,
+          "top": 172.140625,
+          "right": 963,
+          "bottom": 216.140625,
+          "left": 769.046875
+        },
+        "label": "今日写作进度 13 / 1,200 字，打开设置",
+        "popover": {
+          "x": 643,
+          "y": 224.140625,
+          "width": 320,
+          "height": 186,
+          "top": 224.140625,
+          "right": 963,
+          "bottom": 410.140625,
+          "left": 643
+        },
+        "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
+      },
+      "writerTitle": {
+        "text": "第一章 停摆的时钟",
+        "rect": {
+          "x": 374,
+          "y": 190.84375,
+          "width": 198.359375,
+          "height": 25.296875,
+          "top": 190.84375,
+          "right": 572.359375,
+          "bottom": 216.140625,
+          "left": 374
+        },
+        "display": "block",
+        "visibility": "visible"
+      },
+      "statusText": "今日 13 / 1,200 字本章 107 字快速记录待整理 0待处理 0已保存"
+    },
+    {
+      "name": "03-writer-goal-1024x720.png",
+      "surface": "writer",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 73,
+      "shortGoalControls": [],
+      "goalOccludingControls": [],
+      "goal": {
+        "rect": {
+          "x": 535.046875,
+          "y": 183.796875,
+          "width": 193.953125,
+          "height": 44,
+          "top": 183.796875,
+          "right": 729,
+          "bottom": 227.796875,
+          "left": 535.046875
+        },
+        "label": "今日写作进度 13 / 1,200 字，打开设置",
+        "popover": {
+          "x": 409,
+          "y": 235.796875,
+          "width": 320,
+          "height": 186,
+          "top": 235.796875,
+          "right": 729,
+          "bottom": 421.796875,
+          "left": 409
+        },
+        "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
+      },
+      "writerTitle": {
+        "text": "第一章 停摆的时钟",
+        "rect": {
+          "x": 316,
+          "y": 178.203125,
+          "width": 152.640625,
+          "height": 50.59375,
+          "top": 178.203125,
+          "right": 468.640625,
+          "bottom": 228.796875,
+          "left": 316
+        },
+        "display": "block",
+        "visibility": "visible"
+      },
+      "statusText": "今日 13 / 1,200 字本章 107 字快速记录待整理 0待处理 0已保存"
+    },
+    {
+      "name": "04-writer-goal-820x720.png",
+      "surface": "writer",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "visibleControls": 72,
+      "shortGoalControls": [],
+      "goalOccludingControls": [],
+      "goal": {
+        "rect": {
+          "x": 482.046875,
+          "y": 174.078125,
+          "width": 121.953125,
+          "height": 44,
+          "top": 174.078125,
+          "right": 604,
+          "bottom": 218.078125,
+          "left": 482.046875
+        },
+        "label": "今日写作进度 13 / 1,200 字，打开设置",
+        "popover": {
+          "x": 344,
+          "y": 226.078125,
+          "width": 260,
+          "height": 186,
+          "top": 226.078125,
+          "right": 604,
+          "bottom": 412.078125,
+          "left": 344
+        },
+        "message": "还差 1,187 字当前完成 1% · 仅记录正文净增字数"
+      },
+      "writerTitle": {
+        "text": "第一章 停摆的时钟",
+        "rect": {
+          "x": 344,
+          "y": 142.9375,
+          "width": 412,
+          "height": 24.140625,
+          "top": 142.9375,
+          "right": 756,
+          "bottom": 167.078125,
+          "left": 344
+        },
+        "display": "block",
+        "visibility": "visible"
+      },
+      "statusText": "今日 13 / 1,200 字本章 107 字快速记录待整理 0待处理 0已保存"
+    }
+  ]
+}

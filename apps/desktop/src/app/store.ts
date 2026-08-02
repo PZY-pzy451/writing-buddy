@@ -101,6 +101,14 @@ import {
 	type ChapterExportReceipt,
 	type WorkExportFormat
 } from '../features/export/ChapterExportModel';
+import {
+	parseWritingProgressMap,
+	recordDailyWritingDelta,
+	selectTodayWritingProgress as resolveTodayWritingProgress,
+	setProjectDailyWritingGoal,
+	type TodayWritingProgress,
+	type WritingProgressMap
+} from '../features/progress/DailyWritingProgressModel';
 
 export type ThemeId = 'paper' | 'midnight' | 'fog' | 'focus';
 export type RailMode = 'works' | 'planning' | 'search' | 'references' | 'review' | 'versions' | 'ai' | 'settings';
@@ -192,6 +200,7 @@ interface PersistedWorkspace {
 	readonly writerSessions: WriterSessionMap;
 	readonly writerNavigatorRecentIds: readonly string[];
 	readonly chapterExportReceipts: readonly ChapterExportReceipt[];
+	readonly writingProgress: WritingProgressMap;
 }
 
 interface AppState extends PersistedWorkspace {
@@ -302,6 +311,7 @@ interface AppState extends PersistedWorkspace {
 	readonly restoreLastClosedResource: () => Promise<boolean>;
 	readonly activateNextResource: () => Promise<boolean>;
 	readonly setContent: (content: string, change?: 'edit' | 'undo' | 'redo') => void;
+	readonly setDailyWritingGoal: (goal: number) => boolean;
 	readonly updateCursor: (cursor: CursorState) => void;
 	readonly requestEditorEdit: (edit: NonNullable<AppState['pendingEdit']>) => void;
 	readonly clearEditorEdit: (id: string) => void;
@@ -522,6 +532,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	expandedTreeNodes: [],
 	writerSessions: {},
 	writerNavigatorRecentIds: [],
+	writingProgress: {},
 	activeMode: 'works',
 	storyView: 'characters',
 	recentProjectRoots: [],
@@ -1551,7 +1562,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		if (!session) {
 			return;
 		}
+		const beforeWords = countWords(session.content);
+		const manuscriptProjectId = get().activeResource?.type === 'chapter'
+			? get().snapshot?.project.projectId
+			: undefined;
 		session.updateContent(content);
+		const wordDelta = countWords(session.content) - beforeWords;
 		const issues = change === 'undo'
 			? get().issues.map(issue => (
 				issue.status === 'accepted' && content.includes(issue.anchor.target)
@@ -1565,6 +1581,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				? { type: 'dirty' }
 				: { type: 'clean', savedAt: state.lastSavedAt ?? new Date().toISOString() },
 			issues,
+			writingProgress: manuscriptProjectId
+				? recordDailyWritingDelta(
+					state.writingProgress,
+					manuscriptProjectId,
+					wordDelta
+				)
+				: state.writingProgress,
 			writerSessions: updateCurrentWriterSession(
 				state,
 				writerSession => touchWriterSession(writerSession, {})
@@ -1572,6 +1595,23 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}));
 		if (change === 'undo') {
 			get().setIssues(issues);
+		}
+	},
+
+	setDailyWritingGoal(goal) {
+		const projectId = get().snapshot?.project.projectId;
+		if (!projectId) return false;
+		try {
+			set(state => ({
+				writingProgress: setProjectDailyWritingGoal(
+					state.writingProgress,
+					projectId,
+					goal
+				)
+			}));
+			return true;
+		} catch {
+			return false;
 		}
 	},
 
@@ -2708,7 +2748,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		expandedTreeNodes: state.expandedTreeNodes,
 		writerSessions: state.writerSessions,
 		writerNavigatorRecentIds: state.writerNavigatorRecentIds,
-		chapterExportReceipts: state.chapterExportReceipts
+		chapterExportReceipts: state.chapterExportReceipts,
+		writingProgress: state.writingProgress
 	}),
 	version: 2,
 	merge: (persisted, current) => {
@@ -2732,7 +2773,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				: [],
 			chapterExportReceipts: parseChapterExportReceipts(
 				workspace.chapterExportReceipts
-			)
+			),
+			writingProgress: parseWritingProgressMap(workspace.writingProgress)
 		};
 	}
 }));
@@ -2754,11 +2796,19 @@ export function selectNovelWordCount(state: AppState): number {
 	}, 0);
 }
 
+export function selectTodayWritingProgress(state: AppState): TodayWritingProgress {
+	return resolveTodayWritingProgress(
+		state.writingProgress,
+		state.snapshot?.project.projectId
+	);
+}
+
 declare global {
 	interface Window {
 		readonly __WRITING_BUDDY_DEVTOOLS__?: {
 			readonly selectManuscriptPrefix: (length?: number) => boolean;
 			readonly setManuscriptCursor: (offset?: number) => boolean;
+			readonly appendManuscriptText: (text: string) => boolean;
 			readonly enableBrowserAiFixture: () => Promise<boolean>;
 		};
 	}
@@ -2785,6 +2835,16 @@ if (import.meta.env.DEV && typeof window !== 'undefined') {
 					state.session.content.length
 				));
 				state.openAssistant();
+				return true;
+			},
+			appendManuscriptText(text: string): boolean {
+				const state = useAppStore.getState();
+				if (
+					state.activeResource?.type !== 'chapter'
+					|| !state.session
+					|| !text
+				) return false;
+				state.setContent(`${state.session.content}${text}`, 'edit');
 				return true;
 			},
 			async enableBrowserAiFixture(): Promise<boolean> {

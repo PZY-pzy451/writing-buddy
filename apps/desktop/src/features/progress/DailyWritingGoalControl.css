@@ -1,0 +1,212 @@
+.daily-writing-goal {
+	position: relative;
+	flex: 0 0 auto;
+	z-index: 80;
+}
+
+.daily-writing-goal summary {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	min-height: 44px;
+	padding: 5px 10px;
+	list-style: none;
+	cursor: pointer;
+	background: var(--surface-subtle);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+	transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.daily-writing-goal summary::-webkit-details-marker {
+	display: none;
+}
+
+.daily-writing-goal summary:hover,
+.daily-writing-goal[open] summary {
+	background: var(--surface-raised);
+	border-color: color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
+}
+
+.daily-writing-goal summary:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+
+.daily-goal-icon {
+	display: grid;
+	flex: 0 0 28px;
+	width: 28px;
+	height: 28px;
+	color: var(--accent-strong);
+	background: var(--accent-soft);
+	border-radius: 8px;
+	place-items: center;
+}
+
+.daily-goal-icon.is-complete {
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 12%, var(--surface-raised));
+}
+
+.daily-goal-summary-copy {
+	display: grid;
+	gap: 1px;
+	min-width: 0;
+}
+
+.daily-goal-summary-copy small {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.daily-goal-summary-copy strong {
+	color: var(--text-secondary);
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.daily-writing-goal summary progress {
+	width: 54px;
+	height: 6px;
+	overflow: hidden;
+	accent-color: var(--accent-strong);
+	background: var(--surface-canvas);
+	border: 0;
+	border-radius: 999px;
+}
+
+.daily-writing-goal summary progress::-webkit-progress-bar {
+	background: var(--surface-canvas);
+	border-radius: 999px;
+}
+
+.daily-writing-goal summary progress::-webkit-progress-value {
+	background: var(--accent-strong);
+	border-radius: 999px;
+}
+
+.daily-goal-popover {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	display: grid;
+	width: min(320px, calc(100vw - 32px));
+	gap: 14px;
+	padding: 16px;
+	color: var(--text-primary);
+	background: var(--surface-raised);
+	border: 1px solid var(--border-strong);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-float);
+}
+
+.daily-goal-status {
+	display: grid;
+	gap: 4px;
+}
+
+.daily-goal-status strong {
+	font-size: 15px;
+}
+
+.daily-goal-status span,
+.daily-goal-note,
+.daily-goal-message {
+	color: var(--text-muted);
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.daily-goal-popover form {
+	display: grid;
+	gap: 7px;
+}
+
+.daily-goal-popover form > label {
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.daily-goal-popover form > div {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 8px;
+}
+
+.daily-goal-popover input,
+.daily-goal-popover button {
+	min-height: 44px;
+	border-radius: 8px;
+}
+
+.daily-goal-popover input {
+	min-width: 0;
+	padding: 0 10px;
+	color: var(--text-primary);
+	background: var(--surface-canvas);
+	border: 1px solid var(--border-strong);
+}
+
+.daily-goal-popover button {
+	padding: 0 13px;
+	cursor: pointer;
+	color: white;
+	font-weight: 700;
+	background: var(--accent-strong);
+	border: 1px solid var(--accent-strong);
+}
+
+.daily-goal-popover input:focus-visible,
+.daily-goal-popover button:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+
+.daily-goal-message,
+.daily-goal-note {
+	margin: 0;
+}
+
+.daily-goal-message[role="alert"] {
+	color: var(--danger);
+}
+
+.daily-writing-goal.is-dashboard summary {
+	min-width: 238px;
+	background: var(--surface-raised);
+	box-shadow: 0 8px 24px rgb(41 39 34 / 5%);
+}
+
+@media (max-width: 1023px) {
+	.daily-writing-goal.is-dashboard {
+		width: 100%;
+	}
+
+	.daily-writing-goal.is-dashboard summary {
+		width: 100%;
+	}
+}
+
+@media (max-width: 849px) {
+	.daily-writing-goal.is-header .daily-goal-popover {
+		width: min(260px, calc(100vw - 32px));
+	}
+
+	.daily-writing-goal.is-header .daily-goal-summary-copy small,
+	.daily-writing-goal.is-header summary progress {
+		display: none;
+	}
+
+	.daily-writing-goal.is-header summary {
+		gap: 6px;
+		padding-inline: 7px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daily-writing-goal summary {
+		transition: none;
+	}
+}
