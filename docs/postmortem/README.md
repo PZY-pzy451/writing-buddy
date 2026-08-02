@@ -7,3 +7,4 @@
 - [Browser acceptance must be serialized and preflighted](./005-serialize-browser-acceptance-preconditions.md)
 - [Concurrent ffmpeg output corruption](./006-concurrent-ffmpeg-output-corruption.md)
 - [Security fixture triggered antivirus quarantine](./007-security-fixture-antivirus-false-positive.md)
+- [Acceptance drift and reload races](./008-acceptance-drift-and-reload-races.md)

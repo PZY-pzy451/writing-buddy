@@ -67,3 +67,15 @@ is not counted twice.
 - Testing private user projects or copyrighted manuscripts.
 - Claiming operating-system compatibility beyond the tested Windows host.
 - Treating historical aliases as additional independent coverage.
+
+## Outcome
+
+Completed on 2026-08-02 against source commit `f96951277a4763ed07c3a785964d29c79ac776b7`.
+
+- `pnpm acceptance:full-regression` passed all 25 recorded steps in 653,272 ms.
+- Two product layout defects and five acceptance-infrastructure defects were
+  fixed and protected by stronger gates.
+- The final production portable and NSIS bytes, reports and SHA-256 manifest
+  are under `artifacts/release/full-regression-2026-08-02/`.
+- Detailed evidence is in
+  `docs/acceptance/075-phase-1.2r-full-regression-bug-convergence-2026-08-02.md`.

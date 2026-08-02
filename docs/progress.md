@@ -4,24 +4,53 @@ Updated: 2026-08-02
 
 ## Active milestone
 
+Phase 1.2R full regression and bug convergence is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- One `pnpm acceptance:full-regression` command now covers source, Rust,
+  performance, 18 browser journeys, isolated native journeys, a complete novel,
+  recovery, production packaging and portable smoke with a machine-readable
+  aggregate report.
+- Product fixes reposition the compact daily-goal popover and make the timeline
+  own its intended horizontal overflow. Acceptance now hard-fails clipping,
+  follows the current information architecture and waits for real reload events.
+- The final clean run against `f969512` passed all 25 recorded steps in 653,272
+  ms: 167 Vitest files / 689 tests, 77 Rust tests plus both ignored gates, all
+  browser phases, native reopen, 12 chapters / 24 scenes, recovery and EXE smoke.
+- Production and acceptance executables are isolated. The production portable
+  was restored byte-for-byte before smoke and has SHA-256
+  `A45AC8CD7DAD652F843048A4BDB0A8CE89976860CFA135672EAFE24EDDD8F3DA`.
+- Delivery: `artifacts/release/full-regression-2026-08-02/`; evidence:
+  `docs/acceptance/075-phase-1.2r-full-regression-bug-convergence-2026-08-02.md`.
+
+## Previous milestones
+
 Phase 1.2Q author-confirmed release candidate is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
 
-- Check now separates exact export freshness from the author's final release
+- Check separates exact export freshness from the author's final release
   decision. Only an exact current receipt can be explicitly confirmed.
 - Confirmation is project-scoped, locally persisted and reversible. History
   shows the active candidate and timestamp; source changes make it visibly stale.
-- Eight Edge/CDP captures at 1440×900, 1024×720 and 820×720 pass with no page
-  overflow, clipping, sub-44 px scoped controls, occlusion or runtime errors.
-- Final gates: 167 Vitest files / 689 tests, production Vite build, Cargo format,
-  77 Rust tests / 2 ignored, full and release self-tests, Tauri Release/NSIS and
-  portable PID 39600 title/WebView/no-debug-port/normal-close smoke.
+- Eight Edge/CDP captures pass without page overflow, clipping, short scoped
+  controls, occlusion or runtime errors.
 - Delivery:
   `artifacts/release/phase-1.2q-author-confirmed-release-2026-08-02/`; evidence:
   `docs/acceptance/074-phase-1.2q-author-confirmed-release-2026-08-02.md`.
 
-## Previous milestones
+Phase 1.2P verifiable delivery freshness is complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Whole-work export receipts fingerprint the manifest revision and ordered
+  chapter paths/file hashes, so equal-word-count rewrites cannot remain current.
+- Check performs a live read-only inspection; old, malformed, dirty, stale or
+  unavailable evidence cannot silently pass publication readiness.
+- Delivery:
+  `artifacts/release/phase-1.2p-delivery-freshness-2026-08-02/`; evidence:
+  `docs/acceptance/073-phase-1.2p-verifiable-delivery-freshness-2026-08-02.md`.
 
 Phase 1.2O chapter lifecycle is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
