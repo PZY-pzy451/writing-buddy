@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-30T13:26:04.200Z",
-  "executable": "D:\\develop_tool\\writing-buddy-phase-1.2b\\apps\\desktop\\src-tauri\\target\\release\\writing-buddy-next.exe",
+  "generatedAt": "2026-08-02T12:12:19.140Z",
+  "executable": "D:\\develop_tool\\writing-buddy-genre-to-draft\\apps\\desktop\\src-tauri\\target\\release\\writing-buddy-next.exe",
   "runtime": "tauri-webview2",
   "freshProject": {
-    "projectId": "project-fcb805e4",
+    "projectId": "project-d55b6eb3",
     "firstChapterId": null,
     "createdFileCount": 2,
     "createdDirectoryCount": 2
@@ -100,7 +100,7 @@
     "restoredHook": "通道里亮起旧时刻表"
   },
   "persisted": {
-    "hash": "1c4b17a0555e90d1dc1c42a82db202639dc6e38f57a224a92c8c4834e6714f6a",
+    "hash": "484804a9d9ca5801a504d8d2131c6fc35e71c701031842d0a6856cfa145a4885",
     "revision": 7,
     "storyOutlineRevision": 6,
     "outlineIds": [
@@ -241,9 +241,9 @@
   "runtimeErrors": [],
   "consoleErrors": [],
   "performance": {
-    "shellReadyMs": 739,
-    "firstWorkspaceReadyMs": 1118,
-    "acceptanceBeforeShutdownMs": 5758
+    "shellReadyMs": 991,
+    "firstWorkspaceReadyMs": 1301,
+    "acceptanceBeforeShutdownMs": 5912
   },
   "shutdown": {
     "mode": "window-close",

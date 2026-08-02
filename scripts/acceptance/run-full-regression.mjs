@@ -85,6 +85,18 @@ function printable(command, args) {
 	).join(' ');
 }
 
+function pnpmCommand(args) {
+	const pnpmEntry = process.env.npm_execpath;
+	if (pnpmEntry) {
+		return { command: process.execPath, args: [pnpmEntry, ...args] };
+	}
+	return {
+		command: process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
+		args,
+		shell: process.platform === 'win32'
+	};
+}
+
 function git(args) {
 	const result = spawnSync('git', args, {
 		cwd: repositoryRoot,
@@ -253,8 +265,8 @@ const report = {
 	results: []
 };
 
-await writeReport(report);
 let viteProcess;
+let productionPortable;
 try {
 	await runStep(
 		report,
@@ -302,27 +314,39 @@ try {
 	stopProcessTree(viteProcess);
 	viteProcess = undefined;
 
+	productionPortable = await archiveRelease(report);
+	const acceptanceBuild = pnpmCommand([
+		'--filter',
+		'@writing-buddy/desktop',
+		'tauri',
+		'build',
+		'--config',
+		'src-tauri/tauri.acceptance.conf.json'
+	]);
 	await runStep(
 		report,
-		'native-genre-gates-a-c',
-		'Native genre-to-draft Gates A-C',
-		process.execPath,
-		['scripts/acceptance/validate-genre-to-draft-gates-a-c.mjs']
+		'native-acceptance-build',
+		'Isolated Tauri acceptance executable build',
+		acceptanceBuild.command,
+		acceptanceBuild.args,
+		{ shell: acceptanceBuild.shell }
 	);
 	await runStep(
 		report,
-		'native-genre-gate-d',
-		'Native genre-to-draft Gate D',
+		'native-genre-gates-a-d',
+		'Native genre-to-draft Gates A-D',
 		process.execPath,
-		['scripts/acceptance/validate-genre-to-draft-gate-d.mjs']
+		['scripts/acceptance/validate-genre-to-draft-gates-a-c.mjs']
 	);
 	await runStep(
 		report,
 		'complete-novel',
 		'Complete novel static and native journey',
 		process.execPath,
-		['scripts/acceptance/validate-complete-novel.mjs']
+		['scripts/acceptance/validate-complete-novel.mjs'],
+		{ env: { WRITING_BUDDY_NATIVE_CDP_PORT: '9751' } }
 	);
+	await copyFile(productionPortable, executablePath);
 	await runStep(
 		report,
 		'storyforge-recovery',
@@ -339,8 +363,7 @@ try {
 		]
 	);
 
-	const portableTarget = await archiveRelease(report);
-	await smokeExecutable(report, portableTarget);
+	await smokeExecutable(report, productionPortable);
 	report.status = 'passed';
 } catch (error) {
 	report.status = 'failed';
@@ -348,6 +371,17 @@ try {
 	process.exitCode = 1;
 } finally {
 	stopProcessTree(viteProcess);
+	if (productionPortable) {
+		try {
+			await copyFile(productionPortable, executablePath);
+		} catch (restoreError) {
+			report.status = 'failed';
+			report.error = `Production executable restore failed: ${
+				restoreError instanceof Error ? restoreError.message : String(restoreError)
+			}`;
+			process.exitCode = 1;
+		}
+	}
 	report.completedAt = new Date().toISOString();
 	report.durationMs = new Date(report.completedAt).getTime() - new Date(report.generatedAt).getTime();
 	await writeReport(report);

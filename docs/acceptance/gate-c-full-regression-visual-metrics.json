@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T11:50:34.097Z",
+  "generatedAt": "2026-08-02T12:06:39.789Z",
   "captures": [
     {
       "view": "characters",
@@ -7,7 +7,7 @@
       "width": 1536,
       "height": 960,
       "name": "01-character-center-1536x992.png",
-      "readyMs": 2077,
+      "readyMs": 1998,
       "selectorReadyMs": 0,
       "viewport": {
         "width": 1536,
@@ -33,8 +33,8 @@
       "width": 1536,
       "height": 960,
       "name": "02-relationship-graph-1536x992.png",
-      "readyMs": 1199,
-      "selectorReadyMs": 6,
+      "readyMs": 1181,
+      "selectorReadyMs": 8,
       "viewport": {
         "width": 1536,
         "height": 960
@@ -59,8 +59,8 @@
       "width": 1536,
       "height": 960,
       "name": "03-timeline-1536x992.png",
-      "readyMs": 1322,
-      "selectorReadyMs": 13,
+      "readyMs": 1337,
+      "selectorReadyMs": 14,
       "viewport": {
         "width": 1536,
         "height": 960
@@ -85,8 +85,8 @@
       "width": 1280,
       "height": 768,
       "name": "04-relationship-1280x800.png",
-      "readyMs": 1240,
-      "selectorReadyMs": 4,
+      "readyMs": 1245,
+      "selectorReadyMs": 3,
       "viewport": {
         "width": 1280,
         "height": 768
@@ -111,8 +111,8 @@
       "width": 1024,
       "height": 688,
       "name": "05-timeline-1024x720.png",
-      "readyMs": 1327,
-      "selectorReadyMs": 4,
+      "readyMs": 1306,
+      "selectorReadyMs": 5,
       "viewport": {
         "width": 1024,
         "height": 688

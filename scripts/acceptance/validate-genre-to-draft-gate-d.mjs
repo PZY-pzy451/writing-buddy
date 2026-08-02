@@ -1077,7 +1077,9 @@ const appOutput = [];
 const child = spawn(executable, [], {
 	env: {
 		...process.env,
-		WEBVIEW2_USER_DATA_FOLDER: profileDirectory
+		WEBVIEW2_USER_DATA_FOLDER: profileDirectory,
+		WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS:
+			`--remote-debugging-port=${debuggingPort} --disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection`
 	},
 	stdio: ['ignore', 'pipe', 'pipe'],
 	windowsHide: true
