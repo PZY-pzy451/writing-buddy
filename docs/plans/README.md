@@ -51,6 +51,7 @@
 - [Phase 1.2Q author-confirmed release candidate](./049-phase-1.2q-author-confirmed-release-candidate.md)
 - [Phase 1.2R full regression and bug convergence](./050-full-regression-bug-convergence.md)
 - [Phase 1.2S user-centered detail and stress testing](./051-user-centered-detail-and-stress-testing.md)
+- [Story Kernel character role repair](./052-story-kernel-character-role-repair.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

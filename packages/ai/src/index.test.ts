@@ -1083,6 +1083,39 @@ describe('AI core contracts', () => {
 		});
 	});
 
+	it('canonicalizes character role aliases and omits unknown optional text', () => {
+		const roles: readonly unknown[] = [
+			' 配角 ',
+			'SUPPORTING_CHARACTER',
+			'反派',
+			'退休检修组长',
+			42
+		];
+		const result = parseStoryKernelGenerationResponseWithDiagnostics(JSON.stringify({
+			candidates: roles.map((role, index) => ({
+				operation: 'create',
+				resource: {
+					id: `character:role-${index}`,
+					type: 'character',
+					title: `人物 ${index}`,
+					role
+				},
+				confidence: 0.9,
+				rationale: '正文明确出现人物。',
+				evidence: null
+			}))
+		}));
+
+		expect(result.diagnostics).toEqual([]);
+		expect(result.candidates.map(candidate => candidate.resource.role)).toEqual([
+			'supporting',
+			'supporting',
+			'antagonist',
+			undefined,
+			42
+		]);
+	});
+
 	it('unwraps fenced Story Kernel transport output without weakening resource validation', () => {
 		const result = parseStoryKernelGenerationResponseWithDiagnostics([
 			'```json',

@@ -495,6 +495,139 @@ describe('StoryKernelGenerationService', () => {
 		});
 	});
 
+	it('repairs and confirms AI character role aliases before strict validation', async () => {
+		const { repository, service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成魏峥的人物候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '魏峥正在用黄铜扳手敲床栏。',
+			targetTypes: ['character'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'character:wei-zheng',
+						type: 'character',
+						title: '魏峥',
+						role: 'supporting_character'
+					},
+					confidence: 0.9,
+					rationale: '正文明确出现魏峥。',
+					evidence: { start: 0, end: 2, quote: '魏峥' }
+				}]
+			}),
+			now
+		});
+
+		expect(batch.candidates[0]).toMatchObject({
+			conflicts: [],
+			rawResource: { role: 'supporting' },
+			normalizedResource: { role: 'supporting' }
+		});
+		await service.confirm(batch.id, [batch.candidates[0]?.id ?? '']);
+		await expect(repository.get('character', 'character:wei-zheng'))
+			.resolves.toMatchObject({ role: 'supporting' });
+	});
+
+	it('recovers a persisted character blocked only by an optional role label', async () => {
+		const storage = new MemoryStorage(JSON.stringify({
+			schemaVersion: 1,
+			updatedAt: now,
+			batches: [{
+				id: 'generation-batch:old-character-role',
+				schemaVersion: 1,
+				sourceResourceId: 'chapter:chapter-001',
+				sourceRevision: '7',
+				baseOffset: 0,
+				instruction: '提取魏峥。',
+				targetTypes: ['character'],
+				candidates: [{
+					id: 'generation-candidate:old-character-role',
+					operation: 'create',
+					resourceType: 'character',
+					resourceId: 'character:wei-zheng',
+					title: '魏峥',
+					rawResource: {
+						id: 'character:wei-zheng',
+						type: 'character',
+						title: '魏峥',
+						aliases: [],
+						tags: [],
+						evidenceIds: [],
+						role: '重要配角'
+					},
+					confidence: 0.9,
+					rationale: '正文明确出现魏峥。',
+					conflicts: [{
+						code: 'invalid-schema',
+						message: '字段结构不符合 Story Kernel，修正前无法确认写入。',
+						blocking: true,
+						details: [{
+							path: 'role',
+							message: 'role需要使用protagonist / antagonist / supporting / minor。',
+							expected: 'protagonist / antagonist / supporting / minor',
+							actual: '"重要配角"'
+						}]
+					}],
+					status: 'pending',
+					createdAt: now,
+					updatedAt: now
+				}],
+				createdAt: now,
+				updatedAt: now
+			}]
+		}));
+		const gateway = new MemoryStoryGateway();
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const store = new StoryKernelGenerationStore('D:/Novel', storage);
+		const service = new StoryKernelGenerationService(store, repository);
+
+		const reopened = await store.load();
+		expect(reopened[0]?.candidates[0]).toMatchObject({
+			conflicts: [],
+			rawResource: { role: 'supporting' },
+			normalizedResource: { role: 'supporting' }
+		});
+		await service.confirm(
+			reopened[0]?.id ?? '',
+			[reopened[0]?.candidates[0]?.id ?? '']
+		);
+		await expect(repository.get('character', 'character:wei-zheng'))
+			.resolves.toMatchObject({ role: 'supporting' });
+	});
+
+	it('keeps non-text character roles blocked instead of guessing', async () => {
+		const { service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '从正文生成人物。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '魏峥。',
+			targetTypes: ['character'],
+			response: JSON.stringify({
+				candidates: [{
+					operation: 'create',
+					resource: {
+						id: 'character:bad-role',
+						type: 'character',
+						title: '魏峥',
+						role: 42
+					},
+					confidence: 0.9,
+					rationale: '正文明确出现人物。',
+					evidence: { start: 0, end: 2, quote: '魏峥' }
+				}]
+			}),
+			now
+		});
+
+		expect(batch.candidates[0]?.normalizedResource).toBeUndefined();
+		expect(batch.candidates[0]?.conflicts).toEqual([
+			expect.objectContaining({ code: 'invalid-schema' })
+		]);
+	});
+
 	it('does not recover a persisted item with explicit wrong field types', async () => {
 		const storage = new MemoryStorage(JSON.stringify({
 			schemaVersion: 1,

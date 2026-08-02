@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-02T14:31:31.084Z",
+  "generatedAt": "2026-08-02T15:54:28.056Z",
   "appUrl": "http://127.0.0.1:1420/",
   "journey": {
     "aiCalls": 5,
@@ -83,6 +83,7 @@
       "AI 返回了未勾选的 location 类型。"
     ],
     "generateDisabledAfterCompletion": false,
+    "hasBlockedFieldStructure": false,
     "hasRawSchemaError": false,
     "hasSettingsGuidance": false,
     "warning": "AI 返回的第 3 项候选结构不完整，已安全隔离；其余候选仍可审核确认。",

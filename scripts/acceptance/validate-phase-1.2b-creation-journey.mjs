@@ -785,6 +785,8 @@ try {
 				aiCalls: globalThis.__phase12bAiCalls,
 				candidateTitles,
 				generateDisabledAfterCompletion: generateButton?.disabled ?? true,
+				hasBlockedFieldStructure: generator?.textContent
+					?.includes('字段结构不符合 Story Kernel') ?? false,
 				hasRawSchemaError: generator?.textContent
 					?.includes('invalidStoryKernelGenerationResource') ?? false,
 				hasSettingsGuidance: generator?.textContent
@@ -801,12 +803,20 @@ try {
 			'The locally repairable Story Kernel candidate was not preserved.'
 		);
 		assert(
+			storyKernelContract.candidateTitles.includes('AI 识别人物'),
+			'The character with a repairable role alias was not preserved.'
+		);
+		assert(
 			!storyKernelContract.candidateTitles.some(title => title?.includes('invalid')),
 			'The malformed Story Kernel candidate remained visible.'
 		);
 		assert(
 			!storyKernelContract.generateDisabledAfterCompletion,
 			'Story Kernel generation did not return to an idle retryable state.'
+		);
+		assert(
+			!storyKernelContract.hasBlockedFieldStructure,
+			'The repairable character role still blocked snapshot confirmation.'
 		);
 		assert(!storyKernelContract.hasRawSchemaError, 'Raw Story Kernel schema error leaked into the UI.');
 		assert(

@@ -3416,7 +3416,9 @@ function browserStoryKernelGenerationDeltas(request: AiGenerateRequest): readonl
 					id: generatedCharacterId,
 					type,
 					title: 'AI 识别人物',
-					role: 'supporting',
+					role: partialInvalidResourceFixture
+						? 'supporting_character'
+						: 'supporting',
 					factionIds: [],
 					goals: [],
 					desires: [],

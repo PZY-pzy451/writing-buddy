@@ -133,7 +133,7 @@ export const STORY_KERNEL_GENERATION_SYSTEM_PROMPT = [
 	'支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。',
 	'公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。',
 	'每个候选都必须重复提供 aliases、tags、evidenceIds 三个数组，即使为空也不能省略；无法构造完整资源时应省略该候选，不得返回半成品。',
-	'character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。',
+	'character 的可选 role 只能是 protagonist|antagonist|supporting|minor；不得使用中文、空格、下划线、人物职业或其他描述；另可使用 pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。',
 	'scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。',
 	'location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。',
 	'item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。',
@@ -2617,6 +2617,14 @@ export function normalizeStoryKernelGenerationResourceDefaults(
 	for (const field of ['aliases', 'tags', 'evidenceIds'] as const) {
 		if (resource[field] === undefined) resource[field] = [];
 	}
+	if (resource.type === 'character') {
+		const normalizedRole = normalizeStoryKernelCharacterRole(resource.role);
+		if (normalizedRole === undefined) {
+			delete resource.role;
+		} else {
+			resource.role = normalizedRole;
+		}
+	}
 	if (resource.type === 'item') {
 		if (resource.unique === undefined || resource.unique === null) {
 			resource.unique = false;
@@ -2652,6 +2660,70 @@ export function normalizeStoryKernelGenerationResourceDefaults(
 		}
 	}
 	return resource;
+}
+
+const storyKernelCharacterRoleAliases: Readonly<Record<string, string>> = {
+	protagonist: 'protagonist',
+	'protagonist-character': 'protagonist',
+	protagonistcharacter: 'protagonist',
+	main: 'protagonist',
+	lead: 'protagonist',
+	'main-character': 'protagonist',
+	maincharacter: 'protagonist',
+	hero: 'protagonist',
+	heroine: 'protagonist',
+	'主角': 'protagonist',
+	'主人公': 'protagonist',
+	'核心人物': 'protagonist',
+	'男主角': 'protagonist',
+	'女主角': 'protagonist',
+	antagonist: 'antagonist',
+	'antagonist-character': 'antagonist',
+	antagonistcharacter: 'antagonist',
+	villain: 'antagonist',
+	adversary: 'antagonist',
+	opponent: 'antagonist',
+	'反派': 'antagonist',
+	'反面人物': 'antagonist',
+	'对手': 'antagonist',
+	'敌手': 'antagonist',
+	supporting: 'supporting',
+	support: 'supporting',
+	'supporting-character': 'supporting',
+	supportingcharacter: 'supporting',
+	secondary: 'supporting',
+	'secondary-character': 'supporting',
+	secondarycharacter: 'supporting',
+	sidekick: 'supporting',
+	mentor: 'supporting',
+	'配角': 'supporting',
+	'重要配角': 'supporting',
+	'辅助角色': 'supporting',
+	'同伴': 'supporting',
+	'导师': 'supporting',
+	minor: 'minor',
+	'minor-character': 'minor',
+	minorcharacter: 'minor',
+	background: 'minor',
+	extra: 'minor',
+	cameo: 'minor',
+	'次要人物': 'minor',
+	'次要角色': 'minor',
+	'背景人物': 'minor',
+	'路人': 'minor',
+	'龙套': 'minor'
+};
+
+function normalizeStoryKernelCharacterRole(value: unknown): unknown {
+	if (value === undefined || value === null) return undefined;
+	if (typeof value !== 'string') return value;
+	const token = value
+		.trim()
+		.toLocaleLowerCase('en-US')
+		.replace(/[\s_]+/gu, '-')
+		.replace(/-+/gu, '-');
+	if (!token) return undefined;
+	return storyKernelCharacterRoleAliases[token];
 }
 
 function normalizeStoryKernelGenerationCandidate(value: unknown): unknown {

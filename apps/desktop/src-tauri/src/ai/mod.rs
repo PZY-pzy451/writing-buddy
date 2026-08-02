@@ -130,7 +130,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。",
     "公共字段为 id、type、title、aliases、tags、可选 summary、evidenceIds。",
     "每个候选都必须重复提供 aliases、tags、evidenceIds 三个数组，即使为空也不能省略；无法构造完整资源时应省略该候选，不得返回半成品。",
-    "character 使用可选 role/pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。",
+    "character 的可选 role 只能是 protagonist|antagonist|supporting|minor；不得使用中文、空格、下划线、人物职业或其他描述；另可使用 pronouns/birth/appearance/occupation/speechStyle 和 factionIds/goals/desires/fears/values/secrets 数组。",
     "scene 使用 chapterId、manuscriptRange(start/end/revision/quote)、narrativeOrder、locationIds、participantIds、plotThreadIds、revealInformationIds、foreshadowingIds，以及可选 storyStart/storyEnd/povCharacterId/goal/conflict/turn/outcome。",
     "location 使用可选 parentLocationId/locationType/mapPoint 和 travelLinks/factionIds/rules 数组；faction 使用 goals/allyFactionIds/enemyFactionIds/territoryLocationIds 数组及可选 ideology。",
     "item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。",
