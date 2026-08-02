@@ -36,6 +36,8 @@ export interface ChapterExportReceipt {
 	readonly wordCount: number;
 	/** Exact local source state used for a whole-work export. */
 	readonly sourceFingerprint?: string;
+	/** Local author decision designating this exact whole-work export for release. */
+	readonly confirmedAt?: string;
 }
 
 export const chapterExportFormatLabels: Readonly<Record<ManuscriptExportFormat, string>> = {
@@ -50,6 +52,58 @@ const sha256RevisionPattern = /^[0-9a-f]{64}$/u;
 
 export function isWorkSourceFingerprint(value: unknown): value is string {
 	return typeof value === 'string' && sha256FingerprintPattern.test(value);
+}
+
+function isIsoTimestamp(value: unknown): value is string {
+	if (typeof value !== 'string') return false;
+	const timestamp = Date.parse(value);
+	return Number.isFinite(timestamp) && new Date(timestamp).toISOString() === value;
+}
+
+function withoutReleaseConfirmation(
+	receipt: ChapterExportReceipt
+): ChapterExportReceipt {
+	if (!receipt.confirmedAt) return receipt;
+	const { confirmedAt, ...unconfirmed } = receipt;
+	return confirmedAt ? unconfirmed : receipt;
+}
+
+export function confirmWholeWorkExportReceipt(
+	receipts: readonly ChapterExportReceipt[],
+	receiptId: string,
+	confirmedAt: string
+): readonly ChapterExportReceipt[] {
+	if (!isIsoTimestamp(confirmedAt)) return receipts;
+	const target = receipts.find(receipt => (
+		receipt.id === receiptId
+		&& receipt.scope === 'work'
+		&& isWorkSourceFingerprint(receipt.sourceFingerprint)
+	));
+	if (!target) return receipts;
+	return receipts.map(receipt => {
+		if (receipt.projectId !== target.projectId || receipt.scope !== 'work') {
+			return receipt;
+		}
+		const unconfirmed = withoutReleaseConfirmation(receipt);
+		return receipt.id === target.id
+			? { ...unconfirmed, confirmedAt }
+			: unconfirmed;
+	});
+}
+
+export function revokeWholeWorkExportReceipt(
+	receipts: readonly ChapterExportReceipt[],
+	receiptId: string
+): readonly ChapterExportReceipt[] {
+	const target = receipts.find(receipt => (
+		receipt.id === receiptId
+		&& receipt.scope === 'work'
+		&& Boolean(receipt.confirmedAt)
+	));
+	if (!target) return receipts;
+	return receipts.map(receipt => receipt.id === target.id
+		? withoutReleaseConfirmation(receipt)
+		: receipt);
 }
 
 export async function createWorkSourceFingerprint(
@@ -245,7 +299,12 @@ export function parseChapterExportReceipts(
 			exportedAt: value.exportedAt,
 			wordCount: Math.floor(value.wordCount ?? 0),
 			...(scope === 'work' && isWorkSourceFingerprint(value.sourceFingerprint)
-				? { sourceFingerprint: value.sourceFingerprint }
+				? {
+						sourceFingerprint: value.sourceFingerprint,
+						...(isIsoTimestamp(value.confirmedAt)
+							? { confirmedAt: value.confirmedAt }
+							: {})
+					}
 				: {})
 		}];
 	}).slice(0, 100);

@@ -32,6 +32,7 @@
 	"acceptance:phase-1.2n": "node scripts/acceptance/validate-phase-1.2n-publish-readiness.mjs",
 	"acceptance:phase-1.2o": "node scripts/acceptance/validate-phase-1.2o-chapter-lifecycle.mjs",
 	"acceptance:phase-1.2p": "node scripts/acceptance/validate-phase-1.2p-delivery-freshness.mjs",
+	"acceptance:phase-1.2q": "node scripts/acceptance/validate-phase-1.2q-author-confirmed-release.mjs",
     "acceptance:genre-to-draft": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:genre-to-draft:gate-d": "node scripts/acceptance/validate-genre-to-draft-gate-d.mjs",
     "acceptance:complete-novel": "node scripts/acceptance/validate-complete-novel.mjs",

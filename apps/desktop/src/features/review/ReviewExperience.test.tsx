@@ -161,7 +161,7 @@ describe('manual and AI review experience', () => {
 			.toBeInTheDocument();
 	});
 
-	it('passes an exact whole-work receipt then invalidates it after a same-word-count structure change', async () => {
+	it('confirms an exact release candidate, invalidates it after a source change and revokes it from History', async () => {
 		const user = userEvent.setup();
 		vi.spyOn(desktopBridge, 'saveDocxAs').mockResolvedValue('D:\\Exports\\我的小说.docx');
 		render(<App />);
@@ -176,7 +176,15 @@ describe('manual and AI review experience', () => {
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		expect(screen.queryByText(/已导出整部《我的小说》/u)).not.toBeInTheDocument();
 		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
-		expect(await screen.findByText(/逐章正文哈希完全一致/u)).toBeInTheDocument();
+		expect(await screen.findByText(/请由作者确认它是否就是准备发布或提交的版本/u))
+			.toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: /确认此交付版本/ }));
+		await waitFor(() => expect(Number.isFinite(Date.parse(
+			useAppStore.getState().chapterExportReceipts[0]?.confirmedAt ?? ''
+		))).toBe(true));
+		expect(await screen.findByText(/作者已确认这次Word整书导出作为发布版本/u))
+			.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: /查看交付记录/ })).toHaveFocus();
 
 		const before = useAppStore.getState();
 		const chapter = before.snapshot ? flattenChapters(before.snapshot.project)[0] : undefined;
@@ -188,8 +196,16 @@ describe('manual and AI review experience', () => {
 		});
 
 		expect(useAppStore.getState().snapshot?.wordCounts).toEqual(wordCounts);
-		expect(await screen.findByText(/相同字数也不会视为同一版本/u))
+		expect(await screen.findByText(/作者已确认的发布版本与当前项目结构或正文内容不再一致/u))
 			.toBeInTheDocument();
+
+		await user.click(screen.getByRole('button', { name: /重新导出整书/ }));
+		expect(await screen.findByRole('heading', { name: '最近导出' })).toBeInTheDocument();
+		expect(screen.getByText('已确认发布版本')).toBeInTheDocument();
+		expect(screen.getByText(/作者确认于/u)).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '取消发布确认' }));
+		expect(useAppStore.getState().chapterExportReceipts[0]?.confirmedAt).toBeUndefined();
+		expect(screen.getByText('已取消《我的小说》的发布版本确认。')).toBeInTheDocument();
 	});
 
 	it('saves dirty prose from the publish blocker and recomputes the checklist', async () => {

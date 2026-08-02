@@ -1,0 +1,158 @@
+{
+  "generatedAt": "2026-08-02T10:26:56.196Z",
+  "appUrl": "http://127.0.0.1:1420/",
+  "receipt": {
+    "title": "我的小说",
+    "destination": "browser-downloads/我的小说.docx",
+    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/2 18:26:53"
+  },
+  "unconfirmed": {
+    "status": "attention",
+    "detail": "这次Word整书导出的精确源指纹与当前版本一致；请由作者确认它是否就是准备发布或提交的版本。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
+  },
+  "matching": {
+    "status": "passed",
+    "detail": "作者已确认这次Word整书导出作为发布版本；其源指纹与当前项目结构及逐章正文哈希完全一致，未回读目标文件。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
+  },
+  "stale": {
+    "status": "attention",
+    "detail": "作者已确认的发布版本与当前项目结构或正文内容不再一致；请重新导出并确认新的版本。",
+    "context": [
+      "3 章",
+      "209 字"
+    ]
+  },
+  "historyConfirmation": {
+    "title": "我的小说",
+    "badge": "已确认发布版本",
+    "confirmedAt": "作者确认于 2026/8/2 18:26:53",
+    "action": "取消发布确认"
+  },
+  "revoked": {
+    "confirmedRows": 0,
+    "notice": "已取消《我的小说》的发布版本确认。"
+  },
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "name": "01-history-exact-receipt-1440x900.png",
+      "surface": "history-exact-receipt",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "02-publish-exact-unconfirmed-1440x900.png",
+      "surface": "publish-exact-unconfirmed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "03-publish-confirmed-1440x900.png",
+      "surface": "publish-confirmed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "04-publish-confirmed-1024x720.png",
+      "surface": "publish-confirmed",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "05-publish-confirmed-820x720.png",
+      "surface": "publish-confirmed",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "06-publish-stale-confirmed-820x720.png",
+      "surface": "publish-stale-same-count",
+      "viewport": {
+        "width": 820,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "07-history-confirmed-release-1024x720.png",
+      "surface": "history-confirmed-release",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    },
+    {
+      "name": "08-history-revoked-release-1024x720.png",
+      "surface": "history-revoked-release",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "clippedInteractive": 0,
+      "clippedInteractiveDetails": [],
+      "shortScopedControls": [],
+      "occludedScopedControls": []
+    }
+  ]
+}

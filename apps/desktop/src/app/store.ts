@@ -95,8 +95,10 @@ import {
 	buildChapterExportContent,
 	buildWorkDocxDocument,
 	buildWorkExportContent,
+	confirmWholeWorkExportReceipt,
 	createWorkSourceFingerprint,
 	parseChapterExportReceipts,
+	revokeWholeWorkExportReceipt,
 	suggestedChapterExportName,
 	suggestedWorkExportName,
 	type ChapterExportFormat,
@@ -332,6 +334,8 @@ interface AppState extends PersistedWorkspace {
 	readonly saveAs: () => Promise<boolean>;
 	readonly exportActiveChapter: (format?: ChapterExportFormat) => Promise<boolean>;
 	readonly exportWholeWork: (format?: WorkExportFormat) => Promise<boolean>;
+	readonly confirmWholeWorkDelivery: (receiptId: string) => boolean;
+	readonly revokeWholeWorkDelivery: (receiptId: string) => boolean;
 	readonly forceSave: () => Promise<boolean>;
 	readonly reloadExternal: () => void;
 	readonly dismissExternalConflict: () => void;
@@ -2079,6 +2083,33 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		} finally {
 			set({ chapterExportBusy: false });
 		}
+	},
+
+	confirmWholeWorkDelivery(receiptId) {
+		let confirmed = false;
+		set(state => {
+			const receipts = confirmWholeWorkExportReceipt(
+				state.chapterExportReceipts,
+				receiptId,
+				new Date().toISOString()
+			);
+			confirmed = receipts !== state.chapterExportReceipts;
+			return confirmed ? { chapterExportReceipts: receipts } : {};
+		});
+		return confirmed;
+	},
+
+	revokeWholeWorkDelivery(receiptId) {
+		let revoked = false;
+		set(state => {
+			const receipts = revokeWholeWorkExportReceipt(
+				state.chapterExportReceipts,
+				receiptId
+			);
+			revoked = receipts !== state.chapterExportReceipts;
+			return revoked ? { chapterExportReceipts: receipts } : {};
+		});
+		return revoked;
 	},
 
 	async forceSave() {

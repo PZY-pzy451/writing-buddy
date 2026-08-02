@@ -1,5 +1,6 @@
 import {
 	AlertTriangle,
+	BadgeCheck,
 	BookOpenCheck,
 	Bot,
 	CheckCircle2,
@@ -47,6 +48,7 @@ export function ReviewPage(): React.JSX.Element {
 	const issues = useAppStore(state => state.issues);
 	const saveState = useAppStore(state => state.saveState);
 	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
+	const confirmWholeWorkDelivery = useAppStore(state => state.confirmWholeWorkDelivery);
 	const setIssues = useAppStore(state => state.setIssues);
 	const openResource = useAppStore(state => state.openResource);
 	const save = useAppStore(state => state.save);
@@ -309,6 +311,9 @@ export function ReviewPage(): React.JSX.Element {
 					openWholeWorkConsistency();
 				}
 				return;
+			case 'confirm-delivery':
+				confirmWholeWorkDelivery(action.receiptId);
+				return;
 			case 'history':
 				setRailMode('versions');
 				return;
@@ -527,6 +532,7 @@ function PublishReadinessPanel(props: {
 			className="publish-readiness"
 			data-status={props.model.status}
 			aria-labelledby="publish-readiness-title"
+			aria-live="polite"
 		>
 			<div className="publish-readiness-summary">
 				<span className="publish-readiness-icon">
@@ -612,7 +618,10 @@ function PublishReadinessRow(props: {
 					type="button"
 					onClick={() => props.onAction(props.check.action!)}
 				>
-					{props.check.action.label}<ExternalLink size={16} aria-hidden="true" />
+					{props.check.action.label}
+					{props.check.action.type === 'confirm-delivery'
+						? <BadgeCheck size={16} aria-hidden="true" />
+						: <ExternalLink size={16} aria-hidden="true" />}
 				</button>
 			)}
 		</article>

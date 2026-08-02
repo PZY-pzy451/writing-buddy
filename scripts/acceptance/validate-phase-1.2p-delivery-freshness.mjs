@@ -5,12 +5,20 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const phaseSlug = 'phase-1.2p-delivery-freshness';
+const authorConfirmationMode = process.env.PHASE_1_2Q_AUTHOR_CONFIRMATION === '1';
+const phaseSlug = authorConfirmationMode
+	? 'phase-1.2q-author-confirmed-release'
+	: 'phase-1.2p-delivery-freshness';
 const outputDirectory = join(repositoryRoot, 'docs', 'acceptance', 'screenshots', phaseSlug);
 const metricsPath = join(repositoryRoot, 'docs', 'acceptance', `${phaseSlug}-visual-metrics.json`);
 const edgePath = process.env.EDGE_PATH
 	?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-const port = Number(process.env.PHASE_1_2P_CDP_PORT ?? 9425);
+const port = Number(
+	(authorConfirmationMode
+		? process.env.PHASE_1_2Q_CDP_PORT
+		: process.env.PHASE_1_2P_CDP_PORT)
+	?? (authorConfirmationMode ? 9426 : 9425)
+);
 const appUrl = process.env.WRITING_BUDDY_URL ?? 'http://127.0.0.1:1420/';
 
 class CdpClient {
@@ -176,7 +184,9 @@ async function collectMetrics(client, surface) {
 				?? element.textContent?.replace(/\\s+/gu, ' ').trim().slice(0, 80),
 			rect: element.getBoundingClientRect().toJSON()
 		}));
-		const scopedControls = controls.filter(control => control.closest('.publish-readiness'));
+		const scopedControls = controls.filter(control => (
+			control.closest('.publish-readiness, .history-receipts')
+		));
 		const occluded = scopedControls.filter(control => {
 			const rect = control.getBoundingClientRect();
 			if (hasScrollableAncestor(control) && (rect.top < 68 || rect.bottom > innerHeight - 40)) {
@@ -270,15 +280,28 @@ try {
 	await waitFor(client, `Boolean(document.querySelector('.publish-readiness'))`, 'publish readiness');
 	await clickControl(client, 'button', '查看发布清单', true);
 	await waitFor(client, `[...document.querySelectorAll('.publish-readiness-row')]
-		.some(row => row.textContent.includes('逐章正文哈希完全一致'))`, 'matching source fingerprint');
+		.some(row => row.textContent.includes('请由作者确认'))`, 'unconfirmed exact source fingerprint');
+	const unconfirmed = await deliveryState(client);
+	assert(unconfirmed.status === 'attention'
+		&& unconfirmed.detail?.includes('精确源指纹与当前版本一致'),
+		`Exact source was not held for author confirmation: ${JSON.stringify(unconfirmed)}`);
+	metrics = await collectMetrics(client, 'publish-exact-unconfirmed');
+	await screenshot(client, '02-publish-exact-unconfirmed-1440x900.png');
+	captures.push({ name: '02-publish-exact-unconfirmed-1440x900.png', ...metrics });
+
+	await clickControl(client, 'button', '确认此交付版本', true);
+	await waitFor(client, `[...document.querySelectorAll('.publish-readiness-row')]
+		.some(row => row.textContent.includes('作者已确认这次Word整书导出'))`, 'author-confirmed delivery');
 	const matching = await deliveryState(client);
-	assert(matching.status === 'passed' && matching.detail?.includes('未回读目标文件'),
+	assert(matching.status === 'passed'
+		&& matching.detail?.includes('逐章正文哈希完全一致')
+		&& matching.detail?.includes('未回读目标文件'),
 		`Exact delivery did not pass: ${JSON.stringify(matching)}`);
 
 	for (const [width, height, name] of [
-		[1440, 900, '02-publish-exact-match-1440x900.png'],
-		[1024, 720, '03-publish-exact-match-1024x720.png'],
-		[820, 720, '04-publish-exact-match-820x720.png']
+		[1440, 900, '03-publish-confirmed-1440x900.png'],
+		[1024, 720, '04-publish-confirmed-1024x720.png'],
+		[820, 720, '05-publish-confirmed-820x720.png']
 	]) {
 		await setViewport(client, width, height);
 		if (width === 820) {
@@ -291,7 +314,7 @@ try {
 			})()`);
 			await delay(120);
 		}
-		metrics = await collectMetrics(client, 'publish-exact-match');
+		metrics = await collectMetrics(client, 'publish-confirmed');
 		await screenshot(client, name);
 		captures.push({ name, ...metrics });
 	}
@@ -311,10 +334,10 @@ try {
 	await waitFor(client, `Boolean(document.querySelector('.publish-readiness'))`, 'publish readiness after status');
 	await clickControl(client, 'button', '查看发布清单', true);
 	await waitFor(client, `[...document.querySelectorAll('.publish-readiness-row')]
-		.some(row => row.textContent.includes('相同字数也不会视为同一版本'))`, 'stale exact receipt');
+		.some(row => row.textContent.includes('作者已确认的发布版本与当前项目结构或正文内容不再一致'))`, 'stale confirmed receipt');
 	const stale = await deliveryState(client);
 	assert(stale.status === 'attention'
-		&& stale.detail?.includes('项目结构或正文内容已经变化')
+		&& stale.detail?.includes('项目结构或正文内容不再一致')
 		&& JSON.stringify(stale.context) === JSON.stringify(matching.context),
 		`Same-count source change was not invalidated: ${JSON.stringify({ matching, stale })}`);
 	await evaluate(client, `(() => {
@@ -326,8 +349,53 @@ try {
 	})()`);
 	await delay(120);
 	metrics = await collectMetrics(client, 'publish-stale-same-count');
-	await screenshot(client, '05-publish-stale-same-count-820x720.png');
-	captures.push({ name: '05-publish-stale-same-count-820x720.png', ...metrics });
+	await screenshot(client, '06-publish-stale-confirmed-820x720.png');
+	captures.push({ name: '06-publish-stale-confirmed-820x720.png', ...metrics });
+
+	let historyConfirmation;
+	let revoked;
+	if (authorConfirmationMode) {
+		await clickControl(client, 'button', '重新导出整书', true);
+		await waitFor(client, `Boolean(document.querySelector('.history-receipts [data-confirmed="true"]'))`, 'confirmed History receipt');
+		await evaluate(client, 'location.reload()');
+		await waitFor(client, `Boolean(document.querySelector('main[aria-label="写作首页"]'))`, 'writing home after persistence reload');
+		await clickControl(client, 'button', '历史');
+		await waitFor(client, `Boolean(document.querySelector('.history-receipts [data-confirmed="true"]'))`, 'persisted confirmed History receipt');
+		historyConfirmation = await evaluate(client, `(() => {
+			const row = document.querySelector('.history-receipts [data-confirmed="true"]');
+			return {
+				title: row?.querySelector('.history-receipt-title strong')?.textContent.trim(),
+				badge: row?.querySelector('.history-receipt-title .is-confirmed')?.textContent.trim(),
+				confirmedAt: row?.querySelector('.history-receipt-confirmed-at')?.textContent.replace(/\\s+/gu, ' ').trim(),
+				action: row?.querySelector('.history-receipt-revoke')?.textContent.replace(/\\s+/gu, ' ').trim()
+			};
+		})()`);
+		assert(historyConfirmation.title === '我的小说'
+			&& historyConfirmation.badge === '已确认发布版本'
+			&& historyConfirmation.confirmedAt?.includes('作者确认于')
+			&& historyConfirmation.action === '取消发布确认',
+			`History did not preserve the author decision: ${JSON.stringify(historyConfirmation)}`);
+		await setViewport(client, 1024, 720);
+		await evaluate(client, `document.querySelector('.history-receipts [data-confirmed="true"]')?.scrollIntoView({ block: 'center' })`);
+		await delay(120);
+		metrics = await collectMetrics(client, 'history-confirmed-release');
+		await screenshot(client, '07-history-confirmed-release-1024x720.png');
+		captures.push({ name: '07-history-confirmed-release-1024x720.png', ...metrics });
+
+		await clickControl(client, 'button', '取消发布确认');
+		await waitFor(client, `!document.querySelector('.history-receipts [data-confirmed="true"]')
+			&& document.body.textContent.includes('已取消《我的小说》的发布版本确认。')`, 'revoked delivery confirmation');
+		revoked = await evaluate(client, `(() => ({
+			confirmedRows: document.querySelectorAll('.history-receipts [data-confirmed="true"]').length,
+			notice: [...document.querySelectorAll('.success-message')]
+				.map(node => node.textContent.trim()).find(text => text.includes('已取消'))
+		}))()`);
+		assert(revoked.confirmedRows === 0 && revoked.notice?.includes('已取消'),
+			`Release confirmation was not revoked: ${JSON.stringify(revoked)}`);
+		metrics = await collectMetrics(client, 'history-revoked-release');
+		await screenshot(client, '08-history-revoked-release-1024x720.png');
+		captures.push({ name: '08-history-revoked-release-1024x720.png', ...metrics });
+	}
 
 	for (const capture of captures) {
 		assert(capture.pageOverflowX === 0, `Horizontal page overflow: ${JSON.stringify(capture)}`);
@@ -350,12 +418,15 @@ try {
 		generatedAt: new Date().toISOString(),
 		appUrl,
 		receipt,
+		unconfirmed,
 		matching,
 		stale,
+		historyConfirmation,
+		revoked,
 		runtimeErrors,
 		captures
 	}, null, 2)}\n`);
-	console.log(`Phase 1.2P browser acceptance passed: ${metricsPath}`);
+	console.log(`${authorConfirmationMode ? 'Phase 1.2Q' : 'Phase 1.2P'} browser acceptance passed: ${metricsPath}`);
 } finally {
 	client?.close();
 	if (edge.pid) {

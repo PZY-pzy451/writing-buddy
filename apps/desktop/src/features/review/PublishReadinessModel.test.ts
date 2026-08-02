@@ -77,7 +77,7 @@ describe('PublishReadinessModel', () => {
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [],
-			receipts: [receipt()],
+			receipts: [receipt({ confirmedAt: '2026-08-02T08:05:00.000Z' })],
 			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
@@ -90,7 +90,29 @@ describe('PublishReadinessModel', () => {
 			wordCount: 2000
 		});
 		expect(result.checks.find(check => check.id === 'delivery')?.detail)
-			.toContain('逐章正文哈希完全一致');
+			.toContain('作者已确认');
+	});
+
+	it('requires the author to confirm an exact current export before passing delivery', () => {
+		const result = selectPublishReadiness({
+			snapshot: snapshot(),
+			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
+			issues: [],
+			receipts: [receipt()],
+			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
+		});
+
+		expect(result.status).toBe('attention');
+		expect(result.checks.find(check => check.id === 'delivery')).toMatchObject({
+			status: 'attention',
+			action: {
+				type: 'confirm-delivery',
+				label: '确认此交付版本',
+				receiptId: 'receipt-one'
+			}
+		});
+		expect(result.checks.find(check => check.id === 'delivery')?.detail)
+			.toContain('请由作者确认');
 	});
 
 	it('uses the active unsaved word count and blocks empty chapters plus dirty saving', () => {
@@ -171,13 +193,13 @@ describe('PublishReadinessModel', () => {
 		expect(result.checks.find(check => check.id === 'integrity')?.detail).toContain('只读');
 	});
 
-	it('compares only the newest whole-work receipt with the exact source fingerprint', () => {
+	it('keeps an exact confirmed candidate authoritative after a later unrelated export', () => {
 		const result = selectPublishReadiness({
 			snapshot: snapshot(),
 			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
 			issues: [],
 			receipts: [
-				receipt(),
+				receipt({ confirmedAt: '2026-08-02T08:05:00.000Z' }),
 				receipt({
 					id: 'receipt-new',
 					exportedAt: '2026-08-02T09:00:00.000Z',
@@ -188,13 +210,31 @@ describe('PublishReadinessModel', () => {
 			sourceInspection: { status: 'ready', fingerprint: currentFingerprint }
 		});
 
+		expect(result.status).toBe('passed');
+		expect(result.checks.find(check => check.id === 'delivery')).toMatchObject({
+			status: 'passed',
+			action: { type: 'history', label: '查看交付记录' }
+		});
+		expect(result.checks.find(check => check.id === 'delivery')?.detail)
+			.toContain('作者已确认');
+	});
+
+	it('makes a confirmed candidate stale after the exact source changes', () => {
+		const result = selectPublishReadiness({
+			snapshot: snapshot(),
+			saveState: { type: 'clean', savedAt: '2026-08-02T08:00:00.000Z' },
+			issues: [],
+			receipts: [receipt({ confirmedAt: '2026-08-02T08:05:00.000Z' })],
+			sourceInspection: { status: 'ready', fingerprint: `sha256:${'b'.repeat(64)}` }
+		});
+
 		expect(result.status).toBe('attention');
 		expect(result.checks.find(check => check.id === 'delivery')).toMatchObject({
 			status: 'attention',
 			action: { type: 'history', label: '重新导出整书' }
 		});
 		expect(result.checks.find(check => check.id === 'delivery')?.detail)
-			.toContain('相同字数也不会视为同一版本');
+			.toContain('作者已确认的发布版本');
 	});
 
 	it('does not trust legacy receipts or a source inspection that cannot finish', () => {

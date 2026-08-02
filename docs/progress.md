@@ -4,23 +4,22 @@ Updated: 2026-08-02
 
 ## Active milestone
 
-Phase 1.2P verifiable delivery freshness is complete in the isolated worktree
+Phase 1.2Q author-confirmed release candidate is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
 
-- Whole-work export receipts now contain a SHA-256 fingerprint over the exact
-  manifest revision and ordered chapter IDs, paths and raw-file hashes.
-- Check performs a fresh read-only local inspection. Exact matches pass; legacy
-  receipts, unsaved prose, unavailable inspection and equal-count source
-  changes remain explicit attention states.
-- Five Edge/CDP captures at 1440×900, 1024×720 and 820×720 pass with no page
-  overflow, clipping, sub-44 px publish controls, occlusion or runtime errors.
-- Final gates: 167 Vitest files / 686 tests, production Vite build, Cargo format,
+- Check now separates exact export freshness from the author's final release
+  decision. Only an exact current receipt can be explicitly confirmed.
+- Confirmation is project-scoped, locally persisted and reversible. History
+  shows the active candidate and timestamp; source changes make it visibly stale.
+- Eight Edge/CDP captures at 1440×900, 1024×720 and 820×720 pass with no page
+  overflow, clipping, sub-44 px scoped controls, occlusion or runtime errors.
+- Final gates: 167 Vitest files / 689 tests, production Vite build, Cargo format,
   77 Rust tests / 2 ignored, full and release self-tests, Tauri Release/NSIS and
-  portable PID 35788 title/WebView/no-debug-port/normal-close smoke.
-- Delivery: `artifacts/release/phase-1.2p-delivery-freshness-2026-08-02/`;
-  evidence:
-  `docs/acceptance/073-phase-1.2p-verifiable-delivery-freshness-2026-08-02.md`.
+  portable PID 39600 title/WebView/no-debug-port/normal-close smoke.
+- Delivery:
+  `artifacts/release/phase-1.2q-author-confirmed-release-2026-08-02/`; evidence:
+  `docs/acceptance/074-phase-1.2q-author-confirmed-release-2026-08-02.md`.
 
 ## Previous milestones
 

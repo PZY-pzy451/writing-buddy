@@ -11,6 +11,7 @@ export type PublishReadinessAction =
 	| { readonly type: 'planning'; readonly label: string }
 	| { readonly type: 'chapter'; readonly label: string; readonly resourceId: string }
 	| { readonly type: 'review'; readonly label: string; readonly resourceId?: string; readonly offset?: number }
+	| { readonly type: 'confirm-delivery'; readonly label: string; readonly receiptId: string }
 	| { readonly type: 'history'; readonly label: string };
 
 export interface PublishReadinessCheck {
@@ -108,6 +109,11 @@ function receiptTimestamp(receipt: ChapterExportReceipt): number {
 	return Number.isFinite(timestamp) ? timestamp : 0;
 }
 
+function confirmationTimestamp(receipt: ChapterExportReceipt): number {
+	const timestamp = Date.parse(receipt.confirmedAt ?? '');
+	return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
 function formatLabel(receipt: ChapterExportReceipt): string {
 	switch (receipt.format) {
 		case 'docx': return 'Word';
@@ -138,19 +144,30 @@ export function selectPublishReadiness(
 	const chapterIds = new Set(chapters.map(chapter => chapter.id));
 	const integrityErrors = input.snapshot.integrityIssues.filter(issue => issue.severity === 'error');
 	const integrityWarnings = input.snapshot.integrityIssues.filter(issue => issue.severity === 'warning');
-	const latestWorkReceipt = input.receipts
+	const workReceipts = input.receipts
 		.filter(receipt => (
 			receipt.projectId === input.snapshot.project.projectId && receipt.scope === 'work'
 		))
 		.slice()
-		.sort((left, right) => receiptTimestamp(right) - receiptTimestamp(left))[0];
+		.sort((left, right) => receiptTimestamp(right) - receiptTimestamp(left));
+	const latestWorkReceipt = workReceipts[0];
+	const confirmedWorkReceipt = workReceipts
+		.filter(receipt => Boolean(receipt.confirmedAt))
+		.sort((left, right) => confirmationTimestamp(right) - confirmationTimestamp(left))[0];
 	const sourceReady = input.sourceInspection.status === 'ready';
-	const matchingReceipt = Boolean(
-		latestWorkReceipt
-		&& input.saveState.type === 'clean'
-		&& sourceReady
-		&& latestWorkReceipt.sourceFingerprint === input.sourceInspection.fingerprint
-	);
+	const currentSourceFingerprint = input.sourceInspection.status === 'ready'
+		? input.sourceInspection.fingerprint
+		: undefined;
+	const sourceMatchAllowed = input.saveState.type === 'clean' && sourceReady;
+	const matchingReceipt = sourceMatchAllowed
+		? workReceipts.find(receipt => (
+			receipt.sourceFingerprint === currentSourceFingerprint
+		))
+		: undefined;
+	const matchingConfirmedReceipt = sourceMatchAllowed
+		&& confirmedWorkReceipt?.sourceFingerprint === currentSourceFingerprint
+		? confirmedWorkReceipt
+		: undefined;
 
 	const checks: PublishReadinessCheck[] = [
 		chapters.length === 0
@@ -264,14 +281,26 @@ export function selectPublishReadiness(
 						status: 'passed',
 						detail: '当前没有未处理的审校建议；这不代表已经运行过全书 AI 扫描。'
 					},
-		matchingReceipt && latestWorkReceipt
+		matchingConfirmedReceipt
 			? {
 					id: 'delivery',
 					title: '整书交付回执',
 					status: 'passed',
-					detail: `最近一次${formatLabel(latestWorkReceipt)}整书导出的源指纹与当前项目结构及逐章正文哈希完全一致；未回读目标文件。`,
+					detail: `作者已确认这次${formatLabel(matchingConfirmedReceipt)}整书导出作为发布版本；其源指纹与当前项目结构及逐章正文哈希完全一致，未回读目标文件。`,
 					action: { type: 'history', label: '查看交付记录' }
 				}
+			: matchingReceipt
+				? {
+						id: 'delivery',
+						title: '整书交付回执',
+						status: 'attention',
+						detail: `这次${formatLabel(matchingReceipt)}整书导出的精确源指纹与当前版本一致；请由作者确认它是否就是准备发布或提交的版本。`,
+						action: {
+							type: 'confirm-delivery',
+							label: '确认此交付版本',
+							receiptId: matchingReceipt.id
+						}
+					}
 			: {
 					id: 'delivery',
 					title: '整书交付回执',
@@ -284,7 +313,9 @@ export function selectPublishReadiness(
 								? '磁盘上的项目结构已变化，请重新打开项目后再核对交付。'
 								: input.sourceInspection.status === 'unavailable'
 									? '暂时无法读取完整的本地源指纹；不会把旧交付误报为最新。'
-									: latestWorkReceipt?.sourceFingerprint
+									: confirmedWorkReceipt?.sourceFingerprint
+										? '作者已确认的发布版本与当前项目结构或正文内容不再一致；请重新导出并确认新的版本。'
+										: latestWorkReceipt?.sourceFingerprint
 										? `最近整书回执为 ${latestWorkReceipt.chapterCount} 章、${latestWorkReceipt.wordCount.toLocaleString()} 字，但项目结构或正文内容已经变化；相同字数也不会视为同一版本。`
 										: latestWorkReceipt
 											? '最近整书回执来自旧版本，未包含逐章内容指纹，需要重新导出后才能精确核对。'
@@ -308,7 +339,7 @@ export function selectPublishReadiness(
 			? `${blockedCount} 项条件会阻止可信交付，请先处理。`
 			: status === 'attention'
 				? `${attentionCount} 项需要作者确认，系统不会替你做决定。`
-				: '当前确定性检查全部通过，可以前往历史生成最终交付件。',
+				: '当前确定性检查全部通过，已锁定作者确认的发布版本。',
 		chapterCount: chapters.length,
 		wordCount,
 		blockedCount,

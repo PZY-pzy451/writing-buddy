@@ -3,8 +3,10 @@ import {
 	buildChapterExportContent,
 	buildWorkDocxDocument,
 	buildWorkExportContent,
+	confirmWholeWorkExportReceipt,
 	createWorkSourceFingerprint,
 	parseChapterExportReceipts,
+	revokeWholeWorkExportReceipt,
 	suggestedChapterExportName,
 	suggestedWorkExportName
 } from './ChapterExportModel';
@@ -124,7 +126,8 @@ describe('ChapterExportModel', () => {
 			format: 'plain-text',
 			destination: 'D:\\Exports\\第一章.txt',
 			exportedAt: '2026-07-31T12:00:00.000Z',
-			wordCount: 1200.8
+			wordCount: 1200.8,
+			confirmedAt: '2026-07-31T12:05:00.000Z'
 		}, {
 			id: 'export:2',
 			projectId: 'project:1',
@@ -135,7 +138,8 @@ describe('ChapterExportModel', () => {
 			destination: 'D:\\Exports\\零点回声.md',
 			exportedAt: '2026-08-01T12:00:00.000Z',
 			wordCount: 50000,
-			sourceFingerprint: 'invalid'
+			sourceFingerprint: 'invalid',
+			confirmedAt: 'not-a-timestamp'
 		}, {
 			id: 'export:3',
 			projectId: 'project:1',
@@ -146,7 +150,20 @@ describe('ChapterExportModel', () => {
 			destination: 'D:\\Exports\\零点回声.docx',
 			exportedAt: '2026-08-01T13:00:00.000Z',
 			wordCount: 50000,
-			sourceFingerprint: `sha256:${'c'.repeat(64)}`
+			sourceFingerprint: `sha256:${'c'.repeat(64)}`,
+			confirmedAt: '2026-08-01T13:05:00.000Z'
+		}, {
+			id: 'export:4',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '时间异常回执',
+			chapterCount: 12,
+			format: 'docx',
+			destination: 'D:\\Exports\\malformed-time.docx',
+			exportedAt: '2026-08-01T14:00:00.000Z',
+			wordCount: 50000,
+			sourceFingerprint: `sha256:${'d'.repeat(64)}`,
+			confirmedAt: '2026-08-01 14:05'
 		}, {
 			id: 'invalid',
 			format: 'pdf'
@@ -182,7 +199,80 @@ describe('ChapterExportModel', () => {
 			destination: 'D:\\Exports\\零点回声.docx',
 			exportedAt: '2026-08-01T13:00:00.000Z',
 			wordCount: 50000,
-			sourceFingerprint: `sha256:${'c'.repeat(64)}`
+			sourceFingerprint: `sha256:${'c'.repeat(64)}`,
+			confirmedAt: '2026-08-01T13:05:00.000Z'
+		}, {
+			id: 'export:4',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '时间异常回执',
+			chapterCount: 12,
+			format: 'docx',
+			destination: 'D:\\Exports\\malformed-time.docx',
+			exportedAt: '2026-08-01T14:00:00.000Z',
+			wordCount: 50000,
+			sourceFingerprint: `sha256:${'d'.repeat(64)}`
 		}]);
+	});
+
+	it('confirms one exact whole-work receipt per project and revokes it reversibly', () => {
+		const receipts = parseChapterExportReceipts([{
+			id: 'work-old',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '旧版',
+			chapterCount: 10,
+			format: 'docx',
+			destination: 'D:\\Exports\\old.docx',
+			exportedAt: '2026-08-01T12:00:00.000Z',
+			wordCount: 40000,
+			sourceFingerprint: `sha256:${'a'.repeat(64)}`,
+			confirmedAt: '2026-08-01T12:05:00.000Z'
+		}, {
+			id: 'work-new',
+			projectId: 'project:1',
+			scope: 'work',
+			title: '新版',
+			chapterCount: 10,
+			format: 'docx',
+			destination: 'D:\\Exports\\new.docx',
+			exportedAt: '2026-08-02T12:00:00.000Z',
+			wordCount: 41000,
+			sourceFingerprint: `sha256:${'b'.repeat(64)}`
+		}, {
+			id: 'other-project',
+			projectId: 'project:2',
+			scope: 'work',
+			title: '另一部作品',
+			chapterCount: 2,
+			format: 'markdown',
+			destination: 'D:\\Exports\\other.md',
+			exportedAt: '2026-08-02T11:00:00.000Z',
+			wordCount: 3000,
+			sourceFingerprint: `sha256:${'c'.repeat(64)}`,
+			confirmedAt: '2026-08-02T11:05:00.000Z'
+		}]);
+
+		const confirmed = confirmWholeWorkExportReceipt(
+			receipts,
+			'work-new',
+			'2026-08-02T12:05:00.000Z'
+		);
+		expect(confirmed).not.toBe(receipts);
+		expect(confirmed.find(receipt => receipt.id === 'work-old')?.confirmedAt)
+			.toBeUndefined();
+		expect(confirmed.find(receipt => receipt.id === 'work-new')?.confirmedAt)
+			.toBe('2026-08-02T12:05:00.000Z');
+		expect(confirmed.find(receipt => receipt.id === 'other-project')?.confirmedAt)
+			.toBe('2026-08-02T11:05:00.000Z');
+		expect(confirmWholeWorkExportReceipt(receipts, 'missing', '2026-08-02T12:05:00.000Z'))
+			.toBe(receipts);
+		expect(confirmWholeWorkExportReceipt(receipts, 'work-new', 'invalid'))
+			.toBe(receipts);
+
+		const revoked = revokeWholeWorkExportReceipt(confirmed, 'work-new');
+		expect(revoked.find(receipt => receipt.id === 'work-new')?.confirmedAt)
+			.toBeUndefined();
+		expect(revokeWholeWorkExportReceipt(revoked, 'work-new')).toBe(revoked);
 	});
 });

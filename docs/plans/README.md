@@ -48,6 +48,7 @@
 - [Phase 1.2N publish readiness](./046-phase-1.2n-publish-readiness.md)
 - [Phase 1.2O chapter lifecycle](./047-phase-1.2o-chapter-lifecycle.md)
 - [Phase 1.2P verifiable delivery freshness](./048-phase-1.2p-verifiable-delivery-freshness.md)
+- [Phase 1.2Q author-confirmed release candidate](./049-phase-1.2q-author-confirmed-release-candidate.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

@@ -5495,6 +5495,11 @@ body,
 	white-space: nowrap;
 }
 
+.history-receipt-title small.is-confirmed {
+	color: var(--success);
+	background: color-mix(in srgb, var(--success) 10%, var(--surface-canvas));
+}
+
 .history-receipts > header,
 .history-safety > header {
 	display: flex;
@@ -5532,6 +5537,11 @@ body,
 	border-radius: 10px;
 }
 
+.history-receipts li[data-confirmed="true"] {
+	border-color: color-mix(in srgb, var(--success) 34%, var(--border-subtle));
+	box-shadow: inset 3px 0 0 var(--success);
+}
+
 .history-receipt-icon {
 	width: 36px;
 	height: 36px;
@@ -5559,6 +5569,17 @@ body,
 
 .history-receipt-meta small {
 	color: var(--text-muted);
+}
+
+.history-receipt-meta .history-receipt-confirmed-at {
+	color: var(--success);
+	font-weight: 700;
+}
+
+.history-receipt-revoke {
+	min-height: 44px;
+	margin-top: 2px;
+	white-space: nowrap;
 }
 
 .history-safety-heading {

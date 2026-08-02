@@ -1,10 +1,12 @@
 import {
+	BadgeCheck,
 	Download,
 	FileSearch,
 	FileText,
 	History,
 	Search,
-	ShieldCheck
+	ShieldCheck,
+	Undo2
 } from 'lucide-react';
 import type { VersionSummary } from '@writing-buddy/platform-ports';
 import {
@@ -46,6 +48,7 @@ export function SystemPage(): React.JSX.Element | null {
 	const exportWholeWork = useAppStore(state => state.exportWholeWork);
 	const chapterExportBusy = useAppStore(state => state.chapterExportBusy);
 	const chapterExportReceipts = useAppStore(state => state.chapterExportReceipts);
+	const revokeWholeWorkDelivery = useAppStore(state => state.revokeWholeWorkDelivery);
 	const exportError = useAppStore(state => (
 		state.error?.includes('导出') || state.error?.includes('正文尚未安全保存')
 			? state.error
@@ -295,11 +298,27 @@ export function SystemPage(): React.JSX.Element | null {
 		total + volume.chapters.length
 	), 0) ?? 0;
 	const wholeWorkReady = Boolean(snapshot && projectChapterCount > 0);
-	const projectExportReceipts = snapshot
+	const allProjectExportReceipts = snapshot
 		? chapterExportReceipts.filter(receipt => (
 			receipt.projectId === snapshot.project.projectId
-		)).slice(0, 8)
+		))
 		: [];
+	const confirmedReceipt = allProjectExportReceipts
+		.filter(receipt => Boolean(receipt.confirmedAt))
+		.slice()
+		.sort((left, right) => (
+			Date.parse(right.confirmedAt ?? '') - Date.parse(left.confirmedAt ?? '')
+		))[0];
+	const recentProjectReceipts = allProjectExportReceipts.slice(0, 8);
+	const projectExportReceipts = confirmedReceipt
+		&& !recentProjectReceipts.some(receipt => receipt.id === confirmedReceipt.id)
+		? [...recentProjectReceipts, confirmedReceipt]
+		: recentProjectReceipts;
+	const revokeDeliveryConfirmation = (receiptId: string, title: string) => {
+		if (revokeWholeWorkDelivery(receiptId)) {
+			setVersionMessage(`已取消《${title}》的发布版本确认。`);
+		}
+	};
 
 	return (
 		<div className="system-page versions-page">
@@ -376,16 +395,19 @@ export function SystemPage(): React.JSX.Element | null {
 							<span className="eyebrow">Export receipts</span>
 							<h2 id="history-receipts-title">最近导出</h2>
 						</div>
-						<small>仅在文件写入成功后记录</small>
+						<small>发布确认从“检查”写入，可在此撤销</small>
 					</header>
 					<ol>
 						{projectExportReceipts.map(receipt => (
-							<li key={receipt.id}>
-								<span className="history-receipt-icon"><FileText size={16} /></span>
+							<li key={receipt.id} data-confirmed={Boolean(receipt.confirmedAt)}>
+								<span className="history-receipt-icon">
+									{receipt.confirmedAt ? <BadgeCheck size={18} /> : <FileText size={16} />}
+								</span>
 								<span className="history-receipt-main">
 									<span className="history-receipt-title">
 										<strong>{receipt.title}</strong>
 										<small>{receipt.scope === 'work' ? '整部作品' : '当前章节'}</small>
+										{receipt.confirmedAt && <small className="is-confirmed">已确认发布版本</small>}
 									</span>
 									<code title={receipt.destination}>{receipt.destination}</code>
 								</span>
@@ -399,6 +421,20 @@ export function SystemPage(): React.JSX.Element | null {
 											: ''}
 										{' · '}{new Date(receipt.exportedAt).toLocaleString()}
 									</small>
+									{receipt.confirmedAt && (
+										<small className="history-receipt-confirmed-at">
+											作者确认于 {new Date(receipt.confirmedAt).toLocaleString()}
+										</small>
+									)}
+									{receipt.confirmedAt && (
+										<button
+											className="secondary-button history-receipt-revoke"
+											type="button"
+											onClick={() => revokeDeliveryConfirmation(receipt.id, receipt.title)}
+										>
+											<Undo2 size={16} aria-hidden="true" />取消发布确认
+										</button>
+									)}
 								</span>
 							</li>
 						))}

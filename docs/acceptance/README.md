@@ -73,6 +73,7 @@
 - [Phase 1.2N publish readiness acceptance, 2026-08-02](./071-phase-1.2n-publish-readiness-2026-08-02.md)
 - [Phase 1.2O chapter lifecycle acceptance, 2026-08-02](./072-phase-1.2o-chapter-lifecycle-2026-08-02.md)
 - [Phase 1.2P verifiable delivery freshness acceptance, 2026-08-02](./073-phase-1.2p-verifiable-delivery-freshness-2026-08-02.md)
+- [Phase 1.2Q author-confirmed release candidate acceptance, 2026-08-02](./074-phase-1.2q-author-confirmed-release-2026-08-02.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)
