@@ -28,6 +28,7 @@ class CdpClient {
 		this.url = url;
 		this.nextId = 1;
 		this.pending = new Map();
+		this.listeners = new Map();
 	}
 
 	async connect() {
@@ -38,7 +39,12 @@ class CdpClient {
 		});
 		this.socket.addEventListener('message', event => {
 			const message = JSON.parse(event.data);
-			if (!message.id) return;
+			if (!message.id) {
+				for (const listener of this.listeners.get(message.method) ?? []) {
+					listener(message.params);
+				}
+				return;
+			}
 			const pending = this.pending.get(message.id);
 			if (!pending) return;
 			this.pending.delete(message.id);
@@ -47,6 +53,21 @@ class CdpClient {
 			} else {
 				pending.resolve(message.result);
 			}
+		});
+	}
+
+	once(method, timeout = 20_000) {
+		return new Promise((resolveEvent, reject) => {
+			const listener = params => {
+				clearTimeout(timer);
+				this.listeners.delete(method);
+				resolveEvent(params);
+			};
+			const timer = setTimeout(() => {
+				this.listeners.delete(method);
+				reject(new Error(`Timed out waiting for CDP event ${method}.`));
+			}, timeout);
+			this.listeners.set(method, [listener]);
 		});
 	}
 
@@ -111,6 +132,12 @@ async function waitFor(client, expression, description, timeout = 12_000) {
 		await delay(50);
 	}
 	throw new Error(`Timed out waiting for ${description}.`);
+}
+
+async function reloadPage(client, ignoreCache = false) {
+	const loaded = client.once('Page.loadEventFired');
+	await client.call('Page.reload', { ignoreCache });
+	await loaded;
 }
 
 const normalizeTextExpression = `
@@ -319,7 +346,7 @@ async function collectViewportMetrics(client) {
 
 async function openFixture(client) {
 	await evaluate(client, 'localStorage.clear(); sessionStorage.clear(); true');
-	await client.call('Page.reload', { ignoreCache: true });
+	await reloadPage(client, true);
 	await waitFor(
 		client,
 		`[...document.querySelectorAll('button')].some(button => (
@@ -397,7 +424,7 @@ async function validateDragFeedback(client) {
 			'.tree-row[data-interaction-state="drag-source"]'
 		))`
 	);
-	await client.call('Page.reload', { ignoreCache: false });
+	await reloadPage(client);
 	await waitFor(
 		client,
 		`Boolean(
