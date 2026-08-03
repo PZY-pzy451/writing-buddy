@@ -411,10 +411,16 @@ let storyResourceOpenService: StoryResourceOpenService | undefined;
 let quickCaptureStore: QuickCaptureStore | undefined;
 let reviewPersistTimer: number | undefined;
 let activeManuscriptSave: Promise<void> | undefined;
+let activeSaveAs: Promise<boolean> | undefined;
 let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
 let activeResourceOpen: Promise<void> | undefined;
 let queuedResourceOpen: ResourceDescriptor | undefined;
+const closingResourceIds = new Set<string>();
+
+function releaseResourceCloseAfterCurrentBurst(resourceId: string): void {
+	queueMicrotask(() => closingResourceIds.delete(resourceId));
+}
 
 const defaultWriterPanelState: WriterSessionPanelState =
 	createDefaultWriterWorkspaceLayouts().writing;
@@ -1726,10 +1732,15 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	closeResource(resourceId) {
-		const closing = get().tabs.find(resource => resource.id === resourceId);
-		const session = get().session;
-		if (get().activeResource?.id === resourceId && session?.state.dirty) {
+		if (closingResourceIds.has(resourceId)) return;
+		const current = get();
+		const closing = current.tabs.find(resource => resource.id === resourceId);
+		if (!closing) return;
+		const closingActiveResource = current.activeResource?.id === resourceId;
+		closingResourceIds.add(resourceId);
+		if (closingActiveResource && current.session?.state.dirty) {
 			if (!window.confirm('当前内容尚未保存。确定要关闭这个标签并放弃未保存修改吗？')) {
+				releaseResourceCloseAfterCurrentBurst(resourceId);
 				return;
 			}
 		}
@@ -1739,6 +1750,17 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		set(state => ({
 			tabs: tabs.state.resources,
 			openResourceIds,
+			...(closingActiveResource ? {
+				activeResource: undefined,
+				activeResourceId: undefined,
+				storyOpenResult: undefined,
+				session: undefined,
+				resourceContent: undefined,
+				resourceHash: undefined,
+				externalConflict: undefined,
+				saveState: { type: 'clean' as const, savedAt: new Date().toISOString() },
+				error: undefined
+			} : {}),
 			recentlyClosedResources: closing
 				? [
 					closing,
@@ -1749,24 +1771,22 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				: state.recentlyClosedResources,
 			writerSessions: updateCurrentWriterSession(state, writerSession => {
 				const updated = touchWriterSession(writerSession, {
-					openTabs: openResourceIds.map(id => ({ resourceId: id })),
-					...(next ? { activeResourceId: next.id } : {})
+					openTabs: openResourceIds.map(id => ({ resourceId: id }))
 				});
-				if (next) return updated;
+				if (!closingActiveResource) return updated;
 				const withoutActiveResource = { ...updated };
 				delete withoutActiveResource.activeResourceId;
 				return withoutActiveResource;
 			})
 		}));
+		if (!closingActiveResource) {
+			releaseResourceCloseAfterCurrentBurst(resourceId);
+			return;
+		}
 		if (next) {
-			void get().openResource(next);
+			void get().openResource(next).finally(() => closingResourceIds.delete(resourceId));
 		} else {
-			set({
-				activeResource: undefined,
-				storyOpenResult: undefined,
-				session: undefined,
-				resourceContent: undefined
-			});
+			releaseResourceCloseAfterCurrentBurst(resourceId);
 		}
 	},
 
@@ -2028,32 +2048,41 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async saveAs() {
-		const { activeResource, session } = get();
-		if (!activeResource || !session) {
-			return false;
-		}
-		try {
-			const path = await desktopBridge.saveTextAs(
-				session.content,
-				session.state.originalEol,
-				session.state.hasBom,
-				`${activeResource.title}.md`
-			);
-			if (path) {
-				set({ error: undefined });
-				return true;
+		if (activeSaveAs) return activeSaveAs;
+		const task = (async () => {
+			const { activeResource, session } = get();
+			if (!activeResource || !session) {
+				return false;
 			}
-		} catch (error) {
-			const failure = classifySaveFailure(error);
-			set({
-				saveState: failure.type === 'offline'
-					? { type: 'offline', pendingChanges: 1 }
-					: failure.type === 'failed'
-						? failure
-						: { type: 'failed', errorCode: 'saveCopyFailed', retryable: true }
-			});
+			try {
+				const path = await desktopBridge.saveTextAs(
+					session.content,
+					session.state.originalEol,
+					session.state.hasBom,
+					`${activeResource.title}.md`
+				);
+				if (path) {
+					set({ error: undefined });
+					return true;
+				}
+			} catch (error) {
+				const failure = classifySaveFailure(error);
+				set({
+					saveState: failure.type === 'offline'
+						? { type: 'offline', pendingChanges: 1 }
+						: failure.type === 'failed'
+							? failure
+							: { type: 'failed', errorCode: 'saveCopyFailed', retryable: true }
+				});
+			}
+			return false;
+		})();
+		activeSaveAs = task;
+		try {
+			return await task;
+		} finally {
+			if (activeSaveAs === task) activeSaveAs = undefined;
 		}
-		return false;
 	},
 
 	async exportActiveChapter(format = 'markdown') {

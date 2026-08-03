@@ -284,4 +284,142 @@ describe('save trust store integration', () => {
 		expect(useAppStore.getState().session?.state.dirty).toBe(true);
 		expect(useAppStore.getState().error).toBe('当前正文尚未安全保存，未切换资源。');
 	});
+
+	it('asks once and preserves a dirty tab under 100 cancelled close actions', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		useAppStore.getState().setContent('取消关闭后必须继续保留的正文');
+		const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		Array.from({ length: 100 }, () => (
+			useAppStore.getState().closeResource(active.id)
+		));
+
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(write).not.toHaveBeenCalled();
+		expect(read).not.toHaveBeenCalled();
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).toContain(active.id);
+		expect(useAppStore.getState().session?.content).toBe('取消关闭后必须继续保留的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('discards instead of saving and opens the next tab once under 100 accepted closes', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const next = chapterAt(snapshot, 1);
+		await useAppStore.getState().openResource(next);
+		await useAppStore.getState().openResource(active);
+		useAppStore.getState().setContent('作者已经明确选择放弃的正文');
+		const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true);
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		Array.from({ length: 100 }, () => (
+			useAppStore.getState().closeResource(active.id)
+		));
+
+		await vi.waitFor(() => expect(useAppStore.getState().activeResource?.id).toBe(next.id));
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(write).not.toHaveBeenCalled();
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).not.toContain(active.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(next.id);
+	});
+
+	it('coalesces 100 save-copy actions into one native save dialog', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('需要另存副本保护的正文');
+		const completions: Array<(path: string | undefined) => void> = [];
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs').mockImplementation(() => (
+			new Promise(resolve => { completions.push(resolve); })
+		));
+
+		const saves = Array.from({ length: 100 }, () => useAppStore.getState().saveAs());
+
+		expect(saveTextAs).toHaveBeenCalledTimes(1);
+		completions[0]?.('D:\\Exports\\关闭前副本.md');
+		expect(await Promise.all(saves)).toEqual(Array.from({ length: 100 }, () => true));
+	});
+
+	it('releases a cancelled close for one later explicit retry', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		useAppStore.getState().setContent('第一次取消后仍可再次决定的正文');
+		const confirm = vi.spyOn(window, 'confirm')
+			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true);
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+
+		useAppStore.getState().closeResource(active.id);
+		await Promise.resolve();
+		useAppStore.getState().closeResource(active.id);
+
+		expect(confirm).toHaveBeenCalledTimes(2);
+		expect(write).not.toHaveBeenCalled();
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).not.toContain(active.id);
+		expect(useAppStore.getState().activeResource).toBeUndefined();
+		expect(useAppStore.getState().session).toBeUndefined();
+	});
+
+	it('never leaves a closed chapter active when the next tab cannot be read', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const next = chapterAt(snapshot, 1);
+		await useAppStore.getState().openResource(next);
+		await useAppStore.getState().openResource(active);
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockRejectedValueOnce(new Error('readFailed:C:\\private\\chapter.md'));
+
+		useAppStore.getState().closeResource(active.id);
+
+		await vi.waitFor(() => expect(useAppStore.getState().error).toBe('无法打开该资源，请重试。'));
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).not.toContain(active.id);
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).toContain(next.id);
+		expect(useAppStore.getState().activeResource).toBeUndefined();
+		expect(useAppStore.getState().session).toBeUndefined();
+		expect(useAppStore.getState().recentlyClosedResources[0]?.id).toBe(active.id);
+	});
+
+	it('closes a background tab under pressure without disturbing the dirty active draft', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const background = chapterAt(snapshot, 1);
+		await useAppStore.getState().openResource(background);
+		await useAppStore.getState().openResource(active);
+		useAppStore.getState().setContent('关闭后台标签时不能碰到的当前正文');
+		const confirm = vi.spyOn(window, 'confirm');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		Array.from({ length: 100 }, () => (
+			useAppStore.getState().closeResource(background.id)
+		));
+
+		expect(confirm).not.toHaveBeenCalled();
+		expect(write).not.toHaveBeenCalled();
+		expect(read).not.toHaveBeenCalled();
+		expect(useAppStore.getState().tabs.map(tab => tab.id)).not.toContain(background.id);
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe('关闭后台标签时不能碰到的当前正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('releases a cancelled save-copy action for one explicit retry', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('另存取消后仍然保留的正文');
+		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs')
+			.mockResolvedValueOnce(undefined)
+			.mockResolvedValueOnce('D:\\Exports\\重试副本.md');
+
+		expect(await useAppStore.getState().saveAs()).toBe(false);
+		expect(await useAppStore.getState().saveAs()).toBe(true);
+
+		expect(saveTextAs).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().session?.content).toBe('另存取消后仍然保留的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
 });
