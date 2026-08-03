@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `b9ad8f0b1a6f3cbefeea4e3c979543dd56649b19`
+- Tested source: `f4606a35002d18010a56a9b4ad273bd1e2c03d15`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -194,6 +194,23 @@ without deletion, and the browser console contained zero warnings or errors.
 Only the deterministic browser bridge was used; no real provider key or request
 was involved.
 
+### QA-LEDGER-INVENTORY-RECONCILIATION-014
+
+The final evidence audit compared inventory and ledger objects directly. Static
+discovery and Vitest both contained 771 frontend cases, and Cargo contained 79,
+but the regression ledger still held 848 total entries: the two new provider-
+feedback cases had executed and passed without receiving ledger rows. Inventory
+and supported acceptance refresh their own evidence, while dependency planning
+owns ledger reconstruction; the convergence recorder previously did not reject
+that missing workflow step.
+
+The ledger was rebuilt through `pnpm qa:plan` and now contains all 850 cases:
+771 frontend plus 79 native, with 848 passes and two reasoned native skips. The
+convergence recorder now compares total, frontend and native ledger counts with
+inventory/runtime evidence and fails closed with an instruction to run
+`qa:plan` when any count differs. This prevents a stale evidence ledger from
+being labelled `PASS` after new tests are added.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -282,6 +299,7 @@ console claims.
 | AI cancellation/result ordering | Playground, drawer and review each reproduced 100 clicks / 100 commands; now 1 command, old validation/results isolated, failure retry verified; 3 files / 27 tests passed |
 | AI settings and credential lifecycle | Five settings actions reproduced 100 bridge calls each; now 1 request per action, cross-action queueing, latest-preference ordering, deletion retry, generation blocking and explicit provider-action feedback pass 22/22 focused tests |
 | Live AI settings journey | Save/test/model/balance outcomes verified; 620 px and 420 px widths have no horizontal overflow; removal confirmation cancelled; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 850 / 850 cases; 771 frontend + 79 native; 848 passed + 2 reasoned skips; stale ledgers now fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
 | Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 771 tests and production build passed |

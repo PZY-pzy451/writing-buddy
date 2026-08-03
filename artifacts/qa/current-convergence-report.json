@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T09:31:32.799Z",
+  "generatedAt": "2026-08-03T09:36:08.555Z",
   "source": {
-    "commit": "b9ad8f0b1a6f3cbefeea4e3c979543dd56649b19",
+    "commit": "f4606a35002d18010a56a9b4ad273bd1e2c03d15",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -263,6 +263,23 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
         "frontendTests": 771
+      }
+    },
+    {
+      "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
+      "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
+      "before": {
+        "discoveredTests": 850,
+        "ledgerCases": 848,
+        "missingExecutedCasesRejected": false
+      },
+      "after": {
+        "discoveredTests": 850,
+        "ledgerCases": 850,
+        "frontendLedgerCases": 771,
+        "nativeLedgerCases": 79,
+        "missingExecutedCasesRejected": true,
+        "reconciliationCommand": "pnpm qa:plan"
       }
     }
   ],

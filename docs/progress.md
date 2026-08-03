@@ -5,7 +5,7 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `b9ad8f0`.
+`codex/full-regression-gates-a-e-v2` against source `f4606a3`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
   49-case static/runtime difference is closed: 771 frontend cases are inventoried
@@ -105,6 +105,10 @@ User-centered defect convergence is complete on
 - The current inventory contains 850 tests: 771 frontend plus 79 native cases.
   The latest execution ledger records 848 passes and two reasoned skips. Static
   and runtime frontend inventories both contain 771 cases with zero difference.
+- The final evidence audit caught a stale-ledger gap: inventory/runtime contained
+  the two new settings cases, but the ledger still had the previous 848 entries.
+  `qa:plan` now reconciles all 850 cases before recording, and convergence fails
+  closed unless total, frontend and native ledger counts match inventory/runtime.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
   and 10,109 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
