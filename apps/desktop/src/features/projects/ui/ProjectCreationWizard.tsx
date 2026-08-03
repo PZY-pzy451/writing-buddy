@@ -392,7 +392,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 		setStatus(importAnalysis ? '正在安全创建、导入并验证可重新打开…' : '正在安全创建项目并验证可重新打开…');
 		try {
 			const created = await creationService.create(request);
-			await openProject(created.root);
+			await openProject(created.root, 'read-write', currentManuscriptDirty);
 			const state = useAppStore.getState();
 			const chapter = created.firstChapterId
 				? state.snapshot?.project.volumes

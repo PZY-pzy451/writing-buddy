@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { act, render, screen } from '@testing-library/react';
 import type { PublicProjectOpenError } from '@writing-buddy/platform-ports';
 import { App } from '../../../app/App';
 import { useAppStore } from '../../../app/store';
@@ -40,7 +39,6 @@ describe('project open integration', () => {
 	});
 
 	it('turns a startup lock conflict into an actionable read-only recovery', async () => {
-		const user = userEvent.setup();
 		const projectRoot = 'C:\\Users\\Alice\\Novel';
 		const fixture = await desktopBridge.openProject(projectRoot);
 		const openProject = vi.spyOn(desktopBridge, 'openProject')
@@ -53,8 +51,14 @@ describe('project open integration', () => {
 		expect(screen.getByText('获取写入锁')).toBeInTheDocument();
 		expect(screen.queryByText(/Alice/)).not.toBeInTheDocument();
 
-		await user.click(screen.getByRole('button', { name: '只读打开' }));
+		const readOnlyButton = screen.getByRole('button', { name: '只读打开' });
+		act(() => {
+			for (let index = 0; index < 100; index += 1) {
+				readOnlyButton.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+			}
+		});
 		await screen.findByRole('main', { name: '写作首页' });
+		expect(openProject).toHaveBeenCalledTimes(2);
 		expect(openProject).toHaveBeenNthCalledWith(2, projectRoot, 'read-only');
 		expect(useAppStore.getState().snapshot?.readOnly).toBe(true);
 	});
@@ -69,5 +73,132 @@ describe('project open integration', () => {
 
 		expect(openProject).toHaveBeenCalledWith(projectRoot, 'read-write');
 		expect(useAppStore.getState().recentProjectRoot).toBe('browser-fixture');
+	});
+
+	it('opens one directory chooser for 100 same-tick project switch actions', async () => {
+		resetForProjectOpen('');
+		const chooseProject = vi.spyOn(desktopBridge, 'chooseProject');
+		const openProject = vi.spyOn(desktopBridge, 'openProject');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().chooseProject()
+		)));
+
+		expect(chooseProject).toHaveBeenCalledTimes(1);
+		expect(openProject).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().snapshot).toBeDefined();
+	});
+
+	it('releases the directory chooser guard after failure so the author can retry', async () => {
+		resetForProjectOpen('');
+		const chooseProject = vi.spyOn(desktopBridge, 'chooseProject')
+			.mockRejectedValueOnce(new Error('dialog unavailable'))
+			.mockResolvedValueOnce('browser-fixture');
+
+		await useAppStore.getState().chooseProject();
+		expect(useAppStore.getState().error).toBe('无法打开项目选择器，请重试。');
+		await useAppStore.getState().chooseProject();
+
+		expect(chooseProject).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().snapshot).toBeDefined();
+		expect(useAppStore.getState().error).toBeUndefined();
+	});
+
+	it('keeps a dirty manuscript intact when 100 same-tick project opens are cancelled', async () => {
+		resetForProjectOpen('');
+		await useAppStore.getState().chooseProject();
+		const snapshot = useAppStore.getState().snapshot;
+		const chapter = snapshot?.project.volumes[0]?.chapters[0];
+		if (!snapshot || !chapter) throw new Error('Browser project fixture is incomplete.');
+		await useAppStore.getState().openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		});
+		useAppStore.getState().setContent(`${useAppStore.getState().session?.content ?? ''}未保存切换保护`);
+		const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+		const openProject = vi.spyOn(desktopBridge, 'openProject')
+			.mockRejectedValue(new Error('project switch must remain cancelled'));
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openProject('D:\\WritingBuddy\\Projects\\另一个作品')
+		)));
+
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(openProject).not.toHaveBeenCalled();
+		expect(useAppStore.getState().snapshot?.root).toBe(snapshot.root);
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('confirms once and opens once when a dirty manuscript switch is accepted under pressure', async () => {
+		resetForProjectOpen('');
+		await useAppStore.getState().chooseProject();
+		const snapshot = useAppStore.getState().snapshot;
+		const chapter = snapshot?.project.volumes[0]?.chapters[0];
+		if (!snapshot || !chapter) throw new Error('Browser project fixture is incomplete.');
+		await useAppStore.getState().openResource({
+			id: chapter.id,
+			type: 'chapter',
+			title: chapter.title,
+			path: chapter.file,
+			projectId: snapshot.project.projectId
+		});
+		useAppStore.getState().setContent(`${useAppStore.getState().session?.content ?? ''}确认放弃的修改`);
+		const targetRoot = 'D:\\WritingBuddy\\Projects\\确认切换作品';
+		const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true);
+		const openProject = vi.spyOn(desktopBridge, 'openProject').mockResolvedValue({
+			...snapshot,
+			root: targetRoot,
+			project: {
+				...snapshot.project,
+				projectId: 'project-switch-target',
+				title: '确认切换作品'
+			}
+		});
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openProject(targetRoot)
+		)));
+
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(openProject).toHaveBeenCalledTimes(1);
+		expect(openProject).toHaveBeenCalledWith(targetRoot, 'read-write');
+		expect(useAppStore.getState().snapshot?.root).toBe(targetRoot);
+		expect(useAppStore.getState().session).toBeUndefined();
+	});
+
+	it('deduplicates 100 repair actions and 100 directory reveals from recovery', async () => {
+		const projectRoot = 'C:\\Users\\Alice\\Novel';
+		resetForProjectOpen(projectRoot);
+		useAppStore.setState({ pendingProjectRoot: projectRoot, projectOpenError: {
+			...lockError,
+			code: 'staleLockRemoveFailed',
+			canOpenReadOnly: false,
+			canRepair: true
+		} });
+		const repairProject = vi.spyOn(desktopBridge, 'repairProject');
+		const openProject = vi.spyOn(desktopBridge, 'openProject');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().repairProject()
+		)));
+
+		expect(repairProject).toHaveBeenCalledTimes(1);
+		expect(openProject).toHaveBeenCalledTimes(1);
+		useAppStore.setState({
+			pendingProjectRoot: projectRoot,
+			projectOpenError: lockError,
+			projectOpenBusyAction: undefined
+		});
+		const revealProjectDirectory = vi.spyOn(desktopBridge, 'revealProjectDirectory');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().revealProjectDirectory()
+		)));
+
+		expect(revealProjectDirectory).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().projectOpenBusyAction).toBeUndefined();
 	});
 });

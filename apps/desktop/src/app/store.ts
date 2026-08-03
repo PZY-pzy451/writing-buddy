@@ -294,7 +294,11 @@ interface AppState extends PersistedWorkspace {
 		chapterId: string,
 		scenes: readonly StoryScene[]
 	) => void;
-	readonly openProject: (root: string, mode?: ProjectOpenMode) => Promise<void>;
+	readonly openProject: (
+		root: string,
+		mode?: ProjectOpenMode,
+		confirmedDiscardDirty?: boolean
+	) => Promise<void>;
 	readonly retryProjectOpen: () => Promise<void>;
 	readonly openProjectReadOnly: () => Promise<void>;
 	readonly repairProject: () => Promise<void>;
@@ -407,6 +411,8 @@ let storyResourceOpenService: StoryResourceOpenService | undefined;
 let quickCaptureStore: QuickCaptureStore | undefined;
 let reviewPersistTimer: number | undefined;
 let activeManuscriptSave: Promise<void> | undefined;
+let activeProjectChooser: Promise<void> | undefined;
+let activeProjectOpen: Promise<void> | undefined;
 
 const defaultWriterPanelState: WriterSessionPanelState =
 	createDefaultWriterWorkspaceLayouts().writing;
@@ -585,11 +591,23 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
-	async chooseProject() {
-		const root = await desktopBridge.chooseProject();
-		if (root) {
-			await get().openProject(root);
-		}
+	chooseProject() {
+		if (activeProjectChooser) return activeProjectChooser;
+		const operation = (async () => {
+			try {
+				const root = await desktopBridge.chooseProject();
+				if (root) {
+					await get().openProject(root);
+				}
+			} catch {
+				set({ error: '无法打开项目选择器，请重试。' });
+			}
+		})();
+		const tracked = operation.finally(() => {
+			if (activeProjectChooser === tracked) activeProjectChooser = undefined;
+		});
+		activeProjectChooser = tracked;
+		return tracked;
 	},
 
 	openProjectWizard(startRoute) {
@@ -961,7 +979,19 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}));
 	},
 
-	async openProject(root, mode = 'read-write') {
+	openProject(root, mode = 'read-write', confirmedDiscardDirty = false) {
+		if (activeProjectOpen) return activeProjectOpen;
+		const operation = (async () => {
+			const currentBeforeOpen = get();
+			if (currentBeforeOpen.session?.state.dirty && !confirmedDiscardDirty) {
+				const confirmed = window.confirm(
+					`“${currentBeforeOpen.snapshot?.project.title ?? '当前项目'}”有尚未保存的正文。切换作品会放弃这些修改，是否继续？`
+				);
+				if (!confirmed) {
+					set({ error: '已取消切换；当前项目和未保存正文保持不变。' });
+					return;
+				}
+			}
 		set({
 			loading: true,
 			error: undefined,
@@ -1236,9 +1266,16 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				sessionRestoreState: 'idle'
 			});
 		}
+		})();
+		const tracked = operation.finally(() => {
+			if (activeProjectOpen === tracked) activeProjectOpen = undefined;
+		});
+		activeProjectOpen = tracked;
+		return tracked;
 	},
 
 	async retryProjectOpen() {
+		if (get().projectOpenBusyAction) return;
 		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
 		if (!root) {
 			return;
@@ -1248,6 +1285,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async openProjectReadOnly() {
+		if (get().projectOpenBusyAction) return;
 		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
 		if (!root) {
 			return;
@@ -1257,6 +1295,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async repairProject() {
+		if (get().projectOpenBusyAction) return;
 		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
 		if (!root) {
 			return;
@@ -1274,6 +1313,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async revealProjectDirectory() {
+		if (get().projectOpenBusyAction) return;
 		const root = get().pendingProjectRoot ?? get().recentProjectRoot;
 		if (!root) {
 			return;
