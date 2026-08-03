@@ -1470,8 +1470,32 @@ Gate H is complete. Stop before Gate I and wait for explicit user direction.
   traceability gaps, 221 missing stable selectors, absent real-provider smoke
   and no release package in this run.
 
+## Current QA convergence — Story resource recovery lifecycle
+
+- Source `7e6e396` distinguishes a genuinely missing Story resource from a
+  transiently unavailable one, keeps both states retryable, and no longer lets
+  one failed Story read abort the rest of project reopen.
+- Rechecking an active non-ready resource performs a fresh read. One hundred
+  restore actions share one native restore call; failures release for retry;
+  raw errors are localized; and a late restore cannot overwrite a newer chapter
+  choice.
+- Restore loading is side-effect free until the app store verifies project and
+  latest intent. The 7-failure red baseline converged to 36/36 focused and
+  66/66 impacted tests.
+- Live browser QA reopened a project with the existing `黄铜钥匙` Story tab,
+  reactivated it by keyboard, preserved tab/heading/content alignment at 420 px,
+  produced no horizontal overflow and emitted zero warning/error logs. The
+  fixture has no delete UI, so missing/Trash setup remains deterministic
+  service/store/component evidence rather than a hidden test-only browser path.
+- Full evidence: 175 frontend files / 806 tests passed; Rust collected 79,
+  passed 77 and skipped two with reasons; the 885-row ledger contains 883 passes
+  and two skips.
+- Execution is `PASS`. Product/release remains `PARTIAL` and blocked by 10,087
+  traceability gaps, 221 missing stable selectors, absent real-provider smoke
+  and no release package in this run.
+
 ## Next QA target
 
-Continue the same user-first red-contract method on Story resource missing,
-trash-restore and project-reopen boundaries; do not claim release completion
-until strict traceability, real-provider smoke and packaging gates are closed.
+Continue the same user-first red-contract method on the next unmapped P0/P1
+author journey; do not claim release completion until strict traceability,
+real-provider smoke and packaging gates are closed.

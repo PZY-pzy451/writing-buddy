@@ -530,6 +530,36 @@ const report = {
 				impactedTests: 51,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-RESOURCE-RECOVERY-LIFECYCLE-020',
+			summary: 'Missing, unavailable and trashed Story resources could not be retried reliably; restore bursts repeated native work, stale restores overwrote newer chapter intent, and one transient Story read aborted project reopen.',
+			before: {
+				repeatedActions: 100,
+				missingRecheckLoads: 1,
+				trashRestoreCalls: 100,
+				lateRestoreOverwroteLatestChapter: true,
+				projectOpenAbortedByOneStoryRead: true,
+				transientFailureRetryState: false,
+				serviceMutatedTabsBeforeCommit: true,
+				restoreErrorRedacted: false
+			},
+			after: {
+				repeatedActions: 100,
+				missingRecheckLoads: 2,
+				trashRestoreCalls: 1,
+				latestChapterIntentWins: true,
+				projectOpenSurvivesStoryReadFailure: true,
+				transientFailureRetryState: true,
+				serviceRestoreIsSideEffectFree: true,
+				restoreErrorRedacted: true,
+				manualBrowserWidths: [420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 36,
+				impactedTests: 66,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

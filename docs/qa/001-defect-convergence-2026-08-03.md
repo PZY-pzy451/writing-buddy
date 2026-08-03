@@ -347,6 +347,34 @@ to `已保存` before the Story tab became active. Closing that tab and pressing
 showed `没有可恢复的标签`. At 420 px the document client and scroll widths were
 both 420 px, with zero browser warnings or errors.
 
+### QA-STORY-RESOURCE-RECOVERY-LIFECYCLE-020
+
+The next recovery boundary exposed seven user-visible failures. Rechecking the
+active missing resource was swallowed as a no-op; 100 restore clicks performed
+100 native restore calls; a slow restore could overwrite a newer chapter
+choice; raw restore failures leaked into the UI; a repository read exception
+escaped; restore mutated tabs before the caller validated intent; and one
+transient Story read aborted the entire persisted-project reopen.
+
+Missing and unavailable resources now remain explicit, retryable states. A
+same-resource recheck reloads any non-ready result. Trash restore is
+single-flight, side-effect free until the store validates project and latest
+intent, and a failed restore releases its lock for a later retry. Transient read
+errors render a localized `资料暂时无法读取` view with only the truthful
+`重新检查` action; they do not claim the resource is in Trash or prevent the
+rest of the project from opening. A stale restore result is discarded rather
+than changing the author's newer chapter selection.
+
+The red baseline contained 7 failures in a 36-test focused set. After the fix,
+all 36 focused tests and all 66 impacted project-open/workspace tests pass. The
+live browser reopened the same project with the existing `黄铜钥匙` Story tab
+persisted, reactivated it from the tab strip by keyboard, and kept tab, heading
+and content aligned at 420 px with no horizontal overflow and zero warning/error
+logs. The current fixture exposes no product delete action, so the actual
+missing/Trash setup is covered by deterministic store/service pressure tests
+and the rendered missing/unavailable component contracts rather than by a
+hidden browser-only test backdoor.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -445,11 +473,13 @@ console claims.
 | Live chapter close/restore journey | Unsaved marker discarded, original 94-character chapter restored, 420 px Ctrl+W result aligned; no overflow; 0 console warnings/errors |
 | Story resource open lifecycle pressure | Five red-first contracts cover 100 repeated opens, dirty saves, late results, loading-time edits and restored-history consumption; 27 focused and 51 impacted tests passed |
 | Live Story resource open/restore journey | Dirty chapter saved before `信号塔` opened; close and one restore succeeded; second restore did not duplicate; 420 px has no overflow; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 877 / 877 cases; 798 frontend + 79 native; 875 passed + 2 reasoned skips; stale ledgers fail closed |
+| Story resource recovery lifecycle pressure | Seven red-first contracts cover missing recheck, 100 restore actions, stale restore intent, localized retry, read exceptions and project reopen; 36 focused and 66 impacted tests passed |
+| Live persisted Story reopen journey | Existing `黄铜钥匙` Story tab survived same-project reopen and keyboard activation; tab/heading/content remained aligned at 420 px; no overflow; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 885 / 885 cases; 806 frontend + 79 native; 883 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 798 tests and production build passed |
-| Static/runtime test reconciliation | 798 / 798; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 175 files / 806 tests and production build passed |
+| Static/runtime test reconciliation | 806 / 806; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |

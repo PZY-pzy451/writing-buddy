@@ -16498,7 +16498,7 @@
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
-      "accessibleName": "从回收区恢复",
+      "accessibleName": "重新检查",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
