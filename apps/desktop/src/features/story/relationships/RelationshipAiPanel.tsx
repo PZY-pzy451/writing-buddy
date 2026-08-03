@@ -9,7 +9,7 @@ import {
 	WandSparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	buildRelationshipAnalysisMessages,
 	parseRelationshipAnalysisResponse,
@@ -89,6 +89,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
 	const chapter = props.chapters.find(
@@ -199,7 +200,8 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 	};
 
 	const apply = async (candidateId: string) => {
-		if (!batch || !chapter || props.readOnly) return;
+		if (!batch || !chapter || props.readOnly || applyingRef.current) return;
+		applyingRef.current = true;
 		setApplyingId(candidateId);
 		setError(undefined);
 		setNotice(undefined);
@@ -232,6 +234,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '关系候选写入失败。');
 		} finally {
+			applyingRef.current = false;
 			setApplyingId(undefined);
 		}
 	};
@@ -354,7 +357,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 							<button
 								type="button"
 								className="ai-review-accept"
-								disabled={candidate.blocking || candidate.status !== 'candidate' || applyingId === candidate.id}
+								disabled={candidate.blocking || candidate.status !== 'candidate' || Boolean(applyingId)}
 								onClick={() => void apply(candidate.id)}
 							>
 								{applyingId === candidate.id

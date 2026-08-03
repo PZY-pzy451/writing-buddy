@@ -230,6 +230,7 @@ export function ManuscriptContinuationPanel(
 	);
 	const [diffCandidateId, setDiffCandidateId] = useState<string>();
 	const [acceptingCandidateId, setAcceptingCandidateId] = useState<string>();
+	const acceptingRef = useRef(false);
 	const [success, setSuccess] = useState<string>();
 	const [error, setError] = useState<string>();
 	const generatingRef = useRef(false);
@@ -375,11 +376,12 @@ export function ManuscriptContinuationPanel(
 	const accept = async (candidateId: string) => {
 		if (
 			!batch
-			|| acceptingCandidateId
+			|| acceptingRef.current
 			|| rejectedCandidateIds.has(candidateId)
 		) return;
 		const candidate = batch.candidates.find(value => value.id === candidateId);
 		if (!candidate) return;
+		acceptingRef.current = true;
 		setAcceptingCandidateId(candidateId);
 		setError(undefined);
 		setSuccess(undefined);
@@ -403,6 +405,7 @@ export function ManuscriptContinuationPanel(
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '候选已经过期。');
 		} finally {
+			acceptingRef.current = false;
 			setAcceptingCandidateId(undefined);
 		}
 	};
@@ -569,7 +572,7 @@ export function ManuscriptContinuationPanel(
 								<div className="continuation-candidate-actions">
 									<button
 										type="button"
-										disabled={rejected || stale || batch.status !== 'candidate' || props.readOnly}
+										disabled={rejected || stale || batch.status !== 'candidate' || props.readOnly || Boolean(acceptingCandidateId)}
 										onClick={() => void accept(candidate.id)}
 									>
 										<Check size={16} />

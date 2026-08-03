@@ -10,7 +10,7 @@ import {
 	WandSparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	buildPlotAnalysisMessages,
 	parsePlotAnalysisResponse,
@@ -127,6 +127,7 @@ export function PlotAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applying, setApplying] = useState(false);
+	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
 	const action = actions.find(candidate => candidate.id === actionType)!;
@@ -271,7 +272,8 @@ export function PlotAiPanel(props: {
 	};
 
 	const apply = async () => {
-		if (!batch || applying || props.readOnly) return;
+		if (!batch || applyingRef.current || props.readOnly) return;
+		applyingRef.current = true;
 		setApplying(true);
 		setNotice(undefined);
 		setError(undefined);
@@ -305,6 +307,7 @@ export function PlotAiPanel(props: {
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '剧情资料候选写入失败。');
 		} finally {
+			applyingRef.current = false;
 			setApplying(false);
 		}
 	};

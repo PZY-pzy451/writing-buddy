@@ -22,7 +22,7 @@ import {
 	type ContextPack,
 	type StoryScene
 } from '@writing-buddy/story-kernel';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
 import { ContextPackPreview } from './ContextPackPreview';
 import { AiJobCancelButton } from './AiJobCancelButton';
@@ -138,6 +138,8 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [savedSnapshot, setSavedSnapshot] = useState<string>();
 	const [error, setError] = useState<string>();
+	const [applying, setApplying] = useState(false);
+	const applyingRef = useRef(false);
 	const {
 		actionType,
 		content,
@@ -231,7 +233,9 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 	};
 
 	const apply = async () => {
-		if (!candidate || !repository || !scene || props.readOnly) return;
+		if (!candidate || !repository || !scene || props.readOnly || applyingRef.current) return;
+		applyingRef.current = true;
+		setApplying(true);
 		try {
 			const service = new ScenePlanningService(repository, () => desktopBridge.createSnapshot(
 				props.projectRoot,
@@ -251,6 +255,9 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 			setError(undefined);
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '无法写入场景细纲。');
+		} finally {
+			applyingRef.current = false;
+			setApplying(false);
 		}
 	};
 
@@ -332,6 +339,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 								|| candidate.status !== 'candidate'
 								|| selectedFields.length === 0
 								|| props.readOnly
+								|| applying
 							}
 							onClick={() => void apply()}
 						>

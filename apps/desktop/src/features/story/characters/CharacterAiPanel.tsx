@@ -8,7 +8,7 @@ import {
 	WandSparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	buildCharacterAnalysisMessages,
 	parseCharacterAnalysisResponse,
@@ -141,6 +141,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
 	const action = actions.find(candidate => candidate.id === actionType)!;
@@ -234,7 +235,8 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 	};
 
 	const apply = async (candidateId: string) => {
-		if (!batch || !chapter || props.readOnly) return;
+		if (!batch || !chapter || props.readOnly || applyingRef.current) return;
+		applyingRef.current = true;
 		setApplyingId(candidateId);
 		setError(undefined);
 		setNotice(undefined);
@@ -267,6 +269,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '人物字段写入失败。');
 		} finally {
+			applyingRef.current = false;
 			setApplyingId(undefined);
 		}
 	};
@@ -400,7 +403,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 							className="ai-review-accept"
 							disabled={
 								candidate.status !== 'candidate'
-								|| applyingId === candidate.id
+								|| Boolean(applyingId)
 								|| (selectedFields[candidate.id] ?? []).length === 0
 							}
 							onClick={() => void apply(candidate.id)}

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { buildContextPack, type ContextPack } from '@writing-buddy/story-kernel';
 import { describe, expect, it, vi } from 'vitest';
 import { ManuscriptContinuationPanel } from './ManuscriptContinuationPanel';
@@ -303,6 +303,36 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(order).toEqual(['snapshot', 'insert']);
 	});
 
+	it('creates only one snapshot and insertion when accept is clicked 100 times in one event batch', async () => {
+		let releaseSnapshot: (() => void) | undefined;
+		const props = {
+			...baseProps(),
+			onBeforeApply: vi.fn(() => new Promise<void>(resolve => {
+				releaseSnapshot = resolve;
+			})),
+			runContinuation: () => Promise.resolve({ output: continuationOutput() })
+		};
+		render(<ManuscriptContinuationPanel {...props} />);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: /确认.*生成/u
+		}));
+		const candidate = await screen.findByRole('article', { name: /^候选：/u });
+		const insertButton = within(candidate).getByRole('button', { name: /插入/u });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				insertButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(props.onBeforeApply).toHaveBeenCalledOnce();
+		expect(props.onApply).not.toHaveBeenCalled();
+		expect(insertButton).toBeDisabled();
+		releaseSnapshot?.();
+		await waitFor(() => expect(props.onApply).toHaveBeenCalledOnce());
+	});
+
 	it('keeps an accepted insertion successful after the host updates the manuscript', async () => {
 		const props = {
 			...baseProps(),
@@ -353,10 +383,13 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('blocks insertion when the safety snapshot fails', async () => {
+	it('blocks insertion when the safety snapshot fails and allows a safe retry', async () => {
+		const onBeforeApply = vi.fn()
+			.mockRejectedValueOnce(new Error('无法创建安全快照。'))
+			.mockResolvedValueOnce(undefined);
 		const props = {
 			...baseProps(),
-			onBeforeApply: vi.fn(() => Promise.reject(new Error('无法创建安全快照。'))),
+			onBeforeApply,
 			runContinuation: () => Promise.resolve({ output: continuationOutput() })
 		};
 		render(<ManuscriptContinuationPanel {...props} />);
@@ -369,5 +402,8 @@ describe('ManuscriptContinuationPanel', () => {
 
 		expect(await screen.findByRole('alert')).toHaveTextContent('无法创建安全快照');
 		expect(props.onApply).not.toHaveBeenCalled();
+		fireEvent.click(within(candidate).getByRole('button', { name: /插入/u }));
+		await waitFor(() => expect(props.onApply).toHaveBeenCalledOnce());
+		expect(onBeforeApply).toHaveBeenCalledTimes(2);
 	});
 });

@@ -248,6 +248,8 @@ export function StructuredOutlineWorkspace({
 	const [materializationReviewOpen, setMaterializationReviewOpen] = useState(false);
 	const [qualityOpen, setQualityOpen] = useState(false);
 	const [qualityBusy, setQualityBusy] = useState<'local' | 'ai'>();
+	const authorControlGuardRef = useRef(false);
+	const hierarchyGuardRef = useRef(false);
 	const [localQualityIssues, setLocalQualityIssues] =
 		useState<readonly OutlineQualityIssue[]>([]);
 	const [aiQualityIssues, setAiQualityIssues] =
@@ -403,7 +405,8 @@ export function StructuredOutlineWorkspace({
 	};
 
 	const generateAlternatives = async () => {
-		if (!selectedNode || !onGenerateAlternatives || authorControlBusy) return;
+		if (!selectedNode || !onGenerateAlternatives || authorControlGuardRef.current) return;
+		authorControlGuardRef.current = true;
 		setAuthorControlBusy('generating');
 		setLocalError(undefined);
 		setImpactReport(undefined);
@@ -417,6 +420,7 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			authorControlGuardRef.current = false;
 			setAuthorControlBusy(undefined);
 		}
 	};
@@ -425,11 +429,12 @@ export function StructuredOutlineWorkspace({
 		if (
 			!candidatePreview
 			|| !onApplyAlternative
-			|| authorControlBusy
+			|| authorControlGuardRef.current
 			|| selectedCandidateFields.length === 0
 		) {
 			return;
 		}
+		authorControlGuardRef.current = true;
 		setAuthorControlBusy('applying');
 		setLocalError(undefined);
 		try {
@@ -444,12 +449,14 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			authorControlGuardRef.current = false;
 			setAuthorControlBusy(undefined);
 		}
 	};
 
 	const undoAlternative = async () => {
-		if (!onUndoAlternativeApply || authorControlBusy) return;
+		if (!onUndoAlternativeApply || authorControlGuardRef.current) return;
+		authorControlGuardRef.current = true;
 		setAuthorControlBusy('undoing');
 		setLocalError(undefined);
 		try {
@@ -458,12 +465,14 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			authorControlGuardRef.current = false;
 			setAuthorControlBusy(undefined);
 		}
 	};
 
 	const generateHierarchy = async () => {
-		if (!hierarchyTarget || !onGenerateHierarchy || hierarchyBusy) return;
+		if (!hierarchyTarget || !onGenerateHierarchy || hierarchyGuardRef.current) return;
+		hierarchyGuardRef.current = true;
 		setHierarchyBusy('generating');
 		setLocalError(undefined);
 		try {
@@ -471,12 +480,14 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			hierarchyGuardRef.current = false;
 			setHierarchyBusy(undefined);
 		}
 	};
 
 	const confirmHierarchy = async () => {
-		if (!hierarchyPreview || !onConfirmHierarchy || hierarchyBusy) return;
+		if (!hierarchyPreview || !onConfirmHierarchy || hierarchyGuardRef.current) return;
+		hierarchyGuardRef.current = true;
 		setHierarchyBusy('confirming');
 		setLocalError(undefined);
 		try {
@@ -486,12 +497,14 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			hierarchyGuardRef.current = false;
 			setHierarchyBusy(undefined);
 		}
 	};
 
 	const materializeHierarchy = async () => {
-		if (!onMaterializeHierarchy || hierarchyBusy || !hierarchyComplete) return;
+		if (!onMaterializeHierarchy || hierarchyGuardRef.current || !hierarchyComplete) return;
+		hierarchyGuardRef.current = true;
 		setHierarchyBusy('materializing');
 		setLocalError(undefined);
 		try {
@@ -500,6 +513,7 @@ export function StructuredOutlineWorkspace({
 		} catch (reason) {
 			setLocalError(outlineErrorCopy(reason));
 		} finally {
+			hierarchyGuardRef.current = false;
 			setHierarchyBusy(undefined);
 		}
 	};

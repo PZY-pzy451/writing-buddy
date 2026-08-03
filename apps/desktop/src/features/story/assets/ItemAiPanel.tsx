@@ -8,7 +8,7 @@ import {
 	WandSparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	buildItemAnalysisMessages,
 	parseItemAnalysisResponse,
@@ -128,6 +128,7 @@ export function ItemAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
 	const action = actions.find(candidate => candidate.id === actionType)!;
@@ -240,7 +241,8 @@ export function ItemAiPanel(props: {
 	};
 
 	const apply = async (candidateId: string) => {
-		if (!batch || !chapter || props.readOnly) return;
+		if (!batch || !chapter || props.readOnly || applyingRef.current) return;
+		applyingRef.current = true;
 		setApplyingId(candidateId);
 		setError(undefined);
 		setNotice(undefined);
@@ -274,6 +276,7 @@ export function ItemAiPanel(props: {
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '物品候选写入失败。');
 		} finally {
+			applyingRef.current = false;
 			setApplyingId(undefined);
 		}
 	};
@@ -354,7 +357,7 @@ export function ItemAiPanel(props: {
 								</label>
 							))}
 						</div>
-						<button type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || applyingId === candidate.id || ((selectedFields[candidate.id] ?? []).length === 0 && (selectedStates[candidate.id] ?? []).length === 0)} onClick={() => void apply(candidate.id)}>
+						<button type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || Boolean(applyingId) || ((selectedFields[candidate.id] ?? []).length === 0 && (selectedStates[candidate.id] ?? []).length === 0)} onClick={() => void apply(candidate.id)}>
 							{applyingId === candidate.id ? <LoaderCircle className="spin" size={16} /> : <Sparkles size={16} />}
 							{candidate.matchedItemId ? '确认合并所选字段与事件' : '创建物品并写入所选内容'}
 						</button>

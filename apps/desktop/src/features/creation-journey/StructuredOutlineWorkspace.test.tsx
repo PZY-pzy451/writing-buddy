@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { vi } from 'vitest';
@@ -182,15 +182,18 @@ describe('StructuredOutlineWorkspace', () => {
 				}
 			]));
 		});
+		let releaseApply: (() => void) | undefined;
 		const apply = vi.fn((
 			preview: ReturnType<typeof createOutlineCandidatePreview>,
 			_index: number,
 			fields: readonly string[]
-		) => Promise.resolve(analyzeOutlineCandidateImpact(
-			generatedState(),
-			preview.targetId,
-			fields as never
-		)));
+		) => new Promise<ReturnType<typeof analyzeOutlineCandidateImpact>>(resolve => {
+			releaseApply = () => resolve(analyzeOutlineCandidateImpact(
+				generatedState(),
+				preview.targetId,
+				fields as never
+			));
+		}));
 		const undo = vi.fn(() => Promise.resolve());
 
 		render(
@@ -223,12 +226,23 @@ describe('StructuredOutlineWorkspace', () => {
 			.toBeInTheDocument();
 
 		await user.click(within(review).getByRole('checkbox', { name: '采用 一句话概要' }));
-		await user.click(within(review).getByRole('button', { name: '采用已选 2 个字段' }));
+		const applyButton = within(review).getByRole('button', { name: '采用已选 2 个字段' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				applyButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 		expect(apply).toHaveBeenCalledTimes(1);
+		expect(applyButton).toBeDisabled();
 		const [appliedPreview, appliedIndex, appliedFields] = apply.mock.calls[0];
 		expect(appliedPreview.targetId).toContain('journey-outline:');
 		expect(appliedIndex).toBe(0);
 		expect(appliedFields).toEqual(['conflict', 'hook']);
+		await act(async () => {
+			releaseApply?.();
+			await Promise.resolve();
+		});
 
 		const impact = await screen.findByRole('region', { name: '影响报告' });
 		expect(within(impact).getByText(/只报告，不会自动重写/)).toBeInTheDocument();

@@ -9,7 +9,7 @@ import {
 	WandSparkles,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	buildTimelineAnalysisMessages,
 	parseTimelineAnalysisResponse,
@@ -121,6 +121,7 @@ export function TimelineAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applying, setApplying] = useState(false);
+	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
 	const currentChapter = props.chapters.find(chapter => (
@@ -276,7 +277,8 @@ export function TimelineAiPanel(props: {
 	};
 
 	const apply = async () => {
-		if (!batch || props.readOnly || applying) return;
+		if (!batch || props.readOnly || applyingRef.current) return;
+		applyingRef.current = true;
 		setApplying(true);
 		setNotice(undefined);
 		setError(undefined);
@@ -311,6 +313,7 @@ export function TimelineAiPanel(props: {
 		} catch (reason) {
 			setError(reason instanceof Error ? reason.message : '故事进程候选写入失败。');
 		} finally {
+			applyingRef.current = false;
 			setApplying(false);
 		}
 	};
