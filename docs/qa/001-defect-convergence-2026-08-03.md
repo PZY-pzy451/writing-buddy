@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `8d7d2f3da1b2e910b9ae8a3a136a6471a1e03431`
+- Tested source: `8898c82ba32a14ae5a15886283c511868197c26d`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -89,6 +89,41 @@ The continuation failure contract also proves that a rejected snapshot performs
 no write and a second author attempt succeeds. The nine affected test files pass
 34 tests, followed by the complete 743-test frontend acceptance run.
 
+### QA-AI-GENERATION-SURFACE-REENTRANCY-009
+
+The same asynchronous-state boundary remained at AI generation entry points.
+Deterministic reproductions sent 100 actions in one render turn to the character
+panel, AI Playground, generic AI drawer and chapter review. Each surface started
+100 native or provider requests before React rendered its queued/busy state.
+Implicitly cancelling the active request did not solve the problem: it multiplied
+provider traffic and allowed results from competing requests to replace each
+other.
+
+Eleven user-facing generation surfaces now acquire a synchronous request guard
+before their first read or provider operation. While a request is active, inputs
+that define the request are locked, including target/action selectors, chapter
+scope, instructions, author-secret opt-in and context-pack selection. Duplicate
+actions return without starting or cancelling another job. Ten dynamic pressure
+scenarios now send 100 same-tick actions and observe exactly one native/provider
+request and zero implicit cancellations.
+
+Unknown provider-start errors are normalized to stable author-facing copy rather
+than rendering raw `invalidStory...` or provider text. The generic drawer no
+longer treats a prior error as a permanent start prohibition, and a character
+panel contract proves that a failed provider start re-enables the action and the
+next explicit attempt succeeds. The focused generation suite passes 12 files / 45
+tests, followed by the complete 747-test frontend acceptance run.
+
+### QA-PENDING-FACT-ACTION-REENTRANCY-010
+
+The final adjacent persistence audit found that pending-fact acceptance and
+rejection also depended only on React's asynchronous `busy` state. Both actions
+now share a synchronous guard acquired before persistence and released in
+`finally`. A 100-click acceptance pressure contract observes one acceptance
+write; staging plus acceptance therefore produces exactly two storage writes.
+The complete pending-fact suite passes 4 tests, including malformed output,
+oversized input and atomic-write conflict behavior.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -141,8 +176,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 743 frontend cases, including 50
-parameterized instances; Vitest also collects 743. The difference and unresolved
+inventing a count. The current inventory finds 747 frontend cases, including 50
+parameterized instances; Vitest also collects 747. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -165,10 +200,12 @@ console claims.
 | Story Kernel cancellation pressure | Initial reproduction: 100 clicks / 100 native commands; fixed panel suite: 21/21 passed |
 | Adjacent AI cancellation pressure | 13 paths audited; selection rewrite 100 clicks / 100 commands and extraction 1 click / 2 commands before fixes; 21 focused and 32 impacted-page tests passed |
 | AI candidate write pressure | 11 surfaces audited; continuation and outline each received 100 same-tick accepts and performed exactly 1 write; 9 files / 34 focused tests passed |
+| AI generation pressure | 11 surfaces guarded; 10 dynamic scenarios send 100 same-tick actions and start exactly 1 request with 0 implicit cancellations; 12 files / 45 tests passed |
+| Pending-fact persistence pressure | 100 same-tick accepts produce exactly 1 acceptance write; complete 4-test suite passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 743 tests and production build passed |
-| Static/runtime test reconciliation | 743 / 743; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 747 tests and production build passed |
+| Static/runtime test reconciliation | 747 / 747; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -208,8 +245,8 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,192 aggregate mappings
-  are open and 223 interactive declarations lack stable selectors.
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,146 aggregate mappings
+  are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
 - Rust emitted two localized MSVC linker-output warnings while producing test

@@ -215,6 +215,47 @@ const report = {
 				focusedTests: 34,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-GENERATION-SURFACE-REENTRANCY-009',
+			summary: 'Rapid AI generation actions could start duplicate native/provider jobs before React rendered the busy state, while unknown provider failures leaked raw messages and blocked drawer retry.',
+			before: {
+				repeatedClicks: 100,
+				characterNativeRequests: 100,
+				playgroundNativeRequests: 100,
+				drawerProviderRequests: 100,
+				reviewNativeRequests: 100,
+				unknownErrorsRedacted: false,
+				drawerRetryAfterFailure: false
+			},
+			after: {
+				guardedGenerationSurfaces: 11,
+				dynamicRapidClickScenarios: 10,
+				repeatedClicks: 100,
+				nativeOrProviderRequestsPerAction: 1,
+				implicitCancellations: 0,
+				generationInputsLocked: true,
+				unknownErrorsRedacted: true,
+				retryAfterProviderStartFailure: true,
+				focusedTests: 45,
+				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
+			id: 'QA-PENDING-FACT-ACTION-REENTRANCY-010',
+			summary: 'Pending-fact accept and reject actions relied on asynchronous React busy state rather than a synchronous persistence guard.',
+			before: {
+				repeatedClicks: 100,
+				synchronousActionGuard: false
+			},
+			after: {
+				repeatedClicks: 100,
+				synchronousActionGuard: true,
+				acceptancePersistenceWrites: 1,
+				sharedAcceptRejectGuard: true,
+				focusedTests: 4,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
