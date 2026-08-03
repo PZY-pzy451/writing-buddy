@@ -18,11 +18,19 @@ function moveMenuFocus(menu: HTMLDivElement, direction: 'first' | 'last' | 'next
 
 export function ProjectActionsMenu(): React.JSX.Element {
 	const openProjectWizard = useAppStore(state => state.openProjectWizard);
+	const projectWizardOpen = useAppStore(state => state.projectWizardOpen);
 	const chooseProject = useAppStore(state => state.chooseProject);
 	const [open, setOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const restoreAfterWizardRef = useRef(false);
+
+	useEffect(() => {
+		if (projectWizardOpen || !restoreAfterWizardRef.current) return;
+		restoreAfterWizardRef.current = false;
+		triggerRef.current?.focus();
+	}, [projectWizardOpen]);
 
 	useEffect(() => {
 		if (!open) return;
@@ -45,8 +53,13 @@ export function ProjectActionsMenu(): React.JSX.Element {
 	}, [open]);
 
 	const closeAndRun = (action: () => void) => {
+		triggerRef.current?.focus();
 		setOpen(false);
 		action();
+	};
+	const openWizard = () => {
+		restoreAfterWizardRef.current = true;
+		closeAndRun(openProjectWizard);
 	};
 
 	return (
@@ -87,7 +100,7 @@ export function ProjectActionsMenu(): React.JSX.Element {
 					<button
 						type="button"
 						role="menuitem"
-						onClick={() => closeAndRun(openProjectWizard)}
+						onClick={openWizard}
 					>
 						<BookPlus size={18} aria-hidden="true" />
 						<span><strong>新建项目</strong><small>从模板和初始结构开始</small></span>

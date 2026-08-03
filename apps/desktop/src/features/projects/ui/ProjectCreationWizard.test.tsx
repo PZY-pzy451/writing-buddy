@@ -97,6 +97,7 @@ describe('guided project creation', () => {
 
 	it('creates through five steps, preserves the manuscript start, and opens the first chapter', async () => {
 		const user = userEvent.setup();
+		const importSpy = vi.spyOn(desktopBridge, 'chooseImportedText');
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
 		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
@@ -108,8 +109,14 @@ describe('guided project creation', () => {
 		expect(await within(dialog).findByRole('heading', { name: '你现在从哪里开始？' })).toBeInTheDocument();
 		await user.click(within(dialog).getByRole('button', { name: /我已经写了一部分正文/ }));
 		expect(within(dialog).getByText('添加已有正文文件')).toBeInTheDocument();
-		await user.click(within(dialog).getByRole('button', { name: /选择文件/ }));
+		const chooseImportButton = within(dialog).getByRole('button', { name: /选择文件/ });
+		act(() => {
+			for (let index = 0; index < 100; index += 1) {
+				chooseImportButton.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+			}
+		});
 		expect(await within(dialog).findByText('已有正文.txt')).toBeInTheDocument();
+		expect(importSpy).toHaveBeenCalledTimes(1);
 		expect(within(dialog).getByText(/正文将原样写入第一章/)).toBeInTheDocument();
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		expect(await within(dialog).findByRole('heading', { name: '初始结构' })).toBeInTheDocument();
@@ -234,7 +241,11 @@ describe('guided project creation', () => {
 
 		await user.click(trigger);
 		await user.click(within(screen.getByRole('menu', { name: '项目操作' })).getByRole('menuitem', { name: /新建项目/ }));
-		expect(await screen.findByRole('dialog', { name: '新建项目' })).toBeInTheDocument();
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		expect(dialog).toBeInTheDocument();
+		await user.keyboard('{Escape}');
+		expect(screen.queryByRole('dialog', { name: '新建项目' })).not.toBeInTheDocument();
+		expect(trigger).toHaveFocus();
 	});
 
 	it('does not write a new project when the current manuscript is dirty and switching is cancelled', async () => {
@@ -268,10 +279,75 @@ describe('guided project creation', () => {
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 
 		expect(within(dialog).getByText('当前项目有未保存正文')).toBeInTheDocument();
-		await user.click(within(dialog).getByRole('button', { name: /创建项目/ }));
+		act(() => {
+			for (let index = 0; index < 100; index += 1) {
+				dialog.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+			}
+		});
 
+		expect(confirmSpy).toHaveBeenCalledTimes(1);
 		expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining('有尚未保存的正文'));
 		expect(createSpy).not.toHaveBeenCalled();
 		expect(within(dialog).getByText('已取消创建；当前项目和未保存正文保持不变。')).toBeInTheDocument();
+	});
+
+	it('creates exactly one project under 100 same-tick final submissions', async () => {
+		const user = userEvent.setup();
+		const createSpy = vi.spyOn(desktopBridge, 'createProject');
+		const chooseDirectorySpy = vi.spyOn(desktopBridge, 'chooseProjectParentDirectory');
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: /创建空白作品/u }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		await user.type(within(dialog).getByLabelText('作品名称'), '单次创建压力测试');
+		const browseButton = within(dialog).getByRole('button', { name: /浏览/ });
+		act(() => {
+			for (let index = 0; index < 100; index += 1) {
+				browseButton.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+			}
+		});
+		await waitFor(() => expect(within(dialog).getByLabelText('保存位置')).not.toHaveValue(''));
+		expect(chooseDirectorySpy).toHaveBeenCalledTimes(1);
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		expect(await within(dialog).findByRole('heading', { name: '确认创建' })).toBeInTheDocument();
+
+		act(() => {
+			for (let index = 0; index < 100; index += 1) {
+				dialog.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+			}
+		});
+
+		await waitFor(() => expect(createSpy).toHaveBeenCalledTimes(1));
+		await screen.findByRole('heading', { name: '作品大纲' });
+		expect(screen.queryByRole('dialog', { name: '新建项目' })).not.toBeInTheDocument();
+		expect(useAppStore.getState().snapshot?.project.title).toBe('单次创建压力测试');
+	});
+
+	it('keeps the final step retryable after an atomic creation failure', async () => {
+		const user = userEvent.setup();
+		const createSpy = vi.spyOn(desktopBridge, 'createProject')
+			.mockRejectedValueOnce(new Error('projectAtomicRenameFailed'));
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: /创建空白作品/u }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+		await user.type(within(dialog).getByLabelText('作品名称'), '创建失败重试测试');
+		await user.click(within(dialog).getByRole('button', { name: /浏览/ }));
+		for (let index = 0; index < 4; index += 1) {
+			await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		}
+
+		const createButton = within(dialog).getByRole('button', { name: /创建项目/ });
+		await user.click(createButton);
+		expect(await within(dialog).findByText('最终保存项目时失败，未覆盖任何现有目录。')).toBeInTheDocument();
+		expect(createButton).toBeEnabled();
+
+		await user.click(createButton);
+		await screen.findByRole('heading', { name: '作品大纲' });
+		expect(createSpy).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().snapshot?.project.title).toBe('创建失败重试测试');
 	});
 });

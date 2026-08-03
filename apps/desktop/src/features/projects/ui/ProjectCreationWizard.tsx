@@ -228,6 +228,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const [busy, setBusy] = useState(false);
 	const [status, setStatus] = useState('');
 	const contentRef = useRef<HTMLElement>(null);
+	const actionInFlightRef = useRef(false);
 
 	useEffect(() => {
 		contentRef.current?.scrollTo?.({ top: 0 });
@@ -294,9 +295,24 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 		setPreflight(undefined);
 	};
 
+	const runExclusiveAction = async (action: () => Promise<void>): Promise<void> => {
+		if (actionInFlightRef.current) return;
+		actionInFlightRef.current = true;
+		try {
+			await action();
+		} finally {
+			actionInFlightRef.current = false;
+		}
+	};
+
 	const browse = async () => {
-		const root = await creationService.chooseParentDirectory();
-		if (root) updateDraft('rootDirectory', root);
+		setBusy(true);
+		try {
+			const root = await creationService.chooseParentDirectory();
+			if (root) updateDraft('rootDirectory', root);
+		} finally {
+			setBusy(false);
+		}
 	};
 
 	const chooseImport = async () => {
@@ -410,8 +426,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 	const submit = (event: React.FormEvent) => {
 		event.preventDefault();
 		if (busy) return;
-		if (step === 4) void create();
-		else void next();
+		void runExclusiveAction(step === 4 ? create : next);
 	};
 
 	const selectedTemplate = projectTemplateRegistry.get(draft.templateId);
@@ -425,6 +440,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 				aria-modal="true"
 				aria-labelledby="project-wizard-title"
 				aria-describedby="project-wizard-description"
+				aria-busy={busy}
 				onSubmit={submit}
 				tabIndex={-1}
 			>
@@ -511,7 +527,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										aria-describedby={fieldIssue(issues, 'rootDirectory') ? 'wizard-root-error' : undefined}
 										placeholder="选择用于保存作品的父目录"
 									/>
-									<button className="secondary-button" type="button" onClick={() => void browse()}>
+									<button className="secondary-button" type="button" onClick={() => void runExclusiveAction(browse)} disabled={busy}>
 										<FolderOpen size={18} />浏览
 									</button>
 								</div>
@@ -597,7 +613,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 											</strong>
 											<small>支持 .docx、UTF-8 .md/.markdown/.txt，文件与提取文字均最大 5 MiB</small>
 										</div>
-										<button className={importAnalysis ? 'secondary-button' : 'primary-button'} type="button" onClick={() => void chooseImport()} disabled={busy}>
+										<button className={importAnalysis ? 'secondary-button' : 'primary-button'} type="button" onClick={() => void runExclusiveAction(chooseImport)} disabled={busy}>
 											<FileUp size={18} />{importAnalysis ? '替换文件' : '选择文件'}
 										</button>
 									</div>
