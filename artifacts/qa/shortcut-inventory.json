@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "shortcuts": [
+    {
+      "id": "SHORTCUT-WRITER-NAVIGATOR",
+      "keys": "Ctrl/Cmd+K",
+      "commandId": "writer-navigator",
+      "scope": "global",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "writer-navigator",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-FULL-SEARCH",
+      "keys": "Ctrl/Cmd+Shift+F",
+      "commandId": "full-search",
+      "scope": "global",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "full-search",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-NEW-CHAPTER",
+      "keys": "Ctrl/Cmd+N",
+      "commandId": "new-chapter",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "new-chapter",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-QUICK-CREATE",
+      "keys": "Ctrl/Cmd+Shift+N",
+      "commandId": "quick-create",
+      "scope": "global",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "quick-create",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-QUICK-CAPTURE",
+      "keys": "Ctrl/Cmd+Shift+Space",
+      "commandId": "quick-capture",
+      "scope": "global",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "quick-capture",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-AI-QUICK-ACTIONS",
+      "keys": "Alt/Option+A",
+      "commandId": "ai-quick-actions",
+      "scope": "editor",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "ai-quick-actions",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-FOCUS-MODE",
+      "keys": "F11",
+      "commandId": "focus-mode",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "focus-mode",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-SAVE",
+      "keys": "Ctrl/Cmd+S",
+      "commandId": "save",
+      "scope": "editor",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "save",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-CLOSE-TAB",
+      "keys": "Ctrl/Cmd+W",
+      "commandId": "close-tab",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "close-tab",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-RESTORE-TAB",
+      "keys": "Ctrl/Cmd+Shift+T",
+      "commandId": "restore-tab",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "restore-tab",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-SWITCH-TAB",
+      "keys": "Ctrl/Cmd+Tab",
+      "commandId": "switch-tab",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "switch-tab",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-UNDO",
+      "keys": "Ctrl/Cmd+Z",
+      "commandId": "undo",
+      "scope": "editor",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "undo",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-TOGGLE-SIDEBAR",
+      "keys": "Ctrl/Cmd+B",
+      "commandId": "sidebar",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "sidebar",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-TOGGLE-ASSISTANT",
+      "keys": "Ctrl/Cmd+Alt+B",
+      "commandId": "assistant",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "assistant",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-TOGGLE-DOCK",
+      "keys": "Ctrl/Cmd+J",
+      "commandId": "dock",
+      "scope": "workspace",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "dock",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-DIALOG-SAVE",
+      "keys": "Ctrl/Cmd+Enter",
+      "commandId": "dialog-save",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "dialog-save",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-DISMISS",
+      "keys": "Escape",
+      "commandId": "dismiss",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "dismiss",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ROVING-NEXT",
+      "keys": "ArrowDown/ArrowRight",
+      "commandId": "roving-next",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "roving-next",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ROVING-PREVIOUS",
+      "keys": "ArrowUp/ArrowLeft",
+      "commandId": "roving-previous",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "roving-previous",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ROVING-FIRST",
+      "keys": "Home",
+      "commandId": "roving-first",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "roving-first",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ROVING-LAST",
+      "keys": "End",
+      "commandId": "roving-last",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "roving-last",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ACTIVATE",
+      "keys": "Enter/Space",
+      "commandId": "activate-focused",
+      "scope": "dialog",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "activate-focused",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "SHORTCUT-ENTITY-PEEK",
+      "keys": "Ctrl/Cmd+Click",
+      "commandId": "entity-peek",
+      "scope": "editor",
+      "enabledWhen": [
+        "matching workspace or dialog is active"
+      ],
+      "expectedAction": "entity-peek",
+      "conflictChecked": false,
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    }
+  ]
+}

@@ -10,7 +10,12 @@ Full regression foundation v2 is active in the isolated worktree on
 - Scope is intentionally limited to Gates A-E plus one real baseline.
 - Gate A records the current source/test map, fixed status vocabulary, privacy
   boundary and historical evidence as `STALE` rather than reusing it as a pass.
-- Gates B-E will add hierarchical inventories, traceability enforcement,
+- Gate B now inventories 12 domains, 151 features, 24 pages, five workspaces,
+  430 interactive source declarations, 9,460 control-state dimensions, 23
+  shortcuts, 55 registered native actions and 731 statically discovered tests.
+  Of the controls, 223 still lack a stable semantic selector and remain visible
+  `PARTIAL` gaps rather than being discarded.
+- Gates C-E will add traceability enforcement,
   dependency fingerprints/cache invalidation, and deterministic AI/project
   fixtures before existing tests are rerun.
 - Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,

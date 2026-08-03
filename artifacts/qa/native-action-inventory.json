@@ -1,0 +1,445 @@
+{
+  "schemaVersion": 1,
+  "actions": [
+    {
+      "id": "NATIVE-AI-CANCEL-JOB",
+      "commandId": "ai_cancel_job",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-DELETE-DEEPSEEK-KEY",
+      "commandId": "ai_delete_deepseek_key",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-GET-DEEPSEEK-BALANCE",
+      "commandId": "ai_get_deepseek_balance",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-GET-PREFERENCES",
+      "commandId": "ai_get_preferences",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-GET-PROVIDER-STATUS",
+      "commandId": "ai_get_provider_status",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-GET-USAGE-SUMMARY",
+      "commandId": "ai_get_usage_summary",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-LIST-DEEPSEEK-MODELS",
+      "commandId": "ai_list_deepseek_models",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-SAVE-DEEPSEEK-KEY",
+      "commandId": "ai_save_deepseek_key",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-SAVE-PREFERENCES",
+      "commandId": "ai_save_preferences",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-START-GENERATION",
+      "commandId": "ai_start_generation",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-AI-TEST-DEEPSEEK-CONNECTION",
+      "commandId": "ai_test_deepseek_connection",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "featureId": "FEATURE-07-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CHOOSE-BACKUP",
+      "commandId": "choose_backup",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-05",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CHOOSE-IMPORTED-TEXT",
+      "commandId": "choose_imported_text",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CHOOSE-PROJECT",
+      "commandId": "choose_project",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CHOOSE-PROJECT-PARENT-DIRECTORY",
+      "commandId": "choose_project_parent_directory",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CREATE-BACKUP",
+      "commandId": "create_backup",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-05",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CREATE-CHAPTER",
+      "commandId": "create_chapter",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CREATE-PROJECT",
+      "commandId": "create_project",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-06-01",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-CREATE-SNAPSHOT",
+      "commandId": "create_snapshot",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-02",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-INSPECT-BACKUP",
+      "commandId": "inspect_backup",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-05",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-LIST-VERSIONS",
+      "commandId": "list_versions",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-02",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-MATERIALIZE-CREATION-JOURNEY",
+      "commandId": "materialize_creation_journey",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-MATERIALIZE-OUTLINE-HIERARCHY",
+      "commandId": "materialize_outline_hierarchy",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-MENTION-LIST-LINKS",
+      "commandId": "mention_list_links",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-MENTION-SAVE-LINKS",
+      "commandId": "mention_save_links",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-MOVE-PROJECT-STRUCTURE",
+      "commandId": "move_project_structure",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-OPEN-PROJECT",
+      "commandId": "open_project",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-06-02",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-PREFLIGHT-PROJECT-CREATION",
+      "commandId": "preflight_project_creation",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-CREATION-JOURNEY-STATE",
+      "commandId": "read_creation_journey_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-QUICK-CAPTURE-STATE",
+      "commandId": "read_quick_capture_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-RESOURCE",
+      "commandId": "read_resource",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-REVIEW-STATE",
+      "commandId": "read_review_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-TEXT",
+      "commandId": "read_text",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-READ-VERSION-TEXT",
+      "commandId": "read_version_text",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-02",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-REPAIR-PROJECT",
+      "commandId": "repair_project",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-RESTORE-BACKUP",
+      "commandId": "restore_backup",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-05",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-RESTORE-VERSION",
+      "commandId": "restore_version",
+      "pageId": "PAGE-HISTORY",
+      "featureId": "FEATURE-05-02",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-REVEAL-PROJECT-DIRECTORY",
+      "commandId": "reveal_project_directory",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-SAVE-DOCX-AS",
+      "commandId": "save_docx_as",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-SAVE-TEXT-AS",
+      "commandId": "save_text_as",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-COMMIT-SCENE-MOVE",
+      "commandId": "story_commit_scene_move",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-GET-RESOURCE",
+      "commandId": "story_get_resource",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-INDEX-STATUS",
+      "commandId": "story_index_status",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-LIST-RESOURCES",
+      "commandId": "story_list_resources",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-MOVE-TO-TRASH",
+      "commandId": "story_move_to_trash",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-QUERY-INDEX",
+      "commandId": "story_query_index",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-REBUILD-INDEX",
+      "commandId": "story_rebuild_index",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-RESTORE-FROM-TRASH",
+      "commandId": "story_restore_from_trash",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-STORY-SAVE-RESOURCES",
+      "commandId": "story_save_resources",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-UPDATE-CHAPTER-STATUS",
+      "commandId": "update_chapter_status",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-WRITE-CREATION-JOURNEY-STATE",
+      "commandId": "write_creation_journey_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-WRITE-QUICK-CAPTURE-STATE",
+      "commandId": "write_quick_capture_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-WRITE-RESOURCE",
+      "commandId": "write_resource",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-WRITE-REVIEW-STATE",
+      "commandId": "write_review_state",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    },
+    {
+      "id": "NATIVE-WRITE-TEXT-ATOMIC",
+      "commandId": "write_text_atomic",
+      "pageId": "PAGE-NATIVE-RUNTIME",
+      "featureId": "FEATURE-10-09",
+      "testCaseIds": [],
+      "mappingStatus": "UNMAPPED_TEST"
+    }
+  ]
+}

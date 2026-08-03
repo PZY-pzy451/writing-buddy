@@ -14,6 +14,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "qa:inventory": "node scripts/qa/inventory.mjs",
     "self-test": "node scripts/self-test/run.mjs",
     "self-test:plan": "node scripts/self-test/run.mjs --dry-run",
     "self-test:full": "node scripts/self-test/run.mjs --all",
