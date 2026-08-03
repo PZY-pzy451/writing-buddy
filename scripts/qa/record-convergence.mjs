@@ -44,6 +44,19 @@ if (
 if (cargo.tests.collected !== 79 || cargo.tests.ignoredWithReason !== 2) {
 	throw new Error('Rust collection changed; review ignored-test reasons before recording.');
 }
+const ledgerFrontendCases = ledger.items.filter(item => !item.testCaseId.startsWith('TC-NATIVE-')).length;
+const ledgerNativeCases = ledger.items.length - ledgerFrontendCases;
+if (
+	ledger.items.length !== inventory.counts.discoveredTests
+	|| ledgerFrontendCases !== inventory.counts.frontendDiscoveredTests
+	|| ledgerNativeCases !== cargo.tests.collected
+) {
+	throw new Error(
+		`Regression ledger has ${ledger.items.length} cases (${ledgerFrontendCases} frontend, ${ledgerNativeCases} native), `
+		+ `but inventory/runtime require ${inventory.counts.discoveredTests} `
+		+ `(${inventory.counts.frontendDiscoveredTests} frontend, ${cargo.tests.collected} native). Run qa:plan first.`
+	);
+}
 
 const executionCommit = git(['rev-parse', 'HEAD']);
 const ignoredReasons = new Map([
@@ -347,6 +360,23 @@ const report = {
 				browserWarningsOrErrors: 0,
 				focusedTests: 22,
 				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
+			id: 'QA-LEDGER-INVENTORY-RECONCILIATION-014',
+			summary: 'Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.',
+			before: {
+				discoveredTests: inventory.counts.discoveredTests,
+				ledgerCases: inventory.counts.discoveredTests - 2,
+				missingExecutedCasesRejected: false
+			},
+			after: {
+				discoveredTests: inventory.counts.discoveredTests,
+				ledgerCases: ledger.items.length,
+				frontendLedgerCases: ledgerFrontendCases,
+				nativeLedgerCases: ledgerNativeCases,
+				missingExecutedCasesRejected: true,
+				reconciliationCommand: 'pnpm qa:plan'
 			}
 		}
 	],
