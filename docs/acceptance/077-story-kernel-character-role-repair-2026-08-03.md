@@ -1,7 +1,9 @@
 # Story Kernel character-role repair acceptance
 
-Date: 2026-08-03  
-Status: PASS  
+Date: 2026-08-03
+
+Status: PASS
+
 Verified source: `75ddef7f832826c5f75ca934abb51f922ba7bf82`
 
 ## User-visible outcome
