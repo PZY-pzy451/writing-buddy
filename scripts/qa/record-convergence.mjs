@@ -432,6 +432,40 @@ const report = {
 				impactedTests: 15,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-RESOURCE-OPEN-LIFECYCLE-017',
+			summary: 'Chapter and resource opening activated targets before reads completed, discarded dirty manuscripts, multiplied disk reads under rapid actions and allowed late results to pair the wrong editor content with the active chapter.',
+			before: {
+				repeatedActions: 100,
+				activeChapterReopenReads: 100,
+				dirtySwitchSaves: 0,
+				failedTargetReads: 100,
+				lateReadTotalReads: 101,
+				activeTargetCommittedBeforeRead: true,
+				staleReadIsolation: false,
+				loadingEditProtection: false
+			},
+			after: {
+				repeatedActions: 100,
+				activeChapterReopenReads: 0,
+				dirtySwitchSaves: 1,
+				dirtySwitchReads: 1,
+				failedTargetReads: 1,
+				lateReadTotalReads: 2,
+				targetCommittedAfterRead: true,
+				staleReadIsolation: true,
+				latestIntentWins: true,
+				loadingEditProtection: true,
+				saveFailurePreservesDraft: true,
+				localizedReadFailure: true,
+				manualBrowserWidths: [1280, 420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 10,
+				impactedTests: 34,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

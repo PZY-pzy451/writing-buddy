@@ -261,6 +261,34 @@ reported zero warnings or errors. The browser runtime automatically accepted
 the native confirmation, so the cancellation path is evidenced by the 100-call
 deterministic contract rather than a synthetic browser override.
 
+### QA-RESOURCE-OPEN-LIFECYCLE-017
+
+Opening a chapter or another project resource committed the target tab before
+its file read had succeeded and did not protect the active dirty manuscript.
+The deterministic reproduction sent 100 same-tick actions: reopening the active
+chapter performed 100 disk reads and replaced the draft, switching away saved
+zero times, a failed target read ran 100 times after already changing the active
+target, and one delayed second-chapter read followed by 100 third-chapter intents
+performed 101 reads with no reliable latest-intent boundary.
+
+Resource opening is now a store-owned single-flight queue. Reopening the active
+resource is a no-op; a dirty source is saved once before a switch; the target
+tab, active resource, editor session and restored cursor commit together only
+after a successful read. A newer queued target prevents a late read from
+committing, while save/read failures preserve the source chapter and expose
+localized recovery copy. A post-read save check also protects text typed while
+the target is loading. Under the same 100-action pressure the contracts now
+observe zero active-chapter reads, one save plus one target read for a dirty
+switch, one failed read, and two total reads for the delayed second-to-third
+latest-intent sequence. The focused store suite passes 10 tests and the wider
+writer-session/workspace impact set passes 34.
+
+Live browser QA typed into the first chapter, switched to the second, returned
+to verify the saved text, and rapidly traversed the second and third chapters.
+Heading, active tab and editor content remained paired with the final chapter.
+The same transition passed at 420 px with document client and scroll widths both
+420 px; the console contained zero warnings or errors.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -353,11 +381,13 @@ console claims.
 | Live project creation journey | Required errors, preflight, double-click creation and Esc focus return verified; 620 px / 420 px have no overflow; 0 console warnings/errors |
 | Project open and recovery pressure | Five 100-action boundaries produce one chooser/open/confirmation/repair/reveal; dirty-switch cancellation performs 0 opens and preserves the draft |
 | Live project switching journey | Dirty edit and accepted switch verified; repeated switch remains stable; 620 px / 420 px have no overflow; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 857 / 857 cases; 778 frontend + 79 native; 855 passed + 2 reasoned skips; stale ledgers fail closed |
+| Resource open lifecycle pressure | Six contracts cover 100 repeated actions, dirty saves, failed reads, delayed reads and loading-time edits; 10 focused and 34 impacted tests passed |
+| Live chapter switching journey | Saved draft, return-open and rapid latest-intent switching verified at 1280 px / 420 px; heading/tab/editor remain paired; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 863 / 863 cases; 784 frontend + 79 native; 861 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 778 tests and production build passed |
-| Static/runtime test reconciliation | 778 / 778; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 784 tests and production build passed |
+| Static/runtime test reconciliation | 784 / 784; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -397,7 +427,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,108 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,109 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

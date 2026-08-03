@@ -5,16 +5,17 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `b0f5fae`.
+`codex/full-regression-gates-a-e-v2` against source
+`3e288911b0a026e2eab604e8a8906317ea47bfd7`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 778 frontend cases are inventoried
-  and 778 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 784 frontend cases are inventoried
+  and 784 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 174 Vitest files /
-  778 tests and the production build. Rust formatting passed; Cargo collected
+  784 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -108,15 +109,21 @@ User-centered defect convergence is complete on
   zero bridge opens and preserves the draft, while acceptance opens once. Live
   desktop, 620 px and 420 px switching remained stable with no overflow or
   browser warnings/errors.
-- The current inventory contains 857 tests: 778 frontend plus 79 native cases.
-  The latest execution ledger records 855 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 778 cases with zero difference.
+- Chapter and resource opening now use a store-owned latest-intent queue. Six
+  deterministic contracts cover 100 repeated actions, dirty manuscript saves,
+  save/read failures, delayed reads and edits typed during loading. A target
+  commits only after its read succeeds; late reads cannot pair stale text with a
+  newer active chapter. Live desktop and 420 px switching preserved the draft,
+  kept heading/tab/editor content aligned and emitted zero browser errors.
+- The current inventory contains 863 tests: 784 frontend plus 79 native cases.
+  The latest execution ledger records 861 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 784 cases with zero difference.
 - The final evidence audit caught a stale-ledger gap: inventory/runtime contained
   the two new settings cases, but the ledger still had the previous 848 entries.
-  `qa:plan` now reconciles all 857 cases before recording, and convergence fails
+  `qa:plan` now reconciles all 863 cases before recording, and convergence fails
   closed unless total, frontend and native ledger counts match inventory/runtime.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
-  and 10,108 aggregate mappings remain open. The truthful product conclusion is
+  and 10,109 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.
