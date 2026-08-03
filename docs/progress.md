@@ -5,16 +5,16 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `05232c9`.
+`codex/full-regression-gates-a-e-v2` against source `e1abfab`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 731 frontend cases are inventoried
-  and 731 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 734 frontend cases are inventoried
+  and 734 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 172 Vitest files /
-  731 tests and the production build. Rust formatting passed; Cargo collected
+  734 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -47,11 +47,16 @@ User-centered defect convergence is complete on
   guard now covers both confirmation and rejection. Focused tests prove 100
   confirmation clicks produce one snapshot and one commit, 100 rejection clicks
   produce one state write, and a failed snapshot releases the guard for retry.
-- The current inventory contains 810 tests: 731 frontend plus 79 native cases.
-  The latest execution ledger records 808 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 731 cases with zero difference.
+- Reproduced the adjacent cancellation defect: 100 same-tick stop clicks sent
+  100 native cancellation commands. A dedicated synchronous guard now sends one
+  command, exposes an explicit `正在取消` state, stays locked until a real stream
+  terminal event, and releases for retry when the command fails or reports that
+  the native job was not found. The focused panel suite passed 21 tests.
+- The current inventory contains 813 tests: 734 frontend plus 79 native cases.
+  The latest execution ledger records 811 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 734 cases with zero difference.
 - Strict traceability remains fail-closed: 223 controls lack stable selectors
-  and 10,328 aggregate mappings remain open. The truthful product conclusion is
+  and 10,282 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.

@@ -58444,145 +58444,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346",
-                  "level": "L4",
-                  "name": "取消",
-                  "states": [
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-40FF6346-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-BUTTON-7088B6C4",
                   "level": "L4",
                   "name": "检查 AI 设置",
@@ -64420,7 +64281,7 @@
       "id": "TC-DISCOVERED-1EB464715B",
       "title": "keeps generated resources pending until snapshot-backed author confirmation",
       "declarationTitle": "keeps generated resources pending until snapshot-backed author confirmation",
-      "declarationLine": 686,
+      "declarationLine": 841,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -65764,7 +65625,7 @@
       "id": "TC-DISCOVERED-3560F75704",
       "title": "preserves a structured native authentication error and opens AI settings",
       "declarationTitle": "preserves a structured native authentication error and opens AI settings",
-      "declarationLine": 991,
+      "declarationLine": 1146,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -66738,7 +66599,7 @@
       "id": "TC-DISCOVERED-44A0C7F0BA",
       "title": "blocks one hundred repeated generation clicks before the first stream event",
       "declarationTitle": "blocks one hundred repeated generation clicks before the first stream event",
-      "declarationLine": 306,
+      "declarationLine": 310,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -66864,7 +66725,7 @@
       "id": "TC-DISCOVERED-460F746C16",
       "title": "keeps a valid character pending and localizes a rejected snapshot",
       "declarationTitle": "keeps a valid character pending and localizes a rejected snapshot",
-      "declarationLine": 737,
+      "declarationLine": 892,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -67138,7 +66999,7 @@
       "id": "TC-DISCOVERED-4B1CD22196",
       "title": "applies a selection quick-action preset without starting a paid request",
       "declarationTitle": "applies a selection quick-action preset without starting a paid request",
-      "declarationLine": 250,
+      "declarationLine": 254,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -67356,7 +67217,7 @@
       "id": "TC-DISCOVERED-4DCF7B8FBA",
       "title": "disables generation for a read-only project",
       "declarationTitle": "disables generation for a read-only project",
-      "declarationLine": 968,
+      "declarationLine": 1123,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -67936,7 +67797,7 @@
       "id": "TC-DISCOVERED-5A754FDFD1",
       "title": "TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves",
       "declarationTitle": "TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves",
-      "declarationLine": 340,
+      "declarationLine": 495,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68316,7 +68177,7 @@
       "id": "TC-DISCOVERED-60DCAB7C2B",
       "title": "keeps valid candidates and explains an isolated malformed candidate",
       "declarationTitle": "keeps valid candidates and explains an isolated malformed candidate",
-      "declarationLine": 412,
+      "declarationLine": 567,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68588,7 +68449,7 @@
       "id": "TC-DISCOVERED-6863B024FA",
       "title": "classifies a fully malformed batch as a response issue, not an AI setting issue",
       "declarationTitle": "classifies a fully malformed batch as a response issue, not an AI setting issue",
-      "declarationLine": 650,
+      "declarationLine": 805,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68726,6 +68587,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-6B78277DBB",
+      "title": "TC-QA-SK-CANCEL-003 releases the cancellation guard when the native job is not found",
+      "declarationTitle": "TC-QA-SK-CANCEL-003 releases the cancellation guard when the native job is not found",
+      "declarationLine": 449,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -69350,7 +69229,7 @@
       "id": "TC-DISCOVERED-7782B21DBC",
       "title": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
       "declarationTitle": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
-      "declarationLine": 501,
+      "declarationLine": 656,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -69620,7 +69499,7 @@
       "id": "TC-DISCOVERED-7B9E42919A",
       "title": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
       "declarationTitle": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
-      "declarationLine": 378,
+      "declarationLine": 533,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -69728,7 +69607,7 @@
       "id": "TC-DISCOVERED-7E5C4CF8B6",
       "title": "explains local scene grounding and confirms a repaired scene candidate",
       "declarationTitle": "explains local scene grounding and confirms a repaired scene candidate",
-      "declarationLine": 778,
+      "declarationLine": 933,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -69912,7 +69791,7 @@
       "id": "TC-DISCOVERED-80467719E8",
       "title": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
       "declarationTitle": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
-      "declarationLine": 563,
+      "declarationLine": 718,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -71474,7 +71353,7 @@
       "id": "TC-DISCOVERED-9E0CA12F82",
       "title": "reopens and confirms an old item candidate without another AI request",
       "declarationTitle": "reopens and confirms an old item candidate without another AI request",
-      "declarationLine": 927,
+      "declarationLine": 1082,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -73508,7 +73387,7 @@
       "id": "TC-DISCOVERED-CA67AB5DD9",
       "title": "confirms a location candidate whose optional map point is null",
       "declarationTitle": "confirms a location candidate whose optional map point is null",
-      "declarationLine": 829,
+      "declarationLine": 984,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -74236,7 +74115,7 @@
       "id": "TC-DISCOVERED-D71319E42E",
       "title": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
       "declarationTitle": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
-      "declarationLine": 449,
+      "declarationLine": 604,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -74977,6 +74856,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-E6216F32E0",
+      "title": "TC-QA-SK-CANCEL-002 releases the cancellation guard after a native command failure",
+      "declarationTitle": "TC-QA-SK-CANCEL-002 releases the cancellation guard after a native command failure",
+      "declarationLine": 397,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-E6363C925D",
       "title": "labels bounded manuscript sources for continuation and scene planning",
       "declarationTitle": "labels bounded manuscript sources for continuation and scene planning",
@@ -75432,7 +75329,7 @@
       "id": "TC-DISCOVERED-F31EE6E76A",
       "title": "retries a retryable native failure with the unchanged generation request",
       "declarationTitle": "retries a retryable native failure with the unchanged generation request",
-      "declarationLine": 1026,
+      "declarationLine": 1181,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -75540,7 +75437,7 @@
       "id": "TC-DISCOVERED-F56581D95E",
       "title": "confirms an item candidate after repairing omitted item defaults",
       "declarationTitle": "confirms an item candidate after repairing omitted item defaults",
-      "declarationLine": 878,
+      "declarationLine": 1033,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -76089,6 +75986,24 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FF4B055964",
+      "title": "TC-QA-SK-CANCEL-001 blocks one hundred repeated cancellation clicks before native cancellation resolves",
+      "declarationTitle": "TC-QA-SK-CANCEL-001 blocks one hundred repeated cancellation clicks before native cancellation resolves",
+      "declarationLine": 344,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

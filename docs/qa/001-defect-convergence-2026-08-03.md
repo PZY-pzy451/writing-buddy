@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `05232c900a362fe4dc95ad09bff5a78cc6d48319`
+- Tested source: `e1abfab38a2f833f6a3477faaea37591746bd4b2`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -29,6 +29,21 @@ commit, while 100 rejection clicks create exactly one candidate-state write.
 It also proves a rejected snapshot leaves the candidate pending, shows a
 localized message, releases the guard, and succeeds on the next author retry.
 The complete 18-test panel suite and wider 731-test frontend run pass.
+
+### QA-STORY-KERNEL-CANCEL-REENTRANCY-006
+
+The stop-generation action had no synchronous guard. A deterministic native
+bridge test held the first cancellation Promise open and dispatched 100 stop
+clicks in the same render turn. Before the fix, the panel sent 100 cancellation
+commands for one job.
+
+The panel now acquires a dedicated cancellation guard before calling the native
+bridge and shows a disabled `正在取消` control while the request is pending. A
+successful command remains guarded until the generation stream reports its real
+terminal event. A thrown command or a `false` job-not-found result releases the
+guard and restores the stop action for retry. Three focused contracts cover all
+of these paths; the complete panel suite passes 21 tests and never claims that
+generation stopped before receiving the cancellation event.
 
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
@@ -82,8 +97,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 731 frontend cases, including 50
-parameterized instances; Vitest also collects 731. The difference and unresolved
+inventing a count. The current inventory finds 734 frontend cases, including 50
+parameterized instances; Vitest also collects 734. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -103,10 +118,11 @@ console claims.
 | Layer | Result |
 | --- | --- |
 | Story Kernel confirmation/rejection pressure | Initial reproduction: 100 clicks / 100 snapshots; fixed panel suite: 18/18 passed |
+| Story Kernel cancellation pressure | Initial reproduction: 100 clicks / 100 native commands; fixed panel suite: 21/21 passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 731 tests and production build passed |
-| Static/runtime test reconciliation | 731 / 731; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 734 tests and production build passed |
+| Static/runtime test reconciliation | 734 / 734; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -146,7 +162,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,328 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,282 aggregate mappings
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
