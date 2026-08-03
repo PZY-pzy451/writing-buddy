@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-03",
+  "baselineCommit": "3575c45408f1660bfa29718f6be76d39e8a16f1d",
+  "branch": "codex/full-regression-gates-a-e-v2",
+  "scope": {
+    "includedGates": ["A", "B", "C", "D", "E"],
+    "excluded": [
+      "Gate F and later",
+      "real AI provider calls",
+      "broad product fixes",
+      "release packaging",
+      "release-readiness claims"
+    ]
+  },
+  "sourceLayers": [
+    { "id": "desktop-ui", "roots": ["apps/desktop/src"], "testKinds": ["vitest", "testing-library", "browser"] },
+    { "id": "desktop-bridge", "roots": ["apps/desktop/src/platform"], "testKinds": ["vitest", "contract"] },
+    { "id": "domain", "roots": ["packages/domain", "packages/project", "packages/resource", "packages/review"], "testKinds": ["vitest"] },
+    { "id": "ai", "roots": ["packages/ai", "packages/ai-actions"], "testKinds": ["vitest", "contract"] },
+    { "id": "story-kernel", "roots": ["packages/story-kernel", "packages/schema"], "testKinds": ["vitest", "schema"] },
+    { "id": "safety", "roots": ["packages/version", "packages/backup", "packages/migration", "packages/compatibility"], "testKinds": ["vitest", "fixture"] },
+    { "id": "ports", "roots": ["packages/platform-ports", "packages/test-support"], "testKinds": ["vitest", "contract"] },
+    { "id": "native", "roots": ["apps/desktop/src-tauri/src"], "testKinds": ["cargo", "tauri-build"] },
+    { "id": "orchestration", "roots": ["scripts/self-test", "scripts/acceptance", "scripts/perf"], "testKinds": ["node", "browser", "native", "performance"] },
+    { "id": "fixtures", "roots": ["fixtures"], "testKinds": ["fixture", "compatibility"] }
+  ],
+  "discoveryCounts": {
+    "tsxFiles": 153,
+    "tsFiles": 155,
+    "tauriCommands": 55,
+    "frontendAndNodeTestFiles": 168,
+    "rustTestDeclarations": 79,
+    "rawInteractiveElements": {
+      "button": 476,
+      "input": 82,
+      "select": 33,
+      "textarea": 34
+    }
+  },
+  "frameworks": [
+    { "id": "vitest", "version": "4.1.10", "environment": "jsdom" },
+    { "id": "testing-library-react", "version": "16.3.2" },
+    { "id": "typescript", "version": "5.9.3" },
+    { "id": "node", "version": "24.14.0" },
+    { "id": "pnpm", "version": "10.32.1" },
+    { "id": "rust", "version": "1.97.1" },
+    { "id": "monaco-editor", "version": "0.56.0" },
+    { "id": "tauri", "version": "2" }
+  ],
+  "privacy": {
+    "sanitizedFixturesOnly": true,
+    "realAiCallsAllowed": false,
+    "absolutePathsAllowedInReports": false,
+    "secretsAllowedInReports": false,
+    "authorContentAllowedInReports": false
+  }
+}

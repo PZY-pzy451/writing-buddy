@@ -12,6 +12,8 @@ apps/desktop/src-tauri/target/
 .DS_Store
 .idea/
 .vscode/
-artifacts/
+artifacts/*
+!artifacts/qa/
+!artifacts/qa/**
 tmp/
 .tmp/

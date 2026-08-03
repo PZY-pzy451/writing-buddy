@@ -4,6 +4,20 @@ Updated: 2026-08-03
 
 ## Active milestone
 
+Full regression foundation v2 is active in the isolated worktree on
+`codex/full-regression-gates-a-e-v2`.
+
+- Scope is intentionally limited to Gates A-E plus one real baseline.
+- Gate A records the current source/test map, fixed status vocabulary, privacy
+  boundary and historical evidence as `STALE` rather than reusing it as a pass.
+- Gates B-E will add hierarchical inventories, traceability enforcement,
+  dependency fingerprints/cache invalidation, and deterministic AI/project
+  fixtures before existing tests are rerun.
+- Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,
+  real DeepSeek calls, broad product fixes and release claims remain excluded.
+
+## Previous active milestone
+
 Story extraction actionability and adjacent usability convergence are complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-03",
+  "source": {
+    "commit": "3575c45408f1660bfa29718f6be76d39e8a16f1d",
+    "branch": "codex/full-regression-gates-a-e-v2"
+  },
+  "round": "gates-a-e-foundation",
+  "overallStatus": "NOT_RUN",
+  "historicalEvidence": {
+    "status": "STALE",
+    "frontendTestFiles": 168,
+    "frontendTests": 701,
+    "rustTestsPassed": 77,
+    "reason": "Evidence predates the current QA infrastructure and dependency fingerprints."
+  },
+  "currentResults": [],
+  "releaseGate": {
+    "status": "BLOCKED",
+    "reason": "Gates B-E and the current baseline have not run; Gate F is outside this round."
+  }
+}
