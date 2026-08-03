@@ -466,6 +466,40 @@ const report = {
 				impactedTests: 34,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-RESOURCE-CLOSE-LIFECYCLE-018',
+			summary: 'Rapid tab closing repeated native confirmation, explicit discard flowed through automatic saving, save-copy exit opened many native dialogs and failed target reads could leave a closed chapter active.',
+			before: {
+				repeatedActions: 100,
+				cancelledCloseConfirmations: 100,
+				acceptedCloseConfirmations: 100,
+				discardCouldTriggerAutomaticSave: true,
+				saveCopyNativeDialogs: 100,
+				closedResourceCouldRemainActive: true,
+				backgroundCloseIsolation: false
+			},
+			after: {
+				repeatedActions: 100,
+				cancelledCloseConfirmations: 1,
+				acceptedCloseConfirmations: 1,
+				discardWrites: 0,
+				nextResourceReads: 1,
+				saveCopyNativeDialogs: 1,
+				closeDialogExits: 1,
+				backgroundCloseConfirmations: 0,
+				backgroundCloseReads: 0,
+				backgroundCloseWrites: 0,
+				cancelledActionsRetryable: true,
+				failedNextReadClearsClosedActiveResource: true,
+				restoredDiskWordCount: 94,
+				manualBrowserWidths: [1280, 420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 20,
+				impactedTests: 44,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

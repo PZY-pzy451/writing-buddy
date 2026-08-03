@@ -289,6 +289,37 @@ Heading, active tab and editor content remained paired with the final chapter.
 The same transition passed at 420 px with document client and scroll widths both
 420 px; the console contained zero warnings or errors.
 
+### QA-RESOURCE-CLOSE-LIFECYCLE-018
+
+Closing an active dirty tab had two conflicting meanings. The confirmation told
+the author that unsaved text would be discarded, but the subsequent automatic
+resource switch still saw the dirty session and could write it to disk. The
+same close path also had no synchronous lock: 100 same-tick cancellations or
+acceptances each opened 100 confirmations. The exit dialog's save-copy action
+likewise opened 100 native save dialogs, and a failed read of the next tab could
+leave a resource that was no longer in the tab list presented as active.
+
+Tab close now acquires a per-resource synchronous lock before confirmation. A
+cancel releases after the current event burst so an explicit later retry still
+works. Accepted discard clears the active document before opening the next tab,
+so it performs zero writes and the next resource commits only after one
+successful read. A failed next read leaves no closed resource active, while a
+background-tab close performs no confirmation, read or write and cannot disturb
+the active dirty draft. `saveAs` now has its own single-flight promise; 100
+save-copy exit actions share one native dialog and the dialog exits exactly once.
+Cancelled save-copy actions release for an explicit retry. The 17-test store
+suite and 3-test exit-dialog suite pass; the wider four-file impact run passes
+44 tests.
+
+Live browser QA replaced the first chapter with a 10-character unsaved marker,
+closed it through the real tab control, and verified that the second chapter
+became active without saving the marker. `Ctrl+Shift+T` restored the first
+chapter from disk at its original 94-character count. At 420 px, `Ctrl+W`
+closed the restored tab and left the third chapter heading and selected tab
+aligned. Document client and scroll widths were both 420 px, with zero browser
+warnings or errors. The browser runtime accepted the native confirmation, so
+the cancellation path is evidenced by the deterministic 100-action contract.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -383,11 +414,13 @@ console claims.
 | Live project switching journey | Dirty edit and accepted switch verified; repeated switch remains stable; 620 px / 420 px have no overflow; 0 console warnings/errors |
 | Resource open lifecycle pressure | Six contracts cover 100 repeated actions, dirty saves, failed reads, delayed reads and loading-time edits; 10 focused and 34 impacted tests passed |
 | Live chapter switching journey | Saved draft, return-open and rapid latest-intent switching verified at 1280 px / 420 px; heading/tab/editor remain paired; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 863 / 863 cases; 784 frontend + 79 native; 861 passed + 2 reasoned skips; stale ledgers fail closed |
+| Resource close lifecycle pressure | Eight contracts cover 100 confirmations/save-copy actions, discard semantics, retry, failed next reads and background closes; 20 focused and 44 impacted tests passed |
+| Live chapter close/restore journey | Unsaved marker discarded, original 94-character chapter restored, 420 px Ctrl+W result aligned; no overflow; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 871 / 871 cases; 792 frontend + 79 native; 869 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 784 tests and production build passed |
-| Static/runtime test reconciliation | 784 / 784; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 792 tests and production build passed |
+| Static/runtime test reconciliation | 792 / 792; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -427,7 +460,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,109 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,102 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
