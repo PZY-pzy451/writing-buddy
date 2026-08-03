@@ -23,5 +23,6 @@
   { "id": "revision_conflict", "category": "apply-boundary", "expectedOutcome": "revision-blocked" },
   { "id": "save_after_apply_failure", "category": "apply-boundary", "expectedOutcome": "rollback-required" },
   { "id": "privacy_redaction", "category": "privacy", "expectedOutcome": "request-not-retained" },
-  { "id": "story_kernel_unselected_malformed_relationship", "category": "structured-output", "expectedOutcome": "candidate-quarantined" }
+  { "id": "story_kernel_unselected_malformed_relationship", "category": "structured-output", "expectedOutcome": "candidate-quarantined" },
+  { "id": "story_kernel_schema_mutation_matrix", "category": "structured-output", "expectedOutcome": "mutation-matrix-quarantined" }
 ]

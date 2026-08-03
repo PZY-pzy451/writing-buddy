@@ -21,12 +21,13 @@ const git = args => {
 	return result.stdout.trim();
 };
 
-const [inventory, traceability, ledger, frontend, cargo, stress] = await Promise.all([
+const [inventory, traceability, ledger, frontend, cargo, fixtures, stress] = await Promise.all([
 	readJson('artifacts/qa/inventory-summary.json'),
 	readJson('artifacts/qa/traceability-summary.json'),
 	readJson('artifacts/qa/regression-ledger.json'),
 	readJson('artifacts/qa/node24-acceptance.json'),
 	readJson('artifacts/qa/cargo-acceptance.json'),
+	readJson('artifacts/qa/fixture-mock-inventory.json'),
 	readJson('docs/acceptance/phase-1.2s-user-stress.json')
 ]);
 
@@ -125,11 +126,35 @@ const report = {
 			},
 			after: {
 				deterministicScenario: true,
-				mockScenarioCount: 25,
+				mockScenarioCount: fixtures.counts.mockScenarios,
 				validCandidatesRemainConfirmable: true,
 				malformedCandidateQuarantined: true,
 				frontendTests: frontend.vitestPassed
 			}
+		}
+	],
+	coverageExtensions: [
+		{
+			id: 'QA-STORY-KERNEL-SCHEMA-MUTATION-MATRIX-004',
+			summary: 'Every generatable Story Kernel resource type has an explicit wrong-field mutation that must remain visible, disabled and unwritable.',
+			resourceTypes: [
+				'character',
+				'scene',
+				'location',
+				'faction',
+				'item',
+				'worldRule',
+				'timelineEvent',
+				'relationship',
+				'plotThread',
+				'foreshadowing',
+				'information'
+			],
+			mockScenarioCount: fixtures.counts.mockScenarios,
+			validControlCandidates: 1,
+			quarantinedMutations: 11,
+			atomicWrites: 1,
+			frontendTests: frontend.vitestPassed
 		}
 	],
 	execution: {

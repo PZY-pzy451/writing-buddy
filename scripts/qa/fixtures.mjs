@@ -12,7 +12,7 @@ const requiredAiScenarios = [
 	'invalid_json', 'schema_repair_success', 'schema_repair_failure', 'partial_stream_then_error',
 	'duplicate_delta', 'out_of_order_event', 'stale_candidate', 'anchor_not_found', 'revision_conflict',
 	'save_after_apply_failure', 'privacy_redaction',
-	'story_kernel_unselected_malformed_relationship'
+	'story_kernel_unselected_malformed_relationship', 'story_kernel_schema_mutation_matrix'
 ];
 const actual = aiScenarios.map(scenario => scenario.id);
 if (new Set(actual).size !== actual.length || requiredAiScenarios.some(id => !actual.includes(id))) {

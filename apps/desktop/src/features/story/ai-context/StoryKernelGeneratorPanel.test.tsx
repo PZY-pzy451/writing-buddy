@@ -3,7 +3,10 @@ import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
 } from '@writing-buddy/platform-ports';
-import { STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE } from '@writing-buddy/test-support';
+import {
+	STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE,
+	STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE
+} from '@writing-buddy/test-support';
 import {
 	DesktopStoryRepository,
 	type StorySaveEntry,
@@ -481,6 +484,93 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(events).toEqual(['snapshot', 'commit']);
 		expect([...gateway.resources.keys()].some(key => key.startsWith('relationship:')))
 			.toBe(false);
+	});
+
+	it('TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="脱敏 QA Schema 突变正文。"
+				repository={new DesktopStoryRepository('D:/Novel', gateway)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={() => Promise.resolve(
+					STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE
+				)}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+				preset={{
+					id: 'qa-story-kernel-schema-matrix',
+					instruction: '执行所有 Story Kernel 类型的脱敏结构突变验证。',
+					targetTypes: [
+						'character',
+						'scene',
+						'location',
+						'faction',
+						'item',
+						'worldRule',
+						'timelineEvent',
+						'relationship',
+						'plotThread',
+						'foreshadowing',
+						'information'
+					]
+				}}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+
+		const control = await screen.findByRole('checkbox', { name: '选择 QA 合法控制人物' });
+		expect(control).toBeEnabled();
+		expect(control).toBeChecked();
+		expect(screen.getByText('12 个候选')).toBeInTheDocument();
+		expect(screen.getByText('1 个可确认')).toBeInTheDocument();
+		expect(screen.getAllByText('字段结构不符合 Story Kernel，修正前无法确认写入。'))
+			.toHaveLength(11);
+		for (const title of [
+			'QA 突变人物',
+			'QA 突变场景',
+			'QA 突变地点',
+			'QA 突变势力',
+			'QA 突变物品',
+			'QA 突变规则',
+			'QA 突变事件',
+			'QA 突变关系',
+			'QA 突变剧情线',
+			'QA 突变伏笔',
+			'QA 突变信息'
+		]) {
+			expect(screen.getByRole('checkbox', { name: `选择 ${title}` })).toBeDisabled();
+		}
+		for (const path of [
+			'role',
+			'participantIds',
+			'mapPoint',
+			'goals',
+			'unique',
+			'exceptions',
+			'narrativePosition',
+			'effectiveFrom',
+			'status',
+			'readerVisibility',
+			'authorSecret'
+		]) {
+			expect(screen.getByText(path)).toBeInTheDocument();
+		}
+		expect(screen.queryByText(/invalidStoryKernel/)).not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '创建快照并确认 1' }));
+		await waitFor(() => expect(screen.getByText('已写入')).toBeInTheDocument());
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect([...gateway.resources.keys()]).toEqual([
+			'character:character:qa-matrix-control'
+		]);
 	});
 
 	it('classifies a fully malformed batch as a response issue, not an AI setting issue', async () => {

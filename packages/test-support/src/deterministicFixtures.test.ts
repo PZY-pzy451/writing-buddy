@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	DeterministicAiMockProvider,
 	DeterministicProjectFixture,
+	STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE,
 	STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE,
 	deterministicAiScenarios,
 	deterministicProjectScenarios
@@ -9,8 +10,8 @@ import {
 
 describe('deterministic QA fixtures', () => {
 	it('TC-QA-FIXTURE-001 exposes the complete AI and project scenario catalog', () => {
-		expect(deterministicAiScenarios).toHaveLength(25);
-		expect(new Set(deterministicAiScenarios.map(scenario => scenario.id)).size).toBe(25);
+		expect(deterministicAiScenarios).toHaveLength(26);
+		expect(new Set(deterministicAiScenarios.map(scenario => scenario.id)).size).toBe(26);
 		expect(deterministicProjectScenarios).toHaveLength(8);
 	});
 
@@ -94,5 +95,35 @@ describe('deterministic QA fixtures', () => {
 				}
 			]
 		});
+	});
+
+	it('TC-QA-FIXTURE-009 replays one explicit schema mutation for every generatable type', () => {
+		const response = new DeterministicAiMockProvider()
+			.createRun('qa-story-kernel-matrix', 'story_kernel_schema_mutation_matrix')
+			.drain()
+			.map(event => event.type === 'content_delta' ? event.text : '')
+			.join('');
+		const parsed = JSON.parse(response) as {
+			readonly candidates: readonly {
+				readonly resource: { readonly type: string };
+			}[];
+		};
+
+		expect(response).toBe(STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE);
+		expect(parsed.candidates).toHaveLength(12);
+		expect(new Set(parsed.candidates.slice(1).map(candidate => candidate.resource.type)))
+			.toEqual(new Set([
+				'character',
+				'scene',
+				'location',
+				'faction',
+				'item',
+				'worldRule',
+				'timelineEvent',
+				'relationship',
+				'plotThread',
+				'foreshadowing',
+				'information'
+			]));
 	});
 });

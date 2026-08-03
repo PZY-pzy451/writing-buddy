@@ -56,6 +56,106 @@ export const STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE = JSON.stri
 	]
 });
 
+const qaMutationCandidate = (resource: Readonly<Record<string, unknown>>) => ({
+	operation: 'create',
+	resource,
+	confidence: 0.8,
+	rationale: '脱敏 QA 故意注入一个错误字段类型。',
+	evidence: null
+});
+
+const qaResourceBase = (id: string, type: string, title: string) => ({
+	id,
+	type,
+	title,
+	aliases: [],
+	tags: [],
+	evidenceIds: []
+});
+
+export const STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE = JSON.stringify({
+	candidates: [
+		qaCharacter('character:qa-matrix-control', 'QA 合法控制人物'),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'character:qa-matrix-character',
+				'character',
+				'QA 突变人物'
+			),
+			role: 42
+		}),
+		qaMutationCandidate({
+			...qaResourceBase('scene:qa-matrix-scene', 'scene', 'QA 突变场景'),
+			participantIds: 'character:qa-matrix-control'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase('location:qa-matrix-location', 'location', 'QA 突变地点'),
+			mapPoint: 'grid-a1'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase('faction:qa-matrix-faction', 'faction', 'QA 突变势力'),
+			goals: '控制脱敏 QA 区域'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase('item:qa-matrix-item', 'item', 'QA 突变物品'),
+			unique: 'yes',
+			restrictions: []
+		}),
+		qaMutationCandidate({
+			...qaResourceBase('world-rule:qa-matrix-rule', 'worldRule', 'QA 突变规则'),
+			statement: '脱敏 QA 规则。',
+			exceptions: 'none'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'timeline-event:qa-matrix-event',
+				'timelineEvent',
+				'QA 突变事件'
+			),
+			narrativePosition: 'opening',
+			eventType: '测试事件'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'relationship:qa-matrix-relationship',
+				'relationship',
+				'QA 突变关系'
+			),
+			sourceCharacterId: 'character:qa-matrix-control',
+			targetCharacterId: 'character:qa-matrix-character',
+			relationshipType: '同盟',
+			visibility: 'private',
+			effectiveFrom: 'childhood',
+			history: []
+		}),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'plot-thread:qa-matrix-thread',
+				'plotThread',
+				'QA 突变剧情线'
+			),
+			status: 'running'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'foreshadowing:qa-matrix-foreshadowing',
+				'foreshadowing',
+				'QA 突变伏笔'
+			),
+			readerVisibility: 'hidden'
+		}),
+		qaMutationCandidate({
+			...qaResourceBase(
+				'information:qa-matrix-information',
+				'information',
+				'QA 突变信息'
+			),
+			truthStatement: '脱敏 QA 真相。',
+			authorSecret: 'yes'
+		})
+	]
+});
+
 function failed(jobId: string, code: Extract<AiStreamEvent, { type: 'failed' }>['error']['code'], message: string, httpStatus?: number): AiStreamEvent {
 	return { type: 'failed', jobId, error: { code, message, retryable: !['authentication_failed', 'invalid_request'].includes(code), ...(httpStatus ? { httpStatus } : {}) } };
 }
@@ -97,6 +197,12 @@ function eventsFor(jobId: string, scenarioId: DeterministicAiScenarioId): readon
 			started,
 			opened,
 			content(jobId, STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE),
+			completed
+		];
+		case 'story_kernel_schema_mutation_matrix': return [
+			started,
+			opened,
+			content(jobId, STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE),
 			completed
 		];
 	}

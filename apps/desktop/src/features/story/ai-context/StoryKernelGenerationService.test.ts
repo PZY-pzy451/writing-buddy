@@ -3,7 +3,10 @@ import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
 } from '@writing-buddy/platform-ports';
-import { STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE } from '@writing-buddy/test-support';
+import {
+	STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE,
+	STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE
+} from '@writing-buddy/test-support';
 import {
 	DesktopStoryRepository,
 	type StorySaveEntry,
@@ -566,6 +569,80 @@ describe('StoryKernelGenerationService', () => {
 		expect(gateway.commitCalls).toBe(1);
 		await expect(repository.list('character')).resolves.toHaveLength(21);
 		await expect(repository.list('relationship')).resolves.toEqual([]);
+	});
+
+	it('TC-QA-SK-MATRIX-001 quarantines one explicit schema mutation for every resource type', async () => {
+		const targetTypes = [
+			'character',
+			'scene',
+			'location',
+			'faction',
+			'item',
+			'worldRule',
+			'timelineEvent',
+			'relationship',
+			'plotThread',
+			'foreshadowing',
+			'information'
+		] as const;
+		const expectedPaths = new Map([
+			['character', 'role'],
+			['scene', 'participantIds'],
+			['location', 'mapPoint'],
+			['faction', 'goals'],
+			['item', 'unique'],
+			['worldRule', 'exceptions'],
+			['timelineEvent', 'narrativePosition'],
+			['relationship', 'effectiveFrom'],
+			['plotThread', 'status'],
+			['foreshadowing', 'readerVisibility'],
+			['information', 'authorSecret']
+		]);
+		const { gateway, repository, service, store } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '执行所有 Story Kernel 类型的脱敏结构突变验证。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '脱敏 QA Schema 突变正文。',
+			targetTypes,
+			response: STORY_KERNEL_SCHEMA_MUTATION_MATRIX_RESPONSE,
+			now
+		});
+		const valid = batch.candidates.filter(candidate => candidate.conflicts.length === 0);
+		const blocked = batch.candidates.filter(candidate => candidate.conflicts.length > 0);
+
+		expect(batch.candidates).toHaveLength(12);
+		expect(valid).toHaveLength(1);
+		expect(valid[0]).toMatchObject({
+			resourceId: 'character:qa-matrix-control',
+			resourceType: 'character'
+		});
+		expect(blocked).toHaveLength(11);
+		for (const candidate of blocked) {
+			expect(candidate.normalizedResource).toBeUndefined();
+			const conflictCodes = candidate.conflicts.map(item => item.code);
+			expect(conflictCodes).toContain('invalid-schema');
+			if (candidate.resourceType === 'relationship') {
+				expect(conflictCodes).toEqual(['invalid-schema', 'blocked-dependency']);
+			} else {
+				expect(conflictCodes).toEqual(['invalid-schema']);
+			}
+			expect(candidate.conflicts
+				.find(item => item.code === 'invalid-schema')
+				?.details?.map(detail => detail.path))
+				.toContain(expectedPaths.get(candidate.resourceType));
+		}
+
+		const reopened = (await store.load())[0];
+		expect(reopened?.candidates.filter(candidate => candidate.conflicts.length > 0))
+			.toEqual(blocked);
+		await service.confirm(batch.id, valid.map(candidate => candidate.id));
+
+		expect(gateway.commitCalls).toBe(1);
+		await expect(repository.list('character')).resolves.toHaveLength(1);
+		for (const resourceType of targetTypes.filter(type => type !== 'character')) {
+			await expect(repository.list(resourceType)).resolves.toEqual([]);
+		}
 	});
 
 	it('recovers a persisted old item candidate without another AI request', async () => {
