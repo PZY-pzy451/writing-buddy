@@ -76,6 +76,7 @@
 - [Phase 1.2Q author-confirmed release candidate acceptance, 2026-08-02](./074-phase-1.2q-author-confirmed-release-2026-08-02.md)
 - [Phase 1.2R full regression and bug convergence acceptance, 2026-08-02](./075-phase-1.2r-full-regression-bug-convergence-2026-08-02.md)
 - [Phase 1.2S user-centered detail and stress acceptance, 2026-08-02](./076-phase-1.2s-user-centered-detail-stress-2026-08-02.md)
+- [Story Kernel character-role repair acceptance, 2026-08-03](./077-story-kernel-character-role-repair-2026-08-03.md)
 - [StoryForge Gate A baseline](./storyforge-baseline.md)
 - [Compatibility report](./compatibility-report.json)
 - [Gate C visual metrics](./gate-c-visual-metrics.json)

@@ -39,3 +39,6 @@ application is upgraded, without regenerating or editing project files by hand.
 - The long-session browser soak retries only transient CDP execution-context
   errors during deliberate reloads; the focused 100,000-character, 30-transition,
   three-reload and 40-resize journey passes end to end.
+- Final clean regression passed 26/26 recorded steps in 616,191 ms against
+  `75ddef7f832826c5f75ca934abb51f922ba7bf82`; the source-bound portable passed
+  its seven-second smoke check.

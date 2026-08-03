@@ -1,8 +1,29 @@
 # Current progress
 
-Updated: 2026-08-02
+Updated: 2026-08-03
 
 ## Active milestone
+
+Story Kernel character-role repair and final regression are complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Recognized English and Chinese character-role aliases normalize to the four
+  canonical Story Kernel values. Unknown optional text is omitted, non-text
+  corruption remains blocked, and persisted candidates are repaired on load.
+- TypeScript/native prompt parity and 71 focused parser/service tests cover new,
+  confirmed and previously persisted candidates.
+- The clean run against `75ddef7f` passed 26/26 steps in 616,191 ms: 167 Vitest
+  files / 694 tests, 77 Rust tests, 19 browser journeys, performance/recovery,
+  complete novel, native gates and portable smoke.
+- The final user-detail journey passed a 100,661-character manuscript, 40
+  resizes, 30 workspace transitions, three reloads and compact full-view audits.
+- Production portable SHA-256 is
+  `0F1F74A581C2343AC215D435991C364C315682F6FDA4D15430668562A3EF1F4C`.
+- Delivery: `artifacts/release/full-regression-2026-08-02/75ddef7f/`; evidence:
+  `docs/acceptance/077-story-kernel-character-role-repair-2026-08-03.md`.
+
+## Previous milestones
 
 Phase 1.2S user-centered detail and stress testing is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
@@ -11,20 +32,10 @@ Phase 1.2S user-centered detail and stress testing is complete in the isolated w
 - The author-detail gate covers first-time, returning, long-form, keyboard,
   compact-screen and interrupted use across Writing, Planning, all Story Library
   views, Check, History, Settings and quick capture.
-- The final clean run against `3342ca4` passed all 26 recorded steps in 644,991
-  ms: 167 Vitest files / 690 tests, 77 Rust tests plus both ignored gates, 19
-  browser journeys, native reopen, complete novel, recovery and EXE smoke.
-- Stress passed two 100,661-character browser runs, 80 resize attempts, 60
-  workspace transitions, five large-project samples, 10/10 recovery cycles and
-  5/5 final portable launches. Large-project interactive P95 was 452.4253 ms.
-- Story Kernel covers all 11 generatable resource types and deduplicates 100
-  rapid generation attempts to one in-flight request.
-- Production portable SHA-256 is
-  `EE5F71277B0D2EFFCB5C41A26B102CA7EB64050C1E51FEBD2B91E10A6E59B3D1`.
-- Delivery: `artifacts/release/full-regression-2026-08-02/`; evidence:
+- The clean run against `3342ca4` passed all 26 recorded steps; stress covered
+  large manuscripts, resizes, workspace transitions, recovery and portable launches.
+- Evidence:
   `docs/acceptance/076-phase-1.2s-user-centered-detail-stress-2026-08-02.md`.
-
-## Previous milestones
 
 Phase 1.2R full regression and bug convergence is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
