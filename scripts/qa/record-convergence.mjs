@@ -104,17 +104,34 @@ const report = {
 		status: 'BLOCKED',
 		reason: 'Strict feature/control/state traceability remains incomplete; no release package was produced in this convergence run.'
 	},
-	fixedDefects: [{
-		id: 'QA-TEST-DISCOVERY-PARAMETERIZED-001',
-		summary: 'Static test discovery undercounted parameterized and statically looped Vitest cases.',
-		before: { frontendInventory: 667, runtimeCollected: 716, gap: 49 },
-		after: {
-			frontendInventory: frontend.inventoryFrontendTests,
-			runtimeCollected: frontend.vitestPassed,
-			gap: frontend.runtimeInventoryDelta,
-			unresolvedParameterizedDeclarations: frontend.unresolvedParameterizedDeclarations
+	fixedDefects: [
+		{
+			id: 'QA-TEST-DISCOVERY-PARAMETERIZED-001',
+			summary: 'Static test discovery undercounted parameterized and statically looped Vitest cases.',
+			before: { frontendInventory: 667, runtimeCollected: 716, gap: 49 },
+			after: {
+				frontendInventory: frontend.inventoryFrontendTests,
+				runtimeCollected: frontend.vitestPassed,
+				gap: frontend.runtimeInventoryDelta,
+				unresolvedParameterizedDeclarations: frontend.unresolvedParameterizedDeclarations
+			}
+		},
+		{
+			id: 'QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003',
+			summary: 'Story Kernel relationship output could ignore selected types and return text where structured position/history fields are required.',
+			before: {
+				deterministicScenario: false,
+				fieldShapes: { effectiveFrom: 'string', history: 'string' }
+			},
+			after: {
+				deterministicScenario: true,
+				mockScenarioCount: 25,
+				validCandidatesRemainConfirmable: true,
+				malformedCandidateQuarantined: true,
+				frontendTests: frontend.vitestPassed
+			}
 		}
-	}],
+	],
 	execution: {
 		frontend,
 		cargo,

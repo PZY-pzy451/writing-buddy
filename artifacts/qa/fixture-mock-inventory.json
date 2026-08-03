@@ -4,7 +4,7 @@
   "mockProviderVersion": "qa-ai-mock-v1",
   "projectFixtureVersion": "qa-project-fixture-v1",
   "counts": {
-    "mockScenarios": 24,
+    "mockScenarios": 25,
     "projectScenarios": 8
   },
   "aiScenarios": [
@@ -127,6 +127,11 @@
       "id": "privacy_redaction",
       "category": "privacy",
       "expectedOutcome": "request-not-retained"
+    },
+    {
+      "id": "story_kernel_unselected_malformed_relationship",
+      "category": "structured-output",
+      "expectedOutcome": "candidate-quarantined"
     }
   ],
   "projectScenarios": [

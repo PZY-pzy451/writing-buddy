@@ -5,27 +5,36 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `5e7b740`.
+`codex/full-regression-gates-a-e-v2` against source `4d0c1b7`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 720 frontend cases are inventoried
-  and 720 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 723 frontend cases are inventoried
+  and 723 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 172 Vitest files /
-  720 tests and the production build. Rust formatting passed; Cargo collected
+  723 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
+- Added the exact malformed relationship boundary reported by the user as a
+  deterministic scenario: one unselected `relationship` contains string
+  `effectiveFrom` and `history` fields while three valid candidates remain
+  usable. Parser/service/UI tests prove the malformed candidate is disabled and
+  excluded from the one snapshot/one atomic commit.
+- Tightened the TypeScript and Rust Story Kernel prompt contract to forbid
+  unselected resource types and require object/array relationship shapes. The
+  strict Schema still blocks semantically unsafe coercion instead of inventing
+  chapter positions or relationship history.
 - Recorded user stress passed two 100,661-character browser runs, 80 resizes,
   60 workspace transitions, five performance runs and 10 recovery cycles with
   zero unresolved backlinks. A separate 11-stage detail run also passed.
-- Focused Story Kernel, extraction, repeated-click, language-check and
-  save/recovery verification passed 101 tests. No product-code failure
-  reproduced; fixes in this cycle are in the QA infrastructure.
-- The current FAST plan has 797 `CACHED_PASS`, two
-  `SKIPPED_WITH_REASON`, zero stale and zero forced reruns.
+- The new relationship boundary passed 4 focused files / 80 tests; the wider
+  Story Kernel, extraction, repeated-click, language-check and save/recovery
+  suite remains covered by the full acceptance run.
+- The current inventory contains 802 tests: 723 frontend plus 79 native cases.
+  The latest execution ledger records 800 passes and two reasoned skips.
 - Strict traceability remains fail-closed: 223 controls lack stable selectors
-  and 10,328 aggregate mappings remain open. The truthful product conclusion is
+  and 10,331 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.
