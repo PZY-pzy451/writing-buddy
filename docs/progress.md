@@ -5,16 +5,16 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `4d0c1b7`.
+`codex/full-regression-gates-a-e-v2` against source `8c36b41`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 723 frontend cases are inventoried
-  and 723 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 726 frontend cases are inventoried
+  and 726 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 172 Vitest files /
-  723 tests and the production build. Rust formatting passed; Cargo collected
+  726 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -31,10 +31,15 @@ User-centered defect convergence is complete on
 - The new relationship boundary passed 4 focused files / 80 tests; the wider
   Story Kernel, extraction, repeated-click, language-check and save/recovery
   suite remains covered by the full acceptance run.
-- The current inventory contains 802 tests: 723 frontend plus 79 native cases.
-  The latest execution ledger records 800 passes and two reasoned skips.
+- Follow-up relationship QA proves mixed valid/blocked selections fail before
+  any write, quarantined diagnostics survive a full component reopen without a
+  second AI request, and a maximum 24-candidate response can atomically write
+  21 valid resources while isolating three malformed relationships. The focused
+  continuation run passed 2 files / 41 tests.
+- The current inventory contains 805 tests: 726 frontend plus 79 native cases.
+  The latest execution ledger records 803 passes and two reasoned skips.
 - Strict traceability remains fail-closed: 223 controls lack stable selectors
-  and 10,331 aggregate mappings remain open. The truthful product conclusion is
+  and 10,334 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.

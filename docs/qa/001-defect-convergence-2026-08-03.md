@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `4d0c1b7845d02e4498ef3f5324e667a36eb466fb`
+- Tested source: `8c36b41639ef3da741407488e916baef0c8a54f2`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -29,6 +29,14 @@ one atomic write. The TypeScript and Rust generation prompts now also forbid
 unselected resource types and spell out the exact relationship position/history
 shapes, reducing recurrence without weakening the final Story Kernel Schema.
 
+The continuation pass adds lifecycle and pressure coverage around the same
+fixture. A mixed selection containing one valid and one blocked candidate is
+rejected before any repository write; component reopen restores all field-level
+diagnostics without another AI request; and the 24-candidate upper bound writes
+21 valid character resources in one transaction while retaining three malformed
+relationships as pending, disabled candidates. No new production defect was
+found in these follow-up boundaries.
+
 ### QA-TEST-DISCOVERY-PARAMETERIZED-001
 
 The static inventory used a regular expression that counted a parameterized
@@ -39,8 +47,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 723 frontend cases, including 50
-parameterized instances; Vitest also collects 723. The difference and unresolved
+inventing a count. The current inventory finds 726 frontend cases, including 50
+parameterized instances; Vitest also collects 726. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -59,9 +67,9 @@ console claims.
 
 | Layer | Result |
 | --- | --- |
-| Reported malformed relationship boundary | 4 files / 80 focused tests passed |
-| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 723 tests and production build passed |
-| Static/runtime test reconciliation | 723 / 723; difference 0; unresolved parameterization 0 |
+| Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
+| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 726 tests and production build passed |
+| Static/runtime test reconciliation | 726 / 726; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -101,7 +109,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,331 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,334 aggregate mappings
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
