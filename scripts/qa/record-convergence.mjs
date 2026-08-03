@@ -118,6 +118,23 @@ const report = {
 			}
 		},
 		{
+			id: 'QA-WINDOWS-PNPM-SHELL-002',
+			summary: 'Windows QA runners could fall back to pnpm.cmd with shell:true, emitting unsafe argument-escaping deprecation warnings that did not fail self-test.',
+			before: {
+				unsafeShellFallbacks: 2,
+				selfTestUnsafeShellWarnings: 1,
+				unsafeWarningFailedSelfTest: false
+			},
+			after: {
+				safePnpmJavaScriptResolution: true,
+				unsafeShellFallbacks: 0,
+				failClosedWhenPnpmEntryMissing: true,
+				commandResolutionTests: 3,
+				selfTestUnsafeShellWarnings: 0,
+				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
 			id: 'QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003',
 			summary: 'Story Kernel relationship output could ignore selected types and return text where structured position/history fields are required.',
 			before: {
@@ -278,6 +295,35 @@ const report = {
 				retryAfterCancellationFailure: true,
 				staleErrorClearedAfterRetry: true,
 				focusedTests: 27,
+				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
+			id: 'QA-AI-SETTINGS-REENTRANCY-012',
+			summary: 'AI settings relied on asynchronous React busy state, multiplying credential and provider actions while preference writes could finish out of order.',
+			before: {
+				repeatedClicks: 100,
+				saveKeyRequests: 100,
+				connectionTestRequests: 100,
+				modelRefreshRequests: 100,
+				balanceRefreshRequests: 100,
+				activeJobCancellationCommands: 100,
+				credentialDeleteRequests: 100,
+				preferenceWritesSerialized: false,
+				deleteFailureRetryVisible: false
+			},
+			after: {
+				guardedSettingsActions: 5,
+				repeatedClicks: 100,
+				providerRequestsPerAction: 1,
+				activeJobCancellationCommands: 1,
+				credentialDeleteRequests: 1,
+				crossActionQueueDeduplicated: true,
+				preferenceWritesSerialized: true,
+				latestPreferenceWins: true,
+				deleteFailureRetryVisible: true,
+				generationBlockedDuringCredentialMutation: true,
+				focusedTests: 20,
 				frontendTests: frontend.vitestPassed
 			}
 		}

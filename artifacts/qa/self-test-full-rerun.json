@@ -1,19 +1,64 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T04:26:27.882Z",
+  "generatedAt": "2026-08-03T08:57:48.512Z",
   "selection": "worktree",
   "mode": "full",
   "dryRun": false,
   "keepGoing": true,
   "changedFiles": [
-    "artifacts/qa/self-test-full.json"
+    "artifacts/qa/cargo-acceptance.json",
+    "artifacts/qa/control-impact-map.json",
+    "artifacts/qa/control-inventory.json",
+    "artifacts/qa/current-convergence-report.json",
+    "artifacts/qa/feature-control-traceability.csv",
+    "artifacts/qa/feature-inventory.json",
+    "artifacts/qa/incremental-test-plan.json",
+    "artifacts/qa/inventory-summary.json",
+    "artifacts/qa/node24-acceptance.json",
+    "artifacts/qa/page-inventory.json",
+    "artifacts/qa/regression-ledger.json",
+    "artifacts/qa/schema-impact-map.json",
+    "artifacts/qa/self-test-full-rerun.json",
+    "artifacts/qa/state-inventory.json",
+    "artifacts/qa/test-dependency-map.json",
+    "artifacts/qa/test-hierarchy.json",
+    "artifacts/qa/traceability-summary.json",
+    "docs/memory/2026-08-03.md",
+    "docs/progress.md",
+    "docs/qa/001-defect-convergence-2026-08-03.md",
+    "scripts/acceptance/run-full-regression.mjs",
+    "scripts/process/resolvePnpmCommand.mjs",
+    "scripts/process/resolvePnpmCommand.test.mjs",
+    "scripts/qa/record-convergence.mjs",
+    "scripts/self-test/run.mjs"
   ],
-  "riskAreas": [],
-  "matchedRules": [],
+  "riskAreas": [
+    "test infrastructure",
+    "workspace dependency graph"
+  ],
+  "matchedRules": [
+    {
+      "id": "global-test-infrastructure",
+      "description": "Global test, dependency, or build configuration"
+    }
+  ],
   "resolvedInputs": {
-    "lintInputs": [],
-    "relatedInputs": [],
-    "safetyTests": []
+    "lintInputs": [
+      "scripts/acceptance/run-full-regression.mjs",
+      "scripts/process/resolvePnpmCommand.mjs",
+      "scripts/process/resolvePnpmCommand.test.mjs",
+      "scripts/qa/record-convergence.mjs",
+      "scripts/self-test/run.mjs"
+    ],
+    "relatedInputs": [
+      "scripts/acceptance/run-full-regression.mjs",
+      "scripts/process/resolvePnpmCommand.mjs",
+      "scripts/process/resolvePnpmCommand.test.mjs",
+      "scripts/qa/record-convergence.mjs"
+    ],
+    "safetyTests": [
+      "scripts/process/resolvePnpmCommand.test.mjs"
+    ]
   },
   "plannedSteps": [
     {
@@ -53,8 +98,8 @@
       "label": "Unstaged whitespace and conflict-marker check",
       "command": "git diff --check",
       "cwd": ".",
-      "startedAt": "2026-08-03T04:26:27.884Z",
-      "durationMs": 38,
+      "startedAt": "2026-08-03T08:57:48.515Z",
+      "durationMs": 216,
       "status": "passed",
       "exitCode": 0
     },
@@ -63,8 +108,8 @@
       "label": "Staged whitespace and conflict-marker check",
       "command": "git diff --cached --check",
       "cwd": ".",
-      "startedAt": "2026-08-03T04:26:27.923Z",
-      "durationMs": 54,
+      "startedAt": "2026-08-03T08:57:48.731Z",
+      "durationMs": 38,
       "status": "passed",
       "exitCode": 0
     },
@@ -73,8 +118,8 @@
       "label": "Complete frontend acceptance",
       "command": "pnpm acceptance",
       "cwd": ".",
-      "startedAt": "2026-08-03T04:26:27.977Z",
-      "durationMs": 153377,
+      "startedAt": "2026-08-03T08:57:48.769Z",
+      "durationMs": 146287,
       "status": "passed",
       "exitCode": 0
     },
@@ -83,8 +128,8 @@
       "label": "Rust formatting contract",
       "command": "cargo fmt -- --check",
       "cwd": "apps/desktop/src-tauri",
-      "startedAt": "2026-08-03T04:29:01.355Z",
-      "durationMs": 392,
+      "startedAt": "2026-08-03T09:00:15.056Z",
+      "durationMs": 379,
       "status": "passed",
       "exitCode": 0
     },
@@ -93,12 +138,12 @@
       "label": "Complete Rust test suite",
       "command": "cargo test",
       "cwd": "apps/desktop/src-tauri",
-      "startedAt": "2026-08-03T04:29:01.746Z",
-      "durationMs": 5015,
+      "startedAt": "2026-08-03T09:00:15.435Z",
+      "durationMs": 1564,
       "status": "passed",
       "exitCode": 0
     }
   ],
   "status": "passed",
-  "completedAt": "2026-08-03T04:29:06.762Z"
+  "completedAt": "2026-08-03T09:00:16.999Z"
 }

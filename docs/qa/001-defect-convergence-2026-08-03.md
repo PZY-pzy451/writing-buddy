@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `c05135cf58227cc233c1762a8fdfa9861b3c080a`
+- Tested source: `63a397c40f191b7f1f83d48002ba4d6b153ccce9`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -146,6 +146,31 @@ error after that retry succeeds. Seven new deterministic contracts bring the
 three focused files to 27 tests. The complete Node 24 acceptance run passes 173
 files / 754 tests.
 
+### QA-AI-SETTINGS-REENTRANCY-012
+
+The AI settings page disabled controls only after React rendered its queued
+`loading` state. Deterministic store tests held each first Promise open and sent
+100 same-tick actions. Before the fix, key save, connection test, model refresh,
+balance refresh and active-job credential deletion each issued 100 bridge calls;
+the delete path also sent 100 cancellation commands. Rapid preference choices
+were persisted concurrently, so an older completion could replace the author's
+latest choice in both memory and native storage.
+
+The store now owns one synchronous settings-operation boundary. Repeated actions
+share one Promise, different actions queue without being dropped or multiplied,
+and credential mutation blocks new generation. Preference writes use a coalescing
+serial worker: the visible choice updates immediately, the latest queued value is
+persisted last, and a final failure restores the last value that actually reached
+storage. Credential removal records a successful cancellation before attempting
+deletion, keeps the key configured if deletion fails, presents a retry path and
+locks destructive confirmation plus all preference controls while pending.
+
+Twelve new contracts bring the AI experience suite to 20 tests. They cover 600
+same-tick settings actions, 100 generation attempts during deletion, queued
+cross-action deduplication, failed-delete retry, truthful cancelled state and
+latest-preference success/failure ordering. The complete Node 24 acceptance run
+passes 173 files / 766 tests.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -198,8 +223,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 754 frontend cases, including 50
-parameterized instances; Vitest also collects 754. The difference and unresolved
+inventing a count. The current inventory finds 769 frontend cases, including 50
+parameterized instances; Vitest also collects 769. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -209,6 +234,13 @@ Node `DEP0190` argument-escaping warnings. It now resolves pnpm's JavaScript
 entry point and invokes it directly with the pinned Node executable. The final
 acceptance report contains zero engine and zero unsafe-shell warnings; either
 warning now fails the gate.
+
+The continuation run found the same unsafe fallback in full self-test and the
+complete regression runner when they were invoked directly through Node without
+`npm_execpath`. Self-test still reported success while emitting `DEP0190`. Both
+runners now share fail-closed pnpm JavaScript-entry resolution and never use a
+shell. Three command-resolution contracts cover explicit, PATH-owned and missing
+pnpm entries; the repeated full self-test passes all steps with zero `DEP0190`.
 
 Rust formatting/test execution and convergence ledger updates also have their
 own machine-readable runners, so current evidence no longer depends on copied
@@ -225,10 +257,11 @@ console claims.
 | AI generation pressure | 11 surfaces guarded; 10 dynamic scenarios send 100 same-tick actions and start exactly 1 request with 0 implicit cancellations; 12 files / 45 tests passed |
 | Pending-fact persistence pressure | 100 same-tick accepts produce exactly 1 acceptance write; complete 4-test suite passed |
 | AI cancellation/result ordering | Playground, drawer and review each reproduced 100 clicks / 100 commands; now 1 command, old validation/results isolated, failure retry verified; 3 files / 27 tests passed |
+| AI settings and credential lifecycle | Five settings actions reproduced 100 bridge calls each; now 1 request per action, cross-action queueing, latest-preference ordering, deletion retry and generation blocking pass 20/20 focused tests |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 754 tests and production build passed |
-| Static/runtime test reconciliation | 754 / 754; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 769 tests and production build passed |
+| Static/runtime test reconciliation | 769 / 769; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -268,7 +301,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,139 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,119 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
