@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import {
 	DEFAULT_AI_PREFERENCES,
 	type AiGenerateRequest,
+	type AiProviderPreferences,
 	type AiStreamEvent
 } from '@writing-buddy/ai';
 import { vi } from 'vitest';
@@ -10,6 +11,20 @@ import { SettingsPage } from '../../settings/SettingsPage';
 import { desktopBridge } from '../../platform/bridge';
 import { AiPlaygroundPage } from './AiPlaygroundPage';
 import { useAiStore } from './stores/aiStore';
+
+function createDeferred<T>(): {
+	readonly promise: Promise<T>;
+	readonly resolve: (value: T) => void;
+	readonly reject: (reason?: unknown) => void;
+} {
+	let resolve!: (value: T) => void;
+	let reject!: (reason?: unknown) => void;
+	const promise = new Promise<T>((resolvePromise, rejectPromise) => {
+		resolve = resolvePromise;
+		reject = rejectPromise;
+	});
+	return { promise, resolve, reject };
+}
 
 function resetAiStore(): void {
 	useAiStore.setState({
@@ -36,6 +51,10 @@ describe('Phase 1.0A AI experience', () => {
 	beforeEach(async () => {
 		await desktopBridge.deleteDeepSeekKey();
 		resetAiStore();
+	});
+
+	afterEach(() => {
+		vi.restoreAllMocks();
 	});
 
 	it('saves and validates a key without retaining it in React or local storage', async () => {
@@ -90,6 +109,303 @@ describe('Phase 1.0A AI experience', () => {
 		expect(useAiStore.getState().jobState).toBe('completed');
 		startAiGeneration.mockRestore();
 		cancelAiJob.mockRestore();
+	});
+
+	it('saves and validates a key once for 100 same-tick requests', async () => {
+		await useAiStore.getState().initialize();
+		const secret = await desktopBridge.saveDeepSeekKey('fixture-key');
+		const connection = await desktopBridge.testDeepSeekConnection();
+		await desktopBridge.deleteDeepSeekKey();
+		const saveResult = createDeferred<typeof secret>();
+		const saveDeepSeekKey = vi.spyOn(desktopBridge, 'saveDeepSeekKey')
+			.mockImplementation(() => saveResult.promise);
+		const testDeepSeekConnection = vi.spyOn(desktopBridge, 'testDeepSeekConnection')
+			.mockResolvedValue(connection);
+
+		const attempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().saveKeyAndValidate('fixture-key')
+		));
+		expect(saveDeepSeekKey).toHaveBeenCalledOnce();
+		saveResult.resolve(secret);
+		await Promise.all(attempts);
+
+		expect(testDeepSeekConnection).toHaveBeenCalledOnce();
+		expect(useAiStore.getState().status?.secret.configured).toBe(true);
+	});
+
+	it('tests the connection once for 100 same-tick requests', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const connection = await desktopBridge.testDeepSeekConnection();
+		const connectionResult = createDeferred<typeof connection>();
+		const testDeepSeekConnection = vi.spyOn(desktopBridge, 'testDeepSeekConnection')
+			.mockImplementation(() => connectionResult.promise);
+
+		const attempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().testConnection()
+		));
+		expect(testDeepSeekConnection).toHaveBeenCalledOnce();
+		connectionResult.resolve(connection);
+		await Promise.all(attempts);
+
+		expect(useAiStore.getState().loading).toBe(false);
+	});
+
+	it('refreshes models once for 100 same-tick requests', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const models = await desktopBridge.listDeepSeekModels(true);
+		const modelsResult = createDeferred<typeof models>();
+		const listDeepSeekModels = vi.spyOn(desktopBridge, 'listDeepSeekModels')
+			.mockImplementation(() => modelsResult.promise);
+
+		const attempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().refreshModels()
+		));
+		expect(listDeepSeekModels).toHaveBeenCalledOnce();
+		modelsResult.resolve(models);
+		await Promise.all(attempts);
+
+		expect(useAiStore.getState().models).toEqual(models);
+	});
+
+	it('refreshes balance once for 100 same-tick requests', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const balance = await desktopBridge.getDeepSeekBalance();
+		const balanceResult = createDeferred<typeof balance>();
+		const getDeepSeekBalance = vi.spyOn(desktopBridge, 'getDeepSeekBalance')
+			.mockImplementation(() => balanceResult.promise);
+
+		const attempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().refreshBalance()
+		));
+		expect(getDeepSeekBalance).toHaveBeenCalledOnce();
+		balanceResult.resolve(balance);
+		await Promise.all(attempts);
+
+		expect(useAiStore.getState().balance).toEqual(balance);
+	});
+
+	it('queues a different settings action without dropping or multiplying it', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const balance = await desktopBridge.getDeepSeekBalance();
+		const balanceResult = createDeferred<typeof balance>();
+		const getDeepSeekBalance = vi.spyOn(desktopBridge, 'getDeepSeekBalance')
+			.mockImplementation(() => balanceResult.promise);
+		const deletedSecret = {
+			configured: false,
+			providerId: 'deepseek' as const
+		};
+		const deleteDeepSeekKey = vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockResolvedValue(deletedSecret);
+
+		const refresh = useAiStore.getState().refreshBalance();
+		const deletionAttempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().deleteKey()
+		));
+		expect(getDeepSeekBalance).toHaveBeenCalledOnce();
+		expect(deleteDeepSeekKey).not.toHaveBeenCalled();
+
+		balanceResult.resolve(balance);
+		await Promise.all([refresh, ...deletionAttempts]);
+		expect(deleteDeepSeekKey).toHaveBeenCalledOnce();
+		expect(useAiStore.getState().status?.secret.configured).toBe(false);
+	});
+
+	it('cancels one active job and deletes one key for 100 same-tick requests', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		useAiStore.setState({
+			jobId: 'qa-active-job',
+			jobState: 'streaming',
+			output: 'partial output'
+		});
+		const cancellationResult = createDeferred<boolean>();
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => cancellationResult.promise);
+		const deletedSecret = {
+			configured: false,
+			providerId: 'deepseek' as const
+		};
+		const deleteDeepSeekKey = vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockResolvedValue(deletedSecret);
+
+		const attempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().deleteKey()
+		));
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		cancellationResult.resolve(true);
+		await Promise.all(attempts);
+
+		expect(deleteDeepSeekKey).toHaveBeenCalledOnce();
+		expect(useAiStore.getState()).toMatchObject({
+			jobState: 'cancelled',
+			partial: true,
+			models: []
+		});
+	});
+
+	it('does not start a new generation while credential deletion is active', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		useAiStore.getState().setPrompt('删除凭据期间不得启动新的生成。');
+		const deletedSecret = {
+			configured: false,
+			providerId: 'deepseek' as const
+		};
+		const deletionResult = createDeferred<typeof deletedSecret>();
+		vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockImplementation(() => deletionResult.promise);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
+
+		const deletion = useAiStore.getState().deleteKey();
+		const generationAttempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().startGeneration()
+		));
+		expect(startAiGeneration).not.toHaveBeenCalled();
+		deletionResult.resolve(deletedSecret);
+		await Promise.all([deletion, ...generationAttempts]);
+
+		expect(useAiStore.getState().status?.secret.configured).toBe(false);
+		expect(useAiStore.getState().jobId).toBeUndefined();
+	});
+
+	it('keeps a cancelled job truthful when credential deletion fails', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		useAiStore.setState({
+			jobId: 'qa-cancelled-before-delete-failure',
+			jobState: 'streaming',
+			output: 'partial output',
+			startedAt: Date.now() - 100
+		});
+		vi.spyOn(desktopBridge, 'cancelAiJob').mockResolvedValue(true);
+		vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockRejectedValue(new Error('raw credential deletion failure'));
+
+		await expect(useAiStore.getState().deleteKey()).rejects.toThrow();
+
+		expect(useAiStore.getState()).toMatchObject({
+			jobState: 'cancelled',
+			partial: true,
+			loading: false,
+			status: { secret: { configured: true } }
+		});
+		expect(useAiStore.getState().error?.message)
+			.not.toContain('raw credential deletion failure');
+	});
+
+	it('shows a recoverable deletion failure and succeeds on explicit retry', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const deletedSecret = {
+			configured: false,
+			providerId: 'deepseek' as const
+		};
+		const deleteDeepSeekKey = vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockRejectedValueOnce(new Error('raw native delete failure'))
+			.mockResolvedValueOnce(deletedSecret);
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+		await user.click(screen.getByRole('button', { name: '移除凭据' }));
+		await user.click(screen.getByRole('button', { name: '确定' }));
+
+		await screen.findByText('移除失败，请检查错误提示后重试。');
+		expect(useAiStore.getState().status?.secret.configured).toBe(true);
+		expect(screen.getByRole('button', { name: '确定' })).toBeEnabled();
+
+		await user.click(screen.getByRole('button', { name: '确定' }));
+		await screen.findByText('DeepSeek 凭据和模型缓存已移除。');
+		expect(deleteDeepSeekKey).toHaveBeenCalledTimes(2);
+		expect(useAiStore.getState().status?.secret.configured).toBe(false);
+	});
+
+	it('locks destructive confirmation and preference controls while deletion is pending', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		const deletedSecret = {
+			configured: false,
+			providerId: 'deepseek' as const
+		};
+		const deletionResult = createDeferred<typeof deletedSecret>();
+		vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
+			.mockImplementation(() => deletionResult.promise);
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+		await user.click(screen.getByRole('button', { name: '移除凭据' }));
+		await user.click(screen.getByRole('button', { name: '确定' }));
+
+		expect(screen.getByRole('button', { name: '确定' })).toBeDisabled();
+		expect(screen.getByRole('button', { name: '取消' })).toBeDisabled();
+		for (const select of screen.getAllByRole('combobox')) {
+			expect(select).toBeDisabled();
+		}
+
+		deletionResult.resolve(deletedSecret);
+		await screen.findByText('DeepSeek 凭据和模型缓存已移除。');
+	});
+
+	it('serializes rapid preference changes so the latest choice wins', async () => {
+		await useAiStore.getState().initialize();
+		const firstPreferences: AiProviderPreferences = {
+			...useAiStore.getState().preferences,
+			maxOutputTokens: 65_536
+		};
+		const latestPreferences: AiProviderPreferences = {
+			...firstPreferences,
+			maxOutputTokens: 384_000
+		};
+		const saves: Array<ReturnType<typeof createDeferred<AiProviderPreferences>>> = [];
+		const saveAiPreferences = vi.spyOn(desktopBridge, 'saveAiPreferences')
+			.mockImplementation(() => {
+				const pending = createDeferred<AiProviderPreferences>();
+				saves.push(pending);
+				return pending.promise;
+			});
+
+		const firstSave = useAiStore.getState().updatePreferences(firstPreferences);
+		const latestSave = useAiStore.getState().updatePreferences(latestPreferences);
+		expect(useAiStore.getState().preferences).toEqual(latestPreferences);
+		expect(saveAiPreferences).toHaveBeenCalledOnce();
+
+		saves[0]?.resolve(firstPreferences);
+		await waitFor(() => expect(saveAiPreferences).toHaveBeenCalledTimes(2));
+		expect(saveAiPreferences).toHaveBeenLastCalledWith(latestPreferences);
+		saves[1]?.resolve(latestPreferences);
+		await Promise.all([firstSave, latestSave]);
+
+		expect(useAiStore.getState().preferences).toEqual(latestPreferences);
+		expect(useAiStore.getState().status?.preferences).toEqual(latestPreferences);
+	});
+
+	it('rolls back to the last persisted preferences when the latest queued save fails', async () => {
+		await useAiStore.getState().initialize();
+		const firstPreferences: AiProviderPreferences = {
+			...useAiStore.getState().preferences,
+			maxOutputTokens: 65_536
+		};
+		const latestPreferences: AiProviderPreferences = {
+			...firstPreferences,
+			maxOutputTokens: 384_000
+		};
+		const saveAiPreferences = vi.spyOn(desktopBridge, 'saveAiPreferences')
+			.mockResolvedValueOnce(firstPreferences)
+			.mockRejectedValueOnce(new Error('raw stale preference write failure'));
+
+		await Promise.all([
+			useAiStore.getState().updatePreferences(firstPreferences),
+			useAiStore.getState().updatePreferences(latestPreferences)
+		]);
+
+		expect(saveAiPreferences).toHaveBeenCalledTimes(2);
+		expect(useAiStore.getState().preferences).toEqual(firstPreferences);
+		expect(useAiStore.getState().status?.preferences).toEqual(firstPreferences);
+		expect(useAiStore.getState().error?.message)
+			.not.toContain('raw stale preference write failure');
 	});
 
 	it('cancels an active stream and preserves partial output when present', async () => {

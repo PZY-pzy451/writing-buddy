@@ -58,8 +58,102 @@ const emptyUsageSummary: AiUsageSummary = {
 	requests: 0
 };
 
+type SettingsOperationKind =
+	| 'initialize'
+	| 'save-key'
+	| 'delete-key'
+	| 'test-connection'
+	| 'refresh-models'
+	| 'refresh-balance';
+
 export const useAiStore = create<AiStore>((set, get) => {
 	let cancellationRequestJobId: string | undefined;
+	let settingsOperation: {
+		readonly kind: SettingsOperationKind;
+		readonly promise: Promise<unknown>;
+	} | undefined;
+	let persistedPreferences = DEFAULT_AI_PREFERENCES;
+	let pendingPreferences: AiProviderPreferences | undefined;
+	let preferenceSavePromise: Promise<void> | undefined;
+
+	const flushPendingPreferences = (): Promise<void> => {
+		if (preferenceSavePromise) {
+			return preferenceSavePromise;
+		}
+		const savePendingPreferences = async () => {
+			while (pendingPreferences) {
+				const requested = pendingPreferences;
+				pendingPreferences = undefined;
+				try {
+					const saved = await desktopBridge.saveAiPreferences(requested);
+					persistedPreferences = saved;
+					if (!pendingPreferences) {
+						const status = get().status;
+						set({
+							preferences: saved,
+							status: status ? { ...status, preferences: saved } : status
+						});
+					}
+				} catch (error) {
+					if (!pendingPreferences) {
+						const status = get().status;
+						set({
+							preferences: persistedPreferences,
+							status: status
+								? { ...status, preferences: persistedPreferences }
+								: status,
+							error: normalizeAiError(error)
+						});
+					}
+				}
+			}
+		};
+		const trackedPromise = savePendingPreferences().finally(() => {
+			if (preferenceSavePromise === trackedPromise) {
+				preferenceSavePromise = undefined;
+			}
+			if (pendingPreferences) {
+				return flushPendingPreferences();
+			}
+		});
+		preferenceSavePromise = trackedPromise;
+		return trackedPromise;
+	};
+
+	const runSettingsOperation = <T>(
+		kind: SettingsOperationKind,
+		busyValue: () => T,
+		operation: () => Promise<T>
+	): Promise<T> => {
+		const activeOperation = settingsOperation;
+		if (activeOperation) {
+			if (activeOperation.kind === kind) {
+				return activeOperation.promise as Promise<T>;
+			}
+			return activeOperation.promise
+				.catch(() => undefined)
+				.then(() => runSettingsOperation(kind, busyValue, operation));
+		}
+		if (get().loading) {
+			return Promise.resolve(busyValue());
+		}
+		set({ loading: true, error: undefined });
+		const trackedPromise = (async () => {
+				if (preferenceSavePromise) {
+					await preferenceSavePromise;
+				}
+				return operation();
+			})()
+			.finally(() => {
+				if (settingsOperation?.promise === trackedPromise) {
+					settingsOperation = undefined;
+					set({ loading: false });
+				}
+			});
+		settingsOperation = { kind, promise: trackedPromise };
+		return trackedPromise;
+	};
+
 	const onStreamEvent = (event: AiStreamEvent) => {
 		const state = get();
 		if (event.jobId !== state.jobId) {
@@ -119,85 +213,114 @@ export const useAiStore = create<AiStore>((set, get) => {
 		jobState: 'created',
 		partial: false,
 
-		async initialize() {
-			if (get().initialized || get().loading) {
-				return;
+		initialize() {
+			if (get().initialized) {
+				return Promise.resolve();
 			}
-			set({ loading: true, error: undefined });
-			try {
-				const [status, preferences, usageSummary] = await Promise.all([
-					desktopBridge.getAiProviderStatus(),
-					desktopBridge.getAiPreferences(),
-					desktopBridge.getAiUsageSummary()
-				]);
-				set({
-					initialized: true,
-					loading: false,
-					status,
-					preferences,
-					usageSummary
-				});
-			} catch (error) {
-				set({ initialized: true, loading: false, error: normalizeAiError(error) });
-			}
-		},
-
-		async saveKeyAndValidate(key) {
-			set({ loading: true, error: undefined });
-			try {
-				const secret = await desktopBridge.saveDeepSeekKey(key);
-				const currentStatus = get().status;
-				if (currentStatus) {
-					set({ status: { ...currentStatus, secret } });
+			return runSettingsOperation('initialize', () => undefined, async () => {
+				try {
+					const [status, preferences, usageSummary] = await Promise.all([
+						desktopBridge.getAiProviderStatus(),
+						desktopBridge.getAiPreferences(),
+						desktopBridge.getAiUsageSummary()
+					]);
+					persistedPreferences = preferences;
+					set({
+						initialized: true,
+						status,
+						preferences,
+						usageSummary
+					});
+				} catch (error) {
+					set({ initialized: true, error: normalizeAiError(error) });
 				}
-				const result = await desktopBridge.testDeepSeekConnection();
-				const defaultModelId = chooseDefaultModel(
-					result.models,
-					result.status.preferences.defaultModelId
-				);
-				const preferences = defaultModelId
-					&& defaultModelId !== result.status.preferences.defaultModelId
-					? await desktopBridge.saveAiPreferences({
-						...result.status.preferences,
-						defaultModelId
-					})
-					: result.status.preferences;
-				set({
-					loading: false,
-					status: { ...result.status, secret, preferences },
-					preferences,
-					models: result.models,
-					balance: result.balance
-				});
-			} catch (error) {
-				set({ loading: false, error: normalizeAiError(error) });
-				throw error;
-			}
-		},
-
-		async deleteKey() {
-			const currentJob = get().jobId;
-			const wasActive = Boolean(currentJob)
-				&& !['completed', 'cancelled', 'failed'].includes(get().jobState);
-			if (currentJob && wasActive) {
-				await desktopBridge.cancelAiJob(currentJob);
-			}
-			const secret = await desktopBridge.deleteDeepSeekKey();
-			const status = get().status;
-			set({
-				status: status ? { ...status, secret, lastValidatedAt: undefined } : undefined,
-				models: [],
-				balance: undefined,
-				jobState: wasActive ? 'cancelled' : get().jobState,
-				partial: Boolean(get().output)
 			});
-			return secret;
 		},
 
-		async testConnection() {
-			set({ loading: true, error: undefined });
-			try {
-				const result = await desktopBridge.testDeepSeekConnection();
+		saveKeyAndValidate(key) {
+			return runSettingsOperation('save-key', () => undefined, async () => {
+				try {
+					const secret = await desktopBridge.saveDeepSeekKey(key);
+					const currentStatus = get().status;
+					if (currentStatus) {
+						set({ status: { ...currentStatus, secret } });
+					}
+					const result = await desktopBridge.testDeepSeekConnection();
+					const defaultModelId = chooseDefaultModel(
+						result.models,
+						result.status.preferences.defaultModelId
+					);
+					const preferences = defaultModelId
+						&& defaultModelId !== result.status.preferences.defaultModelId
+						? await desktopBridge.saveAiPreferences({
+							...result.status.preferences,
+							defaultModelId
+						})
+						: result.status.preferences;
+					persistedPreferences = preferences;
+					set({
+						status: { ...result.status, secret, preferences },
+						preferences,
+						models: result.models,
+						balance: result.balance
+					});
+				} catch (error) {
+					set({ error: normalizeAiError(error) });
+					throw error;
+				}
+			});
+		},
+
+		deleteKey() {
+			return runSettingsOperation(
+				'delete-key',
+				() => get().status?.secret ?? { configured: false, providerId: 'deepseek' },
+				async () => {
+					try {
+						const currentJob = get().jobId;
+						const wasActive = Boolean(currentJob)
+							&& !['completed', 'cancelled', 'failed'].includes(get().jobState);
+						if (currentJob && wasActive) {
+							const cancelled = await desktopBridge.cancelAiJob(currentJob);
+							const current = get();
+							if (
+								cancelled
+								&& current.jobId === currentJob
+								&& !['completed', 'cancelled', 'failed'].includes(current.jobState)
+							) {
+								set({
+									jobState: 'cancelled',
+									durationMs: current.startedAt
+										? Date.now() - current.startedAt
+										: undefined,
+									partial: Boolean(current.output)
+								});
+							}
+						}
+						const secret = await desktopBridge.deleteDeepSeekKey();
+						const status = get().status;
+						set({
+							status: status
+								? { ...status, secret, lastValidatedAt: undefined }
+								: undefined,
+							models: [],
+							balance: undefined,
+							jobState: wasActive ? 'cancelled' : get().jobState,
+							partial: Boolean(get().output)
+						});
+						return secret;
+					} catch (error) {
+						set({ error: normalizeAiError(error) });
+						throw error;
+					}
+				}
+			);
+		},
+
+		testConnection() {
+			return runSettingsOperation('test-connection', () => undefined, async () => {
+				try {
+					const result = await desktopBridge.testDeepSeekConnection();
 				const defaultModelId = chooseDefaultModel(
 					result.models,
 					result.status.preferences.defaultModelId
@@ -209,56 +332,66 @@ export const useAiStore = create<AiStore>((set, get) => {
 						defaultModelId
 					})
 					: result.status.preferences;
+				persistedPreferences = preferences;
 				set({
-					loading: false,
 					status: { ...result.status, preferences },
 					preferences,
 					models: result.models,
 					balance: result.balance
 				});
-			} catch (error) {
-				set({ loading: false, error: normalizeAiError(error) });
-			}
+				} catch (error) {
+					set({ error: normalizeAiError(error) });
+				}
+			});
 		},
 
-		async refreshModels() {
-			set({ loading: true, error: undefined });
-			try {
-				const models = await desktopBridge.listDeepSeekModels(true);
+		refreshModels() {
+			return runSettingsOperation('refresh-models', () => undefined, async () => {
+				try {
+					const models = await desktopBridge.listDeepSeekModels(true);
 				const currentPreferences = get().preferences;
 				const defaultModelId = chooseDefaultModel(models, currentPreferences.defaultModelId);
 				const preferences = defaultModelId
 					&& defaultModelId !== currentPreferences.defaultModelId
 					? await desktopBridge.saveAiPreferences({ ...currentPreferences, defaultModelId })
 					: currentPreferences;
-				set({ loading: false, models, preferences });
-			} catch (error) {
-				set({ loading: false, error: normalizeAiError(error) });
-			}
-		},
-
-		async refreshBalance() {
-			set({ loading: true, error: undefined });
-			try {
-				set({ loading: false, balance: await desktopBridge.getDeepSeekBalance() });
-			} catch (error) {
-				set({ loading: false, error: normalizeAiError(error) });
-			}
-		},
-
-		async updatePreferences(preferences) {
-			const previous = get().preferences;
-			set({ preferences, error: undefined });
-			try {
-				const saved = await desktopBridge.saveAiPreferences(preferences);
+				persistedPreferences = preferences;
 				const status = get().status;
 				set({
-					preferences: saved,
-					status: status ? { ...status, preferences: saved } : status
+					models,
+					preferences,
+					status: status ? { ...status, preferences } : status
 				});
-			} catch (error) {
-				set({ preferences: previous, error: normalizeAiError(error) });
+				} catch (error) {
+					set({ error: normalizeAiError(error) });
+				}
+			});
+		},
+
+		refreshBalance() {
+			return runSettingsOperation('refresh-balance', () => undefined, async () => {
+				try {
+					const balance = await desktopBridge.getDeepSeekBalance();
+					set({ balance });
+				} catch (error) {
+					set({ error: normalizeAiError(error) });
+				}
+			});
+		},
+
+		updatePreferences(preferences) {
+			const activeOperation = settingsOperation;
+			if (activeOperation) {
+				return activeOperation.promise
+					.catch(() => undefined)
+					.then(() => get().updatePreferences(preferences));
 			}
+			if (get().loading) {
+				return Promise.resolve();
+			}
+			pendingPreferences = preferences;
+			set({ preferences, error: undefined });
+			return flushPendingPreferences();
 		},
 
 		setPrompt(prompt) {
@@ -269,6 +402,9 @@ export const useAiStore = create<AiStore>((set, get) => {
 			const state = get();
 			const prompt = state.prompt.trim();
 			const modelId = state.preferences.defaultModelId;
+			if (state.loading) {
+				return;
+			}
 			if (!state.status?.secret.configured || !modelId || !prompt) {
 				set({ error: normalizeAiError('invalid_configuration') });
 				return;

@@ -78,12 +78,20 @@ export function AiSettingsSection(): React.JSX.Element {
 	};
 
 	const remove = async () => {
-		await deleteKey();
-		setConfirmDelete(false);
-		setNotice('DeepSeek 凭据和模型缓存已移除。');
+		setNotice('');
+		try {
+			await deleteKey();
+			setConfirmDelete(false);
+			setNotice('DeepSeek 凭据和模型缓存已移除。');
+		} catch {
+			setNotice('移除失败，请检查错误提示后重试。');
+		}
 	};
 
 	const update = (patch: Partial<AiProviderPreferences>) => {
+		if (loading) {
+			return;
+		}
 		void updatePreferences({ ...preferences, ...patch });
 	};
 
@@ -161,8 +169,8 @@ export function AiSettingsSection(): React.JSX.Element {
 						) : (
 							<div className="inline-confirm" role="group" aria-label="确认移除凭据">
 								<span>确定移除？</span>
-								<button className="danger-button" type="button" onClick={() => void remove()}>确定</button>
-								<button type="button" onClick={() => setConfirmDelete(false)}>取消</button>
+								<button className="danger-button" type="button" onClick={() => void remove()} disabled={loading}>确定</button>
+								<button type="button" onClick={() => setConfirmDelete(false)} disabled={loading}>取消</button>
 							</div>
 						)}
 					</div>
@@ -179,13 +187,13 @@ export function AiSettingsSection(): React.JSX.Element {
 				<div className="ai-setting-grid">
 					<label className="ai-field">
 						<span>默认模型</span>
-						<select value={preferences.defaultModelId} onChange={event => update({ defaultModelId: event.target.value })}>
+						<select value={preferences.defaultModelId} onChange={event => update({ defaultModelId: event.target.value })} disabled={loading}>
 							{availableModels.map(model => <option key={model.id} value={model.id}>{model.id}</option>)}
 						</select>
 					</label>
 					<label className="ai-field">
 						<span>思考模式</span>
-						<select value={preferences.thinkingMode} onChange={event => update({ thinkingMode: event.target.value as AiProviderPreferences['thinkingMode'] })}>
+						<select value={preferences.thinkingMode} onChange={event => update({ thinkingMode: event.target.value as AiProviderPreferences['thinkingMode'] })} disabled={loading}>
 							<option value="disabled">关闭（更快）</option>
 							<option value="enabled">开启（reasoning effort: high）</option>
 						</select>
@@ -196,6 +204,7 @@ export function AiSettingsSection(): React.JSX.Element {
 							aria-label="最大输出 Token"
 							value={preferences.maxOutputTokens}
 							onChange={event => update({ maxOutputTokens: Number(event.target.value) as AiProviderPreferences['maxOutputTokens'] })}
+							disabled={loading}
 						>
 							{AI_MAX_OUTPUT_PRESETS.map(value => <option key={value} value={value}>{value.toLocaleString()}</option>)}
 						</select>
