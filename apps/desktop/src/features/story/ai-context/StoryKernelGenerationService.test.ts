@@ -3,6 +3,7 @@ import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
 } from '@writing-buddy/platform-ports';
+import { STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE } from '@writing-buddy/test-support';
 import {
 	DesktopStoryRepository,
 	type StorySaveEntry,
@@ -417,6 +418,62 @@ describe('StoryKernelGenerationService', () => {
 		expect(gateway.commitCalls).toBe(1);
 		expect(gateway.resources).toHaveLength(12);
 		expect(confirmed.candidates.every(candidate => candidate.status === 'accepted')).toBe(true);
+	});
+
+	it('TC-QA-SK-REL-001 quarantines an unselected relationship with malformed position and history', async () => {
+		const { gateway, repository, service } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '仅创建正文中的人物候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: 'QA 人物甲、QA 人物乙和 QA 人物丙共同出现。',
+			targetTypes: ['character'],
+			response: STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE,
+			now
+		});
+		const relationship = batch.candidates.find(candidate => (
+			candidate.resourceType === 'relationship'
+		));
+		const confirmable = batch.candidates.filter(candidate => (
+			candidate.conflicts.length === 0 && candidate.normalizedResource !== undefined
+		));
+
+		expect(batch.candidates).toHaveLength(4);
+		expect(confirmable).toHaveLength(3);
+		expect(relationship?.normalizedResource).toBeUndefined();
+		expect(relationship?.conflicts.map(item => item.code)).toEqual([
+			'target-type-not-selected',
+			'invalid-schema'
+		]);
+		expect(relationship?.conflicts.find(item => item.code === 'invalid-schema')?.details)
+			.toEqual(expect.arrayContaining([
+				expect.objectContaining({
+					path: 'effectiveFrom',
+					expected: '对象',
+					actual: '"childhood"'
+				}),
+				expect.objectContaining({
+					path: 'history',
+					expected: '列表',
+					actual: '"童年时期共同经历过一次脱敏 QA 事件。"'
+				})
+			]));
+
+		await expect(service.confirm(batch.id, [relationship?.id ?? '']))
+			.rejects.toThrow('storyKernelGenerationCandidateBlocked');
+		const confirmed = await service.confirm(
+			batch.id,
+			confirmable.map(candidate => candidate.id),
+			'2026-07-27T08:01:00.000Z'
+		);
+
+		expect(gateway.commitCalls).toBe(1);
+		expect(confirmed.candidates.filter(candidate => candidate.status === 'accepted'))
+			.toHaveLength(3);
+		expect(confirmed.candidates.find(candidate => candidate.resourceType === 'relationship'))
+			.toMatchObject({ status: 'pending' });
+		await expect(repository.list('character')).resolves.toHaveLength(3);
+		await expect(repository.list('relationship')).resolves.toEqual([]);
 	});
 
 	it('recovers a persisted old item candidate without another AI request', async () => {

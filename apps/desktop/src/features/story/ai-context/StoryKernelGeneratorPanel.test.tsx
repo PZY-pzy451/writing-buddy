@@ -3,6 +3,7 @@ import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
 } from '@writing-buddy/platform-ports';
+import { STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE } from '@writing-buddy/test-support';
 import {
 	DesktopStoryRepository,
 	type StorySaveEntry,
@@ -366,6 +367,58 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
 		expect(screen.getByText(/第 2 项候选结构不完整，已安全隔离/)).toBeInTheDocument();
 		expect(screen.queryByText('生成未完成')).not.toBeInTheDocument();
+	});
+
+	it('TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="QA 人物甲、QA 人物乙和 QA 人物丙共同出现。"
+				repository={new DesktopStoryRepository('D:/Novel', gateway)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={() => Promise.resolve(
+					STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE
+				)}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+				preset={{
+					id: 'qa-unselected-malformed-relationship',
+					instruction: '仅创建正文中的人物候选。',
+					targetTypes: ['character']
+				}}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+
+		const relationshipCheckbox = await screen.findByRole('checkbox', {
+			name: '选择 QA 人物甲与乙的关系'
+		});
+		expect(relationshipCheckbox).toBeDisabled();
+		expect(screen.getByText('4 个候选')).toBeInTheDocument();
+		expect(screen.getByText('3 个可确认')).toBeInTheDocument();
+		expect(screen.getByText('AI 返回了未勾选的 relationship 类型。')).toBeInTheDocument();
+		expect(screen.getByText('字段结构不符合 Story Kernel，修正前无法确认写入。'))
+			.toBeInTheDocument();
+		expect(screen.getByText('effectiveFrom')).toBeInTheDocument();
+		expect(screen.getByText('history')).toBeInTheDocument();
+		expect(screen.getByText(/当前："childhood"/)).toBeInTheDocument();
+		expect(screen.queryByText('生成未完成')).not.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '创建快照并确认 3' }));
+		await waitFor(() => expect(screen.getAllByText('已写入')).toHaveLength(3));
+
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect([...gateway.resources.keys()].filter(key => key.startsWith('character:')))
+			.toHaveLength(3);
+		expect([...gateway.resources.keys()].some(key => key.startsWith('relationship:')))
+			.toBe(false);
 	});
 
 	it('classifies a fully malformed batch as a response issue, not an AI setting issue', async () => {

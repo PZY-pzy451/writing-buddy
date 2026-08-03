@@ -13,6 +13,49 @@ export interface DeterministicAiScenarioDefinition {
 
 export const deterministicAiScenarios = aiScenarioData as readonly DeterministicAiScenarioDefinition[];
 
+const qaCharacter = (id: string, title: string) => ({
+	operation: 'create',
+	resource: {
+		id,
+		type: 'character',
+		title,
+		aliases: [],
+		tags: [],
+		evidenceIds: []
+	},
+	confidence: 0.9,
+	rationale: '脱敏 QA 正文明确出现该人物。',
+	evidence: null
+});
+
+export const STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE = JSON.stringify({
+	candidates: [
+		qaCharacter('character:qa-a', 'QA 人物甲'),
+		qaCharacter('character:qa-b', 'QA 人物乙'),
+		qaCharacter('character:qa-c', 'QA 人物丙'),
+		{
+			operation: 'create',
+			resource: {
+				id: 'relationship:qa-a-qa-b',
+				type: 'relationship',
+				title: 'QA 人物甲与乙的关系',
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				sourceCharacterId: 'character:qa-a',
+				targetCharacterId: 'character:qa-b',
+				relationshipType: '亲属',
+				visibility: 'private',
+				effectiveFrom: 'childhood',
+				history: '童年时期共同经历过一次脱敏 QA 事件。'
+			},
+			confidence: 0.9,
+			rationale: '脱敏 QA 响应故意返回未选择的类型与错误字段形状。',
+			evidence: null
+		}
+	]
+});
+
 function failed(jobId: string, code: Extract<AiStreamEvent, { type: 'failed' }>['error']['code'], message: string, httpStatus?: number): AiStreamEvent {
 	return { type: 'failed', jobId, error: { code, message, retryable: !['authentication_failed', 'invalid_request'].includes(code), ...(httpStatus ? { httpStatus } : {}) } };
 }
@@ -50,6 +93,12 @@ function eventsFor(jobId: string, scenarioId: DeterministicAiScenarioId): readon
 		case 'revision_conflict': return [started, opened, content(jobId, '{"expectedRevision":1,"actualRevision":2}'), completed];
 		case 'save_after_apply_failure': return [started, opened, content(jobId, '{"apply":"ok","save":"fail"}'), completed];
 		case 'privacy_redaction': return [started, opened, content(jobId, '{"retainedRequest":false}'), completed];
+		case 'story_kernel_unselected_malformed_relationship': return [
+			started,
+			opened,
+			content(jobId, STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE),
+			completed
+		];
 	}
 	throw new Error('unknownQaAiScenario');
 }

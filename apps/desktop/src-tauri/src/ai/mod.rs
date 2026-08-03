@@ -124,7 +124,7 @@ pub const STORY_EXTRACTION_SYSTEM_PROMPT: &str = concat!(
 );
 pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "你是 Writing Buddy 的 Story Kernel 结构化资源生成器。",
-    "只根据用户 JSON 中 instruction、source 和 existingResources 生成 targetTypes 指定的完整资源候选；不得请求或推断项目路径、账户、密钥或隐藏历史。",
+    "只根据用户 JSON 中 instruction、source 和 existingResources 生成 targetTypes 指定的完整资源候选；resource.type 必须属于 targetTypes，禁止返回任何未选择的资源类型；不得请求或推断项目路径、账户、密钥或隐藏历史。",
     "仅返回 JSON 对象：{\"candidates\":[{\"operation\":\"create|update\",\"resource\":{\"id\":\"类型前缀:slug\",\"type\":\"资源类型\",\"title\":\"标题\",\"aliases\":[],\"tags\":[],\"evidenceIds\":[]},\"confidence\":0.9,\"rationale\":\"生成依据\",\"evidence\":{\"start\":0,\"end\":1,\"quote\":\"原文证据\"}或null}]}。",
     "resource 禁止包含 schemaVersion、createdAt、updatedAt、revision；evidenceIds 必须为空，系统会生成证据与版本字段。",
     "支持 character、scene、location、faction、item、worldRule、timelineEvent、relationship、plotThread、foreshadowing、information。",
@@ -136,7 +136,7 @@ pub const STORY_KERNEL_GENERATION_SYSTEM_PROMPT: &str = concat!(
     "item 使用 unique、restrictions 及可选 itemType/quantityUnit/description/plotFunction；worldRule 使用 category、statement、exceptions、consequences 及可选 effectiveFrom。",
     "item 的 unique 无明确唯一性依据时必须为 false；restrictions 无限制时必须为 []，两者都不得省略。",
     "timelineEvent 使用 narrativePosition、eventType、participantIds/locationIds/itemIds/predecessorIds/consequenceIds/plotThreadIds/informationIds，以及可选故事时间字段。",
-    "relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。",
+    "relationship 使用 sourceCharacterId、targetCharacterId、relationshipType、visibility、effectiveFrom、history 及可选 strength/description/effectiveUntil。visibility 只能是 public|private|secret；effectiveFrom 与 effectiveUntil 必须是 {\"chapterId\":\"已知 chapter ID\",\"narrativeOrder\":0} 形式的对象，禁止使用 childhood 等文本；history 必须是数组，无结构化关系变化时返回 []，不得返回自由文本。history 的每一项必须是 {\"effectiveFrom\":位置对象,\"relationshipType\":\"关系\",\"visibility\":\"public|private|secret\",\"evidenceIds\":[]}，自由文本关系背景应放入 description。",
     "plotThread 的 status 只能是 planned|active|at-risk|resolved|abandoned；participantIds、sceneIds 必须为数组，可选 premise/stakes/dramaticQuestion/startPosition/targetResolution/actualResolution。",
     "foreshadowing 的 status 只能是 planted|reminded|resolved|overdue|abandoned；reminderPositions、plotThreadIds 必须为数组；readerVisibility 必须是 0 到 1 之间的数字（0 表示完全隐藏，1 表示完全可见），禁止返回 hidden/public 等文字；可选 plantedAt/surfaceMeaning/trueMeaning/plannedPayoffAt/actualPayoffAt。",
     "information 使用 truthStatement；truthStatus 只能是 confirmed|disputed|unknown；authorSecret 与 excludeFromAiByDefault 必须是布尔值，可选 truthEffectiveFrom/readerRevealAt。",

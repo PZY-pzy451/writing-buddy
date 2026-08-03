@@ -2,14 +2,15 @@ import { describe, expect, it } from 'vitest';
 import {
 	DeterministicAiMockProvider,
 	DeterministicProjectFixture,
+	STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE,
 	deterministicAiScenarios,
 	deterministicProjectScenarios
 } from './index';
 
 describe('deterministic QA fixtures', () => {
 	it('TC-QA-FIXTURE-001 exposes the complete AI and project scenario catalog', () => {
-		expect(deterministicAiScenarios).toHaveLength(24);
-		expect(new Set(deterministicAiScenarios.map(scenario => scenario.id)).size).toBe(24);
+		expect(deterministicAiScenarios).toHaveLength(25);
+		expect(new Set(deterministicAiScenarios.map(scenario => scenario.id)).size).toBe(25);
 		expect(deterministicProjectScenarios).toHaveLength(8);
 	});
 
@@ -68,5 +69,30 @@ describe('deterministic QA fixtures', () => {
 			eol: 'lf',
 			hasBom: false
 		})).rejects.toThrow('externalChange');
+	});
+
+	it('TC-QA-FIXTURE-008 replays an unselected malformed relationship without real provider data', () => {
+		const events = new DeterministicAiMockProvider()
+			.createRun('qa-story-kernel-boundary', 'story_kernel_unselected_malformed_relationship')
+			.drain();
+		const response = events
+			.map(event => event.type === 'content_delta' ? event.text : '')
+			.join('');
+
+		expect(response).toBe(STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE);
+		expect(JSON.parse(response)).toMatchObject({
+			candidates: [
+				{},
+				{},
+				{},
+				{
+					resource: {
+						type: 'relationship',
+						effectiveFrom: 'childhood',
+						history: '童年时期共同经历过一次脱敏 QA 事件。'
+					}
+				}
+			]
+		});
 	});
 });
