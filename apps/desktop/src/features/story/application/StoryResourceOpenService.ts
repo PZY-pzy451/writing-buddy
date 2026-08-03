@@ -40,7 +40,15 @@ export interface MissingStoryOpenResult extends StoryOpenResultBase {
 	readonly status: 'missing';
 }
 
-export type StoryOpenResult = ReadyStoryOpenResult | MissingStoryOpenResult;
+export interface UnavailableStoryOpenResult extends StoryOpenResultBase {
+	readonly status: 'unavailable';
+	readonly errorCode: 'storyResourceReadFailed' | 'storyRestoreVerificationFailed';
+}
+
+export type StoryOpenResult =
+	| ReadyStoryOpenResult
+	| MissingStoryOpenResult
+	| UnavailableStoryOpenResult;
 
 export class StoryResourceOpenService {
 	constructor(
@@ -51,19 +59,21 @@ export class StoryResourceOpenService {
 
 	async loadStoryResource(reference: StoryResourceReference): Promise<StoryOpenResult> {
 		const registration = getStoryResourceRegistration(reference.type);
-		const resource = await this.repository.get(reference.type, reference.id);
-		const tab: StoryTabDescriptor = {
-			id: buildStoryTabKey(reference.type, reference.id),
-			type: 'story',
-			title: resource?.title ?? '资源不存在',
-			projectId: this.projectId,
-			storyType: reference.type,
-			storyId: reference.id,
-			route: buildStoryRoute(reference.type, reference.id)
-		};
-		return resource
-			? { status: 'ready', reference, registration, tab, resource }
-			: { status: 'missing', reference, registration, tab };
+		try {
+			const resource = await this.repository.get(reference.type, reference.id);
+			const tab = this.createTab(reference, resource?.title ?? '资源不存在');
+			return resource
+				? { status: 'ready', reference, registration, tab, resource }
+				: { status: 'missing', reference, registration, tab };
+		} catch {
+			return {
+				status: 'unavailable',
+				errorCode: 'storyResourceReadFailed',
+				reference,
+				registration,
+				tab: this.createTab(reference, '资料暂不可用')
+			};
+		}
 	}
 
 	async openStoryResource(reference: StoryResourceReference): Promise<StoryOpenResult> {
@@ -89,12 +99,33 @@ export class StoryResourceOpenService {
 		return results;
 	}
 
-	async restoreFromTrash(reference: StoryResourceReference): Promise<ReadyStoryOpenResult> {
+	async restoreFromTrash(reference: StoryResourceReference): Promise<StoryOpenResult> {
 		await this.repository.restoreFromTrash(reference.type, reference.id);
-		const result = await this.openStoryResource(reference);
-		if (result.status !== 'ready') {
-			throw new Error('storyRestoreFailed');
+		const result = await this.loadStoryResource(reference);
+		if (result.status === 'missing') {
+			return {
+				status: 'unavailable',
+				errorCode: 'storyRestoreVerificationFailed',
+				reference,
+				registration: result.registration,
+				tab: this.createTab(reference, '资料暂不可用')
+			};
 		}
 		return result;
+	}
+
+	private createTab(
+		reference: StoryResourceReference,
+		title: string
+	): StoryTabDescriptor {
+		return {
+			id: buildStoryTabKey(reference.type, reference.id),
+			type: 'story',
+			title,
+			projectId: this.projectId,
+			storyType: reference.type,
+			storyId: reference.id,
+			route: buildStoryRoute(reference.type, reference.id)
+		};
 	}
 }

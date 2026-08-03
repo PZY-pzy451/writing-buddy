@@ -419,6 +419,8 @@ let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
 let activeResourceOpen: Promise<void> | undefined;
 let queuedResourceOpen: ResourceDescriptor | undefined;
+let activeStoryRestore: Promise<void> | undefined;
+let resourceOpenIntentVersion = 0;
 const closingResourceIds = new Set<string>();
 
 function releaseResourceCloseAfterCurrentBurst(resourceId: string): void {
@@ -591,9 +593,17 @@ async function performResourceOpen(
 	set: AppStoreSet
 ): Promise<void> {
 	const current = get();
+	const reloadCurrentStory = Boolean(
+		current.activeResource
+		&& isSameResourceOpen(current.activeResource, resource)
+		&& isStoryTab(resource)
+		&& current.storyOpenResult
+		&& current.storyOpenResult.status !== 'ready'
+	);
 	if (
 		current.activeResource
 		&& isSameResourceOpen(current.activeResource, resource)
+		&& !reloadCurrentStory
 	) return;
 	if (!await saveBeforeResourceOpen(get, set)) {
 		hasSupersedingResourceOpen(resource);
@@ -1704,6 +1714,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	openResource(resource) {
+		resourceOpenIntentVersion += 1;
 		queuedResourceOpen = resource;
 		if (activeResourceOpen) return activeResourceOpen;
 		const operation = (async () => {
@@ -1735,27 +1746,58 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async restoreStoryResource() {
-		const missing = get().storyOpenResult;
-		if (!storyResourceOpenService || missing?.status !== 'missing') {
+		if (activeStoryRestore) return activeStoryRestore;
+		const current = get();
+		const missing = current.storyOpenResult;
+		const snapshot = current.snapshot;
+		const restoreService = storyResourceOpenService;
+		if (
+			!restoreService
+			|| !snapshot
+			|| missing?.status !== 'missing'
+			|| current.activeResource?.id !== missing.tab.id
+		) {
 			return;
 		}
+		const intentVersion = resourceOpenIntentVersion;
+		const operation = (async () => {
+			try {
+				const result = await restoreService.restoreFromTrash(missing.reference);
+				if (
+					resourceOpenIntentVersion !== intentVersion
+					|| !isResourceOpenProjectCurrent(snapshot, get)
+					|| get().activeResource?.id !== missing.tab.id
+					|| get().storyOpenResult?.status !== 'missing'
+				) return;
+				tabs.open(result.tab);
+				const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+				set(state => ({
+					activeResource: result.tab,
+					activeResourceId: result.tab.id,
+					storyOpenResult: result,
+					tabs: tabs.state.resources,
+					openResourceIds,
+					error: undefined,
+					writerSessions: updateCurrentWriterSession(
+						state,
+						session => updateSessionResource(session, result.tab, openResourceIds)
+					)
+				}));
+			} catch {
+				if (
+					resourceOpenIntentVersion === intentVersion
+					&& isResourceOpenProjectCurrent(snapshot, get)
+					&& get().activeResource?.id === missing.tab.id
+				) {
+					set({ error: '资料不在可恢复区，请重新检查或稍后重试。' });
+				}
+			}
+		})();
+		activeStoryRestore = operation;
 		try {
-			const result = await storyResourceOpenService.restoreFromTrash(missing.reference);
-			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
-			set(state => ({
-				activeResource: result.tab,
-				activeResourceId: result.tab.id,
-				storyOpenResult: result,
-				tabs: tabs.state.resources,
-				openResourceIds,
-				error: undefined,
-				writerSessions: updateCurrentWriterSession(
-					state,
-					session => updateSessionResource(session, result.tab, openResourceIds)
-				)
-			}));
-		} catch (error) {
-			set({ error: error instanceof Error ? error.message : '资源不在可恢复区。' });
+			await operation;
+		} finally {
+			if (activeStoryRestore === operation) activeStoryRestore = undefined;
 		}
 	},
 

@@ -1,6 +1,7 @@
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { toStoryChapterId } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../platform/bridge';
+import { buildStoryTabKey } from '../features/story/application/StoryResourceRegistry';
 import { useAppStore } from './store';
 import type { WriterSessionState } from './writerSession';
 import {
@@ -232,5 +233,45 @@ describe('writer session store integration', () => {
 			localStorage.getItem('writing-buddy-next-workspace') ?? '{}'
 		) as { readonly state?: { readonly writerSessions?: Record<string, unknown> } };
 		expect(persisted.state?.writerSessions?.[fixture.project.projectId]).toBeDefined();
+	});
+
+	it('reopens a project when one persisted Story tab is temporarily unreadable and keeps it retryable', async () => {
+		const fixture = await desktopBridge.openProject('browser-fixture');
+		const chapterId = 'chapter-a11ce002';
+		const storyTabId = buildStoryTabKey('character', 'character:lin-mo');
+		useAppStore.setState({
+			writerSessions: {
+				[fixture.project.projectId]: {
+					...sessionFor(
+						fixture.project.projectId,
+						chapterId,
+						[chapterId, storyTabId]
+					),
+					activeResourceId: storyTabId
+				}
+			}
+		});
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource')
+			.mockRejectedValueOnce(new Error('readFailed:C:\\private\\story\\character.json'));
+
+		await useAppStore.getState().openProject(fixture.root);
+
+		const restored = useAppStore.getState();
+		expect(restored.projectOpenError).toBeUndefined();
+		expect(restored.snapshot?.project.projectId).toBe(fixture.project.projectId);
+		expect(restored.tabs.map(tab => tab.id)).toEqual([chapterId, storyTabId]);
+		expect(restored.storyOpenResult).toMatchObject({
+			status: 'unavailable',
+			errorCode: 'storyResourceReadFailed'
+		});
+		expect(restored.tabs.find(tab => tab.id === storyTabId)?.title).toBe('资料暂不可用');
+
+		const storyTab = restored.tabs.find(tab => tab.id === storyTabId);
+		if (!storyTab) throw new Error('missing restored Story tab');
+		await restored.openResource(storyTab);
+
+		expect(getStoryResource).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('ready');
+		expect(useAppStore.getState().activeResource?.title).toBe('林墨');
 	});
 });

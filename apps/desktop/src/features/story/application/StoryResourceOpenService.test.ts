@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { ResourceDescriptor } from '@writing-buddy/domain';
 import { ResourceTabManager } from '@writing-buddy/project';
 import {
@@ -115,6 +115,28 @@ describe('StoryResourceOpenService', () => {
 		expect(tabs.state.activeId).toBeUndefined();
 	});
 
+	it('keeps a transient repository failure retryable without mutating tabs or exposing internals', async () => {
+		const tabs = new ResourceTabManager();
+		const repository = new MemoryStoryRepository([character()]);
+		vi.spyOn(repository, 'get').mockRejectedValueOnce(
+			new Error('readFailed:C:\\private\\story\\character.json')
+		);
+		const service = new StoryResourceOpenService(repository, tabs, 'project-story');
+
+		const result = await service.loadStoryResource({
+			type: 'character',
+			id: 'character:lin-yue'
+		});
+
+		expect(result).toMatchObject({
+			status: 'unavailable',
+			errorCode: 'storyResourceReadFailed',
+			tab: { title: '资料暂不可用' }
+		});
+		expect(JSON.stringify(result)).not.toContain('C:\\private');
+		expect(tabs.state.resources).toHaveLength(0);
+	});
+
 	it('opens a Story resource once and deduplicates its workspace tab', async () => {
 		const tabs = new ResourceTabManager();
 		const service = new StoryResourceOpenService(
@@ -165,7 +187,7 @@ describe('StoryResourceOpenService', () => {
 		expect(tabs.state.activeId).toBe(missingKey);
 	});
 
-	it('replaces a missing tab with the recovered resource after restoring from trash', async () => {
+	it('loads a recovered resource without replacing the missing tab before the caller commits it', async () => {
 		const tabs = new ResourceTabManager();
 		const repository = new MemoryStoryRepository([character()]);
 		await repository.moveToTrash('character', 'character:lin-yue');
@@ -180,6 +202,8 @@ describe('StoryResourceOpenService', () => {
 		expect(missing.status).toBe('missing');
 		expect(restored.status).toBe('ready');
 		expect(tabs.state.resources).toHaveLength(1);
+		expect(tabs.state.resources[0]?.title).toBe('资源不存在');
+		tabs.open(restored.tab);
 		expect(tabs.state.resources[0]?.title).toBe(character().title);
 	});
 });

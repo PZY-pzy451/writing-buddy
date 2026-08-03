@@ -1,4 +1,4 @@
-import { Database, FileQuestion, RefreshCw, RotateCcw } from 'lucide-react';
+import { AlertTriangle, Database, FileQuestion, RefreshCw, RotateCcw } from 'lucide-react';
 import type {
 	StoryOpenResult,
 	StoryResourceReference
@@ -39,6 +39,23 @@ export function StoryResourceView({
 						<RotateCcw size={18} />从回收区恢复
 					</button>
 					<button type="button" className="secondary" onClick={() => onRetry(result.reference)}>
+						<RefreshCw size={18} />重新检查
+					</button>
+				</div>
+			</section>
+		);
+	}
+
+	if (result.status === 'unavailable') {
+		return (
+			<section className="story-resource-state is-missing" role="alert">
+				<AlertTriangle size={34} />
+				<span className="story-resource-eyebrow">{result.registration.label}</span>
+				<h2>资料暂时无法读取</h2>
+				<p>项目仍可继续使用，资料标签也已保留。请稍后重新检查；正文和 Story Kernel 数据均未被修改。</p>
+				<code>{result.reference.id}</code>
+				<div className="story-resource-actions">
+					<button type="button" onClick={() => onRetry(result.reference)}>
 						<RefreshCw size={18} />重新检查
 					</button>
 				</div>

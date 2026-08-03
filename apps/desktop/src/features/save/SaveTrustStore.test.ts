@@ -546,4 +546,99 @@ describe('save trust store integration', () => {
 		expect(useAppStore.getState().tabs.map(tab => tab.id))
 			.not.toContain('story:character:character:lin-mo');
 	});
+
+	it('rechecks an active missing Story resource and upgrades it when data returns', async () => {
+		const snapshot = await openChapter();
+		const fixtureStory = await desktopBridge.getStoryResource(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		if (!fixtureStory) throw new Error('missing browser Story resource fixture');
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource')
+			.mockResolvedValueOnce(undefined)
+			.mockResolvedValueOnce(fixtureStory);
+
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('missing');
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+
+		expect(getStoryResource).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('ready');
+		expect(useAppStore.getState().activeResource?.title).toBe('林墨');
+	});
+
+	it('restores a missing Story resource once under 100 same-tick actions', async () => {
+		const snapshot = await openChapter();
+		await desktopBridge.moveStoryResourceToTrash(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('missing');
+		const restore = vi.spyOn(desktopBridge, 'restoreStoryResourceFromTrash');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().restoreStoryResource()
+		)));
+
+		expect(restore).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('ready');
+		expect(useAppStore.getState().activeResource?.title).toBe('林墨');
+	});
+
+	it('does not let a late Story trash restore overwrite a newer chapter intent', async () => {
+		const snapshot = await openChapter();
+		const target = chapterAt(snapshot, 1);
+		await desktopBridge.moveStoryResourceToTrash(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+		const originalRestore = desktopBridge.restoreStoryResourceFromTrash.bind(desktopBridge);
+		let finishRestore: (() => void) | undefined;
+		const restore = vi.spyOn(desktopBridge, 'restoreStoryResourceFromTrash')
+			.mockImplementationOnce(async (...args) => {
+				await new Promise<void>(resolve => { finishRestore = resolve; });
+				return originalRestore(...args);
+			});
+
+		const restoring = useAppStore.getState().restoreStoryResource();
+		await vi.waitFor(() => expect(restore).toHaveBeenCalledTimes(1));
+		const chapterOpening = useAppStore.getState().openResource(target);
+		finishRestore?.();
+		await Promise.all([restoring, chapterOpening]);
+
+		expect(useAppStore.getState().activeResource?.id).toBe(target.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(target.id);
+		expect(useAppStore.getState().storyOpenResult).toBeUndefined();
+	});
+
+	it('localizes a failed Story trash restore and releases it for retry', async () => {
+		const snapshot = await openChapter();
+		await desktopBridge.moveStoryResourceToTrash(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+		const originalRestore = desktopBridge.restoreStoryResourceFromTrash.bind(desktopBridge);
+		const restore = vi.spyOn(desktopBridge, 'restoreStoryResourceFromTrash')
+			.mockRejectedValueOnce(new Error('trashReadFailed:C:\\private\\story\\trash.json'))
+			.mockImplementationOnce((...args) => originalRestore(...args));
+
+		await useAppStore.getState().restoreStoryResource();
+
+		expect(useAppStore.getState().error).toBe('资料不在可恢复区，请重新检查或稍后重试。');
+		expect(useAppStore.getState().error).not.toContain('C:\\private');
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('missing');
+
+		await useAppStore.getState().restoreStoryResource();
+
+		expect(restore).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().storyOpenResult?.status).toBe('ready');
+		expect(useAppStore.getState().error).toBeUndefined();
+	});
 });
