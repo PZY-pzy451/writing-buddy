@@ -116,7 +116,9 @@ const changedFiles = [
 ].filter(Boolean).map(normalizePath).filter((file, index, values) => values.indexOf(file) === index).sort();
 
 const schemaFiles = trackedFiles.filter(file => /^(?:packages\/(?:schema|story-kernel\/src\/schema)|apps\/desktop\/src-tauri\/src\/(?:story|commands))\//u.test(file));
-const fixtureFiles = trackedFiles.filter(file => file.startsWith('fixtures/'));
+const fixtureFiles = trackedFiles.filter(file => file.startsWith('fixtures/')
+	|| file === 'packages/test-support/src/fixtures/project-scenarios.json'
+	|| file === 'packages/test-support/src/deterministicProjectFixture.ts');
 const mockFiles = trackedFiles.filter(file => file === 'apps/desktop/src/platform/bridge.ts' || file.startsWith('packages/test-support/'));
 const buildFiles = trackedFiles.filter(file => /(?:^|\/)(?:package\.json|Cargo\.toml|tauri[^/]*\.conf\.json|vite\.config\.ts)$/u.test(file))
 	.concat(['package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'tsconfig.json', 'vitest.config.ts', 'eslint.config.mjs'].filter(file => fileHashes.has(file)));

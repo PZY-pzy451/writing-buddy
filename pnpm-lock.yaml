@@ -248,6 +248,9 @@ importers:
 
   packages/test-support:
     dependencies:
+      '@writing-buddy/ai':
+        specifier: workspace:*
+        version: link:../ai
       '@writing-buddy/domain':
         specifier: workspace:*
         version: link:../domain

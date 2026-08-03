@@ -63557,6 +63557,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-12ECBF2162",
+      "title": "TC-QA-FIXTURE-007 models read-only and external-conflict preconditions explicitly",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-132327E541",
       "title": "reorders a chapter in one volume and returns an inverse command",
       "source": "packages/project/src/ProjectStructureMove.test.ts",
@@ -67323,6 +67337,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-752926BECD",
+      "title": "TC-QA-FIXTURE-005 resets mutation and one-shot failure state between tests",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-754C34EAE7",
       "title": "rejects an outline that has no explicit chapter boundaries",
       "source": "apps/desktop/src/features/projects/application/DraftImportModel.test.ts",
@@ -68396,6 +68424,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-90B1591471",
+      "title": "TC-QA-FIXTURE-002 replays identical streams and retains no request content",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -70025,6 +70067,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-C168390512",
+      "title": "TC-QA-FIXTURE-001 exposes the complete AI and project scenario catalog",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-C1A847940D",
       "title": "keeps a fact pending when confirmation persistence conflicts",
       "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
@@ -70613,6 +70669,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D269DA9434",
+      "title": "TC-QA-FIXTURE-003 advances slow streams manually and cancels without timers",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D299CC9BD4",
       "title": "keeps unavailable actions inspectable with an explicit reason",
       "source": "apps/desktop/src/features/ai/drawer/aiGenerationStore.test.ts",
@@ -70706,6 +70776,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-D6989128C0",
+      "title": "TC-QA-FIXTURE-004 covers deterministic provider and transport failures",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -71378,6 +71462,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-ED328B80DA",
+      "title": "TC-QA-FIXTURE-006 disposes every in-memory file without touching disk",
+      "source": "packages/test-support/src/deterministicFixtures.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "unit-contract",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 724,
-    "edgeCount": 1252,
+    "nodeCount": 730,
+    "edgeCount": 1259,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -705,6 +705,9 @@
       "scripts/diagnostics/launch-with-webview-debug.ps1",
       "scripts/diagnostics/tauri.webview-debug.conf.json",
       "scripts/perf/measure-storyforge.ps1",
+      "scripts/qa/dependencies.mjs",
+      "scripts/qa/dependencies.test.mjs",
+      "scripts/qa/dependency-policy.mjs",
       "scripts/qa/inventory.mjs",
       "scripts/qa/traceability.mjs",
       "scripts/qa/traceability.test.mjs",
@@ -725,9 +728,12 @@
       "scripts/self-test/run.mjs",
       "tsconfig.json",
       "vitest.config.ts",
-      "scripts/qa/dependencies.mjs",
-      "scripts/qa/dependencies.test.mjs",
-      "scripts/qa/dependency-policy.mjs"
+      "packages/test-support/src/deterministicAiMock.ts",
+      "packages/test-support/src/deterministicFixtures.test.ts",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/fixtures/ai-scenarios.json",
+      "packages/test-support/src/fixtures/project-scenarios.json",
+      "scripts/qa/fixtures.mjs"
     ],
     "edges": [
       {
@@ -6931,6 +6937,31 @@
         "kind": "static-import"
       },
       {
+        "from": "packages/test-support/src/deterministicAiMock.ts",
+        "to": "packages/ai/src/index.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/deterministicAiMock.ts",
+        "to": "packages/test-support/src/fixtures/ai-scenarios.json",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/deterministicFixtures.test.ts",
+        "to": "packages/test-support/src/index.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/deterministicProjectFixture.ts",
+        "to": "packages/test-support/src/fixtures/project-scenarios.json",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/deterministicProjectFixture.ts",
+        "to": "packages/test-support/src/index.ts",
+        "kind": "static-import"
+      },
+      {
         "from": "packages/test-support/src/index.ts",
         "to": "packages/domain/src/index.ts",
         "kind": "static-import"
@@ -6938,6 +6969,16 @@
       {
         "from": "packages/test-support/src/index.ts",
         "to": "packages/platform-ports/src/index.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/index.ts",
+        "to": "packages/test-support/src/deterministicAiMock.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "packages/test-support/src/index.ts",
+        "to": "packages/test-support/src/deterministicProjectFixture.ts",
         "kind": "static-import"
       },
       {
@@ -18039,11 +18080,15 @@
         "packages/story-kernel/src/validation/locationRules.ts",
         "packages/story-kernel/src/validation/plotRules.ts",
         "packages/story-kernel/src/validation/timeRules.ts",
+        "packages/test-support/src/deterministicAiMock.ts",
+        "packages/test-support/src/deterministicProjectFixture.ts",
+        "packages/test-support/src/fixtures/ai-scenarios.json",
+        "packages/test-support/src/fixtures/project-scenarios.json",
         "packages/test-support/src/index.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "0BAD769078B60EC34637405C51383D5C2DDCE9FA13B0EAD7699A3A05B7C00D8B",
-      "dependencyFingerprint": "07128A8ECFE75B61A3D7579484E5204FECCC5C824EC46AD50382D54BD702FB79",
+      "sourceFingerprint": "AF28EB639F464B42EC48AD4A2BBDB5441E11FCD8175F2DBFE0D6059BA2F6B574",
+      "dependencyFingerprint": "B4FE09AED13B20B851CFA1A77C5DA9798755F23130EB05C1F9A77F99F64448CF",
       "testImplementationFingerprint": "DE83C364C38614D4D77E050B8ADBD50CAD6935A055D2CD540B1B2F21ACE6900B"
     },
     {
@@ -18584,6 +18629,79 @@
       "testImplementationFingerprint": "798854E38EB8207F96CEDF4A7FED88BA6CEE0FD4597474ADAEA0C7148F0BE681"
     },
     {
+      "testSource": "packages/test-support/src/deterministicFixtures.test.ts",
+      "testCaseIds": [
+        "TC-DISCOVERED-12ECBF2162",
+        "TC-DISCOVERED-752926BECD",
+        "TC-DISCOVERED-90B1591471",
+        "TC-DISCOVERED-C168390512",
+        "TC-DISCOVERED-D269DA9434",
+        "TC-DISCOVERED-D6989128C0",
+        "TC-DISCOVERED-ED328B80DA"
+      ],
+      "directDependencies": [
+        "packages/test-support/src/index.ts"
+      ],
+      "transitiveDependencies": [
+        "packages/ai/src/index.ts",
+        "packages/domain/src/index.ts",
+        "packages/platform-ports/src/index.ts",
+        "packages/project/src/ProjectStructureMove.ts",
+        "packages/project/src/ProjectTemplateRegistry.ts",
+        "packages/project/src/index.ts",
+        "packages/review/src/index.ts",
+        "packages/story-kernel/src/ids/StoryId.ts",
+        "packages/story-kernel/src/index.ts",
+        "packages/story-kernel/src/model/Character.ts",
+        "packages/story-kernel/src/model/EvidenceRef.ts",
+        "packages/story-kernel/src/model/Faction.ts",
+        "packages/story-kernel/src/model/Foreshadowing.ts",
+        "packages/story-kernel/src/model/ItemState.ts",
+        "packages/story-kernel/src/model/KnowledgeState.ts",
+        "packages/story-kernel/src/model/Location.ts",
+        "packages/story-kernel/src/model/MentionLink.ts",
+        "packages/story-kernel/src/model/PendingFact.ts",
+        "packages/story-kernel/src/model/PlotThread.ts",
+        "packages/story-kernel/src/model/Relationship.ts",
+        "packages/story-kernel/src/model/Scene.ts",
+        "packages/story-kernel/src/model/StateRecord.ts",
+        "packages/story-kernel/src/model/StoryInformation.ts",
+        "packages/story-kernel/src/model/StoryItem.ts",
+        "packages/story-kernel/src/model/StoryPosition.ts",
+        "packages/story-kernel/src/model/StoryResourceBase.ts",
+        "packages/story-kernel/src/model/TimelineEvent.ts",
+        "packages/story-kernel/src/model/WorldRule.ts",
+        "packages/story-kernel/src/query/ContextPackBuilder.ts",
+        "packages/story-kernel/src/query/TimelineQuery.ts",
+        "packages/story-kernel/src/query/TokenBudgetPolicy.ts",
+        "packages/story-kernel/src/repository/StoryPaths.ts",
+        "packages/story-kernel/src/repository/StoryRepository.ts",
+        "packages/story-kernel/src/schema/migrations/v0-to-v1.ts",
+        "packages/story-kernel/src/schema/resourceSchemas.ts",
+        "packages/story-kernel/src/schema/schemaRegistry.ts",
+        "packages/story-kernel/src/schema/storyManifestSchema.ts",
+        "packages/story-kernel/src/transaction/SceneMoveTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryDragTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryTransaction.ts",
+        "packages/story-kernel/src/validation/ContinuityEngine.ts",
+        "packages/story-kernel/src/validation/RuleIssue.ts",
+        "packages/story-kernel/src/validation/informationRules.ts",
+        "packages/story-kernel/src/validation/itemRules.ts",
+        "packages/story-kernel/src/validation/locationRules.ts",
+        "packages/story-kernel/src/validation/plotRules.ts",
+        "packages/story-kernel/src/validation/timeRules.ts",
+        "packages/test-support/src/deterministicAiMock.ts",
+        "packages/test-support/src/deterministicProjectFixture.ts",
+        "packages/test-support/src/fixtures/ai-scenarios.json",
+        "packages/test-support/src/fixtures/project-scenarios.json",
+        "packages/test-support/src/index.ts",
+        "packages/version/src/index.ts"
+      ],
+      "sourceFingerprint": "AF28EB639F464B42EC48AD4A2BBDB5441E11FCD8175F2DBFE0D6059BA2F6B574",
+      "dependencyFingerprint": "81C87E68C9C93FAC27B7012DEAC7D75F6AB41CC8F5AE19EC20CA90599F4EABE1",
+      "testImplementationFingerprint": "075104C360490A113AA63118A00B4961CA453F7D93CE54D4845A44A72D496C21"
+    },
+    {
       "testSource": "scripts/acceptance/gate-h-profile-contract.test.mjs",
       "testCaseIds": [
         "TC-DISCOVERED-322DC81CC8",
@@ -18790,12 +18908,19 @@
       "fixtures/performance/desktop-acceptance-20260726/references/timeline.json",
       "fixtures/performance/desktop-acceptance-20260726/references/worldbuilding/station/content.md",
       "fixtures/performance/desktop-acceptance-20260726/references/worldbuilding/station/metadata.json",
-      "fixtures/performance/storyforge-large-project/manifest.json"
+      "fixtures/performance/storyforge-large-project/manifest.json",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/fixtures/project-scenarios.json"
     ],
     "mockFiles": [
       "apps/desktop/src/platform/bridge.ts",
       "packages/test-support/package.json",
-      "packages/test-support/src/index.ts"
+      "packages/test-support/src/index.ts",
+      "packages/test-support/src/deterministicAiMock.ts",
+      "packages/test-support/src/deterministicFixtures.test.ts",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/fixtures/ai-scenarios.json",
+      "packages/test-support/src/fixtures/project-scenarios.json"
     ],
     "buildFiles": [
       "apps/desktop/package.json",

@@ -95,6 +95,19 @@ Historical evidence at the source baseline reports 168 Vitest files / 701 tests 
 
 Current results remain `NOT_RUN` until the Gates A-E infrastructure is complete. The first baseline will run the existing checks and record exact command, duration, exit code, fingerprints and gaps. A passing command does not turn an incomplete traceability inventory into an overall `PASS`.
 
+## Deterministic fixtures
+
+`@writing-buddy/test-support` provides a manually advanced AI event runner and
+resettable in-memory project fixtures. The AI catalog covers 24 success,
+streaming, cancellation, transport/provider failure, structured-output,
+apply-boundary and privacy scenarios. The project catalog covers eight clean,
+dirty, conflicting, corrupt, legacy, read-only, long-form and save-failure
+states.
+
+Runs do not use network timers. The provider records only job and scenario IDs,
+never request content. Project roots are synthetic, mutations and injected
+failures reset between tests, and disposal clears all in-memory files.
+
 ## Environment constraints
 
 - The optional PRPM package search command required by the testing-infrastructure skill is unavailable in the current environment. No package was installed because installation requires explicit approval.

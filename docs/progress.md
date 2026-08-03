@@ -25,8 +25,13 @@ Full regression foundation v2 is active in the isolated worktree on
   with a 724-node / 1,252-edge dependency graph. QA infrastructure changes
   force all 737 current cases to `STALE`; zero are cache-eligible in the first
   plan.
-- Gate E will add deterministic AI/project fixtures before existing tests are
-  rerun.
+- Gate E now provides 24 deterministic AI scenarios and eight resettable
+  project scenarios. Streams advance manually, request content is not retained,
+  filesystem failures are one-shot, reset restores sanitized seeds and dispose
+  clears the fixture.
+- The complete A-E inventory now discovers 744 test cases across a 730-node /
+  1,259-edge graph. All 744 remain forced `STALE` pending the current baseline;
+  traceability remains `PARTIAL` with 10,273 aggregate gaps.
 - Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,
   real DeepSeek calls, broad product fixes and release claims remain excluded.
 

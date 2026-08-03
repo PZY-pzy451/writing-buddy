@@ -1,0 +1,10 @@
+[
+  { "id": "clean_minimal", "expectedOutcome": "openable" },
+  { "id": "dirty_manuscript", "expectedOutcome": "unsaved-change" },
+  { "id": "external_conflict", "expectedOutcome": "revision-conflict" },
+  { "id": "corrupt_manifest", "expectedOutcome": "repair-required" },
+  { "id": "legacy_schema", "expectedOutcome": "migration-required" },
+  { "id": "read_only", "expectedOutcome": "write-blocked" },
+  { "id": "long_manuscript", "expectedOutcome": "bounded-load" },
+  { "id": "save_failure", "expectedOutcome": "fail-before-write" }
+]
