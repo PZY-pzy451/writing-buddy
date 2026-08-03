@@ -207,9 +207,7 @@ async function pressKey(client, key, modifiers = 0) {
 		nativeVirtualKeyCode: definition.virtualKey
 	};
 	await client.call('Input.dispatchKeyEvent', {
-		type: key === ' ' ? 'keyDown' : 'rawKeyDown',
-		text: key === ' ' ? ' ' : undefined,
-		unmodifiedText: key === ' ' ? ' ' : undefined,
+		type: 'rawKeyDown',
 		...common
 	});
 	await client.call('Input.dispatchKeyEvent', { type: 'keyUp', ...common });
@@ -407,10 +405,39 @@ async function validateDragFeedback(client) {
 	);
 	assert(Number(dragStart.beforeOpacity) === 0, 'Drag handle must be hidden before hover.');
 	assert(Number(afterHoverOpacity) === 1, 'Drag handle must be visible after hover.');
+	await evaluate(client, `(() => {
+		window.__gateGKeyboardEventCount = 0;
+		document.addEventListener('keydown', () => {
+			window.__gateGKeyboardEventCount += 1;
+		}, { capture: true });
+		return true;
+	})()`);
+	await client.call('Emulation.setFocusEmulationEnabled', { enabled: true });
+	await client.call('Page.bringToFront');
+	await delay(300);
 	await evaluate(client, `document.querySelector(
 		'.tree-drag-handle[aria-label^="拖动章节："]'
 	).focus(); true`);
+	const keyboardTargetReady = await evaluate(
+		client,
+		`Boolean(
+			document.activeElement?.classList.contains('tree-drag-handle')
+			&& !document.activeElement.disabled
+		)`
+	);
+	assert(keyboardTargetReady, 'Chapter drag handle must be enabled and focused.');
 	await pressKey(client, ' ');
+	await delay(150);
+	let keyboardEventCount = await evaluate(client, 'window.__gateGKeyboardEventCount');
+	for (let attempt = 0; keyboardEventCount === 0 && attempt < 2; attempt += 1) {
+		await client.call('Page.bringToFront');
+		await delay(300);
+		await evaluate(client, 'document.activeElement.focus(); true');
+		await pressKey(client, ' ');
+		await delay(150);
+		keyboardEventCount = await evaluate(client, 'window.__gateGKeyboardEventCount');
+	}
+	assert(keyboardEventCount > 0, 'Browser did not deliver the keyboard drag event.');
 	await waitFor(
 		client,
 		`Boolean(document.querySelector(

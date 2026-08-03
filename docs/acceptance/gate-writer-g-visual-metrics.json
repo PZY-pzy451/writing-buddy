@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T02:11:53.457Z",
+  "generatedAt": "2026-08-03T03:13:48.230Z",
   "appUrl": "http://127.0.0.1:1420/",
   "captures": [
     {
@@ -41,7 +41,7 @@
       "clippedInteractive": 0,
       "clippedInteractiveDetails": [],
       "visibleControls": 74,
-      "domNodes": 803
+      "domNodes": 816
     },
     {
       "name": "02-chapter-shortcut-focus-1280x800.png",
