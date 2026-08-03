@@ -5,16 +5,16 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `8c36b41`.
+`codex/full-regression-gates-a-e-v2` against source `0a0c07a`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 726 frontend cases are inventoried
-  and 726 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 729 frontend cases are inventoried
+  and 729 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 172 Vitest files /
-  726 tests and the production build. Rust formatting passed; Cargo collected
+  729 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -36,8 +36,15 @@ User-centered defect convergence is complete on
   second AI request, and a maximum 24-candidate response can atomically write
   21 valid resources while isolating three malformed relationships. The focused
   continuation run passed 2 files / 41 tests.
-- The current inventory contains 805 tests: 726 frontend plus 79 native cases.
-  The latest execution ledger records 803 passes and two reasoned skips.
+- Added a deterministic all-type Schema mutation matrix: one valid control plus
+  one explicitly wrong field for each of the 11 generatable Story Kernel types.
+  Service and UI tests prove all malformed candidates remain visible, disabled
+  and unwritable after reopen; the malformed relationship also receives the
+  expected dependency block because it references a malformed character. The
+  focused matrix run passed 3 files / 52 tests.
+- The current inventory contains 808 tests: 729 frontend plus 79 native cases.
+  The latest execution ledger records 806 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 729 cases with zero difference.
 - Strict traceability remains fail-closed: 223 controls lack stable selectors
   and 10,334 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.

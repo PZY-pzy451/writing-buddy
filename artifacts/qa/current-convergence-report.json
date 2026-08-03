@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T05:55:03.552Z",
+  "generatedAt": "2026-08-03T06:11:59.415Z",
   "source": {
-    "commit": "8c36b41639ef3da741407488e916baef0c8a54f2",
+    "commit": "0a0c07a3db7d2bca9f4d4e276eb1580b05197271",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 726,
-        "runtimeCollected": 726,
+        "frontendInventory": 729,
+        "runtimeCollected": 729,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -39,26 +39,50 @@
       },
       "after": {
         "deterministicScenario": true,
-        "mockScenarioCount": 25,
+        "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 726
+        "frontendTests": 729
       }
+    }
+  ],
+  "coverageExtensions": [
+    {
+      "id": "QA-STORY-KERNEL-SCHEMA-MUTATION-MATRIX-004",
+      "summary": "Every generatable Story Kernel resource type has an explicit wrong-field mutation that must remain visible, disabled and unwritable.",
+      "resourceTypes": [
+        "character",
+        "scene",
+        "location",
+        "faction",
+        "item",
+        "worldRule",
+        "timelineEvent",
+        "relationship",
+        "plotThread",
+        "foreshadowing",
+        "information"
+      ],
+      "mockScenarioCount": 26,
+      "validControlCandidates": 1,
+      "quarantinedMutations": 11,
+      "atomicWrites": 1,
+      "frontendTests": 729
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T05:52:24.195Z",
-      "completedAt": "2026-08-03T05:54:52.011Z",
+      "generatedAt": "2026-08-03T06:09:17.954Z",
+      "completedAt": "2026-08-03T06:11:46.273Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 147814,
+      "durationMs": 148318,
       "vitestFiles": 172,
-      "vitestPassed": 726,
-      "inventoryFrontendTests": 726,
+      "vitestPassed": 729,
+      "inventoryFrontendTests": 729,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -67,10 +91,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T05:52:24.315Z",
-      "completedAt": "2026-08-03T05:52:26.877Z",
+      "generatedAt": "2026-08-03T06:11:56.434Z",
+      "completedAt": "2026-08-03T06:11:58.631Z",
       "status": "PASS",
-      "durationMs": 2561,
+      "durationMs": 2196,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",

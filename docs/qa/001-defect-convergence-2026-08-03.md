@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `8c36b41639ef3da741407488e916baef0c8a54f2`
+- Tested source: `0a0c07a3db7d2bca9f4d4e276eb1580b05197271`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -37,6 +37,24 @@ diagnostics without another AI request; and the 24-candidate upper bound writes
 relationships as pending, disabled candidates. No new production defect was
 found in these follow-up boundaries.
 
+### QA-STORY-KERNEL-SCHEMA-MUTATION-MATRIX-004
+
+The deterministic mock now includes one valid control candidate and one
+explicitly wrong field for every generatable Story Kernel resource type:
+character, scene, location, faction, item, world rule, timeline event,
+relationship, plot thread, foreshadowing and information. All 11 target types
+are selected, so a target-selection conflict cannot hide a Schema defect.
+
+Parser replay, service and component tests prove the 11 malformed resources are
+visible with field-specific diagnostics but disabled and absent from the atomic
+write. Reload preserves the same quarantined state without a second AI call.
+The relationship mutation correctly has both `invalid-schema` and
+`blocked-dependency`, because its endpoint is the malformed character from the
+same batch; the other ten mutations have only `invalid-schema`. Confirming the
+single valid control creates exactly one snapshot, one commit and one character,
+with zero resources written for the other ten types. This extension found no
+production-code defect; it closed an all-type regression coverage gap.
+
 ### QA-TEST-DISCOVERY-PARAMETERIZED-001
 
 The static inventory used a regular expression that counted a parameterized
@@ -47,8 +65,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 726 frontend cases, including 50
-parameterized instances; Vitest also collects 726. The difference and unresolved
+inventing a count. The current inventory finds 729 frontend cases, including 50
+parameterized instances; Vitest also collects 729. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -68,8 +86,9 @@ console claims.
 | Layer | Result |
 | --- | --- |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
-| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 726 tests and production build passed |
-| Static/runtime test reconciliation | 726 / 726; difference 0; unresolved parameterization 0 |
+| All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
+| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 729 tests and production build passed |
+| Static/runtime test reconciliation | 729 / 729; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -113,7 +132,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
-- Rust emitted four localized MSVC linker-output warnings while producing test
+- Rust emitted two localized MSVC linker-output warnings while producing test
   libraries; tests and formatting passed.
 - Real-provider AI smoke, installer/portable packaging, and release approval did
   not run in this convergence cycle.

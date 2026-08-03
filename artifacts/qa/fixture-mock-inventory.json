@@ -4,7 +4,7 @@
   "mockProviderVersion": "qa-ai-mock-v1",
   "projectFixtureVersion": "qa-project-fixture-v1",
   "counts": {
-    "mockScenarios": 25,
+    "mockScenarios": 26,
     "projectScenarios": 8
   },
   "aiScenarios": [
@@ -132,6 +132,11 @@
       "id": "story_kernel_unselected_malformed_relationship",
       "category": "structured-output",
       "expectedOutcome": "candidate-quarantined"
+    },
+    {
+      "id": "story_kernel_schema_mutation_matrix",
+      "category": "structured-output",
+      "expectedOutcome": "mutation-matrix-quarantined"
     }
   ],
   "projectScenarios": [
