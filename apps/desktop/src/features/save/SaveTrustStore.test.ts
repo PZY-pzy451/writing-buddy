@@ -27,7 +27,11 @@ function resetStore(): void {
 }
 
 function firstChapter(snapshot: ProjectSnapshot) {
-	const chapter = snapshot.project.volumes[0]?.chapters[0];
+	return chapterAt(snapshot, 0);
+}
+
+function chapterAt(snapshot: ProjectSnapshot, index: number) {
+	const chapter = snapshot.project.volumes.flatMap(volume => volume.chapters)[index];
 	if (!chapter) throw new Error('missing browser chapter fixture');
 	return {
 		id: chapter.id,
@@ -145,5 +149,139 @@ describe('save trust store integration', () => {
 		useAppStore.getState().setContent('尚未保存的退出测试');
 		expect(useAppStore.getState().requestCloseProtection()).toBe(false);
 		expect(useAppStore.getState().closeProtectionOpen).toBe(true);
+	});
+
+	it('keeps a dirty active chapter intact under 100 same-tick reopen actions', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		useAppStore.getState().setContent('当前章节尚未保存的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(active)
+		)));
+
+		expect(write).not.toHaveBeenCalled();
+		expect(read).not.toHaveBeenCalled();
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe('当前章节尚未保存的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('saves once and reads once when 100 same-tick actions switch a dirty chapter', async () => {
+		const snapshot = await openChapter();
+		const target = chapterAt(snapshot, 1);
+		useAppStore.getState().setContent('切换前需要安全保存的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(target)
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(target.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(target.id);
+		expect(useAppStore.getState().session?.state.dirty).toBe(false);
+	});
+
+	it('keeps the current dirty chapter when saving before a switch fails under pressure', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const target = chapterAt(snapshot, 1);
+		useAppStore.getState().setContent('保存失败后必须保留的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValueOnce(new Error('writeFailed:C:\\private\\chapter.md'));
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(target)
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(read).not.toHaveBeenCalled();
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe('保存失败后必须保留的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('keeps the latest chapter intent when an earlier read completes late', async () => {
+		const snapshot = await openChapter();
+		const second = chapterAt(snapshot, 1);
+		const third = chapterAt(snapshot, 2);
+		let finishSecondRead: ((result: Awaited<ReturnType<typeof desktopBridge.readText>>) => void)
+			| undefined;
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockImplementationOnce(() => new Promise(resolve => { finishSecondRead = resolve; }));
+
+		const secondOpen = useAppStore.getState().openResource(second);
+		await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(1));
+		const latestOpens = Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(third)
+		));
+		finishSecondRead?.({
+			content: '过期的第二章内容',
+			hash: 'second-stale-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		await Promise.all([secondOpen, ...latestOpens]);
+
+		expect(read).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().activeResource?.id).toBe(third.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(third.id);
+		expect(useAppStore.getState().session?.content).not.toBe('过期的第二章内容');
+	});
+
+	it('does not activate a chapter whose manuscript read failed 100 times', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const target = chapterAt(snapshot, 1);
+		const originalContent = useAppStore.getState().session?.content;
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockRejectedValue(new Error('readFailed:C:\\private\\chapter.md'));
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(target)
+		)));
+
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe(originalContent);
+		expect(useAppStore.getState().error).toBe('无法打开该资源，请重试。');
+	});
+
+	it('protects text entered while the target chapter is still loading', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const target = chapterAt(snapshot, 1);
+		let finishTargetRead: ((result: Awaited<ReturnType<typeof desktopBridge.readText>>) => void)
+			| undefined;
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockImplementationOnce(() => new Promise(resolve => { finishTargetRead = resolve; }));
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValueOnce(new Error('writeFailed:C:\\private\\chapter.md'));
+
+		const opening = useAppStore.getState().openResource(target);
+		await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(1));
+		useAppStore.getState().setContent('章节加载期间继续输入的正文');
+		finishTargetRead?.({
+			content: '目标章节正文',
+			hash: 'target-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		await opening;
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe('章节加载期间继续输入的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+		expect(useAppStore.getState().error).toBe('当前正文尚未安全保存，未切换资源。');
 	});
 });

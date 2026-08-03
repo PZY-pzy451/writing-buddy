@@ -24,7 +24,7 @@ import {
 	type StoryScene
 } from '@writing-buddy/story-kernel';
 import type { StoryKernelGenerationResourceType } from '@writing-buddy/ai';
-import { create } from 'zustand';
+import { create, type StoreApi } from 'zustand';
 import { persist } from 'zustand/middleware';
 import {
 	ProjectOpenService,
@@ -413,6 +413,8 @@ let reviewPersistTimer: number | undefined;
 let activeManuscriptSave: Promise<void> | undefined;
 let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
+let activeResourceOpen: Promise<void> | undefined;
+let queuedResourceOpen: ResourceDescriptor | undefined;
 
 const defaultWriterPanelState: WriterSessionPanelState =
 	createDefaultWriterWorkspaceLayouts().writing;
@@ -529,6 +531,167 @@ function toResource(snapshot: ProjectSnapshot, resourceId: string): ResourceDesc
 
 function isStoryTab(resource: ResourceDescriptor): resource is StoryTabDescriptor {
 	return resource.type === 'story' && parseStoryTabKey(resource.id) !== undefined;
+}
+
+type AppStoreGet = StoreApi<AppState>['getState'];
+type AppStoreSet = StoreApi<AppState>['setState'];
+
+function isSameResourceOpen(
+	left: ResourceDescriptor,
+	right: ResourceDescriptor
+): boolean {
+	return left.id === right.id
+		&& left.type === right.type
+		&& left.path === right.path
+		&& left.projectId === right.projectId;
+}
+
+function hasSupersedingResourceOpen(resource: ResourceDescriptor): boolean {
+	if (!queuedResourceOpen) return false;
+	if (isSameResourceOpen(queuedResourceOpen, resource)) {
+		queuedResourceOpen = undefined;
+		return false;
+	}
+	return true;
+}
+
+function isResourceOpenProjectCurrent(
+	snapshot: ProjectSnapshot,
+	get: AppStoreGet
+): boolean {
+	const current = get().snapshot;
+	return current?.root === snapshot.root
+		&& current.project.projectId === snapshot.project.projectId;
+}
+
+async function saveBeforeResourceOpen(
+	get: AppStoreGet,
+	set: AppStoreSet
+): Promise<boolean> {
+	if (!get().session?.state.dirty) return true;
+	await get().save();
+	const saved = get();
+	if (!saved.session?.state.dirty && saved.saveState.type === 'clean') return true;
+	set({ error: '当前正文尚未安全保存，未切换资源。' });
+	return false;
+}
+
+async function performResourceOpen(
+	resource: ResourceDescriptor,
+	get: AppStoreGet,
+	set: AppStoreSet
+): Promise<void> {
+	const current = get();
+	if (
+		current.activeResource
+		&& isSameResourceOpen(current.activeResource, resource)
+	) return;
+	if (!await saveBeforeResourceOpen(get, set)) {
+		hasSupersedingResourceOpen(resource);
+		return;
+	}
+	if (hasSupersedingResourceOpen(resource)) return;
+	const snapshot = get().snapshot;
+	if (!snapshot) return;
+	if (isStoryTab(resource)) {
+		const reference = parseStoryTabKey(resource.id);
+		if (reference) await get().openStoryResource(reference);
+		return;
+	}
+	if (!resource.path) return;
+	const resourcePath = resource.path;
+	try {
+		if (resource.type === 'chapter' || resource.type === 'note') {
+			const file = await desktopBridge.readText(snapshot.root, resourcePath);
+			if (
+				hasSupersedingResourceOpen(resource)
+				|| !isResourceOpenProjectCurrent(snapshot, get)
+				|| !await saveBeforeResourceOpen(get, set)
+			) return;
+			const viewKey = `${snapshot.project.projectId}:${resource.id}`;
+			const documentView = get().documentViews[viewKey];
+			tabs.open(resource);
+			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+			set(state => ({
+				activeResource: resource,
+				activeResourceId: resource.id,
+				storyOpenResult: undefined,
+				tabs: tabs.state.resources,
+				openResourceIds,
+				externalConflict: undefined,
+				session: new DocumentSession(resource.id, resourcePath, file, documentView),
+				resourceContent: undefined,
+				resourceHash: undefined,
+				saveState: { type: 'clean', savedAt: new Date().toISOString() },
+				error: undefined,
+				recentlyClosedResources: state.recentlyClosedResources.filter(
+					candidate => candidate.id !== resource.id
+				),
+				writerSessions: updateCurrentWriterSession(
+					state,
+					writerSession => {
+						const updated = updateSessionResource(
+							writerSession,
+							resource,
+							openResourceIds
+						);
+						return resource.type === 'chapter'
+							? touchWriterSession(updated, {
+								cursor: {
+									chapterId: resource.id,
+									line: documentView?.lineNumber ?? 1,
+									column: documentView?.column ?? 1
+								},
+								scroll: {
+									chapterId: resource.id,
+									scrollTop: documentView?.scrollTop ?? 0
+								}
+							})
+							: updated;
+					}
+				)
+			}));
+			return;
+		}
+		const content = await desktopBridge.readResource(snapshot.root, resourcePath);
+		if (hasSupersedingResourceOpen(resource)) return;
+		const file = await desktopBridge.readText(snapshot.root, resourcePath);
+		if (
+			hasSupersedingResourceOpen(resource)
+			|| !isResourceOpenProjectCurrent(snapshot, get)
+			|| !await saveBeforeResourceOpen(get, set)
+		) return;
+		tabs.open(resource);
+		const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+		set(state => ({
+			activeResource: resource,
+			activeResourceId: resource.id,
+			storyOpenResult: undefined,
+			tabs: tabs.state.resources,
+			openResourceIds,
+			externalConflict: undefined,
+			session: undefined,
+			resourceContent: content,
+			resourceHash: file.hash,
+			saveState: { type: 'clean', savedAt: new Date().toISOString() },
+			error: undefined,
+			recentlyClosedResources: state.recentlyClosedResources.filter(
+				candidate => candidate.id !== resource.id
+			),
+			writerSessions: updateCurrentWriterSession(
+				state,
+				writerSession => updateSessionResource(
+					writerSession,
+					resource,
+					openResourceIds
+				)
+			)
+		}));
+	} catch {
+		if (!hasSupersedingResourceOpen(resource)) {
+			set({ error: '无法打开该资源，请重试。' });
+		}
+	}
 }
 
 export const useAppStore = create<AppState>()(persist((set, get) => ({
@@ -1490,81 +1653,21 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 	},
 
-	async openResource(resource) {
-		const snapshot = get().snapshot;
-		if (!snapshot) {
-			return;
-		}
-		if (isStoryTab(resource)) {
-			const reference = parseStoryTabKey(resource.id);
-			if (reference) {
-				await get().openStoryResource(reference);
+	openResource(resource) {
+		queuedResourceOpen = resource;
+		if (activeResourceOpen) return activeResourceOpen;
+		const operation = (async () => {
+			while (queuedResourceOpen) {
+				const next = queuedResourceOpen;
+				queuedResourceOpen = undefined;
+				await performResourceOpen(next, get, set);
 			}
-			return;
-		}
-		if (!resource.path) {
-			return;
-		}
-		const resourcePath = resource.path;
-		tabs.open(resource);
-		const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
-		set(state => ({
-			activeResource: resource,
-			activeResourceId: resource.id,
-			storyOpenResult: undefined,
-			tabs: tabs.state.resources,
-			openResourceIds,
-			externalConflict: undefined,
-			saveState: { type: 'clean', savedAt: new Date().toISOString() },
-			error: undefined,
-			recentlyClosedResources: state.recentlyClosedResources.filter(
-				candidate => candidate.id !== resource.id
-			),
-			writerSessions: updateCurrentWriterSession(
-				state,
-				session => updateSessionResource(session, resource, openResourceIds)
-			)
-		}));
-		try {
-			if (resource.type === 'chapter' || resource.type === 'note') {
-				const file = await desktopBridge.readText(snapshot.root, resourcePath);
-				const viewKey = `${snapshot.project.projectId}:${resource.id}`;
-				const documentView = get().documentViews[viewKey];
-				set(state => ({
-					session: new DocumentSession(resource.id, resourcePath, file, documentView),
-					resourceContent: undefined,
-					resourceHash: undefined,
-					saveState: { type: 'clean', savedAt: new Date().toISOString() },
-					writerSessions: resource.type === 'chapter'
-						? updateCurrentWriterSession(state, writerSession => touchWriterSession(
-								writerSession,
-								{
-									cursor: {
-										chapterId: resource.id,
-										line: documentView?.lineNumber ?? 1,
-										column: documentView?.column ?? 1
-									},
-									scroll: {
-										chapterId: resource.id,
-										scrollTop: documentView?.scrollTop ?? 0
-									}
-								}
-							))
-						: state.writerSessions
-				}));
-			} else {
-				const content = await desktopBridge.readResource(snapshot.root, resourcePath);
-				const file = await desktopBridge.readText(snapshot.root, resourcePath);
-				set({
-					session: undefined,
-					resourceContent: content,
-					resourceHash: file.hash,
-					saveState: { type: 'clean', savedAt: new Date().toISOString() }
-				});
-			}
-		} catch (error) {
-			set({ error: error instanceof Error ? error.message : '无法打开资源。' });
-		}
+		})();
+		const tracked = operation.finally(() => {
+			if (activeResourceOpen === tracked) activeResourceOpen = undefined;
+		});
+		activeResourceOpen = tracked;
+		return tracked;
 	},
 
 	async openStoryResource(reference) {
