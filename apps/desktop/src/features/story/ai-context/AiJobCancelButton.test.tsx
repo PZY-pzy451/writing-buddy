@@ -17,6 +17,7 @@ describe('AiJobCancelButton', () => {
 		render(<AiJobCancelButton jobId="job-1" showIcon />);
 
 		const button = screen.getByRole('button', { name: '取消' });
+		expect(button).toHaveAttribute('data-testid', 'ai-job-cancel');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				button.dispatchEvent(new MouseEvent('click', { bubbles: true }));

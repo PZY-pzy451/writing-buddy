@@ -72,6 +72,7 @@ export function AiJobCancelButton(
 		<button
 			type="button"
 			className={props.className}
+			data-testid="ai-job-cancel"
 			disabled={cancelRequested}
 			onClick={() => void cancel()}
 		>
