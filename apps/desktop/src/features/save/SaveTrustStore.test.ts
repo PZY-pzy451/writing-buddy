@@ -42,6 +42,11 @@ function chapterAt(snapshot: ProjectSnapshot, index: number) {
 	};
 }
 
+const fixtureStoryReference = {
+	type: 'character' as const,
+	id: 'character:lin-mo'
+};
+
 async function openChapter(): Promise<ProjectSnapshot> {
 	await useAppStore.getState().openProject('browser-fixture');
 	const snapshot = useAppStore.getState().snapshot;
@@ -421,5 +426,124 @@ describe('save trust store integration', () => {
 		expect(saveTextAs).toHaveBeenCalledTimes(2);
 		expect(useAppStore.getState().session?.content).toBe('另存取消后仍然保留的正文');
 		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('saves once and loads once when 100 actions open a Story resource from a dirty chapter', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('打开人物资料前必须安全保存的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openStoryResource(fixtureStoryReference)
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(getStoryResource).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id)
+			.toBe('story:character:character:lin-mo');
+		expect(useAppStore.getState().session).toBeUndefined();
+		expect(useAppStore.getState().saveState.type).toBe('clean');
+	});
+
+	it('keeps the latest chapter intent when a direct Story resource load completes late', async () => {
+		const snapshot = await openChapter();
+		const target = chapterAt(snapshot, 1);
+		const fixtureStory = await desktopBridge.getStoryResource(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		if (!fixtureStory) throw new Error('missing browser Story resource fixture');
+		let finishStoryLoad: ((resource: typeof fixtureStory) => void) | undefined;
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource')
+			.mockImplementationOnce(() => new Promise(resolve => { finishStoryLoad = resolve; }));
+		const read = vi.spyOn(desktopBridge, 'readText');
+
+		const storyOpen = useAppStore.getState().openStoryResource(fixtureStoryReference);
+		await vi.waitFor(() => expect(getStoryResource).toHaveBeenCalledTimes(1));
+		const latestOpens = Array.from({ length: 100 }, () => (
+			useAppStore.getState().openResource(target)
+		));
+		finishStoryLoad?.(fixtureStory);
+		await Promise.all([storyOpen, ...latestOpens]);
+
+		expect(getStoryResource).toHaveBeenCalledTimes(1);
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(target.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(target.id);
+		expect(useAppStore.getState().tabs.map(tab => tab.id))
+			.not.toContain('story:character:character:lin-mo');
+	});
+
+	it('restores one closed Story resource once and consumes its history entry', async () => {
+		const snapshot = await openChapter();
+		const chapter = firstChapter(snapshot);
+		await useAppStore.getState().openStoryResource(fixtureStoryReference);
+		const storyId = useAppStore.getState().activeResource?.id;
+		if (!storyId) throw new Error('Story resource did not open');
+		useAppStore.getState().closeResource(storyId);
+		await vi.waitFor(() => expect(useAppStore.getState().activeResource?.id).toBe(chapter.id));
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource');
+
+		const restores = Array.from({ length: 100 }, () => (
+			useAppStore.getState().restoreLastClosedResource()
+		));
+		expect(await Promise.all(restores)).toEqual(Array.from({ length: 100 }, () => true));
+
+		expect(getStoryResource).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(storyId);
+		expect(useAppStore.getState().recentlyClosedResources.map(resource => resource.id))
+			.not.toContain(storyId);
+		expect(await useAppStore.getState().restoreLastClosedResource()).toBe(false);
+	});
+
+	it('keeps the dirty chapter when saving before a direct Story open fails', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		useAppStore.getState().setContent('人物资料打开前保存失败也不能丢失的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValueOnce(new Error('writeFailed:C:\\private\\chapter.md'));
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().openStoryResource(fixtureStoryReference)
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(getStoryResource).not.toHaveBeenCalled();
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content)
+			.toBe('人物资料打开前保存失败也不能丢失的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('protects text entered while a Story resource is loading', async () => {
+		const snapshot = await openChapter();
+		const active = firstChapter(snapshot);
+		const fixtureStory = await desktopBridge.getStoryResource(
+			snapshot.root,
+			fixtureStoryReference.type,
+			fixtureStoryReference.id
+		);
+		if (!fixtureStory) throw new Error('missing browser Story resource fixture');
+		let finishStoryLoad: ((resource: typeof fixtureStory) => void) | undefined;
+		const getStoryResource = vi.spyOn(desktopBridge, 'getStoryResource')
+			.mockImplementationOnce(() => new Promise(resolve => { finishStoryLoad = resolve; }));
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValueOnce(new Error('writeFailed:C:\\private\\chapter.md'));
+
+		const opening = useAppStore.getState().openStoryResource(fixtureStoryReference);
+		await vi.waitFor(() => expect(getStoryResource).toHaveBeenCalledTimes(1));
+		useAppStore.getState().setContent('人物资料加载期间继续输入的正文');
+		finishStoryLoad?.(fixtureStory);
+		await opening;
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().activeResource?.id).toBe(active.id);
+		expect(useAppStore.getState().session?.content).toBe('人物资料加载期间继续输入的正文');
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+		expect(useAppStore.getState().tabs.map(tab => tab.id))
+			.not.toContain('story:character:character:lin-mo');
 	});
 });

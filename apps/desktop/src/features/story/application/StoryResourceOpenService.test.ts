@@ -96,6 +96,25 @@ describe('StoryResourceRegistry', () => {
 });
 
 describe('StoryResourceOpenService', () => {
+	it('loads a Story resource without mutating tabs before the caller commits it', async () => {
+		const tabs = new ResourceTabManager();
+		const service = new StoryResourceOpenService(
+			new MemoryStoryRepository([character()]),
+			tabs,
+			'project-story'
+		);
+
+		const result = await service.loadStoryResource({
+			type: 'character',
+			id: 'character:lin-yue'
+		});
+
+		expect(result.status).toBe('ready');
+		expect(result.tab.id).toBe('story:character:character:lin-yue');
+		expect(tabs.state.resources).toHaveLength(0);
+		expect(tabs.state.activeId).toBeUndefined();
+	});
+
 	it('opens a Story resource once and deduplicates its workspace tab', async () => {
 		const tabs = new ResourceTabManager();
 		const service = new StoryResourceOpenService(

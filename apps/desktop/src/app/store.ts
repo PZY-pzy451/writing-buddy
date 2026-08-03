@@ -48,7 +48,10 @@ import {
 	type StoryResourceReference,
 	type StoryTabDescriptor
 } from '../features/story/application/StoryResourceOpenService';
-import { parseStoryTabKey } from '../features/story/application/StoryResourceRegistry';
+import {
+	buildStoryTabKey,
+	parseStoryTabKey
+} from '../features/story/application/StoryResourceRegistry';
 import { desktopBridge } from '../platform/bridge';
 import { clampWorkspaceSize } from '../shell/workspaceResize';
 import {
@@ -601,7 +604,48 @@ async function performResourceOpen(
 	if (!snapshot) return;
 	if (isStoryTab(resource)) {
 		const reference = parseStoryTabKey(resource.id);
-		if (reference) await get().openStoryResource(reference);
+		if (!reference || !storyResourceOpenService) {
+			set({ error: 'Story Kernel 尚未连接到当前项目。' });
+			return;
+		}
+		try {
+			const result = await storyResourceOpenService.loadStoryResource(reference);
+			if (
+				hasSupersedingResourceOpen(resource)
+				|| !isResourceOpenProjectCurrent(snapshot, get)
+				|| !await saveBeforeResourceOpen(get, set)
+			) return;
+			tabs.open(result.tab);
+			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
+			set(state => ({
+				activeResource: result.tab,
+				activeResourceId: result.tab.id,
+				storyOpenResult: result,
+				tabs: tabs.state.resources,
+				openResourceIds,
+				session: undefined,
+				resourceContent: undefined,
+				resourceHash: undefined,
+				externalConflict: undefined,
+				saveState: { type: 'clean', savedAt: new Date().toISOString() },
+				error: undefined,
+				recentlyClosedResources: state.recentlyClosedResources.filter(
+					candidate => candidate.id !== result.tab.id
+				),
+				writerSessions: updateCurrentWriterSession(
+					state,
+					writerSession => updateSessionResource(
+						writerSession,
+						result.tab,
+						openResourceIds
+					)
+				)
+			}));
+		} catch {
+			if (!hasSupersedingResourceOpen(resource)) {
+				set({ error: '无法打开 Story 资料，请重试。' });
+			}
+		}
 		return;
 	}
 	if (!resource.path) return;
@@ -1677,33 +1721,17 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async openStoryResource(reference) {
-		if (!storyResourceOpenService) {
+		const snapshot = get().snapshot;
+		if (!snapshot || !storyResourceOpenService) {
 			set({ error: 'Story Kernel 尚未连接到当前项目。' });
 			return;
 		}
-		try {
-			const result = await storyResourceOpenService.openStoryResource(reference);
-			const openResourceIds = tabs.state.resources.map(candidate => candidate.id);
-			set(state => ({
-				activeResource: result.tab,
-				activeResourceId: result.tab.id,
-				storyOpenResult: result,
-				tabs: tabs.state.resources,
-				openResourceIds,
-				session: undefined,
-				resourceContent: undefined,
-				resourceHash: undefined,
-				externalConflict: undefined,
-				saveState: { type: 'clean', savedAt: new Date().toISOString() },
-				error: undefined,
-				writerSessions: updateCurrentWriterSession(
-					state,
-					session => updateSessionResource(session, result.tab, openResourceIds)
-				)
-			}));
-		} catch (error) {
-			set({ error: error instanceof Error ? error.message : '无法打开 Story 资源。' });
-		}
+		await get().openResource({
+			id: buildStoryTabKey(reference.type, reference.id),
+			type: 'story',
+			title: reference.id,
+			projectId: snapshot.project.projectId
+		});
 	},
 
 	async restoreStoryResource() {

@@ -49,7 +49,7 @@ export class StoryResourceOpenService {
 		private readonly projectId: string
 	) {}
 
-	async openStoryResource(reference: StoryResourceReference): Promise<StoryOpenResult> {
+	async loadStoryResource(reference: StoryResourceReference): Promise<StoryOpenResult> {
 		const registration = getStoryResourceRegistration(reference.type);
 		const resource = await this.repository.get(reference.type, reference.id);
 		const tab: StoryTabDescriptor = {
@@ -61,10 +61,15 @@ export class StoryResourceOpenService {
 			storyId: reference.id,
 			route: buildStoryRoute(reference.type, reference.id)
 		};
-		this.tabs.open(tab);
 		return resource
 			? { status: 'ready', reference, registration, tab, resource }
 			: { status: 'missing', reference, registration, tab };
+	}
+
+	async openStoryResource(reference: StoryResourceReference): Promise<StoryOpenResult> {
+		const result = await this.loadStoryResource(reference);
+		this.tabs.open(result.tab);
+		return result;
 	}
 
 	async restoreStoryResources(
