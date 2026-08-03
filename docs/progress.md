@@ -4,36 +4,26 @@ Updated: 2026-08-03
 
 ## Active milestone
 
-Full regression foundation v2 is active in the isolated worktree on
+Full regression foundation v2 Gates A-E and the first baseline are complete in the isolated worktree on
 `codex/full-regression-gates-a-e-v2`.
 
-- Scope is intentionally limited to Gates A-E plus one real baseline.
-- Gate A records the current source/test map, fixed status vocabulary, privacy
-  boundary and historical evidence as `STALE` rather than reusing it as a pass.
-- Gate B now inventories 12 domains, 151 features, 24 pages, five workspaces,
-  430 interactive source declarations, 9,460 control-state dimensions, 23
-  shortcuts, 55 registered native actions and 731 statically discovered tests.
-  Of the controls, 223 still lack a stable semantic selector and remain visible
-  `PARTIAL` gaps rather than being discarded.
-- Gate C produces the complete state-level CSV and fails closed in strict mode.
-  Conservative source mapping currently confirms 66 controls, 421 states, 18
-  shortcuts, one native action and 82 existing test cases; after adding the QA
-  gate tests, 10,266 aggregate
-  hierarchy mappings remain open, so the product conclusion is
-  `REGRESSION_INCOMPLETE / PARTIAL`.
-- Gate D now fingerprints nine invalidation inputs for every discovered test,
-  with a 724-node / 1,252-edge dependency graph. QA infrastructure changes
-  force all 737 current cases to `STALE`; zero are cache-eligible in the first
-  plan.
-- Gate E now provides 24 deterministic AI scenarios and eight resettable
-  project scenarios. Streams advance manually, request content is not retained,
-  filesystem failures are one-shot, reset restores sanitized seeds and dispose
-  clears the fixture.
-- The complete A-E inventory now discovers 744 test cases across a 730-node /
-  1,259-edge graph. All 744 remain forced `STALE` pending the current baseline;
-  traceability remains `PARTIAL` with 10,273 aggregate gaps.
-- Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,
-  real DeepSeek calls, broad product fixes and release claims remain excluded.
+- Gates A-E deliver the source map, 12-domain inventory, fail-closed
+  traceability, nine-category fingerprints/cache ledger, 24 deterministic AI
+  scenarios and eight resettable project scenarios.
+- Current inventory: 151 features, 24 pages, five workspaces, 430 controls,
+  9,460 state dimensions, 23 shortcuts, 55 native actions and 746 statically
+  discovered tests. A 732-node / 1,259-edge graph drives invalidation.
+- Supported Node 24 acceptance passed 171 Vitest files / 716 tests plus the
+  production frontend build. Cargo passed 77 tests with two explicit scoped
+  ignores; Rust formatting passed.
+- The post-baseline FAST plan has 744 `CACHED_PASS`, two
+  `SKIPPED_WITH_REASON`, zero stale and zero forced reruns at the same commit.
+- Strict traceability correctly exits 1: 223 controls lack stable selectors and
+  10,275 aggregate mappings remain open. Runtime collection also found 49 more
+  Vitest cases than the static inventory parser.
+- The first-round product conclusion is therefore `PARTIAL`, not a full
+  regression or release pass. Gate F, real DeepSeek, broad product fixes and
+  release packaging remain excluded.
 
 ## Previous active milestone
 

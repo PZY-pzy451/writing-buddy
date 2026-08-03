@@ -93,7 +93,10 @@ IDs. Generated reports use repository-relative paths only.
 
 Historical evidence at the source baseline reports 168 Vitest files / 701 tests and 77 passing Rust tests, but that evidence belongs to another commit/environment fingerprint. It is recorded only as historical context and starts this round as `STALE`.
 
-Current results remain `NOT_RUN` until the Gates A-E infrastructure is complete. The first baseline will run the existing checks and record exact command, duration, exit code, fingerprints and gaps. A passing command does not turn an incomplete traceability inventory into an overall `PASS`.
+The first baseline is now recorded in `artifacts/qa/first-baseline-report.json`
+and the human-readable companion report. Supported Node 24 frontend acceptance
+and Cargo pass, but incomplete traceability keeps the overall result `PARTIAL`.
+A passing command does not turn an incomplete inventory into an overall `PASS`.
 
 ## Deterministic fixtures
 

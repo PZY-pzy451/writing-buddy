@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 730,
+    "nodeCount": 732,
     "edgeCount": 1259,
     "nodes": [
       "apps/desktop/index.html",
@@ -664,6 +664,11 @@
       "packages/story-kernel/src/validation/timeRules.test.ts",
       "packages/story-kernel/src/validation/timeRules.ts",
       "packages/test-support/package.json",
+      "packages/test-support/src/deterministicAiMock.ts",
+      "packages/test-support/src/deterministicFixtures.test.ts",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/fixtures/ai-scenarios.json",
+      "packages/test-support/src/fixtures/project-scenarios.json",
       "packages/test-support/src/index.ts",
       "packages/version/package.json",
       "packages/version/src/index.ts",
@@ -708,7 +713,10 @@
       "scripts/qa/dependencies.mjs",
       "scripts/qa/dependencies.test.mjs",
       "scripts/qa/dependency-policy.mjs",
+      "scripts/qa/fixtures.mjs",
       "scripts/qa/inventory.mjs",
+      "scripts/qa/record-baseline.mjs",
+      "scripts/qa/supported-acceptance.mjs",
       "scripts/qa/traceability.mjs",
       "scripts/qa/traceability.test.mjs",
       "scripts/recording/README.md",
@@ -727,13 +735,7 @@
       "scripts/self-test/impact.test.mjs",
       "scripts/self-test/run.mjs",
       "tsconfig.json",
-      "vitest.config.ts",
-      "packages/test-support/src/deterministicAiMock.ts",
-      "packages/test-support/src/deterministicFixtures.test.ts",
-      "packages/test-support/src/deterministicProjectFixture.ts",
-      "packages/test-support/src/fixtures/ai-scenarios.json",
-      "packages/test-support/src/fixtures/project-scenarios.json",
-      "scripts/qa/fixtures.mjs"
+      "vitest.config.ts"
     ],
     "edges": [
       {
@@ -18718,6 +18720,8 @@
       "testCaseIds": [
         "TC-DISCOVERED-024F283223",
         "TC-DISCOVERED-859CE794CB",
+        "TC-DISCOVERED-8AC6280228",
+        "TC-DISCOVERED-D36F1B1450",
         "TC-DISCOVERED-D59CF32A5F"
       ],
       "directDependencies": [
@@ -18726,9 +18730,9 @@
       "transitiveDependencies": [
         "scripts/qa/dependency-policy.mjs"
       ],
-      "sourceFingerprint": "472482299B1BC6B8EAD14AD3CE5994C26B0B49769BFDB392AF41BEE279DBBC8C",
-      "dependencyFingerprint": "4D18DBF9E4A855D9045FEDC6D79470B0169B5EB65E477D20E1A7207CF5712E3D",
-      "testImplementationFingerprint": "5C695AAC2907A4D0CC677171C032FE1DFF9A18B283F9DC0BECCBD7D8DA8F2CCA"
+      "sourceFingerprint": "FCB7C037A4C0C185863BCD66FCC738F5098C7346727025ECB9A4FECF5568D7C6",
+      "dependencyFingerprint": "ED439FDB1D5CF299673D435E9B70857C7D1607E5EBF295DE69EBA32B4B7FAA0E",
+      "testImplementationFingerprint": "EE5077182D5797BAEED9884C618FDC2BD32B52D07BB4E18C8E02EC2FCB7632D2"
     },
     {
       "testSource": "scripts/qa/traceability.test.mjs",
@@ -18915,12 +18919,12 @@
     "mockFiles": [
       "apps/desktop/src/platform/bridge.ts",
       "packages/test-support/package.json",
-      "packages/test-support/src/index.ts",
       "packages/test-support/src/deterministicAiMock.ts",
       "packages/test-support/src/deterministicFixtures.test.ts",
       "packages/test-support/src/deterministicProjectFixture.ts",
       "packages/test-support/src/fixtures/ai-scenarios.json",
-      "packages/test-support/src/fixtures/project-scenarios.json"
+      "packages/test-support/src/fixtures/project-scenarios.json",
+      "packages/test-support/src/index.ts"
     ],
     "buildFiles": [
       "apps/desktop/package.json",

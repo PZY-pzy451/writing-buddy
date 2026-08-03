@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "exitCode": 0,
+  "node": "24.14.0",
+  "durationMs": 144507,
+  "vitestFiles": 171,
+  "vitestPassed": 716,
+  "productionBuild": "PASS",
+  "engineWarnings": 0
+}

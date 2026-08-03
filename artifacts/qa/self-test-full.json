@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-03T04:23:21.654Z",
+  "selection": "latest-commit",
+  "mode": "full",
+  "dryRun": false,
+  "keepGoing": true,
+  "changedFiles": [
+    "artifacts/qa/control-impact-map.json",
+    "artifacts/qa/fixture-mock-inventory.json",
+    "artifacts/qa/incremental-test-plan.json",
+    "artifacts/qa/inventory-summary.json",
+    "artifacts/qa/regression-ledger.json",
+    "artifacts/qa/test-dependency-map.json",
+    "artifacts/qa/test-hierarchy.json",
+    "artifacts/qa/traceability-summary.json",
+    "docs/memory/2026-08-03.md",
+    "docs/progress.md",
+    "docs/qa/full-regression-scope.md",
+    "package.json",
+    "packages/test-support/package.json",
+    "packages/test-support/src/deterministicAiMock.ts",
+    "packages/test-support/src/deterministicFixtures.test.ts",
+    "packages/test-support/src/deterministicProjectFixture.ts",
+    "packages/test-support/src/fixtures/ai-scenarios.json",
+    "packages/test-support/src/fixtures/project-scenarios.json",
+    "packages/test-support/src/index.ts",
+    "pnpm-lock.yaml",
+    "scripts/qa/dependencies.mjs",
+    "scripts/qa/fixtures.mjs"
+  ],
+  "riskAreas": [
+    "test infrastructure",
+    "workspace dependency graph"
+  ],
+  "matchedRules": [
+    {
+      "id": "global-test-infrastructure",
+      "description": "Global test, dependency, or build configuration"
+    }
+  ],
+  "resolvedInputs": {
+    "lintInputs": [
+      "packages/test-support/src/deterministicAiMock.ts",
+      "packages/test-support/src/deterministicFixtures.test.ts",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/index.ts",
+      "scripts/qa/dependencies.mjs",
+      "scripts/qa/fixtures.mjs"
+    ],
+    "relatedInputs": [
+      "packages/test-support/src/deterministicAiMock.ts",
+      "packages/test-support/src/deterministicFixtures.test.ts",
+      "packages/test-support/src/deterministicProjectFixture.ts",
+      "packages/test-support/src/index.ts",
+      "scripts/qa/dependencies.mjs",
+      "scripts/qa/fixtures.mjs"
+    ],
+    "safetyTests": [
+      "packages/test-support/src/deterministicFixtures.test.ts"
+    ]
+  },
+  "plannedSteps": [
+    {
+      "id": "diff-check-commit",
+      "label": "Latest-commit whitespace and conflict-marker check",
+      "command": "git show --check --format= HEAD",
+      "cwd": "."
+    },
+    {
+      "id": "frontend-acceptance",
+      "label": "Complete frontend acceptance",
+      "command": "pnpm acceptance",
+      "cwd": "."
+    },
+    {
+      "id": "cargo-format",
+      "label": "Rust formatting contract",
+      "command": "cargo fmt -- --check",
+      "cwd": "apps/desktop/src-tauri"
+    },
+    {
+      "id": "cargo-test",
+      "label": "Complete Rust test suite",
+      "command": "cargo test",
+      "cwd": "apps/desktop/src-tauri"
+    }
+  ],
+  "results": [
+    {
+      "id": "diff-check-commit",
+      "label": "Latest-commit whitespace and conflict-marker check",
+      "command": "git show --check --format= HEAD",
+      "cwd": ".",
+      "startedAt": "2026-08-03T04:23:21.657Z",
+      "durationMs": 78,
+      "status": "failed",
+      "exitCode": 2
+    },
+    {
+      "id": "frontend-acceptance",
+      "label": "Complete frontend acceptance",
+      "command": "pnpm acceptance",
+      "cwd": ".",
+      "startedAt": "2026-08-03T04:23:21.735Z",
+      "durationMs": 31546,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "cargo-format",
+      "label": "Rust formatting contract",
+      "command": "cargo fmt -- --check",
+      "cwd": "apps/desktop/src-tauri",
+      "startedAt": "2026-08-03T04:23:53.281Z",
+      "durationMs": 507,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "cargo-test",
+      "label": "Complete Rust test suite",
+      "command": "cargo test",
+      "cwd": "apps/desktop/src-tauri",
+      "startedAt": "2026-08-03T04:23:53.788Z",
+      "durationMs": 1232,
+      "status": "failed",
+      "exitCode": 101
+    }
+  ],
+  "status": "failed",
+  "completedAt": "2026-08-03T04:23:55.020Z"
+}

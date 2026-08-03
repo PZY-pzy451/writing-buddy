@@ -11,7 +11,7 @@
     "states": 9460,
     "shortcuts": 23,
     "nativeActions": 55,
-    "testCases": 744,
+    "testCases": 746,
     "mappedFeatures": 13,
     "mappedPages": 13,
     "mappedControls": 66,
@@ -25,11 +25,11 @@
     "unmappedStates": 9039,
     "unmappedShortcuts": 5,
     "unmappedNativeActions": 54,
-    "unmappedTestCases": 662,
+    "unmappedTestCases": 664,
     "notApplicable": 0,
     "automatedMappings": 421,
     "missingMappings": 9039,
-    "totalUnmapped": 10273
+    "totalUnmapped": 10275
   },
   "coverage": {
     "features": 0.08609271523178808,
@@ -38,7 +38,7 @@
     "states": 0.044503171247357295,
     "shortcuts": 0.782608695652174,
     "nativeActions": 0.01818181818181818,
-    "testCases": 0.11021505376344086
+    "testCases": 0.10991957104557641
   },
   "validationErrors": []
 }

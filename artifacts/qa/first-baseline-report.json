@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "reportDate": "2026-08-03",
+  "source": {
+    "commit": "12cd45e6ceb06b05342535ea3248ef5a8e9e38e0",
+    "branch": "codex/full-regression-gates-a-e-v2"
+  },
+  "scope": {
+    "completedGates": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "excluded": [
+      "Gate F and later",
+      "real AI provider calls",
+      "release packaging",
+      "broad product fixes",
+      "release-readiness approval"
+    ]
+  },
+  "overallStatus": "PARTIAL",
+  "foundationStatus": "PASS",
+  "traceabilityStatus": "REGRESSION_INCOMPLETE",
+  "releaseDecision": {
+    "status": "BLOCKED",
+    "reason": "Traceability is incomplete and release gates are outside the first-round scope."
+  },
+  "counts": {
+    "domains": 12,
+    "features": 151,
+    "pages": 24,
+    "workspaces": 5,
+    "controls": 430,
+    "states": 9460,
+    "shortcuts": 23,
+    "nativeActions": 55,
+    "discoveredTests": 746,
+    "missingStableSelectors": 223,
+    "runtimeCollectedTestCases": 795,
+    "runtimeExecutedPasses": 793,
+    "runtimeSkippedWithReason": 2,
+    "runtimeInventoryGap": 49,
+    "unmappedFeatures": 138,
+    "unmappedPages": 11,
+    "unmappedControls": 364,
+    "unmappedStates": 9039,
+    "unmappedShortcuts": 5,
+    "unmappedNativeActions": 54,
+    "unmappedTestCases": 664,
+    "totalUnmapped": 10275,
+    "notApplicable": 0,
+    "automatedMappings": 421,
+    "missingMappings": 9039,
+    "dependencyGraphNodes": 732,
+    "dependencyGraphEdges": 1259,
+    "cacheEligible": 744,
+    "forcedReruns": 0,
+    "mockScenarios": 24,
+    "projectFixtureScenarios": 8
+  },
+  "ledgerStatusCounts": {
+    "CACHED_PASS": 744,
+    "SKIPPED_WITH_REASON": 2
+  },
+  "coverage": {
+    "features": 0.08609271523178808,
+    "pages": 0.5416666666666666,
+    "controls": 0.15348837209302327,
+    "states": 0.044503171247357295,
+    "shortcuts": 0.782608695652174,
+    "nativeActions": 0.01818181818181818,
+    "testCases": 0.10991957104557641
+  },
+  "execution": {
+    "initialFullSelfTest": {
+      "status": "FAIL",
+      "evidence": "artifacts/qa/self-test-full.json",
+      "failures": [
+        "Latest-commit whitespace gate found one extra blank line in the Gate E fixture inventory script.",
+        "Cargo returned 101 during the first orchestration attempt; a standalone run and the complete rerun both passed 77 tests with 2 ignored."
+      ]
+    },
+    "fullSelfTestRerun": {
+      "status": "PASS",
+      "evidence": "artifacts/qa/self-test-full-rerun.json",
+      "steps": [
+        {
+          "id": "diff-check-worktree",
+          "status": "PASS",
+          "durationMs": 38
+        },
+        {
+          "id": "diff-check-index",
+          "status": "PASS",
+          "durationMs": 54
+        },
+        {
+          "id": "frontend-acceptance",
+          "status": "PASS",
+          "durationMs": 153377
+        },
+        {
+          "id": "cargo-format",
+          "status": "PASS",
+          "durationMs": 392
+        },
+        {
+          "id": "cargo-test",
+          "status": "PASS",
+          "durationMs": 5015
+        }
+      ],
+      "environmentNote": "The orchestration rerun passed, but nested pnpm commands resolved to unsupported Node 25 and are not the supported-runtime frontend evidence."
+    },
+    "supportedNode24FrontendAcceptance": {
+      "schemaVersion": 1,
+      "status": "PASS",
+      "exitCode": 0,
+      "node": "24.14.0",
+      "durationMs": 144507,
+      "vitestFiles": 171,
+      "vitestPassed": 716,
+      "productionBuild": "PASS",
+      "engineWarnings": 0
+    },
+    "rustBaseline": {
+      "status": "PASS",
+      "rust": "1.97.1",
+      "collected": 79,
+      "passed": 77,
+      "skippedWithReason": 2,
+      "failed": 0
+    },
+    "strictTraceabilityGate": {
+      "status": "FAIL",
+      "exitCode": 1,
+      "reason": "Required inventory mappings remain incomplete; failure is the expected fail-closed behavior."
+    }
+  },
+  "warnings": [
+    "Runtime collection found 49 more Vitest cases than the static inventory parser; these cases are an explicit inventory gap.",
+    "The production build reports a Monaco chunk above 3000 kB; performance optimization is outside Gates A-E.",
+    "The first orchestrated Cargo 101 was not reproduced in a standalone run or the complete rerun."
+  ],
+  "firstAttemptStatus": "failed"
+}

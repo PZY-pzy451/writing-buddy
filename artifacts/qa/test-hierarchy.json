@@ -68275,6 +68275,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-8AC6280228",
+      "title": "TC-QA-DEPENDENCY-004 reuses a mandatory pass already run on the current commit",
+      "source": "scripts/qa/dependencies.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-8AD9FA6B85",
       "title": "persists a field-specific diagnostic for invalid foreshadowing visibility",
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.test.ts",
@@ -70734,6 +70748,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-D36F1B1450",
+      "title": "TC-QA-DEPENDENCY-005 preserves a reasoned external skip while fingerprints match",
+      "source": "scripts/qa/dependencies.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
