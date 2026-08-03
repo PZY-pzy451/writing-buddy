@@ -1,4 +1,8 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { StoryRepository } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
@@ -59,6 +63,53 @@ describe('StoryConsistencyAiPanel', () => {
 		});
 		expect(issues[0]).not.toHaveProperty('replacement');
 		expect(await screen.findByText(/2 个正文章节、1 批/u)).toBeInTheDocument();
+	});
+
+	it('TC-QA-AI-CANCEL-005 sends one stop command for one hundred rapid clicks', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let resolveCancellation: (accepted: boolean) => void = () => undefined;
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		render(
+			<StoryConsistencyAiPanel
+				projectId="project-a11ce001"
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				onClose={vi.fn()}
+				onCreated={vi.fn()}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '开始全书扫描' }));
+		const stopButton = await screen.findByRole('button', { name: '停止' });
+		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				stopButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		expect(screen.getByRole('button', { name: '正在停止' })).toBeDisabled();
+		resolveCancellation(true);
+		const [request] = startAiGeneration.mock.calls[0];
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: request.jobId });
+			await Promise.resolve();
+		});
+		expect(await screen.findByRole('alert')).toHaveTextContent('全书扫描已停止');
 	});
 	afterEach(() => {
 		vi.restoreAllMocks();

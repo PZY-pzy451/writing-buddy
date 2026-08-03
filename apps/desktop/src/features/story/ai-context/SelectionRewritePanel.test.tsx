@@ -1,6 +1,11 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildContextPack } from '@writing-buddy/story-kernel';
+import { desktopBridge } from '../../../platform/bridge';
 import { SelectionRewritePanel } from './SelectionRewritePanel';
 
 const asyncTimeout = { timeout: 5_000 };
@@ -16,6 +21,65 @@ function pack() {
 }
 
 describe('SelectionRewritePanel', () => {
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
+	it('TC-QA-AI-CANCEL-004 blocks one hundred repeated cancellation clicks', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let activeJobId = '';
+		let resolveCancellation: (value: boolean) => void = () => undefined;
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				activeJobId = request.jobId;
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		render(
+			<SelectionRewritePanel
+				projectRoot="D:/fixture"
+				resourceId="chapter:one"
+				sourceRevision={4}
+				content="夜里非常非常安静。"
+				selection={{ start: 2, end: 8, text: '非常非常安静' }}
+				theme="vs"
+				actionType="polish"
+				onApply={vi.fn()}
+				onReplaceDocument={vi.fn()}
+				loadPack={() => Promise.resolve(pack())}
+			/>
+		);
+
+		const generateButton = await screen.findByRole('button', {
+			name: '确认 Context Pack 并生成'
+		}, asyncTimeout);
+		await waitFor(() => expect(generateButton).toBeEnabled(), asyncTimeout);
+		fireEvent.click(generateButton);
+		const cancelButton = await screen.findByRole('button', { name: '取消' }, asyncTimeout);
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				cancelButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		expect(cancelAiJob).toHaveBeenCalledWith(activeJobId);
+		resolveCancellation(true);
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: activeJobId });
+			await Promise.resolve();
+		});
+	});
+
 	it('hands the generated rewrite to the inline draft surface without replacing the selection', async () => {
 		const onApply = vi.fn();
 		const onPendingDraft = vi.fn();

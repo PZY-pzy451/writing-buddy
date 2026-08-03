@@ -25,6 +25,7 @@ import { flattenChapters } from '@writing-buddy/domain';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
 import { runGroundedJsonJob } from '../story/ai-context/GroundedAiRunner';
+import { AiJobCancelButton } from '../story/ai-context/AiJobCancelButton';
 import {
 	addStoryElement,
 	advanceCreationJourney,
@@ -416,6 +417,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const saveChainRef = useRef<Promise<void>>(Promise.resolve());
 	const genreGenerationRequestRef = useRef(false);
 	const genreCancellationRequestedRef = useRef(false);
+	const genreCancellationGuardRef = useRef(false);
 	const outlineAlternativeRequestRef = useRef(false);
 	const hierarchyGenerationRequestRef = useRef(false);
 	const outlineSemanticCheckRequestRef = useRef(false);
@@ -601,7 +603,15 @@ export function CreationJourneyPage(): React.JSX.Element {
 					onJobId: id => {
 						setJobId(id);
 						if (id && genreCancellationRequestedRef.current) {
-							void desktopBridge.cancelAiJob(id);
+							void desktopBridge.cancelAiJob(id).then(accepted => {
+								if (!accepted) {
+									genreCancellationGuardRef.current = false;
+									setError('没有找到正在生成的任务，请稍候后重试取消。');
+								}
+							}).catch(reason => {
+								genreCancellationGuardRef.current = false;
+								setError(journeyErrorCopy(reason));
+							});
 						}
 					},
 					onProgress: progress => {
@@ -638,8 +648,27 @@ export function CreationJourneyPage(): React.JSX.Element {
 		} finally {
 			genreGenerationRequestRef.current = false;
 			genreCancellationRequestedRef.current = false;
+			genreCancellationGuardRef.current = false;
 			setBusyOperation(undefined);
 			setJobId(undefined);
+		}
+	};
+
+	const cancelAi = async () => {
+		if (genreCancellationGuardRef.current) return;
+		genreCancellationGuardRef.current = true;
+		genreCancellationRequestedRef.current = true;
+		setError(undefined);
+		try {
+			if (!jobId) return;
+			const accepted = await desktopBridge.cancelAiJob(jobId);
+			if (!accepted) {
+				genreCancellationGuardRef.current = false;
+				setError('没有找到正在生成的任务，请稍候后重试取消。');
+			}
+		} catch (reason) {
+			genreCancellationGuardRef.current = false;
+			setError(journeyErrorCopy(reason));
 		}
 	};
 
@@ -1434,13 +1463,6 @@ export function CreationJourneyPage(): React.JSX.Element {
 		}
 	};
 
-	const cancelAi = () => {
-		if (busyOperation === 'generate-from-genre') {
-			genreCancellationRequestedRef.current = true;
-		}
-		if (jobId) void desktopBridge.cancelAiJob(jobId);
-	};
-
 	const createChapters = async () => {
 		const current = stateRef.current;
 		if (!current) return;
@@ -1514,7 +1536,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 							}
 						}}
 						onGenerate={() => void runGenreToOutline()}
-						onCancel={cancelAi}
+						onCancel={() => void cancelAi()}
 					/>
 				</div>
 			</section>
@@ -2210,9 +2232,19 @@ export function CreationJourneyPage(): React.JSX.Element {
 				)}
 
 				{busyOperation && jobId && (
-					<button className="creation-ai-cancel" type="button" onClick={cancelAi}>
-						<X size={16} />取消本次 AI 请求
-					</button>
+					<AiJobCancelButton
+						jobId={jobId}
+						className="creation-ai-cancel"
+						label="取消本次 AI 请求"
+						pendingLabel="正在取消本次 AI 请求"
+						showIcon
+						onBeforeCancel={() => {
+							if (busyOperation === 'generate-from-genre') {
+								genreCancellationRequestedRef.current = true;
+							}
+						}}
+						onErrorChange={setError}
+					/>
 				)}
 			</div>
 		</section>

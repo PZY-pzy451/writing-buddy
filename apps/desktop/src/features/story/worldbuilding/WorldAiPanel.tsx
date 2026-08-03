@@ -28,6 +28,7 @@ import type {
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
+import { AiJobCancelButton } from '../ai-context/AiJobCancelButton';
 import {
 	WorldAiReviewService,
 	stageWorldReviewBatch,
@@ -303,7 +304,13 @@ export function WorldAiPanel(props: {
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成结构化候选'}
 					</button>
-					{generating && activeJobId ? <button type="button" className="ai-review-secondary" onClick={() => void desktopBridge.cancelAiJob(activeJobId)}>取消</button> : null}
+					{generating && activeJobId ? (
+						<AiJobCancelButton
+							jobId={activeJobId}
+							className="ai-review-secondary"
+							onErrorChange={setError}
+						/>
+					) : null}
 				</div>
 				{error ? <p className="ai-review-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
 				{notice ? <p className="ai-review-notice" role="status"><Check size={16} />{notice}</p> : null}

@@ -27,6 +27,7 @@ import type {
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
+import { AiJobCancelButton } from '../ai-context/AiJobCancelButton';
 import {
 	RelationshipAiReviewService,
 	stageRelationshipReviewBatch,
@@ -311,7 +312,11 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成关系候选'}
 					</button>
 					{generating && activeJobId ? (
-						<button type="button" className="ai-review-secondary" onClick={() => void desktopBridge.cancelAiJob(activeJobId)}>取消</button>
+						<AiJobCancelButton
+							jobId={activeJobId}
+							className="ai-review-secondary"
+							onErrorChange={setError}
+						/>
 					) : null}
 				</div>
 

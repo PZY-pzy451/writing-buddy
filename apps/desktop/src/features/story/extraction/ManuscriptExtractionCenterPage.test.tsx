@@ -1,7 +1,11 @@
 import type { TextFile } from '@writing-buddy/domain';
 import type { AtomicWriteResult } from '@writing-buddy/platform-ports';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { desktopBridge } from '../../../platform/bridge';
 import {
 	createCreationJourneyState,
@@ -15,6 +19,7 @@ import {
 	type CreationJourneyStorageGateway
 } from '../../creation-journey/CreationJourneyStore';
 import { ManuscriptExtractionCenterPage } from './ManuscriptExtractionCenterPage';
+import { ManuscriptExtractionRunner } from './ManuscriptExtractionCenterService';
 
 const chapters = [{
 	resourceId: 'chapter:chapter-a11ce001',
@@ -139,6 +144,58 @@ function materializedJourney(projectId: string): string {
 describe('ManuscriptExtractionCenterPage', () => {
 	beforeEach(async () => {
 		await desktopBridge.saveDeepSeekKey('browser-fixture-key');
+	});
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
+	it('TC-QA-AI-CANCEL-006 stops the runner and native job once for one hundred clicks', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let resolveCancellation: (accepted: boolean) => void = () => undefined;
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		const stopRunner = vi.spyOn(ManuscriptExtractionRunner.prototype, 'stop');
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
+		await screen.findByText(/已规划 1 个章节/u);
+		fireEvent.click(screen.getByRole('button', { name: '开始逐章整理' }));
+		const stopButton = await screen.findByRole('button', { name: '停止' });
+		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				stopButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(stopRunner).toHaveBeenCalledOnce();
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		expect(screen.getByRole('button', { name: '正在停止' })).toBeDisabled();
+		resolveCancellation(true);
+		const [request] = startAiGeneration.mock.calls[0];
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: request.jobId });
+			await Promise.resolve();
+		});
+		await screen.findByText(/运行已结束/u);
 	});
 
 	it('plans without AI, then runs only after explicit confirmation', async () => {

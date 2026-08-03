@@ -35,6 +35,7 @@ import { desktopBridge } from '../../../platform/bridge';
 import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 import { CandidateDiffView } from './CandidateDiffView';
 import { ContextPackPreview } from './ContextPackPreview';
+import { AiJobCancelButton } from './AiJobCancelButton';
 import {
 	createRewriteCandidate,
 	isRewriteCandidateStale,
@@ -264,11 +265,6 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 		}
 	};
 
-	const cancel = async () => {
-		if (!activeJobId) return;
-		await desktopBridge.cancelAiJob(activeJobId);
-	};
-
 	const accept = async (replacement: string) => {
 		if (!candidate || acceptingRef.current) return;
 		acceptingRef.current = true;
@@ -326,9 +322,12 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 					{generating ? `DeepSeek 流式生成中 · ${streamedLength} 字符` : '确认 Context Pack 并生成'}
 				</button>
 				{generating && activeJobId ? (
-					<button className="secondary-button" type="button" onClick={() => void cancel()}>
-						<X size={16} />取消
-					</button>
+					<AiJobCancelButton
+						jobId={activeJobId}
+						className="secondary-button"
+						showIcon
+						onErrorChange={setError}
+					/>
 				) : null}
 			</div>
 			{candidate && !props.onPendingDraft ? (

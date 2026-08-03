@@ -32,6 +32,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
 import { CandidateDiffView } from './CandidateDiffView';
 import { ContextPackPreview } from './ContextPackPreview';
+import { AiJobCancelButton } from './AiJobCancelButton';
 import {
 	buildContinuationDiff,
 	ContinuationService,
@@ -505,13 +506,12 @@ export function ManuscriptContinuationPanel(
 							: '确认资料并生成候选'}
 				</button>
 				{generating && activeJobId ? (
-					<button
+					<AiJobCancelButton
+						jobId={activeJobId}
 						className="secondary-button"
-						type="button"
-						onClick={() => void desktopBridge.cancelAiJob(activeJobId)}
-					>
-						<X size={16} />取消
-					</button>
+						showIcon
+						onErrorChange={setError}
+					/>
 				) : null}
 			</div>
 			{batch && !(props.onPendingDraft && props.mode === 'continue-paragraph') ? (

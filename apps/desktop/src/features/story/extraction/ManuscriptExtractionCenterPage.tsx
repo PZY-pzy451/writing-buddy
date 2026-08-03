@@ -29,7 +29,7 @@ import {
 	DesktopStoryRepository,
 	type StoryRepository
 } from '@writing-buddy/story-kernel';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
 import {
@@ -247,11 +247,12 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [planningProgress, setPlanningProgress] = useState(0);
 	const [streamState, setStreamState] = useState<AiJobState>('created');
 	const [streamedLength, setStreamedLength] = useState(0);
-	const [activeJobId, setActiveJobId] = useState<string>();
 	const [busyAction, setBusyAction] = useState<'run' | 'confirm' | 'undo'>();
+	const [stopPending, setStopPending] = useState(false);
 	const [resolvingCandidateId, setResolvingCandidateId] = useState<string>();
 	const [notice, setNotice] = useState('');
 	const [error, setError] = useState('');
+	const stopGuardRef = useRef(false);
 
 	const refreshStaleState = useCallback(async (
 		nextBatches: readonly StoryKernelGenerationBatch[]
@@ -454,6 +455,8 @@ export function ManuscriptExtractionCenterPage(props: {
 	const startRun = async () => {
 		if (!selectedRun || !runner || !repository || !generationService || !generationStore) return;
 		setBusyAction('run');
+		stopGuardRef.current = false;
+		setStopPending(false);
 		setError('');
 		setNotice('');
 		try {
@@ -501,7 +504,6 @@ export function ManuscriptExtractionCenterPage(props: {
 							}
 						},
 						onJobId: jobId => {
-							setActiveJobId(jobId);
 							onActiveCancel(jobId
 								? () => desktopBridge.cancelAiJob(jobId).then(() => undefined)
 								: undefined);
@@ -540,14 +542,24 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setBusyAction(undefined);
-			setActiveJobId(undefined);
+			stopGuardRef.current = false;
+			setStopPending(false);
 		}
 	};
 
 	const stopRun = async () => {
-		await runner?.stop();
-		if (activeJobId) await desktopBridge.cancelAiJob(activeJobId);
-		setNotice('已请求停止；完成的章节和候选会保留。');
+		if (stopGuardRef.current) return;
+		stopGuardRef.current = true;
+		setStopPending(true);
+		setError('');
+		try {
+			await runner?.stop();
+			setNotice('已请求停止；完成的章节和候选会保留。');
+		} catch (reason) {
+			stopGuardRef.current = false;
+			setStopPending(false);
+			setError(safeMessage(reason));
+		}
 	};
 
 	const refreshStaleChapter = async (resourceId: string) => {
@@ -995,10 +1007,16 @@ export function ManuscriptExtractionCenterPage(props: {
 						</button>
 						<button
 							type="button"
-							disabled={selectedRun?.status !== 'running' && busyAction !== 'run'}
+							disabled={
+								stopPending
+								|| (selectedRun?.status !== 'running' && busyAction !== 'run')
+							}
 							onClick={() => void stopRun()}
 						>
-							<CircleStop size={18} />停止
+							{stopPending
+								? <LoaderCircle className="spin" size={18} />
+								: <CircleStop size={18} />}
+							{stopPending ? '正在停止' : '停止'}
 						</button>
 					</div>
 					{busyAction === 'run' ? (

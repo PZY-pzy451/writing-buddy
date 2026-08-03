@@ -85,8 +85,10 @@ export function StoryConsistencyAiPanel(props: {
 	const [batchProgress, setBatchProgress] = useState<{ readonly current: number; readonly total: number }>();
 	const [completedPlan, setCompletedPlan] = useState<WholeWorkConsistencyPlan>();
 	const [error, setError] = useState('');
+	const [cancellationPending, setCancellationPending] = useState(false);
 	const runLockRef = useRef(false);
 	const cancelRequestedRef = useRef(false);
+	const cancelGuardRef = useRef(false);
 	const activeJobIdRef = useRef<string | undefined>(undefined);
 	const repository = useMemo(
 		() => props.repository ?? new DesktopStoryRepository(props.projectRoot, desktopBridge),
@@ -133,6 +135,8 @@ export function StoryConsistencyAiPanel(props: {
 		if (scope === 'selected' && (selectedIds.length < 2 || selectedIds.length > 12)) return;
 		runLockRef.current = true;
 		cancelRequestedRef.current = false;
+		cancelGuardRef.current = false;
+		setCancellationPending(false);
 		setRunning(true);
 		setError('');
 		setResultCount(undefined);
@@ -194,14 +198,32 @@ export function StoryConsistencyAiPanel(props: {
 				: friendlyError(reason));
 		} finally {
 			runLockRef.current = false;
+			cancelGuardRef.current = false;
+			setCancellationPending(false);
 			setRunning(false);
 			activeJobIdRef.current = undefined;
 		}
 	};
 
 	const cancel = async () => {
+		if (cancelGuardRef.current) return;
+		cancelGuardRef.current = true;
 		cancelRequestedRef.current = true;
-		if (activeJobIdRef.current) await desktopBridge.cancelAiJob(activeJobIdRef.current);
+		setCancellationPending(true);
+		setError('');
+		try {
+			if (!activeJobIdRef.current) return;
+			const accepted = await desktopBridge.cancelAiJob(activeJobIdRef.current);
+			if (!accepted) {
+				cancelGuardRef.current = false;
+				setCancellationPending(false);
+				setError('没有找到正在生成的任务，请稍候后重试停止。');
+			}
+		} catch (reason) {
+			cancelGuardRef.current = false;
+			setCancellationPending(false);
+			setError(friendlyError(reason));
+		}
 	};
 
 	return (
@@ -344,8 +366,16 @@ export function StoryConsistencyAiPanel(props: {
 								: scope === 'whole-work' ? '开始全书扫描' : '开始对照审查'}
 						</button>
 						{running ? (
-							<button className="stop-action" type="button" onClick={() => void cancel()}>
-								<CircleStop size={18} />停止
+							<button
+								className="stop-action"
+								type="button"
+								disabled={cancellationPending}
+								onClick={() => void cancel()}
+							>
+								{cancellationPending
+									? <LoaderCircle className="spin" size={18} />
+									: <CircleStop size={18} />}
+								{cancellationPending ? '正在停止' : '停止'}
 							</button>
 						) : null}
 					</div>

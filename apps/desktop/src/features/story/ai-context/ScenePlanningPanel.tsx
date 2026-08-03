@@ -25,6 +25,7 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
 import { ContextPackPreview } from './ContextPackPreview';
+import { AiJobCancelButton } from './AiJobCancelButton';
 import { runGroundedJsonJob } from './GroundedAiRunner';
 import {
 	ScenePlanningService,
@@ -277,13 +278,12 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 					{generating ? `AI 生成中 · ${streamedLength} 字符` : '确认资料并生成细纲'}
 				</button>
 				{generating && activeJobId ? (
-					<button
+					<AiJobCancelButton
+						jobId={activeJobId}
 						className="secondary-button"
-						type="button"
-						onClick={() => void desktopBridge.cancelAiJob(activeJobId)}
-					>
-						<X size={16} />取消
-					</button>
+						showIcon
+						onErrorChange={setError}
+					/>
 				) : null}
 			</div>
 			{candidate ? (

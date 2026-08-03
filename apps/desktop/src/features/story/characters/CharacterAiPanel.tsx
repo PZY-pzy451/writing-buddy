@@ -34,6 +34,7 @@ import type {
 	OpenAiEvidence
 } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
+import { AiJobCancelButton } from '../ai-context/AiJobCancelButton';
 import '../ai-context/AiReviewDrawer.css';
 
 const actions: readonly {
@@ -336,11 +337,11 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成候选'}
 					</button>
 					{generating && activeJobId ? (
-						<button
-							type="button"
+						<AiJobCancelButton
+							jobId={activeJobId}
 							className="ai-review-secondary"
-							onClick={() => void desktopBridge.cancelAiJob(activeJobId)}
-						>取消</button>
+							onErrorChange={setError}
+						/>
 					) : null}
 				</div>
 

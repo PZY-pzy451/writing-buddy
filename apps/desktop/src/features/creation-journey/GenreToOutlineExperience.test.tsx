@@ -1,6 +1,10 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
 import {
@@ -13,6 +17,75 @@ import {
 import { CreationJourneyPage } from './CreationJourneyPage';
 
 describe('genre-to-outline journey experience', () => {
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
+	it('TC-QA-AI-CANCEL-007 sends one genre cancellation for one hundred clicks', async () => {
+		const user = userEvent.setup();
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let resolveCancellation: (accepted: boolean) => void = () => undefined;
+		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue(undefined);
+		vi.spyOn(desktopBridge, 'writeCreationJourneyState').mockResolvedValue({
+			hash: 'genre-cancel-hash',
+			byteLength: 1,
+			modifiedAt: '2026-08-03T07:00:00.000Z'
+		});
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		useAppStore.setState({
+			creationJourneyStartRoute: 'genre',
+			snapshot: {
+				root: 'D:/GenreCancelNovel',
+				project: {
+					schemaVersion: 1,
+					projectId: 'novel-genre-cancel',
+					title: '取消压力测试',
+					volumes: []
+				},
+				projectRevision: 'revision',
+				resources: [],
+				wordCounts: {},
+				integrityIssues: [],
+				readOnly: false
+			}
+		});
+		render(<CreationJourneyPage />);
+
+		await user.type(await screen.findByLabelText('选择题材'), '都市悬疑');
+		await user.click(screen.getByRole('button', { name: '查看生成依据' }));
+		await user.click(within(screen.getByRole('dialog', { name: '生成依据' }))
+			.getByRole('button', { name: '确认并生成' }));
+		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
+		const stopButton = screen.getByRole('button', { name: '停止生成' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				stopButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		resolveCancellation(true);
+		const [request] = startAiGeneration.mock.calls[0];
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: request.jobId });
+			await Promise.resolve();
+		});
+		expect(await screen.findByRole('alert')).toHaveTextContent('生成已停止');
+	});
+
 	it('saves the brief, discloses context, and writes only a validated outline draft', async () => {
 		const user = userEvent.setup();
 		await desktopBridge.saveDeepSeekKey('browser-fixture');

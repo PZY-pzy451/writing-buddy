@@ -167,6 +167,29 @@ const report = {
 				retryAfterJobNotFound: true,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-CANCEL-SURFACE-REENTRANCY-007',
+			summary: 'Adjacent AI stop controls could issue repeated native cancellation commands, and extraction issued two native commands for one click.',
+			before: {
+				auditedCancellationPaths: 13,
+				repeatedClicks: 100,
+				selectionRewriteNativeCommands: 100,
+				extractionNativeCommandsPerClick: 2,
+				sharedCancellationContract: false
+			},
+			after: {
+				guardedCancellationPaths: 13,
+				repeatedClicks: 100,
+				nativeCommandsPerActiveJob: 1,
+				sharedCancellationContract: true,
+				pendingFeedback: true,
+				retryAfterCommandFailure: true,
+				retryAfterJobNotFound: true,
+				unknownErrorsLocalized: true,
+				focusedTests: 21,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
