@@ -131,6 +131,24 @@ const report = {
 				malformedCandidateQuarantined: true,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-KERNEL-ACTION-REENTRANCY-005',
+			summary: 'Rapid confirmation clicks could start repeated safety snapshots before React rendered the busy state.',
+			before: {
+				repeatedClicks: 100,
+				synchronousActionGuard: false,
+				snapshotRequests: 100
+			},
+			after: {
+				repeatedClicks: 100,
+				synchronousActionGuard: true,
+				snapshotRequests: 1,
+				atomicWrites: 1,
+				rejectionStateWrites: 1,
+				retryAfterSnapshotFailure: true,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

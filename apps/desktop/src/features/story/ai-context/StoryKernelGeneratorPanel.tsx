@@ -253,6 +253,7 @@ function StoryKernelGeneratorPanelContent(
 		useState<StoryKernelGenerationFailurePresentation>();
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const generationGuardRef = useRef(false);
+	const actionGuardRef = useRef(false);
 	const generating = generationStarting || !terminalStates.includes(jobState);
 
 	useEffect(() => {
@@ -356,7 +357,8 @@ function StoryKernelGeneratorPanelContent(
 	};
 
 	const confirmSelected = async () => {
-		if (!batch || selectedIds.size === 0 || busyAction) return;
+		if (actionGuardRef.current || !batch || selectedIds.size === 0 || busyAction) return;
+		actionGuardRef.current = true;
 		setBusyAction('confirm');
 		setError('');
 		try {
@@ -374,12 +376,14 @@ function StoryKernelGeneratorPanelContent(
 		} catch (reason) {
 			setError(errorMessage(reason));
 		} finally {
+			actionGuardRef.current = false;
 			setBusyAction(undefined);
 		}
 	};
 
 	const rejectCandidate = async (candidateId: string) => {
-		if (!batch || busyAction) return;
+		if (actionGuardRef.current || !batch || busyAction) return;
+		actionGuardRef.current = true;
 		setBusyAction('reject');
 		setError('');
 		try {
@@ -393,6 +397,7 @@ function StoryKernelGeneratorPanelContent(
 		} catch (reason) {
 			setError(errorMessage(reason));
 		} finally {
+			actionGuardRef.current = false;
 			setBusyAction(undefined);
 		}
 	};

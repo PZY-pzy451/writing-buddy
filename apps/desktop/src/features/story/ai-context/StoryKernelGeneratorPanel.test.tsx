@@ -26,6 +26,7 @@ import {
 class MemoryStorage implements StoryKernelGenerationStoragePort {
 	private content: string | undefined;
 	private hash = '';
+	writeCalls = 0;
 
 	constructor(content?: string) {
 		this.content = content;
@@ -43,6 +44,7 @@ class MemoryStorage implements StoryKernelGenerationStoragePort {
 	}
 
 	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult> {
+		this.writeCalls += 1;
 		this.content = request.content;
 		this.hash = `hash-${request.content.length}`;
 		return Promise.resolve({
@@ -333,6 +335,78 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(button).toBeDisabled();
 		resolveGeneration(generatedCharacterResponse());
 		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
+	});
+
+	it('TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves', async () => {
+		const events: string[] = [];
+		let resolveSnapshot: (value: string) => void = () => undefined;
+		const createSafetySnapshot = vi.fn(() => new Promise<string>(resolve => {
+			resolveSnapshot = resolve;
+		}));
+		const gateway = new MemoryStoryGateway(events);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository('D:/Novel', gateway)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={() => Promise.resolve(generatedCharacterResponse())}
+				createSafetySnapshot={createSafetySnapshot}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeChecked();
+		const confirmButton = screen.getByRole('button', { name: '创建快照并确认 1' });
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				confirmButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(createSafetySnapshot).toHaveBeenCalledOnce();
+		expect(events).toEqual([]);
+		resolveSnapshot('snapshot:test');
+		await waitFor(() => expect(events).toEqual(['commit']));
+		expect(gateway.resources.size).toBe(1);
+	});
+
+	it('TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates', async () => {
+		const storage = new MemoryStorage();
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', storage)}
+				runGeneration={() => Promise.resolve(generatedCharacterResponse())}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		await screen.findByRole('checkbox', { name: '选择 林越' });
+		expect(storage.writeCalls).toBe(1);
+		const rejectButton = screen.getByRole('button', { name: '拒绝' });
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				rejectButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(await screen.findByText('已拒绝')).toBeInTheDocument();
+		expect(storage.writeCalls).toBe(2);
+		expect(screen.queryByRole('button', { name: '拒绝' })).not.toBeInTheDocument();
 	});
 
 	it('keeps valid candidates and explains an isolated malformed candidate', async () => {
@@ -663,8 +737,9 @@ describe('StoryKernelGeneratorPanel', () => {
 	it('keeps a valid character pending and localizes a rejected snapshot', async () => {
 		const gateway = new MemoryStoryGateway([]);
 		const response = generatedCharacterResponse();
-		vi.spyOn(desktopBridge, 'createSnapshot')
-			.mockRejectedValue(new Error('invalidSnapshotReason'));
+		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
+			.mockRejectedValueOnce(new Error('invalidSnapshotReason'))
+			.mockResolvedValue('snapshot:test');
 
 		render(
 			<StoryKernelGeneratorPanel
@@ -691,6 +766,13 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(screen.queryByText('invalidSnapshotReason')).not.toBeInTheDocument();
 		expect(screen.getByText('待确认')).toBeInTheDocument();
 		expect(gateway.resources.size).toBe(0);
+
+		fireEvent.click(screen.getByRole('button', { name: /创建快照并确认 1/ }));
+		await waitFor(() => expect(gateway.resources.size).toBe(1));
+		expect(createSnapshot).toHaveBeenCalledTimes(2);
+		expect(screen.queryByText(
+			'安全快照参数不兼容，候选尚未写入。请更新应用后重试。'
+		)).not.toBeInTheDocument();
 	});
 
 	it('explains local scene grounding and confirms a repaired scene candidate', async () => {
