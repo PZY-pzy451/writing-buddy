@@ -235,6 +235,32 @@ returned focus to the document body because the originating menu item had
 unmounted. The project menu now explicitly owns focus restoration; automated
 and live 420 px checks both return focus to `项目菜单`.
 
+### QA-PROJECT-OPEN-LIFECYCLE-016
+
+Project switching and lock-recovery actions also relied on state that became
+visible only after React rendered. The deterministic reproduction sent 100
+same-tick actions: the directory chooser opened 100 times, read-only recovery
+performed 100 project opens, and a dirty manuscript changed projects without
+any author confirmation.
+
+The app store now owns synchronous single-flight guards for the chooser and
+project open lifecycle. Read-only open, lock repair and directory reveal also
+use their synchronous recovery action state as a lock. Under 100-action pressure
+each external boundary now executes exactly once; chooser failure releases for
+an explicit retry. A dirty manuscript asks once, cancellation performs zero
+bridge opens and preserves the current project and edit, while acceptance opens
+the target exactly once. Project creation passes its already-confirmed dirty
+state into the same lifecycle, avoiding a second prompt after the new project
+has been safely created.
+
+Live browser QA opened and edited the first chapter, confirmed the dirty state,
+then exercised project switching and repeated switching at desktop, 620 px and
+420 px. The accepted switch restored the fixture's original 94-word chapter;
+the 420 px document measured 420 px client and scroll widths, and the browser
+reported zero warnings or errors. The browser runtime automatically accepted
+the native confirmation, so the cancellation path is evidenced by the 100-call
+deterministic contract rather than a synthetic browser override.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -325,11 +351,13 @@ console claims.
 | Live AI settings journey | Save/test/model/balance outcomes verified; 620 px and 420 px widths have no horizontal overflow; removal confirmation cancelled; 0 console warnings/errors |
 | Project creation action pressure | Four 100-action same-tick boundaries each produce one chooser, confirmation or write; first atomic-save failure remains retryable |
 | Live project creation journey | Required errors, preflight, double-click creation and Esc focus return verified; 620 px / 420 px have no overflow; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 852 / 852 cases; 773 frontend + 79 native; 850 passed + 2 reasoned skips; stale ledgers fail closed |
+| Project open and recovery pressure | Five 100-action boundaries produce one chooser/open/confirmation/repair/reveal; dirty-switch cancellation performs 0 opens and preserves the draft |
+| Live project switching journey | Dirty edit and accepted switch verified; repeated switch remains stable; 620 px / 420 px have no overflow; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 857 / 857 cases; 778 frontend + 79 native; 855 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 773 tests and production build passed |
-| Static/runtime test reconciliation | 773 / 773; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 778 tests and production build passed |
+| Static/runtime test reconciliation | 778 / 778; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -369,7 +397,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,103 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,108 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

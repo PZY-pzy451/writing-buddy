@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T10:10:08.077Z",
+  "generatedAt": "2026-08-03T10:50:19.453Z",
   "source": {
-    "commit": "d9700cc8971ae9d7fe4bd3cad9925f9de6ad8a5c",
+    "commit": "b0f5fae9cbc6fb1abbff76deb835b2c3b5b967e2",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 773,
-        "runtimeCollected": 773,
+        "frontendInventory": 778,
+        "runtimeCollected": 778,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 773
+        "frontendTests": 778
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 852,
-        "ledgerCases": 850,
+        "discoveredTests": 857,
+        "ledgerCases": 855,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 852,
-        "ledgerCases": 852,
-        "frontendLedgerCases": 773,
+        "discoveredTests": 857,
+        "ledgerCases": 857,
+        "frontendLedgerCases": 778,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,40 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 773
+        "frontendTests": 778
+      }
+    },
+    {
+      "id": "QA-PROJECT-OPEN-LIFECYCLE-016",
+      "summary": "Project switching and lock recovery relied on rendered busy state, while opening another project could discard an unsaved manuscript without author confirmation.",
+      "before": {
+        "repeatedActions": 100,
+        "directoryChooserCalls": 100,
+        "readOnlyOpenCalls": 100,
+        "dirtyManuscriptConfirmations": 0,
+        "dirtyManuscriptProtected": false,
+        "recoveryActionsDeduplicated": false
+      },
+      "after": {
+        "repeatedActions": 100,
+        "directoryChooserCalls": 1,
+        "projectOpenCalls": 1,
+        "readOnlyOpenCalls": 1,
+        "dirtyManuscriptConfirmations": 1,
+        "cancelledSwitchBridgeCalls": 0,
+        "dirtyManuscriptProtected": true,
+        "repairCalls": 1,
+        "revealDirectoryCalls": 1,
+        "chooserFailureRetryable": true,
+        "manualBrowserWidths": [
+          620,
+          420
+        ],
+        "horizontalOverflow": false,
+        "browserWarningsOrErrors": 0,
+        "focusedTests": 7,
+        "impactedTests": 15,
+        "frontendTests": 778
       }
     }
   ],
@@ -331,22 +364,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 773
+      "frontendTests": 778
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T10:01:43.786Z",
-      "completedAt": "2026-08-03T10:04:14.604Z",
+      "generatedAt": "2026-08-03T10:41:24.091Z",
+      "completedAt": "2026-08-03T10:43:55.293Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 150817,
+      "durationMs": 151200,
       "vitestFiles": 174,
-      "vitestPassed": 773,
-      "inventoryFrontendTests": 773,
+      "vitestPassed": 778,
+      "inventoryFrontendTests": 778,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -355,10 +388,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T10:04:42.153Z",
-      "completedAt": "2026-08-03T10:04:44.523Z",
+      "generatedAt": "2026-08-03T10:41:24.025Z",
+      "completedAt": "2026-08-03T10:41:26.435Z",
       "status": "PASS",
-      "durationMs": 2368,
+      "durationMs": 2409,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -384,7 +417,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10103,
+    "totalUnmapped": 10108,
     "missingStableSelectors": 221
   },
   "warnings": [

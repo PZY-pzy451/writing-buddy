@@ -402,6 +402,36 @@ const report = {
 				focusedTests: 11,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PROJECT-OPEN-LIFECYCLE-016',
+			summary: 'Project switching and lock recovery relied on rendered busy state, while opening another project could discard an unsaved manuscript without author confirmation.',
+			before: {
+				repeatedActions: 100,
+				directoryChooserCalls: 100,
+				readOnlyOpenCalls: 100,
+				dirtyManuscriptConfirmations: 0,
+				dirtyManuscriptProtected: false,
+				recoveryActionsDeduplicated: false
+			},
+			after: {
+				repeatedActions: 100,
+				directoryChooserCalls: 1,
+				projectOpenCalls: 1,
+				readOnlyOpenCalls: 1,
+				dirtyManuscriptConfirmations: 1,
+				cancelledSwitchBridgeCalls: 0,
+				dirtyManuscriptProtected: true,
+				repairCalls: 1,
+				revealDirectoryCalls: 1,
+				chooserFailureRetryable: true,
+				manualBrowserWidths: [620, 420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 7,
+				impactedTests: 15,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
