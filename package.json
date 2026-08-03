@@ -19,6 +19,8 @@
     "qa:validate": "node scripts/qa/inventory.mjs && node scripts/qa/traceability.mjs --strict",
     "qa:plan": "node scripts/qa/inventory.mjs && node scripts/qa/traceability.mjs && node scripts/qa/dependencies.mjs",
     "qa:fixtures": "node scripts/qa/fixtures.mjs",
+    "qa:record-baseline": "node scripts/qa/record-baseline.mjs",
+    "qa:baseline:frontend": "node scripts/qa/supported-acceptance.mjs",
     "self-test": "node scripts/self-test/run.mjs",
     "self-test:plan": "node scripts/self-test/run.mjs --dry-run",
     "self-test:full": "node scripts/self-test/run.mjs --all",

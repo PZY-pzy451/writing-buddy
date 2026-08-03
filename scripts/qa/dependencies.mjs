@@ -9,6 +9,7 @@ import { resolveLedgerStatus } from './dependency-policy.mjs';
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const qaRoot = resolve(repositoryRoot, 'artifacts', 'qa');
 const baselineCommit = '3575c45408f1660bfa29718f6be76d39e8a16f1d';
+const currentCommit = git(['rev-parse', 'HEAD']);
 
 function normalizePath(path) {
 	return path.replaceAll('\\', '/');
@@ -143,7 +144,8 @@ for (const test of tests) {
 	const expectedBehaviorFingerprint = hashParts([test.featureId, test.pageId, test.title]);
 	const fingerprints = { sourceFingerprint, dependencyFingerprint, ...sharedFingerprints, testImplementationFingerprint, expectedBehaviorFingerprint };
 	const forceRun = globalForce || ['P0', 'P1'].includes(features.features.find(feature => feature.id === test.featureId)?.priority ?? 'P2');
-	const decision = resolveLedgerStatus(previousById.get(test.id), fingerprints, forceRun);
+	const previous = previousById.get(test.id);
+	const decision = resolveLedgerStatus(previous, fingerprints, forceRun, currentCommit);
 	const item = {
 		testCaseId: test.id,
 		hierarchyPath: [test.domainId, test.featureId, test.pageId, test.controlId ?? 'UNMAPPED_CONTROL', test.stateId ?? 'UNMAPPED_STATE', test.id],
@@ -153,7 +155,12 @@ for (const test of tests) {
 		dependentFeatures: [test.featureId],
 		dependentSchemas: dependentFiles.filter(file => schemaFiles.includes(file)),
 		dependentFixtures: dependentFiles.filter(file => fixtureFiles.includes(file)),
-		evidencePaths: [],
+		evidencePaths: previous?.evidencePaths ?? [],
+		...(previous?.lastRunCommit ? { lastRunCommit: previous.lastRunCommit } : {}),
+		...(previous?.lastPassedCommit ? { lastPassedCommit: previous.lastPassedCommit } : {}),
+		...(previous?.executedAt ? { executedAt: previous.executedAt } : {}),
+		...(previous?.durationMs !== undefined ? { durationMs: previous.durationMs } : {}),
+		...(decision.skipReason ? { skipReason: decision.skipReason } : {}),
 		...(decision.invalidationReason ? { invalidationReason: decision.invalidationReason } : {})
 	};
 	const sourceEntry = testSources.get(test.source) ?? {
@@ -166,7 +173,7 @@ for (const test of tests) {
 }
 const ledgerItems = tests.map(test => test.ledgerItem).sort((a, b) => a.testCaseId.localeCompare(b.testCaseId));
 const cached = ledgerItems.filter(item => item.status === 'CACHED_PASS');
-const selected = ledgerItems.filter(item => item.status !== 'CACHED_PASS');
+const selected = ledgerItems.filter(item => !['CACHED_PASS', 'NOT_APPLICABLE', 'SKIPPED_WITH_REASON'].includes(item.status));
 
 const controlImpact = [...new Map(controls.controls.map(control => [control.source, control.source])).keys()].sort().map(source => {
 	const sourceControls = controls.controls.filter(control => control.source === source);
@@ -220,7 +227,8 @@ const plan = {
 		testCases: ledgerItems.length,
 		cacheEligible: cached.length,
 		forcedReruns: selected.length,
-		stale: ledgerItems.filter(item => item.status === 'STALE').length
+		stale: ledgerItems.filter(item => item.status === 'STALE').length,
+		skippedWithReason: ledgerItems.filter(item => item.status === 'SKIPPED_WITH_REASON').length
 	},
 	traceabilityStatus: traceability.status,
 	releasePolicy: {
