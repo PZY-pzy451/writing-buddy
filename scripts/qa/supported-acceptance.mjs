@@ -10,7 +10,7 @@ const chunks = [];
 const child = spawn(process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm', ['acceptance'], {
 	cwd: repositoryRoot,
 	env: { ...process.env, Path: `${dirname(process.execPath)}${delimiter}${process.env.Path ?? ''}` },
-	shell: false,
+	shell: process.platform === 'win32',
 	windowsHide: true
 });
 for (const stream of [child.stdout, child.stderr]) {
@@ -39,4 +39,3 @@ const report = {
 };
 await writeFile(resolve(repositoryRoot, 'artifacts', 'qa', 'node24-acceptance.json'), `${JSON.stringify(report, undefined, 2)}\n`, 'utf8');
 if (exitCode !== 0 || report.engineWarnings > 0 || vitestFiles === 0 || vitestPassed === 0) process.exitCode = 1;
-
