@@ -1,0 +1,151 @@
+import { spawnSync } from 'node:child_process';
+import { readFile, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const qaRoot = resolve(repositoryRoot, 'artifacts', 'qa');
+const readJson = async path => JSON.parse(await readFile(resolve(repositoryRoot, path), 'utf8'));
+const writeJson = async (path, value) => writeFile(
+	resolve(repositoryRoot, path),
+	`${JSON.stringify(value, undefined, 2)}\n`,
+	'utf8'
+);
+const git = args => {
+	const result = spawnSync('git', args, {
+		cwd: repositoryRoot,
+		encoding: 'utf8',
+		windowsHide: true
+	});
+	if (result.status !== 0) throw new Error(result.stderr.trim());
+	return result.stdout.trim();
+};
+
+const [inventory, traceability, ledger, frontend, cargo, stress] = await Promise.all([
+	readJson('artifacts/qa/inventory-summary.json'),
+	readJson('artifacts/qa/traceability-summary.json'),
+	readJson('artifacts/qa/regression-ledger.json'),
+	readJson('artifacts/qa/node24-acceptance.json'),
+	readJson('artifacts/qa/cargo-acceptance.json'),
+	readJson('docs/acceptance/phase-1.2s-user-stress.json')
+]);
+
+if (frontend.status !== 'PASS' || cargo.status !== 'PASS' || stress.status !== 'passed') {
+	throw new Error('Cannot record a convergence pass from failed execution evidence.');
+}
+if (
+	frontend.runtimeInventoryDelta !== 0
+	|| frontend.unresolvedParameterizedDeclarations !== 0
+	|| frontend.inventoryFrontendTests !== inventory.counts.frontendDiscoveredTests
+) {
+	throw new Error('Runtime and static frontend inventories have not reconciled.');
+}
+if (cargo.tests.collected !== 79 || cargo.tests.ignoredWithReason !== 2) {
+	throw new Error('Rust collection changed; review ignored-test reasons before recording.');
+}
+
+const executionCommit = git(['rev-parse', 'HEAD']);
+const ignoredReasons = new Map([
+	['SANITIZED-REAL-PROJECT-BACKUP-RESTORE-REOPENS-AND-KEEPS-BACKLINKS', 'Requires an explicit sanitized real-project recovery run. The current sanitized complete-novel recovery gate ran separately for 10 cycles.'],
+	['LARGE-FIXTURE-MEETS-STORYFORGE-PERFORMANCE-GATES', 'Runs through the dedicated release-mode performance gate. The current stress report contains five performance runs.']
+]);
+const skipReasonFor = testCaseId => (
+	[...ignoredReasons].find(([needle]) => testCaseId.includes(needle))?.[1]
+);
+
+ledger.items = ledger.items.map(item => {
+	const native = item.testCaseId.startsWith('TC-NATIVE-');
+	const skipReason = native ? skipReasonFor(item.testCaseId) : undefined;
+	const evidencePaths = native
+		? ['artifacts/qa/cargo-acceptance.json', 'docs/acceptance/phase-1.2s-user-stress.json']
+		: ['artifacts/qa/node24-acceptance.json', 'docs/acceptance/phase-1.2s-user-stress.json'];
+	return {
+		...item,
+		status: skipReason ? 'SKIPPED_WITH_REASON' : 'PASS',
+		lastRunCommit: executionCommit,
+		...(skipReason ? {} : { lastPassedCommit: executionCommit }),
+		evidencePaths,
+		...(skipReason ? { skipReason } : {}),
+		executedAt: native ? cargo.completedAt : frontend.completedAt,
+		invalidationReason: undefined
+	};
+});
+ledger.status = 'PASS';
+ledger.lastBaselineCommit = executionCommit;
+ledger.runtimeDiscovery = {
+	frontendInventoryCases: inventory.counts.frontendDiscoveredTests,
+	frontendCollectedCases: frontend.vitestPassed,
+	rustInventoryCases: ledger.items.filter(item => item.testCaseId.startsWith('TC-NATIVE-')).length,
+	rustCollectedCases: cargo.tests.collected,
+	runtimeDiscoveryGap: frontend.runtimeInventoryDelta
+};
+ledger.latestExecution = {
+	commit: executionCommit,
+	frontendEvidence: 'artifacts/qa/node24-acceptance.json',
+	rustEvidence: 'artifacts/qa/cargo-acceptance.json',
+	stressEvidence: 'docs/acceptance/phase-1.2s-user-stress.json'
+};
+await writeFile(
+	resolve(qaRoot, 'regression-ledger.json'),
+	`${JSON.stringify(ledger, undefined, 2)}\n`,
+	'utf8'
+);
+
+const report = {
+	schemaVersion: 1,
+	generatedAt: new Date().toISOString(),
+	source: {
+		commit: executionCommit,
+		branch: git(['branch', '--show-current'])
+	},
+	executionStatus: 'PASS',
+	productConclusion: traceability.status === 'PASS' ? 'PASS' : 'PARTIAL',
+	releaseDecision: {
+		status: 'BLOCKED',
+		reason: 'Strict feature/control/state traceability remains incomplete; no release package was produced in this convergence run.'
+	},
+	fixedDefects: [{
+		id: 'QA-TEST-DISCOVERY-PARAMETERIZED-001',
+		summary: 'Static test discovery undercounted parameterized and statically looped Vitest cases.',
+		before: { frontendInventory: 667, runtimeCollected: 716, gap: 49 },
+		after: {
+			frontendInventory: frontend.inventoryFrontendTests,
+			runtimeCollected: frontend.vitestPassed,
+			gap: frontend.runtimeInventoryDelta,
+			unresolvedParameterizedDeclarations: frontend.unresolvedParameterizedDeclarations
+		}
+	}],
+	execution: {
+		frontend,
+		cargo,
+		stress: {
+			status: stress.status,
+			durationMs: stress.durationMs,
+			browserRuns: stress.summary.browser.completedRuns,
+			totalResizeAttempts: stress.summary.browser.totalResizeAttempts,
+			totalWorkspaceTransitions: stress.summary.browser.totalWorkspaceTransitions,
+			performanceRuns: stress.summary.performance.projectInteractive.samples,
+			recoveryCycles: stress.summary.recovery.completedCycles,
+			maximumUnresolvedBacklinks: stress.summary.recovery.maximumUnresolvedBacklinks
+		}
+	},
+	traceability: {
+		status: traceability.status,
+		totalUnmapped: traceability.counts.totalUnmapped,
+		missingStableSelectors: inventory.counts.missingStableSelectors
+	},
+	warnings: [
+		'The production Monaco bundle remains above 3,000 kB.',
+		'Strict traceability remains fail-closed until missing mappings receive tests or reasoned N/A decisions.'
+	]
+};
+await writeJson('artifacts/qa/current-convergence-report.json', report);
+console.log(JSON.stringify({
+	executionStatus: report.executionStatus,
+	productConclusion: report.productConclusion,
+	ledgerStatus: ledger.status,
+	frontendCases: frontend.vitestPassed,
+	rustCases: cargo.tests,
+	stress: report.execution.stress,
+	traceability: report.traceability
+}, undefined, 2));

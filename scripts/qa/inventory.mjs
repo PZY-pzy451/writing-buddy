@@ -3,6 +3,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
+import { discoverVitestTests } from './test-discovery.mjs';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const outputRoot = resolve(repositoryRoot, 'artifacts', 'qa');
@@ -270,13 +271,22 @@ async function discoverTests() {
 	for (const file of files) {
 		const path = normalizePath(relative(repositoryRoot, file));
 		const content = await readFile(file, 'utf8');
-		const regex = /\b(?:it|test)(?:\.[A-Za-z]+)?\s*\(\s*(['"`])([^\n]*?)\1/gu;
-		for (const match of content.matchAll(regex)) {
-			const title = match[2].trim();
+		const identityOccurrences = new Map();
+		for (const discovered of discoverVitestTests(path, content)) {
+			const title = discovered.title;
 			const pageId = pageForPath(path);
+			const identity = `${path}|${title}`;
+			const occurrence = (identityOccurrences.get(identity) ?? 0) + 1;
+			identityOccurrences.set(identity, occurrence);
 			tests.push({
-				id: `TC-DISCOVERED-${sha(`${path}|${title}`)}`,
+				id: `TC-DISCOVERED-${sha(occurrence === 1 ? identity : `${identity}|${occurrence}`)}`,
 				title,
+				declarationTitle: discovered.declarationTitle,
+				declarationLine: discovered.declarationLine,
+				parameterized: discovered.parameterized,
+				parameterCase: discovered.parameterCase,
+				parameterCaseLabel: discovered.parameterCaseLabel,
+				parameterizationResolved: discovered.parameterizationResolved,
 				source: path,
 				domainId: domainId(featureForPath(path, pageId).slice(8, 10)),
 				featureId: featureForPath(path, pageId),
@@ -374,6 +384,10 @@ const shortcutItems = shortcutSpecs.map(([key, keys, commandId, scope]) => ({
 }));
 const nativeActionItems = await discoverNativeActions();
 const tests = await discoverTests();
+const frontendTests = tests.filter(test => test.testLayer !== 'native-unit');
+const unresolvedParameterizedTests = frontendTests.filter(test => (
+	test.parameterized && !test.parameterizationResolved
+));
 
 const hierarchy = {
 	id: 'REGRESSION-WRITING-BUDDY-V2', level: 'L0', name: 'Writing Buddy 全量回归',
@@ -414,12 +428,20 @@ await writeJson('inventory-summary.json', {
 		domains: domainItems.length, features: featureItems.length, pages: pageItems.length,
 		workspaces: workspaces.length, controls: controlItems.length, states: stateItems.length,
 		shortcuts: shortcutItems.length, nativeActions: nativeActionItems.length,
-		discoveredTests: tests.length, missingStableSelectors: controlItems.filter(item => item.stableSelectorStatus === 'UNMAPPED').length
+		discoveredTests: tests.length,
+		frontendDiscoveredTests: frontendTests.length,
+		parameterizedTestInstances: frontendTests.filter(test => test.parameterized).length,
+		unresolvedParameterizedDeclarations: unresolvedParameterizedTests.length,
+		missingStableSelectors: controlItems.filter(item => item.stableSelectorStatus === 'UNMAPPED').length
 	},
 	notes: [
 		'Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.',
 		'UNMAPPED stable selectors remain inventory items and block complete traceability.',
-		'Existing tests without explicit regression IDs are retained as discovered automation and require Gate C mapping.'
+		'Existing tests without explicit regression IDs are retained as discovered automation and require Gate C mapping.',
+		'Parameterized test tables and statically bounded loops are expanded into runtime-equivalent instances.',
+		...(unresolvedParameterizedTests.length > 0
+			? [`${unresolvedParameterizedTests.length} dynamic parameterized declaration(s) require runtime collection reconciliation.`]
+			: [])
 	]
 });
 
@@ -427,5 +449,8 @@ console.log(JSON.stringify({
 	domains: domainItems.length, features: featureItems.length, pages: pageItems.length, workspaces: workspaces.length,
 	controls: controlItems.length, states: stateItems.length, shortcuts: shortcutItems.length,
 	nativeActions: nativeActionItems.length, discoveredTests: tests.length,
+	frontendDiscoveredTests: frontendTests.length,
+	parameterizedTestInstances: frontendTests.filter(test => test.parameterized).length,
+	unresolvedParameterizedDeclarations: unresolvedParameterizedTests.length,
 	missingStableSelectors: controlItems.filter(item => item.stableSelectorStatus === 'UNMAPPED').length
 }, undefined, 2));

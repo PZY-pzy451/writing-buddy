@@ -21,6 +21,8 @@
     "qa:fixtures": "node scripts/qa/fixtures.mjs",
     "qa:record-baseline": "node scripts/qa/record-baseline.mjs",
     "qa:baseline:frontend": "node scripts/qa/supported-acceptance.mjs",
+    "qa:baseline:rust": "node scripts/qa/supported-cargo.mjs",
+    "qa:record-convergence": "node scripts/qa/record-convergence.mjs",
     "self-test": "node scripts/self-test/run.mjs",
     "self-test:plan": "node scripts/self-test/run.mjs --dry-run",
     "self-test:full": "node scripts/self-test/run.mjs --all",
