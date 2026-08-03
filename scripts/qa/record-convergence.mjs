@@ -149,6 +149,24 @@ const report = {
 				retryAfterSnapshotFailure: true,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-KERNEL-CANCEL-REENTRANCY-006',
+			summary: 'Rapid stop clicks could send repeated native cancellation commands before the first command resolved.',
+			before: {
+				repeatedClicks: 100,
+				synchronousCancellationGuard: false,
+				nativeCancellationCommands: 100
+			},
+			after: {
+				repeatedClicks: 100,
+				synchronousCancellationGuard: true,
+				nativeCancellationCommands: 1,
+				pendingCancellationFeedback: true,
+				retryAfterCommandFailure: true,
+				retryAfterJobNotFound: true,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

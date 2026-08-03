@@ -252,7 +252,9 @@ function StoryKernelGeneratorPanelContent(
 	const [generationFailure, setGenerationFailure] =
 		useState<StoryKernelGenerationFailurePresentation>();
 	const [activeJobId, setActiveJobId] = useState<string>();
+	const [cancelRequested, setCancelRequested] = useState(false);
 	const generationGuardRef = useRef(false);
+	const cancelGuardRef = useRef(false);
 	const actionGuardRef = useRef(false);
 	const generating = generationStarting || !terminalStates.includes(jobState);
 
@@ -290,7 +292,9 @@ function StoryKernelGeneratorPanelContent(
 			|| targetTypes.length === 0
 		) return;
 		generationGuardRef.current = true;
+		cancelGuardRef.current = false;
 		setGenerationStarting(true);
+		setCancelRequested(false);
 		const selectedSource = props.selection?.text
 			? { content: props.selection.text, baseOffset: props.selection.start }
 			: { content: props.content, baseOffset: 0 };
@@ -322,6 +326,10 @@ function StoryKernelGeneratorPanelContent(
 					},
 					jobId => {
 						setActiveJobId(jobId);
+						if (!jobId) {
+							cancelGuardRef.current = false;
+							setCancelRequested(false);
+						}
 					}
 				);
 			const nextBatch = await service.stageFromResponse({
@@ -348,10 +356,19 @@ function StoryKernelGeneratorPanelContent(
 	};
 
 	const cancel = async () => {
-		if (!activeJobId) return;
+		if (cancelGuardRef.current || !activeJobId) return;
+		cancelGuardRef.current = true;
+		setCancelRequested(true);
+		setGenerationFailure(undefined);
 		try {
-			await desktopBridge.cancelAiJob(activeJobId);
+			const accepted = await desktopBridge.cancelAiJob(activeJobId);
+			if (!accepted) {
+				cancelGuardRef.current = false;
+				setCancelRequested(false);
+			}
 		} catch (reason) {
+			cancelGuardRef.current = false;
+			setCancelRequested(false);
 			setGenerationFailure(describeAiFailure(reason));
 		}
 	};
@@ -468,10 +485,16 @@ function StoryKernelGeneratorPanelContent(
 					{generating ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 					{generating ? `AI 生成中 · ${streamedLength} 字符` : '生成 Story Kernel 候选'}
 				</button>
-				{generating && activeJobId ? (
-					<button className="secondary-button" type="button" onClick={() => void cancel()}>
-						<X size={16} />取消
-					</button>
+			{generating && activeJobId ? (
+				<button
+					className="secondary-button"
+					type="button"
+					disabled={cancelRequested}
+					onClick={() => void cancel()}
+				>
+					{cancelRequested ? <LoaderCircle className="spin" size={16} /> : <X size={16} />}
+					{cancelRequested ? '正在取消' : '取消'}
+				</button>
 				) : null}
 			</div>
 

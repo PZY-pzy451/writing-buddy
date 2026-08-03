@@ -1,3 +1,7 @@
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
 import type { TextFile } from '@writing-buddy/domain';
 import type {
 	AtomicWriteRequest,
@@ -335,6 +339,157 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(button).toBeDisabled();
 		resolveGeneration(generatedCharacterResponse());
 		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
+	});
+
+	it('TC-QA-SK-CANCEL-001 blocks one hundred repeated cancellation clicks before native cancellation resolves', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let activeJobId = '';
+		let resolveCancellation: (value: boolean) => void = () => undefined;
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				activeJobId = request.jobId;
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		const cancelButton = await screen.findByRole('button', { name: '取消' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				cancelButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		expect(cancelAiJob).toHaveBeenCalledWith(activeJobId);
+		expect(screen.getByRole('button', { name: '正在取消' })).toBeDisabled();
+		resolveCancellation(true);
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: activeJobId });
+			await Promise.resolve();
+		});
+		expect(await screen.findByText('生成已停止')).toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: '取消' })).not.toBeInTheDocument();
+	});
+
+	it('TC-QA-SK-CANCEL-002 releases the cancellation guard after a native command failure', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let activeJobId = '';
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				activeJobId = request.jobId;
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockRejectedValueOnce({
+				code: 'connection_timeout',
+				message: '取消命令连接超时。',
+				retryable: true
+			})
+			.mockResolvedValue(true);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		fireEvent.click(await screen.findByRole('button', { name: '取消' }));
+		expect(await screen.findByText('生成未完成')).toBeInTheDocument();
+		const retryCancelButton = screen.getByRole('button', { name: '取消' });
+		expect(retryCancelButton).toBeEnabled();
+
+		fireEvent.click(retryCancelButton);
+		await waitFor(() => expect(cancelAiJob).toHaveBeenCalledTimes(2));
+		expect(screen.getByRole('button', { name: '正在取消' })).toBeDisabled();
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: activeJobId });
+			await Promise.resolve();
+		});
+
+		expect(await screen.findByText('生成已停止')).toBeInTheDocument();
+		expect(screen.queryByText('取消命令连接超时。')).not.toBeInTheDocument();
+	});
+
+	it('TC-QA-SK-CANCEL-003 releases the cancellation guard when the native job is not found', async () => {
+		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
+		let activeJobId = '';
+		vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
+		vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				activeJobId = request.jobId;
+				emitEvent = listener;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockResolvedValueOnce(false)
+			.mockResolvedValue(true);
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		fireEvent.click(await screen.findByRole('button', { name: '取消' }));
+		await waitFor(() => expect(cancelAiJob).toHaveBeenCalledOnce());
+		const retryCancelButton = screen.getByRole('button', { name: '取消' });
+		expect(retryCancelButton).toBeEnabled();
+
+		fireEvent.click(retryCancelButton);
+		await waitFor(() => expect(cancelAiJob).toHaveBeenCalledTimes(2));
+		await act(async () => {
+			emitEvent({ type: 'cancelled', jobId: activeJobId });
+			await Promise.resolve();
+		});
+
+		expect(await screen.findByText('生成已停止')).toBeInTheDocument();
 	});
 
 	it('TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves', async () => {
