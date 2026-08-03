@@ -341,6 +341,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 				});
 				} catch (error) {
 					set({ error: normalizeAiError(error) });
+					throw error;
 				}
 			});
 		},
@@ -364,6 +365,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 				});
 				} catch (error) {
 					set({ error: normalizeAiError(error) });
+					throw error;
 				}
 			});
 		},
@@ -375,6 +377,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 					set({ balance });
 				} catch (error) {
 					set({ error: normalizeAiError(error) });
+					throw error;
 				}
 			});
 		},

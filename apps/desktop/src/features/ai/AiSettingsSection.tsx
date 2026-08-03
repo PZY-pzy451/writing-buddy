@@ -44,7 +44,8 @@ export function AiSettingsSection(): React.JSX.Element {
 	const [key, setKey] = useState('');
 	const [revealed, setRevealed] = useState(false);
 	const [confirmDelete, setConfirmDelete] = useState(false);
-	const [notice, setNotice] = useState('');
+	const [credentialNotice, setCredentialNotice] = useState('');
+	const [generationNotice, setGenerationNotice] = useState('');
 	const inlineLanguageCheckEnabled = useAppStore(
 		state => state.inlineLanguageCheckEnabled
 	);
@@ -66,25 +67,58 @@ export function AiSettingsSection(): React.JSX.Element {
 		if (!key.trim()) {
 			return;
 		}
-		setNotice('');
+		setCredentialNotice('');
+		setGenerationNotice('');
 		try {
 			await saveKeyAndValidate(key.trim());
 			setKey('');
-			setNotice('API Key 已安全保存，连接验证通过。');
+			setCredentialNotice('API Key 已安全保存，连接验证通过。');
 		} catch {
 			setKey('');
-			setNotice('API Key 已交给 Windows 凭据管理器；请根据错误检查连接或密钥。');
+			setCredentialNotice('API Key 已交给 Windows 凭据管理器；请根据错误检查连接或密钥。');
 		}
 	};
 
 	const remove = async () => {
-		setNotice('');
+		setCredentialNotice('');
+		setGenerationNotice('');
 		try {
 			await deleteKey();
 			setConfirmDelete(false);
-			setNotice('DeepSeek 凭据和模型缓存已移除。');
+			setCredentialNotice('DeepSeek 凭据和模型缓存已移除。');
 		} catch {
-			setNotice('移除失败，请检查错误提示后重试。');
+			setCredentialNotice('移除失败，请检查错误提示后重试。');
+		}
+	};
+
+	const test = async () => {
+		setCredentialNotice('');
+		try {
+			await testConnection();
+			setCredentialNotice('连接测试成功，当前凭据可用。');
+		} catch {
+			setCredentialNotice('连接测试失败，请检查错误提示后重试。');
+		}
+	};
+
+	const refreshModelList = async () => {
+		setGenerationNotice('');
+		try {
+			await refreshModels();
+			const count = useAiStore.getState().models.length;
+			setGenerationNotice(`模型列表已刷新，共 ${count} 个可用模型。`);
+		} catch {
+			setGenerationNotice('模型列表刷新失败，请检查错误提示后重试。');
+		}
+	};
+
+	const refreshProviderBalance = async () => {
+		setGenerationNotice('');
+		try {
+			await refreshBalance();
+			setGenerationNotice(`余额已刷新：${formatBalance(useAiStore.getState().balance)}。`);
+		} catch {
+			setGenerationNotice('余额刷新失败，请检查错误提示后重试。');
 		}
 	};
 
@@ -159,7 +193,7 @@ export function AiSettingsSection(): React.JSX.Element {
 						<button className="primary-button" type="button" onClick={() => void save()} disabled={!key.trim() || loading}>
 							<ShieldCheck size={18} />{loading ? '正在保存并验证…' : '安全保存并验证'}
 						</button>
-						<button className="secondary-button" type="button" onClick={() => void testConnection()} disabled={!configured || loading}>
+						<button className="secondary-button" type="button" onClick={() => void test()} disabled={!configured || loading}>
 							<Activity size={18} />测试连接
 						</button>
 						{!confirmDelete ? (
@@ -174,7 +208,7 @@ export function AiSettingsSection(): React.JSX.Element {
 							</div>
 						)}
 					</div>
-					{notice && <p className="ai-notice" role="status">{notice}</p>}
+					{credentialNotice && <p className="ai-notice" role="status">{credentialNotice}</p>}
 					{error && <p className="ai-inline-error" role="alert">{error.message}</p>}
 				</div>
 			</section>
@@ -217,13 +251,14 @@ export function AiSettingsSection(): React.JSX.Element {
 					</label>
 				</div>
 				<div className="ai-button-row compact">
-					<button className="secondary-button" type="button" onClick={() => void refreshModels()} disabled={!configured || loading}>
+					<button className="secondary-button" type="button" onClick={() => void refreshModelList()} disabled={!configured || loading}>
 						<RefreshCw size={16} />刷新模型列表
 					</button>
-					<button className="secondary-button" type="button" onClick={() => void refreshBalance()} disabled={!configured || loading}>
+					<button className="secondary-button" type="button" onClick={() => void refreshProviderBalance()} disabled={!configured || loading}>
 						<CircleDollarSign size={16} />刷新余额
 					</button>
 				</div>
+				{generationNotice && <p className="ai-notice" role="status">{generationNotice}</p>}
 			</section>
 
 			<section aria-labelledby="ai-inline-language-title">

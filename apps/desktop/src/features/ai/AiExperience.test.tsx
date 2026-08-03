@@ -75,6 +75,42 @@ describe('Phase 1.0A AI experience', () => {
 		expect(JSON.stringify(localValues)).not.toContain('fixture-key');
 	});
 
+	it('replaces the save notice with explicit feedback for each manual provider action', async () => {
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+		const input = await screen.findByLabelText('DeepSeek API Key');
+		await user.type(input, 'fixture-key');
+		await user.click(screen.getByRole('button', { name: /安全保存并验证/ }));
+		await screen.findByText('API Key 已安全保存，连接验证通过。');
+
+		await user.click(screen.getByRole('button', { name: '测试连接' }));
+		await screen.findByText('连接测试成功，当前凭据可用。');
+		expect(screen.queryByText('API Key 已安全保存，连接验证通过。')).not.toBeInTheDocument();
+
+		await user.click(screen.getByRole('button', { name: '刷新模型列表' }));
+		await screen.findByText('模型列表已刷新，共 2 个可用模型。');
+
+		await user.click(screen.getByRole('button', { name: '刷新余额' }));
+		await screen.findByText('余额已刷新：88.00 CNY。');
+		expect(screen.queryByText('模型列表已刷新，共 2 个可用模型。')).not.toBeInTheDocument();
+	});
+
+	it('shows recoverable feedback when a manual connection test fails', async () => {
+		await useAiStore.getState().initialize();
+		await useAiStore.getState().saveKeyAndValidate('fixture-key');
+		vi.spyOn(desktopBridge, 'testDeepSeekConnection')
+			.mockRejectedValueOnce(new Error('raw provider test failure'));
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+
+		await user.click(screen.getByRole('button', { name: '测试连接' }));
+		await screen.findByText('连接测试失败，请检查错误提示后重试。');
+		expect(screen.queryByText(/raw provider test failure/)).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '测试连接' })).toBeEnabled();
+	});
+
 	it('streams only the explicit StoryForge prompt and exposes usage', async () => {
 		await act(async () => {
 			await useAiStore.getState().initialize();
