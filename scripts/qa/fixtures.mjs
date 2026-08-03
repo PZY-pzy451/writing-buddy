@@ -36,4 +36,3 @@ const report = {
 };
 await writeFile(resolve(repositoryRoot, 'artifacts', 'qa', 'fixture-mock-inventory.json'), `${JSON.stringify(report, undefined, 2)}\n`, 'utf8');
 console.log(JSON.stringify(report.counts));
-
