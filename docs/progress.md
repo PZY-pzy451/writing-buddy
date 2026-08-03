@@ -15,7 +15,12 @@ Full regression foundation v2 is active in the isolated worktree on
   shortcuts, 55 registered native actions and 731 statically discovered tests.
   Of the controls, 223 still lack a stable semantic selector and remain visible
   `PARTIAL` gaps rather than being discarded.
-- Gates C-E will add traceability enforcement,
+- Gate C produces the complete state-level CSV and fails closed in strict mode.
+  Conservative source mapping currently confirms 66 controls, 421 states, 18
+  shortcuts, one native action and 82 existing test cases; 10,260 aggregate
+  hierarchy mappings remain open, so the product conclusion is
+  `REGRESSION_INCOMPLETE / PARTIAL`.
+- Gates D-E will add
   dependency fingerprints/cache invalidation, and deterministic AI/project
   fixtures before existing tests are rerun.
 - Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,
