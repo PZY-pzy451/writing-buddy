@@ -27,7 +27,8 @@
 }
 
 .pending-facts-note,
-.pending-facts-error {
+.pending-facts-error,
+.pending-facts-status {
 	display: flex;
 	align-items: flex-start;
 	gap: 8px;
@@ -42,6 +43,12 @@
 
 .pending-facts-error {
 	color: var(--danger);
+}
+
+.pending-facts-status {
+	border: 1px solid color-mix(in srgb, var(--success) 35%, var(--border));
+	background: color-mix(in srgb, var(--success) 8%, var(--surface-raised));
+	color: var(--success);
 }
 
 .pending-facts-list {

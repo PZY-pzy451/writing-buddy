@@ -2496,6 +2496,7 @@ export function buildStoryExtractionMessages(input: {
 		|| input.content.length > AI_CHAPTER_REVIEW_MAX_CHARS
 		|| !/^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$/u.test(input.resourceId)
 		|| !input.sourceRevision.trim()
+		|| input.sourceRevision.length > 128
 		|| /projectRoot|apiKey|credential|absolutePath/iu.test(input.content)
 	) {
 		throw new Error('invalidStoryExtractionInput');
@@ -2514,8 +2515,77 @@ export function buildStoryExtractionMessages(input: {
 	];
 }
 
+function normalizeStoryExtractionFactType(value: unknown): unknown {
+	if (typeof value !== 'string') return value;
+	const normalized = value
+		.trim()
+		.replace(/([a-z0-9])([A-Z])/gu, '$1-$2')
+		.replace(/[\s_]+/gu, '-')
+		.toLocaleLowerCase('en-US');
+	const aliases: Readonly<Record<string, StoryExtractionCandidate['factType']>> = {
+		'character-state': 'character-state',
+		'item-state': 'item-state',
+		'location-state': 'location-state',
+		relationship: 'relationship',
+		'timeline-event': 'timeline-event',
+		'world-rule': 'world-rule',
+		'story-information': 'story-information',
+		'plot-thread': 'plot-thread',
+		foreshadowing: 'foreshadowing'
+	};
+	return aliases[normalized] ?? value;
+}
+
+function normalizeStoryExtractionResponse(decoded: unknown): unknown {
+	let value = decoded;
+	for (let depth = 0; depth < 3; depth += 1) {
+		if (Array.isArray(value)) break;
+		const record = structuredResponseRecord(value);
+		if (!record || Array.isArray(record.facts)) break;
+		const wrapper = ['result', 'data', 'response', 'output']
+			.map(field => record[field])
+			.find(item => structuredResponseRecord(item) || Array.isArray(item));
+		if (wrapper === undefined) break;
+		value = wrapper;
+	}
+	const facts = Array.isArray(value)
+		? value
+		: structuredResponseRecord(value)?.facts;
+	if (!Array.isArray(facts)) return value;
+	return {
+		facts: facts.map(fact => {
+			const record = structuredResponseRecord(fact);
+			if (!record) return {};
+			const evidence = structuredResponseRecord(record.evidence);
+			return {
+				factType: normalizeStoryExtractionFactType(
+					record.factType ?? record.fact_type ?? record.type
+				),
+				title: record.title ?? record.name,
+				statement: record.statement ?? record.fact ?? record.summary ?? record.text,
+				confidence: record.confidence,
+				start: record.start ?? evidence?.start,
+				end: record.end ?? evidence?.end,
+				quote: record.quote ?? record.sourceQuote ?? record.source_quote ?? evidence?.quote
+			};
+		})
+	};
+}
+
 export function parseStoryExtractionResponse(response: string): readonly StoryExtractionCandidate[] {
-	return storyExtractionResponseSchema.parse(JSON.parse(response)).facts;
+	const parsed = storyExtractionResponseSchema.safeParse(
+		normalizeStoryExtractionResponse(
+			decodeBoundedJsonResponse(
+				response,
+				128_000,
+				'invalidStoryExtractionResponse:json'
+			)
+		)
+	);
+	if (!parsed.success) {
+		throw new Error('invalidStoryExtractionResponse:facts');
+	}
+	return parsed.data.facts;
 }
 
 export function buildStoryKernelGenerationMessages(input: {

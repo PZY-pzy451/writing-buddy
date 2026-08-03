@@ -515,7 +515,7 @@ const edge = spawn(edgePath, [
 
 let client;
 try {
-	console.log('[1/10] Starting isolated Edge profile.');
+	console.log('[1/11] Starting isolated Edge profile.');
 	const target = await waitForTarget();
 	client = new CdpClient(target.webSocketDebuggerUrl);
 	await client.connect();
@@ -523,7 +523,7 @@ try {
 	await client.call('Runtime.enable');
 	await setViewport(client, 1440, 900);
 
-	console.log('[2/10] Auditing welcome and keyboard entry.');
+	console.log('[2/11] Auditing welcome and keyboard entry.');
 	await waitFor(client, `Boolean(document.querySelector('main[aria-label="开始使用 Writing Buddy"]'))`, 'welcome page');
 	await pressKey(client, 'Tab');
 	const welcomeFocus = await evaluate(client, `(() => ({
@@ -539,7 +539,7 @@ try {
 	audits.push(await collectAudit(client, 'writing-home-1440x900'));
 	await ensureEditor(client);
 
-	console.log('[3/10] Inserting and saving a 100,000-character manuscript.');
+	console.log('[3/11] Inserting and saving a 100,000-character manuscript.');
 	const longManuscript = await insertLongManuscript(client);
 	assert(longManuscript.hasLongMarker, 'The long manuscript marker did not enter the editor state.');
 	assert(longManuscript.contentLength >= 100_000, `Long manuscript was truncated at ${longManuscript.contentLength}.`);
@@ -549,13 +549,13 @@ try {
 	);
 	await screenshot(client, '02-long-manuscript-saved.png');
 
-	console.log('[4/10] Running 40 splitter resize attempts.');
+	console.log('[4/11] Running 40 splitter resize attempts.');
 	const resize = await resizeStress(client);
 	audits.push(await collectAudit(client, 'long-editor-after-40-resizes'));
 
 	const workspaceTransitions = [];
 	const workspaceReloads = [];
-	console.log('[5/10] Running 30 workspace transitions with three reloads.');
+	console.log('[5/11] Running 30 workspace transitions with three reloads.');
 	for (let index = 0; index < 30; index += 1) {
 		const targetMode = navigation[index % navigation.length];
 		await clickNamed(client, targetMode.label, { root: '.global-rail' });
@@ -601,7 +601,7 @@ try {
 	}
 
 	await setViewport(client, 1024, 720);
-	console.log('[6/10] Auditing every Planning view at 1024x720.');
+	console.log('[6/11] Auditing every Planning view at 1024x720.');
 	await clickNamed(client, '规划', { root: '.global-rail' });
 	await waitFor(client, `Boolean(document.querySelector('.story-reference-sidebar nav[aria-label="规划页面"]'))`, 'planning navigation');
 	const planningViews = await evaluate(client, `[...document.querySelectorAll('.story-reference-sidebar nav button strong')].map(element => element.textContent.trim())`);
@@ -612,7 +612,7 @@ try {
 	}
 
 	await clickNamed(client, '故事库', { root: '.global-rail' });
-	console.log('[7/10] Auditing every Story Library view at 1024x720.');
+	console.log('[7/11] Auditing every Story Library view at 1024x720.');
 	await waitFor(client, `Boolean(document.querySelector('.story-reference-sidebar nav[aria-label="故事库页面"]'))`, 'Story Library navigation');
 	const libraryViews = await evaluate(client, `[...document.querySelectorAll('.story-reference-sidebar nav button strong')].map(element => element.textContent.trim())`);
 	for (const label of libraryViews) {
@@ -622,7 +622,7 @@ try {
 	}
 	await screenshot(client, '03-story-library-compact.png');
 
-	console.log('[8/10] Exercising global menu, focus trap, and Escape dismissal.');
+	console.log('[8/11] Exercising global menu, focus trap, and Escape dismissal.');
 	await clickNamed(client, '更多全局操作');
 	await waitFor(client, `document.querySelector('.writer-more-menu')?.hasAttribute('open') === true`, 'global actions menu');
 	const menuItems = await evaluate(client, `[...document.querySelectorAll('.writer-more-menu [role="menuitem"]')].filter(element => element.getBoundingClientRect().width > 0).map(element => element.textContent.replace(/\\s+/gu, ' ').trim())`);
@@ -644,14 +644,14 @@ try {
 
 	await clickNamed(client, '更多全局操作');
 	await clickNamed(client, '设置', { root: '.writer-more-menu' });
-	console.log('[9/10] Auditing Settings outside the primary navigation.');
+	console.log('[9/11] Auditing Settings outside the primary navigation.');
 	await waitFor(client, `import('/src/app/store.ts').then(({ useAppStore }) => useAppStore.getState().activeMode === 'settings')`, 'settings');
 	// Settings is intentionally outside the five-destination rail.
 	const settingsAudit = await collectAudit(client, 'settings-1024x720', 0);
 	audits.push(settingsAudit);
 
 	await clickNamed(client, '写作', { root: '.global-rail' });
-	console.log('[10/10] Final persisted reopen validation.');
+	console.log('[10/11] Final persisted reopen validation.');
 	await ensureEditor(client);
 	await client.call('Page.reload', { ignoreCache: true });
 	await waitFor(client, `import('/src/app/store.ts').then(({ useAppStore }) => Boolean(useAppStore.getState().snapshot))`, 'final project restore', 30_000);
@@ -661,6 +661,72 @@ try {
 	assert(finalState.hasLongMarker && finalState.contentLength >= 100_000, `Final reopen lost long content: ${JSON.stringify(finalState)}.`);
 	assert(finalState.saveState !== 'error', `Final reopen exposed a save error: ${JSON.stringify(finalState)}.`);
 	audits.push(await collectAudit(client, 'final-reopen-editor'));
+
+	console.log('[11/11] Exercising story extraction from a project-style chapter ID.');
+	const extractionSelection = await evaluate(client, `import('/src/app/store.ts').then(({ useAppStore }) => {
+		const state = useAppStore.getState();
+		const text = state.session?.content.slice(0, 80) ?? '';
+		state.setSelection(text ? { start: 0, end: text.length, text } : undefined);
+		return { text, resourceId: state.activeResource?.id };
+	})`);
+	assert(extractionSelection.text.trim(), 'Story extraction fixture could not select manuscript text.');
+	assert(
+		extractionSelection.resourceId?.startsWith('chapter-'),
+		`Story extraction did not exercise a project-style chapter ID: ${JSON.stringify(extractionSelection)}.`
+	);
+	await evaluate(
+		client,
+		`import('/src/platform/bridge.ts').then(({ desktopBridge }) => desktopBridge.saveDeepSeekKey('acceptance-fixture-key'))`
+	);
+	await clickNamed(client, '资料', { root: '.writer-tool-rail' });
+	await waitFor(
+		client,
+		`Boolean(document.querySelector('.pending-facts-review'))`,
+		'story extraction panel'
+	);
+	const extractionReady = await evaluate(
+		client,
+		`document.querySelector('.pending-facts-review button')?.disabled === false`
+	);
+	assert(extractionReady, 'Story extraction was visible but unavailable for a valid selection.');
+	await clickNamed(client, '用 DeepSeek 提取待确认事实', { root: '.pending-facts-review' });
+	await waitFor(
+		client,
+		`document.querySelector('.pending-facts-count')?.textContent.includes('1 条待确认') === true
+			|| Boolean(document.querySelector('.pending-facts-error[role="alert"]'))`,
+		'story extraction terminal state',
+		10_000
+	);
+	const extractionTerminal = await evaluate(client, `(() => ({
+		count: document.querySelector('.pending-facts-count')?.textContent?.trim(),
+		status: document.querySelector('.pending-facts-status')?.textContent?.replace(/\\s+/gu, ' ').trim(),
+		error: document.querySelector('.pending-facts-error[role="alert"]')?.textContent?.replace(/\\s+/gu, ' ').trim()
+	}))()`);
+	assert(
+		extractionTerminal.count?.includes('1 条待确认'),
+		`Story extraction did not stage a fact: ${JSON.stringify(extractionTerminal)}.`
+	);
+	const extractedAudit = await collectAudit(client, 'story-extraction-pending');
+	audits.push(extractedAudit);
+	await clickNamed(client, '确认并接受', { root: '.pending-facts-review' });
+	await waitFor(
+		client,
+		`document.querySelector('.pending-facts-count')?.textContent.includes('0 条待确认') === true
+			&& document.querySelector('.pending-facts-status')?.textContent.includes('事实已由作者确认并保存') === true`,
+		'author-confirmed extracted fact',
+		10_000
+	);
+	const storyExtractionActionability = await evaluate(client, `(() => ({
+		pendingCount: document.querySelector('.pending-facts-count')?.textContent?.trim(),
+		status: document.querySelector('.pending-facts-status')?.textContent?.replace(/\\s+/gu, ' ').trim(),
+		rawErrors: [...document.querySelectorAll('[role="alert"]')]
+			.map(element => element.textContent ?? '')
+			.filter(text => /invalid[A-Z]|undefined|null|unhandled|stack/iu.test(text))
+	}))()`);
+	assert(
+		storyExtractionActionability.rawErrors.length === 0,
+		`Story extraction exposed raw errors: ${JSON.stringify(storyExtractionActionability.rawErrors)}.`
+	);
 
 	const report = {
 		generatedAt: new Date().toISOString(),
@@ -683,6 +749,7 @@ try {
 		menuItems,
 		dialogFocus,
 		finalState,
+		storyExtractionActionability,
 		browserFixtureRehydratedAfterReload: true,
 		audits
 	};

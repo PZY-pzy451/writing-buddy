@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T02:13:58.356Z",
+  "generatedAt": "2026-08-03T02:45:41.438Z",
   "appUrl": "http://127.0.0.1:1420/",
   "perspectives": [
     "first-time-author",
@@ -16,9 +16,9 @@
   "longManuscript": {
     "pastePayloadLength": 510,
     "longPayloadLength": 100019,
-    "pasteMilliseconds": 123,
-    "renderMilliseconds": 121,
-    "saveMilliseconds": 45,
+    "pasteMilliseconds": 107,
+    "renderMilliseconds": 93,
+    "saveMilliseconds": 46,
     "activeMode": "works",
     "storyView": "characters",
     "contentLength": 100661,
@@ -440,6 +440,11 @@
     "activeResourceId": "chapter-a11ce001",
     "resourcePath": "chapters/chapter-001.md"
   },
+  "storyExtractionActionability": {
+    "pendingCount": "0 条待确认",
+    "status": "事实已由作者确认并保存。",
+    "rawErrors": []
+  },
   "browserFixtureRehydratedAfterReload": true,
   "audits": [
     {
@@ -712,6 +717,27 @@
       "pageOverflowX": 0,
       "pageOverflowY": 0,
       "visibleControls": 71,
+      "missingAccessibleName": [],
+      "undersizedPointerTargets": [],
+      "clippedInteractive": [],
+      "rawErrorPatterns": [],
+      "visibleDialogs": 0,
+      "activePrimaryNavigation": 1,
+      "editorAccessibility": {
+        "inputFound": true,
+        "label": "Editor content",
+        "role": "textbox"
+      }
+    },
+    {
+      "name": "story-extraction-pending",
+      "viewport": {
+        "width": 1024,
+        "height": 720
+      },
+      "pageOverflowX": 0,
+      "pageOverflowY": 0,
+      "visibleControls": 88,
       "missingAccessibleName": [],
       "undersizedPointerTargets": [],
       "clippedInteractive": [],

@@ -43,6 +43,23 @@ const creationActions = [
 	{ type: 'foreshadowing', label: '创建伏笔', icon: BookmarkPlus }
 ] as const;
 
+function selectionActionErrorMessage(reason: unknown, fallback: string): string {
+	const code = reason instanceof Error ? reason.message : String(reason);
+	const messages: Readonly<Record<string, string>> = {
+		mentionLinkFailed: '无法链接所选资源。请确认资源 ID 后重试。',
+		mentionResourceNotFound: '没有找到该 Story 资源，请检查资源 ID。',
+		storyResourceNotFound: '没有找到该 Story 资源，请检查资源 ID。',
+		invalidMentionRange: '当前选区已经变化，请重新选择正文后再链接。',
+		mentionRevisionConflict: '正文或链接已发生变化，请重新选择正文后再试。',
+		storyResourceCreateFailed: '资料候选创建失败，本次没有写入项目。请重试。',
+		storyRevisionConflict: '资料已在其他位置修改，请刷新后再试。'
+	};
+	const exact = messages[code];
+	if (exact) return exact;
+	const prefix = Object.keys(messages).find(item => code.startsWith(`${item}:`));
+	return prefix ? messages[prefix] ?? fallback : fallback;
+}
+
 export function SelectionActionMenu({
 	repository,
 	mentionService,
@@ -97,7 +114,10 @@ export function SelectionActionMenu({
 			await link(resourceId.trim());
 			setError(undefined);
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : 'mentionLinkFailed');
+			setError(selectionActionErrorMessage(
+				reason,
+				'无法链接所选资源。请检查资源 ID 和当前选区后重试。'
+			));
 		} finally {
 			setBusy(false);
 		}
@@ -134,7 +154,10 @@ export function SelectionActionMenu({
 			await link(saved.id);
 			setError(undefined);
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : 'storyResourceCreateFailed');
+			setError(selectionActionErrorMessage(
+				reason,
+				'资料候选创建失败，本次没有写入项目。请重试。'
+			));
 		} finally {
 			setBusy(false);
 		}

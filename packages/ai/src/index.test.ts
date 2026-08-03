@@ -796,6 +796,45 @@ describe('AI core contracts', () => {
 		})).toThrow('invalidStoryExtractionInput');
 	});
 
+	it('repairs harmless story extraction wrappers and common field aliases', () => {
+		const facts = parseStoryExtractionResponse([
+			'```json',
+			JSON.stringify({
+				result: {
+					facts: [{
+						fact_type: 'character_state',
+						name: '顾言的决定',
+						fact: '顾言决定保留蓝色信封。',
+						confidence: 0.92,
+						evidence: {
+							start: 0,
+							end: 10,
+							quote: '顾言决定保留蓝色信封'
+						}
+					}]
+				}
+			}),
+			'```'
+		].join('\n'));
+
+		expect(facts).toEqual([{
+			factType: 'character-state',
+			title: '顾言的决定',
+			statement: '顾言决定保留蓝色信封。',
+			confidence: 0.92,
+			start: 0,
+			end: 10,
+			quote: '顾言决定保留蓝色信封'
+		}]);
+	});
+
+	it('returns stable story extraction response errors for malformed AI output', () => {
+		expect(() => parseStoryExtractionResponse('not-json'))
+			.toThrow('invalidStoryExtractionResponse:json');
+		expect(() => parseStoryExtractionResponse(JSON.stringify({ facts: [{ title: '缺少字段' }] })))
+			.toThrow('invalidStoryExtractionResponse:facts');
+	});
+
 	it('builds and validates complete Story Kernel generation candidates', () => {
 		const messages = buildStoryKernelGenerationMessages({
 			instruction: '根据正文创建人物和地点。',
