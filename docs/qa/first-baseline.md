@@ -1,9 +1,9 @@
 # Gates A-E first baseline
 
-Date: 2026-08-03  
-Source: `12cd45e`  
-Overall status: `PARTIAL`  
-Foundation status: `PASS`  
+- Date: 2026-08-03
+- Source: `12cd45e`
+- Overall status: `PARTIAL`
+- Foundation status: `PASS`
 Strict traceability: `REGRESSION_INCOMPLETE`
 
 This is the first baseline for the regression foundation only. It is not a full
