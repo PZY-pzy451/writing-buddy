@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T07:16:30.476Z",
+  "generatedAt": "2026-08-03T07:31:03.092Z",
   "source": {
-    "commit": "81f94e36271bfb6dc3e87b87cba604159c998544",
+    "commit": "8d7d2f3da1b2e910b9ae8a3a136a6471a1e03431",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 742,
-        "runtimeCollected": 742,
+        "frontendInventory": 743,
+        "runtimeCollected": 743,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -42,7 +42,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 742
+        "frontendTests": 743
       }
     },
     {
@@ -60,7 +60,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 742
+        "frontendTests": 743
       }
     },
     {
@@ -78,7 +78,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 742
+        "frontendTests": 743
       }
     },
     {
@@ -101,7 +101,32 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 742
+        "frontendTests": 743
+      }
+    },
+    {
+      "id": "QA-AI-CANDIDATE-WRITE-REENTRANCY-008",
+      "summary": "Candidate accept controls could create duplicate safety snapshots and concurrent writes before React rendered the busy state.",
+      "before": {
+        "auditedCandidateWriteSurfaces": 11,
+        "repeatedClicks": 100,
+        "synchronousWriteGuard": false,
+        "continuationSnapshotRequests": 100,
+        "outlineApplyRequests": 100,
+        "crossCandidateWritesBlocked": false
+      },
+      "after": {
+        "guardedCandidateWriteSurfaces": 11,
+        "repeatedClicks": 100,
+        "synchronousWriteGuard": true,
+        "snapshotRequests": 1,
+        "atomicWrites": 1,
+        "outlineApplyRequests": 1,
+        "panelWideBusyState": true,
+        "retryAfterSnapshotFailure": true,
+        "dynamicRapidClickScenarios": 2,
+        "focusedTests": 34,
+        "frontendTests": 743
       }
     }
   ],
@@ -126,22 +151,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 742
+      "frontendTests": 743
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T07:13:49.924Z",
-      "completedAt": "2026-08-03T07:16:15.986Z",
+      "generatedAt": "2026-08-03T07:28:13.085Z",
+      "completedAt": "2026-08-03T07:30:16.817Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 146061,
+      "durationMs": 123730,
       "vitestFiles": 173,
-      "vitestPassed": 742,
-      "inventoryFrontendTests": 742,
+      "vitestPassed": 743,
+      "inventoryFrontendTests": 743,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -150,10 +175,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T07:16:24.763Z",
-      "completedAt": "2026-08-03T07:16:26.925Z",
+      "generatedAt": "2026-08-03T07:30:23.044Z",
+      "completedAt": "2026-08-03T07:30:25.244Z",
       "status": "PASS",
-      "durationMs": 2161,
+      "durationMs": 2198,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -179,7 +204,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10191,
+    "totalUnmapped": 10192,
     "missingStableSelectors": 223
   },
   "warnings": [

@@ -190,6 +190,31 @@ const report = {
 				focusedTests: 21,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-CANDIDATE-WRITE-REENTRANCY-008',
+			summary: 'Candidate accept controls could create duplicate safety snapshots and concurrent writes before React rendered the busy state.',
+			before: {
+				auditedCandidateWriteSurfaces: 11,
+				repeatedClicks: 100,
+				synchronousWriteGuard: false,
+				continuationSnapshotRequests: 100,
+				outlineApplyRequests: 100,
+				crossCandidateWritesBlocked: false
+			},
+			after: {
+				guardedCandidateWriteSurfaces: 11,
+				repeatedClicks: 100,
+				synchronousWriteGuard: true,
+				snapshotRequests: 1,
+				atomicWrites: 1,
+				outlineApplyRequests: 1,
+				panelWideBusyState: true,
+				retryAfterSnapshotFailure: true,
+				dynamicRapidClickScenarios: 2,
+				focusedTests: 34,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

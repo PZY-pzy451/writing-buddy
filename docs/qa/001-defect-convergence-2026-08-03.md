@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `81f94e36271bfb6dc3e87b87cba604159c998544`
+- Tested source: `8d7d2f3da1b2e910b9ae8a3a136a6471a1e03431`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -67,6 +67,28 @@ whole-work-scan, extraction and genre tests form a 21-test focused cancellation
 suite. All pass, as do 32 affected-page tests covering the panels that consume
 the shared control.
 
+### QA-AI-CANDIDATE-WRITE-REENTRANCY-008
+
+The same asynchronous-state boundary affected AI candidate adoption. A
+deterministic continuation test held the safety-snapshot Promise open and sent
+100 insert events in one React event batch. Before the fix, all 100 handlers
+entered and requested 100 safety snapshots. The structured-outline adoption
+path had the equivalent repeated-apply risk, and per-candidate busy state still
+allowed another candidate in the same panel to start writing concurrently.
+
+All 11 user-facing candidate-write surfaces were audited. Nine adjacent panels
+now acquire a synchronous, panel-wide guard before any read, snapshot or store
+operation; Story Kernel and selection rewrite already had equivalent guards.
+Every new guard releases in `finally`, including snapshot and persistence
+failures. While one write is active, all candidate adoption controls in that
+panel are disabled rather than only the candidate that started it.
+
+Two UI pressure contracts dispatch 100 same-tick accept events. Continuation
+creates one snapshot and one insertion; structured outline invokes one apply.
+The continuation failure contract also proves that a rejected snapshot performs
+no write and a second author attempt succeeds. The nine affected test files pass
+34 tests, followed by the complete 743-test frontend acceptance run.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -119,8 +141,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 742 frontend cases, including 50
-parameterized instances; Vitest also collects 742. The difference and unresolved
+inventing a count. The current inventory finds 743 frontend cases, including 50
+parameterized instances; Vitest also collects 743. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -142,10 +164,11 @@ console claims.
 | Story Kernel confirmation/rejection pressure | Initial reproduction: 100 clicks / 100 snapshots; fixed panel suite: 18/18 passed |
 | Story Kernel cancellation pressure | Initial reproduction: 100 clicks / 100 native commands; fixed panel suite: 21/21 passed |
 | Adjacent AI cancellation pressure | 13 paths audited; selection rewrite 100 clicks / 100 commands and extraction 1 click / 2 commands before fixes; 21 focused and 32 impacted-page tests passed |
+| AI candidate write pressure | 11 surfaces audited; continuation and outline each received 100 same-tick accepts and performed exactly 1 write; 9 files / 34 focused tests passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 742 tests and production build passed |
-| Static/runtime test reconciliation | 742 / 742; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 743 tests and production build passed |
+| Static/runtime test reconciliation | 743 / 743; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -185,7 +208,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,191 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,192 aggregate mappings
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
