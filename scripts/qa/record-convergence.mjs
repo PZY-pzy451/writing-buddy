@@ -256,6 +256,30 @@ const report = {
 				focusedTests: 4,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-ASYNC-RESULT-ISOLATION-011',
+			summary: 'AI Playground, generic drawer and chapter review cancellation commands multiplied under rapid clicks, while late validation/cancellation results could mutate a newer action.',
+			before: {
+				repeatedClicks: 100,
+				auditedCancellationStores: 3,
+				nativeCancellationCommandsPerStore: 100,
+				validationContextIsolation: false,
+				lateResultIsolation: false,
+				cancellationFailureLocalized: false
+			},
+			after: {
+				repeatedClicks: 100,
+				guardedCancellationStores: 3,
+				nativeCancellationCommandsPerStore: 1,
+				validationContextIsolation: true,
+				lateResultIsolation: true,
+				cancellationFailureLocalized: true,
+				retryAfterCancellationFailure: true,
+				staleErrorClearedAfterRetry: true,
+				focusedTests: 27,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

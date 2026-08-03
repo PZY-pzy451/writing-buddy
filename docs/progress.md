@@ -5,16 +5,16 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `8898c82`.
+`codex/full-regression-gates-a-e-v2` against source `c05135c`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 747 frontend cases are inventoried
-  and 747 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 754 frontend cases are inventoried
+  and 754 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 173 Vitest files /
-  747 tests and the production build. Rust formatting passed; Cargo collected
+  754 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -76,11 +76,18 @@ User-centered defect convergence is complete on
 - Added the same synchronous accept/reject invariant to pending facts. Its
   100-click acceptance contract produces one persistence write; the full
   pending-fact suite passed 4 tests.
-- The current inventory contains 826 tests: 747 frontend plus 79 native cases.
-  The latest execution ledger records 824 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 747 cases with zero difference.
+- Closed the remaining store-level cancellation/result-ordering race in AI
+  Playground, the generic AI drawer and chapter review. Each reproduced 100
+  native cancellations for 100 same-tick actions. They now issue one command,
+  ignore late results from old jobs, prevent provider/context validation from
+  crossing into a newly opened chapter action, localize command failures and
+  clear obsolete errors after explicit retry. The focused suite passed 3 files /
+  27 tests.
+- The current inventory contains 833 tests: 754 frontend plus 79 native cases.
+  The latest execution ledger records 831 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 754 cases with zero difference.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
-  and 10,146 aggregate mappings remain open. The truthful product conclusion is
+  and 10,139 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.

@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `8898c82ba32a14ae5a15886283c511868197c26d`
+- Tested source: `c05135cf58227cc233c1762a8fdfa9861b3c080a`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -124,6 +124,28 @@ write; staging plus acceptance therefore produces exactly two storage writes.
 The complete pending-fact suite passes 4 tests, including malformed output,
 oversized input and atomic-write conflict behavior.
 
+### QA-AI-ASYNC-RESULT-ISOLATION-011
+
+The remaining AI Playground, generic drawer and chapter-review stores had the
+same cancellation race below the React layer. Holding one native cancellation
+Promise open and issuing 100 same-tick actions produced 100 native cancellation
+commands in each store. The drawer also allowed an old action that was still
+validating provider/context state to start after a different chapter action had
+already replaced it, attaching old prompt work to the new visible context.
+
+Each store now owns a synchronous per-job cancellation guard. After the awaited
+native result, it verifies that the same job is still current and active before
+changing state; a late cancellation or provider-start failure from an old job
+cannot mark a newer job cancelled or failed. The drawer uses a generation-attempt
+version that is invalidated by opening or resetting an action, so work that has
+not yet received a job ID cannot cross chapter/action boundaries.
+
+Failure contracts also reject raw native cancellation details, keep the active
+job stoppable, release the guard for one explicit retry and clear the obsolete
+error after that retry succeeds. Seven new deterministic contracts bring the
+three focused files to 27 tests. The complete Node 24 acceptance run passes 173
+files / 754 tests.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -176,8 +198,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 747 frontend cases, including 50
-parameterized instances; Vitest also collects 747. The difference and unresolved
+inventing a count. The current inventory finds 754 frontend cases, including 50
+parameterized instances; Vitest also collects 754. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -202,10 +224,11 @@ console claims.
 | AI candidate write pressure | 11 surfaces audited; continuation and outline each received 100 same-tick accepts and performed exactly 1 write; 9 files / 34 focused tests passed |
 | AI generation pressure | 11 surfaces guarded; 10 dynamic scenarios send 100 same-tick actions and start exactly 1 request with 0 implicit cancellations; 12 files / 45 tests passed |
 | Pending-fact persistence pressure | 100 same-tick accepts produce exactly 1 acceptance write; complete 4-test suite passed |
+| AI cancellation/result ordering | Playground, drawer and review each reproduced 100 clicks / 100 commands; now 1 command, old validation/results isolated, failure retry verified; 3 files / 27 tests passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 747 tests and production build passed |
-| Static/runtime test reconciliation | 747 / 747; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 754 tests and production build passed |
+| Static/runtime test reconciliation | 754 / 754; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -245,7 +268,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,146 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,139 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
