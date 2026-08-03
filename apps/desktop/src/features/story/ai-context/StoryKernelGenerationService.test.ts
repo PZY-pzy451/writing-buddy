@@ -476,6 +476,98 @@ describe('StoryKernelGenerationService', () => {
 		await expect(repository.list('relationship')).resolves.toEqual([]);
 	});
 
+	it('TC-QA-SK-REL-003 rejects a mixed valid and blocked selection before any repository write', async () => {
+		const { gateway, service, store } = createHarness();
+		const batch = await service.stageFromResponse({
+			instruction: '仅创建正文中的人物候选。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: 'QA 人物甲、QA 人物乙和 QA 人物丙共同出现。',
+			targetTypes: ['character'],
+			response: STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE,
+			now
+		});
+		const valid = batch.candidates.find(candidate => candidate.conflicts.length === 0);
+		const blocked = batch.candidates.find(candidate => candidate.conflicts.length > 0);
+
+		await expect(service.confirm(batch.id, [valid?.id ?? '', blocked?.id ?? '']))
+			.rejects.toThrow('storyKernelGenerationCandidateBlocked');
+
+		expect(gateway.commitCalls).toBe(0);
+		expect(gateway.resources).toHaveLength(0);
+		expect((await store.load())[0]?.candidates.every(candidate => (
+			candidate.status === 'pending'
+		))).toBe(true);
+	});
+
+	it('TC-QA-SK-REL-004 isolates malformed relationships at the 24-candidate response limit', async () => {
+		const { gateway, repository, service } = createHarness();
+		const characters = Array.from({ length: 21 }, (_, index) => ({
+			operation: 'create',
+			resource: {
+				id: `character:qa-stress-${index}`,
+				type: 'character',
+				title: `QA 压力人物 ${index + 1}`,
+				aliases: [],
+				tags: [],
+				evidenceIds: []
+			},
+			confidence: 0.9,
+			rationale: '脱敏 QA 压力候选。',
+			evidence: null
+		}));
+		const malformedRelationships = Array.from({ length: 3 }, (_, index) => ({
+			operation: 'create',
+			resource: {
+				id: `relationship:qa-stress-${index}`,
+				type: 'relationship',
+				title: `QA 畸形关系 ${index + 1}`,
+				aliases: [],
+				tags: [],
+				evidenceIds: [],
+				sourceCharacterId: `character:qa-stress-${index}`,
+				targetCharacterId: `character:qa-stress-${index + 1}`,
+				relationshipType: '亲属',
+				visibility: 'private',
+				effectiveFrom: 'childhood',
+				history: `QA 自由文本关系历史 ${index + 1}`
+			},
+			confidence: 0.8,
+			rationale: '脱敏 QA 故意返回错误字段形状。',
+			evidence: null
+		}));
+		const batch = await service.stageFromResponse({
+			instruction: '仅创建人物候选并执行候选上限压力验证。',
+			sourceResourceId: 'chapter:chapter-001',
+			sourceRevision: '7',
+			content: '脱敏 QA 压力正文。',
+			targetTypes: ['character'],
+			response: JSON.stringify({
+				candidates: [...characters, ...malformedRelationships]
+			}),
+			now
+		});
+		const valid = batch.candidates.filter(candidate => candidate.conflicts.length === 0);
+		const blocked = batch.candidates.filter(candidate => candidate.conflicts.length > 0);
+
+		expect(batch.candidates).toHaveLength(24);
+		expect(valid).toHaveLength(21);
+		expect(blocked).toHaveLength(3);
+		expect(blocked.every(candidate => (
+			candidate.conflicts.map(item => item.code).join(',')
+				=== 'target-type-not-selected,invalid-schema'
+		))).toBe(true);
+		expect(blocked.every(candidate => (
+			candidate.conflicts.find(item => item.code === 'invalid-schema')?.details?.length === 2
+		))).toBe(true);
+
+		await service.confirm(batch.id, valid.map(candidate => candidate.id));
+
+		expect(gateway.commitCalls).toBe(1);
+		await expect(repository.list('character')).resolves.toHaveLength(21);
+		await expect(repository.list('relationship')).resolves.toEqual([]);
+	});
+
 	it('recovers a persisted old item candidate without another AI request', async () => {
 		const storage = new MemoryStorage(JSON.stringify({
 			schemaVersion: 1,

@@ -421,6 +421,68 @@ describe('StoryKernelGeneratorPanel', () => {
 			.toBe(false);
 	});
 
+	it('TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request', async () => {
+		const events: string[] = [];
+		const gateway = new MemoryStoryGateway(events);
+		const repository = new DesktopStoryRepository('D:/Novel', gateway);
+		const storage = new MemoryStorage();
+		const first = render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="QA 人物甲、QA 人物乙和 QA 人物丙共同出现。"
+				repository={repository}
+				store={new StoryKernelGenerationStore('D:/Novel', storage)}
+				runGeneration={() => Promise.resolve(
+					STORY_KERNEL_UNSELECTED_MALFORMED_RELATIONSHIP_RESPONSE
+				)}
+				preset={{
+					id: 'qa-persist-malformed-relationship',
+					instruction: '仅创建正文中的人物候选。',
+					targetTypes: ['character']
+				}}
+			/>
+		);
+		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
+		await screen.findByRole('checkbox', { name: '选择 QA 人物甲与乙的关系' });
+		first.unmount();
+
+		const runGeneration = vi.fn(() => Promise.resolve(''));
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="QA 人物甲、QA 人物乙和 QA 人物丙共同出现。"
+				repository={repository}
+				store={new StoryKernelGenerationStore('D:/Novel', storage)}
+				runGeneration={runGeneration}
+				createSafetySnapshot={() => {
+					events.push('snapshot');
+					return Promise.resolve('snapshot:test');
+				}}
+			/>
+		);
+
+		const reopenedRelationship = await screen.findByRole('checkbox', {
+			name: '选择 QA 人物甲与乙的关系'
+		});
+		expect(runGeneration).not.toHaveBeenCalled();
+		expect(reopenedRelationship).toBeDisabled();
+		expect(screen.getByText('4 个候选')).toBeInTheDocument();
+		expect(screen.getByText('3 个可确认')).toBeInTheDocument();
+		expect(screen.getByText(/当前："childhood"/)).toBeInTheDocument();
+		expect(screen.getByText(/当前："童年时期共同经历过一次脱敏 QA 事件。"/))
+			.toBeInTheDocument();
+
+		fireEvent.click(screen.getByRole('button', { name: '创建快照并确认 3' }));
+		await waitFor(() => expect(screen.getAllByText('已写入')).toHaveLength(3));
+		expect(events).toEqual(['snapshot', 'commit']);
+		expect([...gateway.resources.keys()].some(key => key.startsWith('relationship:')))
+			.toBe(false);
+	});
+
 	it('classifies a fully malformed batch as a response issue, not an AI setting issue', async () => {
 		render(
 			<StoryKernelGeneratorPanel
