@@ -210,7 +210,7 @@ const dependencyMap = {
 const ledger = {
 	schemaVersion: 1,
 	baselineCommit,
-	status: 'STALE',
+	status: ledgerItems.some(item => item.status === 'STALE') ? 'STALE' : 'PASS',
 	items: ledgerItems
 };
 const plan = {
