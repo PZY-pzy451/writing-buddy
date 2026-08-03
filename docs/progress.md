@@ -17,12 +17,16 @@ Full regression foundation v2 is active in the isolated worktree on
   `PARTIAL` gaps rather than being discarded.
 - Gate C produces the complete state-level CSV and fails closed in strict mode.
   Conservative source mapping currently confirms 66 controls, 421 states, 18
-  shortcuts, one native action and 82 existing test cases; 10,260 aggregate
+  shortcuts, one native action and 82 existing test cases; after adding the QA
+  gate tests, 10,266 aggregate
   hierarchy mappings remain open, so the product conclusion is
   `REGRESSION_INCOMPLETE / PARTIAL`.
-- Gates D-E will add
-  dependency fingerprints/cache invalidation, and deterministic AI/project
-  fixtures before existing tests are rerun.
+- Gate D now fingerprints nine invalidation inputs for every discovered test,
+  with a 724-node / 1,252-edge dependency graph. QA infrastructure changes
+  force all 737 current cases to `STALE`; zero are cache-eligible in the first
+  plan.
+- Gate E will add deterministic AI/project fixtures before existing tests are
+  rerun.
 - Any mapping gap keeps the first-round product result `PARTIAL`; Gate F,
   real DeepSeek calls, broad product fixes and release claims remain excluded.
 

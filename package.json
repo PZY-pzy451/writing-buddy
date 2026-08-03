@@ -17,6 +17,7 @@
     "qa:inventory": "node scripts/qa/inventory.mjs",
     "qa:traceability": "node scripts/qa/inventory.mjs && node scripts/qa/traceability.mjs",
     "qa:validate": "node scripts/qa/inventory.mjs && node scripts/qa/traceability.mjs --strict",
+    "qa:plan": "node scripts/qa/inventory.mjs && node scripts/qa/traceability.mjs && node scripts/qa/dependencies.mjs",
     "self-test": "node scripts/self-test/run.mjs",
     "self-test:plan": "node scripts/self-test/run.mjs --dry-run",
     "self-test:full": "node scripts/self-test/run.mjs --all",

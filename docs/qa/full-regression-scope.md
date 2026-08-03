@@ -75,6 +75,20 @@ The baseline toolchain is Node 24, pnpm 10.32.1, TypeScript 5.9, Vitest 4.1 with
 
 The existing self-test combines static-import related tests, feature/package leaf tests and explicit cross-cutting impact rules. The v2 dependency ledger extends this rather than replacing it.
 
+## Fingerprints and invalidation
+
+Every discovered test case receives independent source, transitive dependency,
+fixture, mock-provider, schema, environment, build-configuration, test-
+implementation and expected-behavior fingerprints. A prior `PASS` becomes
+`CACHED_PASS` only when all nine values match and no mandatory-rerun rule
+applies. Missing history, any changed value, or a P0/P1/release-critical policy
+turns the result into `STALE` with a recorded reason.
+
+`control-impact-map.json`, `test-dependency-map.json` and
+`schema-impact-map.json` expose the graph inputs. `regression-ledger.json` owns
+per-case decisions; `incremental-test-plan.json` lists selected and cached test
+IDs. Generated reports use repository-relative paths only.
+
 ## Baseline policy
 
 Historical evidence at the source baseline reports 168 Vitest files / 701 tests and 77 passing Rust tests, but that evidence belongs to another commit/environment fingerprint. It is recorded only as historical context and starts this round as `STALE`.
@@ -86,4 +100,3 @@ Current results remain `NOT_RUN` until the Gates A-E infrastructure is complete.
 - The optional PRPM package search command required by the testing-infrastructure skill is unavailable in the current environment. No package was installed because installation requires explicit approval.
 - No real DeepSeek credential or network generation is permitted in this round.
 - Release packaging and human cutover validation are deferred beyond Gate E.
-

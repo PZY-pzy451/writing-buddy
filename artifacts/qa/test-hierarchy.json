@@ -62927,6 +62927,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-024F283223",
+      "title": "TC-QA-DEPENDENCY-003 prevents cache use for mandatory reruns",
+      "source": "scripts/qa/dependencies.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-037915F683",
       "title": "does not create a plot mutation for a no-op column drop",
       "source": "packages/story-kernel/src/transaction/StoryDragTransaction.test.ts",
@@ -66203,6 +66217,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-521359FC29",
+      "title": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
+      "source": "scripts/qa/traceability.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-5223E4A84A",
       "title": "opens the real chapter creator from the menu and from quick-create focus",
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -67981,6 +68009,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-859CE794CB",
+      "title": "TC-QA-DEPENDENCY-001 reuses a pass only when every fingerprint is identical",
+      "source": "scripts/qa/dependencies.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-85B240E2F5",
       "title": "shows virtualized tracks, switches order mode and provides a list fallback",
       "source": "apps/desktop/src/features/story/timeline/TimelinePage.test.tsx",
@@ -69068,6 +69110,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-A3F9BAB936",
+      "title": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
+      "source": "scripts/qa/traceability.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -70613,6 +70669,20 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D59CF32A5F",
+      "title": "TC-QA-DEPENDENCY-002 makes a pass stale when any fingerprint changes",
+      "source": "scripts/qa/dependencies.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D5D37A7E1A",
       "title": "keeps every candidate pending when the atomic repository commit fails",
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.test.ts",
@@ -71112,6 +71182,20 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-E5144B11D0",
+      "title": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
+      "source": "scripts/qa/traceability.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
