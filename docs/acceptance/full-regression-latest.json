@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T02:56:18.014Z",
+  "generatedAt": "2026-08-03T03:14:54.569Z",
   "status": "failed",
   "source": {
-    "commit": "6aa3f3d12cf12c27596f99227169f8a7c5ec198a",
+    "commit": "b590b6c44d3a1c3f5edd880a3c37a71748aa0155",
     "branch": "codex/genre-to-draft-gates-a-c",
     "worktreeDirty": false
   },
@@ -17,8 +17,8 @@
       "id": "self-test-release",
       "label": "Release self-test: source, frontend, Rust, Tauri and NSIS",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/self-test/run.mjs --release --report artifacts/self-test/full-regression-release.json",
-      "startedAt": "2026-08-03T02:56:18.180Z",
-      "durationMs": 290844,
+      "startedAt": "2026-08-03T03:14:54.727Z",
+      "durationMs": 291290,
       "status": "passed",
       "exitCode": 0
     },
@@ -26,8 +26,8 @@
       "id": "storyforge-performance",
       "label": "StoryForge performance ignored gate",
       "command": "powershell.exe -NoProfile -File scripts/perf/measure-storyforge.ps1",
-      "startedAt": "2026-08-03T03:01:09.025Z",
-      "durationMs": 2077,
+      "startedAt": "2026-08-03T03:19:46.018Z",
+      "durationMs": 2015,
       "status": "passed",
       "exitCode": 0
     },
@@ -35,13 +35,31 @@
       "id": "browser-gate-g",
       "label": "Browser journey gate-g",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/capture-phase-1.2a-gate-g.mjs",
-      "startedAt": "2026-08-03T03:01:11.450Z",
-      "durationMs": 20845,
+      "startedAt": "2026-08-03T03:19:48.364Z",
+      "durationMs": 12000,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-gate-h",
+      "label": "Browser journey gate-h",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2a-gate-h.mjs",
+      "startedAt": "2026-08-03T03:20:00.365Z",
+      "durationMs": 37487,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2b",
+      "label": "Browser journey phase-1.2b",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2b-creation-journey.mjs",
+      "startedAt": "2026-08-03T03:20:37.853Z",
+      "durationMs": 872678,
       "status": "failed",
       "exitCode": 1
     }
   ],
-  "error": "Browser journey gate-g failed.",
-  "completedAt": "2026-08-03T03:01:32.535Z",
-  "durationMs": 314521
+  "error": "Browser journey phase-1.2b failed.",
+  "completedAt": "2026-08-03T03:35:10.790Z",
+  "durationMs": 1216221
 }

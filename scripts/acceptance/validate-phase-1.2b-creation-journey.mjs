@@ -151,7 +151,10 @@ async function launchBrowser(profileDirectory) {
 		'--no-first-run',
 		'--no-default-browser-check',
 		'--disable-background-networking',
+		'--disable-background-timer-throttling',
+		'--disable-backgrounding-occluded-windows',
 		'--disable-component-update',
+		'--disable-renderer-backgrounding',
 		'--disable-sync',
 		'--hide-crash-restore-bubble',
 		'--window-size=1536,992',
@@ -174,6 +177,7 @@ async function launchBrowser(profileDirectory) {
 	await client.call('Page.enable');
 	await client.call('Runtime.enable');
 	await client.call('DOM.enable');
+	await client.call('Emulation.setFocusEmulationEnabled', { enabled: true });
 	await setViewport(client, 1536, 992, false);
 	await waitFor(client, `Boolean(document.querySelector('.app-shell'))`, 'application shell');
 	return { browserErrors, child, client };
