@@ -320,6 +320,33 @@ aligned. Document client and scroll widths were both 420 px, with zero browser
 warnings or errors. The browser runtime accepted the native confirmation, so
 the cancellation path is evidenced by the deterministic 100-action contract.
 
+### QA-STORY-RESOURCE-OPEN-LIFECYCLE-019
+
+Opening Story Kernel resources from search, editor peeks, routes and the writer
+navigator called the Story service directly. That bypassed the manuscript-save
+and latest-intent queue used by chapter resources. The deterministic baseline
+therefore observed zero saves for a dirty chapter, 100 repository reads for 100
+same-tick Story opens, a late Story result overwriting 100 newer chapter intents,
+and a restored Story tab remaining in recently-closed history. Text entered
+while the Story read was pending was also vulnerable to the late commit.
+
+Story loading is now side-effect free until the app store commits it. Every UI
+entry delegates to the same resource-open queue, which saves a dirty manuscript,
+deduplicates repeated targets, checks project and latest intent after the read,
+and runs a second save check for edits typed while loading. Only then are the
+Story tab, active resource, result and writer session committed together. A
+failed save performs zero Story reads, a newer chapter intent wins, and a
+successful restore consumes its recently-closed entry. Five red-first lifecycle
+contracts plus the service contract pass in the 27-test focused run; the wider
+writer-session/workspace impact set passes 51 tests.
+
+Live browser QA appended an unsaved marker to the third chapter, opened the
+`信号塔` location from the author navigator and observed the manuscript change
+to `已保存` before the Story tab became active. Closing that tab and pressing
+`Ctrl+Shift+T` restored it once; a second shortcut did not duplicate the tab and
+showed `没有可恢复的标签`. At 420 px the document client and scroll widths were
+both 420 px, with zero browser warnings or errors.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -416,11 +443,13 @@ console claims.
 | Live chapter switching journey | Saved draft, return-open and rapid latest-intent switching verified at 1280 px / 420 px; heading/tab/editor remain paired; 0 console warnings/errors |
 | Resource close lifecycle pressure | Eight contracts cover 100 confirmations/save-copy actions, discard semantics, retry, failed next reads and background closes; 20 focused and 44 impacted tests passed |
 | Live chapter close/restore journey | Unsaved marker discarded, original 94-character chapter restored, 420 px Ctrl+W result aligned; no overflow; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 871 / 871 cases; 792 frontend + 79 native; 869 passed + 2 reasoned skips; stale ledgers fail closed |
+| Story resource open lifecycle pressure | Five red-first contracts cover 100 repeated opens, dirty saves, late results, loading-time edits and restored-history consumption; 27 focused and 51 impacted tests passed |
+| Live Story resource open/restore journey | Dirty chapter saved before `信号塔` opened; close and one restore succeeded; second restore did not duplicate; 420 px has no overflow; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 877 / 877 cases; 798 frontend + 79 native; 875 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 792 tests and production build passed |
-| Static/runtime test reconciliation | 792 / 792; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 798 tests and production build passed |
+| Static/runtime test reconciliation | 798 / 798; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |

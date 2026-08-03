@@ -1447,3 +1447,31 @@ Gate H is complete. Stop before Gate I and wait for explicit user direction.
 - Execution is `PASS`. Product/release remains `PARTIAL` and blocked by 10,103
   traceability gaps, 221 missing stable selectors, absent real-provider smoke
   and no release package in this run.
+
+## Current QA convergence — Story resource lifecycle
+
+- Source `632d2bc90dc78b8192dec27991584df751d67d7d` routes every direct
+  Story Kernel resource open through the same save, latest-intent and project
+  validation queue used by chapter resources.
+- Story repository loading is side-effect free until the store commits the tab.
+  A failed save performs zero Story reads, a newer chapter intent wins, edits
+  typed during loading are saved, and a successful restore consumes its closed
+  history entry.
+- Five red-first lifecycle contracts plus the service contract pass in the
+  27-test focused run; the wider writer-session/workspace set passes 51 tests.
+- Live browser QA saved a dirty third chapter before opening `信号塔`, restored
+  the closed Story tab exactly once with `Ctrl+Shift+T`, and rejected a second
+  restore without duplication. The 420 px layout has no horizontal overflow and
+  the console has zero warnings/errors.
+- Full evidence: 174 frontend files / 798 tests passed; Rust collected 79,
+  passed 77 and skipped two with reasons; the 877-row ledger contains 875 passes
+  and two skips.
+- Execution is `PASS`. Product/release remains `PARTIAL` and blocked by 10,106
+  traceability gaps, 221 missing stable selectors, absent real-provider smoke
+  and no release package in this run.
+
+## Next QA target
+
+Continue the same user-first red-contract method on Story resource missing,
+trash-restore and project-reopen boundaries; do not claim release completion
+until strict traceability, real-provider smoke and packaging gates are closed.

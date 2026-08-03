@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T11:45:17.467Z",
+  "generatedAt": "2026-08-03T12:15:23.993Z",
   "source": {
-    "commit": "21bc5d403b9662b96b9ad453708c9d5dfd9495ad",
+    "commit": "632d2bc90dc78b8192dec27991584df751d67d7d",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 792,
-        "runtimeCollected": 792,
+        "frontendInventory": 798,
+        "runtimeCollected": 798,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 871,
-        "ledgerCases": 869,
+        "discoveredTests": 877,
+        "ledgerCases": 875,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 871,
-        "ledgerCases": 871,
-        "frontendLedgerCases": 792,
+        "discoveredTests": 877,
+        "ledgerCases": 877,
+        "frontendLedgerCases": 798,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 792
+        "frontendTests": 798
       }
     },
     {
@@ -413,7 +413,39 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 792
+        "frontendTests": 798
+      }
+    },
+    {
+      "id": "QA-STORY-RESOURCE-OPEN-LIFECYCLE-019",
+      "summary": "Direct Story resource opening bypassed manuscript-save and latest-intent protection, repeated repository reads, committed late tabs and left restored resources in recently-closed history.",
+      "before": {
+        "repeatedActions": 100,
+        "dirtyStoryOpenSaves": 0,
+        "directStoryLoads": 100,
+        "lateStoryResultOverwroteLatestChapter": true,
+        "restoredHistoryConsumed": false,
+        "loadingEditProtection": false,
+        "serviceMutatedTabsBeforeCommit": true
+      },
+      "after": {
+        "repeatedActions": 100,
+        "dirtyStoryOpenSaves": 1,
+        "directStoryLoads": 1,
+        "latestChapterIntentWins": true,
+        "restoredStoryLoads": 1,
+        "restoredHistoryConsumed": true,
+        "failedSaveStoryLoads": 0,
+        "loadingEditProtection": true,
+        "serviceLoadIsSideEffectFree": true,
+        "manualBrowserWidths": [
+          420
+        ],
+        "horizontalOverflow": false,
+        "browserWarningsOrErrors": 0,
+        "focusedTests": 27,
+        "impactedTests": 51,
+        "frontendTests": 798
       }
     }
   ],
@@ -438,22 +470,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 792
+      "frontendTests": 798
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T11:40:24.240Z",
-      "completedAt": "2026-08-03T11:42:57.427Z",
+      "generatedAt": "2026-08-03T12:10:20.198Z",
+      "completedAt": "2026-08-03T12:12:49.300Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 153185,
+      "durationMs": 149100,
       "vitestFiles": 174,
-      "vitestPassed": 792,
-      "inventoryFrontendTests": 792,
+      "vitestPassed": 798,
+      "inventoryFrontendTests": 798,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -462,10 +494,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T11:40:24.338Z",
-      "completedAt": "2026-08-03T11:40:26.936Z",
+      "generatedAt": "2026-08-03T12:10:20.252Z",
+      "completedAt": "2026-08-03T12:10:22.572Z",
       "status": "PASS",
-      "durationMs": 2596,
+      "durationMs": 2319,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -491,7 +523,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10102,
+    "totalUnmapped": 10106,
     "missingStableSelectors": 221
   },
   "warnings": [

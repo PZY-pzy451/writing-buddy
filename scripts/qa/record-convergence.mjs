@@ -500,6 +500,36 @@ const report = {
 				impactedTests: 44,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-RESOURCE-OPEN-LIFECYCLE-019',
+			summary: 'Direct Story resource opening bypassed manuscript-save and latest-intent protection, repeated repository reads, committed late tabs and left restored resources in recently-closed history.',
+			before: {
+				repeatedActions: 100,
+				dirtyStoryOpenSaves: 0,
+				directStoryLoads: 100,
+				lateStoryResultOverwroteLatestChapter: true,
+				restoredHistoryConsumed: false,
+				loadingEditProtection: false,
+				serviceMutatedTabsBeforeCommit: true
+			},
+			after: {
+				repeatedActions: 100,
+				dirtyStoryOpenSaves: 1,
+				directStoryLoads: 1,
+				latestChapterIntentWins: true,
+				restoredStoryLoads: 1,
+				restoredHistoryConsumed: true,
+				failedSaveStoryLoads: 0,
+				loadingEditProtection: true,
+				serviceLoadIsSideEffectFree: true,
+				manualBrowserWidths: [420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 27,
+				impactedTests: 51,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
