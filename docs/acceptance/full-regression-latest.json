@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T03:14:54.569Z",
-  "status": "failed",
+  "generatedAt": "2026-08-03T03:39:19.235Z",
+  "status": "passed",
   "source": {
-    "commit": "b590b6c44d3a1c3f5edd880a3c37a71748aa0155",
+    "commit": "876485c933b3492f07b0dbdb52e0cbcf9f827af9",
     "branch": "codex/genre-to-draft-gates-a-c",
     "worktreeDirty": false
   },
@@ -17,8 +17,8 @@
       "id": "self-test-release",
       "label": "Release self-test: source, frontend, Rust, Tauri and NSIS",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/self-test/run.mjs --release --report artifacts/self-test/full-regression-release.json",
-      "startedAt": "2026-08-03T03:14:54.727Z",
-      "durationMs": 291290,
+      "startedAt": "2026-08-03T03:39:19.401Z",
+      "durationMs": 293181,
       "status": "passed",
       "exitCode": 0
     },
@@ -26,8 +26,8 @@
       "id": "storyforge-performance",
       "label": "StoryForge performance ignored gate",
       "command": "powershell.exe -NoProfile -File scripts/perf/measure-storyforge.ps1",
-      "startedAt": "2026-08-03T03:19:46.018Z",
-      "durationMs": 2015,
+      "startedAt": "2026-08-03T03:44:12.584Z",
+      "durationMs": 2033,
       "status": "passed",
       "exitCode": 0
     },
@@ -35,8 +35,8 @@
       "id": "browser-gate-g",
       "label": "Browser journey gate-g",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/capture-phase-1.2a-gate-g.mjs",
-      "startedAt": "2026-08-03T03:19:48.364Z",
-      "durationMs": 12000,
+      "startedAt": "2026-08-03T03:44:14.949Z",
+      "durationMs": 11983,
       "status": "passed",
       "exitCode": 0
     },
@@ -44,8 +44,8 @@
       "id": "browser-gate-h",
       "label": "Browser journey gate-h",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2a-gate-h.mjs",
-      "startedAt": "2026-08-03T03:20:00.365Z",
-      "durationMs": 37487,
+      "startedAt": "2026-08-03T03:44:26.933Z",
+      "durationMs": 37469,
       "status": "passed",
       "exitCode": 0
     },
@@ -53,13 +53,215 @@
       "id": "browser-phase-1.2b",
       "label": "Browser journey phase-1.2b",
       "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2b-creation-journey.mjs",
-      "startedAt": "2026-08-03T03:20:37.853Z",
-      "durationMs": 872678,
-      "status": "failed",
-      "exitCode": 1
+      "startedAt": "2026-08-03T03:45:04.404Z",
+      "durationMs": 7325,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2c",
+      "label": "Browser journey phase-1.2c",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2b-creation-journey.mjs --phase-1.2c",
+      "startedAt": "2026-08-03T03:45:11.730Z",
+      "durationMs": 9033,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2e",
+      "label": "Browser journey phase-1.2e",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2e-market-hierarchy.mjs",
+      "startedAt": "2026-08-03T03:45:20.764Z",
+      "durationMs": 3121,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2f",
+      "label": "Browser journey phase-1.2f",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2f-task-closure.mjs",
+      "startedAt": "2026-08-03T03:45:23.886Z",
+      "durationMs": 3471,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2g",
+      "label": "Browser journey phase-1.2g",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2g-export-trust.mjs",
+      "startedAt": "2026-08-03T03:45:27.358Z",
+      "durationMs": 3444,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2h",
+      "label": "Browser journey phase-1.2h",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2h-work-export-backup.mjs",
+      "startedAt": "2026-08-03T03:45:30.803Z",
+      "durationMs": 3358,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2i",
+      "label": "Browser journey phase-1.2i",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2i-draft-import.mjs",
+      "startedAt": "2026-08-03T03:45:34.162Z",
+      "durationMs": 3045,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2j",
+      "label": "Browser journey phase-1.2j",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2j-word-interoperability.mjs",
+      "startedAt": "2026-08-03T03:45:37.208Z",
+      "durationMs": 3359,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2k",
+      "label": "Browser journey phase-1.2k",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2k-daily-writing-progress.mjs",
+      "startedAt": "2026-08-03T03:45:40.568Z",
+      "durationMs": 4926,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2l",
+      "label": "Browser journey phase-1.2l",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2l-whole-work-consistency.mjs",
+      "startedAt": "2026-08-03T03:45:45.495Z",
+      "durationMs": 3474,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2m",
+      "label": "Browser journey phase-1.2m",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2m-scene-plot-grid.mjs",
+      "startedAt": "2026-08-03T03:45:48.971Z",
+      "durationMs": 3544,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2n",
+      "label": "Browser journey phase-1.2n",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2n-publish-readiness.mjs",
+      "startedAt": "2026-08-03T03:45:52.516Z",
+      "durationMs": 3540,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2o",
+      "label": "Browser journey phase-1.2o",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2o-chapter-lifecycle.mjs",
+      "startedAt": "2026-08-03T03:45:56.057Z",
+      "durationMs": 3500,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2p",
+      "label": "Browser journey phase-1.2p",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2p-delivery-freshness.mjs",
+      "startedAt": "2026-08-03T03:45:59.558Z",
+      "durationMs": 4011,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2q",
+      "label": "Browser journey phase-1.2q",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-phase-1.2q-author-confirmed-release.mjs",
+      "startedAt": "2026-08-03T03:46:03.571Z",
+      "durationMs": 5353,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-phase-1.2s-user-detail",
+      "label": "Browser journey phase-1.2s-user-detail",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-user-detail-soak.mjs",
+      "startedAt": "2026-08-03T03:46:08.925Z",
+      "durationMs": 14426,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "browser-storyforge-gate-c",
+      "label": "Browser journey storyforge-gate-c",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/capture-storyforge-gate-c.mjs http://127.0.0.1:1420 gate-c-full-regression",
+      "startedAt": "2026-08-03T03:46:23.351Z",
+      "durationMs": 7416,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "native-acceptance-build",
+      "label": "Isolated Tauri acceptance executable build",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe C:\\Users\\Admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\bin\\pnpm.cjs --filter @writing-buddy/desktop tauri build --config src-tauri/tauri.acceptance.conf.json",
+      "startedAt": "2026-08-03T03:46:31.090Z",
+      "durationMs": 136236,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "native-genre-gates-a-d",
+      "label": "Native genre-to-draft Gates A-D",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-genre-to-draft-gates-a-c.mjs",
+      "startedAt": "2026-08-03T03:48:47.328Z",
+      "durationMs": 6796,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "complete-novel",
+      "label": "Complete novel static and native journey",
+      "command": "C:\\Users\\Admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe scripts/acceptance/validate-complete-novel.mjs",
+      "startedAt": "2026-08-03T03:48:54.126Z",
+      "durationMs": 5685,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "storyforge-recovery",
+      "label": "StoryForge sanitized complete-novel recovery ignored gate",
+      "command": "powershell.exe -NoProfile -File scripts/acceptance/verify-storyforge-recovery.ps1 -ProjectRoot \"artifacts/novels/zero-hour-echo/Writing Buddy Project\" -OutputPath docs/acceptance/storyforge-data-recovery.json",
+      "startedAt": "2026-08-03T03:48:59.816Z",
+      "durationMs": 1837,
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "id": "portable-smoke",
+      "label": "Portable executable seven-second smoke",
+      "command": "D:\\develop_tool\\writing-buddy-genre-to-draft\\artifacts\\release\\full-regression-2026-08-02\\876485c9\\Writing-Buddy-Portable.exe",
+      "startedAt": "2026-08-03T03:49:01.655Z",
+      "durationMs": 7387,
+      "status": "passed",
+      "exitCode": 0,
+      "pid": 40044
     }
   ],
-  "error": "Browser journey phase-1.2b failed.",
-  "completedAt": "2026-08-03T03:35:10.790Z",
-  "durationMs": 1216221
+  "release": {
+    "directory": "artifacts/release/full-regression-2026-08-02/876485c9",
+    "artifacts": [
+      {
+        "path": "artifacts/release/full-regression-2026-08-02/876485c9/Writing-Buddy-Portable.exe",
+        "sha256": "B302F18FEE0FCE0D24E96781E22D08196DB0820485E8FE72F4356A92221076BF"
+      },
+      {
+        "path": "artifacts/release/full-regression-2026-08-02/876485c9/Writing Buddy_0.1.0_x64-setup.exe",
+        "sha256": "48FEB23C69B16FA49DFFBB0B79935D29C068ABC61FDD3FF1197D89E8744C17EC"
+      }
+    ]
+  },
+  "completedAt": "2026-08-03T03:49:09.336Z",
+  "durationMs": 590101
 }

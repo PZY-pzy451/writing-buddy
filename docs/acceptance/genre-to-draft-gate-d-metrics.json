@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-03T02:16:38.463Z",
+  "generatedAt": "2026-08-03T03:48:53.458Z",
   "executable": "D:\\develop_tool\\writing-buddy-genre-to-draft\\apps\\desktop\\src-tauri\\target\\release\\writing-buddy-next.exe",
   "runtime": "tauri-webview2",
   "freshProject": {
-    "projectId": "project-ac32b14d",
+    "projectId": "project-b24e270a",
     "firstChapterId": null,
     "createdFileCount": 2,
     "createdDirectoryCount": 2
@@ -100,7 +100,7 @@
     "restoredHook": "通道里亮起旧时刻表"
   },
   "persisted": {
-    "hash": "d3a86aab6c5697dea138dc55b42a0e3815323ba9f4e3d29d0834bd69e6c5148c",
+    "hash": "db1ec4b1fec83646d0033a093bd25e2b84a0e2bd9bd03f07d581c08aad5ba8af",
     "revision": 7,
     "storyOutlineRevision": 6,
     "outlineIds": [
@@ -241,9 +241,9 @@
   "runtimeErrors": [],
   "consoleErrors": [],
   "performance": {
-    "shellReadyMs": 1011,
-    "firstWorkspaceReadyMs": 1384,
-    "acceptanceBeforeShutdownMs": 6068
+    "shellReadyMs": 1024,
+    "firstWorkspaceReadyMs": 1349,
+    "acceptanceBeforeShutdownMs": 6058
   },
   "shutdown": {
     "mode": "window-close",

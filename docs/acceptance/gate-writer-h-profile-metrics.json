@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T03:20:35.725Z",
+  "generatedAt": "2026-08-03T03:45:02.283Z",
   "method": "five-isolated-no-explanation-test-profiles",
   "privacy": {
     "recordsAuthorContent": false,
@@ -48,17 +48,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 852,
-        "projectInteractive": 878,
-        "restoreToInput": 120,
-        "focusEnter": 14,
-        "focusExit": 11,
-        "planningSwitch": 30,
-        "writingSwitch": 40,
-        "secondProjectInteractive": 829,
+        "shellVisible": 791,
+        "projectInteractive": 853,
+        "restoreToInput": 121,
+        "focusEnter": 12,
+        "focusExit": 12,
+        "planningSwitch": 27,
+        "writingSwitch": 28,
+        "secondProjectInteractive": 845,
         "secondRestoreToInput": 121,
-        "saveFailureVisible": 12,
-        "saveRecovery": 18
+        "saveFailureVisible": 14,
+        "saveRecovery": 21
       },
       "checks": {
         "blockingCrash": false,
@@ -129,17 +129,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 816,
-        "projectInteractive": 880,
-        "restoreToInput": 135,
-        "focusEnter": 10,
+        "shellVisible": 882,
+        "projectInteractive": 908,
+        "restoreToInput": 134,
+        "focusEnter": 6,
         "focusExit": 26,
         "planningSwitch": 45,
-        "writingSwitch": 63,
-        "secondProjectInteractive": 840,
-        "secondRestoreToInput": 135,
-        "saveFailureVisible": 12,
-        "saveRecovery": 25
+        "writingSwitch": 62,
+        "secondProjectInteractive": 843,
+        "secondRestoreToInput": 137,
+        "saveFailureVisible": 15,
+        "saveRecovery": 22
       },
       "checks": {
         "blockingCrash": false,
@@ -176,7 +176,7 @@
           "pageOverflowX": 0,
           "pageOverflowY": 0,
           "clippedInteractive": 0,
-          "domNodes": 843
+          "domNodes": 834
         }
       },
       "budgets": {
@@ -210,17 +210,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 839,
-        "projectInteractive": 883,
+        "shellVisible": 877,
+        "projectInteractive": 906,
         "restoreToInput": 123,
-        "focusEnter": 13,
-        "focusExit": 11,
-        "planningSwitch": 25,
-        "writingSwitch": 55,
-        "secondProjectInteractive": 816,
-        "secondRestoreToInput": 121,
-        "saveFailureVisible": 15,
-        "saveRecovery": 21
+        "focusEnter": 14,
+        "focusExit": 16,
+        "planningSwitch": 21,
+        "writingSwitch": 54,
+        "secondProjectInteractive": 891,
+        "secondRestoreToInput": 122,
+        "saveFailureVisible": 10,
+        "saveRecovery": 18
       },
       "checks": {
         "blockingCrash": false,
@@ -291,17 +291,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 796,
-        "projectInteractive": 858,
-        "restoreToInput": 144,
-        "focusEnter": 25,
-        "focusExit": 18,
-        "planningSwitch": 35,
-        "writingSwitch": 67,
-        "secondProjectInteractive": 857,
-        "secondRestoreToInput": 145,
-        "saveFailureVisible": 18,
-        "saveRecovery": 35
+        "shellVisible": 875,
+        "projectInteractive": 904,
+        "restoreToInput": 140,
+        "focusEnter": 17,
+        "focusExit": 39,
+        "planningSwitch": 31,
+        "writingSwitch": 62,
+        "secondProjectInteractive": 832,
+        "secondRestoreToInput": 146,
+        "saveFailureVisible": 22,
+        "saveRecovery": 36
       },
       "checks": {
         "blockingCrash": false,
@@ -338,7 +338,7 @@
           "pageOverflowX": 0,
           "pageOverflowY": 0,
           "clippedInteractive": 0,
-          "domNodes": 870
+          "domNodes": 859
         }
       },
       "budgets": {
@@ -372,17 +372,17 @@
         "verify-no-loss": true
       },
       "timingsMs": {
-        "shellVisible": 797,
-        "projectInteractive": 859,
-        "restoreToInput": 137,
+        "shellVisible": 876,
+        "projectInteractive": 898,
+        "restoreToInput": 135,
         "focusEnter": 10,
-        "focusExit": 13,
+        "focusExit": 11,
         "planningSwitch": 35,
-        "writingSwitch": 48,
-        "secondProjectInteractive": 813,
-        "secondRestoreToInput": 145,
-        "saveFailureVisible": 11,
-        "saveRecovery": 25
+        "writingSwitch": 49,
+        "secondProjectInteractive": 824,
+        "secondRestoreToInput": 136,
+        "saveFailureVisible": 14,
+        "saveRecovery": 24
       },
       "checks": {
         "blockingCrash": false,

@@ -4,6 +4,29 @@ Updated: 2026-08-03
 
 ## Active milestone
 
+Story extraction actionability and adjacent usability convergence are complete in the isolated worktree
+`D:\develop_tool\writing-buddy-genre-to-draft` on
+`codex/genre-to-draft-gates-a-c`.
+
+- Project chapter IDs are canonicalized through the complete fact-extraction
+  lifecycle. Bounded response repair remains strict at the final schema gate.
+- Empty/oversized input, rapid clicks, malformed AI responses, successful empty
+  results and accept/reject conflicts now have deterministic author-facing behavior.
+- The wider selection-action audit covers five resource types, quick capture,
+  existing-resource linking and contextual AI without exposing internal errors.
+- The clean run against `876485c` passed 26/26 steps in 590,101 ms: 168 Vitest
+  files / 701 tests, 77 Rust tests, 19 browser journeys, performance/recovery,
+  complete novel, native gates and portable smoke.
+- The final user-detail journey passed a 100,661-character manuscript, 40
+  resizes, 30 workspace transitions, three reloads, fact extraction/acceptance
+  and compact full-view audits with no raw errors.
+- Production portable SHA-256 is
+  `B302F18FEE0FCE0D24E96781E22D08196DB0820485E8FE72F4356A92221076BF`.
+- Delivery: `artifacts/release/full-regression-2026-08-02/876485c9/`; evidence:
+  `docs/acceptance/078-story-extraction-actionability-2026-08-03.md`.
+
+## Previous milestones
+
 Story Kernel character-role repair and final regression are complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
 `codex/genre-to-draft-gates-a-c`.
@@ -13,17 +36,8 @@ Story Kernel character-role repair and final regression are complete in the isol
   corruption remains blocked, and persisted candidates are repaired on load.
 - TypeScript/native prompt parity and 71 focused parser/service tests cover new,
   confirmed and previously persisted candidates.
-- The clean run against `75ddef7f` passed 26/26 steps in 616,191 ms: 167 Vitest
-  files / 694 tests, 77 Rust tests, 19 browser journeys, performance/recovery,
-  complete novel, native gates and portable smoke.
-- The final user-detail journey passed a 100,661-character manuscript, 40
-  resizes, 30 workspace transitions, three reloads and compact full-view audits.
-- Production portable SHA-256 is
-  `0F1F74A581C2343AC215D435991C364C315682F6FDA4D15430668562A3EF1F4C`.
-- Delivery: `artifacts/release/full-regression-2026-08-02/75ddef7f/`; evidence:
+- Evidence:
   `docs/acceptance/077-story-kernel-character-role-repair-2026-08-03.md`.
-
-## Previous milestones
 
 Phase 1.2S user-centered detail and stress testing is complete in the isolated worktree
 `D:\develop_tool\writing-buddy-genre-to-draft` on
