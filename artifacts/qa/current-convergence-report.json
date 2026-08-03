@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T09:05:33.838Z",
+  "generatedAt": "2026-08-03T09:31:32.799Z",
   "source": {
-    "commit": "63a397c40f191b7f1f83d48002ba4d6b153ccce9",
+    "commit": "b9ad8f0b1a6f3cbefeea4e3c979543dd56649b19",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 769,
-        "runtimeCollected": 769,
+        "frontendInventory": 771,
+        "runtimeCollected": 771,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 769
+        "frontendTests": 771
       }
     },
     {
@@ -237,7 +237,32 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 769
+        "frontendTests": 771
+      }
+    },
+    {
+      "id": "QA-AI-PROVIDER-ACTION-FEEDBACK-013",
+      "summary": "Manual connection, model refresh and balance refresh actions could complete without replacing stale credential-save feedback.",
+      "before": {
+        "connectionTestReplacedSaveNotice": false,
+        "modelRefreshSuccessFeedback": false,
+        "balanceRefreshSuccessFeedback": false,
+        "providerFailuresRejectedToUi": false
+      },
+      "after": {
+        "connectionTestReplacedSaveNotice": true,
+        "modelRefreshSuccessFeedback": true,
+        "balanceRefreshSuccessFeedback": true,
+        "providerFailuresRejectedToUi": true,
+        "failureRetryEnabled": true,
+        "manualBrowserWidths": [
+          620,
+          420
+        ],
+        "horizontalOverflow": false,
+        "browserWarningsOrErrors": 0,
+        "focusedTests": 22,
+        "frontendTests": 771
       }
     }
   ],
@@ -262,22 +287,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 769
+      "frontendTests": 771
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T09:01:08.616Z",
-      "completedAt": "2026-08-03T09:03:35.460Z",
+      "generatedAt": "2026-08-03T09:26:26.347Z",
+      "completedAt": "2026-08-03T09:29:02.212Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 146842,
+      "durationMs": 155864,
       "vitestFiles": 174,
-      "vitestPassed": 769,
-      "inventoryFrontendTests": 769,
+      "vitestPassed": 771,
+      "inventoryFrontendTests": 771,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -286,10 +311,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T08:46:12.624Z",
-      "completedAt": "2026-08-03T08:46:15.254Z",
+      "generatedAt": "2026-08-03T09:21:27.703Z",
+      "completedAt": "2026-08-03T09:21:30.413Z",
       "status": "PASS",
-      "durationMs": 2628,
+      "durationMs": 2708,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -315,7 +340,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10119,
+    "totalUnmapped": 10109,
     "missingStableSelectors": 221
   },
   "warnings": [

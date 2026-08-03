@@ -326,6 +326,28 @@ const report = {
 				focusedTests: 20,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-PROVIDER-ACTION-FEEDBACK-013',
+			summary: 'Manual connection, model refresh and balance refresh actions could complete without replacing stale credential-save feedback.',
+			before: {
+				connectionTestReplacedSaveNotice: false,
+				modelRefreshSuccessFeedback: false,
+				balanceRefreshSuccessFeedback: false,
+				providerFailuresRejectedToUi: false
+			},
+			after: {
+				connectionTestReplacedSaveNotice: true,
+				modelRefreshSuccessFeedback: true,
+				balanceRefreshSuccessFeedback: true,
+				providerFailuresRejectedToUi: true,
+				failureRetryEnabled: true,
+				manualBrowserWidths: [620, 420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 22,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

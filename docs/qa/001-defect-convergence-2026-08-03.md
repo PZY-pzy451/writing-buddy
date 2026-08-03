@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `63a397c40f191b7f1f83d48002ba4d6b153ccce9`
+- Tested source: `b9ad8f0b1a6f3cbefeea4e3c979543dd56649b19`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -165,11 +165,34 @@ storage. Credential removal records a successful cancellation before attempting
 deletion, keeps the key configured if deletion fails, presents a retry path and
 locks destructive confirmation plus all preference controls while pending.
 
-Twelve new contracts bring the AI experience suite to 20 tests. They cover 600
+Fourteen contracts bring the AI experience suite to 22 tests. They cover 600
 same-tick settings actions, 100 generation attempts during deletion, queued
 cross-action deduplication, failed-delete retry, truthful cancelled state and
 latest-preference success/failure ordering. The complete Node 24 acceptance run
-passes 173 files / 766 tests.
+passes 174 files / 771 tests.
+
+### QA-AI-PROVIDER-ACTION-FEEDBACK-013
+
+Real browser QA reproduced a separate settings defect after a successful key
+save. Clicking `测试连接` completed, but the page retained the stale
+`API Key 已安全保存` notice, so the author could not tell whether the new action
+had run. Model-list and balance refreshes also completed without an explicit
+nearby outcome. The store swallowed those three failures, preventing the page
+from reliably selecting success versus recovery copy.
+
+Connection test, model refresh and balance refresh now each clear stale copy and
+publish an action-specific success or failure result. Store failures are still
+normalized for display but reject to the UI boundary, which keeps the relevant
+button enabled for an explicit retry. Two deterministic component contracts
+cover success replacement and sanitized failure/retry behavior; the focused AI
+experience suite passes 22 tests.
+
+The corrected flow was repeated through the running local application. Desktop,
+620 px and 420 px widths passed; the 420 px document and body scroll widths
+matched their client widths, the credential-removal confirmation cancelled
+without deletion, and the browser console contained zero warnings or errors.
+Only the deterministic browser bridge was used; no real provider key or request
+was involved.
 
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
@@ -257,11 +280,12 @@ console claims.
 | AI generation pressure | 11 surfaces guarded; 10 dynamic scenarios send 100 same-tick actions and start exactly 1 request with 0 implicit cancellations; 12 files / 45 tests passed |
 | Pending-fact persistence pressure | 100 same-tick accepts produce exactly 1 acceptance write; complete 4-test suite passed |
 | AI cancellation/result ordering | Playground, drawer and review each reproduced 100 clicks / 100 commands; now 1 command, old validation/results isolated, failure retry verified; 3 files / 27 tests passed |
-| AI settings and credential lifecycle | Five settings actions reproduced 100 bridge calls each; now 1 request per action, cross-action queueing, latest-preference ordering, deletion retry and generation blocking pass 20/20 focused tests |
+| AI settings and credential lifecycle | Five settings actions reproduced 100 bridge calls each; now 1 request per action, cross-action queueing, latest-preference ordering, deletion retry, generation blocking and explicit provider-action feedback pass 22/22 focused tests |
+| Live AI settings journey | Save/test/model/balance outcomes verified; 620 px and 420 px widths have no horizontal overflow; removal confirmation cancelled; 0 console warnings/errors |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 769 tests and production build passed |
-| Static/runtime test reconciliation | 769 / 769; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 771 tests and production build passed |
+| Static/runtime test reconciliation | 771 / 771; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -301,7 +325,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,119 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,109 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

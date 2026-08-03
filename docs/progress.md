@@ -5,16 +5,16 @@ Updated: 2026-08-03
 ## Active milestone
 
 User-centered defect convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `63a397c`.
+`codex/full-regression-gates-a-e-v2` against source `b9ad8f0`.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 769 frontend cases are inventoried
-  and 769 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 771 frontend cases are inventoried
+  and 771 are collected, including 50 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
 - Supported frontend acceptance passed ESLint, TypeScript, 174 Vitest files /
-  769 tests and the production build. Rust formatting passed; Cargo collected
+  771 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -90,17 +90,23 @@ User-centered defect convergence is complete on
   success, blocks generation during credential mutation and leaves deletion
   failures explicitly retryable. Preference writes are serialized and coalesced
   so the latest author choice is persisted last; a final failure restores the
-  last genuinely persisted value. The focused AI experience suite passed 20 tests.
+  last genuinely persisted value. The focused AI experience suite passed 22 tests.
+- Real browser QA found stale action feedback after a successful credential save:
+  a later connection test still showed the old save message, while model and
+  balance refreshes had no explicit completion message. Each manual action now
+  replaces stale copy with its own success/failure outcome; provider failures
+  propagate to the UI for localized recovery. Desktop, 620 px and 420 px checks
+  passed without horizontal overflow or browser console warnings/errors.
 - The full self-test and full-regression runners no longer fall back to Windows
   `pnpm.cmd` with `shell: true` when launched directly through Node. Both resolve
   pnpm's JavaScript entry and execute it with the current Node 24 runtime; absence
   of a safe entry fails closed. Three command-resolution tests pass, and the
   repeated full self-test emits zero `DEP0190` warnings.
-- The current inventory contains 848 tests: 769 frontend plus 79 native cases.
-  The latest execution ledger records 846 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 769 cases with zero difference.
+- The current inventory contains 850 tests: 771 frontend plus 79 native cases.
+  The latest execution ledger records 848 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 771 cases with zero difference.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
-  and 10,119 aggregate mappings remain open. The truthful product conclusion is
+  and 10,109 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.
