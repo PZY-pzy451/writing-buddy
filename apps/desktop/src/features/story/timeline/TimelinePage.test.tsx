@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	parseTimelineEvent,
@@ -106,6 +106,7 @@ describe('TimelinePage', () => {
 	});
 
 	it('opens the AI story-progress workflow with evidence and separate causal-edge review', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		const openEvidence = vi.fn();
 		render(
@@ -127,9 +128,16 @@ describe('TimelinePage', () => {
 
 		fireEvent.click(await screen.findByRole('button', { name: 'AI 从正文提取' }));
 		expect(screen.getByRole('complementary', { name: 'AI 故事进程助手' })).toBeInTheDocument();
-		fireEvent.click(screen.getByRole('button', { name: '生成事件与因果候选' }));
+		const generate = screen.getByRole('button', { name: '生成事件与因果候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByRole('heading', { name: '雨夜时钟停摆' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByRole('heading', { name: '褪色票据揭示时间' })).toBeInTheDocument();
 		expect(screen.getByText('虚线因果候选')).toBeInTheDocument();
 		expect(screen.getAllByText(/AI 建议/).length).toBeGreaterThan(0);

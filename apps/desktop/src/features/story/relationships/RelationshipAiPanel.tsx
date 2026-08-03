@@ -89,6 +89,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -130,13 +131,14 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 	};
 
 	const generate = async () => {
-		if (!chapter || disabledReason || generating) return;
+		if (!chapter || disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setBatch(undefined);
 		props.onBatchChange(undefined);
 		setError(undefined);
 		setNotice(undefined);
 		setStreamedLength(0);
-		setJobState('created');
+		setJobState('queued');
 		try {
 			const source = await desktopBridge.readText(props.projectRoot, chapter.path);
 			const messages = buildRelationshipAnalysisMessages({
@@ -196,6 +198,8 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '关系候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -262,6 +266,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 							type="button"
 							role="tab"
 							aria-selected={id === actionType}
+							disabled={generating}
 							className={id === actionType ? 'is-active' : ''}
 							key={id}
 							onClick={() => selectAction(id)}
@@ -273,6 +278,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 					<div><BookOpen size={18} /><strong>章节范围</strong></div>
 					<select
 						aria-label="选择关系分析章节"
+						disabled={generating}
 						value={chapterResourceId}
 						onChange={event => setChapterResourceId(event.target.value)}
 					>
@@ -290,14 +296,14 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 					<div className="ai-review-character-pair">
 						<label>
 							<span>关系发起者</span>
-							<select value={sourceCharacterId} onChange={event => setSourceCharacterId(event.target.value)}>
+							<select disabled={generating} value={sourceCharacterId} onChange={event => setSourceCharacterId(event.target.value)}>
 								{props.characters.map(character => <option key={character.id} value={character.id}>{character.title}</option>)}
 							</select>
 						</label>
 						<ArrowRight size={18} />
 						<label>
 							<span>关系目标</span>
-							<select value={targetCharacterId} onChange={event => setTargetCharacterId(event.target.value)}>
+							<select disabled={generating} value={targetCharacterId} onChange={event => setTargetCharacterId(event.target.value)}>
 								{props.characters.map(character => <option key={character.id} value={character.id}>{character.title}</option>)}
 							</select>
 						</label>
@@ -306,7 +312,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">

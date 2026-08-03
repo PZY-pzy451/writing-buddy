@@ -273,7 +273,7 @@ export const useAiStore = create<AiStore>((set, get) => {
 				return;
 			}
 			if (state.jobId && !['completed', 'cancelled', 'failed'].includes(state.jobState)) {
-				await desktopBridge.cancelAiJob(state.jobId);
+				return;
 			}
 			const jobId = crypto.randomUUID();
 			const request: AiGenerateRequest = {

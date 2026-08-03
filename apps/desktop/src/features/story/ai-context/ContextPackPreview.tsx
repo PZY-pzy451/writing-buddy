@@ -27,10 +27,12 @@ const priorityLabels: Readonly<Record<ContextPriority, string>> = {
 
 export function ContextPackPreview({
 	pack,
-	onChange
+	onChange,
+	disabled = false
 }: {
 	readonly pack: ContextPack;
 	readonly onChange: (pack: ContextPack) => void;
+	readonly disabled?: boolean;
 }): React.JSX.Element {
 	const [expanded, setExpanded] = useState<string>();
 	const percentage = Math.min(100, Math.round(pack.estimatedTokens / pack.budgetTokens * 100));
@@ -68,7 +70,7 @@ export function ContextPackPreview({
 										<input
 											type="checkbox"
 											checked={item.included}
-											disabled={item.required}
+										disabled={item.required || disabled}
 											onChange={event => onChange(withContextItemIncluded(pack, item.id, event.target.checked))}
 										/>
 										<span aria-hidden="true">{item.included ? <Check size={16} /> : null}</span>

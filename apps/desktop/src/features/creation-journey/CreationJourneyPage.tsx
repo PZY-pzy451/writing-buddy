@@ -418,6 +418,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const genreGenerationRequestRef = useRef(false);
 	const genreCancellationRequestedRef = useRef(false);
 	const genreCancellationGuardRef = useRef(false);
+	const journeyStageRequestRef = useRef(false);
 	const outlineAlternativeRequestRef = useRef(false);
 	const hierarchyGenerationRequestRef = useRef(false);
 	const outlineSemanticCheckRequestRef = useRef(false);
@@ -674,7 +675,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 
 	const runAi = async (operation: JourneyStageAiOperation) => {
 		const current = stateRef.current;
-		if (!current || busyOperation) return;
+		if (!current || busyOperation || journeyStageRequestRef.current) return;
+		journeyStageRequestRef.current = true;
 		setError(undefined);
 		try {
 			await persistLatest();
@@ -778,6 +780,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 			setError(journeyErrorCopy(reason));
 			setStatus('本次候选未写入');
 		} finally {
+			journeyStageRequestRef.current = false;
 			setBusyOperation(undefined);
 			setJobId(undefined);
 		}
@@ -785,7 +788,13 @@ export function CreationJourneyPage(): React.JSX.Element {
 
 	const runGuidanceQuestion = async () => {
 		const current = stateRef.current;
-		if (!current || busyOperation || current.stage === 'writing') return;
+		if (
+			!current
+			|| busyOperation
+			|| current.stage === 'writing'
+			|| journeyStageRequestRef.current
+		) return;
+		journeyStageRequestRef.current = true;
 		setError(undefined);
 		try {
 			const context = guidanceContextForAi(current);
@@ -840,6 +849,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 			setError(journeyErrorCopy(reason));
 			setStatus('本次问题未写入');
 		} finally {
+			journeyStageRequestRef.current = false;
 			setBusyOperation(undefined);
 			setJobId(undefined);
 		}

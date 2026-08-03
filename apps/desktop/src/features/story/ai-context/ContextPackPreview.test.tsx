@@ -26,12 +26,15 @@ describe('ContextPackPreview', () => {
 				authorSecret: true
 			}]
 		});
-		render(<ContextPackPreview pack={pack} onChange={onChange} />);
+		const view = render(<ContextPackPreview pack={pack} onChange={onChange} />);
 		expect(screen.getByLabelText('AI Context Pack 预览')).toBeInTheDocument();
 		expect(screen.getByText('路径与密钥未包含')).toBeInTheDocument();
 		const checkbox = screen.getByRole('checkbox', { name: /事故真相/u });
 		expect(checkbox).not.toBeChecked();
 		fireEvent.click(checkbox);
 		expect(onChange.mock.calls[0]?.[0].items.find(item => item.id === 'context:secret')?.included).toBe(true);
+
+		view.rerender(<ContextPackPreview pack={pack} disabled onChange={onChange} />);
+		expect(checkbox).toBeDisabled();
 	});
 });

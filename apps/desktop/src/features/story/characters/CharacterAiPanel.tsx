@@ -141,6 +141,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -166,12 +167,13 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 	};
 
 	const generate = async () => {
-		if (!chapter || disabledReason || generating) return;
+		if (!chapter || disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setError(undefined);
 		setNotice(undefined);
 		setBatch(undefined);
 		setStreamedLength(0);
-		setJobState('created');
+		setJobState('queued');
 		try {
 			const source = await desktopBridge.readText(props.projectRoot, chapter.path);
 			const messages = buildCharacterAnalysisMessages({
@@ -219,6 +221,8 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '人物候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -294,6 +298,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 							type="button"
 							role="tab"
 							aria-selected={candidate.id === actionType}
+							disabled={generating}
 							className={candidate.id === actionType ? 'is-active' : ''}
 							key={candidate.id}
 							onClick={() => selectAction(candidate.id)}
@@ -305,6 +310,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 					<div><BookOpen size={18} /><strong>章节范围</strong></div>
 					<select
 						aria-label="选择人物分析章节"
+						disabled={generating}
 						value={chapterResourceId}
 						onChange={event => setChapterResourceId(event.target.value)}
 					>
@@ -322,6 +328,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 					<span>作者指令</span>
 					<textarea
 						value={instruction}
+						disabled={generating}
 						maxLength={2_000}
 						onChange={event => setInstruction(event.target.value)}
 					/>

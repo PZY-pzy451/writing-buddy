@@ -16,7 +16,7 @@ import {
 	Sparkles,
 	Square
 } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AI_CHAPTER_REVIEW_MAX_CHARS, type AiJobState } from '@writing-buddy/ai';
 import { countWords, flattenChapters, type ChapterDescriptor } from '@writing-buddy/domain';
 import {
@@ -75,6 +75,7 @@ export function ReviewPage(): React.JSX.Element {
 	} = useReviewAutomationStore();
 	const [mode, setMode] = useState<ReviewMode>('manual');
 	const [notice, setNotice] = useState('');
+	const aiRunGuardRef = useRef(false);
 	const [publishExpanded, setPublishExpanded] = useState(false);
 	const sourceInspectionKey = snapshot
 		? [snapshot.root, snapshot.projectRevision, session?.state.diskHash ?? ''].join('\u0000')
@@ -231,9 +232,16 @@ export function ReviewPage(): React.JSX.Element {
 	};
 
 	const runAi = async () => {
-		if (!snapshot || !activeResource || !session || activeResource.type !== 'chapter') {
+		if (
+			aiRunGuardRef.current
+			|| !snapshot
+			|| !activeResource
+			|| !session
+			|| activeResource.type !== 'chapter'
+		) {
 			return;
 		}
+		aiRunGuardRef.current = true;
 		setNotice('');
 		try {
 			const result = await run({
@@ -257,6 +265,8 @@ export function ReviewPage(): React.JSX.Element {
 				: 'AI 自动审校完成，没有返回可验证的问题。');
 		} catch {
 			// The store exposes the redacted public error beside the controls.
+		} finally {
+			aiRunGuardRef.current = false;
 		}
 	};
 

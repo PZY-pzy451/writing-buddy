@@ -121,6 +121,7 @@ export function TimelineAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applying, setApplying] = useState(false);
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -182,11 +183,13 @@ export function TimelineAiPanel(props: {
 	);
 
 	const generate = async () => {
-		if (disabledReason || generating) return;
+		if (disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setBatch(undefined);
 		setNotice(undefined);
 		setError(undefined);
 		setStreamedLength(0);
+		setJobState('queued');
 		try {
 			const sources = await readSources();
 			const messages = buildTimelineAnalysisMessages({
@@ -273,6 +276,8 @@ export function TimelineAiPanel(props: {
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '故事进程候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -337,16 +342,16 @@ export function TimelineAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="故事进程 AI 动作">
 					{actions.map(action => (
-						<button type="button" role="tab" aria-selected={action.id === actionType} className={action.id === actionType ? 'is-active' : ''} key={action.id} onClick={() => chooseAction(action.id)}>{action.label}</button>
+						<button type="button" role="tab" aria-selected={action.id === actionType} disabled={generating} className={action.id === actionType ? 'is-active' : ''} key={action.id} onClick={() => chooseAction(action.id)}>{action.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
 					<div><BookOpen size={18} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
-					<select aria-label="故事进程分析范围" value={scopeMode} onChange={event => setScopeMode(event.target.value as TimelineScopeMode)}>
+					<select aria-label="故事进程分析范围" disabled={generating} value={scopeMode} onChange={event => setScopeMode(event.target.value as TimelineScopeMode)}>
 						{Object.entries(scopeLabels).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
 					</select>
 					{scopeMode === 'current-chapter' || scopeMode === 'current-volume' ? (
-						<select aria-label="故事进程基准章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
+						<select aria-label="故事进程基准章节" disabled={generating} value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 							{props.chapters.map(chapter => <option key={chapter.resourceId} value={chapter.resourceId}>{chapter.volumeTitle ? `${chapter.volumeTitle} · ` : ''}{chapter.title}</option>)}
 						</select>
 					) : null}
@@ -354,7 +359,7 @@ export function TimelineAiPanel(props: {
 						<div className="ai-review-check-grid" aria-label="指定故事进程章节">
 							{props.chapters.map(chapter => (
 								<label key={chapter.resourceId}>
-									<input type="checkbox" checked={selectedChapterIds.includes(chapter.resourceId)} onChange={() => toggle(selectedChapterIds, setSelectedChapterIds, chapter.resourceId)} />
+								<input type="checkbox" checked={selectedChapterIds.includes(chapter.resourceId)} disabled={generating} onChange={() => toggle(selectedChapterIds, setSelectedChapterIds, chapter.resourceId)} />
 									<span>{chapter.title}</span>
 								</label>
 							))}
@@ -364,7 +369,7 @@ export function TimelineAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">

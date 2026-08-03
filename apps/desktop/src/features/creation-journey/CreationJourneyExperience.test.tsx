@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../app/App';
 import { useAppStore } from '../../app/store';
@@ -90,7 +90,13 @@ describe('Phase 1.2B creation journey experience', () => {
 		expect(await screen.findByRole('heading', { name: '比较三个真正不同的方向' }))
 			.toBeInTheDocument();
 		expect(aiSpy).toHaveBeenCalledTimes(1);
-		await user.click(screen.getByRole('button', { name: '生成 3 个故事方向' }));
+		const generateDirections = screen.getByRole('button', { name: '生成 3 个故事方向' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generateDirections.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 		await waitFor(() => {
 			expect(aiSpy).toHaveBeenCalledTimes(2);
 			expect(screen.queryByRole('alert')).not.toBeInTheDocument();

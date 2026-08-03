@@ -75,6 +75,46 @@ describe('aiGenerationStore', () => {
 		});
 	});
 
+	it('starts one provider request for 100 same-tick generation calls', async () => {
+		const requests: AiGenerateRequest[] = [];
+		const cancelAiJob = vi.fn(() => Promise.resolve(true));
+		const store = createAiGenerationStore({
+			...runtime(
+				JSON.stringify({ issues: [] }),
+				request => requests.push(request)
+			),
+			cancelAiJob
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			store.getState().startGeneration()
+		)));
+
+		expect(requests).toHaveLength(1);
+		expect(cancelAiJob).not.toHaveBeenCalled();
+		expect(store.getState().state).toBe('preview');
+	});
+
+	it('redacts an unknown start failure and allows an explicit retry', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const startAiGeneration = vi.fn(fallback.startAiGeneration)
+			.mockRejectedValueOnce(new Error('raw provider implementation detail'));
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+		await store.getState().startGeneration();
+		expect(store.getState()).toMatchObject({
+			state: 'failed',
+			error: 'AI 请求失败。'
+		});
+		await store.getState().startGeneration();
+
+		expect(startAiGeneration).toHaveBeenCalledTimes(2);
+		expect(store.getState().state).toBe('preview');
+	});
+
 	it('previews exactly the context accepted by the fixed chapter-review contract', async () => {
 		const requests: AiGenerateRequest[] = [];
 		const store = createAiGenerationStore(runtime(

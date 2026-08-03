@@ -320,14 +320,18 @@ function PendingFactCard(props: {
 	const [statement, setStatement] = useState(props.fact.statement);
 	const [narrativeOrder, setNarrativeOrder] = useState(0);
 	const [busy, setBusy] = useState(false);
+	const actionGuardRef = useRef(false);
 
 	const run = async (action: () => Promise<void>) => {
+		if (actionGuardRef.current) return;
+		actionGuardRef.current = true;
 		setBusy(true);
 		try {
 			await action();
 		} catch (reason) {
 			props.onError(reason);
 		} finally {
+			actionGuardRef.current = false;
 			setBusy(false);
 		}
 	};

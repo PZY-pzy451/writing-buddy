@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import {
 	StorySchemaRegistry,
 	parseLocation
@@ -10,6 +11,7 @@ const timestamp = '2026-07-27T00:00:00.000Z';
 
 describe('StoryAssetsPage', () => {
 	it('opens the empty-state AI item workflow and renders a structured card', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		const character = StorySchemaRegistry.parse('character', {
 			id: 'character:xu-qing',
@@ -65,9 +67,16 @@ describe('StoryAssetsPage', () => {
 
 		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
 		expect(screen.getByRole('complementary', { name: 'AI 物品助手' })).toBeInTheDocument();
-		fireEvent.click(screen.getByRole('button', { name: '生成物品候选' }));
+		const generate = screen.getByRole('button', { name: '生成物品候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByRole('heading', { name: '无字站牌' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByText('证明零号月台曾经存在，并指向被删去的线路。')).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();
 	});

@@ -480,6 +480,7 @@ export function ManuscriptContinuationPanel(
 			{pack && packReady
 				? <ContextPackPreview
 					pack={pack}
+					disabled={generating}
 					onChange={value => setPack(withoutAuthorSecrets(value))}
 					/>
 				: error

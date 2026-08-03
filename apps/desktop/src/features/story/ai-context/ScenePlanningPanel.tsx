@@ -139,6 +139,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 	const [savedSnapshot, setSavedSnapshot] = useState<string>();
 	const [error, setError] = useState<string>();
 	const [applying, setApplying] = useState(false);
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const {
 		actionType,
@@ -192,11 +193,12 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 		: false, [candidate, props.content, props.sourceRevision, scene]);
 
 	const generate = async () => {
-		if (!pack || !scene || generating || props.readOnly) return;
+		if (!pack || !scene || generating || props.readOnly || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setCandidate(undefined);
 		setSavedSnapshot(undefined);
 		setError(undefined);
-		setJobState('created');
+		setJobState('queued');
 		setStreamedLength(0);
 		try {
 			const result = await runGroundedJsonJob({
@@ -223,6 +225,8 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '细纲候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -271,7 +275,7 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 				</div>
 			</div>
 			{pack && packReady
-				? <ContextPackPreview pack={pack} onChange={setPack} />
+				? <ContextPackPreview pack={pack} disabled={generating} onChange={setPack} />
 				: <p className="ai-action-loading"><Sparkles size={16} />正在读取当前场景…</p>}
 			{error ? <p className="ai-action-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
 			<div className="ai-action-toolbar">

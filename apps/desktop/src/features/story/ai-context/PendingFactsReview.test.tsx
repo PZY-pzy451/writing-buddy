@@ -21,6 +21,11 @@ class MemoryStorage implements PendingFactStoragePort {
 	private content: string | undefined;
 	private hash = '';
 	private nextWriteError = '';
+	private writes = 0;
+
+	get writeCount(): number {
+		return this.writes;
+	}
 
 	failNextWrite(code: string): void {
 		this.nextWriteError = code;
@@ -38,6 +43,7 @@ class MemoryStorage implements PendingFactStoragePort {
 	}
 
 	writeTextAtomic(request: AtomicWriteRequest): Promise<AtomicWriteResult> {
+		this.writes += 1;
 		if (this.nextWriteError) {
 			const code = this.nextWriteError;
 			this.nextWriteError = '';
@@ -115,13 +121,15 @@ describe('PendingFactsReview', () => {
 		expect(screen.queryByText(/invalidStoryExtractionInput/u)).not.toBeInTheDocument();
 		expect(screen.getByText('1 条待确认')).toBeInTheDocument();
 
-		fireEvent.click(screen.getByRole('button', { name: '确认并接受' }));
+		const accept = screen.getByRole('button', { name: '确认并接受' });
+		for (let click = 0; click < 100; click += 1) fireEvent.click(accept);
 		await waitFor(() => {
 			expect(screen.getByRole('status')).toHaveTextContent('事实已由作者确认并保存');
 			expect(screen.getByText('0 条待确认')).toBeInTheDocument();
 		}, asyncTimeout);
 
 		const [accepted] = await store.load();
+		expect(storage.writeCount).toBe(2);
 		expect(accepted).toMatchObject({
 			status: 'accepted',
 			sourceResourceId: 'chapter:chapter-a11ce001',

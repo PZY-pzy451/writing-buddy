@@ -60,7 +60,7 @@ export function normalizeAiError(error: unknown): PublicAiError {
 		const code = codeInText(error.message) ?? 'unknown';
 		return {
 			code,
-			message: code === 'unknown' ? error.message : publicAiErrorMessage(code),
+			message: publicAiErrorMessage(code),
 			retryable: retryableCodes.has(code)
 		};
 	}
@@ -72,7 +72,9 @@ export function normalizeAiError(error: unknown): PublicAiError {
 			readonly httpStatus?: unknown;
 		};
 		const code = isAiErrorCode(candidate.code) ? candidate.code : 'unknown';
-		const message = typeof candidate.message === 'string' && candidate.message.trim()
+		const message = code !== 'unknown'
+			&& typeof candidate.message === 'string'
+			&& candidate.message.trim()
 			? candidate.message
 			: publicAiErrorMessage(code);
 		const retryable = typeof candidate.retryable === 'boolean'
@@ -89,9 +91,7 @@ export function normalizeAiError(error: unknown): PublicAiError {
 	}
 	const raw = String(error);
 	const code = codeInText(raw) ?? 'unknown';
-	const message = code === 'unknown' && raw && raw !== '[object Object]'
-		? raw
-		: publicAiErrorMessage(code);
+	const message = publicAiErrorMessage(code);
 	return {
 		code,
 		message,

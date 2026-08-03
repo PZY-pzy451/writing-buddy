@@ -127,6 +127,7 @@ export function PlotAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applying, setApplying] = useState(false);
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -183,11 +184,13 @@ export function PlotAiPanel(props: {
 	);
 
 	const generate = async () => {
-		if (disabledReason || generating) return;
+		if (disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setBatch(undefined);
 		setNotice(undefined);
 		setError(undefined);
 		setStreamedLength(0);
+		setJobState('queued');
 		try {
 			const sources = await readSources();
 			const messages = buildPlotAnalysisMessages({
@@ -268,6 +271,8 @@ export function PlotAiPanel(props: {
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '剧情资料候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -329,27 +334,27 @@ export function PlotAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="剧情线与伏笔 AI 动作">
 					{actions.map(candidate => (
-						<button type="button" role="tab" aria-selected={candidate.id === actionType} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => chooseAction(candidate.id)}>{candidate.label}</button>
+						<button type="button" role="tab" aria-selected={candidate.id === actionType} disabled={generating} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => chooseAction(candidate.id)}>{candidate.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
 					<div><BookOpen size={18} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
-					<select aria-label="剧情资料分析章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
+					<select aria-label="剧情资料分析章节" disabled={generating} value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 						{props.chapters.map(chapter => <option key={chapter.resourceId} value={chapter.resourceId}>{chapter.volumeTitle ? `${chapter.volumeTitle} · ` : ''}{chapter.title}</option>)}
 					</select>
 					<label className="ai-review-privacy-toggle">
-						<input type="checkbox" checked={useVolume} onChange={event => setUseVolume(event.target.checked)} />
+						<input type="checkbox" checked={useVolume} disabled={generating} onChange={event => setUseVolume(event.target.checked)} />
 						<span>分析当前整卷</span>
 					</label>
 				</section>
 				<label className={`ai-review-secret-toggle ${includeAuthorSecrets ? 'is-enabled' : ''}`}>
-					<input type="checkbox" checked={includeAuthorSecrets} onChange={event => setIncludeAuthorSecrets(event.target.checked)} />
+					<input type="checkbox" checked={includeAuthorSecrets} disabled={generating} onChange={event => setIncludeAuthorSecrets(event.target.checked)} />
 					<LockKeyhole size={16} />
 					<span><strong>允许发送作者秘密</strong><small>默认关闭；开启后仅发送已有伏笔的真实含义。</small></span>
 				</label>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">

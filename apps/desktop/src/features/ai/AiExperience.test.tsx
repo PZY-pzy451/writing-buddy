@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DEFAULT_AI_PREFERENCES } from '@writing-buddy/ai';
+import { vi } from 'vitest';
 import { SettingsPage } from '../../settings/SettingsPage';
 import { desktopBridge } from '../../platform/bridge';
 import { AiPlaygroundPage } from './AiPlaygroundPage';
@@ -66,6 +67,25 @@ describe('Phase 1.0A AI experience', () => {
 		expect(screen.getByRole('log')).toHaveTextContent('雨水沿着锈蚀的站牌缓慢滑落');
 		expect(screen.getByText('输入 38')).toBeInTheDocument();
 		expect(useAiStore.getState().prompt).toBe('写一段雨夜车站的悬疑场景。');
+	});
+
+	it('starts one playground request for 100 same-tick generation calls', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob');
+		await act(async () => {
+			await useAiStore.getState().initialize();
+			await useAiStore.getState().saveKeyAndValidate('fixture-key');
+			useAiStore.getState().setPrompt('同一条件只应生成一次。');
+			await Promise.all(Array.from({ length: 100 }, () => (
+				useAiStore.getState().startGeneration()
+			)));
+		});
+
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(cancelAiJob).not.toHaveBeenCalled();
+		expect(useAiStore.getState().jobState).toBe('completed');
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
 	});
 
 	it('cancels an active stream and preserves partial output when present', async () => {

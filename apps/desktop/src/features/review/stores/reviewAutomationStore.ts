@@ -41,7 +41,7 @@ export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get)
 	async run(input) {
 		const activeJobId = get().jobId;
 		if (activeJobId && !terminalStates.includes(get().jobState)) {
-			await desktopBridge.cancelAiJob(activeJobId);
+			return undefined;
 		}
 		const modelId = input.preferences.defaultModelId;
 		if (!modelId) {

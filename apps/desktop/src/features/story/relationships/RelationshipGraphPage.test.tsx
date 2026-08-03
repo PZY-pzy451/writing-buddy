@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import {
 	parseRelationship,
 	parseStoryId,
@@ -114,6 +114,7 @@ describe('RelationshipGraphPage', () => {
 	});
 
 	it('renders generated bidirectional candidates as separate virtual graph edges', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
 			<RelationshipGraphPage
@@ -131,11 +132,18 @@ describe('RelationshipGraphPage', () => {
 
 		fireEvent.click(await screen.findByRole('button', { name: 'AI 关系助手' }));
 		fireEvent.click(screen.getByRole('tab', { name: '生成双向关系' }));
-		fireEvent.click(screen.getByRole('button', { name: '生成关系候选' }));
+		const generate = screen.getByRole('button', { name: '生成关系候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByRole('button', {
 			name: 'AI 候选关系：林越到沈青，谨慎结盟'
 		})).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByRole('button', {
 			name: 'AI 候选关系：沈青到林越，暗中保护'
 		})).toBeInTheDocument();

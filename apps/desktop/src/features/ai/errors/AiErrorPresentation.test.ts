@@ -37,13 +37,17 @@ describe('AI error presentation', () => {
 		expect(failure.retryable).toBe(true);
 	});
 
-	it('localizes string error codes and preserves safe unknown messages', () => {
+	it('localizes known codes and redacts unstructured unknown messages', () => {
 		expect(normalizeAiError(new Error('authentication_failed')).message)
 			.toBe('API Key 无效或已经失效。');
 		expect(normalizeAiError({ message: '模型暂时不可用' })).toMatchObject({
 			code: 'unknown',
-			message: '模型暂时不可用'
+			message: 'AI 请求失败。'
 		});
+		expect(normalizeAiError(new Error('invalidStoryKernelGenerationResource')).message)
+			.toBe('AI 请求失败。');
+		expect(normalizeAiError('raw internal provider detail').message)
+			.toBe('AI 请求失败。');
 	});
 
 	it('converts structured rejections into an Error without losing metadata', () => {

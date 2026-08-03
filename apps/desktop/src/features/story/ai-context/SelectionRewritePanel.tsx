@@ -309,7 +309,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 
 	return (
 		<section className="selection-rewrite-panel" aria-label="Grounded 选区改写">
-			{pack ? <ContextPackPreview pack={pack} onChange={setPack} /> : <p className="rewrite-loading">正在构建 Context Pack…</p>}
+			{pack ? <ContextPackPreview pack={pack} disabled={generating} onChange={setPack} /> : <p className="rewrite-loading">正在构建 Context Pack…</p>}
 			{error ? <p className="rewrite-error" role="alert"><AlertTriangle size={16} />{error}</p> : null}
 			{candidate && props.onPendingDraft ? (
 				<p className="ai-action-success" role="status">

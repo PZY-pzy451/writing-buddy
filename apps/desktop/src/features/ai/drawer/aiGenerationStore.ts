@@ -24,6 +24,10 @@ import {
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { useStore } from 'zustand';
 import { desktopBridge } from '../../../platform/bridge';
+import {
+	normalizeAiError,
+	toAiRequestError
+} from '../errors/AiErrorPresentation';
 
 export type AiGenerationDrawerState =
 	| 'idle'
@@ -95,13 +99,7 @@ const defaultRuntime: AiGenerationRuntime = {
 };
 
 function errorMessage(error: unknown): string {
-	if (error instanceof Error) {
-		return error.message;
-	}
-	if (typeof error === 'object' && error && 'message' in error) {
-		return String(error.message);
-	}
-	return String(error);
+	return normalizeAiError(error).message;
 }
 
 export function createAiGenerationStore(
@@ -277,7 +275,13 @@ export function createAiGenerationStore(
 					!current.definition
 					|| !current.contextPack
 					|| current.unavailableReason
-					|| current.error
+					|| [
+						'validating_context',
+						'queued',
+						'connecting',
+						'streaming',
+						'validating_output'
+					].includes(current.state)
 				) {
 					return;
 				}
@@ -292,7 +296,11 @@ export function createAiGenerationStore(
 					]);
 					const modelId = preferences.defaultModelId;
 					if (!status.secret.configured || !modelId) {
-						throw new Error('请先在设置中配置并验证 DeepSeek。');
+						throw toAiRequestError({
+							code: 'invalid_configuration',
+							message: '请先在设置中配置并验证 DeepSeek。',
+							retryable: false
+						});
 					}
 					const template = prompts.get(current.definition.promptTemplateId);
 					const jobId = crypto.randomUUID();

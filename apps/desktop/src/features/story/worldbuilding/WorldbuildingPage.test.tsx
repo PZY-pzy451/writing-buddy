@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 import { parseFaction, parseLocation, parseWorldRule } from '@writing-buddy/story-kernel';
 import { WorldbuildingPage } from './WorldbuildingPage';
 import { desktopBridge } from '../../../platform/bridge';
@@ -32,6 +33,7 @@ describe('WorldbuildingPage', () => {
 	});
 
 	it('opens the AI worldbuilding workflow and renders typed location candidates', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
 			<WorldbuildingPage
@@ -50,9 +52,16 @@ describe('WorldbuildingPage', () => {
 		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建世界资料' }));
 		expect(screen.getByRole('complementary', { name: 'AI 世界观助手' })).toBeInTheDocument();
 		expect(screen.getByRole('combobox', { name: '世界观目标类型' })).toHaveValue('location');
-		fireEvent.click(screen.getByRole('button', { name: '生成结构化候选' }));
+		const generate = screen.getByRole('button', { name: '生成结构化候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByRole('heading', { name: '雾钟广场' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByRole('heading', { name: '封闭月台' })).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();
 	});

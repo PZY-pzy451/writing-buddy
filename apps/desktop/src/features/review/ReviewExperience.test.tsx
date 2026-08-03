@@ -261,6 +261,8 @@ describe('manual and AI review experience', () => {
 	});
 
 	it('streams a real-provider-shaped AI review and keeps suggestions author-confirmed', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob');
 		await desktopBridge.saveDeepSeekKey('fixture-key');
 		const user = userEvent.setup();
 		render(<App />);
@@ -270,9 +272,17 @@ describe('manual and AI review experience', () => {
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('tab', { name: /AI 自动审校/ }));
 		await waitFor(() => expect(screen.getByRole('button', { name: /开始 AI 自动审校/ })).toBeEnabled());
-		await user.click(screen.getByRole('button', { name: /开始 AI 自动审校/ }));
+		const start = screen.getByRole('button', { name: /开始 AI 自动审校/ });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				start.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByText('AI 表达建议')).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(cancelAiJob).not.toHaveBeenCalled();
 		expect(screen.getByText('AI')).toBeInTheDocument();
 		expect(screen.getByText(/修改仍由作者确认/)).toBeInTheDocument();
 		expect(useAppStore.getState().issues).toEqual(expect.arrayContaining([expect.objectContaining({
@@ -280,5 +290,7 @@ describe('manual and AI review experience', () => {
 			status: 'open',
 			ruleId: 'ai-chapter-review'
 		})]));
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
 	});
 });

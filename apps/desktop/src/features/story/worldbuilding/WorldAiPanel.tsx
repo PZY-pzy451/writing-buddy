@@ -111,6 +111,7 @@ export function WorldAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -134,12 +135,13 @@ export function WorldAiPanel(props: {
 	};
 
 	const generate = async () => {
-		if (!chapter || disabledReason || generating) return;
+		if (!chapter || disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setBatch(undefined);
 		setError(undefined);
 		setNotice(undefined);
 		setStreamedLength(0);
-		setJobState('created');
+		setJobState('queued');
 		try {
 			const source = await desktopBridge.readText(props.projectRoot, chapter.path);
 			const existingResources = [
@@ -210,6 +212,8 @@ export function WorldAiPanel(props: {
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '世界观候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -278,20 +282,20 @@ export function WorldAiPanel(props: {
 			</header>
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="世界观 AI 动作">
-					<button type="button" role="tab" aria-selected={actionType === 'generate-world-entry'} className={actionType === 'generate-world-entry' ? 'is-active' : ''} onClick={() => selectAction('generate-world-entry')}>快速创建</button>
-					<button type="button" role="tab" aria-selected={actionType === 'extract-worldbuilding'} className={actionType === 'extract-worldbuilding' ? 'is-active' : ''} onClick={() => selectAction('extract-worldbuilding')}>从正文提取</button>
+					<button type="button" role="tab" aria-selected={actionType === 'generate-world-entry'} disabled={generating} className={actionType === 'generate-world-entry' ? 'is-active' : ''} onClick={() => selectAction('generate-world-entry')}>快速创建</button>
+					<button type="button" role="tab" aria-selected={actionType === 'extract-worldbuilding'} disabled={generating} className={actionType === 'extract-worldbuilding' ? 'is-active' : ''} onClick={() => selectAction('extract-worldbuilding')}>从正文提取</button>
 				</div>
 				{actionType === 'generate-world-entry' ? (
 					<label className="ai-review-option">
 						<span>目标类型</span>
-						<select aria-label="世界观目标类型" value={targetType} onChange={event => setTargetType(event.target.value as WorldAnalysisTargetType)}>
+						<select aria-label="世界观目标类型" disabled={generating} value={targetType} onChange={event => setTargetType(event.target.value as WorldAnalysisTargetType)}>
 							{targetTypes.map(type => <option key={type.id} value={type.id}>{type.label}</option>)}
 						</select>
 					</label>
 				) : null}
 				<section className="ai-review-source-card">
 					<div><BookOpen size={18} /><strong>章节范围</strong></div>
-					<select aria-label="选择世界观分析章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
+					<select aria-label="选择世界观分析章节" disabled={generating} value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 						{props.chapters.length === 0 ? <option value="">没有可用章节</option> : null}
 						{props.chapters.map(source => <option key={source.resourceId} value={source.resourceId}>{source.title}</option>)}
 					</select>
@@ -299,7 +303,7 @@ export function WorldAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">

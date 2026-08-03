@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 import {
 	parseForeshadowing,
 	parsePlotThread,
@@ -31,6 +32,7 @@ describe('PlotBoardPage', () => {
 	});
 
 	it('keeps author secrets private by default and reviews generated plot candidates', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
 			<PlotBoardPage
@@ -51,9 +53,16 @@ describe('PlotBoardPage', () => {
 		fireEvent.click(await screen.findByRole('button', { name: 'AI 剧情线与伏笔' }));
 		expect(screen.getByRole('complementary', { name: 'AI 剧情线与伏笔助手' })).toBeInTheDocument();
 		expect(screen.getByRole('checkbox', { name: /允许发送作者秘密/ })).not.toBeChecked();
-		fireEvent.click(screen.getByRole('button', { name: '生成剧情资料候选' }));
+		const generate = screen.getByRole('button', { name: '生成剧情资料候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		expect(await screen.findByRole('heading', { name: '零号月台调查' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByText('剧情前提')).toBeInTheDocument();
 		expect(screen.getByText(/AI 建议/)).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();

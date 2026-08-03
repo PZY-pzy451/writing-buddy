@@ -128,6 +128,7 @@ export function ItemAiPanel(props: {
 	const [activeJobId, setActiveJobId] = useState<string>();
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [applyingId, setApplyingId] = useState<string>();
+	const generationGuardRef = useRef(false);
 	const applyingRef = useRef(false);
 	const [notice, setNotice] = useState<string>();
 	const [error, setError] = useState<string>();
@@ -151,12 +152,13 @@ export function ItemAiPanel(props: {
 	};
 
 	const generate = async () => {
-		if (!chapter || disabledReason || generating) return;
+		if (!chapter || disabledReason || generating || generationGuardRef.current) return;
+		generationGuardRef.current = true;
 		setBatch(undefined);
 		setError(undefined);
 		setNotice(undefined);
 		setStreamedLength(0);
-		setJobState('created');
+		setJobState('queued');
 		try {
 			const source = await desktopBridge.readText(props.projectRoot, chapter.path);
 			const messages = buildItemAnalysisMessages({
@@ -221,6 +223,8 @@ export function ItemAiPanel(props: {
 		} catch (reason) {
 			setJobState('failed');
 			setError(reason instanceof Error ? reason.message : '物品候选生成失败。');
+		} finally {
+			generationGuardRef.current = false;
 		}
 	};
 
@@ -294,12 +298,12 @@ export function ItemAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="物品 AI 动作">
 					{actions.map(candidate => (
-						<button type="button" role="tab" aria-selected={candidate.id === actionType} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => selectAction(candidate.id)}>{candidate.label}</button>
+						<button type="button" role="tab" aria-selected={candidate.id === actionType} disabled={generating} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => selectAction(candidate.id)}>{candidate.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
 					<div><BookOpen size={18} /><strong>章节范围</strong></div>
-					<select aria-label="选择物品分析章节" value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
+					<select aria-label="选择物品分析章节" disabled={generating} value={chapterResourceId} onChange={event => setChapterResourceId(event.target.value)}>
 						{props.chapters.length === 0 ? <option value="">没有可用章节</option> : null}
 						{props.chapters.map(source => <option key={source.resourceId} value={source.resourceId}>{source.title}</option>)}
 					</select>
@@ -307,7 +311,7 @@ export function ItemAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">

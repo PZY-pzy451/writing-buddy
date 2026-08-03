@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	parseStoryId,
@@ -140,6 +140,7 @@ describe('CharacterCenterPage', () => {
 	});
 
 	it('opens the empty-state AI workflow and renders exactly three generated candidates', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
 			<CharacterCenterPage
@@ -160,12 +161,52 @@ describe('CharacterCenterPage', () => {
 		expect(screen.getByRole('combobox', { name: '选择人物分析章节' })).toHaveValue(
 			'chapter:chapter-000000a1'
 		);
-		fireEvent.click(screen.getByRole('button', { name: '生成候选' }));
+		const generate = screen.getByRole('button', { name: '生成候选' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
+		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
 		expect(await screen.findByRole('heading', { name: '顾遥' })).toBeInTheDocument();
 		expect(screen.getByRole('heading', { name: '唐砚' })).toBeInTheDocument();
 		expect(screen.getByRole('heading', { name: '温禾' })).toBeInTheDocument();
 		await desktopBridge.deleteDeepSeekKey();
+		startAiGeneration.mockRestore();
+	});
+
+	it('releases the generation guard after a provider-start failure and allows retry', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockRejectedValueOnce(new Error('temporary provider failure'));
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		render(
+			<CharacterCenterPage
+				projectRoot="browser-fixture"
+				loadData={() => Promise.resolve({ characters: [], states: [] })}
+				chapters={[{
+					resourceId: 'chapter:chapter-000000a1',
+					chapterId: 'chapter-000000a1',
+					title: '第一章 · 雨夜旧站',
+					path: 'chapters/chapter-001.md',
+					narrativeOrder: 0
+				}]}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建人物' }));
+		const generate = screen.getByRole('button', { name: '生成候选' });
+		fireEvent.click(generate);
+		expect(await screen.findByRole('alert')).toHaveTextContent('AI 请求失败');
+		expect(screen.queryByText(/temporary provider failure/u)).not.toBeInTheDocument();
+		expect(generate).toBeEnabled();
+		fireEvent.click(generate);
+
+		expect(await screen.findByRole('heading', { name: '顾遥' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledTimes(2);
+		await desktopBridge.deleteDeepSeekKey();
+		startAiGeneration.mockRestore();
 	});
 
 	it('consumes a global create intent by opening the assistant without starting AI', async () => {
