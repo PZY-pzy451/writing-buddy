@@ -10,6 +10,7 @@ import {
 } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolvePnpmCommand } from '../process/resolvePnpmCommand.mjs';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const acceptanceUrl = 'http://127.0.0.1:1420';
@@ -87,15 +88,8 @@ function printable(command, args) {
 }
 
 function pnpmCommand(args) {
-	const pnpmEntry = process.env.npm_execpath;
-	if (pnpmEntry) {
-		return { command: process.execPath, args: [pnpmEntry, ...args] };
-	}
-	return {
-		command: process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
-		args,
-		shell: process.platform === 'win32'
-	};
+	const resolved = resolvePnpmCommand(args);
+	return { command: resolved.executable, args: resolved.args, shell: resolved.shell };
 }
 
 function git(args) {

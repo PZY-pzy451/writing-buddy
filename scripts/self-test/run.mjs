@@ -8,6 +8,7 @@ import {
 } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolvePnpmCommand } from '../process/resolvePnpmCommand.mjs';
 import { buildImpactPlan, createExecutionSteps, normalizeFiles } from './impact.mjs';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -177,19 +178,7 @@ function resolveCommand(step) {
 	if (step.command !== 'pnpm') {
 		return { executable: step.command, args: step.args, shell: false };
 	}
-	const pnpmEntry = process.env.npm_execpath;
-	if (pnpmEntry && existsSync(pnpmEntry)) {
-		return {
-			executable: process.execPath,
-			args: [pnpmEntry, ...step.args],
-			shell: false
-		};
-	}
-	return {
-		executable: process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
-		args: step.args,
-		shell: process.platform === 'win32'
-	};
+	return resolvePnpmCommand(step.args);
 }
 
 function writeReport(path, report) {
