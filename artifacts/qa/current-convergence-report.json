@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T06:11:59.415Z",
+  "generatedAt": "2026-08-03T06:28:02.422Z",
   "source": {
-    "commit": "0a0c07a3db7d2bca9f4d4e276eb1580b05197271",
+    "commit": "05232c900a362fe4dc95ad09bff5a78cc6d48319",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 729,
-        "runtimeCollected": 729,
+        "frontendInventory": 731,
+        "runtimeCollected": 731,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -42,7 +42,25 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 729
+        "frontendTests": 731
+      }
+    },
+    {
+      "id": "QA-STORY-KERNEL-ACTION-REENTRANCY-005",
+      "summary": "Rapid confirmation clicks could start repeated safety snapshots before React rendered the busy state.",
+      "before": {
+        "repeatedClicks": 100,
+        "synchronousActionGuard": false,
+        "snapshotRequests": 100
+      },
+      "after": {
+        "repeatedClicks": 100,
+        "synchronousActionGuard": true,
+        "snapshotRequests": 1,
+        "atomicWrites": 1,
+        "rejectionStateWrites": 1,
+        "retryAfterSnapshotFailure": true,
+        "frontendTests": 731
       }
     }
   ],
@@ -67,22 +85,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 729
+      "frontendTests": 731
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T06:09:17.954Z",
-      "completedAt": "2026-08-03T06:11:46.273Z",
+      "generatedAt": "2026-08-03T06:25:25.602Z",
+      "completedAt": "2026-08-03T06:27:51.172Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 148318,
+      "durationMs": 145568,
       "vitestFiles": 172,
-      "vitestPassed": 729,
-      "inventoryFrontendTests": 729,
+      "vitestPassed": 731,
+      "inventoryFrontendTests": 731,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -91,10 +109,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T06:11:56.434Z",
-      "completedAt": "2026-08-03T06:11:58.631Z",
+      "generatedAt": "2026-08-03T06:27:59.433Z",
+      "completedAt": "2026-08-03T06:28:01.656Z",
       "status": "PASS",
-      "durationMs": 2196,
+      "durationMs": 2221,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -120,7 +138,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10334,
+    "totalUnmapped": 10328,
     "missingStableSelectors": 223
   },
   "warnings": [

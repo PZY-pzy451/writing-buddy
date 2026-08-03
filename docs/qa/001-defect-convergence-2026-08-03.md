@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `0a0c07a3db7d2bca9f4d4e276eb1580b05197271`
+- Tested source: `05232c900a362fe4dc95ad09bff5a78cc6d48319`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -12,6 +12,23 @@ traceability is still incomplete. This run did not build or approve a release
 package and did not call a real AI provider.
 
 ## Defects fixed
+
+### QA-STORY-KERNEL-ACTION-REENTRANCY-005
+
+The Story Kernel generation button already had a synchronous guard, but author
+confirmation and rejection relied only on React's asynchronous `busyAction`
+state. A deterministic UI test dispatched 100 confirmation clicks before the
+first safety-snapshot Promise resolved. Before the fix, all 100 handlers entered
+and started 100 snapshots, creating a path to repeated commits or repeated
+collision errors.
+
+Confirmation and rejection now share a synchronous action guard that is acquired
+before the first awaited operation and released in `finally`. The focused panel
+suite proves 100 confirmation clicks create exactly one snapshot and one atomic
+commit, while 100 rejection clicks create exactly one candidate-state write.
+It also proves a rejected snapshot leaves the candidate pending, shows a
+localized message, releases the guard, and succeeds on the next author retry.
+The complete 18-test panel suite and wider 731-test frontend run pass.
 
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
@@ -65,8 +82,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 729 frontend cases, including 50
-parameterized instances; Vitest also collects 729. The difference and unresolved
+inventing a count. The current inventory finds 731 frontend cases, including 50
+parameterized instances; Vitest also collects 731. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -85,10 +102,11 @@ console claims.
 
 | Layer | Result |
 | --- | --- |
+| Story Kernel confirmation/rejection pressure | Initial reproduction: 100 clicks / 100 snapshots; fixed panel suite: 18/18 passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 729 tests and production build passed |
-| Static/runtime test reconciliation | 729 / 729; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 731 tests and production build passed |
+| Static/runtime test reconciliation | 731 / 731; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -128,7 +146,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,334 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,328 aggregate mappings
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
