@@ -59,6 +59,7 @@ const emptyUsageSummary: AiUsageSummary = {
 };
 
 export const useAiStore = create<AiStore>((set, get) => {
+	let cancellationRequestJobId: string | undefined;
 	const onStreamEvent = (event: AiStreamEvent) => {
 		const state = get();
 		if (event.jobId !== state.jobId) {
@@ -319,16 +320,35 @@ export const useAiStore = create<AiStore>((set, get) => {
 
 		async cancelGeneration() {
 			const { jobId, jobState, output } = get();
-			if (!jobId || ['completed', 'cancelled', 'failed'].includes(jobState)) {
+			if (
+				!jobId
+				|| ['completed', 'cancelled', 'failed'].includes(jobState)
+				|| cancellationRequestJobId === jobId
+			) {
 				return;
 			}
-			const cancelled = await desktopBridge.cancelAiJob(jobId);
-			if (cancelled) {
-				set({
-					jobState: 'cancelled',
-					durationMs: get().startedAt ? Date.now() - get().startedAt! : undefined,
-					partial: Boolean(output)
-				});
+			cancellationRequestJobId = jobId;
+			set({ error: undefined });
+			try {
+				const cancelled = await desktopBridge.cancelAiJob(jobId);
+				const current = get();
+				if (
+					current.jobId !== jobId
+					|| ['completed', 'cancelled', 'failed'].includes(current.jobState)
+				) return;
+				if (cancelled) {
+					set({
+						jobState: 'cancelled',
+						durationMs: current.startedAt
+							? Date.now() - current.startedAt
+							: undefined,
+						partial: Boolean(output)
+					});
+				}
+			} catch (error) {
+				if (get().jobId === jobId) set({ error: normalizeAiError(error) });
+			} finally {
+				if (cancellationRequestJobId === jobId) cancellationRequestJobId = undefined;
 			}
 		},
 

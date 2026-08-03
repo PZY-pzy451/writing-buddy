@@ -1,6 +1,10 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DEFAULT_AI_PREFERENCES } from '@writing-buddy/ai';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiGenerateRequest,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
 import { vi } from 'vitest';
 import { SettingsPage } from '../../settings/SettingsPage';
 import { desktopBridge } from '../../platform/bridge';
@@ -101,6 +105,94 @@ describe('Phase 1.0A AI experience', () => {
 			await generation;
 		});
 		expect(useAiStore.getState().jobState).toBe('cancelled');
+	});
+
+	it('deduplicates 100 cancellations and ignores a stale cancellation result', async () => {
+		await act(async () => {
+			await useAiStore.getState().initialize();
+			await useAiStore.getState().saveKeyAndValidate('fixture-key');
+			useAiStore.getState().setPrompt('取消结果不能覆盖下一次生成。');
+		});
+		const jobs: Array<{
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		}> = [];
+		const cancellations: Array<(cancelled: boolean) => void> = [];
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => new Promise<void>(resolve => {
+				jobs.push({ request, listener, resolve });
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => cancellations.push(resolve)));
+
+		const firstGeneration = useAiStore.getState().startGeneration();
+		await waitFor(() => expect(useAiStore.getState().jobState).toBe('connecting'));
+		const cancelAttempts = Array.from({ length: 100 }, () => (
+			useAiStore.getState().cancelGeneration()
+		));
+
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+		const first = jobs[0];
+		if (!first) throw new Error('first AI job missing');
+		first.listener({ type: 'completed', jobId: first.request.jobId });
+		const secondGeneration = useAiStore.getState().startGeneration();
+		await waitFor(() => expect(jobs).toHaveLength(2));
+		const second = jobs[1];
+		if (!second) throw new Error('second AI job missing');
+
+		cancellations[0]?.(true);
+		await Promise.all(cancelAttempts);
+		expect(useAiStore.getState()).toMatchObject({
+			jobId: second.request.jobId,
+			jobState: 'connecting'
+		});
+
+		second.listener({ type: 'completed', jobId: second.request.jobId });
+		first.resolve();
+		second.resolve();
+		await Promise.all([firstGeneration, secondGeneration]);
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
+	});
+
+	it('localizes a cancellation failure and permits one explicit retry', async () => {
+		await act(async () => {
+			await useAiStore.getState().initialize();
+			await useAiStore.getState().saveKeyAndValidate('fixture-key');
+			useAiStore.getState().setPrompt('停止失败后仍应允许重试。');
+		});
+		let resolveGeneration: (() => void) | undefined;
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => new Promise<void>(resolve => {
+				resolveGeneration = resolve;
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockRejectedValueOnce(new Error('raw native cancellation detail'))
+			.mockResolvedValueOnce(true);
+
+		const generation = useAiStore.getState().startGeneration();
+		await waitFor(() => expect(useAiStore.getState().jobState).toBe('connecting'));
+		await useAiStore.getState().cancelGeneration();
+		expect(useAiStore.getState()).toMatchObject({
+			jobState: 'connecting',
+			error: { message: 'AI 请求失败。' }
+		});
+		await useAiStore.getState().cancelGeneration();
+		expect(cancelAiJob).toHaveBeenCalledTimes(2);
+		expect(useAiStore.getState()).toMatchObject({
+			jobState: 'cancelled',
+			error: undefined
+		});
+
+		resolveGeneration?.();
+		await generation;
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
 	});
 
 	it('persists the provider maximum and explains long-form output cost', async () => {

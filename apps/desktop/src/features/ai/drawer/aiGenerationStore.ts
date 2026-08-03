@@ -109,6 +109,8 @@ export function createAiGenerationStore(
 	const prompts = createDefaultPromptRegistry();
 	let pendingDelta = '';
 	let flushTimer: number | undefined;
+	let generationAttempt = 0;
+	let cancellationRequestJobId: string | undefined;
 
 	return createStore<AiGenerationStore>((set, get) => {
 		const flushOutput = () => {
@@ -210,9 +212,10 @@ export function createAiGenerationStore(
 		return {
 			...initial,
 			openAiAction(actionId, input, scope) {
+				generationAttempt += 1;
 				const activeJobId = get().jobId;
 				if (activeJobId && ['queued', 'connecting', 'streaming'].includes(get().state)) {
-					void runtime.cancelAiJob(activeJobId);
+					void runtime.cancelAiJob(activeJobId).catch(() => undefined);
 				}
 				pendingDelta = '';
 				if (flushTimer !== undefined) {
@@ -285,6 +288,7 @@ export function createAiGenerationStore(
 				) {
 					return;
 				}
+				const attempt = ++generationAttempt;
 				set({ state: 'validating_context', error: undefined, rawOutput: '' });
 				try {
 					if (current.jobId && ['queued', 'connecting', 'streaming'].includes(current.state)) {
@@ -294,6 +298,7 @@ export function createAiGenerationStore(
 						runtime.getAiProviderStatus(),
 						runtime.getAiPreferences()
 					]);
+					if (attempt !== generationAttempt) return;
 					const modelId = preferences.defaultModelId;
 					if (!status.secret.configured || !modelId) {
 						throw toAiRequestError({
@@ -340,16 +345,37 @@ export function createAiGenerationStore(
 					});
 					await runtime.startAiGeneration(request, onStreamEvent);
 				} catch (error) {
-					set({ state: 'failed', error: errorMessage(error) });
+					if (attempt === generationAttempt) {
+						set({ state: 'failed', error: errorMessage(error) });
+					}
 				}
 			},
 			async cancelGeneration() {
 				const { jobId, state } = get();
-				if (!jobId || !['queued', 'connecting', 'streaming'].includes(state)) return;
-				const cancelled = await runtime.cancelAiJob(jobId);
-				if (cancelled) {
-					flushOutput();
-					set({ state: 'cancelled' });
+				if (
+					!jobId
+					|| !['queued', 'connecting', 'streaming'].includes(state)
+					|| cancellationRequestJobId === jobId
+				) return;
+				cancellationRequestJobId = jobId;
+				set({ error: undefined });
+				try {
+					const cancelled = await runtime.cancelAiJob(jobId);
+					const current = get();
+					if (
+						current.jobId !== jobId
+						|| !['queued', 'connecting', 'streaming'].includes(current.state)
+					) return;
+					if (cancelled) {
+						flushOutput();
+						set({ state: 'cancelled' });
+					}
+				} catch (error) {
+					if (get().jobId === jobId) set({ error: errorMessage(error) });
+				} finally {
+					if (cancellationRequestJobId === jobId) {
+						cancellationRequestJobId = undefined;
+					}
 				}
 			},
 			rejectPreview() {
@@ -377,9 +403,10 @@ export function createAiGenerationStore(
 				}
 			},
 			reset() {
+				generationAttempt += 1;
 				const jobId = get().jobId;
 				if (jobId && ['queued', 'connecting', 'streaming'].includes(get().state)) {
-					void runtime.cancelAiJob(jobId);
+					void runtime.cancelAiJob(jobId).catch(() => undefined);
 				}
 				set(initial);
 			}

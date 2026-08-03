@@ -35,8 +35,10 @@ interface ReviewAutomationStore {
 
 const terminalStates: readonly AiJobState[] = ['completed', 'cancelled', 'failed'];
 
-export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get) => ({
-	jobState: 'created',
+export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get) => {
+	let cancellationRequestJobId: string | undefined;
+	return {
+		jobState: 'created',
 
 	async run(input) {
 		const activeJobId = get().jobId;
@@ -156,11 +158,13 @@ export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get)
 			};
 			void desktopBridge.startAiGeneration(request, onEvent).catch(cause => {
 				const error = normalizeAiError(cause);
-				set({
-					jobState: 'failed',
-					durationMs: Date.now() - (get().startedAt ?? Date.now()),
-					error
-				});
+				if (get().jobId === jobId && !settled) {
+					set({
+						jobState: 'failed',
+						durationMs: Date.now() - (get().startedAt ?? Date.now()),
+						error
+					});
+				}
 				finish(undefined, error);
 			});
 		});
@@ -168,14 +172,29 @@ export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get)
 
 	async cancel() {
 		const { jobId, jobState, startedAt } = get();
-		if (!jobId || terminalStates.includes(jobState)) {
+		if (
+			!jobId
+			|| terminalStates.includes(jobState)
+			|| cancellationRequestJobId === jobId
+		) {
 			return;
 		}
-		if (await desktopBridge.cancelAiJob(jobId)) {
-			set({
-				jobState: 'cancelled',
-				durationMs: Date.now() - (startedAt ?? Date.now())
-			});
+		cancellationRequestJobId = jobId;
+		set({ error: undefined });
+		try {
+			const cancelled = await desktopBridge.cancelAiJob(jobId);
+			const current = get();
+			if (current.jobId !== jobId || terminalStates.includes(current.jobState)) return;
+			if (cancelled) {
+				set({
+					jobState: 'cancelled',
+					durationMs: Date.now() - (startedAt ?? Date.now())
+				});
+			}
+		} catch (cause) {
+			if (get().jobId === jobId) set({ error: normalizeAiError(cause) });
+		} finally {
+			if (cancellationRequestJobId === jobId) cancellationRequestJobId = undefined;
 		}
 	},
 
@@ -190,5 +209,6 @@ export const useReviewAutomationStore = create<ReviewAutomationStore>((set, get)
 				error: undefined
 			});
 		}
-	}
-}));
+		}
+	};
+});

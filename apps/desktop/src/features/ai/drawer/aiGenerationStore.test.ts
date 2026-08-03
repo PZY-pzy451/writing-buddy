@@ -49,6 +49,19 @@ const chapterScope = {
 	}
 } as const;
 
+const nextChapterScope = {
+	...chapterScope,
+	baseRevision: 9,
+	context: {
+		...chapterScope.context,
+		currentResource: {
+			id: 'chapter-2',
+			title: '第五章 雨停以后',
+			summary: '雨停以后，旧桥下只剩一把伞。'
+		}
+	}
+} as const;
+
 describe('aiGenerationStore', () => {
 	it('streams through the shared runtime, validates output and creates a preview', async () => {
 		const output = JSON.stringify({ issues: [] });
@@ -113,6 +126,133 @@ describe('aiGenerationStore', () => {
 
 		expect(startAiGeneration).toHaveBeenCalledTimes(2);
 		expect(store.getState().state).toBe('preview');
+	});
+
+	it('does not attach a validating request to an action opened later', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		let resolveStatus: ((status: Awaited<ReturnType<AiGenerationRuntime['getAiProviderStatus']>>) => void) | undefined;
+		const getAiProviderStatus = vi.fn(() => new Promise<
+			Awaited<ReturnType<AiGenerationRuntime['getAiProviderStatus']>>
+		>(resolve => {
+			resolveStatus = resolve;
+		}));
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+		const firstAttempt = store.getState().startGeneration();
+		expect(store.getState().state).toBe('validating_context');
+		store.getState().openAiAction('review.consistency', {}, nextChapterScope);
+		resolveStatus?.(await fallback.getAiProviderStatus());
+		await firstAttempt;
+
+		expect(startAiGeneration).not.toHaveBeenCalled();
+		expect(store.getState()).toMatchObject({
+			state: 'idle',
+			contextPack: {
+				currentResource: { resourceId: 'chapter-2' }
+			}
+		});
+	});
+
+	it('deduplicates 100 cancellations and ignores their stale completion', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		const jobs: Array<{
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		}> = [];
+		const cancellations: Array<(cancelled: boolean) => void> = [];
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => new Promise<void>(resolve => {
+			jobs.push({ request, listener, resolve });
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+		}));
+		const cancelAiJob = vi.fn(() => new Promise<boolean>(resolve => cancellations.push(resolve)));
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+		const firstGeneration = store.getState().startGeneration();
+		await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+		const cancelAttempts = Array.from({ length: 100 }, () => (
+			store.getState().cancelGeneration()
+		));
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+
+		const first = jobs[0];
+		if (!first) throw new Error('first drawer job missing');
+		first.listener({ type: 'cancelled', jobId: first.request.jobId });
+		store.getState().openAiAction('review.consistency', {}, nextChapterScope);
+		const secondGeneration = store.getState().startGeneration();
+		await vi.waitFor(() => expect(jobs).toHaveLength(2));
+		const second = jobs[1];
+		if (!second) throw new Error('second drawer job missing');
+
+		cancellations[0]?.(true);
+		await Promise.all(cancelAttempts);
+		expect(store.getState()).toMatchObject({
+			jobId: second.request.jobId,
+			state: 'connecting'
+		});
+
+		second.listener({
+			type: 'content_delta',
+			jobId: second.request.jobId,
+			text: JSON.stringify({ issues: [] })
+		});
+		second.listener({ type: 'completed', jobId: second.request.jobId });
+		first.resolve();
+		second.resolve();
+		await Promise.all([firstGeneration, secondGeneration]);
+		expect(store.getState()).toMatchObject({ state: 'preview' });
+	});
+
+	it('localizes a drawer cancellation failure and permits retry', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		let resolveGeneration: (() => void) | undefined;
+		let activeJob: {
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+		} | undefined;
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => new Promise<void>(resolve => {
+			resolveGeneration = resolve;
+			activeJob = { request, listener };
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+		}));
+		const cancelAiJob = vi.fn()
+			.mockRejectedValueOnce(new Error('raw drawer cancellation detail'))
+			.mockResolvedValueOnce(true);
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+		const generation = store.getState().startGeneration();
+		await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+		await store.getState().cancelGeneration();
+		expect(store.getState()).toMatchObject({
+			state: 'connecting',
+			error: 'AI 请求失败。'
+		});
+		await store.getState().cancelGeneration();
+		expect(cancelAiJob).toHaveBeenCalledTimes(2);
+		expect(store.getState()).toMatchObject({
+			state: 'cancelled',
+			error: undefined
+		});
+
+		if (!activeJob) throw new Error('drawer cancellation job missing');
+		resolveGeneration?.();
+		await generation;
 	});
 
 	it('previews exactly the context accepted by the fixed chapter-review contract', async () => {

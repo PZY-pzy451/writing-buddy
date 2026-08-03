@@ -1,6 +1,10 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DEFAULT_AI_PREFERENCES } from '@writing-buddy/ai';
+import {
+	DEFAULT_AI_PREFERENCES,
+	type AiGenerateRequest,
+	type AiStreamEvent
+} from '@writing-buddy/ai';
 import { flattenChapters } from '@writing-buddy/domain';
 import { runLocalReview } from '@writing-buddy/review';
 import { App } from '../../app/App';
@@ -290,6 +294,119 @@ describe('manual and AI review experience', () => {
 			status: 'open',
 			ruleId: 'ai-chapter-review'
 		})]));
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
+	});
+
+	it('deduplicates 100 review cancellations and isolates a late start failure', async () => {
+		const jobs: Array<{
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+			reject: (reason: unknown) => void;
+		}> = [];
+		const cancellations: Array<(cancelled: boolean) => void> = [];
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => new Promise<void>((resolve, reject) => {
+				jobs.push({ request, listener, resolve, reject });
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockImplementation(() => new Promise<boolean>(resolve => cancellations.push(resolve)));
+		const input = {
+			projectId: 'project-review-race',
+			resourceId: 'chapter:review-race',
+			content: '雨停以后，旧桥下只剩一把伞。',
+			preferences: DEFAULT_AI_PREFERENCES
+		};
+
+		const firstRun = useReviewAutomationStore.getState().run(input);
+		await waitFor(() => expect(useReviewAutomationStore.getState().jobState).toBe('connecting'));
+		const cancelAttempts = Array.from({ length: 100 }, () => (
+			useReviewAutomationStore.getState().cancel()
+		));
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+
+		const first = jobs[0];
+		if (!first) throw new Error('first review job missing');
+		first.listener({ type: 'cancelled', jobId: first.request.jobId });
+		await firstRun;
+		const secondRun = useReviewAutomationStore.getState().run(input);
+		await waitFor(() => expect(jobs).toHaveLength(2));
+		const second = jobs[1];
+		if (!second) throw new Error('second review job missing');
+
+		first.reject(new Error('late failure from cancelled review'));
+		await Promise.resolve();
+		expect(useReviewAutomationStore.getState()).toMatchObject({
+			jobId: second.request.jobId,
+			jobState: 'connecting',
+			error: undefined
+		});
+		cancellations[0]?.(true);
+		await Promise.all(cancelAttempts);
+		expect(useReviewAutomationStore.getState()).toMatchObject({
+			jobId: second.request.jobId,
+			jobState: 'connecting'
+		});
+
+		second.listener({
+			type: 'content_delta',
+			jobId: second.request.jobId,
+			text: JSON.stringify({ issues: [] })
+		});
+		second.listener({ type: 'completed', jobId: second.request.jobId });
+		second.resolve();
+		await secondRun;
+		expect(useReviewAutomationStore.getState().jobState).toBe('completed');
+		startAiGeneration.mockRestore();
+		cancelAiJob.mockRestore();
+	});
+
+	it('localizes a review cancellation failure and permits retry', async () => {
+		let activeJob: {
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		} | undefined;
+		let resolveCancellation: ((cancelled: boolean) => void) | undefined;
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => new Promise<void>(resolve => {
+				activeJob = { request, listener, resolve };
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
+			.mockRejectedValueOnce(new Error('raw review cancellation detail'))
+			.mockImplementationOnce(() => new Promise<boolean>(resolve => {
+				resolveCancellation = resolve;
+			}));
+		const run = useReviewAutomationStore.getState().run({
+			projectId: 'project-review-retry',
+			resourceId: 'chapter:review-retry',
+			content: '旧桥下只剩一把伞。',
+			preferences: DEFAULT_AI_PREFERENCES
+		});
+		await waitFor(() => expect(useReviewAutomationStore.getState().jobState).toBe('connecting'));
+
+		await useReviewAutomationStore.getState().cancel();
+		expect(useReviewAutomationStore.getState()).toMatchObject({
+			jobState: 'connecting',
+			error: { message: 'AI 请求失败。' }
+		});
+		const retry = useReviewAutomationStore.getState().cancel();
+		expect(cancelAiJob).toHaveBeenCalledTimes(2);
+		if (!activeJob) throw new Error('review cancellation job missing');
+		activeJob.listener({ type: 'cancelled', jobId: activeJob.request.jobId });
+		resolveCancellation?.(true);
+		await retry;
+		activeJob.resolve();
+		await run;
+		expect(useReviewAutomationStore.getState()).toMatchObject({
+			jobState: 'cancelled',
+			error: undefined
+		});
 		startAiGeneration.mockRestore();
 		cancelAiJob.mockRestore();
 	});
