@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T06:41:23.788Z",
+  "generatedAt": "2026-08-03T07:16:30.476Z",
   "source": {
-    "commit": "e1abfab38a2f833f6a3477faaea37591746bd4b2",
+    "commit": "81f94e36271bfb6dc3e87b87cba604159c998544",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 734,
-        "runtimeCollected": 734,
+        "frontendInventory": 742,
+        "runtimeCollected": 742,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -42,7 +42,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 734
+        "frontendTests": 742
       }
     },
     {
@@ -60,7 +60,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 734
+        "frontendTests": 742
       }
     },
     {
@@ -78,7 +78,30 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 734
+        "frontendTests": 742
+      }
+    },
+    {
+      "id": "QA-AI-CANCEL-SURFACE-REENTRANCY-007",
+      "summary": "Adjacent AI stop controls could issue repeated native cancellation commands, and extraction issued two native commands for one click.",
+      "before": {
+        "auditedCancellationPaths": 13,
+        "repeatedClicks": 100,
+        "selectionRewriteNativeCommands": 100,
+        "extractionNativeCommandsPerClick": 2,
+        "sharedCancellationContract": false
+      },
+      "after": {
+        "guardedCancellationPaths": 13,
+        "repeatedClicks": 100,
+        "nativeCommandsPerActiveJob": 1,
+        "sharedCancellationContract": true,
+        "pendingFeedback": true,
+        "retryAfterCommandFailure": true,
+        "retryAfterJobNotFound": true,
+        "unknownErrorsLocalized": true,
+        "focusedTests": 21,
+        "frontendTests": 742
       }
     }
   ],
@@ -103,22 +126,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 734
+      "frontendTests": 742
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T06:38:46.528Z",
-      "completedAt": "2026-08-03T06:41:12.296Z",
+      "generatedAt": "2026-08-03T07:13:49.924Z",
+      "completedAt": "2026-08-03T07:16:15.986Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 145766,
-      "vitestFiles": 172,
-      "vitestPassed": 734,
-      "inventoryFrontendTests": 734,
+      "durationMs": 146061,
+      "vitestFiles": 173,
+      "vitestPassed": 742,
+      "inventoryFrontendTests": 742,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -127,10 +150,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T06:41:20.843Z",
-      "completedAt": "2026-08-03T06:41:23.042Z",
+      "generatedAt": "2026-08-03T07:16:24.763Z",
+      "completedAt": "2026-08-03T07:16:26.925Z",
       "status": "PASS",
-      "durationMs": 2197,
+      "durationMs": 2161,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -156,7 +179,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10282,
+    "totalUnmapped": 10191,
     "missingStableSelectors": 223
   },
   "warnings": [

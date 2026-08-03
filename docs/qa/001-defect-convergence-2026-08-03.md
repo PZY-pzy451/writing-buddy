@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `e1abfab38a2f833f6a3477faaea37591746bd4b2`
+- Tested source: `81f94e36271bfb6dc3e87b87cba604159c998544`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -44,6 +44,28 @@ terminal event. A thrown command or a `false` job-not-found result releases the
 guard and restores the stop action for retry. Three focused contracts cover all
 of these paths; the complete panel suite passes 21 tests and never claims that
 generation stopped before receiving the cancellation event.
+
+### QA-AI-CANCEL-SURFACE-REENTRANCY-007
+
+The same stop-generation boundary remained open in 13 adjacent user-facing
+paths. The failing selection-rewrite reproduction sent 100 native cancellation
+commands for 100 same-tick clicks. Manuscript extraction had a second defect:
+one click called cancellation through its runner and then called the native
+bridge again from the page, producing two commands without any rapid clicking.
+
+Ten direct AI controls now use one shared cancellation component with a
+synchronous per-job guard, explicit `正在取消` feedback, a stable selector and
+stale-job result isolation. Genre generation, whole-work consistency scanning
+and manuscript extraction retain their composite stop semantics behind
+equivalent synchronous locks. Failed commands and missing native jobs release
+the relevant guard for retry; unknown internal command errors are replaced by
+stable author-facing copy. Extraction now gives the runner sole ownership of
+the active native cancellation callback.
+
+Four shared-control contracts plus deterministic selection-rewrite,
+whole-work-scan, extraction and genre tests form a 21-test focused cancellation
+suite. All pass, as do 32 affected-page tests covering the panels that consume
+the shared control.
 
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
@@ -97,8 +119,8 @@ unexplained difference of 49.
 The scanner now uses the TypeScript AST. It expands literal and identifier-backed
 `it.each` tables and statically bounded object loops, records declaration and
 case metadata, and exposes unresolved dynamic parameterization instead of
-inventing a count. The current inventory finds 734 frontend cases, including 50
-parameterized instances; Vitest also collects 734. The difference and unresolved
+inventing a count. The current inventory finds 742 frontend cases, including 50
+parameterized instances; Vitest also collects 742. The difference and unresolved
 declaration count are both zero.
 
 ### QA-WINDOWS-PNPM-SHELL-002
@@ -119,10 +141,11 @@ console claims.
 | --- | --- |
 | Story Kernel confirmation/rejection pressure | Initial reproduction: 100 clicks / 100 snapshots; fixed panel suite: 18/18 passed |
 | Story Kernel cancellation pressure | Initial reproduction: 100 clicks / 100 native commands; fixed panel suite: 21/21 passed |
+| Adjacent AI cancellation pressure | 13 paths audited; selection rewrite 100 clicks / 100 commands and extraction 1 click / 2 commands before fixes; 21 focused and 32 impacted-page tests passed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 172 files / 734 tests and production build passed |
-| Static/runtime test reconciliation | 734 / 734; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 173 files / 742 tests and production build passed |
+| Static/runtime test reconciliation | 742 / 742; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -162,7 +185,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,282 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,191 aggregate mappings
   are open and 223 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

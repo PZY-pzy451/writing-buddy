@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 736,
-    "edgeCount": 1264,
+    "nodeCount": 738,
+    "edgeCount": 1284,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -239,6 +239,8 @@
       "apps/desktop/src/features/shared/presentation/presentation.css",
       "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
       "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+      "apps/desktop/src/features/story/ai-context/AiJobCancelButton.test.tsx",
+      "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
       "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
       "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
       "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -1729,6 +1731,11 @@
       },
       {
         "from": "apps/desktop/src/features/creation-journey/CreationJourneyPage.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/creation-journey/CreationJourneyPage.tsx",
         "to": "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "kind": "static-import"
       },
@@ -1805,6 +1812,11 @@
       {
         "from": "apps/desktop/src/features/creation-journey/GenreToOutlineExperience.test.tsx",
         "to": "apps/desktop/src/platform/bridge.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/creation-journey/GenreToOutlineExperience.test.tsx",
+        "to": "packages/ai/src/index.ts",
         "kind": "static-import"
       },
       {
@@ -2923,6 +2935,26 @@
         "kind": "static-import"
       },
       {
+        "from": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.test.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.test.tsx",
+        "to": "apps/desktop/src/platform/bridge.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "to": "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "to": "apps/desktop/src/platform/bridge.ts",
+        "kind": "static-import"
+      },
+      {
         "from": "apps/desktop/src/features/story/ai-context/ContextPackPreview.test.tsx",
         "to": "apps/desktop/src/features/story/ai-context/ContextPackPreview.tsx",
         "kind": "static-import"
@@ -3055,6 +3087,11 @@
       {
         "from": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "kind": "static-import"
       },
       {
@@ -3199,6 +3236,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/ai-context/ScenePlanningPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/ScenePlanningPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/ContextPackPreview.tsx",
         "kind": "static-import"
       },
@@ -3259,12 +3301,27 @@
       },
       {
         "from": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+        "to": "apps/desktop/src/platform/bridge.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+        "to": "packages/ai/src/index.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
         "to": "packages/story-kernel/src/index.ts",
         "kind": "static-import"
       },
       {
         "from": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.tsx",
         "to": "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "kind": "static-import"
       },
       {
@@ -3614,6 +3671,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/assets/ItemAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/assets/ItemAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "kind": "static-import"
       },
@@ -3854,6 +3916,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/characters/CharacterAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/characters/CharacterAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "kind": "static-import"
       },
@@ -4084,6 +4151,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
+        "to": "packages/ai/src/index.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
         "to": "packages/story-kernel/src/index.ts",
         "kind": "static-import"
       },
@@ -4304,7 +4376,17 @@
       },
       {
         "from": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+        "to": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
         "to": "apps/desktop/src/platform/bridge.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+        "to": "packages/ai/src/index.ts",
         "kind": "static-import"
       },
       {
@@ -4639,6 +4721,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/plots/PlotAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/plots/PlotAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "kind": "static-import"
       },
@@ -4819,6 +4906,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/relationships/RelationshipAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/relationships/RelationshipAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "kind": "static-import"
       },
@@ -4975,6 +5067,11 @@
       {
         "from": "apps/desktop/src/features/story/timeline/TimelineAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/timeline/TimelineAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "kind": "static-import"
       },
       {
@@ -5190,6 +5287,11 @@
       {
         "from": "apps/desktop/src/features/story/worldbuilding/WorldAiPanel.tsx",
         "to": "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/worldbuilding/WorldAiPanel.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "kind": "static-import"
       },
       {
@@ -7546,6 +7648,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -7724,8 +7827,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "DA3B2A3A1548A7C9E7594BFBC511111A9CBF4F5B627395980694DC50131591C6",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "8E4F40281FB26563236159059E2EE64378AD4618B29C91A695C653B5CD58C082",
       "testImplementationFingerprint": "13F2C91C567A35323BA51983E23553FBE1EBAADD53A358F94BB2AF5049A335D4"
     },
     {
@@ -8444,6 +8547,7 @@
         "apps/desktop/src/features/quick-capture/QuickCaptureModel.ts",
         "apps/desktop/src/features/quick-capture/QuickCaptureStore.ts",
         "apps/desktop/src/features/save/SaveStateModel.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
         "apps/desktop/src/features/story/application/StoryIndexService.ts",
@@ -8501,8 +8605,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7FCE95F6D160527C63FEA0292C8209455B542E3F42801BE00926251FACC2F3FB",
-      "dependencyFingerprint": "501E1D9A0E0E9EE5AD79CE715869ED04C979E9253D19DA1F94FA7E2CB3BC3563",
+      "sourceFingerprint": "4BF6F8C97D67ADC60C71086F986BC75AB151E0993BF1F9845760559AFCD5DAFD",
+      "dependencyFingerprint": "33A2D85A55F8DEB4C679953D00C30368FA96267FAA1A8AE6DB1BC9CDBE62AB99",
       "testImplementationFingerprint": "D8814A8324DF6908A80ECBE5EB54167BD9354EF25C85E89275D1D075838AE3FA"
     },
     {
@@ -8608,6 +8712,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -8786,8 +8891,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "340A445EB972005AB59BE0AE6AD31BF2A8F79F1A9EB65BB46E277C1B4A558423",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "3ADD14F801961D346040AC083C2ADF944364B94B5A2EB12954E33C3398456566",
       "testImplementationFingerprint": "75BC38CFBF14B6BEDCC3AC8806980DC432263DC942ED0A02F562CFF6DB3385FE"
     },
     {
@@ -8903,13 +9008,15 @@
       "testSource": "apps/desktop/src/features/creation-journey/GenreToOutlineExperience.test.tsx",
       "testCaseIds": [
         "TC-DISCOVERED-1EE7053AEA",
-        "TC-DISCOVERED-80B6458A5A"
+        "TC-DISCOVERED-80B6458A5A",
+        "TC-DISCOVERED-D5E5E0B5EC"
       ],
       "directDependencies": [
         "apps/desktop/src/app/store.ts",
         "apps/desktop/src/features/creation-journey/CreationJourneyModel.ts",
         "apps/desktop/src/features/creation-journey/CreationJourneyPage.tsx",
-        "apps/desktop/src/platform/bridge.ts"
+        "apps/desktop/src/platform/bridge.ts",
+        "packages/ai/src/index.ts"
       ],
       "transitiveDependencies": [
         "apps/desktop/src/accessibility/useModalFocus.ts",
@@ -8937,6 +9044,7 @@
         "apps/desktop/src/features/quick-capture/QuickCaptureModel.ts",
         "apps/desktop/src/features/quick-capture/QuickCaptureStore.ts",
         "apps/desktop/src/features/save/SaveStateModel.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
         "apps/desktop/src/features/story/application/StoryIndexService.ts",
@@ -8994,9 +9102,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7FCE95F6D160527C63FEA0292C8209455B542E3F42801BE00926251FACC2F3FB",
-      "dependencyFingerprint": "1ED2C67739178E91BA972EDA855EB34E996A7390F32EF0D0ECE84F817688204A",
-      "testImplementationFingerprint": "786B07017D9991D286D7C442906D67AC31FC3AC4DDC57E95BB3AFCB5DA5D5C8C"
+      "sourceFingerprint": "4BF6F8C97D67ADC60C71086F986BC75AB151E0993BF1F9845760559AFCD5DAFD",
+      "dependencyFingerprint": "58663BC1E5387F3B403CE696E6A2CB24F7A4C24D55A77BE8C1750F8907721C76",
+      "testImplementationFingerprint": "B3B3EC63C24D2038BF0A2CE5736EE850EEC27B6CA37B184FE042869DD6A6DA90"
     },
     {
       "testSource": "apps/desktop/src/features/creation-journey/GenreToOutlineGenerationService.test.ts",
@@ -10424,6 +10532,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -10602,8 +10711,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "A234C6CADB89E1DD52FBDF557E8D0CA02495289A8B4856CBA5055923CB1BCC93",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "35097BD4D89BEA79C04B6F786E60C52739A6136F59B37A0EFE31DA33C53F7DF7",
       "testImplementationFingerprint": "49C7AD5936045CB9293D988C8EE47D1E6B4A48094FE78C46B05BA2BBCA70C56E"
     },
     {
@@ -10757,6 +10866,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -10935,8 +11045,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "9696E03F0BDE746D285A835FE00673F7F2911883476244F1492F3FDE43692EFD",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "C7FB1C70F4BEBD0D54D8D006F22342404D0F953948D3CFAA3B083107140C4AF4",
       "testImplementationFingerprint": "72250645E14D18D55568D91FD0BC684F0A1D7FEE7BAF085341690745AF25607A"
     },
     {
@@ -11096,6 +11206,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -11274,8 +11385,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "9C0F254F23C2F6F72BE7C5B261979E81877218D6E7D4BF46342B05C5AEDB52B7",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "065900A485A5FC84BF8274C7E7C9ACC6DEAE7CE806208CBABBE79758A89A3452",
       "testImplementationFingerprint": "58C03DEE2DA94C5F55C8609B6F4043420559806B969DE765D10E6AF9A6A3DA00"
     },
     {
@@ -11604,6 +11715,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -11782,8 +11894,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "63E7BDBA8BDF1AAEE05CC066F2A00DCC8E71ADE53F980CE66C71A94534E1116B",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "882E0A5E9841856D31D4831376A19022624E5EAC1261C41010F18C935171BC74",
       "testImplementationFingerprint": "D686B96C45A0AEA5186DE801CB2F4C1B59F503CCEC9877E274B2F4AC4AF1F444"
     },
     {
@@ -12234,6 +12346,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -12412,8 +12525,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "0AE316BCBD6F77FDE8958340F526F3CD9AA4285CD06D747F76B97E247F2998B2",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "6E09420711348B330E7EAAFEAE42E84363CD3C58F658CD5B2A9E2E457EFFC62D",
       "testImplementationFingerprint": "C7B5B7D088E5AE84FE3158638394EC237C74F7CBFC0BD414A8824A78D537648F"
     },
     {
@@ -12640,6 +12753,75 @@
       "sourceFingerprint": "FD3C96B8258DE9F9DD763D2E3AE0023BFCAFCA452F6CE2E33C3B237EFCA5E256",
       "dependencyFingerprint": "DEA689EA881A0C0EBDD518A5B01462ABF4FBC33D8A35E22DD8E164CEB2346E06",
       "testImplementationFingerprint": "D016AF0907BD7DF6F33C354A9AA7512D586996B4F13696EA5843A008F271E111"
+    },
+    {
+      "testSource": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.test.tsx",
+      "testCaseIds": [
+        "TC-DISCOVERED-1B876F29C6",
+        "TC-DISCOVERED-B388F08F3E",
+        "TC-DISCOVERED-DDCFE1488F",
+        "TC-DISCOVERED-F4BD84F4E3"
+      ],
+      "directDependencies": [
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "apps/desktop/src/platform/bridge.ts"
+      ],
+      "transitiveDependencies": [
+        "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
+        "apps/desktop/src/platform/bridge.ts",
+        "packages/ai/src/index.ts",
+        "packages/domain/src/index.ts",
+        "packages/platform-ports/src/index.ts",
+        "packages/project/src/ProjectStructureMove.ts",
+        "packages/project/src/ProjectTemplateRegistry.ts",
+        "packages/project/src/index.ts",
+        "packages/review/src/index.ts",
+        "packages/story-kernel/src/ids/StoryId.ts",
+        "packages/story-kernel/src/index.ts",
+        "packages/story-kernel/src/model/Character.ts",
+        "packages/story-kernel/src/model/EvidenceRef.ts",
+        "packages/story-kernel/src/model/Faction.ts",
+        "packages/story-kernel/src/model/Foreshadowing.ts",
+        "packages/story-kernel/src/model/ItemState.ts",
+        "packages/story-kernel/src/model/KnowledgeState.ts",
+        "packages/story-kernel/src/model/Location.ts",
+        "packages/story-kernel/src/model/MentionLink.ts",
+        "packages/story-kernel/src/model/PendingFact.ts",
+        "packages/story-kernel/src/model/PlotThread.ts",
+        "packages/story-kernel/src/model/Relationship.ts",
+        "packages/story-kernel/src/model/Scene.ts",
+        "packages/story-kernel/src/model/StateRecord.ts",
+        "packages/story-kernel/src/model/StoryInformation.ts",
+        "packages/story-kernel/src/model/StoryItem.ts",
+        "packages/story-kernel/src/model/StoryPosition.ts",
+        "packages/story-kernel/src/model/StoryResourceBase.ts",
+        "packages/story-kernel/src/model/TimelineEvent.ts",
+        "packages/story-kernel/src/model/WorldRule.ts",
+        "packages/story-kernel/src/query/ContextPackBuilder.ts",
+        "packages/story-kernel/src/query/TimelineQuery.ts",
+        "packages/story-kernel/src/query/TokenBudgetPolicy.ts",
+        "packages/story-kernel/src/repository/StoryPaths.ts",
+        "packages/story-kernel/src/repository/StoryRepository.ts",
+        "packages/story-kernel/src/schema/migrations/v0-to-v1.ts",
+        "packages/story-kernel/src/schema/resourceSchemas.ts",
+        "packages/story-kernel/src/schema/schemaRegistry.ts",
+        "packages/story-kernel/src/schema/storyManifestSchema.ts",
+        "packages/story-kernel/src/transaction/SceneMoveTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryDragTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryTransaction.ts",
+        "packages/story-kernel/src/validation/ContinuityEngine.ts",
+        "packages/story-kernel/src/validation/RuleIssue.ts",
+        "packages/story-kernel/src/validation/informationRules.ts",
+        "packages/story-kernel/src/validation/itemRules.ts",
+        "packages/story-kernel/src/validation/locationRules.ts",
+        "packages/story-kernel/src/validation/plotRules.ts",
+        "packages/story-kernel/src/validation/timeRules.ts",
+        "packages/version/src/index.ts"
+      ],
+      "sourceFingerprint": "50A76AE169BE7ACD027CAC7D2B4E297C847AA7814DE313A66F624911615B4582",
+      "dependencyFingerprint": "B2E5B8BC7B3888B2499E4FCCC7B62C7296AE6ACDF15BE8752DD3A077F81CC3B0",
+      "testImplementationFingerprint": "2A7A4E71E955A2BBF42E610EF238F90806F902B1BE3D8BBEFD97AB464FD543E9"
     },
     {
       "testSource": "apps/desktop/src/features/story/ai-context/ContextPackPreview.test.tsx",
@@ -12967,6 +13149,7 @@
       "transitiveDependencies": [
         "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.tsx",
@@ -13025,8 +13208,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "BBBBC25AF0B799F3B644521C7206FE10CFAEFEEA25265DB502D58917915D2071",
-      "dependencyFingerprint": "BCCBA7B91A969E4145B12C8EEA0EE070E4E76A6CE21AF2AD135263587342B7B4",
+      "sourceFingerprint": "A39E983FE8DCCF0DC4B44F280FF8F81F8C2A4E2E2D176439B36D3AA329EC55A8",
+      "dependencyFingerprint": "48808C279BE718053567CF0EC63B89EBADB73C62ECF5FE9FA213107F4769E98C",
       "testImplementationFingerprint": "7AB9B2B77648F86959A90BDCF21AF614D5413613D4777BB65399EDDFDCEB134F"
     },
     {
@@ -13294,6 +13477,7 @@
     {
       "testSource": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
       "testCaseIds": [
+        "TC-DISCOVERED-0B3985CED1",
         "TC-DISCOVERED-43212364B5",
         "TC-DISCOVERED-7249EF132C",
         "TC-DISCOVERED-837B5DA780",
@@ -13303,10 +13487,13 @@
       ],
       "directDependencies": [
         "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.tsx",
+        "apps/desktop/src/platform/bridge.ts",
+        "packages/ai/src/index.ts",
         "packages/story-kernel/src/index.ts"
       ],
       "transitiveDependencies": [
         "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.tsx",
@@ -13363,9 +13550,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "8E947265B0E4CF17D5A4A1DA9A61F07B26A2764FB15617463C66F82E514FB9F5",
-      "dependencyFingerprint": "1C4EFAEFEF2D707472BC4E4FB93BB1C08C70782CB2B362CF84B86CA1E914183A",
-      "testImplementationFingerprint": "23BE27A7EC3396F2C8CD46314FEDC5B55DC4134B0A8120C6632075741BAFA00D"
+      "sourceFingerprint": "3926FA3FE9F641D765B10C80F77D00ECF24C742942D5E80B02D5A31EF979EF44",
+      "dependencyFingerprint": "0FB40E0A74037F39DF9A0130EDFDB75028BC35B65113CF74E6B53B5318F91FA5",
+      "testImplementationFingerprint": "7AAEEA80B041126F006D51C7AAEECAA1FDB8855B7B156DED26D2AFAF1B6B76D4"
     },
     {
       "testSource": "apps/desktop/src/features/story/ai-context/SelectionRewriteService.test.ts",
@@ -14102,6 +14289,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
@@ -14165,8 +14353,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "95C06E373BE5BEC0950F635943383FFF985D2082B6A671E10B8F889359109A98",
-      "dependencyFingerprint": "13059AD72CF633FCDF1426A3197D4BE481CF561E4BCC82EAE4EB115BF944FBFB",
+      "sourceFingerprint": "881C7BE55285FC0AA02B76A4B09F77256EC669913E848FDFD1BB54BAFA696811",
+      "dependencyFingerprint": "1DEF3C73624CECCD5299D68246323286A594FA6967ACDA4C5748955D0FD9AF78",
       "testImplementationFingerprint": "B3F671FA0B3F51DC8905C33D168D1676E5DACAA25049A23C569EB49FFE4A532A"
     },
     {
@@ -14412,6 +14600,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
@@ -14476,8 +14665,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "B7754C799A31E22DD8C3457E3FAB116A6BEC283880FE70E7C4721A56BF6E0275",
-      "dependencyFingerprint": "74EA820DE2271BE5656CBAE62D8ADCFF503B97C15D62F02DD9B858F69E23B936",
+      "sourceFingerprint": "35CC195934C07EADE651259611DAD9469E3C2612F63FB95C6B44569C4297442B",
+      "dependencyFingerprint": "0C2404EFE7D11DE123B8D9A8E6E3A2AB85DF9CE7CCD4F3FD3FCEA65EA021B360",
       "testImplementationFingerprint": "F895CA46F5F72E08CE5BF61D2D19A147CD18724D40E233F2501DC1BD8373D105"
     },
     {
@@ -14573,8 +14762,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "5C929497F8536133297A666DE185004B97593D84EE832D49B743A7093457649B",
-      "dependencyFingerprint": "69D6472FA8A46B51FD510B586B55325961B62D6CCC714072AB3116E06D8E8104",
+      "sourceFingerprint": "02A1E9FAD97345416D1D22DC0C1B505BA951D3DD9B9B38AD9C61C966D1F70AAB",
+      "dependencyFingerprint": "AE930A344D345AFD66DC735E3235AD9CA1AF0192F14CC850CF7FBCC6CBE42C01",
       "testImplementationFingerprint": "76B13AD8CEE20E6C90E09C5858D5D310F185D253259CD143DCE1AD4AD146798E"
     },
     {
@@ -14582,11 +14771,13 @@
       "testCaseIds": [
         "TC-DISCOVERED-2A43EEF985",
         "TC-DISCOVERED-B791E33DA5",
+        "TC-DISCOVERED-F2DEA2EF63",
         "TC-DISCOVERED-FC3FED1AAC"
       ],
       "directDependencies": [
         "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.tsx",
         "apps/desktop/src/platform/bridge.ts",
+        "packages/ai/src/index.ts",
         "packages/story-kernel/src/index.ts"
       ],
       "transitiveDependencies": [
@@ -14647,9 +14838,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "191A8EE32F7796B769C48C9B7B8E81F0A2692A7032E051B5C7CC42729BC0486C",
-      "dependencyFingerprint": "412516B627FC869AE600C6EA9C2F01914704882F5AF4B4DDE7170B3444868DEE",
-      "testImplementationFingerprint": "9A18AB46EE40C193F7BABDAF821D65455B9A370038CFF27353FBA9EAA8EC3291"
+      "sourceFingerprint": "B563ADABC1D2D1F87B03D8B9BDFB32E013DAB8FA744B20425350E5E0D02588D3",
+      "dependencyFingerprint": "5DD4C778BD2FBDFE7361DD88D2E5F23E87AEA91641FFA81117484B90753987A2",
+      "testImplementationFingerprint": "F86EBA4DF2BA9790F02AE99B2A2CE89C6973E9FD9DAA4E70A1C0513E6235FE6E"
     },
     {
       "testSource": "apps/desktop/src/features/story/continuity/StoryConsistencyReviewService.test.ts",
@@ -14956,13 +15147,16 @@
       "testSource": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
       "testCaseIds": [
         "TC-DISCOVERED-1F5C1069E4",
+        "TC-DISCOVERED-720533E57E",
         "TC-DISCOVERED-CC1A77BD18"
       ],
       "directDependencies": [
         "apps/desktop/src/features/creation-journey/CreationJourneyModel.ts",
         "apps/desktop/src/features/creation-journey/CreationJourneyStore.ts",
         "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.tsx",
+        "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.ts",
         "apps/desktop/src/platform/bridge.ts",
+        "packages/ai/src/index.ts",
         "packages/domain/src/index.ts",
         "packages/platform-ports/src/index.ts"
       ],
@@ -15045,9 +15239,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "2BC5BBF0471FAFDE8EE4DA5652372680EE3E2588467F134C22DC743A30836705",
-      "dependencyFingerprint": "8A68CFB9847915C692CF06BF276779D69A2D8F83AFC6FE0F95DD4C0D74D42540",
-      "testImplementationFingerprint": "47A4A1D7B5A02A2FA9483194486CDF0B9FC3F4C38B83469EB4A6EAFBB92CC02D"
+      "sourceFingerprint": "E388014FF3D703685FD99F7457906BDCF6EDCF6E5A4C38FCBE08D23A8A60791F",
+      "dependencyFingerprint": "75BD277EDFE81BE43D9AF16B96393B53D8B915F09A4BD50701E18B3A69EF6BDE",
+      "testImplementationFingerprint": "CED7558FA540EEBB39C3C57FBA3332B64A7713E1A1FBF5C9D780FC3E1EC974DD"
     },
     {
       "testSource": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.test.ts",
@@ -15721,6 +15915,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
@@ -15789,8 +15984,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "9C360047209B66D6CD38327BCC66270DB7A0EF68105CAC4942FA7D659704102B",
-      "dependencyFingerprint": "20EBAB4CBC5B3FD9BA6B91592E12780075655C07A93EAE256DD09FFF285BA85D",
+      "sourceFingerprint": "0680BD31B773104EF712FE20CA900F96283EF265218F19C8DFF36C790B82B79F",
+      "dependencyFingerprint": "A583AF9CDD503075667FAB2CF7931F7B8E5D9704915F43CE2F3211391DABAAF9",
       "testImplementationFingerprint": "5413C682A55F421659F58798D3D67B45B0065DA673CBE39F3D248A02BA9C2653"
     },
     {
@@ -15934,6 +16129,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/relationships/RelationshipAiPanel.tsx",
@@ -15993,8 +16189,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "AF656539542A512E324289837CB98855CFAC150B8F4A8909CE7AD4B31D59FBAE",
-      "dependencyFingerprint": "34E8A53D9DCBE5BD1A6CD144BAAAB562EE1638C2EA7F1711268585C1DA6267D1",
+      "sourceFingerprint": "931C5574D3E6BA674D7B93AADA8D6728E88805C39544BB8D0A05A2284DD9FC91",
+      "dependencyFingerprint": "F3999568A3EB64147C9ED1F8B83C429615BE6F38D3C03482E9679EC40F8EF5EE",
       "testImplementationFingerprint": "0E6409E8D87DDE6ABDFA2E871D99AB9707A3F0F9D99CC1381FDB25342F353493"
     },
     {
@@ -16151,6 +16347,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
@@ -16220,8 +16417,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "5D97F4EC848FB945379F7B51526C9CF0647CD640A372644F7817C374B91C09CC",
-      "dependencyFingerprint": "25EB0B0DF08340F17C6BCBE82DE64D0AB42533783923A328449AD279E5ECE8A1",
+      "sourceFingerprint": "61C5915CB0A1C6F624D4CB840CC28D00E304E29FDF68D4DEE44F59F94CFB5486",
+      "dependencyFingerprint": "5D23A5C191D9D83BC47FFC718956F6C5987766B05B047102F65104F20A070291",
       "testImplementationFingerprint": "275AAFE6793BC99BB7CA8CF49966827B51A23313FB437F679C82E17E0F110FC1"
     },
     {
@@ -16497,6 +16694,7 @@
         "apps/desktop/src/features/shared/presentation/AppEmptyState.tsx",
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/GroundedAiRunner.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
@@ -16561,8 +16759,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "38FDC8CC45DDFF7EF41E2C2BBC7008F0712EA8997F2164266B28DF157C389AB3",
-      "dependencyFingerprint": "7B9F4751C62A3B94FEF77FEECA0379A153A5E6F2A9DB165BB3F4A51BCF83CD74",
+      "sourceFingerprint": "D1AAE3FBCC92255F85BECA9AC29D4C784FAB796B10D1D9781F6884176E2B437F",
+      "dependencyFingerprint": "9596024F504352C833F28A966E0AB745F0157AF2101F81917C0A5EE6EE6339AD",
       "testImplementationFingerprint": "0EB77203482CF91729A245D3295D6DFF1FCAE6D0225C8C9E4A61367F7127908D"
     },
     {
@@ -17021,6 +17219,7 @@
         "apps/desktop/src/features/shared/presentation/presentation.css",
         "apps/desktop/src/features/story/ai-context/AiActionPanels.css",
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
+        "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
         "apps/desktop/src/features/story/ai-context/AiReviewDrawer.css",
         "apps/desktop/src/features/story/ai-context/CandidateDiffView.tsx",
         "apps/desktop/src/features/story/ai-context/ContextPackPreview.css",
@@ -17199,8 +17398,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "7BF82994CA92EECD2817D441B71C56851342DEC186016B0BB57341B2B4E9C3DD",
-      "dependencyFingerprint": "8AB59A7E8104ABA3C1CA485F9D5E07866D27074B07941877FFB75EE012658B63",
+      "sourceFingerprint": "FDD0747DB6C2A5D0E1CB348C38E375849D72E51E33DC1E879EC745BA52A4E2ED",
+      "dependencyFingerprint": "427FC3E65282CB1C60B06104F46E21A48A0DF9A9687C123EDFC33D701CB51E69",
       "testImplementationFingerprint": "3B708DF7A4C1F089B23C053C08E8C50078ACB221C4D5AEFFC11BA16EC3039C8A"
     },
     {

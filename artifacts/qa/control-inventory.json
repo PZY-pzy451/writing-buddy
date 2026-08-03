@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "discovery": {
-    "sourceFiles": 100,
-    "declarationCount": 429,
-    "semanticSelectorMapped": 206,
+    "sourceFiles": 101,
+    "declarationCount": 425,
+    "semanticSelectorMapped": 202,
     "semanticSelectorMissing": 223
   },
   "controls": [
@@ -155,6 +155,56 @@
       "nativeRuntimeRequired": false,
       "aiRequired": true,
       "source": "apps/desktop/src/features/ai/drawer/AiGenerationDrawer.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-AIJOBCANCELBUTTON-BUTTON-094A0E9B",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "disabled expression is false"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-VISIBLE",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-HIDDEN",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-ENABLED",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-DISABLED",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-POINTER",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-KEYBOARD",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-FOCUS-IN",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-FOCUS-OUT",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-REPEAT",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-DEDUPLICATION",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-LOADING",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-SUCCESS",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-FAILURE",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-CANCELLED",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-OFFLINE",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-PERMISSION",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-PERSISTENCE",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-RESTART",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-VISUAL",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-ACCESSIBLE-NAME",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-DESTRUCTIVE-CONFIRMATION",
+        "STATE-AIJOBCANCELBUTTON-BUTTON-094A0E9B-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": true,
+      "source": "apps/desktop/src/features/story/ai-context/AiJobCancelButton.tsx",
       "stableSelectorStatus": "MAPPED"
     },
     {
@@ -2258,56 +2308,6 @@
       "stableSelectorStatus": "UNMAPPED"
     },
     {
-      "id": "CTRL-CHARACTERAIPANEL-BUTTON-87C5929D",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "featureId": "FEATURE-03-02",
-      "controlType": "button",
-      "accessibleName": "取消",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-VISIBLE",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-HIDDEN",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-ENABLED",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-DISABLED",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-POINTER",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-KEYBOARD",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-FOCUS-IN",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-FOCUS-OUT",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-REPEAT",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-DEDUPLICATION",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-LOADING",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-SUCCESS",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-FAILURE",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-CANCELLED",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-OFFLINE",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-PERMISSION",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-PERSISTENCE",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-RESTART",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-VISUAL",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-ACCESSIBLE-NAME",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-DESTRUCTIVE-CONFIRMATION",
-        "STATE-CHARACTERAIPANEL-BUTTON-87C5929D-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterAiPanel.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
       "id": "CTRL-CHARACTERAIPANEL-BUTTON-E41B6650",
       "pageId": "PAGE-STORY-CHARACTERS",
       "featureId": "FEATURE-03-02",
@@ -3911,7 +3911,7 @@
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "featureId": "FEATURE-02-01",
       "controlType": "button",
-      "accessibleName": "取消本次 AI 请求",
+      "accessibleName": "打开第一章",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7450,56 +7450,6 @@
       "nativeRuntimeRequired": false,
       "aiRequired": true,
       "source": "apps/desktop/src/features/story/continuity/IssueEvidenceView.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
-      "id": "CTRL-ITEMAIPANEL-BUTTON-77C33F43",
-      "pageId": "PAGE-STORY-ASSETS",
-      "featureId": "FEATURE-03-08",
-      "controlType": "button",
-      "accessibleName": "取消",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-VISIBLE",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-HIDDEN",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-ENABLED",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-DISABLED",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-POINTER",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-KEYBOARD",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-FOCUS-IN",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-FOCUS-OUT",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-REPEAT",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-DEDUPLICATION",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-LOADING",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-SUCCESS",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-FAILURE",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-CANCELLED",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-OFFLINE",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-PERMISSION",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-PERSISTENCE",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-RESTART",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-VISUAL",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-ACCESSIBLE-NAME",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-DESTRUCTIVE-CONFIRMATION",
-        "STATE-ITEMAIPANEL-BUTTON-77C33F43-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": true,
-      "source": "apps/desktop/src/features/story/assets/ItemAiPanel.tsx",
       "stableSelectorStatus": "MAPPED"
     },
     {
@@ -14851,56 +14801,6 @@
       "stableSelectorStatus": "UNMAPPED"
     },
     {
-      "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-FEF609EC",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "featureId": "FEATURE-08-01",
-      "controlType": "button",
-      "accessibleName": "取消",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-VISIBLE",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-HIDDEN",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-ENABLED",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-DISABLED",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-POINTER",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-KEYBOARD",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-FOCUS-IN",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-FOCUS-OUT",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-REPEAT",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-DEDUPLICATION",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-LOADING",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-SUCCESS",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-FAILURE",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-CANCELLED",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-OFFLINE",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-PERMISSION",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-PERSISTENCE",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-RESTART",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-VISUAL",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-ACCESSIBLE-NAME",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-DESTRUCTIVE-CONFIRMATION",
-        "STATE-SELECTIONREWRITEPANEL-BUTTON-FEF609EC-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
       "id": "CTRL-SELECTIONREWRITEPANEL-CONTEXTPACKPREVIEW-AF4A934B",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
@@ -16134,56 +16034,6 @@
         "STATE-STORYCONSISTENCYAIPANEL-BUTTON-A0218213-ACCESSIBLE-NAME",
         "STATE-STORYCONSISTENCYAIPANEL-BUTTON-A0218213-DESTRUCTIVE-CONFIRMATION",
         "STATE-STORYCONSISTENCYAIPANEL-BUTTON-A0218213-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": true,
-      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
-      "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207",
-      "pageId": "PAGE-CONTINUITY",
-      "featureId": "FEATURE-04-02",
-      "controlType": "button",
-      "accessibleName": "停止",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-VISIBLE",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-HIDDEN",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-ENABLED",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-DISABLED",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-POINTER",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-KEYBOARD",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-FOCUS-IN",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-FOCUS-OUT",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-REPEAT",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-DEDUPLICATION",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-LOADING",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-SUCCESS",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-FAILURE",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-CANCELLED",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-OFFLINE",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-PERMISSION",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-PERSISTENCE",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-RESTART",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-VISUAL",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-ACCESSIBLE-NAME",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-DESTRUCTIVE-CONFIRMATION",
-        "STATE-STORYCONSISTENCYAIPANEL-BUTTON-DF7CF207-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
@@ -19931,56 +19781,6 @@
         "STATE-WORLDAIPANEL-BUTTON-BE9780DF-ACCESSIBLE-NAME",
         "STATE-WORLDAIPANEL-BUTTON-BE9780DF-DESTRUCTIVE-CONFIRMATION",
         "STATE-WORLDAIPANEL-BUTTON-BE9780DF-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldAiPanel.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
-      "id": "CTRL-WORLDAIPANEL-BUTTON-EA70BC23",
-      "pageId": "PAGE-STORY-WORLD",
-      "featureId": "FEATURE-03-05",
-      "controlType": "button",
-      "accessibleName": "取消",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-VISIBLE",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-HIDDEN",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-ENABLED",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-DISABLED",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-POINTER",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-KEYBOARD",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-FOCUS-IN",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-FOCUS-OUT",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-REPEAT",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-DEDUPLICATION",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-LOADING",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-SUCCESS",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-FAILURE",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-CANCELLED",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-OFFLINE",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-PERMISSION",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-PERSISTENCE",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-RESTART",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-VISUAL",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-ACCESSIBLE-NAME",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-DESTRUCTIVE-CONFIRMATION",
-        "STATE-WORLDAIPANEL-BUTTON-EA70BC23-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
