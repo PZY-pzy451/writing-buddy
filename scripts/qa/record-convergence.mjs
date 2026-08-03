@@ -378,6 +378,30 @@ const report = {
 				missingExecutedCasesRejected: true,
 				reconciliationCommand: 'pnpm qa:plan'
 			}
+		},
+		{
+			id: 'QA-PROJECT-CREATION-REENTRANCY-015',
+			summary: 'Project creation, directory selection and draft import relied on rendered busy state, while closing the wizard from the project menu lost keyboard focus.',
+			before: {
+				repeatedActions: 100,
+				synchronousWizardActionGuard: false,
+				atomicFailureRetryContract: false,
+				focusAfterEscape: 'document-body'
+			},
+			after: {
+				repeatedActions: 100,
+				directoryChooserCalls: 1,
+				importChooserCalls: 1,
+				dirtyManuscriptConfirmations: 1,
+				projectWrites: 1,
+				retryAfterAtomicFailure: true,
+				focusAfterEscape: 'project-menu-trigger',
+				manualBrowserWidths: [620, 420],
+				horizontalOverflow: false,
+				browserWarningsOrErrors: 0,
+				focusedTests: 11,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

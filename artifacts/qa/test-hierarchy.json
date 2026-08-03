@@ -40170,138 +40170,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-FORM-7A39F070",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-FORM-1FD39855",
                   "level": "L4",
                   "name": "form",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-7A39F070-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -62620,7 +62620,7 @@
       "id": "TC-DISCOVERED-0DF64E1B2E",
       "title": "does not write a new project when the current manuscript is dirty and switching is cancelled",
       "declarationTitle": "does not write a new project when the current manuscript is dirty and switching is cancelled",
-      "declarationLine": 240,
+      "declarationLine": 251,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -62656,7 +62656,7 @@
       "id": "TC-DISCOVERED-0EB3B18F6A",
       "title": "offers New project from the open-project menu and supports keyboard navigation",
       "declarationTitle": "offers New project from the open-project menu and supports keyboard navigation",
-      "declarationLine": 217,
+      "declarationLine": 224,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -66983,6 +66983,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-58939113A0",
+      "title": "creates exactly one project under 100 same-tick final submissions",
+      "declarationTitle": "creates exactly one project under 100 same-tick final submissions",
+      "declarationLine": 294,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-58E99F64C2",
       "title": "uses F11 and Escape for a temporary focus overlay without changing the normal layout",
       "declarationTitle": "uses F11 and Escape for a temporary focus overlay without changing the normal layout",
@@ -69286,7 +69304,7 @@
       "id": "TC-DISCOVERED-82F42B50EB",
       "title": "previews an extracted Word outline with truthful format limitations",
       "declarationTitle": "previews an extracted Word outline with truthful format limitations",
-      "declarationLine": 163,
+      "declarationLine": 170,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -69942,7 +69960,7 @@
       "id": "TC-DISCOVERED-8F6F9A2FDF",
       "title": "previews an outline, creates its chapter structure, and opens the dashboard",
       "declarationTitle": "previews an outline, creates its chapter structure, and opens the dashboard",
-      "declarationLine": 135,
+      "declarationLine": 142,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -70758,7 +70776,7 @@
       "id": "TC-DISCOVERED-9E9100AB00",
       "title": "keeps the global create menu useful without an open project",
       "declarationTitle": "keeps the global create menu useful without an open project",
-      "declarationLine": 197,
+      "declarationLine": 204,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -75466,6 +75484,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FB66B770B1",
+      "title": "keeps the final step retryable after an atomic creation failure",
+      "declarationTitle": "keeps the final step retryable after an atomic creation failure",
+      "declarationLine": 329,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

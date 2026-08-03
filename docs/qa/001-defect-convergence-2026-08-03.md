@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `f4606a35002d18010a56a9b4ad273bd1e2c03d15`
+- Tested source: `d9700cc8971ae9d7fe4bd3cad9925f9de6ad8a5c`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -211,6 +211,30 @@ inventory/runtime evidence and fails closed with an instruction to run
 `qa:plan` when any count differs. This prevents a stale evidence ledger from
 being labelled `PASS` after new tests are added.
 
+### QA-PROJECT-CREATION-REENTRANCY-015
+
+Project creation used React's rendered `busy` state as its only duplicate-action
+boundary. Directory selection, draft import, dirty-manuscript confirmation and
+the final create action could therefore re-enter before the disabled state was
+painted. The final write path already had native atomicity and no-overwrite
+protection, but repeated preflights, dialogs and failed duplicate attempts were
+still observable work rather than one author action.
+
+The wizard now owns a synchronous action guard covering all three external
+action boundaries. Automated pressure sends 100 same-tick directory choices,
+100 import choices, 100 dirty-draft submissions and 100 final submissions; each
+produces exactly one relevant bridge call, confirmation or project write. A
+separate contract forces the first atomic save to fail, verifies localized
+recovery copy and then succeeds from the unchanged final step.
+
+Live browser QA completed a new blank project from the project menu, including
+required-field errors, preflight summary and a final double-click. At 620 px and
+420 px the document, dialog, content and footer had no horizontal overflow, and
+the console contained zero warnings or errors. This run also found that Esc
+returned focus to the document body because the originating menu item had
+unmounted. The project menu now explicitly owns focus restoration; automated
+and live 420 px checks both return focus to `项目菜单`.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -299,11 +323,13 @@ console claims.
 | AI cancellation/result ordering | Playground, drawer and review each reproduced 100 clicks / 100 commands; now 1 command, old validation/results isolated, failure retry verified; 3 files / 27 tests passed |
 | AI settings and credential lifecycle | Five settings actions reproduced 100 bridge calls each; now 1 request per action, cross-action queueing, latest-preference ordering, deletion retry, generation blocking and explicit provider-action feedback pass 22/22 focused tests |
 | Live AI settings journey | Save/test/model/balance outcomes verified; 620 px and 420 px widths have no horizontal overflow; removal confirmation cancelled; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 850 / 850 cases; 771 frontend + 79 native; 848 passed + 2 reasoned skips; stale ledgers now fail closed |
+| Project creation action pressure | Four 100-action same-tick boundaries each produce one chooser, confirmation or write; first atomic-save failure remains retryable |
+| Live project creation journey | Required errors, preflight, double-click creation and Esc focus return verified; 620 px / 420 px have no overflow; 0 console warnings/errors |
+| Ledger/inventory reconciliation | 852 / 852 cases; 773 frontend + 79 native; 850 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 771 tests and production build passed |
-| Static/runtime test reconciliation | 771 / 771; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 174 files / 773 tests and production build passed |
+| Static/runtime test reconciliation | 773 / 773; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -343,7 +369,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,109 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,103 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

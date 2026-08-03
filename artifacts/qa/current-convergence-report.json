@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T09:36:08.555Z",
+  "generatedAt": "2026-08-03T10:10:08.077Z",
   "source": {
-    "commit": "f4606a35002d18010a56a9b4ad273bd1e2c03d15",
+    "commit": "d9700cc8971ae9d7fe4bd3cad9925f9de6ad8a5c",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 771,
-        "runtimeCollected": 771,
+        "frontendInventory": 773,
+        "runtimeCollected": 773,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
@@ -262,24 +262,51 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 771
+        "frontendTests": 773
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 850,
-        "ledgerCases": 848,
+        "discoveredTests": 852,
+        "ledgerCases": 850,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 850,
-        "ledgerCases": 850,
-        "frontendLedgerCases": 771,
+        "discoveredTests": 852,
+        "ledgerCases": 852,
+        "frontendLedgerCases": 773,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
+      }
+    },
+    {
+      "id": "QA-PROJECT-CREATION-REENTRANCY-015",
+      "summary": "Project creation, directory selection and draft import relied on rendered busy state, while closing the wizard from the project menu lost keyboard focus.",
+      "before": {
+        "repeatedActions": 100,
+        "synchronousWizardActionGuard": false,
+        "atomicFailureRetryContract": false,
+        "focusAfterEscape": "document-body"
+      },
+      "after": {
+        "repeatedActions": 100,
+        "directoryChooserCalls": 1,
+        "importChooserCalls": 1,
+        "dirtyManuscriptConfirmations": 1,
+        "projectWrites": 1,
+        "retryAfterAtomicFailure": true,
+        "focusAfterEscape": "project-menu-trigger",
+        "manualBrowserWidths": [
+          620,
+          420
+        ],
+        "horizontalOverflow": false,
+        "browserWarningsOrErrors": 0,
+        "focusedTests": 11,
+        "frontendTests": 773
       }
     }
   ],
@@ -304,22 +331,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 771
+      "frontendTests": 773
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T09:26:26.347Z",
-      "completedAt": "2026-08-03T09:29:02.212Z",
+      "generatedAt": "2026-08-03T10:01:43.786Z",
+      "completedAt": "2026-08-03T10:04:14.604Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 155864,
+      "durationMs": 150817,
       "vitestFiles": 174,
-      "vitestPassed": 771,
-      "inventoryFrontendTests": 771,
+      "vitestPassed": 773,
+      "inventoryFrontendTests": 773,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -328,10 +355,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T09:21:27.703Z",
-      "completedAt": "2026-08-03T09:21:30.413Z",
+      "generatedAt": "2026-08-03T10:04:42.153Z",
+      "completedAt": "2026-08-03T10:04:44.523Z",
       "status": "PASS",
-      "durationMs": 2708,
+      "durationMs": 2368,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -357,7 +384,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10109,
+    "totalUnmapped": 10103,
     "missingStableSelectors": 221
   },
   "warnings": [

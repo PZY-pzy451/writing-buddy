@@ -1410,3 +1410,20 @@ Gate H is complete. Stop before Gate I and wait for explicit user direction.
   `artifacts/release/genre-to-draft-gate-h/`; acceptance:
   `docs/acceptance/052-genre-to-draft-gate-h-reconciliation-2026-07-30.md`.
 - Gate I has not started.
+
+## Current QA convergence — project creation interactions
+
+- Source `d9700cc8971ae9d7fe4bd3cad9925f9de6ad8a5c` makes project directory
+  selection, draft import and final creation single-flight within the wizard.
+- 100-action pressure proves one chooser, confirmation or write per author
+  action; atomic-save failure remains explicitly retryable from the final step.
+- Esc from a wizard opened through the project menu now restores focus to the
+  persistent `项目菜单` trigger.
+- Desktop, 620 px and 420 px live journeys passed without horizontal overflow
+  or browser warnings/errors.
+- Full evidence: 174 frontend files / 773 tests passed; Rust collected 79,
+  passed 77 and skipped two with reasons; the 852-row ledger contains 850 passes
+  and two skips.
+- Execution is `PASS`. Product/release remains `PARTIAL` and blocked by 10,103
+  traceability gaps, 221 missing stable selectors, absent real-provider smoke
+  and no release package in this run.
