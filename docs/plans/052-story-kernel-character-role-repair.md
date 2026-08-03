@@ -1,6 +1,6 @@
 # Story Kernel character role repair
 
-Updated: 2026-08-02
+Updated: 2026-08-03
 
 ## Problem
 
@@ -36,3 +36,6 @@ application is upgraded, without regenerating or editing project files by hand.
 - A new production portable and installer are built and smoke-tested.
 - Release artifacts are archived in a source-bound subdirectory so a running
   previous portable never has to be closed or overwritten during verification.
+- The long-session browser soak retries only transient CDP execution-context
+  errors during deliberate reloads; the focused 100,000-character, 30-transition,
+  three-reload and 40-resize journey passes end to end.

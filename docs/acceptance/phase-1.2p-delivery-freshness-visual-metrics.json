@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-02T16:17:29.232Z",
+  "generatedAt": "2026-08-03T02:02:41.999Z",
   "appUrl": "http://127.0.0.1:1420/",
   "receipt": {
     "title": "我的小说",
     "destination": "browser-downloads/我的小说.docx",
-    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/3 00:17:27"
+    "meta": "Word 文档3 章 · 200 字 · 精确源指纹 · 2026/8/3 10:02:40"
   },
   "unconfirmed": {
     "status": "attention",

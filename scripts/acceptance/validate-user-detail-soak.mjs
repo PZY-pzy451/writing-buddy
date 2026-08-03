@@ -95,7 +95,14 @@ async function waitForTarget() {
 }
 
 async function evaluate(client, expression) {
-	for (let attempt = 0; attempt < 20; attempt += 1) {
+	const transientRuntimeErrors = [
+		'Promise was collected',
+		'Inspected target navigated or closed',
+		'Execution context was destroyed',
+		'Cannot find context with specified id',
+		'Cannot find default execution context'
+	];
+	for (let attempt = 0; attempt < 100; attempt += 1) {
 		try {
 			const response = await client.call('Runtime.evaluate', {
 				expression,
@@ -109,13 +116,16 @@ async function evaluate(client, expression) {
 			}
 			return response.result.value;
 		} catch (error) {
-			if (!(error instanceof Error) || !error.message.includes('Promise was collected')) {
+			if (
+				!(error instanceof Error)
+				|| !transientRuntimeErrors.some(message => error.message.includes(message))
+			) {
 				throw error;
 			}
 			await delay(50);
 		}
 	}
-	throw new Error('Runtime.evaluate repeatedly lost its awaited Promise.');
+	throw new Error('Runtime.evaluate did not recover after a browser navigation.');
 }
 
 async function waitFor(client, expression, description, timeout = 15_000) {
