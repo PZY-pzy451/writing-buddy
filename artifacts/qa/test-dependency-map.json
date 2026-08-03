@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 732,
-    "edgeCount": 1259,
+    "nodeCount": 736,
+    "edgeCount": 1261,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -716,7 +716,11 @@
       "scripts/qa/fixtures.mjs",
       "scripts/qa/inventory.mjs",
       "scripts/qa/record-baseline.mjs",
+      "scripts/qa/record-convergence.mjs",
       "scripts/qa/supported-acceptance.mjs",
+      "scripts/qa/supported-cargo.mjs",
+      "scripts/qa/test-discovery.mjs",
+      "scripts/qa/test-discovery.test.mjs",
       "scripts/qa/traceability.mjs",
       "scripts/qa/traceability.test.mjs",
       "scripts/recording/README.md",
@@ -7014,6 +7018,16 @@
         "kind": "static-import"
       },
       {
+        "from": "scripts/qa/inventory.mjs",
+        "to": "scripts/qa/test-discovery.mjs",
+        "kind": "static-import"
+      },
+      {
+        "from": "scripts/qa/test-discovery.test.mjs",
+        "to": "scripts/qa/test-discovery.mjs",
+        "kind": "static-import"
+      },
+      {
         "from": "scripts/qa/traceability.test.mjs",
         "to": "scripts/qa/traceability.mjs",
         "kind": "static-import"
@@ -7882,7 +7896,22 @@
     {
       "testSource": "apps/desktop/src/features/ai/AiPromptContractParity.test.ts",
       "testCaseIds": [
-        "TC-DISCOVERED-640269BCF7"
+        "TC-DISCOVERED-07484E0809",
+        "TC-DISCOVERED-0860225BA7",
+        "TC-DISCOVERED-2293A87996",
+        "TC-DISCOVERED-2FBC6F1DBF",
+        "TC-DISCOVERED-3A8BE18DCE",
+        "TC-DISCOVERED-4939CB2E9D",
+        "TC-DISCOVERED-55E83DD64B",
+        "TC-DISCOVERED-5D29578C98",
+        "TC-DISCOVERED-7F0F54A6A2",
+        "TC-DISCOVERED-8B3835A765",
+        "TC-DISCOVERED-9CF4511627",
+        "TC-DISCOVERED-AB80DC0009",
+        "TC-DISCOVERED-AC034F84BB",
+        "TC-DISCOVERED-C33BC06D5E",
+        "TC-DISCOVERED-C56DF0FB8F",
+        "TC-DISCOVERED-DD7E95EB2B"
       ],
       "directDependencies": [
         "packages/ai/src/index.ts"
@@ -10004,8 +10033,11 @@
     {
       "testSource": "apps/desktop/src/features/projects/application/ProjectOpenService.test.ts",
       "testCaseIds": [
+        "TC-DISCOVERED-4DA1BB06F4",
+        "TC-DISCOVERED-755046B757",
         "TC-DISCOVERED-7691F47990",
         "TC-DISCOVERED-A50A38D59C",
+        "TC-DISCOVERED-D22AD37DD3",
         "TC-DISCOVERED-F954DC1672"
       ],
       "directDependencies": [
@@ -12458,8 +12490,14 @@
     {
       "testSource": "apps/desktop/src/features/save/SaveStateModel.test.ts",
       "testCaseIds": [
+        "TC-DISCOVERED-1E61C809C8",
         "TC-DISCOVERED-750450810D",
-        "TC-DISCOVERED-A2072325C7"
+        "TC-DISCOVERED-8BEEDF34B5",
+        "TC-DISCOVERED-A2072325C7",
+        "TC-DISCOVERED-ACD841B2DB",
+        "TC-DISCOVERED-AFEFBFED8B",
+        "TC-DISCOVERED-D491C49CFB",
+        "TC-DISCOVERED-E4F3CF7CC2"
       ],
       "directDependencies": [
         "apps/desktop/src/features/save/SaveStateModel.ts"
@@ -16766,8 +16804,20 @@
     {
       "testSource": "apps/desktop/src/shell/writerShortcuts.test.ts",
       "testCaseIds": [
+        "TC-DISCOVERED-200C7658BB",
+        "TC-DISCOVERED-23508094AC",
+        "TC-DISCOVERED-2E18BDDD7D",
         "TC-DISCOVERED-5B8A6ADC50",
-        "TC-DISCOVERED-D366AFF0CD"
+        "TC-DISCOVERED-6DBC09697F",
+        "TC-DISCOVERED-7E70FB3B0B",
+        "TC-DISCOVERED-8DE995BEC2",
+        "TC-DISCOVERED-94C30607D3",
+        "TC-DISCOVERED-B52E7A4279",
+        "TC-DISCOVERED-C9CCE4DD5C",
+        "TC-DISCOVERED-D366AFF0CD",
+        "TC-DISCOVERED-DED474A50A",
+        "TC-DISCOVERED-E6E9427558",
+        "TC-DISCOVERED-FA72344392"
       ],
       "directDependencies": [
         "apps/desktop/src/shell/writerShortcuts.ts"
@@ -18097,8 +18147,11 @@
       "testSource": "packages/project/src/ProjectStructureMove.test.ts",
       "testCaseIds": [
         "TC-DISCOVERED-132327E541",
+        "TC-DISCOVERED-30746044CE",
         "TC-DISCOVERED-36D311276A",
+        "TC-DISCOVERED-46D4B3460C",
         "TC-DISCOVERED-60C690BE27",
+        "TC-DISCOVERED-9BC3E783F8",
         "TC-DISCOVERED-C55F5A5CB2",
         "TC-DISCOVERED-FF190DC264"
       ],
@@ -18424,8 +18477,18 @@
     {
       "testSource": "packages/story-kernel/src/schema/schemaRegistry.test.ts",
       "testCaseIds": [
+        "TC-DISCOVERED-05F5B20537",
+        "TC-DISCOVERED-0902DE4AC6",
+        "TC-DISCOVERED-173883832D",
         "TC-DISCOVERED-2B1F45236D",
+        "TC-DISCOVERED-4DD7FF77DB",
+        "TC-DISCOVERED-6272322C2A",
+        "TC-DISCOVERED-6B6F66129C",
+        "TC-DISCOVERED-8D4D37566F",
         "TC-DISCOVERED-91185F2A8D",
+        "TC-DISCOVERED-C0F5DF2DF4",
+        "TC-DISCOVERED-CEF606F993",
+        "TC-DISCOVERED-D6B43E5FDF",
         "TC-DISCOVERED-F7A83818F5"
       ],
       "directDependencies": [
@@ -18733,6 +18796,24 @@
       "sourceFingerprint": "FCB7C037A4C0C185863BCD66FCC738F5098C7346727025ECB9A4FECF5568D7C6",
       "dependencyFingerprint": "ED439FDB1D5CF299673D435E9B70857C7D1607E5EBF295DE69EBA32B4B7FAA0E",
       "testImplementationFingerprint": "EE5077182D5797BAEED9884C618FDC2BD32B52D07BB4E18C8E02EC2FCB7632D2"
+    },
+    {
+      "testSource": "scripts/qa/test-discovery.test.mjs",
+      "testCaseIds": [
+        "TC-DISCOVERED-4495D27585",
+        "TC-DISCOVERED-4582FD1E53",
+        "TC-DISCOVERED-7486763B07",
+        "TC-DISCOVERED-7E7432415E"
+      ],
+      "directDependencies": [
+        "scripts/qa/test-discovery.mjs"
+      ],
+      "transitiveDependencies": [
+        "scripts/qa/test-discovery.mjs"
+      ],
+      "sourceFingerprint": "3C4904BBBB1B848CF674645DC5A2D124CD1EF6D6F9DEF265EE9CE6001CA66254",
+      "dependencyFingerprint": "2B5BE18A2ACEE7E03E079EBC92A0257FCE22DD0AE9349055B072D25041BDF1D4",
+      "testImplementationFingerprint": "DEF283F7D53929FBCC4A9D2EC0448CE23A5C1AC13DCD8229AA3D31AE48B80F89"
     },
     {
       "testSource": "scripts/qa/traceability.test.mjs",

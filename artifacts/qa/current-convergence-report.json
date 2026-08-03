@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-03T05:17:15.857Z",
+  "source": {
+    "commit": "5e7b74017b506085ef31b6db7519715f883a0384",
+    "branch": "codex/full-regression-gates-a-e-v2"
+  },
+  "executionStatus": "PASS",
+  "productConclusion": "PARTIAL",
+  "releaseDecision": {
+    "status": "BLOCKED",
+    "reason": "Strict feature/control/state traceability remains incomplete; no release package was produced in this convergence run."
+  },
+  "fixedDefects": [
+    {
+      "id": "QA-TEST-DISCOVERY-PARAMETERIZED-001",
+      "summary": "Static test discovery undercounted parameterized and statically looped Vitest cases.",
+      "before": {
+        "frontendInventory": 667,
+        "runtimeCollected": 716,
+        "gap": 49
+      },
+      "after": {
+        "frontendInventory": 720,
+        "runtimeCollected": 720,
+        "gap": 0,
+        "unresolvedParameterizedDeclarations": 0
+      }
+    }
+  ],
+  "execution": {
+    "frontend": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-08-03T05:14:28.546Z",
+      "completedAt": "2026-08-03T05:16:54.989Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "inventoryExitCode": 0,
+      "node": "24.14.0",
+      "durationMs": 146442,
+      "vitestFiles": 172,
+      "vitestPassed": 720,
+      "inventoryFrontendTests": 720,
+      "runtimeInventoryDelta": 0,
+      "unresolvedParameterizedDeclarations": 0,
+      "productionBuild": "PASS",
+      "engineWarnings": 0,
+      "unsafeShellDeprecationWarnings": 0
+    },
+    "cargo": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-08-03T05:17:03.888Z",
+      "completedAt": "2026-08-03T05:17:06.116Z",
+      "status": "PASS",
+      "durationMs": 2227,
+      "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+      "format": "PASS",
+      "tests": {
+        "status": "PASS",
+        "collected": 79,
+        "passed": 77,
+        "failed": 0,
+        "ignoredWithReason": 2
+      },
+      "compilerWarnings": 4
+    },
+    "stress": {
+      "status": "passed",
+      "durationMs": 222491,
+      "browserRuns": 2,
+      "totalResizeAttempts": 80,
+      "totalWorkspaceTransitions": 60,
+      "performanceRuns": 5,
+      "recoveryCycles": 10,
+      "maximumUnresolvedBacklinks": 0
+    }
+  },
+  "traceability": {
+    "status": "REGRESSION_INCOMPLETE",
+    "totalUnmapped": 10328,
+    "missingStableSelectors": 223
+  },
+  "warnings": [
+    "The production Monaco bundle remains above 3,000 kB.",
+    "Strict traceability remains fail-closed until missing mappings receive tests or reasoned N/A decisions."
+  ]
+}

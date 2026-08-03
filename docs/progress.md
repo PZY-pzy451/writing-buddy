@@ -4,26 +4,31 @@ Updated: 2026-08-03
 
 ## Active milestone
 
-Full regression foundation v2 Gates A-E and the first baseline are complete in the isolated worktree on
-`codex/full-regression-gates-a-e-v2`.
+User-centered defect convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `5e7b740`.
 
-- Gates A-E deliver the source map, 12-domain inventory, fail-closed
-  traceability, nine-category fingerprints/cache ledger, 24 deterministic AI
-  scenarios and eight resettable project scenarios.
-- Current inventory: 151 features, 24 pages, five workspaces, 430 controls,
-  9,460 state dimensions, 23 shortcuts, 55 native actions and 746 statically
-  discovered tests. A 732-node / 1,259-edge graph drives invalidation.
-- Supported Node 24 acceptance passed 171 Vitest files / 716 tests plus the
-  production frontend build. Cargo passed 77 tests with two explicit scoped
-  ignores; Rust formatting passed.
-- The post-baseline FAST plan has 744 `CACHED_PASS`, two
-  `SKIPPED_WITH_REASON`, zero stale and zero forced reruns at the same commit.
-- Strict traceability correctly exits 1: 223 controls lack stable selectors and
-  10,275 aggregate mappings remain open. Runtime collection also found 49 more
-  Vitest cases than the static inventory parser.
-- The first-round product conclusion is therefore `PARTIAL`, not a full
-  regression or release pass. Gate F, real DeepSeek, broad product fixes and
-  release packaging remain excluded.
+- Replaced regex test discovery with TypeScript AST discovery. The former
+  49-case static/runtime difference is closed: 720 frontend cases are inventoried
+  and 720 are collected, including 50 parameterized instances and zero unresolved
+  parameterized declarations.
+- Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
+  hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
+- Supported frontend acceptance passed ESLint, TypeScript, 172 Vitest files /
+  720 tests and the production build. Rust formatting passed; Cargo collected
+  79, passed 77 and retained two reasoned external-gate ignores.
+- Recorded user stress passed two 100,661-character browser runs, 80 resizes,
+  60 workspace transitions, five performance runs and 10 recovery cycles with
+  zero unresolved backlinks. A separate 11-stage detail run also passed.
+- Focused Story Kernel, extraction, repeated-click, language-check and
+  save/recovery verification passed 101 tests. No product-code failure
+  reproduced; fixes in this cycle are in the QA infrastructure.
+- The current FAST plan has 797 `CACHED_PASS`, two
+  `SKIPPED_WITH_REASON`, zero stale and zero forced reruns.
+- Strict traceability remains fail-closed: 223 controls lack stable selectors
+  and 10,328 aggregate mappings remain open. The truthful product conclusion is
+  `PARTIAL`; no real-provider smoke or release package ran.
+- Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
+  `artifacts/qa/current-convergence-report.json`.
 
 ## Previous active milestone
 

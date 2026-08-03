@@ -10,12 +10,16 @@
     "states": 9460,
     "shortcuts": 23,
     "nativeActions": 55,
-    "discoveredTests": 746,
+    "discoveredTests": 799,
+    "frontendDiscoveredTests": 720,
+    "parameterizedTestInstances": 50,
+    "unresolvedParameterizedDeclarations": 0,
     "missingStableSelectors": 223
   },
   "notes": [
     "Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.",
     "UNMAPPED stable selectors remain inventory items and block complete traceability.",
-    "Existing tests without explicit regression IDs are retained as discovered automation and require Gate C mapping."
+    "Existing tests without explicit regression IDs are retained as discovered automation and require Gate C mapping.",
+    "Parameterized test tables and statically bounded loops are expanded into runtime-equivalent instances."
   ]
 }

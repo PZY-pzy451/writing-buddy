@@ -1,11 +1,18 @@
 {
   "schemaVersion": 1,
+  "generatedAt": "2026-08-03T05:14:28.546Z",
+  "completedAt": "2026-08-03T05:16:54.989Z",
   "status": "PASS",
   "exitCode": 0,
+  "inventoryExitCode": 0,
   "node": "24.14.0",
-  "durationMs": 144507,
-  "vitestFiles": 171,
-  "vitestPassed": 716,
+  "durationMs": 146442,
+  "vitestFiles": 172,
+  "vitestPassed": 720,
+  "inventoryFrontendTests": 720,
+  "runtimeInventoryDelta": 0,
+  "unresolvedParameterizedDeclarations": 0,
   "productionBuild": "PASS",
-  "engineWarnings": 0
+  "engineWarnings": 0,
+  "unsafeShellDeprecationWarnings": 0
 }

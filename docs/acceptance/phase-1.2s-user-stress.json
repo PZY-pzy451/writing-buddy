@@ -1,85 +1,84 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-02T14:37:39.136Z",
+  "generatedAt": "2026-08-03T05:01:18.232Z",
   "status": "passed",
   "configuration": {
     "browserRuns": 2,
     "performanceRuns": 5,
     "recoveryRuns": 10,
-    "releaseRuns": 5,
-    "recoveryProject": "artifacts/novels/zero-hour-echo/Writing Buddy Project",
-    "releaseExecutable": "D:\\develop_tool\\writing-buddy-genre-to-draft\\artifacts\\release\\full-regression-2026-08-02\\Writing-Buddy-Portable.exe"
+    "releaseRuns": 0,
+    "recoveryProject": "artifacts/novels/zero-hour-echo/Writing Buddy Project"
   },
   "browser": [
     {
       "index": 1,
       "contentLength": 100661,
-      "pasteMilliseconds": 207,
-      "renderMilliseconds": 142,
-      "saveMilliseconds": 97,
+      "pasteMilliseconds": 106,
+      "renderMilliseconds": 93,
+      "saveMilliseconds": 37,
       "resizeAttempts": 40,
       "workspaceTransitions": 30,
       "reloads": 3,
-      "audits": 17,
+      "audits": 18,
       "status": "passed"
     },
     {
       "index": 2,
       "contentLength": 100661,
-      "pasteMilliseconds": 112,
-      "renderMilliseconds": 99,
-      "saveMilliseconds": 39,
+      "pasteMilliseconds": 103,
+      "renderMilliseconds": 102,
+      "saveMilliseconds": 37,
       "resizeAttempts": 40,
       "workspaceTransitions": 30,
       "reloads": 3,
-      "audits": 17,
+      "audits": 18,
       "status": "passed"
     }
   ],
   "performance": [
     {
       "index": 1,
-      "filteredGraph": 0.2119,
-      "projectInteractive": 433.7299,
-      "resourceSwitch": 0.6244999999999999,
-      "singleResourceSave": 0.005699999999999999,
-      "timelineFeedback": 4.2893,
+      "filteredGraph": 0.1747,
+      "projectInteractive": 389.6608,
+      "resourceSwitch": 0.6547999999999999,
+      "singleResourceSave": 0.006,
+      "timelineFeedback": 4.4381,
       "status": "passed"
     },
     {
       "index": 2,
-      "filteredGraph": 0.1982,
-      "projectInteractive": 439.0124,
-      "resourceSwitch": 0.6214000000000001,
-      "singleResourceSave": 0.0066,
-      "timelineFeedback": 4.4469,
+      "filteredGraph": 0.1747,
+      "projectInteractive": 405.501,
+      "resourceSwitch": 0.6585,
+      "singleResourceSave": 0.0059,
+      "timelineFeedback": 4.2267,
       "status": "passed"
     },
     {
       "index": 3,
-      "filteredGraph": 0.1949,
-      "projectInteractive": 439.0982,
-      "resourceSwitch": 0.6238,
-      "singleResourceSave": 0.0061,
-      "timelineFeedback": 4.3866,
+      "filteredGraph": 0.18560000000000001,
+      "projectInteractive": 405.4949,
+      "resourceSwitch": 0.6639,
+      "singleResourceSave": 0.007,
+      "timelineFeedback": 4.4384999999999994,
       "status": "passed"
     },
     {
       "index": 4,
-      "filteredGraph": 0.2029,
-      "projectInteractive": 451.8701,
-      "resourceSwitch": 0.6102,
-      "singleResourceSave": 0.005699999999999999,
-      "timelineFeedback": 4.379700000000001,
+      "filteredGraph": 0.1967,
+      "projectInteractive": 394.57280000000003,
+      "resourceSwitch": 0.6131,
+      "singleResourceSave": 0.0055,
+      "timelineFeedback": 4.4976,
       "status": "passed"
     },
     {
       "index": 5,
-      "filteredGraph": 0.2199,
-      "projectInteractive": 452.4253,
-      "resourceSwitch": 0.6123,
-      "singleResourceSave": 0.0068000000000000005,
-      "timelineFeedback": 4.482200000000001,
+      "filteredGraph": 0.18660000000000002,
+      "projectInteractive": 405.95300000000003,
+      "resourceSwitch": 0.635,
+      "singleResourceSave": 0.0067,
+      "timelineFeedback": 4.3282,
       "status": "passed"
     }
   ],
@@ -89,18 +88,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -119,18 +118,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -149,18 +148,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -179,18 +178,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -209,18 +208,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -239,18 +238,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -269,18 +268,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -299,18 +298,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -329,18 +328,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -359,18 +358,18 @@
       "backlinksChecked": 331,
       "backupEntries": 72,
       "chapterHashes": {
-        "chapters/01-零点来电.md": "bc8ac3da6cd10d8a92fb422c8a781537f77b7040cf73251cdc52b05bf1aea51d",
-        "chapters/02-被删掉的四十七秒.md": "cff8b2d3b79dc0e7d14f2fe2549674af487e9bc54c825d3c36ce7db60d669cb1",
-        "chapters/03-雨下在隧道里.md": "374dd3ae308f43061b65c30a66e82594a076e6ff7257cd3fe7546310627e84b8",
-        "chapters/04-第十三个麦克风.md": "8d4eb90762c4af35946e7a1d8a719152143d0aa4c804cdb3dd48e77988e610c9",
-        "chapters/05-没有发生的踩踏.md": "87353f0cd491c8a8aa5199227539959f5d3dba90dd75c8472f0d73510dfa867b",
-        "chapters/06-死者的权限.md": "256c75364e1c2b2009d16a22755840edd3e9f2fcb5b85bda3e6f84ad4d9f1991",
-        "chapters/07-白噪声地图.md": "77a6558c4b1b450f5e7230e117382c5ea9e0a0367a0ecb0d55812270f06f8119",
-        "chapters/08-城市学会说谎.md": "627ac2db0fc00e58daebc1ef406549f7d6d563b7fd2bfa0578fe3b9b267f1584",
-        "chapters/09-心跳协议.md": "59f9bf02f6411e44b1ed21cff074c1c14335bc3a1b152bc38ba3ec5bd22f394d",
-        "chapters/10-暴雨演算.md": "532723b23c6008e9a8fdd8553eae17492c3ae87578486ea2561f0feb16af65c4",
-        "chapters/11-让城市失声.md": "e3e4a4e90f7d643aa916e7a0d8ee08b211cafad2bce3e384d0b4153eea968c64",
-        "chapters/12-回声尽头.md": "63d9eef222118fea1c7710f3d5af919937790d97f623e3bef651e061bcfd179e"
+        "chapters/01-零点来电.md": "1546d7afd7d1803316b7e879224f129bf344205820db2460e152cdc05c5db78c",
+        "chapters/02-被删掉的四十七秒.md": "ff646d4617f8283ba8b5e096e4e2098bd1d2a299e821088815b4be498602fef3",
+        "chapters/03-雨下在隧道里.md": "664eedd3c8606335459af1a3213f8ad1a5c5fca9f92c03ce0a4f1809b22d9124",
+        "chapters/04-第十三个麦克风.md": "7dc9adab64213d241961e156f15635163134a24dfe10bf3a42322de60e835358",
+        "chapters/05-没有发生的踩踏.md": "817fb8b03c72f3894b3c0f57b530e5be87d3fb3c3a3ef67bc2bcaed7efb64f0b",
+        "chapters/06-死者的权限.md": "e1d2a400ce14ea85305d30aa8cbc4b50870e2ba4e234335e76a12c1f30b67a3c",
+        "chapters/07-白噪声地图.md": "43278246bd85232bc0696d441d582d2c4633e1a7193077a93c3923cbc1443f9a",
+        "chapters/08-城市学会说谎.md": "41788ee7b3b79f2d06e90dfe2a5c8a56144aa4d85ff348d99279f228b235ab18",
+        "chapters/09-心跳协议.md": "d0224277feb8d8190617def53dc6e059e6acd9588e2a73af854a6efb736a1b31",
+        "chapters/10-暴雨演算.md": "9f0b748e175a96c18a909f9bea66fb7abc5d3d191e1c949fe7f7cd25ac7890be",
+        "chapters/11-让城市失声.md": "3f813083991312b3f700079eb6eba309de6a5e0ca38c533bac316caab015b81b",
+        "chapters/12-回声尽头.md": "1d27bab2a37761616186bde2d7a9a9d283fe629a6966734333982369ab6e7a26"
       },
       "excluded": [
         ".writing-buddy/cache/story-index-v1.json",
@@ -385,38 +384,7 @@
       "status": "passed"
     }
   ],
-  "release": [
-    {
-      "index": 1,
-      "pid": 56156,
-      "aliveMilliseconds": 4038,
-      "status": "passed"
-    },
-    {
-      "index": 2,
-      "pid": 52620,
-      "aliveMilliseconds": 4032,
-      "status": "passed"
-    },
-    {
-      "index": 3,
-      "pid": 21300,
-      "aliveMilliseconds": 4040,
-      "status": "passed"
-    },
-    {
-      "index": 4,
-      "pid": 40360,
-      "aliveMilliseconds": 4038,
-      "status": "passed"
-    },
-    {
-      "index": 5,
-      "pid": 58336,
-      "aliveMilliseconds": 4034,
-      "status": "passed"
-    }
-  ],
+  "release": [],
   "summary": {
     "browser": {
       "completedRuns": 2,
@@ -429,24 +397,24 @@
       },
       "pasteMilliseconds": {
         "samples": 2,
-        "minimum": 112,
-        "median": 112,
-        "p95": 207,
-        "maximum": 207
+        "minimum": 103,
+        "median": 103,
+        "p95": 106,
+        "maximum": 106
       },
       "renderMilliseconds": {
         "samples": 2,
-        "minimum": 99,
-        "median": 99,
-        "p95": 142,
-        "maximum": 142
+        "minimum": 93,
+        "median": 93,
+        "p95": 102,
+        "maximum": 102
       },
       "saveMilliseconds": {
         "samples": 2,
-        "minimum": 39,
-        "median": 39,
-        "p95": 97,
-        "maximum": 97
+        "minimum": 37,
+        "median": 37,
+        "p95": 37,
+        "maximum": 37
       },
       "totalResizeAttempts": 80,
       "totalWorkspaceTransitions": 60
@@ -454,38 +422,38 @@
     "performance": {
       "projectInteractive": {
         "samples": 5,
-        "minimum": 433.7299,
-        "median": 439.0982,
-        "p95": 452.4253,
-        "maximum": 452.4253
+        "minimum": 389.6608,
+        "median": 405.4949,
+        "p95": 405.95300000000003,
+        "maximum": 405.95300000000003
       },
       "resourceSwitch": {
         "samples": 5,
-        "minimum": 0.6102,
-        "median": 0.6214000000000001,
-        "p95": 0.6244999999999999,
-        "maximum": 0.6244999999999999
+        "minimum": 0.6131,
+        "median": 0.6547999999999999,
+        "p95": 0.6639,
+        "maximum": 0.6639
       },
       "singleResourceSave": {
         "samples": 5,
-        "minimum": 0.005699999999999999,
-        "median": 0.0061,
-        "p95": 0.0068000000000000005,
-        "maximum": 0.0068000000000000005
+        "minimum": 0.0055,
+        "median": 0.006,
+        "p95": 0.007,
+        "maximum": 0.007
       },
       "timelineFeedback": {
         "samples": 5,
-        "minimum": 4.2893,
-        "median": 4.3866,
-        "p95": 4.482200000000001,
-        "maximum": 4.482200000000001
+        "minimum": 4.2267,
+        "median": 4.4381,
+        "p95": 4.4976,
+        "maximum": 4.4976
       },
       "filteredGraph": {
         "samples": 5,
-        "minimum": 0.1949,
-        "median": 0.2029,
-        "p95": 0.2199,
-        "maximum": 0.2199
+        "minimum": 0.1747,
+        "median": 0.18560000000000001,
+        "p95": 0.1967,
+        "maximum": 0.1967
       }
     },
     "recovery": {
@@ -494,16 +462,9 @@
       "maximumUnresolvedBacklinks": 0
     },
     "release": {
-      "completedLaunches": 5,
-      "aliveMilliseconds": {
-        "samples": 5,
-        "minimum": 4032,
-        "median": 4038,
-        "p95": 4040,
-        "maximum": 4040
-      }
+      "completedLaunches": 0
     }
   },
-  "completedAt": "2026-08-02T14:39:01.206Z",
-  "durationMs": 82070
+  "completedAt": "2026-08-03T05:05:00.723Z",
+  "durationMs": 222491
 }
