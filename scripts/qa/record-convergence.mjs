@@ -943,6 +943,47 @@ const report = {
 				impactedTests: 147,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-TERMINAL-EVENT-ISOLATION-034',
+			summary: 'Same-job delayed stream events remained accepted after preview, failure or cancellation, and duplicate early lifecycle events could regress active streaming progress.',
+			before: {
+				terminalStatesGuarded: [],
+				delayedEventBurstsPerTerminal: 100,
+				lateOutputAccepted: true,
+				lateUsageAccepted: true,
+				terminalStateCouldRevive: true,
+				streamingCouldRegressToConnecting: true
+			},
+			after: {
+				guardedTerminalStates: ['preview', 'failed', 'cancelled'],
+				acceptedStreamStates: ['queued', 'connecting', 'streaming'],
+				delayedEventBurstsPerTerminal: 100,
+				ignoredEventTypes: [
+					'job_started',
+					'connection_opened',
+					'thinking_started',
+					'content_delta',
+					'usage',
+					'failed',
+					'cancelled',
+					'completed'
+				],
+				terminalSnapshotsPreserved: [
+					'state',
+					'rawOutput',
+					'parsedOutput',
+					'transaction',
+					'usage',
+					'error'
+				],
+				activeProgressMonotonic: true,
+				orderedPreviewStillWorks: true,
+				redFailures: 4,
+				focusedTests: 40,
+				impactedTests: 151,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
