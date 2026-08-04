@@ -153,6 +153,84 @@ describe('aiGenerationStore', () => {
 		expect(store.getState().state).toBe('preview');
 	});
 
+	it('preserves an applying preview across 100 direct generation attempts', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const getAiProviderStatus = vi.fn(fallback.getAiProviderStatus);
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		const transaction = store.getState().transaction;
+		if (!transaction) throw new Error('preview transaction missing');
+		store.setState({ state: 'applying' });
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			store.getState().startGeneration()
+		)));
+
+		expect(getAiProviderStatus).toHaveBeenCalledOnce();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(store.getState()).toMatchObject({
+			state: 'applying',
+			parsedOutput: { issues: [] },
+			transaction
+		});
+	});
+
+	it('rejects 100 direct generation attempts after invalid action input', async () => {
+		const fallback = runtime(JSON.stringify({ candidates: [] }));
+		const getAiProviderStatus = vi.fn(fallback.getAiProviderStatus);
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('character.generateProfile', {
+			instruction: 7,
+			sourceResourceId: 'chapter:source'
+		}, characterScope);
+		expect(typeof store.getState().error).toBe('string');
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			store.getState().startGeneration()
+		)));
+
+		expect(getAiProviderStatus).not.toHaveBeenCalled();
+		expect(startAiGeneration).not.toHaveBeenCalled();
+		expect(store.getState()).toMatchObject({ state: 'idle', rawOutput: '' });
+		expect(typeof store.getState().error).toBe('string');
+	});
+
+	it.each(['cancelled', 'rejected'] as const)(
+		'allows explicit regeneration after a %s outcome',
+		async outcome => {
+			const requests: AiGenerateRequest[] = [];
+			const store = createAiGenerationStore(runtime(
+				JSON.stringify({ issues: [] }),
+				request => requests.push(request)
+			));
+			store.getState().openAiAction('review.consistency', {}, chapterScope);
+			await store.getState().startGeneration();
+			if (outcome === 'rejected') store.getState().rejectPreview();
+			else store.setState({ state: 'cancelled' });
+
+			await store.getState().startGeneration();
+
+			expect(requests).toHaveLength(2);
+			expect(store.getState()).toMatchObject({
+				state: 'preview',
+				parsedOutput: { issues: [] },
+				transaction: { status: 'preview' }
+			});
+		}
+	);
+
 	it('detaches every old job event while a replacement preview validates', async () => {
 		const output = JSON.stringify({ issues: [] });
 		const fallback = runtime(output);

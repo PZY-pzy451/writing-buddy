@@ -196,7 +196,11 @@ export function AiGenerationDrawer({
 						<button
 							className="primary-button"
 							type="button"
-							disabled={active || Boolean(state.unavailableReason) || Boolean(state.error)}
+							disabled={
+								contextLocked
+								|| Boolean(state.unavailableReason)
+								|| (Boolean(state.error) && state.state !== 'failed')
+							}
 							onClick={() => void state.startGeneration()}
 						>
 							<Play size={16} />开始生成

@@ -363,8 +363,10 @@ export function createAiGenerationStore(
 						'connecting',
 						'streaming',
 						'validating_output',
+						'applying',
 						'stale'
 					].includes(current.state)
+					|| (Boolean(current.error) && current.state !== 'failed')
 				) {
 					return;
 				}

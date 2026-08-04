@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
 	DEFAULT_AI_PREFERENCES,
@@ -117,6 +117,41 @@ describe('AiGenerationDrawer', () => {
 
 		expect(screen.getByRole('checkbox', { name: /Secret character note/ }))
 			.toBeDisabled();
+		expect(screen.getByRole('button', { name: /开始生成/ })).toBeDisabled();
+	});
+
+	it('lets the author retry one localized failure across 100 actions', async () => {
+		const getAiProviderStatus = vi.fn(runtime.getAiProviderStatus);
+		const startAiGeneration = vi.fn(runtime.startAiGeneration);
+		const store = createAiGenerationStore({
+			...runtime,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, {
+			currentResourceType: 'chapter',
+			baseRevision: 1,
+			context: {
+				project: { id: 'project-1', title: 'Inn', summary: 'Suspense novel' },
+				currentResource: {
+					id: 'chapter-1',
+					title: 'First chapter',
+					summary: 'A bounded chapter under review.'
+				}
+			}
+		});
+		store.setState({ state: 'failed', error: 'DeepSeek 暂时不可用。' });
+		render(<AiGenerationDrawer store={store} />);
+
+		const retry = screen.getByRole('button', { name: /开始生成/ });
+		expect(retry).toBeEnabled();
+		for (let index = 0; index < 100; index += 1) {
+			fireEvent.click(retry);
+		}
+
+		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
+		expect(getAiProviderStatus).toHaveBeenCalledOnce();
+		expect(store.getState()).toMatchObject({ state: 'queued', error: undefined });
 	});
 
 	it('scrubs stale chapter context and requires reopening from the current chapter', () => {
