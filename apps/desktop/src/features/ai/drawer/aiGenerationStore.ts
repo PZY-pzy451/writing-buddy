@@ -168,11 +168,14 @@ export function createAiGenerationStore(
 		const onStreamEvent = (event: AiStreamEvent) => {
 			const current = get();
 			if (event.jobId !== current.jobId) return;
+			if (!['queued', 'connecting', 'streaming'].includes(current.state)) return;
 			switch (event.type) {
 				case 'job_started':
-				set({ state: 'queued' });
-				break;
+					if (current.state !== 'queued') return;
+					set({ state: 'queued' });
+					break;
 				case 'connection_opened':
+					if (current.state === 'streaming') return;
 					set({ state: 'connecting' });
 					break;
 				case 'thinking_started':

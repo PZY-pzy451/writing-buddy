@@ -36,6 +36,31 @@ function runtime(
 	};
 }
 
+function controlledEventRuntime() {
+	const fallback = runtime('{}');
+	let activeJob: {
+		request: AiGenerateRequest;
+		listener: (event: AiStreamEvent) => void;
+	} | undefined;
+	const startAiGeneration = vi.fn((
+		request: AiGenerateRequest,
+		listener: (event: AiStreamEvent) => void
+	) => {
+		activeJob = { request, listener };
+		listener({ type: 'job_started', jobId: request.jobId });
+		listener({ type: 'connection_opened', jobId: request.jobId });
+		return Promise.resolve();
+	});
+	return {
+		runtime: { ...fallback, startAiGeneration },
+		startAiGeneration,
+		getJob() {
+			if (!activeJob) throw new Error('controlled drawer job missing');
+			return activeJob;
+		}
+	};
+}
+
 const chapterScope = {
 	currentResourceType: 'chapter',
 	baseRevision: 4,
@@ -179,6 +204,108 @@ describe('aiGenerationStore', () => {
 			state: 'applying',
 			parsedOutput: { issues: [] },
 			transaction
+		});
+	});
+
+	it.each(['preview', 'failed', 'cancelled'] as const)(
+		'ignores 100 delayed event bursts after the same job reaches %s',
+		async terminalState => {
+			const controlled = controlledEventRuntime();
+			const store = createAiGenerationStore(controlled.runtime);
+			store.getState().openAiAction('review.consistency', {}, chapterScope);
+			await store.getState().startGeneration();
+			const job = controlled.getJob();
+			job.listener({
+				type: 'content_delta',
+				jobId: job.request.jobId,
+				text: JSON.stringify({ issues: [] })
+			});
+			if (terminalState === 'preview') {
+				job.listener({ type: 'completed', jobId: job.request.jobId });
+			} else if (terminalState === 'failed') {
+				job.listener({
+					type: 'failed',
+					jobId: job.request.jobId,
+					error: {
+						code: 'provider_overloaded',
+						message: 'terminal provider failure',
+						retryable: true
+					}
+				});
+			} else {
+				job.listener({ type: 'cancelled', jobId: job.request.jobId });
+			}
+			const terminal = store.getState();
+			const snapshot = {
+				state: terminal.state,
+				rawOutput: terminal.rawOutput,
+				parsedOutput: terminal.parsedOutput,
+				transaction: terminal.transaction,
+				usage: terminal.usage,
+				error: terminal.error
+			};
+
+			for (let index = 0; index < 100; index += 1) {
+				job.listener({ type: 'job_started', jobId: job.request.jobId });
+				job.listener({ type: 'connection_opened', jobId: job.request.jobId });
+				job.listener({ type: 'thinking_started', jobId: job.request.jobId });
+				job.listener({
+					type: 'content_delta',
+					jobId: job.request.jobId,
+					text: 'late terminal output'
+				});
+				job.listener({
+					type: 'usage',
+					jobId: job.request.jobId,
+					usage: { inputTokens: 99, outputTokens: 99, totalTokens: 198 }
+				});
+				job.listener({
+					type: 'failed',
+					jobId: job.request.jobId,
+					error: {
+						code: 'unknown',
+						message: 'late terminal failure',
+						retryable: false
+					}
+				});
+				job.listener({ type: 'cancelled', jobId: job.request.jobId });
+				job.listener({ type: 'completed', jobId: job.request.jobId });
+			}
+			await new Promise(resolve => window.setTimeout(resolve, 60));
+
+			const current = store.getState();
+			expect({
+				state: current.state,
+				rawOutput: current.rawOutput,
+				parsedOutput: current.parsedOutput,
+				transaction: current.transaction,
+				usage: current.usage,
+				error: current.error
+			}).toEqual(snapshot);
+		}
+	);
+
+	it('keeps active stream progress monotonic across 100 duplicate early events', async () => {
+		const controlled = controlledEventRuntime();
+		const store = createAiGenerationStore(controlled.runtime);
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		const job = controlled.getJob();
+		const output = JSON.stringify({ issues: [] });
+		job.listener({ type: 'content_delta', jobId: job.request.jobId, text: output });
+
+		for (let index = 0; index < 100; index += 1) {
+			job.listener({ type: 'job_started', jobId: job.request.jobId });
+			job.listener({ type: 'connection_opened', jobId: job.request.jobId });
+		}
+		await new Promise(resolve => window.setTimeout(resolve, 60));
+
+		expect(store.getState()).toMatchObject({ state: 'streaming', rawOutput: output });
+		job.listener({ type: 'completed', jobId: job.request.jobId });
+		expect(store.getState()).toMatchObject({
+			state: 'preview',
+			parsedOutput: { issues: [] },
+			transaction: { status: 'preview' }
 		});
 	});
 
