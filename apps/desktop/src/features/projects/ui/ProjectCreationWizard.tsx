@@ -435,6 +435,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 		<div className="modal-backdrop project-wizard-backdrop" role="presentation">
 			<form
 				ref={dialogRef as React.RefObject<HTMLFormElement>}
+				data-testid="project-creation-wizard"
 				className="project-wizard"
 				role="dialog"
 				aria-modal="true"
@@ -450,7 +451,14 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						<h2 id="project-wizard-title">新建项目</h2>
 						<p id="project-wizard-description">建立项目结构、外观与写作方式</p>
 					</div>
-					<button className="icon-button" type="button" aria-label="关闭新建项目向导" onClick={dismiss} disabled={busy}>
+					<button
+						className="icon-button"
+						type="button"
+						data-testid="project-wizard-close"
+						aria-label="关闭新建项目向导"
+						onClick={dismiss}
+						disabled={busy}
+					>
 						<X size={20} />
 					</button>
 				</header>
@@ -463,6 +471,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 						return (
 							<button
 								type="button"
+								data-testid="project-wizard-step"
 								key={title}
 								className={current ? 'is-current' : complete ? 'is-complete' : ''}
 								aria-current={current ? 'step' : undefined}
@@ -496,6 +505,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								<span>作品名称</span>
 								<input
 									autoFocus
+									data-testid="project-wizard-name"
 									aria-label="作品名称"
 									value={draft.name}
 									maxLength={80}
@@ -509,6 +519,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 							<label className="wizard-field">
 								<span>作品说明 <small>可选</small></span>
 								<textarea
+									data-testid="project-wizard-description"
 									aria-label="作品说明"
 									value={draft.description}
 									maxLength={300}
@@ -520,6 +531,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								<span>保存位置</span>
 								<div className="wizard-path-row">
 									<input
+										data-testid="project-wizard-root"
 										aria-label="保存位置"
 										value={draft.rootDirectory}
 										onChange={event => updateDraft('rootDirectory', event.target.value)}
@@ -527,7 +539,13 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										aria-describedby={fieldIssue(issues, 'rootDirectory') ? 'wizard-root-error' : undefined}
 										placeholder="选择用于保存作品的父目录"
 									/>
-									<button className="secondary-button" type="button" onClick={() => void runExclusiveAction(browse)} disabled={busy}>
+									<button
+										className="secondary-button"
+										type="button"
+										data-testid="project-wizard-browse"
+										onClick={() => void runExclusiveAction(browse)}
+										disabled={busy}
+									>
 										<FolderOpen size={18} />浏览
 									</button>
 								</div>
@@ -536,7 +554,12 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 							<div className="wizard-two-columns">
 								<label className="wizard-field">
 									<span>项目类型</span>
-									<select value={draft.projectType} onChange={event => updateDraft('projectType', event.target.value as ProjectType)}>
+									<select
+										data-testid="project-wizard-project-type"
+										aria-label="项目类型"
+										value={draft.projectType}
+										onChange={event => updateDraft('projectType', event.target.value as ProjectType)}
+									>
 										<option value="longform">长篇小说</option>
 										<option value="novella">中篇小说</option>
 										<option value="short">短篇小说</option>
@@ -545,7 +568,12 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								</label>
 								<label className="wizard-field">
 									<span>语言</span>
-									<select value={draft.language} onChange={event => updateDraft('language', event.target.value)}>
+									<select
+										data-testid="project-wizard-language"
+										aria-label="语言"
+										value={draft.language}
+										onChange={event => updateDraft('language', event.target.value)}
+									>
 										<option value="zh-CN">简体中文</option>
 										<option value="zh-TW">繁体中文</option>
 										<option value="en">English</option>
@@ -557,6 +585,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								{templates.map(template => (
 									<button
 										type="button"
+										data-testid="project-wizard-template-option"
 										key={template.id}
 										className={draft.templateId === template.id ? 'is-selected' : ''}
 										aria-pressed={draft.templateId === template.id}
@@ -582,6 +611,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								{creationStartOptions.map(option => (
 									<button
 										type="button"
+										data-testid="project-wizard-start-route"
 										key={option.id}
 										className={draft.startRoute === option.id ? 'is-selected' : ''}
 										aria-pressed={draft.startRoute === option.id}
@@ -613,7 +643,13 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 											</strong>
 											<small>支持 .docx、UTF-8 .md/.markdown/.txt，文件与提取文字均最大 5 MiB</small>
 										</div>
-										<button className={importAnalysis ? 'secondary-button' : 'primary-button'} type="button" onClick={() => void runExclusiveAction(chooseImport)} disabled={busy}>
+										<button
+											className={importAnalysis ? 'secondary-button' : 'primary-button'}
+											type="button"
+											data-testid="project-wizard-import-select"
+											onClick={() => void runExclusiveAction(chooseImport)}
+											disabled={busy}
+										>
 											<FileUp size={18} />{importAnalysis ? '替换文件' : '选择文件'}
 										</button>
 									</div>
@@ -634,7 +670,9 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 												</ol>
 											)}
 											<details className="draft-import-preview">
-												<summary>查看原文预览</summary>
+												<summary data-testid="project-wizard-import-preview">
+													查看原文预览
+												</summary>
 												<pre>{importAnalysis.preview}</pre>
 											</details>
 											<div className="draft-import-safety"><Check size={16} /><span>{importAnalysis.file.format === 'word-document'
@@ -642,12 +680,19 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 													? '将保留提取后的文字副本；图片、批注、脚注、修订记录与版式不会导入，章节标题只来自明确标记。'
 													: '提取文字将写入第一章，不会调用 AI；图片、批注、脚注、修订记录与版式不会导入。')
 												: (draft.startRoute === 'outline' ? '原始大纲文字会完整保存在项目中，章节标题只来自明确标记。' : '正文将原样写入第一章，不会调用 AI 或改写内容。')}</span></div>
-											<button className="text-button draft-import-remove" type="button" onClick={() => {
-												setImportAnalysis(undefined);
-												setImportError('');
-												setPreflight(undefined);
-												setStatus('已移除导入文件。');
-											}}>移除文件</button>
+											<button
+												className="text-button draft-import-remove"
+												type="button"
+												data-testid="project-wizard-import-remove"
+												onClick={() => {
+													setImportAnalysis(undefined);
+													setImportError('');
+													setPreflight(undefined);
+													setStatus('已移除导入文件。');
+												}}
+											>
+												移除文件
+											</button>
 										</div>
 									)}
 									{importError && <p className="wizard-inline-error" role="alert">{importError}</p>}
@@ -682,6 +727,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 										<label key={resource.id} className={selected ? 'structure-card is-selected' : 'structure-card'}>
 											<input
 												type="checkbox"
+												data-testid="project-wizard-resource-option"
 												checked={selected}
 												disabled={locked}
 												onChange={() => {
@@ -716,6 +762,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 									{themes.map(theme => (
 										<button
 											type="button"
+											data-testid="project-wizard-theme-option"
 											key={theme.id}
 											className={`theme-choice theme-${theme.id} ${draft.themeId === theme.id ? 'is-selected' : ''}`}
 											aria-pressed={draft.themeId === theme.id}
@@ -743,6 +790,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								{accents.map(accent => (
 									<button
 										type="button"
+										data-testid="project-wizard-accent-option"
 										key={accent.id}
 										aria-pressed={draft.accentId === accent.id}
 										className={draft.accentId === accent.id ? 'is-selected' : ''}
@@ -761,6 +809,7 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 								] as const).map(([id, title, description]) => (
 									<button
 										type="button"
+										data-testid="project-wizard-writing-mode-option"
 										key={id}
 										aria-pressed={draft.writingMode === id}
 										className={draft.writingMode === id ? 'is-selected' : ''}
@@ -817,17 +866,36 @@ export function ProjectCreationWizard(): React.JSX.Element | null {
 				</section>
 
 				<footer className="wizard-footer">
-					<button className="secondary-button wizard-cancel" type="button" onClick={dismiss} disabled={busy}>取消</button>
+					<button
+						className="secondary-button wizard-cancel"
+						type="button"
+						data-testid="project-wizard-cancel"
+						onClick={dismiss}
+						disabled={busy}
+					>
+						取消
+					</button>
 					<div className="wizard-status" role="status" aria-live="polite">
 						{busy && <LoaderCircle className="spin" size={16} />}
 						<span>{status}</span>
 					</div>
 					{step > 0 && (
-						<button className="secondary-button" type="button" onClick={() => setStep(current => current - 1)} disabled={busy}>
+						<button
+							className="secondary-button"
+							type="button"
+							data-testid="project-wizard-previous"
+							onClick={() => setStep(current => current - 1)}
+							disabled={busy}
+						>
 							<ChevronLeft size={18} />上一步
 						</button>
 					)}
-					<button className="primary-button wizard-next" type="submit" disabled={busy}>
+					<button
+						className="primary-button wizard-next"
+						type="submit"
+						data-testid="project-wizard-submit"
+						disabled={busy}
+					>
 						{step === 4 ? <><Sparkles size={18} />{busy ? (importAnalysis ? '正在导入…' : '正在创建…') : (importAnalysis ? '创建并导入' : '创建项目')}</> : <>下一步<ChevronRight size={18} /></>}
 					</button>
 				</footer>

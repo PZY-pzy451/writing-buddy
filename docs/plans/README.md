@@ -79,6 +79,7 @@
 - [QA inventory composite-control boundary](./077-qa-inventory-composite-control-boundary.md)
 - [Creation Journey stable control selectors QA](./078-creation-journey-stable-control-selectors-qa.md)
 - [Structured outline stable control selectors QA](./079-structured-outline-stable-control-selectors-qa.md)
+- [Project creation wizard stable controls QA](./080-project-creation-wizard-stable-controls-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

@@ -38,6 +38,66 @@ describe('guided project creation', () => {
 		localStorage.clear();
 	});
 
+	it('exposes stable automation metadata across all five creation steps', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
+		await user.click(within(welcome).getByRole('button', { name: '根据题材生成大纲' }));
+		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
+
+		expect(dialog).toHaveAttribute('data-testid', 'project-creation-wizard');
+		expect(within(dialog).getByRole('navigation', { name: '创建步骤' })
+			.querySelector('button'))
+			.toHaveAttribute('data-testid', 'project-wizard-step');
+		expect(within(dialog).getByLabelText('作品名称'))
+			.toHaveAttribute('data-testid', 'project-wizard-name');
+		expect(within(dialog).getByLabelText('作品说明'))
+			.toHaveAttribute('data-testid', 'project-wizard-description');
+		expect(within(dialog).getByLabelText('保存位置'))
+			.toHaveAttribute('data-testid', 'project-wizard-root');
+		expect(within(dialog).getByLabelText('项目类型'))
+			.toHaveAttribute('data-testid', 'project-wizard-project-type');
+		expect(within(dialog).getByLabelText('语言'))
+			.toHaveAttribute('data-testid', 'project-wizard-language');
+
+		await user.type(within(dialog).getByLabelText('作品名称'), '稳定控件项目');
+		const browse = within(dialog).getByRole('button', { name: /浏览/ });
+		expect(browse).toHaveAttribute('data-testid', 'project-wizard-browse');
+		await user.click(browse);
+		expect(within(dialog).getAllByTestId('project-wizard-template-option').length)
+			.toBeGreaterThan(0);
+
+		const next = within(dialog).getByRole('button', { name: /下一步/ });
+		expect(next).toHaveAttribute('data-testid', 'project-wizard-submit');
+		await user.click(next);
+		expect(await within(dialog).findByRole('heading', { name: '你现在从哪里开始？' }))
+			.toBeInTheDocument();
+		expect(within(dialog).getByRole('button', { name: /根据题材生成小说大纲/ }))
+			.toHaveAttribute('data-testid', 'project-wizard-start-route');
+
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		expect(await within(dialog).findByRole('heading', { name: '初始结构' }))
+			.toBeInTheDocument();
+		expect(within(dialog).getAllByTestId('project-wizard-resource-option').length)
+			.toBeGreaterThan(0);
+
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		expect(await within(dialog).findByRole('heading', { name: '外观与写作方式' }))
+			.toBeInTheDocument();
+		expect(within(dialog).getAllByTestId('project-wizard-theme-option').length)
+			.toBeGreaterThan(0);
+		expect(within(dialog).getAllByTestId('project-wizard-accent-option').length)
+			.toBeGreaterThan(0);
+		expect(within(dialog).getAllByTestId('project-wizard-writing-mode-option').length)
+			.toBeGreaterThan(0);
+
+		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
+		expect(await within(dialog).findByRole('heading', { name: '确认创建' }))
+			.toBeInTheDocument();
+		expect(within(dialog).getByRole('button', { name: '创建项目' }))
+			.toHaveAttribute('data-testid', 'project-wizard-submit');
+	});
+
 	it('shows a focused welcome experience and clear creation validation', async () => {
 		const user = userEvent.setup();
 		render(<App />);

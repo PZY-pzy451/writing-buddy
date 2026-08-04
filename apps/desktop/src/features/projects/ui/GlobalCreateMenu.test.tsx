@@ -5,11 +5,13 @@ import { useAppStore } from '../../../app/store';
 import { GlobalCreateMenu } from './GlobalCreateMenu';
 
 afterEach(() => {
-	useAppStore.setState({
-		snapshot: undefined,
-		activeMode: 'works',
-		storyView: 'characters',
-		contextualCreateIntent: undefined
+	act(() => {
+		useAppStore.setState({
+			snapshot: undefined,
+			activeMode: 'works',
+			storyView: 'characters',
+			contextualCreateIntent: undefined
+		});
 	});
 });
 

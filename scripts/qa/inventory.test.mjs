@@ -64,4 +64,25 @@ describe('control inventory rendered-element boundary', () => {
 		expect(outlineControls.length).toBeGreaterThan(0);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-007 requires stable selectors for the project creation wizard', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const wizardControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/projects/ui/ProjectCreationWizard.tsx'
+		));
+		const missingSelectors = wizardControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(wizardControls.length).toBeGreaterThan(0);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });
