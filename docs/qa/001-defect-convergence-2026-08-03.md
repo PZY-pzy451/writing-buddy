@@ -859,6 +859,27 @@ stopped chapter once. Fixed-commit acceptance passes lint, typecheck, production
 build and 180 files / 912 tests; Rust collects 79, passes 77 and retains two
 reasoned ignores.
 
+### QA-INVENTORY-COMPOSITE-CONTROL-043
+
+The QA scanner treated any JSX tag carrying an event-like prop as a rendered
+control. PascalCase React component boundaries such as `DndContext`,
+`ResizeHandle`, `TextField` and `ContextPackPreview` were therefore counted a
+second time even though their intrinsic DOM controls are discovered in their
+own implementation files. This added false selector debt and multiplied each
+duplicate into synthetic interaction states.
+
+One integration contract failed red with all 16 composite types. Custom
+interaction discovery is now restricted to intrinsic lowercase JSX elements;
+native controls and intrinsic elements with handlers remain inventoried. The
+result removes 16 false controls, 352 synthetic states and 16 false selector
+gaps: inventory moves from 424 controls / 9,328 states / 212 missing selectors
+to 408 / 8,976 / 196. Aggregate traceability debt moves from 10,159 to 9,792,
+and the genuine remaining debt still fails closed.
+
+The QA-script impact set passes 16/16. Fixed-commit acceptance passes lint,
+typecheck, production build and 181 files / 913 tests. Rust collects 79, passes
+77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -982,11 +1003,12 @@ console claims.
 | Pending-fact extraction preflight feedback | Two red rendered contracts; 100 preflight clicks start one request with immediate disabled feedback; source missing selectors 4 -> 0 and global 216 -> 212; 6 focused and 43 impacted tests pass |
 | Manuscript extraction run single-flight | Two red pressure contracts; 100 starts and 99 stale-write failures become one shared run, one processor and zero rejected callers; 15 focused and 48 impacted tests pass |
 | Manuscript extraction early Stop | Four red timing contracts; immediate/source/provider-preflight Stop starts zero processors or native AI jobs, while 100 Stop actions invoke one runner Stop; 21 focused and 58 impacted tests pass |
-| Ledger/inventory reconciliation | 991 / 991 cases; 912 frontend + 79 native; 989 passed + 2 reasoned skips; stale ledgers fail closed |
+| QA inventory composite-control boundary | One red integration contract; 16 false controls, 352 synthetic states and 16 false selector findings removed; 16 focused tests pass |
+| Ledger/inventory reconciliation | 992 / 992 cases; 913 frontend + 79 native; 990 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 912 tests and production build passed |
-| Static/runtime test reconciliation | 912 / 912; 97 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 181 files / 913 tests and production build passed |
+| Static/runtime test reconciliation | 913 / 913; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -1026,10 +1048,10 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,159 aggregate mappings
-  are open and 212 interactive declarations lack stable selectors. The mapping
-  total includes the four new early-stop contracts; selector debt is unchanged
-  in this functional convergence pass.
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 9,792 aggregate mappings
+  are open and 196 interactive declarations lack stable selectors. This cycle
+  removed duplicate composite-component entries; the remaining debt represents
+  intrinsic controls and mappings and remains fail-closed.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
 - Rust emitted two localized MSVC linker-output warnings while producing test

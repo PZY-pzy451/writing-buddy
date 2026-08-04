@@ -4,35 +4,30 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Manuscript extraction early-stop convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `8a594e2`.
+QA inventory composite-control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3d340d2`.
 
-- Stop issued immediately after Start was overwritten after the first ledger
-  await. Stop during source or provider-preference loading still started the
-  chapter processor and one native paid AI job.
-- Every run now owns an `AbortSignal` before its first await. Initialization,
-  source loading, processor completion and provider preflight honor that signal,
-  while existing native-job cancellation remains intact.
-- Four contracts failed red. The extraction/Grounded AI set passed 21/21 and
-  the shared Grounded AI impact set passed 58/58. Explicit resume still processes
-  the stopped chapter once.
-- Fixed-commit Node 24 acceptance passed 180 files / 912 tests plus lint,
-  typecheck and production build. Rust collected 79, passed 77 and retained two
-  reasoned ignores.
-- The ledger contains 991 cases: 989 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 912 with 97 parameterized instances and
+- PascalCase React component boundaries were counted as rendered controls even
+  though their intrinsic DOM output is inventoried in the component source.
+- One contract failed red with 16 composite types. The scanner now restricts
+  custom-interaction discovery to intrinsic JSX while retaining native and
+  lowercase interactive elements.
+- Inventory moved from 424 controls / 9,328 states / 212 selector gaps to 408 /
+  8,976 / 196, removing 16 false controls and 352 synthetic states. Aggregate
+  traceability debt moved from 10,159 to 9,792 without weakening the strict gate.
+- The QA-script impact set passed 16/16. Fixed-commit Node 24 acceptance passed
+  181 files / 913 tests plus lint, typecheck and production build. Rust collected
+  79, passed 77 and retained two reasoned ignores.
+- The ledger contains 992 cases: 990 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 913 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,159 traceability mappings and 212 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Manuscript extraction run single-flight convergence is complete against source
-`3168d3c`.
-
-- One hundred same-frame Starts now share one page/runner task and produce zero
-  stale ledger writes. Two red contracts converged through 15 focused and 48
-  impacted tests; fixed acceptance passed 908 frontend tests.
+Manuscript extraction early-stop convergence is complete against source
+`8a594e2`. Four timing contracts converged through 21 focused and 58 impacted
+tests; fixed acceptance passed 912 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

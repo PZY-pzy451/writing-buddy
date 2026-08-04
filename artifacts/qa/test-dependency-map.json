@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 749,
+    "nodeCount": 750,
     "edgeCount": 1309,
     "nodes": [
       "apps/desktop/index.html",
@@ -727,6 +727,7 @@
       "scripts/qa/dependency-policy.mjs",
       "scripts/qa/fixtures.mjs",
       "scripts/qa/inventory.mjs",
+      "scripts/qa/inventory.test.mjs",
       "scripts/qa/record-baseline.mjs",
       "scripts/qa/record-convergence.mjs",
       "scripts/qa/supported-acceptance.mjs",
@@ -19585,6 +19586,17 @@
       "sourceFingerprint": "FCB7C037A4C0C185863BCD66FCC738F5098C7346727025ECB9A4FECF5568D7C6",
       "dependencyFingerprint": "ED439FDB1D5CF299673D435E9B70857C7D1607E5EBF295DE69EBA32B4B7FAA0E",
       "testImplementationFingerprint": "EE5077182D5797BAEED9884C618FDC2BD32B52D07BB4E18C8E02EC2FCB7632D2"
+    },
+    {
+      "testSource": "scripts/qa/inventory.test.mjs",
+      "testCaseIds": [
+        "TC-DISCOVERED-AF896B5F42"
+      ],
+      "directDependencies": [],
+      "transitiveDependencies": [],
+      "sourceFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "dependencyFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "testImplementationFingerprint": "68D5225AAB980DCBBAC45F1C77B293569D9D686B374C8A6BF2A13BAE422F8C69"
     },
     {
       "testSource": "scripts/qa/test-discovery.test.mjs",

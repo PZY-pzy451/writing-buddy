@@ -47,4 +47,13 @@ Real-provider, packaging and remaining strict traceability gates stay open.
 
 ## Result
 
-Pending fixed-commit baselines and convergence recording.
+- One integration contract failed red with all 16 PascalCase control types.
+- Restricting custom-interaction discovery to intrinsic JSX removed 16 false
+  controls, 352 synthetic states and 16 false missing-selector findings.
+- Inventory moved from 424 controls / 9,328 states / 212 selector gaps to 408 /
+  8,976 / 196. Aggregate traceability debt moved from 10,159 to 9,792 while
+  the strict gate remained fail-closed.
+- The QA-script impact set passed 16/16. Fixed-commit acceptance passed lint,
+  typecheck, production build and 181 files / 913 frontend tests. Rust collected
+  79, passed 77 and retained two reasoned ignores.
+- Product commit: `3d340d2339551da34d176c5830455eabc523c054`.

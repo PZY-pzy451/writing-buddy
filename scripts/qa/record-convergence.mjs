@@ -1196,7 +1196,7 @@ const report = {
 				providerPreflightNativeJobs: 1,
 				perRunAbortSignal: false
 			},
-			after: {
+				after: {
 				immediateStopStatus: 'stopped',
 				sourceLoadStopChapterStatus: 'cancelled',
 				providerPreflightNativeJobs: 0,
@@ -1209,6 +1209,29 @@ const report = {
 				redFailures: 4,
 				focusedTests: 21,
 				impactedTests: 58,
+				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
+			id: 'QA-INVENTORY-COMPOSITE-CONTROL-043',
+			summary: 'QA control discovery counted PascalCase React component boundaries as rendered controls, duplicating their intrinsic DOM controls and inflating selector and state debt.',
+			before: {
+				controls: 424,
+				states: 9328,
+				missingStableSelectors: 212,
+				compositeControls: 16,
+				syntheticCompositeStates: 352,
+				totalUnmapped: 10159
+			},
+			after: {
+				controls: inventory.counts.controls,
+				states: inventory.counts.states,
+				missingStableSelectors: inventory.counts.missingStableSelectors,
+				compositeControls: 0,
+				syntheticCompositeStates: 0,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 1,
+				focusedTests: 16,
 				frontendTests: frontend.vitestPassed
 			}
 		}
