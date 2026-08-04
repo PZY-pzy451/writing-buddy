@@ -63,6 +63,7 @@ export function InlineDraftCommitNoticeBanner({
 			<span>{notice.message}</span>
 			<button
 				type="button"
+				aria-label="撤销 AI 正文写入"
 				disabled={busy || !available}
 				title={available
 					? '一次撤销完整 AI 写入'

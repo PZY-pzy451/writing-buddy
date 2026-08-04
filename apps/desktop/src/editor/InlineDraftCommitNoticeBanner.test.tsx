@@ -33,7 +33,7 @@ describe('inline draft commit notice', () => {
 			/>
 		);
 
-		expect(screen.getByRole('button', { name: '撤销' })).toBeEnabled();
+		expect(screen.getByRole('button', { name: '撤销 AI 正文写入' })).toBeEnabled();
 		view.rerender(
 			<InlineDraftCommitNoticeBanner
 				notice={notice}
@@ -47,7 +47,7 @@ describe('inline draft commit notice', () => {
 			/>
 		);
 
-		expect(screen.getByRole('button', { name: '撤销' })).toBeDisabled();
+		expect(screen.getByRole('button', { name: '撤销 AI 正文写入' })).toBeDisabled();
 		await waitFor(() => expect(onDismiss).toHaveBeenCalledOnce());
 		expect(onUndo).not.toHaveBeenCalled();
 	});
@@ -66,14 +66,17 @@ describe('inline draft commit notice', () => {
 			/>
 		);
 
-		const undo = screen.getByRole('button', { name: '撤销' });
+		const undo = screen.getByRole('button', { name: '撤销 AI 正文写入' });
 		for (let index = 0; index < 100; index += 1) fireEvent.click(undo);
 
 		expect(onUndo).toHaveBeenCalledOnce();
-		expect(screen.getByRole('button', { name: '正在撤销…' })).toBeDisabled();
+		expect(screen.getByRole('button', { name: '撤销 AI 正文写入' }))
+			.toHaveTextContent('正在撤销…');
 		expect(screen.getByRole('button', { name: '关闭 AI 写入提示' })).toBeDisabled();
 		finishUndo?.();
-		await waitFor(() => expect(screen.getByRole('button', { name: '撤销' })).toBeEnabled());
+		await waitFor(() => expect(screen.getByRole('button', {
+			name: '撤销 AI 正文写入'
+		})).toBeEnabled());
 	});
 
 	it('localizes failure, releases the guard and permits an explicit retry', async () => {
@@ -89,11 +92,11 @@ describe('inline draft commit notice', () => {
 			/>
 		);
 
-		fireEvent.click(screen.getByRole('button', { name: '撤销' }));
+		fireEvent.click(screen.getByRole('button', { name: '撤销 AI 正文写入' }));
 		expect(await screen.findByRole('alert')).toHaveTextContent('撤销未完成，请重试。');
 		expect(screen.queryByText('rawNativeUndoFailure')).not.toBeInTheDocument();
 
-		fireEvent.click(screen.getByRole('button', { name: '撤销' }));
+		fireEvent.click(screen.getByRole('button', { name: '撤销 AI 正文写入' }));
 		await waitFor(() => expect(onUndo).toHaveBeenCalledTimes(2));
 	});
 });
