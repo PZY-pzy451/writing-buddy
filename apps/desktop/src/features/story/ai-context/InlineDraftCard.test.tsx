@@ -10,9 +10,12 @@ function candidate(): PendingDraftCandidate {
 	return createPendingDraftCandidate({
 		id: 'draft:one',
 		actionId: 'manuscript-continuation',
+		projectRoot: 'D:\\Projects\\project-one',
 		projectId: 'project:one',
 		chapterId: 'chapter:one',
 		resourceId: 'chapter:one',
+		resourcePath: 'manuscripts/chapter-one.md',
+		modelUri: 'writing-buddy://chapter%3Aone/manuscripts/chapter-one.md',
 		mode: 'insert_at_cursor',
 		start: 4,
 		end: 4,

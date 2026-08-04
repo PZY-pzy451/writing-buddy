@@ -48,12 +48,14 @@ import { InlineDraftCard } from '../features/story/ai-context/InlineDraftCard';
 import {
 	editPendingDraftCandidate,
 	isPendingDraftCandidateStale,
+	isPendingDraftCandidateTargetCurrent,
 	resolvePendingDraftEdit
 } from '../features/story/ai-context/InlineDraftCandidateModel';
 import {
 	canUndoCommittedDraft,
 	type InlineDraftCommitNotice
 } from './InlineDraftCommitNoticeModel';
+import { rollbackAppliedInlineDraft } from './InlineDraftRollbackModel';
 import { InlineDraftCommitNoticeBanner } from './InlineDraftCommitNoticeBanner';
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
@@ -255,7 +257,15 @@ export function ChapterEditor(): React.JSX.Element {
 	const sessionResourceId = session?.state.resourceId;
 	const sessionContent = session?.content;
 	const activePendingDraft = pendingDraftCandidate
-		&& pendingDraftCandidate.target.resourceId === sessionResourceId
+		&& snapshot
+		&& session
+		&& isPendingDraftCandidateTargetCurrent(pendingDraftCandidate, {
+			projectRoot: snapshot.root,
+			projectId: snapshot.project.projectId,
+			resourceId: session.state.resourceId,
+			resourcePath: session.state.path,
+			modelUri: session.state.modelUri
+		})
 		&& !['applied', 'discarded'].includes(pendingDraftCandidate.status)
 		? pendingDraftCandidate
 		: undefined;
@@ -264,9 +274,15 @@ export function ChapterEditor(): React.JSX.Element {
 		&& session
 		&& isPendingDraftCandidateStale(
 			activePendingDraft,
-			session.state.resourceId,
-			session.state.version,
-			session.content
+			{
+				projectRoot: snapshot?.root ?? '',
+				projectId: snapshot?.project.projectId ?? '',
+				resourceId: session.state.resourceId,
+				resourcePath: session.state.path,
+				modelUri: session.state.modelUri,
+				revision: session.state.version,
+				content: session.content
+			}
 		)
 	);
 	const activePendingDraftId = activePendingDraft?.id;
@@ -991,6 +1007,26 @@ export function ChapterEditor(): React.JSX.Element {
 		if (!candidate || committingDraftRef.current) {
 			return;
 		}
+		const targetsCurrentCandidate = () => {
+			const current = useAppStore.getState();
+			const currentSession = current.session;
+			return Boolean(
+				current.snapshot
+				&& currentSession
+				&& current.activeResource?.type === 'chapter'
+				&& current.activeResource.id === candidate.target.resourceId
+				&& current.activeResource.projectId === candidate.target.projectId
+				&& isPendingDraftCandidateTargetCurrent(candidate, {
+					projectRoot: current.snapshot.root,
+					projectId: current.snapshot.project.projectId,
+					resourceId: currentSession.state.resourceId,
+					resourcePath: currentSession.state.path,
+					modelUri: currentSession.state.modelUri
+				})
+				&& model?.uri.toString() === candidate.target.modelUri
+				&& editorRef.current?.getModel() === model
+			);
+		};
 		if (!editor || !model || readOnly) {
 			setPendingDraftCandidate({
 				...candidate,
@@ -1008,18 +1044,22 @@ export function ChapterEditor(): React.JSX.Element {
 			const beforeSession = before.session;
 			if (
 				!beforeSession
-				|| before.activeResource?.type !== 'chapter'
+				|| !targetsCurrentCandidate()
 				|| before.snapshot?.readOnly
-				|| before.snapshot?.project.projectId !== candidate.target.projectId
-				|| beforeSession.state.resourceId !== candidate.target.resourceId
 			) {
 				throw new Error('当前章节不可写入，临时草稿仍然保留。');
 			}
 			resolvePendingDraftEdit(
 				candidate,
-				beforeSession.state.resourceId,
-				beforeSession.state.version,
-				beforeSession.content
+				{
+					projectRoot: before.snapshot?.root ?? '',
+					projectId: before.snapshot?.project.projectId ?? '',
+					resourceId: beforeSession.state.resourceId,
+					resourcePath: beforeSession.state.path,
+					modelUri: beforeSession.state.modelUri,
+					revision: beforeSession.state.version,
+					content: beforeSession.content
+				}
 			);
 			const contentBeforeCommit = beforeSession.content;
 			setPendingDraftCandidate({ ...candidate, status: 'applying', error: undefined });
@@ -1031,8 +1071,7 @@ export function ChapterEditor(): React.JSX.Element {
 			const savedSession = saved.session;
 			if (
 				!savedSession
-				|| saved.activeResource?.id !== candidate.target.resourceId
-				|| savedSession.state.resourceId !== candidate.target.resourceId
+				|| !targetsCurrentCandidate()
 				|| savedSession.content !== contentBeforeCommit
 				|| savedSession.state.dirty
 				|| saved.saveState.type !== 'clean'
@@ -1050,12 +1089,20 @@ export function ChapterEditor(): React.JSX.Element {
 
 			const verified = useAppStore.getState();
 			const verifiedSession = verified.session;
-			if (!verifiedSession) throw new Error('当前章节已经关闭，未写入临时草稿。');
+			if (!verifiedSession || !targetsCurrentCandidate()) {
+				throw new Error('当前章节已经关闭，未写入临时草稿。');
+			}
 			const edit = resolvePendingDraftEdit(
 				candidate,
-				verifiedSession.state.resourceId,
-				verifiedSession.state.version,
-				verifiedSession.content
+				{
+					projectRoot: verified.snapshot?.root ?? '',
+					projectId: verified.snapshot?.project.projectId ?? '',
+					resourceId: verifiedSession.state.resourceId,
+					resourcePath: verifiedSession.state.path,
+					modelUri: verifiedSession.state.modelUri,
+					revision: verifiedSession.state.version,
+					content: verifiedSession.content
+				}
 			);
 			if (model.getValue() !== verifiedSession.content) {
 				throw new Error('编辑器与正文状态尚未同步，未写入临时草稿。');
@@ -1082,7 +1129,8 @@ export function ChapterEditor(): React.JSX.Element {
 
 			const completed = useAppStore.getState();
 			if (
-				completed.session?.content !== model.getValue()
+				!targetsCurrentCandidate()
+				|| completed.session?.content !== model.getValue()
 				|| completed.session.state.dirty
 				|| completed.saveState.type !== 'clean'
 			) {
@@ -1098,14 +1146,24 @@ export function ChapterEditor(): React.JSX.Element {
 			});
 			editor.focus();
 		} catch (reason) {
+			let rollbackFailed = false;
 			if (editApplied) {
-				editor.trigger('writing-buddy.ai-draft', 'undo', undefined);
-				useAppStore.getState().setContent(model.getValue(), 'undo');
+				try {
+					const restoredContent = await rollbackAppliedInlineDraft(model);
+					if (targetsCurrentCandidate()) {
+						useAppStore.getState().setContent(restoredContent, 'undo');
+					}
+				} catch {
+					rollbackFailed = true;
+				}
 				clearAiInsertHighlight();
 			}
-			const message = reason instanceof Error
+			const failureMessage = reason instanceof Error
 				? reason.message
 				: '临时草稿写入失败，正文未改变。';
+			const message = rollbackFailed
+				? `${failureMessage} 原编辑器撤回失败，请重新打开章节并核对正文。`
+				: failureMessage;
 			if (useAppStore.getState().pendingDraftCandidate?.id === candidate.id) {
 				setPendingDraftCandidate({
 					...candidate,

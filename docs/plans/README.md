@@ -59,6 +59,7 @@
 - [Save retry lifecycle QA](./057-save-retry-lifecycle-qa.md)
 - [Project open latest-intent QA](./058-project-open-latest-intent-qa.md)
 - [Project repair latest-intent QA](./059-project-repair-latest-intent-qa.md)
+- [AI draft commit resource-isolation QA](./060-ai-draft-commit-resource-isolation-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

@@ -291,9 +291,12 @@ function AssistantPanelContent(props: {
 							onPendingDraft={candidate => setPendingDraftCandidate(
 								createPendingDraftCandidate({
 									actionId: `selection-rewrite:${rewriteAction}`,
+									projectRoot: snapshot.root,
 									projectId: snapshot.project.projectId,
 									chapterId: activeResource.id,
 									resourceId: activeResource.id,
+									resourcePath: session.state.path,
+									modelUri: session.state.modelUri,
 									mode: 'replace_selection',
 									start: candidate.range.start,
 									end: candidate.range.end,
@@ -363,9 +366,12 @@ function AssistantPanelContent(props: {
 									onPendingDraft={(candidate, batch, insertion) => (
 										setPendingDraftCandidate(createPendingDraftCandidate({
 											actionId: 'manuscript-continuation',
+											projectRoot: snapshot.root,
 											projectId: snapshot.project.projectId,
 											chapterId: activeResource.id,
 											resourceId: activeResource.id,
+											resourcePath: session.state.path,
+											modelUri: session.state.modelUri,
 											mode: 'insert_at_cursor',
 											start: batch.cursorOffset,
 											end: batch.cursorOffset,

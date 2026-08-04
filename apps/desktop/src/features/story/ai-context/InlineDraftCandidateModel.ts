@@ -1,9 +1,12 @@
 export type DraftInsertionMode = 'insert_at_cursor' | 'replace_selection';
 
 export interface DraftInsertionTarget {
+	readonly projectRoot: string;
 	readonly projectId: string;
 	readonly chapterId: string;
 	readonly resourceId: string;
+	readonly resourcePath: string;
+	readonly modelUri: string;
 	readonly mode: DraftInsertionMode;
 	readonly range: {
 		readonly start: number;
@@ -43,6 +46,21 @@ export interface ResolvedPendingDraftEdit {
 	readonly text: string;
 }
 
+export interface PendingDraftCurrentTarget {
+	readonly projectRoot: string;
+	readonly projectId: string;
+	readonly resourceId: string;
+	readonly resourcePath: string;
+	readonly modelUri: string;
+	readonly revision: number;
+	readonly content: string;
+}
+
+export type PendingDraftResourceTarget = Omit<
+	PendingDraftCurrentTarget,
+	'revision' | 'content'
+>;
+
 const ANCHOR_LENGTH = 64;
 
 function assertNonEmpty(value: string, errorCode: string): void {
@@ -72,9 +90,12 @@ function targetContentMatches(
 export function createPendingDraftCandidate(input: {
 	readonly id?: string;
 	readonly actionId: string;
+	readonly projectRoot: string;
 	readonly projectId: string;
 	readonly chapterId: string;
 	readonly resourceId: string;
+	readonly resourcePath: string;
+	readonly modelUri: string;
 	readonly mode: DraftInsertionMode;
 	readonly start: number;
 	readonly end: number;
@@ -85,9 +106,12 @@ export function createPendingDraftCandidate(input: {
 	readonly contextSummary: string;
 }): PendingDraftCandidate {
 	assertNonEmpty(input.actionId, 'invalidPendingDraftAction');
+	assertNonEmpty(input.projectRoot, 'invalidPendingDraftProjectRoot');
 	assertNonEmpty(input.projectId, 'invalidPendingDraftProject');
 	assertNonEmpty(input.chapterId, 'invalidPendingDraftChapter');
 	assertNonEmpty(input.resourceId, 'invalidPendingDraftResource');
+	assertNonEmpty(input.resourcePath, 'invalidPendingDraftResourcePath');
+	assertNonEmpty(input.modelUri, 'invalidPendingDraftModel');
 	assertNonEmpty(input.content, 'emptyPendingDraftCandidate');
 	assertNonEmpty(input.targetSummary, 'invalidPendingDraftTargetSummary');
 	assertNonEmpty(input.contextSummary, 'invalidPendingDraftContextSummary');
@@ -110,9 +134,12 @@ export function createPendingDraftCandidate(input: {
 		id: input.id ?? `pending-draft:${crypto.randomUUID()}`,
 		actionId: input.actionId,
 		target: {
+			projectRoot: input.projectRoot,
 			projectId: input.projectId,
 			chapterId: input.chapterId,
 			resourceId: input.resourceId,
+			resourcePath: input.resourcePath,
+			modelUri: input.modelUri,
 			mode: input.mode,
 			range: { start: input.start, end: input.end },
 			baseDocumentRevision: input.baseDocumentRevision,
@@ -160,13 +187,45 @@ export function discardPendingDraftCandidate(
 
 export function isPendingDraftCandidateStale(
 	candidate: PendingDraftCandidate,
+	current: PendingDraftCurrentTarget
+): boolean;
+export function isPendingDraftCandidateStale(
+	candidate: PendingDraftCandidate,
 	resourceId: string,
 	currentRevision: number,
 	currentContent: string
+): boolean;
+export function isPendingDraftCandidateStale(
+	candidate: PendingDraftCandidate,
+	currentOrResourceId: PendingDraftCurrentTarget | string,
+	currentRevision?: number,
+	currentContent?: string
 ): boolean {
-	return candidate.target.resourceId !== resourceId
-		|| candidate.target.baseDocumentRevision !== currentRevision
-		|| !targetContentMatches(candidate, currentContent);
+	const current = typeof currentOrResourceId === 'string'
+		? {
+				projectRoot: candidate.target.projectRoot,
+				projectId: candidate.target.projectId,
+				resourceId: currentOrResourceId,
+				resourcePath: candidate.target.resourcePath,
+				modelUri: candidate.target.modelUri,
+				revision: currentRevision ?? -1,
+				content: currentContent ?? ''
+			}
+		: currentOrResourceId;
+	return !isPendingDraftCandidateTargetCurrent(candidate, current)
+		|| candidate.target.baseDocumentRevision !== current.revision
+		|| !targetContentMatches(candidate, current.content);
+}
+
+export function isPendingDraftCandidateTargetCurrent(
+	candidate: PendingDraftCandidate,
+	current: PendingDraftResourceTarget
+): boolean {
+	return candidate.target.projectRoot === current.projectRoot
+		&& candidate.target.projectId === current.projectId
+		&& candidate.target.resourceId === current.resourceId
+		&& candidate.target.resourcePath === current.resourcePath
+		&& candidate.target.modelUri === current.modelUri;
 }
 
 export function rebasePendingDraftCandidateRevision(
@@ -192,19 +251,32 @@ export function rebasePendingDraftCandidateRevision(
 
 export function resolvePendingDraftEdit(
 	candidate: PendingDraftCandidate,
+	current: PendingDraftCurrentTarget
+): ResolvedPendingDraftEdit;
+export function resolvePendingDraftEdit(
+	candidate: PendingDraftCandidate,
 	resourceId: string,
 	currentRevision: number,
 	currentContent: string
+): ResolvedPendingDraftEdit;
+export function resolvePendingDraftEdit(
+	candidate: PendingDraftCandidate,
+	currentOrResourceId: PendingDraftCurrentTarget | string,
+	currentRevision?: number,
+	currentContent?: string
 ): ResolvedPendingDraftEdit {
 	if (!['ready', 'edited', 'failed'].includes(candidate.status)) {
 		throw new Error('pendingDraftNotApplicable');
 	}
-	if (isPendingDraftCandidateStale(
-		candidate,
-		resourceId,
-		currentRevision,
-		currentContent
-	)) {
+	const stale = typeof currentOrResourceId === 'string'
+		? isPendingDraftCandidateStale(
+				candidate,
+				currentOrResourceId,
+				currentRevision ?? -1,
+				currentContent ?? ''
+			)
+		: isPendingDraftCandidateStale(candidate, currentOrResourceId);
+	if (stale) {
 		throw new Error('stalePendingDraftCandidate');
 	}
 	if (!candidate.content.trim()) {

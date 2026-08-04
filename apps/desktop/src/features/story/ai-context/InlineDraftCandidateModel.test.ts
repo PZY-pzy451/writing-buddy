@@ -10,15 +10,30 @@ import {
 
 const manuscript = '雨还在下。\n\n林墨站在旧车站门口。';
 
+const draftIdentity = {
+	projectRoot: 'D:\\Projects\\project-one',
+	projectId: 'project:one',
+	resourceId: 'chapter:one',
+	resourcePath: 'manuscripts/chapter-one.md',
+	modelUri: 'writing-buddy://chapter%3Aone/manuscripts/chapter-one.md'
+} as const;
+
+function currentTarget(
+	revision: number,
+	content: string,
+	overrides: Partial<Record<keyof typeof draftIdentity, string>> = {}
+) {
+	return { ...draftIdentity, revision, content, ...overrides };
+}
+
 describe('InlineDraftCandidateModel', () => {
 	it('captures an exact cursor insertion target without changing the manuscript', () => {
 		const cursorOffset = manuscript.length;
 		const candidate = createPendingDraftCandidate({
 			id: 'draft:cursor',
 			actionId: 'manuscript-continuation',
-			projectId: 'project:one',
+			...draftIdentity,
 			chapterId: 'chapter:one',
-			resourceId: 'chapter:one',
 			mode: 'insert_at_cursor',
 			start: cursorOffset,
 			end: cursorOffset,
@@ -59,9 +74,8 @@ describe('InlineDraftCandidateModel', () => {
 		const candidate = createPendingDraftCandidate({
 			id: 'draft:rewrite',
 			actionId: 'selection-rewrite:polish',
-			projectId: 'project:one',
+			...draftIdentity,
 			chapterId: 'chapter:one',
-			resourceId: 'chapter:one',
 			mode: 'replace_selection',
 			start,
 			end,
@@ -97,9 +111,8 @@ describe('InlineDraftCandidateModel', () => {
 		const candidate = createPendingDraftCandidate({
 			id: 'draft:editable',
 			actionId: 'manuscript-continuation',
-			projectId: 'project:one',
+			...draftIdentity,
 			chapterId: 'chapter:one',
-			resourceId: 'chapter:one',
 			mode: 'insert_at_cursor',
 			start: manuscript.length,
 			end: manuscript.length,
@@ -134,9 +147,8 @@ describe('InlineDraftCandidateModel', () => {
 		const candidate = createPendingDraftCandidate({
 			id: 'draft:save-rebase',
 			actionId: 'manuscript-continuation',
-			projectId: 'project:one',
+			...draftIdentity,
 			chapterId: 'chapter:one',
-			resourceId: 'chapter:one',
 			mode: 'insert_at_cursor',
 			start: manuscript.length,
 			end: manuscript.length,
@@ -157,5 +169,44 @@ describe('InlineDraftCandidateModel', () => {
 			6,
 			`${manuscript}新增`
 		)).toThrow('pendingDraftTargetChanged');
+	});
+
+	it.each([
+		{
+			name: 'another project root with colliding IDs and content',
+			overrides: { projectRoot: 'D:\\Projects\\copied-project' }
+		},
+		{
+			name: 'another project ID with colliding resource content',
+			overrides: { projectId: 'project:two' }
+		},
+		{
+			name: 'the same resource ID at another manuscript path',
+			overrides: { resourcePath: 'manuscripts/recreated-chapter.md' }
+		},
+		{
+			name: 'a recreated Monaco model',
+			overrides: { modelUri: 'writing-buddy://chapter%3Aone/recreated-chapter.md' }
+		}
+	])('rejects $name', ({ overrides }) => {
+		const candidate = createPendingDraftCandidate({
+			id: 'draft:identity-collision',
+			actionId: 'manuscript-continuation',
+			...draftIdentity,
+			chapterId: 'chapter:one',
+			mode: 'insert_at_cursor',
+			start: manuscript.length,
+			end: manuscript.length,
+			baseDocumentRevision: 9,
+			currentContent: manuscript,
+			content: 'Footsteps sounded outside.',
+			targetSummary: 'After the current cursor',
+			contextSummary: 'Current manuscript context'
+		});
+
+		expect(isPendingDraftCandidateStale(
+			candidate,
+			currentTarget(9, manuscript, overrides)
+		)).toBe(true);
 	});
 });
