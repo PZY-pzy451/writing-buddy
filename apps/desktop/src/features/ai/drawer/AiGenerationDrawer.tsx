@@ -136,7 +136,8 @@ export function AiGenerationDrawer({
 							className="icon-button"
 							type="button"
 							onClick={state.toggleExpanded}
-							aria-label={state.expanded ? '恢复抽屉宽度' : '展开抽屉'}
+							aria-label="切换 AI 抽屉宽度"
+							title={state.expanded ? '恢复抽屉宽度' : '展开抽屉'}
 						>
 							{state.expanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
 						</button>

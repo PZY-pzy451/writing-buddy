@@ -45,7 +45,13 @@ traceability, real-provider smoke and packaging gates are closed.
 - The applying snapshot survives all four close paths without cancellation.
   Internal `reset()` still performs explicit teardown, and existing idle plus
   streaming close/cancellation contracts remain green.
-- Focused Store/drawer regression: 2 files / 66 tests passed.
+- The first fixed-commit inventory exposed a previously hidden width-toggle
+  selector after the close button became a distinct control: missing stable
+  selectors temporarily rose from 221 to 222. The toggle now keeps the static
+  accessible name `切换 AI 抽屉宽度` while its tooltip describes the current
+  expand/restore action; inventory returned to 221 missing selectors.
+- Focused Store/drawer regression: 2 files / 67 tests passed, including a real
+  expand transition with a stable accessible name.
 - Impact regression: 10 files / 165 tests passed.
 - Full frontend acceptance: lint, TypeScript, 180 files / 900 tests and the
   production build passed with no timer or worker leaks.

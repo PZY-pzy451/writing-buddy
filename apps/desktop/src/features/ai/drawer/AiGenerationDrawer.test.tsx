@@ -23,6 +23,23 @@ const runtime: AiGenerationRuntime = {
 };
 
 describe('AiGenerationDrawer', () => {
+	it('keeps one stable accessible name while toggling the drawer width', async () => {
+		const user = userEvent.setup();
+		const store = createAiGenerationStore(runtime);
+		store.getState().openAiAction('review.consistency', {}, { context: {} });
+		render(<AiGenerationDrawer store={store} />);
+
+		const toggle = screen.getByRole('button', { name: '切换 AI 抽屉宽度' });
+		const drawer = screen.getByRole('dialog');
+		expect(toggle).toHaveAttribute('title', '展开抽屉');
+		expect(drawer).not.toHaveClass('is-expanded');
+
+		await user.click(toggle);
+		expect(screen.getByRole('button', { name: '切换 AI 抽屉宽度' }))
+			.toHaveAttribute('title', '恢复抽屉宽度');
+		expect(drawer).toHaveClass('is-expanded');
+	});
+
 	it('opens any registered test action and keeps unavailable guidance in the drawer', async () => {
 		const user = userEvent.setup();
 		const store = createAiGenerationStore(runtime);
