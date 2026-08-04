@@ -1291,6 +1291,36 @@ const report = {
 				qaScriptTests: 16,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PROJECT-CREATION-STABLE-CONTROLS-046',
+			summary: 'The five-step project creation wizard lacked stable automation metadata and collapsed eight distinct declarations, while project impact tests emitted React cleanup warnings.',
+			before: {
+				sourceControls: 12,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 6,
+				globalControls: 444,
+				globalStates: 9768,
+				globalMissingStableSelectors: 173,
+				totalUnmapped: 10568,
+				projectImpactReactWarnings: 6
+			},
+			after: {
+				sourceControls: 20,
+				sourceMappedControls: 20,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 8,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				projectImpactReactWarnings: 0,
+				redFailures: 2,
+				focusedTests: 16,
+				projectImpactTests: 64,
+				qaScriptTests: 17,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

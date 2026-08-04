@@ -4,32 +4,33 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Structured outline stable-control convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `fcd63dd`.
+Project creation wizard stable-control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `e2b36d8`.
 
-- The author-facing outline bridge contributed nine selector gaps across
-  dynamic tree, card, field, quality, hierarchy and AI-review controls.
-- Two contracts failed red. Static inventory and rendered author checks now
-  cover ordinary and conditional controls while preserving accessible copy,
-  editing, drag ordering, lock state and atomic-write behavior.
-- The source moves from 15 controls (6 mapped / 9 missing) to 35/35 mapped.
-  Global missing selectors fall from 182 to 173. Twenty newly distinguished
-  controls and 440 states raise honest traceability debt from 10,161 to 10,568;
+- The five-step first-use wizard contributed six selector gaps and collapsed
+  repeated steps, choices and actions into shared inventory declarations.
+- Two contracts failed red. Static inventory and a rendered author journey now
+  cover every step from project identity through final creation while retaining
+  validation, import safety, dirty-draft protection and atomic retry behavior.
+- The source moves from 12 controls (6 mapped / 6 missing) to 20/20 mapped.
+  Global missing selectors fall from 173 to 167. Eight newly distinguished
+  controls and 176 states raise honest traceability debt from 10,568 to 10,708;
   the strict gate remains fail-closed for the newly exposed mappings.
-- Focused outline regression passed 3 files / 10 tests, Creation Journey passed
-  19 files / 65 tests and QA infrastructure passed 5 files / 16 tests.
+- Focused regression passed 2 files / 16 tests, the projects feature passed 12
+  files / 64 tests with six React cleanup warnings eliminated, and QA
+  infrastructure passed 5 files / 17 tests.
 - Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  181 files / 916 tests. Rust collected 79, passed 77 and retained two reasoned
+  181 files / 918 tests. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 995 cases: 993 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 916 with 97 parameterized instances and
+- The ledger contains 997 cases: 995 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 918 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Creation Journey page stable-control convergence is complete against source
-`bf0069b`: 38/38 source controls are mapped and fixed acceptance passed 914
+Structured outline stable-control convergence is complete against source
+`fcd63dd`: 35/35 source controls are mapped and fixed acceptance passed 916
 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze

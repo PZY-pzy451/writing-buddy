@@ -43089,138 +43089,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-00BD1C6E-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-1AAAB9E2-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43228,138 +43228,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-43E45426",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-3CB4057F",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-43E45426-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-3CB4057F-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43367,138 +43367,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-69FCF2C0-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-71707B3A",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-71707B3A-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-82047D7F",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-82047D7F-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-8327052D",
                   "level": "L4",
                   "name": "移除文件",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-5C7F75E0-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8327052D-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43506,138 +43923,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-AC005A02",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-83E7DD41",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-AC005A02-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-83E7DD41-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43645,138 +44062,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-D1B081F2",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-8D2982BA",
                   "level": "L4",
                   "name": "上一步",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D1B081F2-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-8D2982BA-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43784,138 +44201,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-F01B51C8",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-950BF4F0",
                   "level": "L4",
                   "name": "关闭新建项目向导",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-F01B51C8-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-950BF4F0-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43923,138 +44340,694 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-FORM-1FD39855",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5",
+                  "level": "L4",
+                  "name": "取消",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-B1FD54D5-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-BB85D730",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-BB85D730-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-D2E76964",
+                  "level": "L4",
+                  "name": "浏览",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D2E76964-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-BUTTON-D8CDD1F9-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-FORM-B37CA016",
                   "level": "L4",
                   "name": "form",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-1FD39855-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-FORM-B37CA016-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44062,416 +45035,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-21D8DC35",
-                  "level": "L4",
-                  "name": "保存位置",
-                  "states": [
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-21D8DC35-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-48E9BE83",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-48E9BE83-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-97FF202E",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-6CBCBC17",
                   "level": "L4",
                   "name": "作品名称",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-97FF202E-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-6CBCBC17-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44479,138 +45174,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-SELECT-DBB59032",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B",
                   "level": "L4",
-                  "name": "select",
+                  "name": "input",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-DBB59032-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-A3EE0E9B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44618,138 +45313,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD",
+                  "id": "CTRL-PROJECTCREATIONWIZARD-INPUT-D556CB0E",
+                  "level": "L4",
+                  "name": "保存位置",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-INPUT-D556CB0E-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-SELECT-94CDF315",
+                  "level": "L4",
+                  "name": "项目类型",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-94CDF315-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-SELECT-CCB31DDC",
+                  "level": "L4",
+                  "name": "语言",
+                  "states": [
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PROJECTCREATIONWIZARD-SELECT-CCB31DDC-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337",
                   "level": "L4",
                   "name": "作品说明",
                   "states": [
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-VISIBLE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-HIDDEN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-ENABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-DISABLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-POINTER",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-KEYBOARD",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-FOCUS-IN",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-FOCUS-OUT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-REPEAT",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-DEDUPLICATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-LOADING",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-SUCCESS",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-FAILURE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-CANCELLED",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-OFFLINE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-PERMISSION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-PERSISTENCE",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-RESTART",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-VISUAL",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-ACCESSIBLE-NAME",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-A73B35DD-UNDO",
+                      "id": "STATE-PROJECTCREATIONWIZARD-TEXTAREA-C0F84337-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -64806,7 +65918,7 @@
       "id": "TC-DISCOVERED-00F6858350",
       "title": "opens Quick Capture as a real project action",
       "declarationTitle": "opens Quick Capture as a real project action",
-      "declarationLine": 17,
+      "declarationLine": 19,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -65538,7 +66650,7 @@
       "id": "TC-DISCOVERED-0B5882C057",
       "title": "offers four truthful starting paths with genre as the only primary action",
       "declarationTitle": "offers four truthful starting paths with genre as the only primary action",
-      "declarationLine": 57,
+      "declarationLine": 117,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -65808,7 +66920,7 @@
       "id": "TC-DISCOVERED-0DF64E1B2E",
       "title": "does not write a new project when the current manuscript is dirty and switching is cancelled",
       "declarationTitle": "does not write a new project when the current manuscript is dirty and switching is cancelled",
-      "declarationLine": 251,
+      "declarationLine": 311,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -65844,7 +66956,7 @@
       "id": "TC-DISCOVERED-0EB3B18F6A",
       "title": "offers New project from the open-project menu and supports keyboard navigation",
       "declarationTitle": "offers New project from the open-project menu and supports keyboard navigation",
-      "declarationLine": 224,
+      "declarationLine": 284,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -70646,7 +71758,7 @@
       "id": "TC-DISCOVERED-5223E4A84A",
       "title": "opens the real chapter creator from the menu and from quick-create focus",
       "declarationTitle": "opens the real chapter creator from the menu and from quick-create focus",
-      "declarationLine": 44,
+      "declarationLine": 46,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -70974,7 +72086,7 @@
       "id": "TC-DISCOVERED-58939113A0",
       "title": "creates exactly one project under 100 same-tick final submissions",
       "declarationTitle": "creates exactly one project under 100 same-tick final submissions",
-      "declarationLine": 294,
+      "declarationLine": 354,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -71181,6 +72293,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5DDB5C36D5",
+      "title": "exposes stable automation metadata across all five creation steps",
+      "declarationTitle": "exposes stable automation metadata across all five creation steps",
+      "declarationLine": 41,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -71484,7 +72614,7 @@
       "id": "TC-DISCOVERED-60B6BF8C00",
       "title": "shows a focused welcome experience and clear creation validation",
       "declarationTitle": "shows a focused welcome experience and clear creation validation",
-      "declarationLine": 41,
+      "declarationLine": 101,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -71610,7 +72740,7 @@
       "id": "TC-DISCOVERED-61FFEC0807",
       "title": "creates through five steps, preserves the manuscript start, and opens the first chapter",
       "declarationTitle": "creates through five steps, preserves the manuscript start, and opens the first chapter",
-      "declarationLine": 98,
+      "declarationLine": 158,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -73136,7 +74266,7 @@
       "id": "TC-DISCOVERED-7ACC45673E",
       "title": "routes contextual creation into the existing author assistant",
       "declarationTitle": "routes contextual creation into the existing author assistant",
-      "declarationLine": 78,
+      "declarationLine": 80,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -73682,7 +74812,7 @@
       "id": "TC-DISCOVERED-82F42B50EB",
       "title": "previews an extracted Word outline with truthful format limitations",
       "declarationTitle": "previews an extracted Word outline with truthful format limitations",
-      "declarationLine": 170,
+      "declarationLine": 230,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -74524,7 +75654,7 @@
       "id": "TC-DISCOVERED-8F6F9A2FDF",
       "title": "previews an outline, creates its chapter structure, and opens the dashboard",
       "declarationTitle": "previews an outline, creates its chapter structure, and opens the dashboard",
-      "declarationLine": 142,
+      "declarationLine": 202,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -75067,6 +76197,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-98E4CCC8F7",
+      "title": "TC-QA-INVENTORY-007 requires stable selectors for the project creation wizard",
+      "declarationTitle": "TC-QA-INVENTORY-007 requires stable selectors for the project creation wizard",
+      "declarationLine": 68,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-98F58511C2",
       "title": "confirms unlinking metadata and explicitly preserves正文",
       "declarationTitle": "confirms unlinking metadata and explicitly preserves正文",
@@ -75506,7 +76654,7 @@
       "id": "TC-DISCOVERED-9E9100AB00",
       "title": "keeps the global create menu useful without an open project",
       "declarationTitle": "keeps the global create menu useful without an open project",
-      "declarationLine": 204,
+      "declarationLine": 264,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -79036,7 +80184,7 @@
       "id": "TC-DISCOVERED-D659837A56",
       "title": "prioritizes story structure and plot actions while planning",
       "declarationTitle": "prioritizes story structure and plot actions while planning",
-      "declarationLine": 108,
+      "declarationLine": 110,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -80602,7 +81750,7 @@
       "id": "TC-DISCOVERED-F2D7428B4B",
       "title": "defaults to the genre-to-outline start while preserving the other truthful starts",
       "declarationTitle": "defaults to the genre-to-outline start while preserving the other truthful starts",
-      "declarationLine": 78,
+      "declarationLine": 138,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -81200,7 +82348,7 @@
       "id": "TC-DISCOVERED-FB66B770B1",
       "title": "keeps the final step retryable after an atomic creation failure",
       "declarationTitle": "keeps the final step retryable after an atomic creation failure",
-      "declarationLine": 329,
+      "declarationLine": 389,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",

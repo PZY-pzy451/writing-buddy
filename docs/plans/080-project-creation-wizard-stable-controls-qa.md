@@ -48,3 +48,21 @@ while silently omitting another control that creates or imports a project.
 This closes a P0 first-use and persistence automation boundary. Product release
 remains fail-closed until remaining traceability, real-provider and packaging
 gates are complete.
+
+## Result
+
+- Two intended contracts failed red: the rendered five-step form lacked its
+  stable root handle and inventory reported all six missing source selectors.
+- Source inventory moved from 12 controls (6 mapped / 6 missing) to 20/20
+  mapped. Eight previously collapsed declarations are now independently
+  visible; global controls moved from 444 to 452 and states from 9,768 to 9,944.
+- Global selector debt fell from 173 to 167. One new rendered contract and the
+  newly exposed controls/states raised honest strict traceability debt from
+  10,568 to 10,708; the fail-closed release gate remains intact.
+- The rendered and inventory focus set passed 2 files / 16 tests. The complete
+  projects feature set passed 12 files / 64 tests, and wrapping the mounted
+  Zustand reset in `act` removed six React cleanup warnings.
+- QA infrastructure passed 5 files / 17 tests. Fixed-commit Node 24 acceptance
+  passed lint, typecheck, production build and 181 files / 918 tests. Rust
+  collected 79, passed 77 and retained two reasoned ignores.
+- Product commit: `e2b36d8` (`fix: stabilize project creation controls`).
