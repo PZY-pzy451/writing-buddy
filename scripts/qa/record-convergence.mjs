@@ -1350,6 +1350,47 @@ const report = {
 				qaScriptTests: 18,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-WORLD-RULE-SAVE-LIFECYCLE-048',
+			summary: 'The world rule editor collapsed distinct fields, multiplied same-frame saves, exposed no retry feedback and reused a stale revision for the next edit.',
+			before: {
+				sourceControls: 6,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 6,
+				actualFormOperations: 8,
+				repeatedSubmissions: 100,
+				persistenceRequests: 100,
+				secondSaveRevision: 0,
+				localizedFailureFeedback: false,
+				impactReactWarnings: 1,
+				globalControls: 452,
+				globalStates: 9944,
+				globalMissingStableSelectors: 161,
+				totalUnmapped: 10710
+			},
+			after: {
+				sourceControls: 8,
+				sourceMappedControls: 8,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 2,
+				repeatedSubmissions: 100,
+				persistenceRequests: 1,
+				secondSaveRevision: 1,
+				localizedFailureFeedback: true,
+				retryAfterFailure: true,
+				impactReactWarnings: 0,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 10,
+				impactTests: 58,
+				storyKernelPanelTests: 22,
+				qaScriptTests: 19,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

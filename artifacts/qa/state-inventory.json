@@ -152156,11 +152156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -152172,11 +152172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -152188,11 +152188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -152204,11 +152204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -152220,11 +152220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -152236,11 +152236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -152252,11 +152252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -152268,11 +152268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -152284,11 +152284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -152300,11 +152300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -152316,11 +152316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -152332,11 +152332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -152348,11 +152348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -152364,11 +152364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -152380,11 +152380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -152396,11 +152396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -152412,11 +152412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -152428,11 +152428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -152444,11 +152444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -152460,11 +152460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -152476,11 +152476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -152492,11 +152492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F"
+        "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -152508,11 +152508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -152524,11 +152524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -152540,11 +152540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -152556,11 +152556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -152572,11 +152572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -152588,11 +152588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -152604,11 +152604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -152620,11 +152620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -152636,11 +152636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -152652,11 +152652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -152668,11 +152668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -152684,11 +152684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -152700,11 +152700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -152716,11 +152716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -152732,11 +152732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -152748,11 +152748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -152764,11 +152764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -152780,11 +152780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -152796,11 +152796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -152812,11 +152812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -152828,11 +152828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -152844,11 +152844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-FORM-7140E661"
+        "CTRL-WORLDRULEEDITOR-FORM-BCE13F20"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -152860,11 +152860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -152876,11 +152876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -152892,11 +152892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -152908,11 +152908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -152924,11 +152924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -152940,11 +152940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -152956,11 +152956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -152972,11 +152972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -152988,11 +152988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -153004,11 +153004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -153020,11 +153020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -153036,11 +153036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -153052,11 +153052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -153068,11 +153068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -153084,11 +153084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -153100,11 +153100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -153116,11 +153116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -153132,11 +153132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -153148,11 +153148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -153164,11 +153164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -153180,11 +153180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -153196,11 +153196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B"
+        "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -153212,11 +153212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -153228,11 +153228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -153244,11 +153244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -153260,11 +153260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -153276,11 +153276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -153292,11 +153292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -153308,11 +153308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -153324,11 +153324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -153340,11 +153340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -153356,11 +153356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -153372,11 +153372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -153388,11 +153388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -153404,11 +153404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -153420,11 +153420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -153436,11 +153436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -153452,11 +153452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -153468,11 +153468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -153484,11 +153484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -153500,11 +153500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -153516,11 +153516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -153532,11 +153532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -153548,11 +153548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC"
+        "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -153564,11 +153564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -153580,11 +153580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -153596,11 +153596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -153612,11 +153612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -153628,11 +153628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -153644,11 +153644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -153660,11 +153660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -153676,11 +153676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -153692,11 +153692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -153708,11 +153708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -153724,11 +153724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -153740,11 +153740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -153756,11 +153756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -153772,11 +153772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -153788,11 +153788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -153804,11 +153804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -153820,11 +153820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -153836,11 +153836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -153852,11 +153852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -153868,11 +153868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -153884,11 +153884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -153900,11 +153900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A"
+        "CTRL-WORLDRULEEDITOR-SELECT-BB53090B"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -153916,11 +153916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-VISIBLE",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-VISIBLE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -153932,11 +153932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-HIDDEN",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-HIDDEN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -153948,11 +153948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-ENABLED",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-ENABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -153964,11 +153964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DISABLED",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DISABLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -153980,11 +153980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-POINTER",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-POINTER",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -153996,11 +153996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-KEYBOARD",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-KEYBOARD",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -154012,11 +154012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FOCUS-IN",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FOCUS-IN",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -154028,11 +154028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FOCUS-OUT",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FOCUS-OUT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -154044,11 +154044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-REPEAT",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-REPEAT",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -154060,11 +154060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DEDUPLICATION",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DEDUPLICATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -154076,11 +154076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-LOADING",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-LOADING",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -154092,11 +154092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-SUCCESS",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-SUCCESS",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -154108,11 +154108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FAILURE",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FAILURE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -154124,11 +154124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-CANCELLED",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-CANCELLED",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -154140,11 +154140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-OFFLINE",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-OFFLINE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -154156,11 +154156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-PERMISSION",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-PERMISSION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -154172,11 +154172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-PERSISTENCE",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-PERSISTENCE",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -154188,11 +154188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-RESTART",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-RESTART",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -154204,11 +154204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-VISUAL",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-VISUAL",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -154220,11 +154220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-ACCESSIBLE-NAME",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -154236,11 +154236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -154252,11 +154252,715 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-UNDO",
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-UNDO",
       "featureId": "FEATURE-03-05",
       "pageId": "PAGE-STORY-WORLD",
       "controlIds": [
-        "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E"
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-VISIBLE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-HIDDEN",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-ENABLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DISABLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-POINTER",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-KEYBOARD",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FOCUS-IN",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FOCUS-OUT",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-REPEAT",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DEDUPLICATION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-LOADING",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-SUCCESS",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FAILURE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-CANCELLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-OFFLINE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-PERMISSION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-PERSISTENCE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-RESTART",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-VISUAL",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-UNDO",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-VISIBLE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-HIDDEN",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-ENABLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DISABLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-POINTER",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-KEYBOARD",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FOCUS-IN",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FOCUS-OUT",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-REPEAT",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DEDUPLICATION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-LOADING",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-SUCCESS",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FAILURE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-CANCELLED",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-OFFLINE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-PERMISSION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-PERSISTENCE",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-RESTART",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-VISUAL",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-UNDO",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlIds": [
+        "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4"
       ],
       "name": "撤销",
       "dimension": "UNDO",

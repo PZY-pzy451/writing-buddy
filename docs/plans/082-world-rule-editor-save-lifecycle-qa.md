@@ -48,3 +48,22 @@ can multiply writes, while a normal second save can reuse the stale revision.
 This closes a Story Kernel author-edit and repeat-save persistence boundary.
 Product release remains fail-closed until remaining traceability,
 real-provider and packaging gates are complete.
+
+## Result
+
+- Five intended contracts failed red: inventory collapsed eight operations to
+  six; stable metadata was absent; one hundred submits issued one hundred
+  writes; failures had no feedback; and the second save reused revision zero.
+- The editor now exposes 8/8 stable controls, uses one synchronous save guard,
+  redacts failures, releases retry and remounts on the saved revision.
+- Global controls moved from 452 to 454 and states from 9,944 to 9,988 while
+  selector debt fell from 161 to 155. Newly explicit controls/states/tests raise
+  honest strict traceability debt from 10,710 to 10,749.
+- Focused regression passed 2 files / 10 tests. Worldbuilding and Story Kernel
+  impact passed 5 files / 58 tests; the panel passed 22 tests after its one
+  React async warning was eliminated. QA infrastructure passed 5 files / 19
+  tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  182 files / 925 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Product commit: `0234330` (`fix: harden world rule saves`).

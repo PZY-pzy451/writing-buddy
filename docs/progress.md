@@ -4,33 +4,34 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Project structure tree stable-control convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `4ab100b`.
+World rule editor save-lifecycle convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `0234330`.
 
-- The author navigation and ordering tree contributed six selector gaps across
-  volume, chapter and scene open/expand/drag operations.
-- Two contracts failed red. Static inventory and a rendered author tree now
-  distinguish all six operations while preserving dynamic Chinese accessible
-  names, keyboard drag instructions, expansion and disabled feedback.
-- The source moves from six controls (0 mapped / 6 missing) to 6/6 mapped.
-  Global controls/states remain 452/9,944 and missing selectors fall from 167
-  to 161. Two new explicit tests raise honest traceability debt from 10,708 to
-  10,710; the strict gate remains fail-closed for those mappings.
-- Focused regression passed 2 files / 8 tests, the projects feature passed 12
-  files / 65 tests without React warnings, and QA infrastructure passed 5 files
-  / 18 tests.
+- The Story Kernel world-rule editor contributed six selector gaps, collapsed
+  eight form operations into six inventory controls, issued 100 writes for 100
+  same-frame submits and reused revision zero on the second save.
+- Five contracts failed red. The editor now provides 8/8 stable controls, one
+  synchronous save guard, localized/redacted failure feedback, explicit retry
+  and revision-keyed draft reconstruction after persistence.
+- Global controls rise from 452 to 454 and states from 9,944 to 9,988 while
+  missing selectors fall from 161 to 155. Newly explicit controls, states and
+  tests raise honest traceability debt from 10,710 to 10,749; the strict gate
+  remains fail-closed for those mappings.
+- Focused regression passed 2 files / 10 tests, worldbuilding plus Story Kernel
+  impact passed 5 files / 58 tests, the affected panel passed 22 tests without
+  React warnings and QA infrastructure passed 5 files / 19 tests.
 - Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  181 files / 920 tests. Rust collected 79, passed 77 and retained two reasoned
+  182 files / 925 tests. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 999 cases: 997 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 920 with 97 parameterized instances and
-  zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  with real-provider and packaging gates unrun.
+- The ledger contains 1,004 cases: 1,002 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 925 with 97 parameterized instances
+  and zero unresolved declarations. Execution is `PASS`; product remains
+  `PARTIAL` with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Project creation wizard stable-control convergence is complete against source
-`e2b36d8`: 20/20 source controls are mapped and fixed acceptance passed 918
+Project structure tree stable-control convergence is complete against source
+`4ab100b`: 6/6 source controls are mapped and fixed acceptance passed 920
 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze

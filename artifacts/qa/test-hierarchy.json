@@ -28000,138 +28000,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-BUTTON-0C3DA78F",
+                  "id": "CTRL-WORLDRULEEDITOR-BUTTON-E26B9F65",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-BUTTON-0C3DA78F-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-BUTTON-E26B9F65-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -28139,138 +28139,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-FORM-7140E661",
+                  "id": "CTRL-WORLDRULEEDITOR-FORM-BCE13F20",
                   "level": "L4",
                   "name": "form",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-FORM-7140E661-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-FORM-BCE13F20-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -28278,138 +28278,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-INPUT-0C746D9B",
+                  "id": "CTRL-WORLDRULEEDITOR-INPUT-EFE8A24F",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-0C746D9B-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-EFE8A24F-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -28417,138 +28417,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-INPUT-DDA4BDAC",
+                  "id": "CTRL-WORLDRULEEDITOR-INPUT-F8FF495C",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-INPUT-DDA4BDAC-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-INPUT-F8FF495C-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -28556,138 +28556,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-SELECT-2DD5F33A",
+                  "id": "CTRL-WORLDRULEEDITOR-SELECT-BB53090B",
                   "level": "L4",
                   "name": "select",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-SELECT-2DD5F33A-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-SELECT-BB53090B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -28695,138 +28695,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDRULEEDITOR-TEXTAREA-6022042E",
+                  "id": "CTRL-WORLDRULEEDITOR-TEXTAREA-6FD31447",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-VISIBLE",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-HIDDEN",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-ENABLED",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DISABLED",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-POINTER",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-KEYBOARD",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FOCUS-IN",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FOCUS-OUT",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-REPEAT",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DEDUPLICATION",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-LOADING",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-SUCCESS",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-FAILURE",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-CANCELLED",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-OFFLINE",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-PERMISSION",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-PERSISTENCE",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-RESTART",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-VISUAL",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6022042E-UNDO",
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-6FD31447-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDRULEEDITOR-TEXTAREA-71A1FD69",
+                  "level": "L4",
+                  "name": "textarea",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-71A1FD69-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDRULEEDITOR-TEXTAREA-A428E8D4",
+                  "level": "L4",
+                  "name": "textarea",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDRULEEDITOR-TEXTAREA-A428E8D4-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -69263,6 +69541,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3295DC5BE5",
+      "title": "exposes distinct stable handles for all eight form operations",
+      "declarationTitle": "exposes distinct stable handles for all eight form operations",
+      "declarationLine": 30,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-32EA31A7D5",
       "title": "restores stable chapter, scene, cursor, scroll, tree and pane state",
       "declarationTitle": "restores stable chapter, scene, cursor, scroll, tree and pane state",
@@ -69374,7 +69670,7 @@
       "id": "TC-DISCOVERED-3560F75704",
       "title": "preserves a structured native authentication error and opens AI settings",
       "declarationTitle": "preserves a structured native authentication error and opens AI settings",
-      "declarationLine": 1182,
+      "declarationLine": 1185,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -73694,6 +73990,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-748528736F",
+      "title": "starts one persistence request for one hundred same-frame submissions",
+      "declarationTitle": "starts one persistence request for one hundred same-frame submissions",
+      "declarationLine": 43,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -80437,6 +80751,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D966CC36B7",
+      "title": "redacts a failed save and releases one explicit retry",
+      "declarationTitle": "redacts a failed save and releases one explicit retry",
+      "declarationLine": 69,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D9769DF34B",
       "title": "supports arrow steps, accelerated movement, bounds, and reset keys",
       "declarationTitle": "supports arrow steps, accelerated movement, bounds, and reset keys",
@@ -81655,6 +81987,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-EF413756CD",
+      "title": "uses the saved revision for the next edit of the same rule",
+      "declarationTitle": "uses the saved revision for the next edit of the same rule",
+      "declarationLine": 89,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-EFC29523A0",
       "title": "never exposes a superseded preview after regeneration missing_configuration",
       "declarationTitle": "never exposes a superseded preview after regeneration %s",
@@ -81840,7 +82190,7 @@
       "id": "TC-DISCOVERED-F31EE6E76A",
       "title": "retries a retryable native failure with the unchanged generation request",
       "declarationTitle": "retries a retryable native failure with the unchanged generation request",
-      "declarationLine": 1217,
+      "declarationLine": 1220,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -82664,6 +83014,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FF721C8FEC",
+      "title": "TC-QA-INVENTORY-009 requires distinct stable controls for the world rule editor",
+      "declarationTitle": "TC-QA-INVENTORY-009 requires distinct stable controls for the world rule editor",
+      "declarationLine": 110,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
