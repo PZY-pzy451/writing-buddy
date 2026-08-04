@@ -678,6 +678,26 @@ save and error impact set passes 151/151. Fixed-commit acceptance passes lint,
 typecheck, production build and 180 files / 886 tests. Rust collects 79, passes
 77 and retains two reasoned ignores.
 
+### QA-AI-DRAWER-TERMINAL-COMMAND-RESULT-ISOLATION-035
+
+Stream terminal events and native command Promises finish independently. Six
+red contracts proved that a start-command rejection arriving after preview,
+failure or cancellation replaced the terminal state/error, while a pending
+Stop rejection attached a generic error to each otherwise authoritative stream
+result.
+
+Start failures can now update only context validation or active stream states.
+Stop failures require the same job to remain queued, connecting or streaming.
+Each terminal Stop case dispatches 100 same-tick actions, sends one native
+cancellation command and preserves state, output, parsed result, transaction,
+usage and error after rejection. Existing active-failure contracts prove live
+errors remain localized and retryable.
+
+The repaired Store suite passes 46/46 and the ten-file AI drawer, App, session,
+save and error impact set passes 157/157. Fixed-commit acceptance passes lint,
+typecheck, production build and 180 files / 892 tests. Rust collects 79, passes
+77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -793,11 +813,12 @@ console claims.
 | Windows Vitest worker stability | Default fork pool lost a worker then hung; bounded 2-worker thread pool completes 180 files / 877 tests and exits normally |
 | AI drawer retry/apply exclusion | Four red failures cover disabled retry, applying-state reentry and invalid-input bypass; 100-action guards, 48 focused and 147 impacted tests pass |
 | AI drawer terminal-event isolation | Four red failures cover terminal revival and active-state regression; three 100-burst terminal matrices, 40 focused and 151 impacted tests pass |
-| Ledger/inventory reconciliation | 965 / 965 cases; 886 frontend + 79 native; 963 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer terminal command-result isolation | Six red failures cover late start/Stop rejections after three terminal outcomes; 100-action Stop matrices, 46 focused and 157 impacted tests pass |
+| Ledger/inventory reconciliation | 971 / 971 cases; 892 frontend + 79 native; 969 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 886 tests and production build passed |
-| Static/runtime test reconciliation | 886 / 886; 85 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 892 tests and production build passed |
+| Static/runtime test reconciliation | 892 / 892; 91 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -837,7 +858,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,111 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,117 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

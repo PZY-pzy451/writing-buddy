@@ -984,6 +984,42 @@ const report = {
 				impactedTests: 151,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-TERMINAL-COMMAND-RESULT-ISOLATION-035',
+			summary: 'Late start and cancellation command rejections could overwrite or pollute a terminal stream result from the same AI job.',
+			before: {
+				terminalStates: ['preview', 'failed', 'cancelled'],
+				startRejectionOverwritesTerminalStates: 3,
+				cancellationRejectionPollutesTerminalStates: 3,
+				terminalCommandResultGuarded: false
+			},
+			after: {
+				guardedStartFailureStates: [
+					'validating_context',
+					'queued',
+					'connecting',
+					'streaming'
+				],
+				guardedCancellationFailureStates: ['queued', 'connecting', 'streaming'],
+				preservedTerminalStates: ['preview', 'failed', 'cancelled'],
+				terminalSnapshotsPreserved: [
+					'state',
+					'rawOutput',
+					'parsedOutput',
+					'transaction',
+					'usage',
+					'error'
+				],
+				stopActionsPerTerminal: 100,
+				nativeCancellationCommandsPerTerminal: 1,
+				activeFailuresLocalized: true,
+				activeFailuresRetryable: true,
+				redFailures: 6,
+				focusedTests: 46,
+				impactedTests: 157,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
