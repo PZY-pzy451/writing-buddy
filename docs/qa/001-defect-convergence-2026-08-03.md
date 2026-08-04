@@ -473,6 +473,28 @@ Node 24 acceptance passes 178 files / 834 tests, lint, typecheck and production
 build. Rust collects 79, passes 77 and retains two reasoned ignores. The
 converged ledger contains 913 cases: 911 passes and two reasoned skips.
 
+### QA-PROJECT-REPAIR-LATEST-INTENT-025
+
+Project repair ran outside the project-open latest-intent queue. If repair of A
+was delayed while the author opened B, successful repair A opened A again after
+B, reversing the author's newer choice. A late repair failure also replaced B
+with A's stale recovery error, and successful A repair could hide B's real open
+failure.
+
+Repair and open now share a monotonically increasing author-intent version. A
+repair may open its target or publish its error only while its version is still
+current. Once a newer open begins, the old repair clears only its own busy state;
+it cannot mutate the active project, pending root or recovery dialog. The native
+repair itself remains single-flight, so one hundred clicks still perform one
+repair.
+
+The red baseline failed exactly three of 15 project-open contracts. The repaired
+focused suite passes 15/15 and the seven-file project-open/save/session/workspace/
+Story-resource impact set passes 92/92. Full Node 24 acceptance passes 178 files /
+837 tests, lint, typecheck and production build. Rust collects 79, passes 77 and
+retains two reasoned ignores. The converged ledger contains 916 cases: 914 passes
+and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -578,11 +600,12 @@ console claims.
 | AI draft undo resource isolation | Three red identity failures plus 100-click pressure; exact project/resource/model/content targeting, stale dismissal, localized retry and stable accessible name now pass 7 focused and 81 impacted tests |
 | Save retry and result isolation | 100-click retryable/non-retryable failures fell from 100 writes to 1; explicit retry, force-save waiting and cross-project late result isolation pass 38 focused and 93 impacted tests |
 | Project open latest intent | Same-target bursts remain one open; distinct selections coalesce to the latest target without exposing superseded projects; failure continuation and one dirty-discard confirmation pass 12 focused and 89 impacted tests |
-| Ledger/inventory reconciliation | 913 / 913 cases; 834 frontend + 79 native; 911 passed + 2 reasoned skips; stale ledgers fail closed |
+| Project repair latest intent | One hundred Repair actions perform one native repair; a delayed success/failure cannot override a newer project or its actionable error; 15 focused and 92 impacted tests pass |
+| Ledger/inventory reconciliation | 916 / 916 cases; 837 frontend + 79 native; 914 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 834 tests and production build passed |
-| Static/runtime test reconciliation | 834 / 834; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 837 tests and production build passed |
+| Static/runtime test reconciliation | 837 / 837; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -622,7 +645,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,074 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,077 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

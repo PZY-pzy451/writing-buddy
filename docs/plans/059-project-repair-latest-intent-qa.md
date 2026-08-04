@@ -30,3 +30,19 @@ stale recovery dialog.
   acceptance and Rust acceptance.
 - Record exact totals and retain `PARTIAL` product status while strict
   traceability, real-provider and packaging gates remain open.
+
+## Result
+
+- The old implementation failed exactly three of 15 focused contracts: delayed
+  repair success reopened A after B, delayed repair failure polluted B, and old
+  repair success hid B's actionable open failure.
+- Repair and open now share one monotonic author-intent version. Superseded
+  repair completion clears only its own busy flag and cannot open a project or
+  publish an error. One hundred Repair actions still invoke one native repair.
+- Focused project-open tests passed 15/15; the seven-file project-open/save/
+  session/workspace/Story-resource impact set passed 92/92.
+- Full Node 24 acceptance passed 178 files / 837 tests, lint, typecheck and the
+  production build. Rust collected 79, passed 77 and retained two reasoned
+  ignores. The 916-case ledger records 914 passes and two reasoned skips.
+- Execution is `PASS`. Product status remains `PARTIAL` because strict
+  traceability, real-provider AI smoke and release packaging are not complete.

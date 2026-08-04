@@ -4,6 +4,25 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+Project-repair latest-intent convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `0b6c733`.
+
+- A delayed repair can no longer reopen its old project after the author chooses
+  a newer target. Its late failure also cannot replace the latest project's
+  state or actionable open error.
+- Project repair and open share one monotonic author-intent version. Superseded
+  repair completion clears only its own busy state, while 100 repeated Repair
+  actions still produce one native repair.
+- The red baseline failed exactly 3/15 project-open contracts. The repaired
+  project-open suite passed 15/15 and the project-open/save/session/workspace/
+  Story-resource impact set passed 92/92. Full Node 24 acceptance passed 178
+  files / 837 tests; Rust passed 77 with two reasoned ignores.
+- The ledger contains 916 cases: 914 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,077 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 Project-open latest-intent convergence is complete on
 `codex/full-regression-gates-a-e-v2` against source `2b132b5`.
 
@@ -21,7 +40,7 @@ Project-open latest-intent convergence is complete on
   `PASS`; product remains `PARTIAL` because 10,074 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone
 
 Save retry and stale-result isolation are complete on
 `codex/full-regression-gates-a-e-v2` against source `34ea0a94`.

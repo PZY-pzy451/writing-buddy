@@ -666,6 +666,28 @@ const report = {
 				impactedTests: 89,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PROJECT-REPAIR-LATEST-INTENT-025',
+			summary: 'A delayed project repair could reopen its old target or publish a stale repair failure after the author had already selected a newer project.',
+			before: {
+				repeatedActions: 100,
+				nativeRepairs: 1,
+				supersededRepairOpenedOldProject: true,
+				staleRepairFailureVisible: true,
+				latestOpenFailurePreserved: false
+			},
+			after: {
+				repeatedActions: 100,
+				nativeRepairsPerBurst: 1,
+				supersededRepairProjectOpens: 0,
+				latestTargetPreserved: true,
+				staleRepairFailureIgnored: true,
+				latestOpenFailurePreserved: true,
+				focusedTests: 15,
+				impactedTests: 92,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
