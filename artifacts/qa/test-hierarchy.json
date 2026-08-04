@@ -21843,138 +21843,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTEREDITOR-BUTTON-69D218D7",
+                  "id": "CTRL-CHARACTEREDITOR-BUTTON-A2535AFC",
                   "level": "L4",
-                  "name": "button",
+                  "name": "保存人物",
                   "states": [
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-VISIBLE",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-HIDDEN",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-ENABLED",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-DISABLED",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-POINTER",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-KEYBOARD",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-FOCUS-IN",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-FOCUS-OUT",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-REPEAT",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-DEDUPLICATION",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-LOADING",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-SUCCESS",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-FAILURE",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-CANCELLED",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-OFFLINE",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-PERMISSION",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-PERSISTENCE",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-RESTART",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-VISUAL",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-BUTTON-69D218D7-UNDO",
+                      "id": "STATE-CHARACTEREDITOR-BUTTON-A2535AFC-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -21982,138 +21982,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTEREDITOR-FORM-53931E25",
+                  "id": "CTRL-CHARACTEREDITOR-FORM-3E16DB60",
                   "level": "L4",
-                  "name": "form",
+                  "name": "人物编辑表单",
                   "states": [
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-VISIBLE",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-HIDDEN",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-ENABLED",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-DISABLED",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-POINTER",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-KEYBOARD",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-FOCUS-IN",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-FOCUS-OUT",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-REPEAT",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-DEDUPLICATION",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-LOADING",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-SUCCESS",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-FAILURE",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-CANCELLED",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-OFFLINE",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-PERMISSION",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-PERSISTENCE",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-RESTART",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-VISUAL",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-FORM-53931E25-UNDO",
+                      "id": "STATE-CHARACTEREDITOR-FORM-3E16DB60-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22121,138 +22121,833 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTEREDITOR-INPUT-8BD5ECCA",
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-101C9F80",
+                  "level": "L4",
+                  "name": "渴望",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-101C9F80-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-28E470B1",
+                  "level": "L4",
+                  "name": "恐惧",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-28E470B1-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-4F5D0492",
+                  "level": "L4",
+                  "name": "职业 / 身份",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-4F5D0492-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-A89148EA",
+                  "level": "L4",
+                  "name": "称谓 / 代词",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-A89148EA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-C92DB8E5",
+                  "level": "L4",
+                  "name": "当前目标",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C92DB8E5-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-INPUT-C97C4C64",
                   "level": "L4",
                   "name": "人物姓名",
                   "states": [
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-VISIBLE",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-HIDDEN",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-ENABLED",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-DISABLED",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-POINTER",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-KEYBOARD",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-FOCUS-IN",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-FOCUS-OUT",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-REPEAT",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-DEDUPLICATION",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-LOADING",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-SUCCESS",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-FAILURE",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-CANCELLED",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-OFFLINE",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-PERMISSION",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-PERSISTENCE",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-RESTART",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-VISUAL",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-8BD5ECCA-UNDO",
+                      "id": "STATE-CHARACTEREDITOR-INPUT-C97C4C64-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22260,416 +22955,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTEREDITOR-INPUT-99E09827",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-99E09827-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-CHARACTEREDITOR-INPUT-D681241F",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTEREDITOR-INPUT-D681241F-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-CHARACTEREDITOR-SELECT-5E0A20FC",
+                  "id": "CTRL-CHARACTEREDITOR-SELECT-F593E87A",
                   "level": "L4",
                   "name": "叙事角色",
                   "states": [
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-VISIBLE",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-HIDDEN",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-ENABLED",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-DISABLED",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-POINTER",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-KEYBOARD",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-FOCUS-IN",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-FOCUS-OUT",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-REPEAT",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-DEDUPLICATION",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-LOADING",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-SUCCESS",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-FAILURE",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-CANCELLED",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-OFFLINE",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-PERMISSION",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-PERSISTENCE",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-RESTART",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-VISUAL",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-SELECT-5E0A20FC-UNDO",
+                      "id": "STATE-CHARACTEREDITOR-SELECT-F593E87A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22677,138 +23094,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTEREDITOR-TEXTAREA-8295BF02",
+                  "id": "CTRL-CHARACTEREDITOR-TEXTAREA-A301423B",
                   "level": "L4",
-                  "name": "textarea",
+                  "name": "人物摘要",
                   "states": [
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-VISIBLE",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-HIDDEN",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-ENABLED",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-DISABLED",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-POINTER",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-KEYBOARD",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-FOCUS-IN",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-FOCUS-OUT",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-REPEAT",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-DEDUPLICATION",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-LOADING",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-SUCCESS",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-FAILURE",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-CANCELLED",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-OFFLINE",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-PERMISSION",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-PERSISTENCE",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-RESTART",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-VISUAL",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-8295BF02-UNDO",
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-A301423B-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTEREDITOR-TEXTAREA-C1B1043F",
+                  "level": "L4",
+                  "name": "语言风格",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTEREDITOR-TEXTAREA-C1B1043F-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -68818,7 +69374,7 @@
       "id": "TC-DISCOVERED-297F9501E7",
       "title": "consumes a global create intent by opening the assistant without starting AI",
       "declarationTitle": "consumes a global create intent by opening the assistant without starting AI",
-      "declarationLine": 212,
+      "declarationLine": 281,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -70254,7 +70810,7 @@
       "id": "TC-DISCOVERED-3B6A0F506C",
       "title": "opens the empty-state AI workflow and renders exactly three generated candidates",
       "declarationTitle": "opens the empty-state AI workflow and renders exactly three generated candidates",
-      "declarationLine": 142,
+      "declarationLine": 211,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -72551,6 +73107,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5B0CCC510E",
+      "title": "exposes distinct stable handles for all eleven form operations",
+      "declarationTitle": "exposes distinct stable handles for all eleven form operations",
+      "declarationLine": 35,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -75429,6 +76003,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-874A8F9ABE",
+      "title": "keeps a failed character edit local, dirty, redacted and retryable",
+      "declarationTitle": "keeps a failed character edit local, dirty, redacted and retryable",
+      "declarationLine": 142,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-875FD9CBC7",
       "title": "uses the specified panel and toast timing without layout motion",
       "declarationTitle": "uses the specified panel and toast timing without layout motion",
@@ -76673,6 +77265,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-99CA6D707E",
+      "title": "TC-QA-INVENTORY-010 requires distinct stable controls for the character editor",
+      "declarationTitle": "TC-QA-INVENTORY-010 requires distinct stable controls for the character editor",
+      "declarationLine": 131,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-9A068E6EA9",
       "title": "uses a preferred genre start only for a missing journey",
       "declarationTitle": "uses a preferred genre start only for a missing journey",
@@ -77209,6 +77819,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-A11D27D305",
+      "title": "uses the persisted character revision on the next save",
+      "declarationTitle": "uses the persisted character revision on the next save",
+      "declarationLine": 177,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -80736,7 +81364,7 @@
       "id": "TC-DISCOVERED-D94B3070AB",
       "title": "releases the generation guard after a provider-start failure and allows retry",
       "declarationTitle": "releases the generation guard after a provider-start failure and allows retry",
-      "declarationLine": 180,
+      "declarationLine": 249,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -82562,6 +83190,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F89534EA3E",
+      "title": "starts one persistence request for one hundred same-frame submissions",
+      "declarationTitle": "starts one persistence request for one hundred same-frame submissions",
+      "declarationLine": 62,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

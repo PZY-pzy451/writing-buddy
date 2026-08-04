@@ -53,3 +53,23 @@ old resource revision and can issue a stale second write.
 This closes a high-frequency Story Kernel character correction boundary.
 Product release remains fail-closed until remaining traceability,
 real-provider and packaging gates are complete.
+
+## Result
+
+- Five intended contracts failed red: the inventory could not distinguish all
+  eleven operations; stable metadata was absent; 100 same-frame submissions
+  issued 100 writes; failure exposed a raw path and removed the dossier; and a
+  second save reused revision one.
+- The editor now exposes 11/11 stable controls, uses a synchronous save guard,
+  keeps failed drafts dirty and editable, redacts failure details, releases an
+  explicit retry and remounts from the repository-returned revision.
+- Global controls moved from 454 to 458 and states from 9,988 to 10,076 while
+  selector debt fell from 155 to 150. Newly explicit controls, states and tests
+  raise honest strict traceability debt from 10,749 to 10,828.
+- Focused regression passed 3 files / 17 tests. Character and Story Kernel
+  impact passed 5 files / 62 tests; QA infrastructure passed 5 files / 20
+  tests. Targeted ESLint, typecheck and diff validation passed.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  183 files / 930 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Product commit: `01b63b0` (`fix: harden character editor saves`).

@@ -1391,6 +1391,48 @@ const report = {
 				qaScriptTests: 19,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CHARACTER-EDITOR-SAVE-LIFECYCLE-049',
+			summary: 'The character editor collapsed distinct fields, multiplied same-frame saves, replaced the dossier with a raw persistence error and reused a stale revision on the next save.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 5,
+				actualFormOperations: 11,
+				repeatedSubmissions: 100,
+				persistenceRequests: 100,
+				failedSaveKeepsEditorVisible: false,
+				failedSaveKeepsDirtyState: false,
+				rawFailureDetailsVisible: true,
+				secondSaveRevision: 1,
+				globalControls: 454,
+				globalStates: 9988,
+				globalMissingStableSelectors: 155,
+				totalUnmapped: 10749
+			},
+			after: {
+				sourceControls: 11,
+				sourceMappedControls: 11,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 6,
+				repeatedSubmissions: 100,
+				persistenceRequests: 1,
+				failedSaveKeepsEditorVisible: true,
+				failedSaveKeepsDirtyState: true,
+				rawFailureDetailsVisible: false,
+				retryAfterFailure: true,
+				secondSaveRevision: 2,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 17,
+				impactTests: 62,
+				qaScriptTests: 20,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
