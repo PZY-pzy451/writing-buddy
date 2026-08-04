@@ -494,8 +494,9 @@ export function createAiGenerationStore(
 				}
 			},
 			rejectPreview() {
-				const transaction = get().transaction;
-				if (!transaction) return;
+				const current = get();
+				const transaction = current.transaction;
+				if (current.state !== 'preview' || transaction?.status !== 'preview') return;
 				set({
 					transaction: rejectAiPreview(transaction),
 					state: 'completed'

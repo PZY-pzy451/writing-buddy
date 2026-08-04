@@ -498,6 +498,80 @@ describe('aiGenerationStore', () => {
 		expect(typeof store.getState().error).toBe('string');
 	});
 
+	it('commits one preview rejection across 100 direct actions', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const getAiProviderStatus = vi.fn(fallback.getAiProviderStatus);
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const cancelAiJob = vi.fn(fallback.cancelAiJob);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration,
+			cancelAiJob
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		const preview = store.getState().transaction;
+		if (!preview) throw new Error('rejection preview transaction missing');
+
+		expect(() => {
+			for (let index = 0; index < 100; index += 1) {
+				store.getState().rejectPreview();
+			}
+		}).not.toThrow();
+
+		expect(store.getState()).toMatchObject({
+			state: 'completed',
+			parsedOutput: { issues: [] },
+			transaction: {
+				id: preview.id,
+				status: 'rejected',
+				candidate: { issues: [] }
+			}
+		});
+		expect(store.getState().transaction?.completedAt).toEqual(expect.any(String));
+		expect(getAiProviderStatus).toHaveBeenCalledOnce();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(cancelAiJob).not.toHaveBeenCalled();
+	});
+
+	it.each(['applying', 'completed', 'stale'] as const)(
+		'ignores 100 delayed preview rejections while %s',
+		async state => {
+			const store = createAiGenerationStore(runtime(JSON.stringify({ issues: [] })));
+			store.getState().openAiAction('review.consistency', {}, chapterScope);
+			await store.getState().startGeneration();
+			const preview = store.getState().transaction;
+			if (!preview) throw new Error('delayed rejection transaction missing');
+			const transaction = state === 'applying'
+				? preview
+				: {
+						...preview,
+						status: state === 'stale' ? 'stale' as const : 'rejected' as const,
+						completedAt: '2026-08-04T00:00:00.000Z',
+						errorCode: state === 'stale' ? 'revisionChanged' : undefined
+					};
+			store.setState({ state, transaction });
+			const snapshot = {
+				state: store.getState().state,
+				parsedOutput: store.getState().parsedOutput,
+				transaction: store.getState().transaction
+			};
+
+			expect(() => {
+				for (let index = 0; index < 100; index += 1) {
+					store.getState().rejectPreview();
+				}
+			}).not.toThrow();
+			expect({
+				state: store.getState().state,
+				parsedOutput: store.getState().parsedOutput,
+				transaction: store.getState().transaction
+			}).toEqual(snapshot);
+		}
+	);
+
 	it.each(['cancelled', 'rejected'] as const)(
 		'allows explicit regeneration after a %s outcome',
 		async outcome => {

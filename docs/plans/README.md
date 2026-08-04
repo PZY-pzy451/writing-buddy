@@ -69,6 +69,7 @@
 - [AI drawer retry and apply exclusion QA](./067-ai-drawer-retry-apply-exclusion-qa.md)
 - [AI drawer terminal event isolation QA](./068-ai-drawer-terminal-event-isolation-qa.md)
 - [AI drawer terminal command-result isolation QA](./069-ai-drawer-terminal-command-result-isolation-qa.md)
+- [AI drawer preview rejection single-commit QA](./070-ai-drawer-preview-rejection-single-commit-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
