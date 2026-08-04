@@ -136,6 +136,17 @@ export function createAiGenerationStore(
 	let flushTimer: number | undefined;
 	let generationAttempt = 0;
 	let cancellationRequestJobId: string | undefined;
+	const requestCancellationSilently = (jobId: string) => {
+		if (cancellationRequestJobId === jobId) return;
+		cancellationRequestJobId = jobId;
+		void runtime.cancelAiJob(jobId)
+			.catch(() => undefined)
+			.finally(() => {
+				if (cancellationRequestJobId === jobId) {
+					cancellationRequestJobId = undefined;
+				}
+			});
+	};
 
 	return createStore<AiGenerationStore>((set, get) => {
 		const flushOutput = () => {
@@ -253,9 +264,10 @@ export function createAiGenerationStore(
 			...initial,
 			openAiAction(actionId, input, scope) {
 				generationAttempt += 1;
-				const activeJobId = get().jobId;
-				if (activeJobId && ['queued', 'connecting', 'streaming'].includes(get().state)) {
-					void runtime.cancelAiJob(activeJobId).catch(() => undefined);
+				const previous = get();
+				const activeJobId = previous.jobId;
+				if (activeJobId && ['queued', 'connecting', 'streaming'].includes(previous.state)) {
+					requestCancellationSilently(activeJobId);
 				}
 				pendingDelta = '';
 				if (flushTimer !== undefined) {
@@ -447,16 +459,7 @@ export function createAiGenerationStore(
 				].includes(previous.state)
 					? previous.jobId
 					: undefined;
-				if (activeJobId && cancellationRequestJobId !== activeJobId) {
-					cancellationRequestJobId = activeJobId;
-					void runtime.cancelAiJob(activeJobId)
-						.catch(() => undefined)
-						.finally(() => {
-							if (cancellationRequestJobId === activeJobId) {
-								cancellationRequestJobId = undefined;
-							}
-						});
-				}
+				if (activeJobId) requestCancellationSilently(activeJobId);
 				const transaction = previous.transaction?.status === 'preview'
 					? {
 							...previous.transaction,
@@ -491,16 +494,8 @@ export function createAiGenerationStore(
 				if (
 					jobId
 					&& ['queued', 'connecting', 'streaming'].includes(previous.state)
-					&& cancellationRequestJobId !== jobId
 				) {
-					cancellationRequestJobId = jobId;
-					void runtime.cancelAiJob(jobId)
-						.catch(() => undefined)
-						.finally(() => {
-							if (cancellationRequestJobId === jobId) {
-								cancellationRequestJobId = undefined;
-							}
-						});
+					requestCancellationSilently(jobId);
 				}
 				set(cleared);
 			}
