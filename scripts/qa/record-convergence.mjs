@@ -755,6 +755,33 @@ const report = {
 				impactedTests: 113,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-CLOSE-CANCELLATION-028',
+			summary: 'Closing the global AI drawer hid only the dialog, so validating or streaming jobs, context and buffered output remained active in the background.',
+			before: {
+				closePaths: ['button', 'escape', 'backdrop'],
+				closeInvalidatesAttempt: false,
+				cancellationsPer100CloseActions: 0,
+				contextCleared: false,
+				bufferedDeltaCleared: false,
+				delayedEventsIgnored: false
+			},
+			after: {
+				closePaths: ['button', 'escape', 'backdrop'],
+				closeInvalidatesAttempt: true,
+				closeActionsPerBurst: 100,
+				cancellationsPerBurst: 1,
+				contextCleared: true,
+				bufferedDeltaCleared: true,
+				delayedEventsIgnored: true,
+				cancellationFailureHidden: true,
+				freshActionAfterClose: true,
+				redFailures: 5,
+				focusedTests: 22,
+				impactedTests: 118,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

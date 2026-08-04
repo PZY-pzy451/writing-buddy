@@ -543,6 +543,25 @@ suite passes 15/15 and the nine-file AI/drawer/app/session/save impact set passe
 production build. Rust collects 79, passes 77 and retains two reasoned ignores.
 The converged ledger contains 929 cases: 927 passes and two reasoned skips.
 
+### QA-AI-DRAWER-CLOSE-CANCELLATION-028
+
+Closing the global AI quick-action drawer changed only its visible `open` flag.
+Five red instances proved that Close button, Escape and backdrop dismissal left
+validation or streaming active in the background, issued no cancellation and
+retained the old job, Context Pack, output and pending 40 ms stream buffer.
+
+All dismissal paths now use the hardened full reset boundary. One hundred
+repeated closes issue exactly one native cancellation, invalidate the attempt,
+clear transaction/context/output state and detach delayed events. A rejected
+cancellation remains hidden after close, and a fresh quick action opens against
+the current chapter without reviving prior state.
+
+The repaired Store and rendered-dialog suites pass 22/22 and the nine-file AI,
+drawer, App, session and save impact set passes 118/118. Full Node 24 acceptance
+passes 179 files / 855 tests, lint, typecheck and production build. Rust collects
+79, passes 77 and retains two reasoned ignores. The converged ledger contains
+934 cases: 932 passes and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -651,11 +670,12 @@ console claims.
 | Project repair latest intent | One hundred Repair actions perform one native repair; a delayed success/failure cannot override a newer project or its actionable error; 15 focused and 92 impacted tests pass |
 | AI draft commit resource isolation | Four target-identity collisions fail red; exact project/root/path/model checks and captured-model rollback pass 11 focused and 98 impacted tests |
 | AI drawer stale-context isolation | Six red failures cover same-revision identity collisions, delayed output and incomplete reset; 15 focused and 113 impacted tests pass |
-| Ledger/inventory reconciliation | 929 / 929 cases; 850 frontend + 79 native; 927 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer close cancellation | Five red failures cover Store close, Close button, Escape and backdrop; 100 closes cancel once; 22 focused and 118 impacted tests pass |
+| Ledger/inventory reconciliation | 934 / 934 cases; 855 frontend + 79 native; 932 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 850 tests and production build passed |
-| Static/runtime test reconciliation | 850 / 850; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 855 tests and production build passed |
+| Static/runtime test reconciliation | 855 / 855; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -695,7 +715,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,087 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,085 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

@@ -31,3 +31,18 @@ share one truthful stop boundary.
   24 and Rust acceptance.
 - Keep product status `PARTIAL` while traceability, real-provider smoke and
   packaging gates remain open.
+
+## Result
+
+- Five red instances reproduced the hidden-job defect across Store close,
+  Close button, Escape and backdrop dismissal.
+- `close()` now uses the hardened full reset/single-cancel boundary. One hundred
+  repeated closes cancel once; context, output and the 40 ms stream buffer are
+  cleared; delayed events and cancellation failures stay detached.
+- A fresh action after close starts against the current chapter without stale
+  state. Focused suites pass 22/22 and the nine-file impact set passes 118/118.
+- Full Node 24 acceptance passes 179 files / 855 tests plus lint, typecheck and
+  production build. Rust collects 79, passes 77 and retains two reasoned
+  ignores. The ledger contains 934 cases: 932 passes and two skips.
+- Execution is `PASS`; product remains `PARTIAL` pending traceability,
+  real-provider smoke and release-package evidence.

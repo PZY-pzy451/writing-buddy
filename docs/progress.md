@@ -4,6 +4,25 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer close cancellation is complete on
+`codex/full-regression-gates-a-e-v2` against source `1403246`.
+
+- Close button, Escape and backdrop dismissal now share the hardened reset
+  boundary. Closing during validation or streaming invalidates the attempt and
+  cancels its native job instead of leaving an invisible request running.
+- One hundred repeated close actions issue exactly one cancellation. Job,
+  Context Pack, input, output, transaction, errors and the pending 40 ms stream
+  buffer are cleared; delayed events and cancellation failures remain hidden.
+- Five contracts failed red. The repaired Store and rendered-dialog suites
+  passed 22/22, the nine-file impact set passed 118/118 and full Node 24
+  acceptance passed 179 files / 855 tests. Rust passed 77 with two reasoned
+  ignores.
+- The ledger contains 934 cases: 932 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,085 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI drawer stale-context isolation is complete on
 `codex/full-regression-gates-a-e-v2` against source `9744d84`.
 
@@ -22,7 +41,7 @@ AI drawer stale-context isolation is complete on
   `PASS`; product remains `PARTIAL` because 10,087 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: AI draft commit
 
 AI draft commit resource isolation is complete on
 `codex/full-regression-gates-a-e-v2` against source `711b35d`.
