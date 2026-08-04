@@ -423,6 +423,14 @@ let activeExternalVerification: {
 let queuedExternalVerificationKey: string | undefined;
 let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
+let activeProjectOpenKey: string | undefined;
+let activeProjectDiscardConfirmed = false;
+let queuedProjectOpen: {
+	readonly key: string;
+	readonly root: string;
+	readonly mode: ProjectOpenMode;
+	readonly confirmedDiscardDirty: boolean;
+} | undefined;
 let activeResourceOpen: Promise<void> | undefined;
 let queuedResourceOpen: ResourceDescriptor | undefined;
 let activeStoryRestore: Promise<void> | undefined;
@@ -431,6 +439,11 @@ const closingResourceIds = new Set<string>();
 
 function releaseResourceCloseAfterCurrentBurst(resourceId: string): void {
 	queueMicrotask(() => closingResourceIds.delete(resourceId));
+}
+
+function hasSupersedingProjectOpen(projectOpenKey: string): boolean {
+	return queuedProjectOpen !== undefined
+		&& queuedProjectOpen.key !== projectOpenKey;
 }
 
 const defaultWriterPanelState: WriterSessionPanelState =
@@ -1209,8 +1222,29 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	openProject(root, mode = 'read-write', confirmedDiscardDirty = false) {
-		if (activeProjectOpen) return activeProjectOpen;
+		const request = {
+			key: `${root.toLocaleLowerCase()}\u0000${mode}`,
+			root,
+			mode,
+			confirmedDiscardDirty
+		};
+		if (activeProjectOpen) {
+			queuedProjectOpen = request.key === activeProjectOpenKey
+				? undefined
+				: {
+						...request,
+						confirmedDiscardDirty: request.confirmedDiscardDirty
+							|| activeProjectDiscardConfirmed
+					};
+			return activeProjectOpen;
+		}
+		activeProjectDiscardConfirmed = confirmedDiscardDirty;
 		const operation = (async () => {
+			let nextRequest: typeof queuedProjectOpen = request;
+			while (nextRequest) {
+				activeProjectOpenKey = nextRequest.key;
+				const { root, mode, confirmedDiscardDirty } = nextRequest;
+				await (async () => {
 			const currentBeforeOpen = get();
 			if (currentBeforeOpen.session?.state.dirty && !confirmedDiscardDirty) {
 				const confirmed = window.confirm(
@@ -1220,6 +1254,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					set({ error: '已取消切换；当前项目和未保存正文保持不变。' });
 					return;
 				}
+				activeProjectDiscardConfirmed = true;
 			}
 		set({
 			loading: true,
@@ -1237,6 +1272,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			? await projectOpenService.openProjectReadOnly(root)
 			: await projectOpenService.openProjectReadWrite(root);
 		if (!result.ok) {
+			if (hasSupersedingProjectOpen(nextRequest.key)) return;
 			set({
 				loading: false,
 				projectOpenError: result.error,
@@ -1245,6 +1281,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			});
 			return;
 		}
+		if (hasSupersedingProjectOpen(nextRequest.key)) return;
 
 		try {
 			const snapshot = result.snapshot;
@@ -1275,9 +1312,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			} catch {
 				structureScenes = [];
 			}
-			quickCaptureStore = new QuickCaptureStore(snapshot.root, desktopBridge);
+			const nextQuickCaptureStore = new QuickCaptureStore(snapshot.root, desktopBridge);
 			try {
-				quickCaptureCollection = await quickCaptureStore.load();
+				quickCaptureCollection = await nextQuickCaptureStore.load();
 			} catch {
 				quickCaptureCollection = {
 					state: { schemaVersion: 1, captures: [] },
@@ -1381,16 +1418,18 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				.filter(resourceId => !parseStoryTabKey(resourceId))
 				.map(resourceId => toResource(snapshot, resourceId))
 				.filter((resource): resource is ResourceDescriptor => resource !== undefined);
+			if (hasSupersedingProjectOpen(nextRequest.key)) return;
 			tabs.restore({ resources: restoredTabs });
-			storyResourceOpenService = new StoryResourceOpenService(
+			const nextStoryResourceOpenService = new StoryResourceOpenService(
 				new DesktopStoryRepository(snapshot.root, desktopBridge),
 				tabs,
 				snapshot.project.projectId
 			);
-			const restoredStoryResults = await storyResourceOpenService.restoreStoryResources(
+			const restoredStoryResults = await nextStoryResourceOpenService.restoreStoryResources(
 				persistedResourceIds,
 				reconciled.session.activeResourceId
 			);
+			if (hasSupersedingProjectOpen(nextRequest.key)) return;
 			const persistedActiveId = reconciled.session.activeResourceId;
 			if (persistedActiveId) {
 				tabs.activate(persistedActiveId);
@@ -1415,6 +1454,8 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				panelState: writingLayout,
 				focusMode: false
 			};
+			quickCaptureStore = nextQuickCaptureStore;
+			storyResourceOpenService = nextStoryResourceOpenService;
 			set({
 				snapshot,
 				recentProjectRoot: snapshot.root,
@@ -1488,6 +1529,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				.prepare(snapshot.root, !snapshot.readOnly)
 				.catch(() => undefined);
 		} catch (error) {
+			if (hasSupersedingProjectOpen(nextRequest.key)) return;
 			set({
 				loading: false,
 				projectOpenError: toPublicProjectOpenError(error, root),
@@ -1495,9 +1537,17 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				sessionRestoreState: 'idle'
 			});
 		}
+				})();
+				nextRequest = queuedProjectOpen;
+				queuedProjectOpen = undefined;
+			}
 		})();
 		const tracked = operation.finally(() => {
-			if (activeProjectOpen === tracked) activeProjectOpen = undefined;
+			if (activeProjectOpen === tracked) {
+				activeProjectOpen = undefined;
+				activeProjectOpenKey = undefined;
+				activeProjectDiscardConfirmed = false;
+			}
 		});
 		activeProjectOpen = tracked;
 		return tracked;
