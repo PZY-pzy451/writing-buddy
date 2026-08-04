@@ -1321,6 +1321,35 @@ const report = {
 				qaScriptTests: 17,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PROJECT-STRUCTURE-TREE-STABLE-CONTROLS-047',
+			summary: 'The project structure tree exposed dynamic author-facing names but no static automation handles for its six volume, chapter and scene navigation and drag operations.',
+			before: {
+				sourceControls: 6,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 6,
+				globalControls: 452,
+				globalStates: 9944,
+				globalMissingStableSelectors: 167,
+				totalUnmapped: 10708
+			},
+			after: {
+				sourceControls: 6,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 0,
+				distinctOperations: 6,
+				dynamicAccessibleNamesPreserved: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 2,
+				focusedTests: 8,
+				projectImpactTests: 65,
+				qaScriptTests: 18,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

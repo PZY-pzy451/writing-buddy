@@ -46842,138 +46842,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLECHAPTERROW-BUTTON-76917846",
+                  "id": "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-VISIBLE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-HIDDEN",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-ENABLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DISABLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-POINTER",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-KEYBOARD",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FOCUS-IN",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FOCUS-OUT",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-REPEAT",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DEDUPLICATION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-LOADING",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-SUCCESS",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FAILURE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-CANCELLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-OFFLINE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-PERMISSION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-PERSISTENCE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-RESTART",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-VISUAL",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-UNDO",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -46981,138 +46981,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D",
+                  "id": "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-VISIBLE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-HIDDEN",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-ENABLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DISABLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-POINTER",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-KEYBOARD",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FOCUS-IN",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FOCUS-OUT",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-REPEAT",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DEDUPLICATION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-LOADING",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-SUCCESS",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FAILURE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-CANCELLED",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-OFFLINE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-PERMISSION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-PERSISTENCE",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-RESTART",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-VISUAL",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-UNDO",
+                      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -47120,138 +47120,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04",
+                  "id": "CTRL-SORTABLESCENEROW-BUTTON-2AE58031",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-VISIBLE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-HIDDEN",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-ENABLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DISABLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-POINTER",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-KEYBOARD",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FOCUS-IN",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FOCUS-OUT",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-REPEAT",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DEDUPLICATION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-LOADING",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-SUCCESS",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FAILURE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-CANCELLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-OFFLINE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-PERMISSION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-PERSISTENCE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-RESTART",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-VISUAL",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-UNDO",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -47259,138 +47259,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLESCENEROW-BUTTON-52136E5E",
+                  "id": "CTRL-SORTABLESCENEROW-BUTTON-81249EAB",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-VISIBLE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-HIDDEN",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-ENABLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DISABLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-POINTER",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-KEYBOARD",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FOCUS-IN",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FOCUS-OUT",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-REPEAT",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DEDUPLICATION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-LOADING",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-SUCCESS",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FAILURE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-CANCELLED",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-OFFLINE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-PERMISSION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-PERSISTENCE",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-RESTART",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-VISUAL",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-UNDO",
+                      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -47398,138 +47398,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A",
+                  "id": "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-VISIBLE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-HIDDEN",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-ENABLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DISABLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-POINTER",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-KEYBOARD",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FOCUS-IN",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FOCUS-OUT",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-REPEAT",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DEDUPLICATION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-LOADING",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-SUCCESS",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FAILURE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-CANCELLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-OFFLINE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-PERMISSION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-PERSISTENCE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-RESTART",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-VISUAL",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-UNDO",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -47537,138 +47537,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA",
+                  "id": "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-VISIBLE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-HIDDEN",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-ENABLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DISABLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-POINTER",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-KEYBOARD",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FOCUS-IN",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FOCUS-OUT",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-REPEAT",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DEDUPLICATION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-LOADING",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-SUCCESS",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FAILURE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-CANCELLED",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-OFFLINE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-PERMISSION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-PERSISTENCE",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-RESTART",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-VISUAL",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-ACCESSIBLE-NAME",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-UNDO",
+                      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -66974,7 +66974,7 @@
       "id": "TC-DISCOVERED-0F1BDBB9B6",
       "title": "renders a nested scene with a keyboard-capable handle and opens its anchor",
       "declarationTitle": "renders a nested scene with a keyboard-capable handle and opens its anchor",
-      "declarationLine": 74,
+      "declarationLine": 101,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectStructureTree.test.tsx",
@@ -69883,6 +69883,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3ACA562E82",
+      "title": "exposes stable handles for every volume, chapter and scene operation",
+      "declarationTitle": "exposes stable handles for every volume, chapter and scene operation",
+      "declarationLine": 74,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectStructureTree.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-3B227FF696",
       "title": "localizes a drawer cancellation failure and permits retry",
       "declarationTitle": "localizes a drawer cancellation failure and permits retry",
@@ -72024,6 +72042,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5758296765",
+      "title": "TC-QA-INVENTORY-008 requires stable selectors for the project structure tree",
+      "declarationTitle": "TC-QA-INVENTORY-008 requires stable selectors for the project structure tree",
+      "declarationLine": 89,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -81038,7 +81074,7 @@
       "id": "TC-DISCOVERED-E4CC8CFF75",
       "title": "keeps scene drag discoverable but disabled while the chapter has unsaved edits",
       "declarationTitle": "keeps scene drag discoverable but disabled while the chapter has unsaved edits",
-      "declarationLine": 97,
+      "declarationLine": 124,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectStructureTree.test.tsx",

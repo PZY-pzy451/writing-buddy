@@ -48,3 +48,21 @@ reordering while still reporting the broader project journey green.
 This closes a central author navigation and ordering automation boundary.
 Product release remains fail-closed until remaining traceability,
 real-provider and packaging gates are complete.
+
+## Result
+
+- Two intended contracts failed red: inventory returned all six missing source
+  IDs and the rendered tree lacked the volume-toggle handle.
+- Source inventory moved from six controls (0 mapped / 6 missing) to 6/6
+  mapped. Global controls and states remain truthful at 452 and 9,944 while
+  global selector debt falls from 167 to 161.
+- The two new contracts increase explicit strict traceability debt from 10,708
+  to 10,710. The release gate remains fail-closed rather than hiding the new
+  unmapped tests.
+- The rendered/inventory focus set passed 2 files / 8 tests. The complete
+  projects feature set passed 12 files / 65 tests with no React warnings, and
+  QA infrastructure passed 5 files / 18 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  181 files / 920 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Product commit: `4ab100b` (`fix: stabilize project structure tree controls`).

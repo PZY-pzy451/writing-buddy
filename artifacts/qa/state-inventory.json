@@ -109564,11 +109564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-VISIBLE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -109580,11 +109580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-HIDDEN",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -109596,11 +109596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-ENABLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -109612,11 +109612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DISABLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -109628,11 +109628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-POINTER",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -109644,11 +109644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-KEYBOARD",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -109660,11 +109660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FOCUS-IN",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -109676,11 +109676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FOCUS-OUT",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -109692,11 +109692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-REPEAT",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -109708,11 +109708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DEDUPLICATION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -109724,11 +109724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-LOADING",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -109740,11 +109740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-SUCCESS",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -109756,11 +109756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-FAILURE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -109772,11 +109772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-CANCELLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -109788,11 +109788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-OFFLINE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -109804,11 +109804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-PERMISSION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -109820,11 +109820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-PERSISTENCE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -109836,11 +109836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-RESTART",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -109852,11 +109852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-VISUAL",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -109868,11 +109868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -109884,11 +109884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -109900,11 +109900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-76917846-UNDO",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-8695312E-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-76917846"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-8695312E"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -109916,11 +109916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-VISIBLE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -109932,11 +109932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-HIDDEN",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -109948,11 +109948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-ENABLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -109964,11 +109964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DISABLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -109980,11 +109980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-POINTER",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -109996,11 +109996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-KEYBOARD",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -110012,11 +110012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FOCUS-IN",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -110028,11 +110028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FOCUS-OUT",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -110044,11 +110044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-REPEAT",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -110060,11 +110060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DEDUPLICATION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -110076,11 +110076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-LOADING",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -110092,11 +110092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-SUCCESS",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -110108,11 +110108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-FAILURE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -110124,11 +110124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-CANCELLED",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -110140,11 +110140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-OFFLINE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -110156,11 +110156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-PERMISSION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -110172,11 +110172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-PERSISTENCE",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -110188,11 +110188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-RESTART",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -110204,11 +110204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-VISUAL",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -110220,11 +110220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -110236,11 +110236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -110252,11 +110252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLECHAPTERROW-BUTTON-7945538D-UNDO",
+      "id": "STATE-SORTABLECHAPTERROW-BUTTON-C3001560-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLECHAPTERROW-BUTTON-7945538D"
+        "CTRL-SORTABLECHAPTERROW-BUTTON-C3001560"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -110268,11 +110268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-VISIBLE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -110284,11 +110284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-HIDDEN",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -110300,11 +110300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-ENABLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -110316,11 +110316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DISABLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -110332,11 +110332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-POINTER",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -110348,11 +110348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-KEYBOARD",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -110364,11 +110364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FOCUS-IN",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -110380,11 +110380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FOCUS-OUT",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -110396,11 +110396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-REPEAT",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -110412,11 +110412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DEDUPLICATION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -110428,11 +110428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-LOADING",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -110444,11 +110444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-SUCCESS",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -110460,11 +110460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-FAILURE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -110476,11 +110476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-CANCELLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -110492,11 +110492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-OFFLINE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -110508,11 +110508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-PERMISSION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -110524,11 +110524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-PERSISTENCE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -110540,11 +110540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-RESTART",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -110556,11 +110556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-VISUAL",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -110572,11 +110572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -110588,11 +110588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -110604,11 +110604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-3FBCDE04-UNDO",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-2AE58031-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-3FBCDE04"
+        "CTRL-SORTABLESCENEROW-BUTTON-2AE58031"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -110620,11 +110620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-VISIBLE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -110636,11 +110636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-HIDDEN",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -110652,11 +110652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-ENABLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -110668,11 +110668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DISABLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -110684,11 +110684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-POINTER",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -110700,11 +110700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-KEYBOARD",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -110716,11 +110716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FOCUS-IN",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -110732,11 +110732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FOCUS-OUT",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -110748,11 +110748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-REPEAT",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -110764,11 +110764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DEDUPLICATION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -110780,11 +110780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-LOADING",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -110796,11 +110796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-SUCCESS",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -110812,11 +110812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-FAILURE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -110828,11 +110828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-CANCELLED",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -110844,11 +110844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-OFFLINE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -110860,11 +110860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-PERMISSION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -110876,11 +110876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-PERSISTENCE",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -110892,11 +110892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-RESTART",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -110908,11 +110908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-VISUAL",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -110924,11 +110924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -110940,11 +110940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -110956,11 +110956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLESCENEROW-BUTTON-52136E5E-UNDO",
+      "id": "STATE-SORTABLESCENEROW-BUTTON-81249EAB-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLESCENEROW-BUTTON-52136E5E"
+        "CTRL-SORTABLESCENEROW-BUTTON-81249EAB"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -111676,11 +111676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-VISIBLE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -111692,11 +111692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-HIDDEN",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -111708,11 +111708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-ENABLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -111724,11 +111724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DISABLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -111740,11 +111740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-POINTER",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -111756,11 +111756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-KEYBOARD",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -111772,11 +111772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FOCUS-IN",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -111788,11 +111788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FOCUS-OUT",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -111804,11 +111804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-REPEAT",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -111820,11 +111820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DEDUPLICATION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -111836,11 +111836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-LOADING",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -111852,11 +111852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-SUCCESS",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -111868,11 +111868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-FAILURE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -111884,11 +111884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-CANCELLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -111900,11 +111900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-OFFLINE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -111916,11 +111916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-PERMISSION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -111932,11 +111932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-PERSISTENCE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -111948,11 +111948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-RESTART",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -111964,11 +111964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-VISUAL",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -111980,11 +111980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -111996,11 +111996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -112012,11 +112012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-AD9D347A-UNDO",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-3DE03260-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-AD9D347A"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-3DE03260"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -112028,11 +112028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-VISIBLE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-VISIBLE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -112044,11 +112044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-HIDDEN",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-HIDDEN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -112060,11 +112060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-ENABLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-ENABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -112076,11 +112076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DISABLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DISABLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -112092,11 +112092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-POINTER",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-POINTER",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -112108,11 +112108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-KEYBOARD",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-KEYBOARD",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -112124,11 +112124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FOCUS-IN",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FOCUS-IN",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -112140,11 +112140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FOCUS-OUT",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FOCUS-OUT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -112156,11 +112156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-REPEAT",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-REPEAT",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -112172,11 +112172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DEDUPLICATION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DEDUPLICATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -112188,11 +112188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-LOADING",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-LOADING",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -112204,11 +112204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-SUCCESS",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-SUCCESS",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -112220,11 +112220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-FAILURE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-FAILURE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -112236,11 +112236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-CANCELLED",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-CANCELLED",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -112252,11 +112252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-OFFLINE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-OFFLINE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -112268,11 +112268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-PERMISSION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-PERMISSION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -112284,11 +112284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-PERSISTENCE",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-PERSISTENCE",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -112300,11 +112300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-RESTART",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-RESTART",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -112316,11 +112316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-VISUAL",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-VISUAL",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -112332,11 +112332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-ACCESSIBLE-NAME",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-ACCESSIBLE-NAME",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -112348,11 +112348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -112364,11 +112364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CAB8AABA-UNDO",
+      "id": "STATE-SORTABLEVOLUMEROW-BUTTON-CFCFD58E-UNDO",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
       "controlIds": [
-        "CTRL-SORTABLEVOLUMEROW-BUTTON-CAB8AABA"
+        "CTRL-SORTABLEVOLUMEROW-BUTTON-CFCFD58E"
       ],
       "name": "撤销",
       "dimension": "UNDO",
