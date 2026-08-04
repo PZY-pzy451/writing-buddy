@@ -211,11 +211,15 @@ function discoverControls(sourcePath, sourceText) {
 		const opening = ts.isJsxElement(node) ? node.openingElement : ts.isJsxSelfClosingElement(node) ? node : undefined;
 		if (opening) {
 			const tag = opening.tagName.getText(sourceFile);
+			const intrinsic = /^[a-z]/u.test(tag);
 			const propNames = opening.attributes.properties.filter(ts.isJsxAttribute).map(property => property.name.text);
 			const eventProps = propNames.filter(name => /^on(?:Click|Change|Input|Submit|KeyDown|PointerDown|DragStart|Drop)$/u.test(name));
 			const role = staticAttribute(opening, 'role');
 			const native = ['button', 'input', 'select', 'textarea'].includes(tag);
-			const customInteractive = eventProps.length > 0 || ['button', 'menuitem', 'tab', 'slider', 'checkbox', 'radio', 'option', 'treeitem'].includes(role ?? '');
+			const customInteractive = intrinsic && (
+				eventProps.length > 0
+				|| ['button', 'menuitem', 'tab', 'slider', 'checkbox', 'radio', 'option', 'treeitem'].includes(role ?? '')
+			);
 			if (native || customInteractive) {
 				const component = enclosingComponent(opening);
 				const semanticProps = ['data-testid', 'id', 'name', 'aria-controls', 'type'].map(name => [name, staticAttribute(opening, name)]).filter(([, value]) => value);

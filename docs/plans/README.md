@@ -76,6 +76,7 @@
 - [Pending fact extraction feedback and stable controls QA](./074-pending-fact-extraction-feedback-selectors-qa.md)
 - [Manuscript extraction run single-flight QA](./075-manuscript-extraction-run-single-flight-qa.md)
 - [Manuscript extraction early-stop intent QA](./076-manuscript-extraction-early-stop-intent-qa.md)
+- [QA inventory composite-control boundary](./077-qa-inventory-composite-control-boundary.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
