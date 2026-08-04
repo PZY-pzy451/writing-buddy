@@ -91,10 +91,17 @@ describe('StructuredOutlineWorkspace outline quality check', () => {
 		expect(within(panel).getByText('AI 建议')).toBeInTheDocument();
 		expect(within(panel).getByText(/只有再次明确点击，才会调用 AI/)).toBeInTheDocument();
 
-		await user.click(within(panel).getByRole('button', { name: /章节计划与正文状态不一致/ }));
+		const localIssueAction = within(panel).getByRole('button', {
+			name: /章节计划与正文状态不一致/
+		});
+		expect(localIssueAction)
+			.toHaveAttribute('data-testid', 'outline-quality-issue-locate');
+		await user.click(localIssueAction);
 		expect(screen.getByLabelText('节点标题')).toHaveValue(state.outline[1].title);
 
-		await user.click(within(panel).getByRole('button', { name: 'AI 语义检查' }));
+		const aiCheck = within(panel).getByRole('button', { name: 'AI 语义检查' });
+		expect(aiCheck).toHaveAttribute('data-testid', 'outline-quality-run-ai');
+		await user.click(aiCheck);
 		expect(runAi).toHaveBeenCalledTimes(1);
 		expect(await within(panel).findByText('冲突升级不明显')).toBeInTheDocument();
 		expect(onChange).not.toHaveBeenCalled();

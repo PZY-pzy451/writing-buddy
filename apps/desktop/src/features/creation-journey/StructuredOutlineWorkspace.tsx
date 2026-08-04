@@ -180,9 +180,13 @@ function OutlineQualityIssueCard({
 		? '错误'
 		: issue.severity === 'warning' ? '警告' : '建议';
 	return (
-		<article className={`outline-quality-issue is-${issue.severity}`}>
+		<article
+			className={`outline-quality-issue is-${issue.severity}`}
+			data-testid="outline-quality-issue"
+		>
 			<button
 				type="button"
+				data-testid="outline-quality-issue-locate"
 				aria-label={`${issue.title}，定位节点`}
 				onClick={() => onLocate(issue.nodeIds[0])}
 			>
@@ -570,6 +574,7 @@ export function StructuredOutlineWorkspace({
 				<div className="structured-outline-toolbar-actions">
 					<button
 						type="button"
+						data-testid="outline-check-local"
 						disabled={!onRunLocalOutlineCheck || Boolean(qualityBusy)}
 						onClick={() => void runLocalQualityCheck()}
 					>
@@ -577,6 +582,7 @@ export function StructuredOutlineWorkspace({
 					</button>
 					<button
 						type="button"
+						data-testid="outline-add-node"
 						disabled={readOnly || storyBeats.length >= 8}
 						onClick={() => {
 							const next = apply(
@@ -591,6 +597,7 @@ export function StructuredOutlineWorkspace({
 					</button>
 					<button
 						type="button"
+						data-testid="outline-undo"
 						aria-label="撤销大纲改动"
 						disabled={readOnly || history.length === 0}
 						onClick={undo}
@@ -599,6 +606,7 @@ export function StructuredOutlineWorkspace({
 					</button>
 					<button
 						type="button"
+						data-testid="outline-save"
 						className="secondary-button"
 						disabled={readOnly}
 						onClick={() => void onSave()}
@@ -610,6 +618,7 @@ export function StructuredOutlineWorkspace({
 							<span>数量</span>
 							<input
 								type="number"
+								data-testid="outline-hierarchy-count"
 								min={1}
 								max={hierarchyTarget.kind === 'story'
 									? 8
@@ -627,6 +636,7 @@ export function StructuredOutlineWorkspace({
 					{hierarchyPrimaryLabel && !hierarchyPreview && !candidatePreview && (
 						<button
 							type="button"
+							data-testid="outline-hierarchy-primary-action"
 							className="primary-button"
 							disabled={
 								readOnly
@@ -664,6 +674,7 @@ export function StructuredOutlineWorkspace({
 						</div>
 						<button
 							type="button"
+							data-testid="outline-quality-close"
 							aria-label="关闭大纲检查"
 							onClick={() => setQualityOpen(false)}
 						>
@@ -692,6 +703,7 @@ export function StructuredOutlineWorkspace({
 								</div>
 								<button
 									type="button"
+									data-testid="outline-quality-rerun-local"
 									disabled={qualityBusy === 'local'}
 									onClick={() => void runLocalQualityCheck()}
 								>
@@ -721,6 +733,7 @@ export function StructuredOutlineWorkspace({
 								</div>
 								<button
 									type="button"
+									data-testid="outline-quality-run-ai"
 									className="secondary-button"
 									disabled={
 										!onRunAiOutlineCheck
@@ -768,6 +781,7 @@ export function StructuredOutlineWorkspace({
 						</div>
 						<button
 							type="button"
+							data-testid="outline-hierarchy-preview-close"
 							aria-label="关闭拆分预览"
 							onClick={() => setHierarchyPreview(undefined)}
 						>
@@ -788,7 +802,10 @@ export function StructuredOutlineWorkspace({
 					</div>
 					<div className="outline-hierarchy-preview-list">
 						{hierarchyPreview.candidates.map((candidate, index) => (
-							<article key={candidate.id}>
+							<article
+								key={candidate.id}
+								data-testid="outline-hierarchy-candidate"
+							>
 								<span>{index + 1}</span>
 								<div>
 									<strong>{candidate.title}</strong>
@@ -809,11 +826,16 @@ export function StructuredOutlineWorkspace({
 					)}
 					<footer>
 						<span>此步骤只保存规划投影，不创建正文文件。</span>
-						<button type="button" onClick={() => setHierarchyPreview(undefined)}>
+						<button
+							type="button"
+							data-testid="outline-hierarchy-preview-cancel"
+							onClick={() => setHierarchyPreview(undefined)}
+						>
 							取消
 						</button>
 						<button
 							type="button"
+							data-testid="outline-hierarchy-preview-confirm"
 							className="primary-button"
 							disabled={
 								hierarchyPreview.conflicts.length > 0
@@ -835,6 +857,7 @@ export function StructuredOutlineWorkspace({
 					</header>
 					<button
 						type="button"
+						data-testid="outline-tree-root"
 						className={!selectedNode ? 'is-selected' : ''}
 						aria-label="选择故事总纲"
 						onClick={() => setSelectedId(undefined)}
@@ -853,6 +876,7 @@ export function StructuredOutlineWorkspace({
 								<li key={node.id}>
 									<button
 										type="button"
+										data-testid="outline-tree-node"
 										className={selectedId === node.id ? 'is-selected' : ''}
 										aria-label={`选择${node.title || `未命名节点 ${index + 1}`}`}
 										draggable={
@@ -905,6 +929,7 @@ export function StructuredOutlineWorkspace({
 							return (
 								<article
 									key={node.id}
+									data-testid="outline-story-card"
 									aria-label={`大纲卡片 ${index + 1} ${node.title || '未命名节点'}`}
 									className={[
 										'structured-outline-card',
@@ -945,6 +970,7 @@ export function StructuredOutlineWorkspace({
 									<div className="structured-outline-card-move">
 										<button
 											type="button"
+											data-testid="outline-card-move-up"
 											aria-label={`上移故事节点 ${index + 1}`}
 											disabled={readOnly || locked || previousLocked || index === 0}
 											onClick={event => {
@@ -956,6 +982,7 @@ export function StructuredOutlineWorkspace({
 										</button>
 										<button
 											type="button"
+											data-testid="outline-card-move-down"
 											aria-label={`下移故事节点 ${index + 1}`}
 											disabled={
 												readOnly
@@ -1017,9 +1044,16 @@ export function StructuredOutlineWorkspace({
 									return (
 										<label key={field.key}>
 											<span>{field.label}{field.required && <em>必填</em>}</span>
-											{field.multiline
-												? <textarea {...common} rows={3} />
-												: <input {...common} />}
+										{field.multiline
+											? <textarea
+												{...common}
+												data-testid="outline-root-multiline-field"
+												rows={3}
+											/>
+											: <input
+												{...common}
+												data-testid="outline-root-singleline-field"
+											/>}
 										</label>
 									);
 								})}
@@ -1045,6 +1079,7 @@ export function StructuredOutlineWorkspace({
 							<div className="structured-outline-inspector-actions">
 								<button
 									type="button"
+									data-testid="outline-node-lock-toggle"
 									disabled={readOnly}
 									onClick={() => apply(
 										() => toggleJourneyLock(state, {
@@ -1063,6 +1098,7 @@ export function StructuredOutlineWorkspace({
 								</button>
 								<button
 									type="button"
+									data-testid="outline-delete-node"
 									disabled={
 										readOnly
 										|| lockedIds.has(selectedNode.id)
@@ -1089,6 +1125,7 @@ export function StructuredOutlineWorkspace({
 									<label>
 										<span>调整方向</span>
 										<select
+											data-testid="outline-generation-strategy"
 											aria-label="局部生成策略"
 											value={generationStrategy}
 											disabled={
@@ -1109,6 +1146,7 @@ export function StructuredOutlineWorkspace({
 									</label>
 									<button
 										type="button"
+										data-testid="outline-generate-alternatives"
 										className="primary-button"
 										disabled={
 											readOnly
@@ -1160,15 +1198,23 @@ export function StructuredOutlineWorkspace({
 									return (
 										<label key={field.key}>
 											<span>{field.label}</span>
-											{field.multiline
-												? <textarea {...common} rows={3} />
-												: <input {...common} />}
+										{field.multiline
+											? <textarea
+												{...common}
+												data-testid="outline-node-multiline-field"
+												rows={3}
+											/>
+											: <input
+												{...common}
+												data-testid="outline-node-singleline-field"
+											/>}
 										</label>
 									);
 								})}
 								<label>
 									<span>状态</span>
 									<select
+										data-testid="outline-node-status"
 										aria-label="节点状态"
 										value={selectedNode.status ?? 'planned'}
 										disabled={readOnly || lockedIds.has(selectedNode.id)}
@@ -1217,6 +1263,7 @@ export function StructuredOutlineWorkspace({
 							</div>
 							<button
 								type="button"
+								data-testid="outline-materialization-close"
 								aria-label="关闭创建确认"
 								onClick={() => setMaterializationReviewOpen(false)}
 							>
@@ -1239,6 +1286,7 @@ export function StructuredOutlineWorkspace({
 						<footer>
 							<button
 								type="button"
+								data-testid="outline-materialization-back"
 								onClick={() => setMaterializationReviewOpen(false)}
 								disabled={Boolean(hierarchyBusy)}
 							>
@@ -1246,6 +1294,7 @@ export function StructuredOutlineWorkspace({
 							</button>
 							<button
 								type="button"
+								data-testid="outline-materialization-confirm"
 								className="primary-button"
 								disabled={Boolean(hierarchyBusy)}
 								onClick={() => void materializeHierarchy()}
@@ -1275,6 +1324,7 @@ export function StructuredOutlineWorkspace({
 						</div>
 						<button
 							type="button"
+							data-testid="outline-candidate-review-close"
 							aria-label="关闭局部候选审核"
 							onClick={() => {
 								setCandidatePreview(undefined);
@@ -1291,6 +1341,7 @@ export function StructuredOutlineWorkspace({
 								<button
 									key={candidate.label}
 									type="button"
+									data-testid="outline-candidate-tab"
 									role="tab"
 									aria-selected={candidateIndex === index}
 									className={candidateIndex === index ? 'is-selected' : ''}
@@ -1310,6 +1361,7 @@ export function StructuredOutlineWorkspace({
 								<span className="structured-outline-field-diff-heading">
 									<input
 										type="checkbox"
+										data-testid="outline-candidate-field-toggle"
 										aria-label={`采用 ${diff.label}`}
 										checked={selectedCandidateFields.includes(diff.field)}
 										onChange={() => setSelectedCandidateFields(fields => (
@@ -1337,6 +1389,7 @@ export function StructuredOutlineWorkspace({
 						<span>{changedDiffs.length} 个字段发生变化</span>
 						<button
 							type="button"
+							data-testid="outline-candidate-apply"
 							className="primary-button"
 							disabled={
 								selectedCandidateFields.length === 0
@@ -1380,6 +1433,7 @@ export function StructuredOutlineWorkspace({
 					{canUndoAlternativeApply && onUndoAlternativeApply && (
 						<button
 							type="button"
+							data-testid="outline-candidate-undo"
 							disabled={Boolean(authorControlBusy)}
 							onClick={() => void undoAlternative()}
 						>

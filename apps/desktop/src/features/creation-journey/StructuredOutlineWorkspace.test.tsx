@@ -78,6 +78,51 @@ function writableHierarchyState(): CreationJourneyState {
 }
 
 describe('StructuredOutlineWorkspace', () => {
+	it('exposes stable automation metadata across the author editing surface', async () => {
+		const user = userEvent.setup();
+
+		render(
+			<StructuredOutlineWorkspace
+				state={generatedState()}
+				readOnly={false}
+				status="已保存到项目"
+				onChange={vi.fn()}
+				onSave={vi.fn()}
+				onRunLocalOutlineCheck={() => Promise.resolve([])}
+			/>
+		);
+
+		expect(screen.getByRole('button', { name: '检查大纲' }))
+			.toHaveAttribute('data-testid', 'outline-check-local');
+		expect(screen.getByRole('button', { name: '新增节点' }))
+			.toHaveAttribute('data-testid', 'outline-add-node');
+		expect(screen.getByRole('button', { name: '保存大纲' }))
+			.toHaveAttribute('data-testid', 'outline-save');
+		expect(screen.getByLabelText('故事标题'))
+			.toHaveAttribute('data-testid', 'outline-root-singleline-field');
+		expect(screen.getByLabelText('故事前提'))
+			.toHaveAttribute('data-testid', 'outline-root-multiline-field');
+
+		const treeNode = screen.getByRole('button', { name: '选择故事节点 2' });
+		expect(treeNode).toHaveAttribute('data-testid', 'outline-tree-node');
+		expect(screen.getByRole('article', { name: /大纲卡片 2/ }))
+			.toHaveAttribute('data-testid', 'outline-story-card');
+		expect(screen.getByRole('button', { name: '上移故事节点 2' }))
+			.toHaveAttribute('data-testid', 'outline-card-move-up');
+		expect(screen.getByRole('button', { name: '下移故事节点 2' }))
+			.toHaveAttribute('data-testid', 'outline-card-move-down');
+
+		await user.click(treeNode);
+		expect(screen.getByLabelText('节点标题'))
+			.toHaveAttribute('data-testid', 'outline-node-singleline-field');
+		expect(screen.getByLabelText('一句话概要'))
+			.toHaveAttribute('data-testid', 'outline-node-multiline-field');
+		expect(screen.getByRole('button', { name: '锁定此节点' }))
+			.toHaveAttribute('data-testid', 'outline-node-lock-toggle');
+		expect(screen.getByRole('button', { name: '删除节点' }))
+			.toHaveAttribute('data-testid', 'outline-delete-node');
+	});
+
 	it('provides tree, cards, inspector, lock, reorder, undo, and explicit save', async () => {
 		const user = userEvent.setup();
 		const save = vi.fn();
@@ -212,7 +257,9 @@ describe('StructuredOutlineWorkspace', () => {
 
 		await user.click(screen.getByRole('button', { name: /选择故事节点 2/ }));
 		await user.selectOptions(screen.getByLabelText('局部生成策略'), 'strengthen-conflict');
-		await user.click(screen.getByRole('button', { name: '生成 3 个局部候选' }));
+		const generateButton = screen.getByRole('button', { name: '生成 3 个局部候选' });
+		expect(generateButton).toHaveAttribute('data-testid', 'outline-generate-alternatives');
+		await user.click(generateButton);
 
 		const review = await screen.findByRole('region', { name: '局部候选审核' });
 		expect(within(review).getByText('Current')).toBeInTheDocument();
@@ -220,13 +267,18 @@ describe('StructuredOutlineWorkspace', () => {
 			'aria-selected',
 			'true'
 		);
+		expect(within(review).getByRole('tab', { name: /A · 冲突升级/ }))
+			.toHaveAttribute('data-testid', 'outline-candidate-tab');
 		expect(within(review).getByRole('tab', { name: /B · 人物驱动/ })).toBeInTheDocument();
 		expect(within(review).getByRole('tab', { name: /C · 节奏收紧/ })).toBeInTheDocument();
 		expect(within(review).getByText('公开名单会抹去最后的私人记忆。'))
 			.toBeInTheDocument();
 
-		await user.click(within(review).getByRole('checkbox', { name: '采用 一句话概要' }));
+		const summaryToggle = within(review).getByRole('checkbox', { name: '采用 一句话概要' });
+		expect(summaryToggle).toHaveAttribute('data-testid', 'outline-candidate-field-toggle');
+		await user.click(summaryToggle);
 		const applyButton = within(review).getByRole('button', { name: '采用已选 2 个字段' });
+		expect(applyButton).toHaveAttribute('data-testid', 'outline-candidate-apply');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				applyButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -248,7 +300,9 @@ describe('StructuredOutlineWorkspace', () => {
 		expect(within(impact).getByText(/只报告，不会自动重写/)).toBeInTheDocument();
 		expect(within(impact).getByText(/当前没有物化章节、场景或正文锚点/))
 			.toBeInTheDocument();
-		await user.click(within(impact).getByRole('button', { name: '撤销本次 AI 采用' }));
+		const undoButton = within(impact).getByRole('button', { name: '撤销本次 AI 采用' });
+		expect(undoButton).toHaveAttribute('data-testid', 'outline-candidate-undo');
+		await user.click(undoButton);
 		expect(undo).toHaveBeenCalledTimes(1);
 	});
 
@@ -295,7 +349,9 @@ describe('StructuredOutlineWorkspace', () => {
 		render(<Harness />);
 		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
 		expect(screen.getAllByRole('button', { name: '拆分为卷' })).toHaveLength(1);
-		await user.click(screen.getByRole('button', { name: '拆分为卷' }));
+		const splitButton = screen.getByRole('button', { name: '拆分为卷' });
+		expect(splitButton).toHaveAttribute('data-testid', 'outline-hierarchy-primary-action');
+		await user.click(splitButton);
 
 		const preview = await screen.findByRole('region', { name: '拆分预览' });
 		expect(within(preview).getByText('预计创建 1 个卷')).toBeInTheDocument();
@@ -304,7 +360,9 @@ describe('StructuredOutlineWorkspace', () => {
 			.not.toBeInTheDocument();
 		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
 
-		await user.click(within(preview).getByRole('button', { name: '确认拆分' }));
+		const confirmSplit = within(preview).getByRole('button', { name: '确认拆分' });
+		expect(confirmSplit).toHaveAttribute('data-testid', 'outline-hierarchy-preview-confirm');
+		await user.click(confirmSplit);
 		expect(confirm).toHaveBeenCalledTimes(1);
 		expect(await screen.findByRole('button', { name: '选择第一卷 雨夜来客' }))
 			.toBeInTheDocument();
@@ -334,7 +392,12 @@ describe('StructuredOutlineWorkspace', () => {
 		expect(screen.getByRole('button', { name: '开始写作' })).toBeDisabled();
 		expect(document.querySelectorAll('.primary-button:not(:disabled)')).toHaveLength(1);
 
-		await user.click(screen.getByRole('button', { name: '确认创建并开始写作' }));
+		const confirmMaterialization = screen.getByRole('button', {
+			name: '确认创建并开始写作'
+		});
+		expect(confirmMaterialization)
+			.toHaveAttribute('data-testid', 'outline-materialization-confirm');
+		await user.click(confirmMaterialization);
 		expect(materialize).toHaveBeenCalledTimes(1);
 	});
 });
