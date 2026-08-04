@@ -4,6 +4,26 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer Context Pack freeze is complete on
+`codex/full-regression-gates-a-e-v2` against source `bc12ffd`.
+
+- Optional context is now immutable through validation, queueing, connection,
+  streaming, output validation and candidate application. Store guards remain
+  authoritative even if a control event bypasses the disabled UI.
+- Each state rejects 100 attempted toggles. Rendered controls expose the same
+  six-state lock without presenting candidate application as cancellable work.
+- Changing context after preview now clears the old raw/parsed output,
+  transaction, usage and terminal job identity before allowing regeneration.
+- Eight contracts failed red across the initial and applying-state audit. The
+  three-file focused set passed 41/41, the ten-file impact set passed 137/137 and
+  full Node 24 acceptance passed 179 files / 871 tests. Rust passed 77 with two
+  reasoned ignores.
+- The ledger contains 950 cases: 948 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,098 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI drawer reopen cancellation is complete on
 `codex/full-regression-gates-a-e-v2` against source `b1bfd98`.
 
@@ -20,7 +40,7 @@ AI drawer reopen cancellation is complete on
   `PASS`; product remains `PARTIAL` because 10,088 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: AI drawer close cancellation
 
 AI drawer close cancellation is complete on
 `codex/full-regression-gates-a-e-v2` against source `1403246`.

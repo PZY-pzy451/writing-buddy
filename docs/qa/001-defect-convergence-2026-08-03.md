@@ -583,6 +583,31 @@ and save impact set passes 121/121. Full Node 24 acceptance passes 179 files /
 retains two reasoned ignores. The converged ledger contains 937 cases: 935
 passes and two reasoned skips.
 
+### QA-AI-DRAWER-CONTEXT-FREEZE-030
+
+The generic AI drawer captured a Context Pack when generation started but kept
+optional records editable throughout the request. Five state-matrix failures
+proved 100 toggles changed the displayed pack during validation, queueing,
+connection, streaming and output validation. The rendered streaming control was
+also enabled, and changing context after preview left output and its transaction
+actionable. A follow-up rendered-state audit found the same unlocked control
+during candidate application.
+
+The Store now rejects context changes through all six request/application
+states, and Context Preview exposes the same disabled contract. Application is
+locked separately from the cancellable generation states, so the Stop control
+does not become misleadingly enabled. Changing optional context after preview
+atomically clears raw/parsed output, transaction, usage and terminal job
+identity; the author can then generate a fresh candidate from the new pack.
+
+The repaired Store, drawer and context suites pass 41/41 and the ten-file AI,
+drawer, App, session and save impact set passes 137/137. Full Node 24 acceptance
+passes 179 files / 871 tests, lint, typecheck and production build. Rust collects
+79, passes 77 and retains two reasoned ignores. Static discovery finds all 871
+frontend tests, including 77 parameterized instances with zero unresolved
+declarations. The converged ledger contains 950 cases: 948 passes and two
+reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -693,11 +718,12 @@ console claims.
 | AI drawer stale-context isolation | Six red failures cover same-revision identity collisions, delayed output and incomplete reset; 15 focused and 113 impacted tests pass |
 | AI drawer close cancellation | Five red failures cover Store close, Close button, Escape and backdrop; 100 closes cancel once; 22 focused and 118 impacted tests pass |
 | AI drawer reopen cancellation | Stop plus immediate reopen sent two cancellations; success/failure ordering and 100-reopen pressure now pass 25 focused and 121 impacted tests |
-| Ledger/inventory reconciliation | 937 / 937 cases; 858 frontend + 79 native; 935 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer Context Pack freeze | Six request/application states reject 100 toggles each; post-preview changes invalidate old output; 41 focused and 137 impacted tests pass |
+| Ledger/inventory reconciliation | 950 / 950 cases; 871 frontend + 79 native; 948 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 858 tests and production build passed |
-| Static/runtime test reconciliation | 858 / 858; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 871 tests and production build passed |
+| Static/runtime test reconciliation | 871 / 871; 77 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -737,7 +763,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,088 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,098 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

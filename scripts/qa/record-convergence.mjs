@@ -807,6 +807,49 @@ const report = {
 				impactedTests: 121,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-CONTEXT-FREEZE-030',
+			summary: 'The AI drawer allowed optional Context Pack changes after the provider request was captured and left a preview actionable after its context changed.',
+			before: {
+				mutableRequestStates: [
+					'validating_context',
+					'queued',
+					'connecting',
+					'streaming',
+					'validating_output'
+				],
+				renderedApplyingLocked: false,
+				previewInvalidatedOnContextChange: false,
+				requestAndDisplayedContextGuaranteedEqual: false
+			},
+			after: {
+				lockedStates: [
+					'validating_context',
+					'queued',
+					'connecting',
+					'streaming',
+					'validating_output',
+					'applying'
+				],
+				toggleAttemptsPerState: 100,
+				storeAuthoritative: true,
+				renderedControlsDisabled: true,
+				previewInvalidatedOnContextChange: true,
+				previewArtifactsCleared: [
+					'rawOutput',
+					'parsedOutput',
+					'transaction',
+					'usage',
+					'jobId',
+					'jobMetadata'
+				],
+				freshGenerationAfterChange: true,
+				redFailures: 8,
+				focusedTests: 41,
+				impactedTests: 137,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
