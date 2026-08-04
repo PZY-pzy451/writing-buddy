@@ -310,6 +310,7 @@ export function createAiGenerationStore(
 				});
 			},
 			close() {
+				if (get().state === 'applying') return;
 				get().reset();
 			},
 			toggleExpanded() {

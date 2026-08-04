@@ -140,7 +140,14 @@ export function AiGenerationDrawer({
 						>
 							{state.expanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
 						</button>
-						<button className="icon-button" type="button" onClick={state.close} aria-label="关闭 AI 快速生成">
+						<button
+							className="icon-button"
+							type="button"
+							onClick={state.close}
+							disabled={state.state === 'applying'}
+							title={state.state === 'applying' ? '候选正在应用，完成前无法关闭' : undefined}
+							aria-label="关闭 AI 快速生成"
+						>
 							<X size={20} />
 						</button>
 					</div>

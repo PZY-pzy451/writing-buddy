@@ -207,6 +207,49 @@ describe('aiGenerationStore', () => {
 		});
 	});
 
+	it('preserves an applying transaction across 100 author close actions', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const cancelAiJob = vi.fn(fallback.cancelAiJob);
+		const store = createAiGenerationStore({ ...fallback, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		store.setState({ state: 'applying' });
+		const applying = store.getState();
+		const snapshot = {
+			open: applying.open,
+			state: applying.state,
+			rawOutput: applying.rawOutput,
+			parsedOutput: applying.parsedOutput,
+			transaction: applying.transaction,
+			contextPack: applying.contextPack,
+			jobId: applying.jobId
+		};
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().close();
+		}
+
+		const current = store.getState();
+		expect({
+			open: current.open,
+			state: current.state,
+			rawOutput: current.rawOutput,
+			parsedOutput: current.parsedOutput,
+			transaction: current.transaction,
+			contextPack: current.contextPack,
+			jobId: current.jobId
+		}).toEqual(snapshot);
+		expect(cancelAiJob).not.toHaveBeenCalled();
+
+		store.getState().reset();
+		expect(store.getState()).toMatchObject({
+			open: false,
+			state: 'idle',
+			transaction: undefined
+		});
+	});
+
 	it.each(['preview', 'failed', 'cancelled'] as const)(
 		'ignores 100 delayed event bursts after the same job reaches %s',
 		async terminalState => {

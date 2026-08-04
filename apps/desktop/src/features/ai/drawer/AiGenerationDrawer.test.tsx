@@ -4,6 +4,7 @@ import {
 	DEFAULT_AI_PREFERENCES,
 	createDeepSeekProviderDefinition
 } from '@writing-buddy/ai';
+import { createAiPreviewTransaction } from '@writing-buddy/ai-actions';
 import { AiGenerationDrawer } from './AiGenerationDrawer';
 import {
 	createAiGenerationStore,
@@ -74,6 +75,49 @@ describe('AiGenerationDrawer', () => {
 				state: 'idle',
 				jobId: undefined,
 				rawOutput: ''
+			});
+		}
+	);
+
+	it.each(['button', 'escape', 'backdrop'] as const)(
+		'preserves an applying transaction dismissed through %s',
+		async method => {
+			const user = userEvent.setup();
+			const store = createAiGenerationStore(runtime);
+			const transaction = createAiPreviewTransaction({
+				actionId: 'review.consistency',
+				resourceId: 'chapter-1',
+				baseRevision: 4,
+				applyPolicy: { type: 'review_issues', maximumSeverity: 'warning' },
+				candidate: { issues: [] }
+			});
+			store.setState({
+				open: true,
+				state: 'applying',
+				rawOutput: JSON.stringify({ issues: [] }),
+				parsedOutput: { issues: [] },
+				transaction
+			});
+			render(<AiGenerationDrawer store={store} />);
+
+			if (method === 'button') {
+				const close = screen.getByRole('button', { name: '关闭 AI 快速生成' });
+				expect(close).toBeDisabled();
+				await user.click(close);
+			} else if (method === 'escape') {
+				fireEvent.keyDown(document, { key: 'Escape' });
+			} else {
+				const backdrop = document.querySelector('.ai-drawer-backdrop');
+				if (!(backdrop instanceof HTMLElement)) throw new Error('drawer backdrop missing');
+				fireEvent.mouseDown(backdrop);
+			}
+
+			expect(screen.getByRole('dialog', { name: 'AI 快速生成' })).toBeInTheDocument();
+			expect(store.getState()).toMatchObject({
+				open: true,
+				state: 'applying',
+				parsedOutput: { issues: [] },
+				transaction
 			});
 		}
 	);
