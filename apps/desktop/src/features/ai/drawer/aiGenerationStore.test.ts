@@ -39,6 +39,13 @@ function runtime(
 const chapterScope = {
 	currentResourceType: 'chapter',
 	baseRevision: 4,
+	source: {
+		projectRoot: 'C:/novels/inn',
+		projectId: 'project-1',
+		resourceId: 'chapter-1',
+		resourcePath: 'manuscript/chapter-1.md',
+		modelUri: 'writing-buddy://project-1/chapter-1'
+	},
 	context: {
 		project: { id: 'project-1', title: '阴间旅店', summary: '悬疑长篇' },
 		currentResource: {
@@ -52,6 +59,12 @@ const chapterScope = {
 const nextChapterScope = {
 	...chapterScope,
 	baseRevision: 9,
+	source: {
+		...chapterScope.source,
+		resourceId: 'chapter-2',
+		resourcePath: 'manuscript/chapter-2.md',
+		modelUri: 'writing-buddy://project-1/chapter-2'
+	},
 	context: {
 		...chapterScope.context,
 		currentResource: {
@@ -294,10 +307,128 @@ describe('aiGenerationStore', () => {
 		const store = createAiGenerationStore(runtime(JSON.stringify({ issues: [] })));
 		store.getState().openAiAction('review.consistency', {}, chapterScope);
 		await store.getState().startGeneration();
-		store.getState().markStale(5);
+		store.getState().markStale({ ...chapterScope.source, revision: 5 });
 		expect(store.getState()).toMatchObject({
 			state: 'stale',
 			transaction: { status: 'stale', errorCode: 'revisionChanged' }
 		});
+	});
+
+	it.each([
+		['project root', { ...chapterScope.source, projectRoot: 'D:/copied/inn' }],
+		['project ID', { ...chapterScope.source, projectId: 'project-copy' }],
+		['resource path', { ...chapterScope.source, resourcePath: 'drafts/chapter-1.md' }],
+		['Monaco model', { ...chapterScope.source, modelUri: 'writing-buddy://copy/chapter-1' }]
+	])('marks a same-revision preview stale after a %s change', async (_label, source) => {
+		const store = createAiGenerationStore(runtime(JSON.stringify({ issues: [] })));
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+
+		store.getState().markStale({ ...source, revision: chapterScope.baseRevision });
+
+		expect(store.getState()).toMatchObject({
+			state: 'stale',
+			transaction: { status: 'stale', errorCode: 'sourceChanged' }
+		});
+	});
+
+	it('cancels one stale in-flight job, ignores delayed output and blocks retry from old context', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		let activeJob: {
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		} | undefined;
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => new Promise<void>(resolve => {
+			activeJob = { request, listener, resolve };
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+		}));
+		const cancelAiJob = vi.fn(() => Promise.resolve(true));
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		const generation = store.getState().startGeneration();
+		await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().markStale({
+				...chapterScope.source,
+				projectRoot: 'D:/copied/inn',
+				revision: chapterScope.baseRevision
+			});
+		}
+
+		await vi.waitFor(() => expect(cancelAiJob).toHaveBeenCalledOnce());
+		expect(store.getState()).toMatchObject({ state: 'stale', jobId: undefined });
+		if (!activeJob) throw new Error('active drawer job missing');
+		activeJob.listener({
+			type: 'content_delta',
+			jobId: activeJob.request.jobId,
+			text: JSON.stringify({ issues: [] })
+		});
+		activeJob.listener({ type: 'completed', jobId: activeJob.request.jobId });
+		activeJob.resolve();
+		await generation;
+		await store.getState().startGeneration();
+
+		expect(store.getState()).toMatchObject({
+			state: 'stale',
+			rawOutput: '',
+			parsedOutput: undefined,
+			transaction: undefined
+		});
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+	});
+
+	it('fully resets one in-flight job and never revives a buffered stream delta', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		let activeJob: {
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		} | undefined;
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => new Promise<void>(resolve => {
+			activeJob = { request, listener, resolve };
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+		}));
+		const cancelAiJob = vi.fn(() => Promise.resolve(true));
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		const generation = store.getState().startGeneration();
+		await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+		if (!activeJob) throw new Error('active drawer job missing');
+		activeJob.listener({
+			type: 'content_delta',
+			jobId: activeJob.request.jobId,
+			text: 'buffered source-only output'
+		});
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().reset();
+		}
+
+		await vi.waitFor(() => expect(cancelAiJob).toHaveBeenCalledOnce());
+		expect(store.getState()).toMatchObject({
+			open: false,
+			state: 'idle',
+			rawOutput: '',
+			jobId: undefined,
+			scope: undefined,
+			contextPack: undefined,
+			transaction: undefined
+		});
+		await new Promise(resolve => window.setTimeout(resolve, 60));
+		expect(store.getState().rawOutput).toBe('');
+
+		activeJob.resolve();
+		await generation;
+		expect(store.getState().state).toBe('idle');
 	});
 });

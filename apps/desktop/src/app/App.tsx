@@ -71,6 +71,7 @@ export function App(): React.JSX.Element {
 	const assistantWidth = useAppStore(state => state.assistantWidth);
 	const dockHeight = useAppStore(state => state.dockHeight);
 	const sourceRevision = useAppStore(state => state.session?.state.version);
+	const sourceModelUri = useAppStore(state => state.session?.state.modelUri);
 	const writerNavigatorNotice = useAppStore(state => state.writerNavigatorNotice);
 	const setWriterNavigatorNotice = useAppStore(state => state.setWriterNavigatorNotice);
 	const projectWizardOpen = useAppStore(state => state.projectWizardOpen);
@@ -164,10 +165,22 @@ export function App(): React.JSX.Element {
 	}, []);
 
 	useEffect(() => {
-		if (sourceRevision !== undefined) {
-			aiGenerationStore.getState().markStale(sourceRevision);
-		}
-	}, [sourceRevision]);
+		aiGenerationStore.getState().markStale({
+			projectRoot: snapshot?.root,
+			projectId: snapshot?.project.projectId,
+			resourceId: activeResource?.id,
+			resourcePath: activeResource?.path,
+			modelUri: sourceModelUri,
+			revision: sourceRevision
+		});
+	}, [
+		activeResource?.id,
+		activeResource?.path,
+		snapshot?.project.projectId,
+		snapshot?.root,
+		sourceModelUri,
+		sourceRevision
+	]);
 
 	useEffect(() => {
 		const checkDisk = () => {

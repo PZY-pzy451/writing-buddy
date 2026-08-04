@@ -43,10 +43,23 @@ export type AiGenerationDrawerState =
 	| 'failed'
 	| 'stale';
 
+export interface AiActionSourceIdentity {
+	readonly projectRoot?: string;
+	readonly projectId?: string;
+	readonly resourceId?: string;
+	readonly resourcePath?: string;
+	readonly modelUri?: string;
+}
+
+export interface AiActionCurrentSource extends AiActionSourceIdentity {
+	readonly revision?: string | number;
+}
+
 export interface AiActionOpenScope {
 	readonly context: AiContextScopeData;
 	readonly currentResourceType?: string;
 	readonly baseRevision?: string | number;
+	readonly source?: AiActionSourceIdentity;
 }
 
 export interface AiGenerationRuntime {
@@ -87,7 +100,7 @@ export interface AiGenerationStore {
 	readonly startGeneration: () => Promise<void>;
 	readonly cancelGeneration: () => Promise<void>;
 	readonly rejectPreview: () => void;
-	readonly markStale: (currentRevision: string | number) => void;
+	readonly markStale: (current: AiActionCurrentSource) => void;
 	readonly reset: () => void;
 }
 
@@ -100,6 +113,18 @@ const defaultRuntime: AiGenerationRuntime = {
 
 function errorMessage(error: unknown): string {
 	return normalizeAiError(error).message;
+}
+
+function sourceIdentityMatches(
+	expected: AiActionSourceIdentity | undefined,
+	current: AiActionCurrentSource
+): boolean {
+	if (!expected) return true;
+	return expected.projectRoot === current.projectRoot
+		&& expected.projectId === current.projectId
+		&& expected.resourceId === current.resourceId
+		&& expected.resourcePath === current.resourcePath
+		&& expected.modelUri === current.modelUri;
 }
 
 export function createAiGenerationStore(
@@ -208,6 +233,21 @@ export function createAiGenerationStore(
 			state: 'idle' as const,
 			rawOutput: ''
 		};
+		const cleared = {
+			...initial,
+			definition: undefined,
+			input: undefined,
+			scope: undefined,
+			contextPack: undefined,
+			unavailableReason: undefined,
+			jobId: undefined,
+			jobMetadata: undefined,
+			usage: undefined,
+			parsedOutput: undefined,
+			transaction: undefined,
+			error: undefined,
+			repairInstruction: undefined
+		};
 
 		return {
 			...initial,
@@ -283,7 +323,8 @@ export function createAiGenerationStore(
 						'queued',
 						'connecting',
 						'streaming',
-						'validating_output'
+						'validating_output',
+						'stale'
 					].includes(current.state)
 				) {
 					return;
@@ -386,29 +427,82 @@ export function createAiGenerationStore(
 					state: 'completed'
 				});
 			},
-			markStale(currentRevision) {
-				const transaction = get().transaction;
-				if (
-					transaction?.status === 'preview'
-					&& transaction.baseRevision !== String(currentRevision)
-				) {
-					set({
-						transaction: {
-							...transaction,
-							status: 'stale',
-							errorCode: 'revisionChanged'
-						},
-						state: 'stale'
-					});
+			markStale(current) {
+				const previous = get();
+				const sourceChanged = !sourceIdentityMatches(previous.scope?.source, current);
+				const revisionChanged = previous.scope?.baseRevision !== undefined
+					&& String(previous.scope.baseRevision) !== String(current.revision);
+				if ((!sourceChanged && !revisionChanged) || previous.state === 'stale') return;
+
+				generationAttempt += 1;
+				pendingDelta = '';
+				if (flushTimer !== undefined) {
+					window.clearTimeout(flushTimer);
+					flushTimer = undefined;
 				}
+				const activeJobId = previous.jobId && [
+					'queued',
+					'connecting',
+					'streaming'
+				].includes(previous.state)
+					? previous.jobId
+					: undefined;
+				if (activeJobId && cancellationRequestJobId !== activeJobId) {
+					cancellationRequestJobId = activeJobId;
+					void runtime.cancelAiJob(activeJobId)
+						.catch(() => undefined)
+						.finally(() => {
+							if (cancellationRequestJobId === activeJobId) {
+								cancellationRequestJobId = undefined;
+							}
+						});
+				}
+				const transaction = previous.transaction?.status === 'preview'
+					? {
+							...previous.transaction,
+							status: 'stale' as const,
+							errorCode: sourceChanged ? 'sourceChanged' : 'revisionChanged'
+						}
+					: previous.transaction;
+				set({
+					state: 'stale',
+					scope: undefined,
+					contextPack: undefined,
+					jobId: undefined,
+					jobMetadata: undefined,
+					usage: undefined,
+					rawOutput: '',
+					parsedOutput: undefined,
+					transaction,
+					error: undefined,
+					repairInstruction: undefined,
+					unavailableReason: '来源已变化，请从当前章节重新打开 AI 快速生成。'
+				});
 			},
 			reset() {
 				generationAttempt += 1;
-				const jobId = get().jobId;
-				if (jobId && ['queued', 'connecting', 'streaming'].includes(get().state)) {
-					void runtime.cancelAiJob(jobId).catch(() => undefined);
+				pendingDelta = '';
+				if (flushTimer !== undefined) {
+					window.clearTimeout(flushTimer);
+					flushTimer = undefined;
 				}
-				set(initial);
+				const previous = get();
+				const jobId = previous.jobId;
+				if (
+					jobId
+					&& ['queued', 'connecting', 'streaming'].includes(previous.state)
+					&& cancellationRequestJobId !== jobId
+				) {
+					cancellationRequestJobId = jobId;
+					void runtime.cancelAiJob(jobId)
+						.catch(() => undefined)
+						.finally(() => {
+							if (cancellationRequestJobId === jobId) {
+								cancellationRequestJobId = undefined;
+							}
+						});
+				}
+				set(cleared);
 			}
 		};
 	});

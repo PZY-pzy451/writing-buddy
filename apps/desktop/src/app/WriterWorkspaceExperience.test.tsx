@@ -10,7 +10,7 @@ import { localDateKey } from '../features/progress/DailyWritingProgressModel';
 
 function resetWorkspaceExperience(): void {
 	localStorage.clear();
-	aiGenerationStore.getState().close();
+	aiGenerationStore.getState().reset();
 	useAppStore.setState({
 		recentProjectRoot: undefined,
 		recentProjectRoots: [],
@@ -708,6 +708,35 @@ describe('quiet writer workspaces', () => {
 			expect(useAppStore.getState().activeResource?.id).not.toBe(switchedId);
 		});
 		expect(document.activeElement).toHaveAttribute('role', 'tab');
+	});
+
+	it('invalidates an open AI drawer when a same-revision project root replaces its source', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		const snapshot = useAppStore.getState().snapshot;
+		const revision = useAppStore.getState().session?.state.version;
+		if (!snapshot || revision === undefined) throw new Error('writer source missing');
+
+		fireEvent.keyDown(window, { key: 'a', code: 'KeyA', altKey: true });
+		const dialog = await screen.findByRole('dialog', { name: 'AI 快速生成' });
+		expect(aiGenerationStore.getState().scope?.baseRevision).toBe(revision);
+
+		act(() => {
+			useAppStore.setState({
+				snapshot: { ...snapshot, root: 'browser-fixture-copy' }
+			});
+		});
+
+		await waitFor(() => expect(aiGenerationStore.getState()).toMatchObject({
+			state: 'stale',
+			contextPack: undefined,
+			scope: undefined
+		}));
+		expect(within(dialog).getByText(
+			'来源已变化，请从当前章节重新打开 AI 快速生成。'
+		)).toBeInTheDocument();
+		expect(within(dialog).getByRole('button', { name: '开始生成' })).toBeDisabled();
 	});
 
 	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {

@@ -17,6 +17,13 @@ export function openAiQuickActions(): void {
 		{
 			currentResourceType: activeResource?.type,
 			baseRevision: session?.state.version ?? 0,
+			source: {
+				projectRoot: snapshot?.root,
+				projectId: snapshot?.project.projectId,
+				resourceId: activeResource?.id,
+				resourcePath: activeResource?.path,
+				modelUri: session?.state.modelUri
+			},
 			context: {
 				...(snapshot ? {
 					project: {

@@ -36,4 +36,43 @@ describe('AiGenerationDrawer', () => {
 		await user.click(screen.getByRole('button', { name: '关闭 AI 快速生成' }));
 		expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 	});
+
+	it('scrubs stale chapter context and requires reopening from the current chapter', () => {
+		const store = createAiGenerationStore(runtime);
+		store.getState().openAiAction('review.consistency', {}, {
+			currentResourceType: 'chapter',
+			baseRevision: 4,
+			source: {
+				projectRoot: 'C:/novels/source',
+				projectId: 'project-1',
+				resourceId: 'chapter-1',
+				resourcePath: 'manuscript/chapter-1.md',
+				modelUri: 'writing-buddy://project-1/chapter-1'
+			},
+			context: {
+				project: { id: 'project-1', title: 'Source novel', summary: 'Private source context' },
+				currentResource: {
+					id: 'chapter-1',
+					title: 'Source chapter',
+					summary: 'Text that belongs only to the source chapter.'
+				}
+			}
+		});
+		store.getState().markStale({
+			projectRoot: 'D:/novels/replacement',
+			projectId: 'project-1',
+			resourceId: 'chapter-1',
+			resourcePath: 'manuscript/chapter-1.md',
+			modelUri: 'writing-buddy://project-1/chapter-1',
+			revision: 4
+		});
+
+		render(<AiGenerationDrawer store={store} />);
+
+		expect(screen.getByText('来源已变化，请从当前章节重新打开 AI 快速生成。'))
+			.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: '开始生成' })).toBeDisabled();
+		expect(screen.queryByText('Text that belongs only to the source chapter.'))
+			.not.toBeInTheDocument();
+	});
 });
