@@ -4,33 +4,33 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Creation Journey stable-control convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `bf0069b`.
+Structured outline stable-control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `fcd63dd`.
 
-- The zero-to-draft page contributed the largest source selector debt: 14
-  controls across navigation, guidance, ideas, directions, outline and chapters.
-- Two contracts failed red. The complete author journey now verifies stable
-  metadata while retaining dynamic labels, lock state and drag behavior.
-- The page moves from 22 controls (8 mapped / 14 missing) to 38/38 mapped.
-  Global missing selectors fall from 196 to 182. Sixteen newly distinguished
-  controls and 352 states raise honest traceability debt from 9,792 to 10,161;
-  the strict gate remains fail-closed for each newly exposed mapping.
-- A brittle three-node assertion now checks outline card/field consistency.
-  Test cleanup resets the mounted Store under `act`, removing React stderr.
-- Creation Journey regression passed 19 files / 64 tests and QA scripts passed
-  17/17. Fixed-commit Node 24 acceptance passed 181 files / 914 tests plus lint,
-  typecheck and production build. Rust collected 79, passed 77 and retained two
-  reasoned ignores.
-- The ledger contains 993 cases: 991 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 914 with 97 parameterized instances and
+- The author-facing outline bridge contributed nine selector gaps across
+  dynamic tree, card, field, quality, hierarchy and AI-review controls.
+- Two contracts failed red. Static inventory and rendered author checks now
+  cover ordinary and conditional controls while preserving accessible copy,
+  editing, drag ordering, lock state and atomic-write behavior.
+- The source moves from 15 controls (6 mapped / 9 missing) to 35/35 mapped.
+  Global missing selectors fall from 182 to 173. Twenty newly distinguished
+  controls and 440 states raise honest traceability debt from 10,161 to 10,568;
+  the strict gate remains fail-closed for the newly exposed mappings.
+- Focused outline regression passed 3 files / 10 tests, Creation Journey passed
+  19 files / 65 tests and QA infrastructure passed 5 files / 16 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  181 files / 916 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- The ledger contains 995 cases: 993 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 916 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-QA inventory composite-control convergence is complete against source
-`3d340d2`. One red contract removed 16 false controls and 352 synthetic states;
-fixed acceptance passed 913 frontend tests.
+Creation Journey page stable-control convergence is complete against source
+`bf0069b`: 38/38 source controls are mapped and fixed acceptance passed 914
+frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

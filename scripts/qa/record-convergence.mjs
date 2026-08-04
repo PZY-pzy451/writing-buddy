@@ -1263,6 +1263,34 @@ const report = {
 				qaScriptTests: 17,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STRUCTURED-OUTLINE-STABLE-CONTROLS-045',
+			summary: 'The structured outline workspace lacked stable automation metadata across dynamic author controls and collapsed twenty distinct operations into shared inventory declarations.',
+			before: {
+				sourceControls: 15,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 9,
+				globalControls: 424,
+				globalStates: 9328,
+				globalMissingStableSelectors: 182,
+				totalUnmapped: 10161
+			},
+			after: {
+				sourceControls: 35,
+				sourceMappedControls: 35,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 20,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 2,
+				focusedTests: 10,
+				creationJourneyTests: 65,
+				qaScriptTests: 16,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

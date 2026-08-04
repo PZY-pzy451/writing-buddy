@@ -51,3 +51,23 @@ release ledger.
 This closes another P0 zero-to-draft automation boundary. Product release
 remains fail-closed until remaining traceability, real-provider and packaging
 gates are complete.
+
+## Result
+
+- Two intended contracts failed red: the source inventory returned all nine
+  missing IDs and the author-facing workspace lacked the first toolbar handle.
+- Toolbar, root/node fields, tree, cards, ordering, local/AI quality checks,
+  hierarchy preview/materialization and AI field-diff review now expose stable
+  semantic test handles while retaining dynamic Chinese accessible names.
+- Source inventory moves from 15 controls (6 mapped / 9 missing) to 35/35
+  mapped. Twenty real declarations previously collapsed by structural hashes
+  are now represented independently.
+- Global selector debt falls from 182 to 173. Controls rise from 424 to 444 and
+  states from 9,328 to 9,768; two new contracts raise honest aggregate
+  traceability debt from 10,161 to 10,568 until those states are mapped.
+- Focused outline regression passed 3 files / 10 tests. Creation Journey passed
+  19 files / 65 tests and QA infrastructure passed 5 files / 16 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 181 files / 916 tests
+  and the production build. Rust collected 79, passed 77 and retained two
+  reasoned ignores.
+- Product commit: `fcd63dd` (`fix: stabilize structured outline controls`).

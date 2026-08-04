@@ -11,6 +11,11 @@ The product conclusion remains `PARTIAL` because strict feature/control/state
 traceability is still incomplete. This run did not build or approve a release
 package and did not call a real AI provider.
 
+Latest fixed source: `fcd63dd`. The current executable ledger contains 995
+cases: 993 passes and two reasoned skips. Frontend discovery and runtime both
+contain 916 tests; Rust passes 77 with two reasoned ignores. Stable-selector
+debt is 173 and aggregate traceability debt is 10,568.
+
 ## Defects fixed
 
 ### QA-STORY-KERNEL-ACTION-REENTRANCY-005
