@@ -51633,138 +51633,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PENDINGFACTCARD-INPUT-79FD6720",
+                  "id": "CTRL-PENDINGFACTCARD-INPUT-0E7FB726",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-VISIBLE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-HIDDEN",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-ENABLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DISABLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-POINTER",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-KEYBOARD",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FOCUS-IN",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FOCUS-OUT",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-REPEAT",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DEDUPLICATION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-LOADING",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-SUCCESS",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FAILURE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-CANCELLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-OFFLINE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-PERMISSION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-PERSISTENCE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-RESTART",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-VISUAL",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-ACCESSIBLE-NAME",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-UNDO",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -51772,138 +51772,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7",
+                  "id": "CTRL-PENDINGFACTCARD-INPUT-792ED966",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-VISIBLE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-HIDDEN",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-ENABLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DISABLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-POINTER",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-KEYBOARD",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FOCUS-IN",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FOCUS-OUT",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-REPEAT",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DEDUPLICATION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-LOADING",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-SUCCESS",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FAILURE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-CANCELLED",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-OFFLINE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-PERMISSION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-PERSISTENCE",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-RESTART",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-VISUAL",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-ACCESSIBLE-NAME",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-UNDO",
+                      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -51911,138 +51911,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E",
+                  "id": "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-VISIBLE",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-HIDDEN",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-ENABLED",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DISABLED",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-POINTER",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-KEYBOARD",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FOCUS-IN",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FOCUS-OUT",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-REPEAT",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DEDUPLICATION",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-LOADING",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-SUCCESS",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FAILURE",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-CANCELLED",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-OFFLINE",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-PERMISSION",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-PERSISTENCE",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-RESTART",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-VISUAL",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-ACCESSIBLE-NAME",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-UNDO",
+                      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -52050,138 +52050,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B",
+                  "id": "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-VISIBLE",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-HIDDEN",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-ENABLED",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DISABLED",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-POINTER",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-KEYBOARD",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FOCUS-IN",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FOCUS-OUT",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-REPEAT",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DEDUPLICATION",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-LOADING",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-SUCCESS",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FAILURE",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-CANCELLED",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-OFFLINE",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-PERMISSION",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-PERSISTENCE",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-RESTART",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-VISUAL",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-ACCESSIBLE-NAME",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-UNDO",
+                      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -66391,6 +66391,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3DF1C8EDD0",
+      "title": "publishes immediate preflight feedback before the provider emits state",
+      "declarationTitle": "publishes immediate preflight feedback before the provider emits state",
+      "declarationLine": 81,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-3E12CCEDBC",
       "title": "keeps a 4,000-unit source without splitting a UTF-16 surrogate pair",
       "declarationTitle": "keeps a 4,000-unit source without splitting a UTF-16 surrogate pair",
@@ -72996,7 +73014,7 @@
       "id": "TC-DISCOVERED-A68E1575D8",
       "title": "canonicalizes project chapter IDs and closes extract-confirm workflow",
       "declarationTitle": "canonicalizes project chapter IDs and closes extract-confirm workflow",
-      "declarationLine": 81,
+      "declarationLine": 148,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
@@ -74351,6 +74369,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-BDD516FE91",
+      "title": "exposes stable fact-editing selectors without replacing field labels",
+      "declarationTitle": "exposes stable fact-editing selectors without replacing field labels",
+      "declarationLine": 121,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-BE080622C3",
       "title": "settles and cancels an in-flight slice without accepting stale output",
       "declarationTitle": "settles and cancels an in-flight slice without accepting stale output",
@@ -74700,7 +74736,7 @@
       "id": "TC-DISCOVERED-C1A847940D",
       "title": "keeps a fact pending when confirmation persistence conflicts",
       "declarationTitle": "keeps a fact pending when confirmation persistence conflicts",
-      "declarationLine": 188,
+      "declarationLine": 255,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
@@ -77040,7 +77076,7 @@
       "id": "TC-DISCOVERED-E6755AF20E",
       "title": "keeps malformed AI output out of storage and hides internal error codes",
       "declarationTitle": "keeps malformed AI output out of storage and hides internal error codes",
-      "declarationLine": 142,
+      "declarationLine": 209,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",
@@ -77752,7 +77788,7 @@
       "id": "TC-DISCOVERED-F45C05513C",
       "title": "explains oversized input before a request can start",
       "declarationTitle": "explains oversized input before a request can start",
-      "declarationLine": 165,
+      "declarationLine": 232,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/PendingFactsReview.test.tsx",

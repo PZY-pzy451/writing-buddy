@@ -4,34 +4,38 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Story Kernel stable control-selector convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `cd58ef5`.
+Pending-fact extraction preflight feedback and stable-control convergence is
+complete on `codex/full-regression-gates-a-e-v2` against sources `3b406bb` and
+`b25fe6a`.
 
-- Five previously unmapped declarations now expose static automation metadata
-  without replacing the author-facing dynamic labels for generation,
-  cancellation, candidate selection or structure expansion.
-- Generate and Cancel are separately inventoried. The source now has nine
-  mapped controls and zero unmapped controls; global selector debt fell from
-  221 to 216. Corrected inventory contains 424 controls and 9,328 states.
-- Two rendered contracts failed red. The panel suite passed 22/22 and the
-  schema/service/diagnostic/fixture impact set passed 93/93, including malformed
-  candidate quarantine and atomic confirmation.
-- Fixed-commit Node 24 acceptance passed 180 files / 904 tests plus lint,
-  typecheck and production build. Rust collected 79, passed 77 and retained two
-  reasoned ignores.
-- The ledger contains 983 cases: 981 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 904 with 97 parameterized instances and
+- The first extraction click now immediately disables the action and publishes
+  `正在提取 · 0 字符`, before preferences or provider validation return. One hundred
+  preflight clicks still start exactly one extraction request.
+- Extraction, title, statement and narrative-order declarations expose stable
+  metadata without replacing visible field labels. The source has five mapped
+  controls and zero unmapped controls; global selector debt fell from 216 to
+  212 while controls/states remain 424/9,328.
+- Two rendered contracts failed red. The panel passed 6/6 and the panel/service/
+  parser impact set passed 43/43, including invalid-input localization,
+  malformed-response quarantine and confirmed persistence.
+- The first fixed baseline caught and rejected an untyped held-Promise fixture;
+  after its explicit `Promise<string>` correction, fixed-commit Node 24
+  acceptance passed 180 files / 906 tests plus lint, typecheck and production
+  build. Rust collected 79, passed 77 and retained two reasoned ignores.
+- The ledger contains 985 cases: 983 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 906 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,152 traceability mappings and 216 stable selectors remain open,
+  because 10,154 traceability mappings and 212 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-AI drawer applying open-action isolation is complete against source `9045ef4`.
+Story Kernel stable control-selector convergence is complete against source
+`cd58ef5`.
 
-- The public Store rejects replacement launches while an AI candidate is
-  applying. One red contract converged through 75 focused and 174 impacted
-  tests; fixed-commit acceptance passed 903 frontend tests.
+- Five source declarations became stable without replacing dynamic labels.
+  Two red contracts converged through 22 focused and 93 impacted tests; missing
+  selectors fell from 221 to 216 and fixed acceptance passed 904 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

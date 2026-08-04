@@ -1134,6 +1134,33 @@ const report = {
 				impactedTests: 93,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PENDING-FACT-EXTRACTION-PREFLIGHT-FEEDBACK-040',
+			summary: 'Pending-fact extraction stayed visibly idle until the provider emitted its first state, while four workflow declarations lacked stable selector metadata.',
+			before: {
+				preflightButtonDisabled: false,
+				preflightAccessibleFeedback: false,
+				repeatedClicks: 100,
+				extractionRequests: 1,
+				sourceControls: 5,
+				sourceUnmappedControls: 4,
+				globalMissingStableSelectors: 216
+			},
+			after: {
+				preflightButtonDisabled: true,
+				preflightAccessibleName: '正在提取 · 0 字符',
+				repeatedClicks: 100,
+				extractionRequests: 1,
+				sourceControls: 5,
+				sourceUnmappedControls: 0,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				preservedFieldLabels: ['标题', '事实陈述', '叙事顺序'],
+				redFailures: 2,
+				focusedTests: 6,
+				impactedTests: 43,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

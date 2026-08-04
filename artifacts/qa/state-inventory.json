@@ -64860,11 +64860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-VISIBLE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -64876,11 +64876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-HIDDEN",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -64892,11 +64892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-ENABLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -64908,11 +64908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DISABLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -64924,11 +64924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-POINTER",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -64940,11 +64940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-KEYBOARD",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -64956,11 +64956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FOCUS-IN",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -64972,11 +64972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FOCUS-OUT",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -64988,11 +64988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-REPEAT",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -65004,11 +65004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DEDUPLICATION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -65020,11 +65020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-LOADING",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -65036,11 +65036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-SUCCESS",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -65052,11 +65052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-FAILURE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -65068,11 +65068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-CANCELLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -65084,11 +65084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-OFFLINE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -65100,11 +65100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-PERMISSION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -65116,11 +65116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-PERSISTENCE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -65132,11 +65132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-RESTART",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -65148,11 +65148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-VISUAL",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -65164,11 +65164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-ACCESSIBLE-NAME",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -65180,11 +65180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -65196,11 +65196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-79FD6720-UNDO",
+      "id": "STATE-PENDINGFACTCARD-INPUT-0E7FB726-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-79FD6720"
+        "CTRL-PENDINGFACTCARD-INPUT-0E7FB726"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -65212,11 +65212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-VISIBLE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -65228,11 +65228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-HIDDEN",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -65244,11 +65244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-ENABLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -65260,11 +65260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DISABLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -65276,11 +65276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-POINTER",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -65292,11 +65292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-KEYBOARD",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -65308,11 +65308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FOCUS-IN",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -65324,11 +65324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FOCUS-OUT",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -65340,11 +65340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-REPEAT",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -65356,11 +65356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DEDUPLICATION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -65372,11 +65372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-LOADING",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -65388,11 +65388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-SUCCESS",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -65404,11 +65404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-FAILURE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -65420,11 +65420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-CANCELLED",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -65436,11 +65436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-OFFLINE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -65452,11 +65452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-PERMISSION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -65468,11 +65468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-PERSISTENCE",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -65484,11 +65484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-RESTART",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -65500,11 +65500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-VISUAL",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -65516,11 +65516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-ACCESSIBLE-NAME",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -65532,11 +65532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -65548,11 +65548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-INPUT-FDFFC5D7-UNDO",
+      "id": "STATE-PENDINGFACTCARD-INPUT-792ED966-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-INPUT-FDFFC5D7"
+        "CTRL-PENDINGFACTCARD-INPUT-792ED966"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -65564,11 +65564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-VISIBLE",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -65580,11 +65580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-HIDDEN",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -65596,11 +65596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-ENABLED",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -65612,11 +65612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DISABLED",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -65628,11 +65628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-POINTER",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -65644,11 +65644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-KEYBOARD",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -65660,11 +65660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FOCUS-IN",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -65676,11 +65676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FOCUS-OUT",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -65692,11 +65692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-REPEAT",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -65708,11 +65708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DEDUPLICATION",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -65724,11 +65724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-LOADING",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -65740,11 +65740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-SUCCESS",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -65756,11 +65756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-FAILURE",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -65772,11 +65772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-CANCELLED",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -65788,11 +65788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-OFFLINE",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -65804,11 +65804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-PERMISSION",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -65820,11 +65820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-PERSISTENCE",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -65836,11 +65836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-RESTART",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -65852,11 +65852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-VISUAL",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -65868,11 +65868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-ACCESSIBLE-NAME",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -65884,11 +65884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -65900,11 +65900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTCARD-TEXTAREA-CEF7381E-UNDO",
+      "id": "STATE-PENDINGFACTCARD-TEXTAREA-ED1728FF-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTCARD-TEXTAREA-CEF7381E"
+        "CTRL-PENDINGFACTCARD-TEXTAREA-ED1728FF"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -65916,11 +65916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-VISIBLE",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -65932,11 +65932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-HIDDEN",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -65948,11 +65948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-ENABLED",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -65964,11 +65964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DISABLED",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -65980,11 +65980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-POINTER",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -65996,11 +65996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-KEYBOARD",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -66012,11 +66012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FOCUS-IN",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -66028,11 +66028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FOCUS-OUT",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -66044,11 +66044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-REPEAT",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -66060,11 +66060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DEDUPLICATION",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -66076,11 +66076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-LOADING",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -66092,11 +66092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-SUCCESS",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -66108,11 +66108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-FAILURE",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -66124,11 +66124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-CANCELLED",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -66140,11 +66140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-OFFLINE",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -66156,11 +66156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-PERMISSION",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -66172,11 +66172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-PERSISTENCE",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -66188,11 +66188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-RESTART",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -66204,11 +66204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-VISUAL",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -66220,11 +66220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-ACCESSIBLE-NAME",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -66236,11 +66236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -66252,11 +66252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-58CCA75B-UNDO",
+      "id": "STATE-PENDINGFACTSREVIEW-BUTTON-89BBC644-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-PENDINGFACTSREVIEW-BUTTON-58CCA75B"
+        "CTRL-PENDINGFACTSREVIEW-BUTTON-89BBC644"
       ],
       "name": "撤销",
       "dimension": "UNDO",

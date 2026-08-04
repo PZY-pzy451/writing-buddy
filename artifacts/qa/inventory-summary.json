@@ -10,11 +10,11 @@
     "states": 9328,
     "shortcuts": 23,
     "nativeActions": 55,
-    "discoveredTests": 983,
-    "frontendDiscoveredTests": 904,
+    "discoveredTests": 985,
+    "frontendDiscoveredTests": 906,
     "parameterizedTestInstances": 97,
     "unresolvedParameterizedDeclarations": 0,
-    "missingStableSelectors": 216
+    "missingStableSelectors": 212
   },
   "notes": [
     "Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.",
