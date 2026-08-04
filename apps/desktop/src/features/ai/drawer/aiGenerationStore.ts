@@ -445,7 +445,16 @@ export function createAiGenerationStore(
 					});
 					await runtime.startAiGeneration(request, onStreamEvent);
 				} catch (error) {
-					if (attempt === generationAttempt) {
+					const latest = get();
+					if (
+						attempt === generationAttempt
+						&& [
+							'validating_context',
+							'queued',
+							'connecting',
+							'streaming'
+						].includes(latest.state)
+					) {
 						set({ state: 'failed', error: errorMessage(error) });
 					}
 				}
@@ -471,7 +480,13 @@ export function createAiGenerationStore(
 						set({ state: 'cancelled' });
 					}
 				} catch (error) {
-					if (get().jobId === jobId) set({ error: errorMessage(error) });
+					const current = get();
+					if (
+						current.jobId === jobId
+						&& ['queued', 'connecting', 'streaming'].includes(current.state)
+					) {
+						set({ error: errorMessage(error) });
+					}
 				} finally {
 					if (cancellationRequestJobId === jobId) {
 						cancellationRequestJobId = undefined;

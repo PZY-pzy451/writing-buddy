@@ -309,6 +309,170 @@ describe('aiGenerationStore', () => {
 		});
 	});
 
+	it.each(['preview', 'failed', 'cancelled'] as const)(
+		'preserves a stream %s when the start command rejects late',
+		async terminalState => {
+			const fallback = runtime('{}');
+			let rejectStart: ((reason?: unknown) => void) | undefined;
+			let activeJob: {
+				request: AiGenerateRequest;
+				listener: (event: AiStreamEvent) => void;
+			} | undefined;
+			const startAiGeneration = vi.fn((
+				request: AiGenerateRequest,
+				listener: (event: AiStreamEvent) => void
+			) => new Promise<void>((_resolve, reject) => {
+				rejectStart = reject;
+				activeJob = { request, listener };
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+			const store = createAiGenerationStore({ ...fallback, startAiGeneration });
+			store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+			const generation = store.getState().startGeneration();
+			await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+			if (!activeJob) throw new Error('late start-rejection job missing');
+			const job = activeJob;
+			job.listener({
+				type: 'usage',
+				jobId: job.request.jobId,
+				usage: { inputTokens: 7, outputTokens: 11, totalTokens: 18 }
+			});
+			if (terminalState === 'preview') {
+				job.listener({
+					type: 'content_delta',
+					jobId: job.request.jobId,
+					text: JSON.stringify({ issues: [] })
+				});
+				job.listener({ type: 'completed', jobId: job.request.jobId });
+			} else if (terminalState === 'failed') {
+				job.listener({
+					type: 'failed',
+					jobId: job.request.jobId,
+					error: {
+						code: 'provider_overloaded',
+						message: 'stream terminal failure',
+						retryable: true
+					}
+				});
+			} else {
+				job.listener({ type: 'cancelled', jobId: job.request.jobId });
+			}
+			const terminal = store.getState();
+			const snapshot = {
+				state: terminal.state,
+				rawOutput: terminal.rawOutput,
+				parsedOutput: terminal.parsedOutput,
+				transaction: terminal.transaction,
+				usage: terminal.usage,
+				error: terminal.error
+			};
+
+			rejectStart?.(new Error('late private start command failure'));
+			await generation;
+
+			const current = store.getState();
+			expect({
+				state: current.state,
+				rawOutput: current.rawOutput,
+				parsedOutput: current.parsedOutput,
+				transaction: current.transaction,
+				usage: current.usage,
+				error: current.error
+			}).toEqual(snapshot);
+		}
+	);
+
+	it.each(['preview', 'failed', 'cancelled'] as const)(
+		'preserves a stream %s when one of 100 Stop actions rejects late',
+		async terminalState => {
+			const fallback = runtime('{}');
+			let resolveStart: (() => void) | undefined;
+			let rejectCancellation: ((reason?: unknown) => void) | undefined;
+			let activeJob: {
+				request: AiGenerateRequest;
+				listener: (event: AiStreamEvent) => void;
+			} | undefined;
+			const startAiGeneration = vi.fn((
+				request: AiGenerateRequest,
+				listener: (event: AiStreamEvent) => void
+			) => new Promise<void>(resolve => {
+				resolveStart = resolve;
+				activeJob = { request, listener };
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+			}));
+			const cancelAiJob = vi.fn(() => new Promise<boolean>((_resolve, reject) => {
+				rejectCancellation = reject;
+			}));
+			const store = createAiGenerationStore({
+				...fallback,
+				startAiGeneration,
+				cancelAiJob
+			});
+			store.getState().openAiAction('review.consistency', {}, chapterScope);
+
+			const generation = store.getState().startGeneration();
+			await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+			const cancellationAttempts = Array.from({ length: 100 }, () => (
+				store.getState().cancelGeneration()
+			));
+			expect(cancelAiJob).toHaveBeenCalledOnce();
+			if (!activeJob) throw new Error('late Stop-rejection job missing');
+			const job = activeJob;
+			job.listener({
+				type: 'usage',
+				jobId: job.request.jobId,
+				usage: { inputTokens: 13, outputTokens: 17, totalTokens: 30 }
+			});
+			if (terminalState === 'preview') {
+				job.listener({
+					type: 'content_delta',
+					jobId: job.request.jobId,
+					text: JSON.stringify({ issues: [] })
+				});
+				job.listener({ type: 'completed', jobId: job.request.jobId });
+			} else if (terminalState === 'failed') {
+				job.listener({
+					type: 'failed',
+					jobId: job.request.jobId,
+					error: {
+						code: 'provider_overloaded',
+						message: 'stream terminal failure',
+						retryable: true
+					}
+				});
+			} else {
+				job.listener({ type: 'cancelled', jobId: job.request.jobId });
+			}
+			const terminal = store.getState();
+			const snapshot = {
+				state: terminal.state,
+				rawOutput: terminal.rawOutput,
+				parsedOutput: terminal.parsedOutput,
+				transaction: terminal.transaction,
+				usage: terminal.usage,
+				error: terminal.error
+			};
+
+			rejectCancellation?.(new Error('late private cancellation failure'));
+			await Promise.all(cancellationAttempts);
+
+			const current = store.getState();
+			expect({
+				state: current.state,
+				rawOutput: current.rawOutput,
+				parsedOutput: current.parsedOutput,
+				transaction: current.transaction,
+				usage: current.usage,
+				error: current.error
+			}).toEqual(snapshot);
+			resolveStart?.();
+			await generation;
+		}
+	);
+
 	it('rejects 100 direct generation attempts after invalid action input', async () => {
 		const fallback = runtime(JSON.stringify({ candidates: [] }));
 		const getAiProviderStatus = vi.fn(fallback.getAiProviderStatus);
