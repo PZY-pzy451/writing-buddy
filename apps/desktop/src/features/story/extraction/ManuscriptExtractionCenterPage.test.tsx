@@ -149,6 +149,33 @@ describe('ManuscriptExtractionCenterPage', () => {
 		vi.restoreAllMocks();
 	});
 
+	it('starts one paid run for one hundred same-frame actions', async () => {
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
+		await screen.findByText(/已规划 1 个章节/u);
+		const run = vi.spyOn(ManuscriptExtractionRunner.prototype, 'run')
+			.mockImplementation(() => new Promise<never>(() => undefined));
+		const start = screen.getByRole('button', { name: '开始逐章整理' });
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				start.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(run).toHaveBeenCalledTimes(1);
+		expect(start).toBeDisabled();
+		expect(screen.getByRole('status')).toHaveTextContent('created · 已接收 0 字符');
+	});
+
 	it('TC-QA-AI-CANCEL-006 stops the runner and native job once for one hundred clicks', async () => {
 		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
 		let resolveCancellation: (accepted: boolean) => void = () => undefined;

@@ -153,6 +153,54 @@ describe('ManuscriptExtractionCenterService', () => {
 		expect(storage.content).not.toContain(sources[0].content);
 	});
 
+	it('shares one active run across one hundred direct callers', async () => {
+		const storage = new MemoryStorage();
+		const store = new ManuscriptExtractionRunStore('D:/Fixture', storage);
+		const original = source(1);
+		const run = plan([original]);
+		await store.append(run);
+		const runner = new ManuscriptExtractionRunner(store);
+		let releaseProcessor: ((result: {
+			readonly candidateBatchId: string;
+			readonly candidateCount: number;
+			readonly conflictCount: number;
+		}) => void) | undefined;
+		const heldProcessor = new Promise<{
+			readonly candidateBatchId: string;
+			readonly candidateCount: number;
+			readonly conflictCount: number;
+		}>(resolve => {
+			releaseProcessor = resolve;
+		});
+		const processChapter = vi.fn(() => heldProcessor);
+		const input = {
+			runId: run.id,
+			loadSource: () => Promise.resolve(original),
+			processChapter
+		};
+
+		const attempts = Array.from({ length: 100 }, () => runner.run(input));
+		await vi.waitFor(() => expect(processChapter).toHaveBeenCalled());
+		releaseProcessor?.({
+			candidateBatchId: 'generation-batch:single-flight',
+			candidateCount: 1,
+			conflictCount: 0
+		});
+		const outcomes = await Promise.allSettled(attempts);
+
+		expect(new Set(attempts).size).toBe(1);
+		expect(outcomes.every(outcome => outcome.status === 'fulfilled')).toBe(true);
+		expect(processChapter).toHaveBeenCalledTimes(1);
+		expect(outcomes[0]).toMatchObject({
+			status: 'fulfilled',
+			value: { status: 'completed' }
+		});
+		const later = runner.run(input);
+		expect(later).not.toBe(attempts[0]);
+		await expect(later).resolves.toMatchObject({ status: 'completed' });
+		expect(processChapter).toHaveBeenCalledTimes(1);
+	});
+
 	it('stops the active job while preserving completed chapter batches', async () => {
 		const storage = new MemoryStorage();
 		const store = new ManuscriptExtractionRunStore('D:/Fixture', storage);

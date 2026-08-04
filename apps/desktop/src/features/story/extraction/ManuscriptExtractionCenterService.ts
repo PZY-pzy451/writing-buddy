@@ -111,6 +111,14 @@ export type ManuscriptExtractionProcessor = (
 	input: ManuscriptExtractionProcessorInput
 ) => Promise<ManuscriptExtractionProcessResult>;
 
+interface ManuscriptExtractionRunRequest {
+	readonly runId: string;
+	readonly loadSource: (resourceId: string) => Promise<ManuscriptExtractionSource>;
+	readonly processChapter: ManuscriptExtractionProcessor;
+	readonly onUpdate?: (run: ManuscriptExtractionRun) => void;
+	readonly now?: () => string;
+}
+
 const runStatuses: readonly ManuscriptExtractionRunStatus[] = [
 	'planned',
 	'running',
@@ -509,6 +517,7 @@ function finishStatus(
 export class ManuscriptExtractionRunner {
 	private stopRequested = false;
 	private activeCancel?: () => Promise<void>;
+	private activeRun?: Promise<ManuscriptExtractionRun>;
 
 	constructor(private readonly store: ManuscriptExtractionRunStore) {}
 
@@ -517,13 +526,20 @@ export class ManuscriptExtractionRunner {
 		await this.activeCancel?.();
 	}
 
-	async run(input: {
-		readonly runId: string;
-		readonly loadSource: (resourceId: string) => Promise<ManuscriptExtractionSource>;
-		readonly processChapter: ManuscriptExtractionProcessor;
-		readonly onUpdate?: (run: ManuscriptExtractionRun) => void;
-		readonly now?: () => string;
-	}): Promise<ManuscriptExtractionRun> {
+	run(input: ManuscriptExtractionRunRequest): Promise<ManuscriptExtractionRun> {
+		if (this.activeRun) return this.activeRun;
+		const request = this.executeRun(input);
+		this.activeRun = request;
+		const clear = () => {
+			if (this.activeRun === request) this.activeRun = undefined;
+		};
+		void request.then(clear, clear);
+		return request;
+	}
+
+	private async executeRun(
+		input: ManuscriptExtractionRunRequest
+	): Promise<ManuscriptExtractionRun> {
 		const now = input.now ?? (() => new Date().toISOString());
 		const runs = await this.store.load();
 		let run = runs.find(candidate => candidate.id === input.runId);

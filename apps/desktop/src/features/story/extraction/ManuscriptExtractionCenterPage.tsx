@@ -252,6 +252,7 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [resolvingCandidateId, setResolvingCandidateId] = useState<string>();
 	const [notice, setNotice] = useState('');
 	const [error, setError] = useState('');
+	const runGuardRef = useRef(false);
 	const stopGuardRef = useRef(false);
 
 	const refreshStaleState = useCallback(async (
@@ -453,7 +454,15 @@ export function ManuscriptExtractionCenterPage(props: {
 	};
 
 	const startRun = async () => {
-		if (!selectedRun || !runner || !repository || !generationService || !generationStore) return;
+		if (
+			runGuardRef.current
+			|| !selectedRun
+			|| !runner
+			|| !repository
+			|| !generationService
+			|| !generationStore
+		) return;
+		runGuardRef.current = true;
 		setBusyAction('run');
 		stopGuardRef.current = false;
 		setStopPending(false);
@@ -541,6 +550,7 @@ export function ManuscriptExtractionCenterPage(props: {
 		} catch (reason) {
 			setError(safeMessage(reason));
 		} finally {
+			runGuardRef.current = false;
 			setBusyAction(undefined);
 			stopGuardRef.current = false;
 			setStopPending(false);

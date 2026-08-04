@@ -74,6 +74,7 @@
 - [AI drawer applying open-action isolation QA](./072-ai-drawer-applying-open-action-isolation-qa.md)
 - [Story Kernel stable control selectors QA](./073-story-kernel-stable-control-selectors-qa.md)
 - [Pending fact extraction feedback and stable controls QA](./074-pending-fact-extraction-feedback-selectors-qa.md)
+- [Manuscript extraction run single-flight QA](./075-manuscript-extraction-run-single-flight-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
