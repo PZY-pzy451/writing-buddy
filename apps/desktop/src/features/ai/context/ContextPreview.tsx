@@ -27,10 +27,12 @@ const kindLabels = {
 
 export function ContextPreview({
 	pack,
-	onToggle
+	onToggle,
+	disabled = false
 }: {
 	readonly pack?: AiContextPack;
 	readonly onToggle: (key: string, included: boolean) => void;
+	readonly disabled?: boolean;
 }): React.JSX.Element {
 	const records = pack ? listAiContextRecords(pack) : [];
 	if (!pack || records.length === 0) {
@@ -67,7 +69,7 @@ export function ContextPreview({
 						<input
 							type="checkbox"
 							checked={record.included}
-							disabled={record.required}
+							disabled={record.required || disabled}
 							onChange={event => onToggle(record.key, event.target.checked)}
 						/>
 						<span className="ai-context-check" aria-hidden="true">

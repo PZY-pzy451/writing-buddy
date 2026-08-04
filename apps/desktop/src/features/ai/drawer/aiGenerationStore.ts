@@ -313,13 +313,40 @@ export function createAiGenerationStore(
 				set(state => ({ expanded: !state.expanded }));
 			},
 			setContextRecordIncluded(key, included) {
-				const pack = get().contextPack;
+				const current = get();
+				if ([
+					'validating_context',
+					'queued',
+					'connecting',
+					'streaming',
+					'validating_output',
+					'applying'
+				].includes(current.state)) return;
+				const pack = current.contextPack;
 				if (!pack) return;
 				try {
-					set({
-						contextPack: withAiContextRecordIncluded(pack, key, included),
-						error: undefined
-					});
+					const contextPack = withAiContextRecordIncluded(pack, key, included);
+					if (current.state === 'preview') {
+						pendingDelta = '';
+						if (flushTimer !== undefined) {
+							window.clearTimeout(flushTimer);
+							flushTimer = undefined;
+						}
+						set({
+							state: 'idle',
+							contextPack,
+							rawOutput: '',
+							parsedOutput: undefined,
+							transaction: undefined,
+							jobId: undefined,
+							jobMetadata: undefined,
+							usage: undefined,
+							error: undefined,
+							repairInstruction: undefined
+						});
+						return;
+					}
+					set({ contextPack, error: undefined });
 				} catch (error) {
 					set({ error: errorMessage(error) });
 				}

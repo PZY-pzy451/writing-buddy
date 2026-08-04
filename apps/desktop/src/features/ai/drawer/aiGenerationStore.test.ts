@@ -75,6 +75,37 @@ const nextChapterScope = {
 	}
 } as const;
 
+const characterScope = {
+	currentResourceType: 'character-center',
+	baseRevision: 7,
+	source: {
+		projectRoot: 'C:/novels/inn',
+		projectId: 'project-1',
+		resourceId: 'chapter:source',
+		resourcePath: 'manuscript/source.md',
+		modelUri: 'writing-buddy://project-1/source'
+	},
+	context: {
+		project: { id: 'project-1', title: 'Inn', summary: 'Suspense novel' },
+		currentResource: {
+			id: 'chapter:source',
+			title: 'Source chapter',
+			summary: 'A bounded chapter used for character analysis.'
+		},
+		entities: [{
+			id: 'character:secret',
+			title: 'Secret character note',
+			summary: 'An author-only identity detail.',
+			authorSecret: true
+		}]
+	}
+} as const;
+
+const characterInput = {
+	instruction: 'Generate a character profile.',
+	sourceResourceId: 'chapter:source'
+} as const;
+
 describe('aiGenerationStore', () => {
 	it('streams through the shared runtime, validates output and creates a preview', async () => {
 		const output = JSON.stringify({ issues: [] });
@@ -288,6 +319,85 @@ describe('aiGenerationStore', () => {
 		expect(JSON.parse(requests[0]?.messages[1]?.content ?? '{}')).toEqual({
 			schemaVersion: 1,
 			content: chapterScope.context.currentResource.summary
+		});
+	});
+
+	it.each([
+		'validating_context',
+		'queued',
+		'connecting',
+		'streaming',
+		'validating_output',
+		'applying'
+	] as const)('freezes optional context across 100 toggles while %s', state => {
+		const store = createAiGenerationStore(runtime(JSON.stringify({ candidates: [] })));
+		store.getState().openAiAction(
+			'character.generateProfile',
+			characterInput,
+			characterScope
+		);
+		store.setState({ state });
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().setContextRecordIncluded('entity:character:secret', true);
+		}
+
+		expect(store.getState().contextPack?.entities[0]).toMatchObject({
+			key: 'entity:character:secret',
+			included: false
+		});
+	});
+
+	it('invalidates an old preview when optional context changes and regenerates cleanly', async () => {
+		const requests: AiGenerateRequest[] = [];
+		const store = createAiGenerationStore(runtime(
+			JSON.stringify({ issues: [] }),
+			request => requests.push(request)
+		));
+		const optionalContextStore = createAiGenerationStore(runtime('{}'));
+		optionalContextStore.getState().openAiAction(
+			'character.generateProfile',
+			characterInput,
+			characterScope
+		);
+		const optionalContextPack = optionalContextStore.getState().contextPack;
+		if (!optionalContextPack) throw new Error('optional context pack missing');
+		store.getState().openAiAction(
+			'review.consistency',
+			{},
+			chapterScope
+		);
+		store.setState({
+			contextPack: { ...optionalContextPack, actionId: 'review.consistency' }
+		});
+		await store.getState().startGeneration();
+		expect(store.getState()).toMatchObject({
+			state: 'preview',
+			parsedOutput: { issues: [] },
+			transaction: { status: 'preview' }
+		});
+
+		store.getState().setContextRecordIncluded('entity:character:secret', true);
+
+		expect(store.getState()).toMatchObject({
+			state: 'idle',
+			rawOutput: '',
+			parsedOutput: undefined,
+			transaction: undefined,
+			jobId: undefined,
+			jobMetadata: undefined,
+			usage: undefined,
+			error: undefined,
+			contextPack: {
+				entities: [{ key: 'entity:character:secret', included: true }]
+			}
+		});
+
+		await store.getState().startGeneration();
+		expect(requests).toHaveLength(2);
+		expect(store.getState()).toMatchObject({
+			state: 'preview',
+			transaction: { status: 'preview' }
 		});
 	});
 

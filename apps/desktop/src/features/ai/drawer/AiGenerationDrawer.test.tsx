@@ -78,6 +78,47 @@ describe('AiGenerationDrawer', () => {
 		}
 	);
 
+	it.each([
+		'validating_context',
+		'queued',
+		'connecting',
+		'streaming',
+		'validating_output',
+		'applying'
+	] as const)('disables optional Context Pack changes while %s', state => {
+		const store = createAiGenerationStore(runtime);
+		store.getState().openAiAction(
+			'character.generateProfile',
+			{
+				instruction: 'Generate a character profile.',
+				sourceResourceId: 'chapter:source'
+			},
+			{
+				currentResourceType: 'character-center',
+				baseRevision: 7,
+				context: {
+					project: { id: 'project-1', title: 'Inn', summary: 'Suspense novel' },
+					currentResource: {
+						id: 'chapter:source',
+						title: 'Source chapter',
+						summary: 'A bounded chapter used for character analysis.'
+					},
+					entities: [{
+						id: 'character:secret',
+						title: 'Secret character note',
+						summary: 'An author-only identity detail.',
+						authorSecret: true
+					}]
+				}
+			}
+		);
+		store.setState({ state, jobId: 'active-context-job' });
+		render(<AiGenerationDrawer store={store} />);
+
+		expect(screen.getByRole('checkbox', { name: /Secret character note/ }))
+			.toBeDisabled();
+	});
+
 	it('scrubs stale chapter context and requires reopening from the current chapter', () => {
 		const store = createAiGenerationStore(runtime);
 		store.getState().openAiAction('review.consistency', {}, {

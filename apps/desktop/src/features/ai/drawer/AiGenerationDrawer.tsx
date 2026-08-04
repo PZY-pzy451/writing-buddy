@@ -71,6 +71,7 @@ export function AiGenerationDrawer({
 	const previousFocus = useRef<HTMLElement | null>(null);
 	const active = ['validating_context', 'queued', 'connecting', 'streaming', 'validating_output']
 		.includes(state.state);
+	const contextLocked = active || state.state === 'applying';
 	const issues = reviewIssues(state.parsedOutput);
 
 	useEffect(() => {
@@ -177,6 +178,7 @@ export function AiGenerationDrawer({
 					<ContextPreview
 						pack={state.contextPack}
 						onToggle={state.setContextRecordIncluded}
+						disabled={contextLocked}
 					/>
 
 					{state.error ? (

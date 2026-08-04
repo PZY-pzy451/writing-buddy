@@ -63,6 +63,7 @@
 - [AI drawer stale-context isolation QA](./061-ai-drawer-stale-context-isolation-qa.md)
 - [AI drawer close-cancellation QA](./062-ai-drawer-close-cancellation-qa.md)
 - [AI drawer reopen-cancellation QA](./063-ai-drawer-reopen-cancellation-qa.md)
+- [AI drawer Context Pack freeze QA](./064-ai-drawer-context-freeze-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
