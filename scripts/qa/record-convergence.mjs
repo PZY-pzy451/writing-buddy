@@ -782,6 +782,31 @@ const report = {
 				impactedTests: 118,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-REOPEN-CANCELLATION-029',
+			summary: 'Reopening AI quick actions while an explicit Stop cancellation was pending sent a second native cancellation for the same job.',
+			before: {
+				cancellationOwners: ['explicitStop', 'reopen'],
+				pendingStopReopenCancellations: 2,
+				sharedPerJobGuard: false,
+				lateCancellationOutcomeIsolated: true
+			},
+			after: {
+				cancellationBoundary: 'sharedPerJobGuard',
+				pendingStopReopenCancellations: 1,
+				reopenActionsPerBurst: 100,
+				cancellationsPerBurst: 1,
+				cancellationOutcomes: ['success', 'failure'],
+				latestContextPreserved: true,
+				bufferedDeltaCleared: true,
+				delayedEventsIgnored: true,
+				freshActionAfterReopen: true,
+				redFailures: 2,
+				focusedTests: 25,
+				impactedTests: 121,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

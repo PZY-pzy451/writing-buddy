@@ -4,6 +4,24 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer reopen cancellation is complete on
+`codex/full-regression-gates-a-e-v2` against source `b1bfd98`.
+
+- Reopening quick actions while an explicit Stop was still pending now reuses
+  the same per-job cancellation lock. One author intent cannot send two native
+  cancellation commands for the same paid job.
+- One hundred reopen actions cancel once, preserve the latest chapter context
+  and discard old buffered/delayed output. Late cancellation success or failure
+  cannot mutate the reopened drawer, which remains usable for a fresh request.
+- Two success/failure contracts failed red. The repaired drawer suites passed
+  25/25, the nine-file impact set passed 121/121 and full Node 24 acceptance
+  passed 179 files / 858 tests. Rust passed 77 with two reasoned ignores.
+- The ledger contains 937 cases: 935 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,088 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI drawer close cancellation is complete on
 `codex/full-regression-gates-a-e-v2` against source `1403246`.
 
@@ -21,7 +39,7 @@ AI drawer close cancellation is complete on
   `PASS`; product remains `PARTIAL` because 10,085 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: AI drawer stale context
 
 AI drawer stale-context isolation is complete on
 `codex/full-regression-gates-a-e-v2` against source `9744d84`.

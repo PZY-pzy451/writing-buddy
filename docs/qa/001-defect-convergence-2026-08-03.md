@@ -562,6 +562,27 @@ passes 179 files / 855 tests, lint, typecheck and production build. Rust collect
 79, passes 77 and retains two reasoned ignores. The converged ledger contains
 934 cases: 932 passes and two reasoned skips.
 
+### QA-AI-DRAWER-REOPEN-CANCELLATION-029
+
+An author can press Stop and immediately reopen quick actions from another
+chapter while the first cancellation Promise is still pending. Two red
+success/failure instances proved that explicit Stop acquired the cancellation
+guard, but `openAiAction()` bypassed it and sent a second native cancellation
+for the same job.
+
+Reopen, stale-source invalidation and reset now share one guarded silent
+cancellation helper while explicit Stop retains its visible feedback behavior.
+One hundred repeated reopens issue one cancellation, preserve the latest
+chapter context and discard buffered or delayed output from the first chapter.
+Late cancellation success or failure cannot mutate the reopened action, and a
+fresh request can complete normally against the current chapter.
+
+The repaired drawer suites pass 25/25 and the nine-file AI, drawer, App, session
+and save impact set passes 121/121. Full Node 24 acceptance passes 179 files /
+858 tests, lint, typecheck and production build. Rust collects 79, passes 77 and
+retains two reasoned ignores. The converged ledger contains 937 cases: 935
+passes and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -671,11 +692,12 @@ console claims.
 | AI draft commit resource isolation | Four target-identity collisions fail red; exact project/root/path/model checks and captured-model rollback pass 11 focused and 98 impacted tests |
 | AI drawer stale-context isolation | Six red failures cover same-revision identity collisions, delayed output and incomplete reset; 15 focused and 113 impacted tests pass |
 | AI drawer close cancellation | Five red failures cover Store close, Close button, Escape and backdrop; 100 closes cancel once; 22 focused and 118 impacted tests pass |
-| Ledger/inventory reconciliation | 934 / 934 cases; 855 frontend + 79 native; 932 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer reopen cancellation | Stop plus immediate reopen sent two cancellations; success/failure ordering and 100-reopen pressure now pass 25 focused and 121 impacted tests |
+| Ledger/inventory reconciliation | 937 / 937 cases; 858 frontend + 79 native; 935 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 855 tests and production build passed |
-| Static/runtime test reconciliation | 855 / 855; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 858 tests and production build passed |
+| Static/runtime test reconciliation | 858 / 858; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -715,7 +737,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,085 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,088 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
