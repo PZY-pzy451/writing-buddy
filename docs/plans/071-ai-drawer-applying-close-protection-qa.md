@@ -52,7 +52,8 @@ traceability, real-provider smoke and packaging gates are closed.
   expand/restore action; inventory returned to 221 missing selectors.
 - Focused Store/drawer regression: 2 files / 67 tests passed, including a real
   expand transition with a stable accessible name.
-- Impact regression: 10 files / 165 tests passed.
+- Final expanded impact regression: 10 files / 172 tests passed. The earlier
+  165-test run preceded the width-toggle accessibility contract.
 - Full frontend acceptance: lint, TypeScript, 180 files / 900 tests and the
   production build passed with no timer or worker leaks.
 - Rust baseline: 79 tests discovered, 77 passed, 2 environment-gated tests

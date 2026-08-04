@@ -444,11 +444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-VISIBLE",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-VISIBLE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -460,11 +460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-HIDDEN",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-HIDDEN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -476,11 +476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-ENABLED",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-ENABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -492,11 +492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-DISABLED",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-DISABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -508,11 +508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-POINTER",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-POINTER",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -524,11 +524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-KEYBOARD",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-KEYBOARD",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -540,11 +540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-FOCUS-IN",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-FOCUS-IN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -556,11 +556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-FOCUS-OUT",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-FOCUS-OUT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -572,11 +572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-REPEAT",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-REPEAT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -588,11 +588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-DEDUPLICATION",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-DEDUPLICATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -604,11 +604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-LOADING",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-LOADING",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -620,11 +620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-SUCCESS",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-SUCCESS",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -636,11 +636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-FAILURE",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-FAILURE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -652,11 +652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-CANCELLED",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-CANCELLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -668,11 +668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-OFFLINE",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-OFFLINE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -684,11 +684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-PERMISSION",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-PERMISSION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -700,11 +700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-PERSISTENCE",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-PERSISTENCE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -716,11 +716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-RESTART",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-RESTART",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -732,11 +732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-VISUAL",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-VISUAL",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -748,11 +748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-ACCESSIBLE-NAME",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-ACCESSIBLE-NAME",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -764,11 +764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -780,11 +780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B348EF95-UNDO",
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-B45F3EED-UNDO",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AIGENERATIONDRAWER-BUTTON-B348EF95"
+        "CTRL-AIGENERATIONDRAWER-BUTTON-B45F3EED"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -1137,6 +1137,358 @@
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
         "CTRL-AIGENERATIONDRAWER-BUTTON-CC0F9B81"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-VISIBLE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-HIDDEN",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-ENABLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-DISABLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-POINTER",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-KEYBOARD",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-FOCUS-IN",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-FOCUS-OUT",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-REPEAT",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-DEDUPLICATION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-LOADING",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-SUCCESS",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-FAILURE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-CANCELLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-OFFLINE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-PERMISSION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-PERSISTENCE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-RESTART",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-VISUAL",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AIGENERATIONDRAWER-BUTTON-D68C4040-UNDO",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AIGENERATIONDRAWER-BUTTON-D68C4040"
       ],
       "name": "撤销",
       "dimension": "UNDO",

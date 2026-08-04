@@ -4,35 +4,37 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-AI drawer preview rejection single-commit protection is complete on
-`codex/full-regression-gates-a-e-v2` against source `f63dfa0`.
+AI drawer applying close protection is complete on
+`codex/full-regression-gates-a-e-v2` against sources `bd1c0c1` and `a6fb17a`.
 
-- One hundred same-tick Reject candidate actions now perform one transaction
-  transition without throwing, cancellation or an additional provider request.
-- The Store requires both lifecycle state and transaction status to remain
-  `preview`. Delayed actions cannot mutate applying, completed or stale
-  snapshots, while an intentional rejected candidate remains regenerable.
-- Four contracts failed red before the state/transaction guard. The focused
-  Store suite passed 50/50 and the ten-file impact set passed 161/161.
-- Fixed-commit Node 24 acceptance passed 180 files / 896 tests plus lint,
+- While a candidate is being written, direct Store close, the close button,
+  Escape and backdrop dismissal now preserve the applying state, parsed output
+  and transaction. One hundred direct closes perform zero cancellation and no
+  teardown; explicit internal `reset()` remains available.
+- Four contracts failed red. The final Store/drawer suite passed 67/67 and the
+  ten-file AI/App/session/save/error impact set passed 172/172.
+- The first fixed-commit inventory exposed a hidden dynamic width-toggle
+  selector and temporarily raised the gap from 221 to 222. A stable accessible
+  name restored the global gap to 221, with expand/restore behavior still
+  communicated through the tooltip.
+- Fixed-commit Node 24 acceptance passed 180 files / 901 tests plus lint,
   typecheck and production build. Rust collected 79, passed 77 and retained two
   reasoned ignores.
-- The ledger contains 975 cases: 973 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 896 with 94 parameterized instances and
+- The ledger contains 980 cases: 978 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 901 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,121 traceability mappings and 221 stable selectors remain open,
+  because 10,131 traceability mappings and 221 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-AI drawer terminal command-result isolation is complete on
-`codex/full-regression-gates-a-e-v2` against source `1f7b5ab`.
+AI drawer preview rejection single-commit protection is complete on
+`codex/full-regression-gates-a-e-v2` against source `f63dfa0`.
 
-- Late generation-start and Stop rejections cannot replace or pollute preview,
-  failure or cancellation; active command failures remain retryable.
-- Six red contracts converged through 46 focused and 157 impacted tests. Fixed-
-  commit acceptance passed 180 files / 892 frontend tests, Rust passed 77 with
-  two reasoned ignores, and the ledger contained 971 cases.
+- Repeated or delayed Reject actions require both Store and transaction preview
+  state. Four red contracts converged through 50 focused and 161 impacted tests.
+- Fixed-commit acceptance passed 180 files / 896 frontend tests, Rust passed 77
+  with two reasoned ignores, and the ledger contained 975 cases.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

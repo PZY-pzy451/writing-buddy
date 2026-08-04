@@ -717,6 +717,33 @@ save and error impact set passes 161/161. Fixed-commit acceptance passes lint,
 typecheck, production build and 180 files / 896 tests. Rust collects 79, passes
 77 and retains two reasoned ignores.
 
+### QA-AI-DRAWER-APPLYING-CLOSE-PROTECTION-037
+
+Candidate application was already protected from regeneration, cancellation,
+Context Pack changes and rejection, but all four author close paths could still
+reset the drawer while the write continued. Four red contracts proved that 100
+direct Store closes erased the applying transaction, the close button remained
+enabled, and Escape plus backdrop dismissal both unmounted the only visible
+transaction evidence.
+
+Author-facing `close()` now rejects the `applying` state synchronously. The
+button exposes the same disabled state, while Escape and backdrop remain routed
+through the Store boundary. All four paths preserve state, parsed output and the
+transaction without issuing a cancellation. Explicit internal `reset()` still
+supports application teardown, and idle plus streaming close behavior remains
+unchanged.
+
+The first fixed-commit inventory also exposed an old hidden selector collision:
+the width toggle had no static accessible name after the close button became a
+distinct control. Its stable name is now `切换 AI 抽屉宽度`, while the tooltip
+continues to say whether the next action expands or restores the drawer. Missing
+stable selectors returned from 222 to the prior 221 before the final baseline.
+
+The repaired Store/drawer suite passes 67/67 and the ten-file AI drawer, App,
+session, save and error impact set passes 172/172. Fixed-commit acceptance passes
+lint, typecheck, production build and 180 files / 901 tests. Rust collects 79,
+passes 77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -834,11 +861,12 @@ console claims.
 | AI drawer terminal-event isolation | Four red failures cover terminal revival and active-state regression; three 100-burst terminal matrices, 40 focused and 151 impacted tests pass |
 | AI drawer terminal command-result isolation | Six red failures cover late start/Stop rejections after three terminal outcomes; 100-action Stop matrices, 46 focused and 157 impacted tests pass |
 | AI drawer preview rejection single-commit | Four red failures cover repeated and delayed Reject actions; four 100-action boundaries, 50 focused and 161 impacted tests pass |
-| Ledger/inventory reconciliation | 975 / 975 cases; 896 frontend + 79 native; 973 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer applying close protection | Four red failures cover Store, button, Escape and backdrop dismissal; 100 direct closes preserve one applying transaction, 67 focused and 172 impacted tests pass |
+| Ledger/inventory reconciliation | 980 / 980 cases; 901 frontend + 79 native; 978 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 896 tests and production build passed |
-| Static/runtime test reconciliation | 896 / 896; 94 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 901 tests and production build passed |
+| Static/runtime test reconciliation | 901 / 901; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -878,7 +906,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,121 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,131 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

@@ -1046,6 +1046,34 @@ const report = {
 				impactedTests: 161,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-APPLYING-CLOSE-PROTECTION-037',
+			summary: 'Author close paths could erase an applying AI preview transaction while its write continued outside the drawer.',
+			before: {
+				authorClosePaths: ['store', 'button', 'escape', 'backdrop'],
+				applyingCloseGuarded: false,
+				transactionPreserved: false,
+				closeButtonDisabled: false,
+				missingStableSelectorsAfterFirstFixedInventory: 222
+			},
+			after: {
+				authorClosePaths: ['store', 'button', 'escape', 'backdrop'],
+				guardedState: 'applying',
+				directCloseActions: 100,
+				renderedClosePaths: 3,
+				transactionPreserved: true,
+				closeButtonDisabled: true,
+				cancellationCommands: 0,
+				internalResetAvailable: true,
+				normalCloseContractsPreserved: true,
+				stableWidthToggleAccessibleName: true,
+				missingStableSelectors: inventory.counts.missingStableSelectors,
+				redFailures: 4,
+				focusedTests: 67,
+				impactedTests: 172,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
