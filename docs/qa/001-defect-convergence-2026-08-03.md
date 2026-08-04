@@ -1092,3 +1092,16 @@ did not fully specify `targetTypes`, position objects or history arrays.
   libraries; tests and formatting passed.
 - Real-provider AI smoke, installer/portable packaging, and release approval did
   not run in this convergence cycle.
+
+## 2026-08-04 addendum — defect 054
+
+- Exact `data-testid` evidence is now retained and conservatively mapped with
+  same-page, same-feature and state-intent requirements.
+- Event Inspector exposes 7/7 stable controls and deduplicates 100 same-frame
+  save or close actions to one transition; rejected saves are visible and
+  retryable.
+- Fixed-commit execution passed 958 frontend and 77 native tests; two native
+  cases retain documented reasons. Traceability gaps fell from 11,108 to 10,489
+  and stable-selector gaps from 134 to 130.
+- Release remains blocked: strict traceability is incomplete, and real-provider
+  plus packaged-EXE acceptance have not run.

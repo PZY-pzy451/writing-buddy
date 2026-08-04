@@ -43036,11 +43036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -43052,11 +43052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -43068,11 +43068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -43084,11 +43084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -43100,11 +43100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-POINTER",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -43116,11 +43116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -43132,11 +43132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -43148,11 +43148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -43164,11 +43164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -43180,11 +43180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -43196,11 +43196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-LOADING",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -43212,11 +43212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -43228,11 +43228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -43244,11 +43244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -43260,11 +43260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -43276,11 +43276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -43292,11 +43292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -43308,11 +43308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-RESTART",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -43324,11 +43324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -43340,11 +43340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -43356,11 +43356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -43372,11 +43372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-UNDO",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-4676FE85"
+        "CTRL-EVENTINSPECTOR-BUTTON-67092BA6"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -43388,11 +43388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -43404,11 +43404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -43420,11 +43420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -43436,11 +43436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -43452,11 +43452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-POINTER",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -43468,11 +43468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -43484,11 +43484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -43500,11 +43500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -43516,11 +43516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -43532,11 +43532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -43548,11 +43548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-LOADING",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -43564,11 +43564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -43580,11 +43580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -43596,11 +43596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -43612,11 +43612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -43628,11 +43628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -43644,11 +43644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -43660,11 +43660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-RESTART",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -43676,11 +43676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -43692,11 +43692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -43708,11 +43708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -43724,11 +43724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-UNDO",
+      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-BUTTON-6278CF33"
+        "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -43740,11 +43740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -43756,11 +43756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -43772,11 +43772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -43788,11 +43788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -43804,11 +43804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-POINTER",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -43820,11 +43820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -43836,11 +43836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -43852,11 +43852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -43868,11 +43868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -43884,11 +43884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -43900,11 +43900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-LOADING",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -43916,11 +43916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -43932,11 +43932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -43948,11 +43948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -43964,11 +43964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -43980,11 +43980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -43996,11 +43996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -44012,11 +44012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-RESTART",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -44028,11 +44028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -44044,11 +44044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -44060,11 +44060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -44076,11 +44076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-UNDO",
+      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-1A1565BD"
+        "CTRL-EVENTINSPECTOR-INPUT-106F48AC"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -44092,11 +44092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -44108,11 +44108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -44124,11 +44124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -44140,11 +44140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -44156,11 +44156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-POINTER",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -44172,11 +44172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -44188,11 +44188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -44204,11 +44204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -44220,11 +44220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -44236,11 +44236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -44252,11 +44252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-LOADING",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -44268,11 +44268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -44284,11 +44284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -44300,11 +44300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -44316,11 +44316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -44332,11 +44332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -44348,11 +44348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -44364,11 +44364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-RESTART",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -44380,11 +44380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -44396,11 +44396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -44412,11 +44412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -44428,11 +44428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-UNDO",
+      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-A709B14E"
+        "CTRL-EVENTINSPECTOR-INPUT-5BE993D5"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -44444,11 +44444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -44460,11 +44460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -44476,11 +44476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -44492,11 +44492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -44508,11 +44508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-POINTER",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -44524,11 +44524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -44540,11 +44540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -44556,11 +44556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -44572,11 +44572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -44588,11 +44588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -44604,11 +44604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-LOADING",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -44620,11 +44620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -44636,11 +44636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -44652,11 +44652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -44668,11 +44668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -44684,11 +44684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -44700,11 +44700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -44716,11 +44716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-RESTART",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -44732,11 +44732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -44748,11 +44748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -44764,11 +44764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -44780,11 +44780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-UNDO",
+      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C"
+        "CTRL-EVENTINSPECTOR-INPUT-D9764C4D"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -44796,11 +44796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISIBLE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISIBLE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -44812,11 +44812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-HIDDEN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-HIDDEN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -44828,11 +44828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ENABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-ENABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -44844,11 +44844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DISABLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DISABLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -44860,11 +44860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-POINTER",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-POINTER",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -44876,11 +44876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-KEYBOARD",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-KEYBOARD",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -44892,11 +44892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-IN",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-IN",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -44908,11 +44908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-OUT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-OUT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -44924,11 +44924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-REPEAT",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-REPEAT",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -44940,11 +44940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DEDUPLICATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DEDUPLICATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -44956,11 +44956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-LOADING",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-LOADING",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -44972,11 +44972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-SUCCESS",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-SUCCESS",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -44988,11 +44988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FAILURE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FAILURE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -45004,11 +45004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-CANCELLED",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-CANCELLED",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -45020,11 +45020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-OFFLINE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-OFFLINE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -45036,11 +45036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERMISSION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERMISSION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -45052,11 +45052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERSISTENCE",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERSISTENCE",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -45068,11 +45068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-RESTART",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-RESTART",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -45084,11 +45084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISUAL",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISUAL",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -45100,11 +45100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ACCESSIBLE-NAME",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -45116,11 +45116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -45132,11 +45132,363 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-UNDO",
+      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-UNDO",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
       "controlIds": [
-        "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD"
+        "CTRL-EVENTINSPECTOR-INPUT-E450E11B"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISIBLE",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-HIDDEN",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ENABLED",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DISABLED",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-POINTER",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-KEYBOARD",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-IN",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-OUT",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-REPEAT",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DEDUPLICATION",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-LOADING",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-SUCCESS",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FAILURE",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-CANCELLED",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-OFFLINE",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERMISSION",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERSISTENCE",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-RESTART",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISUAL",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-UNDO",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlIds": [
+        "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E"
       ],
       "name": "撤销",
       "dimension": "UNDO",

@@ -33015,138 +33015,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EVENTINSPECTOR-BUTTON-4676FE85",
+                  "id": "CTRL-EVENTINSPECTOR-BUTTON-67092BA6",
                   "level": "L4",
-                  "name": "button",
+                  "name": "保存事件",
                   "states": [
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISIBLE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-HIDDEN",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ENABLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DISABLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-POINTER",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-KEYBOARD",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-IN",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-OUT",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-REPEAT",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DEDUPLICATION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-LOADING",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-SUCCESS",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FAILURE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-CANCELLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-OFFLINE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERMISSION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERSISTENCE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-RESTART",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISUAL",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ACCESSIBLE-NAME",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-4676FE85-UNDO",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-67092BA6-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33154,138 +33154,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EVENTINSPECTOR-BUTTON-6278CF33",
+                  "id": "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7",
                   "level": "L4",
                   "name": "关闭事件详情",
                   "states": [
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISIBLE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-HIDDEN",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ENABLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DISABLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-POINTER",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-KEYBOARD",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-IN",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-OUT",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-REPEAT",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DEDUPLICATION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-LOADING",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-SUCCESS",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FAILURE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-CANCELLED",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-OFFLINE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERMISSION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERSISTENCE",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-RESTART",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISUAL",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ACCESSIBLE-NAME",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-BUTTON-6278CF33-UNDO",
+                      "id": "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33293,277 +33293,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EVENTINSPECTOR-INPUT-1A1565BD",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-1A1565BD-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-EVENTINSPECTOR-INPUT-A709B14E",
+                  "id": "CTRL-EVENTINSPECTOR-INPUT-106F48AC",
                   "level": "L4",
                   "name": "事件标题",
                   "states": [
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISIBLE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-HIDDEN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-ENABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DISABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-POINTER",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-KEYBOARD",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-IN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-OUT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-REPEAT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DEDUPLICATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-LOADING",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-SUCCESS",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-FAILURE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-CANCELLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-OFFLINE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERMISSION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERSISTENCE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-RESTART",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISUAL",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-ACCESSIBLE-NAME",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-A709B14E-UNDO",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-106F48AC-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33571,138 +33432,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C",
+                  "id": "CTRL-EVENTINSPECTOR-INPUT-5BE993D5",
                   "level": "L4",
-                  "name": "input",
+                  "name": "叙事位置",
                   "states": [
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISIBLE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-HIDDEN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ENABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DISABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-POINTER",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-KEYBOARD",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-IN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-OUT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-REPEAT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DEDUPLICATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-LOADING",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-SUCCESS",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FAILURE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-CANCELLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-OFFLINE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERMISSION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERSISTENCE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-RESTART",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISUAL",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ACCESSIBLE-NAME",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-UNDO",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-5BE993D5-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33710,138 +33571,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD",
+                  "id": "CTRL-EVENTINSPECTOR-INPUT-D9764C4D",
                   "level": "L4",
-                  "name": "input",
+                  "name": "实际开始",
                   "states": [
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISIBLE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-HIDDEN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ENABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DISABLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-POINTER",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-KEYBOARD",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-IN",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-OUT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-REPEAT",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DEDUPLICATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-LOADING",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-SUCCESS",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FAILURE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-CANCELLED",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-OFFLINE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERMISSION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERSISTENCE",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-RESTART",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISUAL",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ACCESSIBLE-NAME",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-UNDO",
+                      "id": "STATE-EVENTINSPECTOR-INPUT-D9764C4D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-EVENTINSPECTOR-INPUT-E450E11B",
+                  "level": "L4",
+                  "name": "实际结束",
+                  "states": [
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-E450E11B-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E",
+                  "level": "L4",
+                  "name": "事件类型",
+                  "states": [
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -69522,6 +69661,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-0DB70005D2",
+      "title": "deduplicates 100 repeated pointer save attempts while loading and allows success",
+      "declarationTitle": "deduplicates 100 repeated pointer save attempts while loading and allows success",
+      "declarationLine": 78,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-0DC91359E5",
       "title": "resolves only the selected impact and propagates outline edits only to chapters",
       "declarationTitle": "resolves only the selected impact and propagates outline edits only to chapters",
@@ -70007,6 +70164,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-17C71D59E7",
+      "title": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
+      "declarationTitle": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
+      "declarationLine": 234,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -74579,7 +74754,7 @@
       "id": "TC-DISCOVERED-521359FC29",
       "title": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
       "declarationTitle": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
-      "declarationLine": 19,
+      "declarationLine": 24,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -79997,7 +80172,7 @@
       "id": "TC-DISCOVERED-A3F9BAB936",
       "title": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
       "declarationTitle": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
-      "declarationLine": 33,
+      "declarationLine": 38,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -81028,6 +81203,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-B49E731E45",
+      "title": "deduplicates 100 repeated close pointer attempts",
+      "declarationTitle": "deduplicates 100 repeated close pointer attempts",
+      "declarationLine": 112,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84257,7 +84450,7 @@
       "id": "TC-DISCOVERED-E5144B11D0",
       "title": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
       "declarationTitle": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
-      "declarationLine": 25,
+      "declarationLine": 30,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -84928,6 +85121,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-F13E74DED3",
+      "title": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
+      "declarationTitle": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
+      "declarationLine": 47,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/traceability.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-F1F635FAD2",
       "title": "inserts only the author-selected candidate and supports undo",
       "declarationTitle": "inserts only the author-selected candidate and supports undo",
@@ -85470,6 +85681,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-FA4ACC70CF",
+      "title": "renders seven accessible stable controls and disables invalid save",
+      "declarationTitle": "renders seven accessible stable controls and disables invalid save",
+      "declarationLine": 57,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-FA53ED8F59",
       "title": "confirms one exact whole-work receipt per project and revokes it reversibly",
       "declarationTitle": "confirms one exact whole-work receipt per project and revokes it reversibly",
@@ -85881,6 +86110,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FFC82BBB94",
+      "title": "releases the save guard after failure so a retry can succeed",
+      "declarationTitle": "releases the save guard after failure so a retry can succeed",
+      "declarationLine": 97,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-10",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

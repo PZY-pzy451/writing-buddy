@@ -4,38 +4,39 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Chapter creation lifecycle convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `6178b39`.
+Traceability selector net convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `e987e26`.
 
-- Five contracts failed red: rendered Submit and Cancel each dispatched 100
-  transitions, 100 Store requests queued behind one dirty save issued 100
-  native chapter transactions, a project switch did not invalidate the old
-  request and inventory collapsed six operations into five controls.
-- The dialog now admits one mutually exclusive transition and releases it only
-  when a failed creation remains mounted for retry. Dismissal restores the
-  exact opening focus.
-- The Store reserves creation before any awaited save and revalidates root,
-  project ID and project revision before and after the native transaction. Old
-  save/native completion cannot overwrite or open content in a newer project.
-- Source controls are now 6/6 mapped. Global controls rise from 470 to 471 and
-  states from 10,340 to 10,362 while selector debt falls from 136 to 134.
-  Honest traceability debt rises from 11,088 to 11,108.
-- Focused regression passed 3 files / 16 tests, adjacent project/save/workspace
-  regression passed 6 files / 102 tests and QA infrastructure passed 5 files /
-  26 tests without stderr.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  185 files / 952 tests. Rust collected 79, passed 77 and retained two reasoned
+- Six contracts failed red: the inventory did not retain exact stable-selector
+  values, traceability ignored `data-testid` evidence, the event inspector
+  collapsed seven operations into six controls and lacked same-frame save/close
+  protection.
+- Traceability now accepts only an exact accessibility or stable-selector token
+  from a same-page, same-feature test whose title expresses the state intent.
+  This recovers real test evidence without granting blanket coverage.
+- Event Inspector now exposes 7/7 distinct controls, admits one save or close
+  transition under 100-click pressure, reports failed persistence and permits
+  one explicit retry.
+- Global selector debt falls from 134 to 130. Aggregate unmapped traceability
+  falls from the accepted 11,108 baseline to 10,489: 619 fewer gaps (5.57%).
+  Against the user's earlier 11,088 reference, the net reduction is 599.
+- Focused contracts passed 3 files / 20 tests, timeline impact passed 6 files /
+  15 tests and QA infrastructure passed 5 files / 26 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 186 files / 958 tests
+  and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The target ledger contains 1,031 cases: 1,029 passes and two reasoned skips.
-  Static and runtime frontend discovery match at 952 with 97 parameterized
-  instances and zero unresolved declarations. Execution is `PASS`; product
-  remains `PARTIAL` with strict traceability, real-provider and package
-  acceptance gates incomplete.
+- The ledger contains 1,037 cases: 1,035 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 958 with 97 parameterized instances
+  and zero unresolved declarations.
+- Quantified status: deterministic execution is 100%; stable-selector coverage
+  is 342/472 (72.46%); aggregate strict traceability is 13.64%; release gates
+  remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
+  real-provider smoke and packaged-EXE acceptance complete.
 
 ## Previous milestone
 
-Global Create menu convergence is complete against source `8e97680`: 7/7
-source controls are mapped and fixed acceptance passed 946 frontend tests.
+Chapter creation lifecycle convergence is complete against source `6178b39`:
+6/6 source controls are mapped and fixed acceptance passed 952 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

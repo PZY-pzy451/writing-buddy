@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "discovery": {
     "sourceFiles": 102,
-    "declarationCount": 471,
-    "semanticSelectorMapped": 337,
-    "semanticSelectorMissing": 134
+    "declarationCount": 472,
+    "semanticSelectorMapped": 342,
+    "semanticSelectorMissing": 130
   },
   "controls": [
     {
@@ -13,6 +13,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "停止",
+      "stableSelectorValue": "停止",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -63,6 +64,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "切换 AI 抽屉宽度",
+      "stableSelectorValue": "切换 AI 抽屉宽度",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -113,6 +115,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "拒绝候选",
+      "stableSelectorValue": "拒绝候选",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -163,6 +166,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "关闭 AI 快速生成",
+      "stableSelectorValue": "关闭 AI 快速生成",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -213,6 +217,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "ai-job-cancel",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -263,6 +268,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "打开 AI 设置",
+      "stableSelectorValue": "打开 AI 设置",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -313,6 +319,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "清空",
+      "stableSelectorValue": "清空",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -363,6 +370,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -413,6 +421,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "按住显示 API Key",
+      "stableSelectorValue": "按住显示 API Key",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -463,6 +472,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "取消",
+      "stableSelectorValue": "取消",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -513,6 +523,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "button",
       "accessibleName": "刷新余额",
+      "stableSelectorValue": "刷新余额",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -563,6 +574,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -613,6 +625,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -663,6 +676,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -713,6 +727,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "select",
       "accessibleName": "最大输出 Token",
+      "stableSelectorValue": "最大输出 Token",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -763,6 +778,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "展开待处理区 (Ctrl+J)",
+      "stableSelectorValue": "展开待处理区 (Ctrl+J)",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -813,6 +829,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭",
+      "stableSelectorValue": "关闭",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -863,6 +880,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "情绪节拍",
+      "stableSelectorValue": "情绪节拍",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -913,6 +931,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -963,6 +982,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "重新审校当前章节",
+      "stableSelectorValue": "重新审校当前章节",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1013,6 +1033,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1063,6 +1084,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1113,6 +1135,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1163,6 +1186,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "button",
       "accessibleName": "取消",
+      "stableSelectorValue": "取消",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1213,6 +1237,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "foreshadowing-action",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1263,6 +1288,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1313,6 +1339,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "select",
       "accessibleName": "选择物品转交生效场景",
+      "stableSelectorValue": "选择物品转交生效场景",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1363,6 +1390,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭关联确认",
+      "stableSelectorValue": "关闭关联确认",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1413,6 +1441,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1463,6 +1492,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "关闭因果冲突确认",
+      "stableSelectorValue": "关闭因果冲突确认",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1513,6 +1543,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1563,6 +1594,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "返回调整",
+      "stableSelectorValue": "返回调整",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1613,6 +1645,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "chapter-creation-submit",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1663,6 +1696,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "关闭新建章节",
+      "stableSelectorValue": "chapter-creation-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1713,6 +1747,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "取消",
+      "stableSelectorValue": "chapter-creation-cancel",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1763,6 +1798,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "input",
       "accessibleName": "章节标题",
+      "stableSelectorValue": "chapter-creation-title",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1813,6 +1849,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "section",
       "accessibleName": "",
+      "stableSelectorValue": "chapter-creation-dialog",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1863,6 +1900,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "select",
       "accessibleName": "放入卷",
+      "stableSelectorValue": "chapter-creation-volume",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1913,6 +1951,7 @@
       "featureId": "FEATURE-01-03",
       "controlType": "button",
       "accessibleName": "从当前光标继续写作",
+      "stableSelectorValue": "从当前光标继续写作",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -1963,6 +2002,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "证据",
+      "stableSelectorValue": "证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2013,6 +2053,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2063,6 +2104,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "关闭 AI 人物助手",
+      "stableSelectorValue": "关闭 AI 人物助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2113,6 +2155,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2163,6 +2206,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2213,6 +2257,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "select",
       "accessibleName": "选择人物分析章节",
+      "stableSelectorValue": "选择人物分析章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2263,6 +2308,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2313,6 +2359,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2363,6 +2410,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "用 AI 创建人物",
+      "stableSelectorValue": "用 AI 创建人物",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2413,6 +2461,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2463,6 +2512,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "全部",
+      "stableSelectorValue": "全部",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2513,6 +2563,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2563,6 +2614,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "搜索人物",
+      "stableSelectorValue": "搜索人物",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2613,6 +2665,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "button",
       "accessibleName": "保存人物",
+      "stableSelectorValue": "character-save",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2661,6 +2714,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "form",
       "accessibleName": "人物编辑表单",
+      "stableSelectorValue": "character-editor-form",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2711,6 +2765,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "渴望",
+      "stableSelectorValue": "character-desires",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2761,6 +2816,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "恐惧",
+      "stableSelectorValue": "character-fears",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2811,6 +2867,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "职业 / 身份",
+      "stableSelectorValue": "character-occupation",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2861,6 +2918,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "称谓 / 代词",
+      "stableSelectorValue": "character-pronouns",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2911,6 +2969,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "当前目标",
+      "stableSelectorValue": "character-goals",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -2961,6 +3020,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "人物姓名",
+      "stableSelectorValue": "character-title",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3011,6 +3071,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "select",
       "accessibleName": "叙事角色",
+      "stableSelectorValue": "character-role",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3061,6 +3122,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "textarea",
       "accessibleName": "人物摘要",
+      "stableSelectorValue": "character-summary",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3111,6 +3173,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "textarea",
       "accessibleName": "语言风格",
+      "stableSelectorValue": "character-speech-style",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3161,6 +3224,7 @@
       "featureId": "FEATURE-03-02",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3211,6 +3275,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "取消退出",
+      "stableSelectorValue": "取消退出",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3261,6 +3326,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3311,6 +3377,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "先处理文件冲突",
+      "stableSelectorValue": "先处理文件冲突",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3361,6 +3428,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3411,6 +3479,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3461,6 +3530,7 @@
       "featureId": "FEATURE-07-08",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3511,6 +3581,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "重新打开",
+      "stableSelectorValue": "重新打开",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3561,6 +3632,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3611,6 +3683,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "select",
       "accessibleName": "按严重程度筛选",
+      "stableSelectorValue": "按严重程度筛选",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3661,6 +3734,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "article",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-node",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3712,6 +3786,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-move-up",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3762,6 +3837,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-select",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3812,6 +3888,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "保留当前内容",
+      "stableSelectorValue": "保留当前内容",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3862,6 +3939,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-core-field-lock",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3912,6 +3990,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-guidance-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -3962,6 +4041,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-delete",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4012,6 +4092,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭影响面板",
+      "stableSelectorValue": "关闭影响面板",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4062,6 +4143,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-chapter-lock",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4112,6 +4194,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-lock",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4162,6 +4245,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "打开第一章",
+      "stableSelectorValue": "打开第一章",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4212,6 +4296,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭错误",
+      "stableSelectorValue": "关闭错误",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4262,6 +4347,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-lock",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4312,6 +4398,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "项影响待处理",
+      "stableSelectorValue": "项影响待处理",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4362,6 +4449,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "完成查看",
+      "stableSelectorValue": "完成查看",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4412,6 +4500,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "AI 重新生成此项",
+      "stableSelectorValue": "AI 重新生成此项",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4462,6 +4551,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-move-down",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4512,6 +4602,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "查看影响",
+      "stableSelectorValue": "查看影响",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4562,6 +4653,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-move-up",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4612,6 +4704,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-stage-navigation",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4662,6 +4755,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-move-down",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4712,6 +4806,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-lock",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4762,6 +4857,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-title",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4812,6 +4908,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-purpose",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4862,6 +4959,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-tone",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4912,6 +5010,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-title",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -4962,6 +5061,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-chapter-title",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5012,6 +5112,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "creation-core-field",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5062,6 +5163,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-category",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5112,6 +5214,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-chapter-summary",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5162,6 +5265,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-element-text",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5212,6 +5316,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-ending",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5262,6 +5367,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-conflict",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5312,6 +5418,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-chapter-goal",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5362,6 +5469,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-outline-summary",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5412,6 +5520,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-direction-premise",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5462,6 +5571,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-guidance-answer",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5512,6 +5622,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "creation-core-field",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5562,6 +5673,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5612,6 +5724,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "保存目标",
+      "stableSelectorValue": "保存目标",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5660,6 +5773,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "form",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5710,6 +5824,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "dailyGoal",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5760,6 +5875,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5808,6 +5924,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5858,6 +5975,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5908,6 +6026,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -5958,6 +6077,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭资料速览",
+      "stableSelectorValue": "关闭资料速览",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6008,6 +6128,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "打开完整资料",
+      "stableSelectorValue": "打开完整资料",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6058,6 +6179,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "section",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6103,12 +6225,13 @@
       "stableSelectorStatus": "UNMAPPED"
     },
     {
-      "id": "CTRL-EVENTINSPECTOR-BUTTON-4676FE85",
+      "id": "CTRL-EVENTINSPECTOR-BUTTON-67092BA6",
       "pageId": "PAGE-STORY-TIMELINE",
       "featureId": "FEATURE-03-10",
       "controlType": "button",
-      "accessibleName": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "accessibleName": "保存事件",
+      "stableSelectorValue": "event-inspector-save",
+      "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6122,48 +6245,49 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISIBLE",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-HIDDEN",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ENABLED",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DISABLED",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-POINTER",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-KEYBOARD",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-REPEAT",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-LOADING",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-SUCCESS",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-FAILURE",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-CANCELLED",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-OFFLINE",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERMISSION",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-RESTART",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-VISUAL",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-BUTTON-4676FE85-UNDO"
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISIBLE",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-HIDDEN",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ENABLED",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DISABLED",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-POINTER",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-KEYBOARD",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-REPEAT",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-LOADING",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-SUCCESS",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-FAILURE",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-CANCELLED",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-OFFLINE",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERMISSION",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-RESTART",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-VISUAL",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-BUTTON-67092BA6-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-EVENTINSPECTOR-BUTTON-6278CF33",
+      "id": "CTRL-EVENTINSPECTOR-BUTTON-E453B1E7",
       "pageId": "PAGE-STORY-TIMELINE",
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "关闭事件详情",
+      "stableSelectorValue": "event-inspector-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
       "enabledWhen": [
-        "rendered"
+        "disabled expression is false"
       ],
       "actions": [
         "onClick"
@@ -6172,28 +6296,28 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISIBLE",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-HIDDEN",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ENABLED",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DISABLED",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-POINTER",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-KEYBOARD",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-REPEAT",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-LOADING",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-SUCCESS",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-FAILURE",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-CANCELLED",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-OFFLINE",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERMISSION",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-RESTART",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-VISUAL",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-BUTTON-6278CF33-UNDO"
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISIBLE",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-HIDDEN",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ENABLED",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DISABLED",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-POINTER",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-KEYBOARD",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-REPEAT",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-LOADING",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-SUCCESS",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-FAILURE",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-CANCELLED",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-OFFLINE",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERMISSION",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-RESTART",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-VISUAL",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-BUTTON-E453B1E7-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
@@ -6203,61 +6327,12 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-EVENTINSPECTOR-INPUT-1A1565BD",
-      "pageId": "PAGE-STORY-TIMELINE",
-      "featureId": "FEATURE-03-10",
-      "controlType": "input",
-      "accessibleName": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onChange"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISIBLE",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-HIDDEN",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ENABLED",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DISABLED",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-POINTER",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-KEYBOARD",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-REPEAT",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-LOADING",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-SUCCESS",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-FAILURE",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-CANCELLED",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-OFFLINE",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERMISSION",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-RESTART",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-VISUAL",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-INPUT-1A1565BD-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
-      "stableSelectorStatus": "UNMAPPED"
-    },
-    {
-      "id": "CTRL-EVENTINSPECTOR-INPUT-A709B14E",
+      "id": "CTRL-EVENTINSPECTOR-INPUT-106F48AC",
       "pageId": "PAGE-STORY-TIMELINE",
       "featureId": "FEATURE-03-10",
       "controlType": "input",
       "accessibleName": "事件标题",
+      "stableSelectorValue": "event-inspector-title",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6272,28 +6347,28 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISIBLE",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-HIDDEN",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-ENABLED",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-DISABLED",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-POINTER",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-KEYBOARD",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-REPEAT",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-LOADING",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-SUCCESS",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-FAILURE",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-CANCELLED",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-OFFLINE",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERMISSION",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-RESTART",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-VISUAL",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-INPUT-A709B14E-UNDO"
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISIBLE",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-HIDDEN",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-ENABLED",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-DISABLED",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-POINTER",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-KEYBOARD",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-REPEAT",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-LOADING",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-SUCCESS",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-FAILURE",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-CANCELLED",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-OFFLINE",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERMISSION",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-RESTART",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-VISUAL",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-INPUT-106F48AC-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
@@ -6303,12 +6378,13 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-EVENTINSPECTOR-INPUT-ECBBF84C",
+      "id": "CTRL-EVENTINSPECTOR-INPUT-5BE993D5",
       "pageId": "PAGE-STORY-TIMELINE",
       "featureId": "FEATURE-03-10",
       "controlType": "input",
-      "accessibleName": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "accessibleName": "叙事位置",
+      "stableSelectorValue": "event-inspector-narrative-order",
+      "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6322,43 +6398,44 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISIBLE",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-HIDDEN",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ENABLED",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DISABLED",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-POINTER",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-KEYBOARD",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-REPEAT",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-LOADING",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-SUCCESS",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-FAILURE",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-CANCELLED",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-OFFLINE",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERMISSION",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-RESTART",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-VISUAL",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-INPUT-ECBBF84C-UNDO"
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISIBLE",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-HIDDEN",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ENABLED",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DISABLED",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-POINTER",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-KEYBOARD",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-REPEAT",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-LOADING",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-SUCCESS",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-FAILURE",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-CANCELLED",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-OFFLINE",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERMISSION",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-RESTART",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-VISUAL",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-INPUT-5BE993D5-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-EVENTINSPECTOR-INPUT-FDD0F7DD",
+      "id": "CTRL-EVENTINSPECTOR-INPUT-D9764C4D",
       "pageId": "PAGE-STORY-TIMELINE",
       "featureId": "FEATURE-03-10",
       "controlType": "input",
-      "accessibleName": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "accessibleName": "实际开始",
+      "stableSelectorValue": "event-inspector-story-start",
+      "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6372,35 +6449,137 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISIBLE",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-HIDDEN",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ENABLED",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DISABLED",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-POINTER",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-KEYBOARD",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-IN",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FOCUS-OUT",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-REPEAT",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DEDUPLICATION",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-LOADING",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-SUCCESS",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-FAILURE",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-CANCELLED",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-OFFLINE",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERMISSION",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-PERSISTENCE",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-RESTART",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-VISUAL",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-ACCESSIBLE-NAME",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-DESTRUCTIVE-CONFIRMATION",
-        "STATE-EVENTINSPECTOR-INPUT-FDD0F7DD-UNDO"
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISIBLE",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-HIDDEN",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ENABLED",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DISABLED",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-POINTER",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-KEYBOARD",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-REPEAT",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-LOADING",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-SUCCESS",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-FAILURE",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-CANCELLED",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-OFFLINE",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERMISSION",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-RESTART",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-VISUAL",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-INPUT-D9764C4D-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-EVENTINSPECTOR-INPUT-E450E11B",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "featureId": "FEATURE-03-10",
+      "controlType": "input",
+      "accessibleName": "实际结束",
+      "stableSelectorValue": "event-inspector-story-end",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onChange"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISIBLE",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-HIDDEN",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-ENABLED",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-DISABLED",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-POINTER",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-KEYBOARD",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-REPEAT",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-LOADING",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-SUCCESS",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-FAILURE",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-CANCELLED",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-OFFLINE",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERMISSION",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-RESTART",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-VISUAL",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-INPUT-E450E11B-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-EVENTINSPECTOR-INPUT-ECB85C6E",
+      "pageId": "PAGE-STORY-TIMELINE",
+      "featureId": "FEATURE-03-10",
+      "controlType": "input",
+      "accessibleName": "事件类型",
+      "stableSelectorValue": "event-inspector-event-type",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onChange"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISIBLE",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-HIDDEN",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ENABLED",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DISABLED",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-POINTER",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-KEYBOARD",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-IN",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FOCUS-OUT",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-REPEAT",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DEDUPLICATION",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-LOADING",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-SUCCESS",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-FAILURE",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-CANCELLED",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-OFFLINE",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERMISSION",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-PERSISTENCE",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-RESTART",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-VISUAL",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-ACCESSIBLE-NAME",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-DESTRUCTIVE-CONFIRMATION",
+        "STATE-EVENTINSPECTOR-INPUT-ECB85C6E-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/features/story/timeline/EventInspector.tsx",
+      "stableSelectorStatus": "MAPPED"
     },
     {
       "id": "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528",
@@ -6408,6 +6587,7 @@
       "featureId": "FEATURE-01-03",
       "controlType": "button",
       "accessibleName": "明确覆盖",
+      "stableSelectorValue": "明确覆盖",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6458,6 +6638,7 @@
       "featureId": "FEATURE-01-03",
       "controlType": "button",
       "accessibleName": "暂不处理",
+      "stableSelectorValue": "暂不处理",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6508,6 +6689,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6558,6 +6740,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭生成依据",
+      "stableSelectorValue": "关闭生成依据",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6608,6 +6791,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6658,6 +6842,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "确认并生成",
+      "stableSelectorValue": "确认并生成",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6708,6 +6893,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6758,6 +6944,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "生成小说大纲",
+      "stableSelectorValue": "生成小说大纲",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6808,6 +6995,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "停止生成",
+      "stableSelectorValue": "停止生成",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6858,6 +7046,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "选择题材",
+      "stableSelectorValue": "选择题材",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6908,6 +7097,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "不希望出现",
+      "stableSelectorValue": "不希望出现",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -6958,6 +7148,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "select",
       "accessibleName": "结构倾向",
+      "stableSelectorValue": "结构倾向",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7008,6 +7199,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "用一句话描述你的故事（可选）",
+      "stableSelectorValue": "用一句话描述你的故事（可选）",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7058,6 +7250,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "global-create-new-project",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7108,6 +7301,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "global-create-new-chapter",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7158,6 +7352,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "新建",
+      "stableSelectorValue": "global-create-trigger",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7208,6 +7403,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "global-create-open-project",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7258,6 +7454,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "global-create-contextual-action",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7308,6 +7505,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "global-create-quick-capture",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7358,6 +7556,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "div",
       "accessibleName": "新建内容",
+      "stableSelectorValue": "新建内容",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7408,6 +7607,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7458,6 +7658,7 @@
       "featureId": "FEATURE-03-04",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7508,6 +7709,7 @@
       "featureId": "FEATURE-03-04",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7558,6 +7760,7 @@
       "featureId": "FEATURE-03-04",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7608,6 +7811,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "丢弃临时草稿",
+      "stableSelectorValue": "丢弃临时草稿",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7658,6 +7862,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7708,6 +7913,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "编辑 AI 临时草稿",
+      "stableSelectorValue": "编辑 AI 临时草稿",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7758,6 +7964,7 @@
       "featureId": "FEATURE-01-03",
       "controlType": "button",
       "accessibleName": "关闭 AI 写入提示",
+      "stableSelectorValue": "关闭 AI 写入提示",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7808,6 +8015,7 @@
       "featureId": "FEATURE-01-03",
       "controlType": "button",
       "accessibleName": "撤销 AI 正文写入",
+      "stableSelectorValue": "撤销 AI 正文写入",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7858,6 +8066,7 @@
       "featureId": "FEATURE-04-09",
       "controlType": "button",
       "accessibleName": "AI 设置",
+      "stableSelectorValue": "AI 设置",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7908,6 +8117,7 @@
       "featureId": "FEATURE-04-09",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -7958,6 +8168,7 @@
       "featureId": "FEATURE-04-09",
       "controlType": "button",
       "accessibleName": "检查当前段落",
+      "stableSelectorValue": "检查当前段落",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8008,6 +8219,7 @@
       "featureId": "FEATURE-04-09",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8058,6 +8270,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8108,6 +8321,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "AI 设置",
+      "stableSelectorValue": "AI 设置",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8158,6 +8372,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "立即生成",
+      "stableSelectorValue": "立即生成",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8208,6 +8423,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8258,6 +8474,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "打开",
+      "stableSelectorValue": "打开",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8308,6 +8525,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8358,6 +8576,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8408,6 +8627,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "关闭 AI 物品助手",
+      "stableSelectorValue": "关闭 AI 物品助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8458,6 +8678,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "证据",
+      "stableSelectorValue": "证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8508,6 +8729,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8558,6 +8780,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "select",
       "accessibleName": "选择物品分析章节",
+      "stableSelectorValue": "选择物品分析章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8608,6 +8831,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8658,6 +8882,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "关闭转移对话框",
+      "stableSelectorValue": "关闭转移对话框",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8708,6 +8933,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8758,6 +8984,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "input",
       "accessibleName": "转移叙事位置",
+      "stableSelectorValue": "转移叙事位置",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8808,6 +9035,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "input",
       "accessibleName": "新地点 ID",
+      "stableSelectorValue": "新地点 ID",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8858,6 +9086,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-candidate-structure-toggle",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8908,6 +9137,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "拒绝",
+      "stableSelectorValue": "拒绝",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -8958,6 +9188,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-candidate",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9008,6 +9239,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9058,6 +9290,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "全部放弃",
+      "stableSelectorValue": "全部放弃",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9108,6 +9341,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9158,6 +9392,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "查看差异",
+      "stableSelectorValue": "查看差异",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9208,6 +9443,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9258,6 +9494,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "拒绝",
+      "stableSelectorValue": "拒绝",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9308,6 +9545,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "告诉 AI 接下来发生什么",
+      "stableSelectorValue": "告诉 AI 接下来发生什么",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9358,6 +9596,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "撤销资料确认",
+      "stableSelectorValue": "extraction-undo-confirmation",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9408,6 +9647,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "创建快照并批量确认",
+      "stableSelectorValue": "extraction-confirm-selected",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9458,6 +9698,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "稍后处理",
+      "stableSelectorValue": "稍后处理",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9508,6 +9749,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "查看正文依据",
+      "stableSelectorValue": "查看正文依据",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9558,6 +9800,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "拒绝候选",
+      "stableSelectorValue": "拒绝候选",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9608,6 +9851,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-plan",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9658,6 +9902,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-scope-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9708,6 +9953,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-stop",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9758,6 +10004,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "使用最新正文",
+      "stableSelectorValue": "使用最新正文",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9808,6 +10055,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-start-or-resume",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9858,6 +10106,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "button",
       "accessibleName": "用最新正文重新规划",
+      "stableSelectorValue": "extraction-replan-stale-batch",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9908,6 +10157,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "input",
       "accessibleName": "只看冲突",
+      "stableSelectorValue": "只看冲突",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -9958,6 +10208,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-chapter-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10008,6 +10259,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-reconciliation-field",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10058,6 +10310,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-candidate-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10108,6 +10361,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "extraction-target-type",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10158,6 +10412,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "select",
       "accessibleName": "基准章节",
+      "stableSelectorValue": "extraction-base-chapter",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10208,6 +10463,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "select",
       "accessibleName": "按候选类型筛选",
+      "stableSelectorValue": "按候选类型筛选",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10258,6 +10514,7 @@
       "featureId": "FEATURE-03-14",
       "controlType": "textarea",
       "accessibleName": "作者指令",
+      "stableSelectorValue": "作者指令",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10308,6 +10565,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-quality-issue-locate",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10358,6 +10616,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "拒绝",
+      "stableSelectorValue": "拒绝",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10408,6 +10667,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "pending-fact-title",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10458,6 +10718,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "pending-fact-narrative-order",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10508,6 +10769,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "pending-fact-statement",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10558,6 +10820,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "pending-facts-extract",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10608,6 +10871,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10658,6 +10922,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "查看原文证据",
+      "stableSelectorValue": "查看原文证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10708,6 +10973,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "选择全部可写项",
+      "stableSelectorValue": "选择全部可写项",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10758,6 +11024,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "关闭 AI 剧情线与伏笔助手",
+      "stableSelectorValue": "关闭 AI 剧情线与伏笔助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10808,6 +11075,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "确认写入所选剧情资料",
+      "stableSelectorValue": "确认写入所选剧情资料",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10858,6 +11126,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10908,6 +11177,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "select",
       "accessibleName": "剧情资料分析章节",
+      "stableSelectorValue": "剧情资料分析章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -10958,6 +11228,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11008,6 +11279,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "伏笔表",
+      "stableSelectorValue": "伏笔表",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11058,6 +11330,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11108,6 +11381,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "关闭场景详情",
+      "stableSelectorValue": "关闭场景详情",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11158,6 +11432,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "input",
       "accessibleName": "当前叙事位置",
+      "stableSelectorValue": "当前叙事位置",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11208,6 +11483,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11258,6 +11534,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11308,6 +11585,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "拖动剧情线卡片",
+      "stableSelectorValue": "拖动剧情线卡片",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11356,6 +11634,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "项目菜单",
+      "stableSelectorValue": "项目菜单",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11406,6 +11685,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11456,6 +11736,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "div",
       "accessibleName": "项目操作",
+      "stableSelectorValue": "项目操作",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11506,6 +11787,7 @@
       "featureId": "FEATURE-05-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11556,6 +11838,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-writing-mode-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11606,6 +11889,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-theme-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11656,6 +11940,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-submit",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11704,6 +11989,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-import-select",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11754,6 +12040,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-start-route",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11804,6 +12091,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "移除文件",
+      "stableSelectorValue": "project-wizard-import-remove",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11854,6 +12142,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-template-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11904,6 +12193,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "上一步",
+      "stableSelectorValue": "project-wizard-previous",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -11954,6 +12244,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "关闭新建项目向导",
+      "stableSelectorValue": "project-wizard-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12004,6 +12295,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "取消",
+      "stableSelectorValue": "project-wizard-cancel",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12054,6 +12346,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-step",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12104,6 +12397,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "浏览",
+      "stableSelectorValue": "project-wizard-browse",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12154,6 +12448,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-accent-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12204,6 +12499,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "form",
       "accessibleName": "",
+      "stableSelectorValue": "project-creation-wizard",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12254,6 +12550,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "input",
       "accessibleName": "作品名称",
+      "stableSelectorValue": "project-wizard-name",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12304,6 +12601,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "project-wizard-resource-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12354,6 +12652,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "input",
       "accessibleName": "保存位置",
+      "stableSelectorValue": "project-wizard-root",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12404,6 +12703,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "select",
       "accessibleName": "项目类型",
+      "stableSelectorValue": "project-wizard-project-type",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12454,6 +12754,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "select",
       "accessibleName": "语言",
+      "stableSelectorValue": "project-wizard-language",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12504,6 +12805,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "textarea",
       "accessibleName": "作品说明",
+      "stableSelectorValue": "project-wizard-description",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12554,6 +12856,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12604,6 +12907,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "复制安全路径",
+      "stableSelectorValue": "复制安全路径",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12654,6 +12958,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "关闭",
+      "stableSelectorValue": "关闭",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12704,6 +13009,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "打开目录",
+      "stableSelectorValue": "打开目录",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12754,6 +13060,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "切换作品",
+      "stableSelectorValue": "切换作品",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12804,6 +13111,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "新建章节",
+      "stableSelectorValue": "新建章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12854,6 +13162,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12904,6 +13213,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "打开项目",
+      "stableSelectorValue": "打开项目",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -12954,6 +13264,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13004,6 +13315,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "打开已有 Writing Buddy 作品",
+      "stableSelectorValue": "打开已有 Writing Buddy 作品",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13054,6 +13366,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13104,6 +13417,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13154,6 +13468,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13204,6 +13519,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13254,6 +13570,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13304,6 +13621,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭快速记录",
+      "stableSelectorValue": "关闭快速记录",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13354,6 +13672,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "section",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13404,6 +13723,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "记录内容",
+      "stableSelectorValue": "记录内容",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13454,6 +13774,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13504,6 +13825,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13554,6 +13876,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "查看证据",
+      "stableSelectorValue": "查看证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13604,6 +13927,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "关闭 AI 关系助手",
+      "stableSelectorValue": "关闭 AI 关系助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13654,6 +13978,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13704,6 +14029,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "select",
       "accessibleName": "选择关系分析章节",
+      "stableSelectorValue": "选择关系分析章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13754,6 +14080,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13804,6 +14131,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13854,6 +14182,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "g",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13905,6 +14234,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "AI 关系助手",
+      "stableSelectorValue": "AI 关系助手",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -13955,6 +14285,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "关系矩阵",
+      "stableSelectorValue": "关系矩阵",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14005,6 +14336,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "重试",
+      "stableSelectorValue": "重试",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14055,6 +14387,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "input",
       "accessibleName": "叙事位置",
+      "stableSelectorValue": "叙事位置",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14105,6 +14438,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14155,6 +14489,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14205,6 +14540,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14255,6 +14591,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14305,6 +14642,7 @@
       "featureId": "FEATURE-03-03",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14356,6 +14694,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "div",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14407,6 +14746,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "保存资料",
+      "stableSelectorValue": "保存资料",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14457,6 +14797,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "关闭标签 (Ctrl+W)",
+      "stableSelectorValue": "关闭标签 (Ctrl+W)",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14507,6 +14848,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14558,6 +14900,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "打开 AI 设置",
+      "stableSelectorValue": "打开 AI 设置",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14608,6 +14951,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "回到正文处理",
+      "stableSelectorValue": "回到正文处理",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14658,6 +15002,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14708,6 +15053,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "另存副本",
+      "stableSelectorValue": "另存副本",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14758,6 +15104,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "重试",
+      "stableSelectorValue": "重试",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14808,6 +15155,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "隐藏当前场景条",
+      "stableSelectorValue": "隐藏当前场景条",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14858,6 +15206,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "显示当前场景条",
+      "stableSelectorValue": "显示当前场景条",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14908,6 +15257,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "本章场景",
+      "stableSelectorValue": "本章场景",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -14956,6 +15306,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15006,6 +15357,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "解除当前场景关联",
+      "stableSelectorValue": "解除当前场景关联",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15056,6 +15408,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "完成当前场景",
+      "stableSelectorValue": "完成当前场景",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15106,6 +15459,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "写入所选字段",
+      "stableSelectorValue": "写入所选字段",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15156,6 +15510,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "放弃候选",
+      "stableSelectorValue": "放弃候选",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15206,6 +15561,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15256,6 +15612,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15306,6 +15663,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "清除筛选",
+      "stableSelectorValue": "清除筛选",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15356,6 +15714,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15406,6 +15765,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15456,6 +15816,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15506,6 +15867,7 @@
       "featureId": "FEATURE-02-12",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15556,6 +15918,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "记录想法",
+      "stableSelectorValue": "记录想法",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15606,6 +15969,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15656,6 +16020,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15706,6 +16071,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "details",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15756,6 +16122,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "div",
       "accessibleName": "AI 选区操作",
+      "stableSelectorValue": "AI 选区操作",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15806,6 +16173,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "summary",
       "accessibleName": "AI 选区操作",
+      "stableSelectorValue": "AI 选区操作",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15856,6 +16224,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15906,6 +16275,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "拒绝",
+      "stableSelectorValue": "拒绝",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -15956,6 +16326,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "接受编辑内容",
+      "stableSelectorValue": "接受编辑内容",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16006,6 +16377,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16056,6 +16428,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16106,6 +16479,7 @@
       "featureId": "FEATURE-09-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16156,6 +16530,7 @@
       "featureId": "FEATURE-09-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16206,6 +16581,7 @@
       "featureId": "FEATURE-09-01",
       "controlType": "button",
       "accessibleName": "AI 与模型",
+      "stableSelectorValue": "AI 与模型",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16256,6 +16632,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-chapter-drag",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16304,6 +16681,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-chapter-open",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16354,6 +16732,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-scene-open",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16404,6 +16783,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-scene-drag",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16452,6 +16832,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16500,6 +16881,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16550,6 +16932,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-volume-toggle",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16600,6 +16983,7 @@
       "featureId": "FEATURE-06-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "project-structure-volume-drag",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16648,6 +17032,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "打开待整理箱",
+      "stableSelectorValue": "打开待整理箱",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16698,6 +17083,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "显示或隐藏任务区 (Ctrl+J)",
+      "stableSelectorValue": "显示或隐藏任务区 (Ctrl+J)",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16748,6 +17134,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "快速记录 (Ctrl+Shift+Space)",
+      "stableSelectorValue": "快速记录 (Ctrl+Shift+Space)",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16798,6 +17185,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "AI 物品助手",
+      "stableSelectorValue": "AI 物品助手",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16848,6 +17236,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16898,6 +17287,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "button",
       "accessibleName": "用 AI 创建物品",
+      "stableSelectorValue": "用 AI 创建物品",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16948,6 +17338,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "input",
       "accessibleName": "物品叙事位置",
+      "stableSelectorValue": "物品叙事位置",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -16998,6 +17389,7 @@
       "featureId": "FEATURE-03-08",
       "controlType": "input",
       "accessibleName": "搜索物品",
+      "stableSelectorValue": "搜索物品",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17048,6 +17440,7 @@
       "featureId": "FEATURE-03-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17098,6 +17491,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17148,6 +17542,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "关闭 AI 对照审查",
+      "stableSelectorValue": "关闭 AI 对照审查",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17198,6 +17593,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17248,6 +17644,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17298,6 +17695,7 @@
       "featureId": "FEATURE-04-02",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17348,6 +17746,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17398,6 +17797,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "打开审校中心",
+      "stableSelectorValue": "打开审校中心",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17448,6 +17848,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "检查 AI 设置",
+      "stableSelectorValue": "检查 AI 设置",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17498,6 +17899,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "创建快照并确认",
+      "stableSelectorValue": "创建快照并确认",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17548,6 +17950,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-generate",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17598,6 +18001,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-cancel",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17648,6 +18052,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-resource-type",
       "selectorStrategy": "label-or-id",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17698,6 +18103,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "story-kernel-generation-instruction",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17748,6 +18154,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17799,6 +18206,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "重新检查",
+      "stableSelectorValue": "重新检查",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17849,6 +18257,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "重新检查",
+      "stableSelectorValue": "重新检查",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17899,6 +18308,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "article",
       "accessibleName": "",
+      "stableSelectorValue": "outline-story-card",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -17951,6 +18361,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-quality-run-ai",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18001,6 +18412,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "撤销大纲改动",
+      "stableSelectorValue": "outline-undo",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18051,6 +18463,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-node-lock-toggle",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18101,6 +18514,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "检查大纲",
+      "stableSelectorValue": "outline-check-local",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18151,6 +18565,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭创建确认",
+      "stableSelectorValue": "outline-materialization-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18201,6 +18616,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭拆分预览",
+      "stableSelectorValue": "outline-hierarchy-preview-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18251,6 +18667,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-candidate-apply",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18301,6 +18718,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-card-move-up",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18351,6 +18769,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭局部候选审核",
+      "stableSelectorValue": "outline-candidate-review-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18401,6 +18820,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-card-move-down",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18451,6 +18871,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-generate-alternatives",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18501,6 +18922,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "关闭大纲检查",
+      "stableSelectorValue": "outline-quality-close",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18551,6 +18973,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-hierarchy-preview-confirm",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18601,6 +19024,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "删除节点",
+      "stableSelectorValue": "outline-delete-node",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18651,6 +19075,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-materialization-confirm",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18701,6 +19126,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "·",
+      "stableSelectorValue": "outline-candidate-tab",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18751,6 +19177,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "返回检查",
+      "stableSelectorValue": "outline-materialization-back",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18801,6 +19228,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "新增节点",
+      "stableSelectorValue": "outline-add-node",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18851,6 +19279,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-tree-node",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18903,6 +19332,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "保存大纲",
+      "stableSelectorValue": "outline-save",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -18953,6 +19383,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-hierarchy-primary-action",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19003,6 +19434,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-candidate-undo",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19053,6 +19485,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "选择故事总纲",
+      "stableSelectorValue": "outline-tree-root",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19103,6 +19536,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "outline-quality-rerun-local",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19153,6 +19587,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "button",
       "accessibleName": "取消",
+      "stableSelectorValue": "outline-hierarchy-preview-cancel",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19203,6 +19638,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "拆分候选数量",
+      "stableSelectorValue": "outline-hierarchy-count",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19253,6 +19689,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "outline-candidate-field-toggle",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19303,6 +19740,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "outline-node-singleline-field",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19351,6 +19789,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "outline-root-singleline-field",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19399,6 +19838,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "select",
       "accessibleName": "节点状态",
+      "stableSelectorValue": "outline-node-status",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19449,6 +19889,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "select",
       "accessibleName": "局部生成策略",
+      "stableSelectorValue": "outline-generation-strategy",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19499,6 +19940,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "outline-node-multiline-field",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19547,6 +19989,7 @@
       "featureId": "FEATURE-02-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "outline-root-multiline-field",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19595,6 +20038,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19645,6 +20089,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19695,6 +20140,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19745,6 +20191,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "速览",
+      "stableSelectorValue": "速览",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19795,6 +20242,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "取消发布确认",
+      "stableSelectorValue": "取消发布确认",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19845,6 +20293,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "恢复所选版本",
+      "stableSelectorValue": "恢复所选版本",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19895,6 +20344,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "忽略",
+      "stableSelectorValue": "忽略",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19945,6 +20395,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "关闭任务区",
+      "stableSelectorValue": "关闭任务区",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -19995,6 +20446,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20045,6 +20497,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "备份记录",
+      "stableSelectorValue": "备份记录",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20095,6 +20548,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "恢复状态",
+      "stableSelectorValue": "恢复状态",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20145,6 +20599,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "已忽略",
+      "stableSelectorValue": "已忽略",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20193,6 +20648,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "button",
       "accessibleName": "全部",
+      "stableSelectorValue": "全部",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20241,6 +20697,7 @@
       "featureId": "FEATURE-04-01",
       "controlType": "select",
       "accessibleName": "正式资料类型",
+      "stableSelectorValue": "正式资料类型",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20291,6 +20748,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20341,6 +20799,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20391,6 +20850,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20441,6 +20901,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "选择全部可写项",
+      "stableSelectorValue": "选择全部可写项",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20491,6 +20952,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "确认写入所选事件与因果",
+      "stableSelectorValue": "确认写入所选事件与因果",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20541,6 +21003,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "查看原文证据",
+      "stableSelectorValue": "查看原文证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20591,6 +21054,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "关闭 AI 故事进程助手",
+      "stableSelectorValue": "关闭 AI 故事进程助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20641,6 +21105,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20691,6 +21156,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "select",
       "accessibleName": "故事进程基准章节",
+      "stableSelectorValue": "故事进程基准章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20741,6 +21207,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20791,6 +21258,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20842,6 +21310,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "AI 从正文提取",
+      "stableSelectorValue": "AI 从正文提取",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20892,6 +21361,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "重试",
+      "stableSelectorValue": "重试",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20942,6 +21412,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "列表替代视图",
+      "stableSelectorValue": "列表替代视图",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -20992,6 +21463,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "叙事顺序",
+      "stableSelectorValue": "叙事顺序",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21042,6 +21514,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "手动添加",
+      "stableSelectorValue": "手动添加",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21092,6 +21565,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "放大时间线",
+      "stableSelectorValue": "放大时间线",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21142,6 +21616,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "select",
       "accessibleName": "轨道类型",
+      "stableSelectorValue": "轨道类型",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21192,6 +21667,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21242,6 +21718,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "AI 连接测试",
+      "stableSelectorValue": "AI 连接测试",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21292,6 +21769,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21342,6 +21820,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21392,6 +21871,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "恢复当前工作区默认布局",
+      "stableSelectorValue": "恢复当前工作区默认布局",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21442,6 +21922,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "summary",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21490,6 +21971,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21540,6 +22022,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭撤销提示",
+      "stableSelectorValue": "关闭撤销提示",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21590,6 +22073,7 @@
       "featureId": "FEATURE-03-10",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21641,6 +22125,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21691,6 +22176,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "证据",
+      "stableSelectorValue": "证据",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21741,6 +22227,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "从正文提取",
+      "stableSelectorValue": "从正文提取",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21791,6 +22278,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "关闭 AI 世界观助手",
+      "stableSelectorValue": "关闭 AI 世界观助手",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21841,6 +22329,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21891,6 +22380,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "select",
       "accessibleName": "选择世界观分析章节",
+      "stableSelectorValue": "选择世界观分析章节",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21941,6 +22431,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -21991,6 +22482,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "重试",
+      "stableSelectorValue": "重试",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22041,6 +22533,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "AI 世界观助手",
+      "stableSelectorValue": "AI 世界观助手",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22091,6 +22584,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22141,6 +22635,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "用 AI 创建世界资料",
+      "stableSelectorValue": "用 AI 创建世界资料",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22191,6 +22686,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "世界规则",
+      "stableSelectorValue": "世界规则",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22241,6 +22737,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22291,6 +22788,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-save",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22339,6 +22837,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "form",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-editor-form",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22389,6 +22888,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-title",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22439,6 +22939,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "input",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-scope",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22489,6 +22990,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "select",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-category",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22539,6 +23041,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-consequences",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22589,6 +23092,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-exceptions",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22639,6 +23143,7 @@
       "featureId": "FEATURE-03-05",
       "controlType": "textarea",
       "accessibleName": "",
+      "stableSelectorValue": "world-rule-statement",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22689,6 +23194,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "三种走向",
+      "stableSelectorValue": "writer-three-directions",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22739,6 +23245,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "继续本段",
+      "stableSelectorValue": "writer-continue-paragraph",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22789,6 +23296,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "整理本章",
+      "stableSelectorValue": "writer-organize-chapter",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22839,6 +23347,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "完成场景",
+      "stableSelectorValue": "writer-finish-scene",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22889,6 +23398,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "上一章",
+      "stableSelectorValue": "writer-previous-chapter",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22939,6 +23449,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "writer-save",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -22989,6 +23500,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "writer-density-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23039,6 +23551,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "导出章节",
+      "stableSelectorValue": "writer-export-chapter",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23089,6 +23602,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "writer-chapter-status-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23139,6 +23653,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "下一章",
+      "stableSelectorValue": "writer-next-chapter",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23189,6 +23704,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "summary",
       "accessibleName": "",
+      "stableSelectorValue": "writer-chapter-status",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23239,6 +23755,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "summary",
       "accessibleName": "更多章节操作",
+      "stableSelectorValue": "writer-more-actions",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23287,6 +23804,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23337,6 +23855,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "打开结果",
+      "stableSelectorValue": "打开结果",
       "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23387,6 +23906,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "关闭作者导航器",
+      "stableSelectorValue": "关闭作者导航器",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23437,6 +23957,7 @@
       "featureId": "FEATURE-08-01",
       "controlType": "input",
       "accessibleName": "作者导航器",
+      "stableSelectorValue": "作者导航器",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23488,6 +24009,7 @@
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
+      "stableSelectorValue": "",
       "selectorStrategy": "MISSING_STABLE_SELECTOR",
       "visibleWhen": [
         "rendered source branch is active"

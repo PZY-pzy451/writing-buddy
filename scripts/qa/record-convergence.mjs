@@ -1600,6 +1600,46 @@ const report = {
 				qaScriptTests: 26,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-TRACEABILITY-EVENT-INSPECTOR-CONVERGENCE-054',
+			summary: 'Traceability discarded exact data-testid evidence while the event inspector collapsed controls, multiplied save/close transitions and hid persistence failures.',
+			before: {
+				sourceControls: 6,
+				sourceMappedControls: 2,
+				sourceMissingStableSelectors: 4,
+				actualSourceOperations: 7,
+				repeatedActions: 100,
+				saveDispatches: 100,
+				closeDispatches: 100,
+				failedSaveFeedbackVisible: false,
+				dataTestIdEvidenceAccepted: false,
+				globalControls: 471,
+				globalStates: 10362,
+				globalMissingStableSelectors: 134,
+				totalUnmapped: 11108
+			},
+			after: {
+				sourceControls: 7,
+				sourceMappedControls: 7,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 1,
+				repeatedActions: 100,
+				saveDispatches: 1,
+				closeDispatches: 1,
+				failedSaveFeedbackVisible: true,
+				retryAfterFailure: true,
+				dataTestIdEvidenceAccepted: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 6,
+				focusedTests: 20,
+				impactTests: 15,
+				qaScriptTests: 26,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
