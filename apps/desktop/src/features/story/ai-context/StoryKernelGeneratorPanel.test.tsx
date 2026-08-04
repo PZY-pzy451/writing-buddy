@@ -307,6 +307,41 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(runGeneration).not.toHaveBeenCalled();
 	});
 
+	it('exposes stable selectors without replacing author-facing control names', async () => {
+		const runGeneration = vi.fn(() => Promise.resolve(generatedCharacterResponse()));
+		render(
+			<StoryKernelGeneratorPanel
+				projectRoot="D:/Novel"
+				resourceId="chapter-001"
+				sourceRevision={3}
+				content="林越走进车站。"
+				repository={new DesktopStoryRepository(
+					'D:/Novel',
+					new MemoryStoryGateway([])
+				)}
+				store={new StoryKernelGenerationStore('D:/Novel', new MemoryStorage())}
+				runGeneration={runGeneration}
+			/>
+		);
+
+		expect(screen.getByRole('textbox', { name: '生成要求' }))
+			.toHaveAttribute('data-testid', 'story-kernel-generation-instruction');
+		for (const checkbox of screen.getAllByRole('checkbox')) {
+			expect(checkbox).toHaveAttribute('name', 'story-kernel-resource-type');
+		}
+		const generate = screen.getByRole('button', { name: '生成 Story Kernel 候选' });
+		expect(generate).toHaveAttribute('data-testid', 'story-kernel-generate');
+
+		await act(() => {
+			fireEvent.click(generate);
+			return Promise.resolve();
+		});
+		const candidate = await screen.findByRole('checkbox', { name: '选择 林越' });
+		expect(candidate).toHaveAttribute('name', 'story-kernel-candidate');
+		expect(screen.getByRole('button', { name: '查看结构' }))
+			.toHaveAttribute('data-testid', 'story-kernel-candidate-structure-toggle');
+	});
+
 	it('blocks one hundred repeated generation clicks before the first stream event', async () => {
 		let resolveGeneration: (value: string) => void = () => undefined;
 		const runGeneration = vi.fn(() => new Promise<string>(resolve => {
@@ -375,6 +410,7 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
 		const cancelButton = await screen.findByRole('button', { name: '取消' });
+		expect(cancelButton).toHaveAttribute('data-testid', 'story-kernel-cancel');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				cancelButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));

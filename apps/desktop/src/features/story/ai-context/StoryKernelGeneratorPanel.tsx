@@ -445,6 +445,7 @@ function StoryKernelGeneratorPanelContent(
 			<label className="kernel-generator-instruction">
 				<span>生成要求</span>
 				<textarea
+					data-testid="story-kernel-generation-instruction"
 					value={instruction}
 					maxLength={2_000}
 					disabled={generating || Boolean(busyAction)}
@@ -459,6 +460,7 @@ function StoryKernelGeneratorPanelContent(
 						<label key={type}>
 							<input
 								type="checkbox"
+								name="story-kernel-resource-type"
 								checked={targetTypes.includes(type)}
 								onChange={() => toggleTargetType(type)}
 							/>
@@ -472,6 +474,7 @@ function StoryKernelGeneratorPanelContent(
 				<button
 					className="primary-button"
 					type="button"
+					data-testid="story-kernel-generate"
 					disabled={
 						props.readOnly
 						|| generating
@@ -489,6 +492,7 @@ function StoryKernelGeneratorPanelContent(
 				<button
 					className="secondary-button"
 					type="button"
+					data-testid="story-kernel-cancel"
 					disabled={cancelRequested}
 					onClick={() => void cancel()}
 				>
@@ -623,6 +627,7 @@ export function KernelCandidateCard(props: {
 				<label>
 					<input
 						type="checkbox"
+						name="story-kernel-candidate"
 						checked={props.selected}
 						disabled={!confirmable || props.busy}
 						onChange={props.onToggle}
@@ -684,6 +689,7 @@ export function KernelCandidateCard(props: {
 			<div className="kernel-candidate-actions">
 				<button
 					type="button"
+					data-testid="story-kernel-candidate-structure-toggle"
 					aria-expanded={expanded}
 					onClick={() => setExpanded(value => !value)}
 				>

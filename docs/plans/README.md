@@ -72,6 +72,7 @@
 - [AI drawer preview rejection single-commit QA](./070-ai-drawer-preview-rejection-single-commit-qa.md)
 - [AI drawer applying close protection QA](./071-ai-drawer-applying-close-protection-qa.md)
 - [AI drawer applying open-action isolation QA](./072-ai-drawer-applying-open-action-isolation-qa.md)
+- [Story Kernel stable control selectors QA](./073-story-kernel-stable-control-selectors-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
