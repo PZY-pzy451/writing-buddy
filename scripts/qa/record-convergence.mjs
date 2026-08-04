@@ -589,6 +589,33 @@ const report = {
 				impactedTests: 70,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-MONACO-UNDO-RESOURCE-ISOLATION-022',
+			summary: 'The one-click undo receipt for a committed AI manuscript draft was keyed only by visible content, so another chapter, project or recreated Monaco model with matching text could make a stale undo action target the active editor.',
+			before: {
+				repeatedActions: 100,
+				undoActions: 100,
+				contentOnlyIdentity: true,
+				crossResourceCollisionAccepted: true,
+				recreatedModelAccepted: true,
+				crossProjectCollisionAccepted: true,
+				stableAccessibleName: false
+			},
+			after: {
+				repeatedActions: 100,
+				undoActions: 1,
+				projectResourceModelContentIdentity: true,
+				crossResourceCollisionRejected: true,
+				recreatedModelRejected: true,
+				crossProjectCollisionRejected: true,
+				identityChangeDismissesNotice: true,
+				failureLocalizedAndRetryable: true,
+				stableAccessibleName: true,
+				focusedTests: 7,
+				impactedTests: 81,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

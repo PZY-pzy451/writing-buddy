@@ -13468,710 +13468,6 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISIBLE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-HIDDEN",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ENABLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DISABLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-POINTER",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-KEYBOARD",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-IN",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-OUT",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-REPEAT",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DEDUPLICATION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-LOADING",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-SUCCESS",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FAILURE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-CANCELLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-OFFLINE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERMISSION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERSISTENCE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-RESTART",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISUAL",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-UNDO",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISIBLE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-HIDDEN",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ENABLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DISABLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-POINTER",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-KEYBOARD",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-IN",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-OUT",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-REPEAT",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DEDUPLICATION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-LOADING",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-SUCCESS",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FAILURE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-CANCELLED",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-OFFLINE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERMISSION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERSISTENCE",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-RESTART",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISUAL",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-UNDO",
-      "featureId": "FEATURE-01-03",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "controlIds": [
-        "CTRL-CHAPTEREDITOR-BUTTON-DBE34330"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
       "id": "STATE-CHAPTEREDITOR-EDITOR-B828273B-VISIBLE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
@@ -49009,6 +48305,710 @@
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
         "CTRL-INLINEDRAFTCARD-TEXTAREA-78B22A07"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISIBLE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-HIDDEN",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ENABLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DISABLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-POINTER",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-KEYBOARD",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-IN",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-OUT",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-REPEAT",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DEDUPLICATION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-LOADING",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-SUCCESS",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FAILURE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-CANCELLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-OFFLINE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERMISSION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERSISTENCE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-RESTART",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISUAL",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-UNDO",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISIBLE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-HIDDEN",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ENABLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DISABLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-POINTER",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-KEYBOARD",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-IN",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-OUT",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-REPEAT",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DEDUPLICATION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-LOADING",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-SUCCESS",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FAILURE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-CANCELLED",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-OFFLINE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERMISSION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERSISTENCE",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-RESTART",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISUAL",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-UNDO",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlIds": [
+        "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9"
       ],
       "name": "撤销",
       "dimension": "UNDO",

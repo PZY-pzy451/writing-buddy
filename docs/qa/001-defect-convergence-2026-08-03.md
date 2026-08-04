@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `21d9eccae8c8656ec680b22eb8bf0311f1a09cce`
+- Tested source: `209db2938d28d6205d4168f6f46693b365cdd76a`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -402,6 +402,32 @@ failed while installing its process shim before page control. The live conflict
 journey is therefore recorded as blocked test infrastructure, not a product
 pass, and no product-only browser backdoor was added.
 
+### QA-MONACO-UNDO-RESOURCE-ISOLATION-022
+
+The AI manuscript commit notice exposed a cross-resource undo hazard. Its receipt
+stored only post-insertion text and UI copy, and its enabled state compared only
+the active session text. A behavior-preserving extraction produced a three-failure
+red baseline: another chapter with identical text, a recreated Monaco model and
+another project with colliding values were all accepted as valid undo targets.
+One hundred same-tick clicks could also enter the asynchronous handler before a
+rendered busy state disabled the button.
+
+The receipt now binds project, resource, Monaco model URI and committed content.
+The rendered banner dismisses itself when identity changes, leaves ordinary text
+edits to Monaco's native undo stack, and acquires a synchronous action lock before
+the first awaited operation. One hundred clicks perform one undo action; a failed
+action shows localized retry feedback and releases the lock. The parent validates
+the live editor model again before triggering undo and removes the one-click
+receipt before its restored content enters normal save recovery.
+
+The four predicate tests moved from three failures to green; the complete focused
+set passed 7/7 and the seven-file editor/save/session/workspace/shortcut impact set
+passed 81/81. Full Node 24 acceptance passed 178 files / 822 tests, lint,
+typecheck and the production build. Rust passed 77 tests with two reasoned ignores.
+Inventory caught the dynamic undo text as one new missing stable selector; an
+explicit `aria-label="撤销 AI 正文写入"` restored the global count from 222 to 221,
+and the full frontend gate was rerun after that correction.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -504,11 +530,12 @@ console claims.
 | Live persisted Story reopen journey | Existing `黄铜钥匙` Story tab survived same-project reopen and keyboard activation; tab/heading/content remained aligned at 420 px; no overflow; 0 console warnings/errors |
 | External manuscript conflict lifecycle | Eight red-first failures cover 100 verification/overwrite actions, old-resource and post-save stale reads, in-flight edits, retry and truthful save-copy cancellation; 35 focused and 70 impacted tests passed |
 | Live external-conflict journey | Blocked before page control by in-app browser runtime initialization; deterministic rendered-dialog contracts pass and no product test backdoor was added |
-| Ledger/inventory reconciliation | 894 / 894 cases; 815 frontend + 79 native; 892 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI draft undo resource isolation | Three red identity failures plus 100-click pressure; exact project/resource/model/content targeting, stale dismissal, localized retry and stable accessible name now pass 7 focused and 81 impacted tests |
+| Ledger/inventory reconciliation | 901 / 901 cases; 822 frontend + 79 native; 899 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 176 files / 815 tests and production build passed |
-| Static/runtime test reconciliation | 815 / 815; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 822 tests and production build passed |
+| Static/runtime test reconciliation | 822 / 822; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -548,7 +575,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,075 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,063 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

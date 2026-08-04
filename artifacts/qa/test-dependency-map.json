@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 742,
-    "edgeCount": 1299,
+    "nodeCount": 746,
+    "edgeCount": 1305,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -111,6 +111,10 @@
       "apps/desktop/src/editor/ChapterEditor.tsx",
       "apps/desktop/src/editor/ExternalConflictDialog.test.tsx",
       "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+      "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+      "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+      "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
       "apps/desktop/src/editor/monacoBootstrap.ts",
       "apps/desktop/src/features/ai/AiExperience.test.tsx",
       "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
@@ -1305,6 +1309,16 @@
       },
       {
         "from": "apps/desktop/src/editor/ChapterEditor.tsx",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/ChapterEditor.tsx",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/ChapterEditor.tsx",
         "to": "apps/desktop/src/features/ai/contextual/ContextualActionResolver.ts",
         "kind": "static-import"
       },
@@ -1441,6 +1455,26 @@
       {
         "from": "apps/desktop/src/editor/ExternalConflictDialog.tsx",
         "to": "apps/desktop/src/app/store.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+        "to": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "kind": "static-import"
       },
       {
@@ -7667,6 +7701,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -7908,8 +7944,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "5D9915A6870B5C50474C7BAB7E6C020EDB821069357D99855A507DEC2E57859F",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "A9C747C3BFFEC269EB69C3D64E0D6FEE2A243968CF0F6A2C34368AD18AB11E18",
       "testImplementationFingerprint": "13F2C91C567A35323BA51983E23553FBE1EBAADD53A358F94BB2AF5049A335D4"
     },
     {
@@ -8085,6 +8121,43 @@
       "sourceFingerprint": "FBDC6BBC4431028C4FB62585D29A1B54291B9BD4D341110140F603DC7B123C56",
       "dependencyFingerprint": "CE9FC887E679D401A3D484C8905A03FE59C09B264429AE16469464B3E2C846A0",
       "testImplementationFingerprint": "C229AE9A3C9DFEBB2A3534EADB8E0F497AEDAA2EC812B40EC30149C95B55F732"
+    },
+    {
+      "testSource": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+      "testCaseIds": [
+        "TC-DISCOVERED-2C9878106A",
+        "TC-DISCOVERED-9B39D9EB9D",
+        "TC-DISCOVERED-B07F79253C"
+      ],
+      "directDependencies": [
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts"
+      ],
+      "transitiveDependencies": [
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts"
+      ],
+      "sourceFingerprint": "CB747D5496B381C9B0A5CC171476E4A0AAD63A0F6333D789E295EF809D11960E",
+      "dependencyFingerprint": "5330E6191CF1C1D86E2E7552660E2D1EF04F6C30D75FC24A0C271D0EF7C54213",
+      "testImplementationFingerprint": "EC65886629CE55D3A33AA1A8209F7E282EB6A2872165ED5422C697448CD8736C"
+    },
+    {
+      "testSource": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "testCaseIds": [
+        "TC-DISCOVERED-2608ADA31F",
+        "TC-DISCOVERED-2EC23CC71A",
+        "TC-DISCOVERED-356A32B092",
+        "TC-DISCOVERED-BDC6A1F431"
+      ],
+      "directDependencies": [
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts"
+      ],
+      "transitiveDependencies": [
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts"
+      ],
+      "sourceFingerprint": "4AECB4A18767A7B90150C47BD04F127C03CB9048B8C212841D480EF069B57A8D",
+      "dependencyFingerprint": "099D4CAEF8B7D7FA07999A3B1BC2AF84BC1CE668E36BAC493BB09570689C3303",
+      "testImplementationFingerprint": "03C21EA02E3257E5CFDC73E7A9E2CD6655D2F4F368B56703DE7DED821B6B27BC"
     },
     {
       "testSource": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -8846,6 +8919,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -9087,8 +9162,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "77ABC3FEEB15665F6A23B06C6986CC8A8BB4AE7699CD2500E6AB124D0C988BA1",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "28B2B55795AD9E78313F73E34B067B9CF2E8B614CE89BF56B758B0C0300BCEE0",
       "testImplementationFingerprint": "155AF7E394E3BACE53B7EE24BCBA21174DF87225AD3A16AF4A1DC820C969AFD4"
     },
     {
@@ -10668,6 +10743,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -10909,8 +10986,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "2660D50B3DAC58A250CB1B9F16BEE8EDAF12DD4F426EBA7A76523D4EA5862DAF",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "719C68110F7A39515024AAA49430E77B1D7DF89A7BC371FB71A720B5E91B09DC",
       "testImplementationFingerprint": "D47B5A5D24EE9431A0BF7999A7AB63122DAF36AC3B98D10CE4B6F3A2A7FB188A"
     },
     {
@@ -11007,6 +11084,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -11248,8 +11327,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "11A3459CC789BA486D06DBE42461803CB2B0F418B1270E2573318B03E3222A21",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "8DBBEA138EE6DEBB18468B230D96FD5807A426D4AF43312527CDFFA26101C3BB",
       "testImplementationFingerprint": "4EE43EBCA730C3B349D89C9A23727684F9E6271C9CDC330F75A2FF7DCBF19DD8"
     },
     {
@@ -11347,6 +11426,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -11588,8 +11669,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "53F4E65BE702D85EDC132C6D4F20842EDCF0311CCF5015FC44E421B76A19CB65",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "0A9E5B6A8CEFA5A665D08C0523892CC78F802E4A0E2FA288B70E9C6E256E225F",
       "testImplementationFingerprint": "58C03DEE2DA94C5F55C8609B6F4043420559806B969DE765D10E6AF9A6A3DA00"
     },
     {
@@ -11856,6 +11937,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -12097,8 +12180,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "BC35E50CA77E344B75F98EE8A66E98C34BC637D1ABD321DC51D9E5CA225AFBA9",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "B0DA57DDE60B1D412EEB2BDCB67F06C3E46A7D00EDB88DEDC1FFCC8EDB300EEC",
       "testImplementationFingerprint": "D686B96C45A0AEA5186DE801CB2F4C1B59F503CCEC9877E274B2F4AC4AF1F444"
     },
     {
@@ -12489,6 +12572,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -12730,8 +12815,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "057CD43EE8A20F0CF6484151C94939C16B49D9D39E892ECFF0653164CA00C49B",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "1579A9A4771153E5D73224AD5521A8F4B1605219ABB3986EC325806884ED5E6F",
       "testImplementationFingerprint": "8EB0E3F11A009C652639E429286FC4C0B897C0BE22DBF15F9BA29CCDC3C1A238"
     },
     {
@@ -17464,6 +17549,8 @@
         "apps/desktop/src/assistant/AssistantPanel.tsx",
         "apps/desktop/src/editor/ChapterEditor.tsx",
         "apps/desktop/src/editor/ExternalConflictDialog.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+        "apps/desktop/src/editor/InlineDraftCommitNoticeModel.ts",
         "apps/desktop/src/features/ai/AiPlaygroundPage.tsx",
         "apps/desktop/src/features/ai/AiSettingsSection.tsx",
         "apps/desktop/src/features/ai/context/ContextPreview.css",
@@ -17705,8 +17792,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "00F9D15DCAEE4E7D581D9869E5DA137875148F929E0796D2BDC72FCD4DD12A15",
-      "dependencyFingerprint": "92D2C1524995CA5271AC0CA1D03BCAA289491FEC677E9965D8613CEE85EC8692",
+      "sourceFingerprint": "DCF54431A341086A3C4B0B57B4127C6EF5E07835BD5F48D7C703B888F20CCCF0",
+      "dependencyFingerprint": "6A702CB889373E4DF46B667BFCB97C1FEF06E263FC03247065318FEC0B427F54",
       "testImplementationFingerprint": "3B708DF7A4C1F089B23C053C08E8C50078ACB221C4D5AEFFC11BA16EC3039C8A"
     },
     {

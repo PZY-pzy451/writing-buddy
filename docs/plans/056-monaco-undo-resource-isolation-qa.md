@@ -51,3 +51,18 @@ Execution may pass when all selected checks pass. Product/release remains
 `PARTIAL` until strict traceability, real-provider smoke and packaging gates are
 complete.
 
+## Result
+
+- The behavior-preserving predicate extraction produced a 3-failure red baseline
+  in four identity tests: cross-resource, recreated-model and cross-project
+  collisions were all accepted when content matched.
+- The repaired predicate and rendered banner passed 7/7 focused tests. The
+  editor/save/session/workspace/shortcut impact set passed 81/81.
+- One hundred same-tick clicks now call the undo action once; failure is localized
+  and releases for an explicit retry. Identity changes dismiss the stale notice.
+- Full Node 24 acceptance passed 178 files / 822 tests, lint, typecheck and the
+  production build. Cargo collected 79, passed 77 and retained two reasoned
+  ignores.
+- Inventory initially exposed one new missing stable selector for the dynamic
+  button label. Adding `aria-label="撤销 AI 正文写入"` restored the global count
+  from 222 to the prior 221, and the complete frontend gate was rerun afterward.

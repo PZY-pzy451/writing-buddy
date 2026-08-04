@@ -3402,284 +3402,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7",
-                  "level": "L4",
-                  "name": "关闭 AI 写入提示",
-                  "states": [
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-CHAPTEREDITOR-BUTTON-DBE34330",
-                  "level": "L4",
-                  "name": "撤销",
-                  "states": [
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHAPTEREDITOR-BUTTON-DBE34330-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-CHAPTEREDITOR-EDITOR-B828273B",
                   "level": "L4",
                   "name": "Editor",
@@ -4229,6 +3951,284 @@
                     },
                     {
                       "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF",
+                  "level": "L4",
+                  "name": "关闭 AI 写入提示",
+                  "states": [
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9",
+                  "level": "L4",
+                  "name": "撤销 AI 正文写入",
+                  "states": [
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -63977,6 +63977,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2608ADA31F",
+      "title": "rejects another project with colliding resource and content values",
+      "declarationTitle": "rejects another project with colliding resource and content values",
+      "declarationLine": 47,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-262BD96F58",
       "title": "keeps a missing resource explicitly recoverable and recheckable",
       "declarationTitle": "keeps a missing resource explicitly recoverable and recheckable",
@@ -64499,6 +64517,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2C9878106A",
+      "title": "dismisses and disables a stale notice after a resource identity change",
+      "declarationTitle": "dismisses and disables a stale notice after a resource identity change",
+      "declarationLine": 24,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-2C9C384AA8",
       "title": "runs local rules first, separates AI suggestions, locates nodes, and never edits",
       "declarationTitle": "runs local rules first, separates AI suggestions, locates nodes, and never edits",
@@ -64655,6 +64691,24 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2EC23CC71A",
+      "title": "rejects another chapter even when its visible text is identical",
+      "declarationTitle": "rejects another chapter even when its visible text is identical",
+      "declarationLine": 32,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -64983,6 +65037,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-356A32B092",
+      "title": "rejects a recreated Monaco model for the same resource",
+      "declarationTitle": "rejects a recreated Monaco model for the same resource",
+      "declarationLine": 40,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -71023,6 +71095,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-9B39D9EB9D",
+      "title": "localizes failure, releases the guard and permits an explicit retry",
+      "declarationTitle": "localizes failure, releases the guard and permits an explicit retry",
+      "declarationLine": 82,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-9BC3E783F8",
       "title": "evaluates chapter target case-3",
       "declarationTitle": "evaluates chapter target %o",
@@ -72115,6 +72205,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B07F79253C",
+      "title": "turns one hundred same-tick clicks into one undo action",
+      "declarationTitle": "turns one hundred same-tick clicks into one undo action",
+      "declarationLine": 55,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B0AAB4171A",
       "title": "opens the AI worldbuilding workflow and renders typed location candidates",
       "declarationTitle": "opens the AI worldbuilding workflow and renders typed location candidates",
@@ -72757,6 +72865,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-BDC6A1F431",
+      "title": "allows one-click undo only for the exact project, resource, model and content",
+      "declarationTitle": "allows one-click undo only for the exact project, resource, model and content",
+      "declarationLine": 23,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeModel.test.ts",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

@@ -4,10 +4,20 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-User-centered defect convergence is complete through the external-conflict
-lifecycle on
+User-centered defect convergence is complete through the AI-draft undo
+resource-isolation lifecycle on
 `codex/full-regression-gates-a-e-v2` against source
-`21d9eccae8c8656ec680b22eb8bf0311f1a09cce`.
+`209db2938d28d6205d4168f6f46693b365cdd76a`.
+
+- Closed the P0 Undo / Redo cross-resource boundary. The one-click AI-draft
+  receipt now binds project, resource, Monaco model URI and committed content;
+  switching identity dismisses it and 100 same-tick clicks perform one action.
+- The old predicate failed three of four identity contracts. The repaired model
+  and rendered banner passed 7/7; the editor/save/session/workspace/shortcut
+  impact set passed 81/81. Failure feedback is localized and retryable.
+- The first inventory pass caught a new missing stable selector caused by the
+  dynamic undo label. A stable accessible name restored the global selector gap
+  from 222 to 221 before the complete frontend rerun.
 
 - Closed the P0 Monaco external-conflict lifecycle boundary. Disk verification
   and explicit overwrite are single-flight, discard stale project/resource/path
@@ -16,20 +26,20 @@ lifecycle on
   and makes reload, copy, overwrite, cancel, close and Escape mutually exclusive
   while native work is pending. The red baseline failed 8/35; repaired focused
   and impacted runs passed 35/35 and 70/70.
-- The 2026-08-04 full baseline passed 176 frontend files / 815 tests, lint,
+- The 2026-08-04 full baseline passed 178 frontend files / 822 tests, lint,
   typecheck and production build. Rust collected 79, passed 77, failed 0 and
   retained two reasoned ignores. In-app browser control was attempted but its
   runtime failed before page control, so the live conflict journey is recorded
   as infrastructure-blocked rather than a product pass.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 815 frontend cases are inventoried
-  and 815 are collected, including 52 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 822 frontend cases are inventoried
+  and 822 are collected, including 52 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
-- Supported frontend acceptance passed ESLint, TypeScript, 176 Vitest files /
-  815 tests and the production build. Rust formatting passed; Cargo collected
+- Supported frontend acceptance passed ESLint, TypeScript, 178 Vitest files /
+  822 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -136,15 +146,15 @@ lifecycle on
   actions share one native dialog. Live close/restore recovered the original
   94-character chapter and kept the selected tab aligned at 420 px with no
   overflow or browser warnings/errors.
-- The current inventory contains 894 tests: 815 frontend plus 79 native cases.
-  The latest execution ledger records 892 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 815 cases with zero difference.
+- The current inventory contains 901 tests: 822 frontend plus 79 native cases.
+  The latest execution ledger records 899 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 822 cases with zero difference.
 - The final evidence audit caught a stale-ledger gap: inventory/runtime contained
   the two new settings cases, but the ledger still had the previous 848 entries.
-  `qa:plan` now reconciles all 894 cases before recording, and convergence fails
+  `qa:plan` now reconciles all 901 cases before recording, and convergence fails
   closed unless total, frontend and native ledger counts match inventory/runtime.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
-  and 10,075 aggregate mappings remain open. The truthful product conclusion is
+  and 10,063 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.

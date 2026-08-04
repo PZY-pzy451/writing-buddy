@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "discovery": {
-    "sourceFiles": 101,
+    "sourceFiles": 102,
     "declarationCount": 422,
     "semanticSelectorMapped": 201,
     "semanticSelectorMissing": 221
@@ -1899,106 +1899,6 @@
         "STATE-CHAPTEREDITOR-BUTTON-18304358-ACCESSIBLE-NAME",
         "STATE-CHAPTEREDITOR-BUTTON-18304358-DESTRUCTIVE-CONFIRMATION",
         "STATE-CHAPTEREDITOR-BUTTON-18304358-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/editor/ChapterEditor.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
-      "id": "CTRL-CHAPTEREDITOR-BUTTON-C404BAF7",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "featureId": "FEATURE-01-03",
-      "controlType": "button",
-      "accessibleName": "关闭 AI 写入提示",
-      "selectorStrategy": "role+accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISIBLE",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-HIDDEN",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ENABLED",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DISABLED",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-POINTER",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-KEYBOARD",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-IN",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FOCUS-OUT",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-REPEAT",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DEDUPLICATION",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-LOADING",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-SUCCESS",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-FAILURE",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-CANCELLED",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-OFFLINE",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERMISSION",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-PERSISTENCE",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-RESTART",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-VISUAL",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-ACCESSIBLE-NAME",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-DESTRUCTIVE-CONFIRMATION",
-        "STATE-CHAPTEREDITOR-BUTTON-C404BAF7-UNDO"
-      ],
-      "persistenceExpected": true,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/editor/ChapterEditor.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
-      "id": "CTRL-CHAPTEREDITOR-BUTTON-DBE34330",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "featureId": "FEATURE-01-03",
-      "controlType": "button",
-      "accessibleName": "撤销",
-      "selectorStrategy": "accessible-name",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "disabled expression is false"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISIBLE",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-HIDDEN",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ENABLED",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DISABLED",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-POINTER",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-KEYBOARD",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-IN",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FOCUS-OUT",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-REPEAT",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DEDUPLICATION",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-LOADING",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-SUCCESS",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-FAILURE",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-CANCELLED",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-OFFLINE",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERMISSION",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-PERSISTENCE",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-RESTART",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-VISUAL",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-ACCESSIBLE-NAME",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-DESTRUCTIVE-CONFIRMATION",
-        "STATE-CHAPTEREDITOR-BUTTON-DBE34330-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,
@@ -6950,6 +6850,106 @@
       "nativeRuntimeRequired": false,
       "aiRequired": true,
       "source": "apps/desktop/src/features/story/ai-context/InlineDraftCard.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "featureId": "FEATURE-01-03",
+      "controlType": "button",
+      "accessibleName": "关闭 AI 写入提示",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "disabled expression is false"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISIBLE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-HIDDEN",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ENABLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DISABLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-POINTER",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-KEYBOARD",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-IN",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FOCUS-OUT",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-REPEAT",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DEDUPLICATION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-LOADING",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-SUCCESS",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-FAILURE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-CANCELLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-OFFLINE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERMISSION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-PERSISTENCE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-RESTART",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-VISUAL",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-ACCESSIBLE-NAME",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-DESTRUCTIVE-CONFIRMATION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-5ABC96BF-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "featureId": "FEATURE-01-03",
+      "controlType": "button",
+      "accessibleName": "撤销 AI 正文写入",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "disabled expression is false"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISIBLE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-HIDDEN",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ENABLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DISABLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-POINTER",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-KEYBOARD",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-IN",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FOCUS-OUT",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-REPEAT",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DEDUPLICATION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-LOADING",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-SUCCESS",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-FAILURE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-CANCELLED",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-OFFLINE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERMISSION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-PERSISTENCE",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-RESTART",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-VISUAL",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-ACCESSIBLE-NAME",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-DESTRUCTIVE-CONFIRMATION",
+        "STATE-INLINEDRAFTCOMMITNOTICEBANNER-BUTTON-CB48F1D9-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/editor/InlineDraftCommitNoticeBanner.tsx",
       "stableSelectorStatus": "MAPPED"
     },
     {
