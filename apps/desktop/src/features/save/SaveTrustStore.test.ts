@@ -1,4 +1,8 @@
-import type { AtomicWriteResult, ProjectSnapshot } from '@writing-buddy/platform-ports';
+import type {
+	AtomicWriteResult,
+	ProjectSnapshot
+} from '@writing-buddy/platform-ports';
+import type { TextFile } from '@writing-buddy/domain';
 import { desktopBridge } from '../../platform/bridge';
 import { useAppStore } from '../../app/store';
 
@@ -145,6 +149,157 @@ describe('save trust store integration', () => {
 			type: 'clean',
 			savedAt: '2026-07-29T11:04:00.000Z'
 		});
+	});
+
+	it('coalesces 100 external-change checks into one disk read and one conflict', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('必须保留的本地正文');
+		let finishRead: ((file: TextFile) => void) | undefined;
+		const read = vi.spyOn(desktopBridge, 'readText').mockImplementationOnce(() => (
+			new Promise(resolve => { finishRead = resolve; })
+		));
+
+		const checks = Array.from({ length: 100 }, () => (
+			useAppStore.getState().verifyExternalChange()
+		));
+		expect(read).toHaveBeenCalledTimes(1);
+		finishRead?.({
+			content: '磁盘上的外部版本',
+			hash: 'external-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		await Promise.all(checks);
+
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().externalConflict?.disk.content)
+			.toBe('磁盘上的外部版本');
+		expect(useAppStore.getState().session?.content).toBe('必须保留的本地正文');
+	});
+
+	it('ignores a delayed disk check from the chapter the author already left', async () => {
+		const snapshot = await openChapter();
+		const previous = firstChapter(snapshot);
+		const target = chapterAt(snapshot, 1);
+		const targetFile = await desktopBridge.readText(snapshot.root, target.path);
+		let finishPreviousRead: ((file: TextFile) => void) | undefined;
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockImplementationOnce(() => new Promise(resolve => { finishPreviousRead = resolve; }))
+			.mockResolvedValueOnce(targetFile);
+
+		const checking = useAppStore.getState().verifyExternalChange();
+		await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(1));
+		await useAppStore.getState().openResource(target);
+		finishPreviousRead?.({
+			content: '旧章节迟到的磁盘版本',
+			hash: 'previous-external-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		await checking;
+
+		expect(useAppStore.getState().activeResource?.id).toBe(target.id);
+		expect(useAppStore.getState().session?.state.resourceId).toBe(target.id);
+		expect(useAppStore.getState().session?.content).toBe(targetFile.content);
+		expect(useAppStore.getState().session?.state.resourceId).not.toBe(previous.id);
+		expect(useAppStore.getState().externalConflict).toBeUndefined();
+	});
+
+	it('does not revive a stale conflict after a newer save completes', async () => {
+		const snapshot = await openChapter();
+		const chapter = firstChapter(snapshot);
+		const staleDisk = await desktopBridge.readText(snapshot.root, chapter.path);
+		let finishRead: ((file: TextFile) => void) | undefined;
+		vi.spyOn(desktopBridge, 'readText').mockImplementationOnce(() => (
+			new Promise(resolve => { finishRead = resolve; })
+		));
+		vi.spyOn(desktopBridge, 'writeTextAtomic').mockResolvedValueOnce({
+			hash: 'newer-saved-hash',
+			modifiedAt: '2026-08-03T21:10:00.000Z',
+			byteLength: 30
+		});
+
+		const checking = useAppStore.getState().verifyExternalChange();
+		useAppStore.getState().setContent('校验期间已经安全保存的新正文');
+		await useAppStore.getState().save();
+		finishRead?.({
+			...staleDisk,
+			content: '保存完成前读取到的旧外部正文',
+			hash: 'external-before-save-hash'
+		});
+		await checking;
+
+		expect(useAppStore.getState().externalConflict).toBeUndefined();
+		expect(useAppStore.getState().session?.content)
+			.toBe('校验期间已经安全保存的新正文');
+		expect(useAppStore.getState().session?.state.diskHash).toBe('newer-saved-hash');
+		expect(useAppStore.getState().session?.state.dirty).toBe(false);
+	});
+
+	it('coalesces 100 explicit overwrites and releases a failure for retry', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('作者明确选择覆盖的正文');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockResolvedValue({
+				hash: 'forced-hash',
+				modifiedAt: '2026-08-03T21:11:00.000Z',
+				byteLength: 30
+			});
+
+		const overwrites = Array.from({ length: 100 }, () => (
+			useAppStore.getState().forceSave()
+		));
+		expect(await Promise.all(overwrites))
+			.toEqual(Array.from({ length: 100 }, () => true));
+		expect(write).toHaveBeenCalledTimes(1);
+
+		useAppStore.getState().setContent('失败后重试的正文');
+		write.mockRejectedValueOnce(new Error('writeFailed:C:\\private\\chapter.md'))
+			.mockResolvedValueOnce({
+				hash: 'retry-forced-hash',
+				modifiedAt: '2026-08-03T21:12:00.000Z',
+				byteLength: 24
+			});
+		expect(await useAppStore.getState().forceSave()).toBe(false);
+		expect(await useAppStore.getState().forceSave()).toBe(true);
+		expect(write).toHaveBeenCalledTimes(3);
+	});
+
+	it('serializes an explicit overwrite and then writes edits made in flight', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('第一次明确覆盖的正文');
+		let finishFirstWrite: ((result: AtomicWriteResult) => void) | undefined;
+		let firstFinished = false;
+		let secondStartedBeforeFirstFinished = false;
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockImplementationOnce(() => new Promise(resolve => { finishFirstWrite = resolve; }))
+			.mockImplementationOnce(() => {
+				secondStartedBeforeFirstFinished = !firstFinished;
+				return Promise.resolve({
+					hash: 'second-force-hash',
+					modifiedAt: '2026-08-03T21:14:00.000Z',
+					byteLength: 36
+				});
+			});
+
+		const first = useAppStore.getState().forceSave();
+		useAppStore.getState().setContent('覆盖期间继续输入的最新正文');
+		const second = useAppStore.getState().forceSave();
+		firstFinished = true;
+		finishFirstWrite?.({
+			hash: 'first-force-hash',
+			modifiedAt: '2026-08-03T21:13:00.000Z',
+			byteLength: 30
+		});
+		expect(await Promise.all([first, second])).toEqual([true, true]);
+
+		expect(secondStartedBeforeFirstFinished).toBe(false);
+		expect(write).toHaveBeenCalledTimes(2);
+		expect(write.mock.calls[1]?.[0].content).toBe('覆盖期间继续输入的最新正文');
+		expect(useAppStore.getState().session?.state.diskHash).toBe('second-force-hash');
+		expect(useAppStore.getState().session?.state.dirty).toBe(false);
 	});
 
 	it('allows a clean close and opens protection for unsaved content', async () => {

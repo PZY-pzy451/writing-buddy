@@ -414,7 +414,13 @@ let storyResourceOpenService: StoryResourceOpenService | undefined;
 let quickCaptureStore: QuickCaptureStore | undefined;
 let reviewPersistTimer: number | undefined;
 let activeManuscriptSave: Promise<void> | undefined;
+let activeForceSave: Promise<boolean> | undefined;
 let activeSaveAs: Promise<boolean> | undefined;
+let activeExternalVerification: {
+	readonly key: string;
+	readonly operation: Promise<void>;
+} | undefined;
+let queuedExternalVerificationKey: string | undefined;
 let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
 let activeResourceOpen: Promise<void> | undefined;
@@ -2003,6 +2009,13 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async save() {
+		if (activeForceSave) {
+			await activeForceSave;
+			if (get().session?.state.dirty) {
+				await get().save();
+			}
+			return;
+		}
 		if (activeManuscriptSave) {
 			await activeManuscriptSave;
 			if (get().session?.state.dirty) {
@@ -2355,51 +2368,81 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async forceSave() {
+		if (activeForceSave) {
+			const saved = await activeForceSave;
+			if (saved && get().session?.state.dirty) {
+				return get().forceSave();
+			}
+			return saved;
+		}
+		if (activeManuscriptSave) {
+			await activeManuscriptSave;
+			if (!get().session?.state.dirty) return true;
+			return get().forceSave();
+		}
 		const { snapshot, session } = get();
 		if (!snapshot || !session) {
 			return false;
 		}
-		set({ saveState: { type: 'saving', startedAt: new Date().toISOString() } });
-		try {
+		const task = (async () => {
+			set({ saveState: { type: 'saving', startedAt: new Date().toISOString() } });
 			const request = session.toWriteRequest(snapshot.root, true);
-			const result = await desktopBridge.writeTextAtomic(request);
-			const currentSession = get().session;
-			if (!currentSession || currentSession.state.resourceId !== session.state.resourceId) {
+			const stillTargetsCurrentSession = () => {
+				const current = get();
+				return current.snapshot?.root === snapshot.root
+					&& current.snapshot.project.projectId === snapshot.project.projectId
+					&& current.activeResource?.id === session.state.resourceId
+					&& current.session?.state.resourceId === session.state.resourceId
+					&& current.session.state.path === session.state.path;
+			};
+			try {
+				const result = await desktopBridge.writeTextAtomic(request);
+				if (!stillTargetsCurrentSession()) return true;
+				const current = get();
+				const currentSession = current.session;
+				if (!currentSession) return true;
+				currentSession.markSaved(result, request.content);
+				set({
+					session: currentSession.copy(),
+					snapshot: current.snapshot ? {
+						...current.snapshot,
+						wordCounts: {
+							...current.snapshot.wordCounts,
+							[currentSession.state.resourceId]: countWords(currentSession.content)
+						}
+					} : current.snapshot,
+					externalConflict: undefined,
+					lastSavedAt: result.modifiedAt,
+					saveState: currentSession.state.dirty
+						? { type: 'dirty' }
+						: { type: 'clean', savedAt: result.modifiedAt },
+					error: undefined
+				});
 				return true;
+			} catch (error) {
+				if (!stillTargetsCurrentSession()) return false;
+				const failure = classifySaveFailure(error);
+				set({
+					saveState: failure.type === 'offline'
+						? { type: 'offline', pendingChanges: 1 }
+						: failure.type === 'failed'
+							? failure
+							: { type: 'failed', errorCode: 'forceSaveFailed', retryable: true },
+					error: undefined
+				});
+				return false;
 			}
-			currentSession.markSaved(result, request.content);
-			set({
-				session: currentSession.copy(),
-				snapshot: {
-					...snapshot,
-					wordCounts: {
-						...snapshot.wordCounts,
-						[currentSession.state.resourceId]: countWords(currentSession.content)
-					}
-				},
-				externalConflict: undefined,
-				lastSavedAt: result.modifiedAt,
-				saveState: currentSession.state.dirty
-					? { type: 'dirty' }
-					: { type: 'clean', savedAt: result.modifiedAt },
-				error: undefined
-			});
-			return true;
-		} catch (error) {
-			const failure = classifySaveFailure(error);
-			set({
-				saveState: failure.type === 'offline'
-					? { type: 'offline', pendingChanges: 1 }
-					: failure.type === 'failed'
-						? failure
-						: { type: 'failed', errorCode: 'forceSaveFailed', retryable: true },
-				error: undefined
-			});
-			return false;
+		})();
+		activeForceSave = task;
+		try {
+			return await task;
+		} finally {
+			if (activeForceSave === task) activeForceSave = undefined;
 		}
 	},
 
 	reloadExternal() {
+		if (activeForceSave || activeSaveAs) return;
 		const { session, externalConflict } = get();
 		if (!session || !externalConflict) {
 			return;
@@ -2422,6 +2465,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	dismissExternalConflict() {
+		if (activeForceSave || activeSaveAs) return;
 		set({
 			externalConflict: undefined,
 			saveState: get().session?.state.dirty
@@ -2431,43 +2475,101 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	async verifyExternalChange() {
-		const { snapshot, session, externalConflict, saveState } = get();
+		const { snapshot, activeResource, session, externalConflict, saveState } = get();
 		if (!snapshot || !session || externalConflict || saveState.type === 'saving') {
 			return;
 		}
-		try {
-			const disk = await desktopBridge.readText(snapshot.root, session.state.path);
-			if (disk.hash === session.state.diskHash) {
-				return;
+		const resourceId = session.state.resourceId;
+		const path = session.state.path;
+		const baselineDiskHash = session.state.diskHash;
+		const key = [
+			snapshot.root,
+			snapshot.project.projectId,
+			resourceId,
+			path
+		].join('\u0000');
+		if (activeExternalVerification) {
+			if (activeExternalVerification.key !== key) {
+				queuedExternalVerificationKey = key;
 			}
-			if (session.state.dirty) {
+			await activeExternalVerification.operation;
+			return;
+		}
+		const operation = (async () => {
+			const currentStillMatches = () => {
+				const current = get();
+				return current.snapshot?.root === snapshot.root
+					&& current.snapshot.project.projectId === snapshot.project.projectId
+					&& current.activeResource?.id === activeResource?.id
+					&& current.activeResource?.id === resourceId
+					&& current.session?.state.resourceId === resourceId
+					&& current.session.state.path === path
+					&& current.session.state.diskHash === baselineDiskHash
+					&& !current.externalConflict
+					&& current.saveState.type !== 'saving';
+			};
+			try {
+				const disk = await desktopBridge.readText(snapshot.root, path);
+				if (!currentStillMatches()) return;
+				const current = get();
+				const currentSession = current.session;
+				if (!currentSession || disk.hash === currentSession.state.diskHash) return;
 				const detectedAt = new Date().toISOString();
-				set({
-					externalConflict: { disk, detectedAt },
-					saveState: { type: 'external_conflict', detectedAt }
-				});
-			} else {
-				session.reload(disk);
-				set({
-					session: session.copy(),
-					snapshot: {
-						...snapshot,
-						wordCounts: {
-							...snapshot.wordCounts,
-							[session.state.resourceId]: countWords(session.content)
+				if (currentSession.state.dirty) {
+					set({
+						externalConflict: { disk, detectedAt },
+						saveState: { type: 'external_conflict', detectedAt }
+					});
+				} else {
+					currentSession.reload(disk);
+					set({
+						session: currentSession.copy(),
+						snapshot: current.snapshot ? {
+							...current.snapshot,
+							wordCounts: {
+								...current.snapshot.wordCounts,
+								[resourceId]: countWords(currentSession.content)
+							}
+						} : current.snapshot,
+						lastSavedAt: detectedAt,
+						saveState: { type: 'clean', savedAt: detectedAt }
+					});
+				}
+			} catch (error) {
+				if (!currentStillMatches()) return;
+				const failure = classifySaveFailure(error);
+				if (failure.type === 'offline') {
+					set({
+						saveState: {
+							type: 'offline',
+							pendingChanges: get().session?.state.dirty ? 1 : 0
 						}
-					},
-					lastSavedAt: new Date().toISOString(),
-					saveState: { type: 'clean', savedAt: new Date().toISOString() }
-				});
+					});
+				}
 			}
-		} catch (error) {
-			const failure = classifySaveFailure(error);
-			set({
-				saveState: failure.type === 'offline'
-					? { type: 'offline', pendingChanges: session.state.dirty ? 1 : 0 }
-					: get().saveState
-			});
+		})();
+		activeExternalVerification = { key, operation };
+		try {
+			await operation;
+		} finally {
+			if (activeExternalVerification?.operation === operation) {
+				activeExternalVerification = undefined;
+			}
+			const queuedKey = queuedExternalVerificationKey;
+			queuedExternalVerificationKey = undefined;
+			const current = get();
+			const currentSession = current.session;
+			const currentKey = current.snapshot && currentSession
+				? [
+					current.snapshot.root,
+					current.snapshot.project.projectId,
+					currentSession.state.resourceId,
+					currentSession.state.path
+				].join('\u0000')
+				: undefined;
+			if (queuedKey && queuedKey === currentKey) {
+				void get().verifyExternalChange();
+			}
 		}
 	},
 

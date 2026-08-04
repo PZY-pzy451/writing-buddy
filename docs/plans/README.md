@@ -54,6 +54,7 @@
 - [Story Kernel character role repair](./052-story-kernel-character-role-repair.md)
 - [Story extraction actionability](./053-story-extraction-actionability.md)
 - [Full regression Gates A-E v2](./054-full-regression-gates-a-e-v2.md)
+- [Monaco external-conflict lifecycle QA](./055-monaco-external-conflict-lifecycle-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
