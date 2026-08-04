@@ -698,6 +698,25 @@ save and error impact set passes 157/157. Fixed-commit acceptance passes lint,
 typecheck, production build and 180 files / 892 tests. Rust collects 79, passes
 77 and retains two reasoned ignores.
 
+### QA-AI-DRAWER-PREVIEW-REJECTION-SINGLE-COMMIT-036
+
+The Reject candidate action checked only that a transaction existed. Four red
+contracts proved that a 100-action burst threw `aiPreviewNotRejectable` on the
+second event, while delayed events during applying, completed or stale could
+throw or alter the current transaction.
+
+The Store now requires both lifecycle state and transaction status to be
+`preview`. One hundred valid actions perform one rejection and every later
+action is a no-op. Applying, completed and stale snapshots each survive 100
+delayed actions without mutation or exception. Rejection sends no cancellation
+and no additional provider request; explicit regeneration after rejection
+remains available.
+
+The repaired Store suite passes 50/50 and the ten-file AI drawer, App, session,
+save and error impact set passes 161/161. Fixed-commit acceptance passes lint,
+typecheck, production build and 180 files / 896 tests. Rust collects 79, passes
+77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -814,11 +833,12 @@ console claims.
 | AI drawer retry/apply exclusion | Four red failures cover disabled retry, applying-state reentry and invalid-input bypass; 100-action guards, 48 focused and 147 impacted tests pass |
 | AI drawer terminal-event isolation | Four red failures cover terminal revival and active-state regression; three 100-burst terminal matrices, 40 focused and 151 impacted tests pass |
 | AI drawer terminal command-result isolation | Six red failures cover late start/Stop rejections after three terminal outcomes; 100-action Stop matrices, 46 focused and 157 impacted tests pass |
-| Ledger/inventory reconciliation | 971 / 971 cases; 892 frontend + 79 native; 969 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer preview rejection single-commit | Four red failures cover repeated and delayed Reject actions; four 100-action boundaries, 50 focused and 161 impacted tests pass |
+| Ledger/inventory reconciliation | 975 / 975 cases; 896 frontend + 79 native; 973 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 892 tests and production build passed |
-| Static/runtime test reconciliation | 892 / 892; 91 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 896 tests and production build passed |
+| Static/runtime test reconciliation | 896 / 896; 94 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -858,7 +878,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,117 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,121 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

@@ -1020,6 +1020,32 @@ const report = {
 				impactedTests: 157,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-PREVIEW-REJECTION-SINGLE-COMMIT-036',
+			summary: 'Repeated or delayed Reject candidate actions could throw after the first transition or mutate an applying preview.',
+			before: {
+				rejectionGuard: ['transaction-exists'],
+				rejectionActions: 100,
+				transitionsBeforeException: 1,
+				repeatedActionThrows: true,
+				delayedStateGuarded: false
+			},
+			after: {
+				rejectionGuard: ['store-state-preview', 'transaction-status-preview'],
+				rejectionActions: 100,
+				transitions: 1,
+				repeatedActionThrows: false,
+				guardedDelayedStates: ['applying', 'completed', 'stale'],
+				delayedActionsPerState: 100,
+				additionalProviderRequests: 0,
+				cancellationCommands: 0,
+				rejectedCandidateRegenerable: true,
+				redFailures: 4,
+				focusedTests: 50,
+				impactedTests: 161,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

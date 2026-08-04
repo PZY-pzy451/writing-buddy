@@ -4,37 +4,35 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-AI drawer terminal command-result isolation is complete on
-`codex/full-regression-gates-a-e-v2` against source `1f7b5ab`.
+AI drawer preview rejection single-commit protection is complete on
+`codex/full-regression-gates-a-e-v2` against source `f63dfa0`.
 
-- Stream preview, failure and cancellation now take precedence over a late
-  rejection from the same generation start command.
-- A pending Stop command can no longer attach an error after that job has
-  already reached preview, failure or cancellation. Active command failures
-  remain localized and explicitly retryable.
-- Six contracts failed red. Each cancellation case applies 100 same-tick Stop
-  actions and still produces one native command while preserving the complete
-  terminal snapshot after its Promise rejects.
-- The focused Store suite passed 46/46, the ten-file impact set passed 157/157,
-  and fixed-commit Node 24 acceptance passed 180 files / 892 tests plus lint,
+- One hundred same-tick Reject candidate actions now perform one transaction
+  transition without throwing, cancellation or an additional provider request.
+- The Store requires both lifecycle state and transaction status to remain
+  `preview`. Delayed actions cannot mutate applying, completed or stale
+  snapshots, while an intentional rejected candidate remains regenerable.
+- Four contracts failed red before the state/transaction guard. The focused
+  Store suite passed 50/50 and the ten-file impact set passed 161/161.
+- Fixed-commit Node 24 acceptance passed 180 files / 896 tests plus lint,
   typecheck and production build. Rust collected 79, passed 77 and retained two
   reasoned ignores.
-- The ledger contains 971 cases: 969 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 892 with 91 parameterized instances and
+- The ledger contains 975 cases: 973 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 896 with 94 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,117 traceability mappings and 221 stable selectors remain open,
+  because 10,121 traceability mappings and 221 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-AI drawer terminal-event isolation is complete on
-`codex/full-regression-gates-a-e-v2` against source `d145e37`.
+AI drawer terminal command-result isolation is complete on
+`codex/full-regression-gates-a-e-v2` against source `1f7b5ab`.
 
-- Same-job delayed stream events can no longer mutate preview, failed or
-  cancelled state, and duplicate early events cannot regress active progress.
-- Four red contracts converged through 40 focused and 151 impacted tests. Fixed-
-  commit acceptance passed 180 files / 886 frontend tests, Rust passed 77 with
-  two reasoned ignores, and the ledger contained 965 cases.
+- Late generation-start and Stop rejections cannot replace or pollute preview,
+  failure or cancellation; active command failures remain retryable.
+- Six red contracts converged through 46 focused and 157 impacted tests. Fixed-
+  commit acceptance passed 180 files / 892 frontend tests, Rust passed 77 with
+  two reasoned ignores, and the ledger contained 971 cases.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 
