@@ -44201,138 +44201,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-123497A4",
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-3B9974AF",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-VISIBLE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-HIDDEN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-ENABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-DISABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-POINTER",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-KEYBOARD",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-FOCUS-IN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-FOCUS-OUT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-REPEAT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-DEDUPLICATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-LOADING",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-SUCCESS",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-FAILURE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-CANCELLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-OFFLINE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-PERMISSION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-PERSISTENCE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-RESTART",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-VISUAL",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-ACCESSIBLE-NAME",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-123497A4-UNDO",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-3B9974AF-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44340,138 +44340,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-1D18D386",
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-81AB085F",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-VISIBLE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-HIDDEN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-ENABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-DISABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-POINTER",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-KEYBOARD",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-FOCUS-IN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-FOCUS-OUT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-REPEAT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-DEDUPLICATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-LOADING",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-SUCCESS",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-FAILURE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-CANCELLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-OFFLINE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-PERMISSION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-PERSISTENCE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-RESTART",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-VISUAL",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-ACCESSIBLE-NAME",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-1D18D386-UNDO",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-81AB085F-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44479,416 +44479,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-67A7E921",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-67A7E921-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-92D34742",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-92D34742-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-DF4F385C",
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-91A003C9",
                   "level": "L4",
                   "name": "新建",
                   "states": [
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-VISIBLE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-HIDDEN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-ENABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-DISABLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-POINTER",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-KEYBOARD",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-FOCUS-IN",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-FOCUS-OUT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-REPEAT",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-DEDUPLICATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-LOADING",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-SUCCESS",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-FAILURE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-CANCELLED",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-OFFLINE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-PERMISSION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-PERSISTENCE",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-RESTART",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-VISUAL",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-ACCESSIBLE-NAME",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DF4F385C-UNDO",
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-91A003C9-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-A1A0EE4A",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-A1A0EE4A-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-DB71ADD6",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-DB71ADD6-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-GLOBALCREATEMENU-BUTTON-E9CD57DD",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GLOBALCREATEMENU-BUTTON-E9CD57DD-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -68281,7 +68420,7 @@
       "id": "TC-DISCOVERED-00F6858350",
       "title": "opens Quick Capture as a real project action",
       "declarationTitle": "opens Quick Capture as a real project action",
-      "declarationLine": 19,
+      "declarationLine": 127,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -68491,6 +68630,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-04C36D86E9",
+      "title": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
+      "declarationTitle": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
+      "declarationLine": 193,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -72006,6 +72163,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3772D9BCB3",
+      "title": "moves an already open shortcut menu to the requested chapter action",
+      "declarationTitle": "moves an already open shortcut menu to the requested chapter action",
+      "declarationLine": 84,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-379E7ABDC7",
       "title": "redacts local paths and trims optional context to the token budget",
       "declarationTitle": "redacts local paths and trims optional context to the token budget",
@@ -72883,7 +73058,7 @@
       "id": "TC-DISCOVERED-3F3E0CE456",
       "title": "starts from editor context and saves with Ctrl+Enter",
       "declarationTitle": "starts from editor context and saves with Ctrl+Enter",
-      "declarationLine": 16,
+      "declarationLine": 18,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/quick-capture/QuickCaptureDialog.test.tsx",
@@ -74265,7 +74440,7 @@
       "id": "TC-DISCOVERED-5223E4A84A",
       "title": "opens the real chapter creator from the menu and from quick-create focus",
       "declarationTitle": "opens the real chapter creator from the menu and from quick-create focus",
-      "declarationLine": 46,
+      "declarationLine": 154,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -74690,6 +74865,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5A1259103E",
+      "title": "dispatches one project chooser for one hundred same-frame menu actions",
+      "declarationTitle": "dispatches one project chooser for one hundred same-frame menu actions",
+      "declarationLine": 19,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -76863,7 +77056,7 @@
       "id": "TC-DISCOVERED-7ACC45673E",
       "title": "routes contextual creation into the existing author assistant",
       "declarationTitle": "routes contextual creation into the existing author assistant",
-      "declarationLine": 80,
+      "declarationLine": 188,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -80450,6 +80643,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B2E55AE94F",
+      "title": "preserves the original shortcut focus through one hundred reopen events",
+      "declarationTitle": "preserves the original shortcut focus through one hundred reopen events",
+      "declarationLine": 41,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B337216AA5",
       "title": "announces a result and exposes explicit undo and dismiss actions",
       "declarationTitle": "announces a result and exposes explicit undo and dismiss actions",
@@ -82451,7 +82662,7 @@
       "id": "TC-DISCOVERED-CFE9C3CB63",
       "title": "closes once on Escape and restores the exact opening focus",
       "declarationTitle": "closes once on Escape and restores the exact opening focus",
-      "declarationLine": 52,
+      "declarationLine": 54,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/quick-capture/QuickCaptureDialog.test.tsx",
@@ -82889,7 +83100,7 @@
       "id": "TC-DISCOVERED-D659837A56",
       "title": "prioritizes story structure and plot actions while planning",
       "declarationTitle": "prioritizes story structure and plot actions while planning",
-      "declarationLine": 110,
+      "declarationLine": 218,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
@@ -83009,6 +83220,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-D7C9980C45",
+      "title": "wraps keyboard navigation across enabled actions and skips project-only actions",
+      "declarationTitle": "wraps keyboard navigation across enabled actions and skips project-only actions",
+      "declarationLine": 66,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/GlobalCreateMenu.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

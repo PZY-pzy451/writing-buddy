@@ -1033,6 +1033,7 @@ console claims.
 | Pending-fact extraction preflight feedback | Two red rendered contracts; 100 preflight clicks start one request with immediate disabled feedback; source missing selectors 4 -> 0 and global 216 -> 212; 6 focused and 43 impacted tests pass |
 | Manuscript extraction run single-flight | Two red pressure contracts; 100 starts and 99 stale-write failures become one shared run, one processor and zero rejected callers; 15 focused and 48 impacted tests pass |
 | Manuscript extraction early Stop | Four red timing contracts; immediate/source/provider-preflight Stop starts zero processors or native AI jobs, while 100 Stop actions invoke one runner Stop; 21 focused and 58 impacted tests pass |
+| Global Create menu lifecycle | Four red failures cover 100 chooser actions, focus-origin corruption, already-open Chapter focus and static inventory; one action per explicit open, stable Escape return and 7/7 mapped source controls pass 18 focused and 73 impacted tests |
 | QA inventory composite-control boundary | One red integration contract; 16 false controls, 352 synthetic states and 16 false selector findings removed; 16 focused tests pass |
 | Creation Journey stable controls | Two red contracts; source 22 controls (8 mapped / 14 missing) becomes 38/38 mapped; 64 journey and 17 QA-script tests pass without React stderr |
 | Ledger/inventory reconciliation | 993 / 993 cases; 914 frontend + 79 native; 991 passed + 2 reasoned skips; stale ledgers fail closed |

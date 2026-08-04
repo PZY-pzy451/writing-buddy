@@ -53,3 +53,18 @@ controls and leaves four without stable selectors.
 This cycle improves a core entry point but does not authorize release. Strict
 traceability, real-provider smoke and packaged executable acceptance remain
 independent fail-closed gates.
+
+## Result
+
+- Red reproduced four independent failures: 100 chooser dispatches, lost
+  shortcut origin, ignored already-open chapter focus and incomplete control
+  metadata.
+- A synchronous open/action boundary now permits one transition per explicit
+  menu opening. Reopen bursts retain the original external focus, while a new
+  focus request can move within the already-open menu.
+- Keyboard navigation wraps only across enabled actions. The seven source
+  controls are now 7/7 mapped; global selector debt falls from 140 to 136.
+- Focused regression passed 18/18, the adjacent creation/open/chapter/quick
+  capture/workspace path passed 73/73 and QA infrastructure passed 25/25.
+- Fixed-commit acceptance passed 183 frontend files / 946 tests, production
+  build and Rust 77 passes with two reasoned ignores.

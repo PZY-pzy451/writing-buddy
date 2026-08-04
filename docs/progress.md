@@ -4,30 +4,31 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Manuscript extraction action convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `72e1147`.
+Global Create menu lifecycle convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `8e97680`.
 
-- Planning, candidate confirmation and confirmation undo each allowed 100
-  same-frame persistence transitions; unexpected storage details were exposed
-  and the source collapsed nineteen author operations into eleven controls with
-  five missing selectors.
-- Five contracts failed red. A synchronous component-owned mutation guard now
-  covers all asynchronous extraction mutations while Stop remains independently
-  available for paid-run cancellation. Failure releases the guard for retry.
-- The center now exposes 19/19 stable controls and localized/redacted recovery
-  feedback. Global controls rise from 461 to 469 and states from 10,142 to
-  10,318 while selector debt falls from 145 to 140. Honest traceability debt
-  rises from 10,901 to 11,065.
-- Focused regression passed 2 files / 20 tests, extraction/Story Kernel/quick
-  capture/workspace/save/review impact passed 11 files / 163 tests without
-  stderr and QA infrastructure passed 5 files / 22 tests.
+- Four contracts failed red: one rendered Open Project item dispatched 100
+  choosers, shortcut reopen bursts replaced the original focus source, an
+  already-open menu ignored Chapter focus requests and four operations lacked
+  stable automation metadata.
+- A synchronous component-owned open/action boundary now permits one action per
+  explicit menu opening. Reopen bursts preserve external focus, already-open
+  focus requests are honored and keyboard navigation skips disabled actions.
+- The source now exposes 7/7 mapped controls. Global controls rise from 469 to
+  470 and states from 10,318 to 10,340 while selector debt falls from 140 to
+  136. Honest traceability debt rises from 11,065 to 11,088.
+- Focused regression passed 2 files / 18 tests, the project create/open,
+  chapter, quick-capture and workspace impact passed 9 files / 73 tests, and
+  QA infrastructure passed 5 files / 25 tests. Quick Capture test warnings
+  found during impact testing were reduced from three to zero.
 - Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  183 files / 941 tests. Rust collected 79, passed 77 and retained two reasoned
+  183 files / 946 tests. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,020 cases: 1,018 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 941 with 97 parameterized instances
-  and zero unresolved declarations. Execution is `PASS`; product remains
-  `PARTIAL` with real-provider and packaging gates unrun.
+- The target ledger contains 1,025 cases: 1,023 passes and two reasoned skips.
+  Static and runtime frontend discovery match at 946 with 97 parameterized
+  instances and zero unresolved declarations. Execution is `PASS`; product
+  remains `PARTIAL` with strict traceability, real-provider and package
+  acceptance gates incomplete.
 
 ## Previous milestone
 

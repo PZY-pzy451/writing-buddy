@@ -1516,6 +1516,47 @@ const report = {
 				qaScriptTests: 22,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-GLOBAL-CREATE-MENU-LIFECYCLE-052',
+			summary: 'The global Create menu multiplied project chooser actions, lost the original shortcut focus during reopen bursts and collapsed distinct creation entries in automation inventory.',
+			before: {
+				sourceControls: 6,
+				sourceMappedControls: 2,
+				sourceMissingStableSelectors: 4,
+				actualSourceOperations: 7,
+				repeatedActions: 100,
+				projectChooserDispatches: 100,
+				originalShortcutFocusRestored: false,
+				alreadyOpenChapterFocusHonored: false,
+				quickCaptureReactWarnings: 3,
+				globalControls: 469,
+				globalStates: 10318,
+				globalMissingStableSelectors: 140,
+				totalUnmapped: 11065
+			},
+			after: {
+				sourceControls: 7,
+				sourceMappedControls: 7,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 5,
+				repeatedActions: 100,
+				projectChooserDispatches: 1,
+				retryAfterReopen: true,
+				originalShortcutFocusRestored: true,
+				alreadyOpenChapterFocusHonored: true,
+				disabledActionsSkippedByKeyboard: true,
+				quickCaptureReactWarnings: 0,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 4,
+				focusedTests: 18,
+				impactTests: 73,
+				qaScriptTests: 25,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
