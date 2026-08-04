@@ -4,37 +4,38 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Global Create menu lifecycle convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `8e97680`.
+Chapter creation lifecycle convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `6178b39`.
 
-- Four contracts failed red: one rendered Open Project item dispatched 100
-  choosers, shortcut reopen bursts replaced the original focus source, an
-  already-open menu ignored Chapter focus requests and four operations lacked
-  stable automation metadata.
-- A synchronous component-owned open/action boundary now permits one action per
-  explicit menu opening. Reopen bursts preserve external focus, already-open
-  focus requests are honored and keyboard navigation skips disabled actions.
-- The source now exposes 7/7 mapped controls. Global controls rise from 469 to
-  470 and states from 10,318 to 10,340 while selector debt falls from 140 to
-  136. Honest traceability debt rises from 11,065 to 11,088.
-- Focused regression passed 2 files / 18 tests, the project create/open,
-  chapter, quick-capture and workspace impact passed 9 files / 73 tests, and
-  QA infrastructure passed 5 files / 25 tests. Quick Capture test warnings
-  found during impact testing were reduced from three to zero.
+- Five contracts failed red: rendered Submit and Cancel each dispatched 100
+  transitions, 100 Store requests queued behind one dirty save issued 100
+  native chapter transactions, a project switch did not invalidate the old
+  request and inventory collapsed six operations into five controls.
+- The dialog now admits one mutually exclusive transition and releases it only
+  when a failed creation remains mounted for retry. Dismissal restores the
+  exact opening focus.
+- The Store reserves creation before any awaited save and revalidates root,
+  project ID and project revision before and after the native transaction. Old
+  save/native completion cannot overwrite or open content in a newer project.
+- Source controls are now 6/6 mapped. Global controls rise from 470 to 471 and
+  states from 10,340 to 10,362 while selector debt falls from 136 to 134.
+  Honest traceability debt rises from 11,088 to 11,108.
+- Focused regression passed 3 files / 16 tests, adjacent project/save/workspace
+  regression passed 6 files / 102 tests and QA infrastructure passed 5 files /
+  26 tests without stderr.
 - Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  183 files / 946 tests. Rust collected 79, passed 77 and retained two reasoned
+  185 files / 952 tests. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The target ledger contains 1,025 cases: 1,023 passes and two reasoned skips.
-  Static and runtime frontend discovery match at 946 with 97 parameterized
+- The target ledger contains 1,031 cases: 1,029 passes and two reasoned skips.
+  Static and runtime frontend discovery match at 952 with 97 parameterized
   instances and zero unresolved declarations. Execution is `PASS`; product
   remains `PARTIAL` with strict traceability, real-provider and package
   acceptance gates incomplete.
 
 ## Previous milestone
 
-Writer header save/navigation convergence is complete against source
-`5b1417f`: 12/12 source controls are mapped and fixed acceptance passed 934
-frontend tests.
+Global Create menu convergence is complete against source `8e97680`: 7/7
+source controls are mapped and fixed acceptance passed 946 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

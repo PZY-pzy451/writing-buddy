@@ -53,3 +53,21 @@ into five controls and leaves two without stable selectors.
 
 This cycle does not authorize release. Strict traceability, real-provider smoke
 and packaged executable acceptance remain independent fail-closed gates.
+
+## Result
+
+- Five target contracts failed red: rendered Submit and Cancel each dispatched
+  100 transitions, Store pressure issued 100 native transactions, a project
+  replacement still received a successful old creation result and inventory
+  exposed five rather than six controls.
+- The mounted dialog now admits one mutually exclusive transition and releases
+  only after a failed creation remains available for retry. Exact opening focus
+  is restored on dismissal.
+- The Store reserves creation before saving, then verifies root, project ID and
+  revision both before and after the native transaction. Late old-project
+  completion cannot replace or open content in the current project.
+- Source controls are now 6/6 mapped; selector debt falls from 136 to 134.
+- Focused regression passed 16/16, adjacent project/save/workspace regression
+  passed 102/102 and QA infrastructure passed 26/26.
+- Fixed-commit acceptance passed 185 frontend files / 952 tests, production
+  build and Rust 77 passes with two reasoned ignores.

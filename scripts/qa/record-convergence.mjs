@@ -1557,6 +1557,49 @@ const report = {
 				qaScriptTests: 25,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CHAPTER-CREATION-LIFECYCLE-053',
+			summary: 'Chapter creation multiplied rendered and Store transitions behind a dirty save, accepted stale project identity and collapsed dialog operations in automation inventory.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 2,
+				actualSourceOperations: 6,
+				repeatedActions: 100,
+				renderedSubmitDispatches: 100,
+				renderedDismissDispatches: 100,
+				nativeChapterTransactions: 100,
+				staleSaveProjectCreated: true,
+				staleNativeResultApplied: true,
+				globalControls: 470,
+				globalStates: 10340,
+				globalMissingStableSelectors: 136,
+				totalUnmapped: 11088
+			},
+			after: {
+				sourceControls: 6,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 1,
+				repeatedActions: 100,
+				renderedSubmitDispatches: 1,
+				renderedDismissDispatches: 1,
+				nativeChapterTransactions: 1,
+				retryAfterFailure: true,
+				openingFocusRestored: true,
+				staleSaveProjectCreated: false,
+				staleNativeResultApplied: false,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 16,
+				impactTests: 102,
+				qaScriptTests: 26,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

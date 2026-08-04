@@ -43506,138 +43506,138 @@
               "name": "新建项目",
               "controls": [
                 {
-                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1",
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-VISIBLE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-HIDDEN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-ENABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-DISABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-POINTER",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-KEYBOARD",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-FOCUS-IN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-FOCUS-OUT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-REPEAT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-DEDUPLICATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-LOADING",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-SUCCESS",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-FAILURE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-CANCELLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-OFFLINE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-PERMISSION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-PERSISTENCE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-RESTART",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-VISUAL",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-ACCESSIBLE-NAME",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-015F63B1-UNDO",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-42549896-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43645,138 +43645,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5",
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499",
                   "level": "L4",
                   "name": "关闭新建章节",
                   "states": [
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-VISIBLE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-HIDDEN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-ENABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-DISABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-POINTER",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-KEYBOARD",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-FOCUS-IN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-FOCUS-OUT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-REPEAT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-DEDUPLICATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-LOADING",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-SUCCESS",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-FAILURE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-CANCELLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-OFFLINE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-PERMISSION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-PERSISTENCE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-RESTART",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-VISUAL",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-ACCESSIBLE-NAME",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-0BE594B5-UNDO",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-B69CF499-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43784,138 +43784,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F",
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A",
+                  "level": "L4",
+                  "name": "取消",
+                  "states": [
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-BUTTON-DAD75B3A-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583",
                   "level": "L4",
                   "name": "章节标题",
                   "states": [
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-VISIBLE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-HIDDEN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-ENABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-DISABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-POINTER",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-KEYBOARD",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-FOCUS-IN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-FOCUS-OUT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-REPEAT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-DEDUPLICATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-LOADING",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-SUCCESS",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-FAILURE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-CANCELLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-OFFLINE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-PERMISSION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-PERSISTENCE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-RESTART",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-VISUAL",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-ACCESSIBLE-NAME",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-AFB6A04F-UNDO",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-INPUT-5AD72583-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43923,138 +44062,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E",
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567",
                   "level": "L4",
                   "name": "section",
                   "states": [
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-VISIBLE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-HIDDEN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-ENABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-DISABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-POINTER",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-KEYBOARD",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-FOCUS-IN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-FOCUS-OUT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-REPEAT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-DEDUPLICATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-LOADING",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-SUCCESS",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-FAILURE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-CANCELLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-OFFLINE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-PERMISSION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-PERSISTENCE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-RESTART",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-VISUAL",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-ACCESSIBLE-NAME",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-8474D07E-UNDO",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SECTION-C1B2F567-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44062,138 +44201,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C",
+                  "id": "CTRL-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4",
                   "level": "L4",
                   "name": "放入卷",
                   "states": [
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-VISIBLE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-HIDDEN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-ENABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-DISABLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-POINTER",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-KEYBOARD",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-FOCUS-IN",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-FOCUS-OUT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-REPEAT",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-DEDUPLICATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-LOADING",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-SUCCESS",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-FAILURE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-CANCELLED",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-OFFLINE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-PERMISSION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-PERSISTENCE",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-RESTART",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-VISUAL",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-ACCESSIBLE-NAME",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-9A6A1F3C-UNDO",
+                      "id": "STATE-CHAPTERCREATIONDIALOGCONTENT-SELECT-176AB0F4-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71381,6 +71520,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2C5751766E",
+      "title": "does not create in the old project when identity changes during the prerequisite save",
+      "declarationTitle": "does not create in the old project when identity changes during the prerequisite save",
+      "declarationLine": 76,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationStore.test.ts",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-2C9878106A",
       "title": "dismisses and disables a stale notice after a resource identity change",
       "declarationTitle": "dismisses and disables a stale notice after a resource identity change",
@@ -77035,6 +77192,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-7A6274E928",
+      "title": "does not apply a native creation result after the author switches projects",
+      "declarationTitle": "does not apply a native creation result after the author switches projects",
+      "declarationLine": 115,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationStore.test.ts",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-7A8A301107",
       "title": "calculates a downward same-volume insertion after source removal",
       "declarationTitle": "calculates a downward same-volume insertion after source removal",
@@ -81357,6 +81532,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-BDCA6EEE3D",
+      "title": "creates one chapter for one hundred requests queued behind a dirty save",
+      "declarationTitle": "creates one chapter for one hundred requests queued behind a dirty save",
+      "declarationLine": 57,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationStore.test.ts",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-BDD516FE91",
       "title": "exposes stable fact-editing selectors without replacing field labels",
       "declarationTitle": "exposes stable fact-editing selectors without replacing field labels",
@@ -82257,6 +82450,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-CA42814AF0",
+      "title": "dismisses once under pressure and restores the exact opening focus",
+      "declarationTitle": "dismisses once under pressure and restores the exact opening focus",
+      "declarationLine": 82,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationDialog.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-CA67AB5DD9",
       "title": "confirms a location candidate whose optional map point is null",
       "declarationTitle": "confirms a location candidate whose optional map point is null",
@@ -82377,6 +82588,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-CBA7C57612",
+      "title": "dispatches one creation for one hundred same-frame submissions and permits one retry",
+      "declarationTitle": "dispatches one creation for one hundred same-frame submissions and permits one retry",
+      "declarationLine": 58,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationDialog.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84530,6 +84759,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-EEA19A1249",
+      "title": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
+      "declarationTitle": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
+      "declarationLine": 213,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
