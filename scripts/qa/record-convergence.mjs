@@ -850,6 +850,69 @@ const report = {
 				impactedTests: 137,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-REGENERATION-ISOLATION-031',
+			summary: 'Starting a replacement generation from a preview retained the prior job identity and preview transaction through asynchronous provider validation.',
+			before: {
+				synchronousInvalidation: false,
+				retainedArtifacts: ['jobId', 'jobMetadata', 'parsedOutput', 'transaction'],
+				oldEventsAcceptedDuringValidation: true,
+				failedReplacementKeptOldPreview: true
+			},
+			after: {
+				synchronousInvalidation: true,
+				clearedBeforeProviderCheck: [
+					'jobId',
+					'jobMetadata',
+					'usage',
+					'rawOutput',
+					'parsedOutput',
+					'transaction',
+					'repairInstruction'
+				],
+				delayedOldEventsIgnored: [
+					'content_delta',
+					'usage',
+					'failed',
+					'cancelled',
+					'completed'
+				],
+				replacementFailurePaths: [
+					'missing_configuration',
+					'status_failure',
+					'preferences_failure'
+				],
+				regenerateActionsPerBurst: 100,
+				providerValidationsPerBurst: 1,
+				replacementJobsPerBurst: 1,
+				distinctReplacementJobId: true,
+				redFailures: 5,
+				focusedTests: 46,
+				impactedTests: 142,
+				frontendTests: frontend.vitestPassed
+			}
+		},
+		{
+			id: 'QA-VITEST-WORKER-POOL-032',
+			summary: 'The Windows and Node 24 baseline used the default fork pool, which could terminate a worker or leave the suite running without completing.',
+			before: {
+				pool: 'forks',
+				firstRunFilesCompleted: 178,
+				firstRunFilesExpected: 179,
+				firstRunTestsCompleted: 869,
+				firstRunTestsExpected: 876,
+				secondRunTimedOutMs: 240000
+			},
+			after: {
+				pool: 'threads',
+				maxWorkers: 2,
+				configurationContractTests: 1,
+				frontendFiles: frontend.vitestFiles,
+				frontendTests: frontend.vitestPassed,
+				normalExit: true,
+				runtimeInventoryDelta: frontend.runtimeInventoryDelta
+			}
 		}
 	],
 	coverageExtensions: [

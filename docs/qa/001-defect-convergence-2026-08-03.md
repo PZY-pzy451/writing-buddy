@@ -608,6 +608,36 @@ frontend tests, including 77 parameterized instances with zero unresolved
 declarations. The converged ledger contains 950 cases: 948 passes and two
 reasoned skips.
 
+### QA-AI-DRAWER-REGENERATION-ISOLATION-031
+
+Starting a replacement generation from an existing preview cleared only its raw
+text before awaiting provider status and preferences. The old job ID, metadata,
+parsed candidate and transaction remained structurally active, so delayed old
+events could still match the Store and a failed replacement setup could leave
+the superseded preview available.
+
+Five red contracts now cover delayed delta, usage, failure, cancellation and
+completion events; missing configuration; provider-status and preference
+exceptions; and 100 same-tick regenerate actions. The Store clears every old
+job/candidate artifact before the first await. One replacement validation starts
+one distinct job, and only that job can produce an actionable preview.
+
+The repaired Store, drawer and context suites pass 46/46 and the ten-file impact
+set passes 142/142. The initial full product acceptance passes 179 files / 876
+tests plus lint, typecheck and production build.
+
+### QA-VITEST-WORKER-POOL-032
+
+The first fixed-commit baseline did not fail a product assertion, but Vitest's
+default Windows fork pool lost one worker after completing 178/179 files and
+869/876 tests. A second isolated attempt did not terminate within the bounded
+240-second QA command. Neither incomplete run was accepted as release evidence.
+
+The same suite completed 179/179 files and 876/876 tests with two thread workers
+before changing configuration. The supported configuration now pins that pool
+and has a regression contract. Final fixed-commit acceptance exits normally
+with lint, typecheck, production build and 180/180 files / 877/877 tests.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -719,11 +749,13 @@ console claims.
 | AI drawer close cancellation | Five red failures cover Store close, Close button, Escape and backdrop; 100 closes cancel once; 22 focused and 118 impacted tests pass |
 | AI drawer reopen cancellation | Stop plus immediate reopen sent two cancellations; success/failure ordering and 100-reopen pressure now pass 25 focused and 121 impacted tests |
 | AI drawer Context Pack freeze | Six request/application states reject 100 toggles each; post-preview changes invalidate old output; 41 focused and 137 impacted tests pass |
-| Ledger/inventory reconciliation | 950 / 950 cases; 871 frontend + 79 native; 948 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer preview regeneration | Five red failures cover old delayed events and three replacement setup failures; 100 actions start one replacement; 46 focused and 142 impacted tests pass |
+| Windows Vitest worker stability | Default fork pool lost a worker then hung; bounded 2-worker thread pool completes 180 files / 877 tests and exits normally |
+| Ledger/inventory reconciliation | 956 / 956 cases; 877 frontend + 79 native; 954 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 871 tests and production build passed |
-| Static/runtime test reconciliation | 871 / 871; 77 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 877 tests and production build passed |
+| Static/runtime test reconciliation | 877 / 877; 80 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -763,7 +795,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,098 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,104 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

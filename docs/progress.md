@@ -4,6 +4,32 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer regeneration isolation and stable Windows QA execution are complete
+on `codex/full-regression-gates-a-e-v2` against source `7dc4cdb`; the product
+fix is `a0a6508`.
+
+- Starting a replacement generation now clears the prior job identity, usage,
+  raw/parsed output and preview transaction before the first provider await.
+  Delayed delta, usage, failure, cancellation and completion events from the
+  old job cannot revive a superseded candidate.
+- Missing configuration, status failure and preference failure keep the old
+  preview inaccessible. One hundred same-tick regeneration actions perform one
+  provider validation and start one distinct replacement job.
+- Five contracts failed red. The focused set passed 46/46, the ten-file impact
+  set passed 142/142, and the first complete product acceptance passed 179
+  files / 876 tests.
+- Fixed-commit QA then exposed a Windows/Node 24 fork-pool worker exit followed
+  by a 240-second hung run. The bounded two-worker thread pool passed the same
+  876 tests before configuration and now has its own regression contract.
+- Final fixed-commit acceptance passed lint, TypeScript, production build and
+  180 files / 877 frontend tests. Rust collected 79, passed 77 and retained two
+  reasoned ignores.
+- The ledger contains 956 cases: 954 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,104 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI drawer Context Pack freeze is complete on
 `codex/full-regression-gates-a-e-v2` against source `bc12ffd`.
 
@@ -22,7 +48,7 @@ AI drawer Context Pack freeze is complete on
   `PASS`; product remains `PARTIAL` because 10,098 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: AI drawer reopen cancellation
 
 AI drawer reopen cancellation is complete on
 `codex/full-regression-gates-a-e-v2` against source `b1bfd98`.
