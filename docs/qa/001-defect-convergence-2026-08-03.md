@@ -744,6 +744,26 @@ session, save and error impact set passes 172/172. Fixed-commit acceptance passe
 lint, typecheck, production build and 180 files / 901 tests. Rust collects 79,
 passes 77 and retains two reasoned ignores.
 
+### QA-AI-DRAWER-APPLYING-OPEN-ACTION-ISOLATION-038
+
+The public registered-action launcher did not share the applying-state lock.
+One red Store contract proved that 100 replacement launches changed the bound
+source from chapter 1 to chapter 2, reset the drawer from applying to idle and
+erased its parsed output plus transaction. The existing modal shortcut boundary
+already ignored 100 `Alt+A` events and is retained as a user-path green control.
+
+`openAiAction()` now rejects applying state before it changes generation
+identity, issues cancellation or rebuilds action context. One hundred direct
+replacement attempts preserve the original definition, input, source, Context
+Pack, parsed output and transaction. They perform one original provider request
+and zero cancellation commands. Non-applying reopen, cancellation and explicit
+teardown contracts remain green.
+
+The repaired Store/App suite passes 75/75 and the ten-file AI drawer, App,
+session, save and error impact set passes 174/174. Fixed-commit acceptance passes
+lint, typecheck, production build and 180 files / 903 tests. Rust collects 79,
+passes 77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -862,11 +882,12 @@ console claims.
 | AI drawer terminal command-result isolation | Six red failures cover late start/Stop rejections after three terminal outcomes; 100-action Stop matrices, 46 focused and 157 impacted tests pass |
 | AI drawer preview rejection single-commit | Four red failures cover repeated and delayed Reject actions; four 100-action boundaries, 50 focused and 161 impacted tests pass |
 | AI drawer applying close protection | Four red failures cover Store, button, Escape and backdrop dismissal; 100 direct closes preserve one applying transaction, 67 focused and 172 impacted tests pass |
-| Ledger/inventory reconciliation | 980 / 980 cases; 901 frontend + 79 native; 978 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer applying open-action isolation | One red Store failure covers 100 replacement launches; the existing modal Alt+A boundary remains green, with 75 focused and 174 impacted tests passing |
+| Ledger/inventory reconciliation | 982 / 982 cases; 903 frontend + 79 native; 980 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 901 tests and production build passed |
-| Static/runtime test reconciliation | 901 / 901; 97 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 903 tests and production build passed |
+| Static/runtime test reconciliation | 903 / 903; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -906,7 +927,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,131 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,133 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

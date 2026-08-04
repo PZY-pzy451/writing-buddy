@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T05:54:03.688Z",
+  "generatedAt": "2026-08-04T06:05:57.018Z",
   "source": {
-    "commit": "a6fb17ab6a5bb7879e5754aa3b6a8eaf12bcabb2",
+    "commit": "9045ef48a8e0055095d6fae0af4cc5afc97e7335",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 901,
-        "runtimeCollected": 901,
+        "frontendInventory": 903,
+        "runtimeCollected": 903,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 980,
-        "ledgerCases": 978,
+        "discoveredTests": 982,
+        "ledgerCases": 980,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 980,
-        "ledgerCases": 980,
-        "frontendLedgerCases": 901,
+        "discoveredTests": 982,
+        "ledgerCases": 982,
+        "frontendLedgerCases": 903,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -413,7 +413,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -445,7 +445,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 27,
         "impactedTests": 51,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -477,7 +477,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 36,
         "impactedTests": 66,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -506,7 +506,7 @@
         "browserAutomationBlocker": "The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.",
         "focusedTests": 35,
         "impactedTests": 70,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -533,7 +533,7 @@
         "stableAccessibleName": true,
         "focusedTests": 7,
         "impactedTests": 81,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -558,7 +558,7 @@
         "delayedOldConflictIgnored": true,
         "focusedTests": 38,
         "impactedTests": 93,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -583,7 +583,7 @@
         "dirtyDiscardConfirmations": 1,
         "focusedTests": 12,
         "impactedTests": 89,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -605,7 +605,7 @@
         "latestOpenFailurePreserved": true,
         "focusedTests": 15,
         "impactedTests": 92,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -641,7 +641,7 @@
         "rollbackUsesCapturedModel": true,
         "focusedTests": 11,
         "impactedTests": 98,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -678,7 +678,7 @@
         "redFailures": 6,
         "focusedTests": 15,
         "impactedTests": 113,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -713,7 +713,7 @@
         "redFailures": 5,
         "focusedTests": 22,
         "impactedTests": 118,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -744,7 +744,7 @@
         "redFailures": 2,
         "focusedTests": 25,
         "impactedTests": 121,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -787,7 +787,7 @@
         "redFailures": 8,
         "focusedTests": 41,
         "impactedTests": 137,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -834,7 +834,7 @@
         "redFailures": 5,
         "focusedTests": 46,
         "impactedTests": 142,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -853,7 +853,7 @@
         "maxWorkers": 2,
         "configurationContractTests": 1,
         "frontendFiles": 180,
-        "frontendTests": 901,
+        "frontendTests": 903,
         "normalExit": true,
         "runtimeInventoryDelta": 0
       }
@@ -888,7 +888,7 @@
         "redFailures": 4,
         "focusedTests": 48,
         "impactedTests": 147,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -937,7 +937,7 @@
         "redFailures": 4,
         "focusedTests": 40,
         "impactedTests": 151,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -985,7 +985,7 @@
         "redFailures": 6,
         "focusedTests": 46,
         "impactedTests": 157,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -1020,7 +1020,7 @@
         "redFailures": 4,
         "focusedTests": 50,
         "impactedTests": 161,
-        "frontendTests": 901
+        "frontendTests": 903
       }
     },
     {
@@ -1058,7 +1058,37 @@
         "redFailures": 4,
         "focusedTests": 67,
         "impactedTests": 172,
-        "frontendTests": 901
+        "frontendTests": 903
+      }
+    },
+    {
+      "id": "QA-AI-DRAWER-APPLYING-OPEN-ACTION-ISOLATION-038",
+      "summary": "A registered AI action launch could replace the drawer source and erase an applying preview transaction.",
+      "before": {
+        "replacementActions": 100,
+        "applyingOpenActionGuarded": false,
+        "sourceChangedFrom": "chapter-1",
+        "sourceChangedTo": "chapter-2",
+        "stateAfterReplacement": "idle",
+        "transactionPreserved": false,
+        "altAShortcutAlreadyModalGuarded": true
+      },
+      "after": {
+        "guardedState": "applying",
+        "replacementActions": 100,
+        "sourcePreserved": true,
+        "contextPackPreserved": true,
+        "parsedOutputPreserved": true,
+        "transactionPreserved": true,
+        "originalProviderRequests": 1,
+        "cancellationCommands": 0,
+        "altAShortcutActions": 100,
+        "altAModalBoundaryPreserved": true,
+        "normalReopenContractsPreserved": true,
+        "redFailures": 1,
+        "focusedTests": 75,
+        "impactedTests": 174,
+        "frontendTests": 903
       }
     }
   ],
@@ -1083,22 +1113,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 901
+      "frontendTests": 903
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-04T05:48:13.602Z",
-      "completedAt": "2026-08-04T05:50:35.231Z",
+      "generatedAt": "2026-08-04T06:01:01.689Z",
+      "completedAt": "2026-08-04T06:03:58.394Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 141626,
+      "durationMs": 176704,
       "vitestFiles": 180,
-      "vitestPassed": 901,
-      "inventoryFrontendTests": 901,
+      "vitestPassed": 903,
+      "inventoryFrontendTests": 903,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -1107,10 +1137,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-04T05:48:13.703Z",
-      "completedAt": "2026-08-04T05:48:16.066Z",
+      "generatedAt": "2026-08-04T06:01:01.789Z",
+      "completedAt": "2026-08-04T06:01:04.339Z",
       "status": "PASS",
-      "durationMs": 2361,
+      "durationMs": 2549,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -1136,7 +1166,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10131,
+    "totalUnmapped": 10133,
     "missingStableSelectors": 221
   },
   "warnings": [

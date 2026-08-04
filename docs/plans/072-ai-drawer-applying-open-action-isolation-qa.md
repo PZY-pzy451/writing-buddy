@@ -50,3 +50,9 @@ traceability, real-provider smoke and packaging gates are closed.
   reopen, cancellation and explicit teardown behavior remains available.
 - Focused Store/App regression: 2 files / 75 tests passed.
 - Expanded impact regression: 10 files / 174 tests passed.
+- Fixed-commit frontend acceptance: lint, TypeScript, 180 files / 903 tests and
+  the production build passed with no runtime/static discovery difference.
+- Rust baseline: 79 tests discovered, 77 passed, 2 environment-gated tests
+  ignored and 0 failed.
+- Execution status is `PASS`; product status remains `PARTIAL` for the open
+  release gates above.

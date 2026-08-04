@@ -1074,6 +1074,36 @@ const report = {
 				impactedTests: 172,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-APPLYING-OPEN-ACTION-ISOLATION-038',
+			summary: 'A registered AI action launch could replace the drawer source and erase an applying preview transaction.',
+			before: {
+				replacementActions: 100,
+				applyingOpenActionGuarded: false,
+				sourceChangedFrom: 'chapter-1',
+				sourceChangedTo: 'chapter-2',
+				stateAfterReplacement: 'idle',
+				transactionPreserved: false,
+				altAShortcutAlreadyModalGuarded: true
+			},
+			after: {
+				guardedState: 'applying',
+				replacementActions: 100,
+				sourcePreserved: true,
+				contextPackPreserved: true,
+				parsedOutputPreserved: true,
+				transactionPreserved: true,
+				originalProviderRequests: 1,
+				cancellationCommands: 0,
+				altAShortcutActions: 100,
+				altAModalBoundaryPreserved: true,
+				normalReopenContractsPreserved: true,
+				redFailures: 1,
+				focusedTests: 75,
+				impactedTests: 174,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
