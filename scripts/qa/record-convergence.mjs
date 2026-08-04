@@ -1640,6 +1640,44 @@ const report = {
 				qaScriptTests: 26,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-RELATIONSHIP-INSPECTOR-SAVE-CONVERGENCE-055',
+			summary: 'Relationship Inspector lacked stable controls, multiplied same-frame saves, consumed persistence rejection and retained a stale revision after authoritative save.',
+			before: {
+				sourceControls: 4,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 4,
+				repeatedActions: 100,
+				saveDispatches: 100,
+				localizedFailureFeedback: false,
+				parentConsumedRejection: true,
+				secondSaveRevision: 0,
+				globalControls: 472,
+				globalStates: 10384,
+				globalMissingStableSelectors: 130,
+				totalUnmapped: 10489
+			},
+			after: {
+				sourceControls: 4,
+				sourceMappedControls: 4,
+				sourceMissingStableSelectors: 0,
+				repeatedActions: 100,
+				saveDispatches: 1,
+				localizedFailureFeedback: true,
+				retryAfterFailure: true,
+				parentPropagatesRejection: true,
+				secondSaveRevision: 1,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 17,
+				impactTests: 13,
+				qaScriptTests: 27,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

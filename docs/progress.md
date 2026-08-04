@@ -4,39 +4,40 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Traceability selector net convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `e987e26`.
+Relationship Inspector save convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `53b336c`.
 
-- Six contracts failed red: the inventory did not retain exact stable-selector
-  values, traceability ignored `data-testid` evidence, the event inspector
-  collapsed seven operations into six controls and lacked same-frame save/close
-  protection.
-- Traceability now accepts only an exact accessibility or stable-selector token
-  from a same-page, same-feature test whose title expresses the state intent.
-  This recovers real test evidence without granting blanket coverage.
-- Event Inspector now exposes 7/7 distinct controls, admits one save or close
-  transition under 100-click pressure, reports failed persistence and permits
-  one explicit retry.
-- Global selector debt falls from 134 to 130. Aggregate unmapped traceability
-  falls from the accepted 11,108 baseline to 10,489: 619 fewer gaps (5.57%).
-  Against the user's earlier 11,088 reference, the net reduction is 599.
-- Focused contracts passed 3 files / 20 tests, timeline impact passed 6 files /
-  15 tests and QA infrastructure passed 5 files / 26 tests.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, 186 files / 958 tests
+- Five contracts failed red: all four relationship edit/save declarations
+  lacked stable selectors, 100 same-frame Save actions could dispatch 100
+  writes, a rejected save had no inspector-owned retry feedback and a saved
+  relationship retained revision zero for the next edit.
+- Relationship Inspector now has 4/4 stable controls and a synchronous save
+  guard. One hundred Save actions dispatch once, pending state is visible,
+  failure details are localized and one explicit retry is allowed.
+- The form is keyed by relationship ID plus authoritative revision. After the
+  repository returns revision one, the next edit writes revision one instead
+  of repeating the stale revision-zero request.
+- Global selector debt falls from 130 to 126. Aggregate unmapped traceability
+  falls from 10,489 to 10,418: 71 fewer gaps (0.68%) while six new frontend
+  tests are counted. From the earlier 11,088 / 136 reference, the cumulative
+  reductions are 670 mappings and 10 selectors.
+- Focused contracts passed 2 files / 17 tests, relationship impact passed 4
+  files / 13 tests and QA infrastructure passed 5 files / 27 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 187 files / 964 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,037 cases: 1,035 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 958 with 97 parameterized instances
+- The ledger contains 1,043 cases: 1,041 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 964 with 97 parameterized instances
   and zero unresolved declarations.
 - Quantified status: deterministic execution is 100%; stable-selector coverage
-  is 342/472 (72.46%); aggregate strict traceability is 13.64%; release gates
+  is 346/472 (73.31%); aggregate strict traceability is 14.27%; release gates
   remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
   real-provider smoke and packaged-EXE acceptance complete.
 
 ## Previous milestone
 
-Chapter creation lifecycle convergence is complete against source `6178b39`:
-6/6 source controls are mapped and fixed acceptance passed 952 frontend tests.
+Traceability selector net convergence is complete against source `e987e26`:
+Event Inspector is 7/7 mapped and fixed acceptance passed 958 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

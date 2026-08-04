@@ -1105,3 +1105,16 @@ did not fully specify `targetTypes`, position objects or history arrays.
   and stable-selector gaps from 134 to 130.
 - Release remains blocked: strict traceability is incomplete, and real-provider
   plus packaged-EXE acceptance have not run.
+
+## 2026-08-04 addendum — defect 055
+
+- Relationship Inspector now exposes 4/4 stable controls, reduces 100
+  same-frame Save actions to one, localizes failure feedback and permits retry.
+- Authoritative relationship revision changes reconstruct the mounted draft;
+  the next successful edit uses revision one rather than the stale revision
+  zero.
+- Fixed-commit execution passed 964 frontend and 77 native tests; two native
+  cases retain documented reasons. Traceability gaps fell from 10,489 to 10,418
+  and stable-selector gaps from 130 to 126.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.
