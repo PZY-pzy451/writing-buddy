@@ -1,5 +1,5 @@
 import Editor, { type OnMount } from '@monaco-editor/react';
-import { Check, Feather, RotateCcw, X } from 'lucide-react';
+import { Feather } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor as MonacoEditor } from 'monaco-editor';
 import type * as MonacoNamespace from 'monaco-editor';
@@ -50,6 +50,11 @@ import {
 	isPendingDraftCandidateStale,
 	resolvePendingDraftEdit
 } from '../features/story/ai-context/InlineDraftCandidateModel';
+import {
+	canUndoCommittedDraft,
+	type InlineDraftCommitNotice
+} from './InlineDraftCommitNoticeModel';
+import { InlineDraftCommitNoticeBanner } from './InlineDraftCommitNoticeBanner';
 
 const INLINE_LANGUAGE_MARKER_OWNER = 'writing-buddy.inline-language';
 type MonacoApi = typeof MonacoNamespace;
@@ -179,10 +184,7 @@ export function ChapterEditor(): React.JSX.Element {
 		readonly height: number;
 		readonly right: number;
 	}>();
-	const [draftCommitNotice, setDraftCommitNotice] = useState<{
-		readonly contentAfterCommit: string;
-		readonly message: string;
-	}>();
+	const [draftCommitNotice, setDraftCommitNotice] = useState<InlineDraftCommitNotice>();
 	const [scenes, setScenes] = useState<readonly StoryScene[]>([]);
 	const [mentions, setMentions] = useState<readonly MentionLink[]>([]);
 	const [entityPeek, setEntityPeek] = useState<EntityPeekState>();
@@ -1088,6 +1090,9 @@ export function ChapterEditor(): React.JSX.Element {
 			}
 			clearPendingDraftCandidate(candidate.id);
 			setDraftCommitNotice({
+				projectId: candidate.target.projectId,
+				resourceId: completed.session.state.resourceId,
+				modelUri: completed.session.state.modelUri,
 				contentAfterCommit: model.getValue(),
 				message: 'AI 草稿已写入正文，并已创建安全快照与自动保存。'
 			});
@@ -1118,16 +1123,20 @@ export function ChapterEditor(): React.JSX.Element {
 		if (
 			!editor
 			|| !model
-			|| !draftCommitNotice
-			|| session.content !== draftCommitNotice.contentAfterCommit
+			|| !canUndoCommittedDraft(draftCommitNotice, {
+				projectId: activeResource.projectId,
+				resourceId: session.state.resourceId,
+				modelUri: model.uri.toString(),
+				content: session.content
+			})
 		) {
 			return;
 		}
 		editor.trigger('writing-buddy.ai-draft', 'undo', undefined);
 		useAppStore.getState().setContent(model.getValue(), 'undo');
 		clearAiInsertHighlight();
-		await useAppStore.getState().save();
 		setDraftCommitNotice(undefined);
+		await useAppStore.getState().save();
 		editor.focus();
 	};
 	const closeEntityPeek = () => {
@@ -1344,28 +1353,17 @@ export function ChapterEditor(): React.JSX.Element {
 						)
 					: null}
 				{draftCommitNotice ? (
-					<div className="inline-draft-commit-notice" role="status">
-						<Check size={18} />
-						<span>{draftCommitNotice.message}</span>
-						<button
-							type="button"
-							disabled={session.content !== draftCommitNotice.contentAfterCommit}
-							title={session.content === draftCommitNotice.contentAfterCommit
-								? '一次撤销完整 AI 写入'
-								: '正文已继续编辑，请使用编辑器原生撤销'}
-							onClick={() => void undoCommittedDraft()}
-						>
-							<RotateCcw size={18} />撤销
-						</button>
-						<button
-							className="icon-button"
-							type="button"
-							aria-label="关闭 AI 写入提示"
-							onClick={() => setDraftCommitNotice(undefined)}
-						>
-							<X size={18} />
-						</button>
-					</div>
+					<InlineDraftCommitNoticeBanner
+						notice={draftCommitNotice}
+						target={{
+							projectId: activeResource.projectId,
+							resourceId: session.state.resourceId,
+							modelUri: session.state.modelUri,
+							content: session.content
+						}}
+						onUndo={undoCommittedDraft}
+						onDismiss={() => setDraftCommitNotice(undefined)}
+					/>
 				) : null}
 				{activeResource.type === 'chapter'
 					&& storyRepository
