@@ -18,8 +18,12 @@ import {
 	CreationJourneyStore,
 	type CreationJourneyStorageGateway
 } from '../../creation-journey/CreationJourneyStore';
+import { StoryKernelGenerationService } from '../ai-context/StoryKernelGenerationService';
 import { ManuscriptExtractionCenterPage } from './ManuscriptExtractionCenterPage';
-import { ManuscriptExtractionRunner } from './ManuscriptExtractionCenterService';
+import {
+	ManuscriptExtractionRunner,
+	ManuscriptExtractionRunStore
+} from './ManuscriptExtractionCenterService';
 
 const chapters = [{
 	resourceId: 'chapter:chapter-a11ce001',
@@ -141,12 +145,163 @@ function materializedJourney(projectId: string): string {
 	})));
 }
 
+async function selectOneConfirmableCandidate(): Promise<HTMLElement> {
+	render(
+		<ManuscriptExtractionCenterPage
+			projectRoot="browser-fixture"
+			chapters={chapters}
+			activeChapterId={chapters[0]?.resourceId}
+		/>
+	);
+
+	fireEvent.click(screen.getByRole('button', { name: '计算 Token 并创建批次' }));
+	await screen.findByText(/已规划 1 个章节/u);
+	fireEvent.click(screen.getByRole('button', { name: '开始逐章整理' }));
+	await screen.findByText(/全部章节已整理完成/u, {}, { timeout: 8_000 });
+	const candidate = screen.getAllByRole('checkbox').find(element => (
+		element.getAttribute('aria-label')?.startsWith('选择 ')
+		&& !(element as HTMLInputElement).disabled
+	));
+	expect(candidate).toBeDefined();
+	if (!candidate) throw new Error('confirmableCandidateMissing');
+	fireEvent.click(candidate);
+	return screen.getByRole('button', { name: /创建快照并批量确认 1/u });
+}
+
 describe('ManuscriptExtractionCenterPage', () => {
 	beforeEach(async () => {
 		await desktopBridge.saveDeepSeekKey('browser-fixture-key');
 	});
 	afterEach(() => {
 		vi.restoreAllMocks();
+	});
+
+	it('plans one batch for one hundred same-frame actions', async () => {
+		const append = vi.spyOn(ManuscriptExtractionRunStore.prototype, 'append')
+			.mockImplementation(() => new Promise<never>(() => undefined));
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+			/>
+		);
+		const plan = screen.getByRole('button', { name: '计算 Token 并创建批次' });
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				plan.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await new Promise(resolve => setTimeout(resolve, 0));
+		});
+		await waitFor(() => expect(append).toHaveBeenCalled());
+
+		expect(append).toHaveBeenCalledTimes(1);
+		expect(plan).toBeDisabled();
+	});
+
+	it('releases the plan guard after failure and deduplicates the explicit retry', async () => {
+		const append = vi.spyOn(ManuscriptExtractionRunStore.prototype, 'append')
+			.mockRejectedValueOnce(new Error('temporary-storage-failure'))
+			.mockImplementation(() => new Promise<never>(() => undefined));
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+			/>
+		);
+		const plan = screen.getByRole('button', { name: '计算 Token 并创建批次' });
+		fireEvent.click(plan);
+		expect(await screen.findByRole('alert')).toHaveTextContent(
+			'正文整理暂时不可用，请重试。'
+		);
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				plan.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await new Promise(resolve => setTimeout(resolve, 0));
+		});
+
+		expect(append).toHaveBeenCalledTimes(2);
+		expect(plan).toBeDisabled();
+	});
+
+	it('redacts unexpected extraction storage failures and keeps retry visible', async () => {
+		const runStore = new ManuscriptExtractionRunStore('browser-fixture', desktopBridge);
+		vi.spyOn(runStore, 'load').mockRejectedValueOnce(
+			new Error('storage-secret-stack-123')
+		);
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+				runStore={runStore}
+			/>
+		);
+
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('正文整理暂时不可用，请重试。');
+		expect(alert).not.toHaveTextContent('storage-secret-stack-123');
+		expect(screen.getByLabelText('AI 从正文整理中心')).toBeVisible();
+		expect(screen.getByRole('button', { name: '计算 Token 并创建批次' })).toBeEnabled();
+	});
+
+	it('confirms one candidate transaction for one hundred same-frame actions', async () => {
+		const confirmButton = await selectOneConfirmableCandidate();
+		const snapshot = vi.spyOn(desktopBridge, 'createSnapshot');
+		const confirm = vi.spyOn(StoryKernelGenerationService.prototype, 'confirmWithReceipt')
+			.mockImplementation(() => new Promise<never>(() => undefined));
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				confirmButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await new Promise(resolve => setTimeout(resolve, 0));
+		});
+		await waitFor(() => expect(confirm).toHaveBeenCalled());
+
+		expect(snapshot).toHaveBeenCalledTimes(1);
+		expect(confirm).toHaveBeenCalledTimes(1);
+		expect(confirmButton).toBeDisabled();
+	});
+
+	it('undoes one confirmation for one hundred same-frame actions', async () => {
+		fireEvent.click(await selectOneConfirmableCandidate());
+		const undoButton = await screen.findByRole('button', { name: '撤销资料确认' });
+		const undo = vi.spyOn(StoryKernelGenerationService.prototype, 'undoConfirmation')
+			.mockImplementation(() => new Promise<never>(() => undefined));
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				undoButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(undo).toHaveBeenCalledTimes(1);
+		expect(undoButton).toBeDisabled();
+	});
+
+	it('rejects one candidate for one hundred same-frame actions', async () => {
+		await selectOneConfirmableCandidate();
+		const rejectButton = screen.getAllByRole('button', { name: '拒绝候选' })[0];
+		expect(rejectButton).toBeDefined();
+		if (!rejectButton) throw new Error('rejectCandidateMissing');
+		const reject = vi.spyOn(StoryKernelGenerationService.prototype, 'reject')
+			.mockImplementation(() => new Promise<never>(() => undefined));
+
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				rejectButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(reject).toHaveBeenCalledTimes(1);
+		expect(rejectButton).toBeDisabled();
 	});
 
 	it('starts one paid run for one hundred same-frame actions', async () => {

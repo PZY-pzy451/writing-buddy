@@ -148,7 +148,10 @@ function safeMessage(reason: unknown): string {
 		invalidChapterReconciliationResponse: 'AI 未返回完整的计划与实际比较，请重试整理本章。',
 		invalidChapterReconciliationEvidence: 'AI 返回的差异没有可定位的正文依据。'
 	};
-	return labels[code] ?? code;
+	if (code.startsWith('invalidManuscriptExtraction')) {
+		return '正文整理记录异常，已停止自动处理；请重试。';
+	}
+	return labels[code] ?? '正文整理暂时不可用，请重试。';
 }
 
 export function ManuscriptExtractionCenterPage(props: {
@@ -254,6 +257,15 @@ export function ManuscriptExtractionCenterPage(props: {
 	const [error, setError] = useState('');
 	const runGuardRef = useRef(false);
 	const stopGuardRef = useRef(false);
+	const mutationGuardRef = useRef(false);
+	const beginMutation = () => {
+		if (mutationGuardRef.current) return false;
+		mutationGuardRef.current = true;
+		return true;
+	};
+	const finishMutation = () => {
+		mutationGuardRef.current = false;
+	};
 
 	const refreshStaleState = useCallback(async (
 		nextBatches: readonly StoryKernelGenerationBatch[]
@@ -423,7 +435,12 @@ export function ManuscriptExtractionCenterPage(props: {
 	};
 
 	const createPlan = async () => {
-		if (!runStore || scopedChapters.length === 0 || targetTypes.length === 0) return;
+		if (
+			!runStore
+			|| scopedChapters.length === 0
+			|| targetTypes.length === 0
+			|| !beginMutation()
+		) return;
 		setPlanning(true);
 		setPlanningProgress(0);
 		setError('');
@@ -450,18 +467,21 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setPlanning(false);
+			finishMutation();
 		}
 	};
 
 	const startRun = async () => {
 		if (
 			runGuardRef.current
+			|| mutationGuardRef.current
 			|| !selectedRun
 			|| !runner
 			|| !repository
 			|| !generationService
 			|| !generationStore
 		) return;
+		mutationGuardRef.current = true;
 		runGuardRef.current = true;
 		setBusyAction('run');
 		stopGuardRef.current = false;
@@ -553,6 +573,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			runGuardRef.current = false;
+			finishMutation();
 			setBusyAction(undefined);
 			stopGuardRef.current = false;
 			setStopPending(false);
@@ -575,7 +596,7 @@ export function ManuscriptExtractionCenterPage(props: {
 	};
 
 	const refreshStaleChapter = async (resourceId: string) => {
-		if (!selectedRun || !runner) return;
+		if (!selectedRun || !runner || !beginMutation()) return;
 		try {
 			const refreshed = await runner.refreshChapterSource(
 				selectedRun.id,
@@ -585,6 +606,8 @@ export function ManuscriptExtractionCenterPage(props: {
 			setNotice('已使用最新正文重新计算该章节 Token，尚未发起 AI 请求。');
 		} catch (reason) {
 			setError(safeMessage(reason));
+		} finally {
+			finishMutation();
 		}
 	};
 
@@ -596,6 +619,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError('正文或章节计划已变化，旧候选不可确认；请使用最新内容重新整理本章。');
 			return;
 		}
+		if (!beginMutation()) return;
 		setBusyAction('confirm');
 		setError('');
 		const confirmedReceipts: StoryKernelConfirmationUndoReceipt[] = [];
@@ -717,13 +741,17 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setBusyAction(undefined);
+			finishMutation();
 		}
 	};
 
 	const replanStaleBatch = async (batch: StoryKernelGenerationBatch) => {
-		if (!runStore) return;
+		if (!runStore || !beginMutation()) return;
 		const chapter = chapters.find(item => item.resourceId === batch.sourceResourceId);
-		if (!chapter) return;
+		if (!chapter) {
+			finishMutation();
+			return;
+		}
 		setPlanning(true);
 		setPlanningProgress(0);
 		setError('');
@@ -749,11 +777,12 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setPlanning(false);
+			finishMutation();
 		}
 	};
 
 	const keepChapterDifference = async (batchId: string) => {
-		if (!generationService || !generationStore) return;
+		if (!generationService || !generationStore || !beginMutation()) return;
 		setResolvingCandidateId(batchId);
 		setError('');
 		try {
@@ -794,6 +823,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setResolvingCandidateId(undefined);
+			finishMutation();
 		}
 	};
 
@@ -801,7 +831,7 @@ export function ManuscriptExtractionCenterPage(props: {
 		batchId: string,
 		candidateId: string
 	) => {
-		if (!generationService || !generationStore) return;
+		if (!generationService || !generationStore || !beginMutation()) return;
 		setResolvingCandidateId(candidateId);
 		setError('');
 		try {
@@ -818,6 +848,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setResolvingCandidateId(undefined);
+			finishMutation();
 		}
 	};
 
@@ -841,7 +872,12 @@ export function ManuscriptExtractionCenterPage(props: {
 	};
 
 	const undoLastConfirmation = async () => {
-		if (!generationService || !generationStore || lastConfirmationReceipts.length === 0) return;
+		if (
+			!generationService
+			|| !generationStore
+			|| lastConfirmationReceipts.length === 0
+			|| !beginMutation()
+		) return;
 		setBusyAction('undo');
 		setError('');
 		let remaining = [...lastConfirmationReceipts];
@@ -862,6 +898,7 @@ export function ManuscriptExtractionCenterPage(props: {
 			setError(safeMessage(reason));
 		} finally {
 			setBusyAction(undefined);
+			finishMutation();
 		}
 	};
 
@@ -893,6 +930,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						{Object.entries(scopeLabels).map(([id, label]) => (
 							<button
 								type="button"
+								data-testid="extraction-scope-option"
 								role="radio"
 								aria-checked={scope === id}
 								className={scope === id ? 'is-active' : ''}
@@ -904,7 +942,12 @@ export function ManuscriptExtractionCenterPage(props: {
 					{scope === 'current-chapter' || scope === 'current-volume' ? (
 						<label>
 							<span>基准章节</span>
-							<select value={effectiveBaseChapterId} onChange={event => setBaseChapterId(event.target.value)}>
+							<select
+								aria-label="基准章节"
+								data-testid="extraction-base-chapter"
+								value={effectiveBaseChapterId}
+								onChange={event => setBaseChapterId(event.target.value)}
+							>
 								{chapters.map(chapter => (
 									<option value={chapter.resourceId} key={chapter.resourceId}>
 										{chapter.volumeTitle ? `${chapter.volumeTitle} · ` : ''}{chapter.title}
@@ -919,6 +962,7 @@ export function ManuscriptExtractionCenterPage(props: {
 								<label key={chapter.resourceId}>
 									<input
 										type="checkbox"
+										data-testid="extraction-chapter-option"
 										checked={selectedChapterIds.includes(chapter.resourceId)}
 										onChange={() => setSelectedChapterIds(current => (
 											current.includes(chapter.resourceId)
@@ -937,6 +981,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							<label key={type}>
 								<input
 									type="checkbox"
+									data-testid="extraction-target-type"
 									checked={targetTypes.includes(type)}
 									onChange={() => setTargetTypes(current => (
 										current.includes(type)
@@ -951,6 +996,7 @@ export function ManuscriptExtractionCenterPage(props: {
 					<label>
 						<span>作者指令</span>
 						<textarea
+							aria-label="作者指令"
 							value={instruction}
 							maxLength={2_000}
 							onChange={event => setInstruction(event.target.value)}
@@ -958,6 +1004,7 @@ export function ManuscriptExtractionCenterPage(props: {
 					</label>
 					<button
 						type="button"
+						data-testid="extraction-plan"
 						className="extraction-plan-button"
 						disabled={
 							props.readOnly
@@ -1004,6 +1051,7 @@ export function ManuscriptExtractionCenterPage(props: {
 					<div className="extraction-run-actions">
 						<button
 							type="button"
+							data-testid="extraction-start-or-resume"
 							disabled={
 								!selectedRun
 								|| selectedRun.status === 'running'
@@ -1019,6 +1067,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						</button>
 						<button
 							type="button"
+							data-testid="extraction-stop"
 							disabled={
 								stopPending
 								|| (selectedRun?.status !== 'running' && busyAction !== 'run')
@@ -1150,6 +1199,7 @@ export function ManuscriptExtractionCenterPage(props: {
 												<label>
 													<input
 														type="checkbox"
+														data-testid="extraction-reconciliation-field"
 														aria-label={`更新大纲字段 ${reconciliationFieldLabels[difference.field]}`}
 														checked={checked}
 														disabled={
@@ -1286,9 +1336,18 @@ export function ManuscriptExtractionCenterPage(props: {
 							<option value="all">全部类型</option>
 							{storyKernelGenerationResourceTypes.map(type => <option value={type} key={type}>{typeLabels[type]}</option>)}
 						</select>
-						<label><input type="checkbox" checked={conflictOnly} onChange={event => setConflictOnly(event.target.checked)} />只看冲突</label>
+						<label>
+							<input
+								aria-label="只看冲突"
+								type="checkbox"
+								checked={conflictOnly}
+								onChange={event => setConflictOnly(event.target.checked)}
+							/>
+							只看冲突
+						</label>
 						<button
 							type="button"
+							data-testid="extraction-confirm-selected"
 							disabled={
 								totalSelectionCount === 0
 								|| selectedHasStaleSource
@@ -1303,6 +1362,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						{lastConfirmationReceipts.length > 0 ? (
 							<button
 								type="button"
+								data-testid="extraction-undo-confirmation"
 								className="extraction-undo-button"
 								disabled={Boolean(busyAction) || props.readOnly}
 								onClick={() => void undoLastConfirmation()}
@@ -1344,6 +1404,7 @@ export function ManuscriptExtractionCenterPage(props: {
 												<label>
 													<input
 														type="checkbox"
+														data-testid="extraction-candidate-option"
 														aria-label={`选择 ${candidate.title}`}
 														disabled={
 															stale
@@ -1375,6 +1436,7 @@ export function ManuscriptExtractionCenterPage(props: {
 													</span>
 													<button
 														type="button"
+														data-testid="extraction-replan-stale-batch"
 														disabled={planning || Boolean(busyAction) || props.readOnly}
 														onClick={() => void replanStaleBatch(batch)}
 													>

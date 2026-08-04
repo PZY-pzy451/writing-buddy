@@ -168,4 +168,25 @@ describe('control inventory rendered-element boundary', () => {
 		expect(headerControls).toHaveLength(12);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-012 requires stable controls for manuscript extraction actions', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const extractionControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.tsx'
+		));
+		const missingSelectors = extractionControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(extractionControls).toHaveLength(19);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });
