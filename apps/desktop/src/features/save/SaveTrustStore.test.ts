@@ -123,6 +123,225 @@ describe('save trust store integration', () => {
 		});
 	});
 
+	it('coalesces 100 waiting save calls into one follow-up write for a newer edit', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('first payload');
+		let finishFirstWrite: ((result: AtomicWriteResult) => void) | undefined;
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockImplementationOnce(() => new Promise(resolve => { finishFirstWrite = resolve; }))
+			.mockResolvedValueOnce({
+				hash: 'coalesced-follow-up-hash',
+				modifiedAt: '2026-08-04T10:01:00.000Z',
+				byteLength: 24
+			});
+
+		const firstSave = useAppStore.getState().save();
+		useAppStore.getState().setContent('newer payload');
+		const waitingSaves = Array.from({ length: 100 }, () => (
+			useAppStore.getState().save()
+		));
+		finishFirstWrite?.({
+			hash: 'coalesced-first-hash',
+			modifiedAt: '2026-08-04T10:00:00.000Z',
+			byteLength: 20
+		});
+		await Promise.all([firstSave, ...waitingSaves]);
+
+		expect(write).toHaveBeenCalledTimes(2);
+		expect(write.mock.calls[1]?.[0]).toMatchObject({
+			content: 'newer payload',
+			expectedHash: 'coalesced-first-hash'
+		});
+		expect(useAppStore.getState().saveState).toEqual({
+			type: 'clean',
+			savedAt: '2026-08-04T10:01:00.000Z'
+		});
+	});
+
+	it('does not convert 100 same-tick save calls into hidden retries after a failure', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('must remain available after an offline save');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('networkOffline:C:\\private\\chapter.md'));
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().save()
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().saveState).toEqual({
+			type: 'offline',
+			pendingChanges: 1
+		});
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+
+		write.mockResolvedValueOnce({
+			hash: 'explicit-retry-hash',
+			modifiedAt: '2026-08-04T10:02:00.000Z',
+			byteLength: 46
+		});
+		await useAppStore.getState().save();
+
+		expect(write).toHaveBeenCalledTimes(2);
+		expect(useAppStore.getState().saveState).toEqual({
+			type: 'clean',
+			savedAt: '2026-08-04T10:02:00.000Z'
+		});
+	});
+
+	it('does not retry a non-retryable save failure for waiting callers', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('permission failure must require a new decision');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('accessDenied:C:\\private\\chapter.md'));
+
+		await Promise.all(Array.from({ length: 100 }, () => (
+			useAppStore.getState().save()
+		)));
+
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().saveState).toEqual({
+			type: 'failed',
+			errorCode: 'accessDenied',
+			retryable: false
+		});
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('does not start normal-save retries when an active force-save fails', async () => {
+		await openChapter();
+		useAppStore.getState().setContent('force-save failure must remain one author intent');
+		const write = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('accessDenied:C:\\private\\chapter.md'));
+
+		const forceSave = useAppStore.getState().forceSave();
+		const waitingSaves = Array.from({ length: 100 }, () => (
+			useAppStore.getState().save()
+		));
+		const [forceSaved] = await Promise.all([forceSave, ...waitingSaves]);
+
+		expect(forceSaved).toBe(false);
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().saveState).toEqual({
+			type: 'failed',
+			errorCode: 'accessDenied',
+			retryable: false
+		});
+		expect(useAppStore.getState().session?.state.dirty).toBe(true);
+	});
+
+	it('ignores a late save failure after the author switches projects', async () => {
+		const firstSnapshot = await openChapter();
+		useAppStore.getState().setContent('old project draft');
+		let failOldWrite: ((error: Error) => void) | undefined;
+		vi.spyOn(desktopBridge, 'writeTextAtomic').mockImplementationOnce(() => (
+			new Promise((_, reject) => { failOldWrite = reject; })
+		));
+		const oldSave = useAppStore.getState().save();
+		const secondSnapshot: ProjectSnapshot = {
+			...firstSnapshot,
+			root: 'browser-fixture-second-project',
+			project: {
+				...firstSnapshot.project,
+				projectId: 'project-second-save-lifecycle',
+				title: 'Second project'
+			}
+		};
+		vi.spyOn(window, 'confirm').mockReturnValueOnce(true);
+		vi.spyOn(desktopBridge, 'openProject').mockResolvedValueOnce(secondSnapshot);
+
+		await useAppStore.getState().openProject(secondSnapshot.root);
+		await useAppStore.getState().openResource(firstChapter(secondSnapshot));
+		expect(useAppStore.getState().saveState.type).toBe('clean');
+		failOldWrite?.(new Error('networkOffline:C:\\private\\old-project.md'));
+		await oldSave;
+
+		expect(useAppStore.getState().snapshot?.project.projectId)
+			.toBe(secondSnapshot.project.projectId);
+		expect(useAppStore.getState().activeResource?.projectId)
+			.toBe(secondSnapshot.project.projectId);
+		expect(useAppStore.getState().saveState.type).toBe('clean');
+	});
+
+	it('does not apply a late save receipt to a same-id chapter in another project', async () => {
+		const firstSnapshot = await openChapter();
+		useAppStore.getState().setContent('old project payload');
+		let finishOldWrite: ((result: AtomicWriteResult) => void) | undefined;
+		vi.spyOn(desktopBridge, 'writeTextAtomic').mockImplementationOnce(() => (
+			new Promise(resolve => { finishOldWrite = resolve; })
+		));
+		const oldSave = useAppStore.getState().save();
+		const secondSnapshot: ProjectSnapshot = {
+			...firstSnapshot,
+			root: 'browser-fixture-same-chapter-id',
+			project: {
+				...firstSnapshot.project,
+				projectId: 'project-same-chapter-id',
+				title: 'Same chapter id project'
+			}
+		};
+		vi.spyOn(window, 'confirm').mockReturnValueOnce(true);
+		vi.spyOn(desktopBridge, 'openProject').mockResolvedValueOnce(secondSnapshot);
+
+		await useAppStore.getState().openProject(secondSnapshot.root);
+		await useAppStore.getState().openResource(firstChapter(secondSnapshot));
+		const secondBaseline = useAppStore.getState().session?.originalContent;
+		const secondDiskHash = useAppStore.getState().session?.state.diskHash;
+		useAppStore.getState().setContent('new project draft');
+		finishOldWrite?.({
+			hash: 'old-project-late-hash',
+			modifiedAt: '2026-08-04T10:03:00.000Z',
+			byteLength: 19
+		});
+		await oldSave;
+
+		expect(useAppStore.getState().session?.content).toBe('new project draft');
+		expect(useAppStore.getState().session?.originalContent).toBe(secondBaseline);
+		expect(useAppStore.getState().session?.state.diskHash).toBe(secondDiskHash);
+		expect(useAppStore.getState().saveState).toEqual({ type: 'dirty' });
+	});
+
+	it('does not reveal an old-project conflict after its delayed disk read', async () => {
+		const firstSnapshot = await openChapter();
+		useAppStore.getState().setContent('old project conflict payload');
+		vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValueOnce(new Error('externalChange:old-project'));
+		const originalReadText = desktopBridge.readText.bind(desktopBridge);
+		let finishOldDiskRead: ((file: TextFile) => void) | undefined;
+		const read = vi.spyOn(desktopBridge, 'readText')
+			.mockImplementationOnce(() => new Promise(resolve => { finishOldDiskRead = resolve; }))
+			.mockImplementation((root, path) => originalReadText(root, path));
+		const oldSave = useAppStore.getState().save();
+		await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(1));
+		const secondSnapshot: ProjectSnapshot = {
+			...firstSnapshot,
+			root: 'browser-fixture-after-conflict',
+			project: {
+				...firstSnapshot.project,
+				projectId: 'project-after-conflict',
+				title: 'Project after conflict'
+			}
+		};
+		vi.spyOn(window, 'confirm').mockReturnValueOnce(true);
+		vi.spyOn(desktopBridge, 'openProject').mockResolvedValueOnce(secondSnapshot);
+
+		await useAppStore.getState().openProject(secondSnapshot.root);
+		await useAppStore.getState().openResource(firstChapter(secondSnapshot));
+		finishOldDiskRead?.({
+			content: 'old project disk content',
+			hash: 'old-project-disk-hash',
+			encoding: 'utf-8',
+			eol: 'lf',
+			hasBom: false
+		});
+		await oldSave;
+
+		expect(useAppStore.getState().externalConflict).toBeUndefined();
+		expect(useAppStore.getState().saveState.type).toBe('clean');
+		expect(useAppStore.getState().snapshot?.project.projectId)
+			.toBe(secondSnapshot.project.projectId);
+	});
+
 	it('keeps a persistent safe failure and clears it after a successful retry', async () => {
 		await openChapter();
 		useAppStore.getState().setContent('需要恢复的正文');

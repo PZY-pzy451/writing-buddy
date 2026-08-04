@@ -2011,15 +2011,17 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	async save() {
 		if (activeForceSave) {
 			await activeForceSave;
-			if (get().session?.state.dirty) {
-				await get().save();
+			const current = get();
+			if (current.saveState.type === 'dirty' && current.session?.state.dirty) {
+				await current.save();
 			}
 			return;
 		}
 		if (activeManuscriptSave) {
 			await activeManuscriptSave;
-			if (get().session?.state.dirty) {
-				await get().save();
+			const current = get();
+			if (current.saveState.type === 'dirty' && current.session?.state.dirty) {
+				await current.save();
 			}
 			return;
 		}
@@ -2028,6 +2030,19 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			if (!snapshot || !activeResource?.path) {
 				return;
 			}
+			const stillTargetsCurrentResource = () => {
+				const current = get();
+				if (current.snapshot?.root !== snapshot.root
+					|| current.snapshot.project.projectId !== snapshot.project.projectId
+					|| current.activeResource?.id !== activeResource.id
+					|| current.activeResource.path !== activeResource.path) {
+					return false;
+				}
+				return session
+					? current.session?.state.resourceId === session.state.resourceId
+						&& current.session.state.path === session.state.path
+					: !current.session;
+			};
 			set({
 				saveState: { type: 'saving', startedAt: new Date().toISOString() },
 				error: undefined
@@ -2036,10 +2051,9 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 				if (session) {
 					const request = session.toWriteRequest(snapshot.root);
 					const result = await desktopBridge.writeTextAtomic(request);
+					if (!stillTargetsCurrentResource()) return;
 					const currentSession = get().session;
-					if (currentSession?.state.resourceId !== session.state.resourceId) {
-						return;
-					}
+					if (!currentSession) return;
 					currentSession.markSaved(result, request.content);
 					const dirty = currentSession.state.dirty;
 					set(current => ({
@@ -2064,9 +2078,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 						resourceContent,
 						resourceHash
 					);
-					if (get().activeResource?.id !== activeResource.id || get().session) {
-						return;
-					}
+					if (!stillTargetsCurrentResource()) return;
 					set({
 						resourceHash: result.hash,
 						lastSavedAt: result.modifiedAt,
@@ -2075,10 +2087,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 					});
 				}
 			} catch (error) {
+				if (!stillTargetsCurrentResource()) return;
 				const failure = classifySaveFailure(error);
 				if (session && failure.type === 'external_conflict') {
 					try {
 						const disk = await desktopBridge.readText(snapshot.root, session.state.path);
+						if (!stillTargetsCurrentResource()) return;
 						const detectedAt = new Date().toISOString();
 						set({
 							externalConflict: { disk, detectedAt },
@@ -2377,8 +2391,10 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		}
 		if (activeManuscriptSave) {
 			await activeManuscriptSave;
-			if (!get().session?.state.dirty) return true;
-			return get().forceSave();
+			const current = get();
+			if (!current.session?.state.dirty) return true;
+			if (current.saveState.type !== 'dirty') return false;
+			return current.forceSave();
 		}
 		const { snapshot, session } = get();
 		if (!snapshot || !session) {
