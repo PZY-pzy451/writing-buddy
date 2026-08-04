@@ -428,6 +428,30 @@ Inventory caught the dynamic undo text as one new missing stable selector; an
 explicit `aria-label="撤销 AI 正文写入"` restored the global count from 222 to 221,
 and the full frontend gate was rerun after that correction.
 
+### QA-SAVE-RETRY-SINGLE-FLIGHT-023
+
+The manuscript save boundary exposed a failure-amplification defect. One hundred
+same-tick Save/Retry calls correctly shared the first native write, but every
+waiting caller interpreted the still-dirty manuscript after a failure as a new
+request. The red baseline therefore performed 100 writes for one retryable
+offline failure and 100 writes for one non-retryable permission failure. A
+force-save failure could feed the same hidden normal-save retry path.
+
+Waiting callers now schedule a follow-up only when the completed write succeeded
+and the author entered newer text while it was in flight. Failed, offline and
+conflict states stop after one write and require a later explicit author action.
+The identity audit also found that normal save validated only the resource ID:
+a late failure could change the new project's recovery state, and a late success
+could replace the disk baseline of a same-ID chapter in another project. Save
+results and delayed conflict reads now revalidate project root, project ID,
+resource ID, path and writer session before mutating state.
+
+The focused save suite passes 38/38 and the ten-file save/editor/session/workspace
+impact set passes 93/93. Full Node 24 acceptance passes 178 files / 829 tests,
+lint, typecheck and production build. Rust collects 79, passes 77 and retains
+two reasoned ignores. The converged ledger contains 908 cases: 906 passes and
+two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -531,11 +555,12 @@ console claims.
 | External manuscript conflict lifecycle | Eight red-first failures cover 100 verification/overwrite actions, old-resource and post-save stale reads, in-flight edits, retry and truthful save-copy cancellation; 35 focused and 70 impacted tests passed |
 | Live external-conflict journey | Blocked before page control by in-app browser runtime initialization; deterministic rendered-dialog contracts pass and no product test backdoor was added |
 | AI draft undo resource isolation | Three red identity failures plus 100-click pressure; exact project/resource/model/content targeting, stale dismissal, localized retry and stable accessible name now pass 7 focused and 81 impacted tests |
-| Ledger/inventory reconciliation | 901 / 901 cases; 822 frontend + 79 native; 899 passed + 2 reasoned skips; stale ledgers fail closed |
+| Save retry and result isolation | 100-click retryable/non-retryable failures fell from 100 writes to 1; explicit retry, force-save waiting and cross-project late result isolation pass 38 focused and 93 impacted tests |
+| Ledger/inventory reconciliation | 908 / 908 cases; 829 frontend + 79 native; 906 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 822 tests and production build passed |
-| Static/runtime test reconciliation | 822 / 822; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 829 tests and production build passed |
+| Static/runtime test reconciliation | 829 / 829; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -575,7 +600,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,063 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,069 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

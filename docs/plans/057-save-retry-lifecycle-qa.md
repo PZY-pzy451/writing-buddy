@@ -34,3 +34,13 @@ misleading recovery state and unnecessary disk/provider pressure.
 - Record machine evidence and keep release/product status truthful when real
   provider, packaging or strict traceability gates are not run.
 
+## Result
+
+- Red baseline: retryable and non-retryable 100-call bursts each performed 100
+  native writes; a same-ID late receipt changed another project's disk baseline.
+- Repaired focused suite: 38/38; ten-file impact set: 93/93.
+- Full frontend: 178 files / 829 tests, lint, typecheck and production build.
+- Native: 79 collected, 77 passed and two ignored with existing reasons.
+- Ledger: 908 cases, 906 passes and two reasoned skips.
+- Execution: `PASS`. Product/release: `PARTIAL` / blocked by 10,069 traceability
+  gaps, 221 missing stable selectors, unrun real-provider smoke and packaging.

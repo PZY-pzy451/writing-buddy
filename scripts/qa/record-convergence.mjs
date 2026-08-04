@@ -616,6 +616,31 @@ const report = {
 				impactedTests: 81,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-SAVE-RETRY-SINGLE-FLIGHT-023',
+			summary: 'Save callers waiting on one failed write could become hidden retries, while late save results could mutate a newer project or same-id chapter session.',
+			before: {
+				repeatedActions: 100,
+				retryableFailureWrites: 100,
+				nonRetryableFailureWrites: 100,
+				lateSaveIdentityValidation: 'resourceId-only',
+				sameIdLateReceiptChangedNewBaseline: true,
+				delayedConflictRevalidation: false
+			},
+			after: {
+				repeatedActions: 100,
+				failureWritesPerBurst: 1,
+				explicitRetryWrites: 1,
+				successfulNewerEditWrites: 2,
+				projectResourcePathSessionIdentity: true,
+				lateFailureIgnoredAfterProjectSwitch: true,
+				sameIdLateReceiptIgnored: true,
+				delayedOldConflictIgnored: true,
+				focusedTests: 38,
+				impactedTests: 93,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

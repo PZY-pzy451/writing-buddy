@@ -4,6 +4,24 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+Save retry and stale-result isolation are complete on
+`codex/full-regression-gates-a-e-v2` against source `34ea0a94`.
+
+- One hundred same-tick Save/Retry calls no longer become 100 hidden writes when
+  the first write fails. Retryable, non-retryable and force-save failures stop
+  after one operation and retain dirty prose until a new explicit action.
+- A successful write with newer in-flight edits still performs one coalesced
+  follow-up write, preserving the author's latest text without multiplying work.
+- Late success, failure and external-conflict disk reads validate project root,
+  project ID, resource ID, path and writer session, so switching to another
+  project with colliding chapter IDs cannot corrupt its save state or baseline.
+- The focused save suite passed 38/38 and the save/editor/session/workspace impact
+  set passed 93/93. Full Node 24 acceptance passed 178 files / 829 tests, lint,
+  typecheck and production build; Rust passed 77 with two reasoned ignores.
+- The ledger contains 908 cases: 906 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,069 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
 User-centered defect convergence is complete through the AI-draft undo
 resource-isolation lifecycle on
 `codex/full-regression-gates-a-e-v2` against source
