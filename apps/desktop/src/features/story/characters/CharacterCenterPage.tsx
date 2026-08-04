@@ -200,8 +200,6 @@ export function CharacterCenterPage({
 			} : current);
 			setSaved(true);
 			setDirty(false);
-		} catch (saveError) {
-			setError(saveError instanceof Error ? saveError.message : '人物资料保存失败。');
 		} finally {
 			setSaving(false);
 		}
@@ -349,7 +347,7 @@ export function CharacterCenterPage({
 						<div className="character-detail-content">
 							{activeTab === '概览' ? (
 								<CharacterEditor
-									key={selected.id}
+									key={`${selected.id}:${selected.revision}`}
 									character={selected}
 									saving={saving}
 									onDirtyChange={setDirty}

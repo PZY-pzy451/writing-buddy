@@ -127,4 +127,25 @@ describe('control inventory rendered-element boundary', () => {
 		expect(editorControls).toHaveLength(8);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-010 requires distinct stable controls for the character editor', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const editorControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/characters/CharacterEditor.tsx'
+		));
+		const missingSelectors = editorControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(editorControls).toHaveLength(11);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });

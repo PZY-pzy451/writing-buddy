@@ -139,6 +139,75 @@ describe('CharacterCenterPage', () => {
 		expect(screen.getByText('已保存')).toBeInTheDocument();
 	});
 
+	it('keeps a failed character edit local, dirty, redacted and retryable', async () => {
+		const saveCharacter = vi.fn()
+			.mockRejectedValueOnce(new Error('staleWrite C:\\private\\character.json'))
+			.mockImplementation((character: Character) => Promise.resolve({
+				...character,
+				revision: character.revision + 1
+			}));
+		render(
+			<CharacterCenterPage
+				projectRoot="D:/Fixture"
+				loadData={() => Promise.resolve(data)}
+				saveCharacter={saveCharacter}
+			/>
+		);
+
+		await waitFor(() => expect(document.querySelector('.character-editor')).not.toBeNull());
+		const title = document.querySelector('.character-editor input') as HTMLInputElement;
+		fireEvent.change(title, { target: { value: '林越·修订' } });
+		fireEvent.click(document.querySelector('.character-editor button[type="submit"]') as HTMLButtonElement);
+
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('人物资料保存失败，请重试。');
+		expect(alert).not.toHaveTextContent('staleWrite');
+		expect(alert).not.toHaveTextContent('private');
+		expect(document.querySelector('.character-editor')).not.toBeNull();
+		expect(title).toHaveValue('林越·修订');
+		const unload = new Event('beforeunload', { cancelable: true });
+		window.dispatchEvent(unload);
+		expect(unload.defaultPrevented).toBe(true);
+
+		fireEvent.click(document.querySelector('.character-editor button[type="submit"]') as HTMLButtonElement);
+		await waitFor(() => expect(saveCharacter).toHaveBeenCalledTimes(2));
+		await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
+	});
+
+	it('uses the persisted character revision on the next save', async () => {
+		const saveCharacter = vi.fn((character: Character) => Promise.resolve({
+			...character,
+			revision: character.revision + 1
+		}));
+		render(
+			<CharacterCenterPage
+				projectRoot="D:/Fixture"
+				loadData={() => Promise.resolve(data)}
+				saveCharacter={saveCharacter}
+			/>
+		);
+
+		await waitFor(() => expect(document.querySelector('.character-editor')).not.toBeNull());
+		let title = document.querySelector('.character-editor input') as HTMLInputElement;
+		fireEvent.change(title, { target: { value: '林越·第一次修订' } });
+		fireEvent.click(document.querySelector('.character-editor button[type="submit"]') as HTMLButtonElement);
+		await waitFor(() => expect(saveCharacter).toHaveBeenCalledTimes(1));
+
+		await waitFor(() => {
+			expect(document.querySelector('.character-editor')).not.toBeNull();
+			expect(document.querySelector('.character-editor input')).toHaveValue('林越·第一次修订');
+		});
+		title = document.querySelector('.character-editor input') as HTMLInputElement;
+		fireEvent.change(title, { target: { value: '林越·第二次修订' } });
+		fireEvent.click(document.querySelector('.character-editor button[type="submit"]') as HTMLButtonElement);
+
+		await waitFor(() => expect(saveCharacter).toHaveBeenCalledTimes(2));
+		expect(saveCharacter).toHaveBeenLastCalledWith(expect.objectContaining({
+			title: '林越·第二次修订',
+			revision: 2
+		}));
+	});
+
 	it('opens the empty-state AI workflow and renders exactly three generated candidates', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
