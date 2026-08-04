@@ -153,6 +153,199 @@ describe('aiGenerationStore', () => {
 		expect(store.getState().state).toBe('preview');
 	});
 
+	it('detaches every old job event while a replacement preview validates', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const status = await fallback.getAiProviderStatus();
+		let resolveReplacementStatus: ((value: typeof status) => void) | undefined;
+		const getAiProviderStatus = vi.fn()
+			.mockResolvedValueOnce(status)
+			.mockImplementationOnce(() => new Promise<typeof status>(resolve => {
+				resolveReplacementStatus = resolve;
+			}));
+		const jobs: Array<{
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+		}> = [];
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => {
+			jobs.push({ request, listener });
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+			return Promise.resolve();
+		});
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		const first = jobs[0];
+		if (!first) throw new Error('first preview job missing');
+		first.listener({ type: 'content_delta', jobId: first.request.jobId, text: output });
+		first.listener({ type: 'completed', jobId: first.request.jobId });
+		expect(store.getState().state).toBe('preview');
+
+		const replacement = store.getState().startGeneration();
+		expect(store.getState()).toMatchObject({
+			state: 'validating_context',
+			jobId: undefined,
+			jobMetadata: undefined,
+			usage: undefined,
+			rawOutput: '',
+			parsedOutput: undefined,
+			transaction: undefined
+		});
+
+		first.listener({
+			type: 'content_delta',
+			jobId: first.request.jobId,
+			text: 'late output from the superseded preview'
+		});
+		first.listener({
+			type: 'usage',
+			jobId: first.request.jobId,
+			usage: { inputTokens: 1, outputTokens: 2, totalTokens: 3 }
+		});
+		first.listener({ type: 'failed', jobId: first.request.jobId, error: {
+			code: 'provider_overloaded',
+			message: 'private old failure',
+			retryable: true
+		} });
+		first.listener({ type: 'cancelled', jobId: first.request.jobId });
+		first.listener({ type: 'completed', jobId: first.request.jobId });
+		expect(store.getState()).toMatchObject({
+			state: 'validating_context',
+			rawOutput: '',
+			usage: undefined,
+			error: undefined,
+			parsedOutput: undefined,
+			transaction: undefined
+		});
+
+		resolveReplacementStatus?.(status);
+		await vi.waitFor(() => expect(jobs).toHaveLength(2));
+		const second = jobs[1];
+		if (!second) throw new Error('replacement preview job missing');
+		expect(second.request.jobId).not.toBe(first.request.jobId);
+		second.listener({ type: 'content_delta', jobId: second.request.jobId, text: output });
+		second.listener({ type: 'completed', jobId: second.request.jobId });
+		await replacement;
+
+		expect(store.getState()).toMatchObject({
+			state: 'preview',
+			jobId: second.request.jobId,
+			parsedOutput: { issues: [] },
+			transaction: { status: 'preview' }
+		});
+	});
+
+	it.each([
+		'missing_configuration',
+		'status_failure',
+		'preferences_failure'
+	] as const)('never exposes a superseded preview after regeneration %s', async outcome => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const status = await fallback.getAiProviderStatus();
+		const preferences = await fallback.getAiPreferences();
+		let statusCalls = 0;
+		let preferenceCalls = 0;
+		const getAiProviderStatus = vi.fn(() => {
+			statusCalls += 1;
+			if (statusCalls === 1) return Promise.resolve(status);
+			if (outcome === 'status_failure') {
+				return Promise.reject(new Error('private provider status failure'));
+			}
+			if (outcome === 'missing_configuration') {
+				return Promise.resolve({
+					...status,
+					secret: { configured: false, providerId: 'deepseek' as const }
+				});
+			}
+			return Promise.resolve(status);
+		});
+		const getAiPreferences = vi.fn(() => {
+			preferenceCalls += 1;
+			if (preferenceCalls > 1 && outcome === 'preferences_failure') {
+				return Promise.reject(new Error('private preferences failure'));
+			}
+			return Promise.resolve(preferences);
+		});
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			getAiPreferences,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		expect(store.getState().state).toBe('preview');
+
+		await store.getState().startGeneration();
+
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(store.getState()).toMatchObject({
+			state: 'failed',
+			jobId: undefined,
+			jobMetadata: undefined,
+			usage: undefined,
+			rawOutput: '',
+			parsedOutput: undefined,
+			transaction: undefined,
+			repairInstruction: undefined
+		});
+		expect(typeof store.getState().error).toBe('string');
+		expect(store.getState().error).not.toContain('private');
+	});
+
+	it('starts one clean replacement for 100 same-tick preview regenerations', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const status = await fallback.getAiProviderStatus();
+		let resolveReplacementStatus: ((value: typeof status) => void) | undefined;
+		const getAiProviderStatus = vi.fn()
+			.mockResolvedValueOnce(status)
+			.mockImplementationOnce(() => new Promise<typeof status>(resolve => {
+				resolveReplacementStatus = resolve;
+			}));
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			getAiProviderStatus,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		expect(store.getState().state).toBe('preview');
+
+		const replacements = Array.from({ length: 100 }, () => (
+			store.getState().startGeneration()
+		));
+		expect(getAiProviderStatus).toHaveBeenCalledTimes(2);
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(store.getState()).toMatchObject({
+			state: 'validating_context',
+			jobId: undefined,
+			parsedOutput: undefined,
+			transaction: undefined
+		});
+
+		resolveReplacementStatus?.(status);
+		await Promise.all(replacements);
+
+		expect(startAiGeneration).toHaveBeenCalledTimes(2);
+		expect(store.getState()).toMatchObject({
+			state: 'preview',
+			parsedOutput: { issues: [] },
+			transaction: { status: 'preview' }
+		});
+	});
+
 	it('redacts an unknown start failure and allows an explicit retry', async () => {
 		const output = JSON.stringify({ issues: [] });
 		const fallback = runtime(output);

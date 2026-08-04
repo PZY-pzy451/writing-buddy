@@ -369,7 +369,22 @@ export function createAiGenerationStore(
 					return;
 				}
 				const attempt = ++generationAttempt;
-				set({ state: 'validating_context', error: undefined, rawOutput: '' });
+				pendingDelta = '';
+				if (flushTimer !== undefined) {
+					window.clearTimeout(flushTimer);
+					flushTimer = undefined;
+				}
+				set({
+					state: 'validating_context',
+					jobId: undefined,
+					jobMetadata: undefined,
+					usage: undefined,
+					rawOutput: '',
+					parsedOutput: undefined,
+					transaction: undefined,
+					error: undefined,
+					repairInstruction: undefined
+				});
 				try {
 					if (current.jobId && ['queued', 'connecting', 'streaming'].includes(current.state)) {
 						await runtime.cancelAiJob(current.jobId);
