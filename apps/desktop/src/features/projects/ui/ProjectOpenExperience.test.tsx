@@ -1,5 +1,9 @@
 import { act, render, screen } from '@testing-library/react';
-import type { ProjectSnapshot, PublicProjectOpenError } from '@writing-buddy/platform-ports';
+import type {
+	ProjectRepairResult,
+	ProjectSnapshot,
+	PublicProjectOpenError
+} from '@writing-buddy/platform-ports';
 import { App } from '../../../app/App';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
@@ -360,6 +364,157 @@ describe('project open integration', () => {
 		expect(openProject).toHaveBeenCalledWith(targetRoot, 'read-write');
 		expect(useAppStore.getState().snapshot?.root).toBe(targetRoot);
 		expect(useAppStore.getState().session).toBeUndefined();
+	});
+
+	it('keeps the latest project active when 100 delayed repair actions finish afterward', async () => {
+		const repairRoot = 'D:\\Projects\\repair-superseded';
+		const latestRoot = 'D:\\Projects\\repair-latest';
+		const fixture = await desktopBridge.openProject('browser-fixture');
+		const repairedSnapshot: ProjectSnapshot = {
+			...fixture,
+			root: repairRoot,
+			project: {
+				...fixture.project,
+				projectId: 'project-repair-superseded',
+				title: 'Superseded repaired project'
+			}
+		};
+		const latestSnapshot: ProjectSnapshot = {
+			...fixture,
+			root: latestRoot,
+			project: {
+				...fixture.project,
+				projectId: 'project-repair-latest',
+				title: 'Latest selected project'
+			}
+		};
+		resetForProjectOpen('');
+		useAppStore.setState({
+			pendingProjectRoot: repairRoot,
+			projectOpenError: {
+				...lockError,
+				code: 'staleLockRemoveFailed',
+				canOpenReadOnly: false,
+				canRepair: true
+			}
+		});
+		let finishRepair: ((result: ProjectRepairResult) => void) | undefined;
+		const repairProject = vi.spyOn(desktopBridge, 'repairProject')
+			.mockImplementation(() => new Promise<ProjectRepairResult>(resolve => {
+				finishRepair = resolve;
+			}));
+		const openProject = vi.spyOn(desktopBridge, 'openProject')
+			.mockImplementation((root) => Promise.resolve(
+				root === latestRoot ? latestSnapshot : repairedSnapshot
+			));
+
+		const repairActions = Array.from({ length: 100 }, () => (
+			useAppStore.getState().repairProject()
+		));
+		await vi.waitFor(() => expect(repairProject).toHaveBeenCalledTimes(1));
+		await useAppStore.getState().openProject(latestRoot);
+		expect(useAppStore.getState().snapshot?.root).toBe(latestRoot);
+
+		finishRepair?.({ repaired: true, diagnosticId: 'repair-superseded' });
+		await Promise.all(repairActions);
+
+		expect(openProject).toHaveBeenCalledTimes(1);
+		expect(openProject).toHaveBeenCalledWith(latestRoot, 'read-write');
+		expect(useAppStore.getState().snapshot?.root).toBe(latestRoot);
+		expect(useAppStore.getState().projectOpenError).toBeUndefined();
+	});
+
+	it('ignores a stale repair failure after a newer project opens successfully', async () => {
+		const repairRoot = 'D:\\Projects\\repair-fails-late';
+		const latestRoot = 'D:\\Projects\\repair-failure-latest';
+		const fixture = await desktopBridge.openProject('browser-fixture');
+		const latestSnapshot: ProjectSnapshot = {
+			...fixture,
+			root: latestRoot,
+			project: {
+				...fixture.project,
+				projectId: 'project-repair-failure-latest',
+				title: 'Latest project after repair failure'
+			}
+		};
+		resetForProjectOpen('');
+		useAppStore.setState({
+			pendingProjectRoot: repairRoot,
+			projectOpenError: {
+				...lockError,
+				code: 'staleLockRemoveFailed',
+				canOpenReadOnly: false,
+				canRepair: true
+			}
+		});
+		let failRepair: ((reason: Error) => void) | undefined;
+		vi.spyOn(desktopBridge, 'repairProject')
+			.mockImplementation(() => new Promise<ProjectRepairResult>((_resolve, reject) => {
+				failRepair = reject;
+			}));
+		const openProject = vi.spyOn(desktopBridge, 'openProject')
+			.mockResolvedValue(latestSnapshot);
+
+		const repairAction = useAppStore.getState().repairProject();
+		await vi.waitFor(() => expect(failRepair).toBeDefined());
+		await useAppStore.getState().openProject(latestRoot);
+		failRepair?.(new Error('old repair failed'));
+		await repairAction;
+
+		expect(openProject).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().snapshot?.root).toBe(latestRoot);
+		expect(useAppStore.getState().projectOpenError).toBeUndefined();
+	});
+
+	it('preserves the latest open error when an older repair later succeeds', async () => {
+		const repairRoot = 'D:\\Projects\\repair-before-latest-error';
+		const latestRoot = 'D:\\Projects\\latest-open-error';
+		const fixture = await desktopBridge.openProject('browser-fixture');
+		const repairedSnapshot: ProjectSnapshot = {
+			...fixture,
+			root: repairRoot,
+			project: {
+				...fixture.project,
+				projectId: 'project-old-repair',
+				title: 'Old repaired project'
+			}
+		};
+		resetForProjectOpen('');
+		useAppStore.setState({
+			pendingProjectRoot: repairRoot,
+			projectOpenError: {
+				...lockError,
+				code: 'staleLockRemoveFailed',
+				canOpenReadOnly: false,
+				canRepair: true
+			}
+		});
+		let finishRepair: ((result: ProjectRepairResult) => void) | undefined;
+		vi.spyOn(desktopBridge, 'repairProject')
+			.mockImplementation(() => new Promise<ProjectRepairResult>(resolve => {
+				finishRepair = resolve;
+			}));
+		const latestError: PublicProjectOpenError = {
+			...lockError,
+			safePath: 'D:\\Projects\\latest-open-error',
+			diagnosticId: 'latest-open-error'
+		};
+		const openProject = vi.spyOn(desktopBridge, 'openProject')
+			.mockImplementation((root) => root === latestRoot
+				? Promise.reject(Object.assign(new Error(latestError.code), latestError))
+				: Promise.resolve(repairedSnapshot));
+
+		const repairAction = useAppStore.getState().repairProject();
+		await vi.waitFor(() => expect(finishRepair).toBeDefined());
+		await useAppStore.getState().openProject(latestRoot);
+		finishRepair?.({ repaired: true, diagnosticId: 'repair-before-latest-error' });
+		await repairAction;
+
+		expect(openProject).toHaveBeenCalledTimes(1);
+		expect(useAppStore.getState().snapshot).toBeUndefined();
+		expect(useAppStore.getState().pendingProjectRoot).toBe(latestRoot);
+		expect(useAppStore.getState().projectOpenError?.diagnosticId)
+			.toBe('latest-open-error');
 	});
 
 	it('deduplicates 100 repair actions and 100 directory reveals from recovery', async () => {

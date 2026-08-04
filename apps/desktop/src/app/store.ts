@@ -425,6 +425,7 @@ let activeProjectChooser: Promise<void> | undefined;
 let activeProjectOpen: Promise<void> | undefined;
 let activeProjectOpenKey: string | undefined;
 let activeProjectDiscardConfirmed = false;
+let projectOpenIntentVersion = 0;
 let queuedProjectOpen: {
 	readonly key: string;
 	readonly root: string;
@@ -1222,6 +1223,7 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 
 	openProject(root, mode = 'read-write', confirmedDiscardDirty = false) {
+		projectOpenIntentVersion += 1;
 		const request = {
 			key: `${root.toLocaleLowerCase()}\u0000${mode}`,
 			root,
@@ -1579,16 +1581,31 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 		if (!root) {
 			return;
 		}
+		const repairIntentVersion = ++projectOpenIntentVersion;
+		const clearSupersededRepair = () => {
+			set(state => state.projectOpenBusyAction === 'repair'
+				? { projectOpenBusyAction: undefined }
+				: {});
+		};
 		set({ projectOpenBusyAction: 'repair', error: undefined });
 		try {
 			await projectOpenService.repairProject(root);
-			await get().openProject(root, 'read-write');
 		} catch (error) {
+			if (repairIntentVersion !== projectOpenIntentVersion) {
+				clearSupersededRepair();
+				return;
+			}
 			set({
 				projectOpenError: toPublicProjectOpenError(error, root),
 				projectOpenBusyAction: undefined
 			});
+			return;
 		}
+		if (repairIntentVersion !== projectOpenIntentVersion) {
+			clearSupersededRepair();
+			return;
+		}
+		await get().openProject(root, 'read-write');
 	},
 
 	async revealProjectDirectory() {
