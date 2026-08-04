@@ -1,5 +1,5 @@
 import { AlertTriangle, BookOpenCheck, Link2, Save, X } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { RuleIssue, TimelineEvent } from '@writing-buddy/story-kernel';
 
 interface EventInspectorProps {
@@ -20,17 +20,47 @@ export function EventInspector({
 	onClose
 }: EventInspectorProps): React.JSX.Element {
 	const [draft, setDraft] = useState(event);
+	const [submitting, setSubmitting] = useState(false);
+	const [saveError, setSaveError] = useState<string | null>(null);
+	const transitionGuardRef = useRef(false);
+	const busy = saving || submitting;
+	const closeOnce = () => {
+		if (busy || transitionGuardRef.current) return;
+		transitionGuardRef.current = true;
+		onClose();
+	};
+	const saveOnce = async () => {
+		if (busy || transitionGuardRef.current) return;
+		transitionGuardRef.current = true;
+		setSubmitting(true);
+		setSaveError(null);
+		try {
+			await onSave({ ...draft, updatedAt: new Date().toISOString() });
+		} catch {
+			setSaveError('保存失败，请重试。');
+		} finally {
+			transitionGuardRef.current = false;
+			setSubmitting(false);
+		}
+	};
 	return (
 		<aside className="event-inspector">
 			<header>
 				<div><span className="eyebrow">EVENT INSPECTOR</span><h2>{event.title}</h2></div>
-				<button type="button" aria-label="关闭事件详情" onClick={onClose}><X size={18} /></button>
+				<button
+					type="button"
+					aria-label="关闭事件详情"
+					data-testid="event-inspector-close"
+					disabled={busy}
+					onClick={closeOnce}
+				><X size={18} /></button>
 			</header>
 			<div className="event-form-grid">
 				<label>
 					<span>事件标题</span>
 					<input
 						aria-label="事件标题"
+						data-testid="event-inspector-title"
 						value={draft.title}
 						onChange={change => setDraft(current => ({ ...current, title: change.target.value }))}
 					/>
@@ -38,6 +68,8 @@ export function EventInspector({
 				<label>
 					<span>事件类型</span>
 					<input
+						aria-label="事件类型"
+						data-testid="event-inspector-event-type"
 						value={draft.eventType}
 						onChange={change => setDraft(current => ({ ...current, eventType: change.target.value }))}
 					/>
@@ -45,6 +77,8 @@ export function EventInspector({
 				<label>
 					<span>实际开始</span>
 					<input
+						aria-label="实际开始"
+						data-testid="event-inspector-story-start"
 						value={draft.storyStart ?? ''}
 						placeholder="ISO 时间、日期或留空"
 						onChange={change => setDraft(current => ({
@@ -57,6 +91,8 @@ export function EventInspector({
 				<label>
 					<span>实际结束</span>
 					<input
+						aria-label="实际结束"
+						data-testid="event-inspector-story-end"
 						value={draft.storyEnd ?? ''}
 						onChange={change => setDraft(current => ({
 							...current,
@@ -67,6 +103,8 @@ export function EventInspector({
 				<label>
 					<span>叙事位置</span>
 					<input
+						aria-label="叙事位置"
+						data-testid="event-inspector-narrative-order"
 						type="number"
 						min={0}
 						value={draft.narrativePosition.narrativeOrder}
@@ -110,13 +148,16 @@ export function EventInspector({
 				)) : <p>本地规则通过。</p>}
 			</section>
 			{event.evidenceIds.map(id => <code key={id}>{id}</code>)}
+			{saveError ? <p className="event-rule-issue" role="alert">{saveError}</p> : null}
 			<button
 				type="button"
 				className="event-save"
-				disabled={saving || !draft.title.trim() || !draft.eventType.trim()}
-				onClick={() => void onSave({ ...draft, updatedAt: new Date().toISOString() })}
+				aria-label="保存事件"
+				data-testid="event-inspector-save"
+				disabled={busy || !draft.title.trim() || !draft.eventType.trim()}
+				onClick={() => void saveOnce()}
 			>
-				<Save size={16} />{saving ? '保存中…' : '保存事件'}
+				<Save size={16} />{busy ? '保存中…' : '保存事件'}
 			</button>
 		</aside>
 	);

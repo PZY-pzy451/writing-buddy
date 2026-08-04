@@ -230,4 +230,31 @@ describe('control inventory rendered-element boundary', () => {
 		expect(chapterControls).toHaveLength(6);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const inspectorControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/timeline/EventInspector.tsx'
+		));
+
+		expect(inspectorControls).toHaveLength(7);
+		expect(inspectorControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(inspectorControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'event-inspector-close',
+			'event-inspector-event-type',
+			'event-inspector-narrative-order',
+			'event-inspector-save',
+			'event-inspector-story-end',
+			'event-inspector-story-start',
+			'event-inspector-title'
+		]);
+	});
 });

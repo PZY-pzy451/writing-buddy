@@ -229,6 +229,12 @@ function discoverControls(sourcePath, sourceText) {
 					?? descendantText(node)
 					?? '';
 				const dataTestId = staticAttribute(opening, 'data-testid');
+				const stableSelectorValue = dataTestId
+					?? staticAttribute(opening, 'aria-label')
+					?? staticAttribute(opening, 'title')
+					?? staticAttribute(opening, 'id')
+					?? staticAttribute(opening, 'name')
+					?? accessibleName;
 				const controlId = `CTRL-${component.replace(/[^A-Za-z0-9]+/gu, '-').toUpperCase()}-${tag.replace(/[^A-Za-z0-9]+/gu, '-').toUpperCase()}-${sha(structure, 8)}`;
 				discovered.push({
 					id: controlId,
@@ -236,6 +242,7 @@ function discoverControls(sourcePath, sourceText) {
 					featureId: featureForPath(path, pageId),
 					controlType: tag,
 					accessibleName,
+					stableSelectorValue,
 					selectorStrategy: staticAttribute(opening, 'aria-label') || (role && accessibleName) ? 'role+accessible-name'
 						: dataTestId ? 'data-testid'
 							: accessibleName ? 'accessible-name'

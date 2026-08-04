@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { summarizeTraceability, validateTraceabilityRows } from './traceability.mjs';
+import {
+	controlReferenceTokens,
+	summarizeTraceability,
+	testSourceReferencesControl,
+	validateTraceabilityRows
+} from './traceability.mjs';
 
 function completeInput() {
 	return {
@@ -38,5 +43,21 @@ describe('regression traceability gate', () => {
 			{ ...base, execution_status: 'PASS', cache_status: 'CACHED_PASS', last_passed_commit: '', evidence_path: '' }
 		])).toHaveLength(3);
 	});
-});
 
+	it('TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent', () => {
+		const control = {
+			accessibleName: '',
+			stableSelectorValue: 'event-inspector-story-start'
+		};
+
+		expect(controlReferenceTokens(control)).toEqual(['event-inspector-story-start']);
+		expect(testSourceReferencesControl(
+			control,
+			"screen.getByTestId('event-inspector-story-start')"
+		)).toBe(true);
+		expect(testSourceReferencesControl(
+			control,
+			"screen.getByTestId('event-inspector-story-end')"
+		)).toBe(false);
+	});
+});

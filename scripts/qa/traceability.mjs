@@ -50,6 +50,17 @@ function titleMatchesDimension(title, dimension) {
 	return dimensionPatterns.get(dimension)?.test(title) ?? false;
 }
 
+export function controlReferenceTokens(control) {
+	return [...new Set([
+		control?.stableSelectorValue,
+		control?.accessibleName
+	].filter(value => typeof value === 'string' && value.trim()))];
+}
+
+export function testSourceReferencesControl(control, source) {
+	return controlReferenceTokens(control).some(token => source.includes(token));
+}
+
 async function readTestContents(tests) {
 	const bySource = new Map();
 	for (const test of tests) {
@@ -151,9 +162,10 @@ async function build() {
 	for (const state of states.states) {
 		const control = controls.controls.find(item => item.id === state.controlIds[0]);
 		const candidates = testsByPageFeature.get(`${state.pageId}|${state.featureId}`) ?? [];
-		const mapped = control?.accessibleName
-			? candidates.find(test => contents.get(test.source)?.includes(control.accessibleName) && titleMatchesDimension(test.title, state.dimension))
-			: undefined;
+		const mapped = candidates.find(test => (
+			testSourceReferencesControl(control, contents.get(test.source) ?? '')
+			&& titleMatchesDimension(test.title, state.dimension)
+		));
 		const priority = priorityForFeature(features, state.featureId);
 		rows.push({
 			domain_id: features.features.find(feature => feature.id === state.featureId)?.domainId ?? '',
@@ -162,7 +174,7 @@ async function build() {
 			automation_status: mapped ? 'AUTOMATED' : 'MISSING', execution_status: 'STALE',
 			cache_status: 'STALE', last_run_commit: '', last_passed_commit: '', evidence_path: '',
 			severity_if_failed: severityForPriority(priority),
-			notes: mapped ? 'Conservative exact accessible-name and state-intent source mapping.' : 'No valid control-state test mapping.'
+			notes: mapped ? 'Conservative exact stable-selector/accessibility token and state-intent source mapping.' : 'No valid control-state test mapping.'
 		});
 	}
 	const mappedShortcutIds = new Set();
