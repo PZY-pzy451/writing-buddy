@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpenCheck, Save, Shield } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type {
 	Character,
 	Relationship,
@@ -39,7 +39,7 @@ export function RelationshipInspector({
 	}
 	return (
 		<RelationshipInspectorForm
-			key={relationship.id}
+			key={`${relationship.id}:${relationship.revision}`}
 			relationship={relationship}
 			characters={characters}
 			saving={saving}
@@ -56,8 +56,29 @@ function RelationshipInspectorForm({
 }: Required<Pick<RelationshipInspectorProps, 'relationship' | 'characters' | 'saving'>>
 	& Pick<RelationshipInspectorProps, 'onSave'>): React.JSX.Element {
 	const [draft, setDraft] = useState(relationship);
+	const [submitting, setSubmitting] = useState(false);
+	const [saveError, setSaveError] = useState<string>();
+	const saveGuardRef = useRef(false);
 	const source = characters.find(character => character.id === relationship.sourceCharacterId);
 	const target = characters.find(character => character.id === relationship.targetCharacterId);
+	const busy = saving || submitting;
+	const saveOnce = async () => {
+		if (!onSave || busy || saveGuardRef.current) return;
+		saveGuardRef.current = true;
+		setSubmitting(true);
+		setSaveError(undefined);
+		try {
+			await onSave({
+				...draft,
+				updatedAt: new Date().toISOString()
+			});
+		} catch {
+			setSaveError('关系保存失败，请重试。');
+		} finally {
+			saveGuardRef.current = false;
+			setSubmitting(false);
+		}
+	};
 	return (
 		<aside className="relationship-inspector">
 			<header>
@@ -68,6 +89,8 @@ function RelationshipInspectorForm({
 			<label>
 				<span>关系类型</span>
 				<input
+					aria-label="关系类型"
+					data-testid="relationship-inspector-type"
 					value={draft.relationshipType}
 					onChange={event => setDraft(current => ({
 						...current,
@@ -79,6 +102,8 @@ function RelationshipInspectorForm({
 			<label>
 				<span>强度 {Math.round((draft.strength ?? 0.5) * 100)}%</span>
 				<input
+					aria-label="关系强度"
+					data-testid="relationship-inspector-strength"
 					type="range"
 					min={0}
 					max={1}
@@ -93,6 +118,8 @@ function RelationshipInspectorForm({
 			<label>
 				<span>公开程度</span>
 				<select
+					aria-label="公开程度"
+					data-testid="relationship-inspector-visibility"
 					value={draft.visibility}
 					onChange={event => setDraft(current => ({
 						...current,
@@ -124,17 +151,17 @@ function RelationshipInspectorForm({
 					))
 					: <p>当前关系尚无历史变更。</p>}
 			</section>
+			{saveError ? <p className="relationship-error" role="alert">{saveError}</p> : null}
 			{onSave ? (
 				<button
 					type="button"
 					className="relationship-save"
-					disabled={saving || !draft.relationshipType.trim()}
-					onClick={() => void onSave({
-						...draft,
-						updatedAt: new Date().toISOString()
-					})}
+					aria-label="保存关系"
+					data-testid="relationship-inspector-save"
+					disabled={busy || !draft.relationshipType.trim()}
+					onClick={() => void saveOnce()}
 				>
-					<Save size={16} />{saving ? '保存中…' : '保存关系'}
+					<Save size={16} />{busy ? '保存中…' : '保存关系'}
 				</button>
 			) : null}
 		</aside>

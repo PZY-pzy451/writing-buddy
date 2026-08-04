@@ -271,6 +271,7 @@ export function RelationshipGraphPage({
 		if (!projectRoot) {
 			return;
 		}
+		setError(undefined);
 		setSaving(true);
 		try {
 			const saved = await service.upsertRelationship(relationship);
@@ -280,8 +281,8 @@ export function RelationshipGraphPage({
 					candidate.id === saved.id ? saved : candidate
 				))
 			} : current);
-		} catch (saveError) {
-			setError(saveError instanceof Error ? saveError.message : '关系保存失败。');
+		} catch {
+			throw new Error('relationshipSaveFailed');
 		} finally {
 			setSaving(false);
 		}

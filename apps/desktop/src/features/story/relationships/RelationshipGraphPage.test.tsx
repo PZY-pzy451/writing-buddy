@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	parseRelationship,
@@ -111,6 +111,32 @@ describe('RelationshipGraphPage', () => {
 
 		expect(screen.getByText('怀疑')).toBeInTheDocument();
 		expect(screen.queryByText('保护')).not.toBeInTheDocument();
+	});
+
+	it('shows a localized relationship save failure and lets the author retry successfully', async () => {
+		const saveStoryResources = vi.spyOn(desktopBridge, 'saveStoryResources')
+			.mockRejectedValueOnce(new Error('D:/private/project/story/relationship.json failed'))
+			.mockResolvedValueOnce([{
+				...data.relationships[0],
+				revision: 1,
+				updatedAt: '2026-08-04T01:00:00.000Z'
+			}]);
+		render(
+			<RelationshipGraphPage
+				projectRoot="D:/Fixture"
+				loadData={() => Promise.resolve(data)}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('tab', { name: '关系矩阵' }));
+		fireEvent.click(screen.getByRole('button', { name: '林越 到 沈青：怀疑，强度 70%' }));
+		fireEvent.click(screen.getByRole('button', { name: '保存关系' }));
+
+		expect(await screen.findByRole('alert')).toHaveTextContent('关系保存失败，请重试。');
+		expect(screen.queryByText(/private\/project/u)).not.toBeInTheDocument();
+		fireEvent.click(screen.getByRole('button', { name: '保存关系' }));
+		await waitFor(() => expect(saveStoryResources).toHaveBeenCalledTimes(2));
+		await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
 	});
 
 	it('renders generated bidirectional candidates as separate virtual graph edges', async () => {

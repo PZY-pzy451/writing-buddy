@@ -257,4 +257,28 @@ describe('control inventory rendered-element boundary', () => {
 			'event-inspector-title'
 		]);
 	});
+
+	it('TC-QA-INVENTORY-016 retains distinct selector values for every relationship inspector control', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const inspectorControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/relationships/RelationshipInspector.tsx'
+		));
+
+		expect(inspectorControls).toHaveLength(4);
+		expect(inspectorControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(inspectorControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'relationship-inspector-save',
+			'relationship-inspector-strength',
+			'relationship-inspector-type',
+			'relationship-inspector-visibility'
+		]);
+	});
 });
