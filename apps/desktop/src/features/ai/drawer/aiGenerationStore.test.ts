@@ -431,4 +431,95 @@ describe('aiGenerationStore', () => {
 		await generation;
 		expect(store.getState().state).toBe('idle');
 	});
+
+	it('closes one in-flight job across 100 actions and ignores every delayed event', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		let activeJob: {
+			request: AiGenerateRequest;
+			listener: (event: AiStreamEvent) => void;
+			resolve: () => void;
+		} | undefined;
+		const startAiGeneration = vi.fn((
+			request: AiGenerateRequest,
+			listener: (event: AiStreamEvent) => void
+		) => new Promise<void>(resolve => {
+			activeJob = { request, listener, resolve };
+			listener({ type: 'job_started', jobId: request.jobId });
+			listener({ type: 'connection_opened', jobId: request.jobId });
+		}));
+		const cancelAiJob = vi.fn(() => Promise.resolve(true));
+		const store = createAiGenerationStore({ ...fallback, startAiGeneration, cancelAiJob });
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		const generation = store.getState().startGeneration();
+		await vi.waitFor(() => expect(store.getState().state).toBe('connecting'));
+		if (!activeJob) throw new Error('active drawer job missing');
+		activeJob.listener({
+			type: 'content_delta',
+			jobId: activeJob.request.jobId,
+			text: 'output buffered before close'
+		});
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().close();
+		}
+
+		await vi.waitFor(() => expect(cancelAiJob).toHaveBeenCalledOnce());
+		expect(store.getState()).toMatchObject({
+			open: false,
+			state: 'idle',
+			jobId: undefined,
+			scope: undefined,
+			contextPack: undefined,
+			rawOutput: ''
+		});
+		activeJob.listener({
+			type: 'content_delta',
+			jobId: activeJob.request.jobId,
+			text: 'late output after close'
+		});
+		activeJob.listener({ type: 'completed', jobId: activeJob.request.jobId });
+		activeJob.resolve();
+		await generation;
+		await new Promise(resolve => window.setTimeout(resolve, 60));
+
+			expect(store.getState()).toMatchObject({
+			open: false,
+			state: 'idle',
+			rawOutput: '',
+			parsedOutput: undefined,
+			transaction: undefined
+		});
+	});
+
+	it('keeps a close-cancellation failure hidden and permits a fresh action', async () => {
+		const fallback = runtime(JSON.stringify({ issues: [] }));
+		const cancelAiJob = vi.fn(() => Promise.reject(new Error('private cancel failure')));
+		const store = createAiGenerationStore({ ...fallback, cancelAiJob });
+		store.setState({
+			open: true,
+			state: 'streaming',
+			jobId: 'closing-job',
+			error: undefined
+		});
+
+		store.getState().close();
+		await vi.waitFor(() => expect(cancelAiJob).toHaveBeenCalledOnce());
+		expect(store.getState()).toMatchObject({
+			open: false,
+			state: 'idle',
+			jobId: undefined,
+			error: undefined
+		});
+
+		store.getState().openAiAction('review.consistency', {}, nextChapterScope);
+		await store.getState().startGeneration();
+
+		expect(store.getState()).toMatchObject({
+			open: true,
+			state: 'preview',
+			contextPack: { currentResource: { resourceId: 'chapter-2' } },
+			transaction: { resourceId: 'chapter-2', status: 'preview' }
+		});
+		expect(cancelAiJob).toHaveBeenCalledOnce();
+	});
 });

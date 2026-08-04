@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
 	DEFAULT_AI_PREFERENCES,
@@ -35,7 +35,48 @@ describe('AiGenerationDrawer', () => {
 
 		await user.click(screen.getByRole('button', { name: '关闭 AI 快速生成' }));
 		expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+		expect(store.getState()).toMatchObject({
+			scope: undefined,
+			contextPack: undefined,
+			definition: undefined
+		});
 	});
+
+	it.each(['button', 'escape', 'backdrop'] as const)(
+		'cancels and clears a streaming job dismissed through %s',
+		async method => {
+			const user = userEvent.setup();
+			const cancelAiJob = vi.fn(() => Promise.resolve(true));
+			const store = createAiGenerationStore({ ...runtime, cancelAiJob });
+			store.setState({
+				open: true,
+				state: 'streaming',
+				jobId: 'active-drawer-job',
+				rawOutput: 'partial output'
+			});
+			render(<AiGenerationDrawer store={store} />);
+
+			if (method === 'button') {
+				await user.click(screen.getByRole('button', { name: '关闭 AI 快速生成' }));
+			} else if (method === 'escape') {
+				fireEvent.keyDown(document, { key: 'Escape' });
+			} else {
+				const backdrop = document.querySelector('.ai-drawer-backdrop');
+				if (!(backdrop instanceof HTMLElement)) throw new Error('drawer backdrop missing');
+				fireEvent.mouseDown(backdrop);
+			}
+
+			expect(screen.queryByRole('dialog', { name: 'AI 快速生成' }))
+				.not.toBeInTheDocument();
+			expect(cancelAiJob).toHaveBeenCalledOnce();
+			expect(store.getState()).toMatchObject({
+				open: false,
+				state: 'idle',
+				jobId: undefined,
+				rawOutput: ''
+			});
+		}
+	);
 
 	it('scrubs stale chapter context and requires reopening from the current chapter', () => {
 		const store = createAiGenerationStore(runtime);

@@ -295,7 +295,7 @@ export function createAiGenerationStore(
 				});
 			},
 			close() {
-				set({ open: false });
+				get().reset();
 			},
 			toggleExpanded() {
 				set(state => ({ expanded: !state.expanded }));
