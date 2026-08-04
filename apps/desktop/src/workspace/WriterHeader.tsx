@@ -88,7 +88,16 @@ export function WriterHeader(): React.JSX.Element | null {
 		target.closest('details')?.removeAttribute('open');
 	};
 	const openChapterOrganization = async (target: HTMLElement) => {
-		if (session?.state.dirty) await save();
+		if (session?.state.dirty) {
+			await save();
+			const current = useAppStore.getState();
+			if (
+				current.session?.state.dirty
+				|| current.saveState.type !== 'clean'
+				|| current.activeResource?.id !== activeResource.id
+				|| current.snapshot?.project.projectId !== snapshot.project.projectId
+			) return;
+		}
 		setStoryView('extraction');
 		target.closest('details')?.removeAttribute('open');
 	};
@@ -132,6 +141,7 @@ export function WriterHeader(): React.JSX.Element | null {
 										<summary
 											role="button"
 											aria-label={`章节状态：${chapterStatusOption.label}`}
+											data-testid="writer-chapter-status"
 											aria-disabled={chapterStatusBusy}
 											onClick={event => {
 												if (chapterStatusBusy) event.preventDefault();
@@ -152,6 +162,8 @@ export function WriterHeader(): React.JSX.Element | null {
 													key={id}
 													type="button"
 													role="menuitemradio"
+													aria-label={`将章节状态设为${label}`}
+													data-testid="writer-chapter-status-option"
 													aria-checked={chapterStatus === id}
 													disabled={chapterStatusBusy}
 													onClick={event => void chooseChapterStatus(id, event.currentTarget)}
@@ -166,13 +178,19 @@ export function WriterHeader(): React.JSX.Element | null {
 							)}
 							{!snapshot.readOnly ? (
 								<details className="writer-tools-menu">
-									<summary aria-label="更多章节操作" role="button">
+									<summary
+										aria-label="更多章节操作"
+										data-testid="writer-more-actions"
+										role="button"
+									>
 										<MoreHorizontal size={18} /><span>更多</span><ChevronDown size={16} />
 									</summary>
 									<div role="menu">
 										<button
 											type="button"
 											role="menuitem"
+											aria-label="继续本段"
+											data-testid="writer-continue-paragraph"
 											onClick={event => openContinuation('continue-paragraph', event.currentTarget)}
 										>
 											<Feather size={16} />
@@ -181,6 +199,8 @@ export function WriterHeader(): React.JSX.Element | null {
 										<button
 											type="button"
 											role="menuitem"
+											aria-label="完成场景"
+											data-testid="writer-finish-scene"
 											onClick={event => openContinuation('finish-scene', event.currentTarget)}
 										>
 											<Check size={16} />
@@ -189,6 +209,8 @@ export function WriterHeader(): React.JSX.Element | null {
 										<button
 											type="button"
 											role="menuitem"
+											aria-label="三种走向"
+											data-testid="writer-three-directions"
 											onClick={event => openContinuation('three-directions', event.currentTarget)}
 										>
 											<Compass size={16} />
@@ -199,6 +221,7 @@ export function WriterHeader(): React.JSX.Element | null {
 											type="button"
 											role="menuitem"
 											aria-label="整理本章"
+											data-testid="writer-organize-chapter"
 											onClick={event => void openChapterOrganization(event.currentTarget)}
 										>
 											<ListChecks size={16} />
@@ -211,6 +234,7 @@ export function WriterHeader(): React.JSX.Element | null {
 											type="button"
 											role="menuitem"
 											aria-label="导出章节"
+											data-testid="writer-export-chapter"
 											disabled={chapterExportBusy}
 											onClick={event => void exportChapter(event.currentTarget)}
 										>
@@ -224,6 +248,8 @@ export function WriterHeader(): React.JSX.Element | null {
 										<button
 											type="button"
 											role="menuitem"
+											aria-label="上一章"
+											data-testid="writer-previous-chapter"
 											disabled={index <= 0}
 											onClick={() => openChapterAt(index - 1)}
 										>
@@ -232,6 +258,8 @@ export function WriterHeader(): React.JSX.Element | null {
 										<button
 											type="button"
 											role="menuitem"
+											aria-label="下一章"
+											data-testid="writer-next-chapter"
 											disabled={index < 0 || index >= chapters.length - 1}
 											onClick={() => openChapterAt(index + 1)}
 										>
@@ -250,6 +278,8 @@ export function WriterHeader(): React.JSX.Element | null {
 												key={density}
 												type="button"
 												role="menuitemradio"
+												aria-label={`正文排版：${label}`}
+												data-testid="writer-density-option"
 												aria-checked={manuscriptDensity === density}
 												onClick={() => setManuscriptDensity(density)}
 											>
@@ -268,6 +298,7 @@ export function WriterHeader(): React.JSX.Element | null {
 						<button
 							className="icon-button"
 							type="button"
+							data-testid="writer-save"
 							onClick={() => void save()}
 							disabled={!session?.state.dirty || saveState.type === 'saving'}
 							aria-label={saveState.type === 'saving' ? '正在保存' : '保存'}

@@ -24,15 +24,16 @@ describe('CloseProtectionDialog', () => {
 				projectId: 'project-one'
 			}
 		});
-		const { rerender } = render(<CloseProtectionDialog onExit={onExit} />);
+		render(<CloseProtectionDialog onExit={onExit} />);
 
 		expect(screen.getByRole('dialog', { name: '退出前确认正文安全' })).toBeInTheDocument();
 		expect(screen.getByText(/快速记录已经单独落盘/u)).toBeInTheDocument();
 		await user.click(screen.getByRole('button', { name: '继续写作' }));
 		expect(onExit).not.toHaveBeenCalled();
 
-		useAppStore.setState({ closeProtectionOpen: true });
-		rerender(<CloseProtectionDialog onExit={onExit} />);
+		act(() => {
+			useAppStore.setState({ closeProtectionOpen: true });
+		});
 		await user.click(screen.getByRole('button', { name: '不保存并退出' }));
 		expect(onExit).toHaveBeenCalledTimes(1);
 	});

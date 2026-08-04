@@ -64,6 +64,9 @@ async function openFixtureAndContinue(user: ReturnType<typeof userEvent.setup>):
 	await screen.findByRole('main', { name: '写作首页' });
 	await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 	await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+	await act(async () => {
+		await new Promise<void>(resolve => window.setTimeout(resolve, 0));
+	});
 }
 
 describe('quiet writer workspaces', () => {
@@ -185,7 +188,10 @@ describe('quiet writer workspaces', () => {
 		const addedWords = countWords(expanded) - countWords(initial);
 		const projectId = useAppStore.getState().snapshot?.project.projectId ?? '';
 
-		act(() => useAppStore.getState().setContent(expanded));
+		await act(async () => {
+			useAppStore.getState().setContent(expanded);
+			await Promise.resolve();
+		});
 		expect(useAppStore.getState().writingProgress[projectId]?.days).toContainEqual({
 			date: localDateKey(),
 			words: addedWords
@@ -194,14 +200,18 @@ describe('quiet writer workspaces', () => {
 			`今日 ${addedWords} / 1,000 字`
 		);
 
-		act(() => useAppStore.getState().setContent(initial, 'undo'));
+		await act(async () => {
+			useAppStore.getState().setContent(initial, 'undo');
+			await Promise.resolve();
+		});
 		expect(useAppStore.getState().writingProgress[projectId]?.days).toContainEqual({
 			date: localDateKey(),
 			words: 0
 		});
-		act(() => {
+		await act(async () => {
 			useAppStore.getState().setContent(expanded, 'redo');
 			expect(useAppStore.getState().setDailyWritingGoal(1_200)).toBe(true);
+			await Promise.resolve();
 		});
 		expect(useAppStore.getState().writingProgress[projectId]?.goal).toBe(1_200);
 		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
@@ -325,6 +335,102 @@ describe('quiet writer workspaces', () => {
 		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
 	});
 
+	it('exposes stable handles for every writer-header operation', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+
+		expect(screen.getByTestId('writer-chapter-status')).toHaveAccessibleName();
+		expect(screen.getAllByTestId('writer-chapter-status-option')).toHaveLength(3);
+		expect(screen.getByTestId('writer-more-actions')).toHaveAccessibleName();
+		for (const testId of [
+			'writer-continue-paragraph',
+			'writer-finish-scene',
+			'writer-three-directions',
+			'writer-organize-chapter',
+			'writer-export-chapter',
+			'writer-previous-chapter',
+			'writer-next-chapter',
+			'writer-save'
+		]) {
+			expect(screen.getByTestId(testId)).toHaveAccessibleName();
+		}
+		expect(screen.getAllByTestId('writer-density-option')).toHaveLength(3);
+	});
+
+	it('writes one chapter status after one hundred same-frame dirty choices', async () => {
+		const user = userEvent.setup();
+		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic');
+		let releaseStatus: (() => void) | undefined;
+		const statusPending = new Promise<void>(resolve => {
+			releaseStatus = resolve;
+		});
+		const updateChapterStatus = vi.spyOn(desktopBridge, 'updateChapterStatus')
+			.mockImplementation(async request => {
+				await statusPending;
+				const snapshot = useAppStore.getState().snapshot;
+				if (!snapshot) throw new Error('fixture snapshot missing');
+				let updatedChapter = snapshot.project.volumes[0]?.chapters[0];
+				const volumes = snapshot.project.volumes.map(volume => ({
+					...volume,
+					chapters: volume.chapters.map(chapter => {
+						if (chapter.id !== request.chapterId) return chapter;
+						updatedChapter = { ...chapter, status: request.status };
+						return updatedChapter;
+					})
+				}));
+				if (!updatedChapter) throw new Error('fixture chapter missing');
+				return {
+					project: { ...snapshot.project, volumes },
+					projectRevision: 'status-pressure-revision',
+					chapter: updatedChapter,
+					description: '已将章节标记为已完成。'
+				};
+			});
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('等待安全保存的章节结尾。'));
+
+		await user.click(screen.getByRole('button', { name: '章节状态：初稿' }));
+		const completed = within(screen.getByRole('menu', { name: '选择章节状态' }))
+			.getByRole('menuitemradio', { name: /已完成/u });
+		act(() => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				completed.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+		});
+
+		await waitFor(() => expect(updateChapterStatus).toHaveBeenCalled());
+		await act(async () => {
+			releaseStatus?.();
+			await statusPending;
+		});
+		await waitFor(() => expect(useAppStore.getState().chapterStatusBusy).toBe(false));
+		expect(writeTextAtomic).toHaveBeenCalledOnce();
+		expect(updateChapterStatus).toHaveBeenCalledOnce();
+	});
+
+	it('keeps the writer open when organizing a dirty chapter cannot save', async () => {
+		const user = userEvent.setup();
+		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic')
+			.mockRejectedValue(new Error('offline C:\\private\\chapter.md'));
+		render(<App />);
+		await openFixtureAndContinue(user);
+		act(() => useAppStore.getState().setContent('尚未安全保存的整理草稿。'));
+
+		await user.click(screen.getByRole('button', { name: '更多章节操作' }));
+		await user.click(screen.getByRole('menuitem', { name: '整理本章' }));
+
+		await waitFor(() => expect(writeTextAtomic).toHaveBeenCalledOnce());
+		await waitFor(() => expect(useAppStore.getState().saveState.type).not.toBe('saving'));
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'works',
+			session: { state: { dirty: true } }
+		});
+		expect(screen.queryByRole('main', { name: 'AI 从正文整理中心' }))
+			.not.toBeInTheDocument();
+	});
+
 	it('saves dirty prose before changing chapter status and updates publish readiness immediately', async () => {
 		const user = userEvent.setup();
 		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic');
@@ -402,9 +508,10 @@ describe('quiet writer workspaces', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
-		act(() => {
+		await act(async () => {
 			const snapshot = useAppStore.getState().snapshot;
 			if (snapshot) useAppStore.setState({ snapshot: { ...snapshot, readOnly: true } });
+			await Promise.resolve();
 		});
 
 		expect(screen.queryByRole('button', { name: '章节状态：初稿' })).not.toBeInTheDocument();

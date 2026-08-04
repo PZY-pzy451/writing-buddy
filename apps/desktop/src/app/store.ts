@@ -967,15 +967,18 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			return false;
 		}
 		if ((chapter.status ?? 'draft') === status) return true;
+		set({ chapterStatusBusy: true, error: undefined });
 		if (get().session?.state.dirty) {
 			await get().save();
 			const saved = get();
 			if (saved.session?.state.dirty || saved.saveState.type !== 'clean') {
-				set({ error: '当前正文尚未安全保存，未修改章节状态。' });
+				set({
+					chapterStatusBusy: false,
+					error: '当前正文尚未安全保存，未修改章节状态。'
+				});
 				return false;
 			}
 		}
-		set({ chapterStatusBusy: true, error: undefined });
 		try {
 			const result = await desktopBridge.updateChapterStatus({
 				projectRoot: snapshot.root,
