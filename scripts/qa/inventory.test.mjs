@@ -189,4 +189,24 @@ describe('control inventory rendered-element boundary', () => {
 		expect(extractionControls).toHaveLength(19);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const createControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/projects/ui/GlobalCreateMenu.tsx'
+		));
+		const missingSelectors = createControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(createControls).toHaveLength(7);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });

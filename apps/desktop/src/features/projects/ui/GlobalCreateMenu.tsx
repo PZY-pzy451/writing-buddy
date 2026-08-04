@@ -102,6 +102,8 @@ export function GlobalCreateMenu({
 	const menuRef = useRef<HTMLDivElement>(null);
 	const requestedFocus = useRef<'first' | 'chapter'>('first');
 	const shortcutOrigin = useRef<HTMLElement | null>(null);
+	const openRef = useRef(false);
+	const actionGuardRef = useRef(false);
 
 	const restoreFocus = useCallback(() => {
 		const target = shortcutOnly ? shortcutOrigin.current : triggerRef.current;
@@ -110,29 +112,38 @@ export function GlobalCreateMenu({
 	const contextualActions = (contextualOrder[
 		activeMode === 'planning' || activeMode === 'references' ? activeMode : 'default'
 	]).map(id => contextualCreateActions.find(action => action.id === id)!);
-	const runAndClose = (action: () => void) => {
-		restoreFocus();
+	const closeMenu = () => {
+		openRef.current = false;
 		setOpen(false);
+	};
+	const focusRequestedItem = (focus: 'first' | 'chapter') => {
+		const selector = focus === 'chapter'
+			? '[data-create-item="chapter"]'
+			: '[role="menuitem"]';
+		menuRef.current?.querySelector<HTMLButtonElement>(selector)?.focus();
+	};
+	const runAndClose = (action: () => void) => {
+		if (actionGuardRef.current) return;
+		actionGuardRef.current = true;
+		restoreFocus();
+		closeMenu();
 		action();
 	};
 
 	useEffect(() => {
 		if (!open) return;
-		const selector = requestedFocus.current === 'chapter'
-			? '[data-create-item="chapter"]'
-			: '[role="menuitem"]';
-		menuRef.current?.querySelector<HTMLButtonElement>(selector)?.focus();
+		focusRequestedItem(requestedFocus.current);
 		requestedFocus.current = 'first';
 		const close = (event: PointerEvent) => {
 			if (!rootRef.current?.contains(event.target as Node)) {
-				setOpen(false);
+				closeMenu();
 				restoreFocus();
 			}
 		};
 		const closeOnEscape = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
-				setOpen(false);
+				closeMenu();
 				restoreFocus();
 			}
 		};
@@ -147,10 +158,17 @@ export function GlobalCreateMenu({
 	useEffect(() => {
 		const openFromShortcut = (event: Event) => {
 			const detail = (event as CustomEvent<{ readonly focus?: 'first' | 'chapter' }>).detail;
+			const focus = detail?.focus ?? 'first';
+			if (openRef.current) {
+				focusRequestedItem(focus);
+				return;
+			}
 			shortcutOrigin.current = document.activeElement instanceof HTMLElement
 				? document.activeElement
 				: null;
-			requestedFocus.current = detail?.focus ?? 'first';
+			requestedFocus.current = focus;
+			actionGuardRef.current = false;
+			openRef.current = true;
 			setOpen(true);
 		};
 		window.addEventListener(openCreateMenuEvent, openFromShortcut);
@@ -166,13 +184,22 @@ export function GlobalCreateMenu({
 			<button
 				ref={triggerRef}
 				className="global-create-trigger"
+				data-testid="global-create-trigger"
 				hidden={shortcutOnly}
 				type="button"
 				aria-label="新建"
 				aria-haspopup="menu"
 				aria-expanded={open}
 				aria-keyshortcuts="Control+Shift+N Meta+Shift+N"
-				onClick={() => setOpen(value => !value)}
+				onClick={() => {
+					const next = !openRef.current;
+					openRef.current = next;
+					if (next) {
+						actionGuardRef.current = false;
+						requestedFocus.current = 'first';
+					}
+					setOpen(next);
+				}}
 			>
 				<Plus size={18} aria-hidden="true" />
 				<span>新建</span>
@@ -203,6 +230,7 @@ export function GlobalCreateMenu({
 					<button
 						type="button"
 						role="menuitem"
+						data-testid="global-create-new-project"
 						onClick={() => runAndClose(openProjectWizard)}
 					>
 						<BookPlus size={18} />
@@ -211,6 +239,7 @@ export function GlobalCreateMenu({
 					<button
 						type="button"
 						role="menuitem"
+						data-testid="global-create-open-project"
 						onClick={() => runAndClose(() => void chooseProject())}
 					>
 						<FolderInput size={18} />
@@ -221,6 +250,7 @@ export function GlobalCreateMenu({
 						type="button"
 						role="menuitem"
 						data-create-item="chapter"
+						data-testid="global-create-new-chapter"
 						disabled={!snapshot || snapshot.readOnly}
 						title={!snapshot
 							? '请先打开作品'
@@ -238,6 +268,7 @@ export function GlobalCreateMenu({
 					<button
 						type="button"
 						role="menuitem"
+						data-testid="global-create-quick-capture"
 						disabled={!snapshot || snapshot.readOnly}
 						title={!snapshot ? '请先打开作品' : snapshot.readOnly ? '只读作品不能新增记录' : 'Ctrl+Shift+Space'}
 						onClick={() => runAndClose(openQuickCapture)}
@@ -256,6 +287,7 @@ export function GlobalCreateMenu({
 									key={id}
 									type="button"
 									role="menuitem"
+									data-testid="global-create-contextual-action"
 									disabled={snapshot.readOnly}
 									title={snapshot.readOnly ? '只读作品不能创建内容' : description}
 									onClick={() => runAndClose(() => {

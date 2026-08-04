@@ -1,14 +1,16 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../app/store';
 import { QuickCaptureDialog } from './QuickCaptureDialog';
 
 afterEach(() => {
-	useAppStore.setState({
-		quickCaptureOpen: false,
-		quickCaptureBusy: false,
-		quickCaptureSeed: undefined
+	act(() => {
+		useAppStore.setState({
+			quickCaptureOpen: false,
+			quickCaptureBusy: false,
+			quickCaptureSeed: undefined
+		});
 	});
 });
 
