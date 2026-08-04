@@ -4,30 +4,33 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-QA inventory composite-control convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3d340d2`.
+Creation Journey stable-control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `bf0069b`.
 
-- PascalCase React component boundaries were counted as rendered controls even
-  though their intrinsic DOM output is inventoried in the component source.
-- One contract failed red with 16 composite types. The scanner now restricts
-  custom-interaction discovery to intrinsic JSX while retaining native and
-  lowercase interactive elements.
-- Inventory moved from 424 controls / 9,328 states / 212 selector gaps to 408 /
-  8,976 / 196, removing 16 false controls and 352 synthetic states. Aggregate
-  traceability debt moved from 10,159 to 9,792 without weakening the strict gate.
-- The QA-script impact set passed 16/16. Fixed-commit Node 24 acceptance passed
-  181 files / 913 tests plus lint, typecheck and production build. Rust collected
-  79, passed 77 and retained two reasoned ignores.
-- The ledger contains 992 cases: 990 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 913 with 97 parameterized instances and
+- The zero-to-draft page contributed the largest source selector debt: 14
+  controls across navigation, guidance, ideas, directions, outline and chapters.
+- Two contracts failed red. The complete author journey now verifies stable
+  metadata while retaining dynamic labels, lock state and drag behavior.
+- The page moves from 22 controls (8 mapped / 14 missing) to 38/38 mapped.
+  Global missing selectors fall from 196 to 182. Sixteen newly distinguished
+  controls and 352 states raise honest traceability debt from 9,792 to 10,161;
+  the strict gate remains fail-closed for each newly exposed mapping.
+- A brittle three-node assertion now checks outline card/field consistency.
+  Test cleanup resets the mounted Store under `act`, removing React stderr.
+- Creation Journey regression passed 19 files / 64 tests and QA scripts passed
+  17/17. Fixed-commit Node 24 acceptance passed 181 files / 914 tests plus lint,
+  typecheck and production build. Rust collected 79, passed 77 and retained two
+  reasoned ignores.
+- The ledger contains 993 cases: 991 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 914 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Manuscript extraction early-stop convergence is complete against source
-`8a594e2`. Four timing contracts converged through 21 focused and 58 impacted
-tests; fixed acceptance passed 912 frontend tests.
+QA inventory composite-control convergence is complete against source
+`3d340d2`. One red contract removed 16 false controls and 352 synthetic states;
+fixed acceptance passed 913 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

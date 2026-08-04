@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T07:31:54.057Z",
-  "completedAt": "2026-08-04T07:31:56.762Z",
+  "generatedAt": "2026-08-04T07:52:36.972Z",
+  "completedAt": "2026-08-04T07:52:39.240Z",
   "status": "PASS",
-  "durationMs": 2703,
+  "durationMs": 2266,
   "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
   "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
   "format": "PASS",

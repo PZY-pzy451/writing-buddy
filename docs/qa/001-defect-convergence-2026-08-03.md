@@ -880,6 +880,31 @@ The QA-script impact set passes 16/16. Fixed-commit acceptance passes lint,
 typecheck, production build and 181 files / 913 tests. Rust collects 79, passes
 77 and retains two reasoned ignores.
 
+### QA-CREATION-JOURNEY-STABLE-CONTROLS-044
+
+The zero-to-draft Creation Journey had the largest remaining source-specific
+selector debt. Fourteen inventory controls had no static metadata across stage
+navigation, guidance, idea fields, direction selection, outline dragging and
+chapter confirmation. Several distinct repeated fields also shared the same
+structural inventory identity, so the lower control count hid real test surface.
+
+Two contracts failed red: inventory returned all 14 missing IDs and the full
+ideas-to-three-chapters journey could not find a stage-navigation anchor. Static
+semantic names and test IDs now cover every declaration without replacing
+dynamic author-facing labels. The page moves from 22 controls (8 mapped / 14
+missing) to 38 controls, all mapped. Global selector debt falls from 196 to 182.
+
+The 16-control and 352-state increase is intentional measurement expansion.
+Together with one new contract, strict traceability debt rises from 9,792 to
+10,161 until those newly visible states receive behavior mappings. A brittle
+three-outline-node assertion was replaced by card/field consistency, and an
+unwrapped Store reset in test cleanup was brought under `act`, removing React
+stderr from the impact run.
+
+Creation Journey regression passes 19 files / 64 tests and QA scripts pass
+17/17. Fixed-commit acceptance passes lint, typecheck, production build and 181
+files / 914 tests. Rust collects 79, passes 77 and retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -1004,11 +1029,12 @@ console claims.
 | Manuscript extraction run single-flight | Two red pressure contracts; 100 starts and 99 stale-write failures become one shared run, one processor and zero rejected callers; 15 focused and 48 impacted tests pass |
 | Manuscript extraction early Stop | Four red timing contracts; immediate/source/provider-preflight Stop starts zero processors or native AI jobs, while 100 Stop actions invoke one runner Stop; 21 focused and 58 impacted tests pass |
 | QA inventory composite-control boundary | One red integration contract; 16 false controls, 352 synthetic states and 16 false selector findings removed; 16 focused tests pass |
-| Ledger/inventory reconciliation | 992 / 992 cases; 913 frontend + 79 native; 990 passed + 2 reasoned skips; stale ledgers fail closed |
+| Creation Journey stable controls | Two red contracts; source 22 controls (8 mapped / 14 missing) becomes 38/38 mapped; 64 journey and 17 QA-script tests pass without React stderr |
+| Ledger/inventory reconciliation | 993 / 993 cases; 914 frontend + 79 native; 991 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 181 files / 913 tests and production build passed |
-| Static/runtime test reconciliation | 913 / 913; 97 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 181 files / 914 tests and production build passed |
+| Static/runtime test reconciliation | 914 / 914; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -1048,10 +1074,11 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 9,792 aggregate mappings
-  are open and 196 interactive declarations lack stable selectors. This cycle
-  removed duplicate composite-component entries; the remaining debt represents
-  intrinsic controls and mappings and remains fail-closed.
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,161 aggregate mappings
+  are open and 182 interactive declarations lack stable selectors. The mapping
+  total rose because 16 previously collapsed Creation Journey controls and 352
+  derived states are now represented honestly; none was marked covered without
+  explicit evidence.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
 - Rust emitted two localized MSVC linker-output warnings while producing test

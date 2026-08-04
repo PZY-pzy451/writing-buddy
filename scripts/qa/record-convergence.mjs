@@ -1234,6 +1234,35 @@ const report = {
 				focusedTests: 16,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CREATION-JOURNEY-STABLE-CONTROLS-044',
+			summary: 'The zero-to-draft Creation Journey lacked static selector metadata across repeated stages, cards, fields, lock controls and drag targets, while its test cleanup emitted an unawaited React update warning.',
+			before: {
+				sourceControls: 22,
+				sourceMappedControls: 8,
+				sourceMissingStableSelectors: 14,
+				globalControls: 408,
+				globalStates: 8976,
+				globalMissingStableSelectors: 196,
+				totalUnmapped: 9792,
+				testCleanupReactWarnings: 1
+			},
+			after: {
+				sourceControls: 38,
+				sourceMappedControls: 38,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 16,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				testCleanupReactWarnings: 0,
+				redFailures: 2,
+				creationJourneyTests: 64,
+				qaScriptTests: 17,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

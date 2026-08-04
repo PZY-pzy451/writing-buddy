@@ -49,4 +49,23 @@ blocked until genuine traceability, real-provider and packaging gates close.
 
 ## Result
 
-Pending red/green evidence and fixed-commit baselines.
+- Two intended contracts failed red: inventory returned all 14 missing control
+  IDs and the full user journey could not find a stage-navigation anchor.
+- Stage navigation, guidance, idea fields, direction cards, outline drag targets
+  and chapter fields now expose stable semantic group names or test IDs without
+  changing their dynamic author-facing labels.
+- The page moves from 22 controls (8 mapped / 14 missing) to 38 controls, all
+  mapped. The 16-control increase is intentional: distinct fields and actions
+  that previously shared one structural hash are now represented separately.
+- Global selector debt falls from 196 to 182. Controls rise from 408 to 424 and
+  states from 8,976 to 9,328; with one new test, honest traceability debt rises
+  from 9,792 to 10,161 because the newly visible controls/states still require
+  explicit behavior mappings.
+- A brittle assertion that assumed three outline nodes was replaced by a card/
+  field consistency invariant. The impact run also exposed an unwrapped Store
+  reset in test cleanup; wrapping it in `act` removes the React stderr warning.
+- Creation Journey impact regression passed 19 files / 64 tests. QA-script
+  regression passed 17/17. Fixed-commit acceptance passed lint, typecheck,
+  production build and 181 files / 914 frontend tests. Rust collected 79,
+  passed 77 and retained two reasoned ignores.
+- Product commit: `bf0069bb181e7b2a16e8ba5fdbc9268fa51efe72`.
