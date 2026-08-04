@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "graph": {
     "nodeCount": 752,
-    "edgeCount": 1313,
+    "edgeCount": 1314,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -4490,6 +4490,11 @@
       },
       {
         "from": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+        "to": "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
         "to": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.tsx",
         "kind": "static-import"
       },
@@ -7997,8 +8002,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "2AFEA5D46203F8BDA5055A9E9517A065DF7EBB5C45F596D3439D1A432948E58D",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "C5AB84C4913EA9ABA56D319EDCF0E707788B0752873B2052C1F33B92D9E327DE",
       "testImplementationFingerprint": "FD8DF84BB4DFB84605F9C32EEF58DCCAD6BE793416A927F192941DCF453BD9FC"
     },
     {
@@ -9290,8 +9295,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "3988BAC9606851D2C2799F3D642679299C326756C48A07741932D829C1F4C385",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "18A46CB015D2003138172B7949CB681B748FF1221F69E079835A7FA6E3A6BD90",
       "testImplementationFingerprint": "535C02BC9C8BB33E703E3ADF05C68E7DEC00C5031CC21039B3402DD1DBF72B82"
     },
     {
@@ -11117,8 +11122,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "CE8C9AB9AFCBC625D7185B0BAD9EF0A407C8AC1988B95FE151727A1BDD0EFE35",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "6F1F270BC966BA57C6BB27CABC700F64B1B1E6CF73DC621F05B58A6A7C284A01",
       "testImplementationFingerprint": "FA4BBAF3C30FBE793916A9E105FB4642692BDC0C04E90A4A3F06336DB4D10A35"
     },
     {
@@ -11467,8 +11472,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "CCE34D6B10B7E6E7DACF8796816CA67B2D46E98A8F3F66507517ACD5245B0755",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "37EDD52DA469B6EC11BE496944569E8586D822BD55C4FBCD2187574B04B02CF9",
       "testImplementationFingerprint": "4934C8D1A96C2737B01E5E55EAF0A46FF0B9F9E7A08C1FCCA6334FB14C71FC21"
     },
     {
@@ -11810,8 +11815,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "6C629DE469DAE3F82FE12722AE8E1368F87E6A1820BEB8F2B36DBCB433AAFE7F",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "46CFA7EB817ACE1AC479F075E8935B1CEF72903978BB5F99C2F6FD42AD71D406",
       "testImplementationFingerprint": "58C03DEE2DA94C5F55C8609B6F4043420559806B969DE765D10E6AF9A6A3DA00"
     },
     {
@@ -12323,8 +12328,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "3F4ACAB367266AC2743E58FC77610D4223FE10305F1E1708E4872828D040D414",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "DDF34A8B05882D0EDAA84FF41D038191B47A67FDD6DF765DE1E2036F3F9CAB7A",
       "testImplementationFingerprint": "D686B96C45A0AEA5186DE801CB2F4C1B59F503CCEC9877E274B2F4AC4AF1F444"
     },
     {
@@ -12959,8 +12964,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "AAC33B10D21E252911E3D043456C72D9AFB8C2DA5B175136DB70CF817C94BF49",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "757300C410601E3FD617ADE54B67F2ED5ABBDD9FA3C3965921A7BBD256360022",
       "testImplementationFingerprint": "8EB0E3F11A009C652639E429286FC4C0B897C0BE22DBF15F9BA29CCDC3C1A238"
     },
     {
@@ -15689,14 +15694,21 @@
       "testSource": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
       "testCaseIds": [
         "TC-DISCOVERED-1F5C1069E4",
+        "TC-DISCOVERED-31788C9507",
+        "TC-DISCOVERED-334F7290F4",
+        "TC-DISCOVERED-3C26055977",
         "TC-DISCOVERED-5FC562C676",
+        "TC-DISCOVERED-604A2A276E",
+        "TC-DISCOVERED-667322738F",
         "TC-DISCOVERED-720533E57E",
         "TC-DISCOVERED-8162492F62",
+        "TC-DISCOVERED-9F98D3FC9E",
         "TC-DISCOVERED-CC1A77BD18"
       ],
       "directDependencies": [
         "apps/desktop/src/features/creation-journey/CreationJourneyModel.ts",
         "apps/desktop/src/features/creation-journey/CreationJourneyStore.ts",
+        "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.ts",
         "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.tsx",
         "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.ts",
         "apps/desktop/src/platform/bridge.ts",
@@ -15783,9 +15795,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "0FE8F26A908E973CA2C9F63DF905C126A1FBD23F6AC63974E1B546651E246439",
-      "dependencyFingerprint": "197FE3774FDA377314CFE01DC149B62A3A39E171489099D634E2132BB130B096",
-      "testImplementationFingerprint": "951105C36C4DF3B12342625E271C99A29AC782FE1D8462C75A33BC0AB4B152EF"
+      "sourceFingerprint": "CFC247EBFE0FFBC7C4BA1C464B261725C52FCEB1F8C0E5D91C50920E645A4118",
+      "dependencyFingerprint": "32BA315D72609E8726EA2533306BE42D221BD4A30B6C707A23A841CAB3E72498",
+      "testImplementationFingerprint": "935697060DD46C2BDE3F4C645A6A4BD4760B015B3BA077EB6836168DDC0672F6"
     },
     {
       "testSource": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.test.ts",
@@ -18075,8 +18087,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "C6220706EF63D4E04763702068DB79DAA756BACAB77C99F53C16D658361EE30E",
-      "dependencyFingerprint": "7F5F7E1DF6F12B1767F65BF18FAFE69B93830F7E266F200A00440B9F79732360",
+      "sourceFingerprint": "12084AB182C26B5440C7E60C640FE4AC0EE52AB143FEE0E8BDA0A2AC1367C69D",
+      "dependencyFingerprint": "1283DC7C5F149C2A84B0082D3DE6E276070D0FB174F407F2F11B949964111D58",
       "testImplementationFingerprint": "3B708DF7A4C1F089B23C053C08E8C50078ACB221C4D5AEFFC11BA16EC3039C8A"
     },
     {
@@ -19737,6 +19749,7 @@
       "testSource": "scripts/qa/inventory.test.mjs",
       "testCaseIds": [
         "TC-DISCOVERED-0FAC051193",
+        "TC-DISCOVERED-3402929C42",
         "TC-DISCOVERED-51A95855C8",
         "TC-DISCOVERED-5758296765",
         "TC-DISCOVERED-98E4CCC8F7",
@@ -19749,7 +19762,7 @@
       "transitiveDependencies": [],
       "sourceFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
       "dependencyFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "testImplementationFingerprint": "B4D0ABDE32334DA29679CAB2E040BA3B9473963B4CA9C8B96165FEDD1654AC1E"
+      "testImplementationFingerprint": "94DDC31C5129AE50FC3B14B55CC4BC33788A8CA0EB22C0CB588A660F70C22E5A"
     },
     {
       "testSource": "scripts/qa/test-discovery.test.mjs",

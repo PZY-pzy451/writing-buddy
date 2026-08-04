@@ -55,3 +55,26 @@ leaks implementation details and gives the author no safe recovery guidance.
 This cycle closes one high-risk author workflow. Product release remains
 fail-closed until all remaining selector/traceability debt, real-provider
 acceptance and packaged executable acceptance are complete.
+
+## Result
+
+- Five intended contracts failed red. One hundred same-frame plan actions
+  appended 100 runs, confirmation created 100 safety snapshots, undo entered
+  100 transactions, unexpected storage details were exposed and inventory
+  collapsed or omitted author operations.
+- A component-owned synchronous mutation guard now covers planning, paid run
+  start, stale refresh/replan, candidate confirmation/rejection, reconciliation
+  resolution and undo. Stop retains its independent cancellation guard.
+- Failed transitions release the guard for one explicit retry. Unknown details
+  are redacted to localized recovery guidance while the center stays visible.
+- Source controls moved from 11 declarations with five missing selectors to
+  19/19 explicit stable declarations. Global controls moved from 461 to 469,
+  states from 10,142 to 10,318 and selector debt from 145 to 140. The expanded
+  honest surface raises strict traceability debt from 10,901 to 11,065.
+- Focused regression passed 2 files / 20 tests. Story Kernel, extraction, quick
+  capture, workspace, save and review impact passed 11 files / 163 tests with
+  no stderr. QA infrastructure passed 5 files / 22 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  183 files / 941 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Product commit: `72e1147` (`fix: harden manuscript extraction actions`).

@@ -1474,6 +1474,48 @@ const report = {
 				qaScriptTests: 21,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-MANUSCRIPT-EXTRACTION-ACTION-LIFECYCLE-051',
+			summary: 'The manuscript extraction center multiplied plan, confirmation and undo transitions under same-frame actions, exposed unexpected storage details and collapsed its author controls.',
+			before: {
+				sourceControls: 11,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 5,
+				actualSourceOperations: 19,
+				repeatedActions: 100,
+				planAppends: 100,
+				safetySnapshots: 100,
+				undoTransactions: 100,
+				rawUnexpectedErrorVisible: true,
+				globalControls: 461,
+				globalStates: 10142,
+				globalMissingStableSelectors: 145,
+				totalUnmapped: 10901
+			},
+			after: {
+				sourceControls: 19,
+				sourceMappedControls: 19,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 8,
+				repeatedActions: 100,
+				planAppends: 1,
+				safetySnapshots: 1,
+				confirmationTransactions: 1,
+				undoTransactions: 1,
+				rejectionTransactions: 1,
+				retryAfterFailure: true,
+				rawUnexpectedErrorVisible: false,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 20,
+				impactTests: 163,
+				qaScriptTests: 22,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
