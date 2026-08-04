@@ -71,6 +71,33 @@ beforeEach(() => {
 });
 
 describe('ProjectStructureTree scenes', () => {
+	it('exposes stable handles for every volume, chapter and scene operation', () => {
+		render(
+			<ProjectStructureTree
+				snapshot={snapshot}
+				collapsedVolumes={new Set()}
+				search=""
+				chapterWords={() => 120}
+				onToggleVolume={vi.fn()}
+				onOpenChapter={vi.fn()}
+				onOpenScene={vi.fn()}
+			/>
+		);
+
+		expect(screen.getByTestId('project-structure-volume-toggle'))
+			.toHaveAccessibleName('收起第一卷');
+		expect(screen.getByTestId('project-structure-volume-drag'))
+			.toHaveAccessibleName('拖动卷：第一卷');
+		expect(screen.getByTestId('project-structure-chapter-open'))
+			.toHaveTextContent('第一章');
+		expect(screen.getByTestId('project-structure-chapter-drag'))
+			.toHaveAccessibleName('拖动章节：第一章');
+		expect(screen.getByTestId('project-structure-scene-open'))
+			.toHaveTextContent('雨夜站台');
+		expect(screen.getByTestId('project-structure-scene-drag'))
+			.toHaveAccessibleName('拖动场景：雨夜站台');
+	});
+
 	it('renders a nested scene with a keyboard-capable handle and opens its anchor', async () => {
 		const onOpenScene = vi.fn();
 		render(

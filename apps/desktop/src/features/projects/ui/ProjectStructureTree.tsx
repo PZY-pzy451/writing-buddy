@@ -161,6 +161,7 @@ function SortableVolumeRow({
 			<button
 				className="tree-row-main"
 				type="button"
+				data-testid="project-structure-volume-toggle"
 				onClick={onToggle}
 				aria-expanded={expanded}
 				aria-label={`${expanded ? '收起' : '展开'}${volume.title}`}
@@ -173,6 +174,7 @@ function SortableVolumeRow({
 				ref={setActivatorNodeRef}
 				className="tree-drag-handle"
 				type="button"
+				data-testid="project-structure-volume-drag"
 				disabled={Boolean(disabledReason)}
 				title={disabledReason ?? `拖动“${volume.title}”调整卷顺序`}
 				aria-label={disabledReason
@@ -231,7 +233,12 @@ function SortableChapterRow({
 			style={style}
 			dataStructureId={chapter.id}
 		>
-			<button className="tree-row-main" type="button" onClick={onOpen}>
+			<button
+				className="tree-row-main"
+				type="button"
+				data-testid="project-structure-chapter-open"
+				onClick={onOpen}
+			>
 				<FileText size={18} />
 				<span>{chapter.title}</span>
 				<small>{words || ''}</small>
@@ -240,6 +247,7 @@ function SortableChapterRow({
 				ref={setActivatorNodeRef}
 				className="tree-drag-handle"
 				type="button"
+				data-testid="project-structure-chapter-drag"
 				disabled={Boolean(disabledReason)}
 				title={disabledReason ?? `拖动“${chapter.title}”调整章节位置`}
 				aria-label={disabledReason
@@ -294,7 +302,12 @@ function SortableSceneRow({
 			}}
 			dataStructureId={scene.id}
 		>
-			<button className="tree-row-main" type="button" onClick={onOpen}>
+			<button
+				className="tree-row-main"
+				type="button"
+				data-testid="project-structure-scene-open"
+				onClick={onOpen}
+			>
 				<Clapperboard size={16} />
 				<span>{scene.title}</span>
 				<small>场景 {scene.narrativeOrder + 1}</small>
@@ -303,6 +316,7 @@ function SortableSceneRow({
 				ref={setActivatorNodeRef}
 				className="tree-drag-handle"
 				type="button"
+				data-testid="project-structure-scene-drag"
 				disabled={Boolean(disabledReason)}
 				title={disabledReason ?? `拖动“${scene.title}”调整场景位置`}
 				aria-label={disabledReason

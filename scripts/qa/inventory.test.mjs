@@ -85,4 +85,25 @@ describe('control inventory rendered-element boundary', () => {
 		expect(wizardControls.length).toBeGreaterThan(0);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-008 requires stable selectors for the project structure tree', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const structureTreeControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/projects/ui/ProjectStructureTree.tsx'
+		));
+		const missingSelectors = structureTreeControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(structureTreeControls).toHaveLength(6);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });
