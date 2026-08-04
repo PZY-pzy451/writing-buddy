@@ -158,8 +158,9 @@ export function PendingFactsReview(props: PendingFactsReviewProps): React.JSX.El
 	const [streamedLength, setStreamedLength] = useState(0);
 	const [error, setError] = useState('');
 	const [notice, setNotice] = useState('');
+	const [extracting, setExtracting] = useState(false);
 	const generatingRef = useRef(false);
-	const generating = !['created', 'completed', 'cancelled', 'failed'].includes(jobState);
+	const generating = extracting || !['created', 'completed', 'cancelled', 'failed'].includes(jobState);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -179,6 +180,7 @@ export function PendingFactsReview(props: PendingFactsReviewProps): React.JSX.El
 	const extract = async () => {
 		if (generatingRef.current || generating || inputProblem) return;
 		generatingRef.current = true;
+		setExtracting(true);
 		const selected = props.selection?.text
 			? { content: props.selection.text, baseOffset: props.selection.start }
 			: { content: props.content, baseOffset: 0 };
@@ -216,6 +218,7 @@ export function PendingFactsReview(props: PendingFactsReviewProps): React.JSX.El
 			));
 		} finally {
 			generatingRef.current = false;
+			setExtracting(false);
 		}
 	};
 
@@ -245,6 +248,7 @@ export function PendingFactsReview(props: PendingFactsReviewProps): React.JSX.El
 			<button
 				className="secondary-button full-width"
 				type="button"
+				data-testid="pending-facts-extract"
 				disabled={Boolean(inputProblem) || generating}
 				onClick={() => void extract()}
 			>
@@ -344,16 +348,27 @@ function PendingFactCard(props: {
 			</div>
 			<label>
 				<span>标题</span>
-				<input value={title} maxLength={120} onChange={event => setTitle(event.target.value)} />
+				<input
+					name="pending-fact-title"
+					value={title}
+					maxLength={120}
+					onChange={event => setTitle(event.target.value)}
+				/>
 			</label>
 			<label>
 				<span>事实陈述</span>
-				<textarea value={statement} maxLength={4_000} onChange={event => setStatement(event.target.value)} />
+				<textarea
+					name="pending-fact-statement"
+					value={statement}
+					maxLength={4_000}
+					onChange={event => setStatement(event.target.value)}
+				/>
 			</label>
 			<blockquote>{props.fact.suggestedQuote}</blockquote>
 			<label>
 				<span>叙事顺序</span>
 				<input
+					name="pending-fact-narrative-order"
 					type="number"
 					min={0}
 					step={1}

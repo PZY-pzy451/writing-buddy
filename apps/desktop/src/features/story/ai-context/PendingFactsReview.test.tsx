@@ -4,7 +4,7 @@ import type {
 	AtomicWriteRequest,
 	AtomicWriteResult
 } from '@writing-buddy/platform-ports';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	PendingFactsReview,
@@ -78,6 +78,73 @@ function extractionResponse(content: string): string {
 }
 
 describe('PendingFactsReview', () => {
+	it('publishes immediate preflight feedback before the provider emits state', async () => {
+		const store = new PendingFactStore('D:\\fixture', new MemoryStorage());
+		const content = '顾言决定保留蓝色信封';
+		let resolveExtraction: ((response: string) => void) | undefined;
+		const runExtraction: NonNullable<PendingFactsReviewProps['runExtraction']> = vi.fn(
+			() => new Promise(resolve => {
+				resolveExtraction = resolve;
+			})
+		);
+		render(
+			<PendingFactsReview
+				projectRoot="D:\\fixture"
+				resourceId="chapter-preflight"
+				sourceRevision={1}
+				content={content}
+				store={store}
+				runExtraction={runExtraction}
+			/>
+		);
+
+		const extract = await screen.findByRole('button', {
+			name: '用 DeepSeek 提取待确认事实'
+		}, asyncTimeout);
+		for (let click = 0; click < 100; click += 1) fireEvent.click(extract);
+
+		expect(runExtraction).toHaveBeenCalledTimes(1);
+		expect(extract).toBeDisabled();
+		expect(screen.getByRole('button', { name: '正在提取 · 0 字符' })).toBe(extract);
+		expect(extract).toHaveAttribute('data-testid', 'pending-facts-extract');
+
+		await act(async () => {
+			resolveExtraction?.(extractionResponse(content));
+			await Promise.resolve();
+		});
+		expect(await screen.findByRole('status', undefined, asyncTimeout))
+			.toHaveTextContent('已提取 1 条待确认事实');
+		expect(screen.getByRole('button', { name: '用 DeepSeek 提取待确认事实' }))
+			.toBeEnabled();
+	});
+
+	it('exposes stable fact-editing selectors without replacing field labels', async () => {
+		const store = new PendingFactStore('D:\\fixture', new MemoryStorage());
+		const content = '顾言决定保留蓝色信封';
+		render(
+			<PendingFactsReview
+				projectRoot="D:\\fixture"
+				resourceId="chapter-editing-selectors"
+				sourceRevision={1}
+				content={content}
+				store={store}
+				runExtraction={() => Promise.resolve(extractionResponse(content))}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', {
+			name: '用 DeepSeek 提取待确认事实'
+		}, asyncTimeout));
+		await screen.findByRole('button', { name: '确认并接受' }, asyncTimeout);
+
+		expect(screen.getByRole('textbox', { name: '标题' }))
+			.toHaveAttribute('name', 'pending-fact-title');
+		expect(screen.getByRole('textbox', { name: '事实陈述' }))
+			.toHaveAttribute('name', 'pending-fact-statement');
+		expect(screen.getByRole('spinbutton', { name: '叙事顺序' }))
+			.toHaveAttribute('name', 'pending-fact-narrative-order');
+	});
+
 	it('canonicalizes project chapter IDs and closes extract-confirm workflow', async () => {
 		const storage = new MemoryStorage();
 		const store = new PendingFactStore('D:\\fixture', storage);
