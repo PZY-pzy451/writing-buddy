@@ -3958,138 +3958,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451",
+                  "id": "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528",
                   "level": "L4",
-                  "name": "暂不处理",
+                  "name": "明确覆盖",
                   "states": [
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-VISIBLE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-HIDDEN",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-ENABLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DISABLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-POINTER",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-KEYBOARD",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FOCUS-IN",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FOCUS-OUT",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-REPEAT",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DEDUPLICATION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-LOADING",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-SUCCESS",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FAILURE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-CANCELLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-OFFLINE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-PERMISSION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-PERSISTENCE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-RESTART",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-VISUAL",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-ACCESSIBLE-NAME",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-UNDO",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -4097,138 +4097,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76",
+                  "id": "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44",
                   "level": "L4",
-                  "name": "明确覆盖",
+                  "name": "暂不处理",
                   "states": [
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-VISIBLE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-HIDDEN",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-ENABLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DISABLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-POINTER",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-KEYBOARD",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FOCUS-IN",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FOCUS-OUT",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-REPEAT",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DEDUPLICATION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-LOADING",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-SUCCESS",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FAILURE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-CANCELLED",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-OFFLINE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-PERMISSION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-PERSISTENCE",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-RESTART",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-VISUAL",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-ACCESSIBLE-NAME",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-UNDO",
+                      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -61856,7 +61856,7 @@
       "id": "TC-DISCOVERED-02D99ED5FE",
       "title": "keeps a dirty active chapter intact under 100 same-tick reopen actions",
       "declarationTitle": "keeps a dirty active chapter intact under 100 same-tick reopen actions",
-      "declarationLine": 159,
+      "declarationLine": 314,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -62094,7 +62094,7 @@
       "id": "TC-DISCOVERED-079AFCD096",
       "title": "closes a background tab under pressure without disturbing the dirty active draft",
       "declarationTitle": "closes a background tab under pressure without disturbing the dirty active draft",
-      "declarationLine": 392,
+      "declarationLine": 547,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -62494,7 +62494,7 @@
       "id": "TC-DISCOVERED-0C5D60875A",
       "title": "does not activate a chapter whose manuscript read failed 100 times",
       "declarationTitle": "does not activate a chapter whose manuscript read failed 100 times",
-      "declarationLine": 244,
+      "declarationLine": 399,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -62584,7 +62584,7 @@
       "id": "TC-DISCOVERED-0D50C3D3CB",
       "title": "does not let a late Story trash restore overwrite a newer chapter intent",
       "declarationTitle": "does not let a late Story trash restore overwrite a newer chapter intent",
-      "declarationLine": 591,
+      "declarationLine": 746,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -62908,7 +62908,7 @@
       "id": "TC-DISCOVERED-155F3096B9",
       "title": "restores a missing Story resource once under 100 same-tick actions",
       "declarationTitle": "restores a missing Story resource once under 100 same-tick actions",
-      "declarationLine": 571,
+      "declarationLine": 726,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -63829,6 +63829,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-222AADEEEE",
+      "title": "coalesces 100 external-change checks into one disk read and one conflict",
+      "declarationTitle": "coalesces 100 external-change checks into one disk read and one conflict",
+      "declarationLine": 154,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-2293A87996",
       "title": "keeps STORY_EXTRACTION_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -64160,7 +64178,7 @@
       "id": "TC-DISCOVERED-29564A19FF",
       "title": "queues an explicit save pressed while an earlier write is still running",
       "declarationTitle": "queues an explicit save pressed while an earlier write is still running",
-      "declarationLine": 89,
+      "declarationLine": 93,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -64358,7 +64376,7 @@
       "id": "TC-DISCOVERED-2AEAE2026A",
       "title": "shows saving and keeps newer edits dirty when the sent payload completes",
       "declarationTitle": "shows saving and keeps newer edits dirty when the sent payload completes",
-      "declarationLine": 66,
+      "declarationLine": 70,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -64430,7 +64448,7 @@
       "id": "TC-DISCOVERED-2B816611F4",
       "title": "allows a clean close and opens protection for unsaved content",
       "declarationTitle": "allows a clean close and opens protection for unsaved content",
-      "declarationLine": 150,
+      "declarationLine": 305,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -64502,7 +64520,7 @@
       "id": "TC-DISCOVERED-2CC41141D3",
       "title": "releases a cancelled close for one later explicit retry",
       "declarationTitle": "releases a cancelled close for one later explicit retry",
-      "declarationLine": 352,
+      "declarationLine": 507,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -64668,7 +64686,7 @@
       "id": "TC-DISCOVERED-2FC75E4783",
       "title": "protects text entered while a Story resource is loading",
       "declarationTitle": "protects text entered while a Story resource is loading",
-      "declarationLine": 521,
+      "declarationLine": 676,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -65605,6 +65623,26 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3D338C180D",
+      "title": "keeps both versions visible when save-copy is failed",
+      "declarationTitle": "keeps both versions visible when save-copy is %s",
+      "declarationLine": 75,
+      "parameterized": true,
+      "parameterCase": 2,
+      "parameterCaseLabel": "failed",
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/ExternalConflictDialog.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-3D58246D35",
       "title": "fails when an entire written work cannot fit in eight bounded requests",
       "declarationTitle": "fails when an entire written work cannot fit in eight bounded requests",
@@ -65741,6 +65779,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3E288ABE9A",
+      "title": "locks mutually exclusive conflict actions while overwrite is pending",
+      "declarationTitle": "locks mutually exclusive conflict actions while overwrite is pending",
+      "declarationLine": 110,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/ExternalConflictDialog.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -66545,6 +66601,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-4C456A7DC1",
+      "title": "coalesces 100 explicit overwrites and releases a failure for retry",
+      "declarationTitle": "coalesces 100 explicit overwrites and releases a failure for retry",
+      "declarationLine": 241,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-4C9C0F9192",
       "title": "reports every deterministic structural rule without mutating the state",
       "declarationTitle": "reports every deterministic structural rule without mutating the state",
@@ -66750,7 +66824,7 @@
       "id": "TC-DISCOVERED-4E8EFCC8ED",
       "title": "discards instead of saving and opens the next tab once under 100 accepted closes",
       "declarationTitle": "discards instead of saving and opens the next tab once under 100 accepted closes",
-      "declarationLine": 314,
+      "declarationLine": 469,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -67099,6 +67173,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-558EBDF3B8",
+      "title": "dismisses the conflict only after a successful save-copy",
+      "declarationTitle": "dismisses the conflict only after a successful save-copy",
+      "declarationLine": 95,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/ExternalConflictDialog.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -67854,7 +67946,7 @@
       "id": "TC-DISCOVERED-6289EBFE87",
       "title": "localizes a failed Story trash restore and releases it for retry",
       "declarationTitle": "localizes a failed Story trash restore and releases it for retry",
-      "declarationLine": 619,
+      "declarationLine": 774,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -68198,7 +68290,7 @@
       "id": "TC-DISCOVERED-6C6E7D695C",
       "title": "restores one closed Story resource once and consumes its history entry",
       "declarationTitle": "restores one closed Story resource once and consumes its history entry",
-      "declarationLine": 479,
+      "declarationLine": 634,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -68516,6 +68608,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-7347774ECE",
+      "title": "serializes an explicit overwrite and then writes edits made in flight",
+      "declarationTitle": "serializes an explicit overwrite and then writes edits made in flight",
+      "declarationLine": 270,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -70248,7 +70358,7 @@
       "id": "TC-DISCOVERED-8F355588A8",
       "title": "never leaves a closed chapter active when the next tab cannot be read",
       "declarationTitle": "never leaves a closed chapter active when the next tab cannot be read",
-      "declarationLine": 372,
+      "declarationLine": 527,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -70410,7 +70520,7 @@
       "id": "TC-DISCOVERED-9129726C90",
       "title": "saves once and reads once when 100 same-tick actions switch a dirty chapter",
       "declarationTitle": "saves once and reads once when 100 same-tick actions switch a dirty chapter",
-      "declarationLine": 177,
+      "declarationLine": 332,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -70969,6 +71079,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-9C837B090F",
+      "title": "ignores a delayed disk check from the chapter the author already left",
+      "declarationTitle": "ignores a delayed disk check from the chapter the author already left",
+      "declarationLine": 181,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-9C93C3DD50",
       "title": "opens the next affected chapter directly from the project review inbox",
       "declarationTitle": "opens the next affected chapter directly from the project review inbox",
@@ -71136,7 +71264,7 @@
       "id": "TC-DISCOVERED-9F288DA20C",
       "title": "keeps a persistent safe failure and clears it after a successful retry",
       "declarationTitle": "keeps a persistent safe failure and clears it after a successful retry",
-      "declarationLine": 122,
+      "declarationLine": 126,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -71172,7 +71300,7 @@
       "id": "TC-DISCOVERED-9F440103C9",
       "title": "protects text entered while the target chapter is still loading",
       "declarationTitle": "protects text entered while the target chapter is still loading",
-      "declarationLine": 263,
+      "declarationLine": 418,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -71709,6 +71837,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-AADB3D0E95",
+      "title": "does not revive a stale conflict after a newer save completes",
+      "declarationTitle": "does not revive a stale conflict after a newer save completes",
+      "declarationLine": 210,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-AB16B8549E",
       "title": "turns a scaffold-only chapter into an author-confirmed opening draft",
       "declarationTitle": "turns a scaffold-only chapter into an author-confirmed opening draft",
@@ -72044,7 +72190,7 @@
       "id": "TC-DISCOVERED-B1DBFF966A",
       "title": "keeps the latest chapter intent when a direct Story resource load completes late",
       "declarationTitle": "keeps the latest chapter intent when a direct Story resource load completes late",
-      "declarationLine": 449,
+      "declarationLine": 604,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -72116,7 +72262,7 @@
       "id": "TC-DISCOVERED-B360A669CA",
       "title": "keeps the latest chapter intent when an earlier read completes late",
       "declarationTitle": "keeps the latest chapter intent when an earlier read completes late",
-      "declarationLine": 215,
+      "declarationLine": 370,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -72676,7 +72822,7 @@
       "id": "TC-DISCOVERED-BEB27A8157",
       "title": "keeps the dirty chapter when saving before a direct Story open fails",
       "declarationTitle": "keeps the dirty chapter when saving before a direct Story open fails",
-      "declarationLine": 501,
+      "declarationLine": 656,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -72712,7 +72858,7 @@
       "id": "TC-DISCOVERED-BF8D5CF172",
       "title": "asks once and preserves a dirty tab under 100 cancelled close actions",
       "declarationTitle": "asks once and preserves a dirty tab under 100 cancelled close actions",
-      "declarationLine": 293,
+      "declarationLine": 448,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -72948,7 +73094,7 @@
       "id": "TC-DISCOVERED-C2A864A79E",
       "title": "rechecks an active missing Story resource and upgrades it when data returns",
       "declarationTitle": "rechecks an active missing Story resource and upgrades it when data returns",
-      "declarationLine": 550,
+      "declarationLine": 705,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -74204,7 +74350,7 @@
       "id": "TC-DISCOVERED-D8394DCD35",
       "title": "coalesces 100 save-copy actions into one native save dialog",
       "declarationTitle": "coalesces 100 save-copy actions into one native save dialog",
-      "declarationLine": 337,
+      "declarationLine": 492,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -74730,7 +74876,7 @@
       "id": "TC-DISCOVERED-E0D29D6914",
       "title": "keeps the current dirty chapter when saving before a switch fails under pressure",
       "declarationTitle": "keeps the current dirty chapter when saving before a switch fails under pressure",
-      "declarationLine": 195,
+      "declarationLine": 350,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -75202,7 +75348,7 @@
       "id": "TC-DISCOVERED-EB9257FA29",
       "title": "releases a cancelled save-copy action for one explicit retry",
       "declarationTitle": "releases a cancelled save-copy action for one explicit retry",
-      "declarationLine": 416,
+      "declarationLine": 571,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -75310,7 +75456,7 @@
       "id": "TC-DISCOVERED-EE221784AC",
       "title": "saves once and loads once when 100 actions open a Story resource from a dirty chapter",
       "declarationTitle": "saves once and loads once when 100 actions open a Story resource from a dirty chapter",
-      "declarationLine": 431,
+      "declarationLine": 586,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
@@ -75587,6 +75733,26 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F3A70969DB",
+      "title": "keeps both versions visible when save-copy is cancelled",
+      "declarationTitle": "keeps both versions visible when save-copy is %s",
+      "declarationLine": 75,
+      "parameterized": true,
+      "parameterCase": 1,
+      "parameterCaseLabel": "cancelled",
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/editor/ExternalConflictDialog.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-03",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

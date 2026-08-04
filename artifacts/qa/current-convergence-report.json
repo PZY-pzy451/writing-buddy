@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T12:53:35.514Z",
+  "generatedAt": "2026-08-04T00:26:28.917Z",
   "source": {
-    "commit": "7e6e396b9d16c78d9019b50e070a7b9e78a43a38",
+    "commit": "21d9eccae8c8656ec680b22eb8bf0311f1a09cce",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 806,
-        "runtimeCollected": 806,
+        "frontendInventory": 815,
+        "runtimeCollected": 815,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 885,
-        "ledgerCases": 883,
+        "discoveredTests": 894,
+        "ledgerCases": 892,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 885,
-        "ledgerCases": 885,
-        "frontendLedgerCases": 806,
+        "discoveredTests": 894,
+        "ledgerCases": 894,
+        "frontendLedgerCases": 815,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -413,7 +413,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -445,7 +445,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 27,
         "impactedTests": 51,
-        "frontendTests": 806
+        "frontendTests": 815
       }
     },
     {
@@ -477,7 +477,36 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 36,
         "impactedTests": 66,
-        "frontendTests": 806
+        "frontendTests": 815
+      }
+    },
+    {
+      "id": "QA-MONACO-EXTERNAL-CONFLICT-LIFECYCLE-021",
+      "summary": "External manuscript verification and overwrite actions were not single-flight, stale disk reads could revive or attach conflicts to the wrong chapter, and cancelled save-copy actions dismissed the only recovery surface.",
+      "before": {
+        "repeatedActions": 100,
+        "externalVerificationReads": 100,
+        "lateOldChapterReplacedCurrentSession": true,
+        "stalePostSaveConflictRevived": true,
+        "forceOverwriteWrites": 100,
+        "forceWritesSerialized": false,
+        "saveCopyCancelDismissedConflict": true,
+        "conflictActionsMutuallyExclusive": false
+      },
+      "after": {
+        "repeatedActions": 100,
+        "externalVerificationReads": 1,
+        "lateOldChapterIgnored": true,
+        "postSaveStaleReadIgnored": true,
+        "forceOverwriteWrites": 1,
+        "latestInFlightEditPersisted": true,
+        "saveCopyCancelKeepsConflict": true,
+        "conflictActionsMutuallyExclusive": true,
+        "browserAutomationStatus": "BLOCKED_RUNTIME_INITIALIZATION",
+        "browserAutomationBlocker": "The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.",
+        "focusedTests": 35,
+        "impactedTests": 70,
+        "frontendTests": 815
       }
     }
   ],
@@ -502,22 +531,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 806
+      "frontendTests": 815
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T12:48:06.550Z",
-      "completedAt": "2026-08-03T12:50:34.771Z",
+      "generatedAt": "2026-08-04T00:19:44.220Z",
+      "completedAt": "2026-08-04T00:22:06.961Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 148219,
-      "vitestFiles": 175,
-      "vitestPassed": 806,
-      "inventoryFrontendTests": 806,
+      "durationMs": 142737,
+      "vitestFiles": 176,
+      "vitestPassed": 815,
+      "inventoryFrontendTests": 815,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -526,10 +555,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-03T12:48:06.401Z",
-      "completedAt": "2026-08-03T12:48:08.999Z",
+      "generatedAt": "2026-08-04T00:19:44.360Z",
+      "completedAt": "2026-08-04T00:19:47.915Z",
       "status": "PASS",
-      "durationMs": 2597,
+      "durationMs": 3553,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -555,7 +584,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10087,
+    "totalUnmapped": 10075,
     "missingStableSelectors": 221
   },
   "warnings": [

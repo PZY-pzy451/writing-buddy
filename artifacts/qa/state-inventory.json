@@ -39868,11 +39868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-VISIBLE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-VISIBLE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -39884,11 +39884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-HIDDEN",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-HIDDEN",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -39900,11 +39900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-ENABLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-ENABLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -39916,11 +39916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DISABLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DISABLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -39932,11 +39932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-POINTER",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-POINTER",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -39948,11 +39948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-KEYBOARD",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-KEYBOARD",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -39964,11 +39964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FOCUS-IN",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FOCUS-IN",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -39980,11 +39980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FOCUS-OUT",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FOCUS-OUT",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -39996,11 +39996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-REPEAT",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-REPEAT",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -40012,11 +40012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DEDUPLICATION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DEDUPLICATION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -40028,11 +40028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-LOADING",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-LOADING",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -40044,11 +40044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-SUCCESS",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-SUCCESS",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -40060,11 +40060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-FAILURE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-FAILURE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -40076,11 +40076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-CANCELLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-CANCELLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -40092,11 +40092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-OFFLINE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-OFFLINE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -40108,11 +40108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-PERMISSION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-PERMISSION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -40124,11 +40124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-PERSISTENCE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-PERSISTENCE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -40140,11 +40140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-RESTART",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-RESTART",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -40156,11 +40156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-VISUAL",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-VISUAL",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -40172,11 +40172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-ACCESSIBLE-NAME",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-ACCESSIBLE-NAME",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -40188,11 +40188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -40204,11 +40204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451-UNDO",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528-UNDO",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-0EC30451"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-76F0C528"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -40220,11 +40220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-VISIBLE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-VISIBLE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -40236,11 +40236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-HIDDEN",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-HIDDEN",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -40252,11 +40252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-ENABLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-ENABLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -40268,11 +40268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DISABLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DISABLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -40284,11 +40284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-POINTER",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-POINTER",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -40300,11 +40300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-KEYBOARD",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-KEYBOARD",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -40316,11 +40316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FOCUS-IN",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FOCUS-IN",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -40332,11 +40332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FOCUS-OUT",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FOCUS-OUT",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -40348,11 +40348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-REPEAT",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-REPEAT",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -40364,11 +40364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DEDUPLICATION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DEDUPLICATION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -40380,11 +40380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-LOADING",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-LOADING",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -40396,11 +40396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-SUCCESS",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-SUCCESS",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -40412,11 +40412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-FAILURE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-FAILURE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -40428,11 +40428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-CANCELLED",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-CANCELLED",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -40444,11 +40444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-OFFLINE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-OFFLINE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -40460,11 +40460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-PERMISSION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-PERMISSION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -40476,11 +40476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-PERSISTENCE",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-PERSISTENCE",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -40492,11 +40492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-RESTART",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-RESTART",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -40508,11 +40508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-VISUAL",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-VISUAL",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -40524,11 +40524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-ACCESSIBLE-NAME",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-ACCESSIBLE-NAME",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -40540,11 +40540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -40556,11 +40556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76-UNDO",
+      "id": "STATE-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44-UNDO",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
       "controlIds": [
-        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-FCC9EF76"
+        "CTRL-EXTERNALCONFLICTDIALOG-BUTTON-8EC10C44"
       ],
       "name": "撤销",
       "dimension": "UNDO",

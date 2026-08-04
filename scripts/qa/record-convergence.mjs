@@ -560,6 +560,35 @@ const report = {
 				impactedTests: 66,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-MONACO-EXTERNAL-CONFLICT-LIFECYCLE-021',
+			summary: 'External manuscript verification and overwrite actions were not single-flight, stale disk reads could revive or attach conflicts to the wrong chapter, and cancelled save-copy actions dismissed the only recovery surface.',
+			before: {
+				repeatedActions: 100,
+				externalVerificationReads: 100,
+				lateOldChapterReplacedCurrentSession: true,
+				stalePostSaveConflictRevived: true,
+				forceOverwriteWrites: 100,
+				forceWritesSerialized: false,
+				saveCopyCancelDismissedConflict: true,
+				conflictActionsMutuallyExclusive: false
+			},
+			after: {
+				repeatedActions: 100,
+				externalVerificationReads: 1,
+				lateOldChapterIgnored: true,
+				postSaveStaleReadIgnored: true,
+				forceOverwriteWrites: 1,
+				latestInFlightEditPersisted: true,
+				saveCopyCancelKeepsConflict: true,
+				conflictActionsMutuallyExclusive: true,
+				browserAutomationStatus: 'BLOCKED_RUNTIME_INITIALIZATION',
+				browserAutomationBlocker: 'The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.',
+				focusedTests: 35,
+				impactedTests: 70,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

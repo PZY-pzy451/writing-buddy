@@ -1,21 +1,35 @@
 # Current progress
 
-Updated: 2026-08-03
+Updated: 2026-08-04
 
 ## Active milestone
 
-User-centered defect convergence is complete on
+User-centered defect convergence is complete through the external-conflict
+lifecycle on
 `codex/full-regression-gates-a-e-v2` against source
-`21bc5d403b9662b96b9ad453708c9d5dfd9495ad`.
+`21d9eccae8c8656ec680b22eb8bf0311f1a09cce`.
+
+- Closed the P0 Monaco external-conflict lifecycle boundary. Disk verification
+  and explicit overwrite are single-flight, discard stale project/resource/path
+  results, serialize text entered during overwrite, and release after failure.
+- The conflict dialog now keeps both versions after cancelled/failed save-copy
+  and makes reload, copy, overwrite, cancel, close and Escape mutually exclusive
+  while native work is pending. The red baseline failed 8/35; repaired focused
+  and impacted runs passed 35/35 and 70/70.
+- The 2026-08-04 full baseline passed 176 frontend files / 815 tests, lint,
+  typecheck and production build. Rust collected 79, passed 77, failed 0 and
+  retained two reasoned ignores. In-app browser control was attempted but its
+  runtime failed before page control, so the live conflict journey is recorded
+  as infrastructure-blocked rather than a product pass.
 
 - Replaced regex test discovery with TypeScript AST discovery. The former
-  49-case static/runtime difference is closed: 792 frontend cases are inventoried
-  and 792 are collected, including 50 parameterized instances and zero unresolved
+  49-case static/runtime difference is closed: 815 frontend cases are inventoried
+  and 815 are collected, including 52 parameterized instances and zero unresolved
   parameterized declarations.
 - Removed the Windows `shell: true` pnpm launch path. Node 24 acceptance now
   hard-fails engine, runtime-inventory and `DEP0190` differences; all are zero.
-- Supported frontend acceptance passed ESLint, TypeScript, 174 Vitest files /
-  792 tests and the production build. Rust formatting passed; Cargo collected
+- Supported frontend acceptance passed ESLint, TypeScript, 176 Vitest files /
+  815 tests and the production build. Rust formatting passed; Cargo collected
   79, passed 77 and retained two reasoned external-gate ignores.
 - Added the exact malformed relationship boundary reported by the user as a
   deterministic scenario: one unselected `relationship` contains string
@@ -122,15 +136,15 @@ User-centered defect convergence is complete on
   actions share one native dialog. Live close/restore recovered the original
   94-character chapter and kept the selected tab aligned at 420 px with no
   overflow or browser warnings/errors.
-- The current inventory contains 871 tests: 792 frontend plus 79 native cases.
-  The latest execution ledger records 869 passes and two reasoned skips. Static
-  and runtime frontend inventories both contain 792 cases with zero difference.
+- The current inventory contains 894 tests: 815 frontend plus 79 native cases.
+  The latest execution ledger records 892 passes and two reasoned skips. Static
+  and runtime frontend inventories both contain 815 cases with zero difference.
 - The final evidence audit caught a stale-ledger gap: inventory/runtime contained
   the two new settings cases, but the ledger still had the previous 848 entries.
-  `qa:plan` now reconciles all 871 cases before recording, and convergence fails
+  `qa:plan` now reconciles all 894 cases before recording, and convergence fails
   closed unless total, frontend and native ledger counts match inventory/runtime.
 - Strict traceability remains fail-closed: 221 controls lack stable selectors
-  and 10,102 aggregate mappings remain open. The truthful product conclusion is
+  and 10,075 aggregate mappings remain open. The truthful product conclusion is
   `PARTIAL`; no real-provider smoke or release package ran.
 - Evidence: `docs/qa/001-defect-convergence-2026-08-03.md` and
   `artifacts/qa/current-convergence-report.json`.

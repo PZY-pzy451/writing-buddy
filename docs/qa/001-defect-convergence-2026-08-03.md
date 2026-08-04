@@ -1,6 +1,6 @@
 # Defect convergence run — 2026-08-03
 
-- Tested source: `d9700cc8971ae9d7fe4bd3cad9925f9de6ad8a5c`
+- Tested source: `21d9eccae8c8656ec680b22eb8bf0311f1a09cce`
 - Branch: `codex/full-regression-gates-a-e-v2`
 - Execution status: `PASS`
 - Product conclusion: `PARTIAL`
@@ -375,6 +375,33 @@ missing/Trash setup is covered by deterministic store/service pressure tests
 and the rendered missing/unavailable component contracts rather than by a
 hidden browser-only test backdoor.
 
+### QA-MONACO-EXTERNAL-CONFLICT-LIFECYCLE-021
+
+The external-manuscript boundary exposed eight failures in a 35-test red
+baseline. One hundred same-tick verification requests performed 100 disk reads;
+a delayed read from an old chapter could attach a conflict to the new chapter;
+a pre-save read could revive a conflict after a newer successful save; and one
+hundred explicit overwrites could perform 100 native writes. The conflict dialog
+also dismissed itself after a cancelled or failed save-copy, and allowed reload,
+copy, overwrite, cancel and close actions to overlap while one action was active.
+
+External verification is now single-flight per project/resource/path and keeps
+at most one latest-resource follow-up. Every asynchronous result revalidates the
+active project, resource, writer session, path and disk baseline before it can
+change conflict, reload or offline state. Explicit overwrite is single-flight,
+serializes edits typed during an in-flight write into one latest-payload follow-up,
+and releases after failure. The dialog keeps both versions available until copy
+or overwrite actually succeeds and makes all resolution actions mutually
+exclusive while native work is pending.
+
+All 35 focused tests and 70 impacted save/project/workspace/editor tests pass.
+The full Node 24 gate passed 176 files / 815 tests plus lint, typecheck and the
+production build; Rust passed 77 tests with two reasoned ignores. In-app browser
+control was attempted after the deterministic UI contracts, but its runtime
+failed while installing its process shim before page control. The live conflict
+journey is therefore recorded as blocked test infrastructure, not a product
+pass, and no product-only browser backdoor was added.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -475,11 +502,13 @@ console claims.
 | Live Story resource open/restore journey | Dirty chapter saved before `信号塔` opened; close and one restore succeeded; second restore did not duplicate; 420 px has no overflow; 0 console warnings/errors |
 | Story resource recovery lifecycle pressure | Seven red-first contracts cover missing recheck, 100 restore actions, stale restore intent, localized retry, read exceptions and project reopen; 36 focused and 66 impacted tests passed |
 | Live persisted Story reopen journey | Existing `黄铜钥匙` Story tab survived same-project reopen and keyboard activation; tab/heading/content remained aligned at 420 px; no overflow; 0 console warnings/errors |
-| Ledger/inventory reconciliation | 885 / 885 cases; 806 frontend + 79 native; 883 passed + 2 reasoned skips; stale ledgers fail closed |
+| External manuscript conflict lifecycle | Eight red-first failures cover 100 verification/overwrite actions, old-resource and post-save stale reads, in-flight edits, retry and truthful save-copy cancellation; 35 focused and 70 impacted tests passed |
+| Live external-conflict journey | Blocked before page control by in-app browser runtime initialization; deterministic rendered-dialog contracts pass and no product test backdoor was added |
+| Ledger/inventory reconciliation | 894 / 894 cases; 815 frontend + 79 native; 892 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 175 files / 806 tests and production build passed |
-| Static/runtime test reconciliation | 806 / 806; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 176 files / 815 tests and production build passed |
+| Static/runtime test reconciliation | 815 / 815; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -519,7 +548,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,102 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,075 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
