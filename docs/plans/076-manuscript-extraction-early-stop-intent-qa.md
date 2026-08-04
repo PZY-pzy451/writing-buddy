@@ -36,3 +36,27 @@ before a native AI job ID has registered a cancellation callback.
 
 Execution may pass while product status remains `PARTIAL` until strict
 traceability, real-provider smoke and packaging gates are closed.
+
+## Result
+
+- Four contracts failed red. An immediate Stop was overwritten during ledger
+  initialization, Stop during source loading still ran the processor, and both
+  the rendered flow and direct Grounded AI runner started one native job after
+  cancellation during preference lookup.
+- Each run now creates an `AbortSignal` synchronously before its first await.
+  Stop aborts that signal, source and processor boundaries recheck it, and AI
+  provider preflight rejects cancellation before native generation starts.
+- A stopped run releases its signal and can be explicitly resumed. Existing
+  active-job native cancellation and completed-chapter preservation remain
+  green.
+- Focused extraction/Grounded AI regression: 3 files / 21 tests passed.
+- Shared Grounded AI impact regression: 13 files / 58 tests passed.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  180 files / 912 tests. Rust collected 79 tests, passed 77, failed zero and
+  retained two reasoned ignores.
+- Inventory discovers 991 total cases, including 912 frontend cases, 97
+  parameterized instances and zero unresolved declarations. Stable-selector
+  debt remains 212.
+- Execution is `PASS`. Product status remains `PARTIAL` because strict
+  traceability has 10,159 open mappings, and real-provider smoke plus release
+  packaging remain unrun.

@@ -4,36 +4,35 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Manuscript extraction run single-flight convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3168d3c`.
+Manuscript extraction early-stop convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `8a594e2`.
 
-- One hundred same-frame Start actions previously invoked the page runner 100
-  times. Direct runner pressure created 100 independent Promises and 99
-  `staleWrite` rejections against the persisted extraction ledger.
-- The page now claims a synchronous guard before React renders busy state, and
-  the runner independently shares one active Promise. One processor runs, all
-  callers receive one result, and one later explicit resume gets a new Promise.
-- Two pressure contracts failed red. The page/service set passed 15/15 and the
-  AI runner, Story Kernel staging and cancellation impact set passed 48/48.
-  Existing Stop, stale-source, completed-chapter and explicit resume contracts
-  remain green.
-- Fixed-commit Node 24 acceptance passed 180 files / 908 tests plus lint,
-  typecheck and production build without unhandled rejections. Rust collected
-  79, passed 77 and retained two reasoned ignores.
-- The ledger contains 987 cases: 985 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 908 with 97 parameterized instances and
+- Stop issued immediately after Start was overwritten after the first ledger
+  await. Stop during source or provider-preference loading still started the
+  chapter processor and one native paid AI job.
+- Every run now owns an `AbortSignal` before its first await. Initialization,
+  source loading, processor completion and provider preflight honor that signal,
+  while existing native-job cancellation remains intact.
+- Four contracts failed red. The extraction/Grounded AI set passed 21/21 and
+  the shared Grounded AI impact set passed 58/58. Explicit resume still processes
+  the stopped chapter once.
+- Fixed-commit Node 24 acceptance passed 180 files / 912 tests plus lint,
+  typecheck and production build. Rust collected 79, passed 77 and retained two
+  reasoned ignores.
+- The ledger contains 991 cases: 989 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 912 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,156 traceability mappings and 212 stable selectors remain open,
+  because 10,159 traceability mappings and 212 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Pending-fact extraction preflight feedback and stable-control convergence is
-complete against sources `3b406bb` and `b25fe6a`.
+Manuscript extraction run single-flight convergence is complete against source
+`3168d3c`.
 
-- One hundred preflight clicks now start one request with immediate disabled
-  feedback. Two red contracts converged through 6 focused and 43 impacted tests;
-  selector debt fell from 216 to 212 and fixed acceptance passed 906 tests.
+- One hundred same-frame Starts now share one page/runner task and produce zero
+  stale ledger writes. Two red contracts converged through 15 focused and 48
+  impacted tests; fixed acceptance passed 908 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

@@ -1186,6 +1186,31 @@ const report = {
 				impactedTests: 48,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-MANUSCRIPT-EXTRACTION-EARLY-STOP-042',
+			summary: 'Stop intent issued before a native extraction job existed was overwritten across initialization, source loading and provider preflight.',
+			before: {
+				immediateStopStatus: 'completed',
+				sourceLoadStopChapterStatus: 'completed',
+				providerPreflightNativeJobs: 1,
+				perRunAbortSignal: false
+			},
+			after: {
+				immediateStopStatus: 'stopped',
+				sourceLoadStopChapterStatus: 'cancelled',
+				providerPreflightNativeJobs: 0,
+				perRunAbortSignal: true,
+				preferenceLookupAbortChecks: 2,
+				repeatedStopActions: 100,
+				pageRunnerStopCalls: 1,
+				explicitResumeProcessorCalls: 1,
+				activeNativeCancellationPreserved: true,
+				redFailures: 4,
+				focusedTests: 21,
+				impactedTests: 58,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
