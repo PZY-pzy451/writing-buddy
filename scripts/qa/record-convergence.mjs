@@ -1161,6 +1161,31 @@ const report = {
 				impactedTests: 43,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-MANUSCRIPT-EXTRACTION-RUN-SINGLE-FLIGHT-041',
+			summary: 'Same-frame manuscript extraction Start actions entered both the page and runner concurrently, producing conflicting ledger writes and duplicate paid-run attempts.',
+			before: {
+				repeatedActions: 100,
+				pageRunnerCalls: 100,
+				runnerPromises: 100,
+				staleWriteRejections: 99,
+				sharedActivePromise: false
+			},
+			after: {
+				repeatedActions: 100,
+				pageRunnerCalls: 1,
+				runnerPromises: 1,
+				processorCalls: 1,
+				staleWriteRejections: 0,
+				sharedActivePromise: true,
+				laterRunReceivesNewPromise: true,
+				stopAndResumeContractsPreserved: true,
+				redFailures: 2,
+				focusedTests: 15,
+				impactedTests: 48,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

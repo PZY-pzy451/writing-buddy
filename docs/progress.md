@@ -4,38 +4,36 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Pending-fact extraction preflight feedback and stable-control convergence is
-complete on `codex/full-regression-gates-a-e-v2` against sources `3b406bb` and
-`b25fe6a`.
+Manuscript extraction run single-flight convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3168d3c`.
 
-- The first extraction click now immediately disables the action and publishes
-  `正在提取 · 0 字符`, before preferences or provider validation return. One hundred
-  preflight clicks still start exactly one extraction request.
-- Extraction, title, statement and narrative-order declarations expose stable
-  metadata without replacing visible field labels. The source has five mapped
-  controls and zero unmapped controls; global selector debt fell from 216 to
-  212 while controls/states remain 424/9,328.
-- Two rendered contracts failed red. The panel passed 6/6 and the panel/service/
-  parser impact set passed 43/43, including invalid-input localization,
-  malformed-response quarantine and confirmed persistence.
-- The first fixed baseline caught and rejected an untyped held-Promise fixture;
-  after its explicit `Promise<string>` correction, fixed-commit Node 24
-  acceptance passed 180 files / 906 tests plus lint, typecheck and production
-  build. Rust collected 79, passed 77 and retained two reasoned ignores.
-- The ledger contains 985 cases: 983 passes and two reasoned skips. Static and
-  runtime frontend discovery match at 906 with 97 parameterized instances and
+- One hundred same-frame Start actions previously invoked the page runner 100
+  times. Direct runner pressure created 100 independent Promises and 99
+  `staleWrite` rejections against the persisted extraction ledger.
+- The page now claims a synchronous guard before React renders busy state, and
+  the runner independently shares one active Promise. One processor runs, all
+  callers receive one result, and one later explicit resume gets a new Promise.
+- Two pressure contracts failed red. The page/service set passed 15/15 and the
+  AI runner, Story Kernel staging and cancellation impact set passed 48/48.
+  Existing Stop, stale-source, completed-chapter and explicit resume contracts
+  remain green.
+- Fixed-commit Node 24 acceptance passed 180 files / 908 tests plus lint,
+  typecheck and production build without unhandled rejections. Rust collected
+  79, passed 77 and retained two reasoned ignores.
+- The ledger contains 987 cases: 985 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 908 with 97 parameterized instances and
   zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
-  because 10,154 traceability mappings and 212 stable selectors remain open,
+  because 10,156 traceability mappings and 212 stable selectors remain open,
   with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-Story Kernel stable control-selector convergence is complete against source
-`cd58ef5`.
+Pending-fact extraction preflight feedback and stable-control convergence is
+complete against sources `3b406bb` and `b25fe6a`.
 
-- Five source declarations became stable without replacing dynamic labels.
-  Two red contracts converged through 22 focused and 93 impacted tests; missing
-  selectors fell from 221 to 216 and fixed acceptance passed 904 frontend tests.
+- One hundred preflight clicks now start one request with immediate disabled
+  feedback. Two red contracts converged through 6 focused and 43 impacted tests;
+  selector debt fell from 216 to 212 and fixed acceptance passed 906 tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

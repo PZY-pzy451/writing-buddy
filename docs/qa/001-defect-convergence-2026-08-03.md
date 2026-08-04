@@ -814,6 +814,28 @@ fixture type error; after making the held response explicitly `Promise<string>`,
 final acceptance passes lint, typecheck, production build and 180 files / 906
 tests. Rust collects 79, passes 77 and retains two reasoned ignores.
 
+### QA-MANUSCRIPT-EXTRACTION-RUN-SINGLE-FLIGHT-041
+
+The manuscript extraction page relied on React's later `busyAction` render to
+disable Start, and its runner had no active-run authority below the UI. A
+same-frame pressure contract invoked the runner 100 times. Direct runner
+pressure returned 100 independent Promises, raced the persisted run ledger and
+produced 99 `staleWrite` rejections before any additional chapter could safely
+start.
+
+The page now claims a synchronous run guard before changing rendered state. The
+runner independently owns and returns one shared active Promise, so direct or
+future non-React callers receive the same result instead of entering storage or
+AI processing again. Both layers release only after settlement; one later
+explicit resume receives a new Promise. Stop, completed-chapter preservation,
+stale-source handling and failed-chapter resume remain unchanged.
+
+Two pressure contracts failed red. The page/service set passes 15/15 and the
+page/service/AI-runner/Story-Kernel-staging/cancellation impact set passes 48/48.
+Fixed-commit acceptance passes lint, typecheck, production build and 180 files /
+908 tests without unhandled Promise rejections. Rust collects 79, passes 77 and
+retains two reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -935,11 +957,12 @@ console claims.
 | AI drawer applying open-action isolation | One red Store failure covers 100 replacement launches; the existing modal Alt+A boundary remains green, with 75 focused and 174 impacted tests passing |
 | Story Kernel stable control selectors | Two red rendered contracts; source missing selectors 5 -> 0 and global 221 -> 216; 22 focused and 93 impacted tests pass |
 | Pending-fact extraction preflight feedback | Two red rendered contracts; 100 preflight clicks start one request with immediate disabled feedback; source missing selectors 4 -> 0 and global 216 -> 212; 6 focused and 43 impacted tests pass |
-| Ledger/inventory reconciliation | 985 / 985 cases; 906 frontend + 79 native; 983 passed + 2 reasoned skips; stale ledgers fail closed |
+| Manuscript extraction run single-flight | Two red pressure contracts; 100 starts and 99 stale-write failures become one shared run, one processor and zero rejected callers; 15 focused and 48 impacted tests pass |
+| Ledger/inventory reconciliation | 987 / 987 cases; 908 frontend + 79 native; 985 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 906 tests and production build passed |
-| Static/runtime test reconciliation | 906 / 906; 97 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 908 tests and production build passed |
+| Static/runtime test reconciliation | 908 / 908; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -979,10 +1002,10 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,154 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,156 aggregate mappings
   are open and 212 interactive declarations lack stable selectors. The mapping
-  total includes the two new preflight/selector contracts; selector debt fell
-  by another four.
+  total includes the two new run single-flight contracts; selector debt is
+  unchanged in this functional convergence pass.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
 - Rust emitted two localized MSVC linker-output warnings while producing test

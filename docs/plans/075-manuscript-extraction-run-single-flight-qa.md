@@ -54,3 +54,9 @@ traceability, real-provider smoke and packaging gates are closed.
 - Inventory discovers 987 total cases, including 908 frontend cases, 97
   parameterized instances and zero unresolved declarations. This change does
   not alter the existing 212 stable-selector gaps.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  180 files / 908 tests. Rust collected 79 tests, passed 77, failed zero and
+  retained two reasoned ignores.
+- Execution is `PASS`. Product status remains `PARTIAL` because strict
+  traceability has 10,156 open mappings, 212 declarations still lack stable
+  selectors, and real-provider smoke plus release packaging remain unrun.
