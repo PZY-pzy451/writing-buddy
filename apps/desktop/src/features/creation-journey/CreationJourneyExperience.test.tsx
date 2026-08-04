@@ -76,6 +76,11 @@ describe('Phase 1.2B creation journey experience', () => {
 			.toHaveFocus();
 		expect(aiSpy).not.toHaveBeenCalled();
 		const ideas = screen.getAllByPlaceholderText('例如：一个只在雨夜出现的旧车站');
+		expect(screen.getAllByTestId('creation-stage-navigation')).toHaveLength(6);
+		expect(screen.getAllByRole('combobox').every(control => (
+			control.getAttribute('name') === 'creation-element-category'
+		))).toBe(true);
+		expect(ideas.every(control => control.getAttribute('name') === 'creation-element-text')).toBe(true);
 		await user.type(ideas[0], '旧车站玻璃顶');
 		await user.type(ideas[1], '失忆记者');
 		await user.type(ideas[2], '每天重置的夜雨');
@@ -103,12 +108,19 @@ describe('Phase 1.2B creation journey experience', () => {
 			expect(screen.getAllByRole('button', { name: /选择此方向/ })).toHaveLength(3);
 		});
 		expect(aiSpy).toHaveBeenCalledTimes(2);
+		expect(screen.getAllByTestId('creation-direction-select')).toHaveLength(3);
+		expect(screen.getAllByLabelText('方向标题').every(control => (
+			control.getAttribute('name') === 'creation-direction-title'
+		))).toBe(true);
 		await user.click(screen.getAllByRole('button', { name: /选择此方向/ })[0]);
 		await user.click(screen.getByRole('button', { name: '生成故事总纲' }));
 
 		expect(await screen.findByRole('heading', { name: '调整故事节点的顺序' }))
 			.toBeInTheDocument();
 		expect(aiSpy).toHaveBeenCalledTimes(3);
+		const outlineNodes = screen.getAllByTestId('creation-outline-node');
+		expect(outlineNodes.length).toBeGreaterThan(0);
+		expect(outlineNodes).toHaveLength(screen.getAllByLabelText('节点标题').length);
 		expect(screen.getAllByLabelText('节点标题').map(input => (input as HTMLInputElement).value).slice(0, 2))
 			.toEqual(['雨夜抵达', '重复雨痕']);
 		await user.click(screen.getAllByRole('button', { name: /下移总纲节点/ })[0]);
@@ -119,6 +131,9 @@ describe('Phase 1.2B creation journey experience', () => {
 		expect(await screen.findByRole('heading', { name: '确认前三章怎样承接总纲' }))
 			.toBeInTheDocument();
 		expect(screen.getAllByText(/第 [123] 章/)).toHaveLength(3);
+		expect(screen.getAllByLabelText('章节标题').every(control => (
+			control.getAttribute('name') === 'creation-chapter-title'
+		))).toBe(true);
 		expect(aiSpy).toHaveBeenCalledTimes(4);
 		await user.click(screen.getByRole('button', { name: '创建 3 章并进入第一章' }));
 

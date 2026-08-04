@@ -1619,6 +1619,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 				{stageOrder.map((stage, index) => (
 					<button
 						type="button"
+						data-testid="creation-stage-navigation"
 						key={stage}
 						className={[
 							stage === state.stage ? 'is-current' : '',
@@ -1684,6 +1685,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 							{question.options.map((option, index) => (
 								<button
 									type="button"
+									data-testid="creation-guidance-option"
 									key={option.id}
 									className={guidanceChoiceId === option.id ? 'is-selected' : ''}
 									aria-pressed={guidanceChoiceId === option.id}
@@ -1701,6 +1703,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 						<label className="creation-guidance-custom">
 							<span>或者写下你的答案</span>
 							<textarea
+								name="creation-guidance-answer"
 								value={customGuidanceAnswer}
 								maxLength={1_000}
 								placeholder="不必完整，一两句话也可以。"
@@ -1775,6 +1778,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 									<label>
 										<span className="sr-only">要素类型</span>
 										<select
+											name="creation-element-category"
 											value={element.category}
 											disabled={element.locked}
 											onChange={event => applyState(updateStoryElement(
@@ -1791,6 +1795,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 									<label className="creation-element-text">
 										<span className="sr-only">灵感要素 {index + 1}</span>
 										<textarea
+											name="creation-element-text"
 											value={element.text}
 											disabled={element.locked}
 											maxLength={500}
@@ -1806,6 +1811,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 									<div className="creation-reorder-actions">
 										<button
 											type="button"
+											data-testid="creation-element-lock"
 											aria-label={element.locked ? `解锁要素 ${index + 1}` : `锁定要素 ${index + 1}`}
 											aria-pressed={element.locked}
 											onClick={() => applyState(updateStoryElement(
@@ -1816,13 +1822,13 @@ export function CreationJourneyPage(): React.JSX.Element {
 										>
 											{element.locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 										</button>
-										<button type="button" aria-label={`上移要素 ${index + 1}`} disabled={element.locked || index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
+										<button type="button" data-testid="creation-element-move-up" aria-label={`上移要素 ${index + 1}`} disabled={element.locked || index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
 											<ArrowUp size={16} />
 										</button>
-										<button type="button" aria-label={`下移要素 ${index + 1}`} disabled={element.locked || index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
+										<button type="button" data-testid="creation-element-move-down" aria-label={`下移要素 ${index + 1}`} disabled={element.locked || index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
 											<ArrowDown size={16} />
 										</button>
-										<button type="button" aria-label={`删除要素 ${index + 1}`} disabled={element.locked || state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
+										<button type="button" data-testid="creation-element-delete" aria-label={`删除要素 ${index + 1}`} disabled={element.locked || state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
 											<Trash2 size={16} />
 										</button>
 									</div>
@@ -1864,6 +1870,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<label htmlFor={inputId}>{field.label}</label>
 											<button
 												type="button"
+												data-testid="creation-core-field-lock"
 												aria-label={locked ? `解锁${field.label}` : `锁定${field.label}`}
 												aria-pressed={locked}
 												onClick={() => applyState(toggleJourneyLock(state, {
@@ -1878,6 +1885,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 										{field.multiline ? (
 											<textarea
 												id={inputId}
+												name="creation-core-field"
 												value={state.core[field.key]}
 												disabled={locked}
 												maxLength={field.key === 'oneSentence' ? 2_000 : 1_000}
@@ -1890,6 +1898,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 										) : (
 											<input
 												id={inputId}
+												name="creation-core-field"
 												value={state.core[field.key]}
 												disabled={locked}
 												maxLength={1_000}
@@ -1948,9 +1957,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 												].filter(Boolean).join(' ')}
 												key={direction.id}
 											>
-												<button
-													type="button"
-													className="creation-direction-select"
+											<button
+												type="button"
+												className="creation-direction-select"
+												data-testid="creation-direction-select"
 													aria-pressed={selected}
 													disabled={selectionFull}
 													onClick={() => {
@@ -1969,9 +1979,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 													<span>{selected ? <Check size={16} /> : index + 1}</span>
 													<strong>{selected ? '已选择' : '选择此方向'}</strong>
 												</button>
-												<button
-													className="creation-card-lock"
-													type="button"
+											<button
+												className="creation-card-lock"
+												type="button"
+												data-testid="creation-direction-lock"
 													aria-pressed={locked}
 													onClick={() => applyState(toggleJourneyLock(state, {
 														kind: 'direction',
@@ -1981,11 +1992,11 @@ export function CreationJourneyPage(): React.JSX.Element {
 													{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 													{locked ? '已锁定方向' : '锁定方向'}
 												</button>
-												<label><span>方向标题</span><input disabled={locked} value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>故事前提</span><textarea disabled={locked} value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>核心冲突</span><textarea disabled={locked} value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>结局承诺</span><textarea disabled={locked} value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-												<label><span>整体气质</span><input disabled={locked} value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+											<label><span>方向标题</span><input name="creation-direction-title" disabled={locked} value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+											<label><span>故事前提</span><textarea name="creation-direction-premise" disabled={locked} value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+											<label><span>核心冲突</span><textarea name="creation-direction-conflict" disabled={locked} value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+											<label><span>结局承诺</span><textarea name="creation-direction-ending" disabled={locked} value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+											<label><span>整体气质</span><input name="creation-direction-tone" disabled={locked} value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 											</article>
 										);
 									})}
@@ -2014,6 +2025,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 								return (
 								<article
 									key={node.id}
+									data-testid="creation-outline-node"
 									className={[
 										'creation-outline-card',
 										draggedOutlineIndex === index ? 'is-dragging' : '',
@@ -2037,6 +2049,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<button
 											className="creation-card-lock"
 											type="button"
+											data-testid="creation-outline-lock"
 											aria-pressed={locked}
 											onClick={() => applyState(toggleJourneyLock(state, {
 												kind: 'outline',
@@ -2046,13 +2059,13 @@ export function CreationJourneyPage(): React.JSX.Element {
 											{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 											{locked ? '已锁定节点' : '锁定节点'}
 										</button>
-										<label><span>节点标题</span><input disabled={locked} value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>发生什么</span><textarea disabled={locked} value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>叙事作用</span><input disabled={locked} value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>节点标题</span><input name="creation-outline-title" disabled={locked} value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>发生什么</span><textarea name="creation-outline-summary" disabled={locked} value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>叙事作用</span><input name="creation-outline-purpose" disabled={locked} value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									</div>
 									<div className="creation-reorder-actions">
-										<button type="button" aria-label={`上移总纲节点 ${index + 1}`} disabled={locked || index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
-										<button type="button" aria-label={`下移总纲节点 ${index + 1}`} disabled={locked || index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
+										<button type="button" data-testid="creation-outline-move-up" aria-label={`上移总纲节点 ${index + 1}`} disabled={locked || index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
+										<button type="button" data-testid="creation-outline-move-down" aria-label={`下移总纲节点 ${index + 1}`} disabled={locked || index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
 									</div>
 								</article>
 								);
@@ -2082,6 +2095,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 									<button
 										className="creation-card-lock"
 										type="button"
+										data-testid="creation-chapter-lock"
 										aria-pressed={locked}
 										onClick={() => applyState(toggleJourneyLock(state, {
 											kind: 'chapter',
@@ -2091,9 +2105,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 										{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 										{locked ? '已锁定章节' : '锁定章节'}
 									</button>
-									<label><span>章节标题</span><input disabled={locked} value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>本章目标</span><textarea disabled={locked} value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>章节摘要</span><textarea disabled={locked} value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>章节标题</span><input name="creation-chapter-title" disabled={locked} value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>本章目标</span><textarea name="creation-chapter-goal" disabled={locked} value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>章节摘要</span><textarea name="creation-chapter-summary" disabled={locked} value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									<small>承接 {chapter.sourceNodeIds.length} 个总纲节点</small>
 								</article>
 								);

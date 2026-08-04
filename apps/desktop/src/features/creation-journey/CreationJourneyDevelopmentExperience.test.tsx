@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
@@ -106,7 +106,9 @@ describe('Phase 1.2C guided creation journey experience', () => {
 
 	afterEach(() => {
 		vi.restoreAllMocks();
-		useAppStore.setState({ snapshot: undefined });
+		act(() => {
+			useAppStore.setState({ snapshot: undefined });
+		});
 		localStorage.clear();
 	});
 
@@ -132,6 +134,9 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		);
 		const aiSpy = vi.spyOn(desktopBridge, 'startAiGeneration');
 		render(<CreationJourneyPage />);
+		const waitForJourneySave = () => waitFor(() => {
+			expect(screen.getByRole('status')).toHaveTextContent('已保存到项目');
+		});
 
 		expect(await screen.findByRole('heading', { name: '确认前三章怎样承接总纲' }))
 			.toBeInTheDocument();
@@ -147,6 +152,7 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		await user.click(within(questionCard!).getByRole('button', { name: /最后的记忆/ }));
 		await user.click(within(questionCard!).getByRole('button', { name: '确认这个答案' }));
 		await waitFor(() => expect(question).not.toBeInTheDocument());
+		await waitForJourneySave();
 		expect(aiSpy).toHaveBeenCalledTimes(1);
 		expect(parseCreationJourneyState(persisted).guidance.answers).toHaveLength(1);
 
@@ -158,6 +164,7 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		expect(stakes).toBeEnabled();
 		await user.clear(stakes);
 		await user.type(stakes, '失败会让姐姐永远不存在');
+		await waitForJourneySave();
 
 		expect(await screen.findByText('上游内容已修改，下游草稿仍保持原样'))
 			.toBeInTheDocument();
@@ -172,6 +179,7 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		await waitFor(() => {
 			expect(within(dialog).getAllByRole('button', { name: '保留当前内容' })).toHaveLength(10);
 		});
+		await waitForJourneySave();
 		await user.click(within(dialog).getAllByRole('button', { name: 'AI 重新生成此项' })[0]);
 		await waitFor(() => {
 			expect(aiSpy).toHaveBeenCalledTimes(2);
