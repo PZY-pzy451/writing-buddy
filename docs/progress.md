@@ -4,6 +4,29 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer failure retry and candidate-application exclusion are complete on
+`codex/full-regression-gates-a-e-v2` against source `7b6a329`.
+
+- A localized generation failure no longer disables the drawer's only action;
+  the author can explicitly retry, and 100 same-tick retry actions perform one
+  provider validation and start one job.
+- Candidate application is now a synchronous Store boundary as well as a UI
+  lock. One hundred direct generation attempts while `applying` perform zero
+  additional provider checks/jobs and preserve the validated transaction.
+- Invalid action input can no longer bypass the disabled UI to start a request.
+  Cancelled and rejected outcomes remain explicitly regenerable.
+- Four contracts failed red. The Store/drawer focused set passed 48/48, the
+  ten-file impact set passed 147/147, and full Node 24 acceptance passed 180
+  files / 882 tests plus lint, typecheck and production build. Rust collected
+  79, passed 77 and retained two reasoned ignores.
+- The ledger contains 961 cases: 959 passes and two reasoned skips. Static and
+  runtime frontend discovery match at 882 with 82 parameterized instances and
+  zero unresolved declarations. Execution is `PASS`; product remains `PARTIAL`
+  because 10,107 traceability mappings and 221 stable selectors remain open,
+  with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI drawer regeneration isolation and stable Windows QA execution are complete
 on `codex/full-regression-gates-a-e-v2` against source `7dc4cdb`; the product
 fix is `a0a6508`.
@@ -28,7 +51,7 @@ fix is `a0a6508`.
   `PASS`; product remains `PARTIAL` because 10,104 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: AI drawer Context Pack freeze
 
 AI drawer Context Pack freeze is complete on
 `codex/full-regression-gates-a-e-v2` against source `bc12ffd`.

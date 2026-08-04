@@ -913,6 +913,36 @@ const report = {
 				normalExit: true,
 				runtimeInventoryDelta: frontend.runtimeInventoryDelta
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-RETRY-APPLY-EXCLUSION-033',
+			summary: 'The drawer disabled explicit retry after a generation failure but allowed a new request to start while a validated preview was applying.',
+			before: {
+				failureRetryRendered: false,
+				applyingRenderedStartEnabled: true,
+				applyingStoreStartBlocked: false,
+				invalidInputStoreBlocked: false
+			},
+			after: {
+				failureRetryRendered: true,
+				retryActionsPerBurst: 100,
+				providerValidationsPerRetryBurst: 1,
+				jobsPerRetryBurst: 1,
+				applyingRenderedStartDisabled: true,
+				applyingRenderedStopDisabled: true,
+				applyingDirectAttempts: 100,
+				additionalApplyingProviderChecks: 0,
+				additionalApplyingJobs: 0,
+				applyingTransactionPreserved: true,
+				invalidInputDirectAttempts: 100,
+				invalidInputProviderChecks: 0,
+				invalidInputJobs: 0,
+				regenerableOutcomes: ['cancelled', 'rejected'],
+				redFailures: 4,
+				focusedTests: 48,
+				impactedTests: 147,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

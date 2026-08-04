@@ -638,6 +638,27 @@ before changing configuration. The supported configuration now pins that pool
 and has a regression contract. Final fixed-commit acceptance exits normally
 with lint, typecheck, production build and 180/180 files / 877/877 tests.
 
+### QA-AI-DRAWER-RETRY-APPLY-EXCLUSION-033
+
+The drawer's only generation button was disabled whenever a localized error was
+present, so an author could not retry a failed request without closing and
+reopening the action. At the opposite lifecycle edge, candidate application did
+not disable Start or guard `startGeneration()`; a direct event could clear the
+preview transaction and launch another request while application was active.
+The same Store gap also allowed invalid action input to start when the rendered
+disabled control was bypassed.
+
+Four red contracts reproduce these behaviors. Failure state now permits one
+explicit retry across 100 actions. Applying state disables Start and Stop, and
+100 direct Store starts perform zero additional provider checks/jobs while
+preserving the transaction. Invalid input performs zero provider calls.
+Cancelled and rejected controls prove valid explicit regeneration remains open.
+
+The repaired Store and drawer suites pass 48/48 and the ten-file impact set
+passes 147/147. Fixed-commit acceptance passes lint, typecheck, production build
+and 180 files / 882 tests. Rust collects 79, passes 77 and retains two reasoned
+ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -751,11 +772,12 @@ console claims.
 | AI drawer Context Pack freeze | Six request/application states reject 100 toggles each; post-preview changes invalidate old output; 41 focused and 137 impacted tests pass |
 | AI drawer preview regeneration | Five red failures cover old delayed events and three replacement setup failures; 100 actions start one replacement; 46 focused and 142 impacted tests pass |
 | Windows Vitest worker stability | Default fork pool lost a worker then hung; bounded 2-worker thread pool completes 180 files / 877 tests and exits normally |
-| Ledger/inventory reconciliation | 956 / 956 cases; 877 frontend + 79 native; 954 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer retry/apply exclusion | Four red failures cover disabled retry, applying-state reentry and invalid-input bypass; 100-action guards, 48 focused and 147 impacted tests pass |
+| Ledger/inventory reconciliation | 961 / 961 cases; 882 frontend + 79 native; 959 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 877 tests and production build passed |
-| Static/runtime test reconciliation | 877 / 877; 80 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 882 tests and production build passed |
+| Static/runtime test reconciliation | 882 / 882; 82 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -795,7 +817,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,104 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,107 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

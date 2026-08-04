@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T04:34:06.199Z",
+  "generatedAt": "2026-08-04T04:49:04.351Z",
   "source": {
-    "commit": "7dc4cdba6bf58c976abed9235c4fe896658c4d12",
+    "commit": "7b6a329d9a22744a7c4fd73847c8655eb7c0af2d",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 877,
-        "runtimeCollected": 877,
+        "frontendInventory": 882,
+        "runtimeCollected": 882,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 956,
-        "ledgerCases": 954,
+        "discoveredTests": 961,
+        "ledgerCases": 959,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 956,
-        "ledgerCases": 956,
-        "frontendLedgerCases": 877,
+        "discoveredTests": 961,
+        "ledgerCases": 961,
+        "frontendLedgerCases": 882,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -413,7 +413,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -445,7 +445,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 27,
         "impactedTests": 51,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -477,7 +477,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 36,
         "impactedTests": 66,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -506,7 +506,7 @@
         "browserAutomationBlocker": "The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.",
         "focusedTests": 35,
         "impactedTests": 70,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -533,7 +533,7 @@
         "stableAccessibleName": true,
         "focusedTests": 7,
         "impactedTests": 81,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -558,7 +558,7 @@
         "delayedOldConflictIgnored": true,
         "focusedTests": 38,
         "impactedTests": 93,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -583,7 +583,7 @@
         "dirtyDiscardConfirmations": 1,
         "focusedTests": 12,
         "impactedTests": 89,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -605,7 +605,7 @@
         "latestOpenFailurePreserved": true,
         "focusedTests": 15,
         "impactedTests": 92,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -641,7 +641,7 @@
         "rollbackUsesCapturedModel": true,
         "focusedTests": 11,
         "impactedTests": 98,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -678,7 +678,7 @@
         "redFailures": 6,
         "focusedTests": 15,
         "impactedTests": 113,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -713,7 +713,7 @@
         "redFailures": 5,
         "focusedTests": 22,
         "impactedTests": 118,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -744,7 +744,7 @@
         "redFailures": 2,
         "focusedTests": 25,
         "impactedTests": 121,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -787,7 +787,7 @@
         "redFailures": 8,
         "focusedTests": 41,
         "impactedTests": 137,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -834,7 +834,7 @@
         "redFailures": 5,
         "focusedTests": 46,
         "impactedTests": 142,
-        "frontendTests": 877
+        "frontendTests": 882
       }
     },
     {
@@ -853,9 +853,42 @@
         "maxWorkers": 2,
         "configurationContractTests": 1,
         "frontendFiles": 180,
-        "frontendTests": 877,
+        "frontendTests": 882,
         "normalExit": true,
         "runtimeInventoryDelta": 0
+      }
+    },
+    {
+      "id": "QA-AI-DRAWER-RETRY-APPLY-EXCLUSION-033",
+      "summary": "The drawer disabled explicit retry after a generation failure but allowed a new request to start while a validated preview was applying.",
+      "before": {
+        "failureRetryRendered": false,
+        "applyingRenderedStartEnabled": true,
+        "applyingStoreStartBlocked": false,
+        "invalidInputStoreBlocked": false
+      },
+      "after": {
+        "failureRetryRendered": true,
+        "retryActionsPerBurst": 100,
+        "providerValidationsPerRetryBurst": 1,
+        "jobsPerRetryBurst": 1,
+        "applyingRenderedStartDisabled": true,
+        "applyingRenderedStopDisabled": true,
+        "applyingDirectAttempts": 100,
+        "additionalApplyingProviderChecks": 0,
+        "additionalApplyingJobs": 0,
+        "applyingTransactionPreserved": true,
+        "invalidInputDirectAttempts": 100,
+        "invalidInputProviderChecks": 0,
+        "invalidInputJobs": 0,
+        "regenerableOutcomes": [
+          "cancelled",
+          "rejected"
+        ],
+        "redFailures": 4,
+        "focusedTests": 48,
+        "impactedTests": 147,
+        "frontendTests": 882
       }
     }
   ],
@@ -880,22 +913,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 877
+      "frontendTests": 882
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-04T04:28:27.416Z",
-      "completedAt": "2026-08-04T04:31:54.657Z",
+      "generatedAt": "2026-08-04T04:44:52.521Z",
+      "completedAt": "2026-08-04T04:47:30.070Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 207239,
+      "durationMs": 157549,
       "vitestFiles": 180,
-      "vitestPassed": 877,
-      "inventoryFrontendTests": 877,
+      "vitestPassed": 882,
+      "inventoryFrontendTests": 882,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -904,10 +937,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-04T04:28:27.492Z",
-      "completedAt": "2026-08-04T04:28:30.878Z",
+      "generatedAt": "2026-08-04T04:44:52.651Z",
+      "completedAt": "2026-08-04T04:44:54.969Z",
       "status": "PASS",
-      "durationMs": 3384,
+      "durationMs": 2317,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -933,7 +966,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10104,
+    "totalUnmapped": 10107,
     "missingStableSelectors": 221
   },
   "warnings": [
