@@ -1,5 +1,5 @@
 import { FilePlus2, X } from 'lucide-react';
-import { useMemo, useRef, useState, useLayoutEffect } from 'react';
+import { useCallback, useMemo, useRef, useState, useLayoutEffect } from 'react';
 import { useAppStore } from '../../../app/store';
 import { useModalFocus } from '../../../accessibility/useModalFocus';
 
@@ -26,7 +26,13 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 	const [title, setTitle] = useState(`第 ${chapterCount + 1} 章`);
 	const [volumeId, setVolumeId] = useState(defaultVolumeId);
 	const inputRef = useRef<HTMLInputElement>(null);
-	const dialogRef = useModalFocus(close);
+	const transitionGuardRef = useRef(false);
+	const closeOnce = useCallback(() => {
+		if (transitionGuardRef.current || busy) return;
+		transitionGuardRef.current = true;
+		close();
+	}, [busy, close]);
+	const dialogRef = useModalFocus(closeOnce);
 	const volumes = useMemo(
 		() => snapshot?.project.volumes ?? [],
 		[snapshot?.project.volumes]
@@ -38,20 +44,27 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 	}, []);
 
 	const submit = async () => {
-		if (busy || !title.trim()) return;
-		await createChapter(title, volumeId || undefined);
+		if (transitionGuardRef.current || busy || !title.trim()) return;
+		transitionGuardRef.current = true;
+		try {
+			const created = await createChapter(title, volumeId || undefined);
+			if (!created) transitionGuardRef.current = false;
+		} catch {
+			transitionGuardRef.current = false;
+		}
 	};
 
 	return (
 		<div
 			className="chapter-create-overlay"
 			onMouseDown={event => {
-				if (event.target === event.currentTarget) close();
+				if (event.target === event.currentTarget) closeOnce();
 			}}
 		>
 			<section
 				ref={dialogRef}
 				className="chapter-create-dialog"
+				data-testid="chapter-creation-dialog"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="chapter-create-title"
@@ -77,9 +90,10 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 					<button
 						className="icon-button"
 						type="button"
+						data-testid="chapter-creation-close"
 						aria-label="关闭新建章节"
 						disabled={busy}
-						onClick={close}
+						onClick={closeOnce}
 					>
 						<X size={18} />
 					</button>
@@ -88,6 +102,7 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 					<span>章节标题</span>
 					<input
 						ref={inputRef}
+						data-testid="chapter-creation-title"
 						value={title}
 						maxLength={120}
 						disabled={busy}
@@ -101,6 +116,7 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 					<label>
 						<span>放入卷</span>
 						<select
+							data-testid="chapter-creation-volume"
 							value={volumeId}
 							disabled={busy}
 							aria-label="放入卷"
@@ -119,12 +135,19 @@ function ChapterCreationDialogContent(): React.JSX.Element {
 				<footer>
 					<span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> 创建</span>
 					<div>
-						<button type="button" className="secondary-button" disabled={busy} onClick={close}>
+						<button
+							type="button"
+							className="secondary-button"
+							data-testid="chapter-creation-cancel"
+							disabled={busy}
+							onClick={closeOnce}
+						>
 							取消
 						</button>
 						<button
 							type="button"
 							className="primary-button"
+							data-testid="chapter-creation-submit"
 							disabled={busy || !title.trim()}
 							onClick={() => void submit()}
 						>

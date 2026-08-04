@@ -892,23 +892,52 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 			set({ error: '章节标题需要为 1–120 个字符，且不能换行。' });
 			return false;
 		}
-		if (get().session?.state.dirty) {
-			await get().save();
-			if (get().session?.state.dirty) {
-				set({ error: '当前正文尚未保存，未创建新章节。' });
-				return false;
-			}
-		}
 		set({ chapterCreateBusy: true, error: undefined });
 		try {
+			if (get().session?.state.dirty) {
+				await get().save();
+				if (get().session?.state.dirty) {
+					set({
+						chapterCreateBusy: false,
+						error: '当前正文尚未保存，未创建新章节。'
+					});
+					return false;
+				}
+			}
+			const currentSnapshot = get().snapshot;
+			if (
+				!currentSnapshot
+				|| currentSnapshot.root !== snapshot.root
+				|| currentSnapshot.project.projectId !== snapshot.project.projectId
+				|| currentSnapshot.projectRevision !== snapshot.projectRevision
+			) {
+				set({
+					chapterCreateBusy: false,
+					error: '作品已切换或结构已更新，未创建新章节。'
+				});
+				return false;
+			}
 			const result = await desktopBridge.createChapter({
-				projectRoot: snapshot.root,
-				expectedProjectRevision: snapshot.projectRevision,
+				projectRoot: currentSnapshot.root,
+				expectedProjectRevision: currentSnapshot.projectRevision,
 				title: normalizedTitle,
 				...(volumeId ? { volumeId } : {})
 			});
+			const activeSnapshot = get().snapshot;
+			if (
+				!activeSnapshot
+				|| activeSnapshot.root !== currentSnapshot.root
+				|| activeSnapshot.project.projectId !== currentSnapshot.project.projectId
+				|| activeSnapshot.projectRevision !== currentSnapshot.projectRevision
+			) {
+				set({
+					chapterCreateBusy: false,
+					error: '作品已切换或结构已更新，新章节未在当前作品中打开。'
+				});
+				return false;
+			}
 			const nextSnapshot: ProjectSnapshot = {
-				...snapshot,
+				...currentSnapshot,
 				project: result.project,
 				projectRevision: result.projectRevision,
 				wordCounts: {

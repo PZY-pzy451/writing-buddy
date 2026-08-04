@@ -209,4 +209,25 @@ describe('control inventory rendered-element boundary', () => {
 		expect(createControls).toHaveLength(7);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
+
+	it('TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const chapterControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/projects/ui/ChapterCreationDialog.tsx'
+		));
+		const missingSelectors = chapterControls.filter(control => (
+			control.stableSelectorStatus !== 'MAPPED'
+		));
+
+		expect(chapterControls).toHaveLength(6);
+		expect(missingSelectors.map(control => control.id)).toEqual([]);
+	});
 });

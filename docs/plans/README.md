@@ -86,6 +86,7 @@
 - [Writer header save and navigation QA](./084-writer-header-save-navigation-qa.md)
 - [Manuscript extraction action lifecycle QA](./085-manuscript-extraction-actions-qa.md)
 - [Global create menu lifecycle QA](./086-global-create-menu-lifecycle-qa.md)
+- [Chapter creation lifecycle QA](./087-chapter-creation-lifecycle-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
