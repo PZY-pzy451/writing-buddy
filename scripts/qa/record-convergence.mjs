@@ -688,6 +688,38 @@ const report = {
 				impactedTests: 92,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAFT-COMMIT-RESOURCE-ISOLATION-026',
+			summary: 'AI temporary drafts identified their target by resource ID, revision and content only, so colliding projects, paths or Monaco models could remain actionable and a late rollback could reach the replacement editor model.',
+			before: {
+				identityFields: ['resourceId', 'revision', 'anchoredContent'],
+				projectRootCollisionRejected: false,
+				projectIdCollisionRejected: false,
+				resourcePathCollisionRejected: false,
+				monacoModelCollisionRejected: false,
+				rollbackUsesCapturedModel: false
+			},
+			after: {
+				identityFields: [
+					'projectRoot',
+					'projectId',
+					'resourceId',
+					'resourcePath',
+					'modelUri',
+					'revision',
+					'anchoredContent'
+				],
+				projectRootCollisionRejected: true,
+				projectIdCollisionRejected: true,
+				resourcePathCollisionRejected: true,
+				monacoModelCollisionRejected: true,
+				asyncIdentityCheckpoints: 4,
+				rollbackUsesCapturedModel: true,
+				focusedTests: 11,
+				impactedTests: 98,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

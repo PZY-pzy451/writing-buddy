@@ -4,6 +4,25 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI draft commit resource isolation is complete on
+`codex/full-regression-gates-a-e-v2` against source `711b35d`.
+
+- AI temporary drafts now bind project root, project ID, resource ID, path,
+  Monaco model URI, revision and anchored content. A candidate generated for a
+  colliding copied project is hidden and cannot be applied in the new session.
+- Save, snapshot and final persistence boundaries revalidate the exact target
+  and mounted model. Failure rollback undoes the captured source model and never
+  the replacement project's editor model.
+- Four identity contracts failed red. The repaired candidate/card/rollback suite
+  passed 11/11, the AI-draft/save/session/workspace impact set passed 98/98 and
+  full Node 24 acceptance passed 179 files / 842 tests. Rust passed 77 with two
+  reasoned ignores.
+- The ledger contains 921 cases: 919 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,082 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 Project-repair latest-intent convergence is complete on
 `codex/full-regression-gates-a-e-v2` against source `0b6c733`.
 
@@ -21,7 +40,7 @@ Project-repair latest-intent convergence is complete on
   `PASS`; product remains `PARTIAL` because 10,077 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: project open
 
 Project-open latest-intent convergence is complete on
 `codex/full-regression-gates-a-e-v2` against source `2b132b5`.
@@ -40,7 +59,7 @@ Project-open latest-intent convergence is complete on
   `PASS`; product remains `PARTIAL` because 10,074 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Earlier milestone
+## Earlier milestone: save lifecycle
 
 Save retry and stale-result isolation are complete on
 `codex/full-regression-gates-a-e-v2` against source `34ea0a94`.

@@ -495,6 +495,29 @@ Story-resource impact set passes 92/92. Full Node 24 acceptance passes 178 files
 retains two reasoned ignores. The converged ledger contains 916 cases: 914 passes
 and two reasoned skips.
 
+### QA-AI-DRAFT-COMMIT-RESOURCE-ISOLATION-026
+
+AI selection rewrites and continuations stored a temporary insertion target with
+project ID, chapter ID and resource ID, then decided whether it was stale from
+resource ID, revision and anchored content. A copied project can legitimately
+share all of those values. Four red contracts proved that another project root,
+another project ID, a changed resource path and a recreated Monaco model all
+remained incorrectly actionable.
+
+The target now binds project root, project ID, resource ID, resource path and
+Monaco model URI. Candidate visibility, pre-save, post-save, post-snapshot and
+final-save verification all require that exact identity and the captured Monaco
+model object. Failure rollback calls `undo()` on that captured model, rather than
+the currently mounted editor model, so switching projects during a delayed
+operation cannot undo prose in the replacement project. Store rollback is
+published only while the original target is still current.
+
+The focused candidate/card/rollback suite passes 11/11 and the ten-file AI draft,
+save, session and workspace impact set passes 98/98. Full Node 24 acceptance
+passes 179 files / 842 tests, lint, typecheck and production build. Rust collects
+79, passes 77 and retains two reasoned ignores. The converged ledger contains 921
+cases: 919 passes and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -601,11 +624,12 @@ console claims.
 | Save retry and result isolation | 100-click retryable/non-retryable failures fell from 100 writes to 1; explicit retry, force-save waiting and cross-project late result isolation pass 38 focused and 93 impacted tests |
 | Project open latest intent | Same-target bursts remain one open; distinct selections coalesce to the latest target without exposing superseded projects; failure continuation and one dirty-discard confirmation pass 12 focused and 89 impacted tests |
 | Project repair latest intent | One hundred Repair actions perform one native repair; a delayed success/failure cannot override a newer project or its actionable error; 15 focused and 92 impacted tests pass |
-| Ledger/inventory reconciliation | 916 / 916 cases; 837 frontend + 79 native; 914 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI draft commit resource isolation | Four target-identity collisions fail red; exact project/root/path/model checks and captured-model rollback pass 11 focused and 98 impacted tests |
+| Ledger/inventory reconciliation | 921 / 921 cases; 842 frontend + 79 native; 919 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 837 tests and production build passed |
-| Static/runtime test reconciliation | 837 / 837; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 842 tests and production build passed |
+| Static/runtime test reconciliation | 842 / 842; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -645,7 +669,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,077 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,082 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
