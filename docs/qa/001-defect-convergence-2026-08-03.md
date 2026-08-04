@@ -452,6 +452,27 @@ lint, typecheck and production build. Rust collects 79, passes 77 and retains
 two reasoned ignores. The converged ledger contains 908 cases: 906 passes and
 two reasoned skips.
 
+### QA-PROJECT-OPEN-LATEST-INTENT-024
+
+The project-open store used one active promise as a global duplicate guard.
+While project A was loading, choosing project B returned A's promise and silently
+lost B. A second red boundary showed that simply adding a queue was insufficient:
+the superseded A snapshot became visible while the latest B target was still
+loading. Failure of A also had to release the queue without dropping B.
+
+Project opening now deduplicates repeated actions for the same target and keeps
+one coalesced latest target when author intent changes. Intermediate choices are
+discarded, the superseded project never becomes active, and the latest target
+continues after an earlier open failure. If the author already accepted the
+dirty-manuscript discard confirmation for this switch burst, the queued target
+reuses that decision instead of prompting again.
+
+The focused project-open experience passes 12/12 and the seven-file
+project-open/save/session/workspace/Story-resource impact set passes 89/89. Full
+Node 24 acceptance passes 178 files / 834 tests, lint, typecheck and production
+build. Rust collects 79, passes 77 and retains two reasoned ignores. The
+converged ledger contains 913 cases: 911 passes and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -556,11 +577,12 @@ console claims.
 | Live external-conflict journey | Blocked before page control by in-app browser runtime initialization; deterministic rendered-dialog contracts pass and no product test backdoor was added |
 | AI draft undo resource isolation | Three red identity failures plus 100-click pressure; exact project/resource/model/content targeting, stale dismissal, localized retry and stable accessible name now pass 7 focused and 81 impacted tests |
 | Save retry and result isolation | 100-click retryable/non-retryable failures fell from 100 writes to 1; explicit retry, force-save waiting and cross-project late result isolation pass 38 focused and 93 impacted tests |
-| Ledger/inventory reconciliation | 908 / 908 cases; 829 frontend + 79 native; 906 passed + 2 reasoned skips; stale ledgers fail closed |
+| Project open latest intent | Same-target bursts remain one open; distinct selections coalesce to the latest target without exposing superseded projects; failure continuation and one dirty-discard confirmation pass 12 focused and 89 impacted tests |
+| Ledger/inventory reconciliation | 913 / 913 cases; 834 frontend + 79 native; 911 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 829 tests and production build passed |
-| Static/runtime test reconciliation | 829 / 829; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 178 files / 834 tests and production build passed |
+| Static/runtime test reconciliation | 834 / 834; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -600,7 +622,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,069 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,074 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.

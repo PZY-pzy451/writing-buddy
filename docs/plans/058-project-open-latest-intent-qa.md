@@ -31,3 +31,19 @@ native open, while distinct targets should converge on the latest choice.
 - Record exact test totals and retain `PARTIAL` product status for any unrun
   real-provider, packaging or strict traceability gates.
 
+## Result
+
+- Red-first pressure reproduced three lost-intent paths and one stale-visibility
+  path: delayed A plus B, A plus B plus C, failed A plus B, and superseded A
+  becoming visible while B remained in flight.
+- The store now deduplicates same-target requests and processes one coalesced
+  latest target. Intermediate targets are skipped, earlier failure does not stop
+  the queue, superseded project state is never committed, and one accepted dirty
+  discard confirmation is reused.
+- Focused project-open tests passed 12/12; the seven-file project-open/save/
+  session/workspace/Story-resource impact set passed 89/89.
+- Full Node 24 acceptance passed 178 files / 834 tests, lint, typecheck and the
+  production build. Rust collected 79, passed 77 and retained two reasoned
+  ignores. The 913-case ledger records 911 passes and two reasoned skips.
+- Execution is `PASS`. Product status remains `PARTIAL` because strict
+  traceability, real-provider AI smoke and release packaging are not complete.

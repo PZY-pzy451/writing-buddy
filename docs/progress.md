@@ -4,6 +4,25 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+Project-open latest-intent convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `2b132b5`.
+
+- One hundred repeated selections of the same project still produce one native
+  open. If author intent changes while project A loads, the store retains one
+  latest target, skips intermediate choices and leaves the latest project active.
+- A failed or superseded open cannot expose stale project state or suppress the
+  queued target. An accepted dirty-draft discard decision is reused once across
+  the switch burst instead of prompting for every queued target.
+- The focused project-open experience passed 12/12 and the project-open/save/
+  session/workspace/Story-resource impact set passed 89/89. Full Node 24
+  acceptance passed 178 files / 834 tests, lint, typecheck and production build;
+  Rust passed 77 with two reasoned ignores.
+- The ledger contains 913 cases: 911 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,074 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 Save retry and stale-result isolation are complete on
 `codex/full-regression-gates-a-e-v2` against source `34ea0a94`.
 

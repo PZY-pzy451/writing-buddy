@@ -641,6 +641,31 @@ const report = {
 				impactedTests: 93,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-PROJECT-OPEN-LATEST-INTENT-024',
+			summary: 'Project opening deduplicated every request against one active promise, so a different later project selection was silently lost and a superseded project could briefly become active.',
+			before: {
+				repeatedActions: 100,
+				activeProjectNativeOpens: 1,
+				latestDistinctTargetOpened: false,
+				intermediateIntentCoalesced: false,
+				continuesAfterFirstFailure: false,
+				supersededProjectVisible: true
+			},
+			after: {
+				repeatedActions: 100,
+				sameTargetNativeOpens: 1,
+				activeAndLatestNativeOpens: 2,
+				intermediateTargetNativeOpens: 0,
+				latestTargetWins: true,
+				continuesAfterFirstFailure: true,
+				supersededProjectVisible: false,
+				dirtyDiscardConfirmations: 1,
+				focusedTests: 12,
+				impactedTests: 89,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
