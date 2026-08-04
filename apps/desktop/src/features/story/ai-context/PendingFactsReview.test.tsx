@@ -83,7 +83,7 @@ describe('PendingFactsReview', () => {
 		const content = '顾言决定保留蓝色信封';
 		let resolveExtraction: ((response: string) => void) | undefined;
 		const runExtraction: NonNullable<PendingFactsReviewProps['runExtraction']> = vi.fn(
-			() => new Promise(resolve => {
+			() => new Promise<string>(resolve => {
 				resolveExtraction = resolve;
 			})
 		);
