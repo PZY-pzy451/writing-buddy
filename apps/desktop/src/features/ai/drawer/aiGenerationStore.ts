@@ -266,6 +266,7 @@ export function createAiGenerationStore(
 		return {
 			...initial,
 			openAiAction(actionId, input, scope) {
+				if (get().state === 'applying') return;
 				generationAttempt += 1;
 				const previous = get();
 				const activeJobId = previous.jobId;

@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor, within } from '@testing-librar
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { countWords } from '@writing-buddy/domain';
+import { createAiPreviewTransaction } from '@writing-buddy/ai-actions';
 import { App } from './App';
 import { useAppStore } from './store';
 import { aiGenerationStore } from '../features/ai/drawer/aiGenerationStore';
@@ -737,6 +738,47 @@ describe('quiet writer workspaces', () => {
 			'来源已变化，请从当前章节重新打开 AI 快速生成。'
 		)).toBeInTheDocument();
 		expect(within(dialog).getByRole('button', { name: '开始生成' })).toBeDisabled();
+	});
+
+	it('preserves an applying AI transaction across 100 Alt+A shortcut actions', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+		await openFixtureAndContinue(user);
+		const activeResource = useAppStore.getState().activeResource;
+		const revision = useAppStore.getState().session?.state.version ?? 0;
+		if (!activeResource) throw new Error('active writer resource missing');
+
+		fireEvent.keyDown(window, { key: 'a', code: 'KeyA', altKey: true });
+		const dialog = await screen.findByRole('dialog', { name: 'AI 快速生成' });
+		const transaction = createAiPreviewTransaction({
+			actionId: 'review.consistency',
+			resourceId: activeResource.id,
+			baseRevision: revision,
+			applyPolicy: { type: 'review_issues', maximumSeverity: 'warning' },
+			candidate: { issues: [] }
+		});
+		act(() => {
+			aiGenerationStore.setState({
+				state: 'applying',
+				rawOutput: JSON.stringify({ issues: [] }),
+				parsedOutput: { issues: [] },
+				transaction
+			});
+		});
+		const originalScope = aiGenerationStore.getState().scope;
+
+		for (let index = 0; index < 100; index += 1) {
+			fireEvent.keyDown(window, { key: 'a', code: 'KeyA', altKey: true });
+		}
+
+		expect(dialog).toBeInTheDocument();
+		expect(aiGenerationStore.getState()).toMatchObject({
+			open: true,
+			state: 'applying',
+			scope: originalScope,
+			parsedOutput: { issues: [] },
+			transaction
+		});
 	});
 
 	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {

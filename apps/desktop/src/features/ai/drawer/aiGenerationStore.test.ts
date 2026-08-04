@@ -250,6 +250,52 @@ describe('aiGenerationStore', () => {
 		});
 	});
 
+	it('preserves an applying transaction across 100 replacement action attempts', async () => {
+		const output = JSON.stringify({ issues: [] });
+		const fallback = runtime(output);
+		const cancelAiJob = vi.fn(fallback.cancelAiJob);
+		const startAiGeneration = vi.fn(fallback.startAiGeneration);
+		const store = createAiGenerationStore({
+			...fallback,
+			cancelAiJob,
+			startAiGeneration
+		});
+		store.getState().openAiAction('review.consistency', {}, chapterScope);
+		await store.getState().startGeneration();
+		store.setState({ state: 'applying' });
+		const applying = store.getState();
+		const snapshot = {
+			definition: applying.definition,
+			input: applying.input,
+			scope: applying.scope,
+			contextPack: applying.contextPack,
+			state: applying.state,
+			rawOutput: applying.rawOutput,
+			parsedOutput: applying.parsedOutput,
+			transaction: applying.transaction,
+			jobId: applying.jobId
+		};
+
+		for (let index = 0; index < 100; index += 1) {
+			store.getState().openAiAction('review.consistency', {}, nextChapterScope);
+		}
+
+		const current = store.getState();
+		expect({
+			definition: current.definition,
+			input: current.input,
+			scope: current.scope,
+			contextPack: current.contextPack,
+			state: current.state,
+			rawOutput: current.rawOutput,
+			parsedOutput: current.parsedOutput,
+			transaction: current.transaction,
+			jobId: current.jobId
+		}).toEqual(snapshot);
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(cancelAiJob).not.toHaveBeenCalled();
+	});
+
 	it.each(['preview', 'failed', 'cancelled'] as const)(
 		'ignores 100 delayed event bursts after the same job reaches %s',
 		async terminalState => {
