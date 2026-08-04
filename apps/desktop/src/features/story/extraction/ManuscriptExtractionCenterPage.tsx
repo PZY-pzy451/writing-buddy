@@ -475,6 +475,7 @@ export function ManuscriptExtractionCenterPage(props: {
 				processChapter: async ({
 					run,
 					source,
+					signal,
 					onActiveCancel,
 					onStreamProgress
 				}) => {
@@ -501,6 +502,7 @@ export function ManuscriptExtractionCenterPage(props: {
 					const response = await runGroundedJsonJob({
 						jobType: 'story-kernel-generation',
 						messages,
+						signal,
 						onProgress: progress => {
 							setStreamState(progress.state);
 							if (

@@ -225,6 +225,52 @@ describe('ManuscriptExtractionCenterPage', () => {
 		await screen.findByText(/运行已结束/u);
 	});
 
+	it('stops during provider preflight before a native AI job starts', async () => {
+		render(
+			<ManuscriptExtractionCenterPage
+				projectRoot="browser-fixture"
+				chapters={chapters}
+				activeChapterId={chapters[0]?.resourceId}
+			/>
+		);
+
+		fireEvent.click(screen.getByRole('button', { name: /Token/u }));
+		await waitFor(() => {
+			expect(screen.getByRole('button', { name: /开始逐章整理/u })).toBeEnabled();
+		});
+		let resolvePreferences: (
+			preferences: typeof DEFAULT_AI_PREFERENCES
+		) => void = () => undefined;
+		const heldPreferences = new Promise<typeof DEFAULT_AI_PREFERENCES>(resolve => {
+			resolvePreferences = resolve;
+		});
+		const getAiPreferences = vi.spyOn(desktopBridge, 'getAiPreferences')
+			.mockReturnValue(heldPreferences);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'cancelled', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const stopRunner = vi.spyOn(ManuscriptExtractionRunner.prototype, 'stop');
+
+		fireEvent.click(screen.getByRole('button', { name: /开始逐章整理/u }));
+		await waitFor(() => expect(getAiPreferences).toHaveBeenCalledOnce());
+		const stopButton = screen.getByRole('button', { name: '停止' });
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				stopButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		expect(stopRunner).toHaveBeenCalledOnce();
+		expect(screen.getByRole('button', { name: '正在停止' })).toBeDisabled();
+		resolvePreferences(DEFAULT_AI_PREFERENCES);
+		await screen.findByText(/运行已结束/u);
+		expect(startAiGeneration).not.toHaveBeenCalled();
+	});
+
 	it('plans without AI, then runs only after explicit confirmation', async () => {
 		render(
 			<ManuscriptExtractionCenterPage

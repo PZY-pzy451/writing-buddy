@@ -201,6 +201,81 @@ describe('ManuscriptExtractionCenterService', () => {
 		expect(processChapter).toHaveBeenCalledTimes(1);
 	});
 
+	it('preserves an immediate stop across asynchronous run initialization', async () => {
+		const storage = new MemoryStorage();
+		const store = new ManuscriptExtractionRunStore('D:/Fixture', storage);
+		const original = source(1);
+		const run = plan([original]);
+		await store.append(run);
+		const runner = new ManuscriptExtractionRunner(store);
+		const processChapter = vi.fn().mockResolvedValue({
+			candidateBatchId: 'generation-batch:should-not-start',
+			candidateCount: 1,
+			conflictCount: 0
+		});
+		const input = {
+			runId: run.id,
+			loadSource: () => Promise.resolve(original),
+			processChapter
+		};
+
+		const running = runner.run(input);
+		await runner.stop();
+		const stopped = await running;
+
+		expect(stopped.status).toBe('stopped');
+		expect(stopped.chapters[0]?.status).toBe('queued');
+		expect(processChapter).not.toHaveBeenCalled();
+
+		const resumed = await runner.run(input);
+		expect(resumed.status).toBe('completed');
+		expect(processChapter).toHaveBeenCalledTimes(1);
+	});
+
+	it('does not start a processor after stop while source text is loading', async () => {
+		const storage = new MemoryStorage();
+		const store = new ManuscriptExtractionRunStore('D:/Fixture', storage);
+		const original = source(1);
+		const run = plan([original]);
+		await store.append(run);
+		const runner = new ManuscriptExtractionRunner(store);
+		let releaseSource: ((value: ManuscriptExtractionSource) => void) | undefined;
+		const heldSource = new Promise<ManuscriptExtractionSource>(resolve => {
+			releaseSource = resolve;
+		});
+		const loadSource = vi.fn().mockReturnValue(heldSource);
+		const processChapter = vi.fn().mockResolvedValue({
+			candidateBatchId: 'generation-batch:after-read',
+			candidateCount: 1,
+			conflictCount: 0
+		});
+
+		const running = runner.run({
+			runId: run.id,
+			loadSource,
+			processChapter
+		});
+		await vi.waitFor(() => expect(loadSource).toHaveBeenCalledOnce());
+		await runner.stop();
+		releaseSource?.(original);
+		const stopped = await running;
+
+		expect(stopped.status).toBe('stopped');
+		expect(stopped.chapters[0]).toMatchObject({
+			status: 'cancelled',
+			errorCode: 'cancelled'
+		});
+		expect(processChapter).not.toHaveBeenCalled();
+
+		const resumed = await runner.run({
+			runId: run.id,
+			loadSource: () => Promise.resolve(original),
+			processChapter
+		});
+		expect(resumed.status).toBe('completed');
+		expect(processChapter).toHaveBeenCalledTimes(1);
+	});
+
 	it('stops the active job while preserving completed chapter batches', async () => {
 		const storage = new MemoryStorage();
 		const store = new ManuscriptExtractionRunStore('D:/Fixture', storage);

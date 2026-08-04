@@ -103,6 +103,7 @@ export interface ManuscriptExtractionProcessorInput {
 	readonly run: ManuscriptExtractionRun;
 	readonly chapter: ManuscriptExtractionChapter;
 	readonly source: ManuscriptExtractionSource;
+	readonly signal: AbortSignal;
 	readonly onActiveCancel: (cancel: (() => Promise<void>) | undefined) => void;
 	readonly onStreamProgress: (outputLength: number) => void;
 }
@@ -518,34 +519,52 @@ export class ManuscriptExtractionRunner {
 	private stopRequested = false;
 	private activeCancel?: () => Promise<void>;
 	private activeRun?: Promise<ManuscriptExtractionRun>;
+	private activeAbortController?: AbortController;
 
 	constructor(private readonly store: ManuscriptExtractionRunStore) {}
 
 	async stop(): Promise<void> {
 		this.stopRequested = true;
-		await this.activeCancel?.();
+		const cancel = this.activeCancel;
+		this.activeAbortController?.abort();
+		await cancel?.();
 	}
 
 	run(input: ManuscriptExtractionRunRequest): Promise<ManuscriptExtractionRun> {
 		if (this.activeRun) return this.activeRun;
-		const request = this.executeRun(input);
+		this.stopRequested = false;
+		this.activeCancel = undefined;
+		const abortController = new AbortController();
+		this.activeAbortController = abortController;
+		const request = this.executeRun(input, abortController.signal);
 		this.activeRun = request;
 		const clear = () => {
-			if (this.activeRun === request) this.activeRun = undefined;
+			if (this.activeRun !== request) return;
+			this.activeRun = undefined;
+			this.activeCancel = undefined;
+			if (this.activeAbortController === abortController) {
+				this.activeAbortController = undefined;
+			}
 		};
 		void request.then(clear, clear);
 		return request;
 	}
 
 	private async executeRun(
-		input: ManuscriptExtractionRunRequest
+		input: ManuscriptExtractionRunRequest,
+		signal: AbortSignal
 	): Promise<ManuscriptExtractionRun> {
 		const now = input.now ?? (() => new Date().toISOString());
 		const runs = await this.store.load();
 		let run = runs.find(candidate => candidate.id === input.runId);
 		if (!run) throw new Error('manuscriptExtractionRunNotFound');
 		if (run.status === 'completed') return run;
-		this.stopRequested = false;
+		if (signal.aborted || this.stopRequested) {
+			run = { ...run, status: 'stopped', updatedAt: now() };
+			await this.store.replace(run);
+			input.onUpdate?.(run);
+			return run;
+		}
 		run = { ...run, status: 'running', updatedAt: now() };
 		await this.store.replace(run);
 		input.onUpdate?.(run);
@@ -565,6 +584,7 @@ export class ManuscriptExtractionRunner {
 			input.onUpdate?.(run);
 			try {
 				const source = await input.loadSource(chapter.resourceId);
+				if (signal.aborted || this.stopRequested) throw new Error('cancelled');
 				if (source.sourceRevision !== chapter.sourceRevision) {
 					throw new Error('stale-source');
 				}
@@ -572,6 +592,7 @@ export class ManuscriptExtractionRunner {
 					run,
 					chapter,
 					source,
+					signal,
 					onActiveCancel: cancel => {
 						this.activeCancel = cancel;
 					},
@@ -579,6 +600,7 @@ export class ManuscriptExtractionRunner {
 						// Stream deltas deliberately stay out of the persisted ledger.
 					}
 				});
+				if (signal.aborted || this.stopRequested) throw new Error('cancelled');
 				const completedAt = now();
 				run = replaceChapter(run, chapter.resourceId, current => ({
 					...current,

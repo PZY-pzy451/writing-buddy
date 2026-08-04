@@ -21,8 +21,11 @@ export async function runGroundedJsonJob(input: {
 	readonly messages: readonly AiMessage[];
 	readonly onProgress: (progress: GroundedAiProgress) => void;
 	readonly onJobId: (jobId: string | undefined) => void;
+	readonly signal?: AbortSignal;
 }): Promise<{ readonly output: string; readonly usage?: AiUsage }> {
+	if (input.signal?.aborted) throw toAiRequestError('cancelled');
 	const preferences = await desktopBridge.getAiPreferences();
+	if (input.signal?.aborted) throw toAiRequestError('cancelled');
 	if (!preferences.defaultModelId) {
 		throw new Error('未配置可用的 DeepSeek 模型。');
 	}

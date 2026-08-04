@@ -60,4 +60,33 @@ describe('runGroundedJsonJob error boundary', () => {
 			onJobId: vi.fn()
 		})).rejects.toThrow('AI 输出达到最大 Token 上限');
 	});
+
+	it('does not start a native job when cancelled during preference lookup', async () => {
+		let resolvePreferences: (
+			preferences: typeof DEFAULT_AI_PREFERENCES
+		) => void = () => undefined;
+		const preferences = new Promise<typeof DEFAULT_AI_PREFERENCES>(resolve => {
+			resolvePreferences = resolve;
+		});
+		vi.spyOn(desktopBridge, 'getAiPreferences').mockReturnValue(preferences);
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				listener({ type: 'cancelled', jobId: request.jobId });
+				return Promise.resolve();
+			});
+		const controller = new AbortController();
+		const request = runGroundedJsonJob({
+			jobType: 'character-analysis',
+			messages,
+			onProgress: vi.fn(),
+			onJobId: vi.fn(),
+			signal: controller.signal
+		});
+
+		controller.abort();
+		resolvePreferences(DEFAULT_AI_PREFERENCES);
+
+		await expect(request).rejects.toBeInstanceOf(Error);
+		expect(startAiGeneration).not.toHaveBeenCalled();
+	});
 });
