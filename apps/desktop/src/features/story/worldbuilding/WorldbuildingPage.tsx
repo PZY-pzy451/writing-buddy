@@ -226,7 +226,7 @@ export function WorldbuildingPage({
 							</div>
 						</>
 					) : null}
-					{section === 'rules' && selectedRule ? <WorldRuleEditor key={selectedRule.id} rule={selectedRule} saving={saving} onSave={saveRule} /> : null}
+					{section === 'rules' && selectedRule ? <WorldRuleEditor key={`${selectedRule.id}:${selectedRule.revision}`} rule={selectedRule} saving={saving} onSave={saveRule} /> : null}
 					{data && !selectedLocation && !selectedFaction && !selectedRule ? (
 						<AppEmptyState
 							icon={BookOpenCheck}

@@ -81,6 +81,7 @@
 - [Structured outline stable control selectors QA](./079-structured-outline-stable-control-selectors-qa.md)
 - [Project creation wizard stable controls QA](./080-project-creation-wizard-stable-controls-qa.md)
 - [Project structure tree stable controls QA](./081-project-structure-tree-stable-controls-qa.md)
+- [World rule editor save lifecycle QA](./082-world-rule-editor-save-lifecycle-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

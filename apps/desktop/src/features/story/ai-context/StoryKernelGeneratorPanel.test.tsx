@@ -248,7 +248,7 @@ function persistedOldItemBatch(): string {
 describe('StoryKernelGeneratorPanel', () => {
 	afterEach(() => {
 		vi.restoreAllMocks();
-		useAppStore.setState({ activeMode: 'works' });
+		void act(() => useAppStore.setState({ activeMode: 'works' }));
 	});
 
 	it('applies a selection quick-action preset without starting a paid request', async () => {
@@ -1156,7 +1156,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		});
 	});
 
-	it('disables generation for a read-only project', () => {
+	it('disables generation for a read-only project', async () => {
 		render(
 			<StoryKernelGeneratorPanel
 				projectRoot="D:/Novel-read-only"
@@ -1177,6 +1177,9 @@ describe('StoryKernelGeneratorPanel', () => {
 
 		expect(screen.getByRole('button', { name: '生成 Story Kernel 候选' })).toBeDisabled();
 		expect(screen.getByText(/当前项目为只读模式/)).toBeInTheDocument();
+		await act(async () => {
+			await new Promise<void>(resolve => window.setTimeout(resolve, 0));
+		});
 	});
 
 	it('preserves a structured native authentication error and opens AI settings', async () => {
