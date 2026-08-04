@@ -720,6 +720,41 @@ const report = {
 				impactedTests: 98,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-AI-DRAWER-STALE-CONTEXT-ISOLATION-027',
+			summary: 'The global AI quick-action drawer used revision-only stale detection and an incomplete reset, allowing same-revision project switches and buffered stream output to retain old context.',
+			before: {
+				identityFields: ['revision'],
+				sameRevisionSourceChangesRejected: false,
+				inFlightJobCancelledOnSourceChange: false,
+				delayedEventsIgnored: false,
+				bufferedDeltaClearedOnReset: false,
+				resetClearsContextAndJob: false
+			},
+			after: {
+				identityFields: [
+					'projectRoot',
+					'projectId',
+					'resourceId',
+					'resourcePath',
+					'modelUri',
+					'revision'
+				],
+				sameRevisionSourceChangesRejected: 4,
+				staleNotificationsPerBurst: 100,
+				cancellationsPerBurst: 1,
+				delayedEventsIgnored: true,
+				oldContextScrubbed: true,
+				staleRetryBlocked: true,
+				resetActionsPerBurst: 100,
+				bufferedDeltaClearedOnReset: true,
+				resetClearsContextAndJob: true,
+				redFailures: 6,
+				focusedTests: 15,
+				impactedTests: 113,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

@@ -32,3 +32,17 @@ appear in the replacement project and remain available for review or retry.
   Node 24 and Rust acceptance.
 - Keep product status `PARTIAL` while traceability, real-provider smoke and
   packaging gates remain open.
+
+## Result
+
+- Six red instances reproduced four same-revision source collisions, one stale
+  in-flight stream and one incomplete-reset/buffered-delta failure.
+- The repaired Store suite passed 15/15 and the nine-file impact set passed
+  113/113.
+- Node 24 acceptance passed 179 files / 850 tests with lint, typecheck and the
+  production build. Rust collected 79 tests, passed 77 and retained two reasoned
+  ignores.
+- Static and runtime discovery reconcile at 850 / 850. The aggregate ledger is
+  929 cases with 927 passes and two reasoned skips.
+- Product source is `9744d84`; strict product status remains `PARTIAL` because
+  traceability, real-provider smoke and packaging remain open.

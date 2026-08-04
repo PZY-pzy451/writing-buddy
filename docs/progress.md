@@ -4,6 +4,26 @@ Updated: 2026-08-04
 
 ## Active milestone
 
+AI drawer stale-context isolation is complete on
+`codex/full-regression-gates-a-e-v2` against source `9744d84`.
+
+- The global AI quick-action drawer now binds project root, project ID, resource
+  ID, path, Monaco model URI and revision. Same-revision project copies cannot
+  keep an old preview valid.
+- Source changes cancel one in-flight job across 100 notifications, ignore its
+  delayed events, scrub old Context Pack/output and block retry until the author
+  explicitly opens a fresh action from the current chapter.
+- `reset()` now clears the full job/context/transaction state and its 40 ms
+  stream buffer. One hundred resets cancel once and cannot revive old output.
+- Six contracts failed red. The repaired Store suite passed 15/15, the nine-file
+  impact set passed 113/113 and full Node 24 acceptance passed 179 files / 850
+  tests. Rust passed 77 with two reasoned ignores.
+- The ledger contains 929 cases: 927 passes and two reasoned skips. Execution is
+  `PASS`; product remains `PARTIAL` because 10,087 traceability mappings and 221
+  stable selectors remain open, with real-provider and packaging gates unrun.
+
+## Previous milestone
+
 AI draft commit resource isolation is complete on
 `codex/full-regression-gates-a-e-v2` against source `711b35d`.
 
@@ -21,7 +41,7 @@ AI draft commit resource isolation is complete on
   `PASS`; product remains `PARTIAL` because 10,082 traceability mappings and 221
   stable selectors remain open, with real-provider and packaging gates unrun.
 
-## Previous milestone
+## Earlier milestone: project repair
 
 Project-repair latest-intent convergence is complete on
 `codex/full-regression-gates-a-e-v2` against source `0b6c733`.

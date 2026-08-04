@@ -518,6 +518,31 @@ passes 179 files / 842 tests, lint, typecheck and production build. Rust collect
 79, passes 77 and retains two reasoned ignores. The converged ledger contains 921
 cases: 919 passes and two reasoned skips.
 
+### QA-AI-DRAWER-STALE-CONTEXT-ISOLATION-027
+
+The global AI quick-action drawer bound a preview only to its source revision.
+Four red contracts proved that changing project root, project ID, resource path
+or Monaco model while keeping the same revision left the old preview valid. A
+fifth failure showed that an in-flight job was neither cancelled nor invalidated
+when the source changed, so delayed output could still become a preview in the
+replacement project.
+
+The drawer now binds project root, project ID, resource ID, path, model URI and
+revision. App-level observation includes every scalar, so an equal revision
+cannot suppress the change notification. Source changes invalidate the attempt,
+issue at most one cancellation across 100 notifications, detach the old job,
+drop delayed events, scrub Context Pack/output and block retry until the author
+opens a fresh action from the current chapter.
+
+The audit also found that `reset()` merged only four initial fields and retained
+the old job, scope and Context Pack; a queued 40 ms stream flush could repopulate
+output after reset. One red pressure contract now proves 100 resets cancel once,
+clear every optional field and never revive buffered output. The repaired Store
+suite passes 15/15 and the nine-file AI/drawer/app/session/save impact set passes
+113/113. Full Node 24 acceptance passes 179 files / 850 tests, lint, typecheck and
+production build. Rust collects 79, passes 77 and retains two reasoned ignores.
+The converged ledger contains 929 cases: 927 passes and two reasoned skips.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -625,11 +650,12 @@ console claims.
 | Project open latest intent | Same-target bursts remain one open; distinct selections coalesce to the latest target without exposing superseded projects; failure continuation and one dirty-discard confirmation pass 12 focused and 89 impacted tests |
 | Project repair latest intent | One hundred Repair actions perform one native repair; a delayed success/failure cannot override a newer project or its actionable error; 15 focused and 92 impacted tests pass |
 | AI draft commit resource isolation | Four target-identity collisions fail red; exact project/root/path/model checks and captured-model rollback pass 11 focused and 98 impacted tests |
-| Ledger/inventory reconciliation | 921 / 921 cases; 842 frontend + 79 native; 919 passed + 2 reasoned skips; stale ledgers fail closed |
+| AI drawer stale-context isolation | Six red failures cover same-revision identity collisions, delayed output and incomplete reset; 15 focused and 113 impacted tests pass |
+| Ledger/inventory reconciliation | 929 / 929 cases; 850 frontend + 79 native; 927 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 842 tests and production build passed |
-| Static/runtime test reconciliation | 842 / 842; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 179 files / 850 tests and production build passed |
+| Static/runtime test reconciliation | 850 / 850; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -669,7 +695,7 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,082 aggregate mappings
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,087 aggregate mappings
   are open and 221 interactive declarations lack stable selectors.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
