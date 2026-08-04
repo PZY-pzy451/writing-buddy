@@ -1433,6 +1433,47 @@ const report = {
 				qaScriptTests: 20,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-WRITER-HEADER-SAVE-NAVIGATION-050',
+			summary: 'The writer header multiplied chapter-status writes after awaiting a dirty save, navigated to organization after save failure and lacked stable handles for its persistent author actions.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 5,
+				actualSourceOperations: 12,
+				repeatedStatusChoices: 100,
+				manuscriptWrites: 1,
+				nativeStatusWrites: 100,
+				navigatesAfterFailedSave: true,
+				failedDraftRemainsDirty: true,
+				workspaceReactWarnings: 10,
+				globalControls: 458,
+				globalStates: 10076,
+				globalMissingStableSelectors: 150,
+				totalUnmapped: 10828
+			},
+			after: {
+				sourceControls: 12,
+				sourceMappedControls: 12,
+				sourceMissingStableSelectors: 0,
+				distinguishedControls: 7,
+				repeatedStatusChoices: 100,
+				manuscriptWrites: 1,
+				nativeStatusWrites: 1,
+				navigatesAfterFailedSave: false,
+				failedDraftRemainsDirty: true,
+				workspaceReactWarnings: 0,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 4,
+				focusedTests: 34,
+				impactTests: 95,
+				qaScriptTests: 21,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

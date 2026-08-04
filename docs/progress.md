@@ -4,35 +4,34 @@ Updated: 2026-08-04
 
 ## Active milestone
 
-Character editor save-lifecycle convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `01b63b0`.
+Writer header save/navigation convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `5b1417f`.
 
-- The Story Kernel character editor collapsed eleven author operations into
-  five canonical inventory controls, multiplied 100 same-frame submissions
-  into 100 writes, replaced the dossier with a raw persistence error and reused
-  revision one on the second save.
-- Five contracts failed red. The editor now provides 11/11 stable controls, a
-  synchronous save guard, localized/redacted in-place failure feedback,
-  retained dirty drafts, explicit retry and revision-keyed reconstruction.
-- Global controls rise from 454 to 458 and states from 9,988 to 10,076 while
-  missing selectors fall from 155 to 150. Newly explicit controls, states and
-  tests raise honest traceability debt from 10,749 to 10,828; the strict gate
+- The persistent writer header collapsed twelve source operations into five
+  inventory controls, issued 100 native chapter-status writes after one shared
+  dirty save and opened organization even when that save failed.
+- Four contracts failed red. The header now provides 12/12 stable controls,
+  acquires the status busy lock before the first awaited save and revalidates
+  project, resource, dirty state and save state before organization navigation.
+- Global controls rise from 458 to 461 and states from 10,076 to 10,142 while
+  missing selectors fall from 150 to 145. Newly explicit controls, states and
+  tests raise honest traceability debt from 10,828 to 10,901; the strict gate
   remains fail-closed for those mappings.
-- Focused regression passed 3 files / 17 tests, characters plus Story Kernel
-  impact passed 5 files / 62 tests and QA infrastructure passed 5 files / 20
-  tests.
+- Focused regression passed 2 files / 34 tests, App/save/export/publish impact
+  passed 8 files / 95 tests without stderr and QA infrastructure passed 5 files
+  / 21 tests.
 - Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
-  183 files / 930 tests. Rust collected 79, passed 77 and retained two reasoned
+  183 files / 934 tests. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,009 cases: 1,007 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 930 with 97 parameterized instances
+- The ledger contains 1,013 cases: 1,011 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 934 with 97 parameterized instances
   and zero unresolved declarations. Execution is `PASS`; product remains
   `PARTIAL` with real-provider and packaging gates unrun.
 
 ## Previous milestone
 
-World rule editor save-lifecycle convergence is complete against source
-`0234330`: 8/8 source controls are mapped and fixed acceptance passed 925
+Character editor save-lifecycle convergence is complete against source
+`01b63b0`: 11/11 source controls are mapped and fixed acceptance passed 930
 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze

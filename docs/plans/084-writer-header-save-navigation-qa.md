@@ -59,3 +59,24 @@ dirty because the write failed.
 This closes a persistent top-level author navigation and status-write boundary.
 Product release remains fail-closed until remaining traceability,
 real-provider and packaging gates are complete.
+
+## Result
+
+- Four intended contracts failed red: inventory could not distinguish twelve
+  operations; stable metadata was absent; 100 dirty status choices issued 100
+  native writes; and a failed save still navigated away from the editor.
+- The header now exposes 12/12 stable source controls. Chapter status acquires
+  its store-owned lock before awaiting save, so one hundred choices produce one
+  manuscript write and one native status write. `整理本章` revalidates project,
+  resource, session dirty state and save state before navigation.
+- Global controls moved from 458 to 461 and states from 10,076 to 10,142 while
+  selector debt fell from 150 to 145. Newly explicit controls, states and tests
+  raise honest strict traceability debt from 10,828 to 10,901.
+- Focused regression passed 2 files / 34 tests. App, save, export and publish
+  impact passed 8 files / 95 tests. Ten existing workspace React warnings and
+  one adjacent close-protection warning were eliminated; the final impact run
+  emitted no stderr. QA infrastructure passed 5 files / 21 tests.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  183 files / 934 tests. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Product commit: `5b1417f` (`fix: harden writer header transitions`).
