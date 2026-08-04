@@ -1104,6 +1104,36 @@ const report = {
 				impactedTests: 174,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-KERNEL-STABLE-CONTROL-SELECTORS-039',
+			summary: 'Five Story Kernel generator declarations lacked stable selector metadata, and Generate plus Cancel collapsed into one inventory control.',
+			before: {
+				sourceControls: 8,
+				sourceUnmappedControls: 5,
+				globalControls: 423,
+				globalStates: 9306,
+				globalMissingStableSelectors: 221,
+				generateAndCancelDistinct: false
+			},
+			after: {
+				sourceControls: 9,
+				sourceUnmappedControls: 0,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				preservedAccessibleNames: [
+					'生成 Story Kernel 候选',
+					'取消',
+					'选择 林越',
+					'查看结构'
+				],
+				generateAndCancelDistinct: true,
+				redFailures: 2,
+				focusedTests: 22,
+				impactedTests: 93,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

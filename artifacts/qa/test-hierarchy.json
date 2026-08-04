@@ -50104,138 +50104,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-KERNELCANDIDATECARD-BUTTON-6CA5E9F1",
+                  "id": "CTRL-KERNELCANDIDATECARD-BUTTON-66EE8CE8",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-VISIBLE",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-HIDDEN",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-ENABLED",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-DISABLED",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-POINTER",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-KEYBOARD",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-FOCUS-IN",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-FOCUS-OUT",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-REPEAT",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-DEDUPLICATION",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-LOADING",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-SUCCESS",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-FAILURE",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-CANCELLED",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-OFFLINE",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-PERMISSION",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-PERSISTENCE",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-RESTART",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-VISUAL",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-ACCESSIBLE-NAME",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-6CA5E9F1-UNDO",
+                      "id": "STATE-KERNELCANDIDATECARD-BUTTON-66EE8CE8-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -50382,138 +50382,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-KERNELCANDIDATECARD-INPUT-A98100A0",
+                  "id": "CTRL-KERNELCANDIDATECARD-INPUT-89BCC178",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-VISIBLE",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-HIDDEN",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-ENABLED",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-DISABLED",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-POINTER",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-KEYBOARD",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-FOCUS-IN",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-FOCUS-OUT",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-REPEAT",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-DEDUPLICATION",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-LOADING",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-SUCCESS",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-FAILURE",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-CANCELLED",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-OFFLINE",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-PERMISSION",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-PERSISTENCE",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-RESTART",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-VISUAL",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-ACCESSIBLE-NAME",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-KERNELCANDIDATECARD-INPUT-A98100A0-UNDO",
+                      "id": "STATE-KERNELCANDIDATECARD-INPUT-89BCC178-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -57888,138 +57888,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579",
+                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-VISIBLE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-HIDDEN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-ENABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-DISABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-POINTER",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-KEYBOARD",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-FOCUS-IN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-FOCUS-OUT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-REPEAT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-DEDUPLICATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-LOADING",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-SUCCESS",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-FAILURE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-CANCELLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-OFFLINE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-PERMISSION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-PERSISTENCE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-RESTART",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-VISUAL",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-DE522579-UNDO",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-A0DA0B4E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -58027,138 +58027,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0",
+                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-BUTTON-C978C1CA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-VISIBLE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-HIDDEN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-ENABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-DISABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-POINTER",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-KEYBOARD",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-FOCUS-IN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-FOCUS-OUT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-REPEAT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-DEDUPLICATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-LOADING",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-SUCCESS",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-FAILURE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-CANCELLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-OFFLINE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-PERMISSION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-PERSISTENCE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-RESTART",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-VISUAL",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-D85AEFC0-UNDO",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-INPUT-E558E75A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -58166,138 +58305,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D",
+                  "id": "CTRL-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-VISIBLE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-HIDDEN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-ENABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-DISABLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-POINTER",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-KEYBOARD",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-FOCUS-IN",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-FOCUS-OUT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-REPEAT",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-DEDUPLICATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-LOADING",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-SUCCESS",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-FAILURE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-CANCELLED",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-OFFLINE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-PERMISSION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-PERSISTENCE",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-RESTART",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-VISUAL",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-6F70F80D-UNDO",
+                      "id": "STATE-STORYKERNELGENERATORPANELCONTENT-TEXTAREA-D95EF0DD-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -63781,7 +63920,7 @@
       "id": "TC-DISCOVERED-1EB464715B",
       "title": "keeps generated resources pending until snapshot-backed author confirmation",
       "declarationTitle": "keeps generated resources pending until snapshot-backed author confirmation",
-      "declarationLine": 841,
+      "declarationLine": 877,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -65343,7 +65482,7 @@
       "id": "TC-DISCOVERED-3560F75704",
       "title": "preserves a structured native authentication error and opens AI settings",
       "declarationTitle": "preserves a structured native authentication error and opens AI settings",
-      "declarationLine": 1146,
+      "declarationLine": 1182,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -66637,7 +66776,7 @@
       "id": "TC-DISCOVERED-44A0C7F0BA",
       "title": "blocks one hundred repeated generation clicks before the first stream event",
       "declarationTitle": "blocks one hundred repeated generation clicks before the first stream event",
-      "declarationLine": 310,
+      "declarationLine": 345,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -66763,7 +66902,7 @@
       "id": "TC-DISCOVERED-460F746C16",
       "title": "keeps a valid character pending and localizes a rejected snapshot",
       "declarationTitle": "keeps a valid character pending and localizes a rejected snapshot",
-      "declarationLine": 892,
+      "declarationLine": 928,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -67345,7 +67484,7 @@
       "id": "TC-DISCOVERED-4DCF7B8FBA",
       "title": "disables generation for a read-only project",
       "declarationTitle": "disables generation for a read-only project",
-      "declarationLine": 1123,
+      "declarationLine": 1159,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68091,7 +68230,7 @@
       "id": "TC-DISCOVERED-5A754FDFD1",
       "title": "TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves",
       "declarationTitle": "TC-QA-SK-ACTION-001 blocks one hundred repeated confirmation clicks before the snapshot resolves",
-      "declarationLine": 495,
+      "declarationLine": 531,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68547,7 +68686,7 @@
       "id": "TC-DISCOVERED-60DCAB7C2B",
       "title": "keeps valid candidates and explains an isolated malformed candidate",
       "declarationTitle": "keeps valid candidates and explains an isolated malformed candidate",
-      "declarationLine": 567,
+      "declarationLine": 603,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -68893,7 +69032,7 @@
       "id": "TC-DISCOVERED-6863B024FA",
       "title": "classifies a fully malformed batch as a response issue, not an AI setting issue",
       "declarationTitle": "classifies a fully malformed batch as a response issue, not an AI setting issue",
-      "declarationLine": 805,
+      "declarationLine": 841,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -69057,7 +69196,7 @@
       "id": "TC-DISCOVERED-6B78277DBB",
       "title": "TC-QA-SK-CANCEL-003 releases the cancellation guard when the native job is not found",
       "declarationTitle": "TC-QA-SK-CANCEL-003 releases the cancellation guard when the native job is not found",
-      "declarationLine": 449,
+      "declarationLine": 485,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -69819,7 +69958,7 @@
       "id": "TC-DISCOVERED-7782B21DBC",
       "title": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
       "declarationTitle": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
-      "declarationLine": 656,
+      "declarationLine": 692,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -70181,7 +70320,7 @@
       "id": "TC-DISCOVERED-7B9E42919A",
       "title": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
       "declarationTitle": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
-      "declarationLine": 533,
+      "declarationLine": 569,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -70289,7 +70428,7 @@
       "id": "TC-DISCOVERED-7E5C4CF8B6",
       "title": "explains local scene grounding and confirms a repaired scene candidate",
       "declarationTitle": "explains local scene grounding and confirms a repaired scene candidate",
-      "declarationLine": 933,
+      "declarationLine": 969,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -70509,7 +70648,7 @@
       "id": "TC-DISCOVERED-80467719E8",
       "title": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
       "declarationTitle": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
-      "declarationLine": 718,
+      "declarationLine": 754,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -70947,6 +71086,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-878F506E82",
+      "title": "exposes stable selectors without replacing author-facing control names",
+      "declarationTitle": "exposes stable selectors without replacing author-facing control names",
+      "declarationLine": 310,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -72389,7 +72546,7 @@
       "id": "TC-DISCOVERED-9E0CA12F82",
       "title": "reopens and confirms an old item candidate without another AI request",
       "declarationTitle": "reopens and confirms an old item candidate without another AI request",
-      "declarationLine": 1082,
+      "declarationLine": 1118,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -75079,7 +75236,7 @@
       "id": "TC-DISCOVERED-CA67AB5DD9",
       "title": "confirms a location candidate whose optional map point is null",
       "declarationTitle": "confirms a location candidate whose optional map point is null",
-      "declarationLine": 984,
+      "declarationLine": 1020,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -75975,7 +76132,7 @@
       "id": "TC-DISCOVERED-D71319E42E",
       "title": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
       "declarationTitle": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
-      "declarationLine": 604,
+      "declarationLine": 640,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -76847,7 +77004,7 @@
       "id": "TC-DISCOVERED-E6216F32E0",
       "title": "TC-QA-SK-CANCEL-002 releases the cancellation guard after a native command failure",
       "declarationTitle": "TC-QA-SK-CANCEL-002 releases the cancellation guard after a native command failure",
-      "declarationLine": 397,
+      "declarationLine": 433,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -77521,7 +77678,7 @@
       "id": "TC-DISCOVERED-F31EE6E76A",
       "title": "retries a retryable native failure with the unchanged generation request",
       "declarationTitle": "retries a retryable native failure with the unchanged generation request",
-      "declarationLine": 1181,
+      "declarationLine": 1217,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -77667,7 +77824,7 @@
       "id": "TC-DISCOVERED-F56581D95E",
       "title": "confirms an item candidate after repairing omitted item defaults",
       "declarationTitle": "confirms an item candidate after repairing omitted item defaults",
-      "declarationLine": 1033,
+      "declarationLine": 1069,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -78299,7 +78456,7 @@
       "id": "TC-DISCOVERED-FF4B055964",
       "title": "TC-QA-SK-CANCEL-001 blocks one hundred repeated cancellation clicks before native cancellation resolves",
       "declarationTitle": "TC-QA-SK-CANCEL-001 blocks one hundred repeated cancellation clicks before native cancellation resolves",
-      "declarationLine": 344,
+      "declarationLine": 379,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",

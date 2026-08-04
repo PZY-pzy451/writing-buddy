@@ -53,3 +53,10 @@ strict traceability, real-provider smoke and packaging gates are closed.
 - Focused panel regression: 1 file / 22 tests passed.
 - Schema/service/diagnostic/fixture impact regression: 5 files / 93 tests
   passed, including malformed candidate quarantine and atomic confirmation.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, production build and
+  180 files / 904 tests. Rust collected 79 tests, passed 77, failed zero and
+  retained two reasoned ignores.
+- Execution is `PASS`. Product status remains `PARTIAL` because strict
+  traceability still has 10,152 open mappings, 216 declarations still lack
+  stable selectors, and real-provider smoke plus release packaging remain
+  unrun.

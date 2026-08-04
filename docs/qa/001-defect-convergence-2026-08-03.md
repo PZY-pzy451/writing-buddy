@@ -764,6 +764,30 @@ session, save and error impact set passes 174/174. Fixed-commit acceptance passe
 lint, typecheck, production build and 180 files / 903 tests. Rust collects 79,
 passes 77 and retains two reasoned ignores.
 
+### QA-STORY-KERNEL-STABLE-CONTROL-SELECTORS-039
+
+The Story Kernel generator exposed useful author-facing dynamic labels, but
+five source declarations lacked static selector metadata: the generation
+instruction, resource-type selection, Generate/Cancel state control, candidate
+selection and structure expansion. The inventory also collapsed Generate and
+Cancel into one declaration, preventing deterministic idle/streaming-state
+targeting. Two rendered contracts failed red on those exact boundaries.
+
+Static `name` or `data-testid` metadata now supplements rather than replaces
+the visible and accessible names. `生成 Story Kernel 候选`, `取消`, title-specific
+candidate selection and `查看结构` / `收起结构` remain author-facing, while QA can
+target each control independent of localized or stateful text. Generate and
+Cancel are now separately inventoried.
+
+The source file moved from eight controls with five unmapped declarations to
+nine controls with zero unmapped declarations. Global missing stable selectors
+fell from 221 to 216. Correctly separating Generate and Cancel raised global
+control inventory from 423 to 424 and derived state coverage from 9,306 to
+9,328. The panel suite passes 22/22, the schema/service/diagnostic/fixture impact
+set passes 93/93, and fixed-commit acceptance passes lint, typecheck, production
+build and 180 files / 904 tests. Rust collects 79, passes 77 and retains two
+reasoned ignores.
+
 ### QA-STORY-KERNEL-RELATIONSHIP-SHAPE-003
 
 The reported AI response combined three hazards in one candidate: it returned
@@ -883,11 +907,12 @@ console claims.
 | AI drawer preview rejection single-commit | Four red failures cover repeated and delayed Reject actions; four 100-action boundaries, 50 focused and 161 impacted tests pass |
 | AI drawer applying close protection | Four red failures cover Store, button, Escape and backdrop dismissal; 100 direct closes preserve one applying transaction, 67 focused and 172 impacted tests pass |
 | AI drawer applying open-action isolation | One red Store failure covers 100 replacement launches; the existing modal Alt+A boundary remains green, with 75 focused and 174 impacted tests passing |
-| Ledger/inventory reconciliation | 982 / 982 cases; 903 frontend + 79 native; 980 passed + 2 reasoned skips; stale ledgers fail closed |
+| Story Kernel stable control selectors | Two red rendered contracts; source missing selectors 5 -> 0 and global 221 -> 216; 22 focused and 93 impacted tests pass |
+| Ledger/inventory reconciliation | 983 / 983 cases; 904 frontend + 79 native; 981 passed + 2 reasoned skips; stale ledgers fail closed |
 | Reported malformed relationship boundary | Initial 4 files / 80 tests; continuation 2 files / 41 tests passed |
 | All-type Story Kernel mutation matrix | 3 files / 52 tests passed; 1 valid control and 11 quarantined mutations |
-| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 903 tests and production build passed |
-| Static/runtime test reconciliation | 903 / 903; 97 parameterized instances; difference 0; unresolved parameterization 0 |
+| Node 24 frontend acceptance | ESLint, TypeScript, 180 files / 904 tests and production build passed |
+| Static/runtime test reconciliation | 904 / 904; 97 parameterized instances; difference 0; unresolved parameterization 0 |
 | Rust | format passed; 79 collected, 77 passed, 2 reasoned ignores, 0 failed |
 | Browser detail soak | standalone run passed all 11 stages |
 | Browser stress | 2 runs, 100,661 characters each, 80 resizes, 60 workspace transitions |
@@ -927,8 +952,10 @@ did not fully specify `targetTypes`, position objects or history arrays.
 
 ## Remaining gates
 
-- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,133 aggregate mappings
-  are open and 221 interactive declarations lack stable selectors.
+- Strict traceability remains `REGRESSION_INCOMPLETE`: 10,152 aggregate mappings
+  are open and 216 interactive declarations lack stable selectors. The larger
+  mapping total reflects the corrected Generate/Cancel control and its derived
+  state inventory; selector debt still fell by five.
 - The production Monaco chunk is 3,287.13 kB before gzip and remains above the
   configured 3,000 kB warning boundary.
 - Rust emitted two localized MSVC linker-output warnings while producing test
