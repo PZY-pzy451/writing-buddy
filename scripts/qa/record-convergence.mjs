@@ -1794,7 +1794,7 @@ const report = {
 				redFailures: 4,
 				focusedTests: 19,
 				impactTests: 42,
-				qaScriptTests: 30,
+				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
 		}

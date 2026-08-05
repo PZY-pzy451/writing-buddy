@@ -5,7 +5,7 @@ Updated: 2026-08-05
 ## Active milestone
 
 Item AI generation, write and stable-selector convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `cc3e57b`.
+`codex/full-regression-gates-a-e-v2` against source `3b265f2`.
 
 - Four contracts failed red: ten logical controls were collapsed into seven
   declarations, four selector gaps remained, malformed generation displayed
@@ -19,19 +19,21 @@ Item AI generation, write and stable-selector convergence is complete on
   evidence actions are exercised.
 - Honest inventory expansion initially raised raw gaps to 10,414 by adding three
   controls and 66 states. The rendered state contract then reduced the final
-  value to 10,337, a net 42-gap improvement from 10,379. Selector debt falls
+  value to 10,286, a net 93-gap improvement from 10,379. Selector debt falls
   from 118 to 114. From the earlier 11,088 / 136 reference, cumulative
-  reductions are 751 mappings and 22 selectors.
+  reductions are 802 mappings and 22 selectors.
 - Initial focused contracts passed 19/19, the final item impact set passed 42
-  tests through full execution and QA infrastructure passed 30/30.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 976 tests
+  tests through full execution and QA infrastructure passed 29/29.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 975 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,055 cases: 1,053 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 976 with 97 parameterized instances
+- The ledger contains 1,054 cases: 1,052 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 975 with 97 parameterized instances
   and zero unresolved declarations.
+- Three added product tests are all strictly mapped; mapped tests rise from 145
+  to 148 while unmapped test cases remain flat at 906.
 - Quantified status: deterministic execution is 100%; stable-selector coverage
-  is 364/478 (76.15%); aggregate strict traceability is 15.97%; release gates
+  is 364/478 (76.15%); aggregate strict traceability is 16.38%; release gates
   remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
   real-provider smoke and packaged-EXE acceptance complete.
 

@@ -1158,9 +1158,11 @@ did not fully specify `targetTypes`, position objects or history arrays.
   paths; selected fields survive the retry without a second AI request.
 - Ten rendered representative controls are visible, enabled and keyboard
   focusable. Field/state selection and both evidence actions are verified.
-- Fixed-commit execution passed 976 frontend and 77 native tests; two native
-  cases retain documented reasons. QA infrastructure passed 30/30.
-- Traceability gaps fell from 10,379 to 10,337 and stable-selector gaps from 118
-  to 114 despite four new tests, three new controls and 66 new states.
+- Fixed-commit execution passed 975 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 29/29.
+- All three added product tests are strictly mapped; unmapped test cases remain
+  flat at 906 rather than increasing through a duplicate QA meta-test.
+- Traceability gaps fell from 10,379 to 10,286 and stable-selector gaps from 118
+  to 114 despite three new tests, three new controls and 66 new states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.

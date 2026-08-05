@@ -58,11 +58,11 @@ Date: 2026-08-05
   Ten rendered representative controls are visible, enabled and keyboard
   focusable; both evidence actions and field/state selection are exercised.
 - Initial focused contracts passed 19/19, the final item impact set passed 42
-  tests through full execution and QA infrastructure passed 30/30.
-- Fixed source `cc3e57b` passed Node 24 lint, typecheck, 188 frontend files /
-  976 tests and production build. Rust passed 77 with two reasoned ignores.
+  tests through full execution and QA infrastructure passed 29/29.
+- Fixed source `3b265f2` passed Node 24 lint, typecheck, 188 frontend files /
+  975 tests and production build. Rust passed 77 with two reasoned ignores.
 - Stable-selector debt fell from 118 to 114. Strict aggregate gaps fell from
-  10,379 to 10,337 despite three controls, 66 derived states and four discovered
+  10,379 to 10,286 despite three controls, 66 derived states and three discovered
   tests being added.
 - Release remains blocked at 1/4 gates: strict traceability, real-provider
   smoke and packaged-EXE acceptance remain incomplete.

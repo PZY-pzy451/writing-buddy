@@ -15006,10 +15006,10 @@
     {
       "testSource": "apps/desktop/src/features/story/assets/StoryAssetsPage.test.tsx",
       "testCaseIds": [
-        "TC-DISCOVERED-05D36DD508",
         "TC-DISCOVERED-13E752BDB1",
-        "TC-DISCOVERED-20BFC882A5",
-        "TC-DISCOVERED-291DC30635"
+        "TC-DISCOVERED-46F8A51129",
+        "TC-DISCOVERED-B7726BE619",
+        "TC-DISCOVERED-EFA356B41F"
       ],
       "directDependencies": [
         "apps/desktop/src/features/story/ai-context/AiChapterSource.ts",
@@ -15102,7 +15102,7 @@
       ],
       "sourceFingerprint": "873AE8B12393851DE5E666BD4569C9C09C92B8E6660CB4449B4C887A471C658F",
       "dependencyFingerprint": "B6B205B7A90227E2B6FCB368A12F2FEB518EEBD9597A0AD2EA261D7397F6E5F5",
-      "testImplementationFingerprint": "05BD4527EF091F4E36FB8F24C10DBC42A326FBFA34D80F1FE05387872B338280"
+      "testImplementationFingerprint": "ABB559B1B3CEF7BD96BE10FDD784C9F63563111C0E7A2CF45206C5EB981D241E"
     },
     {
       "testSource": "apps/desktop/src/features/story/associations/StoryAssociationPage.persistence.test.tsx",
@@ -20219,10 +20219,9 @@
         "TC-DISCOVERED-98E4CCC8F7",
         "TC-DISCOVERED-99CA6D707E",
         "TC-DISCOVERED-9B1E2547B0",
+        "TC-DISCOVERED-AEFC5CC842",
         "TC-DISCOVERED-AF896B5F42",
-        "TC-DISCOVERED-B570554623",
         "TC-DISCOVERED-CE89CC85E1",
-        "TC-DISCOVERED-E65F99FE1E",
         "TC-DISCOVERED-EEA19A1249",
         "TC-DISCOVERED-FF721C8FEC"
       ],
@@ -20230,7 +20229,7 @@
       "transitiveDependencies": [],
       "sourceFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
       "dependencyFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "testImplementationFingerprint": "FF0305FED21F1E91D2D27CD9035FB5CB932BFF6F7DE517B0C579DF90A8EF77EA"
+      "testImplementationFingerprint": "55806E87A555C11D8673FBFE86EBFDAE3E017F3FCAC84FB28EE6E42AAD524E0F"
     },
     {
       "testSource": "scripts/qa/test-discovery.test.mjs",
