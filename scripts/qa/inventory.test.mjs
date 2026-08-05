@@ -311,7 +311,7 @@ describe('control inventory rendered-element boundary', () => {
 		]);
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character AI control to a stable selector', () => {
+	it('TC-QA-INVENTORY-018 maps every Character and Item AI control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -337,17 +337,6 @@ describe('control inventory rendered-element boundary', () => {
 			'证据',
 			'选择人物分析章节'
 		]);
-	});
-
-	it('TC-QA-INVENTORY-019 maps every Item AI control to a stable selector', () => {
-		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
-			cwd: repositoryRoot,
-			stdio: 'pipe'
-		});
-		const inventory = JSON.parse(readFileSync(
-			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
-			'utf8'
-		));
 		const itemAiControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/features/story/assets/ItemAiPanel.tsx'
 		));
