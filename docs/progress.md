@@ -4,34 +4,37 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Timeline and Timeline AI selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3bb67718`.
+Relationship Matrix and Relationship AI trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `96589ec`.
 
-- Canvas events, causal-conflict confirmation and both AI entry contexts now
-  expose stable identities. AI actions, scope, chapter choices, author
-  instruction, generation, event candidates, causal edges and apply keep exact
-  action/resource/candidate context without replacing accessible names.
-- Existing rendered tests now exercise pointer and keyboard event selection,
-  the list fallback, causal confirmation, AI scope/instruction changes and
-  structured candidate toggles. Service and inspector tests map duplicate
-  confirmation, invalid evidence, atomic persistence and retry restoration.
-  Focused coverage passed 25/25.
+- Every directional matrix cell now exposes a stable identity plus exact
+  relationship ID. The rendered test verifies both pointer selection and arrow
+  navigation before opening the correct inspector evidence.
+- Existing AI service tests now map invalid-evidence blocking, deduplication,
+  confirmed snapshot persistence and authoritative-revision reload. Existing
+  relationship query tests map hidden out-of-range edges and bounded data, while
+  the inspector test maps restored revision state. Focused coverage passed 30/30.
 - The same-tick AI generation guard passed 20/20 pressure rounds: 2,000 clicks
   produced exactly 20 provider starts.
 - Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
-- Honest declaration discovery moves inventory from 517 to 522 controls and
-  from 11,374 to 11,484 states. Mapped controls rise from 351 to 362, mapped
-  states from 3,797 to 3,929 and mapped tests from 246 to 249. Strict gaps fall
-  by 31 from 8,753 to 8,722, selector gaps from 29 to 24 and unmapped tests from
-  812 to 809.
+- Inventory remains 522 controls and 11,484 states. Mapped controls rise from
+  362 to 363, mapped states from 3,929 to 3,969 and mapped tests from 249 to
+  255. Strict gaps fall by 47 from 8,722 to 8,675, selector gaps from 24 to 23
+  and unmapped tests from 809 to 803.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,595/13,317 (34.50%); stable selectors are 498/522 (95.40%); test mapping is
-  249/1,058 (23.53%). Against the 11,088 / 136 reference, 2,366 mapping gaps
-  and 112 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,722 strict mappings plus real-provider smoke and
+  4,642/13,317 (34.86%); stable selectors are 499/522 (95.59%); test mapping is
+  255/1,058 (24.10%). Against the 11,088 / 136 reference, 2,413 mapping gaps
+  and 113 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,675 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Timeline and Timeline AI selector/trace convergence is complete against source
+`3bb67718`: five selector gaps and three unmapped tests were closed, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 

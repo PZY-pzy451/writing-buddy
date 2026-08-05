@@ -27743,138 +27743,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-RELATIONSHIPMATRIX-BUTTON-9323CC43",
+                  "id": "CTRL-RELATIONSHIPMATRIX-BUTTON-DF85A217",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-VISIBLE",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-HIDDEN",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-ENABLED",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-DISABLED",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-POINTER",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-KEYBOARD",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-FOCUS-IN",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-FOCUS-OUT",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-REPEAT",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-DEDUPLICATION",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-LOADING",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-SUCCESS",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-FAILURE",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-CANCELLED",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-OFFLINE",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-PERMISSION",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-PERSISTENCE",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-RESTART",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-VISUAL",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-ACCESSIBLE-NAME",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-9323CC43-UNDO",
+                      "id": "STATE-RELATIONSHIPMATRIX-BUTTON-DF85A217-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -76030,7 +76030,7 @@
       "id": "TC-DISCOVERED-06D231285E",
       "title": "shows a localized relationship save failure and lets the author retry successfully",
       "declarationTitle": "shows a localized relationship save failure and lets the author retry successfully",
-      "declarationLine": 286,
+      "declarationLine": 296,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -76344,7 +76344,7 @@
       "id": "TC-DISCOVERED-0A9C26E4A9",
       "title": "TC-RELATIONSHIP-AI-001 deduplicates repeated generation clicks and renders separate virtual graph edges",
       "declarationTitle": "TC-RELATIONSHIP-AI-001 deduplicates repeated generation clicks and renders separate virtual graph edges",
-      "declarationLine": 314,
+      "declarationLine": 324,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -79428,7 +79428,7 @@
       "id": "TC-DISCOVERED-3197DC7CB0",
       "title": "TC-RELATIONSHIP-AI-004 exposes every enabled control to keyboard focus and opens evidence by pointer",
       "declarationTitle": "TC-RELATIONSHIP-AI-004 exposes every enabled control to keyboard focus and opens evidence by pointer",
-      "declarationLine": 202,
+      "declarationLine": 212,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -80217,6 +80217,24 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3B84BBF440",
+      "title": "hides relationships outside effective ranges while keeping direction distinct at a time slice",
+      "declarationTitle": "hides relationships outside effective ranges while keeping direction distinct at a time slice",
+      "declarationLine": 93,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -82187,24 +82205,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-545DB4EB96",
-      "title": "rejects stale formal relationship revisions",
-      "declarationTitle": "rejects stale formal relationship revisions",
-      "declarationLine": 168,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-54603B9937",
       "title": "requires exactly three distinct alternatives for the exact target",
       "declarationTitle": "requires exactly three distinct alternatives for the exact target",
@@ -82989,24 +82989,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-608ACE7C29",
-      "title": "builds a bounded graph view model and reports omitted data",
-      "declarationTitle": "builds a bounded graph view model and reports omitted data",
-      "declarationLine": 107,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-60B6BF8C00",
       "title": "shows a focused welcome experience and clear creation validation",
       "declarationTitle": "shows a focused welcome experience and clear creation validation",
@@ -83443,24 +83425,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-6953001AB6",
-      "title": "keeps direction and effective ranges distinct at a time slice",
-      "declarationTitle": "keeps direction and effective ranges distinct at a time slice",
-      "declarationLine": 93,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-69D0227C7A",
       "title": "deduplicates aliases, exposes existing-field conflicts, and blocks bad evidence",
       "declarationTitle": "deduplicates aliases, exposes existing-field conflicts, and blocks bad evidence",
@@ -83879,6 +83843,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-70E157E3B3",
+      "title": "provides an accessible directional matrix, moves by keyboard and selects inspector evidence by pointer",
+      "declarationTitle": "provides an accessible directional matrix, moves by keyboard and selects inspector evidence by pointer",
+      "declarationLine": 87,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-70FC306ED2",
       "title": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
       "declarationTitle": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
@@ -84077,24 +84059,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-73929B375B",
-      "title": "provides an accessible directional matrix and inspector evidence",
-      "declarationTitle": "provides an accessible directional matrix and inspector evidence",
-      "declarationLine": 87,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-73D7B3EE16",
       "title": "prevents jumpy hover motion and low-opacity disabled states",
       "declarationTitle": "prevents jumpy hover motion and low-opacity disabled states",
@@ -84105,6 +84069,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-73F131B176",
+      "title": "persists a snapshot and confirms one selected candidate as a formal edge",
+      "declarationTitle": "persists a snapshot and confirms one selected candidate as a formal edge",
+      "declarationLine": 112,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84823,24 +84805,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-7E7B762797",
-      "title": "snapshots and explicitly promotes one candidate to a formal edge",
-      "declarationTitle": "snapshots and explicitly promotes one candidate to a formal edge",
-      "declarationLine": 112,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-7EBF4721D6",
       "title": "opens the latest distinct project once when 100 actions replace a delayed target",
       "declarationTitle": "opens the latest distinct project once when 100 actions replace a delayed target",
@@ -85449,6 +85413,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-87E620C7E5",
+      "title": "blocks data beyond bounded graph limits and reports omissions",
+      "declarationTitle": "blocks data beyond bounded graph limits and reports omissions",
+      "declarationLine": 107,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88671,6 +88653,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B8355D0D7D",
+      "title": "restores the authoritative revision before a later successful save",
+      "declarationTitle": "restores the authoritative revision before a later successful save",
+      "declarationLine": 129,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipInspector.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B861D464E2",
       "title": "freezes optional context across 100 toggles while streaming",
       "declarationTitle": "freezes optional context across 100 toggles while %s",
@@ -88981,24 +88981,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-BE5BD7970E",
-      "title": "resets to the authoritative revision before a later successful save",
-      "declarationTitle": "resets to the authoritative revision before a later successful save",
-      "declarationLine": 129,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipInspector.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-BE8905236F",
       "title": "aggregates only anonymous usage fields",
       "declarationTitle": "aggregates only anonymous usage fields",
@@ -89112,7 +89094,7 @@
       "id": "TC-DISCOVERED-BF92B4B351",
       "title": "TC-RELATIONSHIP-AI-003 redacts permission-sensitive candidate write details and retries without regenerating",
       "declarationTitle": "TC-RELATIONSHIP-AI-003 redacts permission-sensitive candidate write details and retries without regenerating",
-      "declarationLine": 163,
+      "declarationLine": 173,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -91285,6 +91267,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-DE909E55C8",
+      "title": "reloads the authoritative revision and rejects a stale formal relationship",
+      "declarationTitle": "reloads the authoritative revision and rejects a stale formal relationship",
+      "declarationLine": 168,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-DE9FEB6CAE",
       "title": "enforces visible focus, reduced motion and AA muted text contrast",
       "declarationTitle": "enforces visible focus, reduced motion and AA muted text contrast",
@@ -91542,7 +91542,7 @@
       "id": "TC-DISCOVERED-E2ACAC7070",
       "title": "TC-RELATIONSHIP-AI-002 shows loading, isolates invalid generation and succeeds on explicit restart",
       "declarationTitle": "TC-RELATIONSHIP-AI-002 shows loading, isolates invalid generation and succeeds on explicit restart",
-      "declarationLine": 104,
+      "declarationLine": 114,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
