@@ -320,6 +320,21 @@ describe('control inventory rendered-element boundary', () => {
 			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
 			'utf8'
 		));
+		const characterCenterControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/characters/CharacterCenterPage.tsx'
+		));
+
+		expect(characterCenterControls).toHaveLength(6);
+		expect(characterCenterControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(characterCenterControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'character-detail-tab',
+			'character-list-item',
+			'character-role-filter',
+			'全部',
+			'搜索人物',
+			'用 AI 创建人物'
+		]);
 		const characterAiControls = inventory.controls.filter(control => (
 			control.source
 			=== 'apps/desktop/src/features/story/characters/CharacterAiPanel.tsx'

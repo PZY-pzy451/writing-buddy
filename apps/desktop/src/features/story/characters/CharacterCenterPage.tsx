@@ -163,6 +163,9 @@ export function CharacterCenterPage({
 	);
 
 	const chooseCharacter = (id: string) => {
+		if (id === selectedId) {
+			return;
+		}
 		if (!confirmDiscard()) {
 			return;
 		}
@@ -230,8 +233,8 @@ export function CharacterCenterPage({
 						placeholder="姓名、别名或标签"
 					/>
 				</label>
-				<div className="character-role-filters" aria-label="按角色筛选">
-					<button type="button" className={role === 'all' ? 'is-active' : ''} onClick={() => {
+				<div className="character-role-filters" role="group" aria-label="按角色筛选">
+					<button type="button" aria-pressed={role === 'all'} className={role === 'all' ? 'is-active' : ''} onClick={() => {
 						setRole('all');
 						setListScrollTop(0);
 					}}>全部</button>
@@ -239,6 +242,8 @@ export function CharacterCenterPage({
 						<button
 							type="button"
 							key={value}
+							data-testid="character-role-filter"
+							aria-pressed={role === value}
 							className={role === value ? 'is-active' : ''}
 							onClick={() => {
 								setRole(value);
@@ -266,6 +271,7 @@ export function CharacterCenterPage({
 						<button
 							type="button"
 							key={character.id}
+							data-testid="character-list-item"
 							aria-current={selectedId === character.id ? 'true' : undefined}
 							aria-posinset={characterStart + visibleIndex + 1}
 							aria-setsize={filtered.length}
@@ -338,6 +344,7 @@ export function CharacterCenterPage({
 									type="button"
 									role="tab"
 									key={tab}
+									data-testid="character-detail-tab"
 									aria-selected={activeTab === tab}
 									className={activeTab === tab ? 'is-active' : ''}
 									onClick={() => chooseTab(tab)}

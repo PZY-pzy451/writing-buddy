@@ -93,6 +93,17 @@ describe('CharacterCenterPage', () => {
 		);
 
 		expect(await screen.findByRole('heading', { name: '林越' })).toBeInTheDocument();
+		const search = screen.getByRole('textbox', { name: '搜索人物' });
+		fireEvent.change(search, { target: { value: '沈' } });
+		expect(screen.getAllByTestId('character-list-item')).toHaveLength(1);
+		expect(screen.getByTestId('character-list-item')).toHaveTextContent('沈青');
+		fireEvent.change(search, { target: { value: '' } });
+		expect(document.querySelector('.character-role-filters')).toHaveAttribute('role', 'group');
+		expect(screen.getAllByTestId('character-role-filter')).toHaveLength(4);
+		expect(screen.getByRole('button', { name: '全部' })).toHaveAttribute('aria-pressed', 'true');
+		expect(screen.getAllByTestId('character-role-filter')[0]).toHaveAttribute('aria-pressed', 'false');
+		expect(screen.getAllByTestId('character-list-item')).toHaveLength(2);
+		expect(screen.getAllByTestId('character-detail-tab')).toHaveLength(7);
 		fireEvent.click(screen.getByRole('tab', { name: '当前状态' }));
 
 		expect(screen.getByText('旧车站')).toBeInTheDocument();
@@ -111,7 +122,13 @@ describe('CharacterCenterPage', () => {
 
 		const title = await screen.findByRole('textbox', { name: '人物姓名' });
 		fireEvent.change(title, { target: { value: '林越（修订）' } });
-		fireEvent.click(screen.getByRole('button', { name: /沈青/ }));
+		const characterRows = screen.getAllByTestId('character-list-item');
+		fireEvent.click(characterRows[0]);
+
+		expect(confirm).not.toHaveBeenCalled();
+		expect(title).toHaveValue('林越（修订）');
+
+		fireEvent.click(characterRows[1]);
 
 		expect(confirm).toHaveBeenCalledOnce();
 		expect(screen.getByRole('heading', { name: '林越' })).toBeInTheDocument();
@@ -139,7 +156,7 @@ describe('CharacterCenterPage', () => {
 		expect(screen.getByText('已保存')).toBeInTheDocument();
 	});
 
-	it('keeps a failed character edit local, dirty, redacted and retryable', async () => {
+	it('blocks unload after a failed character edit while keeping the dirty draft redacted and retryable', async () => {
 		const saveCharacter = vi.fn()
 			.mockRejectedValueOnce(new Error('staleWrite C:\\private\\character.json'))
 			.mockImplementation((character: Character) => Promise.resolve({
@@ -174,7 +191,7 @@ describe('CharacterCenterPage', () => {
 		await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
 	});
 
-	it('uses the persisted character revision on the next save', async () => {
+	it('repeats a save from the persisted character revision and keeps the second write successful', async () => {
 		const saveCharacter = vi.fn((character: Character) => Promise.resolve({
 			...character,
 			revision: character.revision + 1
@@ -250,7 +267,7 @@ describe('CharacterCenterPage', () => {
 		startAiGeneration.mockRestore();
 	});
 
-	it('TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry', async () => {
+	it('TC-CHARACTER-AI-002 restarts generation after redacted provider failure on explicit retry', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
 			.mockRejectedValueOnce(new Error('temporary provider failure'));
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
@@ -282,7 +299,7 @@ describe('CharacterCenterPage', () => {
 		startAiGeneration.mockRestore();
 	});
 
-	it('TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry', async () => {
+	it('TC-CHARACTER-AI-003 re-enables candidate write after redacted failure and preserves one explicit retry', async () => {
 		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
 			.mockRejectedValueOnce(new Error('C:\\private\\author\\story.json'));
 		await desktopBridge.saveDeepSeekKey('browser-fixture');

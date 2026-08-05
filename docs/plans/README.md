@@ -96,6 +96,7 @@
 - [Whole-work consistency AI control and recovery convergence QA](./094-story-consistency-ai-control-recovery-convergence-qa.md)
 - [Selection rewrite control and retry convergence QA](./095-selection-rewrite-control-retry-convergence-qa.md)
 - [Manuscript continuation control and write convergence QA](./096-manuscript-continuation-control-write-convergence-qa.md)
+- [Character Center control and selection convergence QA](./097-character-center-control-selection-convergence-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
