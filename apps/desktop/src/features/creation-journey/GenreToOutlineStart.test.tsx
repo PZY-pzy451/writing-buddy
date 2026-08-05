@@ -53,9 +53,18 @@ describe('GenreToOutlineStart', () => {
 		);
 		expect(screen.getByRole('button', { name: '生成小说大纲' })).toBeEnabled();
 
-		await user.click(screen.getByRole('button', { name: '更多控制' }));
+		const more = screen.getByTestId('genre-outline-more-toggle');
+		expect(more).toHaveAttribute('aria-expanded', 'false');
+		await user.click(more);
 		expect(screen.getByLabelText('目标读者')).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '长篇' }));
+		const longForm = screen.getByRole('button', { name: '长篇' });
+		expect(longForm).toHaveAttribute('data-testid', 'genre-outline-choice-option');
+		expect(longForm).toHaveAttribute('data-choice-kind', 'scale');
+		expect(longForm).toHaveAttribute('data-choice-value', 'novel');
+		expect(screen.getAllByTestId('genre-outline-choice-option').some(control => (
+			control.getAttribute('data-choice-kind') === 'tone'
+		))).toBe(true);
+		await user.click(longForm);
 		await user.type(screen.getByLabelText('主角提示'), '调查记者, 无日期者');
 
 		expect(screen.getByRole('button', { name: '收起更多控制' }))

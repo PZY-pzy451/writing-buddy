@@ -135,7 +135,7 @@ describe('guided project creation', () => {
 		expect(await screen.findByRole('dialog', { name: '新建项目' })).toBeInTheDocument();
 	});
 
-	it('defaults to the genre-to-outline start while preserving the other truthful starts', async () => {
+	it('defaults to the genre-to-outline start while keeping the other truthful starts enabled', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
@@ -150,12 +150,12 @@ describe('guided project creation', () => {
 		});
 		expect(genreStart).toHaveAttribute('aria-pressed', 'true');
 		expect(within(dialog).getByRole('button', { name: /我只有几个想法/ }))
-			.toBeInTheDocument();
+			.toBeEnabled();
 		expect(within(dialog).getByRole('button', { name: /空白项目/ }))
-			.toBeInTheDocument();
+			.toBeEnabled();
 	});
 
-	it('creates through five steps, preserves the manuscript start, and opens the first chapter', async () => {
+	it('persists the manuscript start through five steps and opens the first chapter', async () => {
 		const user = userEvent.setup();
 		const importSpy = vi.spyOn(desktopBridge, 'chooseImportedText');
 		render(<App />);
@@ -227,7 +227,7 @@ describe('guided project creation', () => {
 		expect(useAppStore.getState().activeResource).toBeUndefined();
 	});
 
-	it('previews an extracted Word outline with truthful format limitations', async () => {
+	it('visually discloses truthful Word outline format limitations before import', async () => {
 		const content = '第一章 雨夜\n顾言收到信。\n\n第二章 回声\n信号重现。';
 		vi.spyOn(desktopBridge, 'chooseImportedText').mockResolvedValue({
 			fileName: '零点回声大纲.docx',
@@ -351,7 +351,7 @@ describe('guided project creation', () => {
 		expect(within(dialog).getByText('已取消创建；当前项目和未保存正文保持不变。')).toBeInTheDocument();
 	});
 
-	it('creates exactly one project under 100 same-tick final submissions', async () => {
+	it('deduplicates one hundred repeated same-tick final submissions and hides the completed wizard', async () => {
 		const user = userEvent.setup();
 		const createSpy = vi.spyOn(desktopBridge, 'createProject');
 		const chooseDirectorySpy = vi.spyOn(desktopBridge, 'chooseProjectParentDirectory');
@@ -373,6 +373,7 @@ describe('guided project creation', () => {
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		await user.click(within(dialog).getByRole('button', { name: /下一步/ }));
 		expect(await within(dialog).findByRole('heading', { name: '确认创建' })).toBeInTheDocument();
+		expect(within(dialog).getByTestId('project-wizard-submit')).toBeEnabled();
 
 		act(() => {
 			for (let index = 0; index < 100; index += 1) {

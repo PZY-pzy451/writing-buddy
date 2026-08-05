@@ -138,6 +138,7 @@ export function GenreToOutlineStart({
 				<button
 					className="genre-outline-more"
 					type="button"
+					data-testid="genre-outline-more-toggle"
 					aria-expanded={deep}
 					disabled={readOnly || busy}
 					onClick={() => onChange({ mode: deep ? 'quick' : 'deep' })}
@@ -155,6 +156,9 @@ export function GenreToOutlineStart({
 									<button
 										type="button"
 										key={option.id}
+										data-testid="genre-outline-choice-option"
+										data-choice-kind="scale"
+										data-choice-value={option.id}
 										aria-pressed={input.scale === option.id}
 										disabled={readOnly || busy}
 										onClick={() => onChange({ scale: option.id })}
@@ -173,6 +177,9 @@ export function GenreToOutlineStart({
 									<button
 										type="button"
 										key={tone}
+										data-testid="genre-outline-choice-option"
+										data-choice-kind="tone"
+										data-choice-value={tone}
 										aria-pressed={input.tones.includes(tone)}
 										disabled={readOnly || busy}
 										onClick={() => toggleTone(tone)}
