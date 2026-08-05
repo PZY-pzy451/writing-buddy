@@ -309,6 +309,20 @@ describe('control inventory rendered-element boundary', () => {
 			'取消',
 			'选择物品转交生效场景'
 		]);
+		const entityPeekControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/manuscript/EntityPeekCard.tsx'
+		));
+
+		expect(entityPeekControls).toHaveLength(5);
+		expect(entityPeekControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(entityPeekControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'entity-peek-backlink',
+			'entity-peek-candidate',
+			'entity-peek-dialog',
+			'关闭资料速览',
+			'打开完整资料'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

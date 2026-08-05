@@ -28,19 +28,20 @@ const characterMention = parseMentionLink({
 });
 
 describe('EntityPeekCard', () => {
-	it('requires an explicit choice when exact links overlap', async () => {
+	it('requires an explicit pointer or Arrow keyboard choice when exact links overlap', async () => {
 		const onSelect = vi.fn();
+		const stationMention = {
+			...characterMention,
+			id: parseStoryId('mention:station'),
+			resourceId: parseStoryId('location:station')
+		};
 		render(
 			<EntityPeekCard
 				x={120}
 				y={180}
 				candidates={[
 					characterMention,
-					{
-						...characterMention,
-						id: parseStoryId('mention:station'),
-						resourceId: parseStoryId('location:station')
-					}
+					stationMention
 				]}
 				onSelect={onSelect}
 				onClose={() => undefined}
@@ -50,13 +51,21 @@ describe('EntityPeekCard', () => {
 		);
 
 		expect(screen.getByText('这里有 2 个精确引用')).toBeInTheDocument();
-		await userEvent.click(screen.getByRole('option', { name: /character:lin-yue/ }));
-		expect(onSelect).toHaveBeenCalledWith(characterMention);
+		const candidates = screen.getAllByTestId('entity-peek-candidate');
+		await userEvent.click(candidates[0]);
+		expect(onSelect).toHaveBeenNthCalledWith(1, characterMention);
+
+		candidates[0].focus();
+		fireEvent.keyDown(candidates[0], { key: 'ArrowDown' });
+		expect(candidates[1]).toHaveFocus();
+		await userEvent.keyboard('{Enter}');
+		expect(onSelect).toHaveBeenNthCalledWith(2, stationMention);
 	});
 
-	it('shows a compact on-demand summary and supports Enter/Escape', () => {
+	it('shows a visible compact summary, jumps to a backlink and opens or closes with Enter/Escape', () => {
 		const onOpenFull = vi.fn();
 		const onClose = vi.fn();
+		const onJumpBacklink = vi.fn();
 		const resource = StorySchemaRegistry.parse('character', {
 			id: 'character:lin-yue',
 			type: 'character',
@@ -93,14 +102,19 @@ describe('EntityPeekCard', () => {
 				onSelect={() => undefined}
 				onClose={onClose}
 				onOpenFull={onOpenFull}
-				onJumpBacklink={() => undefined}
+				onJumpBacklink={onJumpBacklink}
 			/>
 		);
 
-		expect(screen.getByRole('dialog', { name: '林越资料速览' })).toHaveTextContent('目标：找到失踪的姐姐');
-		fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Enter' });
+		const dialog = screen.getByTestId('entity-peek-dialog');
+		expect(dialog).toHaveFocus();
+		expect(dialog).toHaveTextContent('目标：找到失踪的姐姐');
+		fireEvent.click(screen.getByText('正文中出现 1 次'));
+		fireEvent.click(screen.getByTestId('entity-peek-backlink'));
+		expect(onJumpBacklink).toHaveBeenCalledWith(characterMention);
+		fireEvent.keyDown(dialog, { key: 'Enter' });
 		expect(onOpenFull).toHaveBeenCalledOnce();
-		fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
+		fireEvent.keyDown(dialog, { key: 'Escape' });
 		expect(onClose).toHaveBeenCalledOnce();
 	});
 });

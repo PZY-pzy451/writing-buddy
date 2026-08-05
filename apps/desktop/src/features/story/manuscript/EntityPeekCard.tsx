@@ -35,6 +35,7 @@ export function EntityPeekCard({
 	onJumpBacklink
 }: EntityPeekCardProps): React.JSX.Element {
 	const dialogRef = useRef<HTMLElement>(null);
+	const candidateRefs = useRef<Array<HTMLButtonElement | null>>([]);
 	useEffect(() => {
 		dialogRef.current?.focus({ preventScroll: true });
 	}, []);
@@ -49,6 +50,7 @@ export function EntityPeekCard({
 	return (
 		<section
 			ref={dialogRef}
+			data-testid="entity-peek-dialog"
 			className="entity-peek-card"
 			role="dialog"
 			aria-label={accessibleName}
@@ -94,13 +96,33 @@ export function EntityPeekCard({
 					<strong>这里有 {candidates.length} 个精确引用</strong>
 					<span>选择要速览的资料，不会离开当前正文。</span>
 					<div role="listbox" aria-label="重叠的正文资料引用">
-						{candidates.map(candidate => (
+						{candidates.map((candidate, index) => (
 							<button
 								key={candidate.id}
+								ref={node => {
+									candidateRefs.current[index] = node;
+								}}
+								data-testid="entity-peek-candidate"
 								type="button"
 								role="option"
 								aria-selected="false"
 								onClick={() => onSelect(candidate)}
+								onKeyDown={event => {
+									let nextIndex: number | undefined;
+									if (event.key === 'ArrowDown') {
+										nextIndex = (index + 1) % candidates.length;
+									} else if (event.key === 'ArrowUp') {
+										nextIndex = (index - 1 + candidates.length) % candidates.length;
+									} else if (event.key === 'Home') {
+										nextIndex = 0;
+									} else if (event.key === 'End') {
+										nextIndex = candidates.length - 1;
+									}
+									if (nextIndex === undefined) return;
+									event.preventDefault();
+									event.stopPropagation();
+									candidateRefs.current[nextIndex]?.focus();
+								}}
 							>
 								<strong>{candidate.displayText}</strong>
 								<small>{candidate.resourceId}</small>
@@ -121,7 +143,12 @@ export function EntityPeekCard({
 						<summary>正文中出现 {result.backlinks.length} 次</summary>
 						<div>
 							{result.backlinks.slice(0, 8).map(link => (
-								<button key={link.id} type="button" onClick={() => onJumpBacklink(link)}>
+								<button
+									key={link.id}
+									data-testid="entity-peek-backlink"
+									type="button"
+									onClick={() => onJumpBacklink(link)}
+								>
 									<span>{link.displayText}</span>
 									<small>{link.chapterId}</small>
 								</button>
