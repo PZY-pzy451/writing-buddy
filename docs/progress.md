@@ -4,31 +4,37 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Scene Plot Grid and virtual timeline selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `468d6b9`.
+AI context and manuscript highlight selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `921ecba`.
 
-- Scene Plot Grid search, filters, scenes and links expose stable identities
-  with explicit dynamic context. Clear Filter returns keyboard focus to search
-  instead of dropping it to the document body.
-- Virtual timeline event buttons expose one stable identity while retaining
-  exact event IDs. Its 10,000-row virtualization and Arrow-navigation tests now
-  map without adding test count.
-- Six product-contract failures converged to 20/20 focused/inventory, 23/23
-  plot/timeline impact and 30/30 QA tests. Node 24 passed lint, typecheck, 189
-  files / 979 tests and production build; Rust passed 77 with two reasoned
-  ignores.
+- AI context toggles expose stable identity plus exact key, kind, required and
+  author-secret context. Required records stay locked and optional secrets stay
+  explicit author consent.
+- Manuscript highlight toggles expose stable identity plus exact kind. The
+  existing persistence case now drives rendered controls instead of detached
+  helper calls alone.
+- Five red failures converged to 21/21 focused/inventory, 57/57 AI context,
+  manuscript and workspace impact and 30/30 QA tests. Node 24 passed lint,
+  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
+  reasoned ignores.
 - Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
-  controls rise by 7, states by 33 and tests by 2. Strict gaps fall by 42 from
-  9,636 to 9,594, selector gaps from 74 to 69 and unmapped tests from 864 to
-  862.
+  controls rise by 2, states by 8 and tests by 5. Strict gaps fall by 15 from
+  9,594 to 9,579, selector gaps from 69 to 67 and unmapped tests from 862 to
+  857.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,447/13,041 (26.43%); stable selectors are 441/510 (86.47%); test mapping is
-  196/1,058 (18.53%). Against the 11,088 / 136 reference, 1,494 mapping gaps
-  and 67 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,462/13,041 (26.55%); stable selectors are 443/510 (86.86%); test mapping is
+  201/1,058 (19.00%). Against the 11,088 / 136 reference, 1,509 mapping gaps
+  and 69 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
 
 ## Previous milestone
+
+Scene Plot Grid and virtual timeline selector/trace convergence is complete
+against source `468d6b9`: six controls and five product cases are mapped, and
+fixed acceptance passed 979 frontend tests.
+
+## Earlier milestone
 
 Daily Writing Goal form selector and trace convergence is complete against
 source `a756c35`: all 3 controls and both product cases are mapped, and fixed

@@ -55246,138 +55246,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE",
+                  "id": "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-VISIBLE",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-HIDDEN",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-ENABLED",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DISABLED",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-POINTER",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-KEYBOARD",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FOCUS-IN",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FOCUS-OUT",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-REPEAT",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DEDUPLICATION",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-LOADING",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-SUCCESS",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FAILURE",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-CANCELLED",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-OFFLINE",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-PERMISSION",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-PERSISTENCE",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-RESTART",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-VISUAL",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-ACCESSIBLE-NAME",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-UNDO",
+                      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -58444,138 +58444,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A",
+                  "id": "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-VISIBLE",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-HIDDEN",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-ENABLED",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DISABLED",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-POINTER",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-KEYBOARD",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FOCUS-IN",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FOCUS-OUT",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-REPEAT",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DEDUPLICATION",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-LOADING",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-SUCCESS",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FAILURE",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-CANCELLED",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-OFFLINE",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-PERMISSION",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-PERSISTENCE",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-RESTART",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-VISUAL",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-ACCESSIBLE-NAME",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-UNDO",
+                      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74454,7 +74454,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 508,
+      "declarationLine": 523,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -89310,7 +89310,7 @@
       "id": "TC-DISCOVERED-D92C7927C1",
       "title": "persists only known highlight kinds per project",
       "declarationTitle": "persists only known highlight kinds per project",
-      "declarationLine": 65,
+      "declarationLine": 69,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/manuscript/EntityHighlightControls.test.tsx",
@@ -89548,7 +89548,7 @@
       "id": "TC-DISCOVERED-DD861E2402",
       "title": "locks required context and allows explicit secret consent",
       "declarationTitle": "locks required context and allows explicit secret consent",
-      "declarationLine": 36,
+      "declarationLine": 37,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/context/ContextPreview.test.tsx",
@@ -90204,7 +90204,7 @@
       "id": "TC-DISCOVERED-E733742E34",
       "title": "renders an eligible current resource without claiming project metadata is sent",
       "declarationTitle": "renders an eligible current resource without claiming project metadata is sent",
-      "declarationLine": 57,
+      "declarationLine": 64,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/context/ContextPreview.test.tsx",

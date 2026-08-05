@@ -1537,3 +1537,25 @@ did not fully specify `targetTypes`, position objects or history arrays.
 - Strict gaps fall from 9,636 to 9,594, selector gaps from 74 to 69 and unmapped
   tests from 864 to 862. Strict coverage is 26.43%, stable-selector coverage is
   86.47%, test mapping is 18.53% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 077
+
+- Repeated AI context checkboxes expose one stable identity plus exact context
+  key, kind, required state and author-secret state. Empty context explicitly
+  verifies that no toggle exists.
+- Required context remains locked, optional author secrets require explicit
+  consent and eligible current-resource context does not claim project metadata
+  is sent.
+- Repeated manuscript-highlight checkboxes expose one stable identity plus the
+  exact highlight kind. The existing persistence case now drives the rendered
+  character and item controls instead of testing only detached helpers.
+- Five red failures converged to 21/21 focused/inventory, 57/57 AI context,
+  manuscript and Writer Workspace impact and 30/30 QA infrastructure tests.
+  Fixed-source sequential execution passed 189 frontend files / 979 tests,
+  production build and 77 native tests with two reasoned ignores.
+- The Context Preview control, 2 of 22 states and 2 product cases map. The
+  highlight control, 6 of 22 states and all 3 product cases map. Global mapped
+  controls rise by 2, states by 8 and tests by 5 without inventory expansion.
+- Strict gaps fall from 9,594 to 9,579, selector gaps from 69 to 67 and unmapped
+  tests from 862 to 857. Strict coverage is 26.55%, stable-selector coverage is
+  86.86%, test mapping is 19.00% and release hard gates remain 1/4 complete.

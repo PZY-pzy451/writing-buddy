@@ -26140,11 +26140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-VISIBLE",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-VISIBLE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -26156,11 +26156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-HIDDEN",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-HIDDEN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -26172,11 +26172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-ENABLED",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-ENABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -26188,11 +26188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DISABLED",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DISABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -26204,11 +26204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-POINTER",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-POINTER",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -26220,11 +26220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-KEYBOARD",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-KEYBOARD",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -26236,11 +26236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FOCUS-IN",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FOCUS-IN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -26252,11 +26252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FOCUS-OUT",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FOCUS-OUT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -26268,11 +26268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-REPEAT",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-REPEAT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -26284,11 +26284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DEDUPLICATION",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DEDUPLICATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -26300,11 +26300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-LOADING",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-LOADING",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -26316,11 +26316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-SUCCESS",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-SUCCESS",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -26332,11 +26332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-FAILURE",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-FAILURE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -26348,11 +26348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-CANCELLED",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-CANCELLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -26364,11 +26364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-OFFLINE",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-OFFLINE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -26380,11 +26380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-PERMISSION",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-PERMISSION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -26396,11 +26396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-PERSISTENCE",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-PERSISTENCE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -26412,11 +26412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-RESTART",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-RESTART",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -26428,11 +26428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-VISUAL",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-VISUAL",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -26444,11 +26444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-ACCESSIBLE-NAME",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-ACCESSIBLE-NAME",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -26460,11 +26460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -26476,11 +26476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CONTEXTPREVIEW-INPUT-3B7314AE-UNDO",
+      "id": "STATE-CONTEXTPREVIEW-INPUT-D8571CF7-UNDO",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-CONTEXTPREVIEW-INPUT-3B7314AE"
+        "CTRL-CONTEXTPREVIEW-INPUT-D8571CF7"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -42684,11 +42684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-VISIBLE",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -42700,11 +42700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-HIDDEN",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -42716,11 +42716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-ENABLED",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -42732,11 +42732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DISABLED",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -42748,11 +42748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-POINTER",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -42764,11 +42764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-KEYBOARD",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -42780,11 +42780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FOCUS-IN",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -42796,11 +42796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FOCUS-OUT",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -42812,11 +42812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-REPEAT",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -42828,11 +42828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DEDUPLICATION",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -42844,11 +42844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-LOADING",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -42860,11 +42860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-SUCCESS",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -42876,11 +42876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-FAILURE",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -42892,11 +42892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-CANCELLED",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -42908,11 +42908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-OFFLINE",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -42924,11 +42924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-PERMISSION",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -42940,11 +42940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-PERSISTENCE",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -42956,11 +42956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-RESTART",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -42972,11 +42972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-VISUAL",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -42988,11 +42988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-ACCESSIBLE-NAME",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -43004,11 +43004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -43020,11 +43020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A-UNDO",
+      "id": "STATE-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-02D2365A"
+        "CTRL-ENTITYHIGHLIGHTCONTROLS-INPUT-622A1155"
       ],
       "name": "撤销",
       "dimension": "UNDO",
