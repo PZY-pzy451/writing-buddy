@@ -5101,6 +5101,20 @@ body,
 	white-space: nowrap;
 }
 
+.project-open-copy-feedback {
+	margin-top: 8px !important;
+	font-size: 12px;
+	font-weight: 650;
+}
+
+.project-open-copy-feedback.is-error {
+	color: var(--danger);
+}
+
+.project-open-copy-feedback.is-success {
+	color: var(--success);
+}
+
 .project-open-diagnostics {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));

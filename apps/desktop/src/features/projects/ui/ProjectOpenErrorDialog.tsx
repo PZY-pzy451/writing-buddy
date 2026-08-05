@@ -8,7 +8,7 @@ import {
 	Stethoscope,
 	Wrench
 } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useModalFocus } from '../../../accessibility/useModalFocus';
 import type { PublicProjectOpenError } from '../application/ProjectOpenService';
 
@@ -72,21 +72,42 @@ export function ProjectOpenErrorDialog({
 	onClose
 }: ProjectOpenErrorDialogProps): React.JSX.Element {
 	const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-	const [copied, setCopied] = useState(false);
+	const [copyState, setCopyState] = useState<'idle' | 'copying' | 'copied' | 'failed'>('idle');
+	const copyInFlight = useRef(false);
 	const copy = errorCopy[error.code] ?? errorCopy.projectOpenFailed;
 	const dialogRef = useModalFocus(onClose);
 
 	const copyPath = async () => {
-		if (!error.safePath || !navigator.clipboard) {
+		if (!error.safePath || copyInFlight.current) {
 			return;
 		}
-		await navigator.clipboard.writeText(error.safePath);
-		setCopied(true);
+		if (!navigator.clipboard) {
+			setCopyState('failed');
+			return;
+		}
+		copyInFlight.current = true;
+		setCopyState('copying');
+		try {
+			await navigator.clipboard.writeText(error.safePath);
+			setCopyState('copied');
+		} catch {
+			setCopyState('failed');
+		} finally {
+			copyInFlight.current = false;
+		}
 	};
 
 	return (
 		<div className="modal-backdrop" role="presentation">
-			<section ref={dialogRef} tabIndex={-1} className="project-open-dialog" role="dialog" aria-modal="true" aria-labelledby="project-open-title">
+			<section
+				ref={dialogRef}
+				data-testid="project-open-error-dialog"
+				tabIndex={-1}
+				className="project-open-dialog"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="project-open-title"
+			>
 				<header>
 					<span className="project-open-icon" aria-hidden="true"><AlertTriangle size={22} /></span>
 					<div>
@@ -102,10 +123,29 @@ export function ProjectOpenErrorDialog({
 					{error.safePath && (
 						<div className="project-safe-path">
 							<code>{error.safePath}</code>
-							<button type="button" className="icon-button" aria-label="复制安全路径" onClick={() => void copyPath()}>
-								{copied ? <Check size={18} /> : <Clipboard size={18} />}
+							<button
+								type="button"
+								className="icon-button"
+								data-testid="project-open-copy-path"
+								aria-label={copyState === 'copying'
+									? '正在复制安全路径'
+									: copyState === 'copied' ? '已复制安全路径' : '复制安全路径'}
+								disabled={copyState === 'copying'}
+								onClick={() => void copyPath()}
+							>
+								{copyState === 'copied' ? <Check size={18} /> : <Clipboard size={18} />}
 							</button>
 						</div>
+					)}
+					{copyState === 'failed' && (
+						<p className="project-open-copy-feedback is-error" role="alert">
+							无法复制安全路径，请手动复制或重试。
+						</p>
+					)}
+					{copyState === 'copied' && (
+						<p className="project-open-copy-feedback is-success" role="status">
+							安全路径已复制。
+						</p>
 					)}
 				</div>
 
@@ -119,28 +159,28 @@ export function ProjectOpenErrorDialog({
 				)}
 
 				<div className="project-open-actions">
-					<button type="button" className="primary-button" disabled={busyAction !== undefined} onClick={onRetry}>
+					<button type="button" className="primary-button" data-testid="project-open-retry" disabled={busyAction !== undefined} onClick={onRetry}>
 						<RefreshCw size={18} />{busyAction === 'retry' ? '正在重试…' : '重试'}
 					</button>
 					{error.canOpenReadOnly && (
-						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onOpenReadOnly}>
+						<button type="button" className="secondary-button" data-testid="project-open-read-only" disabled={busyAction !== undefined} onClick={onOpenReadOnly}>
 							<ShieldCheck size={18} />{busyAction === 'read-only' ? '正在打开…' : '只读打开'}
 						</button>
 					)}
 					{error.canRepair && (
-						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onRepair}>
+						<button type="button" className="secondary-button" data-testid="project-open-repair" disabled={busyAction !== undefined} onClick={onRepair}>
 							<Wrench size={18} />{busyAction === 'repair' ? '正在修复…' : '修复项目'}
 						</button>
 					)}
 					{error.safePath && (
-						<button type="button" className="secondary-button" disabled={busyAction !== undefined} onClick={onOpenDirectory}>
+						<button type="button" className="secondary-button" data-testid="project-open-directory" disabled={busyAction !== undefined} onClick={onOpenDirectory}>
 							<FolderOpen size={18} />打开目录
 						</button>
 					)}
-					<button type="button" className="secondary-button" aria-expanded={diagnosticsOpen} onClick={() => setDiagnosticsOpen(value => !value)}>
+					<button type="button" className="secondary-button" data-testid="project-open-diagnostics" aria-expanded={diagnosticsOpen} onClick={() => setDiagnosticsOpen(value => !value)}>
 						<Stethoscope size={18} />{diagnosticsOpen ? '收起诊断' : '查看诊断'}
 					</button>
-					<button type="button" className="text-button" onClick={onClose}>关闭</button>
+					<button type="button" className="text-button" data-testid="project-open-close" onClick={onClose}>关闭</button>
 				</div>
 			</section>
 		</div>

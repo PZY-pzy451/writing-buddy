@@ -371,6 +371,21 @@ describe('control inventory rendered-element boundary', () => {
 			'close-protection-save-copy',
 			'close-protection-save-exit'
 		]);
+		const projectOpenRecoveryControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/projects/ui/ProjectOpenErrorDialog.tsx'
+		));
+
+		expect(projectOpenRecoveryControls).toHaveLength(7);
+		expect(projectOpenRecoveryControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(projectOpenRecoveryControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'project-open-close',
+			'project-open-copy-path',
+			'project-open-diagnostics',
+			'project-open-directory',
+			'project-open-read-only',
+			'project-open-repair',
+			'project-open-retry'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
