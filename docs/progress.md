@@ -4,42 +4,39 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Manuscript continuation control and write convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `657abcf`.
+Character Center control and selection convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `d6fde3d`.
 
-- Six failure-first assertions reproduced Generate/Insert/Undo identity gaps,
-  collapsed inventory, private snapshot details and QA meta-tests displacing
-  real product evidence.
-- The panel now has 7/7 mapped controls. Generate, per-candidate Insert and Undo
-  have stable identities alongside guidance, Diff, Reject and Abandon all.
-- One hundred same-frame Generate actions start one provider request. One
-  hundred Insert actions start one snapshot and one insertion while persistence
-  is pending.
-- Malformed output performs zero writes. Unknown snapshot failures expose no
-  private path; the same candidate succeeds on explicit retry without another
-  paid generation.
-- Exact mounted insertion content can be undone to the original manuscript.
-  Co-located component tests now outrank same-token QA inventory meta-tests.
-- Focused execution passed 25/25, the continuation impact set passed 172/172
+- Three failure-first assertions reproduced missing identities for generated
+  role filters, character rows and detail tabs, plus the unnamed filter group
+  and unstable active-character selection path.
+- The page now has 6/6 stable and strictly mapped controls. Its existing tests
+  perform a real search/filter/restore journey and all 9/9 cases are mapped.
+- Reselecting the active character preserves the dirty draft without a false
+  discard prompt. Selecting another character still requires one explicit
+  confirmation and refusal preserves the original draft.
+- Role filters expose a named accessibility group and pressed state.
+- Focused execution passed 28/28, the Character Center impact set passed 87/87
   and QA infrastructure passed 29/29.
 - Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- All ten existing continuation cases are mapped. Global mapped tests rise from
-  162 to 166 and unmapped tests fall from 895 to 891.
-- Strict gaps fall from 10,029 to 9,960. Stable-selector gaps fall from 103 to
-  101. From the earlier 11,088 / 136 reference, cumulative reductions are
-  1,128 mappings and 35 selectors.
+- Mapped tests rise from 166 to 169 and unmapped tests fall from 891 to 888.
+  Mapped controls rise from 223 to 228 and mapped states from 2,067 to 2,178.
+- Strict gaps fall from 9,960 to 9,841. Stable-selector gaps fall from 101 to
+  98. From the earlier 11,088 / 136 reference, cumulative reductions are 1,247
+  mappings and 38 selectors.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,505/12,465 (20.10%); stable selectors are 384/485 (79.18%); test mapping is
-  166/1,057 (15.70%). Release gates remain 1/4 complete (25%). Product stays
+  2,624/12,465 (21.05%); stable selectors are 387/485 (79.79%); test mapping is
+  169/1,057 (15.99%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
 
-Selection rewrite convergence is complete against source `ea0b2c7`: 7/7
-controls are mapped and fixed acceptance passed 978 frontend tests.
+Manuscript continuation control and write convergence is complete against
+source `657abcf`: 7/7 controls are mapped and fixed acceptance passed 978
+frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

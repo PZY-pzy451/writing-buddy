@@ -21843,138 +21843,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-1F121EE4",
+                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-290A92EE",
                   "level": "L4",
-                  "name": "button",
+                  "name": "全部",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-VISIBLE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-HIDDEN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-ENABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-DISABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-POINTER",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-KEYBOARD",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-FOCUS-IN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-FOCUS-OUT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-REPEAT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-DEDUPLICATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-LOADING",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-SUCCESS",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-FAILURE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-CANCELLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-OFFLINE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-PERMISSION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-PERSISTENCE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-RESTART",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-VISUAL",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-1F121EE4-UNDO",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-290A92EE-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22121,138 +22121,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-3F50072F",
+                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-58436106",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-VISIBLE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-HIDDEN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-ENABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-DISABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-POINTER",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-KEYBOARD",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-FOCUS-IN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-FOCUS-OUT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-REPEAT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-DEDUPLICATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-LOADING",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-SUCCESS",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-FAILURE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-CANCELLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-OFFLINE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-PERMISSION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-PERSISTENCE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-RESTART",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-VISUAL",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-3F50072F-UNDO",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-58436106-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22260,138 +22260,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-9E5928A5",
+                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C",
                   "level": "L4",
-                  "name": "全部",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-VISIBLE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-HIDDEN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-ENABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-DISABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-POINTER",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-KEYBOARD",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-FOCUS-IN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-FOCUS-OUT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-REPEAT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-DEDUPLICATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-LOADING",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-SUCCESS",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-FAILURE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-CANCELLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-OFFLINE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-PERMISSION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-PERSISTENCE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-RESTART",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-VISUAL",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-9E5928A5-UNDO",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-A0C3FB4C-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -22399,138 +22399,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-F2A041ED",
+                  "id": "CTRL-CHARACTERCENTERPAGE-BUTTON-D86C2275",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-VISIBLE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-HIDDEN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-ENABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-DISABLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-POINTER",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-KEYBOARD",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-FOCUS-IN",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-FOCUS-OUT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-REPEAT",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-DEDUPLICATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-LOADING",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-SUCCESS",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-FAILURE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-CANCELLED",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-OFFLINE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-PERMISSION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-PERSISTENCE",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-RESTART",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-VISUAL",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-F2A041ED-UNDO",
+                      "id": "STATE-CHARACTERCENTERPAGE-BUTTON-D86C2275-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71792,6 +71792,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-148006CA13",
+      "title": "repeats a save from the persisted character revision and keeps the second write successful",
+      "declarationTitle": "repeats a save from the persisted character revision and keeps the second write successful",
+      "declarationLine": 194,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-14A602E818",
       "title": "ignores 100 delayed event bursts after the same job reaches cancelled",
       "declarationTitle": "ignores 100 delayed event bursts after the same job reaches %s",
@@ -72433,7 +72451,25 @@
       "id": "TC-DISCOVERED-1DF4F32C17",
       "title": "saves confirmed character edits through the injected repository action",
       "declarationTitle": "saves confirmed character edits through the injected repository action",
-      "declarationLine": 121,
+      "declarationLine": 138,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-1E452DC5C3",
+      "title": "TC-CHARACTER-AI-002 restarts generation after redacted provider failure on explicit retry",
+      "declarationTitle": "TC-CHARACTER-AI-002 restarts generation after redacted provider failure on explicit retry",
+      "declarationLine": 270,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -73250,6 +73286,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2923BF0D8E",
+      "title": "TC-CHARACTER-AI-003 re-enables candidate write after redacted failure and preserves one explicit retry",
+      "declarationTitle": "TC-CHARACTER-AI-003 re-enables candidate write after redacted failure and preserves one explicit retry",
+      "declarationLine": 302,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-29564A19FF",
       "title": "queues an explicit save pressed while an earlier write is still running",
       "declarationTitle": "queues an explicit save pressed while an earlier write is still running",
@@ -73271,7 +73325,7 @@
       "id": "TC-DISCOVERED-297F9501E7",
       "title": "consumes a global create intent by opening the assistant without starting AI",
       "declarationTitle": "consumes a global create intent by opening the assistant without starting AI",
-      "declarationLine": 321,
+      "declarationLine": 338,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -74321,7 +74375,7 @@
       "id": "TC-DISCOVERED-3623018730",
       "title": "guards dirty edits before changing the selected character",
       "declarationTitle": "guards dirty edits before changing the selected character",
-      "declarationLine": 103,
+      "declarationLine": 114,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -78284,6 +78338,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-6C301A8E27",
+      "title": "blocks unload after a failed character edit while keeping the dirty draft redacted and retryable",
+      "declarationTitle": "blocks unload after a failed character edit while keeping the dirty draft redacted and retryable",
+      "declarationLine": 159,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-6C6E7D695C",
       "title": "restores one closed Story resource once and consumes its history entry",
       "declarationTitle": "restores one closed Story resource once and consumes its history entry",
@@ -80134,24 +80206,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-874A8F9ABE",
-      "title": "keeps a failed character edit local, dirty, redacted and retryable",
-      "declarationTitle": "keeps a failed character edit local, dirty, redacted and retryable",
-      "declarationLine": 142,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-875FD9CBC7",
       "title": "uses the specified panel and toast timing without layout motion",
       "declarationTitle": "uses the specified panel and toast timing without layout motion",
@@ -81958,24 +82012,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-A11D27D305",
-      "title": "uses the persisted character revision on the next save",
-      "declarationTitle": "uses the persisted character revision on the next save",
-      "declarationLine": 177,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-A1611B6A78",
       "title": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
       "declarationTitle": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
@@ -82763,7 +82799,7 @@
       "id": "TC-DISCOVERED-B0D62A0A3D",
       "title": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
       "declarationTitle": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
-      "declarationLine": 211,
+      "declarationLine": 228,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -84466,24 +84502,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-C706D2DFD9",
-      "title": "TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry",
-      "declarationTitle": "TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry",
-      "declarationLine": 285,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-C719A1D33C",
       "title": "TC-STORY-ASSOCIATION-005 ignores an old project load that finishes after the new project",
       "declarationTitle": "TC-STORY-ASSOCIATION-005 ignores an old project load that finishes after the new project",
@@ -84602,24 +84620,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-C8AAC9F797",
-      "title": "TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry",
-      "declarationTitle": "TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry",
-      "declarationLine": 253,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

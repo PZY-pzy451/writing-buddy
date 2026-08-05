@@ -1994,6 +1994,53 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CHARACTER-CENTER-CONTROL-SELECTION-CONVERGENCE-063',
+			summary: 'Character Center dynamic filters, rows and tabs lacked stable identities, its search control had no interaction evidence and reselecting the active character interrupted a dirty draft with a false discard confirmation.',
+			before: {
+				sourceControls: 6,
+				sourceMappedControls: 1,
+				sourceMissingStableSelectors: 3,
+				targetTestsMapped: 6,
+				targetTestsUnmapped: 3,
+				activeCharacterReselectionPromptsDiscard: true,
+				dirtyDraftPreservedOnActiveReselection: false,
+				roleFilterNamedGroup: false,
+				searchInteractionCovered: false,
+				globalControls: 485,
+				globalStates: 10670,
+				globalTests: 1057,
+				mappedTests: 166,
+				unmappedTests: 891,
+				globalMissingStableSelectors: 101,
+				totalUnmapped: 9960
+			},
+			after: {
+				sourceControls: 6,
+				sourceMappedControls: 6,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 9,
+				targetTestsUnmapped: 0,
+				activeCharacterReselectionPromptsDiscard: false,
+				dirtyDraftPreservedOnActiveReselection: true,
+				differentCharacterSelectionStillRequiresConfirmation: true,
+				roleFilterNamedGroup: true,
+				roleFilterPressedStateExposed: true,
+				searchInteractionCovered: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 3,
+				focusedTests: 28,
+				impactTests: 87,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

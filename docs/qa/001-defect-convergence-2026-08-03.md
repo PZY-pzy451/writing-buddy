@@ -1248,3 +1248,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 101 despite one newly distinguished control and 22 derived states.
 - Strict coverage is 20.10%, stable-selector coverage is 79.18%, test mapping
   is 15.70% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 063
+
+- Character Center now exposes 6/6 stable and strictly mapped control
+  declarations, including generated role filters, virtualized character rows,
+  generated detail tabs and the previously untested search input.
+- The existing rendered test performs search/filter/restore without adding
+  test debt. All nine existing Character Center tests are strictly mapped.
+- Reselecting the active character no longer opens a false discard prompt or
+  clears a dirty draft. Selecting a different character still requires one
+  confirmation and refusal preserves the edit.
+- Role filters now expose a named accessibility group and pressed state.
+- Three red assertions converged to 28/28 focused and 87/87 impacted tests.
+  Fixed-source execution passed 978 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 29/29.
+- Traceability gaps fell from 9,960 to 9,841, selector gaps from 101 to 98 and
+  unmapped tests from 891 to 888.
+- Strict coverage is 21.05%, stable-selector coverage is 79.79%, test mapping
+  is 15.99% and release hard gates remain 1/4 complete.

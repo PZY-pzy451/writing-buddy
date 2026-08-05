@@ -14,7 +14,7 @@
     "frontendDiscoveredTests": 978,
     "parameterizedTestInstances": 97,
     "unresolvedParameterizedDeclarations": 0,
-    "missingStableSelectors": 101
+    "missingStableSelectors": 98
   },
   "notes": [
     "Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.",
