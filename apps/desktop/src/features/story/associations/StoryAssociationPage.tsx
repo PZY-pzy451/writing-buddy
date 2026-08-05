@@ -29,7 +29,7 @@ import {
 	Sparkles,
 	UserRound
 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
 	DesktopStoryRepository,
 	getItemStateAt,
@@ -149,6 +149,7 @@ function DraggableSource({
 		<button
 			ref={setNodeRef}
 			type="button"
+			data-testid="association-draggable-source"
 			className={`association-source-card${isDragging ? ' is-dragging' : ''}`}
 			style={transform ? {
 				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
@@ -271,9 +272,10 @@ function AssociationConfirmSheet({
 			)}
 			footer={(
 				<>
-					<button type="button" onClick={onCancel}>取消</button>
+					<button type="button" disabled={saving} onClick={onCancel}>取消</button>
 					<button
 						type="button"
+						data-testid="association-confirm-save"
 						className="is-primary"
 						disabled={saving || (needsScene && !selectedScene) || quantity < 0}
 						onClick={() => onConfirm({
@@ -340,6 +342,7 @@ function AssociationConfirmSheet({
 							<label key={value}>
 								<input
 									type="radio"
+									data-testid="association-foreshadowing-action"
 									name="foreshadowing-action"
 									value={value}
 									checked={action === value}
@@ -356,6 +359,8 @@ function AssociationConfirmSheet({
 							<span>生效叙事位置</span>
 							<input
 								type="number"
+								data-testid="association-transfer-narrative-order"
+								aria-label="生效叙事位置"
 								min={0}
 								value={narrativeOrder}
 								onChange={event => setNarrativeOrder(Number(event.target.value))}
@@ -365,6 +370,8 @@ function AssociationConfirmSheet({
 							<span>转交后数量</span>
 							<input
 								type="number"
+								data-testid="association-transfer-quantity"
+								aria-label="转交后数量"
 								min={0}
 								value={quantity}
 								onChange={event => setQuantity(Number(event.target.value))}
@@ -413,51 +420,84 @@ export function StoryAssociationPage({
 	const [pending, setPending] = useState<PendingAssociation>();
 	const [undoReceipt, setUndoReceipt] = useState<AssociationMutationReceipt>();
 	const [saving, setSaving] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [loadFailed, setLoadFailed] = useState(false);
 	const [error, setError] = useState<string>();
 	const [announcement, setAnnouncement] = useState('');
 	const [expandedChapters, setExpandedChapters] = useState<ReadonlySet<string>>(
 		() => new Set(chapters.map(chapter => chapter.resourceId))
 	);
+	const mutationGuardRef = useRef(false);
+	const loadAttemptRef = useRef<{
+		readonly projectRoot?: string;
+		readonly loader?: StoryAssociationLoader;
+		readonly token: symbol;
+		readonly promise: Promise<void>;
+	} | undefined>(undefined);
 	const sensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
 		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
 	);
 
-	const reload = useCallback(async () => {
-		if (projectRoot && loadData) {
+	const reload = useCallback((): Promise<void> => {
+		const active = loadAttemptRef.current;
+		if (
+			active
+			&& active.projectRoot === projectRoot
+			&& active.loader === loadData
+		) return active.promise;
+		if ((!projectRoot || !loadData) && (!repository || !itemStateStore)) {
+			return Promise.resolve();
+		}
+
+		const token = Symbol(projectRoot ?? 'association-data');
+		setLoading(true);
+		const promise = Promise.resolve().then(async () => {
 			try {
-				setData(await loadData(projectRoot));
+				let nextData: StoryAssociationData;
+				if (projectRoot && loadData) {
+					nextData = await loadData(projectRoot);
+				} else {
+					const [characters, items, foreshadowing, scenes, itemStates] = await Promise.all([
+						repository!.list('character'),
+						repository!.list('item'),
+						repository!.list('foreshadowing'),
+						repository!.list('scene'),
+						itemStateStore!.load()
+					]);
+					nextData = {
+						characters: characters as unknown as readonly Character[],
+						items: items.map(value => parseStoryItem(value as never)),
+						foreshadowing: foreshadowing.map(value => parseForeshadowing(value as never)),
+						scenes: scenes.map(value => parseStoryScene(value)),
+						itemStates
+					};
+				}
+				if (loadAttemptRef.current?.token !== token) return;
+				setData(nextData);
 				setError(undefined);
-			} catch (reason) {
-				setError(reason instanceof Error ? reason.message : '关联资料读取失败');
+				setLoadFailed(false);
+			} catch {
+				if (loadAttemptRef.current?.token !== token) return;
+				setError('关联资料读取失败，请重试。');
+				setLoadFailed(true);
+			} finally {
+				if (loadAttemptRef.current?.token === token) {
+					loadAttemptRef.current = undefined;
+					setLoading(false);
+				}
 			}
-			return;
-		}
-		if (!repository || !itemStateStore) return;
-		try {
-			const [characters, items, foreshadowing, scenes, itemStates] = await Promise.all([
-				repository.list('character'),
-				repository.list('item'),
-				repository.list('foreshadowing'),
-				repository.list('scene'),
-				itemStateStore.load()
-			]);
-			setData({
-				characters: characters as unknown as readonly Character[],
-				items: items.map(value => parseStoryItem(value as never)),
-				foreshadowing: foreshadowing.map(value => parseForeshadowing(value as never)),
-				scenes: scenes.map(value => parseStoryScene(value)),
-				itemStates
-			});
-			setError(undefined);
-		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '关联资料读取失败');
-		}
+		});
+		loadAttemptRef.current = { projectRoot, loader: loadData, token, promise };
+		return promise;
 	}, [itemStateStore, loadData, projectRoot, repository]);
 
 	useEffect(() => {
 		const timer = window.setTimeout(() => void reload(), 0);
-		return () => window.clearTimeout(timer);
+		return () => {
+			window.clearTimeout(timer);
+			loadAttemptRef.current = undefined;
+		};
 	}, [reload]);
 
 	const sources: readonly {
@@ -548,9 +588,11 @@ export function StoryAssociationPage({
 		readonly narrativeOrder: number;
 		readonly quantity: number;
 	}) => {
-		if (!pending || !service) return;
+		if (!pending || !service || mutationGuardRef.current) return;
+		mutationGuardRef.current = true;
 		setSaving(true);
 		setError(undefined);
+		setLoadFailed(false);
 		try {
 			let receipt: AssociationMutationReceipt;
 			if (pending.intent.target.type === 'character') {
@@ -600,11 +642,13 @@ export function StoryAssociationPage({
 						? '资料已在其他位置发生变化，请刷新后重试。'
 						: '关联保存失败，原资料没有改变。');
 		} finally {
+			mutationGuardRef.current = false;
 			setSaving(false);
 		}
 	};
 	const undo = useCallback(() => {
-		if (!undoReceipt || !service || saving) return;
+		if (!undoReceipt || !service || saving || mutationGuardRef.current) return;
+		mutationGuardRef.current = true;
 		setSaving(true);
 		void service.undo(undoReceipt)
 			.then(async () => {
@@ -613,7 +657,10 @@ export function StoryAssociationPage({
 				await reload();
 			})
 			.catch(() => setError('无法撤销：资料已发生其他变化。'))
-			.finally(() => setSaving(false));
+			.finally(() => {
+				mutationGuardRef.current = false;
+				setSaving(false);
+			});
 	}, [reload, saving, service, undoReceipt]);
 	useStoryDragUndoShortcut(Boolean(undoReceipt) && !saving, undo);
 
@@ -630,7 +677,21 @@ export function StoryAssociationPage({
 					<span><strong>显式确认</strong><small>无 AI 请求 · 可撤销</small></span>
 				</div>
 			</header>
-			{error ? <div className="association-error" role="alert">{error}</div> : null}
+			{error ? (
+				<div className="association-error" role="alert">
+					<span>{error}</span>
+					{loadFailed ? (
+						<button
+							type="button"
+							data-testid="association-retry-load"
+							disabled={loading}
+							onClick={() => void reload()}
+						>
+							{loading ? '正在重试…' : '重试读取'}
+						</button>
+					) : null}
+				</div>
+			) : null}
 			<DndContext
 				sensors={sensors}
 				collisionDetection={associationCollisionDetection}
@@ -663,7 +724,7 @@ export function StoryAssociationPage({
 										<DraggableSource
 											key={source.id}
 											source={source}
-											disabled={Boolean(readOnly || saving)}
+										disabled={Boolean(readOnly || saving || loading)}
 										/>
 									))}
 									{group.items.length === 0 ? <p>暂无{group.title}资料</p> : null}
@@ -697,6 +758,7 @@ export function StoryAssociationPage({
 										<header>
 											<button
 												type="button"
+												data-testid="association-chapter-toggle"
 												onClick={() => setExpandedChapters(current => {
 													const next = new Set(current);
 													if (next.has(chapter.resourceId)) next.delete(chapter.resourceId);

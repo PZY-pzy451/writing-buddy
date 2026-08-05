@@ -89,6 +89,7 @@
 - [Chapter creation lifecycle QA](./087-chapter-creation-lifecycle-qa.md)
 - [Traceability selector net-convergence QA](./088-traceability-selector-net-convergence-qa.md)
 - [Relationship Inspector save convergence QA](./089-relationship-inspector-save-convergence-qa.md)
+- [Story Association persistence convergence QA](./090-story-association-persistence-convergence-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

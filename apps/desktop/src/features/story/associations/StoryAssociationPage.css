@@ -63,6 +63,10 @@
 }
 
 .association-error {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
 	min-height: 36px;
 	padding: 9px 12px;
 	margin-bottom: 8px;
@@ -71,6 +75,29 @@
 	background: color-mix(in srgb, var(--danger) 8%, var(--surface-raised));
 	border: 1px solid color-mix(in srgb, var(--danger) 18%, var(--border-subtle));
 	border-radius: var(--radius-control);
+}
+
+.association-error button {
+	min-height: 32px;
+	padding: 5px 10px;
+	color: inherit;
+	font: inherit;
+	font-weight: 700;
+	background: var(--surface-raised);
+	border: 1px solid color-mix(in srgb, var(--danger) 30%, var(--border-subtle));
+	border-radius: var(--radius-control);
+	cursor: pointer;
+}
+
+.association-error button:disabled {
+	color: var(--text-muted);
+	background: var(--surface-subtle);
+	cursor: wait;
+}
+
+.association-error button:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
 }
 
 .association-workspace {

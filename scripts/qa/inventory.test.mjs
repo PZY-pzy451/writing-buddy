@@ -281,4 +281,33 @@ describe('control inventory rendered-element boundary', () => {
 			'relationship-inspector-visibility'
 		]);
 	});
+
+	it('TC-QA-INVENTORY-017 maps every story association control to a stable selector', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const associationControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/associations/StoryAssociationPage.tsx'
+		));
+
+		expect(associationControls).toHaveLength(9);
+		expect(associationControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(associationControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'association-chapter-toggle',
+			'association-confirm-save',
+			'association-draggable-source',
+			'association-foreshadowing-action',
+			'association-retry-load',
+			'association-transfer-narrative-order',
+			'association-transfer-quantity',
+			'取消',
+			'选择物品转交生效场景'
+		]);
+	});
 });
