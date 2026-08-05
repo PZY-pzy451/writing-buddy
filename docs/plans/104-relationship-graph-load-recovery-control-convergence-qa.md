@@ -49,4 +49,22 @@ Date: 2026-08-05
 
 ## Result
 
-Pending execution.
+- Fixed product source: `b6608f2`.
+- Existing edges, AI candidate edges and character nodes now expose separate
+  stable identities. All seven source controls and all seven existing product
+  cases are strictly mapped without increasing the discovered test count.
+- One hundred same-frame retries start one replacement read. Loader failures
+  are localized and public-safe; resolving an older project's request after a
+  newer project has loaded cannot replace the latest graph or position.
+- Four red failures converged to 22/22 focused/inventory tests, 16/16
+  relationship-domain impact tests and 30/30 QA infrastructure tests. Fixed-
+  source sequential acceptance passed 189 frontend files / 979 tests,
+  production build and 77 native tests with two reasoned ignores.
+- Honest inventory expansion adds 1 control and 22 states. Source mapped states
+  rise from 61 to 93 and global mapped states rise by 32. Strict gaps fall by
+  13 from 9,812 to 9,799, selector gaps fall from 88 to 86 and unmapped tests
+  fall from 873 to 872.
+- Deterministic execution is 100%; strict coverage is 2,920/12,719 (22.96%),
+  stable selectors are 410/496 (82.66%) and test mapping is 186/1,058
+  (17.58%). Release gates remain 1/4 complete (25%), so release stays blocked
+  by strict traceability, real-provider smoke and packaged-EXE acceptance.

@@ -25658,138 +25658,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-RELATIONSHIPGRAPH-BUTTON-2E6760BD",
+                  "id": "CTRL-RELATIONSHIPGRAPH-BUTTON-857A5A70",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-VISIBLE",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-HIDDEN",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-ENABLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-DISABLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-POINTER",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-KEYBOARD",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-FOCUS-IN",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-FOCUS-OUT",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-REPEAT",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-DEDUPLICATION",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-LOADING",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-SUCCESS",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-FAILURE",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-CANCELLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-OFFLINE",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-PERMISSION",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-PERSISTENCE",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-RESTART",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-VISUAL",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-ACCESSIBLE-NAME",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-2E6760BD-UNDO",
+                      "id": "STATE-RELATIONSHIPGRAPH-BUTTON-857A5A70-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -25797,138 +25797,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-RELATIONSHIPGRAPH-G-108106D5",
+                  "id": "CTRL-RELATIONSHIPGRAPH-G-7AB731A4",
                   "level": "L4",
                   "name": "g",
                   "states": [
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-VISIBLE",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-HIDDEN",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-ENABLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-DISABLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-POINTER",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-KEYBOARD",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-FOCUS-IN",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-FOCUS-OUT",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-REPEAT",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-DEDUPLICATION",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-LOADING",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-SUCCESS",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-FAILURE",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-CANCELLED",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-OFFLINE",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-PERMISSION",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-PERSISTENCE",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-RESTART",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-VISUAL",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-ACCESSIBLE-NAME",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPH-G-108106D5-UNDO",
+                      "id": "STATE-RELATIONSHIPGRAPH-G-7AB731A4-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-RELATIONSHIPGRAPH-G-9D47129A",
+                  "level": "L4",
+                  "name": "g",
+                  "states": [
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-RELATIONSHIPGRAPH-G-9D47129A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -26353,138 +26492,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2",
+                  "id": "CTRL-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1",
                   "level": "L4",
                   "name": "叙事位置",
                   "states": [
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-VISIBLE",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-HIDDEN",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-ENABLED",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-DISABLED",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-POINTER",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-KEYBOARD",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-FOCUS-IN",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-FOCUS-OUT",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-REPEAT",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-DEDUPLICATION",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-LOADING",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-SUCCESS",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-FAILURE",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-CANCELLED",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-OFFLINE",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-PERMISSION",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-PERSISTENCE",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-RESTART",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-VISUAL",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-ACCESSIBLE-NAME",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-1C32B6E2-UNDO",
+                      "id": "STATE-RELATIONSHIPGRAPHPAGE-INPUT-01700EA1-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -72259,7 +72398,7 @@
       "id": "TC-DISCOVERED-06D231285E",
       "title": "shows a localized relationship save failure and lets the author retry successfully",
       "declarationTitle": "shows a localized relationship save failure and lets the author retry successfully",
-      "declarationLine": 303,
+      "declarationLine": 286,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -72369,7 +72508,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 391,
+      "declarationLine": 407,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -72591,7 +72730,7 @@
       "id": "TC-DISCOVERED-0A9C26E4A9",
       "title": "TC-RELATIONSHIP-AI-001 deduplicates repeated generation clicks and renders separate virtual graph edges",
       "declarationTitle": "TC-RELATIONSHIP-AI-001 deduplicates repeated generation clicks and renders separate virtual graph edges",
-      "declarationLine": 329,
+      "declarationLine": 314,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -74586,6 +74725,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-27288F551F",
+      "title": "TC-RELATIONSHIP-GRAPH-005 filters by narrative position, deduplicates retry and isolates late project loads",
+      "declarationTitle": "TC-RELATIONSHIP-GRAPH-005 filters by narrative position, deduplicates retry and isolates late project loads",
+      "declarationLine": 81,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/relationships/RelationshipGraphLoadRecovery.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-03",
+      "pageId": "PAGE-STORY-RELATIONSHIPS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-27A2B750EC",
       "title": "keeps an exact confirmed candidate authoritative after a later unrelated export",
       "declarationTitle": "keeps an exact confirmed candidate authoritative after a later unrelated export",
@@ -75441,7 +75598,7 @@
       "id": "TC-DISCOVERED-3197DC7CB0",
       "title": "TC-RELATIONSHIP-AI-004 exposes every enabled control to keyboard focus and opens evidence by pointer",
       "declarationTitle": "TC-RELATIONSHIP-AI-004 exposes every enabled control to keyboard focus and opens evidence by pointer",
-      "declarationLine": 219,
+      "declarationLine": 202,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -77448,24 +77605,6 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-4A0882FB42",
-      "title": "filters the matrix by narrative position without merging reverse edges",
-      "declarationTitle": "filters the matrix by narrative position without merging reverse edges",
-      "declarationLine": 104,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-03",
-      "pageId": "PAGE-STORY-RELATIONSHIPS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85341,7 +85480,7 @@
       "id": "TC-DISCOVERED-BF92B4B351",
       "title": "TC-RELATIONSHIP-AI-003 redacts permission-sensitive candidate write details and retries without regenerating",
       "declarationTitle": "TC-RELATIONSHIP-AI-003 redacts permission-sensitive candidate write details and retries without regenerating",
-      "declarationLine": 180,
+      "declarationLine": 163,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",
@@ -87843,7 +87982,7 @@
       "id": "TC-DISCOVERED-E2ACAC7070",
       "title": "TC-RELATIONSHIP-AI-002 shows loading, isolates invalid generation and succeeds on explicit restart",
       "declarationTitle": "TC-RELATIONSHIP-AI-002 shows loading, isolates invalid generation and succeeds on explicit restart",
-      "declarationLine": 121,
+      "declarationLine": 104,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/relationships/RelationshipGraphPage.test.tsx",

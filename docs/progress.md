@@ -4,34 +4,36 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Project-open recovery control and clipboard convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `9e42b79`.
+Relationship graph load recovery and control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `b6608f2`.
 
-- Seven author-visible recovery actions previously collapsed into four
-  declarations; one declaration lacked a stable selector and one of two
-  existing rendered cases was unmapped.
-- All seven actions now have distinct stable identities and strict mappings.
-  Both existing cases are mapped without adding discovered test debt.
-- One hundred same-frame copy actions start one clipboard write. Clipboard
-  denial becomes localized, public-safe feedback; explicit retry remains
-  available and successful copying announces completion.
-- Three red failures converged to 17/17 focused, 49/49 impacted and 30/30 QA
-  infrastructure tests. Node 24 passed lint, typecheck, 188 files / 979 tests
-  and production build; Rust passed 77 with two reasoned ignores.
-- Inventory honestly expands by 3 controls and 66 states. The seven source
-  controls contribute 77 mapped states and global mapped states rise by 73.
-  Strict gaps fall by 10 from 9,822 to 9,812; selector gaps fall from 89 to 88
-  and unmapped tests fall from 874 to 873.
+- Character nodes and SVG relationship edges lacked stable identities;
+  existing and AI-candidate edges were collapsed, and one of seven existing
+  product cases was unmapped.
+- All seven source controls and all seven existing cases are now strictly
+  mapped. Existing edges, AI candidate edges and character nodes have separate
+  stable identities without changing accessible names or keyboard behavior.
+- One hundred same-frame retries start one replacement read. Loader failures
+  are localized without exposing private paths; a late older-project result
+  cannot overwrite the latest project graph or narrative position.
+- Four red failures converged to 22/22 focused/inventory, 16/16 relationship-
+  domain impact and 30/30 QA infrastructure tests. Node 24 passed lint,
+  typecheck, 189 files / 979 tests and production build; Rust passed 77 with
+  two reasoned ignores.
+- Inventory honestly expands by 1 control and 22 states. Source mapped states
+  rise from 61 to 93 and global mapped states rise by 32. Strict gaps fall by
+  13 from 9,812 to 9,799; selector gaps fall from 88 to 86 and unmapped tests
+  fall from 873 to 872.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,884/12,696 (22.72%); stable selectors are 407/495 (82.22%); test mapping is
-  185/1,058 (17.49%). Release gates remain 1/4 complete (25%). Product stays
+  2,920/12,719 (22.96%); stable selectors are 410/496 (82.66%); test mapping is
+  186/1,058 (17.58%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
 
-Close protection control and single-flight convergence is complete against
-source `0627c1f`: 6/6 controls and 3/3 tests are mapped, and fixed acceptance
+Project-open recovery control and clipboard convergence is complete against
+source `9e42b79`: 7/7 controls and 2/2 tests are mapped, and fixed acceptance
 passed 979 frontend tests.
 
 ## Earlier milestone

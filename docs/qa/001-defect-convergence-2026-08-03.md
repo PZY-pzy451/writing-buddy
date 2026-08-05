@@ -1389,3 +1389,23 @@ did not fully specify `targetTypes`, position objects or history arrays.
   selector gaps from 89 to 88 and unmapped tests from 874 to 873.
 - Strict coverage is 22.72%, stable-selector coverage is 82.22%, test mapping
   is 17.49% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 070
+
+- Relationship graph character nodes, existing edges and AI candidate edges
+  now expose distinct stable identities. The narrative-position input also has
+  an explicit identity; accessible names and keyboard behavior remain intact.
+- One hundred same-frame retries start one replacement read. Loader failures
+  are localized without exposing private paths, and a late result from an
+  older project cannot replace the latest graph or narrative position.
+- Four red failures converged to 22/22 focused/inventory, 16/16 relationship-
+  domain impact and 30/30 QA infrastructure tests. Fixed-source sequential
+  execution passed 189 frontend files / 979 tests, production build and 77
+  native tests with two reasoned ignores.
+- The source inventory expands honestly from 6 collapsed declarations to 7
+  controls and adds 22 states. All 7 controls, 93 source states and all 7
+  existing product cases are strictly mapped without adding test debt.
+- Global mapped states rise by 32. Strict gaps fall from 9,812 to 9,799,
+  selector gaps from 88 to 86 and unmapped tests from 873 to 872.
+- Strict coverage is 22.96%, stable-selector coverage is 82.66%, test mapping
+  is 17.58% and release hard gates remain 1/4 complete.
