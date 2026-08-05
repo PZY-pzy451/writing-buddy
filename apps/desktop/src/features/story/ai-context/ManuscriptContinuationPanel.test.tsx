@@ -111,7 +111,7 @@ function baseProps() {
 }
 
 describe('ManuscriptContinuationPanel', () => {
-	it('shows a calm next step instead of a red failure for an unplanned empty chapter', async () => {
+	it('shows one calm visible next step for an unplanned empty chapter', async () => {
 		const props = {
 			...baseProps(),
 			content: '# 第一章',
@@ -130,7 +130,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(within(panel).queryByText('正在构建续写上下文…')).not.toBeInTheDocument();
 	});
 
-	it('turns a scaffold-only chapter into an author-confirmed opening draft', async () => {
+	it('keeps opening generation keyboard focusable and creates an author-confirmed draft', async () => {
 		const props = {
 			...baseProps(),
 			content: scaffold,
@@ -147,6 +147,8 @@ describe('ManuscriptContinuationPanel', () => {
 			name: '确认资料并生成开篇'
 		});
 		await waitFor(() => expect(generate).toBeEnabled());
+		generate.focus();
+		expect(generate).toHaveFocus();
 		fireEvent.click(generate);
 
 		await waitFor(() => expect(props.onPendingDraft).toHaveBeenCalledTimes(1));
@@ -162,7 +164,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('hands a standard continuation to the inline draft surface without applying text', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-003 hides the candidate card after one atomic inline draft handoff without applying text', async () => {
 		const props = {
 			...baseProps(),
 			onPendingDraft: vi.fn(),
@@ -189,7 +191,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('repairs an equivalent wrapped response before handing off the inline draft', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-004 keeps a repaired candidate enabled and available for inline draft handoff', async () => {
 		const props = {
 			...baseProps(),
 			onPendingDraft: vi.fn(),
@@ -229,7 +231,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('keeps malformed generated data out of the manuscript with localized guidance', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-005 rejects invalid malformed data with localized failure and zero persistence', async () => {
 		const props = {
 			...baseProps(),
 			onPendingDraft: vi.fn(),
@@ -255,7 +257,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('keeps author guidance, blocks duplicate requests and shows grounded review before insert', async () => {
+	it('keeps author guidance, deduplicates one hundred generate actions and shows grounded review before insert', async () => {
 		const order: string[] = [];
 		let release: ((value: { output: string }) => void) | undefined;
 		const runContinuation = vi.fn(() => new Promise<{ output: string }>(resolve => {
@@ -282,9 +284,13 @@ describe('ManuscriptContinuationPanel', () => {
 		});
 		await waitFor(() => expect(screen.getByText(/作者明确要求/u)).toBeInTheDocument());
 
-		const generate = screen.getByRole('button', { name: '确认资料并生成候选' });
-		fireEvent.click(generate);
-		fireEvent.click(generate);
+		const generate = screen.getByTestId('manuscript-continuation-generate');
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 		expect(runContinuation).toHaveBeenCalledTimes(1);
 		expect(screen.getByRole('button', { name: 'AI 生成中 · 0 字符' })).toBeDisabled();
 		release?.({ output: continuationOutput() });
@@ -303,7 +309,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(order).toEqual(['snapshot', 'insert']);
 	});
 
-	it('creates only one snapshot and insertion when accept is clicked 100 times in one event batch', async () => {
+	it('keeps one snapshot and insertion while persistence is pending across one hundred accept actions', async () => {
 		let releaseSnapshot: (() => void) | undefined;
 		const props = {
 			...baseProps(),
@@ -318,7 +324,7 @@ describe('ManuscriptContinuationPanel', () => {
 			name: /确认.*生成/u
 		}));
 		const candidate = await screen.findByRole('article', { name: /^候选：/u });
-		const insertButton = within(candidate).getByRole('button', { name: /插入/u });
+		const insertButton = within(candidate).getByTestId('manuscript-continuation-insert');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				insertButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -333,9 +339,13 @@ describe('ManuscriptContinuationPanel', () => {
 		await waitFor(() => expect(props.onApply).toHaveBeenCalledOnce());
 	});
 
-	it('keeps an accepted insertion successful after the host updates the manuscript', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-008 keeps accepted success visible, supports undo and restores source content after host update', async () => {
+		let appliedInsertion: string | undefined;
 		const props = {
 			...baseProps(),
+			onApply: vi.fn((_start: number, _end: number, text: string) => {
+				appliedInsertion = text;
+			}),
 			runContinuation: () => Promise.resolve({ output: continuationOutput() })
 		};
 		const view = render(<ManuscriptContinuationPanel {...props} />);
@@ -347,18 +357,26 @@ describe('ManuscriptContinuationPanel', () => {
 		fireEvent.click(within(candidate).getByRole('button', { name: '插入' }));
 
 		expect(await screen.findByRole('status')).toHaveTextContent('安全快照已创建');
+		expect(appliedInsertion).toEqual(expect.any(String));
 		view.rerender(<ManuscriptContinuationPanel
 			{...props}
-			content={`${original}\n\n候选已经写入正文。`}
+			content={`${original}${appliedInsertion}`}
 			sourceRevision={5}
 		/>);
 
 		expect(screen.getByRole('status')).toHaveTextContent('安全快照已创建');
 		expect(screen.queryByText('正文或光标锚点已变化，请重新生成候选。'))
 			.not.toBeInTheDocument();
+		const undo = screen.getByTestId('manuscript-continuation-undo');
+		expect(undo).toBeEnabled();
+		await act(async () => {
+			fireEvent.click(undo);
+			await Promise.resolve();
+		});
+		expect(props.onReplaceDocument).toHaveBeenCalledWith(original);
 	});
 
-	it('shows exactly three directions and rejects one without mutating the manuscript', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-009 renders exactly three visible directions and marks one refused by pointer without mutating the manuscript', async () => {
 		const props = {
 			...baseProps(),
 			mode: 'three-directions' as const,
@@ -383,14 +401,17 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(props.onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('blocks insertion when the safety snapshot fails and allows a safe retry', async () => {
+	it('TC-MANUSCRIPT-CONTINUATION-010 redacts private persistence details, preserves the candidate and succeeds on explicit restart without regeneration', async () => {
 		const onBeforeApply = vi.fn()
-			.mockRejectedValueOnce(new Error('无法创建安全快照。'))
+			.mockRejectedValueOnce(new Error(
+				'EACCES: D:\\private\\novel\\.writing-buddy\\snapshots\\chapter-one.json'
+			))
 			.mockResolvedValueOnce(undefined);
+		const runContinuation = vi.fn(() => Promise.resolve({ output: continuationOutput() }));
 		const props = {
 			...baseProps(),
 			onBeforeApply,
-			runContinuation: () => Promise.resolve({ output: continuationOutput() })
+			runContinuation
 		};
 		render(<ManuscriptContinuationPanel {...props} />);
 
@@ -400,10 +421,13 @@ describe('ManuscriptContinuationPanel', () => {
 		const candidate = await screen.findByRole('article', { name: '候选：追随钟声' });
 		fireEvent.click(within(candidate).getByRole('button', { name: '插入' }));
 
-		expect(await screen.findByRole('alert')).toHaveTextContent('无法创建安全快照');
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('无法写入续写候选，正文没有改变，请重试。');
+		expect(alert).not.toHaveTextContent('D:\\private\\novel');
 		expect(props.onApply).not.toHaveBeenCalled();
 		fireEvent.click(within(candidate).getByRole('button', { name: /插入/u }));
 		await waitFor(() => expect(props.onApply).toHaveBeenCalledOnce());
 		expect(onBeforeApply).toHaveBeenCalledTimes(2);
+		expect(runContinuation).toHaveBeenCalledOnce();
 	});
 });

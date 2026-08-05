@@ -61,6 +61,23 @@ export function testSourceReferencesControl(control, source) {
 	return controlReferenceTokens(control).some(token => source.includes(token));
 }
 
+function sourceDirectory(source) {
+	const separator = source.lastIndexOf('/');
+	return separator >= 0 ? source.slice(0, separator) : '';
+}
+
+function sourceStem(source) {
+	const file = source.slice(source.lastIndexOf('/') + 1);
+	return file.replace(/\.test(?=\.)/u, '').replace(/\.[^.]+$/u, '');
+}
+
+export function rankControlTestCandidate(controlSource, testSource) {
+	if (sourceStem(controlSource) === sourceStem(testSource)) return 0;
+	if (testSource.startsWith('scripts/qa/')) return 3;
+	if (sourceDirectory(controlSource) === sourceDirectory(testSource)) return 1;
+	return 2;
+}
+
 async function readTestContents(tests) {
 	const bySource = new Map();
 	for (const test of tests) {
@@ -162,10 +179,13 @@ async function build() {
 	for (const state of states.states) {
 		const control = controls.controls.find(item => item.id === state.controlIds[0]);
 		const candidates = testsByPageFeature.get(`${state.pageId}|${state.featureId}`) ?? [];
-		const mapped = candidates.find(test => (
+		const mapped = candidates.filter(test => (
 			testSourceReferencesControl(control, contents.get(test.source) ?? '')
 			&& titleMatchesDimension(test.title, state.dimension)
-		));
+		)).sort((left, right) => (
+			rankControlTestCandidate(control?.source ?? '', left.source)
+			- rankControlTestCandidate(control?.source ?? '', right.source)
+		))[0];
 		const priority = priorityForFeature(features, state.featureId);
 		rows.push({
 			domain_id: features.features.find(feature => feature.id === state.featureId)?.domainId ?? '',
@@ -174,7 +194,7 @@ async function build() {
 			automation_status: mapped ? 'AUTOMATED' : 'MISSING', execution_status: 'STALE',
 			cache_status: 'STALE', last_run_commit: '', last_passed_commit: '', evidence_path: '',
 			severity_if_failed: severityForPriority(priority),
-			notes: mapped ? 'Conservative exact stable-selector/accessibility token and state-intent source mapping.' : 'No valid control-state test mapping.'
+			notes: mapped ? 'Conservative exact stable-selector/accessibility token and state-intent source mapping with co-located product tests preferred over QA meta-tests.' : 'No valid control-state test mapping.'
 		});
 	}
 	const mappedShortcutIds = new Set();

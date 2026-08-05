@@ -30,6 +30,7 @@ import {
 } from '@writing-buddy/story-kernel';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
+import { normalizeAiError } from '../../ai/errors/AiErrorPresentation';
 import { CandidateDiffView } from './CandidateDiffView';
 import { ContextPackPreview } from './ContextPackPreview';
 import { AiJobCancelButton } from './AiJobCancelButton';
@@ -207,7 +208,21 @@ function continuationGenerationError(reason: unknown): string {
 	if (reason.message === 'invalidContinuationCandidateCount') {
 		return 'AI 返回的候选数量不符合本次模式，未写入正文。请重新生成。';
 	}
-	return reason.message;
+	return normalizeAiError(reason).message;
+}
+
+function continuationAcceptError(reason: unknown): string {
+	const code = reason instanceof Error ? reason.message : '';
+	if (
+		code === 'staleContinuationCandidate'
+		|| code === '安全快照创建后正文已经变化，请重新生成候选。'
+	) {
+		return '正文已变化，此续写候选不可插入。请重新生成。';
+	}
+	if (code === 'continuationCandidateNotFound') {
+		return '找不到当前续写候选，请重新生成。';
+	}
+	return '无法写入续写候选，正文没有改变，请重试。';
 }
 
 export function ManuscriptContinuationPanel(
@@ -403,7 +418,7 @@ export function ManuscriptContinuationPanel(
 			setBatch({ ...batch, status: 'accepted' });
 			setSuccess('安全快照已创建，候选已插入；如不满意可立即撤销。');
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '候选已经过期。');
+			setError(continuationAcceptError(reason));
 		} finally {
 			acceptingRef.current = false;
 			setAcceptingCandidateId(undefined);
@@ -499,6 +514,7 @@ export function ManuscriptContinuationPanel(
 				<button
 					className="primary-button"
 					type="button"
+					data-testid="manuscript-continuation-generate"
 					disabled={!packReady || generating || props.readOnly || batch?.status === 'accepted'}
 					onClick={() => void generate()}
 				>
@@ -573,6 +589,7 @@ export function ManuscriptContinuationPanel(
 								<div className="continuation-candidate-actions">
 									<button
 										type="button"
+										data-testid="manuscript-continuation-insert"
 										disabled={rejected || stale || batch.status !== 'candidate' || props.readOnly || Boolean(acceptingCandidateId)}
 										onClick={() => void accept(candidate.id)}
 									>
@@ -617,6 +634,7 @@ export function ManuscriptContinuationPanel(
 				<button
 					className="ai-action-undo"
 					type="button"
+					data-testid="manuscript-continuation-undo"
 					disabled={!areEditContentsEquivalent(props.content, lastAppliedContent)}
 					title={areEditContentsEquivalent(props.content, lastAppliedContent)
 						? '恢复插入前的正文'

@@ -311,7 +311,7 @@ describe('control inventory rendered-element boundary', () => {
 		]);
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors', () => {
+	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -404,6 +404,22 @@ describe('control inventory rendered-element boundary', () => {
 			'selection-rewrite-undo',
 			'拒绝',
 			'接受编辑内容'
+		]);
+		const continuationControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx'
+		));
+
+		expect(continuationControls).toHaveLength(7);
+		expect(continuationControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(continuationControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'manuscript-continuation-generate',
+			'manuscript-continuation-insert',
+			'manuscript-continuation-undo',
+			'全部放弃',
+			'告诉 AI 接下来发生什么',
+			'拒绝',
+			'查看差异'
 		]);
 	});
 });

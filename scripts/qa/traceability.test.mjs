@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	controlReferenceTokens,
+	rankControlTestCandidate,
 	summarizeTraceability,
 	testSourceReferencesControl,
 	validateTraceabilityRows
@@ -59,5 +60,12 @@ describe('regression traceability gate', () => {
 			control,
 			"screen.getByTestId('event-inspector-story-end')"
 		)).toBe(false);
+		expect(rankControlTestCandidate(
+			'apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx',
+			'apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx'
+		)).toBeLessThan(rankControlTestCandidate(
+			'apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx',
+			'scripts/qa/inventory.test.mjs'
+		));
 	});
 });
