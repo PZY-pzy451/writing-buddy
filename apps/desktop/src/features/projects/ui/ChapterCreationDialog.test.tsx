@@ -55,7 +55,7 @@ afterEach(() => {
 });
 
 describe('ChapterCreationDialog', () => {
-	it('dispatches one creation for one hundred same-frame submissions and permits one retry', async () => {
+	it('creates once across one hundred repeated same-frame submissions and permits one retry', async () => {
 		const createChapter = vi.fn().mockResolvedValue(false);
 		useAppStore.setState({
 			snapshot: writableSnapshot(),
@@ -64,8 +64,11 @@ describe('ChapterCreationDialog', () => {
 			createChapter
 		});
 		render(<ChapterCreationDialog />);
-		const submit = screen.getAllByRole('button').at(-1);
-		if (!submit) throw new Error('missing chapter submit control');
+		expect(screen.getByTestId('chapter-creation-dialog')).toHaveAttribute('role', 'dialog');
+		expect(screen.getByTestId('chapter-creation-title')).toHaveFocus();
+		expect(screen.getByTestId('chapter-creation-volume')).toHaveValue('volume-001');
+		expect(screen.getByTestId('chapter-creation-close')).toBeEnabled();
+		const submit = screen.getByTestId('chapter-creation-submit');
 
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
@@ -97,8 +100,7 @@ describe('ChapterCreationDialog', () => {
 		);
 		const origin = screen.getByRole('button', { name: 'Opening focus' });
 		origin.focus();
-		const cancel = screen.getAllByRole('button').at(-2);
-		if (!cancel) throw new Error('missing chapter cancel control');
+		const cancel = screen.getByTestId('chapter-creation-cancel');
 
 		act(() => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {

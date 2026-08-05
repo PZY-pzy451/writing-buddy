@@ -101,6 +101,7 @@ export function InlineLanguageCheckControl({
 			<label className="inline-language-check-toggle">
 				<input
 					type="checkbox"
+					data-testid="inline-language-check-toggle"
 					checked={enabled}
 					onChange={event => onToggle(event.target.checked)}
 				/>
@@ -164,6 +165,7 @@ export function InlineLanguageCheckControl({
 		<div className="inline-language-check-control" ref={controlRef}>
 			<button
 				type="button"
+				data-testid="inline-language-check-trigger"
 				data-enabled={enabled}
 				data-state={status}
 				data-open={open}

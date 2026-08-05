@@ -36,7 +36,9 @@ describe('InlineLanguageCheckControl', () => {
 				onApply={onApply}
 			/>
 		);
-		fireEvent.click(screen.getByText('AI 语法'));
+		const trigger = screen.getByTestId('inline-language-check-trigger');
+		fireEvent.click(trigger);
+		expect(screen.getByTestId('inline-language-check-toggle')).toBeChecked();
 		expect(screen.getByText(/只发送变化段落/u)).toBeInTheDocument();
 		expect(screen.getByText('英文拼写错误')).toBeInTheDocument();
 		fireEvent.click(screen.getByRole('button', { name: '替换为“something”' }));
@@ -59,7 +61,8 @@ describe('InlineLanguageCheckControl', () => {
 				onApply={vi.fn()}
 			/>
 		);
-		fireEvent.click(screen.getByText('AI 语法'));
+		fireEvent.click(screen.getByTestId('inline-language-check-trigger'));
+		expect(screen.getByTestId('inline-language-check-toggle')).toBeChecked();
 		expect(screen.getByText('需要先配置 DeepSeek')).toBeInTheDocument();
 		expect(screen.getByRole('button', { name: /替换为/u })).toBeDisabled();
 		fireEvent.click(screen.getByRole('button', { name: 'AI 设置' }));
