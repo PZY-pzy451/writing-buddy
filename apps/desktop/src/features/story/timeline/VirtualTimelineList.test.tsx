@@ -39,7 +39,10 @@ describe('VirtualTimelineList', () => {
 		);
 
 		expect(screen.getByRole('table')).toHaveAttribute('aria-rowcount', '10001');
-		expect(container.querySelectorAll('[data-timeline-list-event]').length).toBeLessThan(24);
+		const visibleEvents = screen.getAllByTestId('timeline-list-event');
+		expect(visibleEvents.length).toBeLessThan(24);
+		expect(visibleEvents[0]).toHaveAttribute('data-timeline-list-event', 'timeline-event:0000');
+		expect(container.querySelectorAll('[data-timeline-list-event]').length).toBe(visibleEvents.length);
 		expect(screen.queryByText('事件 9999')).not.toBeInTheDocument();
 	});
 
@@ -47,6 +50,7 @@ describe('VirtualTimelineList', () => {
 		const onSelect = vi.fn();
 		render(<VirtualTimelineList events={events(100)} labels={{}} onSelect={onSelect} />);
 		const first = screen.getByRole('button', { name: '事件 0' });
+		expect(first).toHaveAttribute('data-testid', 'timeline-list-event');
 
 		fireEvent.keyDown(first, { key: 'ArrowDown' });
 

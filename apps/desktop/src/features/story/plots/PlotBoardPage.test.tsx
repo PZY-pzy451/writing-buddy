@@ -107,8 +107,39 @@ describe('PlotBoardPage', () => {
 		await screen.findByRole('button', { name: /遗失笔记/ });
 		await user.click(screen.getByRole('tab', { name: '场景网格' }));
 		expect(screen.getByRole('table', { name: '场景与剧情线关联表' })).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '站台会面推进遗失笔记：关联正常' })).toBeEnabled();
-		await user.click(screen.getByRole('button', { name: '查看场景节拍：站台会面' }));
+		const search = screen.getByTestId('scene-plot-grid-search');
+		expect(search).toHaveAccessibleName('搜索场景网格');
+		expect(search).toBeEnabled();
+		await user.click(search);
+		await user.keyboard('不存在');
+		expect(screen.getByText('当前条件下没有场景')).toBeInTheDocument();
+		const clearFilter = screen.getByRole('button', { name: '清除筛选' });
+		await user.click(clearFilter);
+		expect(search).toHaveFocus();
+
+		const filters = screen.getAllByTestId('scene-plot-grid-filter');
+		expect(filters).toHaveLength(4);
+		expect(filters.map(control => control.dataset.filter)).toEqual([
+			'all', 'unlinked', 'incomplete', 'needs-sync'
+		]);
+		await user.click(filters[0]);
+
+		const link = screen.getAllByTestId('scene-plot-grid-link').find(control => (
+			control.dataset.threadId === 'plot-thread:notebook'
+		));
+		expect(link).toBeDefined();
+		if (!link) throw new Error('Expected the reciprocal notebook plot link.');
+		expect(link).toHaveAttribute('data-scene-id', 'scene:meeting');
+		expect(link).toHaveAttribute('data-thread-id', 'plot-thread:notebook');
+		expect(link).toBeEnabled();
+		await user.click(link);
+		expect(screen.getByRole('heading', { name: '站台会面' })).toBeInTheDocument();
+		await user.click(screen.getByRole('button', { name: '关闭场景详情' }));
+
+		const scene = screen.getByTestId('scene-plot-grid-scene');
+		expect(scene).toHaveAttribute('data-scene-id', 'scene:meeting');
+		scene.focus();
+		await user.keyboard('{Enter}');
 		expect(screen.getByRole('heading', { name: '站台会面' })).toBeInTheDocument();
 		expect(screen.getByText('蓝色信封出现')).toBeInTheDocument();
 		expect(screen.getByText(/秘密调查（待同步）/)).toBeInTheDocument();

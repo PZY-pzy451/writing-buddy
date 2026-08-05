@@ -1,5 +1,7 @@
 # Plan index
 
+- [Scene Plot Grid and virtual timeline selector/trace convergence QA](./110-scene-plot-grid-selector-trace-convergence-qa.md)
+
 - [Daily writing goal form selector and trace convergence QA](./109-daily-writing-goal-form-selector-trace-convergence-qa.md)
 
 - [Item transfer single-flight, selector and trace convergence QA](./108-item-transfer-single-flight-selector-trace-convergence-qa.md)

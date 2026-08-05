@@ -5,7 +5,7 @@ import {
 	Search,
 	Unlink
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type {
 	PlotThread,
 	StoryScene
@@ -57,6 +57,7 @@ export function ScenePlotGrid({
 }): React.JSX.Element {
 	const [filter, setFilter] = useState<ScenePlotGridFilter>('all');
 	const [query, setQuery] = useState('');
+	const searchInputRef = useRef<HTMLInputElement>(null);
 	const model = useMemo(
 		() => buildScenePlotGrid(scenes, threads, chapters),
 		[chapters, scenes, threads]
@@ -92,6 +93,8 @@ export function ScenePlotGrid({
 				<Search size={16} />
 				<span className="sr-only">搜索场景网格</span>
 				<input
+					ref={searchInputRef}
+					data-testid="scene-plot-grid-search"
 					type="search"
 					value={query}
 					placeholder="搜索章节、场景或剧情线"
@@ -103,6 +106,8 @@ export function ScenePlotGrid({
 					<button
 						key={item.id}
 						type="button"
+						data-testid="scene-plot-grid-filter"
+						data-filter={item.id}
 						aria-pressed={filter === item.id}
 						className={filter === item.id ? 'is-active' : ''}
 						onClick={() => setFilter(item.id)}
@@ -123,7 +128,11 @@ export function ScenePlotGrid({
 			<div className="scene-plot-grid-empty">
 				<Search size={28} />
 				<strong>当前条件下没有场景</strong>
-				<button type="button" onClick={() => { setFilter('all'); setQuery(''); }}>清除筛选</button>
+				<button type="button" onClick={() => {
+					setFilter('all');
+					setQuery('');
+					searchInputRef.current?.focus();
+				}}>清除筛选</button>
 			</div>
 		) : (
 			<div className="scene-plot-grid-scroll">
@@ -146,6 +155,8 @@ export function ScenePlotGrid({
 								<th scope="row">
 									<button
 										type="button"
+										data-testid="scene-plot-grid-scene"
+										data-scene-id={row.scene.id}
 										aria-label={`查看场景节拍：${row.scene.title}`}
 										onClick={() => onSelectScene(row.scene)}
 									>
@@ -165,6 +176,10 @@ export function ScenePlotGrid({
 											{link ? (
 												<button
 													type="button"
+													data-testid="scene-plot-grid-link"
+													data-scene-id={row.scene.id}
+													data-thread-id={thread.id}
+													data-link-health={link.health}
 													className={`scene-plot-link is-${link.health}`}
 													aria-label={`${row.scene.title}推进${thread.title}：${healthLabels[link.health]}`}
 													onClick={() => onSelectScene(row.scene)}

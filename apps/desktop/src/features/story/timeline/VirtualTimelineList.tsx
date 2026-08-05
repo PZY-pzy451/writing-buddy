@@ -69,6 +69,7 @@ export function VirtualTimelineList({
 								<td>
 									<button
 										type="button"
+										data-testid="timeline-list-event"
 										data-timeline-list-event={event.id}
 										aria-posinset={index + 1}
 										aria-setsize={events.length}

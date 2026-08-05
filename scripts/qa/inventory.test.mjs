@@ -481,6 +481,28 @@ describe('control inventory rendered-element boundary', () => {
 			'dailyGoal',
 			'保存目标'
 		]);
+		const scenePlotGridControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/plots/ScenePlotGrid.tsx'
+		));
+
+		expect(scenePlotGridControls).toHaveLength(5);
+		expect(scenePlotGridControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(scenePlotGridControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'scene-plot-grid-filter',
+			'scene-plot-grid-link',
+			'scene-plot-grid-scene',
+			'scene-plot-grid-search',
+			'清除筛选'
+		]);
+		const virtualTimelineControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/timeline/VirtualTimelineList.tsx'
+		));
+
+		expect(virtualTimelineControls).toHaveLength(1);
+		expect(virtualTimelineControls[0]?.stableSelectorStatus).toBe('MAPPED');
+		expect(virtualTimelineControls[0]?.stableSelectorValue).toBe('timeline-list-event');
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
