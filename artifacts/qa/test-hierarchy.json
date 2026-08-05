@@ -64282,138 +64282,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-1B3791A3",
+                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-11E53E80",
                   "level": "L4",
-                  "name": "button",
+                  "name": "保存到笔记",
                   "states": [
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-VISIBLE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-HIDDEN",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-ENABLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-DISABLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-POINTER",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-KEYBOARD",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-FOCUS-IN",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-FOCUS-OUT",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-REPEAT",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-DEDUPLICATION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-LOADING",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-SUCCESS",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-FAILURE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-CANCELLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-OFFLINE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-PERMISSION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-PERSISTENCE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-RESTART",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-VISUAL",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-ACCESSIBLE-NAME",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-1B3791A3-UNDO",
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-11E53E80-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-3951A0B8",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-3951A0B8-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -64560,6 +64699,284 @@
                   ]
                 },
                 {
+                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-8E50BA28",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-8E50BA28-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-944D9A24",
+                  "level": "L4",
+                  "name": "全部接受",
+                  "states": [
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-944D9A24-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-9D14AA90",
                   "level": "L4",
                   "name": "接受编辑内容",
@@ -64699,277 +65116,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SELECTIONREWRITEPANEL-BUTTON-EBE46996",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-SELECTIONREWRITEPANEL-BUTTON-EBE46996-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C",
+                  "id": "CTRL-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-VISIBLE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-HIDDEN",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-ENABLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-DISABLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-POINTER",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-KEYBOARD",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-FOCUS-IN",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-FOCUS-OUT",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-REPEAT",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-DEDUPLICATION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-LOADING",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-SUCCESS",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-FAILURE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-CANCELLED",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-OFFLINE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-PERMISSION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-PERSISTENCE",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-RESTART",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-VISUAL",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-ACCESSIBLE-NAME",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-7AC8842C-UNDO",
+                      "id": "STATE-SELECTIONREWRITEPANEL-TEXTAREA-2D8BC484-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -70835,24 +71113,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-0B3985CED1",
-      "title": "TC-QA-AI-CANCEL-004 blocks one hundred repeated cancellation clicks",
-      "declarationTitle": "TC-QA-AI-CANCEL-004 blocks one hundred repeated cancellation clicks",
-      "declarationLine": 28,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-0B3ACCC8C7",
       "title": "deduplicates same-tick generation and returns exactly three alternatives",
       "declarationTitle": "deduplicates same-tick generation and returns exactly three alternatives",
@@ -73265,6 +73525,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2D83A7AF53",
+      "title": "TC-SELECTION-REWRITE-007 redacts snapshot failure, preserves the candidate and succeeds on explicit restart without regeneration",
+      "declarationTitle": "TC-SELECTION-REWRITE-007 redacts snapshot failure, preserves the candidate and succeeds on explicit restart without regeneration",
+      "declarationLine": 349,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-2E18BDDD7D",
       "title": "resolves restore-tab without colliding with another command",
       "declarationTitle": "resolves %s without colliding with another command",
@@ -75049,6 +75327,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-425E1C8BFB",
+      "title": "TC-SELECTION-REWRITE-005 keeps the draft keyboard focusable, saves a note, applies after pointer confirmation and supports undo",
+      "declarationTitle": "TC-SELECTION-REWRITE-005 keeps the draft keyboard focusable, saves a note, applies after pointer confirmation and supports undo",
+      "declarationLine": 240,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-427DDDD61C",
       "title": "strips display-only titles and deduplicates overlap findings",
       "declarationTitle": "strips display-only titles and deduplicates overlap findings",
@@ -75074,24 +75370,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/shell/workspaceShortcuts.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-43212364B5",
-      "title": "repairs wrapped rewrite data before handing off the inline draft",
-      "declarationTitle": "repairs wrapped rewrite data before handing off the inline draft",
-      "declarationLine": 130,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -76439,6 +76717,24 @@
       "domainId": "DOMAIN-01",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-55E2CE8899",
+      "title": "TC-SELECTION-REWRITE-006 disables stale candidate acceptance",
+      "declarationTitle": "TC-SELECTION-REWRITE-006 disables stale candidate acceptance",
+      "declarationLine": 317,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -78121,24 +78417,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-7249EF132C",
-      "title": "streams a candidate, shows a diff and applies only after author confirmation",
-      "declarationTitle": "streams a candidate, shows a diff and applies only after author confirmation",
-      "declarationLine": 220,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-72920BB906",
       "title": "exports the whole work in project order and records its delivery scope",
       "declarationTitle": "exports the whole work in project order and records its delivery scope",
@@ -79483,24 +79761,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-837B5DA780",
-      "title": "hands the generated rewrite to the inline draft surface without replacing the selection",
-      "declarationTitle": "hands the generated rewrite to the inline draft surface without replacing the selection",
-      "declarationLine": 83,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-838568DAA5",
       "title": "drops a chapter on a volume by appending it",
       "declarationTitle": "drops a chapter on a volume by appending it",
@@ -80098,24 +80358,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-8C95E66764",
-      "title": "keeps malformed rewrite data out of the manuscript with localized guidance",
-      "declarationTitle": "keeps malformed rewrite data out of the manuscript with localized guidance",
-      "declarationLine": 181,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -81829,24 +82071,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-A724A51208",
-      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors",
-      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors",
-      "declarationLine": 314,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "scripts/qa/inventory.test.mjs",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "orchestration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-A770AC558A",
       "title": "stops the active job while preserving completed chapter batches",
       "declarationTitle": "stops the active job while preserving completed chapter batches",
@@ -83095,6 +83319,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B88BBD6BE4",
+      "title": "TC-SELECTION-REWRITE-002 renders one atomic inline draft without replacing the selection",
+      "declarationTitle": "TC-SELECTION-REWRITE-002 renders one atomic inline draft without replacing the selection",
+      "declarationLine": 96,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B918181DE8",
       "title": "saves and validates a key once for 100 same-tick requests",
       "declarationTitle": "saves and validates a key once for 100 same-tick requests",
@@ -83223,24 +83465,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-BC4CF94229",
-      "title": "disables acceptance when the source revision changed",
-      "declarationTitle": "disables acceptance when the source revision changed",
-      "declarationLine": 260,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-BC74C694E4",
       "title": "rejects unknown input fields, path text, and regeneration of a locked target",
       "declarationTitle": "rejects unknown input fields, path text, and regeneration of a locked target",
@@ -83269,6 +83493,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-BDB9FB5773",
+      "title": "TC-SELECTION-REWRITE-001 deduplicates one hundred generate and cancel actions and reports cancelled",
+      "declarationTitle": "TC-SELECTION-REWRITE-001 deduplicates one hundred generate and cancel actions and reports cancelled",
+      "declarationLine": 31,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84175,6 +84417,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-C8287AFB75",
+      "title": "TC-SELECTION-REWRITE-003 keeps a repaired wrapped candidate available without replacing the selection",
+      "declarationTitle": "TC-SELECTION-REWRITE-003 keeps a repaired wrapped candidate available without replacing the selection",
+      "declarationLine": 145,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-C853F88041",
       "title": "gives every system route a dedicated full-height workspace",
       "declarationTitle": "gives every system route a dedicated full-height workspace",
@@ -84869,24 +85129,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-D106170DD0",
-      "title": "does not replace the selection when the safety snapshot fails",
-      "declarationTitle": "does not replace the selection when the safety snapshot fails",
-      "declarationLine": 290,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-D113A38452",
       "title": "keeps the capture source when the old anchor can no longer resolve",
       "declarationTitle": "keeps the capture source when the old anchor can no longer resolve",
@@ -84984,6 +85226,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-D20DF4149C",
+      "title": "TC-SELECTION-REWRITE-004 hides raw schema details and rejects malformed data with localized failure and zero persistence",
+      "declarationTitle": "TC-SELECTION-REWRITE-004 hides raw schema details and rejects malformed data with localized failure and zero persistence",
+      "declarationLine": 199,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/SelectionRewritePanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -87426,6 +87686,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F9AAB884F6",
+      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors",
+      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors",
+      "declarationLine": 314,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

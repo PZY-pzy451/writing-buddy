@@ -1891,6 +1891,53 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-SELECTION-REWRITE-CONTROL-RETRY-CONVERGENCE-061',
+			summary: 'Selection rewrite acceptance could expose private persistence details while three controls lacked stable identities and all seven existing lifecycle tests were untraceable.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 2,
+				sourceMissingStableSelectors: 3,
+				repeatedGenerationActions: 100,
+				providerRequests: 1,
+				repeatedCancelActions: 100,
+				cancellationCommands: 1,
+				rawSnapshotDetailsRedacted: false,
+				globalControls: 482,
+				globalStates: 10604,
+				globalTests: 1057,
+				mappedTests: 156,
+				unmappedTests: 901,
+				globalMissingStableSelectors: 106,
+				totalUnmapped: 10086
+			},
+			after: {
+				sourceControls: 7,
+				sourceMappedControls: 7,
+				sourceMissingStableSelectors: 0,
+				repeatedGenerationActions: 100,
+				providerRequests: 1,
+				repeatedCancelActions: 100,
+				cancellationCommands: 1,
+				rawSnapshotDetailsRedacted: true,
+				candidatePreservedAfterRejectedWrite: true,
+				snapshotAttemptsAcrossRetry: 2,
+				generationRequestsAcrossRetry: 1,
+				targetTestsMapped: 7,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 8,
+				focusedTests: 22,
+				impactTests: 186,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

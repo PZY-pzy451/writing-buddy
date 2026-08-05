@@ -1207,3 +1207,24 @@ did not fully specify `targetTypes`, position objects or history arrays.
   110 to 106 despite two newly distinguished controls and 44 derived states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum - defect 061
+
+- Selection rewrite now exposes 7/7 stable control declarations: Generate,
+  editable draft, Accept all, Save note, Undo and the accessible Accept/Reject
+  actions.
+- One hundred same-frame Generate actions start one provider request; one
+  hundred Stop actions issue one cancellation. Malformed output performs zero
+  writes and leaves retry available.
+- Unknown snapshot/persistence errors no longer expose private paths. A rejected
+  write preserves the candidate and succeeds on explicit retry after two
+  snapshot attempts without regeneration.
+- Eight red assertions converged to 22/22 focused and 186/186 impacted tests.
+  Fixed-source execution passed 978 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 29/29.
+- All seven existing selection-rewrite tests are mapped. Globally, mapped tests
+  rose from 156 to 162 and unmapped tests fell from 901 to 895.
+- Traceability gaps fell from 10,086 to 10,029 and stable-selector gaps from 106
+  to 103 despite two newly distinguished controls and 44 derived states.
+- Strict coverage is 19.39%, stable-selector coverage is 78.72%, test mapping
+  is 15.33% and release hard gates remain 1/4 complete.

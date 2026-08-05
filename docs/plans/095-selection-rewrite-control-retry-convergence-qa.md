@@ -38,3 +38,29 @@ Date: 2026-08-05
   gaps / 106 selector gaps / 901 unmapped tests.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source `ea0b2c7` gives Generate, editable draft, Accept all, Save
+  note and Undo stable identities while retaining the existing accessible
+  Accept and Reject actions. Honest inventory expands from five collapsed
+  declarations to seven distinct controls, with 7/7 mapped and zero local
+  selector gaps.
+- One hundred same-frame Generate actions start one provider request. One
+  hundred Stop actions issue one cancellation. Wrapped output stays available;
+  malformed output performs zero manuscript or snapshot writes.
+- The draft is keyboard focusable and editable. Save note, explicit pointer
+  acceptance, mounted-content undo and stale-candidate disabling are covered.
+- A rejected snapshot no longer exposes a private path. The candidate remains
+  available and succeeds on explicit retry after two snapshot attempts without
+  a second generation request.
+- Eight failure-first assertions converged to 22/22 focused tests; the AI and
+  QA impact set passed 186/186. All seven existing component cases have strict
+  mappings without increasing the 1,057-case inventory.
+- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
+  and production build. Rust passed 77 with two reasoned ignores.
+- Aggregate strict gaps fell from 10,086 to 10,029. Missing selectors fell from
+  106 to 103. Mapped tests rose from 156 to 162 and unmapped tests fell from
+  901 to 895.
+- Release remains blocked at 1/4 hard gates: strict traceability, real-provider
+  smoke and packaged-EXE acceptance remain open.

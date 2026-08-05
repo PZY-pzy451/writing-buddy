@@ -4,43 +4,42 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Item AI generation, write and stable-selector convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3b265f2`.
+Selection rewrite control and retry convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `ea0b2c7`.
 
-- Four contracts failed red: ten logical controls were collapsed into seven
-  declarations, four selector gaps remained, malformed generation displayed
-  `invalidItemCandidateCount` and rejected snapshots displayed private paths.
-- The panel now has 10/10 mapped controls. Malformed output is safely isolated,
-  provider retry remains available and candidate writes localize unknown
-  persistence failures while preserving selection for one explicit retry.
-- The existing pressure boundary remains intact: 100 same-frame Generate
-  actions start exactly one provider request. Ten representative controls are
-  rendered, enabled and keyboard focusable; field/state selection and both
-  evidence actions are exercised.
-- Honest inventory expansion initially raised raw gaps to 10,414 by adding three
-  controls and 66 states. The rendered state contract then reduced the final
-  value to 10,286, a net 93-gap improvement from 10,379. Selector debt falls
-  from 118 to 114. From the earlier 11,088 / 136 reference, cumulative
-  reductions are 802 mappings and 22 selectors.
-- Initial focused contracts passed 19/19, the final item impact set passed 42
-  tests through full execution and QA infrastructure passed 29/29.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 975 tests
+- Eight failure-first assertions reproduced three missing stable selectors,
+  seven untraceable lifecycle tests and private snapshot details in the
+  author-facing alert.
+- The panel now has 7/7 mapped controls. Generate, editable draft, Accept all,
+  Save note and Undo have stable identities; the existing accessible Accept
+  and Reject actions remain distinct.
+- One hundred same-frame Generate actions start one provider request. One
+  hundred Stop actions issue one cancellation. Malformed output performs zero
+  writes; a failed candidate write stays retryable and succeeds without another
+  paid generation.
+- The draft is keyboard focusable and editable. Note saving, pointer acceptance,
+  mounted-content undo and stale-candidate disabling are covered.
+- Focused execution passed 22/22, the AI/QA impact set passed 186/186 and QA
+  infrastructure passed 29/29.
+- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,054 cases: 1,052 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 975 with 97 parameterized instances
-  and zero unresolved declarations.
-- Three added product tests are all strictly mapped; mapped tests rise from 145
-  to 148 while unmapped test cases remain flat at 906.
-- Quantified status: deterministic execution is 100%; stable-selector coverage
-  is 364/478 (76.15%); aggregate strict traceability is 16.38%; release gates
-  remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
-  real-provider smoke and packaged-EXE acceptance complete.
+- All seven existing component cases are strictly mapped. Global mapped tests
+  rise from 156 to 162 and unmapped tests fall from 901 to 895; conservative
+  mapping competition accounts for the net gain of six.
+- Strict gaps fall from 10,086 to 10,029. Stable-selector gaps fall from 106 to
+  103. From the earlier 11,088 / 136 reference, cumulative reductions are
+  1,059 mappings and 33 selectors.
+- Quantified status: deterministic execution is 100%; strict coverage is
+  2,413/12,442 (19.39%); stable selectors are 381/484 (78.72%); test mapping is
+  162/1,057 (15.33%). Release gates remain 1/4 complete (25%). Product stays
+  `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
+  acceptance complete.
 
 ## Previous milestone
 
-Character AI write convergence is complete against source `9dfeb3d`: 8/8
-controls are mapped and fixed acceptance passed 972 frontend tests.
+Whole-work consistency AI convergence is complete against source `807d106`:
+7/7 controls are mapped and fixed acceptance passed 978 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 
