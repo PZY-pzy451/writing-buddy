@@ -71,7 +71,7 @@ describe('StoryAssetsPage', () => {
 		await desktopBridge.deleteDeepSeekKey();
 	});
 
-	it('TC-ITEM-AI-001 exposes stable controls and keeps one paid request under one hundred clicks', async () => {
+	it('TC-ITEM-AI-001 deduplicates one hundred repeated clicks into one paid request', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		renderEmptyStoryAssetsPage();
@@ -95,18 +95,23 @@ describe('StoryAssetsPage', () => {
 		expect(screen.getAllByTestId('item-ai-accept')).toHaveLength(1);
 	});
 
-	it('TC-ITEM-AI-002 isolates malformed generation output and succeeds on explicit retry', async () => {
+	it('TC-ITEM-AI-002 shows loading then reports invalid generation failure and succeeds on explicit retry', async () => {
 		const originalStart = desktopBridge.startAiGeneration.bind(desktopBridge);
 		let requests = 0;
+		let finishMalformed = () => undefined;
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
 			.mockImplementation((request, listener) => {
 				requests += 1;
 				if (requests !== 1) return originalStart(request, listener);
 				listener({ type: 'job_started', jobId: request.jobId });
 				listener({ type: 'connection_opened', jobId: request.jobId });
-				listener({ type: 'content_delta', jobId: request.jobId, text: '{"candidates":[]}' });
-				listener({ type: 'completed', jobId: request.jobId, finishReason: 'stop' });
-				return Promise.resolve();
+				return new Promise<void>(resolve => {
+					finishMalformed = () => {
+						listener({ type: 'content_delta', jobId: request.jobId, text: '{"candidates":[]}' });
+						listener({ type: 'completed', jobId: request.jobId, finishReason: 'stop' });
+						resolve();
+					};
+				});
 			});
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		renderEmptyStoryAssetsPage();
@@ -114,6 +119,11 @@ describe('StoryAssetsPage', () => {
 		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
 		const generate = screen.getByRole('button', { name: '生成物品候选' });
 		fireEvent.click(generate);
+		expect(await screen.findByRole('button', { name: /正在分析/u })).toBeDisabled();
+		await act(async () => {
+			finishMalformed();
+			await Promise.resolve();
+		});
 
 		const alert = await screen.findByRole('alert');
 		expect(alert).toHaveTextContent('AI 返回的物品结构不完整，已安全隔离，请重试。');
@@ -125,7 +135,7 @@ describe('StoryAssetsPage', () => {
 		expect(startAiGeneration).toHaveBeenCalledTimes(2);
 	});
 
-	it('TC-ITEM-AI-003 redacts candidate write failure and preserves one explicit retry', async () => {
+	it('TC-ITEM-AI-003 redacts candidate persistence write failure and preserves one explicit retry', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
 			.mockRejectedValueOnce(new Error('C:\\private\\author\\items.json'));
