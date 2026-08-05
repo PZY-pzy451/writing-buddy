@@ -4,32 +4,37 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Daily Writing Goal form selector and trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `a756c35`.
+Scene Plot Grid and virtual timeline selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `468d6b9`.
 
-- The form now exposes stable identity `daily-writing-goal-form`, accessible
-  name `每日写作目标设置` and explicit dashboard/header placement without
-  duplicating its inventory declaration.
-- Pointer opening plus Enter submission persists a valid goal and announces
-  success. Invalid input remains inline, exposes an alert and cannot mutate
-  persistence.
-- Three red assertions converged to 17/17 focused/inventory, 39/39 progress,
-  dashboard and workspace impact, and 30/30 QA tests. Node 24 passed lint,
-  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
-  reasoned ignores.
-- Inventory stays at 510 controls / 11,220 states / 1,058 tests. All 3 source
-  controls, 15 of 66 source states and both existing product cases map. Global
-  mapped controls rise by 3, states by 16 and tests by 2. Strict gaps fall by
-  21 from 9,657 to 9,636, selector gaps from 75 to 74 and unmapped tests from
-  866 to 864.
+- Scene Plot Grid search, filters, scenes and links expose stable identities
+  with explicit dynamic context. Clear Filter returns keyboard focus to search
+  instead of dropping it to the document body.
+- Virtual timeline event buttons expose one stable identity while retaining
+  exact event IDs. Its 10,000-row virtualization and Arrow-navigation tests now
+  map without adding test count.
+- Six product-contract failures converged to 20/20 focused/inventory, 23/23
+  plot/timeline impact and 30/30 QA tests. Node 24 passed lint, typecheck, 189
+  files / 979 tests and production build; Rust passed 77 with two reasoned
+  ignores.
+- Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
+  controls rise by 7, states by 33 and tests by 2. Strict gaps fall by 42 from
+  9,636 to 9,594, selector gaps from 74 to 69 and unmapped tests from 864 to
+  862.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,405/13,041 (26.11%); stable selectors are 436/510 (85.49%); test mapping is
-  194/1,058 (18.34%). Against the 11,088 / 136 reference, 1,452 mapping gaps
-  and 62 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,447/13,041 (26.43%); stable selectors are 441/510 (86.47%); test mapping is
+  196/1,058 (18.53%). Against the 11,088 / 136 reference, 1,494 mapping gaps
+  and 67 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
 
 ## Previous milestone
+
+Daily Writing Goal form selector and trace convergence is complete against
+source `a756c35`: all 3 controls and both product cases are mapped, and fixed
+acceptance passed 979 frontend tests.
+
+## Earlier milestone
 
 Item transfer single-flight and selector convergence is complete against source
 `c0d6f24`: all 6 controls and the existing product case are mapped, and fixed

@@ -18789,138 +18789,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SCENEPLOTGRID-BUTTON-23B64FD4",
+                  "id": "CTRL-SCENEPLOTGRID-BUTTON-2D1E3B82",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-VISIBLE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-HIDDEN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-ENABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-DISABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-POINTER",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-KEYBOARD",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-FOCUS-IN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-FOCUS-OUT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-REPEAT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-DEDUPLICATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-LOADING",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-SUCCESS",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-FAILURE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-CANCELLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-OFFLINE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-PERMISSION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-PERSISTENCE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-RESTART",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-VISUAL",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-ACCESSIBLE-NAME",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-23B64FD4-UNDO",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-2D1E3B82-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -18928,138 +18928,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SCENEPLOTGRID-BUTTON-BB990498",
+                  "id": "CTRL-SCENEPLOTGRID-BUTTON-3D0C9DA5",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-VISIBLE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-HIDDEN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-ENABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-DISABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-POINTER",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-KEYBOARD",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-FOCUS-IN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-FOCUS-OUT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-REPEAT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-DEDUPLICATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-LOADING",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-SUCCESS",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-FAILURE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-CANCELLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-OFFLINE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-PERMISSION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-PERSISTENCE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-RESTART",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-VISUAL",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-ACCESSIBLE-NAME",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-BB990498-UNDO",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-3D0C9DA5-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -19067,138 +19067,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SCENEPLOTGRID-BUTTON-D671821E",
+                  "id": "CTRL-SCENEPLOTGRID-BUTTON-E6FDBF93",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-VISIBLE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-HIDDEN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-ENABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-DISABLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-POINTER",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-KEYBOARD",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-FOCUS-IN",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-FOCUS-OUT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-REPEAT",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-DEDUPLICATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-LOADING",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-SUCCESS",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-FAILURE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-CANCELLED",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-OFFLINE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-PERMISSION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-PERSISTENCE",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-RESTART",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-VISUAL",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-ACCESSIBLE-NAME",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-BUTTON-D671821E-UNDO",
+                      "id": "STATE-SCENEPLOTGRID-BUTTON-E6FDBF93-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -19206,138 +19206,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SCENEPLOTGRID-INPUT-1B38934C",
+                  "id": "CTRL-SCENEPLOTGRID-INPUT-972EB835",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-VISIBLE",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-HIDDEN",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-ENABLED",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-DISABLED",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-POINTER",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-KEYBOARD",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-FOCUS-IN",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-FOCUS-OUT",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-REPEAT",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-DEDUPLICATION",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-LOADING",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-SUCCESS",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-FAILURE",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-CANCELLED",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-OFFLINE",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-PERMISSION",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-PERSISTENCE",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-RESTART",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-VISUAL",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-ACCESSIBLE-NAME",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENEPLOTGRID-INPUT-1B38934C-UNDO",
+                      "id": "STATE-SCENEPLOTGRID-INPUT-972EB835-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -38297,138 +38297,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC",
+                  "id": "CTRL-VIRTUALTIMELINELIST-BUTTON-A0A7A601",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-VISIBLE",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-HIDDEN",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-ENABLED",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-DISABLED",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-POINTER",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-KEYBOARD",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-FOCUS-IN",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-FOCUS-OUT",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-REPEAT",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-DEDUPLICATION",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-LOADING",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-SUCCESS",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-FAILURE",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-CANCELLED",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-OFFLINE",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-PERMISSION",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-PERSISTENCE",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-RESTART",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-VISUAL",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-ACCESSIBLE-NAME",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-4B0B3BDC-UNDO",
+                      "id": "STATE-VIRTUALTIMELINELIST-BUTTON-A0A7A601-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74454,7 +74454,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 486,
+      "declarationLine": 508,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -91526,7 +91526,7 @@
       "id": "TC-DISCOVERED-FC6DDD8760",
       "title": "supports arrow navigation through the accessible list fallback",
       "declarationTitle": "supports arrow navigation through the accessible list fallback",
-      "declarationLine": 46,
+      "declarationLine": 49,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/timeline/VirtualTimelineList.test.tsx",

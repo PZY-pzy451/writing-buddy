@@ -1515,3 +1515,25 @@ did not fully specify `targetTypes`, position objects or history arrays.
 - Strict gaps fall from 9,657 to 9,636, selector gaps from 75 to 74 and unmapped
   tests from 866 to 864. Strict coverage is 26.11%, stable-selector coverage is
   85.49%, test mapping is 18.34% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 076
+
+- Scene Plot Grid search, repeated filters, repeated scenes and repeated
+  scene/plot links expose four distinct stable identities. Filter, scene,
+  thread and link-health context remain explicit without inventory duplication.
+- Clear Filter previously removed its own focused button and dropped keyboard
+  focus to the document body. It now restores search focus while leaving Story
+  Kernel resources unchanged.
+- Repeated virtual-timeline events expose `timeline-list-event` while retaining
+  exact event IDs. Its existing 10,000-row virtualization and Arrow navigation
+  cases now enter strict mapping without adding tests.
+- Six product-contract failures converged to 20/20 focused/inventory, 23/23 plot
+  and timeline impact and 30/30 QA infrastructure tests. Fixed-source sequential
+  execution passed 189 frontend files / 979 tests, production build and 77
+  native tests with two reasoned ignores.
+- All 5 Scene Plot Grid controls, 25 of 110 states and 3 product cases map. The
+  virtual timeline control, 3 of 22 states and both product cases map. Global
+  mapped controls rise by 7, states by 33 and tests by 2.
+- Strict gaps fall from 9,636 to 9,594, selector gaps from 74 to 69 and unmapped
+  tests from 864 to 862. Strict coverage is 26.43%, stable-selector coverage is
+  86.47%, test mapping is 18.53% and release hard gates remain 1/4 complete.

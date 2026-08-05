@@ -50,4 +50,22 @@ Date: 2026-08-05
 
 ## Result
 
-Pending execution.
+- Source `468d6b9` gives Scene Plot Grid search, filter, scene and plot-link
+  declarations four stable identities plus explicit filter/scene/thread/health
+  context. Virtual timeline event buttons expose `timeline-list-event` while
+  retaining their exact event IDs.
+- Six product-contract failures reproduced the missing identities and the focus
+  loss after Clear Filter. The repaired clear action returns focus to search;
+  filtering remains display-only and does not mutate Story Kernel resources.
+- Focused and inventory tests passed 20/20. Plot and timeline impact passed
+  23/23. Sequential fixed-source acceptance passed 189 frontend files / 979
+  tests, production build, 77 native tests with two reasoned ignores and 30/30
+  QA infrastructure tests.
+- All 5 Scene Plot Grid controls, 25 of 110 states and 3 existing product cases
+  map. The virtual timeline control, 3 of 22 states and both existing product
+  cases map. No controls, states or tests were added to inventory.
+- Global mapped controls rise by 7, states by 33 and tests by 2. Strict gaps
+  fall from 9,636 to 9,594, selector gaps from 74 to 69 and unmapped tests from
+  864 to 862.
+- Strict coverage is 26.43%, stable-selector coverage is 86.47%, test mapping
+  is 18.53% and release hard gates remain 1/4 complete.
