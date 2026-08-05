@@ -46,7 +46,12 @@ function testContentPath(testSource) {
 	return resolve(repositoryRoot, ...testSource.split('/'));
 }
 
-function titleMatchesDimension(title, dimension) {
+
+export function titleMatchesDimension(title, dimension) {
+	if (dimension === 'KEYBOARD') {
+		return /\b(?:keyboard|ctrl|cmd|alt|enter|escape|tab|arrow(?:down|left|right|up)?)\b/iu.test(title)
+			|| /\u5feb\u6377\u952e|\u952e\u76d8|\u7126\u70b9/u.test(title);
+	}
 	return dimensionPatterns.get(dimension)?.test(title) ?? false;
 }
 

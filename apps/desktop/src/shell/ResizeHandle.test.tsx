@@ -35,7 +35,8 @@ function renderHandle(overrides: Partial<React.ComponentProps<typeof ResizeHandl
 			{...overrides}
 		/>
 	);
-	const separator = screen.getByRole('separator', { name: '调整测试面板' });
+	const separator = screen.getByTestId('workspace-resize-handle');
+	expect(separator).toHaveAccessibleName('调整测试面板');
 	installPointerCapture(separator);
 	return { separator, onChange };
 }
@@ -45,7 +46,7 @@ describe('ResizeHandle', () => {
 		document.documentElement.classList.remove('is-resizing-x', 'is-resizing-y');
 	});
 
-	it('exposes bounded separator values and resizes with pointer capture', () => {
+	it('keeps the stable workspace resize handle bounded and cancels an active pointer drag', () => {
 		const { separator, onChange } = renderHandle();
 		expect(separator).toHaveAttribute('aria-orientation', 'vertical');
 		expect(separator).toHaveAttribute('aria-valuemin', '220');
@@ -59,12 +60,16 @@ describe('ResizeHandle', () => {
 		fireEvent.pointerMove(separator, { pointerId: 7, clientX: 172 });
 		expect(onChange).toHaveBeenLastCalledWith(372);
 
-		fireEvent.pointerUp(separator, { pointerId: 7 });
+		fireEvent.keyDown(separator, { key: 'Escape' });
+		expect(onChange).toHaveBeenLastCalledWith(300);
 		expect(separator).not.toHaveClass('is-resizing');
 		expect(document.documentElement).not.toHaveClass('is-resizing-x');
+		const callsAfterCancel = onChange.mock.calls.length;
+		fireEvent.pointerMove(separator, { pointerId: 7, clientX: 240 });
+		expect(onChange).toHaveBeenCalledTimes(callsAfterCancel);
 	});
 
-	it('supports inverse horizontal and vertical dragging with clamped values', () => {
+	it('keeps the stable workspace resize handle within visual bounds across inverse horizontal and vertical dragging', () => {
 		const inverse = renderHandle({ direction: -1, value: 360, min: 280, max: 480 });
 		fireEvent.pointerDown(inverse.separator, { pointerId: 2, button: 0, clientX: 500 });
 		fireEvent.pointerMove(inverse.separator, { pointerId: 2, clientX: 420 });
@@ -84,8 +89,9 @@ describe('ResizeHandle', () => {
 		expect(document.documentElement).not.toHaveClass('is-resizing-y');
 	});
 
-	it('supports arrow steps, accelerated movement, bounds, and reset keys', () => {
+	it('drives the stable workspace resize handle separator by keyboard arrows, bounds and reset keys', () => {
 		const { separator, onChange } = renderHandle();
+		expect(separator).toHaveAttribute('data-testid', 'workspace-resize-handle');
 		fireEvent.keyDown(separator, { key: 'ArrowRight' });
 		expect(onChange).toHaveBeenLastCalledWith(312);
 		fireEvent.keyDown(separator, { key: 'ArrowLeft', shiftKey: true });
@@ -98,7 +104,7 @@ describe('ResizeHandle', () => {
 		expect(onChange).toHaveBeenLastCalledWith(320);
 	});
 
-	it('restores the default on double click and ignores non-primary pointer input', () => {
+	it('restores the stable workspace resize handle on double click and ignores non-primary input', () => {
 		const { separator, onChange } = renderHandle();
 		fireEvent.pointerDown(separator, { pointerId: 9, button: 2, clientX: 100 });
 		fireEvent.pointerMove(separator, { pointerId: 9, clientX: 180 });

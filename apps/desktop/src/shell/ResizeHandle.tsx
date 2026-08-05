@@ -14,7 +14,11 @@ interface ResizeHandleProps {
 }
 
 export function ResizeHandle(props: ResizeHandleProps): React.JSX.Element {
-	const start = useRef<{ coordinate: number; value: number } | undefined>(undefined);
+	const start = useRef<{
+		coordinate: number;
+		value: number;
+		pointerId: number;
+	} | undefined>(undefined);
 	const [resizing, setResizing] = useState(false);
 	const cursorClass = props.axis === 'x' ? 'is-resizing-x' : 'is-resizing-y';
 
@@ -34,6 +38,7 @@ export function ResizeHandle(props: ResizeHandleProps): React.JSX.Element {
 
 	return (
 		<div
+			data-testid="workspace-resize-handle"
 			className={`product-resize-handle ${props.className}${resizing ? ' is-resizing' : ''}`}
 			role="separator"
 			aria-label={props.label}
@@ -48,7 +53,7 @@ export function ResizeHandle(props: ResizeHandleProps): React.JSX.Element {
 				if (event.button !== 0) return;
 				event.preventDefault();
 				const coordinate = props.axis === 'x' ? event.clientX : event.clientY;
-				start.current = { coordinate, value: props.value };
+				start.current = { coordinate, value: props.value, pointerId: event.pointerId };
 				setResizing(true);
 				document.documentElement.classList.add(cursorClass);
 				event.currentTarget.setPointerCapture(event.pointerId);
@@ -69,6 +74,13 @@ export function ResizeHandle(props: ResizeHandleProps): React.JSX.Element {
 			onLostPointerCapture={() => finishResize()}
 			onDoubleClick={() => props.onChange(clamp(props.defaultValue))}
 			onKeyDown={event => {
+				if (event.key === 'Escape' && start.current) {
+					event.preventDefault();
+					const resizeStart = start.current;
+					props.onChange(clamp(resizeStart.value));
+					finishResize(event.currentTarget, resizeStart.pointerId);
+					return;
+				}
 				if (event.key === 'Home') {
 					event.preventDefault();
 					props.onChange(props.min);

@@ -339,6 +339,13 @@ describe('control inventory rendered-element boundary', () => {
 			'selection-action-rewrite',
 			'记录想法'
 		]);
+		const resizeHandleControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/shell/ResizeHandle.tsx'
+		));
+
+		expect(resizeHandleControls).toHaveLength(1);
+		expect(resizeHandleControls[0]?.stableSelectorStatus).toBe('MAPPED');
+		expect(resizeHandleControls[0]?.stableSelectorValue).toBe('workspace-resize-handle');
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

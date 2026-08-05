@@ -4,6 +4,7 @@ import {
 	rankControlTestCandidate,
 	summarizeTraceability,
 	testSourceReferencesControl,
+	titleMatchesDimension,
 	validateTraceabilityRows
 } from './traceability.mjs';
 
@@ -67,5 +68,17 @@ describe('regression traceability gate', () => {
 			'apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.tsx',
 			'scripts/qa/inventory.test.mjs'
 		));
+	});
+
+	it('TC-QA-TRACEABILITY-005 distinguishes stable selectors from real keyboard intent', () => {
+		expect(titleMatchesDimension(
+			'keeps the stable workspace resize handle clamped across horizontal dragging',
+			'KEYBOARD'
+		)).toBe(false);
+		expect(titleMatchesDimension(
+			'drives the workspace resize handle by keyboard arrows and reset keys',
+			'KEYBOARD'
+		)).toBe(true);
+		expect(titleMatchesDimension('cancels pointer capture with Escape', 'KEYBOARD')).toBe(true);
 	});
 });
