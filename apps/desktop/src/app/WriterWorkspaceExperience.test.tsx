@@ -77,27 +77,59 @@ describe('quiet writer workspaces', () => {
 		localStorage.clear();
 	});
 
-	it('presents the five author tasks while keeping search and settings global', async () => {
+	it('TC-TOP-BAR-001 shows accessible global controls, navigates the more menu by keyboard and restores focus on Escape', async () => {
+		const user = userEvent.setup();
 		render(<App />);
 		const navigation = await screen.findByRole('navigation', { name: '全局导航' });
+		const topBar = document.querySelector('.top-bar') as HTMLElement;
 
 		for (const label of ['写作', '规划', '故事库', '检查', '历史']) {
 			expect(within(navigation).getByRole('button', { name: label })).toBeInTheDocument();
 		}
 		expect(within(navigation).queryByRole('button', { name: '作品' })).not.toBeInTheDocument();
 		expect(within(navigation).queryByRole('button', { name: '审校' })).not.toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '打开作者导航器' })).toBeInTheDocument();
+		expect(within(topBar).getByRole('button', { name: '打开作者导航器' }))
+			.toHaveAttribute('data-testid', 'topbar-search');
+		expect(within(topBar).getByRole('button', { name: '已保存' }))
+			.toHaveAttribute('data-testid', 'topbar-save');
+		expect(within(topBar).getByRole('button', { name: '专注模式' }))
+			.toHaveAttribute('data-testid', 'topbar-focus-toggle');
 		expect(within(navigation).queryByRole('button', { name: /AI/u })).not.toBeInTheDocument();
 		expect(within(navigation).queryByRole('button', { name: '设置' })).not.toBeInTheDocument();
-		await userEvent.setup().click(screen.getByRole('button', { name: '更多全局操作' }));
-		expect(screen.getByRole('menuitem', { name: '设置' })).toBeInTheDocument();
-		expect(screen.getByRole('menuitem', { name: 'AI 连接测试' })).toBeInTheDocument();
+		const more = within(topBar).getByRole('button', { name: '更多全局操作' });
+		const moreDetails = more.closest('details') as HTMLDetailsElement;
+		expect(more).toHaveAttribute('data-testid', 'topbar-more-menu');
+		more.focus();
+		await user.keyboard('{Enter}');
+		const quickCapture = screen.getByRole('menuitem', { name: '快速记录' });
+		const settings = screen.getByRole('menuitem', { name: '设置' });
+		const aiSettings = screen.getByRole('menuitem', { name: 'AI 连接测试' });
+		expect(quickCapture).toHaveAttribute('data-testid', 'topbar-quick-capture');
+		expect(settings).toHaveAttribute('data-testid', 'topbar-settings');
+		expect(aiSettings).toHaveAttribute('data-testid', 'topbar-ai-settings');
+		await waitFor(() => expect(quickCapture).toHaveFocus());
+		fireEvent.keyDown(quickCapture, { key: 'ArrowDown' });
+		expect(settings).toHaveFocus();
+		fireEvent.keyDown(settings, { key: 'End' });
+		expect(aiSettings).toHaveFocus();
+		fireEvent.keyDown(aiSettings, { key: 'Home' });
+		expect(quickCapture).toHaveFocus();
+		fireEvent.keyDown(quickCapture, { key: 'ArrowUp' });
+		expect(aiSettings).toHaveFocus();
+		fireEvent.keyDown(aiSettings, { key: 'Escape' });
+		expect(moreDetails).not.toHaveAttribute('open');
+		expect(more).toHaveFocus();
+		await user.click(more);
+		await waitFor(() => expect(screen.getByRole('menuitem', { name: '快速记录' }))
+			.toHaveFocus());
+		await user.click(navigation);
+		expect(moreDetails).not.toHaveAttribute('open');
 		expect(screen.queryByRole('button', { name: '收起作品侧栏' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '展开写作助手' })).not.toBeInTheDocument();
 		expect(screen.queryByRole('button', { name: '恢复当前工作区默认布局' })).not.toBeInTheDocument();
 	});
 
-	it('restores independent writing and planning layouts without changing the resource', async () => {
+	it('TC-TOP-BAR-002 shows accessible topbar-workspace-sidebar, topbar-workspace-assistant and topbar-workspace-reset-layout controls and persists independent layouts', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -110,6 +142,16 @@ describe('quiet writer workspaces', () => {
 			}
 		});
 		await user.click(screen.getByRole('button', { name: '规划' }));
+		const planningTopBar = document.querySelector('.top-bar') as HTMLElement;
+		expect(screen.getByTestId('topbar-workspace-sidebar')).toBe(
+			within(planningTopBar).getByRole('button', { name: '收起作品侧栏' })
+		);
+		expect(screen.getByTestId('topbar-workspace-assistant')).toBe(
+			within(planningTopBar).getByRole('button', { name: '展开写作助手' })
+		);
+		expect(screen.getByTestId('topbar-workspace-reset-layout')).toBe(
+			within(planningTopBar).getByRole('button', { name: '恢复当前工作区默认布局' })
+		);
 		expect(useAppStore.getState()).toMatchObject({
 			activeMode: 'planning',
 			activeResourceId: chapterId,
@@ -219,7 +261,7 @@ describe('quiet writer workspaces', () => {
 		);
 	});
 
-	it('keeps the writing chrome quiet until the author asks for more tools', async () => {
+	it('TC-TOP-BAR-003 shows accessible quiet-writer controls until the author asks for more tools', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -231,12 +273,20 @@ describe('quiet writer workspaces', () => {
 		const topBar = document.querySelector('.top-bar') as HTMLElement;
 		expect(within(topBar).queryByRole('button', { name: '新建' })).not.toBeInTheDocument();
 		expect(within(topBar).queryByRole('button', { name: 'AI 快速生成' })).not.toBeInTheDocument();
-		expect(within(topBar).getByRole('button', { name: '专注模式' })).toBeInTheDocument();
-		expect(within(topBar).getByRole('button', { name: '更多写作操作' })).toBeInTheDocument();
+		expect(within(topBar).getByRole('button', { name: '专注模式' }))
+			.toHaveAttribute('data-testid', 'topbar-focus-toggle');
+		const more = within(topBar).getByRole('button', { name: '更多写作操作' });
+		expect(more).toHaveAttribute('data-testid', 'topbar-more-menu');
 
-		await user.click(within(topBar).getByRole('button', { name: '更多写作操作' }));
-		expect(screen.getByRole('menuitem', { name: 'AI 快速动作' })).toBeInTheDocument();
-		expect(screen.getByRole('menuitem', { name: '恢复写作布局' })).toBeInTheDocument();
+		await user.click(more);
+		expect(screen.getByRole('menuitem', { name: /章节树/u }))
+			.toHaveAttribute('data-testid', 'topbar-writer-sidebar');
+		expect(screen.getByRole('menuitem', { name: /写作助手/u }))
+			.toHaveAttribute('data-testid', 'topbar-writer-assistant');
+		expect(screen.getByRole('menuitem', { name: 'AI 快速动作' }))
+			.toHaveAttribute('data-testid', 'topbar-ai-quick-actions');
+		expect(screen.getByRole('menuitem', { name: '恢复写作布局' }))
+			.toHaveAttribute('data-testid', 'topbar-writer-reset-layout');
 
 		const status = screen.getByRole('contentinfo', { name: '工作区状态' });
 		expect(within(status).getByText(/本章 \d+ 字/)).toBeInTheDocument();
@@ -888,7 +938,7 @@ describe('quiet writer workspaces', () => {
 		});
 	});
 
-	it('uses F11 and Escape for a temporary focus overlay without changing the normal layout', async () => {
+	it('TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -902,7 +952,9 @@ describe('quiet writer workspaces', () => {
 		fireEvent.keyDown(window, { key: 'F11', code: 'F11' });
 		await waitFor(() => expect(document.querySelector('.app-shell')).toHaveClass('is-focus-mode'));
 		expect(screen.queryByRole('navigation', { name: '全局导航' })).not.toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '退出专注' })).toBeInTheDocument();
+		expect(screen.getByTestId('topbar-focus-exit')).toBe(
+			screen.getByRole('button', { name: '退出专注' })
+		);
 		expect(screen.getByRole('heading', { level: 1, name: '第一章 停摆的时钟' })).toBeInTheDocument();
 		expect(useAppStore.getState()).toMatchObject({
 			sidebarWidth: 396,

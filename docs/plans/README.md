@@ -1,5 +1,7 @@
 # Plan index
 
+- [Top bar menu keyboard and selector convergence QA](./106-top-bar-menu-keyboard-selector-convergence-qa.md)
+
 - [AI Story Kernel direct generation](./001-ai-story-kernel-generation.md)
 - [AI Quick Actions source map](./002-ai-quick-actions-source-map.md)
 - [Current AI and StoryForge capability matrix](./003-ai-current-capability-matrix.md)

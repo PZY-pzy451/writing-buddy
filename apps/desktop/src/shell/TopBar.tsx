@@ -13,6 +13,7 @@ import {
 	StickyNote,
 	Sparkles
 } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { useAppStore } from '../app/store';
 import { openAiQuickActions } from '../features/ai/drawer/openAiQuickActions';
 import { GlobalCreateMenu } from '../features/projects/ui/GlobalCreateMenu';
@@ -36,6 +37,24 @@ export function TopBar(): React.JSX.Element {
 	const setMode = useAppStore(state => state.setMode);
 	const activeResource = useAppStore(state => state.activeResource);
 	const quietWriterHeader = activeMode === 'works' && Boolean(activeResource);
+	const moreMenuRef = useRef<HTMLDetailsElement>(null);
+	const moreMenuTriggerRef = useRef<HTMLElement>(null);
+
+	useEffect(() => {
+		const dismissOutside = (event: PointerEvent) => {
+			const menu = moreMenuRef.current;
+			if (!menu?.open || !(event.target instanceof Node) || menu.contains(event.target)) {
+				return;
+			}
+			menu.open = false;
+		};
+		document.addEventListener('pointerdown', dismissOutside, true);
+		return () => document.removeEventListener('pointerdown', dismissOutside, true);
+	}, []);
+
+	const enabledMoreMenuItems = (): readonly HTMLButtonElement[] => Array.from(
+		moreMenuRef.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)') ?? []
+	);
 
 	if (focusMode) {
 		return (
@@ -50,6 +69,7 @@ export function TopBar(): React.JSX.Element {
 					<button
 						className="ghost-button focus-exit"
 						type="button"
+						data-testid="topbar-focus-exit"
 						aria-label="退出专注"
 						aria-keyshortcuts="Escape F11"
 						onClick={toggleFocus}
@@ -78,6 +98,7 @@ export function TopBar(): React.JSX.Element {
 			<button
 				className="project-search"
 				type="button"
+				data-testid="topbar-search"
 				onClick={openWriterNavigator}
 				aria-label="打开作者导航器"
 				aria-keyshortcuts="Control+K Meta+K"
@@ -91,6 +112,7 @@ export function TopBar(): React.JSX.Element {
 				<button
 					className="ghost-button"
 					type="button"
+					data-testid="topbar-save"
 					aria-label={saveState.type === 'saving'
 						? '正在保存'
 						: session?.state.dirty ? '保存' : '已保存'}
@@ -105,6 +127,7 @@ export function TopBar(): React.JSX.Element {
 				<button
 					className={`ghost-button ${focusMode ? 'is-active' : ''}`}
 					type="button"
+					data-testid="topbar-focus-toggle"
 					aria-label={focusMode ? '退出专注' : '专注模式'}
 					aria-keyshortcuts="F11"
 					onClick={toggleFocus}
@@ -112,10 +135,59 @@ export function TopBar(): React.JSX.Element {
 					<Focus size={18} />
 					<span>{focusMode ? '退出专注' : '专注模式'}</span>
 				</button>
-				<details className="writer-more-menu">
-					<summary aria-label={quietWriterHeader ? '更多写作操作' : '更多全局操作'} role="button"><MoreHorizontal size={20} /></summary>
+				<details
+					ref={moreMenuRef}
+					className="writer-more-menu"
+					onToggle={event => {
+						if (!event.currentTarget.open) return;
+						const menu = event.currentTarget;
+						window.requestAnimationFrame(() => {
+							if (menu.open) enabledMoreMenuItems()[0]?.focus();
+						});
+					}}
+				>
+					<summary
+						ref={moreMenuTriggerRef}
+						data-testid="topbar-more-menu"
+						aria-label={quietWriterHeader ? '更多写作操作' : '更多全局操作'}
+						aria-haspopup="menu"
+						aria-controls="topbar-more-menu-items"
+						role="button"
+						onKeyDown={event => {
+							if (event.key !== 'Enter' && event.key !== ' ') return;
+							event.preventDefault();
+							if (moreMenuRef.current) {
+								moreMenuRef.current.open = !moreMenuRef.current.open;
+							}
+						}}
+					>
+						<MoreHorizontal size={20} />
+					</summary>
 					<div
+						id="topbar-more-menu-items"
 						role="menu"
+						onKeyDown={event => {
+							if (event.key === 'Escape') {
+								event.preventDefault();
+								event.stopPropagation();
+								if (moreMenuRef.current) moreMenuRef.current.open = false;
+								moreMenuTriggerRef.current?.focus();
+								return;
+							}
+							if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+							event.preventDefault();
+							const items = enabledMoreMenuItems();
+							if (items.length === 0) return;
+							const current = items.indexOf(document.activeElement as HTMLButtonElement);
+							const next = event.key === 'Home'
+								? 0
+								: event.key === 'End'
+									? items.length - 1
+									: event.key === 'ArrowDown'
+										? (current + 1 + items.length) % items.length
+										: (current - 1 + items.length) % items.length;
+							items[next]?.focus();
+						}}
 						onClickCapture={event => {
 							if ((event.target as HTMLElement).closest('[role="menuitem"]')) {
 								event.currentTarget.closest('details')?.removeAttribute('open');
@@ -124,29 +196,29 @@ export function TopBar(): React.JSX.Element {
 					>
 						{quietWriterHeader && (
 							<>
-							<button type="button" role="menuitem" onClick={toggleSidebar}>
+							<button type="button" role="menuitem" data-testid="topbar-writer-sidebar" onClick={toggleSidebar}>
 								{sidebarOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
 								{sidebarOpen ? '收起章节树' : '展开章节树'}
 							</button>
-							<button type="button" role="menuitem" onClick={toggleAssistant}>
+							<button type="button" role="menuitem" data-testid="topbar-writer-assistant" onClick={toggleAssistant}>
 								{assistantOpen ? <PanelRightClose size={18} /> : <PanelRightOpen size={18} />}
 								{assistantOpen ? '收起写作助手' : '打开写作助手'}
 							</button>
-							<button type="button" role="menuitem" onClick={openAiQuickActions}>
+							<button type="button" role="menuitem" data-testid="topbar-ai-quick-actions" onClick={openAiQuickActions}>
 								<Sparkles size={18} />AI 快速动作
 							</button>
-							<button type="button" role="menuitem" onClick={resetWorkspaceLayout}>
+							<button type="button" role="menuitem" data-testid="topbar-writer-reset-layout" onClick={resetWorkspaceLayout}>
 								<RotateCcw size={18} />恢复写作布局
 							</button>
 							</>
 						)}
-						<button type="button" role="menuitem" onClick={() => openQuickCapture()}>
+						<button type="button" role="menuitem" data-testid="topbar-quick-capture" onClick={() => openQuickCapture()}>
 							<StickyNote size={18} />快速记录
 						</button>
-						<button type="button" role="menuitem" onClick={() => setMode('settings')}>
+						<button type="button" role="menuitem" data-testid="topbar-settings" onClick={() => setMode('settings')}>
 							<Settings2 size={18} />设置
 						</button>
-						<button type="button" role="menuitem" onClick={() => setMode('ai')}>
+						<button type="button" role="menuitem" data-testid="topbar-ai-settings" onClick={() => setMode('ai')}>
 							<Sparkles size={18} />AI 连接测试
 						</button>
 					</div>
@@ -156,6 +228,7 @@ export function TopBar(): React.JSX.Element {
 						<button
 							className="icon-button"
 							type="button"
+							data-testid="topbar-workspace-sidebar"
 							onClick={toggleSidebar}
 							aria-label={sidebarOpen ? '收起作品侧栏' : '展开作品侧栏'}
 							aria-keyshortcuts="Control+B Meta+B"
@@ -166,6 +239,7 @@ export function TopBar(): React.JSX.Element {
 						<button
 							className="icon-button"
 							type="button"
+							data-testid="topbar-workspace-assistant"
 							onClick={toggleAssistant}
 							aria-label={assistantOpen ? '收起写作助手' : '展开写作助手'}
 							aria-keyshortcuts="Control+Alt+B Meta+Alt+B"
@@ -176,6 +250,7 @@ export function TopBar(): React.JSX.Element {
 						<button
 							className="icon-button"
 							type="button"
+							data-testid="topbar-workspace-reset-layout"
 							onClick={resetWorkspaceLayout}
 							aria-label="恢复当前工作区默认布局"
 							title="恢复当前工作区默认布局"

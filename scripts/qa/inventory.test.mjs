@@ -416,6 +416,30 @@ describe('control inventory rendered-element boundary', () => {
 			'information-retry-load',
 			'information-search'
 		]);
+		const topBarControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/shell/TopBar.tsx'
+		));
+
+		expect(topBarControls).toHaveLength(16);
+		expect(topBarControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(topBarControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'topbar-ai-quick-actions',
+			'topbar-ai-settings',
+			'topbar-focus-exit',
+			'topbar-focus-toggle',
+			'topbar-more-menu',
+			'topbar-more-menu-items',
+			'topbar-quick-capture',
+			'topbar-save',
+			'topbar-search',
+			'topbar-settings',
+			'topbar-workspace-assistant',
+			'topbar-workspace-reset-layout',
+			'topbar-workspace-sidebar',
+			'topbar-writer-assistant',
+			'topbar-writer-reset-layout',
+			'topbar-writer-sidebar'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
