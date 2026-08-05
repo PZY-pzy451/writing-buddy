@@ -4,32 +4,35 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Assistant Panel selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `709b254`.
+Settings and AI Playground selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `4901297`.
 
-- Dynamic pin/close controls now retain their tool-specific accessible names
-  while exposing stable identities. Repeated rewrite actions share one identity
-  plus exact action context. Existing rendered user paths prove opening AI,
-  selecting a rewrite mode, focusing/pinning, persistence and closing.
-- Two failure-first contracts converged to 3/3 focused and 97/97 product impact
-  tests. Node 24 passed lint, typecheck, 189 files / 979 tests and production
-  build; Rust passed 77 with two reasoned ignores; QA infrastructure passed
-  30/30. Runtime/static discovery remains 979/979.
+- Theme and accent choices now expose composite stable identities plus exact
+  option context. The isolated AI Playground prompt has its own stable identity.
+  Rendered Settings coverage clicks both choices and proves store/active-state
+  synchronization; the existing Playground path still completes streamed output.
+- Failure-first contracts converged to 23/23 focused product tests and 15/15
+  inventory contracts. A full-suite-only continuation timeout passed 10/10 in
+  isolation and 20/20 repeated pressure runs; a bounded 5-second async query
+  window removed the load-sensitive false failure without changing product code.
+- Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
+  Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
+  Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
 - Inventory remains 511 controls / 11,242 states / 1,058 tests. Global mapped
-  controls rise by 3, states by 51 and tests by 2. Strict gaps fall by 56 from
-  9,009 to 8,953, selector gaps from 47 to 44 and unmapped tests from 824 to
-  822.
+  features rise by 1, pages by 1, controls by 3, states by 19 and tests by 1.
+  Strict gaps fall by 25 from 8,953 to 8,928, selector gaps from 44 to 41 and
+  unmapped tests from 822 to 821.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,111/13,064 (31.47%); stable selectors are 467/511 (91.39%); test mapping is
-  236/1,058 (22.31%). Against the 11,088 / 136 reference, 2,135 mapping gaps
-  and 92 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,953 strict mappings plus real-provider smoke and
+  4,136/13,064 (31.66%); stable selectors are 470/511 (91.98%); test mapping is
+  237/1,058 (22.40%). Against the 11,088 / 136 reference, 2,160 mapping gaps
+  and 95 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,928 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
 
 ## Previous milestone
 
-Review Center selector/trace convergence is complete against source `7dffe30`:
-three controls and nine product cases map, and fixed acceptance passed 979
+Assistant Panel selector/trace convergence is complete against source `709b254`:
+three controls and two product cases map, and fixed acceptance passed 979
 frontend tests.
 
 ## Previous milestone
