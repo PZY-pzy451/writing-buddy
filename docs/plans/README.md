@@ -1,5 +1,7 @@
 # Plan index
 
+- [Daily writing goal form selector and trace convergence QA](./109-daily-writing-goal-form-selector-trace-convergence-qa.md)
+
 - [Item transfer single-flight, selector and trace convergence QA](./108-item-transfer-single-flight-selector-trace-convergence-qa.md)
 
 - [Quick capture save, selector and trace convergence QA](./107-quick-capture-save-selector-trace-convergence-qa.md)

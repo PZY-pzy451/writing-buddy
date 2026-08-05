@@ -64,7 +64,13 @@ export function DailyWritingGoalControl({
 					<strong>{progress.completed ? '今天的目标已经完成' : `还差 ${progress.remaining.toLocaleString()} 字`}</strong>
 					<span>当前完成 {progress.percent}% · 仅记录正文净增字数</span>
 				</div>
-				<form onSubmit={saveGoal} noValidate>
+				<form
+					data-testid="daily-writing-goal-form"
+					data-placement={placement}
+					aria-label="每日写作目标设置"
+					onSubmit={saveGoal}
+					noValidate
+				>
 					<label htmlFor={`daily-writing-goal-${placement}`}>每日目标</label>
 					<div>
 						<input

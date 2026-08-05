@@ -469,6 +469,18 @@ describe('control inventory rendered-element boundary', () => {
 			'item-transfer-order',
 			'item-transfer-quantity'
 		]);
+		const dailyWritingGoalControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/progress/DailyWritingGoalControl.tsx'
+		));
+
+		expect(dailyWritingGoalControls).toHaveLength(3);
+		expect(dailyWritingGoalControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(dailyWritingGoalControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'daily-writing-goal-form',
+			'dailyGoal',
+			'保存目标'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
