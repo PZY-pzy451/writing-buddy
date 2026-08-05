@@ -401,6 +401,8 @@ export function ReviewPage(): React.JSX.Element {
 				<button
 					type="button"
 					role="tab"
+					data-testid="review-mode-tab"
+					data-review-mode="manual"
 					aria-selected={mode === 'manual'}
 					className={mode === 'manual' ? 'is-active' : ''}
 					onClick={() => chooseMode('manual')}
@@ -412,6 +414,8 @@ export function ReviewPage(): React.JSX.Element {
 				<button
 					type="button"
 					role="tab"
+					data-testid="review-mode-tab"
+					data-review-mode="ai"
 					aria-selected={mode === 'ai'}
 					className={mode === 'ai' ? 'is-active' : ''}
 					onClick={() => chooseMode('ai')}
@@ -569,6 +573,7 @@ function PublishReadinessPanel(props: {
 				<button
 					className="secondary-button publish-readiness-toggle"
 					type="button"
+					data-testid="publish-readiness-toggle"
 					aria-expanded={props.expanded}
 					aria-controls="publish-readiness-checklist"
 					onClick={props.onToggle}
@@ -626,6 +631,9 @@ function PublishReadinessRow(props: {
 				<button
 					className="secondary-button"
 					type="button"
+					data-testid="publish-readiness-action"
+					data-check-id={props.check.id}
+					data-action-type={props.check.action.type}
 					onClick={() => props.onAction(props.check.action!)}
 				>
 					{props.check.action.label}

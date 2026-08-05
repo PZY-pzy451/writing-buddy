@@ -71,7 +71,8 @@ describe('manual and AI review experience', () => {
 		resetStores();
 	});
 
-	it('runs local review without removing AI-origin issues from the same chapter', async () => {
+	it('runs local review successfully offline without removing AI-origin issues from the same chapter', async () => {
+		const paidGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		const user = userEvent.setup();
 		render(<App />);
 		await screen.findByRole('main', { name: '写作首页' });
@@ -91,6 +92,9 @@ describe('manual and AI review experience', () => {
 			});
 		});
 		await user.click(screen.getByRole('button', { name: '检查' }));
+		const reviewModes = screen.getAllByTestId('review-mode-tab');
+		expect(reviewModes.map(control => control.getAttribute('data-review-mode')).sort())
+			.toEqual(['ai', 'manual']);
 		await user.click(screen.getByRole('button', { name: /手动运行审校/ }));
 
 		expect(await screen.findByText('重复标点')).toBeInTheDocument();
@@ -99,9 +103,11 @@ describe('manual and AI review experience', () => {
 		expect(useAppStore.getState().issues.filter(issue => issue.origin === 'local')).toHaveLength(2);
 		expect(useAppStore.getState().issues.filter(issue => issue.origin === 'ai')).toHaveLength(1);
 		expect(screen.getByText(/本地审校完成，发现 2 个问题/)).toBeInTheDocument();
+		expect(paidGeneration).not.toHaveBeenCalled();
+		paidGeneration.mockRestore();
 	});
 
-	it('opens the next affected chapter directly from the project review inbox', async () => {
+	it('opens the next affected chapter with keyboard focus from the project review inbox', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await screen.findByRole('main', { name: '写作首页' });
@@ -115,7 +121,9 @@ describe('manual and AI review experience', () => {
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		expect(await screen.findByRole('heading', { name: '项目待处理事项' })).toBeInTheDocument();
 		const nextTask = screen.getByRole('button', { name: /打开下一项.*第一章/ });
-		await user.click(nextTask);
+		nextTask.focus();
+		expect(nextTask).toHaveFocus();
+		await user.keyboard('{Enter}');
 
 		await waitFor(() => expect(useAppStore.getState().activeResource?.id).toBe(chapter.id));
 		expect(await screen.findByText('重复标点')).toBeInTheDocument();
@@ -138,7 +146,7 @@ describe('manual and AI review experience', () => {
 		});
 	});
 
-	it('expands an explainable publish checklist and routes final delivery to History', async () => {
+	it('shows an accessible publish checklist and routes final delivery to History', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await screen.findByRole('main', { name: '写作首页' });
@@ -149,7 +157,9 @@ describe('manual and AI review experience', () => {
 		expect(screen.getByText('可以继续，但需作者确认')).toBeInTheDocument();
 		expect(screen.queryByText('正文覆盖')).not.toBeInTheDocument();
 
-		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		const checklistToggle = screen.getByTestId('publish-readiness-toggle');
+		expect(checklistToggle).toHaveAccessibleName(/查看发布清单/);
+		await user.click(checklistToggle);
 
 		expect(screen.getByText('正文覆盖')).toBeInTheDocument();
 		expect(screen.getByText('保存安全')).toBeInTheDocument();
@@ -159,13 +169,16 @@ describe('manual and AI review experience', () => {
 		expect(screen.getByText('整书交付回执')).toBeInTheDocument();
 		expect(screen.getByText(/不会运行 AI、修改正文或创建导出文件/u))
 			.toBeInTheDocument();
+		expect(screen.getAllByTestId('publish-readiness-action').some(control => (
+			control.getAttribute('data-action-type') === 'history'
+		))).toBe(true);
 
 		await user.click(screen.getByRole('button', { name: /前往整书导出/ }));
 		expect(await screen.findByRole('heading', { name: '历史与导出' }))
 			.toBeInTheDocument();
 	});
 
-	it('confirms an exact release candidate, invalidates it after a source change and revokes it from History', async () => {
+	it('persists an exact release candidate, invalidates it after a source change and undoes confirmation from History', async () => {
 		const user = userEvent.setup();
 		vi.spyOn(desktopBridge, 'saveDocxAs').mockResolvedValue('D:\\Exports\\我的小说.docx');
 		render(<App />);
@@ -180,6 +193,9 @@ describe('manual and AI review experience', () => {
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		expect(screen.queryByText(/已导出整部《我的小说》/u)).not.toBeInTheDocument();
 		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		expect(screen.getAllByTestId('publish-readiness-action').some(control => (
+			control.getAttribute('data-action-type') === 'confirm-delivery'
+		))).toBe(true);
 		expect(await screen.findByText(/请由作者确认它是否就是准备发布或提交的版本/u))
 			.toBeInTheDocument();
 		await user.click(screen.getByRole('button', { name: /确认此交付版本/ }));
@@ -222,6 +238,9 @@ describe('manual and AI review experience', () => {
 
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		expect(screen.getAllByTestId('publish-readiness-action').some(control => (
+			control.getAttribute('data-action-type') === 'save'
+		))).toBe(true);
 		expect(screen.getByText('当前正文包含尚未写入项目的修改。'))
 			.toBeInTheDocument();
 
@@ -252,6 +271,9 @@ describe('manual and AI review experience', () => {
 
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));
+		expect(screen.getAllByTestId('publish-readiness-action').some(control => (
+			control.getAttribute('data-action-type') === 'review'
+		))).toBe(true);
 		await user.click(screen.getByRole('button', { name: /查看待办/ }));
 
 		expect(await screen.findByRole('heading', { level: 1, name: chapter.title }))
@@ -264,7 +286,7 @@ describe('manual and AI review experience', () => {
 		expect(reveal).toHaveBeenCalledWith(chapter.id, reviewIssue.anchor.start);
 	});
 
-	it('streams a real-provider-shaped AI review and keeps suggestions author-confirmed', async () => {
+	it('streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob');
 		await desktopBridge.saveDeepSeekKey('fixture-key');
@@ -274,7 +296,11 @@ describe('manual and AI review experience', () => {
 		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
 		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
 		await user.click(screen.getByRole('button', { name: '检查' }));
-		await user.click(screen.getByRole('tab', { name: /AI 自动审校/ }));
+		const aiMode = screen.getAllByTestId('review-mode-tab').find(control => (
+			control.getAttribute('data-review-mode') === 'ai'
+		));
+		expect(aiMode).toBeDefined();
+		await user.click(aiMode!);
 		await waitFor(() => expect(screen.getByRole('button', { name: /开始 AI 自动审校/ })).toBeEnabled());
 		const start = screen.getByRole('button', { name: /开始 AI 自动审校/ });
 		await act(async () => {
@@ -364,7 +390,7 @@ describe('manual and AI review experience', () => {
 		cancelAiJob.mockRestore();
 	});
 
-	it('localizes a review cancellation failure and permits retry', async () => {
+	it('restarts review cancellation after a localized failure', async () => {
 		let activeJob: {
 			request: AiGenerateRequest;
 			listener: (event: AiStreamEvent) => void;

@@ -566,7 +566,7 @@ describe('control inventory rendered-element boundary', () => {
 		expect(highlightControls[0]?.stableSelectorValue).toBe('entity-highlight-kind-toggle');
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI and Project Welcome control to stable selectors', () => {
+	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -717,5 +717,20 @@ describe('control inventory rendered-element boundary', () => {
 				'project-welcome-recent-project',
 				'打开已有 Writing Buddy 作品'
 			]));
+		const reviewCenterControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/review/ReviewPage.tsx'
+		));
+
+		expect(reviewCenterControls).toHaveLength(5);
+		expect(reviewCenterControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(reviewCenterControls.map(control => control.stableSelectorValue).sort())
+			.toEqual([
+				'publish-readiness-action',
+				'publish-readiness-toggle',
+				'review-mode-tab',
+				'回到正文处理',
+				'打开 AI 设置'
+			]);
 	});
 });
