@@ -111,6 +111,20 @@ function initialFieldSelection(batch: CharacterReviewBatch): Readonly<Record<str
 	]));
 }
 
+function characterWriteError(reason: unknown): string {
+	const code = reason instanceof Error ? reason.message : '';
+	if (code === 'staleCharacterCandidate') {
+		return '候选依据的正文或人物资料已变化，请重新生成。';
+	}
+	if (code === 'invalidCharacterFieldSelection') {
+		return '请至少选择一个可写入字段后重试。';
+	}
+	if (code === 'characterNameCollision') {
+		return '存在同名或同别名人物，请先检查人物资料。';
+	}
+	return '人物字段写入失败，原资料没有改变，请重试。';
+}
+
 export interface CharacterAiPanelProps {
 	readonly projectRoot: string;
 	readonly chapters: readonly AiChapterSource[];
@@ -271,7 +285,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 			props.onAccepted(result.character, result.states);
 			setNotice(`已创建安全快照，并保存“${result.character.title}”的所选字段。`);
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '人物字段写入失败。');
+			setError(characterWriteError(reason));
 		} finally {
 			applyingRef.current = false;
 			setApplyingId(undefined);
@@ -295,6 +309,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 				<div className="ai-review-action-grid" role="tablist" aria-label="人物 AI 动作">
 					{actions.map(candidate => (
 						<button
+							data-testid="character-ai-action"
 							type="button"
 							role="tab"
 							aria-selected={candidate.id === actionType}
@@ -327,6 +342,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
 					<textarea
+						data-testid="character-ai-instruction"
 						value={instruction}
 						disabled={generating}
 						maxLength={2_000}
@@ -336,6 +352,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
 					<button
+						data-testid="character-ai-generate"
 						type="button"
 						className="ai-review-primary"
 						disabled={Boolean(disabledReason) || generating}
@@ -383,6 +400,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 									key={field.id}
 								>
 									<input
+										data-testid="character-ai-field"
 										type="checkbox"
 										disabled={field.blocking || candidate.status !== 'candidate'}
 										checked={(selectedFields[candidate.id] ?? []).includes(field.id)}
@@ -406,6 +424,7 @@ export function CharacterAiPanel(props: CharacterAiPanelProps): React.JSX.Elemen
 							))}
 						</div>
 						<button
+							data-testid="character-ai-accept"
 							type="button"
 							className="ai-review-accept"
 							disabled={

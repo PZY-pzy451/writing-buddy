@@ -310,4 +310,32 @@ describe('control inventory rendered-element boundary', () => {
 			'选择物品转交生效场景'
 		]);
 	});
+
+	it('TC-QA-INVENTORY-018 maps every Character AI control to a stable selector', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const characterAiControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/characters/CharacterAiPanel.tsx'
+		));
+
+		expect(characterAiControls).toHaveLength(8);
+		expect(characterAiControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(characterAiControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'character-ai-accept',
+			'character-ai-action',
+			'character-ai-field',
+			'character-ai-generate',
+			'character-ai-instruction',
+			'关闭 AI 人物助手',
+			'证据',
+			'选择人物分析章节'
+		]);
+	});
 });

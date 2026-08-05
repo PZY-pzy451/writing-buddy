@@ -208,7 +208,7 @@ describe('CharacterCenterPage', () => {
 		}));
 	});
 
-	it('opens the empty-state AI workflow and renders exactly three generated candidates', async () => {
+	it('TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
@@ -227,10 +227,12 @@ describe('CharacterCenterPage', () => {
 
 		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建人物' }));
 		expect(screen.getByRole('complementary', { name: 'AI 人物助手' })).toBeInTheDocument();
+		expect(screen.getAllByTestId('character-ai-action')).toHaveLength(5);
 		expect(screen.getByRole('combobox', { name: '选择人物分析章节' })).toHaveValue(
 			'chapter:chapter-000000a1'
 		);
-		const generate = screen.getByRole('button', { name: '生成候选' });
+		expect(screen.getByTestId('character-ai-instruction')).toBeEnabled();
+		const generate = screen.getByTestId('character-ai-generate');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -242,11 +244,13 @@ describe('CharacterCenterPage', () => {
 		expect(await screen.findByRole('heading', { name: '顾遥' })).toBeInTheDocument();
 		expect(screen.getByRole('heading', { name: '唐砚' })).toBeInTheDocument();
 		expect(screen.getByRole('heading', { name: '温禾' })).toBeInTheDocument();
+		expect(screen.getAllByTestId('character-ai-field').length).toBeGreaterThan(0);
+		expect(screen.getAllByTestId('character-ai-accept')).toHaveLength(3);
 		await desktopBridge.deleteDeepSeekKey();
 		startAiGeneration.mockRestore();
 	});
 
-	it('releases the generation guard after a provider-start failure and allows retry', async () => {
+	it('TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
 			.mockRejectedValueOnce(new Error('temporary provider failure'));
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
@@ -276,6 +280,42 @@ describe('CharacterCenterPage', () => {
 		expect(startAiGeneration).toHaveBeenCalledTimes(2);
 		await desktopBridge.deleteDeepSeekKey();
 		startAiGeneration.mockRestore();
+	});
+
+	it('TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry', async () => {
+		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
+			.mockRejectedValueOnce(new Error('C:\\private\\author\\story.json'));
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		render(
+			<CharacterCenterPage
+				projectRoot="browser-fixture"
+				loadData={() => Promise.resolve({ characters: [], states: [] })}
+				chapters={[{
+					resourceId: 'chapter:chapter-000000a1',
+					chapterId: 'chapter-000000a1',
+					title: '第一章 · 雨夜旧站',
+					path: 'chapters/chapter-001.md',
+					narrativeOrder: 0
+				}]}
+			/>
+		);
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建人物' }));
+		fireEvent.click(screen.getByRole('button', { name: '生成候选' }));
+		expect(await screen.findByRole('heading', { name: '顾遥' })).toBeInTheDocument();
+		const accept = screen.getAllByRole('button', { name: '创建人物并写入所选字段' })[0];
+		fireEvent.click(accept);
+
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('人物字段写入失败，原资料没有改变，请重试。');
+		expect(alert).not.toHaveTextContent('C:\\private');
+		expect(accept).toBeEnabled();
+		fireEvent.click(accept);
+
+		await waitFor(() => expect(createSnapshot).toHaveBeenCalledTimes(2));
+		await waitFor(() => expect(accept).toHaveTextContent('已写入所选字段'));
+		await desktopBridge.deleteDeepSeekKey();
+		createSnapshot.mockRestore();
 	});
 
 	it('consumes a global create intent by opening the assistant without starting AI', async () => {
