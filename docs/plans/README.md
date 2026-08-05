@@ -101,6 +101,7 @@
 - [Selection Action Menu control and keyboard convergence QA](./099-selection-action-menu-control-keyboard-convergence-qa.md)
 - [Resize Handle control and cancel convergence QA](./100-resize-handle-control-cancel-convergence-qa.md)
 - [Story Dashboard recovery and control convergence QA](./101-story-dashboard-recovery-control-convergence-qa.md)
+- [Close protection control and single-flight convergence QA](./102-close-protection-control-single-flight-convergence-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)

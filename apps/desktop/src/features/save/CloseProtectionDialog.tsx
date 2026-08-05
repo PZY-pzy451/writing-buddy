@@ -63,6 +63,7 @@ export function CloseProtectionDialog({
 		<div className="modal-backdrop close-protection-backdrop" role="presentation">
 			<section
 				ref={dialogRef}
+				data-testid="close-protection-dialog"
 				tabIndex={-1}
 				className="close-protection-dialog"
 				role="dialog"
@@ -82,7 +83,13 @@ export function CloseProtectionDialog({
 							? '当前正文已保存。'
 							: protection.message}</p>
 					</div>
-					<button className="icon-button" type="button" onClick={dismiss} aria-label="取消退出">
+					<button
+						className="icon-button"
+						type="button"
+						data-testid="close-protection-cancel"
+						onClick={dismiss}
+						aria-label="取消退出"
+					>
 						<X size={18} />
 					</button>
 				</header>
@@ -91,11 +98,21 @@ export function CloseProtectionDialog({
 					<p>快速记录已经单独落盘；未确认的 AI 候选不会写入正文。</p>
 				</div>
 				<footer>
-					<button className="secondary-button" type="button" onClick={dismiss}>
+					<button
+						className="secondary-button"
+						type="button"
+						data-testid="close-protection-continue-writing"
+						onClick={dismiss}
+					>
 						继续写作
 					</button>
 					{saveState.type === 'external_conflict' ? (
-						<button className="primary-button" type="button" onClick={dismiss}>
+						<button
+							className="primary-button"
+							type="button"
+							data-testid="close-protection-resolve-conflict"
+							onClick={dismiss}
+						>
 							先处理文件冲突
 						</button>
 					) : (
@@ -103,6 +120,7 @@ export function CloseProtectionDialog({
 							<button
 								className="secondary-button"
 								type="button"
+								data-testid="close-protection-save-copy"
 								onClick={() => void saveCopyAndExit()}
 								disabled={saveState.type === 'saving'}
 							>
@@ -111,6 +129,7 @@ export function CloseProtectionDialog({
 							<button
 								className="danger-button"
 								type="button"
+								data-testid="close-protection-discard"
 								onClick={() => void finishExit()}
 								disabled={saveState.type === 'saving'}
 							>
@@ -119,6 +138,7 @@ export function CloseProtectionDialog({
 							<button
 								className="primary-button"
 								type="button"
+								data-testid="close-protection-save-exit"
 								onClick={() => void retryAndExit()}
 								disabled={saveState.type === 'saving'
 									|| (saveState.type === 'failed' && !saveState.retryable)}

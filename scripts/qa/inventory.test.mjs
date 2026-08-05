@@ -357,6 +357,20 @@ describe('control inventory rendered-element boundary', () => {
 			'story-dashboard-next-step',
 			'story-dashboard-recent-chapter'
 		]));
+		const closeProtectionControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/save/CloseProtectionDialog.tsx'
+		));
+
+		expect(closeProtectionControls).toHaveLength(6);
+		expect(closeProtectionControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(closeProtectionControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'close-protection-cancel',
+			'close-protection-continue-writing',
+			'close-protection-discard',
+			'close-protection-resolve-conflict',
+			'close-protection-save-copy',
+			'close-protection-save-exit'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
