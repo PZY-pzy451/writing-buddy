@@ -24762,138 +24762,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C",
+                  "id": "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-VISIBLE",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-HIDDEN",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-ENABLED",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DISABLED",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-POINTER",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-KEYBOARD",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FOCUS-IN",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FOCUS-OUT",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-REPEAT",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DEDUPLICATION",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-LOADING",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-SUCCESS",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FAILURE",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-CANCELLED",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-OFFLINE",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-PERMISSION",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-PERSISTENCE",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-RESTART",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-VISUAL",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-UNDO",
+                      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -76539,24 +76539,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-0C73C07A52",
-      "title": "rejects stale source and stale matched-character revisions",
-      "declarationTitle": "rejects stale source and stale matched-character revisions",
-      "declarationLine": 210,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-0D113A5FBF",
       "title": "discloses the bounded automatic flow and exposes keyboard and mouse actions",
       "declarationTitle": "discloses the bounded automatic flow and exposes keyboard and mouse actions",
@@ -76956,7 +76938,7 @@
       "id": "TC-DISCOVERED-148006CA13",
       "title": "repeats a save from the persisted character revision and keeps the second write successful",
       "declarationTitle": "repeats a save from the persisted character revision and keeps the second write successful",
-      "declarationLine": 194,
+      "declarationLine": 201,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -77702,7 +77684,7 @@
       "id": "TC-DISCOVERED-1DF4F32C17",
       "title": "saves confirmed character edits through the injected repository action",
       "declarationTitle": "saves confirmed character edits through the injected repository action",
-      "declarationLine": 138,
+      "declarationLine": 145,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -77720,7 +77702,7 @@
       "id": "TC-DISCOVERED-1E452DC5C3",
       "title": "TC-CHARACTER-AI-002 restarts generation after redacted provider failure on explicit retry",
       "declarationTitle": "TC-CHARACTER-AI-002 restarts generation after redacted provider failure on explicit retry",
-      "declarationLine": 270,
+      "declarationLine": 277,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -78630,7 +78612,7 @@
       "id": "TC-DISCOVERED-2923BF0D8E",
       "title": "TC-CHARACTER-AI-003 re-enables candidate write after redacted failure and preserves one explicit retry",
       "declarationTitle": "TC-CHARACTER-AI-003 re-enables candidate write after redacted failure and preserves one explicit retry",
-      "declarationLine": 302,
+      "declarationLine": 309,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -78684,7 +78666,7 @@
       "id": "TC-DISCOVERED-297F9501E7",
       "title": "consumes a global create intent by opening the assistant without starting AI",
       "declarationTitle": "consumes a global create intent by opening the assistant without starting AI",
-      "declarationLine": 338,
+      "declarationLine": 345,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -78802,6 +78784,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2A861CDE7B",
+      "title": "cancels a stale candidate write after reloading authoritative source and character revisions",
+      "declarationTitle": "cancels a stale candidate write after reloading authoritative source and character revisions",
+      "declarationLine": 210,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -79770,7 +79770,7 @@
       "id": "TC-DISCOVERED-3623018730",
       "title": "guards dirty edits before changing the selected character",
       "declarationTitle": "guards dirty edits before changing the selected character",
-      "declarationLine": 114,
+      "declarationLine": 121,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -81989,24 +81989,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-50976B3108",
-      "title": "snapshots and applies only selected dossier and state fields",
-      "declarationTitle": "snapshots and applies only selected dossier and state fields",
-      "declarationLine": 144,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-5106110A02",
       "title": "ignores a session belonging to another project",
       "declarationTitle": "ignores a session belonging to another project",
@@ -83425,24 +83407,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-69D0227C7A",
-      "title": "deduplicates aliases, exposes existing-field conflicts, and blocks bad evidence",
-      "declarationTitle": "deduplicates aliases, exposes existing-field conflicts, and blocks bad evidence",
-      "declarationLine": 98,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-69D848E775",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
@@ -83628,7 +83592,7 @@
       "id": "TC-DISCOVERED-6C301A8E27",
       "title": "blocks unload after a failed character edit while keeping the dirty draft redacted and retryable",
       "declarationTitle": "blocks unload after a failed character edit while keeping the dirty draft redacted and retryable",
-      "declarationLine": 159,
+      "declarationLine": 166,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -86083,6 +86047,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-927849B804",
+      "title": "hides duplicate alias candidates, exposes existing-field conflicts, and blocks bad evidence",
+      "declarationTitle": "hides duplicate alias candidates, exposes existing-field conflicts, and blocks bad evidence",
+      "declarationLine": 98,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-93288BB697",
       "title": "shows accessible enabled recovery controls, deduplicates 100 repeated clipboard clicks, reports failure safely, retries successfully and invokes recovery actions",
       "declarationTitle": "shows accessible enabled recovery controls, deduplicates 100 repeated clipboard clicks, reports failure safely, retries successfully and invokes recovery actions",
@@ -87371,6 +87353,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-A74B40E576",
+      "title": "creates an undo snapshot and applies only selected dossier and state fields",
+      "declarationTitle": "creates an undo snapshot and applies only selected dossier and state fields",
+      "declarationLine": 144,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-A770AC558A",
       "title": "stops the active job while preserving completed chapter batches",
       "declarationTitle": "stops the active job while preserving completed chapter batches",
@@ -87597,6 +87597,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-AB52A70FDB",
+      "title": "renders the three-column character workspace and changes current state position by keyboard",
+      "declarationTitle": "renders the three-column character workspace and changes current state position by keyboard",
+      "declarationLine": 88,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -87942,7 +87960,7 @@
       "id": "TC-DISCOVERED-B0D62A0A3D",
       "title": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
       "declarationTitle": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
-      "declarationLine": 228,
+      "declarationLine": 235,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -88223,24 +88241,6 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-03",
       "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-B3C72E07C4",
-      "title": "renders the three-column character workspace with current state evidence and conflicts",
-      "declarationTitle": "renders the three-column character workspace with current state evidence and conflicts",
-      "declarationLine": 87,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

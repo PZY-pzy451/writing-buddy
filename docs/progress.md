@@ -4,31 +4,37 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Relationship Matrix and Relationship AI trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `96589ec`.
+Character State and Character AI trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `520f5db`.
 
-- Every directional matrix cell now exposes a stable identity plus exact
-  relationship ID. The rendered test verifies both pointer selection and arrow
-  navigation before opening the correct inspector evidence.
-- Existing AI service tests now map invalid-evidence blocking, deduplication,
-  confirmed snapshot persistence and authoritative-revision reload. Existing
-  relationship query tests map hidden out-of-range edges and bounded data, while
-  the inspector test maps restored revision state. Focused coverage passed 30/30.
-- The same-tick AI generation guard passed 20/20 pressure rounds: 2,000 clicks
-  produced exactly 20 provider starts.
+- The narrative-order number input now exposes a stable identity. The rendered
+  character workspace test clears and types a position with the keyboard, then
+  verifies that the selected state heading refreshes to the new order.
+- Existing Character AI service tests now map duplicate-candidate hiding,
+  confirmed undo-snapshot persistence and authoritative-revision cancellation.
+  The stale candidate contract also proves that no character write occurs.
+  Focused character and inventory coverage passed 27/27.
+- The existing same-tick Character AI generation guard passed 20/20 pressure
+  rounds: 2,000 clicks produced exactly 20 provider starts.
 - Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
 - Inventory remains 522 controls and 11,484 states. Mapped controls rise from
-  362 to 363, mapped states from 3,929 to 3,969 and mapped tests from 249 to
-  255. Strict gaps fall by 47 from 8,722 to 8,675, selector gaps from 24 to 23
-  and unmapped tests from 809 to 803.
+  363 to 364, mapped states from 3,969 to 4,017 and mapped tests from 255 to
+  258. Strict gaps fall by 52 from 8,675 to 8,623, selector gaps from 23 to 22
+  and unmapped tests from 803 to 800.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,642/13,317 (34.86%); stable selectors are 499/522 (95.59%); test mapping is
-  255/1,058 (24.10%). Against the 11,088 / 136 reference, 2,413 mapping gaps
-  and 113 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,675 strict mappings plus real-provider smoke and
+  4,694/13,317 (35.25%); stable selectors are 500/522 (95.79%); test mapping is
+  258/1,058 (24.39%). Against the 11,088 / 136 reference, 2,465 mapping gaps
+  and 114 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,623 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Relationship Matrix and Relationship AI trace convergence is complete against
+source `96589ec`: one selector gap and six unmapped tests were closed, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 

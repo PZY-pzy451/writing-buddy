@@ -22972,11 +22972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-VISIBLE",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-VISIBLE",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -22988,11 +22988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-HIDDEN",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-HIDDEN",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -23004,11 +23004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-ENABLED",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-ENABLED",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -23020,11 +23020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DISABLED",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DISABLED",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -23036,11 +23036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-POINTER",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-POINTER",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -23052,11 +23052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-KEYBOARD",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-KEYBOARD",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -23068,11 +23068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FOCUS-IN",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FOCUS-IN",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -23084,11 +23084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FOCUS-OUT",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FOCUS-OUT",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -23100,11 +23100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-REPEAT",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-REPEAT",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -23116,11 +23116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DEDUPLICATION",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DEDUPLICATION",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -23132,11 +23132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-LOADING",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-LOADING",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -23148,11 +23148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-SUCCESS",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-SUCCESS",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -23164,11 +23164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-FAILURE",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-FAILURE",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -23180,11 +23180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-CANCELLED",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-CANCELLED",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -23196,11 +23196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-OFFLINE",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-OFFLINE",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -23212,11 +23212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-PERMISSION",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-PERMISSION",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -23228,11 +23228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-PERSISTENCE",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-PERSISTENCE",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -23244,11 +23244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-RESTART",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-RESTART",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -23260,11 +23260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-VISUAL",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-VISUAL",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -23276,11 +23276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-ACCESSIBLE-NAME",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -23292,11 +23292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -23308,11 +23308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-4096A32C-UNDO",
+      "id": "STATE-CHARACTERSTATETIMELINE-INPUT-87839392-UNDO",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
       "controlIds": [
-        "CTRL-CHARACTERSTATETIMELINE-INPUT-4096A32C"
+        "CTRL-CHARACTERSTATETIMELINE-INPUT-87839392"
       ],
       "name": "撤销",
       "dimension": "UNDO",
