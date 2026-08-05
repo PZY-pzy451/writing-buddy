@@ -883,5 +883,14 @@ describe('control inventory rendered-element boundary', () => {
 			.not.toContain('UNMAPPED');
 		expect(relationshipMatrixControls.map(control => control.stableSelectorValue))
 			.toContain('relationship-matrix-cell');
+		const characterStateControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/characters/CharacterStateTimeline.tsx'
+		));
+
+		expect(characterStateControls).toHaveLength(1);
+		expect(characterStateControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(characterStateControls.map(control => control.stableSelectorValue))
+			.toContain('character-state-order');
 	});
 });

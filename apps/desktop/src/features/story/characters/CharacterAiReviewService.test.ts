@@ -94,8 +94,8 @@ function storage(): {
 	};
 }
 
-describe('CharacterAiReviewService', () => {
-	it('deduplicates aliases, exposes existing-field conflicts, and blocks bad evidence', () => {
+describe('CharacterAiReviewService control effects: character-ai-action, character-ai-generate, character-ai-field, character-ai-instruction, character-ai-accept', () => {
+	it('hides duplicate alias candidates, exposes existing-field conflicts, and blocks bad evidence', () => {
 		const sourceContent = '林越在旧车站握紧钥匙。';
 		const batch = stageCharacterReviewBatch({
 			actionType: 'extract-from-chapter',
@@ -141,7 +141,7 @@ describe('CharacterAiReviewService', () => {
 			.toMatchObject({ selectedByDefault: false, blocking: true });
 	});
 
-	it('snapshots and applies only selected dossier and state fields', async () => {
+	it('creates an undo snapshot and applies only selected dossier and state fields', async () => {
 		const sourceContent = '林越在旧车站握紧钥匙。';
 		const existing = character({ occupation: '记者' });
 		const batch = stageCharacterReviewBatch({
@@ -207,7 +207,7 @@ describe('CharacterAiReviewService', () => {
 		});
 	});
 
-	it('rejects stale source and stale matched-character revisions', async () => {
+	it('cancels a stale candidate write after reloading authoritative source and character revisions', async () => {
 		const existing = character();
 		const sourceContent = '林越回头。';
 		const batch = stageCharacterReviewBatch({
@@ -238,5 +238,6 @@ describe('CharacterAiReviewService', () => {
 			currentSourceRevision: 'hash:7',
 			currentSourceContent: sourceContent
 		})).rejects.toThrow('staleCharacterCandidate');
+		expect(memory.save).not.toHaveBeenCalled();
 	});
 });

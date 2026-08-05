@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	parseStoryId,
@@ -84,7 +85,8 @@ const states: readonly StateRecord[] = [{
 const data: CharacterCenterData = { characters, states };
 
 describe('CharacterCenterPage', () => {
-	it('renders the three-column character workspace with current state evidence and conflicts', async () => {
+	it('renders the three-column character workspace and changes current state position by keyboard', async () => {
+		const user = userEvent.setup();
 		render(
 			<CharacterCenterPage
 				projectRoot="D:/Fixture"
@@ -106,6 +108,11 @@ describe('CharacterCenterPage', () => {
 		expect(screen.getAllByTestId('character-detail-tab')).toHaveLength(7);
 		fireEvent.click(screen.getByRole('tab', { name: '当前状态' }));
 
+		const stateOrder = screen.getByTestId('character-state-order');
+		expect(stateOrder).toHaveValue(0);
+		await user.clear(stateOrder);
+		await user.type(stateOrder, '1');
+		expect(screen.getByRole('heading', { name: '叙事位置 1' })).toBeInTheDocument();
 		expect(screen.getByText('旧车站')).toBeInTheDocument();
 		expect(screen.getByText('存在 1 条冲突来源')).toBeInTheDocument();
 		expect(screen.getByText('evidence:station-arrival')).toBeInTheDocument();

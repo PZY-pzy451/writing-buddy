@@ -51,6 +51,7 @@ export function CharacterStateTimeline({
 					<span>切换位置</span>
 					<input
 						type="number"
+						data-testid="character-state-order"
 						min={0}
 						value={narrativeOrder}
 						onChange={event => onNarrativeOrderChange(Math.max(0, Number(event.target.value)))}
