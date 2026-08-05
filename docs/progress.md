@@ -4,30 +4,37 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Settings and AI Playground selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `4901297`.
+Plot Board and Plot AI selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `0a893db`.
 
-- Theme and accent choices now expose composite stable identities plus exact
-  option context. The isolated AI Playground prompt has its own stable identity.
-  Rendered Settings coverage clicks both choices and proves store/active-state
-  synchronization; the existing Playground path still completes streamed output.
-- Failure-first contracts converged to 23/23 focused product tests and 15/15
-  inventory contracts. A full-suite-only continuation timeout passed 10/10 in
-  isolation and 20/20 repeated pressure runs; a bounded 5-second async query
-  window removed the load-sensitive false failure without changing product code.
+- Plot thread selection, lifecycle status/save, scene manuscript opening and
+  both AI entry points now expose stable composite identities with exact thread,
+  scene or entry context. Plot AI action, generation, privacy/source toggles,
+  instruction and candidate controls are stable without losing accessible names.
+- Existing rendered tests now exercise the real author path from board selection
+  through lifecycle editing and AI candidate review. The same-tick generation
+  guard passed 20/20 pressure rounds: 2,000 clicks produced exactly 20 provider
+  starts. Focused product/inventory coverage passed 23/23.
 - Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
-- Inventory remains 511 controls / 11,242 states / 1,058 tests. Global mapped
-  features rise by 1, pages by 1, controls by 3, states by 19 and tests by 1.
-  Strict gaps fall by 25 from 8,953 to 8,928, selector gaps from 44 to 41 and
-  unmapped tests from 822 to 821.
+- Honest repeated-control splitting moves inventory from 511 to 515 controls and
+  from 11,242 to 11,330 states. Mapped controls rise from 332 to 342, mapped
+  states from 3,512 to 3,664 and mapped tests from 237 to 242. Strict gaps fall
+  by 75 from 8,928 to 8,853, selector gaps from 41 to 35 and unmapped tests from
+  821 to 816.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,136/13,064 (31.66%); stable selectors are 470/511 (91.98%); test mapping is
-  237/1,058 (22.40%). Against the 11,088 / 136 reference, 2,160 mapping gaps
-  and 95 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,928 strict mappings plus real-provider smoke and
+  4,303/13,156 (32.71%); stable selectors are 480/515 (93.20%); test mapping is
+  242/1,058 (22.87%). Against the 11,088 / 136 reference, 2,235 mapping gaps
+  and 101 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,853 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Settings and AI Playground selector/trace convergence is complete against
+source `4901297`: three controls and one product case map, and fixed acceptance
+passed 979 frontend tests.
 
 ## Previous milestone
 

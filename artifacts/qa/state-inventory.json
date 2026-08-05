@@ -79644,358 +79644,6 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-VISIBLE",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-HIDDEN",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-ENABLED",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DISABLED",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-POINTER",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-KEYBOARD",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FOCUS-IN",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FOCUS-OUT",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-REPEAT",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DEDUPLICATION",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-LOADING",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-SUCCESS",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FAILURE",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-CANCELLED",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-OFFLINE",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-PERMISSION",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-PERSISTENCE",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-RESTART",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-VISUAL",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-UNDO",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlIds": [
-        "CTRL-PLOTAIPANEL-BUTTON-369B76D1"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
       "id": "STATE-PLOTAIPANEL-BUTTON-650CFF34-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
@@ -81404,11 +81052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-VISIBLE",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -81420,11 +81068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-HIDDEN",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-HIDDEN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -81436,11 +81084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-ENABLED",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-ENABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -81452,11 +81100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DISABLED",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DISABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -81468,11 +81116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-POINTER",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-POINTER",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -81484,11 +81132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-KEYBOARD",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-KEYBOARD",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -81500,11 +81148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FOCUS-IN",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FOCUS-IN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -81516,11 +81164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FOCUS-OUT",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FOCUS-OUT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -81532,11 +81180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-REPEAT",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-REPEAT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -81548,11 +81196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DEDUPLICATION",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DEDUPLICATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -81564,11 +81212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-LOADING",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-LOADING",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -81580,11 +81228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-SUCCESS",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-SUCCESS",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -81596,11 +81244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FAILURE",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FAILURE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -81612,11 +81260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-CANCELLED",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-CANCELLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -81628,11 +81276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-OFFLINE",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-OFFLINE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -81644,11 +81292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-PERMISSION",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-PERMISSION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -81660,11 +81308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-PERSISTENCE",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-PERSISTENCE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -81676,11 +81324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-RESTART",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-RESTART",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -81692,11 +81340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-VISUAL",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-VISUAL",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -81708,11 +81356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-ACCESSIBLE-NAME",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -81724,11 +81372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -81740,11 +81388,1067 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-UNDO",
+      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-UNDO",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-INPUT-593FBAF0"
+        "CTRL-PLOTAIPANEL-BUTTON-E35A918B"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-VISIBLE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-HIDDEN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-ENABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DISABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-POINTER",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-KEYBOARD",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FOCUS-IN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FOCUS-OUT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-REPEAT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DEDUPLICATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-LOADING",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-SUCCESS",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FAILURE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-CANCELLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-OFFLINE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-PERMISSION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-PERSISTENCE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-RESTART",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-VISUAL",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-UNDO",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-BUTTON-F4B24179"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-VISIBLE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-HIDDEN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-ENABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DISABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-POINTER",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-KEYBOARD",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FOCUS-IN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FOCUS-OUT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-REPEAT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DEDUPLICATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-LOADING",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-SUCCESS",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FAILURE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-CANCELLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-OFFLINE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-PERMISSION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-PERSISTENCE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-RESTART",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-VISUAL",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-UNDO",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-9486D20D"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-VISIBLE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-HIDDEN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-ENABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DISABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-POINTER",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-KEYBOARD",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FOCUS-IN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FOCUS-OUT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-REPEAT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DEDUPLICATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-LOADING",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-SUCCESS",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FAILURE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-CANCELLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-OFFLINE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-PERMISSION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-PERSISTENCE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-RESTART",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-VISUAL",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-UNDO",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTAIPANEL-INPUT-CECAE234"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -82108,11 +82812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-VISIBLE",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -82124,11 +82828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-HIDDEN",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-HIDDEN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -82140,11 +82844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-ENABLED",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-ENABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -82156,11 +82860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DISABLED",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DISABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -82172,11 +82876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-POINTER",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-POINTER",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -82188,11 +82892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-KEYBOARD",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-KEYBOARD",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -82204,11 +82908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FOCUS-IN",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FOCUS-IN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -82220,11 +82924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FOCUS-OUT",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FOCUS-OUT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -82236,11 +82940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-REPEAT",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-REPEAT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -82252,11 +82956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DEDUPLICATION",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DEDUPLICATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -82268,11 +82972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-LOADING",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-LOADING",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -82284,11 +82988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-SUCCESS",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-SUCCESS",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -82300,11 +83004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FAILURE",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FAILURE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -82316,11 +83020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-CANCELLED",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-CANCELLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -82332,11 +83036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-OFFLINE",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-OFFLINE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -82348,11 +83052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-PERMISSION",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-PERMISSION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -82364,11 +83068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-PERSISTENCE",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-PERSISTENCE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -82380,11 +83084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-RESTART",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-RESTART",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -82396,11 +83100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-VISUAL",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-VISUAL",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -82412,11 +83116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-ACCESSIBLE-NAME",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -82428,11 +83132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -82444,11 +83148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-UNDO",
+      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-UNDO",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D"
+        "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -82812,11 +83516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-VISIBLE",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -82828,11 +83532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-HIDDEN",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-HIDDEN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -82844,11 +83548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-ENABLED",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-ENABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -82860,11 +83564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DISABLED",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DISABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -82876,11 +83580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-POINTER",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-POINTER",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -82892,11 +83596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-KEYBOARD",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-KEYBOARD",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -82908,11 +83612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FOCUS-IN",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FOCUS-IN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -82924,11 +83628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FOCUS-OUT",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FOCUS-OUT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -82940,11 +83644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-REPEAT",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-REPEAT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -82956,11 +83660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DEDUPLICATION",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DEDUPLICATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -82972,11 +83676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-LOADING",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-LOADING",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -82988,11 +83692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-SUCCESS",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-SUCCESS",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -83004,11 +83708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FAILURE",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FAILURE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -83020,11 +83724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-CANCELLED",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-CANCELLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -83036,11 +83740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-OFFLINE",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-OFFLINE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -83052,11 +83756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-PERMISSION",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-PERMISSION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -83068,11 +83772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-PERSISTENCE",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-PERSISTENCE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -83084,11 +83788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-RESTART",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-RESTART",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -83100,11 +83804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-VISUAL",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-VISUAL",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -83116,11 +83820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-ACCESSIBLE-NAME",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -83132,11 +83836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -83148,11 +83852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-UNDO",
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-UNDO",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5"
+        "CTRL-PLOTBOARDPAGE-BUTTON-C1703813"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -83516,6 +84220,710 @@
       "applicability": "UNASSESSED"
     },
     {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-VISIBLE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-HIDDEN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-ENABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DISABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-POINTER",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-KEYBOARD",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FOCUS-IN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FOCUS-OUT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-REPEAT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DEDUPLICATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-LOADING",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-SUCCESS",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FAILURE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-CANCELLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-OFFLINE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-PERMISSION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-PERSISTENCE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-RESTART",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-VISUAL",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-UNDO",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-VISIBLE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-HIDDEN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-ENABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DISABLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-POINTER",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-KEYBOARD",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FOCUS-IN",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FOCUS-OUT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-REPEAT",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DEDUPLICATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-LOADING",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-SUCCESS",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FAILURE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-CANCELLED",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-OFFLINE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-PERMISSION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-PERSISTENCE",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-RESTART",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-VISUAL",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-UNDO",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlIds": [
+        "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
       "id": "STATE-PLOTBOARDPAGE-INPUT-FF592E4B-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
@@ -83868,11 +85276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-VISIBLE",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -83884,11 +85292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-HIDDEN",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-HIDDEN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -83900,11 +85308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-ENABLED",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-ENABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -83916,11 +85324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DISABLED",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DISABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -83932,11 +85340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-POINTER",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-POINTER",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -83948,11 +85356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-KEYBOARD",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-KEYBOARD",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -83964,11 +85372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FOCUS-IN",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FOCUS-IN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -83980,11 +85388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FOCUS-OUT",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FOCUS-OUT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -83996,11 +85404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-REPEAT",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-REPEAT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -84012,11 +85420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DEDUPLICATION",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DEDUPLICATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -84028,11 +85436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-LOADING",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-LOADING",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -84044,11 +85452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-SUCCESS",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-SUCCESS",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -84060,11 +85468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FAILURE",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FAILURE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -84076,11 +85484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-CANCELLED",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-CANCELLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -84092,11 +85500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-OFFLINE",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-OFFLINE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -84108,11 +85516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-PERMISSION",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-PERMISSION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -84124,11 +85532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-PERSISTENCE",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-PERSISTENCE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -84140,11 +85548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-RESTART",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-RESTART",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -84156,11 +85564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-VISUAL",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-VISUAL",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -84172,11 +85580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-ACCESSIBLE-NAME",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -84188,11 +85596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -84204,11 +85612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-UNDO",
+      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-UNDO",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4"
+        "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -84220,11 +85628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-VISIBLE",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-VISIBLE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -84236,11 +85644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-HIDDEN",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-HIDDEN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -84252,11 +85660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-ENABLED",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-ENABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -84268,11 +85676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DISABLED",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DISABLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -84284,11 +85692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-POINTER",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-POINTER",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -84300,11 +85708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-KEYBOARD",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-KEYBOARD",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -84316,11 +85724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FOCUS-IN",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FOCUS-IN",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -84332,11 +85740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FOCUS-OUT",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FOCUS-OUT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -84348,11 +85756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-REPEAT",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-REPEAT",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -84364,11 +85772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DEDUPLICATION",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DEDUPLICATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -84380,11 +85788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-LOADING",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-LOADING",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -84396,11 +85804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-SUCCESS",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-SUCCESS",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -84412,11 +85820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FAILURE",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FAILURE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -84428,11 +85836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-CANCELLED",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-CANCELLED",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -84444,11 +85852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-OFFLINE",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-OFFLINE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -84460,11 +85868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-PERMISSION",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-PERMISSION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -84476,11 +85884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-PERSISTENCE",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-PERSISTENCE",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -84492,11 +85900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-RESTART",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-RESTART",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -84508,11 +85916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-VISUAL",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-VISUAL",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -84524,11 +85932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-ACCESSIBLE-NAME",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -84540,11 +85948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -84556,11 +85964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-UNDO",
+      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-UNDO",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
       "controlIds": [
-        "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C"
+        "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5"
       ],
       "name": "撤销",
       "dimension": "UNDO",

@@ -16565,145 +16565,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTAIPANEL-BUTTON-369B76D1",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-PLOTAIPANEL-BUTTON-369B76D1-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-PLOTAIPANEL-BUTTON-650CFF34",
                   "level": "L4",
                   "name": "查看原文证据",
@@ -17260,138 +17121,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTAIPANEL-INPUT-593FBAF0",
+                  "id": "CTRL-PLOTAIPANEL-BUTTON-E35A918B",
                   "level": "L4",
-                  "name": "input",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-VISIBLE",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-HIDDEN",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-ENABLED",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DISABLED",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-POINTER",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-KEYBOARD",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FOCUS-IN",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FOCUS-OUT",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-REPEAT",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DEDUPLICATION",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-LOADING",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-SUCCESS",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-FAILURE",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-CANCELLED",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-OFFLINE",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-PERMISSION",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-PERSISTENCE",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-RESTART",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-VISUAL",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-ACCESSIBLE-NAME",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-INPUT-593FBAF0-UNDO",
+                      "id": "STATE-PLOTAIPANEL-BUTTON-E35A918B-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PLOTAIPANEL-BUTTON-F4B24179",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-BUTTON-F4B24179-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PLOTAIPANEL-INPUT-9486D20D",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-9486D20D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PLOTAIPANEL-INPUT-CECAE234",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTAIPANEL-INPUT-CECAE234-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -17538,138 +17816,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTAIPANEL-TEXTAREA-20B7922D",
+                  "id": "CTRL-PLOTAIPANEL-TEXTAREA-DC5B7C69",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-VISIBLE",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-HIDDEN",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-ENABLED",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DISABLED",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-POINTER",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-KEYBOARD",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FOCUS-IN",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FOCUS-OUT",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-REPEAT",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DEDUPLICATION",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-LOADING",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-SUCCESS",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-FAILURE",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-CANCELLED",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-OFFLINE",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-PERMISSION",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-PERSISTENCE",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-RESTART",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-VISUAL",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-ACCESSIBLE-NAME",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTAIPANEL-TEXTAREA-20B7922D-UNDO",
+                      "id": "STATE-PLOTAIPANEL-TEXTAREA-DC5B7C69-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -17816,138 +18094,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTBOARDPAGE-BUTTON-87F525A5",
+                  "id": "CTRL-PLOTBOARDPAGE-BUTTON-C1703813",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-VISIBLE",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-HIDDEN",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-ENABLED",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DISABLED",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-POINTER",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-KEYBOARD",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FOCUS-IN",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FOCUS-OUT",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-REPEAT",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DEDUPLICATION",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-LOADING",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-SUCCESS",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-FAILURE",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-CANCELLED",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-OFFLINE",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-PERMISSION",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-PERSISTENCE",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-RESTART",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-VISUAL",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-ACCESSIBLE-NAME",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-BUTTON-87F525A5-UNDO",
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-C1703813-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -18094,6 +18372,284 @@
                   ]
                 },
                 {
+                  "id": "CTRL-PLOTBOARDPAGE-BUTTON-DA6C752C",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-DA6C752C-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-PLOTBOARDPAGE-BUTTON-E76E8010",
+                  "level": "L4",
+                  "name": "打开场景正文",
+                  "states": [
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-PLOTBOARDPAGE-BUTTON-E76E8010-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-PLOTBOARDPAGE-INPUT-FF592E4B",
                   "level": "L4",
                   "name": "当前叙事位置",
@@ -18233,138 +18789,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTBOARDPAGE-SELECT-0DAEA5E4",
+                  "id": "CTRL-PLOTBOARDPAGE-SELECT-DAEE6625",
                   "level": "L4",
                   "name": "select",
                   "states": [
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-VISIBLE",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-HIDDEN",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-ENABLED",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DISABLED",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-POINTER",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-KEYBOARD",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FOCUS-IN",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FOCUS-OUT",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-REPEAT",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DEDUPLICATION",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-LOADING",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-SUCCESS",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-FAILURE",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-CANCELLED",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-OFFLINE",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-PERMISSION",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-PERSISTENCE",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-RESTART",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-VISUAL",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-ACCESSIBLE-NAME",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTBOARDPAGE-SELECT-0DAEA5E4-UNDO",
+                      "id": "STATE-PLOTBOARDPAGE-SELECT-DAEE6625-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -18372,138 +18928,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PLOTTHREADCARD-BUTTON-1BFF0D2C",
+                  "id": "CTRL-PLOTTHREADCARD-BUTTON-27E5D8B5",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-VISIBLE",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-HIDDEN",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-ENABLED",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DISABLED",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-POINTER",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-KEYBOARD",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FOCUS-IN",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FOCUS-OUT",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-REPEAT",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DEDUPLICATION",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-LOADING",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-SUCCESS",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-FAILURE",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-CANCELLED",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-OFFLINE",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-PERMISSION",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-PERSISTENCE",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-RESTART",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-VISUAL",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-ACCESSIBLE-NAME",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PLOTTHREADCARD-BUTTON-1BFF0D2C-UNDO",
+                      "id": "STATE-PLOTTHREADCARD-BUTTON-27E5D8B5-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74590,6 +75146,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-085307E5A7",
+      "title": "shows the scene grid, selects links by pointer and keyboard, closes details and opens manuscript evidence",
+      "declarationTitle": "shows the scene grid, selects links by pointer and keyboard, closes details and opens manuscript evidence",
+      "declarationLine": 119,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-0860225BA7",
       "title": "keeps PLOT_ANALYSIS_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -76738,24 +77312,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-251071EB74",
-      "title": "keeps unknown chapters and relation IDs visible and supports task filters",
-      "declarationTitle": "keeps unknown chapters and relation IDs visible and supports task filters",
-      "declarationLine": 93,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/ScenePlotGridModel.test.ts",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-2538578937",
       "title": "retries an explicitly resumed failed chapter without rerunning completions",
       "declarationTitle": "retries an explicitly resumed failed chapter without rerunning completions",
@@ -77090,6 +77646,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-02",
       "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2943BC7569",
+      "title": "opens the enabled AI plot panel, keeps secrets private, deduplicates repeated generation and shows success",
+      "declarationTitle": "opens the enabled AI plot panel, keeps secrets private, deduplicates repeated generation and shows success",
+      "declarationLine": 44,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -78058,6 +78632,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-349F32052F",
+      "title": "reports invalid one-sided links while ordering real scenes by manuscript chapter",
+      "declarationTitle": "reports invalid one-sided links while ordering real scenes by manuscript chapter",
+      "declarationLine": 65,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/ScenePlotGridModel.test.ts",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-34CB5057C7",
       "title": "redacts an unknown start failure and allows an explicit retry",
       "declarationTitle": "redacts an unknown start failure and allows an explicit retry",
@@ -78616,24 +79208,6 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-3B4544D8E7",
-      "title": "orders real scenes by manuscript chapter and exposes reciprocal and one-sided links",
-      "declarationTitle": "orders real scenes by manuscript chapter and exposes reciprocal and one-sided links",
-      "declarationLine": 65,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/ScenePlotGridModel.test.ts",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79798,6 +80372,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-49B9116EA3",
+      "title": "shows a keyboard-accessible board, selects a plot thread and changes its lifecycle",
+      "declarationTitle": "shows a keyboard-accessible board, selects a plot thread and changes its lifecycle",
+      "declarationLine": 16,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -81200,24 +81792,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-5FA54E0C59",
-      "title": "snapshots and atomically creates selected plot candidates only",
-      "declarationTitle": "snapshots and atomically creates selected plot candidates only",
-      "declarationLine": 85,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/PlotAiReviewService.test.ts",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85120,24 +85694,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-9BD61DDDFA",
-      "title": "deduplicates same-name clues and separates early-payoff local checks",
-      "declarationTitle": "deduplicates same-name clues and separates early-payoff local checks",
-      "declarationLine": 33,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/PlotAiReviewService.test.ts",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-9C44E5A65E",
       "title": "deduplicates one hundred repeated project chooser actions and remains retryable",
       "declarationTitle": "deduplicates one hundred repeated project chooser actions and remains retryable",
@@ -85294,24 +85850,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-9E0F727460",
-      "title": "keeps author secrets private by default and reviews generated plot candidates",
-      "declarationTitle": "keeps author secrets private by default and reviews generated plot candidates",
-      "declarationLine": 34,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -87198,6 +87736,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B8F7322F4D",
+      "title": "requires confirmation for same-name clues and separates early-payoff local checks",
+      "declarationTitle": "requires confirmation for same-name clues and separates early-payoff local checks",
+      "declarationLine": 33,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/PlotAiReviewService.test.ts",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B918181DE8",
       "title": "saves and validates a key once for 100 same-tick requests",
       "declarationTitle": "saves and validates a key once for 100 same-tick requests",
@@ -87608,24 +88164,6 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-C00724CB44",
-      "title": "maps real scenes to plot threads and locates the selected scene manuscript",
-      "declarationTitle": "maps real scenes to plot threads and locates the selected scene manuscript",
-      "declarationLine": 71,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88508,24 +89046,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-CBE77E1EEF",
-      "title": "provides a keyboard-accessible board and lifecycle table",
-      "declarationTitle": "provides a keyboard-accessible board and lifecycle table",
-      "declarationLine": 16,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/plots/PlotBoardPage.test.tsx",
-      "domainId": "DOMAIN-02",
-      "featureId": "FEATURE-02-12",
-      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -90630,6 +91150,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-EE25FA348F",
+      "title": "keeps unknown chapters and relation IDs visible, supports task filters and restores all rows after an unmatched search",
+      "declarationTitle": "keeps unknown chapters and relation IDs visible, supports task filters and restores all rows after an unmatched search",
+      "declarationLine": 93,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/ScenePlotGridModel.test.ts",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-EE49E2BC68",
       "title": "surfaces stale ledger writes instead of overwriting concurrent state",
       "declarationTitle": "surfaces stale ledger writes instead of overwriting concurrent state",
@@ -90804,6 +91342,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F06A3B1D2F",
+      "title": "persists one snapshot and atomically creates selected plot candidates only",
+      "declarationTitle": "persists one snapshot and atomically creates selected plot candidates only",
+      "declarationLine": 85,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/plots/PlotAiReviewService.test.ts",
+      "domainId": "DOMAIN-02",
+      "featureId": "FEATURE-02-12",
+      "pageId": "PAGE-PLANNING-PLOTS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
