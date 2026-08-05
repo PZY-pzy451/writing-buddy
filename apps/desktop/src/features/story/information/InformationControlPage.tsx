@@ -1,5 +1,5 @@
 import { AlertTriangle, BotOff, Eye, EyeOff, KeyRound, Search, ShieldCheck } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
 	DesktopStoryRepository,
 	parseKnowledgeState,
@@ -54,27 +54,70 @@ export function InformationControlPage({
 	const [filter, setFilter] = useState<'all' | 'secret' | 'revealed'>('all');
 	const [narrativeOrder, setNarrativeOrder] = useState(0);
 	const [error, setError] = useState<string>();
+	const loadSequenceRef = useRef(0);
+	const loadedProjectRootRef = useRef<string | undefined>(undefined);
+	const inFlightLoadRef = useRef<{
+		readonly attempt: number;
+		readonly projectRoot: string;
+		readonly loadData: InformationControlLoader;
+	} | undefined>(undefined);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
+			loadSequenceRef.current += 1;
+			inFlightLoadRef.current = undefined;
+			loadedProjectRootRef.current = undefined;
 			setData({ information: [], characters: [], states: [] });
+			setSelectedId(undefined);
+			setNarrativeOrder(0);
+			setError(undefined);
 			return;
 		}
+		const pending = inFlightLoadRef.current;
+		if (pending?.projectRoot === projectRoot && pending.loadData === loadData) {
+			return;
+		}
+		const attempt = loadSequenceRef.current + 1;
+		loadSequenceRef.current = attempt;
+		inFlightLoadRef.current = { attempt, projectRoot, loadData };
+		if (loadedProjectRootRef.current !== projectRoot) {
+			setData(undefined);
+			setSelectedId(undefined);
+		}
+		setError(undefined);
 		try {
 			const loaded = await loadData(projectRoot);
+			if (loadSequenceRef.current !== attempt) return;
+			const projectChanged = loadedProjectRootRef.current !== projectRoot;
+			loadedProjectRootRef.current = projectRoot;
 			setData(loaded);
-			setSelectedId(current => current ?? loaded.information[0]?.id);
+			setSelectedId(current => (
+				projectChanged || !current || !loaded.information.some(fact => fact.id === current)
+					? loaded.information[0]?.id
+					: current
+			));
 			setNarrativeOrder(loaded.states.reduce((maximum, state) => Math.max(maximum, state.effectiveFrom.narrativeOrder), 0));
-			setError(undefined);
-		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '信息权限资料读取失败。');
+		} catch {
+			if (loadSequenceRef.current !== attempt) return;
+			setError('信息权限资料读取失败，请重试。');
+		} finally {
+			if (inFlightLoadRef.current?.attempt === attempt) {
+				inFlightLoadRef.current = undefined;
+			}
 		}
 	}, [loadData, projectRoot]);
 
 	useEffect(() => {
 		const timer = window.setTimeout(() => void reload(), 0);
-		return () => window.clearTimeout(timer);
-	}, [reload]);
+		return () => {
+			window.clearTimeout(timer);
+			const pending = inFlightLoadRef.current;
+			if (pending && pending.projectRoot === projectRoot && pending.loadData === loadData) {
+				loadSequenceRef.current += 1;
+				inFlightLoadRef.current = undefined;
+			}
+		};
+	}, [loadData, projectRoot, reload]);
 
 	const filtered = useMemo(() => (data?.information ?? []).filter(fact => {
 		const matchesText = `${fact.title} ${fact.truthStatement} ${fact.tags.join(' ')}`.toLowerCase().includes(search.toLowerCase());
@@ -90,17 +133,17 @@ export function InformationControlPage({
 		<section className="information-control-page">
 			<aside className="information-fact-list">
 				<header><div><span className="eyebrow">STORY TRUTH</span><h1>信息权限</h1></div><KeyRound size={20} /></header>
-				<label className="information-search"><Search size={16} aria-hidden="true" /><input value={search} onChange={event => setSearch(event.target.value)} placeholder="搜索事实与秘密" /></label>
+				<label className="information-search"><Search size={16} aria-hidden="true" /><input type="search" aria-label="搜索事实与秘密" data-testid="information-search" value={search} onChange={event => setSearch(event.target.value)} placeholder="搜索事实与秘密" /></label>
 				<div className="information-filter" role="group" aria-label="信息筛选">
 					{(['all', 'secret', 'revealed'] as const).map(value => (
-						<button type="button" key={value} className={filter === value ? 'is-active' : ''} onClick={() => setFilter(value)}>
+						<button type="button" key={value} data-testid="information-filter" aria-pressed={filter === value} className={filter === value ? 'is-active' : ''} onClick={() => setFilter(value)}>
 							{{ all: '全部', secret: '作者秘密', revealed: '读者已知' }[value]}
 						</button>
 					))}
 				</div>
 				<div className="information-facts">
 					{filtered.map(fact => (
-						<button type="button" key={fact.id} className={fact.id === selectedId ? 'is-active' : ''} onClick={() => setSelectedId(fact.id)}>
+						<button type="button" key={fact.id} data-testid="information-fact" aria-pressed={fact.id === selectedId} className={fact.id === selectedId ? 'is-active' : ''} onClick={() => setSelectedId(fact.id)}>
 							<span>{fact.authorSecret ? <EyeOff size={16} /> : <Eye size={16} />}<strong>{fact.title}</strong></span>
 							<small>{fact.truthStatement}</small>
 							<em>{fact.truthStatus === 'confirmed' ? '已确认' : fact.truthStatus === 'disputed' ? '有争议' : '待确认'}</em>
@@ -113,9 +156,15 @@ export function InformationControlPage({
 			<main className="information-workspace">
 				<header className="information-toolbar">
 					<div><span className="eyebrow">KNOWLEDGE SLICE</span><h2>{selected?.title ?? '选择一条故事事实'}</h2></div>
-					<label><span>叙事位置</span><input type="number" min={0} value={narrativeOrder} onChange={event => setNarrativeOrder(Math.max(0, Number(event.target.value)))} /></label>
+					<label><span>叙事位置</span><input type="number" min={0} aria-label="叙事位置" data-testid="information-narrative-position" value={narrativeOrder} onChange={event => setNarrativeOrder(Math.max(0, Number(event.target.value)))} /></label>
 				</header>
-				{error ? <p className="information-error"><AlertTriangle size={18} />{error}</p> : null}
+				{error ? (
+					<div className="information-error" role="alert">
+						<AlertTriangle size={18} aria-hidden="true" />
+						<span>{error}</span>
+						<button type="button" data-testid="information-retry-load" onClick={() => void reload()}>重试</button>
+					</div>
+				) : null}
 				{selected ? (
 					<div className="information-content">
 						<section className="truth-summary">

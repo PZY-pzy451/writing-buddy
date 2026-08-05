@@ -402,6 +402,20 @@ describe('control inventory rendered-element boundary', () => {
 			'关系矩阵',
 			'重试'
 		]);
+		const informationControlPageControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/information/InformationControlPage.tsx'
+		));
+
+		expect(informationControlPageControls).toHaveLength(5);
+		expect(informationControlPageControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(informationControlPageControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'information-fact',
+			'information-filter',
+			'information-narrative-position',
+			'information-retry-load',
+			'information-search'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

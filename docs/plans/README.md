@@ -104,6 +104,7 @@
 - [Close protection control and single-flight convergence QA](./102-close-protection-control-single-flight-convergence-qa.md)
 - [Project open recovery control and clipboard convergence QA](./103-project-open-recovery-control-clipboard-convergence-qa.md)
 - [Relationship graph load recovery and control convergence QA](./104-relationship-graph-load-recovery-control-convergence-qa.md)
+- [Information control load recovery and selector convergence QA](./105-information-control-load-recovery-selector-convergence-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
