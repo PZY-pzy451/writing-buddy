@@ -73,6 +73,15 @@ const defaultLoadKernelData: DashboardKernelLoader = async projectRoot => {
 	};
 };
 
+const unavailableKernelData: DashboardKernelLoad = {
+	plotThreads: [],
+	foreshadowing: [],
+	pendingFacts: [],
+	plotError: 'storyReadFailed',
+	foreshadowingError: 'storyReadFailed',
+	pendingFactsError: 'storyReadFailed'
+};
+
 interface StoryDashboardPageProps {
 	readonly loadKernelData?: DashboardKernelLoader;
 }
@@ -113,11 +122,18 @@ export function StoryDashboardPage({
 			return;
 		}
 		let cancelled = false;
-		void loadKernelData(snapshot.root).then(result => {
-			if (!cancelled) {
-				setKernelState({ projectRoot: snapshot.root, data: result });
-			}
-		});
+		void Promise.resolve()
+			.then(() => loadKernelData(snapshot.root))
+			.then(result => {
+				if (!cancelled) {
+					setKernelState({ projectRoot: snapshot.root, data: result });
+				}
+			})
+			.catch(() => {
+				if (!cancelled) {
+					setKernelState({ projectRoot: snapshot.root, data: unavailableKernelData });
+				}
+			});
 		return () => {
 			cancelled = true;
 		};
@@ -141,6 +157,9 @@ export function StoryDashboardPage({
 	const kernel = kernelState && snapshot && kernelState.projectRoot === snapshot.root
 		? kernelState.data
 		: undefined;
+	const kernelLoadWarning = Boolean(
+		kernel?.plotError || kernel?.foreshadowingError || kernel?.pendingFactsError
+	);
 	const model = useMemo(() => (
 		snapshot && kernel
 			? selectStoryDashboardModel(snapshot, issues, kernel, writerSession?.activeChapterId)
@@ -232,6 +251,11 @@ export function StoryDashboardPage({
 					<span className="dashboard-eyebrow">WRITING HOME</span>
 					<h1>{snapshot.project.title}</h1>
 					<p>继续当前任务；只在需要时打开规划、资料和检查。</p>
+					{kernelLoadWarning && (
+						<p className="dashboard-load-warning" role="status">
+							部分故事资料暂时无法读取；章节写作与导航仍可继续。
+						</p>
+					)}
 				</div>
 				<DailyWritingGoalControl placement="dashboard" />
 			</header>
@@ -270,7 +294,11 @@ export function StoryDashboardPage({
 						<div className="dashboard-empty-copy">
 							<strong>还没有章节</strong>
 							<span>{journeyAvailable ? '你的创作旅程已经保存在项目中。' : '从题材或故事设想开始，不需要先建立完整资料库。'}</span>
-							<button type="button" onClick={() => openCreationJourney(journeyAvailable ? undefined : 'genre')}>
+							<button
+								type="button"
+								data-testid="story-dashboard-creation-journey"
+								onClick={() => openCreationJourney(journeyAvailable ? undefined : 'genre')}
+							>
 								<Sparkles size={16} />{journeyAvailable ? '继续创作旅程' : '根据题材规划故事'}
 							</button>
 						</div>
@@ -303,7 +331,12 @@ export function StoryDashboardPage({
 					<div className="dashboard-next-task">
 						<strong>{nextStep.title}</strong>
 						<p>{nextStep.description}</p>
-						<button type="button" className="dashboard-text-action" onClick={nextStep.run}>
+						<button
+							type="button"
+							className="dashboard-text-action"
+							data-testid="story-dashboard-next-step"
+							onClick={nextStep.run}
+						>
 							{nextStep.label}<ArrowRight size={16} />
 						</button>
 					</div>
@@ -343,7 +376,11 @@ export function StoryDashboardPage({
 						<ul className="dashboard-recent-list">
 							{model.recentChapters.map(chapter => (
 								<li key={chapter.id}>
-									<button type="button" onClick={() => openChapter(chapter)}>
+									<button
+										type="button"
+										data-testid="story-dashboard-recent-chapter"
+										onClick={() => openChapter(chapter)}
+									>
 										<FileText size={18} />
 										<span><strong>{chapter.title}</strong><small>{chapter.scene.location || '未设置场景'}</small></span>
 										<em>{(snapshot.wordCounts[chapter.id] ?? 0).toLocaleString()} 字</em>

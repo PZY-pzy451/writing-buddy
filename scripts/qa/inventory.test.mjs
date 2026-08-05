@@ -346,6 +346,17 @@ describe('control inventory rendered-element boundary', () => {
 		expect(resizeHandleControls).toHaveLength(1);
 		expect(resizeHandleControls[0]?.stableSelectorStatus).toBe('MAPPED');
 		expect(resizeHandleControls[0]?.stableSelectorValue).toBe('workspace-resize-handle');
+		const dashboardControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/dashboard/StoryDashboardPage.tsx'
+		));
+
+		expect(dashboardControls).toHaveLength(5);
+		expect(dashboardControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(dashboardControls.map(control => control.stableSelectorValue)).toEqual(expect.arrayContaining([
+			'story-dashboard-creation-journey',
+			'story-dashboard-next-step',
+			'story-dashboard-recent-chapter'
+		]));
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

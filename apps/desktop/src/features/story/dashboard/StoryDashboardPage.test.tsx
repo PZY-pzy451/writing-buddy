@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../../app/store';
@@ -97,7 +97,7 @@ describe('StoryDashboardPage', () => {
 		expect(screen.getAllByLabelText('正在加载').length).toBeGreaterThanOrEqual(3);
 	});
 
-	it('gives useful next steps for an empty project', async () => {
+	it('keeps the empty-project next step enabled and useful', async () => {
 		setDashboardState({
 			...projectSnapshot,
 			project: { ...projectSnapshot.project, volumes: [] },
@@ -105,28 +105,40 @@ describe('StoryDashboardPage', () => {
 		});
 		render(<StoryDashboardPage loadKernelData={() => Promise.resolve(emptyKernel)} />);
 
-		expect(await screen.findByRole('button', { name: '根据题材规划故事' })).toBeEnabled();
+		const journeyAction = await screen.findByRole('button', { name: '根据题材规划故事' });
+		expect(journeyAction).toBeEnabled();
+		expect(screen.getByTestId('story-dashboard-creation-journey')).toBe(journeyAction);
+		const nextStep = screen.getByRole('button', { name: '前往规划' });
+		expect(screen.getByTestId('story-dashboard-next-step')).toBe(nextStep);
 		expect(screen.getByText('建立可写的故事结构')).toBeInTheDocument();
 		expect(screen.getByText('当前没有待处理问题')).toBeInTheDocument();
 	});
 
-	it('keeps healthy cards visible when one dashboard source fails', async () => {
-		setDashboardState();
-		render(
-			<StoryDashboardPage
-				loadKernelData={() => Promise.resolve({
-					...emptyKernel,
-					plotError: 'storyReadFailed'
-				})}
-			/>
-		);
+	it('keeps healthy cards visible with localized failure feedback when a dashboard source rejects', async () => {
+		const expectUsableFallback = async () => {
+			expect(await screen.findByRole('status')).toHaveTextContent('部分故事资料暂时无法读取');
+			expect(screen.getByRole('main', { name: '写作首页' })).toHaveAttribute('aria-busy', 'false');
+			expect(await screen.findByText('当前章节')).toBeInTheDocument();
+			expect(screen.getByText('下一步任务')).toBeInTheDocument();
+			expect(screen.getByText('当前没有待处理问题')).toBeInTheDocument();
+			expect(screen.queryByText(/private-project/u)).not.toBeInTheDocument();
+		};
 
-		expect(await screen.findByText('当前章节')).toBeInTheDocument();
-		expect(screen.getByText('下一步任务')).toBeInTheDocument();
-		expect(screen.getByText('当前没有待处理问题')).toBeInTheDocument();
+		setDashboardState();
+		render(<StoryDashboardPage loadKernelData={() => {
+			throw new Error('D:/private-project/story/dashboard.json');
+		}} />);
+		await expectUsableFallback();
+
+		cleanup();
+		setDashboardState();
+		render(<StoryDashboardPage loadKernelData={() => (
+			Promise.reject(new Error('D:/private-project/story/dashboard-promise.json'))
+		)} />);
+		await expectUsableFallback();
 	});
 
-	it('renders populated summaries and keyboard-usable card navigation', async () => {
+	it('renders populated summaries with keyboard navigation and opens review by pointer', async () => {
 		const openResource = vi.fn(() => Promise.resolve());
 		useAppStore.setState({
 			snapshot: projectSnapshot,
@@ -167,11 +179,14 @@ describe('StoryDashboardPage', () => {
 
 		expect(await screen.findByText('找到遗失的笔记')).toBeInTheDocument();
 		expect(screen.getByText('3 项待处理')).toBeInTheDocument();
+		expect(screen.getAllByTestId('story-dashboard-recent-chapter')).toHaveLength(2);
 		const continueButton = screen.getByRole('button', { name: '继续上次位置' });
 		continueButton.focus();
 		fireEvent.keyDown(continueButton, { key: 'Enter' });
 		fireEvent.click(continueButton);
 		await waitFor(() => expect(openResource).toHaveBeenCalled());
+		fireEvent.click(screen.getByRole('button', { name: '打开审校中心' }));
+		expect(useAppStore.getState().activeMode).toBe('review');
 	});
 
 	it('continues the persisted chapter and explains the restored writing position', async () => {
@@ -227,7 +242,7 @@ describe('StoryDashboardPage', () => {
 		})));
 	});
 
-	it('keeps the complete planning workspace reachable after chapters are materialized', async () => {
+	it('opens the complete planning workspace by pointer after chapters are materialized', async () => {
 		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue({
 			content: '{}',
 			hash: 'journey-hash',
