@@ -44,4 +44,20 @@ Date: 2026-08-05
 
 ## Result
 
-Pending.
+- Source `d6465ff` gives repeated timeline drag handles and event selectors
+  stable identities plus exact event id and narrative order. Existing helper
+  cases now drive rendered selection and disabled controls.
+- Repeated continuity issues expose stable identity plus exact issue id,
+  severity, status, source layers and AI provenance. The existing case drives
+  filtering, evidence opening, resolution persistence and reopening.
+- Four failure-first contracts converged to 19/19 focused/inventory and 54/54
+  timeline, continuity and Writer Workspace impact tests.
+- Both timeline controls, 6 of 44 states and both product cases map. All three
+  Continuity Review controls, 15 of 66 states and both product cases map.
+- Sequential fixed-source acceptance passed 189 frontend files / 979 tests,
+  production build, 77 native tests with two reasoned ignores and 30/30 QA
+  infrastructure tests.
+- Global mapped controls rise by 5, states by 25 and tests by 3. Strict gaps
+  fall from 9,549 to 9,516, selector gaps from 64 to 61 and unmapped tests from
+  855 to 852. Strict coverage is 27.03%, stable-selector coverage is 88.04%,
+  test mapping is 19.47% and release hard gates remain 1/4 complete.

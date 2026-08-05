@@ -1578,3 +1578,20 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,579 to 9,549, selector gaps from 67 to 64 and unmapped tests from
   857 to 855. Strict coverage is 26.78%, stable-selector coverage is 87.45%,
   test mapping is 19.19% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 079
+
+- Repeated timeline drag handles and event selectors expose stable identities,
+  exact event ids and narrative order. Existing preview cases now drive the
+  rendered selection and disabled states without changing test inventory.
+- Repeated continuity issues expose exact issue id, severity, status, source
+  layers and AI provenance. Existing interactions now cover severity filtering,
+  evidence opening, resolution persistence and reopening.
+- Four red failures converged to 19/19 focused/inventory, 54/54 impact and
+  30/30 QA infrastructure tests. Fixed-source sequential execution passed 189
+  frontend files / 979 tests, production build and 77 native tests with two
+  reasoned ignores.
+- Global mapped controls rise by 5, states by 25 and tests by 3. Strict gaps
+  fall from 9,549 to 9,516, selector gaps from 64 to 61 and unmapped tests from
+  855 to 852. Strict coverage is 27.03%, stable-selector coverage is 88.04%,
+  test mapping is 19.47% and release hard gates remain 1/4 complete.
