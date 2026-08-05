@@ -43033,138 +43033,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C",
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-72404C86",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-VISIBLE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-HIDDEN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-ENABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-DISABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-POINTER",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-KEYBOARD",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-FOCUS-IN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-FOCUS-OUT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-REPEAT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-DEDUPLICATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-LOADING",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-SUCCESS",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-FAILURE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-CANCELLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-OFFLINE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-PERMISSION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-PERSISTENCE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-RESTART",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-VISUAL",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-4F0E973C-UNDO",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-72404C86-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-961D3429",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-961D3429-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43311,138 +43450,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1",
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-VISIBLE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-HIDDEN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-ENABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-DISABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-POINTER",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-KEYBOARD",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-FOCUS-IN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-FOCUS-OUT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-REPEAT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-DEDUPLICATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-LOADING",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-SUCCESS",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-FAILURE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-CANCELLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-OFFLINE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-PERMISSION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-PERSISTENCE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-RESTART",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-VISUAL",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-EEC734F1-UNDO",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-BB507C47-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43450,138 +43589,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYCONSISTENCYAIPANEL-INPUT-747C8B30",
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-BUTTON-F2339311",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-BUTTON-F2339311-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-INPUT-906DE94E",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-VISIBLE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-HIDDEN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-ENABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-DISABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-POINTER",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-KEYBOARD",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-FOCUS-IN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-FOCUS-OUT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-REPEAT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-DEDUPLICATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-LOADING",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-SUCCESS",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-FAILURE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-CANCELLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-OFFLINE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-PERMISSION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-PERSISTENCE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-RESTART",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-VISUAL",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-747C8B30-UNDO",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-INPUT-906DE94E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -43589,138 +43867,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883",
+                  "id": "CTRL-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-VISIBLE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-HIDDEN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-ENABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-DISABLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-POINTER",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-KEYBOARD",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-FOCUS-IN",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-FOCUS-OUT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-REPEAT",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-DEDUPLICATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-LOADING",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-SUCCESS",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-FAILURE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-CANCELLED",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-OFFLINE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-PERMISSION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-PERSISTENCE",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-RESTART",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-VISUAL",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-ACCESSIBLE-NAME",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-2D001883-UNDO",
+                      "id": "STATE-STORYCONSISTENCYAIPANEL-TEXTAREA-BE03E50A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71973,6 +72251,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-1FFC95C6FD",
+      "title": "TC-QA-AI-CANCEL-005 deduplicates one hundred stop clicks, disables pending cancellation and reports cancelled",
+      "declarationTitle": "TC-QA-AI-CANCEL-005 deduplicates one hundred stop clicks, disables pending cancellation and reports cancelled",
+      "declarationLine": 74,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-02",
+      "pageId": "PAGE-CONTINUITY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-200C7658BB",
       "title": "resolves quick-create without colliding with another command",
       "declarationTitle": "resolves %s without colliding with another command",
@@ -72622,24 +72918,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-2A43EEF985",
-      "title": "keeps the existing explicit 2–12 chapter selection mode available",
-      "declarationTitle": "keeps the existing explicit 2–12 chapter selection mode available",
-      "declarationLine": 118,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-02",
-      "pageId": "PAGE-CONTINUITY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -81551,6 +81829,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-A724A51208",
+      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors",
+      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors",
+      "declarationLine": 314,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-A770AC558A",
       "title": "stops the active job while preserving completed chapter batches",
       "declarationTitle": "stops the active job while preserving completed chapter batches",
@@ -82191,24 +82487,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-B1DE86AE23",
-      "title": "TC-QA-INVENTORY-018 maps every Character, Item and Relationship AI control to stable selectors",
-      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item and Relationship AI control to stable selectors",
-      "declarationLine": 314,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "scripts/qa/inventory.test.mjs",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "orchestration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-B213321E6B",
       "title": "preserves a stream cancelled when the start command rejects late",
       "declarationTitle": "preserves a stream %s when the start command rejects late",
@@ -82644,24 +82922,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-B791E33DA5",
-      "title": "keeps the previous result set untouched when a later whole-work batch fails",
-      "declarationTitle": "keeps the previous result set untouched when a later whole-work batch fails",
-      "declarationLine": 134,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-02",
-      "pageId": "PAGE-CONTINUITY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -83687,6 +83947,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-C592744F90",
+      "title": "TC-STORY-CONSISTENCY-001 deduplicates one hundred repeated runs and publishes one successful atomic result",
+      "declarationTitle": "TC-STORY-CONSISTENCY-001 deduplicates one hundred repeated runs and publishes one successful atomic result",
+      "declarationLine": 34,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-02",
+      "pageId": "PAGE-CONTINUITY",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -86375,6 +86653,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-EE5F189FB0",
+      "title": "TC-STORY-CONSISTENCY-004 rejects a failed later batch without persistence and succeeds on full restart",
+      "declarationTitle": "TC-STORY-CONSISTENCY-004 rejects a failed later batch without persistence and succeeds on full restart",
+      "declarationLine": 170,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-02",
+      "pageId": "PAGE-CONTINUITY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-EE70A09A23",
       "title": "parses and canonically serializes the current Legacy manifest",
       "declarationTitle": "parses and canonically serializes the current Legacy manifest",
@@ -86665,24 +86961,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-F2DEA2EF63",
-      "title": "TC-QA-AI-CANCEL-005 sends one stop command for one hundred rapid clicks",
-      "declarationTitle": "TC-QA-AI-CANCEL-005 sends one stop command for one hundred rapid clicks",
-      "declarationLine": 68,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-02",
-      "pageId": "PAGE-CONTINUITY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-F2ED1350CC",
       "title": "creates and validates a portable project backup from History",
       "declarationTitle": "creates and validates a portable project backup from History",
@@ -86893,6 +87171,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F64106670D",
+      "title": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
+      "declarationTitle": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
+      "declarationLine": 124,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-02",
+      "pageId": "PAGE-CONTINUITY",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -87309,24 +87605,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-FC3FED1AAC",
-      "title": "runs one atomic whole-work pass and ignores a rapid duplicate click",
-      "declarationTitle": "runs one atomic whole-work pass and ignores a rapid duplicate click",
-      "declarationLine": 34,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-02",
-      "pageId": "PAGE-CONTINUITY",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

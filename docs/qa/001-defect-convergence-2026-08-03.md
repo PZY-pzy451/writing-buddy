@@ -1187,3 +1187,23 @@ did not fully specify `targetTypes`, position objects or history arrays.
   114 to 110 despite three new tests, two new controls and 44 new states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum — defect 060
+
+- Whole-work consistency AI now exposes 7/7 stable control declarations:
+  close, both scope tabs, chapter selection, instruction, Run and Stop.
+- One hundred same-frame Run actions start one provider request and publish one
+  atomic result set. One hundred Stop actions issue one cancellation command;
+  further stops remain disabled while cancellation is pending.
+- Selected mode caps at 12 chapters, releases the cap after deselection and
+  keeps enabled controls keyboard focusable. A failed later batch persists no
+  partial result and succeeds after an explicit full restart.
+- Five red contracts converged to 19/19 focused and 86/86 impacted tests. The
+  fixed product commit passed 978 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 29/29.
+- All four existing panel tests gained strict mappings without adding tests.
+  Mapped tests rose from 152 to 156 and unmapped tests fell from 905 to 901.
+- Traceability gaps fell from 10,149 to 10,086 and stable-selector gaps from
+  110 to 106 despite two newly distinguished controls and 44 derived states.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.

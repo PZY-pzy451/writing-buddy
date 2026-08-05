@@ -1737,3 +1737,24 @@ real-provider smoke and packaging gates are closed.
   152/1,057 (14.38%); 905 remain unmapped.
 - Release hard gates remain 1/4 (25%). Strict traceability, real-provider smoke
   and packaged-EXE acceptance are still required before release.
+
+## Current QA convergence — whole-work consistency AI controls
+
+- Source `807d106` gives the close, whole-work scope, selected scope, chapter
+  selection, instruction, Run and Stop controls seven distinct stable
+  identities; the source now has 7/7 mapped declarations.
+- One hundred same-frame Run actions start one provider request and publish one
+  atomic result set. One hundred Stop actions issue one cancellation command
+  and expose the pending disabled state.
+- Selected mode caps at 12 chapters, releases the cap after deselection and
+  keeps enabled representatives keyboard focusable. A later batch failure
+  publishes no partial result; explicit full restart succeeds.
+- Failure-first produced five red contracts. Focused execution passed 19/19,
+  impact execution passed 86/86 and QA infrastructure passed 29/29.
+- Full evidence: Node 24 passed lint, typecheck, 188 frontend files / 978 tests
+  and production build; Rust passed 77 with two reasoned ignores.
+- Strict aggregate coverage is 2,310/12,396 (18.63%), with 10,086 gaps. Stable
+  selectors are 376/482 (78.01%); 106 remain. Test-case mapping is 156/1,057
+  (14.76%); 901 remain unmapped.
+- Release hard gates remain 1/4 (25%). Strict traceability, real-provider smoke
+  and packaged-EXE acceptance are still required before release.

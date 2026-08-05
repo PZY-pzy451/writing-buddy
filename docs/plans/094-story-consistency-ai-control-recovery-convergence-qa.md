@@ -42,3 +42,22 @@ Date: 2026-08-05
   from 10,149 unmapped items / 110 selector gaps / 905 unmapped tests.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source: `807d106`; all seven logical controls now have distinct,
+  stable identities and the source has zero selector gaps.
+- Failure-first produced five red contracts. Focused execution passed 19/19
+  and the continuity/review/AI/QA impact set passed 86/86.
+- One hundred Run actions start one provider request and publish one result
+  set. One hundred Stop actions issue one cancellation; cancellation remains
+  disabled while pending.
+- Selected mode caps at 12 chapters, releases a disabled choice after
+  deselection and keeps enabled controls keyboard focusable. A later batch
+  failure publishes no partial result and a full restart succeeds.
+- Node 24 passed lint, typecheck, 188 frontend files / 978 tests and the
+  production build. Rust passed 77 tests with two reasoned ignores.
+- Existing tests mapped from 152 to 156; no new test debt was added. Aggregate
+  gaps fell from 10,149 to 10,086 and selector gaps from 110 to 106.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.

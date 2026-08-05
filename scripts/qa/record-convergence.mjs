@@ -1843,6 +1843,54 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-CONSISTENCY-AI-CONTROL-RECOVERY-CONVERGENCE-060',
+			summary: 'Whole-work consistency AI controls were collapsed in inventory and its existing duplicate, cancellation, selection and batch-recovery tests were not traceable.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 1,
+				sourceMissingStableSelectors: 4,
+				repeatedRunActions: 100,
+				providerRequests: 1,
+				repeatedStopActions: 100,
+				selectedChapterCap: 12,
+				globalControls: 480,
+				globalStates: 10560,
+				globalTests: 1057,
+				mappedTests: 152,
+				unmappedTests: 905,
+				globalMissingStableSelectors: 110,
+				totalUnmapped: 10149
+			},
+			after: {
+				sourceControls: 7,
+				sourceMappedControls: 7,
+				sourceMissingStableSelectors: 0,
+				repeatedRunActions: 100,
+				providerRequests: 1,
+				atomicResultSets: 1,
+				repeatedStopActions: 100,
+				cancellationCommands: 1,
+				cancellationPendingDisabled: true,
+				selectedChapterCap: 12,
+				selectionCapReleasesAfterDeselect: true,
+				laterBatchFailurePublishesPartialResult: false,
+				fullRestartSucceeds: true,
+				renderedControlRepresentatives: 7,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 19,
+				impactTests: 86,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
