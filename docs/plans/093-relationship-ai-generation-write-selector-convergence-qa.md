@@ -46,3 +46,26 @@ Date: 2026-08-05
   from 10,286 unmapped items / 114 selector gaps / 906 unmapped tests.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Four failure-first failures reproduced raw Zod field paths, missing
+  generation/acceptance selectors and a seven-control inventory.
+- `RelationshipAiPanel` now exposes nine distinct controls with 9/9 stable
+  identities. Source and target selectors are independently addressable.
+- Malformed relationship output is localized, safely isolated and retryable.
+  Unknown snapshot/repository failures are redacted and the same candidate can
+  succeed on explicit retry without another provider request.
+- One hundred same-frame Generate actions still start one provider request.
+  Nine representative controls are visible, enabled and keyboard focusable;
+  evidence opening is verified by pointer.
+- Focused contracts passed 22/22, the relationship/AI/QA impact set passed
+  79/79 and QA infrastructure passed 29/29.
+- Fixed source `c19c46c` passed Node 24 lint, typecheck, 188 frontend files /
+  978 tests and production build. Rust passed 77 with two reasoned ignores.
+- Stable-selector debt fell from 114 to 110. Strict aggregate gaps fell from
+  10,286 to 10,149 while two controls, 44 derived states and three tests were
+  added. Mapped tests rose from 148 to 152, so all three additions are mapped
+  and one existing test gained a valid mapping.
+- Release remains blocked at 1/4 gates: strict traceability, real-provider
+  smoke and packaged-EXE acceptance remain incomplete.

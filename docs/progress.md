@@ -1715,3 +1715,25 @@ Gate H is complete. Stop before Gate I and wait for explicit user direction.
 Continue the same user-first red-contract method on the next unmapped P0/P1
 author journey; do not claim release completion until strict traceability,
 real-provider smoke and packaging gates are closed.
+
+## Current QA convergence — Relationship AI lifecycle
+
+- Source `c19c46c` localizes malformed relationship schema output and unknown
+  candidate-write failures without exposing Zod paths or private filesystem
+  details. Both generation and the same candidate remain explicitly retryable.
+- One hundred same-frame Generate actions still issue one provider request. A
+  failed snapshot plus one retry performs two snapshot attempts and completes
+  without a second generation.
+- Relationship AI now exposes 9/9 stable control declarations, including
+  distinct source/target selectors. Nine representative controls are visible,
+  enabled and keyboard focusable; evidence opening is pointer-tested.
+- Failure-first produced four red contracts. Focused execution passed 22/22,
+  the relationship/AI/QA impact set passed 79/79 and QA infrastructure passed
+  29/29.
+- Full evidence: Node 24 passed lint, typecheck, 188 frontend files / 978 tests
+  and production build; Rust passed 77 with two reasoned ignores.
+- Strict aggregate coverage is 2,201/12,350 (17.82%), with 10,149 gaps.
+  Stable selectors are 370/480 (77.08%); 110 remain. Test-case mapping is
+  152/1,057 (14.38%); 905 remain unmapped.
+- Release hard gates remain 1/4 (25%). Strict traceability, real-provider smoke
+  and packaged-EXE acceptance are still required before release.

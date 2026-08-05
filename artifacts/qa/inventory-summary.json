@@ -6,15 +6,15 @@
     "features": 151,
     "pages": 24,
     "workspaces": 5,
-    "controls": 478,
-    "states": 10516,
+    "controls": 480,
+    "states": 10560,
     "shortcuts": 23,
     "nativeActions": 55,
-    "discoveredTests": 1054,
-    "frontendDiscoveredTests": 975,
+    "discoveredTests": 1057,
+    "frontendDiscoveredTests": 978,
     "parameterizedTestInstances": 97,
     "unresolvedParameterizedDeclarations": 0,
-    "missingStableSelectors": 114
+    "missingStableSelectors": 110
   },
   "notes": [
     "Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.",

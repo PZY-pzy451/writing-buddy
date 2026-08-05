@@ -1166,3 +1166,24 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 114 despite three new tests, three new controls and 66 new states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum — defect 059
+
+- Relationship AI now exposes 9/9 stable control declarations, including
+  distinct source and target selectors, while preserving one provider request
+  under 100 same-frame Generate actions.
+- Malformed output no longer exposes Zod field paths and succeeds on explicit
+  retry. Unknown candidate-write failures no longer expose raw snapshot or
+  repository paths; the same candidate remains retryable without regeneration.
+- Nine representative controls are visible, enabled and keyboard focusable;
+  evidence opening is verified by pointer.
+- Fixed-commit execution passed 978 frontend and 77 native tests; two native
+  cases retain documented reasons. The impact set passed 79/79 and QA
+  infrastructure passed 29/29.
+- Mapped tests rose from 148 to 152. All three newly added product tests are
+  mapped and one existing test gained a valid mapping, reducing unmapped tests
+  from 906 to 905.
+- Traceability gaps fell from 10,286 to 10,149 and stable-selector gaps from
+  114 to 110 despite three new tests, two new controls and 44 new states.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.

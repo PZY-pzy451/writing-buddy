@@ -1797,6 +1797,52 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-RELATIONSHIP-AI-GENERATION-WRITE-SELECTOR-CONVERGENCE-059',
+			summary: 'Relationship AI exposed malformed schema and persistence details while source/target and candidate actions lacked distinct stable identities.',
+			before: {
+				sourceControls: 7,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 4,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				malformedGenerationDetailsRedacted: false,
+				unknownWriteDetailsRedacted: false,
+				globalControls: 478,
+				globalStates: 10516,
+				globalTests: 1054,
+				mappedTests: 148,
+				unmappedTests: 906,
+				globalMissingStableSelectors: 114,
+				totalUnmapped: 10286
+			},
+			after: {
+				sourceControls: 9,
+				sourceMappedControls: 9,
+				sourceMissingStableSelectors: 0,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				malformedGenerationDetailsRedacted: true,
+				generationRetryAvailable: true,
+				unknownWriteDetailsRedacted: true,
+				writeRetryAvailable: true,
+				candidatePreservedForRetry: true,
+				renderedControlRepresentatives: 9,
+				evidenceActionsVerified: 1,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 4,
+				focusedTests: 22,
+				impactTests: 79,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
