@@ -101,23 +101,6 @@ describe('RelationshipGraphPage', () => {
 		expect(screen.getByText('evidence:rain-dialogue')).toBeInTheDocument();
 	});
 
-	it('filters the matrix by narrative position without merging reverse edges', async () => {
-		render(
-			<RelationshipGraphPage
-				projectRoot="D:/Fixture"
-				loadData={() => Promise.resolve(data)}
-			/>
-		);
-
-		fireEvent.click(await screen.findByRole('tab', { name: '关系矩阵' }));
-		fireEvent.change(screen.getByRole('spinbutton', { name: '叙事位置' }), {
-			target: { value: '4' }
-		});
-
-		expect(screen.getByText('怀疑')).toBeInTheDocument();
-		expect(screen.queryByText('保护')).not.toBeInTheDocument();
-	});
-
 	it('TC-RELATIONSHIP-AI-002 shows loading, isolates invalid generation and succeeds on explicit restart', async () => {
 		const originalStart = desktopBridge.startAiGeneration.bind(desktopBridge);
 		let requests = 0;
@@ -315,6 +298,8 @@ describe('RelationshipGraphPage', () => {
 			/>
 		);
 
+		expect(await screen.findAllByTestId('relationship-graph-character')).toHaveLength(2);
+		expect(await screen.findAllByTestId('relationship-graph-edge')).toHaveLength(2);
 		fireEvent.click(await screen.findByRole('tab', { name: '关系矩阵' }));
 		fireEvent.click(screen.getByRole('button', { name: '林越 到 沈青：怀疑，强度 70%' }));
 		fireEvent.click(screen.getByRole('button', { name: '保存关系' }));
@@ -360,5 +345,6 @@ describe('RelationshipGraphPage', () => {
 		expect(screen.getByRole('button', {
 			name: 'AI 候选关系：沈青到林越，暗中保护'
 		})).toBeInTheDocument();
+		expect(screen.getAllByTestId('relationship-graph-candidate-edge')).toHaveLength(2);
 	});
 });

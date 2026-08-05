@@ -386,6 +386,22 @@ describe('control inventory rendered-element boundary', () => {
 			'project-open-repair',
 			'project-open-retry'
 		]);
+		const relationshipGraphControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/relationships/RelationshipGraphPage.tsx'
+		));
+
+		expect(relationshipGraphControls).toHaveLength(7);
+		expect(relationshipGraphControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(relationshipGraphControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'AI 关系助手',
+			'relationship-graph-candidate-edge',
+			'relationship-graph-character',
+			'relationship-graph-edge',
+			'relationship-graph-narrative-position',
+			'关系矩阵',
+			'重试'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

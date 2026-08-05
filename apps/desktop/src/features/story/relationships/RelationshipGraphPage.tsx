@@ -7,7 +7,7 @@ import {
 	RotateCcw,
 	Sparkles
 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
 	DesktopStoryRepository,
 	parseRelationship,
@@ -111,6 +111,7 @@ function RelationshipGraph({
 					return source && target ? (
 						<g
 							key={edge.id}
+							data-testid="relationship-graph-edge"
 							role="button"
 							tabIndex={0}
 							aria-label={`${edge.label}关系，选择查看来源`}
@@ -149,6 +150,7 @@ function RelationshipGraph({
 					return (
 						<g
 							key={candidate.id}
+							data-testid="relationship-graph-candidate-edge"
 							role="button"
 							tabIndex={0}
 							aria-label={`AI 候选关系：${candidate.sourceTitle}到${candidate.targetTitle}，${candidate.relationshipType}`}
@@ -185,6 +187,7 @@ function RelationshipGraph({
 					<button
 						type="button"
 						key={node.id}
+						data-testid="relationship-graph-character"
 						style={{ left: `${point.x / 7.6}%`, top: `${point.y / 6.8}%` }}
 						className={selectedId === node.id ? 'is-active' : ''}
 						onClick={() => onSelect(node.id)}
@@ -223,26 +226,64 @@ export function RelationshipGraphPage({
 	const [aiOpen, setAiOpen] = useState(false);
 	const [aiBatch, setAiBatch] = useState<RelationshipReviewBatch>();
 	const [selectedPendingId, setSelectedPendingId] = useState<string>();
+	const loadSequenceRef = useRef(0);
+	const loadedProjectRootRef = useRef<string | undefined>(undefined);
+	const inFlightLoadRef = useRef<{
+		readonly attempt: number;
+		readonly projectRoot: string;
+		readonly loadData: RelationshipPageLoader;
+	} | undefined>(undefined);
 
 	const reload = useCallback(async () => {
 		if (!projectRoot) {
+			loadSequenceRef.current += 1;
+			inFlightLoadRef.current = undefined;
+			loadedProjectRootRef.current = undefined;
 			setData({ characters: [], relationships: [] });
+			setError(undefined);
 			return;
+		}
+		const pending = inFlightLoadRef.current;
+		if (pending?.projectRoot === projectRoot && pending.loadData === loadData) {
+			return;
+		}
+		const attempt = loadSequenceRef.current + 1;
+		loadSequenceRef.current = attempt;
+		inFlightLoadRef.current = { attempt, projectRoot, loadData };
+		if (loadedProjectRootRef.current !== projectRoot) {
+			setData(undefined);
+			setSelectedRelationshipId(undefined);
+			setFocusCharacterId(undefined);
+			setSelectedPendingId(undefined);
 		}
 		setError(undefined);
 		try {
 			const loaded = await loadData(projectRoot);
+			if (loadSequenceRef.current !== attempt) return;
+			loadedProjectRootRef.current = projectRoot;
 			setData(loaded);
 			setNarrativeOrder(maximumPosition(loaded.relationships));
-		} catch (loadError) {
-			setError(loadError instanceof Error ? loadError.message : '关系资料读取失败。');
+		} catch {
+			if (loadSequenceRef.current !== attempt) return;
+			setError('关系资料读取失败，请重试。');
+		} finally {
+			if (inFlightLoadRef.current?.attempt === attempt) {
+				inFlightLoadRef.current = undefined;
+			}
 		}
 	}, [loadData, projectRoot]);
 
 	useEffect(() => {
 		const timer = window.setTimeout(() => void reload(), 0);
-		return () => window.clearTimeout(timer);
-	}, [reload]);
+		return () => {
+			window.clearTimeout(timer);
+			const pending = inFlightLoadRef.current;
+			if (pending && pending.projectRoot === projectRoot && pending.loadData === loadData) {
+				loadSequenceRef.current += 1;
+				inFlightLoadRef.current = undefined;
+			}
+		};
+	}, [loadData, projectRoot, reload]);
 
 	const position = useMemo(() => parseStoryPosition({
 		chapterId: 'chapter:relationship-slice',
@@ -302,6 +343,7 @@ export function RelationshipGraphPage({
 						<input
 							type="number"
 							min={0}
+							data-testid="relationship-graph-narrative-position"
 							aria-label="叙事位置"
 							value={narrativeOrder}
 							onChange={event => setNarrativeOrder(Math.max(0, Number(event.target.value)))}
