@@ -44,4 +44,21 @@ Date: 2026-08-05
 
 ## Result
 
-Pending execution.
+- Fixed product source: `db69fd0`.
+- Global, quiet-writer, planning/reference and focus variants expose 16 stable
+  identities. Strictly mapped source controls rise from 2/6 to 16/16 and source
+  mapped states rise from 32/132 to 265/352.
+- More focuses its first enabled item, supports wrapping arrows and Home/End,
+  restores trigger focus on Escape, and dismisses on an outside pointer action.
+- Five red failures converged to 5/5 focused/inventory tests, 51/51 Writer
+  Workspace and shell impact tests, and 30/30 QA infrastructure tests. Fixed-
+  source sequential acceptance passed 189 frontend files / 979 tests,
+  production build and 77 native tests with two reasoned ignores.
+- Honest inventory expansion adds 10 controls and 220 states. Global mapped
+  controls rise by 14 and mapped states by 235. Strict gaps fall by 20 from
+  9,787 to 9,767, selector gaps fall from 83 to 79 and unmapped tests fall from
+  871 to 870.
+- Deterministic execution is 100%; strict coverage is 3,228/12,995 (24.84%),
+  stable selectors are 429/508 (84.45%) and test mapping is 188/1,058 (17.77%).
+  Release gates remain 1/4 complete (25%), so release stays blocked by strict
+  traceability, real-provider smoke and packaged-EXE acceptance.

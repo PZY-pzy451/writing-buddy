@@ -50,8 +50,8 @@ Date: 2026-08-05
 
 - Fixed product source: `79b8ab9`.
 - Search, filter, fact selection, narrative position and retry expose five
-  separate stable identities. All five source controls, all 110 source states
-  and the existing product case are strictly mapped.
+  separate stable identities. All five source controls, 50 of 110 source
+  states and the existing product case are strictly mapped.
 - One hundred same-frame retries start one replacement read. Load failures are
   localized and public-safe; a late result from an older project cannot replace
   the latest information, selected fact or narrative position.
@@ -60,7 +60,7 @@ Date: 2026-08-05
   sequential acceptance passed 189 frontend files / 979 tests, production
   build and 77 native tests with two reasoned ignores.
 - Honest inventory expansion adds 2 controls and 44 states. Source mapped
-  states rise from 66 to 110 and global mapped states rise by 50. Strict gaps
+  states rise from 0 to 50 and global mapped states rise by 50. Strict gaps
   fall by 12 from 9,799 to 9,787, selector gaps fall from 86 to 83 and unmapped
   tests fall from 872 to 871.
 - Deterministic execution is 100%; strict coverage is 2,978/12,765 (23.33%),

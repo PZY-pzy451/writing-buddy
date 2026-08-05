@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "discovery": {
     "sourceFiles": 102,
-    "declarationCount": 498,
-    "semanticSelectorMapped": 415,
-    "semanticSelectorMissing": 83
+    "declarationCount": 508,
+    "semanticSelectorMapped": 429,
+    "semanticSelectorMissing": 79
   },
   "controls": [
     {
@@ -22990,63 +22990,12 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-TOPBAR-BUTTON-6436EC0D",
+      "id": "CTRL-TOPBAR-BUTTON-056AF31C",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-TOPBAR-BUTTON-6436EC0D-VISIBLE",
-        "STATE-TOPBAR-BUTTON-6436EC0D-HIDDEN",
-        "STATE-TOPBAR-BUTTON-6436EC0D-ENABLED",
-        "STATE-TOPBAR-BUTTON-6436EC0D-DISABLED",
-        "STATE-TOPBAR-BUTTON-6436EC0D-POINTER",
-        "STATE-TOPBAR-BUTTON-6436EC0D-KEYBOARD",
-        "STATE-TOPBAR-BUTTON-6436EC0D-FOCUS-IN",
-        "STATE-TOPBAR-BUTTON-6436EC0D-FOCUS-OUT",
-        "STATE-TOPBAR-BUTTON-6436EC0D-REPEAT",
-        "STATE-TOPBAR-BUTTON-6436EC0D-DEDUPLICATION",
-        "STATE-TOPBAR-BUTTON-6436EC0D-LOADING",
-        "STATE-TOPBAR-BUTTON-6436EC0D-SUCCESS",
-        "STATE-TOPBAR-BUTTON-6436EC0D-FAILURE",
-        "STATE-TOPBAR-BUTTON-6436EC0D-CANCELLED",
-        "STATE-TOPBAR-BUTTON-6436EC0D-OFFLINE",
-        "STATE-TOPBAR-BUTTON-6436EC0D-PERMISSION",
-        "STATE-TOPBAR-BUTTON-6436EC0D-PERSISTENCE",
-        "STATE-TOPBAR-BUTTON-6436EC0D-RESTART",
-        "STATE-TOPBAR-BUTTON-6436EC0D-VISUAL",
-        "STATE-TOPBAR-BUTTON-6436EC0D-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-BUTTON-6436EC0D-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-BUTTON-6436EC0D-UNDO"
-      ],
-      "persistenceExpected": false,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/shell/TopBar.tsx",
-      "stableSelectorStatus": "UNMAPPED"
-    },
-    {
-      "id": "CTRL-TOPBAR-BUTTON-8354D78F",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "featureId": "FEATURE-08-01",
-      "controlType": "button",
-      "accessibleName": "AI 连接测试",
-      "stableSelectorValue": "AI 连接测试",
+      "accessibleName": "设置",
+      "stableSelectorValue": "topbar-settings",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23061,28 +23010,28 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-TOPBAR-BUTTON-8354D78F-VISIBLE",
-        "STATE-TOPBAR-BUTTON-8354D78F-HIDDEN",
-        "STATE-TOPBAR-BUTTON-8354D78F-ENABLED",
-        "STATE-TOPBAR-BUTTON-8354D78F-DISABLED",
-        "STATE-TOPBAR-BUTTON-8354D78F-POINTER",
-        "STATE-TOPBAR-BUTTON-8354D78F-KEYBOARD",
-        "STATE-TOPBAR-BUTTON-8354D78F-FOCUS-IN",
-        "STATE-TOPBAR-BUTTON-8354D78F-FOCUS-OUT",
-        "STATE-TOPBAR-BUTTON-8354D78F-REPEAT",
-        "STATE-TOPBAR-BUTTON-8354D78F-DEDUPLICATION",
-        "STATE-TOPBAR-BUTTON-8354D78F-LOADING",
-        "STATE-TOPBAR-BUTTON-8354D78F-SUCCESS",
-        "STATE-TOPBAR-BUTTON-8354D78F-FAILURE",
-        "STATE-TOPBAR-BUTTON-8354D78F-CANCELLED",
-        "STATE-TOPBAR-BUTTON-8354D78F-OFFLINE",
-        "STATE-TOPBAR-BUTTON-8354D78F-PERMISSION",
-        "STATE-TOPBAR-BUTTON-8354D78F-PERSISTENCE",
-        "STATE-TOPBAR-BUTTON-8354D78F-RESTART",
-        "STATE-TOPBAR-BUTTON-8354D78F-VISUAL",
-        "STATE-TOPBAR-BUTTON-8354D78F-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-BUTTON-8354D78F-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-BUTTON-8354D78F-UNDO"
+        "STATE-TOPBAR-BUTTON-056AF31C-VISIBLE",
+        "STATE-TOPBAR-BUTTON-056AF31C-HIDDEN",
+        "STATE-TOPBAR-BUTTON-056AF31C-ENABLED",
+        "STATE-TOPBAR-BUTTON-056AF31C-DISABLED",
+        "STATE-TOPBAR-BUTTON-056AF31C-POINTER",
+        "STATE-TOPBAR-BUTTON-056AF31C-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-056AF31C-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-056AF31C-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-056AF31C-REPEAT",
+        "STATE-TOPBAR-BUTTON-056AF31C-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-056AF31C-LOADING",
+        "STATE-TOPBAR-BUTTON-056AF31C-SUCCESS",
+        "STATE-TOPBAR-BUTTON-056AF31C-FAILURE",
+        "STATE-TOPBAR-BUTTON-056AF31C-CANCELLED",
+        "STATE-TOPBAR-BUTTON-056AF31C-OFFLINE",
+        "STATE-TOPBAR-BUTTON-056AF31C-PERMISSION",
+        "STATE-TOPBAR-BUTTON-056AF31C-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-056AF31C-RESTART",
+        "STATE-TOPBAR-BUTTON-056AF31C-VISUAL",
+        "STATE-TOPBAR-BUTTON-056AF31C-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-056AF31C-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-056AF31C-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
@@ -23092,13 +23041,13 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-TOPBAR-BUTTON-945AFEC9",
+      "id": "CTRL-TOPBAR-BUTTON-1B605616",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "accessibleName": "恢复当前工作区默认布局",
+      "stableSelectorValue": "topbar-workspace-reset-layout",
+      "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -23112,44 +23061,401 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-TOPBAR-BUTTON-945AFEC9-VISIBLE",
-        "STATE-TOPBAR-BUTTON-945AFEC9-HIDDEN",
-        "STATE-TOPBAR-BUTTON-945AFEC9-ENABLED",
-        "STATE-TOPBAR-BUTTON-945AFEC9-DISABLED",
-        "STATE-TOPBAR-BUTTON-945AFEC9-POINTER",
-        "STATE-TOPBAR-BUTTON-945AFEC9-KEYBOARD",
-        "STATE-TOPBAR-BUTTON-945AFEC9-FOCUS-IN",
-        "STATE-TOPBAR-BUTTON-945AFEC9-FOCUS-OUT",
-        "STATE-TOPBAR-BUTTON-945AFEC9-REPEAT",
-        "STATE-TOPBAR-BUTTON-945AFEC9-DEDUPLICATION",
-        "STATE-TOPBAR-BUTTON-945AFEC9-LOADING",
-        "STATE-TOPBAR-BUTTON-945AFEC9-SUCCESS",
-        "STATE-TOPBAR-BUTTON-945AFEC9-FAILURE",
-        "STATE-TOPBAR-BUTTON-945AFEC9-CANCELLED",
-        "STATE-TOPBAR-BUTTON-945AFEC9-OFFLINE",
-        "STATE-TOPBAR-BUTTON-945AFEC9-PERMISSION",
-        "STATE-TOPBAR-BUTTON-945AFEC9-PERSISTENCE",
-        "STATE-TOPBAR-BUTTON-945AFEC9-RESTART",
-        "STATE-TOPBAR-BUTTON-945AFEC9-VISUAL",
-        "STATE-TOPBAR-BUTTON-945AFEC9-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-BUTTON-945AFEC9-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-BUTTON-945AFEC9-UNDO"
+        "STATE-TOPBAR-BUTTON-1B605616-VISIBLE",
+        "STATE-TOPBAR-BUTTON-1B605616-HIDDEN",
+        "STATE-TOPBAR-BUTTON-1B605616-ENABLED",
+        "STATE-TOPBAR-BUTTON-1B605616-DISABLED",
+        "STATE-TOPBAR-BUTTON-1B605616-POINTER",
+        "STATE-TOPBAR-BUTTON-1B605616-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-1B605616-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-1B605616-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-1B605616-REPEAT",
+        "STATE-TOPBAR-BUTTON-1B605616-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-1B605616-LOADING",
+        "STATE-TOPBAR-BUTTON-1B605616-SUCCESS",
+        "STATE-TOPBAR-BUTTON-1B605616-FAILURE",
+        "STATE-TOPBAR-BUTTON-1B605616-CANCELLED",
+        "STATE-TOPBAR-BUTTON-1B605616-OFFLINE",
+        "STATE-TOPBAR-BUTTON-1B605616-PERMISSION",
+        "STATE-TOPBAR-BUTTON-1B605616-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-1B605616-RESTART",
+        "STATE-TOPBAR-BUTTON-1B605616-VISUAL",
+        "STATE-TOPBAR-BUTTON-1B605616-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-1B605616-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-1B605616-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/shell/TopBar.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-TOPBAR-BUTTON-AC429973",
+      "id": "CTRL-TOPBAR-BUTTON-1F4101F6",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "退出专注",
+      "stableSelectorValue": "topbar-focus-exit",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-1F4101F6-VISIBLE",
+        "STATE-TOPBAR-BUTTON-1F4101F6-HIDDEN",
+        "STATE-TOPBAR-BUTTON-1F4101F6-ENABLED",
+        "STATE-TOPBAR-BUTTON-1F4101F6-DISABLED",
+        "STATE-TOPBAR-BUTTON-1F4101F6-POINTER",
+        "STATE-TOPBAR-BUTTON-1F4101F6-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-1F4101F6-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-1F4101F6-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-1F4101F6-REPEAT",
+        "STATE-TOPBAR-BUTTON-1F4101F6-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-1F4101F6-LOADING",
+        "STATE-TOPBAR-BUTTON-1F4101F6-SUCCESS",
+        "STATE-TOPBAR-BUTTON-1F4101F6-FAILURE",
+        "STATE-TOPBAR-BUTTON-1F4101F6-CANCELLED",
+        "STATE-TOPBAR-BUTTON-1F4101F6-OFFLINE",
+        "STATE-TOPBAR-BUTTON-1F4101F6-PERMISSION",
+        "STATE-TOPBAR-BUTTON-1F4101F6-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-1F4101F6-RESTART",
+        "STATE-TOPBAR-BUTTON-1F4101F6-VISUAL",
+        "STATE-TOPBAR-BUTTON-1F4101F6-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-1F4101F6-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-1F4101F6-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-53E31386",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "恢复写作布局",
+      "stableSelectorValue": "topbar-writer-reset-layout",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-53E31386-VISIBLE",
+        "STATE-TOPBAR-BUTTON-53E31386-HIDDEN",
+        "STATE-TOPBAR-BUTTON-53E31386-ENABLED",
+        "STATE-TOPBAR-BUTTON-53E31386-DISABLED",
+        "STATE-TOPBAR-BUTTON-53E31386-POINTER",
+        "STATE-TOPBAR-BUTTON-53E31386-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-53E31386-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-53E31386-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-53E31386-REPEAT",
+        "STATE-TOPBAR-BUTTON-53E31386-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-53E31386-LOADING",
+        "STATE-TOPBAR-BUTTON-53E31386-SUCCESS",
+        "STATE-TOPBAR-BUTTON-53E31386-FAILURE",
+        "STATE-TOPBAR-BUTTON-53E31386-CANCELLED",
+        "STATE-TOPBAR-BUTTON-53E31386-OFFLINE",
+        "STATE-TOPBAR-BUTTON-53E31386-PERMISSION",
+        "STATE-TOPBAR-BUTTON-53E31386-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-53E31386-RESTART",
+        "STATE-TOPBAR-BUTTON-53E31386-VISUAL",
+        "STATE-TOPBAR-BUTTON-53E31386-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-53E31386-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-53E31386-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-556301C9",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "stableSelectorValue": "topbar-workspace-assistant",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-556301C9-VISIBLE",
+        "STATE-TOPBAR-BUTTON-556301C9-HIDDEN",
+        "STATE-TOPBAR-BUTTON-556301C9-ENABLED",
+        "STATE-TOPBAR-BUTTON-556301C9-DISABLED",
+        "STATE-TOPBAR-BUTTON-556301C9-POINTER",
+        "STATE-TOPBAR-BUTTON-556301C9-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-556301C9-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-556301C9-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-556301C9-REPEAT",
+        "STATE-TOPBAR-BUTTON-556301C9-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-556301C9-LOADING",
+        "STATE-TOPBAR-BUTTON-556301C9-SUCCESS",
+        "STATE-TOPBAR-BUTTON-556301C9-FAILURE",
+        "STATE-TOPBAR-BUTTON-556301C9-CANCELLED",
+        "STATE-TOPBAR-BUTTON-556301C9-OFFLINE",
+        "STATE-TOPBAR-BUTTON-556301C9-PERMISSION",
+        "STATE-TOPBAR-BUTTON-556301C9-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-556301C9-RESTART",
+        "STATE-TOPBAR-BUTTON-556301C9-VISUAL",
+        "STATE-TOPBAR-BUTTON-556301C9-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-556301C9-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-556301C9-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-6A25460D",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-workspace-sidebar",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-6A25460D-VISIBLE",
+        "STATE-TOPBAR-BUTTON-6A25460D-HIDDEN",
+        "STATE-TOPBAR-BUTTON-6A25460D-ENABLED",
+        "STATE-TOPBAR-BUTTON-6A25460D-DISABLED",
+        "STATE-TOPBAR-BUTTON-6A25460D-POINTER",
+        "STATE-TOPBAR-BUTTON-6A25460D-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-6A25460D-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-6A25460D-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-6A25460D-REPEAT",
+        "STATE-TOPBAR-BUTTON-6A25460D-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-6A25460D-LOADING",
+        "STATE-TOPBAR-BUTTON-6A25460D-SUCCESS",
+        "STATE-TOPBAR-BUTTON-6A25460D-FAILURE",
+        "STATE-TOPBAR-BUTTON-6A25460D-CANCELLED",
+        "STATE-TOPBAR-BUTTON-6A25460D-OFFLINE",
+        "STATE-TOPBAR-BUTTON-6A25460D-PERMISSION",
+        "STATE-TOPBAR-BUTTON-6A25460D-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-6A25460D-RESTART",
+        "STATE-TOPBAR-BUTTON-6A25460D-VISUAL",
+        "STATE-TOPBAR-BUTTON-6A25460D-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-6A25460D-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-6A25460D-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-7AA8FC4E",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "快速记录",
+      "stableSelectorValue": "topbar-quick-capture",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-VISIBLE",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-HIDDEN",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-ENABLED",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-DISABLED",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-POINTER",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-REPEAT",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-LOADING",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-SUCCESS",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-FAILURE",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-CANCELLED",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-OFFLINE",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-PERMISSION",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-RESTART",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-VISUAL",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-7AA8FC4E-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-7C112CBE",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "打开作者导航器",
+      "stableSelectorValue": "topbar-search",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-7C112CBE-VISIBLE",
+        "STATE-TOPBAR-BUTTON-7C112CBE-HIDDEN",
+        "STATE-TOPBAR-BUTTON-7C112CBE-ENABLED",
+        "STATE-TOPBAR-BUTTON-7C112CBE-DISABLED",
+        "STATE-TOPBAR-BUTTON-7C112CBE-POINTER",
+        "STATE-TOPBAR-BUTTON-7C112CBE-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-7C112CBE-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-7C112CBE-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-7C112CBE-REPEAT",
+        "STATE-TOPBAR-BUTTON-7C112CBE-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-7C112CBE-LOADING",
+        "STATE-TOPBAR-BUTTON-7C112CBE-SUCCESS",
+        "STATE-TOPBAR-BUTTON-7C112CBE-FAILURE",
+        "STATE-TOPBAR-BUTTON-7C112CBE-CANCELLED",
+        "STATE-TOPBAR-BUTTON-7C112CBE-OFFLINE",
+        "STATE-TOPBAR-BUTTON-7C112CBE-PERMISSION",
+        "STATE-TOPBAR-BUTTON-7C112CBE-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-7C112CBE-RESTART",
+        "STATE-TOPBAR-BUTTON-7C112CBE-VISUAL",
+        "STATE-TOPBAR-BUTTON-7C112CBE-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-7C112CBE-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-7C112CBE-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-8754F32E",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-writer-sidebar",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-8754F32E-VISIBLE",
+        "STATE-TOPBAR-BUTTON-8754F32E-HIDDEN",
+        "STATE-TOPBAR-BUTTON-8754F32E-ENABLED",
+        "STATE-TOPBAR-BUTTON-8754F32E-DISABLED",
+        "STATE-TOPBAR-BUTTON-8754F32E-POINTER",
+        "STATE-TOPBAR-BUTTON-8754F32E-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-8754F32E-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-8754F32E-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-8754F32E-REPEAT",
+        "STATE-TOPBAR-BUTTON-8754F32E-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-8754F32E-LOADING",
+        "STATE-TOPBAR-BUTTON-8754F32E-SUCCESS",
+        "STATE-TOPBAR-BUTTON-8754F32E-FAILURE",
+        "STATE-TOPBAR-BUTTON-8754F32E-CANCELLED",
+        "STATE-TOPBAR-BUTTON-8754F32E-OFFLINE",
+        "STATE-TOPBAR-BUTTON-8754F32E-PERMISSION",
+        "STATE-TOPBAR-BUTTON-8754F32E-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-8754F32E-RESTART",
+        "STATE-TOPBAR-BUTTON-8754F32E-VISUAL",
+        "STATE-TOPBAR-BUTTON-8754F32E-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-8754F32E-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-8754F32E-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-88EB3C30",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-save",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -23163,43 +23469,43 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-TOPBAR-BUTTON-AC429973-VISIBLE",
-        "STATE-TOPBAR-BUTTON-AC429973-HIDDEN",
-        "STATE-TOPBAR-BUTTON-AC429973-ENABLED",
-        "STATE-TOPBAR-BUTTON-AC429973-DISABLED",
-        "STATE-TOPBAR-BUTTON-AC429973-POINTER",
-        "STATE-TOPBAR-BUTTON-AC429973-KEYBOARD",
-        "STATE-TOPBAR-BUTTON-AC429973-FOCUS-IN",
-        "STATE-TOPBAR-BUTTON-AC429973-FOCUS-OUT",
-        "STATE-TOPBAR-BUTTON-AC429973-REPEAT",
-        "STATE-TOPBAR-BUTTON-AC429973-DEDUPLICATION",
-        "STATE-TOPBAR-BUTTON-AC429973-LOADING",
-        "STATE-TOPBAR-BUTTON-AC429973-SUCCESS",
-        "STATE-TOPBAR-BUTTON-AC429973-FAILURE",
-        "STATE-TOPBAR-BUTTON-AC429973-CANCELLED",
-        "STATE-TOPBAR-BUTTON-AC429973-OFFLINE",
-        "STATE-TOPBAR-BUTTON-AC429973-PERMISSION",
-        "STATE-TOPBAR-BUTTON-AC429973-PERSISTENCE",
-        "STATE-TOPBAR-BUTTON-AC429973-RESTART",
-        "STATE-TOPBAR-BUTTON-AC429973-VISUAL",
-        "STATE-TOPBAR-BUTTON-AC429973-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-BUTTON-AC429973-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-BUTTON-AC429973-UNDO"
+        "STATE-TOPBAR-BUTTON-88EB3C30-VISIBLE",
+        "STATE-TOPBAR-BUTTON-88EB3C30-HIDDEN",
+        "STATE-TOPBAR-BUTTON-88EB3C30-ENABLED",
+        "STATE-TOPBAR-BUTTON-88EB3C30-DISABLED",
+        "STATE-TOPBAR-BUTTON-88EB3C30-POINTER",
+        "STATE-TOPBAR-BUTTON-88EB3C30-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-88EB3C30-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-88EB3C30-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-88EB3C30-REPEAT",
+        "STATE-TOPBAR-BUTTON-88EB3C30-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-88EB3C30-LOADING",
+        "STATE-TOPBAR-BUTTON-88EB3C30-SUCCESS",
+        "STATE-TOPBAR-BUTTON-88EB3C30-FAILURE",
+        "STATE-TOPBAR-BUTTON-88EB3C30-CANCELLED",
+        "STATE-TOPBAR-BUTTON-88EB3C30-OFFLINE",
+        "STATE-TOPBAR-BUTTON-88EB3C30-PERMISSION",
+        "STATE-TOPBAR-BUTTON-88EB3C30-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-88EB3C30-RESTART",
+        "STATE-TOPBAR-BUTTON-88EB3C30-VISUAL",
+        "STATE-TOPBAR-BUTTON-88EB3C30-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-88EB3C30-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-88EB3C30-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/shell/TopBar.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-TOPBAR-BUTTON-F6BAB9D4",
+      "id": "CTRL-TOPBAR-BUTTON-9C75B388",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
-      "accessibleName": "恢复当前工作区默认布局",
-      "stableSelectorValue": "恢复当前工作区默认布局",
+      "accessibleName": "AI 快速动作",
+      "stableSelectorValue": "topbar-ai-quick-actions",
       "selectorStrategy": "role+accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
@@ -23214,28 +23520,28 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-VISIBLE",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-HIDDEN",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-ENABLED",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-DISABLED",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-POINTER",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-KEYBOARD",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-FOCUS-IN",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-FOCUS-OUT",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-REPEAT",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-DEDUPLICATION",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-LOADING",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-SUCCESS",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-FAILURE",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-CANCELLED",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-OFFLINE",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-PERMISSION",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-PERSISTENCE",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-RESTART",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-VISUAL",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-BUTTON-F6BAB9D4-UNDO"
+        "STATE-TOPBAR-BUTTON-9C75B388-VISIBLE",
+        "STATE-TOPBAR-BUTTON-9C75B388-HIDDEN",
+        "STATE-TOPBAR-BUTTON-9C75B388-ENABLED",
+        "STATE-TOPBAR-BUTTON-9C75B388-DISABLED",
+        "STATE-TOPBAR-BUTTON-9C75B388-POINTER",
+        "STATE-TOPBAR-BUTTON-9C75B388-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-9C75B388-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-9C75B388-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-9C75B388-REPEAT",
+        "STATE-TOPBAR-BUTTON-9C75B388-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-9C75B388-LOADING",
+        "STATE-TOPBAR-BUTTON-9C75B388-SUCCESS",
+        "STATE-TOPBAR-BUTTON-9C75B388-FAILURE",
+        "STATE-TOPBAR-BUTTON-9C75B388-CANCELLED",
+        "STATE-TOPBAR-BUTTON-9C75B388-OFFLINE",
+        "STATE-TOPBAR-BUTTON-9C75B388-PERMISSION",
+        "STATE-TOPBAR-BUTTON-9C75B388-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-9C75B388-RESTART",
+        "STATE-TOPBAR-BUTTON-9C75B388-VISUAL",
+        "STATE-TOPBAR-BUTTON-9C75B388-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-9C75B388-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-9C75B388-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
@@ -23245,53 +23551,259 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-TOPBAR-SUMMARY-CA3EB090",
+      "id": "CTRL-TOPBAR-BUTTON-DCBA40D7",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
-      "controlType": "summary",
+      "controlType": "button",
       "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "stableSelectorValue": "topbar-focus-toggle",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
       "enabledWhen": [
         "rendered"
       ],
-      "actions": [],
+      "actions": [
+        "onClick"
+      ],
       "expectedEffects": [
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-TOPBAR-SUMMARY-CA3EB090-VISIBLE",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-HIDDEN",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-ENABLED",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-DISABLED",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-POINTER",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-KEYBOARD",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-FOCUS-IN",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-FOCUS-OUT",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-REPEAT",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-DEDUPLICATION",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-LOADING",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-SUCCESS",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-FAILURE",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-CANCELLED",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-OFFLINE",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-PERMISSION",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-PERSISTENCE",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-RESTART",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-VISUAL",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-ACCESSIBLE-NAME",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-DESTRUCTIVE-CONFIRMATION",
-        "STATE-TOPBAR-SUMMARY-CA3EB090-UNDO"
+        "STATE-TOPBAR-BUTTON-DCBA40D7-VISIBLE",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-HIDDEN",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-ENABLED",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-DISABLED",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-POINTER",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-REPEAT",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-LOADING",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-SUCCESS",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-FAILURE",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-CANCELLED",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-OFFLINE",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-PERMISSION",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-RESTART",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-VISUAL",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-DCBA40D7-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/shell/TopBar.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-EA862C89",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "AI 连接测试",
+      "stableSelectorValue": "topbar-ai-settings",
+      "selectorStrategy": "role+accessible-name",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-EA862C89-VISIBLE",
+        "STATE-TOPBAR-BUTTON-EA862C89-HIDDEN",
+        "STATE-TOPBAR-BUTTON-EA862C89-ENABLED",
+        "STATE-TOPBAR-BUTTON-EA862C89-DISABLED",
+        "STATE-TOPBAR-BUTTON-EA862C89-POINTER",
+        "STATE-TOPBAR-BUTTON-EA862C89-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-EA862C89-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-EA862C89-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-EA862C89-REPEAT",
+        "STATE-TOPBAR-BUTTON-EA862C89-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-EA862C89-LOADING",
+        "STATE-TOPBAR-BUTTON-EA862C89-SUCCESS",
+        "STATE-TOPBAR-BUTTON-EA862C89-FAILURE",
+        "STATE-TOPBAR-BUTTON-EA862C89-CANCELLED",
+        "STATE-TOPBAR-BUTTON-EA862C89-OFFLINE",
+        "STATE-TOPBAR-BUTTON-EA862C89-PERMISSION",
+        "STATE-TOPBAR-BUTTON-EA862C89-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-EA862C89-RESTART",
+        "STATE-TOPBAR-BUTTON-EA862C89-VISUAL",
+        "STATE-TOPBAR-BUTTON-EA862C89-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-EA862C89-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-EA862C89-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-BUTTON-FDDDA795",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-writer-assistant",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-BUTTON-FDDDA795-VISIBLE",
+        "STATE-TOPBAR-BUTTON-FDDDA795-HIDDEN",
+        "STATE-TOPBAR-BUTTON-FDDDA795-ENABLED",
+        "STATE-TOPBAR-BUTTON-FDDDA795-DISABLED",
+        "STATE-TOPBAR-BUTTON-FDDDA795-POINTER",
+        "STATE-TOPBAR-BUTTON-FDDDA795-KEYBOARD",
+        "STATE-TOPBAR-BUTTON-FDDDA795-FOCUS-IN",
+        "STATE-TOPBAR-BUTTON-FDDDA795-FOCUS-OUT",
+        "STATE-TOPBAR-BUTTON-FDDDA795-REPEAT",
+        "STATE-TOPBAR-BUTTON-FDDDA795-DEDUPLICATION",
+        "STATE-TOPBAR-BUTTON-FDDDA795-LOADING",
+        "STATE-TOPBAR-BUTTON-FDDDA795-SUCCESS",
+        "STATE-TOPBAR-BUTTON-FDDDA795-FAILURE",
+        "STATE-TOPBAR-BUTTON-FDDDA795-CANCELLED",
+        "STATE-TOPBAR-BUTTON-FDDDA795-OFFLINE",
+        "STATE-TOPBAR-BUTTON-FDDDA795-PERMISSION",
+        "STATE-TOPBAR-BUTTON-FDDDA795-PERSISTENCE",
+        "STATE-TOPBAR-BUTTON-FDDDA795-RESTART",
+        "STATE-TOPBAR-BUTTON-FDDDA795-VISUAL",
+        "STATE-TOPBAR-BUTTON-FDDDA795-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-BUTTON-FDDDA795-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-BUTTON-FDDDA795-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-DIV-0487C34E",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "div",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-more-menu-items",
+      "selectorStrategy": "label-or-id",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onKeyDown"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-DIV-0487C34E-VISIBLE",
+        "STATE-TOPBAR-DIV-0487C34E-HIDDEN",
+        "STATE-TOPBAR-DIV-0487C34E-ENABLED",
+        "STATE-TOPBAR-DIV-0487C34E-DISABLED",
+        "STATE-TOPBAR-DIV-0487C34E-POINTER",
+        "STATE-TOPBAR-DIV-0487C34E-KEYBOARD",
+        "STATE-TOPBAR-DIV-0487C34E-FOCUS-IN",
+        "STATE-TOPBAR-DIV-0487C34E-FOCUS-OUT",
+        "STATE-TOPBAR-DIV-0487C34E-REPEAT",
+        "STATE-TOPBAR-DIV-0487C34E-DEDUPLICATION",
+        "STATE-TOPBAR-DIV-0487C34E-LOADING",
+        "STATE-TOPBAR-DIV-0487C34E-SUCCESS",
+        "STATE-TOPBAR-DIV-0487C34E-FAILURE",
+        "STATE-TOPBAR-DIV-0487C34E-CANCELLED",
+        "STATE-TOPBAR-DIV-0487C34E-OFFLINE",
+        "STATE-TOPBAR-DIV-0487C34E-PERMISSION",
+        "STATE-TOPBAR-DIV-0487C34E-PERSISTENCE",
+        "STATE-TOPBAR-DIV-0487C34E-RESTART",
+        "STATE-TOPBAR-DIV-0487C34E-VISUAL",
+        "STATE-TOPBAR-DIV-0487C34E-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-DIV-0487C34E-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-DIV-0487C34E-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-TOPBAR-SUMMARY-14D29773",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "summary",
+      "accessibleName": "",
+      "stableSelectorValue": "topbar-more-menu",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onKeyDown"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-TOPBAR-SUMMARY-14D29773-VISIBLE",
+        "STATE-TOPBAR-SUMMARY-14D29773-HIDDEN",
+        "STATE-TOPBAR-SUMMARY-14D29773-ENABLED",
+        "STATE-TOPBAR-SUMMARY-14D29773-DISABLED",
+        "STATE-TOPBAR-SUMMARY-14D29773-POINTER",
+        "STATE-TOPBAR-SUMMARY-14D29773-KEYBOARD",
+        "STATE-TOPBAR-SUMMARY-14D29773-FOCUS-IN",
+        "STATE-TOPBAR-SUMMARY-14D29773-FOCUS-OUT",
+        "STATE-TOPBAR-SUMMARY-14D29773-REPEAT",
+        "STATE-TOPBAR-SUMMARY-14D29773-DEDUPLICATION",
+        "STATE-TOPBAR-SUMMARY-14D29773-LOADING",
+        "STATE-TOPBAR-SUMMARY-14D29773-SUCCESS",
+        "STATE-TOPBAR-SUMMARY-14D29773-FAILURE",
+        "STATE-TOPBAR-SUMMARY-14D29773-CANCELLED",
+        "STATE-TOPBAR-SUMMARY-14D29773-OFFLINE",
+        "STATE-TOPBAR-SUMMARY-14D29773-PERMISSION",
+        "STATE-TOPBAR-SUMMARY-14D29773-PERSISTENCE",
+        "STATE-TOPBAR-SUMMARY-14D29773-RESTART",
+        "STATE-TOPBAR-SUMMARY-14D29773-VISUAL",
+        "STATE-TOPBAR-SUMMARY-14D29773-ACCESSIBLE-NAME",
+        "STATE-TOPBAR-SUMMARY-14D29773-DESTRUCTIVE-CONFIRMATION",
+        "STATE-TOPBAR-SUMMARY-14D29773-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/shell/TopBar.tsx",
+      "stableSelectorStatus": "MAPPED"
     },
     {
       "id": "CTRL-UNDOTOAST-BUTTON-6471C8DC",

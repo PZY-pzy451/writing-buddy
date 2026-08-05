@@ -1426,9 +1426,29 @@ did not fully specify `targetTypes`, position objects or history arrays.
   124 without a product failure. The complete rerun passed in 222.9 seconds and
   is the only run recorded as acceptance evidence.
 - The source inventory expands honestly from 3 collapsed declarations to 5
-  controls and adds 44 states. All 5 controls, 110 source states and the only
-  existing product case are strictly mapped without adding test debt.
+  controls and adds 44 states. All 5 controls, 50 of 110 source states and the
+  only existing product case are strictly mapped without adding test debt.
 - Global mapped states rise by 50. Strict gaps fall from 9,799 to 9,787,
   selector gaps from 86 to 83 and unmapped tests from 872 to 871.
 - Strict coverage is 23.33%, stable-selector coverage is 83.33%, test mapping
   is 17.67% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 072
+
+- Global, quiet-writer, planning/reference and focus top-bar variants now
+  expose 16 distinct stable identities, including the More menu container.
+- More focuses its first enabled item. ArrowUp/ArrowDown wrap, Home/End move to
+  the edges, Escape closes with exact trigger-focus restoration, and an outside
+  pointer action dismisses without activating a menu item.
+- Five red failures converged to 5/5 focused/inventory, 51/51 Writer Workspace
+  and shell impact, and 30/30 QA infrastructure tests. Fixed-source sequential
+  execution passed 189 frontend files / 979 tests, production build and 77
+  native tests with two reasoned ignores.
+- The source inventory expands honestly from 6 collapsed declarations to 16
+  controls and adds 220 states. Strictly mapped source controls rise from 2 to
+  16 and source mapped states from 32 to 265.
+- Global mapped controls rise by 14 and mapped states by 235. Strict gaps fall
+  from 9,787 to 9,767, selector gaps from 83 to 79 and unmapped tests from 871
+  to 870.
+- Strict coverage is 24.84%, stable-selector coverage is 84.45%, test mapping
+  is 17.77% and release hard gates remain 1/4 complete.

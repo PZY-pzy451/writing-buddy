@@ -69425,138 +69425,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TOPBAR-BUTTON-6436EC0D",
+                  "id": "CTRL-TOPBAR-BUTTON-056AF31C",
                   "level": "L4",
-                  "name": "button",
+                  "name": "设置",
                   "states": [
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-VISIBLE",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-HIDDEN",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-ENABLED",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-DISABLED",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-POINTER",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-KEYBOARD",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-FOCUS-IN",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-FOCUS-OUT",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-REPEAT",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-DEDUPLICATION",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-LOADING",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-SUCCESS",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-FAILURE",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-CANCELLED",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-OFFLINE",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-PERMISSION",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-PERSISTENCE",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-RESTART",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-VISUAL",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-ACCESSIBLE-NAME",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-6436EC0D-UNDO",
+                      "id": "STATE-TOPBAR-BUTTON-056AF31C-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -69564,555 +69564,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TOPBAR-BUTTON-8354D78F",
-                  "level": "L4",
-                  "name": "AI 连接测试",
-                  "states": [
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-8354D78F-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-TOPBAR-BUTTON-945AFEC9",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-945AFEC9-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-TOPBAR-BUTTON-AC429973",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-TOPBAR-BUTTON-AC429973-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-TOPBAR-BUTTON-F6BAB9D4",
+                  "id": "CTRL-TOPBAR-BUTTON-1B605616",
                   "level": "L4",
                   "name": "恢复当前工作区默认布局",
                   "states": [
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-VISIBLE",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-HIDDEN",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-ENABLED",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-DISABLED",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-POINTER",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-KEYBOARD",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-FOCUS-IN",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-FOCUS-OUT",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-REPEAT",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-DEDUPLICATION",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-LOADING",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-SUCCESS",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-FAILURE",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-CANCELLED",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-OFFLINE",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-PERMISSION",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-PERSISTENCE",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-RESTART",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-VISUAL",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-ACCESSIBLE-NAME",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-BUTTON-F6BAB9D4-UNDO",
+                      "id": "STATE-TOPBAR-BUTTON-1B605616-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -70120,138 +69703,1945 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TOPBAR-SUMMARY-CA3EB090",
+                  "id": "CTRL-TOPBAR-BUTTON-1F4101F6",
                   "level": "L4",
-                  "name": "summary",
+                  "name": "退出专注",
                   "states": [
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-VISIBLE",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-HIDDEN",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-ENABLED",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-DISABLED",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-POINTER",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-KEYBOARD",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-FOCUS-IN",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-FOCUS-OUT",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-REPEAT",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-DEDUPLICATION",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-LOADING",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-SUCCESS",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-FAILURE",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-CANCELLED",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-OFFLINE",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-PERMISSION",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-PERSISTENCE",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-RESTART",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-VISUAL",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-ACCESSIBLE-NAME",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TOPBAR-SUMMARY-CA3EB090-UNDO",
+                      "id": "STATE-TOPBAR-BUTTON-1F4101F6-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-53E31386",
+                  "level": "L4",
+                  "name": "恢复写作布局",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-53E31386-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-556301C9",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-556301C9-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-6A25460D",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-6A25460D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-7AA8FC4E",
+                  "level": "L4",
+                  "name": "快速记录",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7AA8FC4E-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-7C112CBE",
+                  "level": "L4",
+                  "name": "打开作者导航器",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-7C112CBE-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-8754F32E",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-8754F32E-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-88EB3C30",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-88EB3C30-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-9C75B388",
+                  "level": "L4",
+                  "name": "AI 快速动作",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-9C75B388-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-DCBA40D7",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-DCBA40D7-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-EA862C89",
+                  "level": "L4",
+                  "name": "AI 连接测试",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-EA862C89-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-BUTTON-FDDDA795",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-BUTTON-FDDDA795-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-DIV-0487C34E",
+                  "level": "L4",
+                  "name": "div",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-DIV-0487C34E-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TOPBAR-SUMMARY-14D29773",
+                  "level": "L4",
+                  "name": "summary",
+                  "states": [
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TOPBAR-SUMMARY-14D29773-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -72786,7 +74176,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 421,
+      "declarationLine": 445,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -72916,7 +74306,7 @@
       "id": "TC-DISCOVERED-095D0EE2E0",
       "title": "blocks whole-work export when the active manuscript cannot be saved safely",
       "declarationTitle": "blocks whole-work export when the active manuscript cannot be saved safely",
-      "declarationLine": 567,
+      "declarationLine": 617,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -73494,7 +74884,7 @@
       "id": "TC-DISCOVERED-1223E27954",
       "title": "keeps a stable four-item tool rail and switches one remembered panel on demand",
       "declarationTitle": "keeps a stable four-item tool rail and switches one remembered panel on demand",
-      "declarationLine": 247,
+      "declarationLine": 297,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -74040,7 +75430,7 @@
       "id": "TC-DISCOVERED-1C2E0C014A",
       "title": "offers a low-weight contextual Continue at a paragraph end",
       "declarationTitle": "offers a low-weight contextual Continue at a paragraph end",
-      "declarationLine": 287,
+      "declarationLine": 337,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -74191,6 +75581,24 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-1D5A5AF9E8",
+      "title": "TC-TOP-BAR-001 shows accessible global controls, navigates the more menu by keyboard and restores focus on Escape",
+      "declarationTitle": "TC-TOP-BAR-001 shows accessible global controls, navigates the more menu by keyboard and restores focus on Escape",
+      "declarationLine": 80,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -74624,7 +76032,7 @@
       "id": "TC-DISCOVERED-219A8D0B99",
       "title": "shows chapter status without an edit control for read-only projects",
       "declarationTitle": "shows chapter status without an edit control for read-only projects",
-      "declarationLine": 507,
+      "declarationLine": 557,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -75689,6 +77097,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-2F836D8E13",
+      "title": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
+      "declarationTitle": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
+      "declarationLine": 941,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-2FBC6F1DBF",
       "title": "keeps SELECTION_REWRITE_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -75973,24 +77399,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-3315C26711",
-      "title": "presents the five author tasks while keeping search and settings global",
-      "declarationTitle": "presents the five author tasks while keeping search and settings global",
-      "declarationLine": 80,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -76512,7 +77920,7 @@
       "id": "TC-DISCOVERED-39E4E238D4",
       "title": "rehydrates manual writing layout changes before reopening the project",
       "declarationTitle": "rehydrates manual writing layout changes before reopening the project",
-      "declarationLine": 144,
+      "declarationLine": 186,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -78146,7 +79554,7 @@
       "id": "TC-DISCOVERED-4CF989AEA1",
       "title": "writes one chapter status after one hundred same-frame dirty choices",
       "declarationTitle": "writes one chapter status after one hundred same-frame dirty choices",
-      "declarationLine": 361,
+      "declarationLine": 411,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -78919,24 +80327,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-58E99F64C2",
-      "title": "uses F11 and Escape for a temporary focus overlay without changing the normal layout",
-      "declarationTitle": "uses F11 and Escape for a temporary focus overlay without changing the normal layout",
-      "declarationLine": 891,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79963,6 +81353,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-68A90EF6E4",
+      "title": "TC-TOP-BAR-002 shows accessible topbar-workspace-sidebar, topbar-workspace-assistant and topbar-workspace-reset-layout controls and persists independent layouts",
+      "declarationTitle": "TC-TOP-BAR-002 shows accessible topbar-workspace-sidebar, topbar-workspace-assistant and topbar-workspace-reset-layout controls and persists independent layouts",
+      "declarationLine": 132,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-6953001AB6",
       "title": "keeps direction and effective ranges distinct at a time slice",
       "declarationTitle": "keeps direction and effective ranges distinct at a time slice",
@@ -80402,7 +81810,7 @@
       "id": "TC-DISCOVERED-70FC306ED2",
       "title": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
       "declarationTitle": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
-      "declarationLine": 850,
+      "declarationLine": 900,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -80510,7 +81918,7 @@
       "id": "TC-DISCOVERED-72920BB906",
       "title": "exports the whole work in project order and records its delivery scope",
       "declarationTitle": "exports the whole work in project order and records its delivery scope",
-      "declarationLine": 657,
+      "declarationLine": 707,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -80881,24 +82289,6 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-777C4527C9",
-      "title": "keeps the writing chrome quiet until the author asks for more tools",
-      "declarationTitle": "keeps the writing chrome quiet until the author asks for more tools",
-      "declarationLine": 222,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -81656,7 +83046,7 @@
       "id": "TC-DISCOVERED-81A8B4BCED",
       "title": "does not export or create a receipt when dirty manuscript saving fails",
       "declarationTitle": "does not export or create a receipt when dirty manuscript saving fails",
-      "declarationLine": 548,
+      "declarationLine": 598,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -81836,7 +83226,7 @@
       "id": "TC-DISCOVERED-84F12EFC4A",
       "title": "opens the existing extraction center for the current chapter without starting AI",
       "declarationTitle": "opens the existing extraction center for the current chapter without starting AI",
-      "declarationLine": 317,
+      "declarationLine": 367,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -82606,7 +83996,7 @@
       "id": "TC-DISCOVERED-90E74517D7",
       "title": "exports the active chapter from the writer menu and records a durable receipt",
       "declarationTitle": "exports the active chapter from the writer menu and records a durable receipt",
-      "declarationLine": 521,
+      "declarationLine": 571,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -83840,7 +85230,7 @@
       "id": "TC-DISCOVERED-A1611B6A78",
       "title": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
       "declarationTitle": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
-      "declarationLine": 746,
+      "declarationLine": 796,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -84404,7 +85794,7 @@
       "id": "TC-DISCOVERED-ACF0C9961A",
       "title": "keeps the writer open when organizing a dirty chapter cannot save",
       "declarationTitle": "keeps the writer open when organizing a dirty chapter cannot save",
-      "declarationLine": 413,
+      "declarationLine": 463,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -85226,7 +86616,7 @@
       "id": "TC-DISCOVERED-B7C9AE59B2",
       "title": "saves dirty prose before changing chapter status and updates publish readiness immediately",
       "declarationTitle": "saves dirty prose before changing chapter status and updates publish readiness immediately",
-      "declarationLine": 434,
+      "declarationLine": 484,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -85262,7 +86652,7 @@
       "id": "TC-DISCOVERED-B7E68002CD",
       "title": "exports a structured Word work and records a Word delivery receipt",
       "declarationTitle": "exports a structured Word work and records a Word delivery receipt",
-      "declarationLine": 616,
+      "declarationLine": 666,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -86048,7 +87438,7 @@
       "id": "TC-DISCOVERED-C32D502713",
       "title": "tracks net manuscript growth, reverses undo and persists the project goal",
       "declarationTitle": "tracks net manuscript growth, reverses undo and persists the project goal",
-      "declarationLine": 182,
+      "declarationLine": 224,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87350,7 +88740,7 @@
       "id": "TC-DISCOVERED-D441644F0B",
       "title": "exposes stable handles for every writer-header operation",
       "declarationTitle": "exposes stable handles for every writer-header operation",
-      "declarationLine": 338,
+      "declarationLine": 388,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87824,7 +89214,7 @@
       "id": "TC-DISCOVERED-DCDA67C4D6",
       "title": "does not change chapter status when dirty manuscript saving fails",
       "declarationTitle": "does not change chapter status when dirty manuscript saving fails",
-      "declarationLine": 489,
+      "declarationLine": 539,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87849,24 +89239,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-DD17B76DC3",
-      "title": "restores independent writing and planning layouts without changing the resource",
-      "declarationTitle": "restores independent writing and planning layouts without changing the resource",
-      "declarationLine": 100,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -87988,7 +89360,7 @@
       "id": "TC-DISCOVERED-DE6DBE61CD",
       "title": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
       "declarationTitle": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
-      "declarationLine": 718,
+      "declarationLine": 768,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -89188,7 +90560,7 @@
       "id": "TC-DISCOVERED-F2ED1350CC",
       "title": "creates and validates a portable project backup from History",
       "declarationTitle": "creates and validates a portable project backup from History",
-      "declarationLine": 697,
+      "declarationLine": 747,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -89421,6 +90793,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-F61628B164",
+      "title": "TC-TOP-BAR-003 shows accessible quiet-writer controls until the author asks for more tools",
+      "declarationTitle": "TC-TOP-BAR-003 shows accessible quiet-writer controls until the author asks for more tools",
+      "declarationLine": 264,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-F64106670D",
       "title": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
       "declarationTitle": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
@@ -89496,7 +90886,7 @@
       "id": "TC-DISCOVERED-F6ACF87F59",
       "title": "offers Word and text exports in History without recording cancellation",
       "declarationTitle": "offers Word and text exports in History without recording cancellation",
-      "declarationLine": 589,
+      "declarationLine": 639,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -89930,7 +91320,7 @@
       "id": "TC-DISCOVERED-FDF7FDE4C2",
       "title": "invalidates an open AI drawer when a same-revision project root replaces its source",
       "declarationTitle": "invalidates an open AI drawer when a same-revision project root replaces its source",
-      "declarationLine": 821,
+      "declarationLine": 871,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
