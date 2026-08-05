@@ -1148,3 +1148,19 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 118 despite two new tests, one new control declaration and 22 new states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum — defect 058
+
+- Item AI now exposes 10/10 stable control declarations while preserving the
+  existing one-request result under 100 same-frame Generate actions.
+- Malformed item output no longer displays internal schema codes and succeeds
+  on explicit retry. Unknown candidate-write failures no longer expose raw
+  paths; selected fields survive the retry without a second AI request.
+- Ten rendered representative controls are visible, enabled and keyboard
+  focusable. Field/state selection and both evidence actions are verified.
+- Fixed-commit execution passed 976 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 30/30.
+- Traceability gaps fell from 10,379 to 10,337 and stable-selector gaps from 118
+  to 114 despite four new tests, three new controls and 66 new states.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.

@@ -59580,11 +59580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-VISIBLE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-VISIBLE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -59596,11 +59596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-HIDDEN",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-HIDDEN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -59612,11 +59612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-ENABLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-ENABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -59628,11 +59628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-DISABLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-DISABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -59644,11 +59644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-POINTER",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-POINTER",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -59660,11 +59660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-KEYBOARD",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-KEYBOARD",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -59676,11 +59676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-FOCUS-IN",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-FOCUS-IN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -59692,11 +59692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-FOCUS-OUT",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-FOCUS-OUT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -59708,11 +59708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-REPEAT",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-REPEAT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -59724,11 +59724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-DEDUPLICATION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-DEDUPLICATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -59740,11 +59740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-LOADING",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-LOADING",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -59756,11 +59756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-SUCCESS",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-SUCCESS",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -59772,11 +59772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-FAILURE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-FAILURE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -59788,11 +59788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-CANCELLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-CANCELLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -59804,11 +59804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-OFFLINE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-OFFLINE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -59820,11 +59820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-PERMISSION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-PERMISSION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -59836,11 +59836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-PERSISTENCE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-PERSISTENCE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -59852,11 +59852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-RESTART",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-RESTART",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -59868,11 +59868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-VISUAL",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-VISUAL",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -59884,11 +59884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-ACCESSIBLE-NAME",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -59900,11 +59900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -59916,11 +59916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-2393DC26-UNDO",
+      "id": "STATE-ITEMAIPANEL-BUTTON-0F18DC89-UNDO",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-2393DC26"
+        "CTRL-ITEMAIPANEL-BUTTON-0F18DC89"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -59932,11 +59932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-VISIBLE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-VISIBLE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -59948,11 +59948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-HIDDEN",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-HIDDEN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -59964,11 +59964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-ENABLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-ENABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -59980,11 +59980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-DISABLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-DISABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -59996,11 +59996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-POINTER",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-POINTER",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -60012,11 +60012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-KEYBOARD",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-KEYBOARD",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -60028,11 +60028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-FOCUS-IN",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-FOCUS-IN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -60044,11 +60044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-FOCUS-OUT",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-FOCUS-OUT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -60060,11 +60060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-REPEAT",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-REPEAT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -60076,11 +60076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-DEDUPLICATION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-DEDUPLICATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -60092,11 +60092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-LOADING",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-LOADING",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -60108,11 +60108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-SUCCESS",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-SUCCESS",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -60124,11 +60124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-FAILURE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-FAILURE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -60140,11 +60140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-CANCELLED",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-CANCELLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -60156,11 +60156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-OFFLINE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-OFFLINE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -60172,11 +60172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-PERMISSION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-PERMISSION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -60188,11 +60188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-PERSISTENCE",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-PERSISTENCE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -60204,11 +60204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-RESTART",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-RESTART",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -60220,11 +60220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-VISUAL",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-VISUAL",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -60236,11 +60236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-ACCESSIBLE-NAME",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -60252,11 +60252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -60268,11 +60268,1067 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-7E5F0BDC-UNDO",
+      "id": "STATE-ITEMAIPANEL-BUTTON-32EDBB17-UNDO",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-7E5F0BDC"
+        "CTRL-ITEMAIPANEL-BUTTON-32EDBB17"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-VISIBLE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-HIDDEN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-ENABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-DISABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-POINTER",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-KEYBOARD",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-FOCUS-IN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-FOCUS-OUT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-REPEAT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-DEDUPLICATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-LOADING",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-SUCCESS",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-FAILURE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-CANCELLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-OFFLINE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-PERMISSION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-PERSISTENCE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-RESTART",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-VISUAL",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-4405D583-UNDO",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-4405D583"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-VISIBLE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-HIDDEN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-ENABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-DISABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-POINTER",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-KEYBOARD",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-FOCUS-IN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-FOCUS-OUT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-REPEAT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-DEDUPLICATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-LOADING",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-SUCCESS",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-FAILURE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-CANCELLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-OFFLINE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-PERMISSION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-PERSISTENCE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-RESTART",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-VISUAL",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-460ED758-UNDO",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-460ED758"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-VISIBLE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-HIDDEN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-ENABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-DISABLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-POINTER",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-KEYBOARD",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-FOCUS-IN",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-FOCUS-OUT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-REPEAT",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-DEDUPLICATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-LOADING",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-SUCCESS",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-FAILURE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-CANCELLED",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-OFFLINE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-PERMISSION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-PERSISTENCE",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-RESTART",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-VISUAL",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-ITEMAIPANEL-BUTTON-D6866599-UNDO",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlIds": [
+        "CTRL-ITEMAIPANEL-BUTTON-D6866599"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -60636,11 +61692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-VISIBLE",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-VISIBLE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -60652,11 +61708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-HIDDEN",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-HIDDEN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -60668,11 +61724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-ENABLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-ENABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -60684,11 +61740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-DISABLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-DISABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -60700,11 +61756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-POINTER",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-POINTER",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -60716,11 +61772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-KEYBOARD",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-KEYBOARD",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -60732,11 +61788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-FOCUS-IN",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-FOCUS-IN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -60748,11 +61804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-FOCUS-OUT",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-FOCUS-OUT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -60764,11 +61820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-REPEAT",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-REPEAT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -60780,11 +61836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-DEDUPLICATION",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-DEDUPLICATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -60796,11 +61852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-LOADING",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-LOADING",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -60812,11 +61868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-SUCCESS",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-SUCCESS",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -60828,11 +61884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-FAILURE",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-FAILURE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -60844,11 +61900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-CANCELLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-CANCELLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -60860,11 +61916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-OFFLINE",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-OFFLINE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -60876,11 +61932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-PERMISSION",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-PERMISSION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -60892,11 +61948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-PERSISTENCE",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-PERSISTENCE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -60908,11 +61964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-RESTART",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-RESTART",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -60924,11 +61980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-VISUAL",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-VISUAL",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -60940,11 +61996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-ACCESSIBLE-NAME",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -60956,11 +62012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -60972,11 +62028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-BUTTON-F8AC115F-UNDO",
+      "id": "STATE-ITEMAIPANEL-INPUT-5081F22C-UNDO",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-BUTTON-F8AC115F"
+        "CTRL-ITEMAIPANEL-INPUT-5081F22C"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -60988,11 +62044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-VISIBLE",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-VISIBLE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -61004,11 +62060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-HIDDEN",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-HIDDEN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -61020,11 +62076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-ENABLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-ENABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -61036,11 +62092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-DISABLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-DISABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -61052,11 +62108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-POINTER",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-POINTER",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -61068,11 +62124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-KEYBOARD",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-KEYBOARD",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -61084,11 +62140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-FOCUS-IN",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-FOCUS-IN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -61100,11 +62156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-FOCUS-OUT",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-FOCUS-OUT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -61116,11 +62172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-REPEAT",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-REPEAT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -61132,11 +62188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-DEDUPLICATION",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-DEDUPLICATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -61148,11 +62204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-LOADING",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-LOADING",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -61164,11 +62220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-SUCCESS",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-SUCCESS",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -61180,11 +62236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-FAILURE",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-FAILURE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -61196,11 +62252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-CANCELLED",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-CANCELLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -61212,11 +62268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-OFFLINE",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-OFFLINE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -61228,11 +62284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-PERMISSION",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-PERMISSION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -61244,11 +62300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-PERSISTENCE",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-PERSISTENCE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -61260,11 +62316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-RESTART",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-RESTART",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -61276,11 +62332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-VISUAL",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-VISUAL",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -61292,11 +62348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-ACCESSIBLE-NAME",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -61308,11 +62364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -61324,11 +62380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-INPUT-B61940CA-UNDO",
+      "id": "STATE-ITEMAIPANEL-INPUT-53323580-UNDO",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-INPUT-B61940CA"
+        "CTRL-ITEMAIPANEL-INPUT-53323580"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -61692,11 +62748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-VISIBLE",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-VISIBLE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -61708,11 +62764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-HIDDEN",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-HIDDEN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -61724,11 +62780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-ENABLED",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-ENABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -61740,11 +62796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-DISABLED",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-DISABLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -61756,11 +62812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-POINTER",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-POINTER",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -61772,11 +62828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-KEYBOARD",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-KEYBOARD",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -61788,11 +62844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-FOCUS-IN",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-FOCUS-IN",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -61804,11 +62860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-FOCUS-OUT",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-FOCUS-OUT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -61820,11 +62876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-REPEAT",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-REPEAT",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -61836,11 +62892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-DEDUPLICATION",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-DEDUPLICATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -61852,11 +62908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-LOADING",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-LOADING",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -61868,11 +62924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-SUCCESS",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-SUCCESS",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -61884,11 +62940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-FAILURE",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-FAILURE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -61900,11 +62956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-CANCELLED",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-CANCELLED",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -61916,11 +62972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-OFFLINE",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-OFFLINE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -61932,11 +62988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-PERMISSION",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-PERMISSION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -61948,11 +63004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-PERSISTENCE",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-PERSISTENCE",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -61964,11 +63020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-RESTART",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-RESTART",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -61980,11 +63036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-VISUAL",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-VISUAL",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -61996,11 +63052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-ACCESSIBLE-NAME",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-ACCESSIBLE-NAME",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -62012,11 +63068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -62028,11 +63084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ITEMAIPANEL-TEXTAREA-A83C5CED-UNDO",
+      "id": "STATE-ITEMAIPANEL-TEXTAREA-FC1489F6-UNDO",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
       "controlIds": [
-        "CTRL-ITEMAIPANEL-TEXTAREA-A83C5CED"
+        "CTRL-ITEMAIPANEL-TEXTAREA-FC1489F6"
       ],
       "name": "撤销",
       "dimension": "UNDO",

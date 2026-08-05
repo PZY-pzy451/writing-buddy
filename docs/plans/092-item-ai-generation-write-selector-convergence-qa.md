@@ -45,4 +45,24 @@ Date: 2026-08-05
 
 ## Result
 
-Pending implementation and fixed-commit evidence.
+- Four failure-first contracts reproduced a seven-control inventory, missing
+  stable identities, raw `invalidItemCandidateCount` feedback and a private
+  `C:\private\author\items.json` snapshot path in the write alert.
+- `ItemAiPanel` now exposes ten distinct controls with 10/10 stable identities.
+  Field/state controls and their evidence actions are separate declarations.
+- Malformed item output is safely isolated and retryable. Unknown persistence
+  failures are localized, known domain failures remain actionable and the same
+  selected candidate fields survive a rejected write without another paid
+  generation.
+- One hundred same-frame generation actions still start one provider request.
+  Ten rendered representative controls are visible, enabled and keyboard
+  focusable; both evidence actions and field/state selection are exercised.
+- Initial focused contracts passed 19/19, the final item impact set passed 42
+  tests through full execution and QA infrastructure passed 30/30.
+- Fixed source `cc3e57b` passed Node 24 lint, typecheck, 188 frontend files /
+  976 tests and production build. Rust passed 77 with two reasoned ignores.
+- Stable-selector debt fell from 118 to 114. Strict aggregate gaps fell from
+  10,379 to 10,337 despite three controls, 66 derived states and four discovered
+  tests being added.
+- Release remains blocked at 1/4 gates: strict traceability, real-provider
+  smoke and packaged-EXE acceptance remain incomplete.

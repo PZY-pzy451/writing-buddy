@@ -1755,6 +1755,48 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-ITEM-AI-GENERATION-WRITE-SELECTOR-CONVERGENCE-058',
+			summary: 'Item AI exposed internal generation and persistence errors while ten logical control groups collapsed into seven declarations with four selector gaps.',
+			before: {
+				sourceControls: 7,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 4,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				malformedGenerationDetailsRedacted: false,
+				unknownWriteDetailsRedacted: false,
+				globalControls: 475,
+				globalStates: 10450,
+				globalTests: 1051,
+				globalMissingStableSelectors: 118,
+				totalUnmapped: 10379
+			},
+			after: {
+				sourceControls: 10,
+				sourceMappedControls: 10,
+				sourceMissingStableSelectors: 0,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				malformedGenerationDetailsRedacted: true,
+				generationRetryAvailable: true,
+				unknownWriteDetailsRedacted: true,
+				writeRetryAvailable: true,
+				candidateSelectionsPreservedForRetry: true,
+				renderedControlRepresentatives: 10,
+				evidenceActionsVerified: 2,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 4,
+				focusedTests: 19,
+				impactTests: 42,
+				qaScriptTests: 30,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
