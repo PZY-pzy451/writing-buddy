@@ -1612,3 +1612,20 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,516 to 9,450, selector gaps from 61 to 59 and unmapped tests from
   852 to 850. Strict coverage is 27.54%, stable-selector coverage is 88.43%,
   test mapping is 19.66% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 081
+
+- The Tab expansion popover trigger and enable switch expose distinct stable
+  identities while preserving shortcut disclosure, explicit preview actions
+  and read-only blocking.
+- Five existing Story Kernel cases now strictly map successful snapshot retry,
+  hidden rejected actions, visual malformed-candidate quarantine, enabled valid
+  relationships and unchanged-request restart after rate limiting.
+- Two red failures converged to 24/24 focused, 84/84 impact and 20/20 inventory/
+  trace contracts. Fixed-source sequential execution passed 189 frontend files
+  / 979 tests, production build, 77 native tests with two reasoned ignores and
+  30/30 QA infrastructure tests.
+- Global mapped controls rise by 2, states by 49 and tests by 4. Strict gaps
+  fall from 9,450 to 9,395, selector gaps from 59 to 57 and unmapped tests from
+  850 to 846. Strict coverage is 27.96%, stable-selector coverage is 88.82%,
+  test mapping is 20.04% and release hard gates remain 1/4 complete.

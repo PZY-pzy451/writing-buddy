@@ -47,3 +47,25 @@ Date: 2026-08-05
   gates sequentially from the fixed source.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Source `e104ca94` gives the Tab expansion popover trigger and enable switch
+  distinct stable identities while preserving Tab/Escape disclosure, explicit
+  preview acceptance and read-only blocking.
+- Existing Story Kernel cases now carry the exact state evidence they already
+  exercise: successful snapshot retry, hidden rejected actions, visual
+  quarantine, enabled valid relationship candidates and unchanged-request
+  restart after rate limiting.
+- Two failure-first contracts converged to 24/24 focused, 84/84 inline plot,
+  Story Kernel and Writer Workspace impact, and 20/20 inventory/trace tests.
+- Inline plot rises from 2/4 to 4/4 stable and strictly mapped controls, with
+  mapped states rising from 20 to 33. Story Kernel exact mapped cases rise from
+  8/22 to 13/22 and mapped states from 124 to 157.
+- Sequential fixed-source acceptance passed 189 frontend files / 979 tests,
+  production build, 77 native tests with two reasoned ignores and 30/30 QA
+  infrastructure tests.
+- Global mapped controls rise by 2, states by 49 and tests by 4. Strict gaps
+  fall from 9,450 to 9,395, selector gaps from 59 to 57 and unmapped tests from
+  850 to 846. Strict coverage is 27.96%, stable-selector coverage is 88.82%,
+  test mapping is 20.04% and release hard gates remain 1/4 complete.

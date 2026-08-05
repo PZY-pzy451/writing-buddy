@@ -59834,138 +59834,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4",
+                  "id": "CTRL-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-VISIBLE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-HIDDEN",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-ENABLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-DISABLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-POINTER",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-KEYBOARD",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-FOCUS-IN",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-FOCUS-OUT",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-REPEAT",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-DEDUPLICATION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-LOADING",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-SUCCESS",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-FAILURE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-CANCELLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-OFFLINE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-PERMISSION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-PERSISTENCE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-RESTART",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-VISUAL",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-ACCESSIBLE-NAME",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-7C03E6A4-UNDO",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-BUTTON-50496067-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -60251,138 +60251,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7",
+                  "id": "CTRL-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-VISIBLE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-HIDDEN",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-ENABLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-DISABLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-POINTER",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-KEYBOARD",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-FOCUS-IN",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-FOCUS-OUT",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-REPEAT",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-DEDUPLICATION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-LOADING",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-SUCCESS",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-FAILURE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-CANCELLED",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-OFFLINE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-PERMISSION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-PERSISTENCE",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-RESTART",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-VISUAL",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-ACCESSIBLE-NAME",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-132DECA7-UNDO",
+                      "id": "STATE-INLINEPLOTEXPANSIONCONTROL-INPUT-AA5E1141-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74691,6 +74691,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-0AC06EAA96",
+      "title": "restarts a retryable native failure with the unchanged generation request",
+      "declarationTitle": "restarts a retryable native failure with the unchanged generation request",
+      "declarationLine": 1222,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-0B2DAE16AF",
       "title": "loads a missing journey as a clean project-owned ideas route",
       "declarationTitle": "loads a missing journey as a clean project-owned ideas route",
@@ -76072,7 +76090,7 @@
       "id": "TC-DISCOVERED-1EB464715B",
       "title": "keeps generated resources pending until snapshot-backed author confirmation",
       "declarationTitle": "keeps generated resources pending until snapshot-backed author confirmation",
-      "declarationLine": 877,
+      "declarationLine": 879,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -77832,7 +77850,7 @@
       "id": "TC-DISCOVERED-3560F75704",
       "title": "preserves a structured native authentication error and opens AI settings",
       "declarationTitle": "preserves a structured native authentication error and opens AI settings",
-      "declarationLine": 1185,
+      "declarationLine": 1187,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -79339,24 +79357,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-460F746C16",
-      "title": "keeps a valid character pending and localizes a rejected snapshot",
-      "declarationTitle": "keeps a valid character pending and localizes a rejected snapshot",
-      "declarationLine": 928,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-4687227A6A",
       "title": "checks the maximum persisted outline in linear time",
       "declarationTitle": "checks the maximum persisted outline in linear time",
@@ -79924,7 +79924,7 @@
       "id": "TC-DISCOVERED-4DCF7B8FBA",
       "title": "disables generation for a read-only project",
       "declarationTitle": "disables generation for a read-only project",
-      "declarationLine": 1159,
+      "declarationLine": 1161,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -81231,24 +81231,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-60DCAB7C2B",
-      "title": "keeps valid candidates and explains an isolated malformed candidate",
-      "declarationTitle": "keeps valid candidates and explains an isolated malformed candidate",
-      "declarationLine": 603,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-61189A6818",
       "title": "does not invoke the write command when preflight reports an issue",
       "declarationTitle": "does not invoke the write command when preflight reports an issue",
@@ -81616,7 +81598,7 @@
       "id": "TC-DISCOVERED-6863B024FA",
       "title": "classifies a fully malformed batch as a response issue, not an AI setting issue",
       "declarationTitle": "classifies a fully malformed batch as a response issue, not an AI setting issue",
-      "declarationLine": 841,
+      "declarationLine": 843,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -82560,7 +82542,7 @@
       "id": "TC-DISCOVERED-7782B21DBC",
       "title": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
       "declarationTitle": "TC-QA-SK-REL-005 reopens the quarantined relationship without another AI request",
-      "declarationLine": 692,
+      "declarationLine": 694,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -82883,24 +82865,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-7B9E42919A",
-      "title": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
-      "declarationTitle": "TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates",
-      "declarationLine": 569,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-7BE914DACE",
       "title": "keeps author control from Story creation through review, AI Undo and recovery",
       "declarationTitle": "keeps author control from Story creation through review, AI Undo and recovery",
@@ -82994,7 +82958,7 @@
       "id": "TC-DISCOVERED-7E5C4CF8B6",
       "title": "explains local scene grounding and confirms a repaired scene candidate",
       "declarationTitle": "explains local scene grounding and confirms a repaired scene candidate",
-      "declarationLine": 969,
+      "declarationLine": 971,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -83214,7 +83178,7 @@
       "id": "TC-DISCOVERED-80467719E8",
       "title": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
       "declarationTitle": "TC-QA-SK-MATRIX-002 renders all schema mutations without blocking the valid control",
-      "declarationLine": 754,
+      "declarationLine": 756,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -83346,6 +83310,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/writerWorkspace.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-82C1007223",
+      "title": "visually isolates one malformed candidate while keeping valid candidates reviewable",
+      "declarationTitle": "visually isolates one malformed candidate while keeping valid candidates reviewable",
+      "declarationLine": 603,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -85184,7 +85166,7 @@
       "id": "TC-DISCOVERED-9E0CA12F82",
       "title": "reopens and confirms an old item candidate without another AI request",
       "declarationTitle": "reopens and confirms an old item candidate without another AI request",
-      "declarationLine": 1118,
+      "declarationLine": 1120,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -85382,7 +85364,7 @@
       "id": "TC-DISCOVERED-A001120839",
       "title": "shows setup recovery and disables generation in read-only mode",
       "declarationTitle": "shows setup recovery and disables generation in read-only mode",
-      "declarationLine": 51,
+      "declarationLine": 53,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/InlinePlotExpansionControl.test.tsx",
@@ -88252,7 +88234,7 @@
       "id": "TC-DISCOVERED-CA67AB5DD9",
       "title": "confirms a location candidate whose optional map point is null",
       "declarationTitle": "confirms a location candidate whose optional map point is null",
-      "declarationLine": 1020,
+      "declarationLine": 1022,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -88997,6 +88979,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D3E1A6500C",
+      "title": "successfully retries a rejected snapshot while keeping the valid character pending",
+      "declarationTitle": "successfully retries a rejected snapshot while keeping the valid character pending",
+      "declarationLine": 930,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D441644F0B",
       "title": "exposes stable handles for every writer-header operation",
       "declarationTitle": "exposes stable handles for every writer-header operation",
@@ -89176,24 +89176,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-D71319E42E",
-      "title": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
-      "declarationTitle": "TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship",
-      "declarationLine": 640,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -90835,24 +90817,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-F31EE6E76A",
-      "title": "retries a retryable native failure with the unchanged generation request",
-      "declarationTitle": "retries a retryable native failure with the unchanged generation request",
-      "declarationLine": 1220,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-F32261533D",
       "title": "restores the stable workspace resize handle on double click and ignores non-primary input",
       "declarationTitle": "restores the stable workspace resize handle on double click and ignores non-primary input",
@@ -90883,6 +90847,24 @@
       "domainId": "DOMAIN-01",
       "featureId": "FEATURE-01-03",
       "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F40ACD1B5B",
+      "title": "TC-QA-SK-REL-002 keeps three valid relationship candidates enabled when AI adds one malformed unselected relationship",
+      "declarationTitle": "TC-QA-SK-REL-002 keeps three valid relationship candidates enabled when AI adds one malformed unselected relationship",
+      "declarationLine": 640,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -91002,7 +90984,7 @@
       "id": "TC-DISCOVERED-F56581D95E",
       "title": "confirms an item candidate after repairing omitted item defaults",
       "declarationTitle": "confirms an item candidate after repairing omitted item defaults",
-      "declarationLine": 1069,
+      "declarationLine": 1071,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
@@ -91770,6 +91752,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FF7EB1A9C9",
+      "title": "TC-QA-SK-ACTION-002 hides the rejected action after one hundred same-frame storage updates",
+      "declarationTitle": "TC-QA-SK-ACTION-002 hides the rejected action after one hundred same-frame storage updates",
+      "declarationLine": 569,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
