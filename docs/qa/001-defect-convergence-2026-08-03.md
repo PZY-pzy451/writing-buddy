@@ -1664,3 +1664,21 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,247 to 9,126, selector gaps from 55 to 52 and unmapped tests from
   842 to 837. Strict coverage is 30.02%, stable-selector coverage is 89.80%,
   test mapping is 20.89% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 084
+
+- Project Welcome start routes expose one composite identity with exact route
+  context, while repeated recent-project cards expose exact project roots. The
+  honest declaration split adds one logical control and 22 states instead of
+  hiding a structurally distinct action behind an inventory collision.
+- Existing Global Create cases explicitly prove the requested action is visible,
+  100 same-frame chooser actions deduplicate and remain retryable, contextual
+  creation stays local/offline, and planning priorities retain accessible names.
+- Two red failures converged to 20/20 focused, 96/96 product impact and 20/20
+  inventory/trace contracts. Fixed-source sequential execution passed 189
+  frontend files / 979 tests, production build, 77 native tests with two
+  reasoned ignores and 30/30 QA infrastructure tests.
+- Global mapped controls rise by 3, states by 66 and tests by 4. Strict gaps
+  fall from 9,126 to 9,076, selector gaps from 52 to 50 and unmapped tests from
+  837 to 833. Strict coverage is 30.53%, stable-selector coverage is 90.22%,
+  test mapping is 21.27% and release hard gates remain 1/4 complete.

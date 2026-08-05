@@ -4,26 +4,33 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-AI settings and Project Wizard selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `93b3e56`.
+Project Welcome and Global Create selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `9d7e5f0`.
 
-- API Key, composite model/thinking preferences and composite inline-feature
-  toggles expose stable identities plus exact context. Project Wizard now maps
-  all 12 exact cases, including accessible starts, offline outline import and
-  disabled project-scoped actions without an open project.
-- Three isolated red failures converged to 34/34 focused, 224/224 impact and
-  30/30 QA infrastructure tests. Node 24 passed lint, typecheck, 189 files /
-  979 tests and production build; Rust passed 77 with two reasoned ignores.
-- Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
-  controls rise by 3, states by 113 and tests by 5. Strict gaps fall by 121 from
-  9,247 to 9,126, selector gaps from 55 to 52 and unmapped tests from 842 to
-  837.
+- Four author start routes and repeated recent-project cards expose stable
+  identity plus exact route/root context. Global Create now maps all 8 exact
+  cases, including visible focus relocation, 100-action chooser deduplication
+  with retry, local/offline contextual routing and accessible planning actions.
+- Two failure-first assertions converged to 20/20 focused, 96/96 product impact,
+  20/20 inventory/trace and 30/30 QA infrastructure tests. Node 24 passed lint,
+  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
+  reasoned ignores. Runtime/static frontend discovery is exactly 979/979.
+- Inventory becomes 511 controls / 11,242 states / 1,058 tests. Global mapped
+  controls rise by 3, states by 66 and tests by 4. Strict gaps fall by 50 from
+  9,126 to 9,076, selector gaps from 52 to 50 and unmapped tests from 837 to
+  833.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,915/13,041 (30.02%); stable selectors are 458/510 (89.80%); test mapping is
-  221/1,058 (20.89%). Against the 11,088 / 136 reference, 1,962 mapping gaps
-  and 84 selector gaps are closed. Release gates remain 1/4 complete (25%).
-  Product stays `PARTIAL` until strict traceability, real-provider smoke and
-  packaged-EXE acceptance complete.
+  3,988/13,064 (30.53%); stable selectors are 461/511 (90.22%); test mapping is
+  225/1,058 (21.27%). Against the 11,088 / 136 reference, 2,012 mapping gaps
+  and 86 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 9,076 strict mappings plus real-provider smoke and
+  packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+AI settings and Project Wizard selector/trace convergence is complete against
+source `93b3e56`: three controls and five product cases map, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 

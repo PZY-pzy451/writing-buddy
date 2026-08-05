@@ -49,3 +49,28 @@ Date: 2026-08-05
   gates sequentially from the fixed source.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source: `9d7e5f0`.
+- Two failure-first assertions reproduced the anonymous recent-project and
+  repeated start-route controls. The corrected focused set passed 20/20 cases;
+  the wider product impact set passed 96/96 and QA contracts passed 20/20.
+- Project Welcome expands honestly from 3 controls / 66 states to 4 controls /
+  88 states because previously collapsed start/open declarations are now
+  distinct. All 4 controls are stable and mapped; mapped states rise from 17
+  to 68.
+- Global Create remains 7/7 stable and 5/7 control-mapped. All 8 exact product
+  cases now map; mapped states rise from 59 to 74 through explicit visible,
+  repeat/deduplication, offline and accessible-name contracts.
+- Global inventory becomes 511 controls / 11,242 states / 1,058 tests. Mapped
+  controls rise by 3, states by 66 and tests by 4; strict gaps fall by 50 to
+  9,076, selector gaps by 2 to 50 and unmapped tests by 4 to 833.
+- Fixed-source sequential gates passed 189 frontend files / 979 tests plus
+  production build, 77 Rust tests with two reasoned ignores, and 30/30 QA
+  infrastructure tests. Runtime and static frontend inventories both equal
+  979.
+- Strict coverage is 3,988/13,064 (30.53%), selector coverage is 461/511
+  (90.22%) and test mapping is 225/1,058 (21.27%). Release remains 1/4 hard
+  gates complete pending strict traceability, real-provider smoke and packaged
+  EXE acceptance.
