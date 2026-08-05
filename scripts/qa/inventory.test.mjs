@@ -732,5 +732,18 @@ describe('control inventory rendered-element boundary', () => {
 				'回到正文处理',
 				'打开 AI 设置'
 			]);
+		const assistantPanelControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/assistant/AssistantPanel.tsx'
+		));
+
+		expect(assistantPanelControls).toHaveLength(5);
+		expect(assistantPanelControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(assistantPanelControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'assistant-panel-pin',
+				'assistant-panel-close',
+				'assistant-rewrite-action'
+			]));
 	});
 });

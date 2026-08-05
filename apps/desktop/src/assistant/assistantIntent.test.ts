@@ -1,4 +1,7 @@
+import { fireEvent, render, screen } from '@testing-library/react';
+import { createElement } from 'react';
 import { useAppStore } from '../app/store';
+import { AssistantPanel } from './AssistantPanel';
 
 describe('assistant action intent', () => {
 	it('opens the assistant on a concrete rewrite action', () => {
@@ -8,6 +11,12 @@ describe('assistant action intent', () => {
 			kind: 'rewrite',
 			actionType: 'expand'
 		});
+		render(createElement(AssistantPanel));
+
+		const pinButton = screen.getByTestId('assistant-panel-pin');
+		expect(pinButton).toHaveAccessibleName('固定AI工具面板');
+		const closeButton = screen.getByTestId('assistant-panel-close');
+		expect(closeButton).toHaveAccessibleName('关闭AI工具面板');
 
 		expect(useAppStore.getState()).toMatchObject({
 			assistantOpen: true,
@@ -16,6 +25,8 @@ describe('assistant action intent', () => {
 				actionType: 'expand'
 			}
 		});
+		fireEvent.click(closeButton);
+		expect(useAppStore.getState().assistantOpen).toBe(false);
 	});
 
 	it('preserves a single Story Kernel target and author-visible instruction', () => {

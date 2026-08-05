@@ -203,6 +203,7 @@ function AssistantPanelContent(props: {
 				<button
 					className={`icon-button ${writerToolPinned ? 'is-active' : ''}`}
 					type="button"
+					data-testid="assistant-panel-pin"
 					onClick={toggleWriterToolPinned}
 					aria-pressed={writerToolPinned}
 					aria-label={`${writerToolPinned ? '取消固定' : '固定'}${toolLabel}工具面板`}
@@ -213,6 +214,7 @@ function AssistantPanelContent(props: {
 				<button
 					className="icon-button"
 					type="button"
+					data-testid="assistant-panel-close"
 					onClick={closeWriterTool}
 					aria-label={`关闭${toolLabel}工具面板`}
 					aria-keyshortcuts="Control+Alt+B Meta+Alt+B"
@@ -250,6 +252,8 @@ function AssistantPanelContent(props: {
 							<button
 								key={action.id}
 								type="button"
+								data-testid="assistant-rewrite-action"
+								data-rewrite-action={action.actionType}
 								className={rewriteAction === action.actionType ? 'is-active' : ''}
 								disabled={!selection?.text}
 								title={action.description}
@@ -267,6 +271,8 @@ function AssistantPanelContent(props: {
 									<button
 										key={action.id}
 										type="button"
+										data-testid="assistant-rewrite-action"
+										data-rewrite-action={action.actionType}
 										className={rewriteAction === action.actionType ? 'is-active' : ''}
 										disabled={!selection?.text}
 										title={action.description}

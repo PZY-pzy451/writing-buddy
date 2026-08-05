@@ -298,6 +298,23 @@ describe('quiet writer workspaces', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
+		act(() => {
+			useAppStore.setState({
+				selection: { start: 0, end: 4, text: 'sample selection' }
+			});
+		});
+		await user.click(screen.getByRole('button', { name: 'AI' }));
+		const aiPanel = screen.getByRole('complementary', { name: 'AI工具' });
+		const rewriteActions = within(aiPanel).getAllByTestId('assistant-rewrite-action');
+		expect(rewriteActions).toHaveLength(6);
+		expect(rewriteActions.map(action => action.getAttribute('data-rewrite-action')).sort())
+			.toEqual(['concise', 'dialogue', 'expand', 'grammar', 'pacing', 'polish']);
+		const conciseAction = rewriteActions.find(action => (
+			action.getAttribute('data-rewrite-action') === 'concise'
+		));
+		expect(conciseAction).toBeEnabled();
+		await user.click(conciseAction as HTMLButtonElement);
+		expect(conciseAction).toHaveClass('is-active');
 
 		const rail = screen.getByRole('navigation', { name: '写作工具' });
 		for (const label of ['细纲', '资料', 'AI', '检查工具']) {
@@ -322,9 +339,15 @@ describe('quiet writer workspaces', () => {
 		expect(screen.getByRole('complementary', { name: '检查工具' }))
 			.toBeInTheDocument();
 		expect(useAppStore.getState().writerTool).toBe('review');
+		const pinButton = screen.getByTestId('assistant-panel-pin');
+		expect(pinButton).toBeEnabled();
+		pinButton.focus();
+		expect(pinButton).toHaveFocus();
 
 		await user.click(screen.getByRole('button', { name: '固定检查工具面板' }));
 		expect(useAppStore.getState().writerToolPinned).toBe(true);
+		const closeButton = screen.getByTestId('assistant-panel-close');
+		expect(closeButton).toBeEnabled();
 		await user.click(screen.getByRole('button', { name: '关闭检查工具面板' }));
 		expect(screen.queryByRole('complementary', { name: '检查工具' }))
 			.not.toBeInTheDocument();
