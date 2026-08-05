@@ -1496,3 +1496,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
 - Strict gaps fall from 9,714 to 9,657, selector gaps from 76 to 75 and unmapped
   tests from 867 to 866. Strict coverage is 25.95%, stable-selector coverage is
   85.29%, test mapping is 18.15% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 075
+
+- The Daily Writing Goal form now exposes stable identity
+  `daily-writing-goal-form`, the accessible Chinese name `每日写作目标设置` and
+  explicit dashboard/header placement context without duplicating inventory.
+- Pointer opening plus Enter submission persists a valid goal and announces
+  success. Invalid input remains visible as an inline alert and cannot mutate
+  persistence.
+- Three red assertions converged to 17/17 focused/inventory, 39/39 progress,
+  Story Dashboard and Writer Workspace impact, and 30/30 QA infrastructure
+  tests. Fixed-source sequential execution passed 189 frontend files / 979
+  tests, production build and 77 native tests with two reasoned ignores.
+- All 3 source controls, 15 of 66 source states and both existing product cases
+  now map without adding controls, states or tests. Global mapped controls rise
+  by 3, states by 16 and tests by 2.
+- Strict gaps fall from 9,657 to 9,636, selector gaps from 75 to 74 and unmapped
+  tests from 866 to 864. Strict coverage is 26.11%, stable-selector coverage is
+  85.49%, test mapping is 18.34% and release hard gates remain 1/4 complete.

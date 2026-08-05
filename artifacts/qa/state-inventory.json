@@ -41628,11 +41628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-VISIBLE",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -41644,11 +41644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-HIDDEN",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -41660,11 +41660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-ENABLED",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -41676,11 +41676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DISABLED",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -41692,11 +41692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-POINTER",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -41708,11 +41708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-KEYBOARD",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -41724,11 +41724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FOCUS-IN",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -41740,11 +41740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FOCUS-OUT",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -41756,11 +41756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-REPEAT",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -41772,11 +41772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DEDUPLICATION",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -41788,11 +41788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-LOADING",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -41804,11 +41804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-SUCCESS",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -41820,11 +41820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FAILURE",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -41836,11 +41836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-CANCELLED",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -41852,11 +41852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-OFFLINE",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -41868,11 +41868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-PERMISSION",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -41884,11 +41884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-PERSISTENCE",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -41900,11 +41900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-RESTART",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -41916,11 +41916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-VISUAL",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -41932,11 +41932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-ACCESSIBLE-NAME",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -41948,11 +41948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -41964,11 +41964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-UNDO",
+      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1"
+        "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934"
       ],
       "name": "撤销",
       "dimension": "UNDO",

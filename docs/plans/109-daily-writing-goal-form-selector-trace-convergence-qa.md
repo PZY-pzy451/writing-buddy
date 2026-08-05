@@ -41,4 +41,22 @@ Date: 2026-08-05
 
 ## Result
 
-Pending execution.
+- Source `a756c35` gives the form a stable `daily-writing-goal-form` identity,
+  the accessible name `每日写作目标设置` and explicit `dashboard` / `header`
+  placement context without creating another inventory declaration.
+- Three failure-first assertions reproduced the missing form semantics and
+  inventory gap. They converged to 17/17 focused/inventory and 39/39 progress,
+  Story Dashboard and Writer Workspace impact tests.
+- Pointer opening plus Enter submission persists a valid goal and exposes
+  success. Out-of-range input stays inline, exposes an alert and performs no
+  persistence mutation.
+- All 3 source controls, 15 of 66 source states and both existing product cases
+  are now strictly mapped. Global mapped controls rise by 3, states by 16 and
+  tests by 2 without adding inventory or test count.
+- Sequential fixed-source acceptance passed 189 frontend files / 979 tests,
+  production build, 77 native tests with two reasoned ignores and 30/30 QA
+  infrastructure tests.
+- Strict gaps fall from 9,657 to 9,636, selector gaps from 75 to 74 and
+  unmapped tests from 866 to 864. Strict coverage is 26.11%, stable-selector
+  coverage is 85.49%, test mapping is 18.34% and release hard gates remain
+  1/4 complete.

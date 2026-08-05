@@ -58166,138 +58166,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1",
+                  "id": "CTRL-DAILYWRITINGGOALCONTROL-FORM-B5C93934",
                   "level": "L4",
-                  "name": "form",
+                  "name": "每日写作目标设置",
                   "states": [
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-VISIBLE",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-HIDDEN",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-ENABLED",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DISABLED",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-POINTER",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-KEYBOARD",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FOCUS-IN",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FOCUS-OUT",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-REPEAT",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DEDUPLICATION",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-LOADING",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-SUCCESS",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-FAILURE",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-CANCELLED",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-OFFLINE",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-PERMISSION",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-PERSISTENCE",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-RESTART",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-VISUAL",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-ACCESSIBLE-NAME",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-0DCAC4D1-UNDO",
+                      "id": "STATE-DAILYWRITINGGOALCONTROL-FORM-B5C93934-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74454,7 +74454,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 474,
+      "declarationLine": 486,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -77056,6 +77056,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGenerationService.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2B71C5701C",
+      "title": "TC-DAILY-WRITING-GOAL-001 daily-writing-goal-form renders accessible visible enabled progress, opens by pointer and persists keyboard save success",
+      "declarationTitle": "TC-DAILY-WRITING-GOAL-001 daily-writing-goal-form renders accessible visible enabled progress, opens by pointer and persists keyboard save success",
+      "declarationLine": 29,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/progress/DailyWritingGoalControl.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -85107,24 +85125,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-9CE3F141DC",
-      "title": "keeps invalid values inline and does not mutate the goal",
-      "declarationTitle": "keeps invalid values inline and does not mutate the goal",
-      "declarationLine": 48,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/progress/DailyWritingGoalControl.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-9CF4511627",
       "title": "keeps TIMELINE_ANALYSIS_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -88997,6 +88997,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D3A5572813",
+      "title": "TC-DAILY-WRITING-GOAL-002 daily-writing-goal-form reports invalid failure inline without persistence mutation",
+      "declarationTitle": "TC-DAILY-WRITING-GOAL-002 daily-writing-goal-form reports invalid failure inline without persistence mutation",
+      "declarationLine": 55,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/progress/DailyWritingGoalControl.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D441644F0B",
       "title": "exposes stable handles for every writer-header operation",
       "declarationTitle": "exposes stable handles for every writer-header operation",
@@ -89662,24 +89680,6 @@
       "parameterCaseLabel": "close-tab",
       "parameterizationResolved": true,
       "source": "apps/desktop/src/shell/writerShortcuts.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-DED49B5561",
-      "title": "shows progress and updates a valid project goal with the keyboard form",
-      "declarationTitle": "shows progress and updates a valid project goal with the keyboard form",
-      "declarationLine": 28,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/progress/DailyWritingGoalControl.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
