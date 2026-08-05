@@ -1629,3 +1629,20 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,450 to 9,395, selector gaps from 59 to 57 and unmapped tests from
   850 to 846. Strict coverage is 27.96%, stable-selector coverage is 88.82%,
   test mapping is 20.04% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 082
+
+- Genre More and repeated scale/tone choices expose stable identities. The
+  composite choice selector preserves exact choice kind and model value without
+  expanding the logical control inventory.
+- Four existing Project Wizard cases now explicitly map enabled alternative
+  start routes, five-step manuscript persistence, visible Word-outline format
+  limitations and exactly one creation from 100 same-tick final submissions.
+- One red failure converged to 15/15 focused, 111/111 impact and 20/20
+  inventory/trace contracts. Fixed-source sequential execution passed 189
+  frontend files / 979 tests, production build, 77 native tests with two
+  reasoned ignores and 30/30 QA infrastructure tests.
+- Global mapped controls rise by 2, states by 142 and tests by 4. Strict gaps
+  fall from 9,395 to 9,247, selector gaps from 57 to 55 and unmapped tests from
+  846 to 842. Strict coverage is 29.09%, stable-selector coverage is 89.22%,
+  test mapping is 20.42% and release hard gates remain 1/4 complete.

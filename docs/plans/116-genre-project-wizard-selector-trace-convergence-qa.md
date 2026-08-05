@@ -45,3 +45,24 @@ Date: 2026-08-05
   gates sequentially from the fixed source.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source: `43d48282`.
+- The failure-first genre contract reproduced one missing-identity failure.
+  The corrected focused set passed 15/15 cases, the creation-journey/workspace
+  impact set passed 111/111 and inventory/trace contracts passed 20/20.
+- The genre source now has 10/10 stable identities, 7/10 strictly mapped
+  controls and 61/220 mapped states, up from 8, 5 and 47 respectively.
+- Project Wizard remains 20/20 stable and 16/20 control-mapped; exact mapped
+  product cases rise from 5/12 to 9/12 and mapped states from 128 to 224.
+- Global inventory remains 510 controls / 11,220 states / 1,058 tests. Mapped
+  controls rise by 2, states by 142 and tests by 4; strict gaps fall by 148 to
+  9,247, selector gaps by 2 to 55 and unmapped tests by 4 to 842.
+- Fixed-source sequential gates passed 189 frontend files / 979 tests plus
+  production build, 77 Rust tests with two reasoned ignores, and 30/30 QA
+  infrastructure tests.
+- Strict coverage is 3,794/13,041 (29.09%), selector coverage is 455/510
+  (89.22%) and test mapping is 216/1,058 (20.42%). Release remains 1/4 hard
+  gates complete pending strict traceability, real-provider smoke and packaged
+  EXE acceptance.

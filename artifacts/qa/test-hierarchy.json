@@ -9901,6 +9901,145 @@
                   ]
                 },
                 {
+                  "id": "CTRL-GENRETOOUTLINESTART-BUTTON-1F17C3B6",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-1F17C3B6-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-GENRETOOUTLINESTART-BUTTON-39AB5075",
                   "level": "L4",
                   "name": "关闭生成依据",
@@ -10033,145 +10172,6 @@
                     },
                     {
                       "id": "STATE-GENRETOOUTLINESTART-BUTTON-39AB5075-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-GENRETOOUTLINESTART-BUTTON-4B7355F1",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-4B7355F1-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -10318,138 +10318,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-GENRETOOUTLINESTART-BUTTON-6EAADBB3",
+                  "id": "CTRL-GENRETOOUTLINESTART-BUTTON-6C2AD1A3",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-VISIBLE",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-HIDDEN",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-ENABLED",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-DISABLED",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-POINTER",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-KEYBOARD",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-FOCUS-IN",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-FOCUS-OUT",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-REPEAT",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-DEDUPLICATION",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-LOADING",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-SUCCESS",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-FAILURE",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-CANCELLED",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-OFFLINE",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-PERMISSION",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-PERSISTENCE",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-RESTART",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-VISUAL",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-ACCESSIBLE-NAME",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6EAADBB3-UNDO",
+                      "id": "STATE-GENRETOOUTLINESTART-BUTTON-6C2AD1A3-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -75870,7 +75870,7 @@
       "id": "TC-DISCOVERED-1D2BE35DE2",
       "title": "shows meaningful generation progress and cancellation without replacing the draft",
       "declarationTitle": "shows meaningful generation progress and cancellation without replacing the draft",
-      "declarationLine": 91,
+      "declarationLine": 100,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/creation-journey/GenreToOutlineStart.test.tsx",
@@ -76516,6 +76516,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/application/ProjectSceneMoveService.test.ts",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-242A60802F",
+      "title": "persists the manuscript start through five steps and opens the first chapter",
+      "declarationTitle": "persists the manuscript start through five steps and opens the first chapter",
+      "declarationLine": 158,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
@@ -79995,6 +80013,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-4E84669B25",
+      "title": "defaults to the genre-to-outline start while keeping the other truthful starts enabled",
+      "declarationTitle": "defaults to the genre-to-outline start while keeping the other truthful starts enabled",
+      "declarationLine": 138,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-4E8EFCC8ED",
       "title": "discards instead of saving and opens the next tab once under 100 accepted closes",
       "declarationTitle": "discards instead of saving and opens the next tab once under 100 accepted closes",
@@ -80587,24 +80623,6 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-58939113A0",
-      "title": "creates exactly one project under 100 same-tick final submissions",
-      "declarationTitle": "creates exactly one project under 100 same-tick final submissions",
-      "declarationLine": 354,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -81280,24 +81298,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-61FFEC0807",
-      "title": "creates through five steps, preserves the manuscript start, and opens the first chapter",
-      "declarationTitle": "creates through five steps, preserves the manuscript start, and opens the first chapter",
-      "declarationLine": 158,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -83357,24 +83357,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-82F42B50EB",
-      "title": "previews an extracted Word outline with truthful format limitations",
-      "declarationTitle": "previews an extracted Word outline with truthful format limitations",
-      "declarationLine": 230,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-838568DAA5",
       "title": "drops a chapter on a volume by appending it",
       "declarationTitle": "drops a chapter on a volume by appending it",
@@ -84694,7 +84676,7 @@
       "id": "TC-DISCOVERED-98A13F4852",
       "title": "discloses exact included fields and explicit exclusions before confirmation",
       "declarationTitle": "discloses exact included fields and explicit exclusions before confirmation",
-      "declarationLine": 67,
+      "declarationLine": 76,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/creation-journey/GenreToOutlineStart.test.tsx",
@@ -86855,6 +86837,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B7B15FCDFD",
+      "title": "visually discloses truthful Word outline format limitations before import",
+      "declarationTitle": "visually discloses truthful Word outline format limitations before import",
+      "declarationLine": 230,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B7B7885DBF",
       "title": "rejects corrupt persisted state instead of silently discarding it",
       "declarationTitle": "rejects corrupt persisted state instead of silently discarding it",
@@ -88907,6 +88907,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D2F5C4AA4A",
+      "title": "deduplicates one hundred repeated same-tick final submissions and hides the completed wizard",
+      "declarationTitle": "deduplicates one hundred repeated same-tick final submissions and hides the completed wizard",
+      "declarationLine": 354,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D316139A66",
       "title": "surfaces integrity failures, read-only warnings and incomplete chapter metadata",
       "declarationTitle": "surfaces integrity failures, read-only warnings and incomplete chapter metadata",
@@ -90781,24 +90799,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-F2D7428B4B",
-      "title": "defaults to the genre-to-outline start while preserving the other truthful starts",
-      "declarationTitle": "defaults to the genre-to-outline start while preserving the other truthful starts",
-      "declarationLine": 138,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-F2ED1350CC",
       "title": "creates and validates a portable project backup from History",
       "declarationTitle": "creates and validates a portable project backup from History",
@@ -91490,7 +91490,7 @@
       "id": "TC-DISCOVERED-FB66B770B1",
       "title": "keeps the final step retryable after an atomic creation failure",
       "declarationTitle": "keeps the final step retryable after an atomic creation failure",
-      "declarationLine": 389,
+      "declarationLine": 390,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",

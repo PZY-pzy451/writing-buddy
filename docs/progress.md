@@ -4,29 +4,33 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Inline plot expansion and Story Kernel trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `e104ca94`.
+Genre start and Project Wizard selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `43d48282`.
 
-- The Tab expansion popover trigger and enable switch expose distinct stable
-  identities while preserving Tab/Escape disclosure, explicit preview actions
-  and read-only blocking.
-- Five existing Story Kernel cases now map their actual states: successful
-  snapshot retry, hidden rejected actions, visual quarantine, enabled valid
-  relationship candidates and unchanged-request restart after rate limiting.
-- Two red failures converged to 24/24 focused, 84/84 impact, 20/20 inventory/
+- Genre More and scale/tone composite choices expose stable identities plus
+  exact kind/value context. Project Wizard tests now address the enabled start
+  routes, five-step manuscript persistence, visible Word-format limitations
+  and one-create behavior under 100 same-tick final submissions.
+- One red failure converged to 15/15 focused, 111/111 impact, 20/20 inventory/
   trace contracts and 30/30 QA infrastructure tests. Node 24 passed lint,
   typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
   reasoned ignores.
 - Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
-  controls rise by 2, states by 49 and tests by 4. Strict gaps fall by 55 from
-  9,450 to 9,395, selector gaps from 59 to 57 and unmapped tests from 850 to
-  846.
+  controls rise by 2, states by 142 and tests by 4. Strict gaps fall by 148 from
+  9,395 to 9,247, selector gaps from 57 to 55 and unmapped tests from 846 to
+  842.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,646/13,041 (27.96%); stable selectors are 453/510 (88.82%); test mapping is
-  212/1,058 (20.04%). Against the 11,088 / 136 reference, 1,693 mapping gaps
-  and 79 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,794/13,041 (29.09%); stable selectors are 455/510 (89.22%); test mapping is
+  216/1,058 (20.42%). Against the 11,088 / 136 reference, 1,841 mapping gaps
+  and 81 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Previous milestone
+
+Inline plot expansion and Story Kernel trace convergence is complete against
+source `e104ca94`: two controls and four product cases map, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 
