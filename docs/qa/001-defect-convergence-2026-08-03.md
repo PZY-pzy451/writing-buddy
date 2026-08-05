@@ -1559,3 +1559,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
 - Strict gaps fall from 9,594 to 9,579, selector gaps from 69 to 67 and unmapped
   tests from 862 to 857. Strict coverage is 26.55%, stable-selector coverage is
   86.86%, test mapping is 19.00% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 078
+
+- Context Pack item toggles and disclosure controls expose stable identities,
+  exact item ids and priorities. Toggles also preserve required and author-
+  secret state for deterministic author-consent checks.
+- The existing product case now verifies disclosure, collapse, optional-secret
+  inclusion and disabled behavior through rendered controls.
+- Repeated scene chips expose exact scene id, manuscript range and current-
+  scene state. Existing cases verify accessible identity, source navigation and
+  editor-selection persistence without adding test inventory.
+- Four red failures converged to 21/21 focused/inventory, 164/164 impact and
+  30/30 QA infrastructure tests. Fixed-source sequential execution passed 189
+  frontend files / 979 tests, production build and 77 native tests with two
+  reasoned ignores.
+- Global mapped controls rise by 3, states by 25 and tests by 2. Strict gaps
+  fall from 9,579 to 9,549, selector gaps from 67 to 64 and unmapped tests from
+  857 to 855. Strict coverage is 26.78%, stable-selector coverage is 87.45%,
+  test mapping is 19.19% and release hard gates remain 1/4 complete.

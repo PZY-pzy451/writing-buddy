@@ -45,4 +45,21 @@ Date: 2026-08-05
 
 ## Result
 
-Pending.
+- Source `bd06ad6` gives every Context Pack item checkbox and disclosure
+  control a stable identity plus exact item id and priority. Toggle controls
+  also expose required and author-secret state.
+- Repeated scene chips expose stable identity plus exact scene id, manuscript
+  range and current-scene state. Existing tests now state their independent
+  accessible-identity and selection-persistence contracts precisely.
+- Four failure-first contracts converged to 21/21 focused/inventory and 164/164
+  AI context, manuscript and Writer Workspace impact tests.
+- Both Context Pack controls, 10 of 44 states and its product case map. All six
+  Scene Navigator controls are stable; five controls, 31 of 132 states and all
+  five product cases map strictly.
+- Sequential fixed-source acceptance passed 189 frontend files / 979 tests,
+  production build, 77 native tests with two reasoned ignores and 30/30 QA
+  infrastructure tests.
+- Global mapped controls rise by 3, states by 25 and tests by 2. Strict gaps
+  fall from 9,579 to 9,549, selector gaps from 67 to 64 and unmapped tests from
+  857 to 855. Strict coverage is 26.78%, stable-selector coverage is 87.45%,
+  test mapping is 19.19% and release hard gates remain 1/4 complete.

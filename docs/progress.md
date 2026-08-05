@@ -4,29 +4,34 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-AI context and manuscript highlight selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `921ecba`.
+Context Pack and Scene Navigator selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `bd06ad6`.
 
-- AI context toggles expose stable identity plus exact key, kind, required and
-  author-secret context. Required records stay locked and optional secrets stay
-  explicit author consent.
-- Manuscript highlight toggles expose stable identity plus exact kind. The
-  existing persistence case now drives rendered controls instead of detached
-  helper calls alone.
-- Five red failures converged to 21/21 focused/inventory, 57/57 AI context,
-  manuscript and workspace impact and 30/30 QA tests. Node 24 passed lint,
-  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
-  reasoned ignores.
+- Context Pack toggles and disclosures expose stable identity plus exact item,
+  priority, required and author-secret context. The product case drives expand,
+  collapse, author consent and disabled behavior through rendered controls.
+- Scene chips expose exact scene id, manuscript range and current state. All
+  five product cases now map, including source-range navigation and editor-
+  selection persistence.
+- Four red failures converged to 21/21 focused/inventory, 164/164 impact and
+  30/30 QA tests. Node 24 passed lint, typecheck, 189 files / 979 tests and
+  production build; Rust passed 77 with two reasoned ignores.
 - Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
-  controls rise by 2, states by 8 and tests by 5. Strict gaps fall by 15 from
-  9,594 to 9,579, selector gaps from 69 to 67 and unmapped tests from 862 to
-  857.
+  controls rise by 3, states by 25 and tests by 2. Strict gaps fall by 30 from
+  9,579 to 9,549, selector gaps from 67 to 64 and unmapped tests from 857 to
+  855.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,462/13,041 (26.55%); stable selectors are 443/510 (86.86%); test mapping is
-  201/1,058 (19.00%). Against the 11,088 / 136 reference, 1,509 mapping gaps
-  and 69 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,492/13,041 (26.78%); stable selectors are 446/510 (87.45%); test mapping is
+  203/1,058 (19.19%). Against the 11,088 / 136 reference, 1,539 mapping gaps
+  and 72 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Previous milestone
+
+AI context and manuscript highlight selector/trace convergence is complete
+against source `921ecba`: two repeated controls and five product cases map,
+and fixed acceptance passed 979 frontend tests.
 
 ## Previous milestone
 

@@ -57749,138 +57749,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CONTEXTPACKPREVIEW-BUTTON-30E217A1",
+                  "id": "CTRL-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-VISIBLE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-HIDDEN",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-ENABLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-DISABLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-POINTER",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-KEYBOARD",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-FOCUS-IN",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-FOCUS-OUT",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-REPEAT",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-DEDUPLICATION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-LOADING",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-SUCCESS",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-FAILURE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-CANCELLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-OFFLINE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-PERMISSION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-PERSISTENCE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-RESTART",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-VISUAL",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-ACCESSIBLE-NAME",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-30E217A1-UNDO",
+                      "id": "STATE-CONTEXTPACKPREVIEW-BUTTON-DB6C57B9-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -57888,138 +57888,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CONTEXTPACKPREVIEW-INPUT-2214BB62",
+                  "id": "CTRL-CONTEXTPACKPREVIEW-INPUT-55E34E3A",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-VISIBLE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-HIDDEN",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-ENABLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-DISABLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-POINTER",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-KEYBOARD",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-FOCUS-IN",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-FOCUS-OUT",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-REPEAT",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-DEDUPLICATION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-LOADING",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-SUCCESS",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-FAILURE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-CANCELLED",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-OFFLINE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-PERMISSION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-PERSISTENCE",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-RESTART",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-VISUAL",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-ACCESSIBLE-NAME",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-2214BB62-UNDO",
+                      "id": "STATE-CONTEXTPACKPREVIEW-INPUT-55E34E3A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -64143,138 +64143,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-SCENENAVIGATOR-BUTTON-6831CE23",
+                  "id": "CTRL-SCENENAVIGATOR-BUTTON-5E29E980",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-VISIBLE",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-HIDDEN",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-ENABLED",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-DISABLED",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-POINTER",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-KEYBOARD",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-FOCUS-IN",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-FOCUS-OUT",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-REPEAT",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-DEDUPLICATION",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-LOADING",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-SUCCESS",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-FAILURE",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-CANCELLED",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-OFFLINE",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-PERMISSION",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-PERSISTENCE",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-RESTART",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-VISUAL",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-ACCESSIBLE-NAME",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-SCENENAVIGATOR-BUTTON-6831CE23-UNDO",
+                      "id": "STATE-SCENENAVIGATOR-BUTTON-5E29E980-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74454,7 +74454,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 523,
+      "declarationLine": 544,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -76804,6 +76804,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2907069DEA",
+      "title": "exposes an accessible current scene identity and navigates to its source range",
+      "declarationTitle": "exposes an accessible current scene identity and navigates to its source range",
+      "declarationLine": 50,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -80252,7 +80270,7 @@
       "id": "TC-DISCOVERED-53035E22B4",
       "title": "creates a scene from the current text selection",
       "declarationTitle": "creates a scene from the current text selection",
-      "declarationLine": 88,
+      "declarationLine": 92,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
@@ -83414,7 +83432,7 @@
       "id": "TC-DISCOVERED-8385995B97",
       "title": "shows a collapsible current-scene brief with direct outline and completion actions",
       "declarationTitle": "shows a collapsible current-scene brief with direct outline and completion actions",
-      "declarationLine": 111,
+      "declarationLine": 115,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
@@ -84748,7 +84766,7 @@
       "id": "TC-DISCOVERED-98F58511C2",
       "title": "confirms unlinking metadata and explicitly preserves正文",
       "declarationTitle": "confirms unlinking metadata and explicitly preserves正文",
-      "declarationLine": 69,
+      "declarationLine": 73,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
@@ -85559,6 +85577,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-A3E123BE72",
+      "title": "persists an editor selection while changing the active scene anchor",
+      "declarationTitle": "persists an editor selection while changing the active scene anchor",
+      "declarationLine": 146,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-A3F9BAB936",
       "title": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
       "declarationTitle": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
@@ -85623,24 +85659,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-A5B45C53C4",
-      "title": "shows the current scene and navigates to its source range",
-      "declarationTitle": "shows the current scene and navigates to its source range",
-      "declarationLine": 50,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88825,24 +88843,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-D2084D3DBF",
-      "title": "preserves an editor selection while changing the active scene anchor",
-      "declarationTitle": "preserves an editor selection while changing the active scene anchor",
-      "declarationLine": 142,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/manuscript/SceneNavigator.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
