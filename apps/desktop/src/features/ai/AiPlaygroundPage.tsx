@@ -77,6 +77,7 @@ export function AiPlaygroundPage(): React.JSX.Element {
 					<label className="ai-field">
 						<span>仅发送此输入框的内容</span>
 						<textarea
+							data-testid="ai-playground-prompt"
 							value={prompt}
 							onChange={event => setPrompt(event.target.value)}
 							maxLength={10_000}

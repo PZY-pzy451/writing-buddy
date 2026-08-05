@@ -745,5 +745,28 @@ describe('control inventory rendered-element boundary', () => {
 				'assistant-panel-close',
 				'assistant-rewrite-action'
 			]));
+		const settingsPageControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/settings/SettingsPage.tsx'
+		));
+
+		expect(settingsPageControls).toHaveLength(3);
+		expect(settingsPageControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(settingsPageControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'settings-theme-choice',
+				'settings-accent-choice'
+			]));
+		const aiPlaygroundControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/ai/AiPlaygroundPage.tsx'
+		));
+
+		expect(aiPlaygroundControls).toHaveLength(3);
+		expect(aiPlaygroundControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(aiPlaygroundControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'ai-playground-prompt'
+			]));
 	});
 });

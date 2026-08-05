@@ -40,7 +40,14 @@ export function SettingsPage(): React.JSX.Element {
 						<div className="setting-section-title"><Palette size={20} /><div><h2>主题</h2><p>立即生效并在重启后恢复。</p></div></div>
 						<div className="theme-grid">
 							{themes.map(candidate => (
-								<button key={candidate.id} className={`theme-card ${theme === candidate.id ? 'is-active' : ''}`} type="button" onClick={() => setTheme(candidate.id)}>
+								<button
+									key={candidate.id}
+									className={`theme-card ${theme === candidate.id ? 'is-active' : ''}`}
+									type="button"
+									onClick={() => setTheme(candidate.id)}
+									data-testid="settings-theme-choice"
+									data-theme-id={candidate.id}
+								>
 									<div className="theme-swatches">{candidate.swatches.map(color => <span key={color} style={{ background: color }} />)}</div>
 									<strong>{candidate.label}</strong>
 									<span>{candidate.description}</span>
@@ -53,7 +60,15 @@ export function SettingsPage(): React.JSX.Element {
 						<div className="setting-section-title"><TextCursorInput size={20} /><div><h2>强调色</h2><p>用于选择、焦点与重要操作。</p></div></div>
 						<div className="accent-picker">
 							{(['gold', 'blue', 'purple'] as const).map(candidate => (
-								<button key={candidate} className={`accent-swatch accent-${candidate} ${accent === candidate ? 'is-active' : ''}`} type="button" onClick={() => setAccent(candidate)} aria-label={`使用 ${candidate} 强调色`} />
+								<button
+									key={candidate}
+									className={`accent-swatch accent-${candidate} ${accent === candidate ? 'is-active' : ''}`}
+									type="button"
+									onClick={() => setAccent(candidate)}
+									aria-label={`使用 ${candidate} 强调色`}
+									data-testid="settings-accent-choice"
+									data-accent-id={candidate}
+								/>
 							))}
 						</div>
 					</section>

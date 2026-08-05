@@ -120,6 +120,8 @@ describe('Phase 1.0A AI experience', () => {
 		});
 		const user = userEvent.setup();
 		render(<AiPlaygroundPage />);
+		expect(screen.getByTestId('ai-playground-prompt'))
+			.toHaveAttribute('data-testid', 'ai-playground-prompt');
 		const prompt = screen.getByLabelText('仅发送此输入框的内容');
 		await user.type(prompt, '写一段雨夜车站的悬疑场景。');
 		await user.click(screen.getByRole('button', { name: /开始流式生成/ }));

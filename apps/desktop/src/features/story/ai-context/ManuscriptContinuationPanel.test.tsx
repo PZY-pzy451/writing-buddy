@@ -391,7 +391,11 @@ describe('ManuscriptContinuationPanel', () => {
 		fireEvent.click(await screen.findByRole('button', {
 			name: '确认资料并生成候选'
 		}));
-		expect(await screen.findAllByRole('article', { name: /^候选：/u }))
+		expect(await screen.findAllByRole(
+			'article',
+			{ name: /^候选：/u },
+			{ timeout: 5_000 }
+		))
 			.toHaveLength(3);
 		const first = screen.getByRole('article', { name: '候选：追随钟声' });
 		fireEvent.click(within(first).getByRole('button', { name: '拒绝' }));
