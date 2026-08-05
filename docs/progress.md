@@ -1,43 +1,46 @@
 # Current progress
 
-Updated: 2026-08-04
+Updated: 2026-08-05
 
 ## Active milestone
 
-Relationship Inspector save convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `53b336c`.
+Story Association persistence convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `9b41b04`.
 
-- Five contracts failed red: all four relationship edit/save declarations
-  lacked stable selectors, 100 same-frame Save actions could dispatch 100
-  writes, a rejected save had no inspector-owned retry feedback and a saved
-  relationship retained revision zero for the next edit.
-- Relationship Inspector now has 4/4 stable controls and a synchronous save
-  guard. One hundred Save actions dispatch once, pending state is visible,
-  failure details are localized and one explicit retry is allowed.
-- The form is keyed by relationship ID plus authoritative revision. After the
-  repository returns revision one, the next edit writes revision one instead
-  of repeating the stale revision-zero request.
-- Global selector debt falls from 130 to 126. Aggregate unmapped traceability
-  falls from 10,489 to 10,418: 71 fewer gaps (0.68%) while six new frontend
-  tests are counted. From the earlier 11,088 / 136 reference, the cumulative
-  reductions are 670 mappings and 10 selectors.
-- Focused contracts passed 2 files / 17 tests, relationship impact passed 4
-  files / 13 tests and QA infrastructure passed 5 files / 27 tests.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, 187 files / 964 tests
+- Five contracts failed red: four association declarations lacked stable
+  selectors, 100 same-frame confirmations could dispatch 100 writes, loader
+  failures exposed raw details without an actionable retry and project A's late
+  load could replace already-open project B.
+- All 9 association controls are now stable. Confirmation and Undo share a
+  synchronous persistence guard; 100 confirmations write once, cancellation is
+  locked while saving and one explicit retry is available after failure.
+- Same-project load attempts are single-flight. One hundred retry actions start
+  one load, raw paths are localized and a superseded project's late success or
+  failure cannot mutate current data or feedback.
+- The first full run found one low-opacity disabled-state regression on the new
+  retry control. It was replaced with semantic text/background colors and the
+  global visual contract returned green.
+- Selector debt falls from 126 to 122. Aggregate unmapped traceability falls
+  from 10,418 to 10,410: eight fewer gaps while six tests, two controls and 44
+  derived states were added. From the earlier 11,088 / 136 reference, cumulative
+  reductions are 678 mappings and 14 selectors.
+- Focused contracts passed 19/19, association impact passed 8/8, QA
+  infrastructure passed 28/28 and the visual regression pair passed 9/9.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 970 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,043 cases: 1,041 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 964 with 97 parameterized instances
+- The ledger contains 1,049 cases: 1,047 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 970 with 97 parameterized instances
   and zero unresolved declarations.
 - Quantified status: deterministic execution is 100%; stable-selector coverage
-  is 346/472 (73.31%); aggregate strict traceability is 14.27%; release gates
+  is 352/474 (74.26%); aggregate strict traceability is 14.70%; release gates
   remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
   real-provider smoke and packaged-EXE acceptance complete.
 
 ## Previous milestone
 
-Traceability selector net convergence is complete against source `e987e26`:
-Event Inspector is 7/7 mapped and fixed acceptance passed 958 frontend tests.
+Relationship Inspector save convergence is complete against source `53b336c`:
+4/4 controls are mapped and fixed acceptance passed 964 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

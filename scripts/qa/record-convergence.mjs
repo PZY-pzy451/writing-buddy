@@ -1678,6 +1678,48 @@ const report = {
 				qaScriptTests: 27,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-ASSOCIATION-PERSISTENCE-CONVERGENCE-056',
+			summary: 'Story association confirmation multiplied same-frame writes, loader failures leaked raw details without retry and late project loads could replace the active project.',
+			before: {
+				sourceControls: 7,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 4,
+				repeatedActions: 100,
+				saveDispatches: 100,
+				loadRetryAvailable: false,
+				loaderDetailsRedacted: false,
+				latestProjectResultIsolation: false,
+				globalControls: 472,
+				globalStates: 10384,
+				globalMissingStableSelectors: 126,
+				totalUnmapped: 10418
+			},
+			after: {
+				sourceControls: 9,
+				sourceMappedControls: 9,
+				sourceMissingStableSelectors: 0,
+				repeatedActions: 100,
+				saveDispatches: 1,
+				cancelLockedDuringSave: true,
+				retryAfterSaveFailure: true,
+				loadRequestsPerRetryBurst: 1,
+				loadRetryAvailable: true,
+				loaderDetailsRedacted: true,
+				latestProjectResultIsolation: true,
+				disabledStateContrastContract: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				fullBaselineDefectsFound: 1,
+				focusedTests: 19,
+				impactTests: 8,
+				qaScriptTests: 28,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

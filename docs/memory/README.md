@@ -3,6 +3,7 @@
 Daily logs capture decisions, attempts, blockers and next steps that should
 survive task or chat boundaries.
 
+- [2026-08-05](./2026-08-05.md) - Story Association persistence convergence
 - [2026-08-04](./2026-08-04.md) - external manuscript conflict lifecycle QA
 
 - [2026-07-26](./2026-07-26.md) — migration acceptance and production build

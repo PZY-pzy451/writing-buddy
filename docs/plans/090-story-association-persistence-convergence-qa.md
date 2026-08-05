@@ -42,4 +42,21 @@ Date: 2026-08-04
 
 ## Result
 
-Pending implementation and fixed-commit evidence.
+- Five of nineteen failure-first contracts failed on the old implementation:
+  four selectors were absent, 100 confirmations multiplied persistence calls,
+  loader errors exposed private paths without retry and an old project's late
+  result replaced the active project.
+- Source `9b41b04` maps all 9 association declarations. One hundred confirm or
+  retry actions produce one write/load, cancellation is locked while saving,
+  failures remain retryable and old project results are ignored.
+- The first full baseline found one global visual-contract regression in the
+  retry button's low-opacity disabled state. Semantic text/background colors
+  replaced opacity and the focused visual contract passed 9/9.
+- Focused contracts passed 19/19, association impact passed 8/8 and QA
+  infrastructure passed 28/28.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 970 tests
+  and production build. Rust collected 79, passed 77 and retained two reasoned
+  ignores.
+- Stable-selector debt fell from 126 to 122. Aggregate strict gaps fell from
+  10,418 to 10,410 while six new frontend tests and 44 newly represented states
+  were added.

@@ -1118,3 +1118,19 @@ did not fully specify `targetTypes`, position objects or history arrays.
   and stable-selector gaps from 130 to 126.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum — defect 056
+
+- Story Association now maps 9/9 controls and reduces 100 same-frame
+  confirmations to one persistence call while locking cancellation during the
+  write and preserving explicit failure retry.
+- Loader failures are localized and retryable; 100 retry actions share one
+  request, and late results from a superseded project cannot replace the active
+  project's data or feedback.
+- The full baseline exposed and closed one low-opacity disabled-state visual
+  regression before acceptance. Fixed-commit execution passed 970 frontend and
+  77 native tests; two native cases retain documented reasons.
+- Traceability gaps fell from 10,418 to 10,410 and stable-selector gaps from 126
+  to 122 despite six new tests, two new control declarations and 44 new states.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.
