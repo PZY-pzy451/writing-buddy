@@ -566,7 +566,7 @@ describe('control inventory rendered-element boundary', () => {
 		expect(highlightControls[0]?.stableSelectorValue).toBe('entity-highlight-kind-toggle');
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {
+	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI and Project Welcome control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -703,6 +703,19 @@ describe('control inventory rendered-element boundary', () => {
 				'ai-settings-api-key-input',
 				'ai-settings-generation-select',
 				'ai-settings-inline-feature-toggle'
+			]));
+		const projectWelcomeControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/projects/ui/ProjectWelcome.tsx'
+		));
+
+		expect(projectWelcomeControls).toHaveLength(4);
+		expect(projectWelcomeControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(projectWelcomeControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'project-welcome-start-route',
+				'project-welcome-recent-project',
+				'打开已有 Writing Buddy 作品'
 			]));
 	});
 });

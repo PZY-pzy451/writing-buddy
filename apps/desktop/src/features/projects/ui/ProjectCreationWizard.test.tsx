@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { App } from '../../../app/App';
 import { useAppStore } from '../../../app/store';
 import { desktopBridge } from '../../../platform/bridge';
+import { ProjectWelcome } from './ProjectWelcome';
 
 function resetWorkspace(): void {
 	localStorage.clear();
@@ -100,6 +101,13 @@ describe('guided project creation', () => {
 
 	it('shows a focused welcome experience and clear creation validation', async () => {
 		const user = userEvent.setup();
+		useAppStore.setState({ recentProjectRoots: ['D:/Writing Buddy/Recent Story'] });
+		const recentPreview = render(<ProjectWelcome />);
+		expect(screen.getAllByTestId('project-welcome-recent-project')).toHaveLength(1);
+		expect(screen.getByTestId('project-welcome-recent-project'))
+			.toHaveAttribute('data-project-root', 'D:/Writing Buddy/Recent Story');
+		recentPreview.unmount();
+		resetWorkspace();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
 		expect(within(welcome).getByRole('heading', { name: '开始你的故事' })).toBeInTheDocument();
@@ -117,6 +125,10 @@ describe('guided project creation', () => {
 	it('offers four accessible truthful starting paths with genre as the only primary action', async () => {
 		const user = userEvent.setup();
 		render(<App />);
+		const startRoutes = await screen.findAllByTestId('project-welcome-start-route');
+		expect(startRoutes).toHaveLength(4);
+		expect(startRoutes.map(route => route.getAttribute('data-start-route')).sort())
+			.toEqual(['blank', 'genre', 'manuscript', 'outline']);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
 
 		expect(within(welcome).getByRole('button', { name: '根据题材生成大纲' }))

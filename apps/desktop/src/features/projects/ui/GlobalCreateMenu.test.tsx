@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useAppStore } from '../../../app/store';
+import { desktopBridge } from '../../../platform/bridge';
 import { GlobalCreateMenu } from './GlobalCreateMenu';
 
 afterEach(() => {
@@ -16,7 +17,7 @@ afterEach(() => {
 });
 
 describe('GlobalCreateMenu', () => {
-	it('dispatches one project chooser for one hundred same-frame menu actions', async () => {
+	it('deduplicates one hundred repeated project chooser actions and remains retryable', async () => {
 		const chooseProject = vi.fn(() => new Promise<void>(() => undefined));
 		useAppStore.setState({ chooseProject });
 		render(<GlobalCreateMenu />);
@@ -81,7 +82,7 @@ describe('GlobalCreateMenu', () => {
 		expect(openProject).toHaveFocus();
 	});
 
-	it('moves an already open shortcut menu to the requested chapter action', async () => {
+	it('shows the requested chapter action when moving an already open shortcut menu', async () => {
 		useAppStore.setState({
 			snapshot: {
 				root: 'D:/Novel',
@@ -120,6 +121,7 @@ describe('GlobalCreateMenu', () => {
 		await waitFor(() => expect(
 			screen.getByRole('menuitem', { name: /新建章节/ })
 		).toHaveFocus());
+		expect(screen.getByRole('menu')).toBeVisible();
 		fireEvent.keyDown(window, { key: 'Escape' });
 		await waitFor(() => expect(origin).toHaveFocus());
 	});
@@ -185,7 +187,8 @@ describe('GlobalCreateMenu', () => {
 		expect(openChapterCreator).toHaveBeenCalledOnce();
 	});
 
-	it('routes contextual creation into the existing author assistant', async () => {
+	it('routes contextual creation offline without starting a paid AI request', async () => {
+		const paidGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		useAppStore.setState({
 			snapshot: {
 				root: 'D:/Novel',
@@ -213,9 +216,10 @@ describe('GlobalCreateMenu', () => {
 			storyView: 'characters',
 			contextualCreateIntent: 'character'
 		});
+		expect(paidGeneration).not.toHaveBeenCalled();
 	});
 
-	it('prioritizes story structure and plot actions while planning', async () => {
+	it('exposes accessible story structure and plot priorities while planning', async () => {
 		useAppStore.setState({
 			snapshot: {
 				root: 'D:/Novel',

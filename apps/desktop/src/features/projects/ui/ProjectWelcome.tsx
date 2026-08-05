@@ -28,18 +28,18 @@ export function ProjectWelcome(): React.JSX.Element {
 				</div>
 				<h2 className="welcome-question">你想怎样开始？</h2>
 				<div className="welcome-actions">
-					<button className="primary-button welcome-genre-action" type="button" onClick={() => openProjectWizard('genre')}>
+					<button className="primary-button welcome-genre-action" type="button" data-testid="project-welcome-start-route" data-start-route="genre" onClick={() => openProjectWizard('genre')}>
 						<Sparkles size={18} />根据题材生成大纲
 					</button>
 				</div>
 				<div className="welcome-start-options" aria-label="其他创作起点">
-					<button type="button" onClick={() => openProjectWizard('outline')}>
+					<button type="button" data-testid="project-welcome-start-route" data-start-route="outline" onClick={() => openProjectWizard('outline')}>
 						<FileInput size={18} /><span><strong>导入已有大纲</strong><small>预览后创建章节结构</small></span>
 					</button>
-					<button type="button" onClick={() => openProjectWizard('manuscript')}>
+					<button type="button" data-testid="project-welcome-start-route" data-start-route="manuscript" onClick={() => openProjectWizard('manuscript')}>
 						<FileText size={18} /><span><strong>导入已有正文</strong><small>文字不经 AI 改写并打开第一章</small></span>
 					</button>
-					<button type="button" onClick={() => openProjectWizard('blank')}>
+					<button type="button" data-testid="project-welcome-start-route" data-start-route="blank" onClick={() => openProjectWizard('blank')}>
 						<BookOpenText size={18} /><span><strong>创建空白作品</strong><small>不生成任何内容</small></span>
 					</button>
 				</div>
@@ -59,7 +59,7 @@ export function ProjectWelcome(): React.JSX.Element {
 				{recentProjectRoots.length ? (
 					<div className="recent-project-grid">
 						{recentProjectRoots.map(root => (
-							<button type="button" key={root} onClick={() => void openProject(root)}>
+							<button type="button" key={root} data-testid="project-welcome-recent-project" data-project-root={root} onClick={() => void openProject(root)}>
 								<span className="recent-project-icon" aria-hidden="true"><BookOpenText size={20} /></span>
 								<span>
 									<strong>{projectNameFromRoot(root)}</strong>
