@@ -1409,3 +1409,26 @@ did not fully specify `targetTypes`, position objects or history arrays.
   selector gaps from 88 to 86 and unmapped tests from 873 to 872.
 - Strict coverage is 22.96%, stable-selector coverage is 82.66%, test mapping
   is 17.58% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 071
+
+- Information search, filters, generated facts, narrative position and retry
+  now expose five distinct stable identities with accessible Chinese names.
+- One hundred same-frame retries start one replacement read. Loader failures
+  are localized without exposing private paths, and a late result from an
+  older project cannot replace the latest information, selection or narrative
+  position.
+- Two red failures converged to 16/16 focused/inventory, 2/2 information-domain
+  impact and 30/30 QA infrastructure tests. Fixed-source sequential execution
+  passed 189 frontend files / 979 tests, production build and 77 native tests
+  with two reasoned ignores.
+- The first frontend invocation reached its 120-second runner limit and exited
+  124 without a product failure. The complete rerun passed in 222.9 seconds and
+  is the only run recorded as acceptance evidence.
+- The source inventory expands honestly from 3 collapsed declarations to 5
+  controls and adds 44 states. All 5 controls, 110 source states and the only
+  existing product case are strictly mapped without adding test debt.
+- Global mapped states rise by 50. Strict gaps fall from 9,799 to 9,787,
+  selector gaps from 86 to 83 and unmapped tests from 872 to 871.
+- Strict coverage is 23.33%, stable-selector coverage is 83.33%, test mapping
+  is 17.67% and release hard gates remain 1/4 complete.

@@ -27406,138 +27406,277 @@
               "name": "信息权限",
               "controls": [
                 {
-                  "id": "CTRL-INFORMATIONCONTROLPAGE-BUTTON-7515C14E",
+                  "id": "CTRL-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A",
+                  "level": "L4",
+                  "name": "重试",
+                  "states": [
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-VISIBLE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-HIDDEN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-ENABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-DISABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-POINTER",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-KEYBOARD",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-FOCUS-IN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-FOCUS-OUT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-REPEAT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-DEDUPLICATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-LOADING",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-SUCCESS",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-FAILURE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-CANCELLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-OFFLINE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-PERMISSION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-PERSISTENCE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-RESTART",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-VISUAL",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-ACCESSIBLE-NAME",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-7515C14E-UNDO",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-9434B4A4-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -27545,138 +27684,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INFORMATIONCONTROLPAGE-INPUT-640523C0",
+                  "id": "CTRL-INFORMATIONCONTROLPAGE-BUTTON-AE48A136",
                   "level": "L4",
-                  "name": "input",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-VISIBLE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-HIDDEN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-ENABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-DISABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-POINTER",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-KEYBOARD",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-FOCUS-IN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-FOCUS-OUT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-REPEAT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-DEDUPLICATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-LOADING",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-SUCCESS",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-FAILURE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-CANCELLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-OFFLINE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-PERMISSION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-PERSISTENCE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-RESTART",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-VISUAL",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-ACCESSIBLE-NAME",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-640523C0-UNDO",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-BUTTON-AE48A136-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -27684,138 +27823,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE",
+                  "id": "CTRL-INFORMATIONCONTROLPAGE-INPUT-71DDEADA",
                   "level": "L4",
-                  "name": "input",
+                  "name": "叙事位置",
                   "states": [
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-VISIBLE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-HIDDEN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-ENABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-DISABLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-POINTER",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-KEYBOARD",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-FOCUS-IN",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-FOCUS-OUT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-REPEAT",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-DEDUPLICATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-LOADING",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-SUCCESS",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-FAILURE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-CANCELLED",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-OFFLINE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-PERMISSION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-PERSISTENCE",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-RESTART",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-VISUAL",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-ACCESSIBLE-NAME",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-B1A4C1DE-UNDO",
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-71DDEADA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-INFORMATIONCONTROLPAGE-INPUT-8036696B",
+                  "level": "L4",
+                  "name": "搜索事实与秘密",
+                  "states": [
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-INFORMATIONCONTROLPAGE-INPUT-8036696B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -72508,7 +72786,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 407,
+      "declarationLine": 421,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -83451,6 +83729,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-9FD0AABE4F",
+      "title": "TC-INFORMATION-CONTROL-001 shows accessible controls, deduplicates repeated retries after failed loading, selects and filters author secrets, and isolates late project reloads",
+      "declarationTitle": "TC-INFORMATION-CONTROL-001 shows accessible controls, deduplicates repeated retries after failed loading, selects and filters author secrets, and isolates late project reloads",
+      "declarationLine": 15,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/information/InformationControlPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-04",
+      "pageId": "PAGE-STORY-INFORMATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-A001120839",
       "title": "shows setup recovery and disables generation in read-only mode",
       "declarationTitle": "shows setup recovery and disables generation in read-only mode",
@@ -85894,24 +86190,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-C562BEB05E",
-      "title": "shows author-secret protection and the knowledge matrix",
-      "declarationTitle": "shows author-secret protection and the knowledge matrix",
-      "declarationLine": 12,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/information/InformationControlPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-04",
-      "pageId": "PAGE-STORY-INFORMATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
