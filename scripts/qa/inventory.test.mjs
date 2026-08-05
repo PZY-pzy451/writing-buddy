@@ -323,6 +323,22 @@ describe('control inventory rendered-element boundary', () => {
 			'关闭资料速览',
 			'打开完整资料'
 		]);
+		const selectionActionControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/manuscript/SelectionActionMenu.tsx'
+		));
+
+		expect(selectionActionControls).toHaveLength(7);
+		expect(selectionActionControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(selectionActionControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'AI 选区操作',
+			'AI 选区操作',
+			'selection-action-ai-disclosure',
+			'selection-action-create-resource',
+			'selection-action-link-existing',
+			'selection-action-rewrite',
+			'记录想法'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { MentionLink, StoryRepository, StoryResourceType } from '@writing-buddy/story-kernel';
 import { afterEach } from 'vitest';
@@ -8,7 +8,7 @@ import { SelectionActionMenu } from './SelectionActionMenu';
 describe('SelectionActionMenu', () => {
 	afterEach(() => vi.restoreAllMocks());
 
-	it('routes contextual dialogue AI and resource creation into existing workflows', async () => {
+	it('routes stable contextual actions and supports Arrow keyboard menu navigation', async () => {
 		const user = userEvent.setup();
 		const onRewrite = vi.fn();
 		const onAiMenuClosed = vi.fn();
@@ -38,19 +38,37 @@ describe('SelectionActionMenu', () => {
 			/>
 		);
 
+		const disclosure = screen.getByTestId('selection-action-ai-disclosure');
 		await user.click(screen.getByRole('button', { name: 'AI 选区操作' }));
-		expect(screen.getAllByRole('menuitem').filter(item => (
+		const menuItems = screen.getAllByRole('menuitem');
+		expect(screen.getAllByTestId('selection-action-rewrite')).toHaveLength(menuItems.length);
+		expect(menuItems.filter(item => (
 			item.getAttribute('data-contextual-ai') === 'primary'
 		))).toHaveLength(4);
+		await waitFor(() => expect(menuItems[0]).toHaveFocus());
+		fireEvent.keyDown(menuItems[0], { key: 'ArrowDown' });
+		expect(menuItems[1]).toHaveFocus();
+		fireEvent.keyDown(menuItems[1], { key: 'End' });
+		expect(menuItems.at(-1)).toHaveFocus();
+		fireEvent.keyDown(menuItems.at(-1)!, { key: 'Home' });
+		expect(menuItems[0]).toHaveFocus();
+		fireEvent.keyDown(menuItems[0], { key: 'ArrowUp' });
+		expect(menuItems.at(-1)).toHaveFocus();
+		fireEvent.keyDown(menuItems.at(-1)!, { key: 'Escape' });
+		await waitFor(() => expect(screen.queryByRole('menu')).not.toBeInTheDocument());
+		expect(disclosure.querySelector('summary')).toHaveFocus();
+
+		await user.click(screen.getByRole('button', { name: 'AI 选区操作' }));
 		await user.click(screen.getByRole('menuitem', { name: '优化对话' }));
+		expect(screen.getAllByTestId('selection-action-create-resource')).toHaveLength(5);
 		for (const label of ['创建人物', '创建地点', '创建物品', '标记为信息揭示', '创建伏笔']) {
 			await user.click(screen.getByRole('button', { name: label }));
 		}
 		await user.click(screen.getByRole('button', { name: '记录想法' }));
-		await user.click(screen.getByRole('button', { name: '链接已有资源' }));
+		await user.click(screen.getByTestId('selection-action-link-existing'));
 
 		expect(onRewrite).toHaveBeenCalledWith('dialogue');
-		await waitFor(() => expect(onAiMenuClosed).toHaveBeenCalledOnce());
+		await waitFor(() => expect(onAiMenuClosed).toHaveBeenCalledTimes(2));
 		expect(onGenerateResource.mock.calls.map(([type]) => type)).toEqual([
 			'character',
 			'location',
@@ -63,7 +81,7 @@ describe('SelectionActionMenu', () => {
 		expect(onLinked).toHaveBeenCalledWith(expect.objectContaining({ id: 'mention:test' }));
 	});
 
-	it('shows actionable link failures without exposing internal identifiers', async () => {
+	it('shows actionable stable link failures without exposing internal identifiers', async () => {
 		const user = userEvent.setup();
 		vi.spyOn(window, 'prompt').mockReturnValue('character:missing');
 		render(
@@ -81,7 +99,7 @@ describe('SelectionActionMenu', () => {
 			/>
 		);
 
-		await user.click(screen.getByRole('button', { name: '链接已有资源' }));
+		await user.click(screen.getByTestId('selection-action-link-existing'));
 		expect(await screen.findByRole('status')).toHaveTextContent('没有找到该 Story 资源');
 		expect(screen.queryByText(/storyResourceNotFound/u)).not.toBeInTheDocument();
 	});

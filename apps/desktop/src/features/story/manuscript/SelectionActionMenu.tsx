@@ -8,7 +8,7 @@ import {
 	Sparkles,
 	UserPlus
 } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
 	createStoryId,
@@ -75,6 +75,7 @@ export function SelectionActionMenu({
 	onGenerateResource
 }: SelectionActionMenuProps): React.JSX.Element {
 	const aiMenuRef = useRef<HTMLDetailsElement>(null);
+	const aiMenuPopupRef = useRef<HTMLDivElement>(null);
 	const aiMenuWasOpenRef = useRef(false);
 	const [aiMenuOpen, setAiMenuOpen] = useState(false);
 	const [aiMenuPosition, setAiMenuPosition] = useState({ left: 12, bottom: 12 });
@@ -90,6 +91,21 @@ export function SelectionActionMenu({
 		chapterHasDraft: manuscript.trim().length > 0,
 		chapterHasPendingExtraction: false
 	});
+
+	useEffect(() => {
+		if (!aiMenuOpen) return;
+		aiMenuPopupRef.current
+			?.querySelector<HTMLButtonElement>('[role="menuitem"]')
+			?.focus();
+	}, [aiMenuOpen]);
+
+	const closeAiMenu = (restoreDisclosureFocus: boolean) => {
+		if (!aiMenuRef.current?.open) return;
+		aiMenuRef.current.open = false;
+		if (restoreDisclosureFocus) {
+			aiMenuRef.current.querySelector<HTMLElement>('summary')?.focus();
+		}
+	};
 
 	const link = async (resourceId: string) => {
 		const mention = await mentionService.linkSelection({
@@ -166,7 +182,12 @@ export function SelectionActionMenu({
 	return (
 		<div className="selection-action-menu" role="toolbar" aria-label="选区 Story 操作">
 			<span className="selection-action-preview" title={selection.text}>{selection.text}</span>
-			<button type="button" disabled={readOnly || busy} onClick={() => void linkExisting()}>
+			<button
+				data-testid="selection-action-link-existing"
+				type="button"
+				disabled={readOnly || busy}
+				onClick={() => void linkExisting()}
+			>
 				<Link2 size={16} />链接已有资源
 			</button>
 			{onQuickCapture && (
@@ -180,6 +201,7 @@ export function SelectionActionMenu({
 			)}
 			<details
 				ref={aiMenuRef}
+				data-testid="selection-action-ai-disclosure"
 				className="selection-contextual-ai"
 				onToggle={event => {
 					const open = event.currentTarget.open;
@@ -189,7 +211,7 @@ export function SelectionActionMenu({
 				}}
 				onKeyDown={event => {
 					if (event.key !== 'Escape' || !aiMenuRef.current?.open) return;
-					aiMenuRef.current.open = false;
+					closeAiMenu(true);
 				}}
 			>
 				<summary
@@ -219,19 +241,42 @@ export function SelectionActionMenu({
 			</details>
 			{aiMenuOpen && createPortal(
 				<div
+					ref={aiMenuPopupRef}
 					className="selection-contextual-ai-menu"
 					role="menu"
 					aria-label="AI 选区操作"
 					style={aiMenuPosition}
 					onKeyDown={event => {
-						if (event.key === 'Escape' && aiMenuRef.current?.open) {
-							aiMenuRef.current.open = false;
+						if (event.key === 'Escape') {
+							event.preventDefault();
+							closeAiMenu(true);
+							return;
 						}
+						const items = Array.from(
+							event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+						);
+						const currentIndex = items.indexOf(document.activeElement as HTMLButtonElement);
+						let nextIndex: number | undefined;
+						if (event.key === 'ArrowDown') {
+							nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % items.length;
+						} else if (event.key === 'ArrowUp') {
+							nextIndex = currentIndex < 0
+								? items.length - 1
+								: (currentIndex - 1 + items.length) % items.length;
+						} else if (event.key === 'Home') {
+							nextIndex = 0;
+						} else if (event.key === 'End') {
+							nextIndex = items.length - 1;
+						}
+						if (nextIndex === undefined || items.length === 0) return;
+						event.preventDefault();
+						items[nextIndex]?.focus();
 					}}
 				>
 					{contextualActions.primary.map(action => action.kind === 'rewrite' && (
 						<button
 							key={action.id}
+							data-testid="selection-action-rewrite"
 							type="button"
 							role="menuitem"
 							aria-label={action.label}
@@ -251,6 +296,7 @@ export function SelectionActionMenu({
 							{contextualActions.secondary.map(action => action.kind === 'rewrite' && (
 								<button
 									key={action.id}
+									data-testid="selection-action-rewrite"
 									type="button"
 									role="menuitem"
 									aria-label={action.label}
@@ -274,6 +320,7 @@ export function SelectionActionMenu({
 				return (
 					<button
 						key={action.type}
+						data-testid="selection-action-create-resource"
 						type="button"
 						className="selection-action-create"
 						data-resource-action={action.type}
