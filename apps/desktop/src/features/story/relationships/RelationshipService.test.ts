@@ -89,8 +89,8 @@ function repositoryFor(items: readonly Relationship[]): StoryRepository {
 	};
 }
 
-describe('RelationshipService', () => {
-	it('keeps direction and effective ranges distinct at a time slice', async () => {
+describe('RelationshipService control effect: relationship-matrix-cell', () => {
+	it('hides relationships outside effective ranges while keeping direction distinct at a time slice', async () => {
 		const service = new RelationshipService(repositoryFor(relationships));
 
 		const atFive = await service.getRelationshipsAt(position(5));
@@ -104,7 +104,7 @@ describe('RelationshipService', () => {
 		expect(atTen).toHaveLength(3);
 	});
 
-	it('builds a bounded graph view model and reports omitted data', () => {
+	it('blocks data beyond bounded graph limits and reports omissions', () => {
 		const service = new RelationshipService(repositoryFor([]));
 		const characters = Array.from({ length: 153 }, (_, index) => (
 			character(`character:person-${index}`, `人物 ${index}`)

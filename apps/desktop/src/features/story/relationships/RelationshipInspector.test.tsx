@@ -126,7 +126,7 @@ describe('RelationshipInspector', () => {
 		expect(onSave).toHaveBeenCalledTimes(2);
 	});
 
-	it('resets to the authoritative revision before a later successful save', async () => {
+	it('restores the authoritative revision before a later successful save', async () => {
 		const onSave = vi.fn(() => Promise.resolve());
 		const view = render(inspectorElement({
 			relationship: relationshipFixture(0),

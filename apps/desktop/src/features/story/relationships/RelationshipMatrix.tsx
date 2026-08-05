@@ -51,6 +51,8 @@ export function RelationshipMatrix({
 											<button
 												type="button"
 												key={relationship.id}
+												data-testid="relationship-matrix-cell"
+												data-relationship-id={relationship.id}
 												className={selectedId === relationship.id ? 'is-active' : ''}
 												onClick={() => onSelect(relationship)}
 												onKeyDown={event => {

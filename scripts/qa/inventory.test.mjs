@@ -874,5 +874,14 @@ describe('control inventory rendered-element boundary', () => {
 				'timeline-ai-edge-toggle',
 				'timeline-ai-apply'
 			]));
+		const relationshipMatrixControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/relationships/RelationshipMatrix.tsx'
+		));
+
+		expect(relationshipMatrixControls).toHaveLength(1);
+		expect(relationshipMatrixControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(relationshipMatrixControls.map(control => control.stableSelectorValue))
+			.toContain('relationship-matrix-cell');
 	});
 });

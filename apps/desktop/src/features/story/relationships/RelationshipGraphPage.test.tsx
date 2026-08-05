@@ -84,7 +84,7 @@ describe('RelationshipGraphPage', () => {
 		await desktopBridge.deleteDeepSeekKey();
 	});
 
-	it('provides an accessible directional matrix and inspector evidence', async () => {
+	it('provides an accessible directional matrix, moves by keyboard and selects inspector evidence by pointer', async () => {
 		render(
 			<RelationshipGraphPage
 				projectRoot="D:/Fixture"
@@ -95,7 +95,17 @@ describe('RelationshipGraphPage', () => {
 		fireEvent.click(await screen.findByRole('tab', { name: '关系矩阵' }));
 		expect(screen.getByRole('table', { name: '人物有向关系矩阵' })).toBeInTheDocument();
 
-		const directedCell = screen.getByRole('button', { name: '林越 到 沈青：怀疑，强度 70%' });
+		const matrixCells = screen.getAllByTestId('relationship-matrix-cell');
+		expect(matrixCells.map(cell => cell.dataset.relationshipId).sort()).toEqual([
+			'relationship:lin-doubts-shen',
+			'relationship:shen-protects-lin'
+		]);
+		const directedCell = matrixCells.find(cell => (
+			cell.dataset.relationshipId === 'relationship:lin-doubts-shen'
+		))!;
+		directedCell.focus();
+		fireEvent.keyDown(directedCell, { key: 'ArrowRight' });
+		expect(matrixCells[1]).toHaveFocus();
 		fireEvent.click(directedCell);
 		expect(screen.getByRole('heading', { name: '怀疑' })).toBeInTheDocument();
 		expect(screen.getByText('evidence:rain-dialogue')).toBeInTheDocument();

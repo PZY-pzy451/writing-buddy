@@ -55,7 +55,7 @@ function relationship(revision = 2): Relationship {
 	}) as unknown as Relationship;
 }
 
-describe('RelationshipAiReviewService', () => {
+describe('RelationshipAiReviewService control effects: relationship-ai-action, relationship-ai-generate, relationship-ai-source-character, relationship-ai-target-character, relationship-ai-instruction, relationship-ai-accept', () => {
 	const characters = [
 		character('character:lin-yue', '林越'),
 		character('character:shen-qing', '沈青')
@@ -109,7 +109,7 @@ describe('RelationshipAiReviewService', () => {
 		expect(batch.candidates[1]).toMatchObject({ blocking: true });
 	});
 
-	it('snapshots and explicitly promotes one candidate to a formal edge', async () => {
+	it('persists a snapshot and confirms one selected candidate as a formal edge', async () => {
 		const current = relationship();
 		const sourceContent = '沈青把钥匙交给林越。';
 		const batch = stageRelationshipReviewBatch({
@@ -165,7 +165,7 @@ describe('RelationshipAiReviewService', () => {
 		expect(saved?.evidenceIds).toHaveLength(1);
 	});
 
-	it('rejects stale formal relationship revisions', async () => {
+	it('reloads the authoritative revision and rejects a stale formal relationship', async () => {
 		const current = relationship();
 		const batch = stageRelationshipReviewBatch({
 			actionType: 'generate-relationship',
