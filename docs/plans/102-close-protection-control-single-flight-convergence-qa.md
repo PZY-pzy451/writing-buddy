@@ -12,7 +12,8 @@ Date: 2026-08-05
   inventory collapses them into three declarations because five actions have
   no stable identity. One collapsed declaration is missing a selector.
 - The three existing rendered tests cover cancel/discard, in-flight save and
-  save-copy deduplication, but only one is strictly mapped.
+  save-copy deduplication, but none maps strictly to the rendered close-
+  protection control declarations.
 
 ## Failure-first contracts
 
@@ -47,4 +48,22 @@ Date: 2026-08-05
 
 ## Result
 
-Pending execution.
+- Product source `0627c1f` gives all six author actions distinct stable
+  identities while preserving their Chinese accessible names. The dialog root
+  also has a stable identity for user-journey automation.
+- Cancel, continue writing and resolve-conflict dismiss without exit. Explicit
+  discard exits once. One hundred same-frame save-and-exit clicks perform one
+  atomic manuscript write and exit once; one hundred save-copy clicks retain
+  the existing one-native-dialog/one-exit guarantee.
+- Four failure-first assertions converged to 18/18 focused tests, 79/79 save,
+  app, workspace and conflict impact tests, and 30/30 QA infrastructure tests.
+- Fixed-source Node 24 acceptance passed lint, typecheck, 188 frontend files /
+  979 tests and production build. Rust collected 79, passed 77 and retained
+  two reasoned ignores.
+- The inventory honestly expands from 3 collapsed declarations to 6 controls
+  and adds 66 states. All 6 controls, 91 source states and all 3 existing
+  product cases are now strictly mapped without adding a test.
+- Global mapped states rise by 96. Aggregate gaps fall by 35 from 9,857 to
+  9,822, selector gaps fall from 90 to 89 and unmapped tests fall from 876 to
+  874. Product remains `PARTIAL`; strict traceability, real-provider smoke and
+  packaged-EXE acceptance remain open release gates.

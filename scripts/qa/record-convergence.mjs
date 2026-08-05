@@ -2225,6 +2225,58 @@ const report = {
 				qaScriptTests: 30,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CLOSE-PROTECTION-CONTROL-SINGLE-FLIGHT-CONVERGENCE-068',
+			summary: 'Six close-protection actions were collapsed into three declarations, one declaration lacked a selector and none of the rendered exit controls had strict product-test mappings.',
+			before: {
+				inventoriedSourceControls: 3,
+				stableSourceControls: 2,
+				strictlyMappedSourceControls: 0,
+				sourceMissingStableSelectors: 1,
+				targetTestsMapped: 0,
+				targetTestsUnmapped: 3,
+				distinctExitActions: false,
+				renderedSaveExitSingleFlightVerified: false,
+				globalControls: 489,
+				globalStates: 10758,
+				globalTests: 1058,
+				mappedStates: 2226,
+				mappedTests: 182,
+				unmappedTests: 876,
+				globalMissingStableSelectors: 90,
+				totalUnmapped: 9857
+			},
+			after: {
+				inventoriedSourceControls: 6,
+				stableSourceControls: 6,
+				strictlyMappedSourceControls: 6,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 3,
+				targetTestsUnmapped: 0,
+				distinctExitActions: true,
+				cancelAndConflictDismissalPreserveWork: true,
+				explicitDiscardExitsOnce: true,
+				renderedSaveExitSingleFlightVerified: true,
+				renderedSaveCopySingleFlightVerified: true,
+				newlyInventoriedControls: 3,
+				newlyInventoriedStates: 66,
+				newlyMappedSourceStates: 91,
+				globalMappedStateIncrease: 96,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedStates: traceability.counts.mappedStates,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 4,
+				focusedTests: 18,
+				impactTests: 79,
+				qaScriptTests: 30,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

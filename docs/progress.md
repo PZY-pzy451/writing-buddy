@@ -4,37 +4,35 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Story Dashboard recovery and control convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `2fc51eb`.
+Close protection control and single-flight convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `0627c1f`.
 
-- Three failure-first assertions reproduced the missing dynamic identity and a
-  loader throw that escaped the component and stranded the writing home.
-- Synchronous throws and rejected Promises now become localized, public-safe
-  partial-data status. The page exits its busy state and keeps chapter,
-  planning and review navigation usable.
-- Creation journey, next step and recent chapter actions have distinct stable
-  identities. Inventory expands from two collapsed declarations to five real
-  controls; all five and all six existing Dashboard tests are strictly mapped.
-- Focused execution passed 21/21, the Dashboard/app/workspace impact set passed
-  59/59 and QA infrastructure passed 30/30.
-- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 979 tests
-  and production build. Rust collected 79, passed 77 and retained two reasoned
-  ignores.
-- Inventory grows by 3 controls and 66 states, while mapped inventory items
-  grow by 75. Strict gaps still fall by 6 from 9,863 to 9,857. Selector gaps
-  fall from 91 to 90; mapped tests rise from 176 to 182 and unmapped tests fall
-  from 882 to 876.
+- Six author-visible exit actions previously collapsed into three inventory
+  declarations; one declaration lacked a stable selector and none of the six
+  rendered controls had a strict product-test mapping.
+- All six actions now have distinct stable identities while retaining their
+  accessible Chinese names. All six controls, 91 source states and all three
+  existing product cases are strictly mapped without adding test debt.
+- Cancel, continue writing and resolve-conflict dismiss safely; explicit
+  discard exits once. One hundred same-frame save-and-exit clicks produce one
+  atomic write and one exit, and save-copy retains one native dialog/one exit.
+- Four red failures converged to 18/18 focused, 79/79 impacted and 30/30 QA
+  infrastructure tests. Node 24 passed lint, typecheck, 188 files / 979 tests
+  and production build; Rust passed 77 with two reasoned ignores.
+- Inventory honestly expands by 3 controls and 66 states, while mapped states
+  rise by 96. Strict gaps fall by 35 from 9,857 to 9,822; selector gaps fall
+  from 90 to 89 and unmapped tests fall from 876 to 874.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,701/12,558 (21.51%); stable selectors are 399/489 (81.60%); test mapping is
-  182/1,058 (17.20%). Release gates remain 1/4 complete (25%). Product stays
+  2,805/12,627 (22.21%); stable selectors are 403/492 (81.91%); test mapping is
+  184/1,058 (17.39%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
 
-Resize Handle control, cancellation and QA truth convergence is complete
-against source `cd20623`: 1/1 controls and 4/4 tests are mapped, and fixed
-acceptance passed 979 frontend tests.
+Story Dashboard recovery and control convergence is complete against source
+`2fc51eb`: 5/5 controls and 6/6 tests are mapped, and fixed acceptance passed
+979 frontend tests.
 
 ## Earlier milestone
 

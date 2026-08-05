@@ -55803,138 +55803,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F",
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1",
                   "level": "L4",
-                  "name": "取消退出",
+                  "name": "继续写作",
                   "states": [
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-VISIBLE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-HIDDEN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-ENABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DISABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-POINTER",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-KEYBOARD",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FOCUS-IN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FOCUS-OUT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-REPEAT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DEDUPLICATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-LOADING",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-SUCCESS",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FAILURE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-CANCELLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-OFFLINE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-PERMISSION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-PERSISTENCE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-RESTART",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-VISUAL",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-ACCESSIBLE-NAME",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-UNDO",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -55942,138 +55942,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E",
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6",
                   "level": "L4",
-                  "name": "button",
+                  "name": "不保存并退出",
                   "states": [
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-VISIBLE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-HIDDEN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-ENABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DISABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-POINTER",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-KEYBOARD",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FOCUS-IN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FOCUS-OUT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-REPEAT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DEDUPLICATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-LOADING",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-SUCCESS",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FAILURE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-CANCELLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-OFFLINE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-PERMISSION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-PERSISTENCE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-RESTART",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-VISUAL",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-ACCESSIBLE-NAME",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-UNDO",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -56081,138 +56081,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A",
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98",
                   "level": "L4",
                   "name": "先处理文件冲突",
                   "states": [
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-VISIBLE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-HIDDEN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-ENABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DISABLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-POINTER",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-KEYBOARD",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FOCUS-IN",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FOCUS-OUT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-REPEAT",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DEDUPLICATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-LOADING",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-SUCCESS",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FAILURE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-CANCELLED",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-OFFLINE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-PERMISSION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-PERSISTENCE",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-RESTART",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-VISUAL",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-ACCESSIBLE-NAME",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-UNDO",
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193",
+                  "level": "L4",
+                  "name": "取消退出",
+                  "states": [
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19",
+                  "level": "L4",
+                  "name": "另存副本并退出",
+                  "states": [
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71535,7 +71952,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 362,
+      "declarationLine": 376,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -71764,24 +72181,6 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-03",
       "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-0B22C9D302",
-      "title": "explains durable auxiliary state, cancels safely and requires explicit discard",
-      "declarationTitle": "explains durable auxiliary state, cancels safely and requires explicit discard",
-      "declarationLine": 13,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -75184,24 +75583,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-38D9C04F13",
-      "title": "opens one native save-copy dialog and exits once under 100 close actions",
-      "declarationTitle": "opens one native save-copy dialog and exits once under 100 close actions",
-      "declarationLine": 63,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-3917687C09",
       "title": "freezes optional context across 100 toggles while validating_output",
       "declarationTitle": "freezes optional context across 100 toggles while %s",
@@ -75901,6 +76282,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/writerSession.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3EE6E8432D",
+      "title": "shows accessible enabled exit controls, clicks cancel and conflict dismissal, and confirms destructive discard",
+      "declarationTitle": "shows accessible enabled exit controls, clicks cancel and conflict dismissal, and confirms destructive discard",
+      "declarationLine": 14,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -77548,24 +77947,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-561CA9265F",
-      "title": "waits for an in-flight save and exits only after it becomes clean",
-      "declarationTitle": "waits for an in-flight save and exits only after it becomes clean",
-      "declarationLine": 41,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-564B8B6B2E",
       "title": "does not flag resolved lifecycle records",
       "declarationTitle": "does not flag resolved lifecycle records",
@@ -77881,6 +78262,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/shell/writerShortcuts.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5C00B4AC06",
+      "title": "shows accessible enabled save-copy, deduplicates 100 repeated clicks into one native dialog and hides after successful exit",
+      "declarationTitle": "shows accessible enabled save-copy, deduplicates 100 repeated clicks into one native dialog and hides after successful exit",
+      "declarationLine": 128,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -78922,6 +79321,24 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-6C05916669",
+      "title": "shows accessible enabled save-and-exit, deduplicates 100 repeated clicks into one loading disabled persisted write, and hides after successful clean exit",
+      "declarationTitle": "shows accessible enabled save-and-exit, deduplicates 100 repeated clicks into one loading disabled persisted write, and hides after successful clean exit",
+      "declarationLine": 84,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/save/CloseProtectionDialog.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

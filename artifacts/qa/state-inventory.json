@@ -23324,11 +23324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-VISIBLE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -23340,11 +23340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-HIDDEN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -23356,11 +23356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-ENABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -23372,11 +23372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DISABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -23388,11 +23388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-POINTER",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -23404,11 +23404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-KEYBOARD",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -23420,11 +23420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FOCUS-IN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -23436,11 +23436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FOCUS-OUT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -23452,11 +23452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-REPEAT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -23468,11 +23468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DEDUPLICATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -23484,11 +23484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-LOADING",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -23500,11 +23500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-SUCCESS",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -23516,11 +23516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-FAILURE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -23532,11 +23532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-CANCELLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -23548,11 +23548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-OFFLINE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -23564,11 +23564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-PERMISSION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -23580,11 +23580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-PERSISTENCE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -23596,11 +23596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-RESTART",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -23612,11 +23612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-VISUAL",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -23628,11 +23628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-ACCESSIBLE-NAME",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -23644,11 +23644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -23660,11 +23660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F-UNDO",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-20DDEF6F"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-02E916F1"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -23676,11 +23676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-VISIBLE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -23692,11 +23692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-HIDDEN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -23708,11 +23708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-ENABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -23724,11 +23724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DISABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -23740,11 +23740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-POINTER",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -23756,11 +23756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-KEYBOARD",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -23772,11 +23772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FOCUS-IN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -23788,11 +23788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FOCUS-OUT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -23804,11 +23804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-REPEAT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -23820,11 +23820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DEDUPLICATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -23836,11 +23836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-LOADING",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -23852,11 +23852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-SUCCESS",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -23868,11 +23868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-FAILURE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -23884,11 +23884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-CANCELLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -23900,11 +23900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-OFFLINE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -23916,11 +23916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-PERMISSION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -23932,11 +23932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-PERSISTENCE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -23948,11 +23948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-RESTART",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -23964,11 +23964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-VISUAL",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -23980,11 +23980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-ACCESSIBLE-NAME",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -23996,11 +23996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -24012,11 +24012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E-UNDO",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-2D816D2E"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-8CDBD1B6"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -24028,11 +24028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-VISIBLE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -24044,11 +24044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-HIDDEN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -24060,11 +24060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-ENABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -24076,11 +24076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DISABLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -24092,11 +24092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-POINTER",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -24108,11 +24108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-KEYBOARD",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -24124,11 +24124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FOCUS-IN",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -24140,11 +24140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FOCUS-OUT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -24156,11 +24156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-REPEAT",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -24172,11 +24172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DEDUPLICATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -24188,11 +24188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-LOADING",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -24204,11 +24204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-SUCCESS",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -24220,11 +24220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-FAILURE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -24236,11 +24236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-CANCELLED",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -24252,11 +24252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-OFFLINE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -24268,11 +24268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-PERMISSION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -24284,11 +24284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-PERSISTENCE",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -24300,11 +24300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-RESTART",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -24316,11 +24316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-VISUAL",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -24332,11 +24332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-ACCESSIBLE-NAME",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -24348,11 +24348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -24364,11 +24364,1067 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-565A999A-UNDO",
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-565A999A"
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-CA5C8E98"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-VISIBLE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-HIDDEN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-ENABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DISABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-POINTER",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-KEYBOARD",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FOCUS-IN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FOCUS-OUT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-REPEAT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DEDUPLICATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-LOADING",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-SUCCESS",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-FAILURE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-CANCELLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-OFFLINE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-PERMISSION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-PERSISTENCE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-RESTART",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-VISUAL",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-E9202193-UNDO",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-E9202193"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-VISIBLE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-HIDDEN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-ENABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DISABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-POINTER",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-KEYBOARD",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FOCUS-IN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FOCUS-OUT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-REPEAT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DEDUPLICATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-LOADING",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-SUCCESS",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-FAILURE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-CANCELLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-OFFLINE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-PERMISSION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-PERSISTENCE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-RESTART",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-VISUAL",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA-UNDO",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-EE8400EA"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-VISIBLE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-HIDDEN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-ENABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DISABLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-POINTER",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-KEYBOARD",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FOCUS-IN",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FOCUS-OUT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-REPEAT",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DEDUPLICATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-LOADING",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-SUCCESS",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-FAILURE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-CANCELLED",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-OFFLINE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-PERMISSION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-PERSISTENCE",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-RESTART",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-VISUAL",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19-UNDO",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlIds": [
+        "CTRL-CLOSEPROTECTIONDIALOG-BUTTON-F06D9D19"
       ],
       "name": "撤销",
       "dimension": "UNDO",

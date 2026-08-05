@@ -1345,3 +1345,24 @@ did not fully specify `targetTypes`, position objects or history arrays.
   unmapped tests from 882 to 876.
 - Strict coverage is 21.51%, stable-selector coverage is 81.60%, test mapping
   is 17.20% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 068
+
+- Close protection now exposes six distinct stable author actions: icon
+  cancel, continue writing, resolve conflict, save copy, discard and save-and-
+  exit. Their accessible Chinese names remain unchanged.
+- Cancel, continue writing and conflict resolution dismiss safely without
+  exit. Explicit discard exits once. One hundred same-frame save-and-exit
+  clicks perform one atomic manuscript write and one exit; one hundred save-
+  copy clicks open one native dialog and exit once.
+- Four red failures converged to 18/18 focused, 79/79 impacted and 30/30 QA
+  infrastructure tests. Fixed-source execution passed 979 frontend and 77
+  native tests, retained two reasoned native ignores, and passed production
+  build.
+- The source inventory expands honestly from 3 collapsed declarations to 6
+  controls and adds 66 states. All 6 controls, 91 source states and all 3
+  existing product tests are strictly mapped without adding test debt.
+- Global mapped states rise by 96. Strict gaps fall from 9,857 to 9,822,
+  selector gaps from 90 to 89 and unmapped tests from 876 to 874.
+- Strict coverage is 22.21%, stable-selector coverage is 81.91%, test mapping
+  is 17.39% and release hard gates remain 1/4 complete.
