@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "discovery": {
     "sourceFiles": 102,
-    "declarationCount": 486,
-    "semanticSelectorMapped": 395,
-    "semanticSelectorMissing": 91
+    "declarationCount": 489,
+    "semanticSelectorMapped": 399,
+    "semanticSelectorMissing": 90
   },
   "controls": [
     {
@@ -18460,9 +18460,9 @@
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "accessibleName": "继续上次位置",
+      "stableSelectorValue": "继续上次位置",
+      "selectorStrategy": "accessible-name",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -18504,7 +18504,109 @@
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-3D40CAF7",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "story-dashboard-recent-chapter",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-VISIBLE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-HIDDEN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-ENABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DISABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-POINTER",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-KEYBOARD",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FOCUS-IN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FOCUS-OUT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-REPEAT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DEDUPLICATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-LOADING",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-SUCCESS",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FAILURE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-CANCELLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-OFFLINE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-PERMISSION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-PERSISTENCE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-RESTART",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-VISUAL",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-ACCESSIBLE-NAME",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DESTRUCTIVE-CONFIRMATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-4116DEFC",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "story-dashboard-creation-journey",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-VISIBLE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-HIDDEN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-ENABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DISABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-POINTER",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-KEYBOARD",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FOCUS-IN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FOCUS-OUT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-REPEAT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DEDUPLICATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-LOADING",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-SUCCESS",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FAILURE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-CANCELLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-OFFLINE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-PERMISSION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-PERSISTENCE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-RESTART",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-VISUAL",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-ACCESSIBLE-NAME",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DESTRUCTIVE-CONFIRMATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.tsx",
+      "stableSelectorStatus": "MAPPED"
     },
     {
       "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-B9E80AC7",
@@ -18549,6 +18651,57 @@
         "STATE-STORYDASHBOARDPAGE-BUTTON-B9E80AC7-ACCESSIBLE-NAME",
         "STATE-STORYDASHBOARDPAGE-BUTTON-B9E80AC7-DESTRUCTIVE-CONFIRMATION",
         "STATE-STORYDASHBOARDPAGE-BUTTON-B9E80AC7-UNDO"
+      ],
+      "persistenceExpected": true,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-C1E22F7D",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "featureId": "FEATURE-08-01",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "story-dashboard-next-step",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-VISIBLE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-HIDDEN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-ENABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DISABLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-POINTER",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-KEYBOARD",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FOCUS-IN",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FOCUS-OUT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-REPEAT",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DEDUPLICATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-LOADING",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-SUCCESS",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FAILURE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-CANCELLED",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-OFFLINE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-PERMISSION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-PERSISTENCE",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-RESTART",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-VISUAL",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-ACCESSIBLE-NAME",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DESTRUCTIVE-CONFIRMATION",
+        "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-UNDO"
       ],
       "persistenceExpected": true,
       "destructive": false,

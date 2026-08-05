@@ -2176,6 +2176,55 @@ const report = {
 				qaScriptTests: 30,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-STORY-DASHBOARD-RECOVERY-CONTROL-CONVERGENCE-067',
+			summary: 'Story Dashboard dynamic actions were collapsed, six product cases were untraceable and a loader throw or rejection could strand the writing home in its busy state.',
+			before: {
+				inventoriedSourceControls: 2,
+				stableSourceControls: 1,
+				strictlyMappedSourceControls: 0,
+				sourceMissingStableSelectors: 1,
+				targetTestsMapped: 0,
+				targetTestsUnmapped: 6,
+				synchronousLoadFailureRecovered: false,
+				asynchronousLoadFailureRecovered: false,
+				publicSafeFailureStatus: false,
+				globalControls: 486,
+				globalStates: 10692,
+				globalTests: 1058,
+				mappedTests: 176,
+				unmappedTests: 882,
+				globalMissingStableSelectors: 91,
+				totalUnmapped: 9863
+			},
+			after: {
+				inventoriedSourceControls: 5,
+				stableSourceControls: 5,
+				strictlyMappedSourceControls: 5,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 6,
+				targetTestsUnmapped: 0,
+				synchronousLoadFailureRecovered: true,
+				asynchronousLoadFailureRecovered: true,
+				publicSafeFailureStatus: true,
+				chapterAndPlanningNavigationPreserved: true,
+				newlyInventoriedControls: 3,
+				newlyInventoriedStates: 66,
+				newlyMappedInventoryItems: 75,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 3,
+				focusedTests: 21,
+				impactTests: 59,
+				qaScriptTests: 30,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

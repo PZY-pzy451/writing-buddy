@@ -65952,7 +65952,7 @@
                 {
                   "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-3B1B90D7",
                   "level": "L4",
-                  "name": "button",
+                  "name": "继续上次位置",
                   "states": [
                     {
                       "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3B1B90D7-VISIBLE",
@@ -66082,6 +66082,284 @@
                     },
                     {
                       "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3B1B90D7-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-3D40CAF7",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-3D40CAF7-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-4116DEFC",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-4116DEFC-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -66221,6 +66499,145 @@
                     },
                     {
                       "id": "STATE-STORYDASHBOARDPAGE-BUTTON-B9E80AC7-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STORYDASHBOARDPAGE-BUTTON-C1E22F7D",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STORYDASHBOARDPAGE-BUTTON-C1E22F7D-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -70826,7 +71243,7 @@
       "id": "TC-DISCOVERED-0471CC9ECA",
       "title": "continues the persisted chapter and explains the restored writing position",
       "declarationTitle": "continues the persisted chapter and explains the restored writing position",
-      "declarationLine": 177,
+      "declarationLine": 192,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
@@ -71118,7 +71535,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 351,
+      "declarationLine": 362,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -76751,24 +77168,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-4FBD40B299",
-      "title": "keeps the complete planning workspace reachable after chapters are materialized",
-      "declarationTitle": "keeps the complete planning workspace reachable after chapters are materialized",
-      "declarationLine": 230,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-4FF6A3126B",
       "title": "selects related, feature, snapshot, type, lint, and build coverage for a character panel",
       "declarationTitle": "selects related, feature, snapshot, type, lint, and build coverage for a character panel",
@@ -78295,6 +78694,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-6862FC09EA",
+      "title": "keeps the empty-project next step enabled and useful",
+      "declarationTitle": "keeps the empty-project next step enabled and useful",
+      "declarationLine": 100,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-6863B024FA",
       "title": "classifies a fully malformed batch as a response issue, not an AI setting issue",
       "declarationTitle": "classifies a fully malformed batch as a response issue, not an AI setting issue",
@@ -78585,6 +79002,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-6CC7DFD2EE",
+      "title": "opens the complete planning workspace by pointer after chapters are materialized",
+      "declarationTitle": "opens the complete planning workspace by pointer after chapters are materialized",
+      "declarationLine": 245,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-6DA8F73BA9",
       "title": "does not attach a validating request to an action opened later",
       "declarationTitle": "does not attach a validating request to an action opened later",
@@ -78774,24 +79209,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/InlinePlotExpansionService.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-72006FDAFE",
-      "title": "gives useful next steps for an empty project",
-      "declarationTitle": "gives useful next steps for an empty project",
-      "declarationLine": 100,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -79264,24 +79681,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-77BF9F6955",
-      "title": "keeps healthy cards visible when one dashboard source fails",
-      "declarationTitle": "keeps healthy cards visible when one dashboard source fails",
-      "declarationLine": 113,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -80509,24 +80908,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-89BE5AB4B3",
-      "title": "renders populated summaries and keyboard-usable card navigation",
-      "declarationTitle": "renders populated summaries and keyboard-usable card navigation",
-      "declarationLine": 129,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-8A5EA34775",
       "title": "protects create-only transaction entries from replacing an existing resource",
       "declarationTitle": "protects create-only transaction entries from replacing an existing resource",
@@ -81671,6 +82052,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-10",
       "pageId": "PAGE-STORY-TIMELINE",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-9B315F9B42",
+      "title": "renders populated summaries with keyboard navigation and opens review by pointer",
+      "declarationTitle": "renders populated summaries with keyboard navigation and opens review by pointer",
+      "declarationLine": 141,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -86965,6 +87364,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-E8683C917A",
+      "title": "keeps healthy cards visible with localized failure feedback when a dashboard source rejects",
+      "declarationTitle": "keeps healthy cards visible with localized failure feedback when a dashboard source rejects",
+      "declarationLine": 117,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/dashboard/StoryDashboardPage.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

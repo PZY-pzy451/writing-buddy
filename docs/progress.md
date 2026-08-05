@@ -4,36 +4,39 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Resize Handle control, cancellation and QA truth convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `cd20623`.
+Story Dashboard recovery and control convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `2fc51eb`.
 
-- Five failure-first assertions reproduced the missing shared identity and an
-  accidental drag that Escape could neither cancel nor restore.
-- The shared separator now exposes `workspace-resize-handle`. Escape restores
-  the exact starting size, releases pointer capture/global cursor state and
-  ignores movement after cancellation.
-- Pointer, inverse horizontal/vertical clamping, keyboard bounds/reset,
-  double-click reset and non-primary rejection remain covered. The one source
-  control and all four existing component cases are strictly mapped.
-- QA also found 89 false keyboard-state mappings caused by matching `tab`
-  inside `stable`. English keyboard terms now require word boundaries, while
-  Chinese intent remains supported by an explicit regression test.
-- Focused execution passed 24/24, the workspace impact set passed 73/73 and QA
-  infrastructure passed 30/30.
+- Three failure-first assertions reproduced the missing dynamic identity and a
+  loader throw that escaped the component and stranded the writing home.
+- Synchronous throws and rejected Promises now become localized, public-safe
+  partial-data status. The page exits its busy state and keeps chapter,
+  planning and review navigation usable.
+- Creation journey, next step and recent chapter actions have distinct stable
+  identities. Inventory expands from two collapsed declarations to five real
+  controls; all five and all six existing Dashboard tests are strictly mapped.
+- Focused execution passed 21/21, the Dashboard/app/workspace impact set passed
+  59/59 and QA infrastructure passed 30/30.
 - Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 979 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The prior published strict gap count of 9,786 included those false mappings;
-  the comparable corrected baseline is 9,875. This round reduces it by 12 to
-  9,863. Stable-selector gaps fall from 92 to 91; mapped tests are 176/1,058
-  and unmapped tests are 882.
+- Inventory grows by 3 controls and 66 states, while mapped inventory items
+  grow by 75. Strict gaps still fall by 6 from 9,863 to 9,857. Selector gaps
+  fall from 91 to 90; mapped tests rise from 176 to 182 and unmapped tests fall
+  from 882 to 876.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,626/12,489 (21.03%); stable selectors are 395/486 (81.28%); test mapping is
-  176/1,058 (16.64%). Release gates remain 1/4 complete (25%). Product stays
+  2,701/12,558 (21.51%); stable selectors are 399/489 (81.60%); test mapping is
+  182/1,058 (17.20%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
+
+Resize Handle control, cancellation and QA truth convergence is complete
+against source `cd20623`: 1/1 controls and 4/4 tests are mapped, and fixed
+acceptance passed 979 frontend tests.
+
+## Earlier milestone
 
 Selection Action Menu control and keyboard convergence is complete against
 source `60078b1`: 7/7 logical controls and 2/2 tests are mapped, and fixed

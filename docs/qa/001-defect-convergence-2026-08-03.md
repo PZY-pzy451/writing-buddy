@@ -1326,3 +1326,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
   truthful gap count by 12 to 9,863. Mapped tests are 176/1,058.
 - Strict coverage is 21.03%, stable-selector coverage is 81.28%, test mapping
   is 16.64% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 067
+
+- Story Dashboard now catches synchronous loader throws and rejected Promises,
+  exits its busy state and shows localized partial-data status without exposing
+  private paths. Chapter, planning and review navigation remain usable.
+- Creation journey, next-step and recent-chapter actions have distinct stable
+  identities. The source inventory expands from two collapsed declarations to
+  five real controls; all five are stable and strictly mapped.
+- All six existing Dashboard cases gain strict mappings without adding test
+  debt. Three red failures converged to 21/21 focused, 59/59 impacted and 30/30
+  QA infrastructure tests.
+- Fixed-source execution passed 979 frontend and 77 native tests; two native
+  cases retain documented reasons, and production build passed.
+- The honest inventory adds 3 controls and 66 states while valid mappings grow
+  by 75. Strict gaps fall from 9,863 to 9,857, selector gaps from 91 to 90 and
+  unmapped tests from 882 to 876.
+- Strict coverage is 21.51%, stable-selector coverage is 81.60%, test mapping
+  is 17.20% and release hard gates remain 1/4 complete.
