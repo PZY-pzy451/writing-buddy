@@ -360,6 +360,31 @@ describe('control inventory rendered-element boundary', () => {
 		expect(sceneNavigatorControls.map(control => control.stableSelectorValue)).toContain(
 			'scene-navigator-scene'
 		);
+		const timelineReorderControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/timeline/TimelineReorderRail.tsx'
+		));
+
+		expect(timelineReorderControls).toHaveLength(2);
+		expect(timelineReorderControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(timelineReorderControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'timeline-reorder-event',
+			'timeline-reorder-handle'
+		]);
+		const continuityReviewControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/continuity/ContinuityReviewPage.tsx'
+		));
+
+		expect(continuityReviewControls).toHaveLength(3);
+		expect(continuityReviewControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(continuityReviewControls.map(control => control.stableSelectorValue)).toEqual(
+			expect.arrayContaining([
+				'continuity-issue',
+				'按严重程度筛选',
+				'重新打开'
+			])
+		);
 		const resizeHandleControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/shell/ResizeHandle.tsx'
 		));

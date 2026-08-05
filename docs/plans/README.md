@@ -1,5 +1,7 @@
 # Plan index
 
+- [Timeline reorder and continuity review selector/trace convergence QA](./113-timeline-continuity-selector-trace-convergence-qa.md)
+
 - [Context pack and scene navigator selector/trace convergence QA](./112-context-pack-scene-navigator-selector-trace-convergence-qa.md)
 
 - [AI context and manuscript highlight selector/trace convergence QA](./111-ai-context-highlight-selector-trace-convergence-qa.md)

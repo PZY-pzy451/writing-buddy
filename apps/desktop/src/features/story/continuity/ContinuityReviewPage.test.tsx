@@ -41,7 +41,7 @@ const candidates: readonly ContinuityCandidate[] = [{
 }];
 
 describe('ContinuityReviewPage', () => {
-	it('shows severity, source layers, two evidence links and resolution state', async () => {
+	it('persists resolution and reopens an issue with severity filtering and evidence links', async () => {
 		const onOpenEvidence = vi.fn();
 		const persist = vi.fn((issues: readonly ContinuityIssue[]) => Promise.resolve(issues));
 		render(
@@ -54,13 +54,28 @@ describe('ContinuityReviewPage', () => {
 			/>
 		);
 		await waitFor(() => expect(screen.getAllByText('人物同时出现在两个地点')).toHaveLength(2));
+		const issue = screen.getAllByTestId('continuity-issue').find(candidate => (
+			candidate.getAttribute('data-severity') === 'error'
+		));
+		expect(issue).toBeDefined();
+		expect(issue?.getAttribute('data-issue-id')).toMatch(/^continuity:/u);
+		expect(issue).toHaveAttribute('data-status', 'open');
+		expect(issue).toHaveAttribute('data-layers', 'story-kernel');
+		expect(issue).toHaveAttribute('data-ai', 'false');
+		const severityFilter = screen.getByLabelText('按严重程度筛选');
+		fireEvent.change(severityFilter, { target: { value: 'error' } });
+		expect(severityFilter).toHaveValue('error');
 		expect(screen.getByText('Story Kernel')).toBeInTheDocument();
 		expect(screen.getAllByRole('button', { name: /打开.*场景/u })).toHaveLength(2);
 		fireEvent.click(screen.getByRole('button', { name: '打开港口场景' }));
 		expect(onOpenEvidence).toHaveBeenCalledWith(expect.objectContaining({ resourceId: 'chapter:two' }));
 		fireEvent.click(screen.getByRole('button', { name: '标记已解决' }));
 		await waitFor(() => expect(screen.getAllByText('resolved')).toHaveLength(2));
-		expect(persist).toHaveBeenCalled();
+		expect(issue).toHaveAttribute('data-status', 'resolved');
+		fireEvent.click(screen.getByRole('button', { name: '重新打开' }));
+		await waitFor(() => expect(screen.getAllByText('open')).toHaveLength(2));
+		expect(issue).toHaveAttribute('data-status', 'open');
+		expect(persist.mock.calls.length).toBeGreaterThanOrEqual(3);
 	});
 
 	it('caps AI errors at warning in the visible issue list', async () => {

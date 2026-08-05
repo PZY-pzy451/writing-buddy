@@ -292,7 +292,11 @@ export function ContinuityReviewPage({
 							<button
 								type="button"
 								key={issue.id}
+								data-testid="continuity-issue"
 								data-issue-id={issue.id}
+								data-severity={issue.severity}
+								data-status={issue.status}
+								data-layers={issue.layers.join(',')}
 								data-ai={issue.layers.includes('ai') ? 'true' : 'false'}
 								className={selected?.id === issue.id ? 'is-active' : ''}
 								onClick={() => setSelectedId(issue.id)}

@@ -58,6 +58,9 @@ function SortableTimelineEvent({
 			<button
 				ref={setActivatorNodeRef}
 				type="button"
+				data-testid="timeline-reorder-handle"
+				data-event-id={event.id}
+				data-narrative-order={event.narrativePosition.narrativeOrder}
 				className="timeline-reorder-handle"
 				aria-label={`拖动事件：${event.title}`}
 				disabled={disabled}
@@ -66,7 +69,14 @@ function SortableTimelineEvent({
 			>
 				<GripVertical size={16} />
 			</button>
-			<button type="button" className="timeline-reorder-title" onClick={() => onSelect(event)}>
+			<button
+				type="button"
+				data-testid="timeline-reorder-event"
+				data-event-id={event.id}
+				data-narrative-order={event.narrativePosition.narrativeOrder}
+				className="timeline-reorder-title"
+				onClick={() => onSelect(event)}
+			>
 				<small>叙事 {event.narrativePosition.narrativeOrder}</small>
 				<strong>{event.title}</strong>
 			</button>
