@@ -334,7 +334,17 @@ export function PlotAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="剧情线与伏笔 AI 动作">
 					{actions.map(candidate => (
-						<button type="button" role="tab" aria-selected={candidate.id === actionType} disabled={generating} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => chooseAction(candidate.id)}>{candidate.label}</button>
+						<button
+							type="button"
+							role="tab"
+							aria-selected={candidate.id === actionType}
+							disabled={generating}
+							className={candidate.id === actionType ? 'is-active' : ''}
+							key={candidate.id}
+							onClick={() => chooseAction(candidate.id)}
+							data-testid="plot-ai-action"
+							data-action={candidate.id}
+						>{candidate.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
@@ -343,22 +353,42 @@ export function PlotAiPanel(props: {
 						{props.chapters.map(chapter => <option key={chapter.resourceId} value={chapter.resourceId}>{chapter.volumeTitle ? `${chapter.volumeTitle} · ` : ''}{chapter.title}</option>)}
 					</select>
 					<label className="ai-review-privacy-toggle">
-						<input type="checkbox" checked={useVolume} disabled={generating} onChange={event => setUseVolume(event.target.checked)} />
+						<input
+							type="checkbox"
+							checked={useVolume}
+							disabled={generating}
+							onChange={event => setUseVolume(event.target.checked)}
+							data-testid="plot-ai-toggle"
+							data-toggle="volume"
+						/>
 						<span>分析当前整卷</span>
 					</label>
 				</section>
 				<label className={`ai-review-secret-toggle ${includeAuthorSecrets ? 'is-enabled' : ''}`}>
-					<input type="checkbox" checked={includeAuthorSecrets} disabled={generating} onChange={event => setIncludeAuthorSecrets(event.target.checked)} />
+					<input
+						type="checkbox"
+						checked={includeAuthorSecrets}
+						disabled={generating}
+						onChange={event => setIncludeAuthorSecrets(event.target.checked)}
+						data-testid="plot-ai-toggle"
+						data-toggle="author-secrets"
+					/>
 					<LockKeyhole size={16} />
 					<span><strong>允许发送作者秘密</strong><small>默认关闭；开启后仅发送已有伏笔的真实含义。</small></span>
 				</label>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea
+						value={instruction}
+						disabled={generating}
+						maxLength={2_000}
+						onChange={event => setInstruction(event.target.value)}
+						data-testid="plot-ai-instruction"
+					/>
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
-					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
+					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()} data-testid="plot-ai-generate">
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成剧情资料候选'}
 					</button>
@@ -384,7 +414,15 @@ export function PlotAiPanel(props: {
 						<article className={`ai-review-candidate is-${candidate.status} ${selectedCandidateIds.includes(candidate.id) ? 'is-selected' : ''}`} key={candidate.id}>
 							<header>
 								<label className="ai-review-candidate-select">
-									<input type="checkbox" disabled={candidate.blocking || candidate.status !== 'candidate'} checked={selectedCandidateIds.includes(candidate.id)} onChange={() => toggleCandidate(candidate.id)} />
+									<input
+										type="checkbox"
+										disabled={candidate.blocking || candidate.status !== 'candidate'}
+										checked={selectedCandidateIds.includes(candidate.id)}
+										onChange={() => toggleCandidate(candidate.id)}
+										data-testid="plot-ai-toggle"
+										data-toggle="candidate"
+										data-candidate-id={candidate.id}
+									/>
 									<span>{response.kind === 'plotThread' ? '剧情线' : '伏笔'}候选 {index + 1}</span>
 								</label>
 								<strong>{Math.round(response.confidence * 100)}%</strong>

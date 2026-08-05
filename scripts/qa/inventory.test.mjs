@@ -768,5 +768,34 @@ describe('control inventory rendered-element boundary', () => {
 			.toEqual(expect.arrayContaining([
 				'ai-playground-prompt'
 			]));
+		const plotAiControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/plots/PlotAiPanel.tsx'
+		));
+
+		expect(plotAiControls).toHaveLength(10);
+		expect(plotAiControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(plotAiControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'plot-ai-action',
+				'plot-ai-generate',
+				'plot-ai-toggle',
+				'plot-ai-instruction'
+			]));
+		const plotBoardControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/plots/PlotBoardPage.tsx'
+		));
+
+		expect(plotBoardControls).toHaveLength(9);
+		expect(plotBoardControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(plotBoardControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'plot-board-ai-open',
+				'plot-scene-open-manuscript',
+				'plot-thread-select',
+				'plot-thread-status',
+				'plot-thread-save'
+			]));
 	});
 });

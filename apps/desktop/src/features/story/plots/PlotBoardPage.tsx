@@ -130,7 +130,13 @@ function PlotThreadCard({
 				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
 			} : undefined}
 		>
-			<button type="button" className="plot-thread-main" onClick={onSelect}>
+			<button
+				type="button"
+				className="plot-thread-main"
+				onClick={onSelect}
+				data-testid="plot-thread-select"
+				data-thread-id={thread.id}
+			>
 				<span className="eyebrow">{thread.tags[0] ?? 'PLOT THREAD'}</span>
 				<strong id={`plot-thread-title-${thread.id}`}>{thread.title}</strong>
 				<p>{thread.dramaticQuestion ?? thread.premise ?? '尚未补充戏剧问题。'}</p>
@@ -378,7 +384,14 @@ export function PlotBoardPage({
 						<button type="button" role="tab" aria-selected={view === 'foreshadowing'} className={view === 'foreshadowing' ? 'is-active' : ''} onClick={() => chooseView('foreshadowing')}><Eye size={16} />伏笔表</button>
 					</div>
 					<label><span>当前叙事位置</span><input type="number" aria-label="当前叙事位置" min={0} value={currentOrder} onChange={event => setCurrentOrder(Number(event.target.value))} /></label>
-					<button type="button" className="plot-ai-button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 剧情线与伏笔</button>
+					<button
+						type="button"
+						className="plot-ai-button"
+						disabled={!projectRoot || readOnly}
+						onClick={() => setAiOpen(true)}
+						data-testid="plot-board-ai-open"
+						data-entry="toolbar"
+					><Sparkles size={16} />AI 剧情线与伏笔</button>
 				</div>
 			</header>
 			<div className="plot-board-messages">
@@ -420,7 +433,14 @@ export function PlotBoardPage({
 												/>
 											))}
 											{(data?.threads.filter(thread => thread.status === status).length ?? 0) === 0 && status === 'planned' ? (
-												<button type="button" className="plot-ai-empty-card" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
+												<button
+													type="button"
+													className="plot-ai-empty-card"
+													disabled={!projectRoot || readOnly}
+													onClick={() => setAiOpen(true)}
+													data-testid="plot-board-ai-open"
+													data-entry="empty"
+												>
 													<Sparkles size={20} />
 													<strong>用 AI 创建剧情线</strong>
 													<small>先生成候选，再由作者确认。</small>
@@ -478,6 +498,8 @@ export function PlotBoardPage({
 								type="button"
 								className="plot-save"
 								disabled={!onOpenEvidence}
+								data-testid="plot-scene-open-manuscript"
+								data-scene-id={selectedScene.id}
 								onClick={() => onOpenEvidence?.({
 									resourceId: parseStoryId(selectedScene.chapterId),
 									range: {
@@ -494,11 +516,23 @@ export function PlotBoardPage({
 						<>
 							<span className="eyebrow">PLOT INSPECTOR</span><h2>{selected.title}</h2>
 							<p>{selected.premise ?? selected.summary ?? '尚未补充剧情线说明。'}</p>
-							<label><span>生命周期</span><select value={selectedDraftStatus} onChange={event => setDraftStatus({ threadId: selected.id, status: event.target.value as PlotThreadStatus })}>{plotThreadStatuses.map(status => <option key={status} value={status}>{statusLabels[status]}</option>)}</select></label>
+							<label><span>生命周期</span><select
+								value={selectedDraftStatus}
+								onChange={event => setDraftStatus({ threadId: selected.id, status: event.target.value as PlotThreadStatus })}
+								data-testid="plot-thread-status"
+								data-thread-id={selected.id}
+							>{plotThreadStatuses.map(status => <option key={status} value={status}>{statusLabels[status]}</option>)}</select></label>
 							<section><h3>赌注</h3><p>{selected.stakes ?? '未定义'}</p></section>
 							<section><h3>计划覆盖</h3><p>起点 {selected.startPosition?.narrativeOrder ?? '—'} → 计划解决 {selected.targetResolution?.narrativeOrder ?? '—'}</p></section>
 							<section><h3>正文来源</h3>{selected.evidenceIds.map(id => <code key={id}>{id}</code>)}</section>
-							<button type="button" className="plot-save" disabled={saving} onClick={() => void saveStatus()}><Save size={16} />{saving ? '保存中…' : '保存状态'}</button>
+							<button
+								type="button"
+								className="plot-save"
+								disabled={saving}
+								onClick={() => void saveStatus()}
+								data-testid="plot-thread-save"
+								data-thread-id={selected.id}
+							><Save size={16} />{saving ? '保存中…' : '保存状态'}</button>
 						</>
 					) : selectedClue ? (
 						<>

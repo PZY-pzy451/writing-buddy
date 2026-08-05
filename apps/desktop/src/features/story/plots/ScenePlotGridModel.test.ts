@@ -61,8 +61,8 @@ const chapters = [
 	{ resourceId: 'chapter:second', chapterId: 'second', title: '第二章', path: '2.md', narrativeOrder: 1 }
 ];
 
-describe('scene plot grid model', () => {
-	it('orders real scenes by manuscript chapter and exposes reciprocal and one-sided links', () => {
+describe('scene plot grid model control effects: scene-plot-grid-filter, scene-plot-grid-link', () => {
+	it('reports invalid one-sided links while ordering real scenes by manuscript chapter', () => {
 		const model = buildScenePlotGrid([
 			scene({ id: 'scene:later', chapterId: 'chapter:second', order: 1, title: '后来', plotThreadIds: ['plot-thread:main'] }),
 			scene({ id: 'scene:first', chapterId: 'chapter:first', order: 2, title: '开端', plotThreadIds: ['plot-thread:main', 'plot-thread:scene-only'], complete: true })
@@ -90,7 +90,7 @@ describe('scene plot grid model', () => {
 		});
 	});
 
-	it('keeps unknown chapters and relation IDs visible and supports task filters', () => {
+	it('keeps unknown chapters and relation IDs visible, supports task filters and restores all rows after an unmatched search', () => {
 		const unlinked = scene({ id: 'scene:unlinked', chapterId: 'chapter:unknown', order: 1, title: '失去归属' });
 		const unknownThread = scene({
 			id: 'scene:unknown-thread', chapterId: 'chapter:first', order: 3,
@@ -104,5 +104,6 @@ describe('scene plot grid model', () => {
 		expect(filterScenePlotGridRows(model.rows, 'needs-sync', '')).toHaveLength(1);
 		expect(filterScenePlotGridRows(model.rows, 'all', '陌生')).toHaveLength(1);
 		expect(filterScenePlotGridRows(model.rows, 'all', '不存在')).toHaveLength(0);
+		expect(filterScenePlotGridRows(model.rows, 'all', '')).toHaveLength(2);
 	});
 });

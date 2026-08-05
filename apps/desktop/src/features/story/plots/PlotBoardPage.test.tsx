@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import {
@@ -13,7 +13,7 @@ const timestamp = '2026-07-27T00:00:00.000Z';
 const base = { aliases: [], tags: [], schemaVersion: 1 as const, createdAt: timestamp, updatedAt: timestamp, revision: 0, evidenceIds: [] };
 
 describe('PlotBoardPage', () => {
-	it('provides a keyboard-accessible board and lifecycle table', async () => {
+	it('shows a keyboard-accessible board, selects a plot thread and changes its lifecycle', async () => {
 		const user = userEvent.setup();
 		render(<PlotBoardPage projectRoot="fixture" loadData={() => Promise.resolve({
 			threads: [parsePlotThread({
@@ -25,13 +25,24 @@ describe('PlotBoardPage', () => {
 				status: 'planted', readerVisibility: 0.4
 			})]
 		})} />);
-		expect(await screen.findByRole('button', { name: /遗失笔记/ })).toBeInTheDocument();
+		const thread = await screen.findByTestId('plot-thread-select');
+		expect(thread).toHaveAttribute('data-thread-id', 'plot-thread:notebook');
+		expect(thread).toBeEnabled();
+		await user.click(thread);
+		const lifecycle = screen.getByTestId('plot-thread-status');
+		expect(lifecycle).toHaveAttribute('data-thread-id', 'plot-thread:notebook');
+		await user.selectOptions(lifecycle, 'at-risk');
+		expect(lifecycle).toHaveValue('at-risk');
+		const save = screen.getByTestId('plot-thread-save');
+		expect(save).toHaveAttribute('data-thread-id', 'plot-thread:notebook');
+		expect(save).toBeEnabled();
 		await user.click(screen.getByRole('tab', { name: '伏笔表' }));
 		expect(screen.getByRole('table', { name: '伏笔生命周期表' })).toBeInTheDocument();
 		expect(screen.getByRole('button', { name: '停摆时钟' })).toBeEnabled();
 	});
 
-	it('keeps author secrets private by default and reviews generated plot candidates', async () => {
+	it('opens the enabled AI plot panel, keeps secrets private, deduplicates repeated generation and shows success', async () => {
+		const user = userEvent.setup();
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		render(
@@ -50,10 +61,37 @@ describe('PlotBoardPage', () => {
 			/>
 		);
 
-		fireEvent.click(await screen.findByRole('button', { name: 'AI 剧情线与伏笔' }));
+		const aiEntries = screen.getAllByTestId('plot-board-ai-open');
+		expect(aiEntries.map(entry => entry.dataset.entry).sort())
+			.toEqual(['empty', 'toolbar']);
+		const toolbarEntry = aiEntries.find(entry => entry.dataset.entry === 'toolbar');
+		expect(toolbarEntry).toBeDefined();
+		await user.click(toolbarEntry!);
 		expect(screen.getByRole('complementary', { name: 'AI 剧情线与伏笔助手' })).toBeInTheDocument();
-		expect(screen.getByRole('checkbox', { name: /允许发送作者秘密/ })).not.toBeChecked();
+		const actions = screen.getAllByTestId('plot-ai-action');
+		expect(actions.map(action => action.dataset.action)).toEqual([
+			'generate-plot-thread',
+			'generate-plot-consequences',
+			'extract-plot-progress',
+			'generate-foreshadowing',
+			'generate-foreshadowing-payoff',
+			'extract-foreshadowing'
+		]);
+		expect(actions[0]).toHaveAttribute('aria-selected', 'true');
+		const initialToggles = screen.getAllByTestId('plot-ai-toggle');
+		expect(initialToggles.map(toggle => toggle.dataset.toggle))
+			.toEqual(['volume', 'author-secrets']);
+		const volumeToggle = initialToggles[0];
+		const secretToggle = initialToggles[1];
+		expect(secretToggle).not.toBeChecked();
+		await user.click(volumeToggle);
+		expect(volumeToggle).toBeChecked();
+		const instruction = screen.getByTestId('plot-ai-instruction');
+		await user.clear(instruction);
+		await user.type(instruction, '生成一条可追踪且保留作者决定权的调查线。');
+		expect(instruction).toHaveValue('生成一条可追踪且保留作者决定权的调查线。');
 		const generate = screen.getByRole('button', { name: '生成剧情资料候选' });
+		expect(generate).toHaveAttribute('data-testid', 'plot-ai-generate');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -65,10 +103,20 @@ describe('PlotBoardPage', () => {
 		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByText('剧情前提')).toBeInTheDocument();
 		expect(screen.getByText(/AI 建议/)).toBeInTheDocument();
+		const candidateToggle = screen.getAllByTestId('plot-ai-toggle').find(toggle => (
+			toggle.dataset.toggle === 'candidate'
+		));
+		expect(candidateToggle).toBeDefined();
+		expect(candidateToggle).toHaveAttribute('data-candidate-id');
+		expect(candidateToggle).toBeChecked();
+		await user.click(candidateToggle!);
+		expect(candidateToggle).not.toBeChecked();
+		await user.click(candidateToggle!);
+		expect(candidateToggle).toBeChecked();
 		await desktopBridge.deleteDeepSeekKey();
 	});
 
-	it('maps real scenes to plot threads and locates the selected scene manuscript', async () => {
+	it('shows the scene grid, selects links by pointer and keyboard, closes details and opens manuscript evidence', async () => {
 		const user = userEvent.setup();
 		const onOpenEvidence = vi.fn();
 		render(
@@ -143,7 +191,9 @@ describe('PlotBoardPage', () => {
 		expect(screen.getByRole('heading', { name: '站台会面' })).toBeInTheDocument();
 		expect(screen.getByText('蓝色信封出现')).toBeInTheDocument();
 		expect(screen.getByText(/秘密调查（待同步）/)).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '打开场景正文' }));
+		const openManuscript = screen.getByTestId('plot-scene-open-manuscript');
+		expect(openManuscript).toHaveAttribute('data-scene-id', 'scene:meeting');
+		await user.click(openManuscript);
 		expect(onOpenEvidence).toHaveBeenCalledWith({
 			resourceId: 'chapter:first',
 			range: { start: 12, end: 42 },

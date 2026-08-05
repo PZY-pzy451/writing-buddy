@@ -29,8 +29,8 @@ const base = {
 	evidenceIds: []
 };
 
-describe('PlotAiReviewService', () => {
-	it('deduplicates same-name clues and separates early-payoff local checks', () => {
+describe('PlotAiReviewService control effects: plot-ai-generate, plot-ai-toggle', () => {
+	it('requires confirmation for same-name clues and separates early-payoff local checks', () => {
 		const clue = parseForeshadowing({
 			...base,
 			id: 'foreshadowing:clock',
@@ -82,7 +82,7 @@ describe('PlotAiReviewService', () => {
 		);
 	});
 
-	it('snapshots and atomically creates selected plot candidates only', async () => {
+	it('persists one snapshot and atomically creates selected plot candidates only', async () => {
 		const batch = stagePlotReviewBatch({
 			actionType: 'generate-plot-thread',
 			includeAuthorSecrets: false,
