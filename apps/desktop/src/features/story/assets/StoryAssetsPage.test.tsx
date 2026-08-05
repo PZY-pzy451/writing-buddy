@@ -5,11 +5,12 @@ import {
 	parseLocation
 } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
+import type { OpenAiEvidence } from '../ai-context/AiChapterSource';
 import { StoryAssetsPage } from './StoryAssetsPage';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
 
-function renderEmptyStoryAssetsPage(): void {
+function renderEmptyStoryAssetsPage(onOpenEvidence?: OpenAiEvidence): void {
 	const character = StorySchemaRegistry.parse('character', {
 		id: 'character:xu-qing',
 		type: 'character',
@@ -59,6 +60,7 @@ function renderEmptyStoryAssetsPage(): void {
 				path: 'chapters/chapter-001.md',
 				narrativeOrder: 0
 			}]}
+			onOpenEvidence={onOpenEvidence}
 		/>
 	);
 }
@@ -149,5 +151,52 @@ describe('StoryAssetsPage', () => {
 		await waitFor(() => expect(createSnapshot).toHaveBeenCalledTimes(2));
 		expect(await screen.findByText(/已创建安全快照，并保存“无字站牌”/u)).toBeInTheDocument();
 		expect(startAiGeneration).toHaveBeenCalledOnce();
+	});
+
+	it('TC-ITEM-AI-004 renders every accessible control enabled for keyboard focus and opens evidence by pointer', async () => {
+		const onOpenEvidence = vi.fn();
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		renderEmptyStoryAssetsPage(onOpenEvidence);
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
+		fireEvent.click(screen.getByRole('tab', { name: '从正文提取' }));
+		fireEvent.click(screen.getByTestId('item-ai-generate'));
+		expect(await screen.findByRole('heading', { name: '褪色的行李票' })).toBeInTheDocument();
+
+		const field = screen.getAllByTestId('item-ai-field')[0];
+		const fieldEvidence = screen.getAllByTestId('item-ai-field-evidence')[0];
+		const state = screen.getByTestId('item-ai-state');
+		const stateEvidence = screen.getByTestId('item-ai-state-evidence');
+		const controls = [
+			screen.getByRole('button', { name: '关闭 AI 物品助手' }),
+			screen.getAllByTestId('item-ai-action')[0],
+			screen.getByRole('combobox', { name: '选择物品分析章节' }),
+			screen.getByTestId('item-ai-instruction'),
+			screen.getByTestId('item-ai-generate'),
+			field,
+			fieldEvidence,
+			state,
+			stateEvidence,
+			screen.getByTestId('item-ai-accept')
+		];
+		expect(controls).toHaveLength(10);
+		for (const control of controls) {
+			expect(control).toBeVisible();
+			expect(control).toBeEnabled();
+			control.focus();
+			expect(control).toHaveFocus();
+		}
+
+		const fieldWasChecked = (field as HTMLInputElement).checked;
+		fireEvent.click(field);
+		expect(field).toHaveProperty('checked', !fieldWasChecked);
+		fireEvent.click(field);
+		const stateWasChecked = (state as HTMLInputElement).checked;
+		fireEvent.click(state);
+		expect(state).toHaveProperty('checked', !stateWasChecked);
+		fireEvent.click(state);
+		fireEvent.click(fieldEvidence);
+		fireEvent.click(stateEvidence);
+		expect(onOpenEvidence).toHaveBeenCalledTimes(2);
 	});
 });
