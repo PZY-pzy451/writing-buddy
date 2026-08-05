@@ -56220,138 +56220,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933",
+                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-VISIBLE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-HIDDEN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-ENABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DISABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-POINTER",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-KEYBOARD",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FOCUS-IN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FOCUS-OUT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-REPEAT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DEDUPLICATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-LOADING",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-SUCCESS",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FAILURE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-CANCELLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-OFFLINE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-PERMISSION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-PERSISTENCE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-RESTART",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-VISUAL",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-ACCESSIBLE-NAME",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-UNDO",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -56498,138 +56498,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6",
+                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-VISIBLE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-HIDDEN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-ENABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DISABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-POINTER",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-KEYBOARD",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FOCUS-IN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FOCUS-OUT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-REPEAT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DEDUPLICATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-LOADING",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-SUCCESS",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FAILURE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-CANCELLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-OFFLINE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-PERMISSION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-PERSISTENCE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-RESTART",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-VISUAL",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-ACCESSIBLE-NAME",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-UNDO",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -56637,138 +56637,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8",
+                  "id": "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-VISIBLE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-HIDDEN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-ENABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DISABLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-POINTER",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-KEYBOARD",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FOCUS-IN",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FOCUS-OUT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-REPEAT",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DEDUPLICATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-LOADING",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-SUCCESS",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FAILURE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-CANCELLED",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-OFFLINE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-PERMISSION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-PERSISTENCE",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-RESTART",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-VISUAL",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-ACCESSIBLE-NAME",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-UNDO",
+                      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74705,7 +74705,7 @@
       "id": "TC-DISCOVERED-095D0EE2E0",
       "title": "blocks whole-work export when the active manuscript cannot be saved safely",
       "declarationTitle": "blocks whole-work export when the active manuscript cannot be saved safely",
-      "declarationLine": 617,
+      "declarationLine": 640,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -75883,7 +75883,7 @@
       "id": "TC-DISCOVERED-1C2E0C014A",
       "title": "offers a low-weight contextual Continue at a paragraph end",
       "declarationTitle": "offers a low-weight contextual Continue at a paragraph end",
-      "declarationLine": 337,
+      "declarationLine": 360,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -76485,7 +76485,7 @@
       "id": "TC-DISCOVERED-219A8D0B99",
       "title": "shows chapter status without an edit control for read-only projects",
       "declarationTitle": "shows chapter status without an edit control for read-only projects",
-      "declarationLine": 557,
+      "declarationLine": 580,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -77661,7 +77661,7 @@
       "id": "TC-DISCOVERED-2F836D8E13",
       "title": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
       "declarationTitle": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
-      "declarationLine": 941,
+      "declarationLine": 964,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -80061,7 +80061,7 @@
       "id": "TC-DISCOVERED-4CF989AEA1",
       "title": "writes one chapter status after one hundred same-frame dirty choices",
       "declarationTitle": "writes one chapter status after one hundred same-frame dirty choices",
-      "declarationLine": 411,
+      "declarationLine": 434,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -82245,7 +82245,7 @@
       "id": "TC-DISCOVERED-70FC306ED2",
       "title": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
       "declarationTitle": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
-      "declarationLine": 900,
+      "declarationLine": 923,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -82353,7 +82353,7 @@
       "id": "TC-DISCOVERED-72920BB906",
       "title": "exports the whole work in project order and records its delivery scope",
       "declarationTitle": "exports the whole work in project order and records its delivery scope",
-      "declarationLine": 707,
+      "declarationLine": 730,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -83445,7 +83445,7 @@
       "id": "TC-DISCOVERED-81A8B4BCED",
       "title": "does not export or create a receipt when dirty manuscript saving fails",
       "declarationTitle": "does not export or create a receipt when dirty manuscript saving fails",
-      "declarationLine": 598,
+      "declarationLine": 621,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -83607,7 +83607,7 @@
       "id": "TC-DISCOVERED-84F12EFC4A",
       "title": "opens the existing extraction center for the current chapter without starting AI",
       "declarationTitle": "opens the existing extraction center for the current chapter without starting AI",
-      "declarationLine": 367,
+      "declarationLine": 390,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -83823,7 +83823,7 @@
       "id": "TC-DISCOVERED-87C4AA01BA",
       "title": "preserves a single Story Kernel target and author-visible instruction",
       "declarationTitle": "preserves a single Story Kernel target and author-visible instruction",
-      "declarationLine": 21,
+      "declarationLine": 32,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/assistant/assistantIntent.test.ts",
@@ -84359,7 +84359,7 @@
       "id": "TC-DISCOVERED-90E74517D7",
       "title": "exports the active chapter from the writer menu and records a durable receipt",
       "declarationTitle": "exports the active chapter from the writer menu and records a durable receipt",
-      "declarationLine": 571,
+      "declarationLine": 594,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -85593,7 +85593,7 @@
       "id": "TC-DISCOVERED-A1611B6A78",
       "title": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
       "declarationTitle": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
-      "declarationLine": 796,
+      "declarationLine": 819,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -86193,7 +86193,7 @@
       "id": "TC-DISCOVERED-ACF0C9961A",
       "title": "keeps the writer open when organizing a dirty chapter cannot save",
       "declarationTitle": "keeps the writer open when organizing a dirty chapter cannot save",
-      "declarationLine": 463,
+      "declarationLine": 486,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87051,7 +87051,7 @@
       "id": "TC-DISCOVERED-B7C9AE59B2",
       "title": "saves dirty prose before changing chapter status and updates publish readiness immediately",
       "declarationTitle": "saves dirty prose before changing chapter status and updates publish readiness immediately",
-      "declarationLine": 484,
+      "declarationLine": 507,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87087,7 +87087,7 @@
       "id": "TC-DISCOVERED-B7E68002CD",
       "title": "exports a structured Word work and records a Word delivery receipt",
       "declarationTitle": "exports a structured Word work and records a Word delivery receipt",
-      "declarationLine": 666,
+      "declarationLine": 689,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -88263,7 +88263,7 @@
       "id": "TC-DISCOVERED-C8EF6225FC",
       "title": "opens the assistant on a concrete rewrite action",
       "declarationTitle": "opens the assistant on a concrete rewrite action",
-      "declarationLine": 4,
+      "declarationLine": 7,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/assistant/assistantIntent.test.ts",
@@ -89193,7 +89193,7 @@
       "id": "TC-DISCOVERED-D441644F0B",
       "title": "exposes stable handles for every writer-header operation",
       "declarationTitle": "exposes stable handles for every writer-header operation",
-      "declarationLine": 388,
+      "declarationLine": 411,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -89631,7 +89631,7 @@
       "id": "TC-DISCOVERED-DCDA67C4D6",
       "title": "does not change chapter status when dirty manuscript saving fails",
       "declarationTitle": "does not change chapter status when dirty manuscript saving fails",
-      "declarationLine": 539,
+      "declarationLine": 562,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -89759,7 +89759,7 @@
       "id": "TC-DISCOVERED-DE6DBE61CD",
       "title": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
       "declarationTitle": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
-      "declarationLine": 768,
+      "declarationLine": 791,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -90941,7 +90941,7 @@
       "id": "TC-DISCOVERED-F2ED1350CC",
       "title": "creates and validates a portable project backup from History",
       "declarationTitle": "creates and validates a portable project backup from History",
-      "declarationLine": 747,
+      "declarationLine": 770,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -91321,7 +91321,7 @@
       "id": "TC-DISCOVERED-F6ACF87F59",
       "title": "offers Word and text exports in History without recording cancellation",
       "declarationTitle": "offers Word and text exports in History without recording cancellation",
-      "declarationLine": 639,
+      "declarationLine": 662,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -91737,7 +91737,7 @@
       "id": "TC-DISCOVERED-FDF7FDE4C2",
       "title": "invalidates an open AI drawer when a same-revision project root replaces its source",
       "declarationTitle": "invalidates an open AI drawer when a same-revision project root replaces its source",
-      "declarationLine": 871,
+      "declarationLine": 894,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",

@@ -1699,3 +1699,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
   Strict gaps fall from 9,076 to 9,009, selector gaps from 50 to 47 and unmapped
   tests from 833 to 824. Strict coverage is 31.04%, stable-selector coverage is
   90.80%, test mapping is 22.12% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 086
+
+- Assistant Panel pin and close controls used runtime-computed accessible names
+  which the static inventory could not retain, while repeated rewrite actions
+  had neither a stable identity nor exact action context.
+- Stable pin/close identities preserve the current tool-specific ARIA names;
+  repeated rewrite actions now expose one composite identity plus exact action
+  type. Existing intent and full-writer cases prove rendered open/close,
+  rewrite-mode selection, focus, pin persistence and panel dismissal.
+- Two red failures converged to 3/3 focused and 97/97 product-impact tests.
+  The first full Vitest attempt exited at the Windows process level with
+  `3221226505` before reporting an assertion; a clean bounded rerun passed 189
+  frontend files / 979 tests and production build. Rust passed 77 tests with
+  two reasoned ignores and QA infrastructure passed 30/30.
+- Global mapped controls rise by 3, states by 51 and tests by 2. Strict gaps
+  fall from 9,009 to 8,953, selector gaps from 47 to 44 and unmapped tests from
+  824 to 822. Strict coverage is 31.47%, stable-selector coverage is 91.39%,
+  test mapping is 22.31% and release hard gates remain 1/4 complete.

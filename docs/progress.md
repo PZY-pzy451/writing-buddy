@@ -4,28 +4,33 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Review Center selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `7dffe30`.
+Assistant Panel selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `709b254`.
 
-- Review modes, publish-checklist disclosure and repeated checklist actions now
-  expose stable identities plus exact mode/check/action context. Existing user
-  cases prove offline local review, keyboard navigation, accessible disclosure,
-  saving, issue routing, AI stream success, delivery persistence/undo,
-  cancellation deduplication and retry.
-- Six failure-first assertions converged to 10/10 focused, 111/111 product
-  impact, 20/20 inventory/trace and 30/30 QA infrastructure tests. Node 24
-  passed lint, typecheck, 189 files / 979 tests and production build; Rust
-  passed 77 with two reasoned ignores. Runtime/static discovery is 979/979.
+- Dynamic pin/close controls now retain their tool-specific accessible names
+  while exposing stable identities. Repeated rewrite actions share one identity
+  plus exact action context. Existing rendered user paths prove opening AI,
+  selecting a rewrite mode, focusing/pinning, persistence and closing.
+- Two failure-first contracts converged to 3/3 focused and 97/97 product impact
+  tests. Node 24 passed lint, typecheck, 189 files / 979 tests and production
+  build; Rust passed 77 with two reasoned ignores; QA infrastructure passed
+  30/30. Runtime/static discovery remains 979/979.
 - Inventory remains 511 controls / 11,242 states / 1,058 tests. Global mapped
-  features rise by 1, controls by 3, states by 54 and tests by 9. Strict gaps
-  fall by 67 from 9,076 to 9,009, selector gaps from 50 to 47 and unmapped tests
-  from 833 to 824.
+  controls rise by 3, states by 51 and tests by 2. Strict gaps fall by 56 from
+  9,009 to 8,953, selector gaps from 47 to 44 and unmapped tests from 824 to
+  822.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,055/13,064 (31.04%); stable selectors are 464/511 (90.80%); test mapping is
-  234/1,058 (22.12%). Against the 11,088 / 136 reference, 2,079 mapping gaps
-  and 89 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 9,009 strict mappings plus real-provider smoke and
+  4,111/13,064 (31.47%); stable selectors are 467/511 (91.39%); test mapping is
+  236/1,058 (22.31%). Against the 11,088 / 136 reference, 2,135 mapping gaps
+  and 92 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,953 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Review Center selector/trace convergence is complete against source `7dffe30`:
+three controls and nine product cases map, and fixed acceptance passed 979
+frontend tests.
 
 ## Previous milestone
 

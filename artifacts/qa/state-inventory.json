@@ -6428,11 +6428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-VISIBLE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -6444,11 +6444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-HIDDEN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -6460,11 +6460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-ENABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -6476,11 +6476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DISABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -6492,11 +6492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-POINTER",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -6508,11 +6508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-KEYBOARD",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -6524,11 +6524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FOCUS-IN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -6540,11 +6540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FOCUS-OUT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -6556,11 +6556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-REPEAT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -6572,11 +6572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DEDUPLICATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -6588,11 +6588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-LOADING",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -6604,11 +6604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-SUCCESS",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -6620,11 +6620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-FAILURE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -6636,11 +6636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-CANCELLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -6652,11 +6652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-OFFLINE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -6668,11 +6668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-PERMISSION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -6684,11 +6684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-PERSISTENCE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -6700,11 +6700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-RESTART",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -6716,11 +6716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-VISUAL",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -6732,11 +6732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-ACCESSIBLE-NAME",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -6748,11 +6748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -6764,11 +6764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3AC4A933-UNDO",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-3B17382B-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3AC4A933"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-3B17382B"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -7132,11 +7132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-VISIBLE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -7148,11 +7148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-HIDDEN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -7164,11 +7164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-ENABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -7180,11 +7180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DISABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -7196,11 +7196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-POINTER",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -7212,11 +7212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-KEYBOARD",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -7228,11 +7228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FOCUS-IN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -7244,11 +7244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FOCUS-OUT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -7260,11 +7260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-REPEAT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -7276,11 +7276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DEDUPLICATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -7292,11 +7292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-LOADING",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -7308,11 +7308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-SUCCESS",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -7324,11 +7324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-FAILURE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -7340,11 +7340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-CANCELLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -7356,11 +7356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-OFFLINE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -7372,11 +7372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-PERMISSION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -7388,11 +7388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-PERSISTENCE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -7404,11 +7404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-RESTART",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -7420,11 +7420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-VISUAL",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -7436,11 +7436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-ACCESSIBLE-NAME",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -7452,11 +7452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -7468,11 +7468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-9D8572D6-UNDO",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-76D994C0-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-9D8572D6"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-76D994C0"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -7484,11 +7484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-VISIBLE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -7500,11 +7500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-HIDDEN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -7516,11 +7516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-ENABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -7532,11 +7532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DISABLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -7548,11 +7548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-POINTER",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -7564,11 +7564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-KEYBOARD",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -7580,11 +7580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FOCUS-IN",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -7596,11 +7596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FOCUS-OUT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -7612,11 +7612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-REPEAT",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -7628,11 +7628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DEDUPLICATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -7644,11 +7644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-LOADING",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -7660,11 +7660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-SUCCESS",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -7676,11 +7676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-FAILURE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -7692,11 +7692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-CANCELLED",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -7708,11 +7708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-OFFLINE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -7724,11 +7724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-PERMISSION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -7740,11 +7740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-PERSISTENCE",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -7756,11 +7756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-RESTART",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -7772,11 +7772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-VISUAL",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -7788,11 +7788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-ACCESSIBLE-NAME",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -7804,11 +7804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -7820,11 +7820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8-UNDO",
+      "id": "STATE-ASSISTANTPANELCONTENT-BUTTON-FA2A3288-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ASSISTANTPANELCONTENT-BUTTON-B63FA6E8"
+        "CTRL-ASSISTANTPANELCONTENT-BUTTON-FA2A3288"
       ],
       "name": "撤销",
       "dimension": "UNDO",
