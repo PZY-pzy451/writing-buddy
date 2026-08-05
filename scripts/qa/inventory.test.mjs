@@ -440,6 +440,20 @@ describe('control inventory rendered-element boundary', () => {
 			'topbar-writer-reset-layout',
 			'topbar-writer-sidebar'
 		]);
+		const quickCaptureControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/quick-capture/QuickCaptureDialog.tsx'
+		));
+
+		expect(quickCaptureControls).toHaveLength(5);
+		expect(quickCaptureControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(quickCaptureControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'quick-capture-close',
+			'quick-capture-dialog',
+			'quick-capture-save',
+			'quick-capture-text',
+			'quick-capture-type'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

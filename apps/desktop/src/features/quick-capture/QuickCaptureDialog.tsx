@@ -47,6 +47,7 @@ function QuickCaptureDialogContent({
 	const [type, setType] = useState<QuickCaptureType>(seed?.type ?? 'idea');
 	const [text, setText] = useState(seed?.text ?? '');
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	const saveInFlightRef = useRef(false);
 	const dialogRef = useModalFocus(close);
 
 	useEffect(() => {
@@ -60,12 +61,17 @@ function QuickCaptureDialogContent({
 	}, []);
 
 	const closeAndRestore = () => {
-		if (busy) return;
+		if (busy || saveInFlightRef.current) return;
 		close();
 	};
 	const saveAndRestore = async () => {
-		if (!text.trim() || busy) return;
-		await save(type, text);
+		if (!text.trim() || busy || saveInFlightRef.current) return;
+		saveInFlightRef.current = true;
+		try {
+			await save(type, text);
+		} finally {
+			saveInFlightRef.current = false;
+		}
 	};
 	const chapterTitle = seed?.chapterId
 		? snapshot?.project.volumes
@@ -83,6 +89,7 @@ function QuickCaptureDialogContent({
 			<section
 				ref={dialogRef}
 				className="quick-capture-dialog"
+				data-testid="quick-capture-dialog"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="quick-capture-title"
@@ -108,6 +115,7 @@ function QuickCaptureDialogContent({
 					<button
 						className="icon-button"
 						type="button"
+						data-testid="quick-capture-close"
 						aria-label="关闭快速记录"
 						disabled={busy}
 						onClick={closeAndRestore}
@@ -117,6 +125,7 @@ function QuickCaptureDialogContent({
 				</header>
 				<textarea
 					ref={textareaRef}
+					data-testid="quick-capture-text"
 					value={text}
 					maxLength={20_000}
 					placeholder="记录一个想法……"
@@ -131,6 +140,7 @@ function QuickCaptureDialogContent({
 							<button
 								key={value}
 								type="button"
+								data-testid="quick-capture-type"
 								role="radio"
 								aria-checked={type === value}
 								className={type === value ? 'is-active' : ''}
@@ -157,6 +167,7 @@ function QuickCaptureDialogContent({
 					<button
 						className="primary-button"
 						type="button"
+						data-testid="quick-capture-save"
 						disabled={busy || !text.trim()}
 						onClick={() => void saveAndRestore()}
 					>

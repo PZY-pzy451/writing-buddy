@@ -39,7 +39,7 @@ class MemoryGateway implements QuickCaptureStorageGateway {
 }
 
 describe('QuickCaptureStore', () => {
-	it('loads a missing project inbox as an empty versioned collection', async () => {
+	it('TC-QUICK-CAPTURE-STORE-001 quick-capture-save loading initializes a missing project inbox as an empty versioned collection', async () => {
 		const store = new QuickCaptureStore('D:/Novel', new MemoryGateway());
 
 		await expect(store.load()).resolves.toEqual({
@@ -48,7 +48,7 @@ describe('QuickCaptureStore', () => {
 		});
 	});
 
-	it('atomically appends and updates records with the current expected hash', async () => {
+	it('TC-QUICK-CAPTURE-STORE-002 quick-capture-save persists atomic appends and updates with the current expected hash', async () => {
 		const gateway = new MemoryGateway();
 		const store = new QuickCaptureStore(
 			'D:/Novel',
@@ -69,7 +69,7 @@ describe('QuickCaptureStore', () => {
 		expect(updated.hash).toBe('hash-2');
 	});
 
-	it('does not overwrite a concurrently changed inbox', async () => {
+	it('TC-QUICK-CAPTURE-STORE-003 quick-capture-save reports concurrent-write failure without overwriting the changed inbox', async () => {
 		const gateway = new MemoryGateway();
 		const store = new QuickCaptureStore('D:/Novel', gateway);
 		const loaded = await store.load();

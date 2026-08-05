@@ -1,5 +1,7 @@
 # Plan index
 
+- [Quick capture save, selector and trace convergence QA](./107-quick-capture-save-selector-trace-convergence-qa.md)
+
 - [Top bar menu keyboard and selector convergence QA](./106-top-bar-menu-keyboard-selector-convergence-qa.md)
 
 - [AI Story Kernel direct generation](./001-ai-story-kernel-generation.md)

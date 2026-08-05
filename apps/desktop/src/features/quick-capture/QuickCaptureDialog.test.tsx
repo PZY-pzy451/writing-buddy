@@ -15,8 +15,15 @@ afterEach(() => {
 });
 
 describe('QuickCaptureDialog', () => {
-	it('starts from editor context and saves with Ctrl+Enter', async () => {
-		const saveQuickCapture = vi.fn(() => Promise.resolve(true));
+	it('TC-QUICK-CAPTURE-DIALOG-001 exposes stable controls, deduplicates repeated Ctrl+Enter and button actions, and releases explicit retry', async () => {
+		let resolveFirst: (saved: boolean) => void = () => undefined;
+		const firstSave = new Promise<boolean>(resolve => {
+			resolveFirst = resolve;
+		});
+		const saveQuickCapture = vi.fn()
+			.mockImplementationOnce(() => firstSave)
+			.mockResolvedValue(true);
+		const closeQuickCapture = vi.fn();
 		useAppStore.setState({
 			quickCaptureOpen: true,
 			quickCaptureBusy: false,
@@ -33,22 +40,39 @@ describe('QuickCaptureDialog', () => {
 					sourceHash: '1234abcd'
 				}
 			},
-			saveQuickCapture
+			saveQuickCapture,
+			closeQuickCapture
 		});
 		render(<QuickCaptureDialog />);
 
+		const dialog = screen.getByRole('dialog', { name: '快速记录' });
+		expect(dialog).toHaveAttribute('data-testid', 'quick-capture-dialog');
+		expect(screen.getByRole('textbox', { name: '记录内容' }))
+			.toHaveAttribute('data-testid', 'quick-capture-text');
 		expect(screen.getByRole('textbox', { name: '记录内容' })).toHaveValue('玻璃顶在终章再次出现');
 		expect(screen.getByText(/已关联/)).toBeInTheDocument();
-		await userEvent.click(screen.getByRole('radio', { name: '伏笔' }));
-		fireEvent.keyDown(screen.getByRole('dialog'), {
-			key: 'Enter',
-			ctrlKey: true
-		});
-
-		await waitFor(() => expect(saveQuickCapture).toHaveBeenCalledWith(
+		const type = screen.getByRole('radio', { name: '伏笔' });
+		expect(type).toHaveAttribute('data-testid', 'quick-capture-type');
+		await userEvent.click(type);
+		const saveButton = screen.getByRole('button', { name: '保存到待整理箱' });
+		expect(saveButton).toHaveAttribute('data-testid', 'quick-capture-save');
+		for (let attempt = 0; attempt < 100; attempt += 1) {
+			fireEvent.keyDown(dialog, { key: 'Enter', ctrlKey: true });
+			saveButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		}
+		expect(saveQuickCapture).toHaveBeenCalledTimes(1);
+		expect(saveQuickCapture).toHaveBeenCalledWith(
 			'foreshadowing',
 			'玻璃顶在终章再次出现'
-		));
+		);
+		fireEvent.click(screen.getByRole('button', { name: '关闭快速记录' }));
+		expect(closeQuickCapture).not.toHaveBeenCalled();
+		await act(async () => {
+			resolveFirst(false);
+			await firstSave;
+		});
+		fireEvent.click(saveButton);
+		await waitFor(() => expect(saveQuickCapture).toHaveBeenCalledTimes(2));
 	});
 
 	it('closes once on Escape and restores the exact opening focus', async () => {
@@ -66,6 +90,8 @@ describe('QuickCaptureDialog', () => {
 			closeQuickCapture
 		});
 		render(<QuickCaptureDialog />);
+		expect(screen.getByRole('button', { name: '关闭快速记录' }))
+			.toHaveAttribute('data-testid', 'quick-capture-close');
 
 		fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
 
