@@ -1474,3 +1474,25 @@ did not fully specify `targetTypes`, position objects or history arrays.
   79 to 76 and unmapped tests from 870 to 867.
 - Strict coverage is 25.25%, stable-selector coverage is 85.04%, test mapping
   is 18.05% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 074
+
+- Item transfer Close, holder, location, quantity, narrative order and Confirm
+  expose six distinct stable identities; equivalent inputs no longer collapse
+  in the control inventory.
+- One hundred same-frame Confirm actions start one persistence call. All mutable
+  controls disable while pending, and Close plus Escape cannot dismiss the
+  dialog before settlement.
+- A rejected commit is caught, rendered as public Chinese retry guidance and
+  releases the synchronous guard. The failure-first unhandled Promise and
+  private path exposure are gone; one later explicit retry succeeds.
+- Two red tests and one unhandled rejection converged to 16/16 focused/inventory,
+  15/15 item/history impact and 30/30 QA infrastructure tests. Fixed-source
+  sequential execution passed 189 frontend files / 979 tests, production build
+  and 77 native tests with two reasoned ignores.
+- Honest inventory expansion adds 2 controls and 44 states. All 6 source
+  controls, 96 of 132 source states and the existing UI case map. Global mapped
+  controls rise by 6, states by 96 and tests by 1.
+- Strict gaps fall from 9,714 to 9,657, selector gaps from 76 to 75 and unmapped
+  tests from 867 to 866. Strict coverage is 25.95%, stable-selector coverage is
+  85.29%, test mapping is 18.15% and release hard gates remain 1/4 complete.

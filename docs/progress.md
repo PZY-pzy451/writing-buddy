@@ -4,30 +4,39 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Quick Capture save and selector convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `b63947c`.
+Item transfer single-flight and selector convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `c0d6f24`.
 
-- Dialog, close, text, type and Save now expose five stable identities without
-  changing their accessible Chinese names.
-- A component-local synchronous guard covers both Ctrl+Enter and Save before
-  React can render Store busy state. Two hundred same-frame actions start one
-  save, pending close cannot bypass it, and a false result releases one retry.
-- Three red failures converged to 20/20 focused/inventory, 38/38 Quick Capture
-  and Writer Workspace impact, and 30/30 QA infrastructure tests. Node 24
-  passed lint, typecheck, 189 files / 979 tests and production build; Rust
+- Close, holder, location, quantity, narrative order and Confirm now expose six
+  distinct stable identities. The inventory no longer collapses equivalent
+  input declarations.
+- A component-local synchronous guard makes 100 same-frame Confirm actions
+  start one persistence call. Pending Close and Escape are blocked; a rejected
+  commit shows public Chinese feedback, has no unhandled Promise and releases
+  exactly one explicit retry.
+- Two red tests plus one unhandled rejection converged to 16/16 focused and
+  inventory, 15/15 item/history impact and 30/30 QA infrastructure tests. Node
+  24 passed lint, typecheck, 189 files / 979 tests and production build; Rust
   passed 77 with two reasoned ignores.
-- Inventory does not expand. All 5 source controls, 53 of 110 source states and
-  all 5 product cases are strictly mapped. Global mapped controls rise by 4,
-  mapped states by 46 and mapped tests by 3. Strict gaps fall by 53 from 9,767
-  to 9,714, selector gaps from 79 to 76 and unmapped tests from 870 to 867.
+- Inventory honestly expands by 2 controls and 44 states. All 6 source controls,
+  96 of 132 source states and the existing product case are strictly mapped.
+  Global mapped controls rise by 6, states by 96 and tests by 1. Strict gaps
+  fall by 57 from 9,714 to 9,657, selector gaps from 76 to 75 and unmapped tests
+  from 867 to 866.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,281/12,995 (25.25%); stable selectors are 432/508 (85.04%); test mapping is
-  191/1,058 (18.05%). Against the 11,088 / 136 reference, 1,374 mapping gaps
-  and 60 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,384/13,041 (25.95%); stable selectors are 435/510 (85.29%); test mapping is
+  192/1,058 (18.15%). Against the 11,088 / 136 reference, 1,431 mapping gaps
+  and 61 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
 
 ## Previous milestone
+
+Quick Capture save and selector convergence is complete against source
+`b63947c`: all 5 controls and product cases are mapped, and fixed acceptance
+passed 979 frontend tests.
+
+## Earlier milestone
 
 Top-bar menu keyboard and selector convergence is complete against source
 `db69fd0`: all 16 variant controls expose stable identities and complete

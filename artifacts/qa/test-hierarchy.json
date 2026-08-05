@@ -32759,138 +32759,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6",
+                  "id": "CTRL-ITEMTRANSFERDIALOG-BUTTON-59302154",
                   "level": "L4",
                   "name": "关闭转移对话框",
                   "states": [
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-VISIBLE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-HIDDEN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-ENABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-DISABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-POINTER",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-KEYBOARD",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-FOCUS-IN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-FOCUS-OUT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-REPEAT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-DEDUPLICATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-LOADING",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-SUCCESS",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-FAILURE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-CANCELLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-OFFLINE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-PERMISSION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-PERSISTENCE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-RESTART",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-VISUAL",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-ACCESSIBLE-NAME",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-93BCBCE6-UNDO",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-59302154-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -32898,138 +32898,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ITEMTRANSFERDIALOG-BUTTON-DACAA206",
+                  "id": "CTRL-ITEMTRANSFERDIALOG-BUTTON-D818B0B4",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-VISIBLE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-HIDDEN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-ENABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-DISABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-POINTER",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-KEYBOARD",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-FOCUS-IN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-FOCUS-OUT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-REPEAT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-DEDUPLICATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-LOADING",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-SUCCESS",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-FAILURE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-CANCELLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-OFFLINE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-PERMISSION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-PERSISTENCE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-RESTART",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-VISUAL",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-ACCESSIBLE-NAME",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-DACAA206-UNDO",
+                      "id": "STATE-ITEMTRANSFERDIALOG-BUTTON-D818B0B4-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33037,138 +33037,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-32128341",
+                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-02A4F38E",
                   "level": "L4",
                   "name": "转移叙事位置",
                   "states": [
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-VISIBLE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-HIDDEN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-ENABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-DISABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-POINTER",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-KEYBOARD",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-FOCUS-IN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-FOCUS-OUT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-REPEAT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-DEDUPLICATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-LOADING",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-SUCCESS",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-FAILURE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-CANCELLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-OFFLINE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-PERMISSION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-PERSISTENCE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-RESTART",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-VISUAL",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-ACCESSIBLE-NAME",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-32128341-UNDO",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-02A4F38E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -33176,138 +33176,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-AF86CF82",
+                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-499FCC83",
                   "level": "L4",
-                  "name": "新地点 ID",
+                  "name": "新持有人 ID",
                   "states": [
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-VISIBLE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-HIDDEN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-ENABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-DISABLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-POINTER",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-KEYBOARD",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-FOCUS-IN",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-FOCUS-OUT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-REPEAT",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-DEDUPLICATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-LOADING",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-SUCCESS",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-FAILURE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-CANCELLED",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-OFFLINE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-PERMISSION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-PERSISTENCE",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-RESTART",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-VISUAL",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-ACCESSIBLE-NAME",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-AF86CF82-UNDO",
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-499FCC83-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-4ED69EF2",
+                  "level": "L4",
+                  "name": "转移数量",
+                  "states": [
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-4ED69EF2-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB",
+                  "level": "L4",
+                  "name": "新地点 ID",
+                  "states": [
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-ITEMTRANSFERDIALOG-INPUT-7E9FBDEB-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74176,7 +74454,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 459,
+      "declarationLine": 474,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -85569,6 +85847,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-A851D87CF6",
+      "title": "TC-ITEM-TRANSFER-DIALOG-001 item-transfer-commit renders accessible enabled controls, handles pointer and Escape keyboard, blocks disabled pending close and cancellation, deduplicates repeated persistence, reports failure, retries and confirms save success without replacing history",
+      "declarationTitle": "TC-ITEM-TRANSFER-DIALOG-001 item-transfer-commit renders accessible enabled controls, handles pointer and Escape keyboard, blocks disabled pending close and cancellation, deduplicates repeated persistence, reports failure, retries and confirms save success without replacing history",
+      "declarationLine": 26,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/assets/ItemTransferDialog.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-08",
+      "pageId": "PAGE-STORY-ASSETS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-A8A2345B82",
       "title": "TC-QA-SK-MATRIX-001 quarantines one explicit schema mutation for every resource type",
       "declarationTitle": "TC-QA-SK-MATRIX-001 quarantines one explicit schema mutation for every resource type",
@@ -87063,24 +87359,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-BEE9D71D28",
-      "title": "previews and commits a pending transfer without replacing history",
-      "declarationTitle": "previews and commits a pending transfer without replacing history",
-      "declarationLine": 20,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/assets/ItemTransferDialog.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-08",
-      "pageId": "PAGE-STORY-ASSETS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
