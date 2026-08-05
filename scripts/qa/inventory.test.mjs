@@ -338,4 +338,33 @@ describe('control inventory rendered-element boundary', () => {
 			'选择人物分析章节'
 		]);
 	});
+
+	it('TC-QA-INVENTORY-019 maps every Item AI control to a stable selector', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const itemAiControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/assets/ItemAiPanel.tsx'
+		));
+
+		expect(itemAiControls).toHaveLength(10);
+		expect(itemAiControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(itemAiControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'item-ai-accept',
+			'item-ai-action',
+			'item-ai-field',
+			'item-ai-field-evidence',
+			'item-ai-generate',
+			'item-ai-instruction',
+			'item-ai-state',
+			'item-ai-state-evidence',
+			'关闭 AI 物品助手',
+			'选择物品分析章节'
+		]);
+	});
 });

@@ -1,5 +1,5 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterEach, vi } from 'vitest';
 import {
 	StorySchemaRegistry,
 	parseLocation
@@ -9,65 +9,76 @@ import { StoryAssetsPage } from './StoryAssetsPage';
 
 const timestamp = '2026-07-27T00:00:00.000Z';
 
+function renderEmptyStoryAssetsPage(): void {
+	const character = StorySchemaRegistry.parse('character', {
+		id: 'character:xu-qing',
+		type: 'character',
+		title: '徐青',
+		aliases: [],
+		tags: [],
+		schemaVersion: 1,
+		createdAt: timestamp,
+		updatedAt: timestamp,
+		revision: 1,
+		factionIds: [],
+		goals: [],
+		desires: [],
+		fears: [],
+		values: [],
+		secrets: [],
+		evidenceIds: []
+	});
+	const location = parseLocation({
+		id: 'location:old-station',
+		type: 'location',
+		title: '旧火车站',
+		aliases: [],
+		tags: [],
+		schemaVersion: 1,
+		createdAt: timestamp,
+		updatedAt: timestamp,
+		revision: 1,
+		travelLinks: [],
+		factionIds: [],
+		rules: [],
+		evidenceIds: []
+	});
+	render(
+		<StoryAssetsPage
+			projectRoot="browser-fixture"
+			loadData={() => Promise.resolve({
+				items: [],
+				states: [],
+				characters: [character as never],
+				locations: [location]
+			})}
+			chapters={[{
+				resourceId: 'chapter:chapter-000000a1',
+				chapterId: 'chapter-000000a1',
+				title: '第一章 · 雨夜旧站',
+				path: 'chapters/chapter-001.md',
+				narrativeOrder: 0
+			}]}
+		/>
+	);
+}
+
 describe('StoryAssetsPage', () => {
-	it('opens the empty-state AI item workflow and renders a structured card', async () => {
+	afterEach(async () => {
+		vi.restoreAllMocks();
+		await desktopBridge.deleteDeepSeekKey();
+	});
+
+	it('TC-ITEM-AI-001 exposes stable controls and keeps one paid request under one hundred clicks', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
-		const character = StorySchemaRegistry.parse('character', {
-			id: 'character:xu-qing',
-			type: 'character',
-			title: '徐青',
-			aliases: [],
-			tags: [],
-			schemaVersion: 1,
-			createdAt: timestamp,
-			updatedAt: timestamp,
-			revision: 1,
-			factionIds: [],
-			goals: [],
-			desires: [],
-			fears: [],
-			values: [],
-			secrets: [],
-			evidenceIds: []
-		});
-		const location = parseLocation({
-			id: 'location:old-station',
-			type: 'location',
-			title: '旧火车站',
-			aliases: [],
-			tags: [],
-			schemaVersion: 1,
-			createdAt: timestamp,
-			updatedAt: timestamp,
-			revision: 1,
-			travelLinks: [],
-			factionIds: [],
-			rules: [],
-			evidenceIds: []
-		});
-		render(
-			<StoryAssetsPage
-				projectRoot="browser-fixture"
-				loadData={() => Promise.resolve({
-					items: [],
-					states: [],
-					characters: [character as never],
-					locations: [location]
-				})}
-				chapters={[{
-					resourceId: 'chapter:chapter-000000a1',
-					chapterId: 'chapter-000000a1',
-					title: '第一章 · 雨夜旧站',
-					path: 'chapters/chapter-001.md',
-					narrativeOrder: 0
-				}]}
-			/>
-		);
+		renderEmptyStoryAssetsPage();
 
 		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
 		expect(screen.getByRole('complementary', { name: 'AI 物品助手' })).toBeInTheDocument();
-		const generate = screen.getByRole('button', { name: '生成物品候选' });
+		expect(screen.getAllByTestId('item-ai-action')).toHaveLength(3);
+		expect(screen.getByTestId('item-ai-instruction')).toBeEnabled();
+		const generate = screen.getByTestId('item-ai-generate');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -78,6 +89,65 @@ describe('StoryAssetsPage', () => {
 		expect(await screen.findByRole('heading', { name: '无字站牌' })).toBeInTheDocument();
 		expect(startAiGeneration).toHaveBeenCalledOnce();
 		expect(screen.getByText('证明零号月台曾经存在，并指向被删去的线路。')).toBeInTheDocument();
-		await desktopBridge.deleteDeepSeekKey();
+		expect(screen.getAllByTestId('item-ai-field').length).toBeGreaterThan(0);
+		expect(screen.getAllByTestId('item-ai-accept')).toHaveLength(1);
+	});
+
+	it('TC-ITEM-AI-002 isolates malformed generation output and succeeds on explicit retry', async () => {
+		const originalStart = desktopBridge.startAiGeneration.bind(desktopBridge);
+		let requests = 0;
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
+			.mockImplementation((request, listener) => {
+				requests += 1;
+				if (requests !== 1) return originalStart(request, listener);
+				listener({ type: 'job_started', jobId: request.jobId });
+				listener({ type: 'connection_opened', jobId: request.jobId });
+				listener({ type: 'content_delta', jobId: request.jobId, text: '{"candidates":[]}' });
+				listener({ type: 'completed', jobId: request.jobId, finishReason: 'stop' });
+				return Promise.resolve();
+			});
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		renderEmptyStoryAssetsPage();
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
+		const generate = screen.getByRole('button', { name: '生成物品候选' });
+		fireEvent.click(generate);
+
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('AI 返回的物品结构不完整，已安全隔离，请重试。');
+		expect(alert).not.toHaveTextContent('invalidItemCandidateCount');
+		expect(generate).toBeEnabled();
+		fireEvent.click(generate);
+
+		expect(await screen.findByRole('heading', { name: '无字站牌' })).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledTimes(2);
+	});
+
+	it('TC-ITEM-AI-003 redacts candidate write failure and preserves one explicit retry', async () => {
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
+		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
+			.mockRejectedValueOnce(new Error('C:\\private\\author\\items.json'));
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+		renderEmptyStoryAssetsPage();
+
+		fireEvent.click(await screen.findByRole('button', { name: '用 AI 创建物品' }));
+		fireEvent.click(screen.getByRole('button', { name: '生成物品候选' }));
+		expect(await screen.findByRole('heading', { name: '无字站牌' })).toBeInTheDocument();
+		const selectedBefore = screen.getAllByRole('checkbox')
+			.filter(control => (control as HTMLInputElement).checked).length;
+		const accept = screen.getByRole('button', { name: '创建物品并写入所选内容' });
+		fireEvent.click(accept);
+
+		const alert = await screen.findByRole('alert');
+		expect(alert).toHaveTextContent('物品候选写入失败，原资料没有改变，请重试。');
+		expect(alert).not.toHaveTextContent('C:\\private');
+		expect(accept).toBeEnabled();
+		expect(screen.getAllByRole('checkbox')
+			.filter(control => (control as HTMLInputElement).checked)).toHaveLength(selectedBefore);
+		fireEvent.click(accept);
+
+		await waitFor(() => expect(createSnapshot).toHaveBeenCalledTimes(2));
+		expect(await screen.findByText(/已创建安全快照，并保存“无字站牌”/u)).toBeInTheDocument();
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 	});
 });

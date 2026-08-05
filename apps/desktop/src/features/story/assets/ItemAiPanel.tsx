@@ -29,6 +29,7 @@ import type {
 } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
 import { AiJobCancelButton } from '../ai-context/AiJobCancelButton';
+import { normalizeAiError } from '../../ai/errors/AiErrorPresentation';
 import {
 	ItemAiReviewService,
 	ItemStateFileStore,
@@ -99,6 +100,47 @@ function initialStateSelection(batch: ItemReviewBatch): Readonly<Record<string, 
 		candidate.id,
 		candidate.states.filter(state => state.selectedByDefault).map(state => state.id)
 	]));
+}
+
+const invalidItemGenerationCodes = new Set([
+	'invalidItemCandidateCount',
+	'missingItemExtractionEvidence',
+	'unknownItemStateReference'
+]);
+
+function itemGenerationError(reason: unknown): string {
+	const message = reason instanceof Error ? reason.message : '';
+	if (
+		reason instanceof SyntaxError
+		|| (reason instanceof Error && reason.name === 'ZodError')
+		|| invalidItemGenerationCodes.has(message)
+	) {
+		return 'AI 返回的物品结构不完整，已安全隔离，请重试。';
+	}
+	if (message.startsWith('AI 输出达到最大 Token') || message === '未配置可用的 DeepSeek 模型。') {
+		return message;
+	}
+	return normalizeAiError(reason).message;
+}
+
+function itemWriteError(reason: unknown): string {
+	const code = reason instanceof Error ? reason.message : '';
+	if (code === 'staleItemCandidate') {
+		return '候选依据的正文或物品资料已变化，请重新生成。';
+	}
+	if (code === 'invalidItemSelection') {
+		return '请至少选择一个可写入字段或流转事件后重试。';
+	}
+	if (code === 'missingItemRequiredField') {
+		return '物品必填字段不完整，请重新生成候选。';
+	}
+	if (code === 'itemNameCollision') {
+		return '存在同名或同别名物品，请先检查物品资料。';
+	}
+	if (code === 'itemStateConflict') {
+		return '所选流转事件与已有持有人或时间状态冲突，请调整后重试。';
+	}
+	return '物品候选写入失败，原资料没有改变，请重试。';
 }
 
 export function ItemAiPanel(props: {
@@ -222,7 +264,7 @@ export function ItemAiPanel(props: {
 			if (next.candidates.length === 0) setNotice('本章没有找到可确认的物品信息。');
 		} catch (reason) {
 			setJobState('failed');
-			setError(reason instanceof Error ? reason.message : '物品候选生成失败。');
+			setError(itemGenerationError(reason));
 		} finally {
 			generationGuardRef.current = false;
 		}
@@ -278,7 +320,7 @@ export function ItemAiPanel(props: {
 			props.onAccepted(result.item, result.states);
 			setNotice(`已创建安全快照，并保存“${result.item.title}”及所选流转事件。`);
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '物品候选写入失败。');
+			setError(itemWriteError(reason));
 		} finally {
 			applyingRef.current = false;
 			setApplyingId(undefined);
@@ -298,7 +340,7 @@ export function ItemAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="物品 AI 动作">
 					{actions.map(candidate => (
-						<button type="button" role="tab" aria-selected={candidate.id === actionType} disabled={generating} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => selectAction(candidate.id)}>{candidate.label}</button>
+						<button data-testid="item-ai-action" type="button" role="tab" aria-selected={candidate.id === actionType} disabled={generating} className={candidate.id === actionType ? 'is-active' : ''} key={candidate.id} onClick={() => selectAction(candidate.id)}>{candidate.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
@@ -311,11 +353,11 @@ export function ItemAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea data-testid="item-ai-instruction" value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
-					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
+					<button data-testid="item-ai-generate" type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成物品候选'}
 					</button>
@@ -341,9 +383,9 @@ export function ItemAiPanel(props: {
 						<div className="ai-review-field-list">
 							{candidate.fields.map(field => (
 								<label className={`ai-review-field ${field.conflict ? 'has-conflict' : ''}`} key={field.id}>
-									<input type="checkbox" disabled={field.blocking || candidate.status !== 'candidate'} checked={(selectedFields[candidate.id] ?? []).includes(field.id)} onChange={() => toggleSelection(setSelectedFields, candidate.id, field.id)} />
+									<input data-testid="item-ai-field" type="checkbox" disabled={field.blocking || candidate.status !== 'candidate'} checked={(selectedFields[candidate.id] ?? []).includes(field.id)} onChange={() => toggleSelection(setSelectedFields, candidate.id, field.id)} />
 									<span><strong>{fieldLabels[field.key]}</strong><em>{displayValue(field.value)}</em>{field.conflict ? <small>{field.conflict}</small> : null}</span>
-									{field.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(field.evidence!); }}><BookOpen size={16} />证据</button> : null}
+									{field.evidence && props.onOpenEvidence ? <button data-testid="item-ai-field-evidence" type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(field.evidence!); }}><BookOpen size={16} />证据</button> : null}
 								</label>
 							))}
 						</div>
@@ -351,17 +393,17 @@ export function ItemAiPanel(props: {
 						<div className="ai-review-field-list">
 							{candidate.states.map(state => (
 								<label className={`ai-review-field ${state.conflict ? 'has-conflict' : ''}`} key={state.id}>
-									<input type="checkbox" disabled={state.blocking || candidate.status !== 'candidate'} checked={(selectedStates[candidate.id] ?? []).includes(state.id)} onChange={() => toggleSelection(setSelectedStates, candidate.id, state.id)} />
+									<input data-testid="item-ai-state" type="checkbox" disabled={state.blocking || candidate.status !== 'candidate'} checked={(selectedStates[candidate.id] ?? []).includes(state.id)} onChange={() => toggleSelection(setSelectedStates, candidate.id, state.id)} />
 									<span>
 										<strong>{stateLabels[state.action]} · {state.quantity}</strong>
 										<em>{state.holderTitle ?? '无持有人'} · {state.locationTitle ?? '未指定地点'}{state.condition ? ` · ${state.condition}` : ''}</em>
 										{state.conflict ? <small>{state.conflict}</small> : null}
 									</span>
-									{state.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(state.evidence!); }}><BookOpen size={16} />证据</button> : null}
+									{state.evidence && props.onOpenEvidence ? <button data-testid="item-ai-state-evidence" type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(state.evidence!); }}><BookOpen size={16} />证据</button> : null}
 								</label>
 							))}
 						</div>
-						<button type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || Boolean(applyingId) || ((selectedFields[candidate.id] ?? []).length === 0 && (selectedStates[candidate.id] ?? []).length === 0)} onClick={() => void apply(candidate.id)}>
+						<button data-testid="item-ai-accept" type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || Boolean(applyingId) || ((selectedFields[candidate.id] ?? []).length === 0 && (selectedStates[candidate.id] ?? []).length === 0)} onClick={() => void apply(candidate.id)}>
 							{applyingId === candidate.id ? <LoaderCircle className="spin" size={16} /> : <Sparkles size={16} />}
 							{candidate.matchedItemId ? '确认合并所选字段与事件' : '创建物品并写入所选内容'}
 						</button>
