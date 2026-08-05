@@ -104284,11 +104284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-VISIBLE",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -104300,11 +104300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-HIDDEN",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -104316,11 +104316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-ENABLED",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -104332,11 +104332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DISABLED",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -104348,11 +104348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-POINTER",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -104364,11 +104364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-KEYBOARD",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -104380,11 +104380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FOCUS-IN",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -104396,11 +104396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FOCUS-OUT",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -104412,11 +104412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-REPEAT",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -104428,11 +104428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DEDUPLICATION",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -104444,11 +104444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-LOADING",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -104460,11 +104460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-SUCCESS",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -104476,11 +104476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FAILURE",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -104492,11 +104492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-CANCELLED",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -104508,11 +104508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-OFFLINE",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -104524,11 +104524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-PERMISSION",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -104540,11 +104540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-PERSISTENCE",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -104556,11 +104556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-RESTART",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -104572,11 +104572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-VISUAL",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -104588,11 +104588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-ACCESSIBLE-NAME",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -104604,11 +104604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -104620,11 +104620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-UNDO",
+      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-RESIZEHANDLE-DIV-66D15B9F"
+        "CTRL-RESIZEHANDLE-DIV-F1C3C23D"
       ],
       "name": "撤销",
       "dimension": "UNDO",

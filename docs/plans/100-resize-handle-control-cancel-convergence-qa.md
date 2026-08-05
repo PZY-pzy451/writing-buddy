@@ -46,4 +46,21 @@ Date: 2026-08-05
 
 ## Result
 
-Pending.
+- Product source `cd20623` adds the stable shared selector and restores the
+  exact pointer-down size when Escape cancels an active drag. Pointer capture
+  and the global resize cursor are released, and later movement from the
+  cancelled pointer is ignored.
+- Pointer/inverse/vertical clamping, Arrow/Shift/Home/End/Enter, double-click
+  reset and non-primary rejection remain covered. All four component tests are
+  strictly mapped; one QA regression test was added.
+- The QA audit found that `tab` matched inside `stable`, creating 89 historical
+  false-positive keyboard-state mappings. English keyboard tokens now require
+  word boundaries, while Chinese keyboard intent remains supported.
+- Five initial failures converged to 24/24 focused, 73/73 impacted and 30/30
+  QA infrastructure tests. Fixed-source acceptance passed 188 frontend files /
+  979 tests, production build and 77 Rust tests with two reasoned ignores.
+- Selector gaps fell from 92 to 91. On the corrected baseline, strict gaps fell
+  by 12 from 9,875 to 9,863; the former published 9,786 value is not comparable
+  because it included the 89 false state mappings.
+- Product remains `PARTIAL`; strict traceability, real-provider smoke and
+  packaged-EXE acceptance are still open release gates.

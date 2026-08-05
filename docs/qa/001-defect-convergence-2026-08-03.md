@@ -1305,3 +1305,24 @@ did not fully specify `targetTypes`, position objects or history arrays.
   are 1,302 mappings and 44 selectors.
 - Strict coverage is 21.64%, stable-selector coverage is 81.07%, test mapping
   is 16.27% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 066
+
+- The shared workspace Resize Handle now exposes one stable separator identity;
+  all four existing pointer, layout, keyboard and reset cases are strictly
+  mapped.
+- Escape during an active drag restores the exact starting size, releases
+  capture and global cursor state, and makes later movement from that pointer a
+  no-op. Inverse horizontal/vertical clamping and other reset paths remain
+  verified.
+- The QA audit found 89 false keyboard-state mappings caused by matching `tab`
+  inside `stable`. English keyboard tokens now require word boundaries, Chinese
+  intent remains supported, and a dedicated meta-test prevents recurrence.
+- Five red failures converged to 24/24 focused, 73/73 impacted and 30/30 QA
+  infrastructure tests. Fixed-source execution passed 979 frontend and 77
+  native tests; two native cases retain documented reasons.
+- Stable-selector gaps fell from 92 to 91. Correcting the historical matcher
+  rebases the prior aggregate from 9,786 to 9,875; this round then reduces the
+  truthful gap count by 12 to 9,863. Mapped tests are 176/1,058.
+- Strict coverage is 21.03%, stable-selector coverage is 81.28%, test mapping
+  is 16.64% and release hard gates remain 1/4 complete.

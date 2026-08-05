@@ -2130,6 +2130,52 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-RESIZE-HANDLE-CONTROL-CANCEL-CONVERGENCE-066',
+			summary: 'The shared workspace resize separator lacked a stable identity, Escape could not cancel an accidental drag and keyboard traceability treated the tab substring in stable as keyboard intent.',
+			before: {
+				sourceControls: 1,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 1,
+				targetTestsMapped: 0,
+				targetTestsUnmapped: 4,
+				escapeRestoresStartingSize: false,
+				cancelledPointerMovementIgnored: false,
+				falsePositiveKeyboardStateMappings: 89,
+				globalControls: 486,
+				globalStates: 10692,
+				globalTests: 1057,
+				mappedTests: 172,
+				unmappedTests: 885,
+				globalMissingStableSelectors: 92,
+				publishedTotalUnmapped: 9786,
+				normalizedTotalUnmapped: 9875
+			},
+			after: {
+				sourceControls: 1,
+				sourceMappedControls: 1,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 4,
+				targetTestsUnmapped: 0,
+				escapeRestoresStartingSize: true,
+				cancelledPointerMovementIgnored: true,
+				inverseHorizontalAndVerticalClamping: true,
+				keyboardBoundsAndReset: true,
+				falsePositiveKeyboardStateMappings: 0,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 5,
+				focusedTests: 24,
+				impactTests: 73,
+				qaScriptTests: 30,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

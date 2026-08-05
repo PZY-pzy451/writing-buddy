@@ -4,36 +4,42 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Selection Action Menu control and keyboard convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `60078b1`.
+Resize Handle control, cancellation and QA truth convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `cd20623`.
 
-- Three failure-first assertions reproduced missing identities for existing
-  resource linking, the AI disclosure and generated resource actions. Source
-  audit also found a role=menu surface without focus entry or Arrow navigation.
-- Stable identities expose 7/7 logical controls, including generated rewrite
-  and resource actions. Both existing component cases are mapped without
-  adding test-count debt.
-- Opening the contextual AI menu focuses its first item. ArrowUp/ArrowDown
-  wrap, Home/End move to the boundaries and Escape closes while returning
-  focus to the disclosure. Pointer workflows remain unchanged.
-- Focused execution passed 17/17, the manuscript/editor impact set passed
-  50/50 and QA infrastructure passed 29/29.
-- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
+- Five failure-first assertions reproduced the missing shared identity and an
+  accidental drag that Escape could neither cancel nor restore.
+- The shared separator now exposes `workspace-resize-handle`. Escape restores
+  the exact starting size, releases pointer capture/global cursor state and
+  ignores movement after cancellation.
+- Pointer, inverse horizontal/vertical clamping, keyboard bounds/reset,
+  double-click reset and non-primary rejection remain covered. The one source
+  control and all four existing component cases are strictly mapped.
+- QA also found 89 false keyboard-state mappings caused by matching `tab`
+  inside `stable`. English keyboard terms now require word boundaries, while
+  Chinese intent remains supported by an explicit regression test.
+- Focused execution passed 24/24, the workspace impact set passed 73/73 and QA
+  infrastructure passed 30/30.
+- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 979 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- Mapped tests rise from 171 to 172 and unmapped tests fall from 886 to 885.
-  Mapped controls rise from 233 to 237 and mapped states from 2,207 to 2,243.
-- The inventory now distinguishes one previously collapsed control and 22
-  derived states. Net strict gaps still fall from 9,804 to 9,786, while stable
-  selector gaps fall from 95 to 92. From the earlier 11,088 / 136 reference,
-  cumulative reductions are 1,302 mappings and 44 selectors.
+- The prior published strict gap count of 9,786 included those false mappings;
+  the comparable corrected baseline is 9,875. This round reduces it by 12 to
+  9,863. Stable-selector gaps fall from 92 to 91; mapped tests are 176/1,058
+  and unmapped tests are 882.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,702/12,488 (21.64%); stable selectors are 394/486 (81.07%); test mapping is
-  172/1,057 (16.27%). Release gates remain 1/4 complete (25%). Product stays
+  2,626/12,489 (21.03%); stable selectors are 395/486 (81.28%); test mapping is
+  176/1,058 (16.64%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
+
+Selection Action Menu control and keyboard convergence is complete against
+source `60078b1`: 7/7 logical controls and 2/2 tests are mapped, and fixed
+acceptance passed 978 frontend tests.
+
+## Earlier milestone
 
 Entity Peek control and keyboard convergence is complete against source
 `509151b`: 5/5 controls and 2/2 tests are mapped, and fixed acceptance passed

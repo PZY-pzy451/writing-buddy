@@ -61641,138 +61641,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-RESIZEHANDLE-DIV-66D15B9F",
+                  "id": "CTRL-RESIZEHANDLE-DIV-F1C3C23D",
                   "level": "L4",
                   "name": "div",
                   "states": [
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-VISIBLE",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-HIDDEN",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-ENABLED",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DISABLED",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-POINTER",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-KEYBOARD",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FOCUS-IN",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FOCUS-OUT",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-REPEAT",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DEDUPLICATION",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-LOADING",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-SUCCESS",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-FAILURE",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-CANCELLED",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-OFFLINE",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-PERMISSION",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-PERSISTENCE",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-RESTART",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-VISUAL",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-ACCESSIBLE-NAME",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-RESIZEHANDLE-DIV-66D15B9F-UNDO",
+                      "id": "STATE-RESIZEHANDLE-DIV-F1C3C23D-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71097,10 +71097,28 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-07CE42244D",
+      "title": "keeps the stable workspace resize handle bounded and cancels an active pointer drag",
+      "declarationTitle": "keeps the stable workspace resize handle bounded and cancels an active pointer drag",
+      "declarationLine": 49,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 344,
+      "declarationLine": 351,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -71142,24 +71160,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/tests/App.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-08CD4C2C57",
-      "title": "exposes bounded separator values and resizes with pointer capture",
-      "declarationTitle": "exposes bounded separator values and resizes with pointer capture",
-      "declarationLine": 48,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -72477,6 +72477,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-1D0218D19D",
+      "title": "keeps the stable workspace resize handle within visual bounds across inverse horizontal and vertical dragging",
+      "declarationTitle": "keeps the stable workspace resize handle within visual bounds across inverse horizontal and vertical dragging",
+      "declarationLine": 72,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-1D1BB992EC",
       "title": "restores the snapshot after an apply failure",
       "declarationTitle": "restores the snapshot after an apply failure",
@@ -72541,24 +72559,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-1D75425E8F",
-      "title": "supports inverse horizontal and vertical dragging with clamped values",
-      "declarationTitle": "supports inverse horizontal and vertical dragging with clamped values",
-      "declarationLine": 67,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -74542,6 +74542,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-362A09B9AA",
+      "title": "TC-QA-TRACEABILITY-005 distinguishes stable selectors from real keyboard intent",
+      "declarationTitle": "TC-QA-TRACEABILITY-005 distinguishes stable selectors from real keyboard intent",
+      "declarationLine": 73,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/traceability.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -76880,7 +76898,7 @@
       "id": "TC-DISCOVERED-521359FC29",
       "title": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
       "declarationTitle": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
-      "declarationLine": 25,
+      "declarationLine": 26,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -81337,6 +81355,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-978BA9A87A",
+      "title": "drives the stable workspace resize handle separator by keyboard arrows, bounds and reset keys",
+      "declarationTitle": "drives the stable workspace resize handle separator by keyboard arrows, bounds and reset keys",
+      "declarationLine": 92,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-978BB202F2",
       "title": "resolves the central hook and finishes with unmediated sound",
       "declarationTitle": "resolves the central hook and finishes with unmediated sound",
@@ -82226,7 +82262,7 @@
       "id": "TC-DISCOVERED-A3F9BAB936",
       "title": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
       "declarationTitle": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
-      "declarationLine": 39,
+      "declarationLine": 40,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -85149,24 +85185,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-CCCB3D99A2",
-      "title": "restores the default on double click and ignores non-primary pointer input",
-      "declarationTitle": "restores the default on double click and ignores non-primary pointer input",
-      "declarationLine": 101,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-CDBF04C143",
       "title": "uses aggregate character limits and reports empty chapters without sending them",
       "declarationTitle": "uses aggregate character limits and reports empty chapters without sending them",
@@ -86027,24 +86045,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-D9769DF34B",
-      "title": "supports arrow steps, accelerated movement, bounds, and reset keys",
-      "declarationTitle": "supports arrow steps, accelerated movement, bounds, and reset keys",
-      "declarationLine": 87,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-D9C66F613F",
       "title": "TC-QA-SK-REL-004 isolates malformed relationships at the 24-candidate response limit",
       "declarationTitle": "TC-QA-SK-REL-004 isolates malformed relationships at the 24-candidate response limit",
@@ -86720,7 +86720,7 @@
       "id": "TC-DISCOVERED-E5144B11D0",
       "title": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
       "declarationTitle": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
-      "declarationLine": 31,
+      "declarationLine": 32,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -87448,7 +87448,7 @@
       "id": "TC-DISCOVERED-F13E74DED3",
       "title": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
       "declarationTitle": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
-      "declarationLine": 48,
+      "declarationLine": 49,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -87542,6 +87542,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/StoryKernelGeneratorPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F32261533D",
+      "title": "restores the stable workspace resize handle on double click and ignores non-primary input",
+      "declarationTitle": "restores the stable workspace resize handle on double click and ignores non-primary input",
+      "declarationLine": 107,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
