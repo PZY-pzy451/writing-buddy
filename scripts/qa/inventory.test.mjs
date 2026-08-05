@@ -454,6 +454,21 @@ describe('control inventory rendered-element boundary', () => {
 			'quick-capture-text',
 			'quick-capture-type'
 		]);
+		const itemTransferControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/assets/ItemTransferDialog.tsx'
+		));
+
+		expect(itemTransferControls).toHaveLength(6);
+		expect(itemTransferControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(itemTransferControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'item-transfer-close',
+			'item-transfer-commit',
+			'item-transfer-holder',
+			'item-transfer-location',
+			'item-transfer-order',
+			'item-transfer-quantity'
+		]);
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

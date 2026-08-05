@@ -1,5 +1,7 @@
 # Plan index
 
+- [Item transfer single-flight, selector and trace convergence QA](./108-item-transfer-single-flight-selector-trace-convergence-qa.md)
+
 - [Quick capture save, selector and trace convergence QA](./107-quick-capture-save-selector-trace-convergence-qa.md)
 
 - [Top bar menu keyboard and selector convergence QA](./106-top-bar-menu-keyboard-selector-convergence-qa.md)

@@ -364,6 +364,12 @@
 	font-size: 11px;
 }
 
+.item-transfer-error {
+	margin: -6px 0 14px;
+	color: var(--danger);
+	font-size: 12px;
+}
+
 .item-transfer-commit {
 	width: 100%;
 }
