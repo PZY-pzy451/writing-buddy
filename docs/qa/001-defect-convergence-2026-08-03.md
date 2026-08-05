@@ -1646,3 +1646,21 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,395 to 9,247, selector gaps from 57 to 55 and unmapped tests from
   846 to 842. Strict coverage is 29.09%, stable-selector coverage is 89.22%,
   test mapping is 20.42% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 083
+
+- AI settings API-key, composite generation-preference and composite inline-
+  feature declarations expose stable identities plus exact context without
+  adding controls, states or discovered tests.
+- Rendered tests retain secret non-persistence, latest-preference-wins behavior,
+  explicit inline choice and long-output warning. The final three Project
+  Wizard cases now map accessible starts, offline import and disabled project-
+  scoped actions without an open project.
+- Three isolated red failures converged to 34/34 focused and 224/224 impact
+  tests. Fixed-source sequential execution passed 189 frontend files / 979
+  tests, production build, 77 native tests with two reasoned ignores and 30/30
+  QA infrastructure tests.
+- Global mapped controls rise by 3, states by 113 and tests by 5. Strict gaps
+  fall from 9,247 to 9,126, selector gaps from 55 to 52 and unmapped tests from
+  842 to 837. Strict coverage is 30.02%, stable-selector coverage is 89.80%,
+  test mapping is 20.89% and release hard gates remain 1/4 complete.

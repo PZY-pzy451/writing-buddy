@@ -54690,138 +54690,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83",
+                  "id": "CTRL-AISETTINGSSECTION-INPUT-16AC765A",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-VISIBLE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-HIDDEN",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-ENABLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DISABLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-POINTER",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-KEYBOARD",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FOCUS-IN",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FOCUS-OUT",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-REPEAT",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DEDUPLICATION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-LOADING",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-SUCCESS",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FAILURE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-CANCELLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-OFFLINE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-PERMISSION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-PERSISTENCE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-RESTART",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-VISUAL",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-ACCESSIBLE-NAME",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-UNDO",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -54829,277 +54829,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-AISETTINGSSECTION-INPUT-F0042AFB",
+                  "id": "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-VISIBLE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-HIDDEN",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-ENABLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DISABLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-POINTER",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-KEYBOARD",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FOCUS-IN",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FOCUS-OUT",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-REPEAT",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DEDUPLICATION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-LOADING",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-SUCCESS",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FAILURE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-CANCELLED",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-OFFLINE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-PERMISSION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-PERSISTENCE",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-RESTART",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-VISUAL",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-ACCESSIBLE-NAME",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-AISETTINGSSECTION-SELECT-81AAF576",
-                  "level": "L4",
-                  "name": "select",
-                  "states": [
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-UNDO",
+                      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -55239,6 +55100,145 @@
                     },
                     {
                       "id": "STATE-AISETTINGSSECTION-SELECT-C313CD61-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-AISETTINGSSECTION-SELECT-C478EA29",
+                  "level": "L4",
+                  "name": "select",
+                  "states": [
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74510,7 +74510,7 @@
       "id": "TC-DISCOVERED-08DC64522D",
       "title": "starts one playground request for 100 same-tick generation calls",
       "declarationTitle": "starts one playground request for 100 same-tick generation calls",
-      "declarationLine": 131,
+      "declarationLine": 133,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -74640,7 +74640,7 @@
       "id": "TC-DISCOVERED-0A46528F80",
       "title": "shows a recoverable deletion failure and succeeds on explicit retry",
       "declarationTitle": "shows a recoverable deletion failure and succeeds on explicit retry",
-      "declarationLine": 336,
+      "declarationLine": 338,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -74755,24 +74755,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-0B5882C057",
-      "title": "offers four truthful starting paths with genre as the only primary action",
-      "declarationTitle": "offers four truthful starting paths with genre as the only primary action",
-      "declarationLine": 117,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -75036,7 +75018,7 @@
       "id": "TC-DISCOVERED-0DF64E1B2E",
       "title": "does not write a new project when the current manuscript is dirty and switching is cancelled",
       "declarationTitle": "does not write a new project when the current manuscript is dirty and switching is cancelled",
-      "declarationLine": 311,
+      "declarationLine": 313,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -75072,7 +75054,7 @@
       "id": "TC-DISCOVERED-0EB3B18F6A",
       "title": "offers New project from the open-project menu and supports keyboard navigation",
       "declarationTitle": "offers New project from the open-project menu and supports keyboard navigation",
-      "declarationLine": 284,
+      "declarationLine": 286,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -75380,7 +75362,7 @@
       "id": "TC-DISCOVERED-157F1485C9",
       "title": "streams only the explicit StoryForge prompt and exposes usage",
       "declarationTitle": "streams only the explicit StoryForge prompt and exposes usage",
-      "declarationLine": 114,
+      "declarationLine": 116,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -75444,6 +75426,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-16502AC624",
+      "title": "persists the provider maximum and enables explicit inline feature choices",
+      "declarationTitle": "persists the provider maximum and enables explicit inline feature choices",
+      "declarationLine": 567,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
+      "domainId": "DOMAIN-07",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -75636,7 +75636,7 @@
       "id": "TC-DISCOVERED-1957611FBE",
       "title": "queues a different settings action without dropping or multiplying it",
       "declarationTitle": "queues a different settings action without dropping or multiplying it",
-      "declarationLine": 226,
+      "declarationLine": 228,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -76346,7 +76346,7 @@
       "id": "TC-DISCOVERED-21E6E7E819",
       "title": "locks destructive confirmation and preference controls while deletion is pending",
       "declarationTitle": "locks destructive confirmation and preference controls while deletion is pending",
-      "declarationLine": 362,
+      "declarationLine": 364,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -76990,6 +76990,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-2A511AC7C0",
+      "title": "imports an outline offline, creates its chapter structure, and opens the dashboard",
+      "declarationTitle": "imports an outline offline, creates its chapter structure, and opens the dashboard",
+      "declarationLine": 202,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -78158,7 +78176,7 @@
       "id": "TC-DISCOVERED-37F5DFC8AA",
       "title": "localizes a cancellation failure and permits one explicit retry",
       "declarationTitle": "localizes a cancellation failure and permits one explicit retry",
-      "declarationLine": 513,
+      "declarationLine": 530,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -78978,7 +78996,7 @@
       "id": "TC-DISCOVERED-4021146083",
       "title": "refreshes balance once for 100 same-tick requests",
       "declarationTitle": "refreshes balance once for 100 same-tick requests",
-      "declarationLine": 208,
+      "declarationLine": 210,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -80357,6 +80375,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-53AE684270",
+      "title": "offers four accessible truthful starting paths with genre as the only primary action",
+      "declarationTitle": "offers four accessible truthful starting paths with genre as the only primary action",
+      "declarationLine": 117,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-545DB4EB96",
       "title": "rejects stale formal relationship revisions",
       "declarationTitle": "rejects stale formal relationship revisions",
@@ -80488,7 +80524,7 @@
       "id": "TC-DISCOVERED-560EE021A1",
       "title": "keeps text but marks a plain-text result that reaches the output limit",
       "declarationTitle": "keeps text but marks a plain-text result that reaches the output limit",
-      "declarationLine": 570,
+      "declarationLine": 607,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -80580,7 +80616,7 @@
       "id": "TC-DISCOVERED-57EB62E35C",
       "title": "does not start a new generation while credential deletion is active",
       "declarationTitle": "does not start a new generation while credential deletion is active",
-      "declarationLine": 286,
+      "declarationLine": 288,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -81126,7 +81162,7 @@
       "id": "TC-DISCOVERED-603E693C72",
       "title": "keeps a cancelled job truthful when credential deletion fails",
       "declarationTitle": "keeps a cancelled job truthful when credential deletion fails",
-      "declarationLine": 311,
+      "declarationLine": 313,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -81434,7 +81470,7 @@
       "id": "TC-DISCOVERED-654D111B4F",
       "title": "saves and validates a key without retaining it in React or local storage",
       "declarationTitle": "saves and validates a key without retaining it in React or local storage",
-      "declarationLine": 60,
+      "declarationLine": 61,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -82650,7 +82686,7 @@
       "id": "TC-DISCOVERED-791EA84172",
       "title": "cancels one active job and deletes one key for 100 same-tick requests",
       "declarationTitle": "cancels one active job and deletes one key for 100 same-tick requests",
-      "declarationLine": 253,
+      "declarationLine": 255,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -83277,24 +83313,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-81D1BB16F7",
-      "title": "persists the provider maximum and explains long-form output cost",
-      "declarationTitle": "persists the provider maximum and explains long-form output cost",
-      "declarationLine": 550,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
-      "domainId": "DOMAIN-07",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84127,24 +84145,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-8F6F9A2FDF",
-      "title": "previews an outline, creates its chapter structure, and opens the dashboard",
-      "declarationTitle": "previews an outline, creates its chapter structure, and opens the dashboard",
-      "declarationLine": 202,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-8F7B4D682F",
       "title": "provides responsive dialogs, 44px actions and reduced motion",
       "declarationTitle": "provides responsive dialogs, 44px actions and reduced motion",
@@ -84263,6 +84263,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-914C8FF78A",
+      "title": "keeps global create useful while project-scoped actions stay disabled without an open project",
+      "declarationTitle": "keeps global create useful while project-scoped actions stay disabled without an open project",
+      "declarationLine": 266,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84530,7 +84548,7 @@
       "id": "TC-DISCOVERED-964A979B5D",
       "title": "replaces the save notice with explicit feedback for each manual provider action",
       "declarationTitle": "replaces the save notice with explicit feedback for each manual provider action",
-      "declarationLine": 78,
+      "declarationLine": 79,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -85173,24 +85191,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-12",
       "pageId": "PAGE-PLANNING-PLOTS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-9E9100AB00",
-      "title": "keeps the global create menu useful without an open project",
-      "declarationTitle": "keeps the global create menu useful without an open project",
-      "declarationLine": 264,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85922,7 +85922,7 @@
       "id": "TC-DISCOVERED-AB6015B8AC",
       "title": "deduplicates 100 cancellations and ignores a stale cancellation result",
       "declarationTitle": "deduplicates 100 cancellations and ignores a stale cancellation result",
-      "declarationLine": 462,
+      "declarationLine": 479,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -86840,7 +86840,7 @@
       "id": "TC-DISCOVERED-B7B15FCDFD",
       "title": "visually discloses truthful Word outline format limitations before import",
       "declarationTitle": "visually discloses truthful Word outline format limitations before import",
-      "declarationLine": 230,
+      "declarationLine": 232,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -87026,7 +87026,7 @@
       "id": "TC-DISCOVERED-B918181DE8",
       "title": "saves and validates a key once for 100 same-tick requests",
       "declarationTitle": "saves and validates a key once for 100 same-tick requests",
-      "declarationLine": 150,
+      "declarationLine": 152,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -87415,24 +87415,6 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-03",
       "pageId": "PAGE-STORY-RELATIONSHIPS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-BF944434C3",
-      "title": "serializes rapid preference changes so the latest choice wins",
-      "declarationTitle": "serializes rapid preference changes so the latest choice wins",
-      "declarationLine": 388,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
-      "domainId": "DOMAIN-07",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88631,6 +88613,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-CF7671A102",
+      "title": "serializes rapid rendered preference selections so the latest choice wins",
+      "declarationTitle": "serializes rapid rendered preference selections so the latest choice wins",
+      "declarationLine": 391,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
+      "domainId": "DOMAIN-07",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-CFE4B8A24B",
       "title": "preserves an applying transaction dismissed through button",
       "declarationTitle": "preserves an applying transaction dismissed through %s",
@@ -88910,7 +88910,7 @@
       "id": "TC-DISCOVERED-D2F5C4AA4A",
       "title": "deduplicates one hundred repeated same-tick final submissions and hides the completed wizard",
       "declarationTitle": "deduplicates one hundred repeated same-tick final submissions and hides the completed wizard",
-      "declarationLine": 354,
+      "declarationLine": 356,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -89402,7 +89402,7 @@
       "id": "TC-DISCOVERED-DB70682025",
       "title": "shows recoverable feedback when a manual connection test fails",
       "declarationTitle": "shows recoverable feedback when a manual connection test fails",
-      "declarationLine": 99,
+      "declarationLine": 101,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -89456,7 +89456,7 @@
       "id": "TC-DISCOVERED-DC0D086E9C",
       "title": "rolls back to the last persisted preferences when the latest queued save fails",
       "declarationTitle": "rolls back to the last persisted preferences when the latest queued save fails",
-      "declarationLine": 421,
+      "declarationLine": 438,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -89928,7 +89928,7 @@
       "id": "TC-DISCOVERED-E42B0C3657",
       "title": "cancels an active stream and preserves partial output when present",
       "declarationTitle": "cancels an active stream and preserves partial output when present",
-      "declarationLine": 447,
+      "declarationLine": 464,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -91020,7 +91020,7 @@
       "id": "TC-DISCOVERED-F58E9BBF16",
       "title": "refreshes models once for 100 same-tick requests",
       "declarationTitle": "refreshes models once for 100 same-tick requests",
-      "declarationLine": 190,
+      "declarationLine": 192,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",
@@ -91490,7 +91490,7 @@
       "id": "TC-DISCOVERED-FB66B770B1",
       "title": "keeps the final step retryable after an atomic creation failure",
       "declarationTitle": "keeps the final step retryable after an atomic creation failure",
-      "declarationLine": 390,
+      "declarationLine": 392,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ProjectCreationWizard.test.tsx",
@@ -91562,7 +91562,7 @@
       "id": "TC-DISCOVERED-FD6D43A34F",
       "title": "tests the connection once for 100 same-tick requests",
       "declarationTitle": "tests the connection once for 100 same-tick requests",
-      "declarationLine": 172,
+      "declarationLine": 174,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/ai/AiExperience.test.tsx",

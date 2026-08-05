@@ -3964,11 +3964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-VISIBLE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-VISIBLE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -3980,11 +3980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-HIDDEN",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-HIDDEN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -3996,11 +3996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-ENABLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-ENABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -4012,11 +4012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DISABLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DISABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -4028,11 +4028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-POINTER",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-POINTER",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -4044,11 +4044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-KEYBOARD",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-KEYBOARD",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -4060,11 +4060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FOCUS-IN",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FOCUS-IN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -4076,11 +4076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FOCUS-OUT",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FOCUS-OUT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -4092,11 +4092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-REPEAT",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-REPEAT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -4108,11 +4108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DEDUPLICATION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DEDUPLICATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -4124,11 +4124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-LOADING",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-LOADING",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -4140,11 +4140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-SUCCESS",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-SUCCESS",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -4156,11 +4156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-FAILURE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-FAILURE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -4172,11 +4172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-CANCELLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-CANCELLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -4188,11 +4188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-OFFLINE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-OFFLINE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -4204,11 +4204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-PERMISSION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-PERMISSION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -4220,11 +4220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-PERSISTENCE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-PERSISTENCE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -4236,11 +4236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-RESTART",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-RESTART",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -4252,11 +4252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-VISUAL",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-VISUAL",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -4268,11 +4268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-ACCESSIBLE-NAME",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-ACCESSIBLE-NAME",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -4284,11 +4284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -4300,11 +4300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-3ABBDA83-UNDO",
+      "id": "STATE-AISETTINGSSECTION-INPUT-16AC765A-UNDO",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-3ABBDA83"
+        "CTRL-AISETTINGSSECTION-INPUT-16AC765A"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -4316,11 +4316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-VISIBLE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-VISIBLE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -4332,11 +4332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-HIDDEN",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-HIDDEN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -4348,11 +4348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-ENABLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-ENABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -4364,11 +4364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DISABLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DISABLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -4380,11 +4380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-POINTER",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-POINTER",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -4396,11 +4396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-KEYBOARD",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-KEYBOARD",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -4412,11 +4412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FOCUS-IN",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FOCUS-IN",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -4428,11 +4428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FOCUS-OUT",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FOCUS-OUT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -4444,11 +4444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-REPEAT",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-REPEAT",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -4460,11 +4460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DEDUPLICATION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DEDUPLICATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -4476,11 +4476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-LOADING",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-LOADING",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -4492,11 +4492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-SUCCESS",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-SUCCESS",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -4508,11 +4508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-FAILURE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-FAILURE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -4524,11 +4524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-CANCELLED",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-CANCELLED",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -4540,11 +4540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-OFFLINE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-OFFLINE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -4556,11 +4556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-PERMISSION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-PERMISSION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -4572,11 +4572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-PERSISTENCE",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-PERSISTENCE",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -4588,11 +4588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-RESTART",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-RESTART",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -4604,11 +4604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-VISUAL",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-VISUAL",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -4620,11 +4620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-ACCESSIBLE-NAME",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-ACCESSIBLE-NAME",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -4636,11 +4636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -4652,363 +4652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-AISETTINGSSECTION-INPUT-F0042AFB-UNDO",
+      "id": "STATE-AISETTINGSSECTION-INPUT-94E1FDEC-UNDO",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
-        "CTRL-AISETTINGSSECTION-INPUT-F0042AFB"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-VISIBLE",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-HIDDEN",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-ENABLED",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DISABLED",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-POINTER",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-KEYBOARD",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FOCUS-IN",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FOCUS-OUT",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-REPEAT",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DEDUPLICATION",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-LOADING",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-SUCCESS",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-FAILURE",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-CANCELLED",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-OFFLINE",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-PERMISSION",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-PERSISTENCE",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-RESTART",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-VISUAL",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-AISETTINGSSECTION-SELECT-81AAF576-UNDO",
-      "featureId": "FEATURE-07-08",
-      "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlIds": [
-        "CTRL-AISETTINGSSECTION-SELECT-81AAF576"
+        "CTRL-AISETTINGSSECTION-INPUT-94E1FDEC"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -5361,6 +5009,358 @@
       "pageId": "PAGE-AI-DIAGNOSTICS",
       "controlIds": [
         "CTRL-AISETTINGSSECTION-SELECT-C313CD61"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-VISIBLE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-HIDDEN",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-ENABLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DISABLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-POINTER",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-KEYBOARD",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FOCUS-IN",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FOCUS-OUT",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-REPEAT",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DEDUPLICATION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-LOADING",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-SUCCESS",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-FAILURE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-CANCELLED",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-OFFLINE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-PERMISSION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-PERSISTENCE",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-RESTART",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-VISUAL",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-AISETTINGSSECTION-SELECT-C478EA29-UNDO",
+      "featureId": "FEATURE-07-08",
+      "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlIds": [
+        "CTRL-AISETTINGSSECTION-SELECT-C478EA29"
       ],
       "name": "撤销",
       "dimension": "UNDO",

@@ -49,3 +49,25 @@ Date: 2026-08-05
   gates sequentially from the fixed source.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source: `93b3e56`.
+- Three isolated failure-first assertions reproduced the missing API-key,
+  generation-preference and inline-feature identities. The corrected focused
+  set passed 34/34 cases and the wider impact set passed 224/224.
+- AI settings remains 7 controls / 154 states while stable identities rise from
+  4 to 7, mapped controls from 3 to 6 and mapped states from 33 to 78. Related
+  mapped product cases rise from 8/22 to 10/22.
+- Project Wizard remains 20/20 stable and 16/20 control-mapped. All 12/12 exact
+  product cases now map and mapped states rise from 224 to 272.
+- Global inventory remains 510 controls / 11,220 states / 1,058 tests. Mapped
+  controls rise by 3, states by 113 and tests by 5; strict gaps fall by 121 to
+  9,126, selector gaps by 3 to 52 and unmapped tests by 5 to 837.
+- Fixed-source sequential gates passed 189 frontend files / 979 tests plus
+  production build, 77 Rust tests with two reasoned ignores, and 30/30 QA
+  infrastructure tests.
+- Strict coverage is 3,915/13,041 (30.02%), selector coverage is 458/510
+  (89.80%) and test mapping is 221/1,058 (20.89%). Release remains 1/4 hard
+  gates complete pending strict traceability, real-provider smoke and packaged
+  EXE acceptance.
