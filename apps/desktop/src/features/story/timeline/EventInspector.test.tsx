@@ -94,7 +94,7 @@ describe('EventInspector', () => {
 		});
 	});
 
-	it('releases the save guard after failure so a retry can succeed', async () => {
+	it('restores the save guard after failure so a retry can succeed', async () => {
 		const onSave = vi.fn()
 			.mockRejectedValueOnce(new Error('disk unavailable'))
 			.mockResolvedValueOnce(undefined);

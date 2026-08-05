@@ -136,7 +136,7 @@ interface TimelinePageProps {
 	readonly onOpenEvidence?: OpenAiEvidence;
 }
 
-function CausalityConfirmDialog({
+export function CausalityConfirmDialog({
 	conflicts,
 	saving,
 	onCancel,
@@ -177,7 +177,7 @@ function CausalityConfirmDialog({
 				{conflicts.length > 6 ? <p>另有 {conflicts.length - 6} 条冲突。</p> : null}
 				<footer>
 					<button type="button" onClick={onCancel}>返回调整</button>
-					<button type="button" className="is-primary" disabled={saving} onClick={onConfirm}>
+					<button type="button" data-testid="timeline-causality-confirm" className="is-primary" disabled={saving} onClick={onConfirm}>
 						<Check size={18} />{saving ? '保存中…' : '仍然保存'}
 					</button>
 				</footer>
@@ -389,7 +389,7 @@ export function TimelinePage({
 					<span>{Math.round(zoom * 100)}%</span>
 					<button type="button" aria-label="放大时间线" onClick={() => setZoom(value => Math.min(1.8, value + 0.15))}><Plus size={16} /></button>
 					<button type="button" className="timeline-view-toggle" aria-label="列表替代视图" onClick={() => setView(value => value === 'tracks' ? 'list' : 'tracks')}><LayoutList size={16} />{view === 'tracks' ? '列表' : '轨道'}</button>
-					<button type="button" className="timeline-ai-event" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 从正文提取</button>
+					<button type="button" data-testid="timeline-ai-open" data-entry="toolbar" className="timeline-ai-event" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 从正文提取</button>
 					<button type="button" className="timeline-new-event" disabled={readOnly} onClick={() => {
 						const event = newTimelineEvent();
 						setDraftEvent(event);
@@ -428,7 +428,7 @@ export function TimelinePage({
 								description="AI 候选会保留证据，并在作者确认前保持待定。"
 								className="timeline-empty-state"
 								actions={(
-									<button type="button" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
+									<button type="button" data-testid="timeline-ai-open" data-entry="empty" disabled={!projectRoot || readOnly} onClick={() => setAiOpen(true)}>
 										AI 从正文提取
 									</button>
 								)}

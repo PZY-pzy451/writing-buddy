@@ -835,5 +835,44 @@ describe('control inventory rendered-element boundary', () => {
 				'world-ai-field-toggle',
 				'world-ai-apply'
 			]));
+		const timelineCanvasControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/timeline/TimelineCanvas.tsx'
+		));
+
+		expect(timelineCanvasControls).toHaveLength(1);
+		expect(timelineCanvasControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(timelineCanvasControls.map(control => control.stableSelectorValue))
+			.toContain('timeline-event-select');
+		const timelinePageControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/timeline/TimelinePage.tsx'
+		));
+
+		expect(timelinePageControls).toHaveLength(11);
+		expect(timelinePageControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(timelinePageControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'timeline-causality-confirm',
+				'timeline-ai-open'
+			]));
+		const timelineAiControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/timeline/TimelineAiPanel.tsx'
+		));
+
+		expect(timelineAiControls).toHaveLength(12);
+		expect(timelineAiControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(timelineAiControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'timeline-ai-action',
+				'timeline-ai-scope',
+				'timeline-ai-chapter-toggle',
+				'timeline-ai-instruction',
+				'timeline-ai-generate',
+				'timeline-ai-candidate-toggle',
+				'timeline-ai-edge-toggle',
+				'timeline-ai-apply'
+			]));
 	});
 });

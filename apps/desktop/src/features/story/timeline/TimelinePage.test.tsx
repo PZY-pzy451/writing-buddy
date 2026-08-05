@@ -1,10 +1,12 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import {
 	parseTimelineEvent,
 	type TimelineEvent
 } from '@writing-buddy/story-kernel';
 import {
+	CausalityConfirmDialog,
 	TimelinePage,
 	type TimelinePageData
 } from './TimelinePage';
@@ -61,7 +63,7 @@ const data: TimelinePageData = {
 };
 
 describe('TimelinePage', () => {
-	it('shows virtualized tracks, switches order mode and provides a list fallback', async () => {
+	it('shows virtualized tracks, selects events and confirms a causal conflict by pointer with a list fallback', async () => {
 		render(
 			<TimelinePage
 				projectRoot="D:/Fixture"
@@ -71,6 +73,12 @@ describe('TimelinePage', () => {
 
 		expect(await screen.findByRole('region', { name: '多轨时间线画布' })).toBeInTheDocument();
 		expect(screen.getByText('人物 · 林越')).toBeInTheDocument();
+		const canvasEvents = screen.getAllByTestId('timeline-event-select');
+		expect(canvasEvents.map(event => event.dataset.eventId).sort()).toEqual([
+			'timeline-event:memory',
+			'timeline-event:station'
+		]);
+		fireEvent.click(canvasEvents.find(event => event.dataset.eventId === 'timeline-event:station')!);
 
 		fireEvent.click(screen.getByRole('tab', { name: '叙事顺序' }));
 		fireEvent.click(screen.getByRole('button', { name: '列表替代视图' }));
@@ -78,9 +86,29 @@ describe('TimelinePage', () => {
 		const rows = screen.getAllByRole('row');
 		expect(rows[1]).toHaveTextContent('车站相遇');
 		expect(rows[2]).toHaveTextContent('童年回忆');
+
+		const confirmCausality = vi.fn();
+		render(
+			<CausalityConfirmDialog
+				conflicts={[{
+					eventId: 'timeline-event:memory',
+					eventTitle: '童年回忆',
+					predecessorId: 'timeline-event:station',
+					predecessorTitle: '车站相遇'
+				}]}
+				saving={false}
+				onCancel={vi.fn()}
+				onConfirm={confirmCausality}
+			/>
+		);
+		const confirm = screen.getByTestId('timeline-causality-confirm');
+		expect(confirm).toBeEnabled();
+		fireEvent.click(confirm);
+		expect(confirmCausality).toHaveBeenCalledOnce();
 	});
 
 	it('supports keyboard event selection and saves edits through the injected action', async () => {
+		const user = userEvent.setup();
 		const saveEvent = vi.fn((event: TimelineEvent) => Promise.resolve(event));
 		render(
 			<TimelinePage
@@ -90,22 +118,26 @@ describe('TimelinePage', () => {
 			/>
 		);
 
-		const first = await screen.findByRole('button', { name: /童年回忆/ });
+		const first = (await screen.findAllByTestId('timeline-event-select'))
+			.find(event => event.dataset.eventId === 'timeline-event:memory')!;
 		first.focus();
 		expect(screen.getByText('确认旧站时钟失去时间参照')).toBeInTheDocument();
 		expect(screen.getByText('调查转向二十三点十七分')).toBeInTheDocument();
-		fireEvent.keyDown(first, { key: 'ArrowRight' });
+		await user.keyboard('{ArrowRight}');
 		expect(screen.getByRole('heading', { name: '车站相遇' })).toBeInTheDocument();
 
-		fireEvent.change(screen.getByRole('textbox', { name: '事件标题' }), {
-			target: { value: '雨夜车站相遇' }
-		});
-		fireEvent.click(screen.getByRole('button', { name: '保存事件' }));
+		const title = screen.getByRole('textbox', { name: '事件标题' });
+		await user.clear(title);
+		await user.type(title, '雨夜车站相遇');
+		await user.click(screen.getByRole('button', { name: '保存事件' }));
 
-		expect(saveEvent).toHaveBeenCalledWith(expect.objectContaining({ title: '雨夜车站相遇' }));
+		await waitFor(() => {
+			expect(saveEvent).toHaveBeenCalledWith(expect.objectContaining({ title: '雨夜车站相遇' }));
+		});
 	});
 
-	it('opens the AI story-progress workflow with evidence and separate causal-edge review', async () => {
+	it('opens AI story progress, edits scope and instruction, deduplicates generation and toggles event and causal candidates', async () => {
+		const user = userEvent.setup();
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		await desktopBridge.saveDeepSeekKey('browser-fixture');
 		const openEvidence = vi.fn();
@@ -126,9 +158,30 @@ describe('TimelinePage', () => {
 			/>
 		);
 
-		fireEvent.click(await screen.findByRole('button', { name: 'AI 从正文提取' }));
+		const aiEntry = await screen.findByTestId('timeline-ai-open');
+		expect(aiEntry).toHaveAttribute('data-entry', 'toolbar');
+		await user.click(aiEntry);
 		expect(screen.getByRole('complementary', { name: 'AI 故事进程助手' })).toBeInTheDocument();
-		const generate = screen.getByRole('button', { name: '生成事件与因果候选' });
+		expect(screen.getAllByTestId('timeline-ai-action').map(action => action.dataset.action)).toEqual([
+			'extract-events',
+			'generate-events',
+			'generate-directions',
+			'suggest-causality'
+		]);
+		const scope = screen.getByTestId('timeline-ai-scope');
+		await user.selectOptions(scope, 'selected-chapters');
+		const chapterToggle = screen.getByTestId('timeline-ai-chapter-toggle');
+		expect(chapterToggle).toHaveAttribute('data-chapter-id', 'chapter:chapter-000000a1');
+		expect(chapterToggle).toBeChecked();
+		await user.click(chapterToggle);
+		expect(chapterToggle).not.toBeChecked();
+		await user.click(chapterToggle);
+		expect(chapterToggle).toBeChecked();
+		await user.selectOptions(scope, 'current-chapter');
+		const instruction = screen.getByTestId('timeline-ai-instruction');
+		await user.clear(instruction);
+		await user.type(instruction, '提取事件，并保留可核对的直接结果与因果边。');
+		const generate = screen.getByTestId('timeline-ai-generate');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -142,6 +195,19 @@ describe('TimelinePage', () => {
 		expect(screen.getByText('虚线因果候选')).toBeInTheDocument();
 		expect(screen.getAllByText(/AI 建议/).length).toBeGreaterThan(0);
 		expect(screen.getAllByRole('button', { name: '查看原文证据' })).toHaveLength(2);
+		const candidateToggle = screen.getAllByTestId('timeline-ai-candidate-toggle')[0];
+		expect(candidateToggle).toHaveAttribute('data-candidate-id');
+		expect(candidateToggle).toBeChecked();
+		await user.click(candidateToggle);
+		expect(candidateToggle).not.toBeChecked();
+		await user.click(candidateToggle);
+		const edgeToggle = screen.getAllByTestId('timeline-ai-edge-toggle')[0];
+		expect(edgeToggle).toHaveAttribute('data-edge-id');
+		expect(edgeToggle).toBeChecked();
+		await user.click(edgeToggle);
+		expect(edgeToggle).not.toBeChecked();
+		await user.click(edgeToggle);
+		expect(screen.getByTestId('timeline-ai-apply')).toBeEnabled();
 		await desktopBridge.deleteDeepSeekKey();
 	});
 });

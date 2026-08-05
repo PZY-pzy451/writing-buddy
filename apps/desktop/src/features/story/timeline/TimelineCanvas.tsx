@@ -165,6 +165,8 @@ export function TimelineCanvas({
 											<button
 												type="button"
 												key={event.id}
+												data-testid="timeline-event-select"
+												data-event-id={event.id}
 												data-timeline-event={event.id}
 												style={{
 													left: 154 + index * itemWidth,

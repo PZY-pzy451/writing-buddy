@@ -80,8 +80,8 @@ function response(overrides: Record<string, unknown> = {}) {
 	};
 }
 
-describe('TimelineAiReviewService', () => {
-	it('deduplicates candidates and blocks invalid evidence or deterministic overlap', () => {
+describe('TimelineAiReviewService control effects: timeline-ai-generate, timeline-ai-candidate-toggle, timeline-ai-edge-toggle, timeline-ai-apply', () => {
+	it('requires confirmation for duplicate candidates and blocks invalid evidence or deterministic overlap', () => {
 		const existing = event({
 			id: 'timeline-event:other-place',
 			title: '另一地点行动',
@@ -115,7 +115,7 @@ describe('TimelineAiReviewService', () => {
 		);
 	});
 
-	it('creates one snapshot and atomically writes selected events and causality', async () => {
+	it('persists one snapshot and atomically writes selected events and causality', async () => {
 		const arrival = event({
 			id: 'timeline-event:arrival',
 			title: '抵达旧站'

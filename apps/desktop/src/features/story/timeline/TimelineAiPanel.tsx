@@ -342,12 +342,12 @@ export function TimelineAiPanel(props: {
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="故事进程 AI 动作">
 					{actions.map(action => (
-						<button type="button" role="tab" aria-selected={action.id === actionType} disabled={generating} className={action.id === actionType ? 'is-active' : ''} key={action.id} onClick={() => chooseAction(action.id)}>{action.label}</button>
+						<button type="button" data-testid="timeline-ai-action" data-action={action.id} role="tab" aria-selected={action.id === actionType} disabled={generating} className={action.id === actionType ? 'is-active' : ''} key={action.id} onClick={() => chooseAction(action.id)}>{action.label}</button>
 					))}
 				</div>
 				<section className="ai-review-source-card">
 					<div><BookOpen size={18} /><strong>正文范围 · {sourceChapters.length} 章</strong></div>
-					<select aria-label="故事进程分析范围" disabled={generating} value={scopeMode} onChange={event => setScopeMode(event.target.value as TimelineScopeMode)}>
+					<select data-testid="timeline-ai-scope" aria-label="故事进程分析范围" disabled={generating} value={scopeMode} onChange={event => setScopeMode(event.target.value as TimelineScopeMode)}>
 						{Object.entries(scopeLabels).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
 					</select>
 					{scopeMode === 'current-chapter' || scopeMode === 'current-volume' ? (
@@ -359,7 +359,7 @@ export function TimelineAiPanel(props: {
 						<div className="ai-review-check-grid" aria-label="指定故事进程章节">
 							{props.chapters.map(chapter => (
 								<label key={chapter.resourceId}>
-								<input type="checkbox" checked={selectedChapterIds.includes(chapter.resourceId)} disabled={generating} onChange={() => toggle(selectedChapterIds, setSelectedChapterIds, chapter.resourceId)} />
+								<input type="checkbox" data-testid="timeline-ai-chapter-toggle" data-chapter-id={chapter.resourceId} checked={selectedChapterIds.includes(chapter.resourceId)} disabled={generating} onChange={() => toggle(selectedChapterIds, setSelectedChapterIds, chapter.resourceId)} />
 									<span>{chapter.title}</span>
 								</label>
 							))}
@@ -369,11 +369,11 @@ export function TimelineAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea data-testid="timeline-ai-instruction" value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
-					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
+					<button type="button" data-testid="timeline-ai-generate" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成事件与因果候选'}
 					</button>
@@ -397,7 +397,7 @@ export function TimelineAiPanel(props: {
 					<article className={`ai-review-candidate is-${candidate.status} ${selectedCandidateIds.includes(candidate.id) ? 'is-selected' : ''}`} key={candidate.id}>
 						<header>
 							<label className="ai-review-candidate-select">
-								<input type="checkbox" disabled={candidate.blocking || candidate.status !== 'candidate'} checked={selectedCandidateIds.includes(candidate.id)} onChange={() => toggle(selectedCandidateIds, setSelectedCandidateIds, candidate.id)} />
+								<input type="checkbox" data-testid="timeline-ai-candidate-toggle" data-candidate-id={candidate.id} disabled={candidate.blocking || candidate.status !== 'candidate'} checked={selectedCandidateIds.includes(candidate.id)} onChange={() => toggle(selectedCandidateIds, setSelectedCandidateIds, candidate.id)} />
 								<span>事件候选 {index + 1}</span>
 							</label>
 							<strong>{Math.round(candidate.response.confidence * 100)}%</strong>
@@ -423,7 +423,7 @@ export function TimelineAiPanel(props: {
 				<div className="ai-causality-preview">
 					{batch?.edges.map(edge => (
 						<label className={`ai-causality-edge ${edge.conflict ? 'has-conflict' : ''}`} key={edge.id}>
-							<input type="checkbox" disabled={edge.blocking} checked={selectedEdgeIds.includes(edge.id)} onChange={() => toggle(selectedEdgeIds, setSelectedEdgeIds, edge.id)} />
+							<input type="checkbox" data-testid="timeline-ai-edge-toggle" data-edge-id={edge.id} disabled={edge.blocking} checked={selectedEdgeIds.includes(edge.id)} onChange={() => toggle(selectedEdgeIds, setSelectedEdgeIds, edge.id)} />
 							<span className="ai-causality-node">{edge.fromTitle}</span>
 							<i aria-hidden="true" />
 							<strong>{relationLabels[edge.relation]}</strong>
@@ -434,7 +434,7 @@ export function TimelineAiPanel(props: {
 					))}
 				</div>
 				{batch ? (
-					<button type="button" className="ai-review-accept" disabled={applying || (selectedCandidateIds.length === 0 && selectedEdgeIds.length === 0)} onClick={() => void apply()}>
+					<button type="button" data-testid="timeline-ai-apply" className="ai-review-accept" disabled={applying || (selectedCandidateIds.length === 0 && selectedEdgeIds.length === 0)} onClick={() => void apply()}>
 						{applying ? <LoaderCircle className="spin" size={16} /> : <Sparkles size={16} />}
 						确认写入所选事件与因果
 					</button>
