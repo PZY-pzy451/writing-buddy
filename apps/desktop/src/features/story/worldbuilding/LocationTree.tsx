@@ -28,6 +28,8 @@ function LocationNode({
 				style={{ paddingLeft: `${12 + depth * 18}px` }}
 				onClick={() => onSelect(location)}
 				aria-label={`${location.title}，${children.length} 个子地点`}
+				data-testid="world-location-select"
+				data-location-id={location.id}
 			>
 				{children.length ? <ChevronRight size={16} /> : <span className="world-tree-spacer" />}
 				<MapPin size={16} />

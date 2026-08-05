@@ -33,8 +33,8 @@ function rule(revision = 2): WorldRule {
 	}) as unknown as WorldRule;
 }
 
-describe('WorldAiReviewService', () => {
-	it('deduplicates entries and surfaces same-scope rule conflicts and bad evidence', () => {
+describe('WorldAiReviewService control effects: world-ai-generate, world-ai-field-toggle, world-ai-apply', () => {
+	it('requires confirmation for duplicate conflicts and blocks bad evidence', () => {
 		const batch = stageWorldReviewBatch({
 			actionType: 'extract-worldbuilding',
 			sourceResourceId: 'chapter:one',
@@ -82,7 +82,7 @@ describe('WorldAiReviewService', () => {
 		expect(batch.candidates[0]?.fields.every(field => field.blocking)).toBe(true);
 	});
 
-	it('snapshots and creates only selected structured location fields', async () => {
+	it('persists one snapshot and creates only selected structured location fields', async () => {
 		const batch = stageWorldReviewBatch({
 			actionType: 'generate-world-entry',
 			sourceResourceId: 'chapter:one',

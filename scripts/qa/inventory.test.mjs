@@ -797,5 +797,43 @@ describe('control inventory rendered-element boundary', () => {
 				'plot-thread-status',
 				'plot-thread-save'
 			]));
+		const locationTreeControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/worldbuilding/LocationTree.tsx'
+		));
+
+		expect(locationTreeControls).toHaveLength(1);
+		expect(locationTreeControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(locationTreeControls.map(control => control.stableSelectorValue))
+			.toContain('world-location-select');
+		const worldbuildingControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/worldbuilding/WorldbuildingPage.tsx'
+		));
+
+		expect(worldbuildingControls).toHaveLength(6);
+		expect(worldbuildingControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(worldbuildingControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'world-map-location-select',
+				'world-resource-select',
+				'worldbuilding-ai-open'
+			]));
+		const worldAiControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/worldbuilding/WorldAiPanel.tsx'
+		));
+
+		expect(worldAiControls).toHaveLength(9);
+		expect(worldAiControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(worldAiControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'world-ai-action',
+				'world-ai-target',
+				'world-ai-instruction',
+				'world-ai-generate',
+				'world-ai-field-toggle',
+				'world-ai-apply'
+			]));
 	});
 });

@@ -282,13 +282,13 @@ export function WorldAiPanel(props: {
 			</header>
 			<div className="ai-review-scroll">
 				<div className="ai-review-action-grid" role="tablist" aria-label="世界观 AI 动作">
-					<button type="button" role="tab" aria-selected={actionType === 'generate-world-entry'} disabled={generating} className={actionType === 'generate-world-entry' ? 'is-active' : ''} onClick={() => selectAction('generate-world-entry')}>快速创建</button>
-					<button type="button" role="tab" aria-selected={actionType === 'extract-worldbuilding'} disabled={generating} className={actionType === 'extract-worldbuilding' ? 'is-active' : ''} onClick={() => selectAction('extract-worldbuilding')}>从正文提取</button>
+					<button type="button" role="tab" aria-selected={actionType === 'generate-world-entry'} disabled={generating} className={actionType === 'generate-world-entry' ? 'is-active' : ''} onClick={() => selectAction('generate-world-entry')} data-testid="world-ai-action" data-action="generate-world-entry">快速创建</button>
+					<button type="button" role="tab" aria-selected={actionType === 'extract-worldbuilding'} disabled={generating} className={actionType === 'extract-worldbuilding' ? 'is-active' : ''} onClick={() => selectAction('extract-worldbuilding')} data-testid="world-ai-action" data-action="extract-worldbuilding">从正文提取</button>
 				</div>
 				{actionType === 'generate-world-entry' ? (
 					<label className="ai-review-option">
 						<span>目标类型</span>
-						<select aria-label="世界观目标类型" disabled={generating} value={targetType} onChange={event => setTargetType(event.target.value as WorldAnalysisTargetType)}>
+						<select aria-label="世界观目标类型" disabled={generating} value={targetType} onChange={event => setTargetType(event.target.value as WorldAnalysisTargetType)} data-testid="world-ai-target">
 							{targetTypes.map(type => <option key={type.id} value={type.id}>{type.label}</option>)}
 						</select>
 					</label>
@@ -303,11 +303,11 @@ export function WorldAiPanel(props: {
 				</section>
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} data-testid="world-ai-instruction" />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
-					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
+					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()} data-testid="world-ai-generate">
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成结构化候选'}
 					</button>
@@ -334,13 +334,21 @@ export function WorldAiPanel(props: {
 						<div className="ai-review-field-list">
 							{candidate.fields.map(field => (
 								<label className={`ai-review-field ${field.conflict ? 'has-conflict' : ''}`} key={field.id}>
-									<input type="checkbox" disabled={field.blocking || candidate.status !== 'candidate'} checked={(selectedFields[candidate.id] ?? []).includes(field.id)} onChange={() => toggleField(candidate.id, field.id)} />
+									<input
+										type="checkbox"
+										disabled={field.blocking || candidate.status !== 'candidate'}
+										checked={(selectedFields[candidate.id] ?? []).includes(field.id)}
+										onChange={() => toggleField(candidate.id, field.id)}
+										data-testid="world-ai-field-toggle"
+										data-candidate-id={candidate.id}
+										data-field-id={field.id}
+									/>
 									<span><strong>{fieldLabels[field.key]}</strong><em>{displayValue(field.value)}</em>{field.conflict ? <small>{field.conflict}</small> : null}</span>
 									{field.evidence && props.onOpenEvidence ? <button type="button" onClick={event => { event.preventDefault(); props.onOpenEvidence?.(field.evidence!); }}><BookOpen size={16} />证据</button> : null}
 								</label>
 							))}
 						</div>
-						<button type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || Boolean(applyingId) || (selectedFields[candidate.id] ?? []).length === 0} onClick={() => void apply(candidate.id)}>
+						<button type="button" className="ai-review-accept" disabled={candidate.status !== 'candidate' || Boolean(applyingId) || (selectedFields[candidate.id] ?? []).length === 0} onClick={() => void apply(candidate.id)} data-testid="world-ai-apply" data-candidate-id={candidate.id}>
 							{applyingId === candidate.id ? <LoaderCircle className="spin" size={16} /> : <Sparkles size={16} />}
 							{candidate.matchedResourceId ? '确认合并所选字段' : '创建资料并写入所选字段'}
 						</button>

@@ -167,7 +167,14 @@ export function WorldbuildingPage({
 			<header className="worldbuilding-header">
 				<div><span className="eyebrow">WORLD BIBLE</span><h1>世界观中心</h1><p>地点层级、势力和世界规则共享同一组正文证据。</p></div>
 				<div className="worldbuilding-header-actions">
-					<button type="button" className="worldbuilding-ai-button" disabled={!projectRoot} onClick={() => setAiOpen(true)}><Sparkles size={16} />AI 世界观助手</button>
+					<button
+						type="button"
+						className="worldbuilding-ai-button"
+						disabled={!projectRoot}
+						onClick={() => setAiOpen(true)}
+						data-testid="worldbuilding-ai-open"
+						data-entry="toolbar"
+					><Sparkles size={16} />AI 世界观助手</button>
 					<div role="tablist" aria-label="世界观分类">
 						<button type="button" role="tab" aria-selected={section === 'locations'} className={section === 'locations' ? 'is-active' : ''} onClick={() => { setSection('locations'); setSelectedId(data?.locations[0]?.id); }}><MapPin size={16} />地点</button>
 						<button type="button" role="tab" aria-selected={section === 'factions'} className={section === 'factions' ? 'is-active' : ''} onClick={() => { setSection('factions'); setSelectedId(data?.factions[0]?.id); }}><Shield size={16} />势力</button>
@@ -183,12 +190,28 @@ export function WorldbuildingPage({
 				<aside className="worldbuilding-list">
 					{section === 'locations' ? <LocationTree locations={data?.locations ?? []} selectedId={selectedId} onSelect={location => setSelectedId(location.id)} /> : null}
 					{section === 'factions' ? (data?.factions ?? []).map(faction => (
-						<button type="button" key={faction.id} className={selectedId === faction.id ? 'is-active' : ''} onClick={() => setSelectedId(faction.id)}>
+						<button
+							type="button"
+							key={faction.id}
+							className={selectedId === faction.id ? 'is-active' : ''}
+							onClick={() => setSelectedId(faction.id)}
+							data-testid="world-resource-select"
+							data-resource-kind="faction"
+							data-resource-id={faction.id}
+						>
 							<Building2 size={18} /><span><strong>{faction.title}</strong><small>{faction.territoryLocationIds.length} 个领地</small></span>
 						</button>
 					)) : null}
 					{section === 'rules' ? (data?.rules ?? []).map(rule => (
-						<button type="button" key={rule.id} className={selectedId === rule.id ? 'is-active' : ''} onClick={() => setSelectedId(rule.id)}>
+						<button
+							type="button"
+							key={rule.id}
+							className={selectedId === rule.id ? 'is-active' : ''}
+							onClick={() => setSelectedId(rule.id)}
+							data-testid="world-resource-select"
+							data-resource-kind="worldRule"
+							data-resource-id={rule.id}
+						>
 							<Landmark size={18} /><span><strong>{rule.title}</strong><small>{rule.category}</small></span>
 						</button>
 					)) : null}
@@ -206,6 +229,8 @@ export function WorldbuildingPage({
 										style={{ left: `${location.mapPoint?.x}%`, top: `${location.mapPoint?.y}%` }}
 										onClick={() => setSelectedId(location.id)}
 										aria-label={`定位到 ${location.title}`}
+										data-testid="world-map-location-select"
+										data-location-id={location.id}
 									><MapPin size={16} /><span>{location.title}</span></button>
 								))}
 							</div>
@@ -235,7 +260,13 @@ export function WorldbuildingPage({
 							density="full"
 							className="worldbuilding-empty"
 							actions={(
-								<button type="button" disabled={!projectRoot} onClick={() => setAiOpen(true)}>
+								<button
+									type="button"
+									disabled={!projectRoot}
+									onClick={() => setAiOpen(true)}
+									data-testid="worldbuilding-ai-open"
+									data-entry="empty"
+								>
 									<Sparkles size={16} />用 AI 创建世界资料
 								</button>
 							)}

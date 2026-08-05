@@ -40,7 +40,7 @@ describe('WorldRuleEditor save lifecycle', () => {
 		expect(screen.getByTestId('world-rule-save')).toHaveAccessibleName('保存规则');
 	});
 
-	it('starts one persistence request for one hundred same-frame submissions', async () => {
+	it('deduplicates one hundred repeated same-frame save submissions while loading', async () => {
 		let resolveSave: (() => void) | undefined;
 		const pendingSave = new Promise<void>(resolve => {
 			resolveSave = resolve;
@@ -86,7 +86,7 @@ describe('WorldRuleEditor save lifecycle', () => {
 		await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
 	});
 
-	it('uses the saved revision for the next edit of the same rule', async () => {
+	it('restores the saved revision after rerender for the next edit of the same rule', async () => {
 		const user = userEvent.setup();
 		const onSave = vi.fn(() => Promise.resolve());
 		const initialRule = createRule(0);
