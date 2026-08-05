@@ -28695,277 +28695,138 @@
               "name": "世界构建",
               "controls": [
                 {
-                  "id": "CTRL-LOCATIONNODE-BUTTON-3431FE80",
+                  "id": "CTRL-LOCATIONNODE-BUTTON-55BEC6EF",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-VISIBLE",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-HIDDEN",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-ENABLED",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-DISABLED",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-POINTER",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-KEYBOARD",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-FOCUS-IN",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-FOCUS-OUT",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-REPEAT",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-DEDUPLICATION",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-LOADING",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-SUCCESS",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-FAILURE",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-CANCELLED",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-OFFLINE",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-PERMISSION",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-PERSISTENCE",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-RESTART",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-VISUAL",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-ACCESSIBLE-NAME",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-LOCATIONNODE-BUTTON-3431FE80-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-WORLDAIPANEL-BUTTON-24AA46D2",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-24AA46D2-UNDO",
+                      "id": "STATE-LOCATIONNODE-BUTTON-55BEC6EF-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -29112,145 +28973,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDAIPANEL-BUTTON-A3FC1265",
-                  "level": "L4",
-                  "name": "从正文提取",
-                  "states": [
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDAIPANEL-BUTTON-A3FC1265-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-WORLDAIPANEL-BUTTON-BE9780DF",
                   "level": "L4",
                   "name": "关闭 AI 世界观助手",
@@ -29390,138 +29112,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDAIPANEL-INPUT-5CB06C88",
+                  "id": "CTRL-WORLDAIPANEL-BUTTON-C2992647",
                   "level": "L4",
-                  "name": "input",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-VISIBLE",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-HIDDEN",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-ENABLED",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-DISABLED",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-POINTER",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-KEYBOARD",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-FOCUS-IN",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-FOCUS-OUT",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-REPEAT",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-DEDUPLICATION",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-LOADING",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-SUCCESS",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-FAILURE",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-CANCELLED",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-OFFLINE",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-PERMISSION",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-PERSISTENCE",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-RESTART",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-VISUAL",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-INPUT-5CB06C88-UNDO",
+                      "id": "STATE-WORLDAIPANEL-BUTTON-C2992647-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDAIPANEL-BUTTON-D02766C8",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-D02766C8-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDAIPANEL-BUTTON-F03408EA",
+                  "level": "L4",
+                  "name": "从正文提取",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-BUTTON-F03408EA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDAIPANEL-INPUT-86577405",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-INPUT-86577405-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -29668,138 +29807,694 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDAIPANEL-TEXTAREA-3295D04A",
+                  "id": "CTRL-WORLDAIPANEL-SELECT-F1EB630E",
                   "level": "L4",
-                  "name": "textarea",
+                  "name": "世界观目标类型",
                   "states": [
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-VISIBLE",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-HIDDEN",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-ENABLED",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-DISABLED",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-POINTER",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-KEYBOARD",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-FOCUS-IN",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-FOCUS-OUT",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-REPEAT",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-DEDUPLICATION",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-LOADING",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-SUCCESS",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-FAILURE",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-CANCELLED",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-OFFLINE",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-PERMISSION",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-PERSISTENCE",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-RESTART",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-VISUAL",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDAIPANEL-TEXTAREA-3295D04A-UNDO",
+                      "id": "STATE-WORLDAIPANEL-SELECT-F1EB630E-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDAIPANEL-TEXTAREA-552B70A2",
+                  "level": "L4",
+                  "name": "textarea",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDAIPANEL-TEXTAREA-552B70A2-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-19187E6A",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-19187E6A-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-23AC9259",
+                  "level": "L4",
+                  "name": "AI 世界观助手",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-23AC9259-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-247A2FBD",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-247A2FBD-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -29946,416 +30641,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-45DA4379",
-                  "level": "L4",
-                  "name": "AI 世界观助手",
-                  "states": [
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-45DA4379-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-7F593F53",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-7F593F53-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-8D331E9C",
+                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-53B61279",
                   "level": "L4",
                   "name": "用 AI 创建世界资料",
                   "states": [
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-VISIBLE",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-HIDDEN",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-ENABLED",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-DISABLED",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-POINTER",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-KEYBOARD",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-FOCUS-IN",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-FOCUS-OUT",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-REPEAT",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-DEDUPLICATION",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-LOADING",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-SUCCESS",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-FAILURE",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-CANCELLED",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-OFFLINE",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-PERMISSION",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-PERSISTENCE",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-RESTART",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-VISUAL",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-ACCESSIBLE-NAME",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-8D331E9C-UNDO",
+                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-53B61279-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -30495,145 +30912,6 @@
                     },
                     {
                       "id": "STATE-WORLDBUILDINGPAGE-BUTTON-9C803FF8-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WORLDBUILDINGPAGE-BUTTON-FB4CFDE5-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -80306,6 +80584,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-484C45A034",
+      "title": "requires confirmation for duplicate conflicts and blocks bad evidence",
+      "declarationTitle": "requires confirmation for duplicate conflicts and blocks bad evidence",
+      "declarationLine": 37,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-484E23A82C",
       "title": "requires exactly three bounded guidance options",
       "declarationTitle": "requires exactly three bounded guidance options",
@@ -81242,6 +81538,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-557F8639CB",
+      "title": "persists one snapshot and creates only selected structured location fields",
+      "declarationTitle": "persists one snapshot and creates only selected structured location fields",
+      "declarationLine": 85,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldAiReviewService.test.ts",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -82816,6 +83130,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-7051BC3DBE",
+      "title": "restores the saved revision after rerender for the next edit of the same rule",
+      "declarationTitle": "restores the saved revision after rerender for the next edit of the same rule",
+      "declarationLine": 89,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-70FC306ED2",
       "title": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
       "declarationTitle": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
@@ -83063,24 +83395,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-748528736F",
-      "title": "starts one persistence request for one hundred same-frame submissions",
-      "declarationTitle": "starts one persistence request for one hundred same-frame submissions",
-      "declarationLine": 43,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -84442,24 +84756,6 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-89811A42CE",
-      "title": "navigates location hierarchy, factions and editable rules",
-      "declarationTitle": "navigates location hierarchy, factions and editable rules",
-      "declarationLine": 15,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldbuildingPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -86948,24 +87244,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-B0AAB4171A",
-      "title": "opens the AI worldbuilding workflow and renders typed location candidates",
-      "declarationTitle": "opens the AI worldbuilding workflow and renders typed location candidates",
-      "declarationLine": 35,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldbuildingPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-B0D62A0A3D",
       "title": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
       "declarationTitle": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
@@ -87030,24 +87308,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-B1B8B540A5",
-      "title": "snapshots and creates only selected structured location fields",
-      "declarationTitle": "snapshots and creates only selected structured location fields",
-      "declarationLine": 85,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88560,6 +88820,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-C58E027F60",
+      "title": "deduplicates one hundred repeated same-frame save submissions while loading",
+      "declarationTitle": "deduplicates one hundred repeated same-frame save submissions while loading",
+      "declarationLine": 43,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-C592744F90",
       "title": "TC-STORY-CONSISTENCY-001 deduplicates one hundred repeated runs and publishes one successful atomic result",
       "declarationTitle": "TC-STORY-CONSISTENCY-001 deduplicates one hundred repeated runs and publishes one successful atomic result",
@@ -89930,6 +90208,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-D7DBB632E2",
+      "title": "opens AI worldbuilding, edits inputs, deduplicates repeated generation and toggles structured fields",
+      "declarationTitle": "opens AI worldbuilding, edits inputs, deduplicates repeated generation and toggles structured fields",
+      "declarationLine": 49,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldbuildingPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-D8394DCD35",
       "title": "coalesces 100 save-copy actions into one native save dialog",
       "declarationTitle": "coalesces 100 save-copy actions into one native save dialog",
@@ -90050,24 +90346,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-D9FF65DE5A",
-      "title": "deduplicates entries and surfaces same-scope rule conflicts and bad evidence",
-      "declarationTitle": "deduplicates entries and surfaces same-scope rule conflicts and bad evidence",
-      "declarationLine": 37,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldAiReviewService.test.ts",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -90307,6 +90585,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "browser-component",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-DECD7FFC86",
+      "title": "selects locations, factions and rules by pointer and keeps editable rules visible",
+      "declarationTitle": "selects locations, factions and rules by pointer and keeps editable rules visible",
+      "declarationLine": 15,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/worldbuilding/WorldbuildingPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-05",
+      "pageId": "PAGE-STORY-WORLD",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -91286,24 +91582,6 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-EF413756CD",
-      "title": "uses the saved revision for the next edit of the same rule",
-      "declarationTitle": "uses the saved revision for the next edit of the same rule",
-      "declarationLine": 89,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/worldbuilding/WorldRuleEditor.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-05",
-      "pageId": "PAGE-STORY-WORLD",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

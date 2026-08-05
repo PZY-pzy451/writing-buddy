@@ -1,34 +1,42 @@
 # Current progress
 
-Updated: 2026-08-05
+Updated: 2026-08-06
 
 ## Active milestone
 
-Plot Board and Plot AI selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `0a893db`.
+Worldbuilding and World AI selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `7e6b527`.
 
-- Plot thread selection, lifecycle status/save, scene manuscript opening and
-  both AI entry points now expose stable composite identities with exact thread,
-  scene or entry context. Plot AI action, generation, privacy/source toggles,
-  instruction and candidate controls are stable without losing accessible names.
-- Existing rendered tests now exercise the real author path from board selection
-  through lifecycle editing and AI candidate review. The same-tick generation
-  guard passed 20/20 pressure rounds: 2,000 clicks produced exactly 20 provider
-  starts. Focused product/inventory coverage passed 23/23.
+- Location tree rows, map points, faction/rule choices and both AI entry points
+  now expose stable composite identities with exact resource context. World AI
+  actions, target type, instruction, generation, field toggles and candidate
+  writes are stable without replacing accessible names.
+- Existing rendered tests now exercise the real author path across locations,
+  factions, rules and structured AI review. Existing service/editor tests map
+  conflict confirmation, snapshot persistence, stale rejection, retry, loading
+  deduplication and saved-revision restoration. Focused coverage passed 24/24.
+- The same-tick AI generation guard passed 20/20 pressure rounds: 2,000 clicks
+  produced exactly 20 provider starts.
 - Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
-- Honest repeated-control splitting moves inventory from 511 to 515 controls and
-  from 11,242 to 11,330 states. Mapped controls rise from 332 to 342, mapped
-  states from 3,512 to 3,664 and mapped tests from 237 to 242. Strict gaps fall
-  by 75 from 8,928 to 8,853, selector gaps from 41 to 35 and unmapped tests from
-  821 to 816.
+- Honest conditional-control discovery moves inventory from 515 to 517 controls
+  and from 11,330 to 11,374 states. Mapped controls rise from 342 to 351, mapped
+  states from 3,664 to 3,797 and mapped tests from 242 to 246. Strict gaps fall
+  by 100 from 8,853 to 8,753, selector gaps from 35 to 29 and unmapped tests from
+  816 to 812.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,303/13,156 (32.71%); stable selectors are 480/515 (93.20%); test mapping is
-  242/1,058 (22.87%). Against the 11,088 / 136 reference, 2,235 mapping gaps
-  and 101 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,853 strict mappings plus real-provider smoke and
+  4,449/13,202 (33.70%); stable selectors are 488/517 (94.39%); test mapping is
+  246/1,058 (23.25%). Against the 11,088 / 136 reference, 2,335 mapping gaps
+  and 107 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,753 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Plot Board and Plot AI selector/trace convergence is complete against source
+`0a893db`: ten controls and five product cases map, and fixed acceptance passed
+979 frontend tests.
 
 ## Previous milestone
 
