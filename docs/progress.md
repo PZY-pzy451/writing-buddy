@@ -4,33 +4,40 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Worldbuilding and World AI selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `7e6b527`.
+Timeline and Timeline AI selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3bb67718`.
 
-- Location tree rows, map points, faction/rule choices and both AI entry points
-  now expose stable composite identities with exact resource context. World AI
-  actions, target type, instruction, generation, field toggles and candidate
-  writes are stable without replacing accessible names.
-- Existing rendered tests now exercise the real author path across locations,
-  factions, rules and structured AI review. Existing service/editor tests map
-  conflict confirmation, snapshot persistence, stale rejection, retry, loading
-  deduplication and saved-revision restoration. Focused coverage passed 24/24.
+- Canvas events, causal-conflict confirmation and both AI entry contexts now
+  expose stable identities. AI actions, scope, chapter choices, author
+  instruction, generation, event candidates, causal edges and apply keep exact
+  action/resource/candidate context without replacing accessible names.
+- Existing rendered tests now exercise pointer and keyboard event selection,
+  the list fallback, causal confirmation, AI scope/instruction changes and
+  structured candidate toggles. Service and inspector tests map duplicate
+  confirmation, invalid evidence, atomic persistence and retry restoration.
+  Focused coverage passed 25/25.
 - The same-tick AI generation guard passed 20/20 pressure rounds: 2,000 clicks
   produced exactly 20 provider starts.
 - Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
-- Honest conditional-control discovery moves inventory from 515 to 517 controls
-  and from 11,330 to 11,374 states. Mapped controls rise from 342 to 351, mapped
-  states from 3,664 to 3,797 and mapped tests from 242 to 246. Strict gaps fall
-  by 100 from 8,853 to 8,753, selector gaps from 35 to 29 and unmapped tests from
-  816 to 812.
+- Honest declaration discovery moves inventory from 517 to 522 controls and
+  from 11,374 to 11,484 states. Mapped controls rise from 351 to 362, mapped
+  states from 3,797 to 3,929 and mapped tests from 246 to 249. Strict gaps fall
+  by 31 from 8,753 to 8,722, selector gaps from 29 to 24 and unmapped tests from
+  812 to 809.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,449/13,202 (33.70%); stable selectors are 488/517 (94.39%); test mapping is
-  246/1,058 (23.25%). Against the 11,088 / 136 reference, 2,335 mapping gaps
-  and 107 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,753 strict mappings plus real-provider smoke and
+  4,595/13,317 (34.50%); stable selectors are 498/522 (95.40%); test mapping is
+  249/1,058 (23.53%). Against the 11,088 / 136 reference, 2,366 mapping gaps
+  and 112 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,722 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Worldbuilding and World AI selector/trace convergence is complete against
+source `7e6b527`: six selector gaps and four unmapped tests were closed, and
+fixed acceptance passed 979 frontend tests.
 
 ## Previous milestone
 
