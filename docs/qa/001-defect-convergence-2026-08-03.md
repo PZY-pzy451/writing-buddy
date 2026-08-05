@@ -1286,3 +1286,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
   mappings and 41 selectors.
 - Strict coverage is 21.35%, stable-selector coverage is 80.41%, test mapping
   is 16.18% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 065
+
+- Selection Action Menu now exposes 7/7 stable and strictly mapped logical
+  controls, including the AI disclosure and generated rewrite/resource actions.
+- Opening the contextual menu focuses the first item. ArrowUp/ArrowDown wrap,
+  Home/End move to the first/last item and Escape returns focus to the
+  disclosure. Existing pointer workflows remain verified.
+- Three red assertions converged to 17/17 focused, 50/50 manuscript/editor
+  impact and 29/29 QA infrastructure tests. Fixed-source execution passed 978
+  frontend and 77 native tests; two native cases retain documented reasons.
+- Both existing component cases are mapped without adding test debt. Mapped
+  tests rose from 171 to 172 and unmapped tests fell from 886 to 885.
+- Inventory now exposes one previously collapsed control and 22 derived states.
+  Net traceability gaps still fell from 9,804 to 9,786 and selector gaps from
+  95 to 92. Against the earlier 11,088 / 136 reference, cumulative reductions
+  are 1,302 mappings and 44 selectors.
+- Strict coverage is 21.64%, stable-selector coverage is 81.07%, test mapping
+  is 16.27% and release hard gates remain 1/4 complete.

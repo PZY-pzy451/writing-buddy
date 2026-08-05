@@ -43,4 +43,19 @@ Date: 2026-08-05
 
 ## Result
 
-Pending.
+- Initial red execution failed 3/17 assertions: the disclosure and link action
+  selectors were absent and strict inventory still reported unmapped controls.
+- Stable identities now distinguish seven logical controls and map all seven,
+  including generated rewrite and resource action collections. Both existing
+  component tests are mapped without adding a case.
+- Opening the role=menu popover focuses its first item. ArrowUp/ArrowDown wrap,
+  Home/End move to boundaries and Escape closes and restores disclosure focus.
+- Focused execution passed 17/17; the manuscript/editor impact set passed
+  50/50; QA infrastructure passed 29/29.
+- Fixed source `60078b1` passed Node 24 lint, typecheck, 188 frontend files / 978
+  tests and production build. Rust passed 77/79 with two reasoned environment
+  skips.
+- Inventory grew from 485 controls / 10,670 states to 486 / 10,692 by exposing
+  one formerly collapsed control. Net strict gaps still moved 9,804 -> 9,786,
+  selector gaps 95 -> 92 and unmapped tests 886 -> 885. Product remains
+  `PARTIAL`; hard release gates remain 1/4.

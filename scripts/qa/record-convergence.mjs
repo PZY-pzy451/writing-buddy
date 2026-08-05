@@ -2086,6 +2086,50 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-SELECTION-ACTION-MENU-CONTROL-KEYBOARD-CONVERGENCE-065',
+			summary: 'Selection Action Menu controls lacked stable identities while its role=menu popover did not receive focus or support Arrow-key navigation.',
+			before: {
+				inventoriedSourceControls: 6,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 3,
+				targetTestsMapped: 1,
+				targetTestsUnmapped: 1,
+				menuInitialFocus: false,
+				arrowKeyNavigation: false,
+				globalControls: 485,
+				globalStates: 10670,
+				globalTests: 1057,
+				mappedTests: 171,
+				unmappedTests: 886,
+				globalMissingStableSelectors: 95,
+				totalUnmapped: 9804
+			},
+			after: {
+				inventoriedSourceControls: 7,
+				sourceMappedControls: 7,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 2,
+				targetTestsUnmapped: 0,
+				menuInitialFocus: true,
+				arrowKeyNavigation: true,
+				homeEndNavigation: true,
+				escapeRestoresDisclosureFocus: true,
+				pointerWorkflowsPreserved: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 3,
+				focusedTests: 17,
+				impactTests: 50,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

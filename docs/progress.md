@@ -4,37 +4,39 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Entity Peek control and keyboard convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `509151b`.
+Selection Action Menu control and keyboard convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `60078b1`.
 
-- Three failure-first assertions reproduced missing identities for the dialog,
-  generated overlap candidates and generated manuscript backlinks. The
-  listbox also exposed option semantics without Arrow-key focus movement.
-- All 5/5 Entity Peek controls now have stable identities and strict mappings.
-  Both existing component cases are mapped without adding test-count debt.
-- Overlap candidates support pointer selection and ArrowUp, ArrowDown, Home,
-  End and native Enter. Opening focuses the dialog; root Enter opens the full
-  resource, Escape closes it and backlinks jump to the exact manuscript link.
-- Focused execution passed 17/17, the manuscript impact set passed 38/38 and QA
-  infrastructure passed 29/29.
+- Three failure-first assertions reproduced missing identities for existing
+  resource linking, the AI disclosure and generated resource actions. Source
+  audit also found a role=menu surface without focus entry or Arrow navigation.
+- Stable identities expose 7/7 logical controls, including generated rewrite
+  and resource actions. Both existing component cases are mapped without
+  adding test-count debt.
+- Opening the contextual AI menu focuses its first item. ArrowUp/ArrowDown
+  wrap, Home/End move to the boundaries and Escape closes while returning
+  focus to the disclosure. Pointer workflows remain unchanged.
+- Focused execution passed 17/17, the manuscript/editor impact set passed
+  50/50 and QA infrastructure passed 29/29.
 - Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- Mapped tests rise from 169 to 171 and unmapped tests fall from 888 to 886.
-  Mapped controls rise from 228 to 233 and mapped states from 2,178 to 2,207.
-- Strict gaps fall from 9,841 to 9,804. Stable-selector gaps fall from 98 to
-  95. From the earlier 11,088 / 136 reference, cumulative reductions are 1,284
-  mappings and 41 selectors.
+- Mapped tests rise from 171 to 172 and unmapped tests fall from 886 to 885.
+  Mapped controls rise from 233 to 237 and mapped states from 2,207 to 2,243.
+- The inventory now distinguishes one previously collapsed control and 22
+  derived states. Net strict gaps still fall from 9,804 to 9,786, while stable
+  selector gaps fall from 95 to 92. From the earlier 11,088 / 136 reference,
+  cumulative reductions are 1,302 mappings and 44 selectors.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,661/12,465 (21.35%); stable selectors are 390/485 (80.41%); test mapping is
-  171/1,057 (16.18%). Release gates remain 1/4 complete (25%). Product stays
+  2,702/12,488 (21.64%); stable selectors are 394/486 (81.07%); test mapping is
+  172/1,057 (16.27%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
 
-Character Center control and selection convergence is complete against source
-`d6fde3d`: 6/6 controls and 9/9 tests are mapped, and fixed acceptance passed
+Entity Peek control and keyboard convergence is complete against source
+`509151b`: 5/5 controls and 2/2 tests are mapped, and fixed acceptance passed
 978 frontend tests.
 
 ## Earlier milestone
