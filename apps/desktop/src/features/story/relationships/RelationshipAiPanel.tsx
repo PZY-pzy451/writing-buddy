@@ -28,6 +28,7 @@ import type {
 } from '../ai-context/AiChapterSource';
 import { runGroundedJsonJob } from '../ai-context/GroundedAiRunner';
 import { AiJobCancelButton } from '../ai-context/AiJobCancelButton';
+import { normalizeAiError } from '../../ai/errors/AiErrorPresentation';
 import {
 	RelationshipAiReviewService,
 	stageRelationshipReviewBatch,
@@ -54,6 +55,38 @@ const visibilityLabels: Readonly<Record<Relationship['visibility'], string>> = {
 	private: '私下',
 	secret: '秘密'
 };
+
+const invalidRelationshipGenerationCodes = new Set([
+	'missingRelationshipExtractionEvidence',
+	'unknownRelationshipCharacter',
+	'invalidRelationshipAnalysisInput'
+]);
+
+function relationshipGenerationError(reason: unknown): string {
+	const message = reason instanceof Error ? reason.message : '';
+	if (
+		reason instanceof SyntaxError
+		|| (reason instanceof Error && reason.name === 'ZodError')
+		|| invalidRelationshipGenerationCodes.has(message)
+	) {
+		return 'AI 返回的关系结构不完整，已安全隔离，请重试。';
+	}
+	if (message.startsWith('AI 输出达到最大 Token') || message === '未配置可用的 DeepSeek 模型。') {
+		return message;
+	}
+	return normalizeAiError(reason).message;
+}
+
+function relationshipWriteError(reason: unknown): string {
+	const code = reason instanceof Error ? reason.message : '';
+	if (code === 'staleRelationshipCandidate') {
+		return '候选依据的正文或关系资料已变化，请重新生成。';
+	}
+	if (code === 'relationshipCommitFailed') {
+		return '关系候选没有完成写入，原资料没有改变，请重试。';
+	}
+	return '关系候选写入失败，原资料没有改变，请重试。';
+}
 
 export interface RelationshipAiPanelProps {
 	readonly projectRoot: string;
@@ -197,7 +230,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 			}
 		} catch (reason) {
 			setJobState('failed');
-			setError(reason instanceof Error ? reason.message : '关系候选生成失败。');
+			setError(relationshipGenerationError(reason));
 		} finally {
 			generationGuardRef.current = false;
 		}
@@ -236,7 +269,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 			props.onAccepted(result.relationship);
 			setNotice('已创建安全快照，候选边已进入正式关系图。');
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '关系候选写入失败。');
+			setError(relationshipWriteError(reason));
 		} finally {
 			applyingRef.current = false;
 			setApplyingId(undefined);
@@ -263,6 +296,7 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 						typeof actionDefinitions[RelationshipAnalysisActionType]
 					][]).map(([id, definition]) => (
 						<button
+							data-testid="relationship-ai-action"
 							type="button"
 							role="tab"
 							aria-selected={id === actionType}
@@ -296,14 +330,14 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 					<div className="ai-review-character-pair">
 						<label>
 							<span>关系发起者</span>
-							<select disabled={generating} value={sourceCharacterId} onChange={event => setSourceCharacterId(event.target.value)}>
+							<select data-testid="relationship-ai-source-character" disabled={generating} value={sourceCharacterId} onChange={event => setSourceCharacterId(event.target.value)}>
 								{props.characters.map(character => <option key={character.id} value={character.id}>{character.title}</option>)}
 							</select>
 						</label>
 						<ArrowRight size={18} />
 						<label>
 							<span>关系目标</span>
-							<select disabled={generating} value={targetCharacterId} onChange={event => setTargetCharacterId(event.target.value)}>
+							<select data-testid="relationship-ai-target-character" disabled={generating} value={targetCharacterId} onChange={event => setTargetCharacterId(event.target.value)}>
 								{props.characters.map(character => <option key={character.id} value={character.id}>{character.title}</option>)}
 							</select>
 						</label>
@@ -312,11 +346,11 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 
 				<label className="ai-review-instruction">
 					<span>作者指令</span>
-					<textarea value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
+					<textarea data-testid="relationship-ai-instruction" value={instruction} disabled={generating} maxLength={2_000} onChange={event => setInstruction(event.target.value)} />
 				</label>
 				{disabledReason ? <p className="ai-review-hint">{disabledReason}</p> : null}
 				<div className="ai-review-run-row">
-					<button type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
+					<button data-testid="relationship-ai-generate" type="button" className="ai-review-primary" disabled={Boolean(disabledReason) || generating} onClick={() => void generate()}>
 						{generating ? <LoaderCircle className="spin" size={18} /> : <WandSparkles size={18} />}
 						{generating ? `正在分析 · ${streamedLength} 字符` : '生成关系候选'}
 					</button>
@@ -356,11 +390,12 @@ export function RelationshipAiPanel(props: RelationshipAiPanelProps): React.JSX.
 						) : null}
 						<div className="ai-review-run-row">
 							{candidate.evidence && props.onOpenEvidence ? (
-								<button type="button" className="ai-review-secondary" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}>
+								<button data-testid="relationship-ai-evidence" type="button" className="ai-review-secondary" onClick={() => props.onOpenEvidence?.(candidate.evidence!)}>
 									<BookOpen size={16} />查看证据
 								</button>
 							) : null}
 							<button
+								data-testid="relationship-ai-accept"
 								type="button"
 								className="ai-review-accept"
 								disabled={candidate.blocking || candidate.status !== 'candidate' || Boolean(applyingId)}
