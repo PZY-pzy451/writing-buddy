@@ -1720,6 +1720,41 @@ const report = {
 				qaScriptTests: 28,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-CHARACTER-AI-WRITE-SELECTOR-CONVERGENCE-057',
+			summary: 'Character AI candidate writes exposed arbitrary persistence errors while five dynamic control groups lacked stable identities.',
+			before: {
+				sourceControls: 7,
+				sourceMappedControls: 3,
+				sourceMissingStableSelectors: 4,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				unknownWriteDetailsRedacted: false,
+				globalControls: 474,
+				globalStates: 10428,
+				globalMissingStableSelectors: 122,
+				totalUnmapped: 10410
+			},
+			after: {
+				sourceControls: 8,
+				sourceMappedControls: 8,
+				sourceMissingStableSelectors: 0,
+				repeatedGenerationActions: 100,
+				generationRequests: 1,
+				unknownWriteDetailsRedacted: true,
+				explicitRetryAvailable: true,
+				candidateFieldsPreservedForRetry: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 3,
+				focusedTests: 24,
+				impactTests: 14,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [

@@ -4,43 +4,39 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Story Association persistence convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `9b41b04`.
+Character AI write and stable-selector convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `9dfeb3d`.
 
-- Five contracts failed red: four association declarations lacked stable
-  selectors, 100 same-frame confirmations could dispatch 100 writes, loader
-  failures exposed raw details without an actionable retry and project A's late
-  load could replace already-open project B.
-- All 9 association controls are now stable. Confirmation and Undo share a
-  synchronous persistence guard; 100 confirmations write once, cancellation is
-  locked while saving and one explicit retry is available after failure.
-- Same-project load attempts are single-flight. One hundred retry actions start
-  one load, raw paths are localized and a superseded project's late success or
-  failure cannot mutate current data or feedback.
-- The first full run found one low-opacity disabled-state regression on the new
-  retry control. It was replaced with semantic text/background colors and the
-  global visual contract returned green.
-- Selector debt falls from 126 to 122. Aggregate unmapped traceability falls
-  from 10,418 to 10,410: eight fewer gaps while six tests, two controls and 44
-  derived states were added. From the earlier 11,088 / 136 reference, cumulative
-  reductions are 678 mappings and 14 selectors.
-- Focused contracts passed 19/19, association impact passed 8/8, QA
-  infrastructure passed 28/28 and the visual regression pair passed 9/9.
-- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 970 tests
+- Three contracts failed red: the panel exposed only seven inventoried
+  declarations, five dynamic control groups lacked stable identities, and a
+  rejected candidate snapshot displayed a private local path to the author.
+- The panel now has 8/8 mapped controls. Unknown persistence errors are
+  localized, known domain errors remain actionable and the candidate stays
+  retryable with the same selected fields and no second paid generation.
+- The existing pressure boundary remains intact: 100 same-frame Generate
+  actions start exactly one provider request. The explicit write retry performs
+  one new snapshot attempt and succeeds without regeneration.
+- Selector debt falls from 122 to 118. Aggregate unmapped traceability falls
+  from 10,410 to 10,379: 31 fewer gaps while two tests, one control declaration
+  and 22 derived states were added. From the earlier 11,088 / 136 reference,
+  cumulative reductions are 709 mappings and 18 selectors.
+- Focused page/inventory contracts passed 24/24, character impact passed 14/14
+  and QA infrastructure passed 29/29.
+- Fixed-commit Node 24 acceptance passed lint, typecheck, 188 files / 972 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- The ledger contains 1,049 cases: 1,047 passes and two reasoned skips. Static
-  and runtime frontend discovery match at 970 with 97 parameterized instances
+- The ledger contains 1,051 cases: 1,049 passes and two reasoned skips. Static
+  and runtime frontend discovery match at 972 with 97 parameterized instances
   and zero unresolved declarations.
 - Quantified status: deterministic execution is 100%; stable-selector coverage
-  is 352/474 (74.26%); aggregate strict traceability is 14.70%; release gates
+  is 357/475 (75.16%); aggregate strict traceability is 15.13%; release gates
   remain 1/4 complete (25%). Product stays `PARTIAL` until strict traceability,
   real-provider smoke and packaged-EXE acceptance complete.
 
 ## Previous milestone
 
-Relationship Inspector save convergence is complete against source `53b336c`:
-4/4 controls are mapped and fixed acceptance passed 964 frontend tests.
+Story Association persistence convergence is complete against source `9b41b04`:
+9/9 controls are mapped and fixed acceptance passed 970 frontend tests.
 
 ## Earlier milestone: AI drawer Context Pack freeze
 

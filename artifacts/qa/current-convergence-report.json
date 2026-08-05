@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-05T01:27:30.806Z",
+  "generatedAt": "2026-08-05T01:43:24.663Z",
   "source": {
-    "commit": "9b41b042c8e0686b406aa9040e096df25e5cdaf4",
+    "commit": "9dfeb3d8e40925740fa7b1acbf099a2e6b789294",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 970,
-        "runtimeCollected": 970,
+        "frontendInventory": 972,
+        "runtimeCollected": 972,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 1049,
-        "ledgerCases": 1047,
+        "discoveredTests": 1051,
+        "ledgerCases": 1049,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 1049,
-        "ledgerCases": 1049,
-        "frontendLedgerCases": 970,
+        "discoveredTests": 1051,
+        "ledgerCases": 1051,
+        "frontendLedgerCases": 972,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -413,7 +413,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -445,7 +445,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 27,
         "impactedTests": 51,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -477,7 +477,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 36,
         "impactedTests": 66,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -506,7 +506,7 @@
         "browserAutomationBlocker": "The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.",
         "focusedTests": 35,
         "impactedTests": 70,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -533,7 +533,7 @@
         "stableAccessibleName": true,
         "focusedTests": 7,
         "impactedTests": 81,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -558,7 +558,7 @@
         "delayedOldConflictIgnored": true,
         "focusedTests": 38,
         "impactedTests": 93,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -583,7 +583,7 @@
         "dirtyDiscardConfirmations": 1,
         "focusedTests": 12,
         "impactedTests": 89,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -605,7 +605,7 @@
         "latestOpenFailurePreserved": true,
         "focusedTests": 15,
         "impactedTests": 92,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -641,7 +641,7 @@
         "rollbackUsesCapturedModel": true,
         "focusedTests": 11,
         "impactedTests": 98,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -678,7 +678,7 @@
         "redFailures": 6,
         "focusedTests": 15,
         "impactedTests": 113,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -713,7 +713,7 @@
         "redFailures": 5,
         "focusedTests": 22,
         "impactedTests": 118,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -744,7 +744,7 @@
         "redFailures": 2,
         "focusedTests": 25,
         "impactedTests": 121,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -787,7 +787,7 @@
         "redFailures": 8,
         "focusedTests": 41,
         "impactedTests": 137,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -834,7 +834,7 @@
         "redFailures": 5,
         "focusedTests": 46,
         "impactedTests": 142,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -853,7 +853,7 @@
         "maxWorkers": 2,
         "configurationContractTests": 1,
         "frontendFiles": 188,
-        "frontendTests": 970,
+        "frontendTests": 972,
         "normalExit": true,
         "runtimeInventoryDelta": 0
       }
@@ -888,7 +888,7 @@
         "redFailures": 4,
         "focusedTests": 48,
         "impactedTests": 147,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -937,7 +937,7 @@
         "redFailures": 4,
         "focusedTests": 40,
         "impactedTests": 151,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -985,7 +985,7 @@
         "redFailures": 6,
         "focusedTests": 46,
         "impactedTests": 157,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1020,7 +1020,7 @@
         "redFailures": 4,
         "focusedTests": 50,
         "impactedTests": 161,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1054,11 +1054,11 @@
         "internalResetAvailable": true,
         "normalCloseContractsPreserved": true,
         "stableWidthToggleAccessibleName": true,
-        "missingStableSelectors": 122,
+        "missingStableSelectors": 118,
         "redFailures": 4,
         "focusedTests": 67,
         "impactedTests": 172,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1088,7 +1088,7 @@
         "redFailures": 1,
         "focusedTests": 75,
         "impactedTests": 174,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1105,9 +1105,9 @@
       "after": {
         "sourceControls": 9,
         "sourceUnmappedControls": 0,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
         "preservedAccessibleNames": [
           "生成 Story Kernel 候选",
           "取消",
@@ -1118,7 +1118,7 @@
         "redFailures": 2,
         "focusedTests": 22,
         "impactedTests": 93,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1140,7 +1140,7 @@
         "extractionRequests": 1,
         "sourceControls": 5,
         "sourceUnmappedControls": 0,
-        "globalMissingStableSelectors": 122,
+        "globalMissingStableSelectors": 118,
         "preservedFieldLabels": [
           "标题",
           "事实陈述",
@@ -1149,7 +1149,7 @@
         "redFailures": 2,
         "focusedTests": 6,
         "impactedTests": 43,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1174,7 +1174,7 @@
         "redFailures": 2,
         "focusedTests": 15,
         "impactedTests": 48,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1199,7 +1199,7 @@
         "redFailures": 4,
         "focusedTests": 21,
         "impactedTests": 58,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1214,15 +1214,15 @@
         "totalUnmapped": 10159
       },
       "after": {
-        "controls": 474,
-        "states": 10428,
-        "missingStableSelectors": 122,
+        "controls": 475,
+        "states": 10450,
+        "missingStableSelectors": 118,
         "compositeControls": 0,
         "syntheticCompositeStates": 0,
-        "totalUnmapped": 10410,
+        "totalUnmapped": 10379,
         "redFailures": 1,
         "focusedTests": 16,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1243,15 +1243,15 @@
         "sourceMappedControls": 38,
         "sourceMissingStableSelectors": 0,
         "distinguishedControls": 16,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "testCleanupReactWarnings": 0,
         "redFailures": 2,
         "creationJourneyTests": 64,
         "qaScriptTests": 17,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1271,15 +1271,15 @@
         "sourceMappedControls": 35,
         "sourceMissingStableSelectors": 0,
         "distinguishedControls": 20,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 2,
         "focusedTests": 10,
         "creationJourneyTests": 65,
         "qaScriptTests": 16,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1300,16 +1300,16 @@
         "sourceMappedControls": 20,
         "sourceMissingStableSelectors": 0,
         "distinguishedControls": 8,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "projectImpactReactWarnings": 0,
         "redFailures": 2,
         "focusedTests": 16,
         "projectImpactTests": 64,
         "qaScriptTests": 17,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1330,15 +1330,15 @@
         "sourceMissingStableSelectors": 0,
         "distinctOperations": 6,
         "dynamicAccessibleNamesPreserved": true,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 2,
         "focusedTests": 8,
         "projectImpactTests": 65,
         "qaScriptTests": 18,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1370,16 +1370,16 @@
         "localizedFailureFeedback": true,
         "retryAfterFailure": true,
         "impactReactWarnings": 0,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "focusedTests": 10,
         "impactTests": 58,
         "storyKernelPanelTests": 22,
         "qaScriptTests": 19,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1413,15 +1413,15 @@
         "rawFailureDetailsVisible": false,
         "retryAfterFailure": true,
         "secondSaveRevision": 2,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "focusedTests": 17,
         "impactTests": 62,
         "qaScriptTests": 20,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1454,15 +1454,15 @@
         "navigatesAfterFailedSave": false,
         "failedDraftRemainsDirty": true,
         "workspaceReactWarnings": 0,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 4,
         "focusedTests": 34,
         "impactTests": 95,
         "qaScriptTests": 21,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1496,15 +1496,15 @@
         "rejectionTransactions": 1,
         "retryAfterFailure": true,
         "rawUnexpectedErrorVisible": false,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "focusedTests": 20,
         "impactTests": 163,
         "qaScriptTests": 22,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1537,15 +1537,15 @@
         "alreadyOpenChapterFocusHonored": true,
         "disabledActionsSkippedByKeyboard": true,
         "quickCaptureReactWarnings": 0,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 4,
         "focusedTests": 18,
         "impactTests": 73,
         "qaScriptTests": 25,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1580,15 +1580,15 @@
         "openingFocusRestored": true,
         "staleSaveProjectCreated": false,
         "staleNativeResultApplied": false,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "focusedTests": 16,
         "impactTests": 102,
         "qaScriptTests": 26,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1620,15 +1620,15 @@
         "failedSaveFeedbackVisible": true,
         "retryAfterFailure": true,
         "dataTestIdEvidenceAccepted": true,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 6,
         "focusedTests": 20,
         "impactTests": 15,
         "qaScriptTests": 26,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1658,15 +1658,15 @@
         "retryAfterFailure": true,
         "parentPropagatesRejection": true,
         "secondSaveRevision": 1,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "focusedTests": 17,
         "impactTests": 13,
         "qaScriptTests": 27,
-        "frontendTests": 970
+        "frontendTests": 972
       }
     },
     {
@@ -1699,16 +1699,51 @@
         "loaderDetailsRedacted": true,
         "latestProjectResultIsolation": true,
         "disabledStateContrastContract": true,
-        "globalControls": 474,
-        "globalStates": 10428,
-        "globalMissingStableSelectors": 122,
-        "totalUnmapped": 10410,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
         "redFailures": 5,
         "fullBaselineDefectsFound": 1,
         "focusedTests": 19,
         "impactTests": 8,
         "qaScriptTests": 28,
-        "frontendTests": 970
+        "frontendTests": 972
+      }
+    },
+    {
+      "id": "QA-CHARACTER-AI-WRITE-SELECTOR-CONVERGENCE-057",
+      "summary": "Character AI candidate writes exposed arbitrary persistence errors while five dynamic control groups lacked stable identities.",
+      "before": {
+        "sourceControls": 7,
+        "sourceMappedControls": 3,
+        "sourceMissingStableSelectors": 4,
+        "repeatedGenerationActions": 100,
+        "generationRequests": 1,
+        "unknownWriteDetailsRedacted": false,
+        "globalControls": 474,
+        "globalStates": 10428,
+        "globalMissingStableSelectors": 122,
+        "totalUnmapped": 10410
+      },
+      "after": {
+        "sourceControls": 8,
+        "sourceMappedControls": 8,
+        "sourceMissingStableSelectors": 0,
+        "repeatedGenerationActions": 100,
+        "generationRequests": 1,
+        "unknownWriteDetailsRedacted": true,
+        "explicitRetryAvailable": true,
+        "candidateFieldsPreservedForRetry": true,
+        "globalControls": 475,
+        "globalStates": 10450,
+        "globalMissingStableSelectors": 118,
+        "totalUnmapped": 10379,
+        "redFailures": 3,
+        "focusedTests": 24,
+        "impactTests": 14,
+        "qaScriptTests": 29,
+        "frontendTests": 972
       }
     }
   ],
@@ -1733,22 +1768,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 970
+      "frontendTests": 972
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-05T01:19:53.640Z",
-      "completedAt": "2026-08-05T01:23:21.581Z",
+      "generatedAt": "2026-08-05T01:36:53.899Z",
+      "completedAt": "2026-08-05T01:40:40.284Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.18.0",
-      "durationMs": 207940,
+      "durationMs": 226383,
       "vitestFiles": 188,
-      "vitestPassed": 970,
-      "inventoryFrontendTests": 970,
+      "vitestPassed": 972,
+      "inventoryFrontendTests": 972,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -1757,10 +1792,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-05T01:23:29.587Z",
-      "completedAt": "2026-08-05T01:23:33.025Z",
+      "generatedAt": "2026-08-05T01:40:47.609Z",
+      "completedAt": "2026-08-05T01:40:49.879Z",
       "status": "PASS",
-      "durationMs": 3436,
+      "durationMs": 2269,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -1786,8 +1821,8 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 10410,
-    "missingStableSelectors": 122
+    "totalUnmapped": 10379,
+    "missingStableSelectors": 118
   },
   "warnings": [
     "The production Monaco bundle remains above 3,000 kB.",

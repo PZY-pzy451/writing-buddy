@@ -1134,3 +1134,17 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 122 despite six new tests, two new control declarations and 44 new states.
 - Release remains blocked by strict traceability, real-provider smoke and
   packaged-EXE acceptance.
+
+## 2026-08-05 addendum — defect 057
+
+- Character AI now exposes 8/8 stable control declarations while preserving the
+  existing one-request result under 100 same-frame Generate actions.
+- Unknown snapshot, repository and state-store failures no longer expose raw
+  paths or persistence details. A rejected candidate remains retryable with its
+  field selection intact and can succeed without another paid generation.
+- Fixed-commit execution passed 972 frontend and 77 native tests; two native
+  cases retain documented reasons. QA infrastructure passed 29/29.
+- Traceability gaps fell from 10,410 to 10,379 and stable-selector gaps from 122
+  to 118 despite two new tests, one new control declaration and 22 new states.
+- Release remains blocked by strict traceability, real-provider smoke and
+  packaged-EXE acceptance.

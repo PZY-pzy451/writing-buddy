@@ -20870,145 +20870,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERAIPANEL-BUTTON-244707E9",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-244707E9-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-CHARACTERAIPANEL-BUTTON-4F0F08F8",
                   "level": "L4",
                   "name": "关闭 AI 人物助手",
@@ -21148,138 +21009,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERAIPANEL-BUTTON-85156A6F",
+                  "id": "CTRL-CHARACTERAIPANEL-BUTTON-7B594FFE",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-VISIBLE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-HIDDEN",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-ENABLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-DISABLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-POINTER",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-KEYBOARD",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-FOCUS-IN",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-FOCUS-OUT",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-REPEAT",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-DEDUPLICATION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-LOADING",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-SUCCESS",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-FAILURE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-CANCELLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-OFFLINE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-PERMISSION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-PERSISTENCE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-RESTART",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-VISUAL",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-BUTTON-85156A6F-UNDO",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-7B594FFE-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -21287,138 +21148,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERAIPANEL-INPUT-B086BB18",
+                  "id": "CTRL-CHARACTERAIPANEL-BUTTON-D671476D",
                   "level": "L4",
-                  "name": "input",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-VISIBLE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-HIDDEN",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-ENABLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-DISABLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-POINTER",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-KEYBOARD",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-FOCUS-IN",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-FOCUS-OUT",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-REPEAT",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-DEDUPLICATION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-LOADING",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-SUCCESS",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-FAILURE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-CANCELLED",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-OFFLINE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-PERMISSION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-PERSISTENCE",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-RESTART",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-VISUAL",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-INPUT-B086BB18-UNDO",
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D671476D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTERAIPANEL-BUTTON-D73FD217",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-BUTTON-D73FD217-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-CHARACTERAIPANEL-INPUT-BAD4478E",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-CHARACTERAIPANEL-INPUT-BAD4478E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -21565,138 +21704,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-CHARACTERAIPANEL-TEXTAREA-3D8914C5",
+                  "id": "CTRL-CHARACTERAIPANEL-TEXTAREA-05D42F7A",
                   "level": "L4",
                   "name": "textarea",
                   "states": [
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-VISIBLE",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-HIDDEN",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-ENABLED",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-DISABLED",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-POINTER",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-KEYBOARD",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-FOCUS-IN",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-FOCUS-OUT",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-REPEAT",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-DEDUPLICATION",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-LOADING",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-SUCCESS",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-FAILURE",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-CANCELLED",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-OFFLINE",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-PERMISSION",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-PERSISTENCE",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-RESTART",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-VISUAL",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-ACCESSIBLE-NAME",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-3D8914C5-UNDO",
+                      "id": "STATE-CHARACTERAIPANEL-TEXTAREA-05D42F7A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71724,7 +71863,7 @@
       "id": "TC-DISCOVERED-297F9501E7",
       "title": "consumes a global create intent by opening the assistant without starting AI",
       "declarationTitle": "consumes a global create intent by opening the assistant without starting AI",
-      "declarationLine": 281,
+      "declarationLine": 321,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
@@ -73257,24 +73396,6 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-3B6A0F506C",
-      "title": "opens the empty-state AI workflow and renders exactly three generated candidates",
-      "declarationTitle": "opens the empty-state AI workflow and renders exactly three generated candidates",
-      "declarationLine": 211,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -81249,6 +81370,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B0D62A0A3D",
+      "title": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
+      "declarationTitle": "TC-CHARACTER-AI-001 exposes stable controls and keeps one paid request under one hundred clicks",
+      "declarationLine": 211,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B1054077D9",
       "title": "finds travel gaps shorter than the configured minimum duration",
       "declarationTitle": "finds travel gaps shorter than the configured minimum duration",
@@ -82865,6 +83004,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-C706D2DFD9",
+      "title": "TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry",
+      "declarationTitle": "TC-CHARACTER-AI-003 redacts candidate write failure and preserves one explicit retry",
+      "declarationLine": 285,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-C719A1D33C",
       "title": "TC-STORY-ASSOCIATION-005 ignores an old project load that finishes after the new project",
       "declarationTitle": "TC-STORY-ASSOCIATION-005 ignores an old project load that finishes after the new project",
@@ -82965,6 +83122,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-C8AAC9F797",
+      "title": "TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry",
+      "declarationTitle": "TC-CHARACTER-AI-002 redacts provider failure and releases generation for retry",
+      "declarationLine": 253,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-02",
+      "pageId": "PAGE-STORY-CHARACTERS",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84215,24 +84390,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-D94B3070AB",
-      "title": "releases the generation guard after a provider-start failure and allows retry",
-      "declarationTitle": "releases the generation guard after a provider-start failure and allows retry",
-      "declarationLine": 249,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/characters/CharacterCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-02",
-      "pageId": "PAGE-STORY-CHARACTERS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-D966CC36B7",
       "title": "redacts a failed save and releases one explicit retry",
       "declarationTitle": "redacts a failed save and releases one explicit retry",
@@ -85026,6 +85183,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-E65F99FE1E",
+      "title": "TC-QA-INVENTORY-018 maps every Character AI control to a stable selector",
+      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character AI control to a stable selector",
+      "declarationLine": 314,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
