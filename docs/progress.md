@@ -4,30 +4,36 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Top-bar menu keyboard and selector convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `db69fd0`.
+Quick Capture save and selector convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `b63947c`.
 
-- Global, quiet-writer, planning/reference and focus variants now expose 16
-  distinct stable identities, including the More menu container itself.
-- Opening More focuses its first enabled item. Arrow keys wrap, Home/End jump,
-  Escape closes and restores trigger focus, and an outside pointer action
-  dismisses without activating an item.
-- Five red failures converged to 5/5 focused/inventory, 51/51 Writer Workspace
-  and shell impact, and 30/30 QA infrastructure tests. Node 24 passed lint,
-  typecheck, 189 files / 979 tests and production build; Rust passed 77 with
-  two reasoned ignores.
-- Inventory honestly expands by 10 controls and 220 states. Strictly mapped
-  source controls rise from 2 to 16 and source mapped states from 32 to 265;
-  global mapped states rise by 235. Strict gaps fall by 20 from 9,787 to 9,767,
-  selector gaps fall from 83 to 79 and unmapped tests fall from 871 to 870.
+- Dialog, close, text, type and Save now expose five stable identities without
+  changing their accessible Chinese names.
+- A component-local synchronous guard covers both Ctrl+Enter and Save before
+  React can render Store busy state. Two hundred same-frame actions start one
+  save, pending close cannot bypass it, and a false result releases one retry.
+- Three red failures converged to 20/20 focused/inventory, 38/38 Quick Capture
+  and Writer Workspace impact, and 30/30 QA infrastructure tests. Node 24
+  passed lint, typecheck, 189 files / 979 tests and production build; Rust
+  passed 77 with two reasoned ignores.
+- Inventory does not expand. All 5 source controls, 53 of 110 source states and
+  all 5 product cases are strictly mapped. Global mapped controls rise by 4,
+  mapped states by 46 and mapped tests by 3. Strict gaps fall by 53 from 9,767
+  to 9,714, selector gaps from 79 to 76 and unmapped tests from 870 to 867.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,228/12,995 (24.84%); stable selectors are 429/508 (84.45%); test mapping is
-  188/1,058 (17.77%). Against the 11,088 / 136 reference, 1,321 mapping gaps
-  and 57 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,281/12,995 (25.25%); stable selectors are 432/508 (85.04%); test mapping is
+  191/1,058 (18.05%). Against the 11,088 / 136 reference, 1,374 mapping gaps
+  and 60 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
 
 ## Previous milestone
+
+Top-bar menu keyboard and selector convergence is complete against source
+`db69fd0`: all 16 variant controls expose stable identities and complete
+keyboard behavior, and fixed acceptance passed 979 frontend tests.
+
+## Earlier milestone
 
 Information control load recovery and selector convergence is complete against
 source `79b8ab9`: 5/5 controls and its product case are mapped, and fixed

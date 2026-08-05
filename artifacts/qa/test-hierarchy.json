@@ -62197,416 +62197,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-7664623F-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-76A17F4C-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E",
+                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A",
                   "level": "L4",
                   "name": "关闭快速记录",
                   "states": [
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-VISIBLE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-HIDDEN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-ENABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-DISABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-POINTER",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-KEYBOARD",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-FOCUS-IN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-FOCUS-OUT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-REPEAT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-DEDUPLICATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-LOADING",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-SUCCESS",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-FAILURE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-CANCELLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-OFFLINE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-PERMISSION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-PERSISTENCE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-RESTART",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-VISUAL",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-ACCESSIBLE-NAME",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-78B61F8E-UNDO",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-4271271A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -62614,138 +62336,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD",
+                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-B4A0093D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-BUTTON-F02CABF5-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878",
                   "level": "L4",
                   "name": "section",
                   "states": [
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-VISIBLE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-HIDDEN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-ENABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-DISABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-POINTER",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-KEYBOARD",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-FOCUS-IN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-FOCUS-OUT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-REPEAT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-DEDUPLICATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-LOADING",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-SUCCESS",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-FAILURE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-CANCELLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-OFFLINE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-PERMISSION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-PERSISTENCE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-RESTART",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-VISUAL",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-ACCESSIBLE-NAME",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-5C22E8DD-UNDO",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-SECTION-A594A878-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -62753,138 +62753,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23",
+                  "id": "CTRL-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A",
                   "level": "L4",
                   "name": "记录内容",
                   "states": [
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-VISIBLE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-HIDDEN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-ENABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-DISABLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-POINTER",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-KEYBOARD",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-FOCUS-IN",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-FOCUS-OUT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-REPEAT",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-DEDUPLICATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-LOADING",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-SUCCESS",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-FAILURE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-CANCELLED",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-OFFLINE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-PERMISSION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-PERSISTENCE",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-RESTART",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-VISUAL",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-ACCESSIBLE-NAME",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-DC0C5F23-UNDO",
+                      "id": "STATE-QUICKCAPTUREDIALOGCONTENT-TEXTAREA-C82C966A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -74176,7 +74176,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 445,
+      "declarationLine": 459,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -75993,24 +75993,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-20F5B7A365",
-      "title": "loads a missing project inbox as an empty versioned collection",
-      "declarationTitle": "loads a missing project inbox as an empty versioned collection",
-      "declarationLine": 42,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-21001F25B3",
       "title": "makes a confirmed candidate stale after the exact source changes",
       "declarationTitle": "makes a confirmed candidate stale after the exact source changes",
@@ -76184,6 +76166,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-23B6426B79",
+      "title": "TC-QUICK-CAPTURE-STORE-002 quick-capture-save persists atomic appends and updates with the current expected hash",
+      "declarationTitle": "TC-QUICK-CAPTURE-STORE-002 quick-capture-save persists atomic appends and updates with the current expected hash",
+      "declarationLine": 51,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -78589,24 +78589,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-3F3E0CE456",
-      "title": "starts from editor context and saves with Ctrl+Enter",
-      "declarationTitle": "starts from editor context and saves with Ctrl+Enter",
-      "declarationLine": 18,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/quick-capture/QuickCaptureDialog.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-3F5BF28FC3",
       "title": "exposes explicit draggable sources and scene/holder targets",
       "declarationTitle": "exposes explicit draggable sources and scene/holder targets",
@@ -79360,24 +79342,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/tests/App.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-4A8D922A9C",
-      "title": "does not overwrite a concurrently changed inbox",
-      "declarationTitle": "does not overwrite a concurrently changed inbox",
-      "declarationLine": 72,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -86065,6 +86029,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B15033DC16",
+      "title": "TC-QUICK-CAPTURE-DIALOG-001 exposes stable controls, deduplicates repeated Ctrl+Enter and button actions, and releases explicit retry",
+      "declarationTitle": "TC-QUICK-CAPTURE-DIALOG-001 exposes stable controls, deduplicates repeated Ctrl+Enter and button actions, and releases explicit retry",
+      "declarationLine": 18,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/quick-capture/QuickCaptureDialog.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B15DB60012",
       "title": "keeps a visible outline and readable disabled state",
       "declarationTitle": "keeps a visible outline and readable disabled state",
@@ -87753,24 +87735,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-C7558E9B84",
-      "title": "atomically appends and updates records with the current expected hash",
-      "declarationTitle": "atomically appends and updates records with the current expected hash",
-      "declarationLine": 51,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-C7F0E2DECF",
       "title": "rejects invalid schema before any storage call",
       "declarationTitle": "rejects invalid schema before any storage call",
@@ -87832,6 +87796,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/tests/App.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-C887152205",
+      "title": "TC-QUICK-CAPTURE-STORE-001 quick-capture-save loading initializes a missing project inbox as an empty versioned collection",
+      "declarationTitle": "TC-QUICK-CAPTURE-STORE-001 quick-capture-save loading initializes a missing project inbox as an empty versioned collection",
+      "declarationLine": 42,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -88430,7 +88412,7 @@
       "id": "TC-DISCOVERED-CFE9C3CB63",
       "title": "closes once on Escape and restores the exact opening focus",
       "declarationTitle": "closes once on Escape and restores the exact opening focus",
-      "declarationLine": 54,
+      "declarationLine": 78,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/quick-capture/QuickCaptureDialog.test.tsx",
@@ -90785,6 +90767,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F5B4AEE5E0",
+      "title": "TC-QUICK-CAPTURE-STORE-003 quick-capture-save reports concurrent-write failure without overwriting the changed inbox",
+      "declarationTitle": "TC-QUICK-CAPTURE-STORE-003 quick-capture-save reports concurrent-write failure without overwriting the changed inbox",
+      "declarationLine": 72,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/quick-capture/QuickCaptureStore.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

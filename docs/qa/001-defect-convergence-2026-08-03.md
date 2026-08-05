@@ -1452,3 +1452,25 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 870.
 - Strict coverage is 24.84%, stable-selector coverage is 84.45%, test mapping
   is 17.77% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 073
+
+- Quick Capture dialog, close, text, type and Save expose five stable
+  identities while retaining accessible Chinese names.
+- Ctrl+Enter and Save acquire one component-local synchronous guard before the
+  Store busy update reaches React. One hundred actions through each entry point
+  start one save; close cannot bypass the pending action, and a false result
+  releases the guard for one explicit retry.
+- Three existing Store cases now map loading, atomic persistence and concurrent-
+  write failure to the Save control. No synthetic test or inventory debt was
+  added.
+- Three red failures converged to 20/20 focused/inventory, 38/38 Quick Capture
+  and Writer Workspace impact and 30/30 QA infrastructure tests. Fixed-source
+  sequential execution passed 189 frontend files / 979 tests, production build
+  and 77 native tests with two reasoned ignores.
+- All 5 source controls, 53 of 110 source states and all 5 product cases are
+  strictly mapped. Global mapped controls rise by 4, mapped states by 46 and
+  mapped tests by 3. Strict gaps fall from 9,767 to 9,714, selector gaps from
+  79 to 76 and unmapped tests from 870 to 867.
+- Strict coverage is 25.25%, stable-selector coverage is 85.04%, test mapping
+  is 18.05% and release hard gates remain 1/4 complete.
