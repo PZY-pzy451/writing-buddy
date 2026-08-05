@@ -59278,6 +59278,145 @@
                   ]
                 },
                 {
+                  "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-214A7BB8-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-23D38602",
                   "level": "L4",
                   "name": "全部放弃",
@@ -59417,138 +59556,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303",
+                  "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-VISIBLE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-HIDDEN",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-ENABLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-DISABLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-POINTER",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-REPEAT",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-LOADING",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-SUCCESS",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-FAILURE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-CANCELLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-OFFLINE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-PERMISSION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-RESTART",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-VISUAL",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-2ED88303-UNDO",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-3626CC52-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -59695,138 +59834,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E",
+                  "id": "CTRL-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-VISIBLE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-HIDDEN",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-ENABLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-DISABLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-POINTER",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-REPEAT",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-LOADING",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-SUCCESS",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-FAILURE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-CANCELLED",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-OFFLINE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-PERMISSION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-RESTART",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-VISUAL",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-9FD64C3E-UNDO",
+                      "id": "STATE-MANUSCRIPTCONTINUATIONPANEL-BUTTON-43024F11-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -70801,6 +70940,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-07DEB68B8B",
+      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
+      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
+      "declarationLine": 314,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-0860225BA7",
       "title": "keeps PLOT_ANALYSIS_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -71329,24 +71486,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-0DA833AAA3",
-      "title": "shows a calm next step instead of a red failure for an unplanned empty chapter",
-      "declarationTitle": "shows a calm next step instead of a red failure for an unplanned empty chapter",
-      "declarationLine": 114,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-0DB70005D2",
       "title": "deduplicates 100 repeated pointer save attempts while loading and allows success",
       "declarationTitle": "deduplicates 100 repeated pointer save attempts while loading and allows success",
@@ -71570,6 +71709,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-129ADAE934",
+      "title": "shows one calm visible next step for an unplanned empty chapter",
+      "declarationTitle": "shows one calm visible next step for an unplanned empty chapter",
+      "declarationLine": 114,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -72603,24 +72760,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-2150BBC442",
-      "title": "keeps author guidance, blocks duplicate requests and shows grounded review before insert",
-      "declarationTitle": "keeps author guidance, blocks duplicate requests and shows grounded review before insert",
-      "declarationLine": 258,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-219A8D0B99",
       "title": "shows chapter status without an edit control for read-only projects",
       "declarationTitle": "shows chapter status without an edit control for read-only projects",
@@ -72758,6 +72897,24 @@
       "parameterCaseLabel": "focus-mode",
       "parameterizationResolved": true,
       "source": "apps/desktop/src/shell/writerShortcuts.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-238FFB6B2A",
+      "title": "TC-MANUSCRIPT-CONTINUATION-010 redacts private persistence details, preserves the candidate and succeeds on explicit restart without regeneration",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-010 redacts private persistence details, preserves the candidate and succeeds on explicit restart without regeneration",
+      "declarationLine": 404,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -73226,24 +73383,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/theme/workspaceLayout.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-2ACCE1034F",
-      "title": "blocks insertion when the safety snapshot fails and allows a safe retry",
-      "declarationTitle": "blocks insertion when the safety snapshot fails and allows a safe retry",
-      "declarationLine": 386,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -74017,6 +74156,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-344E3ED876",
+      "title": "TC-MANUSCRIPT-CONTINUATION-009 renders exactly three visible directions and marks one refused by pointer without mutating the manuscript",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-009 renders exactly three visible directions and marks one refused by pointer without mutating the manuscript",
+      "declarationLine": 379,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-348783348D",
       "title": "normalizes Windows paths and keeps deleted source paths in impact selection",
       "declarationTitle": "normalizes Windows paths and keeps deleted source paths in impact selection",
@@ -74522,24 +74679,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-3A83C0166D",
-      "title": "keeps malformed generated data out of the manuscript with localized guidance",
-      "declarationTitle": "keeps malformed generated data out of the manuscript with localized guidance",
-      "declarationLine": 232,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -76530,7 +76669,7 @@
       "id": "TC-DISCOVERED-521359FC29",
       "title": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
       "declarationTitle": "TC-QA-TRACEABILITY-001 reports PASS only when every inventory kind is mapped",
-      "declarationLine": 24,
+      "declarationLine": 25,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -78163,6 +78302,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-6C937BE42D",
+      "title": "keeps opening generation keyboard focusable and creates an author-confirmed draft",
+      "declarationTitle": "keeps opening generation keyboard focusable and creates an author-confirmed draft",
+      "declarationLine": 133,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-6CBF12A73E",
       "title": "rejects unsafe paths",
       "declarationTitle": "rejects unsafe paths",
@@ -78265,6 +78422,24 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-6EB8B0B5B4",
+      "title": "TC-MANUSCRIPT-CONTINUATION-008 keeps accepted success visible, supports undo and restores source content after host update",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-008 keeps accepted success visible, supports undo and restores source content after host update",
+      "declarationLine": 342,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79015,24 +79190,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-792421A292",
-      "title": "creates only one snapshot and insertion when accept is clicked 100 times in one event batch",
-      "declarationTitle": "creates only one snapshot and insertion when accept is clicked 100 times in one event batch",
-      "declarationLine": 306,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-796862B402",
       "title": "applies participant filters and an inclusive story-time window",
       "declarationTitle": "applies participant filters and an inclusive story-time window",
@@ -79228,24 +79385,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "orchestration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-7B6B6B0213",
-      "title": "keeps an accepted insertion successful after the host updates the manuscript",
-      "declarationTitle": "keeps an accepted insertion successful after the host updates the manuscript",
-      "declarationLine": 336,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -80363,24 +80502,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-8CCCF4BBA6",
-      "title": "hands a standard continuation to the inline draft surface without applying text",
-      "declarationTitle": "hands a standard continuation to the inline draft surface without applying text",
-      "declarationLine": 165,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-8D2999F779",
       "title": "reuses one accepted dirty-draft decision for the latest queued project",
       "declarationTitle": "reuses one accepted dirty-draft decision for the latest queued project",
@@ -80531,6 +80652,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-8F0D5E2005",
+      "title": "TC-MANUSCRIPT-CONTINUATION-003 hides the candidate card after one atomic inline draft handoff without applying text",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-003 hides the candidate card after one atomic inline draft handoff without applying text",
+      "declarationLine": 167,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-8F333E3315",
       "title": "scrubs stale chapter context and requires reopening from the current chapter",
       "declarationTitle": "scrubs stale chapter context and requires reopening from the current chapter",
@@ -80610,24 +80749,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationService.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-90757DED0F",
-      "title": "repairs an equivalent wrapped response before handing off the inline draft",
-      "declarationTitle": "repairs an equivalent wrapped response before handing off the inline draft",
-      "declarationLine": 192,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -81403,6 +81524,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-9C5AD7CDC7",
+      "title": "keeps one snapshot and insertion while persistence is pending across one hundred accept actions",
+      "declarationTitle": "keeps one snapshot and insertion while persistence is pending across one hundred accept actions",
+      "declarationLine": 312,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-9C6C4D594A",
       "title": "keeps manuscript content unchanged and reports prose statistics",
       "declarationTitle": "keeps manuscript content unchanged and reports prose statistics",
@@ -81930,7 +82069,7 @@
       "id": "TC-DISCOVERED-A3F9BAB936",
       "title": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
       "declarationTitle": "TC-QA-TRACEABILITY-003 requires reasons for N/A, skip and cached results",
-      "declarationLine": 38,
+      "declarationLine": 39,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -82081,6 +82220,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-14",
       "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-A784460062",
+      "title": "TC-MANUSCRIPT-CONTINUATION-005 rejects invalid malformed data with localized failure and zero persistence",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-005 rejects invalid malformed data with localized failure and zero persistence",
+      "declarationLine": 234,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -82258,24 +82415,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/save/SaveTrustStore.test.ts",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-AB16B8549E",
-      "title": "turns a scaffold-only chapter into an author-confirmed opening draft",
-      "declarationTitle": "turns a scaffold-only chapter into an author-confirmed opening draft",
-      "declarationLine": 133,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -83107,6 +83246,24 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-B72D33E020",
+      "title": "TC-MANUSCRIPT-CONTINUATION-004 keeps a repaired candidate enabled and available for inline draft handoff",
+      "declarationTitle": "TC-MANUSCRIPT-CONTINUATION-004 keeps a repaired candidate enabled and available for inline draft handoff",
+      "declarationLine": 194,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85839,24 +85996,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-DB96885AB1",
-      "title": "shows exactly three directions and rejects one without mutating the manuscript",
-      "declarationTitle": "shows exactly three directions and rejects one without mutating the manuscript",
-      "declarationLine": 361,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-DBE5DD40FC",
       "title": "moves through directed matrix cells and timeline rows by keyboard",
       "declarationTitle": "moves through directed matrix cells and timeline rows by keyboard",
@@ -86442,7 +86581,7 @@
       "id": "TC-DISCOVERED-E5144B11D0",
       "title": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
       "declarationTitle": "TC-QA-TRACEABILITY-002 fails closed when a control state lacks a test",
-      "declarationLine": 30,
+      "declarationLine": 31,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -86452,6 +86591,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-E5170A001A",
+      "title": "keeps author guidance, deduplicates one hundred generate actions and shows grounded review before insert",
+      "declarationTitle": "keeps author guidance, deduplicates one hundred generate actions and shows grounded review before insert",
+      "declarationLine": 260,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/ai-context/ManuscriptContinuationPanel.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -87152,7 +87309,7 @@
       "id": "TC-DISCOVERED-F13E74DED3",
       "title": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
       "declarationTitle": "TC-QA-TRACEABILITY-004 maps an exact data-testid reference when an accessible name is absent",
-      "declarationLine": 47,
+      "declarationLine": 48,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/traceability.test.mjs",
@@ -87686,24 +87843,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-F9AAB884F6",
-      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors",
-      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors",
-      "declarationLine": 314,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "scripts/qa/inventory.test.mjs",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

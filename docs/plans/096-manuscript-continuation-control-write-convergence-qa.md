@@ -42,3 +42,28 @@ Date: 2026-08-05
   gaps / 103 selector gaps / 895 unmapped tests.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Product source `657abcf` exposes Generate, per-candidate Insert and Undo as
+  distinct stable controls. Honest inventory expands from six collapsed
+  declarations to seven, with 7/7 mapped and zero local selector gaps.
+- One hundred same-frame Generate actions start one provider request. One
+  hundred Insert actions start one snapshot and one manuscript insertion while
+  persistence is pending.
+- Malformed output remains localized and performs zero writes. Unknown snapshot
+  failures expose no private path; the candidate survives and succeeds on retry
+  after two snapshot attempts without another generation.
+- The exact inserted content can be undone after the host mounts it, restoring
+  the original manuscript without touching later edits.
+- Traceability now prefers co-located component tests over same-token QA
+  inventory meta-tests. All ten existing continuation cases are mapped without
+  increasing the 1,057-case inventory.
+- Six failure-first assertions converged to 25/25 focused tests. The impact set
+  passed 172/172 and QA infrastructure passed 29/29.
+- Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
+  and production build. Rust passed 77 with two reasoned ignores.
+- Strict gaps fell from 10,029 to 9,960. Selector gaps fell from 103 to 101.
+  Mapped tests rose from 162 to 166 and unmapped tests fell from 895 to 891.
+- Release remains blocked at 1/4 hard gates: strict traceability, real-provider
+  smoke and packaged-EXE acceptance remain open.

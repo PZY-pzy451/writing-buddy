@@ -1228,3 +1228,23 @@ did not fully specify `targetTypes`, position objects or history arrays.
   to 103 despite two newly distinguished controls and 44 derived states.
 - Strict coverage is 19.39%, stable-selector coverage is 78.72%, test mapping
   is 15.33% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 062
+
+- Manuscript continuation now exposes 7/7 stable control declarations,
+  including distinct Generate, per-candidate Insert and Undo identities.
+- One hundred Generate actions start one request. One hundred Insert actions
+  start one snapshot and one insertion while the write is pending.
+- Unknown snapshot errors no longer expose private paths. A failed write keeps
+  the same candidate and succeeds on retry without a second generation.
+- Exact mounted insertion content can be undone to the original manuscript.
+  Malformed output performs zero writes and retains localized guidance.
+- Traceability now prefers co-located product tests over selector-string QA
+  meta-tests. All ten existing continuation tests are mapped.
+- Six red assertions converged to 25/25 focused, 172/172 impacted and 29/29 QA
+  infrastructure tests. Fixed-source execution passed 978 frontend and 77
+  native tests; two native cases retain documented reasons.
+- Traceability gaps fell from 10,029 to 9,960 and stable-selector gaps from 103
+  to 101 despite one newly distinguished control and 22 derived states.
+- Strict coverage is 20.10%, stable-selector coverage is 79.18%, test mapping
+  is 15.70% and release hard gates remain 1/4 complete.
