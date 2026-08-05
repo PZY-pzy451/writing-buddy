@@ -28,7 +28,7 @@ function candidate(): PendingDraftCandidate {
 }
 
 describe('InlineDraftCard', () => {
-	it('edits, writes and discards only through explicit author actions', () => {
+	it('renders an enabled write control and edits, writes and discards by pointer', () => {
 		const onChange = vi.fn();
 		const onCommit = vi.fn();
 		const onDiscard = vi.fn();
@@ -50,7 +50,10 @@ describe('InlineDraftCard', () => {
 		});
 		expect(onChange).toHaveBeenCalledWith('作者修改后的内容');
 
-		fireEvent.click(screen.getByRole('button', { name: '写入正文' }));
+		const write = screen.getByTestId('inline-draft-write');
+		expect(write).toHaveAccessibleName('写入正文');
+		expect(write).toBeEnabled();
+		fireEvent.click(write);
 		fireEvent.click(screen.getByRole('button', { name: '丢弃临时草稿' }));
 		expect(onCommit).toHaveBeenCalledTimes(1);
 		expect(onDiscard).toHaveBeenCalledTimes(1);
@@ -68,7 +71,7 @@ describe('InlineDraftCard', () => {
 			/>
 		);
 		expect(screen.getByRole('alert')).toHaveTextContent('正文已在生成后发生变化');
-		expect(screen.getByRole('button', { name: '写入正文' })).toBeDisabled();
+		expect(screen.getByTestId('inline-draft-write')).toBeDisabled();
 		expect(screen.getByRole('button', { name: '丢弃临时草稿' })).toBeEnabled();
 
 		rerender(
@@ -80,6 +83,6 @@ describe('InlineDraftCard', () => {
 				onDiscard={onDiscard}
 			/>
 		);
-		expect(screen.getByRole('button', { name: '写入正文' })).toBeDisabled();
+		expect(screen.getByTestId('inline-draft-write')).toBeDisabled();
 	});
 });

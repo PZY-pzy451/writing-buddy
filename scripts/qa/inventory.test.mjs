@@ -892,5 +892,32 @@ describe('control inventory rendered-element boundary', () => {
 			.not.toContain('UNMAPPED');
 		expect(characterStateControls.map(control => control.stableSelectorValue))
 			.toContain('character-state-order');
+		const storyReferenceControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx'
+		));
+
+		expect(storyReferenceControls).toHaveLength(1);
+		expect(storyReferenceControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(storyReferenceControls.map(control => control.stableSelectorValue))
+			.toContain('story-reference-navigation-item');
+		const inlineDraftControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/story/ai-context/InlineDraftCard.tsx'
+		));
+
+		expect(inlineDraftControls).toHaveLength(3);
+		expect(inlineDraftControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(inlineDraftControls.map(control => control.stableSelectorValue))
+			.toContain('inline-draft-write');
+		const undoToastControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/shared/interaction/UndoToast.tsx'
+		));
+
+		expect(undoToastControls).toHaveLength(2);
+		expect(undoToastControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(undoToastControls.map(control => control.stableSelectorValue))
+			.toContain('undo-toast-undo');
 	});
 });

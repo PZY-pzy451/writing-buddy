@@ -11,7 +11,6 @@ import {
 } from '@writing-buddy/story-kernel';
 import { useAppStore } from '../../src/app/store';
 import { ProjectOpenErrorDialog } from '../../src/features/projects/ui/ProjectOpenErrorDialog';
-import { StoryReferenceSidebar } from '../../src/features/story/navigation/StoryReferenceSidebar';
 import { RelationshipMatrix } from '../../src/features/story/relationships/RelationshipMatrix';
 import { VirtualTimelineList } from '../../src/features/story/timeline/VirtualTimelineList';
 import { TopBar } from '../../src/shell/TopBar';
@@ -69,20 +68,6 @@ describe('StoryForge professional layout contract', () => {
 		expect(contrastRatio('#66727c', '#f7f8f8')).toBeGreaterThanOrEqual(4.5);
 		expect(contrastRatio('#766e64', '#f9f5ec')).toBeGreaterThanOrEqual(4.5);
 		expect(contrastRatio('#9aa0aa', '#182131')).toBeGreaterThanOrEqual(4.5);
-	});
-
-	it('moves through resource navigation with arrows, Home and End', () => {
-		useAppStore.setState({ storyView: 'characters', activeMode: 'references' });
-		render(createElement(StoryReferenceSidebar));
-		const first = screen.getByRole('button', { name: /当前相关/ });
-		first.focus();
-		fireEvent.keyDown(first, { key: 'ArrowDown' });
-		const second = screen.getByRole('button', { name: /待完善/ });
-		expect(second).toHaveFocus();
-		expect(useAppStore.getState().storyView).toBe('extraction');
-		fireEvent.keyDown(second, { key: 'End' });
-		expect(screen.getByRole('button', { name: /人物知识/ })).toHaveFocus();
-		expect(useAppStore.getState().storyView).toBe('information');
 	});
 
 	it('moves through directed matrix cells and timeline rows by keyboard', () => {

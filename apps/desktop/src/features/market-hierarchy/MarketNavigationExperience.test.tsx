@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { afterEach, describe, expect, it } from 'vitest';
 import { useAppStore } from '../../app/store';
@@ -38,6 +38,7 @@ const structureSnapshot: ProjectSnapshot = {
 };
 
 afterEach(() => {
+	cleanup();
 	useAppStore.setState({
 		snapshot: undefined,
 		activeMode: 'works',
@@ -47,7 +48,7 @@ afterEach(() => {
 });
 
 describe('MarketNavigationExperience', () => {
-	it('separates planning from the Story Library and supports arrow navigation', () => {
+	it('renders and hides enabled navigation items and stays deterministic under 100 repeated pointer selections', () => {
 		useAppStore.setState({
 			snapshot: structureSnapshot,
 			activeMode: 'planning',
@@ -59,6 +60,9 @@ describe('MarketNavigationExperience', () => {
 		expect(screen.getByRole('heading', { name: '规划' })).toBeInTheDocument();
 		const planning = screen.getByRole('navigation', { name: '规划页面' });
 		const structure = within(planning).getByRole('button', { name: /故事结构/u });
+		expect(structure).toHaveAttribute('data-testid', 'story-reference-navigation-item');
+		expect(structure).toHaveAttribute('data-story-view', 'creation-journey');
+		expect(structure).toBeEnabled();
 		expect(within(planning).getByRole('button', { name: /剧情线与伏笔/u })).toBeInTheDocument();
 		expect(within(planning).queryByRole('button', { name: /人物关系/u })).not.toBeInTheDocument();
 
@@ -79,7 +83,15 @@ describe('MarketNavigationExperience', () => {
 
 		expect(screen.getByRole('heading', { name: '故事库' })).toBeInTheDocument();
 		const library = screen.getByRole('navigation', { name: '故事库页面' });
-		expect(within(library).getByRole('button', { name: /当前相关/u })).toBeInTheDocument();
+		const currentAssociations = within(library).getAllByTestId('story-reference-navigation-item')
+			.find(control => control.getAttribute('data-story-view') === 'associations');
+		expect(currentAssociations).toHaveAccessibleName(/当前相关/u);
+		act(() => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				fireEvent.click(currentAssociations!);
+			}
+		});
+		expect(useAppStore.getState().storyView).toBe('associations');
 		expect(within(library).getByRole('button', { name: /^人物，/u })).toBeInTheDocument();
 		expect(within(library).queryByRole('button', { name: /剧情线与伏笔/u })).not.toBeInTheDocument();
 		expect(within(library).getByRole('button', { name: /事件与时间线/u }))

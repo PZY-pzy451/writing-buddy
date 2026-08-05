@@ -175,6 +175,8 @@ export function StoryReferenceSidebar(): React.JSX.Element {
 								<button
 									type="button"
 									key={item.id}
+									data-testid="story-reference-navigation-item"
+									data-story-view={item.id}
 									className={`${storyView === item.id ? 'is-active' : ''} ${muted ? 'is-progressive-muted' : ''}`}
 									onClick={() => setStoryView(item.id)}
 									onKeyDown={event => moveFocus(event, index)}

@@ -23,7 +23,7 @@ export function UndoToast({
 				<strong>{title}</strong>
 				<small>{message}</small>
 			</span>
-			<button type="button" disabled={busy} onClick={onUndo}>
+			<button type="button" data-testid="undo-toast-undo" disabled={busy} onClick={onUndo}>
 				<RotateCcw size={16} aria-hidden="true" />
 				{busy ? '撤销中…' : '撤销'}
 			</button>

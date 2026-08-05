@@ -73,6 +73,7 @@ export function InlineDraftCard(props: InlineDraftCardProps): React.JSX.Element 
 				<button
 					className="primary-button"
 					type="button"
+					data-testid="inline-draft-write"
 					disabled={writeDisabled}
 					onClick={props.onCommit}
 				>

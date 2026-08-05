@@ -41,7 +41,7 @@ describe('shared interaction components', () => {
 		expect(screen.getByText('移动到第一卷第 4 位')).toBeInTheDocument();
 	});
 
-	it('announces a result and exposes explicit undo and dismiss actions', () => {
+	it('announces a result and exposes enabled undo and dismiss actions', () => {
 		const onUndo = vi.fn();
 		const onDismiss = vi.fn();
 		render(
@@ -52,7 +52,10 @@ describe('shared interaction components', () => {
 				onDismiss={onDismiss}
 			/>
 		);
-		fireEvent.click(screen.getByRole('button', { name: '撤销' }));
+		const undo = screen.getByTestId('undo-toast-undo');
+		expect(undo).toHaveAccessibleName('撤销');
+		expect(undo).toBeEnabled();
+		fireEvent.click(undo);
 		fireEvent.click(screen.getByRole('button', { name: '关闭撤销提示' }));
 		expect(onUndo).toHaveBeenCalledOnce();
 		expect(onDismiss).toHaveBeenCalledOnce();
