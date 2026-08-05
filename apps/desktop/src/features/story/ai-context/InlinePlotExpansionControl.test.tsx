@@ -34,7 +34,9 @@ describe('InlinePlotExpansionControl', () => {
 				onOpenSettings={vi.fn()}
 			/>
 		);
-		fireEvent.click(screen.getByText('Tab 拓展'));
+		const trigger = screen.getByTestId('inline-plot-expansion-trigger');
+		fireEvent.click(trigger);
+		expect(screen.getByTestId('inline-plot-expansion-toggle')).toBeChecked();
 		const dialog = screen.getByRole('dialog', { name: 'Tab 自动情节拓展' });
 		expect(screen.getByText(/光标前最多 4,000 字符/u)).toBeInTheDocument();
 		expect(screen.getByText('追随钟声')).toBeInTheDocument();
@@ -63,7 +65,8 @@ describe('InlinePlotExpansionControl', () => {
 				onOpenSettings={onOpenSettings}
 			/>
 		);
-		fireEvent.click(screen.getByText('Tab 拓展'));
+		fireEvent.click(screen.getByTestId('inline-plot-expansion-trigger'));
+		expect(screen.getByTestId('inline-plot-expansion-toggle')).toBeDisabled();
 		const dialog = screen.getByRole('dialog', { name: 'Tab 自动情节拓展' });
 		expect(within(dialog).getByRole('status')).toHaveTextContent('需要先配置 DeepSeek');
 		expect(screen.getByRole('button', { name: '立即生成' })).toBeDisabled();

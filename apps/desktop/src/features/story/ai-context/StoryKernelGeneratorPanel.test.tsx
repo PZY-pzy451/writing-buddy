@@ -566,7 +566,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(gateway.resources.size).toBe(1);
 	});
 
-	it('TC-QA-SK-ACTION-002 blocks one hundred repeated rejection clicks before storage updates', async () => {
+	it('TC-QA-SK-ACTION-002 hides the rejected action after one hundred same-frame storage updates', async () => {
 		const storage = new MemoryStorage();
 		render(
 			<StoryKernelGeneratorPanel
@@ -600,7 +600,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(screen.queryByRole('button', { name: '拒绝' })).not.toBeInTheDocument();
 	});
 
-	it('keeps valid candidates and explains an isolated malformed candidate', async () => {
+	it('visually isolates one malformed candidate while keeping valid candidates reviewable', async () => {
 		const valid = JSON.parse(generatedCharacterResponse()) as {
 			candidates: Array<Record<string, unknown>>;
 		};
@@ -637,7 +637,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(screen.queryByText('生成未完成')).not.toBeInTheDocument();
 	});
 
-	it('TC-QA-SK-REL-002 keeps three valid candidates usable when AI adds a malformed unselected relationship', async () => {
+	it('TC-QA-SK-REL-002 keeps three valid relationship candidates enabled when AI adds one malformed unselected relationship', async () => {
 		const events: string[] = [];
 		const gateway = new MemoryStoryGateway(events);
 		render(
@@ -679,7 +679,9 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(screen.getByText(/当前："childhood"/)).toBeInTheDocument();
 		expect(screen.queryByText('生成未完成')).not.toBeInTheDocument();
 
-		fireEvent.click(screen.getByRole('button', { name: '创建快照并确认 3' }));
+		const confirmValidCandidates = screen.getByRole('button', { name: '创建快照并确认 3' });
+		expect(confirmValidCandidates).toBeEnabled();
+		fireEvent.click(confirmValidCandidates);
 		await waitFor(() => expect(screen.getAllByText('已写入')).toHaveLength(3));
 
 		expect(events).toEqual(['snapshot', 'commit']);
@@ -925,7 +927,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(onCommitted).toHaveBeenCalledOnce();
 	});
 
-	it('keeps a valid character pending and localizes a rejected snapshot', async () => {
+	it('successfully retries a rejected snapshot while keeping the valid character pending', async () => {
 		const gateway = new MemoryStoryGateway([]);
 		const response = generatedCharacterResponse();
 		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
@@ -1217,7 +1219,7 @@ describe('StoryKernelGeneratorPanel', () => {
 		expect(useAppStore.getState().activeMode).toBe('settings');
 	});
 
-	it('retries a retryable native failure with the unchanged generation request', async () => {
+	it('restarts a retryable native failure with the unchanged generation request', async () => {
 		const response = generatedCharacterResponse();
 		const runGeneration = vi.fn()
 			.mockRejectedValueOnce({
@@ -1245,7 +1247,9 @@ describe('StoryKernelGeneratorPanel', () => {
 		fireEvent.click(screen.getByRole('button', { name: '生成 Story Kernel 候选' }));
 		expect(await screen.findByText('请求过多，请稍后再试。')).toBeInTheDocument();
 
-		fireEvent.click(screen.getByRole('button', { name: '使用相同条件重试' }));
+		const retry = screen.getByRole('button', { name: '使用相同条件重试' });
+		expect(retry).toBeEnabled();
+		fireEvent.click(retry);
 		expect(await screen.findByRole('checkbox', { name: '选择 林越' })).toBeInTheDocument();
 		expect(runGeneration).toHaveBeenCalledTimes(2);
 		expect(runGeneration.mock.calls[1]?.[0]).toEqual(runGeneration.mock.calls[0]?.[0]);

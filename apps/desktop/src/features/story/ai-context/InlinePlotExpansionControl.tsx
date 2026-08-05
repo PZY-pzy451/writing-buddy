@@ -112,6 +112,7 @@ export function InlinePlotExpansionControl({
 			<label className="inline-plot-expansion-toggle">
 				<input
 					type="checkbox"
+					data-testid="inline-plot-expansion-toggle"
 					checked={enabled}
 					disabled={readOnly}
 					onChange={event => onToggle(event.target.checked)}
@@ -175,6 +176,7 @@ export function InlinePlotExpansionControl({
 		<div className="inline-plot-expansion-control" ref={controlRef}>
 			<button
 				type="button"
+				data-testid="inline-plot-expansion-trigger"
 				data-enabled={enabled}
 				data-state={status}
 				data-open={open}
