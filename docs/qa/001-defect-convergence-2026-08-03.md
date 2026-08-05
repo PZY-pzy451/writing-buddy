@@ -1267,3 +1267,22 @@ did not fully specify `targetTypes`, position objects or history arrays.
   unmapped tests from 891 to 888.
 - Strict coverage is 21.05%, stable-selector coverage is 79.79%, test mapping
   is 15.99% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 064
+
+- Entity Peek now exposes 5/5 stable and strictly mapped control declarations,
+  including the dialog, generated overlap candidates and generated manuscript
+  backlinks.
+- Overlap options support ArrowUp, ArrowDown, Home and End focus movement, then
+  native Enter confirmation. Pointer selection, dialog focus, root Enter,
+  Escape and exact backlink jumping remain covered.
+- Three red assertions converged to 17/17 focused, 38/38 manuscript-impact and
+  29/29 QA infrastructure tests. Fixed-source execution passed 978 frontend
+  and 77 native tests; two native cases retain documented reasons.
+- Both existing component tests gained mappings without adding test debt.
+  Mapped tests rose from 169 to 171 and unmapped tests fell from 888 to 886.
+- Traceability gaps fell from 9,841 to 9,804 and selector gaps from 98 to 95.
+  Against the earlier 11,088 / 136 reference, cumulative reductions are 1,284
+  mappings and 41 selectors.
+- Strict coverage is 21.35%, stable-selector coverage is 80.41%, test mapping
+  is 16.18% and release hard gates remain 1/4 complete.

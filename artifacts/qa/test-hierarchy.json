@@ -57054,138 +57054,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6",
+                  "id": "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-VISIBLE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-HIDDEN",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-ENABLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DISABLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-POINTER",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-KEYBOARD",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FOCUS-IN",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FOCUS-OUT",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-REPEAT",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DEDUPLICATION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-LOADING",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-SUCCESS",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FAILURE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-CANCELLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-OFFLINE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-PERMISSION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-PERSISTENCE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-RESTART",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-VISUAL",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-ACCESSIBLE-NAME",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-UNDO",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -57193,138 +57193,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B",
+                  "id": "CTRL-ENTITYPEEKCARD-BUTTON-50599745",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-VISIBLE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-HIDDEN",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-ENABLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DISABLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-POINTER",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-KEYBOARD",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FOCUS-IN",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FOCUS-OUT",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-REPEAT",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DEDUPLICATION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-LOADING",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-SUCCESS",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FAILURE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-CANCELLED",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-OFFLINE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-PERMISSION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-PERSISTENCE",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-RESTART",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-VISUAL",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-ACCESSIBLE-NAME",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-UNDO",
+                      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -57610,138 +57610,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-ENTITYPEEKCARD-SECTION-4601CB61",
+                  "id": "CTRL-ENTITYPEEKCARD-SECTION-38674FD3",
                   "level": "L4",
                   "name": "section",
                   "states": [
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-VISIBLE",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-HIDDEN",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-ENABLED",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DISABLED",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-POINTER",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-KEYBOARD",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FOCUS-IN",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FOCUS-OUT",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-REPEAT",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DEDUPLICATION",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-LOADING",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-SUCCESS",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FAILURE",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-CANCELLED",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-OFFLINE",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-PERMISSION",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-PERSISTENCE",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-RESTART",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-VISUAL",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-ACCESSIBLE-NAME",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-UNDO",
+                      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -70922,6 +70922,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-076F1CC097",
+      "title": "requires an explicit pointer or Arrow keyboard choice when exact links overlap",
+      "declarationTitle": "requires an explicit pointer or Arrow keyboard choice when exact links overlap",
+      "declarationLine": 31,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/manuscript/EntityPeekCard.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-079AFCD096",
       "title": "closes a background tab under pressure without disturbing the dirty active draft",
       "declarationTitle": "closes a background tab under pressure without disturbing the dirty active draft",
@@ -70943,7 +70961,7 @@
       "id": "TC-DISCOVERED-07DEB68B8B",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors",
-      "declarationLine": 314,
+      "declarationLine": 328,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -71003,24 +71021,6 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/shell/ResizeHandle.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-08D6923395",
-      "title": "shows a compact on-demand summary and supports Enter/Escape",
-      "declarationTitle": "shows a compact on-demand summary and supports Enter/Escape",
-      "declarationLine": 57,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/manuscript/EntityPeekCard.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -71784,6 +71784,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-08",
       "pageId": "PAGE-STORY-ASSETS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-13F7FB84A4",
+      "title": "shows a visible compact summary, jumps to a backlink and opens or closes with Enter/Escape",
+      "declarationTitle": "shows a visible compact summary, jumps to a backlink and opens or closes with Enter/Escape",
+      "declarationLine": 65,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/manuscript/EntityPeekCard.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79074,24 +79092,6 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-775403C754",
-      "title": "requires an explicit choice when exact links overlap",
-      "declarationTitle": "requires an explicit choice when exact links overlap",
-      "declarationLine": 31,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/manuscript/EntityPeekCard.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

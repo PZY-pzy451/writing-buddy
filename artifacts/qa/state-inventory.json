@@ -41980,11 +41980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-VISIBLE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -41996,11 +41996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-HIDDEN",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -42012,11 +42012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-ENABLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -42028,11 +42028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DISABLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -42044,11 +42044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-POINTER",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -42060,11 +42060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-KEYBOARD",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -42076,11 +42076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FOCUS-IN",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -42092,11 +42092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FOCUS-OUT",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -42108,11 +42108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-REPEAT",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -42124,11 +42124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DEDUPLICATION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -42140,11 +42140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-LOADING",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -42156,11 +42156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-SUCCESS",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -42172,11 +42172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-FAILURE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -42188,11 +42188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-CANCELLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -42204,11 +42204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-OFFLINE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -42220,11 +42220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-PERMISSION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -42236,11 +42236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-PERSISTENCE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -42252,11 +42252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-RESTART",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -42268,11 +42268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-VISUAL",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -42284,11 +42284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-ACCESSIBLE-NAME",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -42300,11 +42300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -42316,11 +42316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-33088CC6-UNDO",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-203B6E55-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-33088CC6"
+        "CTRL-ENTITYPEEKCARD-BUTTON-203B6E55"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -42332,11 +42332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-VISIBLE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -42348,11 +42348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-HIDDEN",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -42364,11 +42364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-ENABLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -42380,11 +42380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DISABLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -42396,11 +42396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-POINTER",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -42412,11 +42412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-KEYBOARD",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -42428,11 +42428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FOCUS-IN",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -42444,11 +42444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FOCUS-OUT",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -42460,11 +42460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-REPEAT",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -42476,11 +42476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DEDUPLICATION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -42492,11 +42492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-LOADING",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -42508,11 +42508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-SUCCESS",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -42524,11 +42524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-FAILURE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -42540,11 +42540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-CANCELLED",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -42556,11 +42556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-OFFLINE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -42572,11 +42572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-PERMISSION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -42588,11 +42588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-PERSISTENCE",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -42604,11 +42604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-RESTART",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -42620,11 +42620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-VISUAL",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -42636,11 +42636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-ACCESSIBLE-NAME",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -42652,11 +42652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -42668,11 +42668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-BUTTON-6083CE8B-UNDO",
+      "id": "STATE-ENTITYPEEKCARD-BUTTON-50599745-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-BUTTON-6083CE8B"
+        "CTRL-ENTITYPEEKCARD-BUTTON-50599745"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -43388,11 +43388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-VISIBLE",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -43404,11 +43404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-HIDDEN",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -43420,11 +43420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-ENABLED",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -43436,11 +43436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DISABLED",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -43452,11 +43452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-POINTER",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -43468,11 +43468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-KEYBOARD",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -43484,11 +43484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FOCUS-IN",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -43500,11 +43500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FOCUS-OUT",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -43516,11 +43516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-REPEAT",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -43532,11 +43532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DEDUPLICATION",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -43548,11 +43548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-LOADING",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -43564,11 +43564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-SUCCESS",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -43580,11 +43580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-FAILURE",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -43596,11 +43596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-CANCELLED",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -43612,11 +43612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-OFFLINE",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -43628,11 +43628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-PERMISSION",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -43644,11 +43644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-PERSISTENCE",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -43660,11 +43660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-RESTART",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -43676,11 +43676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-VISUAL",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -43692,11 +43692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-ACCESSIBLE-NAME",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -43708,11 +43708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -43724,11 +43724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-ENTITYPEEKCARD-SECTION-4601CB61-UNDO",
+      "id": "STATE-ENTITYPEEKCARD-SECTION-38674FD3-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-ENTITYPEEKCARD-SECTION-4601CB61"
+        "CTRL-ENTITYPEEKCARD-SECTION-38674FD3"
       ],
       "name": "撤销",
       "dimension": "UNDO",

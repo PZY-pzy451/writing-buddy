@@ -4,35 +4,40 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Character Center control and selection convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `d6fde3d`.
+Entity Peek control and keyboard convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `509151b`.
 
-- Three failure-first assertions reproduced missing identities for generated
-  role filters, character rows and detail tabs, plus the unnamed filter group
-  and unstable active-character selection path.
-- The page now has 6/6 stable and strictly mapped controls. Its existing tests
-  perform a real search/filter/restore journey and all 9/9 cases are mapped.
-- Reselecting the active character preserves the dirty draft without a false
-  discard prompt. Selecting another character still requires one explicit
-  confirmation and refusal preserves the original draft.
-- Role filters expose a named accessibility group and pressed state.
-- Focused execution passed 28/28, the Character Center impact set passed 87/87
-  and QA infrastructure passed 29/29.
+- Three failure-first assertions reproduced missing identities for the dialog,
+  generated overlap candidates and generated manuscript backlinks. The
+  listbox also exposed option semantics without Arrow-key focus movement.
+- All 5/5 Entity Peek controls now have stable identities and strict mappings.
+  Both existing component cases are mapped without adding test-count debt.
+- Overlap candidates support pointer selection and ArrowUp, ArrowDown, Home,
+  End and native Enter. Opening focuses the dialog; root Enter opens the full
+  resource, Escape closes it and backlinks jump to the exact manuscript link.
+- Focused execution passed 17/17, the manuscript impact set passed 38/38 and QA
+  infrastructure passed 29/29.
 - Fixed-source Node 24 acceptance passed lint, typecheck, 188 files / 978 tests
   and production build. Rust collected 79, passed 77 and retained two reasoned
   ignores.
-- Mapped tests rise from 166 to 169 and unmapped tests fall from 891 to 888.
-  Mapped controls rise from 223 to 228 and mapped states from 2,067 to 2,178.
-- Strict gaps fall from 9,960 to 9,841. Stable-selector gaps fall from 101 to
-  98. From the earlier 11,088 / 136 reference, cumulative reductions are 1,247
-  mappings and 38 selectors.
+- Mapped tests rise from 169 to 171 and unmapped tests fall from 888 to 886.
+  Mapped controls rise from 228 to 233 and mapped states from 2,178 to 2,207.
+- Strict gaps fall from 9,841 to 9,804. Stable-selector gaps fall from 98 to
+  95. From the earlier 11,088 / 136 reference, cumulative reductions are 1,284
+  mappings and 41 selectors.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,624/12,465 (21.05%); stable selectors are 387/485 (79.79%); test mapping is
-  169/1,057 (15.99%). Release gates remain 1/4 complete (25%). Product stays
+  2,661/12,465 (21.35%); stable selectors are 390/485 (80.41%); test mapping is
+  171/1,057 (16.18%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
+
+Character Center control and selection convergence is complete against source
+`d6fde3d`: 6/6 controls and 9/9 tests are mapped, and fixed acceptance passed
+978 frontend tests.
+
+## Earlier milestone
 
 Manuscript continuation control and write convergence is complete against
 source `657abcf`: 7/7 controls are mapped and fixed acceptance passed 978

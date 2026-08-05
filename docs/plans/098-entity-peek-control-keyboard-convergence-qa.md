@@ -41,4 +41,19 @@ Date: 2026-08-05
 
 ## Result
 
-Pending.
+- Red baseline failed 3/17 assertions: the dialog and generated candidate
+  selectors were absent, and strict inventory still reported unmapped Entity
+  Peek declarations.
+- Added stable identities to the dialog, generated overlap candidates and
+  generated backlinks. All 5/5 controls and both existing component cases are
+  strictly mapped.
+- Added ArrowUp, ArrowDown, Home and End candidate focus movement. Pointer and
+  native Enter selection, initial dialog focus, root Enter, Escape and exact
+  backlink jumps are verified.
+- Focused execution passed 17/17; the manuscript impact set passed 38/38; QA
+  infrastructure passed 29/29.
+- Fixed source `509151b` passed Node 24 lint, typecheck, 188 frontend files / 978
+  tests and production build. Rust passed 77/79 with two reasoned environment
+  skips.
+- Strict gaps moved 9,841 -> 9,804, selector gaps 98 -> 95 and unmapped tests
+  888 -> 886. Product remains `PARTIAL`; hard release gates remain 1/4.

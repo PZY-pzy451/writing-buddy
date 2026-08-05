@@ -2041,6 +2041,51 @@ const report = {
 				qaScriptTests: 29,
 				frontendTests: frontend.vitestPassed
 			}
+		},
+		{
+			id: 'QA-ENTITY-PEEK-CONTROL-KEYBOARD-CONVERGENCE-064',
+			summary: 'Entity Peek dialog, generated overlap candidates and manuscript backlinks lacked stable identities, while listbox options exposed no Arrow-key focus movement.',
+			before: {
+				sourceControls: 5,
+				sourceMappedControls: 0,
+				sourceMissingStableSelectors: 3,
+				targetTestsMapped: 0,
+				targetTestsUnmapped: 2,
+				arrowKeyFocusMovement: false,
+				globalControls: 485,
+				globalStates: 10670,
+				globalTests: 1057,
+				mappedTests: 169,
+				unmappedTests: 888,
+				globalMissingStableSelectors: 98,
+				totalUnmapped: 9841
+			},
+			after: {
+				sourceControls: 5,
+				sourceMappedControls: 5,
+				sourceMissingStableSelectors: 0,
+				targetTestsMapped: 2,
+				targetTestsUnmapped: 0,
+				pointerCandidateSelection: true,
+				arrowKeyFocusMovement: true,
+				homeEndFocusMovement: true,
+				nativeEnterSelection: true,
+				initialDialogFocus: true,
+				dialogEnterAndEscape: true,
+				exactBacklinkJump: true,
+				globalControls: inventory.counts.controls,
+				globalStates: inventory.counts.states,
+				globalTests: inventory.counts.discoveredTests,
+				mappedTests: traceability.counts.mappedTestCases,
+				unmappedTests: traceability.counts.unmappedTestCases,
+				globalMissingStableSelectors: inventory.counts.missingStableSelectors,
+				totalUnmapped: traceability.counts.totalUnmapped,
+				redFailures: 3,
+				focusedTests: 17,
+				impactTests: 38,
+				qaScriptTests: 29,
+				frontendTests: frontend.vitestPassed
+			}
 		}
 	],
 	coverageExtensions: [
