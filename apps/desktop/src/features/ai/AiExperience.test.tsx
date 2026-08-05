@@ -9,6 +9,7 @@ import {
 import { vi } from 'vitest';
 import { SettingsPage } from '../../settings/SettingsPage';
 import { desktopBridge } from '../../platform/bridge';
+import { useAppStore } from '../../app/store';
 import { AiPlaygroundPage } from './AiPlaygroundPage';
 import { useAiStore } from './stores/aiStore';
 
@@ -80,6 +81,7 @@ describe('Phase 1.0A AI experience', () => {
 		render(<SettingsPage />);
 		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
 		const input = await screen.findByLabelText('DeepSeek API Key');
+		expect(input).toHaveAttribute('data-testid', 'ai-settings-api-key-input');
 		await user.type(input, 'fixture-key');
 		await user.click(screen.getByRole('button', { name: /安全保存并验证/ }));
 		await screen.findByText('API Key 已安全保存，连接验证通过。');
@@ -380,20 +382,21 @@ describe('Phase 1.0A AI experience', () => {
 		for (const select of screen.getAllByRole('combobox')) {
 			expect(select).toBeDisabled();
 		}
+		expect(screen.getAllByTestId('ai-settings-generation-select')).toHaveLength(2);
 
 		deletionResult.resolve(deletedSecret);
 		await screen.findByText('DeepSeek 凭据和模型缓存已移除。');
 	});
 
-	it('serializes rapid preference changes so the latest choice wins', async () => {
+	it('serializes rapid rendered preference selections so the latest choice wins', async () => {
 		await useAiStore.getState().initialize();
 		const firstPreferences: AiProviderPreferences = {
 			...useAiStore.getState().preferences,
-			maxOutputTokens: 65_536
+			thinkingMode: 'enabled'
 		};
 		const latestPreferences: AiProviderPreferences = {
 			...firstPreferences,
-			maxOutputTokens: 384_000
+			thinkingMode: 'disabled'
 		};
 		const saves: Array<ReturnType<typeof createDeferred<AiProviderPreferences>>> = [];
 		const saveAiPreferences = vi.spyOn(desktopBridge, 'saveAiPreferences')
@@ -403,8 +406,21 @@ describe('Phase 1.0A AI experience', () => {
 				return pending.promise;
 			});
 
-		const firstSave = useAiStore.getState().updatePreferences(firstPreferences);
-		const latestSave = useAiStore.getState().updatePreferences(latestPreferences);
+		const user = userEvent.setup();
+		render(<SettingsPage />);
+		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
+		const preferenceControls = screen.getAllByTestId('ai-settings-generation-select');
+		expect(preferenceControls).toHaveLength(2);
+		const model = preferenceControls.find(control => (
+			control.getAttribute('data-preference-key') === 'defaultModelId'
+		));
+		const thinking = preferenceControls.find(control => (
+			control.getAttribute('data-preference-key') === 'thinkingMode'
+		));
+		expect(model).toBeDefined();
+		expect(thinking).toBeDefined();
+		await user.selectOptions(thinking as HTMLElement, 'enabled');
+		await user.selectOptions(thinking as HTMLElement, 'disabled');
 		expect(useAiStore.getState().preferences).toEqual(latestPreferences);
 		expect(saveAiPreferences).toHaveBeenCalledOnce();
 
@@ -412,7 +428,8 @@ describe('Phase 1.0A AI experience', () => {
 		await waitFor(() => expect(saveAiPreferences).toHaveBeenCalledTimes(2));
 		expect(saveAiPreferences).toHaveBeenLastCalledWith(latestPreferences);
 		saves[1]?.resolve(latestPreferences);
-		await Promise.all([firstSave, latestSave]);
+		await waitFor(() => expect(useAiStore.getState().status?.preferences)
+			.toEqual(latestPreferences));
 
 		expect(useAiStore.getState().preferences).toEqual(latestPreferences);
 		expect(useAiStore.getState().status?.preferences).toEqual(latestPreferences);
@@ -547,15 +564,35 @@ describe('Phase 1.0A AI experience', () => {
 		cancelAiJob.mockRestore();
 	});
 
-	it('persists the provider maximum and explains long-form output cost', async () => {
+	it('persists the provider maximum and enables explicit inline feature choices', async () => {
 		await act(async () => {
 			await useAiStore.getState().initialize();
+		});
+		useAppStore.setState({
+			inlineLanguageCheckEnabled: false,
+			inlinePlotExpansionEnabled: false
 		});
 		const user = userEvent.setup();
 		render(<SettingsPage />);
 		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
 		const maximum = await screen.findByRole('combobox', {
 			name: '最大输出 Token'
+		});
+		const inlineFeatureToggles = screen.getAllByTestId('ai-settings-inline-feature-toggle');
+		expect(inlineFeatureToggles).toHaveLength(2);
+		const languageCheck = inlineFeatureToggles.find(control => (
+			control.getAttribute('data-feature-key') === 'inlineLanguageCheck'
+		));
+		const plotExpansion = inlineFeatureToggles.find(control => (
+			control.getAttribute('data-feature-key') === 'inlinePlotExpansion'
+		));
+		expect(languageCheck).toBeDefined();
+		expect(plotExpansion).toBeDefined();
+		await user.click(languageCheck as HTMLElement);
+		await user.click(plotExpansion as HTMLElement);
+		expect(useAppStore.getState()).toMatchObject({
+			inlineLanguageCheckEnabled: true,
+			inlinePlotExpansionEnabled: true
 		});
 		await user.selectOptions(maximum, '384000');
 

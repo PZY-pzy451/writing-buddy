@@ -691,5 +691,18 @@ describe('control inventory rendered-element boundary', () => {
 			'拒绝',
 			'查看差异'
 		]);
+		const settingsControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/ai/AiSettingsSection.tsx'
+		));
+
+		expect(settingsControls).toHaveLength(7);
+		expect(settingsControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(settingsControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'ai-settings-api-key-input',
+				'ai-settings-generation-select',
+				'ai-settings-inline-feature-toggle'
+			]));
 	});
 });

@@ -169,6 +169,7 @@ export function AiSettingsSection(): React.JSX.Element {
 						<span>DeepSeek API Key</span>
 						<div className="secret-input-wrap">
 							<input
+								data-testid="ai-settings-api-key-input"
 								type={revealed ? 'text' : 'password'}
 								value={key}
 								onChange={event => setKey(event.target.value)}
@@ -221,13 +222,25 @@ export function AiSettingsSection(): React.JSX.Element {
 				<div className="ai-setting-grid">
 					<label className="ai-field">
 						<span>默认模型</span>
-						<select value={preferences.defaultModelId} onChange={event => update({ defaultModelId: event.target.value })} disabled={loading}>
+						<select
+							data-testid="ai-settings-generation-select"
+							data-preference-key="defaultModelId"
+							value={preferences.defaultModelId}
+							onChange={event => update({ defaultModelId: event.target.value })}
+							disabled={loading}
+						>
 							{availableModels.map(model => <option key={model.id} value={model.id}>{model.id}</option>)}
 						</select>
 					</label>
 					<label className="ai-field">
 						<span>思考模式</span>
-						<select value={preferences.thinkingMode} onChange={event => update({ thinkingMode: event.target.value as AiProviderPreferences['thinkingMode'] })} disabled={loading}>
+						<select
+							data-testid="ai-settings-generation-select"
+							data-preference-key="thinkingMode"
+							value={preferences.thinkingMode}
+							onChange={event => update({ thinkingMode: event.target.value as AiProviderPreferences['thinkingMode'] })}
+							disabled={loading}
+						>
 							<option value="disabled">关闭（更快）</option>
 							<option value="enabled">开启（reasoning effort: high）</option>
 						</select>
@@ -271,6 +284,8 @@ export function AiSettingsSection(): React.JSX.Element {
 				</div>
 				<label className="ai-inline-language-setting">
 					<input
+						data-testid="ai-settings-inline-feature-toggle"
+						data-feature-key="inlineLanguageCheck"
 						type="checkbox"
 						checked={inlineLanguageCheckEnabled}
 						onChange={event => setInlineLanguageCheckEnabled(event.target.checked)}
@@ -294,6 +309,8 @@ export function AiSettingsSection(): React.JSX.Element {
 				</div>
 				<label className="ai-inline-language-setting">
 					<input
+						data-testid="ai-settings-inline-feature-toggle"
+						data-feature-key="inlinePlotExpansion"
 						type="checkbox"
 						checked={inlinePlotExpansionEnabled}
 						onChange={event => setInlinePlotExpansionEnabled(event.target.checked)}

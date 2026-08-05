@@ -114,7 +114,7 @@ describe('guided project creation', () => {
 		expect(within(dialog).getByRole('textbox', { name: /^作品名称/ })).toHaveAttribute('aria-invalid', 'true');
 	});
 
-	it('offers four truthful starting paths with genre as the only primary action', async () => {
+	it('offers four accessible truthful starting paths with genre as the only primary action', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
@@ -199,8 +199,9 @@ describe('guided project creation', () => {
 		expect(useAppStore.getState().session?.content).toContain('雨落在旧站台的玻璃顶上。');
 	});
 
-	it('previews an outline, creates its chapter structure, and opens the dashboard', async () => {
+	it('imports an outline offline, creates its chapter structure, and opens the dashboard', async () => {
 		const user = userEvent.setup();
+		const paidGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
 		await user.click(within(welcome).getByRole('button', { name: /导入已有大纲/u }));
@@ -225,6 +226,7 @@ describe('guided project creation', () => {
 		expect(useAppStore.getState().snapshot?.project.volumes[0]?.chapters.map(chapter => chapter.title))
 			.toEqual(['第一章 · 迟到四十七秒', '第二章 · 城市回声协议']);
 		expect(useAppStore.getState().activeResource).toBeUndefined();
+		expect(paidGeneration).not.toHaveBeenCalled();
 	});
 
 	it('visually discloses truthful Word outline format limitations before import', async () => {
@@ -261,7 +263,7 @@ describe('guided project creation', () => {
 			.toEqual(['第一章 雨夜', '第二章 回声']);
 	});
 
-	it('keeps the global create menu useful without an open project', async () => {
+	it('keeps global create useful while project-scoped actions stay disabled without an open project', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const trigger = await screen.findByRole('button', { name: '新建' });
