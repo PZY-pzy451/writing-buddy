@@ -41339,138 +41339,138 @@
               "name": "检查",
               "controls": [
                 {
-                  "id": "CTRL-PUBLISHREADINESSPANEL-BUTTON-287972C8",
+                  "id": "CTRL-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-VISIBLE",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-HIDDEN",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-ENABLED",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-DISABLED",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-POINTER",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-KEYBOARD",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-FOCUS-IN",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-FOCUS-OUT",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-REPEAT",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-DEDUPLICATION",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-LOADING",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-SUCCESS",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-FAILURE",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-CANCELLED",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-OFFLINE",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-PERMISSION",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-PERSISTENCE",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-RESTART",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-VISUAL",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-ACCESSIBLE-NAME",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-287972C8-UNDO",
+                      "id": "STATE-PUBLISHREADINESSPANEL-BUTTON-32D0AF7A-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41478,138 +41478,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-PUBLISHREADINESSROW-BUTTON-F9269B56",
+                  "id": "CTRL-PUBLISHREADINESSROW-BUTTON-7388E8B5",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-VISIBLE",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-HIDDEN",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-ENABLED",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-DISABLED",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-POINTER",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-KEYBOARD",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-FOCUS-IN",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-FOCUS-OUT",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-REPEAT",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-DEDUPLICATION",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-LOADING",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-SUCCESS",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-FAILURE",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-CANCELLED",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-OFFLINE",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-PERMISSION",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-PERSISTENCE",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-RESTART",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-VISUAL",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-ACCESSIBLE-NAME",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-F9269B56-UNDO",
+                      "id": "STATE-PUBLISHREADINESSROW-BUTTON-7388E8B5-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41895,138 +41895,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-REVIEWPAGE-BUTTON-9530C5B7",
+                  "id": "CTRL-REVIEWPAGE-BUTTON-C5F29E30",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-VISIBLE",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-HIDDEN",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-ENABLED",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-DISABLED",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-POINTER",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-KEYBOARD",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-FOCUS-IN",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-FOCUS-OUT",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-REPEAT",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-DEDUPLICATION",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-LOADING",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-SUCCESS",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-FAILURE",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-CANCELLED",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-OFFLINE",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-PERMISSION",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-PERSISTENCE",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-RESTART",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-VISUAL",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-ACCESSIBLE-NAME",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-REVIEWPAGE-BUTTON-9530C5B7-UNDO",
+                      "id": "STATE-REVIEWPAGE-BUTTON-C5F29E30-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -75028,6 +75028,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-0D3C547C51",
+      "title": "persists an exact release candidate, invalidates it after a source change and undoes confirmation from History",
+      "declarationTitle": "persists an exact release candidate, invalidates it after a source change and undoes confirmation from History",
+      "declarationLine": 181,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-0D50C3D3CB",
       "title": "does not let a late Story trash restore overwrite a newer chapter intent",
       "declarationTitle": "does not let a late Story trash restore overwrite a newer chapter intent",
@@ -75772,6 +75790,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-19B49DA3EB",
+      "title": "streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed",
+      "declarationTitle": "streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed",
+      "declarationLine": 289,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-1B43FC81A2",
       "title": "undoes the captured source model without touching a replacement editor model",
       "declarationTitle": "undoes the captured source model without touching a replacement editor model",
@@ -76218,6 +76254,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-1EC27ED296",
+      "title": "restarts review cancellation after a localized failure",
+      "declarationTitle": "restarts review cancellation after a localized failure",
+      "declarationLine": 393,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79209,7 +79263,7 @@
       "id": "TC-DISCOVERED-4180FDCE0C",
       "title": "opens whole-work consistency directly from the primary Check page",
       "declarationTitle": "opens whole-work consistency directly from the primary Check page",
-      "declarationLine": 125,
+      "declarationLine": 133,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -80209,7 +80263,7 @@
       "id": "TC-DISCOVERED-4ED7B4B59C",
       "title": "saves dirty prose from the publish blocker and recomputes the checklist",
       "declarationTitle": "saves dirty prose from the publish blocker and recomputes the checklist",
-      "declarationLine": 215,
+      "declarationLine": 231,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -80779,24 +80833,6 @@
       "source": "apps/desktop/src/features/review/inline/InlineLanguageCheckService.test.ts",
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-09",
-      "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-583F679897",
-      "title": "runs local review without removing AI-origin issues from the same chapter",
-      "declarationTitle": "runs local review without removing AI-origin issues from the same chapter",
-      "declarationLine": 74,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
@@ -81537,7 +81573,7 @@
       "id": "TC-DISCOVERED-6340DF37D8",
       "title": "opens the exact review target from the publish checklist",
       "declarationTitle": "opens the exact review target from the publish checklist",
-      "declarationLine": 235,
+      "declarationLine": 254,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -81819,6 +81855,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-69D848E775",
+      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
+      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
+      "declarationLine": 569,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -82180,24 +82234,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-7017DD9895",
-      "title": "streams a real-provider-shaped AI review and keeps suggestions author-confirmed",
-      "declarationTitle": "streams a real-provider-shaped AI review and keeps suggestions author-confirmed",
-      "declarationLine": 267,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
-      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85192,24 +85228,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-9C93C3DD50",
-      "title": "opens the next affected chapter directly from the project review inbox",
-      "declarationTitle": "opens the next affected chapter directly from the project review inbox",
-      "declarationLine": 104,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
-      "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-9C9E8F3109",
       "title": "rebases verified relative issues and replaces only the checked slice",
       "declarationTitle": "rebases verified relative issues and replaces only the checked slice",
@@ -85528,6 +85546,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-A090470993",
+      "title": "opens the next affected chapter with keyboard focus from the project review inbox",
+      "declarationTitle": "opens the next affected chapter with keyboard focus from the project review inbox",
+      "declarationLine": 110,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -86889,7 +86925,7 @@
       "id": "TC-DISCOVERED-B660E1619D",
       "title": "deduplicates 100 review cancellations and isolates a late start failure",
       "declarationTitle": "deduplicates 100 review cancellations and isolates a late start failure",
-      "declarationLine": 301,
+      "declarationLine": 327,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -87562,6 +87598,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-BFDD60F36F",
+      "title": "shows an accessible publish checklist and routes final delivery to History",
+      "declarationTitle": "shows an accessible publish checklist and routes final delivery to History",
+      "declarationLine": 149,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-C00724CB44",
       "title": "maps real scenes to plot threads and locates the selected scene manuscript",
       "declarationTitle": "maps real scenes to plot threads and locates the selected scene manuscript",
@@ -88116,24 +88170,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-C79D067644",
-      "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI and Project Welcome control to stable selectors",
-      "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI and Project Welcome control to stable selectors",
-      "declarationLine": 569,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "scripts/qa/inventory.test.mjs",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "orchestration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-C7F0E2DECF",
       "title": "rejects invalid schema before any storage call",
       "declarationTitle": "rejects invalid schema before any storage call",
@@ -88234,24 +88270,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-C913DCCA98",
-      "title": "localizes a review cancellation failure and permits retry",
-      "declarationTitle": "localizes a review cancellation failure and permits retry",
-      "declarationLine": 367,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
-      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -89738,24 +89756,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-DE2C150D1C",
-      "title": "expands an explainable publish checklist and routes final delivery to History",
-      "declarationTitle": "expands an explainable publish checklist and routes final delivery to History",
-      "declarationLine": 141,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
-      "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-DE6DBE61CD",
       "title": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
       "declarationTitle": "opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape",
@@ -91210,6 +91210,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-F6335FB303",
+      "title": "runs local review successfully offline without removing AI-origin issues from the same chapter",
+      "declarationTitle": "runs local review successfully offline without removing AI-origin issues from the same chapter",
+      "declarationLine": 74,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-F64106670D",
       "title": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
       "declarationTitle": "TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices",
@@ -91819,24 +91837,6 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-FF27761C0C",
-      "title": "confirms an exact release candidate, invalidates it after a source change and revokes it from History",
-      "declarationTitle": "confirms an exact release candidate, invalidates it after a source change and revokes it from History",
-      "declarationLine": 168,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
-      "domainId": "DOMAIN-04",
-      "featureId": "FEATURE-04-01",
-      "pageId": "PAGE-REVIEW",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"

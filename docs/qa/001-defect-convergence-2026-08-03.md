@@ -1682,3 +1682,20 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,126 to 9,076, selector gaps from 52 to 50 and unmapped tests from
   837 to 833. Strict coverage is 30.53%, stable-selector coverage is 90.22%,
   test mapping is 21.27% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 085
+
+- Review-mode tabs expose one composite identity with exact manual/AI context;
+  publish disclosure and repeated checklist actions expose stable identities
+  plus exact check and action types without changing author-visible labels.
+- Existing rendered cases prove offline local review without a paid request,
+  keyboard focus/Enter, accessible checklist disclosure, exact save/review/
+  history/confirmation routing, streamed AI success and author-controlled undo.
+- Six red failures converged to 10/10 focused, 111/111 product impact and 20/20
+  inventory/trace contracts. Fixed-source sequential execution passed 189
+  frontend files / 979 tests, production build, 77 native tests with two
+  reasoned ignores and 30/30 QA infrastructure tests.
+- Global mapped features rise by 1, controls by 3, states by 54 and tests by 9.
+  Strict gaps fall from 9,076 to 9,009, selector gaps from 50 to 47 and unmapped
+  tests from 833 to 824. Strict coverage is 31.04%, stable-selector coverage is
+  90.80%, test mapping is 22.12% and release hard gates remain 1/4 complete.

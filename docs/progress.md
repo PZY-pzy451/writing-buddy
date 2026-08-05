@@ -4,27 +4,34 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Project Welcome and Global Create selector/trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `9d7e5f0`.
+Review Center selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `7dffe30`.
 
-- Four author start routes and repeated recent-project cards expose stable
-  identity plus exact route/root context. Global Create now maps all 8 exact
-  cases, including visible focus relocation, 100-action chooser deduplication
-  with retry, local/offline contextual routing and accessible planning actions.
-- Two failure-first assertions converged to 20/20 focused, 96/96 product impact,
-  20/20 inventory/trace and 30/30 QA infrastructure tests. Node 24 passed lint,
-  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
-  reasoned ignores. Runtime/static frontend discovery is exactly 979/979.
-- Inventory becomes 511 controls / 11,242 states / 1,058 tests. Global mapped
-  controls rise by 3, states by 66 and tests by 4. Strict gaps fall by 50 from
-  9,126 to 9,076, selector gaps from 52 to 50 and unmapped tests from 837 to
-  833.
+- Review modes, publish-checklist disclosure and repeated checklist actions now
+  expose stable identities plus exact mode/check/action context. Existing user
+  cases prove offline local review, keyboard navigation, accessible disclosure,
+  saving, issue routing, AI stream success, delivery persistence/undo,
+  cancellation deduplication and retry.
+- Six failure-first assertions converged to 10/10 focused, 111/111 product
+  impact, 20/20 inventory/trace and 30/30 QA infrastructure tests. Node 24
+  passed lint, typecheck, 189 files / 979 tests and production build; Rust
+  passed 77 with two reasoned ignores. Runtime/static discovery is 979/979.
+- Inventory remains 511 controls / 11,242 states / 1,058 tests. Global mapped
+  features rise by 1, controls by 3, states by 54 and tests by 9. Strict gaps
+  fall by 67 from 9,076 to 9,009, selector gaps from 50 to 47 and unmapped tests
+  from 833 to 824.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,988/13,064 (30.53%); stable selectors are 461/511 (90.22%); test mapping is
-  225/1,058 (21.27%). Against the 11,088 / 136 reference, 2,012 mapping gaps
-  and 86 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 9,076 strict mappings plus real-provider smoke and
+  4,055/13,064 (31.04%); stable selectors are 464/511 (90.80%); test mapping is
+  234/1,058 (22.12%). Against the 11,088 / 136 reference, 2,079 mapping gaps
+  and 89 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 9,009 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Project Welcome and Global Create selector/trace convergence is complete
+against source `9d7e5f0`: three controls and four product cases map, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 
