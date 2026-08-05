@@ -69,8 +69,13 @@ export function ContextPackPreview({
 									<label>
 										<input
 											type="checkbox"
+											data-testid="context-pack-item-toggle"
+											data-context-item-id={item.id}
+											data-context-priority={item.priority}
+											data-required={item.required}
+											data-author-secret={Boolean(item.authorSecret)}
 											checked={item.included}
-										disabled={item.required || disabled}
+											disabled={item.required || disabled}
 											onChange={event => onChange(withContextItemIncluded(pack, item.id, event.target.checked))}
 										/>
 										<span aria-hidden="true">{item.included ? <Check size={16} /> : null}</span>
@@ -80,6 +85,9 @@ export function ContextPackPreview({
 									</label>
 									<button
 										type="button"
+										data-testid="context-pack-item-disclosure"
+										data-context-item-id={item.id}
+										data-context-priority={item.priority}
 										aria-label={`${expanded === item.id ? '收起' : '展开'}${item.title}`}
 										aria-expanded={expanded === item.id}
 										onClick={() => setExpanded(current => current === item.id ? undefined : item.id)}

@@ -1,5 +1,7 @@
 # Plan index
 
+- [Context pack and scene navigator selector/trace convergence QA](./112-context-pack-scene-navigator-selector-trace-convergence-qa.md)
+
 - [AI context and manuscript highlight selector/trace convergence QA](./111-ai-context-highlight-selector-trace-convergence-qa.md)
 
 - [Scene Plot Grid and virtual timeline selector/trace convergence QA](./110-scene-plot-grid-selector-trace-convergence-qa.md)

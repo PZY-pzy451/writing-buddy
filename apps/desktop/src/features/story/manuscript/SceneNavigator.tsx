@@ -232,6 +232,11 @@ export function SceneNavigator({
 						<button
 							key={scene.id}
 							type="button"
+							data-testid="scene-navigator-scene"
+							data-scene-id={scene.id}
+							data-range-start={scene.manuscriptRange.start}
+							data-range-end={scene.manuscriptRange.end}
+							data-current={current?.id === scene.id}
 							className={current?.id === scene.id ? 'is-current' : ''}
 							aria-current={current?.id === scene.id ? 'true' : undefined}
 							aria-label={`转到场景：${scene.title}`}

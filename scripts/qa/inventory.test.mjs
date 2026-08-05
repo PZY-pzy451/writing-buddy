@@ -339,6 +339,27 @@ describe('control inventory rendered-element boundary', () => {
 			'selection-action-rewrite',
 			'记录想法'
 		]);
+		const contextPackControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/ai-context/ContextPackPreview.tsx'
+		));
+
+		expect(contextPackControls).toHaveLength(2);
+		expect(contextPackControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(contextPackControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'context-pack-item-disclosure',
+			'context-pack-item-toggle'
+		]);
+		const sceneNavigatorControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/manuscript/SceneNavigator.tsx'
+		));
+
+		expect(sceneNavigatorControls).toHaveLength(6);
+		expect(sceneNavigatorControls.every(control => control.stableSelectorStatus === 'MAPPED')).toBe(true);
+		expect(sceneNavigatorControls.map(control => control.stableSelectorValue)).toContain(
+			'scene-navigator-scene'
+		);
 		const resizeHandleControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/shell/ResizeHandle.tsx'
 		));

@@ -47,7 +47,7 @@ afterEach(() => {
 });
 
 describe('SceneNavigator', () => {
-	it('shows the current scene and navigates to its source range', async () => {
+	it('exposes an accessible current scene identity and navigates to its source range', async () => {
 		const fixture = serviceFixture();
 		const onNavigate = vi.fn();
 		render(
@@ -61,6 +61,10 @@ describe('SceneNavigator', () => {
 		);
 
 		const sceneButton = await screen.findByRole('button', { name: /雨夜车站/u });
+		expect(sceneButton).toHaveAttribute('data-testid', 'scene-navigator-scene');
+		expect(sceneButton).toHaveAttribute('data-scene-id', 'scene:station-rain');
+		expect(sceneButton).toHaveAttribute('data-range-start', '0');
+		expect(sceneButton).toHaveAttribute('data-current', 'true');
 		expect(sceneButton).toHaveAttribute('aria-current', 'true');
 		fireEvent.click(sceneButton);
 		expect(onNavigate).toHaveBeenCalledWith(0);
@@ -139,7 +143,7 @@ describe('SceneNavigator', () => {
 		expect(screen.getByRole('button', { name: '显示当前场景条' })).toBeInTheDocument();
 	});
 
-	it('preserves an editor selection while changing the active scene anchor', async () => {
+	it('persists an editor selection while changing the active scene anchor', async () => {
 		const fixture = serviceFixture();
 		const second = parseStoryScene({
 			...validResources.scene,
@@ -168,7 +172,13 @@ describe('SceneNavigator', () => {
 			/>
 		);
 
-		fireEvent.click(await screen.findByRole('button', { name: '转到场景：褪色车票' }));
+		const secondScene = await screen.findByRole('button', { name: '转到场景：褪色车票' });
+		expect(secondScene).toHaveAttribute('data-testid', 'scene-navigator-scene');
+		expect(secondScene).toHaveAttribute('data-scene-id', 'scene:ticket');
+		expect(secondScene).toHaveAttribute('data-range-start', '32');
+		expect(secondScene).toHaveAttribute('data-range-end', '64');
+		expect(secondScene).toHaveAttribute('data-current', 'false');
+		fireEvent.click(secondScene);
 		expect(onNavigate).toHaveBeenCalledWith(32, true);
 		expect(onActiveSceneChange).toHaveBeenCalledWith('scene:ticket');
 	});
