@@ -1366,3 +1366,26 @@ did not fully specify `targetTypes`, position objects or history arrays.
   selector gaps from 90 to 89 and unmapped tests from 876 to 874.
 - Strict coverage is 22.21%, stable-selector coverage is 81.91%, test mapping
   is 17.39% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 069
+
+- Project-open recovery now exposes seven distinct stable author actions:
+  copy safe path, retry, read-only open, repair, open directory, diagnostics
+  and close. Their accessible Chinese names remain unchanged.
+- One hundred same-frame copy actions produce one clipboard write. Clipboard
+  denial is caught as localized, public-safe feedback; explicit retry remains
+  available and successful copying announces completion.
+- Three red failures converged to 17/17 focused, 49/49 impacted and 30/30 QA
+  infrastructure tests. Fixed-source sequential execution passed 979 frontend
+  and 77 native tests, retained two reasoned native ignores, and passed the
+  production build.
+- The initial concurrent gate received Windows exit `3221226505` in ESLint.
+  It is classified as infrastructure resource contention, not product
+  evidence; the isolated sequential rerun passed completely.
+- The source inventory expands honestly from 4 collapsed declarations to 7
+  controls and adds 66 states. All 7 controls, 77 source states and both
+  existing product tests are strictly mapped without adding test debt.
+- Global mapped states rise by 73. Strict gaps fall from 9,822 to 9,812,
+  selector gaps from 89 to 88 and unmapped tests from 874 to 873.
+- Strict coverage is 22.72%, stable-selector coverage is 82.22%, test mapping
+  is 17.49% and release hard gates remain 1/4 complete.

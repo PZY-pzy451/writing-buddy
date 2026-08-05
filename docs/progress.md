@@ -4,35 +4,35 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Close protection control and single-flight convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `0627c1f`.
+Project-open recovery control and clipboard convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `9e42b79`.
 
-- Six author-visible exit actions previously collapsed into three inventory
-  declarations; one declaration lacked a stable selector and none of the six
-  rendered controls had a strict product-test mapping.
-- All six actions now have distinct stable identities while retaining their
-  accessible Chinese names. All six controls, 91 source states and all three
-  existing product cases are strictly mapped without adding test debt.
-- Cancel, continue writing and resolve-conflict dismiss safely; explicit
-  discard exits once. One hundred same-frame save-and-exit clicks produce one
-  atomic write and one exit, and save-copy retains one native dialog/one exit.
-- Four red failures converged to 18/18 focused, 79/79 impacted and 30/30 QA
+- Seven author-visible recovery actions previously collapsed into four
+  declarations; one declaration lacked a stable selector and one of two
+  existing rendered cases was unmapped.
+- All seven actions now have distinct stable identities and strict mappings.
+  Both existing cases are mapped without adding discovered test debt.
+- One hundred same-frame copy actions start one clipboard write. Clipboard
+  denial becomes localized, public-safe feedback; explicit retry remains
+  available and successful copying announces completion.
+- Three red failures converged to 17/17 focused, 49/49 impacted and 30/30 QA
   infrastructure tests. Node 24 passed lint, typecheck, 188 files / 979 tests
   and production build; Rust passed 77 with two reasoned ignores.
-- Inventory honestly expands by 3 controls and 66 states, while mapped states
-  rise by 96. Strict gaps fall by 35 from 9,857 to 9,822; selector gaps fall
-  from 90 to 89 and unmapped tests fall from 876 to 874.
+- Inventory honestly expands by 3 controls and 66 states. The seven source
+  controls contribute 77 mapped states and global mapped states rise by 73.
+  Strict gaps fall by 10 from 9,822 to 9,812; selector gaps fall from 89 to 88
+  and unmapped tests fall from 874 to 873.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  2,805/12,627 (22.21%); stable selectors are 403/492 (81.91%); test mapping is
-  184/1,058 (17.39%). Release gates remain 1/4 complete (25%). Product stays
+  2,884/12,696 (22.72%); stable selectors are 407/495 (82.22%); test mapping is
+  185/1,058 (17.49%). Release gates remain 1/4 complete (25%). Product stays
   `PARTIAL` until strict traceability, real-provider smoke and packaged-EXE
   acceptance complete.
 
 ## Previous milestone
 
-Story Dashboard recovery and control convergence is complete against source
-`2fc51eb`: 5/5 controls and 6/6 tests are mapped, and fixed acceptance passed
-979 frontend tests.
+Close protection control and single-flight convergence is complete against
+source `0627c1f`: 6/6 controls and 3/3 tests are mapped, and fixed acceptance
+passed 979 frontend tests.
 
 ## Earlier milestone
 
