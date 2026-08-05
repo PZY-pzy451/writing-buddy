@@ -31,8 +31,9 @@ describe('StoryConsistencyAiPanel', () => {
 		await desktopBridge.saveDeepSeekKey('browser-fixture-key');
 	});
 
-	it('runs one atomic whole-work pass and ignores a rapid duplicate click', async () => {
+	it('TC-STORY-CONSISTENCY-001 deduplicates one hundred repeated runs and publishes one successful atomic result', async () => {
 		const onCreated = vi.fn();
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		render(
 			<StoryConsistencyAiPanel
 				projectId="project-a11ce001"
@@ -45,11 +46,16 @@ describe('StoryConsistencyAiPanel', () => {
 
 		expect(onCreated).not.toHaveBeenCalled();
 		expect(screen.getByRole('tab', { name: /全书扫描/u })).toHaveAttribute('aria-selected', 'true');
-		const start = screen.getByRole('button', { name: '开始全书扫描' });
-		fireEvent.click(start);
-		fireEvent.click(start);
+		const start = screen.getByTestId('story-consistency-run');
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				start.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
 
 		await waitFor(() => expect(onCreated).toHaveBeenCalledTimes(1), { timeout: 5_000 });
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		const [issues] = onCreated.mock.calls[0] as [readonly {
 			readonly severity: string;
 			readonly replacement?: string;
@@ -65,7 +71,7 @@ describe('StoryConsistencyAiPanel', () => {
 		expect(await screen.findByText(/2 个正文章节、1 批/u)).toBeInTheDocument();
 	});
 
-	it('TC-QA-AI-CANCEL-005 sends one stop command for one hundred rapid clicks', async () => {
+	it('TC-QA-AI-CANCEL-005 deduplicates one hundred stop clicks, disables pending cancellation and reports cancelled', async () => {
 		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
 		let resolveCancellation: (accepted: boolean) => void = () => undefined;
 		vi.spyOn(desktopBridge, 'getAiPreferences')
@@ -91,8 +97,8 @@ describe('StoryConsistencyAiPanel', () => {
 			/>
 		);
 
-		fireEvent.click(screen.getByRole('button', { name: '开始全书扫描' }));
-		const stopButton = await screen.findByRole('button', { name: '停止' });
+		fireEvent.click(screen.getByTestId('story-consistency-run'));
+		const stopButton = await screen.findByTestId('story-consistency-stop');
 		await waitFor(() => expect(startAiGeneration).toHaveBeenCalledOnce());
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
@@ -115,23 +121,53 @@ describe('StoryConsistencyAiPanel', () => {
 		vi.restoreAllMocks();
 	});
 
-	it('keeps the existing explicit 2–12 chapter selection mode available', () => {
+	it('TC-STORY-CONSISTENCY-003 keeps enabled keyboard focus, caps selected chapters at twelve and releases disabled choices', () => {
+		const selectionChapters = Array.from({ length: 13 }, (_, index) => ({
+			resourceId: `chapter:selection-${index + 1}`,
+			chapterId: `selection-${index + 1}`,
+			title: `选择章节 ${index + 1}`,
+			path: `chapters/selection-${index + 1}.md`,
+			narrativeOrder: index,
+			volumeId: 'volume-selection',
+			volumeTitle: '选择卷'
+		}));
 		render(
 			<StoryConsistencyAiPanel
 				projectId="project-a11ce001"
 				projectRoot="browser-fixture"
-				chapters={chapters}
+				chapters={selectionChapters}
 				onClose={vi.fn()}
 				onCreated={vi.fn()}
 			/>
 		);
 
-		fireEvent.click(screen.getByRole('tab', { name: /自选章节/u }));
-		expect(screen.getAllByRole('checkbox')).toHaveLength(2);
-		expect(screen.getByRole('button', { name: '开始对照审查' })).toBeEnabled();
+		const wholeScope = screen.getByTestId('story-consistency-scope-whole');
+		const selectedScope = screen.getByTestId('story-consistency-scope-selected');
+		fireEvent.click(selectedScope);
+		const chapterControls = screen.getAllByTestId('story-consistency-chapter');
+		expect(chapterControls).toHaveLength(13);
+		for (let index = 2; index < 12; index += 1) fireEvent.click(chapterControls[index]);
+		expect(chapterControls[12]).toBeDisabled();
+		fireEvent.click(chapterControls[0]);
+		expect(chapterControls[12]).toBeEnabled();
+
+		const controls = [
+			screen.getByRole('button', { name: '关闭 AI 对照审查' }),
+			wholeScope,
+			selectedScope,
+			chapterControls[12],
+			screen.getByTestId('story-consistency-instruction'),
+			screen.getByTestId('story-consistency-run')
+		];
+		for (const control of controls) {
+			expect(control).toBeVisible();
+			expect(control).toBeEnabled();
+			control.focus();
+			expect(control).toHaveFocus();
+		}
 	});
 
-	it('keeps the previous result set untouched when a later whole-work batch fails', async () => {
+	it('TC-STORY-CONSISTENCY-004 rejects a failed later batch without persistence and succeeds on full restart', async () => {
 		const extendedChapters = Array.from({ length: 13 }, (_, index) => ({
 			resourceId: `chapter:chapter-${index + 1}`,
 			chapterId: `chapter-${index + 1}`,
@@ -170,10 +206,17 @@ describe('StoryConsistencyAiPanel', () => {
 			/>
 		);
 
-		fireEvent.click(screen.getByRole('button', { name: '开始全书扫描' }));
+		const start = screen.getByTestId('story-consistency-run');
+		fireEvent.click(start);
 
 		expect(await screen.findByRole('alert')).toHaveTextContent('未保存任何结果');
 		expect(requestCount).toBe(2);
 		expect(onCreated).not.toHaveBeenCalled();
+		expect(start).toBeEnabled();
+		fireEvent.click(start);
+
+		await waitFor(() => expect(onCreated).toHaveBeenCalledTimes(1), { timeout: 5_000 });
+		expect(requestCount).toBe(4);
+		expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 	});
 });

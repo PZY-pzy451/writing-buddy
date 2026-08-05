@@ -311,7 +311,7 @@ describe('control inventory rendered-element boundary', () => {
 		]);
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character, Item and Relationship AI control to stable selectors', () => {
+	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -372,6 +372,22 @@ describe('control inventory rendered-element boundary', () => {
 			'relationship-ai-target-character',
 			'关闭 AI 关系助手',
 			'选择关系分析章节'
+		]);
+		const consistencyAiControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/continuity/StoryConsistencyAiPanel.tsx'
+		));
+
+		expect(consistencyAiControls).toHaveLength(7);
+		expect(consistencyAiControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(consistencyAiControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'story-consistency-chapter',
+			'story-consistency-instruction',
+			'story-consistency-run',
+			'story-consistency-scope-selected',
+			'story-consistency-scope-whole',
+			'story-consistency-stop',
+			'关闭 AI 对照审查'
 		]);
 	});
 });

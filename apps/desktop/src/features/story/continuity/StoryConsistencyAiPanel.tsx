@@ -257,6 +257,7 @@ export function StoryConsistencyAiPanel(props: {
 
 				<div className="story-consistency-scope" role="tablist" aria-label="一致性审查范围">
 					<button
+						data-testid="story-consistency-scope-whole"
 						type="button"
 						role="tab"
 						aria-selected={scope === 'whole-work'}
@@ -268,6 +269,7 @@ export function StoryConsistencyAiPanel(props: {
 						<span><strong>全书扫描</strong><small>按顺序分批覆盖全部已写章节</small></span>
 					</button>
 					<button
+						data-testid="story-consistency-scope-selected"
 						type="button"
 						role="tab"
 						aria-selected={scope === 'selected'}
@@ -299,6 +301,7 @@ export function StoryConsistencyAiPanel(props: {
 							{props.chapters.map(chapter => (
 								<label key={chapter.resourceId}>
 									<input
+										data-testid="story-consistency-chapter"
 										type="checkbox"
 										checked={selectedIds.includes(chapter.resourceId)}
 										disabled={running || (
@@ -320,6 +323,7 @@ export function StoryConsistencyAiPanel(props: {
 				<label className="story-consistency-instruction">
 					<span>审查重点</span>
 					<textarea
+						data-testid="story-consistency-instruction"
 						value={instruction}
 						maxLength={2_000}
 						disabled={running}
@@ -348,6 +352,7 @@ export function StoryConsistencyAiPanel(props: {
 					<span><Sparkles size={16} />点击开始后才会调用 DeepSeek</span>
 					<div>
 						<button
+							data-testid="story-consistency-run"
 							className="primary-action"
 							type="button"
 							disabled={
@@ -367,6 +372,7 @@ export function StoryConsistencyAiPanel(props: {
 						</button>
 						{running ? (
 							<button
+								data-testid="story-consistency-stop"
 								className="stop-action"
 								type="button"
 								disabled={cancellationPending}
