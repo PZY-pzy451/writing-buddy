@@ -1,5 +1,7 @@
 # Plan index
 
+- [AI context and manuscript highlight selector/trace convergence QA](./111-ai-context-highlight-selector-trace-convergence-qa.md)
+
 - [Scene Plot Grid and virtual timeline selector/trace convergence QA](./110-scene-plot-grid-selector-trace-convergence-qa.md)
 
 - [Daily writing goal form selector and trace convergence QA](./109-daily-writing-goal-form-selector-trace-convergence-qa.md)

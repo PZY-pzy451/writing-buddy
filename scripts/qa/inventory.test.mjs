@@ -503,6 +503,21 @@ describe('control inventory rendered-element boundary', () => {
 		expect(virtualTimelineControls).toHaveLength(1);
 		expect(virtualTimelineControls[0]?.stableSelectorStatus).toBe('MAPPED');
 		expect(virtualTimelineControls[0]?.stableSelectorValue).toBe('timeline-list-event');
+		const contextPreviewControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/features/ai/context/ContextPreview.tsx'
+		));
+
+		expect(contextPreviewControls).toHaveLength(1);
+		expect(contextPreviewControls[0]?.stableSelectorStatus).toBe('MAPPED');
+		expect(contextPreviewControls[0]?.stableSelectorValue).toBe('ai-context-record-toggle');
+		const highlightControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/manuscript/EntityHighlightControls.tsx'
+		));
+
+		expect(highlightControls).toHaveLength(1);
+		expect(highlightControls[0]?.stableSelectorStatus).toBe('MAPPED');
+		expect(highlightControls[0]?.stableSelectorValue).toBe('entity-highlight-kind-toggle');
 	});
 
 	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite and Manuscript Continuation AI control to stable selectors', () => {

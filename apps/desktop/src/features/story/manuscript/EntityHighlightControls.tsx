@@ -64,6 +64,8 @@ export function EntityHighlightControls({
 				{manuscriptHighlightKinds.map(kind => (
 					<label key={kind} data-kind={kind}>
 						<input
+							data-testid="entity-highlight-kind-toggle"
+							data-highlight-kind={kind}
 							type="checkbox"
 							checked={enabledKinds.has(kind)}
 							onChange={event => onToggle(kind, event.target.checked)}

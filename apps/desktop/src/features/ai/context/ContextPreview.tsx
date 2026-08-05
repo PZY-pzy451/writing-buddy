@@ -67,6 +67,11 @@ export function ContextPreview({
 				{records.map(record => (
 					<label key={record.key} className={record.included ? 'is-included' : 'is-excluded'}>
 						<input
+							data-testid="ai-context-record-toggle"
+							data-context-key={record.key}
+							data-context-kind={record.kind}
+							data-required={record.required}
+							data-author-secret={Boolean(record.authorSecret)}
 							type="checkbox"
 							checked={record.included}
 							disabled={record.required || disabled}

@@ -31,6 +31,7 @@ describe('ContextPreview', () => {
 	it('shows missing-project guidance', () => {
 		render(<ContextPreview onToggle={() => undefined} />);
 		expect(screen.getByText('尚未打开作品')).toBeInTheDocument();
+		expect(screen.queryByTestId('ai-context-record-toggle')).not.toBeInTheDocument();
 	});
 
 	it('locks required context and allows explicit secret consent', async () => {
@@ -47,8 +48,14 @@ describe('ContextPreview', () => {
 		});
 		render(<ContextPreview pack={pack} onToggle={onToggle} />);
 
-		expect(screen.getByRole('checkbox', { name: /作品/ })).toBeDisabled();
+		const required = screen.getByRole('checkbox', { name: /作品/ });
+		expect(required).toHaveAttribute('data-testid', 'ai-context-record-toggle');
+		expect(required).toHaveAttribute('data-required', 'true');
+		expect(required).toBeDisabled();
 		const secret = screen.getByRole('checkbox', { name: /作者秘密/ });
+		expect(secret).toHaveAttribute('data-testid', 'ai-context-record-toggle');
+		expect(secret).toHaveAttribute('data-context-key', 'entity:character:secret');
+		expect(secret).toHaveAttribute('data-author-secret', 'true');
 		expect(secret).not.toBeChecked();
 		await user.click(secret);
 		expect(onToggle).toHaveBeenCalledWith('entity:character:secret', true);
@@ -77,6 +84,7 @@ describe('ContextPreview', () => {
 
 		render(<ContextPreview pack={pack} onToggle={() => undefined} />);
 
+		expect(screen.getByTestId('ai-context-record-toggle')).toBeDisabled();
 		expect(screen.getByText('Current chapter')).toBeInTheDocument();
 		expect(screen.queryByText('Project metadata')).not.toBeInTheDocument();
 	});

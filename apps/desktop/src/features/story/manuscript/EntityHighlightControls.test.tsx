@@ -55,6 +55,10 @@ describe('EntityHighlightControls', () => {
 		);
 
 		fireEvent.click(screen.getByText('资料高亮'));
+		const controls = screen.getAllByTestId('entity-highlight-kind-toggle');
+		expect(controls.map(control => control.dataset.highlightKind)).toEqual([
+			'character', 'location', 'item', 'foreshadowing'
+		]);
 		const character = screen.getByRole('checkbox', { name: /人物/ });
 		expect(character).not.toBeChecked();
 		expect(screen.getAllByText('1 处链接')).toHaveLength(2);
@@ -68,11 +72,23 @@ describe('EntityHighlightControls', () => {
 			getItem: (key: string) => values.get(key) ?? null,
 			setItem: (key: string, value: string) => values.set(key, value)
 		};
-		saveManuscriptHighlightKinds(
-			'D:/Novel',
-			new Set(['character', 'item']),
-			storage
+		let enabledKinds = new Set<'character' | 'location' | 'item' | 'foreshadowing'>();
+		render(
+			<EntityHighlightControls
+				mentions={[]}
+				enabledKinds={enabledKinds}
+				onToggle={(kind, enabled) => {
+					enabledKinds = new Set(enabledKinds);
+					if (enabled) enabledKinds.add(kind);
+					else enabledKinds.delete(kind);
+					saveManuscriptHighlightKinds('D:/Novel', enabledKinds, storage);
+				}}
+			/>
 		);
+		fireEvent.click(screen.getByText('资料高亮'));
+		const controls = screen.getAllByTestId('entity-highlight-kind-toggle');
+		fireEvent.click(controls.find(control => control.dataset.highlightKind === 'character')!);
+		fireEvent.click(controls.find(control => control.dataset.highlightKind === 'item')!);
 		expect([...loadManuscriptHighlightKinds('D:/Novel', storage)])
 			.toEqual(['character', 'item']);
 	});
