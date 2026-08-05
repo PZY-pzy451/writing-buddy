@@ -6,7 +6,10 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildContextPack } from '@writing-buddy/story-kernel';
 import { desktopBridge } from '../../../platform/bridge';
-import { SelectionRewritePanel } from './SelectionRewritePanel';
+import {
+	SelectionRewritePanel,
+	type SelectionRewritePanelProps
+} from './SelectionRewritePanel';
 
 const asyncTimeout = { timeout: 5_000 };
 
@@ -25,13 +28,13 @@ describe('SelectionRewritePanel', () => {
 		vi.restoreAllMocks();
 	});
 
-	it('TC-QA-AI-CANCEL-004 blocks one hundred repeated cancellation clicks', async () => {
+	it('TC-SELECTION-REWRITE-001 deduplicates one hundred generate and cancel actions and reports cancelled', async () => {
 		let emitEvent: (event: AiStreamEvent) => void = () => undefined;
 		let activeJobId = '';
 		let resolveCancellation: (value: boolean) => void = () => undefined;
 		vi.spyOn(desktopBridge, 'getAiPreferences')
 			.mockResolvedValue(DEFAULT_AI_PREFERENCES);
-		vi.spyOn(desktopBridge, 'startAiGeneration')
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration')
 			.mockImplementation((request, listener) => {
 				activeJobId = request.jobId;
 				emitEvent = listener;
@@ -58,11 +61,19 @@ describe('SelectionRewritePanel', () => {
 			/>
 		);
 
-		const generateButton = await screen.findByRole('button', {
-			name: '确认 Context Pack 并生成'
-		}, asyncTimeout);
+		const generateButton = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
+			asyncTimeout
+		);
 		await waitFor(() => expect(generateButton).toBeEnabled(), asyncTimeout);
-		fireEvent.click(generateButton);
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generateButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+		expect(startAiGeneration).toHaveBeenCalledOnce();
 		const cancelButton = await screen.findByRole('button', { name: '取消' }, asyncTimeout);
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
@@ -78,9 +89,11 @@ describe('SelectionRewritePanel', () => {
 			emitEvent({ type: 'cancelled', jobId: activeJobId });
 			await Promise.resolve();
 		});
+		expect(await screen.findByRole('alert', undefined, asyncTimeout))
+			.toHaveTextContent('生成已停止');
 	});
 
-	it('hands the generated rewrite to the inline draft surface without replacing the selection', async () => {
+	it('TC-SELECTION-REWRITE-002 renders one atomic inline draft without replacing the selection', async () => {
 		const onApply = vi.fn();
 		const onPendingDraft = vi.fn();
 		render(
@@ -106,9 +119,11 @@ describe('SelectionRewritePanel', () => {
 			/>
 		);
 
-		const generate = await screen.findByRole('button', {
-			name: '确认 Context Pack 并生成'
-		}, asyncTimeout);
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
+			asyncTimeout
+		);
 		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
 		fireEvent.click(generate);
 
@@ -127,7 +142,7 @@ describe('SelectionRewritePanel', () => {
 		expect(onApply).not.toHaveBeenCalled();
 	});
 
-	it('repairs wrapped rewrite data before handing off the inline draft', async () => {
+	it('TC-SELECTION-REWRITE-003 keeps a repaired wrapped candidate available without replacing the selection', async () => {
 		const onApply = vi.fn();
 		const onPendingDraft = vi.fn();
 		render(
@@ -159,9 +174,11 @@ describe('SelectionRewritePanel', () => {
 			/>
 		);
 
-		const generate = await screen.findByRole('button', {
-			name: '确认 Context Pack 并生成'
-		}, asyncTimeout);
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
+			asyncTimeout
+		);
 		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
 		fireEvent.click(generate);
 
@@ -175,10 +192,11 @@ describe('SelectionRewritePanel', () => {
 			),
 			asyncTimeout
 		);
+		expect(generate).toBeEnabled();
 		expect(onApply).not.toHaveBeenCalled();
 	});
 
-	it('keeps malformed rewrite data out of the manuscript with localized guidance', async () => {
+	it('TC-SELECTION-REWRITE-004 hides raw schema details and rejects malformed data with localized failure and zero persistence', async () => {
 		const onApply = vi.fn();
 		const onPendingDraft = vi.fn();
 		const onBeforeApply = vi.fn(() => Promise.resolve());
@@ -202,9 +220,11 @@ describe('SelectionRewritePanel', () => {
 			/>
 		);
 
-		const generate = await screen.findByRole('button', {
-			name: '确认 Context Pack 并生成'
-		}, asyncTimeout);
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
+			asyncTimeout
+		);
 		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
 		fireEvent.click(generate);
 
@@ -217,9 +237,21 @@ describe('SelectionRewritePanel', () => {
 		expect(onBeforeApply).not.toHaveBeenCalled();
 	});
 
-	it('streams a candidate, shows a diff and applies only after author confirmation', async () => {
+	it('TC-SELECTION-REWRITE-005 keeps the draft keyboard focusable, saves a note, applies after pointer confirmation and supports undo', async () => {
 		const onApply = vi.fn();
-		render(
+		const onReplaceDocument = vi.fn();
+		const onSaveNote = vi.fn();
+		const runRewriteImplementation: NonNullable<SelectionRewritePanelProps['runRewrite']> = (_pack, onProgress) => {
+			const output = JSON.stringify({
+				suggestion: '格外安静',
+				rationale: '删除重复表达。',
+				potentialImpact: '不改变情节。'
+			});
+			onProgress(output, 'streaming', { totalTokens: 42 });
+			return Promise.resolve({ output, usage: { totalTokens: 42 } });
+		};
+		const runRewrite = vi.fn(runRewriteImplementation);
+		const { rerender } = render(
 			<SelectionRewritePanel
 				projectRoot="D:\\fixture"
 				resourceId="chapter:one"
@@ -229,35 +261,60 @@ describe('SelectionRewritePanel', () => {
 				theme="vs"
 				actionType="polish"
 				onApply={onApply}
-				onReplaceDocument={vi.fn()}
+				onReplaceDocument={onReplaceDocument}
+				onSaveNote={onSaveNote}
 				loadPack={() => Promise.resolve(pack())}
-				runRewrite={(_pack, onProgress) => {
-					const output = JSON.stringify({
-						suggestion: '格外安静',
-						rationale: '删除重复表达。',
-						potentialImpact: '不改变情节。'
-					});
-					onProgress(output, 'streaming', { totalTokens: 42 });
-					return Promise.resolve({ output, usage: { totalTokens: 42 } });
-				}}
+				runRewrite={runRewrite}
 			/>
 		);
-		await waitFor(
-			() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled(),
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
 			asyncTimeout
 		);
+		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
 		expect(onApply).not.toHaveBeenCalled();
-		fireEvent.click(screen.getByRole('button', { name: '确认 Context Pack 并生成' }));
+		fireEvent.click(generate);
 		await waitFor(
 			() => expect(screen.getByLabelText('修改对比')).toBeInTheDocument(),
 			asyncTimeout
 		);
 		expect(onApply).not.toHaveBeenCalled();
-		fireEvent.click(screen.getByRole('button', { name: '全部接受' }));
+		const draft = screen.getByTestId('selection-rewrite-draft');
+		expect(draft).toBeVisible();
+		expect(draft).toBeEnabled();
+		draft.focus();
+		expect(draft).toHaveFocus();
+		fireEvent.change(draft, { target: { value: '静得能听见钟声' } });
+		expect(draft).toHaveValue('静得能听见钟声');
+		fireEvent.change(draft, { target: { value: '格外安静' } });
+		fireEvent.click(screen.getByTestId('selection-rewrite-save-note'));
+		expect(onSaveNote).toHaveBeenCalledOnce();
+		fireEvent.click(screen.getByTestId('selection-rewrite-accept-all'));
 		expect(onApply).toHaveBeenCalledWith(2, 8, '格外安静');
+		rerender(
+			<SelectionRewritePanel
+				projectRoot="D:\\fixture"
+				resourceId="chapter:one"
+				sourceRevision={5}
+				content="夜里格外安静。"
+				selection={{ start: 2, end: 6, text: '格外安静' }}
+				theme="vs"
+				actionType="polish"
+				onApply={onApply}
+				onReplaceDocument={onReplaceDocument}
+				onSaveNote={onSaveNote}
+				loadPack={() => Promise.resolve(pack())}
+				runRewrite={runRewrite}
+			/>
+		);
+		const undo = screen.getByTestId('selection-rewrite-undo');
+		expect(undo).toBeEnabled();
+		fireEvent.click(undo);
+		expect(onReplaceDocument).toHaveBeenCalledWith('夜里非常非常安静。');
 	});
 
-	it('disables acceptance when the source revision changed', async () => {
+	it('TC-SELECTION-REWRITE-006 disables stale candidate acceptance', async () => {
 		render(
 			<SelectionRewritePanel
 				projectRoot="D:\\fixture"
@@ -275,20 +332,32 @@ describe('SelectionRewritePanel', () => {
 				})}
 			/>
 		);
-		await waitFor(
-			() => expect(screen.getByRole('button', { name: '确认 Context Pack 并生成' })).toBeEnabled(),
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
+			undefined,
 			asyncTimeout
 		);
-		fireEvent.click(screen.getByRole('button', { name: '确认 Context Pack 并生成' }));
+		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
+		fireEvent.click(generate);
 		await waitFor(
 			() => expect(screen.getByText('正文已变化，此候选不可接受。')).toBeInTheDocument(),
 			asyncTimeout
 		);
-		expect(screen.getByRole('button', { name: '全部接受' })).toBeDisabled();
+		expect(screen.getByTestId('selection-rewrite-accept-all')).toBeDisabled();
 	});
 
-	it('does not replace the selection when the safety snapshot fails', async () => {
+	it('TC-SELECTION-REWRITE-007 redacts snapshot failure, preserves the candidate and succeeds on explicit restart without regeneration', async () => {
 		const onApply = vi.fn();
+		const onBeforeApply = vi.fn()
+			.mockRejectedValueOnce(new Error('snapshotFailed:C:\\private\\author\\backups\\rewrite.zip'))
+			.mockResolvedValueOnce(undefined);
+		const runRewrite = vi.fn(() => Promise.resolve({
+			output: JSON.stringify({
+				suggestion: '格外安静',
+				rationale: '精简',
+				potentialImpact: ''
+			})
+		}));
 		render(
 			<SelectionRewritePanel
 				projectRoot="D:\\fixture"
@@ -300,33 +369,36 @@ describe('SelectionRewritePanel', () => {
 				actionType="polish"
 				onApply={onApply}
 				onReplaceDocument={vi.fn()}
-				onBeforeApply={() => Promise.reject(new Error('无法创建安全快照。'))}
+				onBeforeApply={onBeforeApply}
 				loadPack={() => Promise.resolve(pack())}
-				runRewrite={() => Promise.resolve({
-					output: JSON.stringify({
-						suggestion: '格外安静',
-						rationale: '精简',
-						potentialImpact: ''
-					})
-				})}
+				runRewrite={runRewrite}
 			/>
 		);
-		const generate = await screen.findByRole('button', {
-			name: '确认 Context Pack 并生成'
-		}, asyncTimeout);
-		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
-		fireEvent.click(generate);
-		fireEvent.click(await screen.findByRole(
-			'button',
-			{ name: '全部接受' },
-			asyncTimeout
-		));
-
-		expect(await screen.findByRole(
-			'alert',
+		const generate = await screen.findByTestId(
+			'selection-rewrite-generate',
 			undefined,
 			asyncTimeout
-		)).toHaveTextContent('无法创建安全快照');
+		);
+		await waitFor(() => expect(generate).toBeEnabled(), asyncTimeout);
+		fireEvent.click(generate);
+		const accept = await screen.findByTestId(
+			'selection-rewrite-accept-all',
+			undefined,
+			asyncTimeout
+		);
+		fireEvent.click(accept);
+
+		const alert = await screen.findByRole('alert', undefined, asyncTimeout);
+		expect(alert).toHaveTextContent('无法写入改写候选，正文没有改变，请重试。');
+		expect(alert).not.toHaveTextContent('C:\\private');
 		expect(onApply).not.toHaveBeenCalled();
+		expect(accept).toBeEnabled();
+		fireEvent.click(accept);
+		await waitFor(
+			() => expect(onApply).toHaveBeenCalledWith(2, 8, '格外安静'),
+			asyncTimeout
+		);
+		expect(onBeforeApply).toHaveBeenCalledTimes(2);
+		expect(runRewrite).toHaveBeenCalledOnce();
 	}, 10_000);
 });

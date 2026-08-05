@@ -32,7 +32,7 @@ import {
 } from '@writing-buddy/ai';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { desktopBridge } from '../../../platform/bridge';
-import { toAiRequestError } from '../../ai/errors/AiErrorPresentation';
+import { normalizeAiError, toAiRequestError } from '../../ai/errors/AiErrorPresentation';
 import { CandidateDiffView } from './CandidateDiffView';
 import { ContextPackPreview } from './ContextPackPreview';
 import { AiJobCancelButton } from './AiJobCancelButton';
@@ -147,7 +147,18 @@ function selectionRewriteGenerationError(reason: unknown): string {
 	if (reason.message.startsWith('invalidSelectionRewriteResponse:')) {
 		return 'AI 返回的改写候选结构不完整，未写入正文。请重新生成。';
 	}
-	return reason.message;
+	return normalizeAiError(reason).message;
+}
+
+function selectionRewriteAcceptError(reason: unknown): string {
+	const code = reason instanceof Error ? reason.message : '';
+	if (code === 'staleRewriteCandidate') {
+		return '正文已变化，此候选不可接受。请重新生成。';
+	}
+	if (code === 'emptyRewriteReplacement') {
+		return '改写候选不能为空，请编辑后再接受。';
+	}
+	return '无法写入改写候选，正文没有改变，请重试。';
 }
 
 export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.JSX.Element {
@@ -283,7 +294,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 			setCandidate({ ...candidate, status: 'accepted' });
 			setError(undefined);
 		} catch (reason) {
-			setError(reason instanceof Error ? reason.message : '候选已经过期。');
+			setError(selectionRewriteAcceptError(reason));
 		} finally {
 			acceptingRef.current = false;
 		}
@@ -317,7 +328,7 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 				</p>
 			) : null}
 			<div className="rewrite-generation-actions">
-				<button className="primary-button" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
+				<button data-testid="selection-rewrite-generate" className="primary-button" type="button" disabled={!pack || generating || candidate?.status === 'accepted'} onClick={() => void generate()}>
 					{generating ? <Sparkles size={18} /> : <Send size={18} />}
 					{generating ? `DeepSeek 流式生成中 · ${streamedLength} 字符` : '确认 Context Pack 并生成'}
 				</button>
@@ -338,18 +349,19 @@ export function SelectionRewritePanel(props: SelectionRewritePanelProps): React.
 					</header>
 					{stale ? <p className="rewrite-stale"><AlertTriangle size={16} />正文已变化，此候选不可接受。</p> : null}
 					<CandidateDiffView original={candidate.original} modified={draft} theme={props.theme} />
-					<label className="rewrite-draft"><span>可编辑候选（编辑后接受即为部分接受）</span><textarea value={draft} onChange={event => setDraft(event.target.value)} /></label>
+					<label className="rewrite-draft"><span>可编辑候选（编辑后接受即为部分接受）</span><textarea data-testid="selection-rewrite-draft" value={draft} onChange={event => setDraft(event.target.value)} /></label>
 					<div className="rewrite-rationale"><strong>依据</strong><p>{candidate.rationale}</p><strong>潜在影响</strong><p>{candidate.potentialImpact || '未发现对既有事实的直接影响。'}</p></div>
 					<div className="rewrite-actions">
-						<button type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => void accept(candidate.suggestion)}><Check size={16} />全部接受</button>
+						<button data-testid="selection-rewrite-accept-all" type="button" disabled={stale || candidate.status !== 'candidate'} onClick={() => void accept(candidate.suggestion)}><Check size={16} />全部接受</button>
 						<button type="button" disabled={stale || candidate.status !== 'candidate' || draft === candidate.suggestion} onClick={() => void accept(draft)}><ClipboardList size={16} />接受编辑内容</button>
-						{props.onSaveNote ? <button type="button" onClick={() => props.onSaveNote?.(candidate)}><ClipboardList size={16} />保存到笔记</button> : null}
+						{props.onSaveNote ? <button data-testid="selection-rewrite-save-note" type="button" onClick={() => props.onSaveNote?.(candidate)}><ClipboardList size={16} />保存到笔记</button> : null}
 						<button type="button" onClick={() => setCandidate({ ...candidate, status: 'rejected' })}><X size={16} />拒绝</button>
 					</div>
 				</section>
 			) : null}
 			{lastAppliedContent ? (
 				<button
+					data-testid="selection-rewrite-undo"
 					className="rewrite-undo"
 					type="button"
 					disabled={!areEditContentsEquivalent(props.content, lastAppliedContent)}

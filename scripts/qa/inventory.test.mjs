@@ -311,7 +311,7 @@ describe('control inventory rendered-element boundary', () => {
 		]);
 	});
 
-	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship and Consistency AI control to stable selectors', () => {
+	it('TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency and Selection Rewrite AI control to stable selectors', () => {
 		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
 			cwd: repositoryRoot,
 			stdio: 'pipe'
@@ -388,6 +388,22 @@ describe('control inventory rendered-element boundary', () => {
 			'story-consistency-scope-whole',
 			'story-consistency-stop',
 			'关闭 AI 对照审查'
+		]);
+		const selectionRewriteControls = inventory.controls.filter(control => (
+			control.source
+			=== 'apps/desktop/src/features/story/ai-context/SelectionRewritePanel.tsx'
+		));
+
+		expect(selectionRewriteControls).toHaveLength(7);
+		expect(selectionRewriteControls.map(control => control.stableSelectorStatus)).not.toContain('UNMAPPED');
+		expect(selectionRewriteControls.map(control => control.stableSelectorValue).sort()).toEqual([
+			'selection-rewrite-accept-all',
+			'selection-rewrite-draft',
+			'selection-rewrite-generate',
+			'selection-rewrite-save-note',
+			'selection-rewrite-undo',
+			'拒绝',
+			'接受编辑内容'
 		]);
 	});
 });

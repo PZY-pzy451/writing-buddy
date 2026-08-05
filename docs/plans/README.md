@@ -94,6 +94,7 @@
 - [Item AI generation, write and selector convergence QA](./092-item-ai-generation-write-selector-convergence-qa.md)
 - [Relationship AI generation, write and selector convergence QA](./093-relationship-ai-generation-write-selector-convergence-qa.md)
 - [Whole-work consistency AI control and recovery convergence QA](./094-story-consistency-ai-control-recovery-convergence-qa.md)
+- [Selection rewrite control and retry convergence QA](./095-selection-rewrite-control-retry-convergence-qa.md)
 - [Phase 1.2A writer experience source map](./phase-1.2a-writer-experience-source-map.md)
 - [Phase 1.2A current UX baseline](./phase-1.2a-current-ux-baseline.md)
 - [Phase 1.0A source map](./phase-1.0a-source-map.md)
