@@ -4,28 +4,35 @@ Updated: 2026-08-05
 
 ## Active milestone
 
-Timeline reorder and continuity review selector/trace convergence is complete
-on `codex/full-regression-gates-a-e-v2` against source `d6465ff`.
+Inline language and chapter creation selector/trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `f00835fe`.
 
-- Timeline drag handles and event selectors expose exact event identity and
-  narrative order. Existing preview cases now drive rendered selection and
-  disabled controls.
-- Continuity issues expose exact identity, severity, status, layers and AI
-  provenance. Existing cases drive filtering, evidence, resolution persistence
-  and reopening.
-- Four red failures converged to 19/19 focused/inventory, 54/54 impact and
-  30/30 QA tests. Node 24 passed lint, typecheck, 189 files / 979 tests and
-  production build; Rust passed 77 with two reasoned ignores.
+- The inline language popover trigger and enable switch now expose distinct
+  stable identities. Existing explicit-replacement and setup-recovery cases
+  drive both controls without changing manuscript text automatically.
+- Chapter creation tests now address all six declared controls directly instead
+  of by DOM order. One hundred same-frame submissions create once and release
+  for retry; one hundred dismissals close once and restore opening focus.
+- Two red failures converged to 4/4 focused, 60/60 impact, 20/20 inventory and
+  trace contracts and 30/30 QA infrastructure tests. Node 24 passed lint,
+  typecheck, 189 files / 979 tests and production build; Rust passed 77 with two
+  reasoned ignores.
 - Inventory stays at 510 controls / 11,220 states / 1,058 tests. Global mapped
-  controls rise by 5, states by 25 and tests by 3. Strict gaps fall by 33 from
-  9,549 to 9,516, selector gaps from 64 to 61 and unmapped tests from 855 to
-  852.
+  controls rise by 7, states by 57 and tests by 2. Strict gaps fall by 66 from
+  9,516 to 9,450, selector gaps from 61 to 59 and unmapped tests from 852 to
+  850.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  3,525/13,041 (27.03%); stable selectors are 449/510 (88.04%); test mapping is
-  206/1,058 (19.47%). Against the 11,088 / 136 reference, 1,572 mapping gaps
-  and 75 selector gaps are closed. Release gates remain 1/4 complete (25%).
+  3,591/13,041 (27.54%); stable selectors are 451/510 (88.43%); test mapping is
+  208/1,058 (19.66%). Against the 11,088 / 136 reference, 1,638 mapping gaps
+  and 77 selector gaps are closed. Release gates remain 1/4 complete (25%).
   Product stays `PARTIAL` until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Previous milestone
+
+Timeline reorder and continuity review selector/trace convergence is complete
+against source `d6465ff`: five controls and three product cases map, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 

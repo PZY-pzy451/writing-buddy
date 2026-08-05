@@ -58524,11 +58524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-VISIBLE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-VISIBLE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -58540,11 +58540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-HIDDEN",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-HIDDEN",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -58556,11 +58556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-ENABLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-ENABLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -58572,11 +58572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DISABLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DISABLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -58588,11 +58588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-POINTER",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-POINTER",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -58604,11 +58604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-KEYBOARD",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-KEYBOARD",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -58620,11 +58620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FOCUS-IN",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FOCUS-IN",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -58636,11 +58636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FOCUS-OUT",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FOCUS-OUT",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -58652,11 +58652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-REPEAT",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-REPEAT",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -58668,11 +58668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DEDUPLICATION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DEDUPLICATION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -58684,11 +58684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-LOADING",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-LOADING",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -58700,11 +58700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-SUCCESS",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-SUCCESS",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -58716,11 +58716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FAILURE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FAILURE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -58732,11 +58732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-CANCELLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-CANCELLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -58748,11 +58748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-OFFLINE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-OFFLINE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -58764,11 +58764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-PERMISSION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-PERMISSION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -58780,11 +58780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-PERSISTENCE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-PERSISTENCE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -58796,11 +58796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-RESTART",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-RESTART",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -58812,11 +58812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-VISUAL",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-VISUAL",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -58828,11 +58828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-ACCESSIBLE-NAME",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -58844,11 +58844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -58860,11 +58860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-UNDO",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-UNDO",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552"
+        "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -59228,11 +59228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-VISIBLE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-VISIBLE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -59244,11 +59244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-HIDDEN",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-HIDDEN",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -59260,11 +59260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-ENABLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-ENABLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -59276,11 +59276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DISABLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DISABLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -59292,11 +59292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-POINTER",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-POINTER",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -59308,11 +59308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-KEYBOARD",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-KEYBOARD",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -59324,11 +59324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FOCUS-IN",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FOCUS-IN",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -59340,11 +59340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FOCUS-OUT",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FOCUS-OUT",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -59356,11 +59356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-REPEAT",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-REPEAT",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -59372,11 +59372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DEDUPLICATION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DEDUPLICATION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -59388,11 +59388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-LOADING",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-LOADING",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -59404,11 +59404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-SUCCESS",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-SUCCESS",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -59420,11 +59420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FAILURE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FAILURE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -59436,11 +59436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-CANCELLED",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-CANCELLED",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -59452,11 +59452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-OFFLINE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-OFFLINE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -59468,11 +59468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-PERMISSION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-PERMISSION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -59484,11 +59484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-PERSISTENCE",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-PERSISTENCE",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -59500,11 +59500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-RESTART",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-RESTART",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -59516,11 +59516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-VISUAL",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-VISUAL",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -59532,11 +59532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-ACCESSIBLE-NAME",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -59548,11 +59548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -59564,11 +59564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-UNDO",
+      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-UNDO",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0"
+        "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B"
       ],
       "name": "撤销",
       "dimension": "UNDO",

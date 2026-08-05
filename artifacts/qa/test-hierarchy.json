@@ -44968,138 +44968,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552",
+                  "id": "CTRL-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-VISIBLE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-HIDDEN",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-ENABLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DISABLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-POINTER",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-KEYBOARD",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FOCUS-IN",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FOCUS-OUT",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-REPEAT",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DEDUPLICATION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-LOADING",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-SUCCESS",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-FAILURE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-CANCELLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-OFFLINE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-PERMISSION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-PERSISTENCE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-RESTART",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-VISUAL",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-ACCESSIBLE-NAME",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-8365F552-UNDO",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-BUTTON-66C46533-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45246,138 +45246,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0",
+                  "id": "CTRL-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-VISIBLE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-HIDDEN",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-ENABLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DISABLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-POINTER",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-KEYBOARD",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FOCUS-IN",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FOCUS-OUT",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-REPEAT",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DEDUPLICATION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-LOADING",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-SUCCESS",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-FAILURE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-CANCELLED",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-OFFLINE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-PERMISSION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-PERSISTENCE",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-RESTART",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-VISUAL",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-ACCESSIBLE-NAME",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-9A5953D0-UNDO",
+                      "id": "STATE-INLINELANGUAGECHECKCONTROL-INPUT-6A321E2B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -78560,7 +78560,7 @@
       "id": "TC-DISCOVERED-3C7F5726D2",
       "title": "shows a non-color setup recovery action and blocks read-only fixes",
       "declarationTitle": "shows a non-color setup recovery action and blocks read-only fixes",
-      "declarationLine": 47,
+      "declarationLine": 49,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/inline/InlineLanguageCheckControl.test.tsx",
@@ -88234,7 +88234,7 @@
       "id": "TC-DISCOVERED-CA42814AF0",
       "title": "dismisses once under pressure and restores the exact opening focus",
       "declarationTitle": "dismisses once under pressure and restores the exact opening focus",
-      "declarationLine": 82,
+      "declarationLine": 85,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/projects/ui/ChapterCreationDialog.test.tsx",
@@ -88369,24 +88369,6 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-CBA7C57612",
-      "title": "dispatches one creation for one hundred same-frame submissions and permits one retry",
-      "declarationTitle": "dispatches one creation for one hundred same-frame submissions and permits one retry",
-      "declarationLine": 58,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/projects/ui/ChapterCreationDialog.test.tsx",
-      "domainId": "DOMAIN-06",
-      "featureId": "FEATURE-06-01",
-      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -90339,6 +90321,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-EAA239F717",
+      "title": "creates once across one hundred repeated same-frame submissions and permits one retry",
+      "declarationTitle": "creates once across one hundred repeated same-frame submissions and permits one retry",
+      "declarationLine": 58,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/projects/ui/ChapterCreationDialog.test.tsx",
+      "domainId": "DOMAIN-06",
+      "featureId": "FEATURE-06-01",
+      "pageId": "PAGE-PROJECT-CREATION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

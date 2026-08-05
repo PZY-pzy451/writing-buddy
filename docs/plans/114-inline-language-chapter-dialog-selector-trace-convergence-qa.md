@@ -44,3 +44,24 @@ Date: 2026-08-05
   gates sequentially from the fixed source.
 - Keep release blocked until strict traceability, real-provider smoke and
   packaged-EXE acceptance complete.
+
+## Result
+
+- Source `f00835fe` gives the inline language popover trigger and enable switch
+  distinct stable identities without changing review or write behavior.
+- Chapter creation cases address all six declared controls directly. One
+  hundred same-frame submissions create once and release for retry after a
+  rejected creation; one hundred dismissals close once and restore focus.
+- Two failure-first contracts converged to 4/4 focused and 60/60 inline,
+  project-creation and Writer Workspace impact tests. Inventory/trace contracts
+  passed 20/20.
+- Inline language rises from 2/4 to 4/4 stable identities and from 1/4 to 3/4
+  strictly mapped controls. Chapter creation rises from 1/6 to 6/6 strictly
+  mapped controls; both existing component cases gain global mappings.
+- Sequential fixed-source acceptance passed 189 frontend files / 979 tests,
+  production build, 77 native tests with two reasoned ignores and 30/30 QA
+  infrastructure tests.
+- Global mapped controls rise by 7, states by 57 and tests by 2. Strict gaps
+  fall from 9,516 to 9,450, selector gaps from 61 to 59 and unmapped tests from
+  852 to 850. Strict coverage is 27.54%, stable-selector coverage is 88.43%,
+  test mapping is 19.66% and release hard gates remain 1/4 complete.

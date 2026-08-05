@@ -1595,3 +1595,20 @@ did not fully specify `targetTypes`, position objects or history arrays.
   fall from 9,549 to 9,516, selector gaps from 64 to 61 and unmapped tests from
   855 to 852. Strict coverage is 27.03%, stable-selector coverage is 88.04%,
   test mapping is 19.47% and release hard gates remain 1/4 complete.
+
+## 2026-08-05 addendum - defect 080
+
+- The inline language popover trigger and enable switch expose distinct stable
+  identities. Existing explicit-replacement and setup-recovery cases drive the
+  rendered controls without authorizing automatic manuscript writes.
+- Chapter creation cases address all six declared controls directly. One
+  hundred same-frame submissions create once and release for retry after a
+  rejected create; one hundred dismissals close once and restore opening focus.
+- Two red failures converged to 4/4 focused, 60/60 impact and 20/20 inventory/
+  trace contracts. Fixed-source sequential execution passed 189 frontend files
+  / 979 tests, production build, 77 native tests with two reasoned ignores and
+  30/30 QA infrastructure tests.
+- Global mapped controls rise by 7, states by 57 and tests by 2. Strict gaps
+  fall from 9,516 to 9,450, selector gaps from 61 to 59 and unmapped tests from
+  852 to 850. Strict coverage is 27.54%, stable-selector coverage is 88.43%,
+  test mapping is 19.66% and release hard gates remain 1/4 complete.
