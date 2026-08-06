@@ -93,7 +93,7 @@ describe('AI generation drawer reject-preview control', () => {
 		});
 	});
 
-	it('keeps the reject action hidden while an apply transaction is active', () => {
+	it('keeps the reject action hidden while an apply transaction is pending', () => {
 		const store = createPreviewStore();
 		store.setState({ state: 'applying' });
 		render(<AiGenerationDrawer store={store} />);
