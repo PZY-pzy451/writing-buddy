@@ -44814,138 +44814,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-3FA87F6F",
+                  "id": "CTRL-TASKDOCK-BUTTON-48BE8B52",
                   "level": "L4",
-                  "name": "忽略",
+                  "name": "稍后",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -44953,138 +44953,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-7829B7B9",
+                  "id": "CTRL-TASKDOCK-BUTTON-4939541B",
                   "level": "L4",
-                  "name": "关闭任务区",
+                  "name": "button",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-4939541B-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45092,138 +45092,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-94E67A89",
+                  "id": "CTRL-TASKDOCK-BUTTON-49BC07CE",
                   "level": "L4",
-                  "name": "备份记录",
+                  "name": "跳到原文",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-94E67A89-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45231,138 +45231,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-9522A7B6",
+                  "id": "CTRL-TASKDOCK-BUTTON-52B3EC43",
                   "level": "L4",
                   "name": "恢复状态",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45370,138 +45370,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-AE6CF945",
+                  "id": "CTRL-TASKDOCK-BUTTON-6D783753",
                   "level": "L4",
-                  "name": "已忽略",
+                  "name": "关闭任务区",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-6D783753-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45509,138 +45509,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-BUTTON-DD554FF5",
+                  "id": "CTRL-TASKDOCK-BUTTON-93D7E305",
                   "level": "L4",
-                  "name": "全部",
+                  "name": "忽略",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-VISIBLE",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-HIDDEN",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-ENABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DISABLED",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-POINTER",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-KEYBOARD",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-REPEAT",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-LOADING",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-SUCCESS",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FAILURE",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-CANCELLED",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-OFFLINE",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-PERMISSION",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-RESTART",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-VISUAL",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-UNDO",
+                      "id": "STATE-TASKDOCK-BUTTON-93D7E305-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -45648,138 +45648,694 @@
                   ]
                 },
                 {
-                  "id": "CTRL-TASKDOCK-SELECT-FFD33621",
+                  "id": "CTRL-TASKDOCK-BUTTON-A07B4E17",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TASKDOCK-BUTTON-C9A72D33",
+                  "level": "L4",
+                  "name": "转为正式资料",
+                  "states": [
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TASKDOCK-BUTTON-D96D1EB1",
+                  "level": "L4",
+                  "name": "接受",
+                  "states": [
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TASKDOCK-BUTTON-E32C9D82",
+                  "level": "L4",
+                  "name": "忽略",
+                  "states": [
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-TASKDOCK-SELECT-317AB16C",
                   "level": "L4",
                   "name": "正式资料类型",
                   "states": [
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-VISIBLE",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-HIDDEN",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-ENABLED",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-DISABLED",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-POINTER",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-KEYBOARD",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-FOCUS-IN",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-FOCUS-OUT",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-REPEAT",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-DEDUPLICATION",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-LOADING",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-SUCCESS",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-FAILURE",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-CANCELLED",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-OFFLINE",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-PERMISSION",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-PERSISTENCE",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-RESTART",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-VISUAL",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-ACCESSIBLE-NAME",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-TASKDOCK-SELECT-FFD33621-UNDO",
+                      "id": "STATE-TASKDOCK-SELECT-317AB16C-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -78141,24 +78697,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-053AF00F2E",
-      "title": "captures from the global shortcut without leaving the chapter, then opens the inbox",
-      "declarationTitle": "captures from the global shortcut without leaving the chapter, then opens the inbox",
-      "declarationLine": 59,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/quick-capture/QuickCaptureExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-053CE6DFE7",
       "title": "covers manuscript order and overlaps the chapter at a 12-source boundary",
       "declarationTitle": "covers manuscript order and overlaps the chapter at a 12-source boundary",
@@ -78856,7 +79394,7 @@
       "id": "TC-DISCOVERED-0D3C547C51",
       "title": "persists an exact release candidate, invalidates it after a source change and undoes confirmation from History",
       "declarationTitle": "persists an exact release candidate, invalidates it after a source change and undoes confirmation from History",
-      "declarationLine": 182,
+      "declarationLine": 204,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -79025,6 +79563,24 @@
       "domainId": "DOMAIN-01",
       "featureId": "FEATURE-01-02",
       "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-0EC101EB1C",
+      "title": "TC-TASK-DOCK-004 opens contextual inbox controls from the shortcut, persists one dismiss action and keeps the chapter selection",
+      "declarationTitle": "TC-TASK-DOCK-004 opens contextual inbox controls from the shortcut, persists one dismiss action and keeps the chapter selection",
+      "declarationLine": 59,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/quick-capture/QuickCaptureExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79654,7 +80210,7 @@
       "id": "TC-DISCOVERED-19B49DA3EB",
       "title": "streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed",
       "declarationTitle": "streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed",
-      "declarationLine": 299,
+      "declarationLine": 524,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -80126,7 +80682,7 @@
       "id": "TC-DISCOVERED-1EC27ED296",
       "title": "restarts review cancellation after a localized failure",
       "declarationTitle": "restarts review cancellation after a localized failure",
-      "declarationLine": 403,
+      "declarationLine": 628,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -80400,7 +80956,7 @@
       "id": "TC-DISCOVERED-2225B2A699",
       "title": "opens an exact Story resource Peek from global search without leaving search",
       "declarationTitle": "opens an exact Story resource Peek from global search without leaving search",
-      "declarationLine": 103,
+      "declarationLine": 105,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/quick-capture/QuickCaptureExperience.test.tsx",
@@ -83304,7 +83860,7 @@
       "id": "TC-DISCOVERED-4180FDCE0C",
       "title": "opens whole-work consistency directly from the primary Check page",
       "declarationTitle": "opens whole-work consistency directly from the primary Check page",
-      "declarationLine": 134,
+      "declarationLine": 156,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -84340,7 +84896,7 @@
       "id": "TC-DISCOVERED-4ED7B4B59C",
       "title": "saves dirty prose from the publish blocker and recomputes the checklist",
       "declarationTitle": "saves dirty prose from the publish blocker and recomputes the checklist",
-      "declarationLine": 232,
+      "declarationLine": 254,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -84547,6 +85103,24 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-524ED548B4",
+      "title": "TC-TASK-DOCK-002 deduplicates repeated accept actions, records one successful edit, blocks disabled actions, and restores accepted or ignored issues as undo",
+      "declarationTitle": "TC-TASK-DOCK-002 deduplicates repeated accept actions, records one successful edit, blocks disabled actions, and restores accepted or ignored issues as undo",
+      "declarationLine": 379,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85019,6 +85593,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-5B076A62D3",
+      "title": "TC-TASK-DOCK-003 renders contextual inbox controls disabled while loading and re-enables eligible controls when loading clears",
+      "declarationTitle": "TC-TASK-DOCK-003 renders contextual inbox controls disabled while loading and re-enables eligible controls when loading clears",
+      "declarationLine": 417,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -89472,7 +90064,7 @@
       "id": "TC-DISCOVERED-9F0524C44F",
       "title": "opens the enabled exact review target from the publish checklist",
       "declarationTitle": "opens the enabled exact review target from the publish checklist",
-      "declarationLine": 255,
+      "declarationLine": 277,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -89706,7 +90298,7 @@
       "id": "TC-DISCOVERED-A090470993",
       "title": "opens the next affected chapter with keyboard focus from the project review inbox",
       "declarationTitle": "opens the next affected chapter with keyboard focus from the project review inbox",
-      "declarationLine": 111,
+      "declarationLine": 133,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -91182,7 +91774,7 @@
       "id": "TC-DISCOVERED-B660E1619D",
       "title": "deduplicates 100 review cancellations and isolates a late start failure",
       "declarationTitle": "deduplicates 100 review cancellations and isolates a late start failure",
-      "declarationLine": 337,
+      "declarationLine": 562,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -91912,7 +92504,7 @@
       "id": "TC-DISCOVERED-BFDD60F36F",
       "title": "shows an accessible publish checklist and routes final delivery to History",
       "declarationTitle": "shows an accessible publish checklist and routes final delivery to History",
-      "declarationLine": 150,
+      "declarationLine": 172,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -92104,6 +92696,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-C26F1DC309",
+      "title": "TC-QA-INVENTORY-019 requires contextual stable controls and Review ownership for the Task Dock",
+      "declarationTitle": "TC-QA-INVENTORY-019 requires contextual stable controls and Review ownership for the Task Dock",
+      "declarationLine": 1133,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "scripts/qa/inventory.test.mjs",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "orchestration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -95431,6 +96041,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-F4075C41A2",
+      "title": "TC-TASK-DOCK-005 enforces read-only permission across every contextual control without blocking navigation",
+      "declarationTitle": "TC-TASK-DOCK-005 enforces read-only permission across every contextual control without blocking navigation",
+      "declarationLine": 460,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-F40ACD1B5B",
       "title": "TC-QA-SK-REL-002 keeps three valid relationship candidates enabled when AI adds one malformed unselected relationship",
       "declarationTitle": "TC-QA-SK-REL-002 keeps three valid relationship candidates enabled when AI adds one malformed unselected relationship",
@@ -95650,7 +96278,7 @@
       "id": "TC-DISCOVERED-F6335FB303",
       "title": "runs local review successfully offline without removing AI-origin issues from the same chapter",
       "declarationTitle": "runs local review successfully offline without removing AI-origin issues from the same chapter",
-      "declarationLine": 75,
+      "declarationLine": 97,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
@@ -96127,6 +96755,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-FC1F55BAA5",
+      "title": "TC-TASK-DOCK-001 renders visible enabled accessible visual contextual tabs and filters, hides nonmatching issues by pointer, moves keyboard focus and closes the dock",
+      "declarationTitle": "TC-TASK-DOCK-001 renders visible enabled accessible visual contextual tabs and filters, hides nonmatching issues by pointer, moves keyboard focus and closes the dock",
+      "declarationLine": 321,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/review/ReviewExperience.test.tsx",
+      "domainId": "DOMAIN-04",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

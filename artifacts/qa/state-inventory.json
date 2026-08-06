@@ -158140,11 +158140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -158156,11 +158156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -158172,11 +158172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -158188,11 +158188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -158204,11 +158204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -158220,11 +158220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -158236,11 +158236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -158252,11 +158252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -158268,11 +158268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -158284,11 +158284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -158300,11 +158300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -158316,11 +158316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -158332,11 +158332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -158348,11 +158348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -158364,11 +158364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -158380,11 +158380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -158396,11 +158396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -158412,11 +158412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -158428,11 +158428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -158444,11 +158444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -158460,11 +158460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -158476,11 +158476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-3FA87F6F-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-48BE8B52-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-3FA87F6F"
+        "CTRL-TASKDOCK-BUTTON-48BE8B52"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -158492,11 +158492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -158508,11 +158508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -158524,11 +158524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -158540,11 +158540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -158556,11 +158556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -158572,11 +158572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -158588,11 +158588,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -158604,11 +158604,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -158620,11 +158620,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -158636,11 +158636,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -158652,11 +158652,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -158668,11 +158668,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -158684,11 +158684,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -158700,11 +158700,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -158716,11 +158716,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -158732,11 +158732,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -158748,11 +158748,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -158764,11 +158764,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -158780,11 +158780,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -158796,11 +158796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -158812,11 +158812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -158828,11 +158828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-7829B7B9-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-4939541B-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-7829B7B9"
+        "CTRL-TASKDOCK-BUTTON-4939541B"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -158844,11 +158844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -158860,11 +158860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -158876,11 +158876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -158892,11 +158892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -158908,11 +158908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -158924,11 +158924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -158940,11 +158940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -158956,11 +158956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -158972,11 +158972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -158988,11 +158988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -159004,11 +159004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -159020,11 +159020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -159036,11 +159036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -159052,11 +159052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -159068,11 +159068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -159084,11 +159084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -159100,11 +159100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -159116,11 +159116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -159132,11 +159132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -159148,11 +159148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -159164,11 +159164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -159180,11 +159180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-94E67A89-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-49BC07CE-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-94E67A89"
+        "CTRL-TASKDOCK-BUTTON-49BC07CE"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -159196,11 +159196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -159212,11 +159212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -159228,11 +159228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -159244,11 +159244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -159260,11 +159260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -159276,11 +159276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -159292,11 +159292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -159308,11 +159308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -159324,11 +159324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -159340,11 +159340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -159356,11 +159356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -159372,11 +159372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -159388,11 +159388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -159404,11 +159404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -159420,11 +159420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -159436,11 +159436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -159452,11 +159452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -159468,11 +159468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -159484,11 +159484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -159500,11 +159500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -159516,11 +159516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -159532,11 +159532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-9522A7B6-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-52B3EC43-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-9522A7B6"
+        "CTRL-TASKDOCK-BUTTON-52B3EC43"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -159548,11 +159548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -159564,11 +159564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -159580,11 +159580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -159596,11 +159596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -159612,11 +159612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -159628,11 +159628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -159644,11 +159644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -159660,11 +159660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -159676,11 +159676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -159692,11 +159692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -159708,11 +159708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -159724,11 +159724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -159740,11 +159740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -159756,11 +159756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -159772,11 +159772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -159788,11 +159788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -159804,11 +159804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -159820,11 +159820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -159836,11 +159836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -159852,11 +159852,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -159868,11 +159868,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -159884,11 +159884,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-AE6CF945-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-6D783753-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-AE6CF945"
+        "CTRL-TASKDOCK-BUTTON-6D783753"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -159900,11 +159900,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -159916,11 +159916,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -159932,11 +159932,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -159948,11 +159948,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -159964,11 +159964,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -159980,11 +159980,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -159996,11 +159996,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -160012,11 +160012,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -160028,11 +160028,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -160044,11 +160044,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -160060,11 +160060,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -160076,11 +160076,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -160092,11 +160092,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -160108,11 +160108,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -160124,11 +160124,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -160140,11 +160140,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -160156,11 +160156,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -160172,11 +160172,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -160188,11 +160188,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -160204,11 +160204,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -160220,11 +160220,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -160236,11 +160236,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-BUTTON-DD554FF5-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-93D7E305-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-BUTTON-DD554FF5"
+        "CTRL-TASKDOCK-BUTTON-93D7E305"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -160252,11 +160252,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-VISIBLE",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-VISIBLE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -160268,11 +160268,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-HIDDEN",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-HIDDEN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -160284,11 +160284,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-ENABLED",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-ENABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -160300,11 +160300,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-DISABLED",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DISABLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -160316,11 +160316,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-POINTER",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-POINTER",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -160332,11 +160332,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-KEYBOARD",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-KEYBOARD",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -160348,11 +160348,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-FOCUS-IN",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FOCUS-IN",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -160364,11 +160364,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-FOCUS-OUT",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FOCUS-OUT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -160380,11 +160380,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-REPEAT",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-REPEAT",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -160396,11 +160396,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-DEDUPLICATION",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DEDUPLICATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -160412,11 +160412,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-LOADING",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-LOADING",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -160428,11 +160428,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-SUCCESS",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-SUCCESS",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -160444,11 +160444,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-FAILURE",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-FAILURE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -160460,11 +160460,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-CANCELLED",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-CANCELLED",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -160476,11 +160476,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-OFFLINE",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-OFFLINE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -160492,11 +160492,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-PERMISSION",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-PERMISSION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -160508,11 +160508,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-PERSISTENCE",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-PERSISTENCE",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -160524,11 +160524,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-RESTART",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-RESTART",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -160540,11 +160540,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-VISUAL",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-VISUAL",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -160556,11 +160556,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-ACCESSIBLE-NAME",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-ACCESSIBLE-NAME",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -160572,11 +160572,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -160588,11 +160588,1419 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-TASKDOCK-SELECT-FFD33621-UNDO",
+      "id": "STATE-TASKDOCK-BUTTON-A07B4E17-UNDO",
       "featureId": "FEATURE-04-01",
       "pageId": "PAGE-REVIEW",
       "controlIds": [
-        "CTRL-TASKDOCK-SELECT-FFD33621"
+        "CTRL-TASKDOCK-BUTTON-A07B4E17"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-VISIBLE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-HIDDEN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-ENABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DISABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-POINTER",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-KEYBOARD",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FOCUS-IN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FOCUS-OUT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-REPEAT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DEDUPLICATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-LOADING",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-SUCCESS",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-FAILURE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-CANCELLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-OFFLINE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-PERMISSION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-PERSISTENCE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-RESTART",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-VISUAL",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-C9A72D33-UNDO",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-C9A72D33"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-VISIBLE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-HIDDEN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-ENABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DISABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-POINTER",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-KEYBOARD",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FOCUS-IN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FOCUS-OUT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-REPEAT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DEDUPLICATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-LOADING",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-SUCCESS",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-FAILURE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-CANCELLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-OFFLINE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-PERMISSION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-PERSISTENCE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-RESTART",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-VISUAL",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-D96D1EB1-UNDO",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-D96D1EB1"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-VISIBLE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-HIDDEN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-ENABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DISABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-POINTER",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-KEYBOARD",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FOCUS-IN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FOCUS-OUT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-REPEAT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DEDUPLICATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-LOADING",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-SUCCESS",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-FAILURE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-CANCELLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-OFFLINE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-PERMISSION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-PERSISTENCE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-RESTART",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-VISUAL",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-BUTTON-E32C9D82-UNDO",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-BUTTON-E32C9D82"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-VISIBLE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-HIDDEN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-ENABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-DISABLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-POINTER",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-KEYBOARD",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-FOCUS-IN",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-FOCUS-OUT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-REPEAT",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-DEDUPLICATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-LOADING",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-SUCCESS",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-FAILURE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-CANCELLED",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-OFFLINE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-PERMISSION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-PERSISTENCE",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-RESTART",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-VISUAL",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-TASKDOCK-SELECT-317AB16C-UNDO",
+      "featureId": "FEATURE-04-01",
+      "pageId": "PAGE-REVIEW",
+      "controlIds": [
+        "CTRL-TASKDOCK-SELECT-317AB16C"
       ],
       "name": "撤销",
       "dimension": "UNDO",

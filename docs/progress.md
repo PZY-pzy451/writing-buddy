@@ -4,34 +4,36 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Writer Header control identity, keyboard behavior and trace convergence is
-complete on `codex/full-regression-gates-a-e-v2` against source `72f7ff2`.
+Task Dock filter, contextual control, read-only permission and trace convergence
+is complete on `codex/full-regression-gates-a-e-v2` against source `718ddfb`.
 
-- All 12 chapter-header controls now have exact `data-testid` identities;
-  repeated chapter-status and density options also expose their concrete values.
-  Stable selector coverage remains 538/538 globally with zero missing selectors.
-- Failure-first keyboard testing reproduced a product defect: focused
-  `更多章节操作` did not open with Enter. The header now handles Enter/Space for
-  both chapter-status and action menus while preserving the busy-state block.
-- Seven real user journeys now explicitly belong to the writing editor and cover
-  pointer/keyboard/focus, busy deduplication, offline failure, persistence,
-  restart restoration, read-only permission and cancelled export behavior.
-  Writer Header mapping reaches 12/12 controls, 240/264 states and 7/7 tests;
-  the 24 remaining states are the inapplicable destructive-confirmation/undo
-  dimensions and were not hidden behind fabricated tests.
-- The full workspace file passed 24/24. Ten pressure rounds passed 70/70 header
-  journey instances, and QA infrastructure passed 30/30.
-- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,017 frontend
+- The visible warning and ignored filters now change the issue list. Five tabs,
+  three filters and every issue/capture action expose stable contextual identity;
+  global stable-selector coverage is 542/542 with zero missing selectors.
+- Failure-first tests reproduced two product defects: 100 same-frame accept
+  events could enqueue duplicate editor changes, and read-only projects exposed
+  review/inbox mutation actions. A synchronous accept guard now permits one
+  edit, while both UI and Store boundaries reject read-only mutations without
+  blocking filters, navigation, source jumps or closing.
+- Five real Task Dock journeys cover pointer, keyboard, focus, visual and
+  accessible states; filtering; accept/ignore/restore and undo; busy disabling;
+  persisted inbox dismissal; repeated actions; and read-only permission. The
+  region reaches 12/12 controls, 264/264 states and 5/5 owned tests mapped.
+- Relevant journeys passed 16/16, QA infrastructure passed 31/31 and ten
+  pressure rounds passed 50/50 Task Dock cases. The repeated-accept path injected
+  1,000 events while preserving one write per run.
+- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,022 frontend
   tests and production build. Rust passed 77 with two reasoned ignores and zero
   failures. The convergence ledger is `PASS`.
-- Global mapped controls/states/tests rise from 431 / 5,043 / 318 to
-  444 / 5,333 / 322. Unmapped controls/states/tests fall from
-  107 / 6,793 / 778 to 94 / 6,503 / 774.
-- Strict gaps fall by 307, from 7,873 to 7,566. Strict coverage reaches
-  6,157/13,723 (44.87%); control mapping is 444/538 (82.53%), state mapping is
-  5,333/11,836 (45.06%) and test mapping is 322/1,096 (29.38%).
-- Against the 11,088 / 136 reference, 3,522 mapping gaps and all 136 selector
-  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,566 strict
+- Global mapped controls/states/tests rise from 444 / 5,333 / 322 to
+  455 / 5,587 / 325. Unmapped controls/states/tests move from
+  94 / 6,503 / 774 to 87 / 6,337 / 776; the two-test increase reflects five
+  newly inventoried tests with three net new mappings, not lost coverage.
+- Strict gaps fall by 171, from 7,566 to 7,395. Strict coverage reaches
+  6,425/13,820 (46.49%); control mapping is 455/542 (83.95%), state mapping is
+  5,587/11,924 (46.86%) and test mapping is 325/1,101 (29.52%).
+- Against the 11,088 / 136 reference, 3,693 mapping gaps and all 136 selector
+  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,395 strict
   mappings, real-provider smoke and packaged-EXE acceptance remain. Product is
   `PARTIAL`; release remains `BLOCKED`.
 
