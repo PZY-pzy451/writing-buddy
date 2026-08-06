@@ -66,6 +66,12 @@ export function WriterHeader(): React.JSX.Element | null {
 	const chapterStatusOption = chapterStatuses.find(option => option.id === chapterStatus)
 		?? chapterStatuses[0];
 	const ChapterStatusIcon = chapterStatusOption.Icon;
+	const toggleDetailsWithKeyboard = (event: React.KeyboardEvent<HTMLElement>) => {
+		if (event.key !== 'Enter' && event.key !== ' ') return;
+		event.preventDefault();
+		const details = event.currentTarget.closest('details');
+		if (details) details.open = !details.open;
+	};
 
 	const openChapterAt = (targetIndex: number) => {
 		const chapter = chapters[targetIndex];
@@ -146,6 +152,13 @@ export function WriterHeader(): React.JSX.Element | null {
 											onClick={event => {
 												if (chapterStatusBusy) event.preventDefault();
 											}}
+											onKeyDown={event => {
+												if (chapterStatusBusy) {
+													event.preventDefault();
+													return;
+												}
+												toggleDetailsWithKeyboard(event);
+											}}
 										>
 											{chapterStatusBusy
 												? <LoaderCircle className="spin" size={16} />
@@ -164,6 +177,7 @@ export function WriterHeader(): React.JSX.Element | null {
 													role="menuitemradio"
 													aria-label={`将章节状态设为${label}`}
 													data-testid="writer-chapter-status-option"
+													data-chapter-status={id}
 													aria-checked={chapterStatus === id}
 													disabled={chapterStatusBusy}
 													onClick={event => void chooseChapterStatus(id, event.currentTarget)}
@@ -182,6 +196,7 @@ export function WriterHeader(): React.JSX.Element | null {
 										aria-label="更多章节操作"
 										data-testid="writer-more-actions"
 										role="button"
+										onKeyDown={toggleDetailsWithKeyboard}
 									>
 										<MoreHorizontal size={18} /><span>更多</span><ChevronDown size={16} />
 									</summary>
@@ -280,6 +295,7 @@ export function WriterHeader(): React.JSX.Element | null {
 												role="menuitemradio"
 												aria-label={`正文排版：${label}`}
 												data-testid="writer-density-option"
+												data-density={density}
 												aria-checked={manuscriptDensity === density}
 												onClick={() => setManuscriptDensity(density)}
 											>

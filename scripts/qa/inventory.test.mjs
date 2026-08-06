@@ -174,6 +174,14 @@ describe('control inventory rendered-element boundary', () => {
 			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
 			'utf8'
 		));
+		const hierarchy = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/test-hierarchy.json'),
+			'utf8'
+		));
+		const source = readFileSync(resolve(
+			repositoryRoot,
+			'apps/desktop/src/workspace/WriterHeader.tsx'
+		), 'utf8');
 		const headerControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/workspace/WriterHeader.tsx'
 		));
@@ -183,6 +191,33 @@ describe('control inventory rendered-element boundary', () => {
 
 		expect(headerControls).toHaveLength(12);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
+		expect(headerControls.map(control => control.selectorStrategy))
+			.toEqual(Array.from({ length: 12 }, () => 'data-testid'));
+		expect(headerControls.map(control => control.stableSelectorValue).sort())
+			.toEqual([
+				'writer-chapter-status',
+				'writer-chapter-status-option',
+				'writer-continue-paragraph',
+				'writer-density-option',
+				'writer-export-chapter',
+				'writer-finish-scene',
+				'writer-more-actions',
+				'writer-next-chapter',
+				'writer-organize-chapter',
+				'writer-previous-chapter',
+				'writer-save',
+				'writer-three-directions'
+			]);
+		expect(source).toContain('data-chapter-status={id}');
+		expect(source).toContain('data-density={density}');
+		const ownedHeaderTests = hierarchy.discoveredTests.filter(testCase => (
+			testCase.title.startsWith('TC-WRITER-HEADER-')
+		));
+		expect(ownedHeaderTests).toHaveLength(7);
+		expect(ownedHeaderTests.map(testCase => testCase.pageId))
+			.toEqual(Array.from({ length: 7 }, () => 'PAGE-WRITING-EDITOR'));
+		expect(ownedHeaderTests.map(testCase => testCase.featureId))
+			.toEqual(Array.from({ length: 7 }, () => 'FEATURE-01-02'));
 	});
 
 	it('TC-QA-INVENTORY-012 requires stable controls for manuscript extraction actions', () => {

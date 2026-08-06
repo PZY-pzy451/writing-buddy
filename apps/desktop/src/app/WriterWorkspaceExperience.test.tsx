@@ -386,7 +386,7 @@ describe('quiet writer workspaces', () => {
 			.toBeInTheDocument();
 	});
 
-	it('opens the existing extraction center for the current chapter without starting AI', async () => {
+	it('TC-WRITER-HEADER-001 opens the extraction center by pointer without starting paid AI', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -407,14 +407,40 @@ describe('quiet writer workspaces', () => {
 		expect(screen.getByText(/创建计划不会调用 AI/u)).toBeInTheDocument();
 	});
 
-	it('exposes stable handles for every writer-header operation', async () => {
+	it('TC-WRITER-HEADER-002 renders visible enabled disabled accessible visual handles with keyboard focus entry and exit, survives restart and enforces read-only permission', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
 
-		expect(screen.getByTestId('writer-chapter-status')).toHaveAccessibleName();
-		expect(screen.getAllByTestId('writer-chapter-status-option')).toHaveLength(3);
-		expect(screen.getByTestId('writer-more-actions')).toHaveAccessibleName();
+		const header = document.querySelector('.writer-header') as HTMLElement;
+		const status = screen.getByTestId('writer-chapter-status');
+		const more = screen.getByTestId('writer-more-actions');
+		const save = screen.getByTestId('writer-save');
+		expect(status).toHaveAccessibleName();
+		expect(status).toHaveAttribute('aria-disabled', 'false');
+		expect(more).toHaveAccessibleName();
+		expect(save).toBeDisabled();
+		expect(header.querySelector('.chapter-actions')).toContainElement(status);
+		expect(header.querySelector('.chapter-actions')).toContainElement(more);
+		expect(header.querySelector('.chapter-actions')).toContainElement(save);
+
+		more.focus();
+		expect(more).toHaveFocus();
+		await user.keyboard('{Enter}');
+		expect(screen.getByRole('menuitem', { name: '继续本段' })).toBeVisible();
+		const continueAction = screen.getByTestId('writer-continue-paragraph');
+		continueAction.focus();
+		expect(continueAction).toHaveFocus();
+		status.focus();
+		expect(continueAction).not.toHaveFocus();
+		expect(status).toHaveFocus();
+
+		expect(screen.getAllByTestId('writer-chapter-status-option')
+			.map(option => option.getAttribute('data-chapter-status')))
+			.toEqual(['draft', 'revision', 'completed']);
+		expect(screen.getAllByTestId('writer-density-option')
+			.map(option => option.getAttribute('data-density')))
+			.toEqual(['compact', 'comfortable', 'spacious']);
 		for (const testId of [
 			'writer-continue-paragraph',
 			'writer-finish-scene',
@@ -427,10 +453,38 @@ describe('quiet writer workspaces', () => {
 		]) {
 			expect(screen.getByTestId(testId)).toHaveAccessibleName();
 		}
-		expect(screen.getAllByTestId('writer-density-option')).toHaveLength(3);
+		await user.click(screen.getByRole('menuitemradio', { name: '正文排版：宽松' }));
+		expect(useAppStore.getState().manuscriptDensity).toBe('spacious');
+		const persisted = localStorage.getItem('writing-buddy-next-workspace');
+		expect(persisted).toContain('"manuscriptDensity":"spacious"');
+		void act(() => {
+			useAppStore.setState({
+				manuscriptDensity: 'comfortable',
+				writerSessions: {}
+			});
+		});
+		if (persisted) localStorage.setItem('writing-buddy-next-workspace', persisted);
+		await act(async () => {
+			await useAppStore.persist.rehydrate();
+		});
+		await act(async () => {
+			await useAppStore.getState().openProject('browser-fixture');
+		});
+		expect(useAppStore.getState().manuscriptDensity).toBe('spacious');
+		await screen.findByRole('main', { name: '写作首页' });
+		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
+		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+
+		await act(async () => {
+			const snapshot = useAppStore.getState().snapshot;
+			if (snapshot) useAppStore.setState({ snapshot: { ...snapshot, readOnly: true } });
+			await Promise.resolve();
+		});
+		expect(screen.queryByTestId('writer-more-actions')).not.toBeInTheDocument();
+		expect(screen.getByTitle('只读作品不能修改章节状态')).toBeVisible();
 	});
 
-	it('writes one chapter status after one hundred same-frame dirty choices', async () => {
+	it('TC-WRITER-HEADER-003 deduplicates repeated chapter status choices while loading and writes one successful result', async () => {
 		const user = userEvent.setup();
 		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic');
 		let releaseStatus: (() => void) | undefined;
@@ -473,16 +527,24 @@ describe('quiet writer workspaces', () => {
 		});
 
 		await waitFor(() => expect(updateChapterStatus).toHaveBeenCalled());
+		expect(screen.getByTestId('writer-chapter-status'))
+			.toHaveAttribute('aria-disabled', 'true');
+		expect(screen.getAllByTestId('writer-chapter-status-option'))
+			.toEqual(expect.arrayContaining([
+				expect.objectContaining({ disabled: true })
+			]));
 		await act(async () => {
 			releaseStatus?.();
 			await statusPending;
 		});
 		await waitFor(() => expect(useAppStore.getState().chapterStatusBusy).toBe(false));
+		expect(screen.getByTestId('writer-chapter-status'))
+			.toHaveAttribute('aria-disabled', 'false');
 		expect(writeTextAtomic).toHaveBeenCalledOnce();
 		expect(updateChapterStatus).toHaveBeenCalledOnce();
 	});
 
-	it('keeps the writer open when organizing a dirty chapter cannot save', async () => {
+	it('TC-WRITER-HEADER-004 blocks organizing, keeps extraction hidden and keeps the writer open after an offline save failure', async () => {
 		const user = userEvent.setup();
 		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic')
 			.mockRejectedValue(new Error('offline C:\\private\\chapter.md'));
@@ -501,9 +563,10 @@ describe('quiet writer workspaces', () => {
 		});
 		expect(screen.queryByRole('main', { name: 'AI 从正文整理中心' }))
 			.not.toBeInTheDocument();
+		expect(screen.queryByText(/C:\\private\\chapter\.md/u)).not.toBeInTheDocument();
 	});
 
-	it('saves dirty prose before changing chapter status and updates publish readiness immediately', async () => {
+	it('TC-WRITER-HEADER-005 saves and persists dirty prose before a successful chapter status change', async () => {
 		const user = userEvent.setup();
 		const writeTextAtomic = vi.spyOn(desktopBridge, 'writeTextAtomic');
 		let statusRevision = 0;
@@ -558,7 +621,7 @@ describe('quiet writer workspaces', () => {
 		expect(screen.getByText(/2\/3 章尚未标记完成/u)).toBeInTheDocument();
 	});
 
-	it('does not change chapter status when dirty manuscript saving fails', async () => {
+	it('TC-WRITER-HEADER-006 blocks chapter status changes after an offline manuscript save failure', async () => {
 		const user = userEvent.setup();
 		vi.spyOn(desktopBridge, 'writeTextAtomic').mockRejectedValue(new Error('offline'));
 		const updateChapterStatus = vi.spyOn(desktopBridge, 'updateChapterStatus');
@@ -590,7 +653,7 @@ describe('quiet writer workspaces', () => {
 		expect(screen.getByTitle('只读作品不能修改章节状态')).toHaveTextContent('初稿');
 	});
 
-	it('exports the active chapter from the writer menu and records a durable receipt', async () => {
+	it('TC-WRITER-HEADER-007 exports successfully, persists one durable chapter receipt and ignores a cancelled retry', async () => {
 		const user = userEvent.setup();
 		const saveTextAs = vi.spyOn(desktopBridge, 'saveTextAs').mockResolvedValue(
 			'D:\\Exports\\第一章 停摆的时钟.md'
@@ -615,6 +678,12 @@ describe('quiet writer workspaces', () => {
 		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
 			'第一章 停摆的时钟.md'
 		);
+
+		saveTextAs.mockResolvedValueOnce(undefined);
+		await user.click(screen.getByRole('button', { name: '更多章节操作' }));
+		await user.click(screen.getByRole('menuitem', { name: '导出章节' }));
+		await waitFor(() => expect(saveTextAs).toHaveBeenCalledTimes(2));
+		expect(useAppStore.getState().chapterExportReceipts).toHaveLength(1);
 	});
 
 	it('does not export or create a receipt when dirty manuscript saving fails', async () => {

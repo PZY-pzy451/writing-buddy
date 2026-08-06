@@ -59,6 +59,14 @@ const workspaces = [
 	{ id: 'WORKSPACE-HISTORY', runtimeId: 'history', pageIds: ['PAGE-HISTORY'] }
 ];
 
+const testTitleOwnership = [
+	{
+		prefix: 'TC-WRITER-HEADER-',
+		pageId: 'PAGE-WRITING-EDITOR',
+		featureId: 'FEATURE-01-02'
+	}
+];
+
 const stateDimensions = [
 	['VISIBLE', '是否显示'], ['HIDDEN', '是否隐藏'], ['ENABLED', '是否启用'],
 	['DISABLED', '是否禁用'], ['POINTER', '鼠标操作'], ['KEYBOARD', '键盘操作'],
@@ -243,8 +251,8 @@ function discoverControls(sourcePath, sourceText) {
 					controlType: tag,
 					accessibleName,
 					stableSelectorValue,
-					selectorStrategy: staticAttribute(opening, 'aria-label') || (role && accessibleName) ? 'role+accessible-name'
-						: dataTestId ? 'data-testid'
+					selectorStrategy: dataTestId ? 'data-testid'
+						: staticAttribute(opening, 'aria-label') || (role && accessibleName) ? 'role+accessible-name'
 							: accessibleName ? 'accessible-name'
 								: staticAttribute(opening, 'id') || staticAttribute(opening, 'name') ? 'label-or-id'
 									: 'MISSING_STABLE_SELECTOR',
@@ -285,7 +293,12 @@ async function discoverTests() {
 		const identityOccurrences = new Map();
 		for (const discovered of discoverVitestTests(path, content)) {
 			const title = discovered.title;
-			const pageId = pageForPath(path);
+			const explicitOwnership = testTitleOwnership.find(ownership => (
+				title.startsWith(ownership.prefix)
+			));
+			const pageId = explicitOwnership?.pageId ?? pageForPath(path);
+			const discoveredFeatureId = explicitOwnership?.featureId
+				?? featureForPath(path, pageId);
 			const identity = `${path}|${title}`;
 			const occurrence = (identityOccurrences.get(identity) ?? 0) + 1;
 			identityOccurrences.set(identity, occurrence);
@@ -299,8 +312,8 @@ async function discoverTests() {
 				parameterCaseLabel: discovered.parameterCaseLabel,
 				parameterizationResolved: discovered.parameterizationResolved,
 				source: path,
-				domainId: domainId(featureForPath(path, pageId).slice(8, 10)),
-				featureId: featureForPath(path, pageId),
+				domainId: domainId(discoveredFeatureId.slice(8, 10)),
+				featureId: discoveredFeatureId,
 				pageId,
 				controlId: null,
 				stateId: null,
