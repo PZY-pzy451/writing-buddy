@@ -13,6 +13,7 @@ export function StatusBar(): React.JSX.Element {
 	const quickCaptures = useAppStore(state => state.quickCaptures);
 	const snapshot = useAppStore(state => state.snapshot);
 	const todayProgress = useAppStore(useShallow(selectTodayWritingProgress));
+	const readOnly = snapshot?.readOnly ?? true;
 	const inboxCount = quickCaptures.filter(capture => (
 		capture.status === 'inbox' || capture.status === 'later'
 	)).length;
@@ -26,15 +27,17 @@ export function StatusBar(): React.JSX.Element {
 				{session && <span>本章 {countWords(session.content).toLocaleString()} 字</span>}
 				<button
 					type="button"
+					data-testid="status-bar-quick-capture"
 					onClick={() => openQuickCapture()}
 					title="快速记录 (Ctrl+Shift+Space)"
 					aria-keyshortcuts="Control+Shift+Space Meta+Shift+Space"
-					disabled={!session}
+					disabled={!session || readOnly}
 				>
 					<Lightbulb size={16} />快速记录
 				</button>
 				<button
 					type="button"
+					data-testid="status-bar-inbox"
 					onClick={openQuickCaptureInbox}
 					title="打开待整理箱"
 					disabled={!session}
@@ -43,6 +46,7 @@ export function StatusBar(): React.JSX.Element {
 				</button>
 				<button
 					type="button"
+					data-testid="status-bar-dock"
 					onClick={toggleDock}
 					title="显示或隐藏任务区 (Ctrl+J)"
 					aria-keyshortcuts="Control+J Meta+J"

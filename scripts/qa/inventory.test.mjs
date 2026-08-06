@@ -1112,6 +1112,15 @@ describe('control inventory rendered-element boundary', () => {
 				selectors: ['task-dock-issue']
 			},
 			{
+				source: 'apps/desktop/src/shell/StatusBar.tsx',
+				count: 3,
+				selectors: [
+					'status-bar-quick-capture',
+					'status-bar-inbox',
+					'status-bar-dock'
+				]
+			},
+			{
 				source: 'apps/desktop/src/resources/ResourceEditor.tsx',
 				count: 3,
 				selectors: ['resource-editor-field']
