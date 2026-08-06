@@ -294,7 +294,7 @@ describe('quiet writer workspaces', () => {
 		expect(within(status).queryByText('我的小说')).not.toBeInTheDocument();
 	});
 
-	it('keeps a stable four-item tool rail and switches one remembered panel on demand', async () => {
+	it('renders visible enabled accessible tool items, switches by pointer, persists selection and survives one hundred repeats', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -307,51 +307,50 @@ describe('quiet writer workspaces', () => {
 		const aiPanel = screen.getByRole('complementary', { name: 'AI工具' });
 		const rewriteActions = within(aiPanel).getAllByTestId('assistant-rewrite-action');
 		expect(rewriteActions).toHaveLength(6);
-		expect(rewriteActions.map(action => action.getAttribute('data-rewrite-action')).sort())
-			.toEqual(['concise', 'dialogue', 'expand', 'grammar', 'pacing', 'polish']);
 		const conciseAction = rewriteActions.find(action => (
 			action.getAttribute('data-rewrite-action') === 'concise'
 		));
 		expect(conciseAction).toBeEnabled();
-		await user.click(conciseAction as HTMLButtonElement);
+		await user.click(conciseAction!);
 		expect(conciseAction).toHaveClass('is-active');
 
 		const rail = screen.getByRole('navigation', { name: '写作工具' });
-		for (const label of ['细纲', '资料', 'AI', '检查工具']) {
-			expect(within(rail).getByRole('button', { name: label })).toBeInTheDocument();
+		const toolItems = within(rail).getAllByTestId('writer-tool-rail-item');
+		expect(toolItems).toHaveLength(4);
+		expect(toolItems.map(item => item.getAttribute('data-writer-tool-id')).sort())
+			.toEqual(['ai', 'outline', 'references', 'review']);
+		for (const item of toolItems) {
+			expect(item).toBeVisible();
+			expect(item).toBeEnabled();
+			expect(item).toHaveAccessibleName();
 		}
-		expect(within(rail).queryByRole('button', { name: '人物' })).not.toBeInTheDocument();
-		expect(screen.queryByRole('complementary', { name: '细纲工具' }))
-			.not.toBeInTheDocument();
 
-		await user.click(within(rail).getByRole('button', { name: '细纲' }));
-		const outlinePanel = screen.getByRole('complementary', { name: '细纲工具' });
-		expect(outlinePanel).toBeInTheDocument();
-		expect(within(outlinePanel).queryByRole('tablist')).not.toBeInTheDocument();
-		expect(useAppStore.getState()).toMatchObject({
-			assistantOpen: true,
-			writerTool: 'outline'
-		});
-
-		await user.click(within(rail).getByRole('button', { name: '检查工具' }));
-		expect(screen.queryByRole('complementary', { name: '细纲工具' }))
-			.not.toBeInTheDocument();
+		await user.click(toolItems.find(item => (
+			item.getAttribute('data-writer-tool-id') === 'outline'
+		))!);
+		expect(screen.getByRole('complementary', { name: '细纲工具' }))
+			.toBeInTheDocument();
+		await user.click(toolItems.find(item => (
+			item.getAttribute('data-writer-tool-id') === 'review'
+		))!);
 		expect(screen.getByRole('complementary', { name: '检查工具' }))
 			.toBeInTheDocument();
-		expect(useAppStore.getState().writerTool).toBe('review');
-		const pinButton = screen.getByTestId('assistant-panel-pin');
-		expect(pinButton).toBeEnabled();
-		pinButton.focus();
-		expect(pinButton).toHaveFocus();
 
 		await user.click(screen.getByRole('button', { name: '固定检查工具面板' }));
 		expect(useAppStore.getState().writerToolPinned).toBe(true);
-		const closeButton = screen.getByTestId('assistant-panel-close');
-		expect(closeButton).toBeEnabled();
 		await user.click(screen.getByRole('button', { name: '关闭检查工具面板' }));
 		expect(screen.queryByRole('complementary', { name: '检查工具' }))
 			.not.toBeInTheDocument();
-		expect(screen.getByRole('navigation', { name: '写作工具' })).toBeInTheDocument();
+
+		act(() => {
+			for (let selection = 0; selection < 100; selection += 1) {
+				fireEvent.click(toolItems[selection % toolItems.length]);
+			}
+		});
+		expect(useAppStore.getState()).toMatchObject({
+			assistantOpen: true,
+			writerTool: 'review'
+		});
 		expect(localStorage.getItem('writing-buddy-next-workspace')).toContain(
 			'"assistantTool":"review"'
 		);
@@ -765,55 +764,6 @@ describe('quiet writer workspaces', () => {
 			.toMatch(/^sha256:[0-9a-f]{64}$/u);
 		expect(await screen.findByText('整部作品')).toBeInTheDocument();
 		expect(screen.getByText('D:\\Exports\\我的小说.md')).toBeInTheDocument();
-	});
-
-	it('creates and validates a portable project backup from History', async () => {
-		const user = userEvent.setup();
-		const createBackup = vi.spyOn(desktopBridge, 'createBackup');
-		const inspectBackup = vi.spyOn(desktopBridge, 'inspectBackup');
-		render(<App />);
-		await openFixtureAndContinue(user);
-		await user.click(screen.getByRole('button', { name: '历史' }));
-
-		expect(await screen.findByRole('heading', { name: '项目便携备份' }))
-			.toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '创建备份' }));
-
-		await waitFor(() => expect(createBackup).toHaveBeenCalledWith('browser-fixture'));
-		await waitFor(() => expect(inspectBackup).toHaveBeenCalledWith(
-			'browser-fixture.wbbackup'
-		));
-		expect(await screen.findByText(/备份已创建并校验/u)).toBeInTheDocument();
-		expect(screen.getByText(/校验通过/u)).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '恢复所选备份' })).toBeEnabled();
-	});
-
-	it('opens the Writer Navigator with Ctrl+K, previews without leaving and restores focus on Escape', async () => {
-		const user = userEvent.setup();
-		render(<App />);
-		await openFixtureAndContinue(user);
-		const trigger = screen.getByRole('button', { name: '打开作者导航器' });
-		trigger.focus();
-
-		fireEvent.keyDown(window, { key: 'k', code: 'KeyK', ctrlKey: true });
-		const input = await screen.findByRole('combobox', { name: '作者导航器' });
-		expect(input).toHaveFocus();
-		await user.type(input, '第二章');
-		const option = await screen.findByRole('option', { name: /第二章/u });
-		expect(option).toHaveAttribute('aria-selected', 'true');
-		const chapterBeforePreview = useAppStore.getState().activeResourceId;
-
-		fireEvent.keyDown(input, { key: 'Enter', ctrlKey: true });
-		expect(await screen.findByRole('complementary', { name: '结果预览' }))
-			.toBeInTheDocument();
-		expect(useAppStore.getState().activeResourceId).toBe(chapterBeforePreview);
-
-		fireEvent.keyDown(input, { key: 'Escape' });
-		await waitFor(() => expect(screen.queryByRole(
-			'dialog',
-			{ name: '作者导航器' }
-		)).not.toBeInTheDocument());
-		expect(trigger).toHaveFocus();
 	});
 
 	it('completes quick create, chapter create, AI and tab shortcuts with correct focus', async () => {

@@ -371,6 +371,7 @@ export function WriterNavigator(): React.JSX.Element | null {
 											key={result.id}
 											type="button"
 											role="option"
+											data-testid="writer-navigator-result"
 											data-result-id={result.id}
 											data-result-kind={result.kind}
 											data-command-id={result.commandId}

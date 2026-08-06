@@ -135,7 +135,7 @@ describe('StoryAssetsPage', () => {
 		expect(startAiGeneration).toHaveBeenCalledTimes(2);
 	});
 
-	it('TC-ITEM-AI-003 redacts candidate persistence write failure and preserves one explicit retry', async () => {
+	it('TC-ITEM-AI-003 redacts candidate persistence failure, retries, renders and selects the saved asset by pointer', async () => {
 		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
 		const createSnapshot = vi.spyOn(desktopBridge, 'createSnapshot')
 			.mockRejectedValueOnce(new Error('C:\\private\\author\\items.json'));
@@ -160,6 +160,11 @@ describe('StoryAssetsPage', () => {
 
 		await waitFor(() => expect(createSnapshot).toHaveBeenCalledTimes(2));
 		expect(await screen.findByText(/已创建安全快照，并保存“无字站牌”/u)).toBeInTheDocument();
+		const savedAsset = await screen.findByTestId('story-asset-select');
+		expect(savedAsset).toHaveAttribute('data-story-asset-id', expect.any(String));
+		expect(savedAsset).toBeEnabled();
+		fireEvent.click(savedAsset);
+		expect(savedAsset).toHaveClass('is-active');
 		expect(startAiGeneration).toHaveBeenCalledOnce();
 	});
 

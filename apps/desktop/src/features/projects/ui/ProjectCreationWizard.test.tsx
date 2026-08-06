@@ -295,7 +295,7 @@ describe('guided project creation', () => {
 		expect(trigger).toHaveFocus();
 	});
 
-	it('offers New project from the open-project menu and supports keyboard navigation', async () => {
+	it('renders visible enabled project action items, moves focus by keyboard, hides them and opens New project by pointer', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const welcome = await screen.findByRole('main', { name: '开始使用 Writing Buddy' });
@@ -305,16 +305,29 @@ describe('guided project creation', () => {
 		const trigger = screen.getByRole('button', { name: '项目菜单' });
 		await user.click(trigger);
 		const menu = screen.getByRole('menu', { name: '项目操作' });
-		const newProject = within(menu).getByRole('menuitem', { name: /新建项目/ });
-		const openProject = within(menu).getByRole('menuitem', { name: /打开项目/ });
+		const actions = within(menu).getAllByTestId('project-action-item');
+		expect(actions).toHaveLength(2);
+		const newProject = actions.find(action => (
+			action.getAttribute('data-project-action') === 'create-project'
+		));
+		const openProject = actions.find(action => (
+			action.getAttribute('data-project-action') === 'open-project'
+		));
+		expect(newProject).toBeVisible();
+		expect(newProject).toBeEnabled();
+		expect(openProject).toBeVisible();
+		expect(openProject).toBeEnabled();
 		expect(newProject).toHaveFocus();
 		await user.keyboard('{ArrowDown}');
 		expect(openProject).toHaveFocus();
 		await user.keyboard('{Escape}');
 		expect(trigger).toHaveFocus();
+		expect(screen.queryByTestId('project-action-item')).not.toBeInTheDocument();
 
 		await user.click(trigger);
-		await user.click(within(screen.getByRole('menu', { name: '项目操作' })).getByRole('menuitem', { name: /新建项目/ }));
+		await user.click(within(screen.getByRole('menu', { name: '项目操作' }))
+			.getAllByTestId('project-action-item')
+			.find(action => action.getAttribute('data-project-action') === 'create-project')!);
 		const dialog = await screen.findByRole('dialog', { name: '新建项目' });
 		expect(dialog).toBeInTheDocument();
 		await user.keyboard('{Escape}');

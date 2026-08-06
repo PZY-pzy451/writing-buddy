@@ -100,6 +100,8 @@ export function ProjectActionsMenu(): React.JSX.Element {
 					<button
 						type="button"
 						role="menuitem"
+						data-testid="project-action-item"
+						data-project-action="create-project"
 						onClick={openWizard}
 					>
 						<BookPlus size={18} aria-hidden="true" />
@@ -108,6 +110,8 @@ export function ProjectActionsMenu(): React.JSX.Element {
 					<button
 						type="button"
 						role="menuitem"
+						data-testid="project-action-item"
+						data-project-action="open-project"
 						onClick={() => closeAndRun(() => void chooseProject())}
 					>
 						<FolderOpen size={18} aria-hidden="true" />

@@ -174,7 +174,14 @@ export function StoryAssetsPage({
 				<label><span className="sr-only">搜索物品</span><input aria-label="搜索物品" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、类型或标签" /></label>
 				<div>
 					{filtered.map(item => (
-						<button type="button" key={item.id} className={selectedId === item.id ? 'is-active' : ''} onClick={() => setSelectedId(item.id)}>
+						<button
+							type="button"
+							key={item.id}
+							data-testid="story-asset-select"
+							data-story-asset-id={item.id}
+							className={selectedId === item.id ? 'is-active' : ''}
+							onClick={() => setSelectedId(item.id)}
+						>
 							<Box size={18} /><span><strong>{item.title}</strong><small>{item.unique ? '唯一物品' : item.itemType ?? '叙事资产'}</small></span>
 						</button>
 					))}

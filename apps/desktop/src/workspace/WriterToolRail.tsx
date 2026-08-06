@@ -54,6 +54,8 @@ export function WriterToolRail(): React.JSX.Element {
 					<button
 						key={tool.id}
 						type="button"
+						data-testid="writer-tool-rail-item"
+						data-writer-tool-id={tool.id}
 						className={active ? 'is-active' : ''}
 						aria-pressed={active}
 						aria-label={tool.id === 'review' ? '检查工具' : tool.label}

@@ -1,6 +1,6 @@
 import { Archive, CheckCircle2, FolderOpen, RotateCcw, ShieldCheck } from 'lucide-react';
 import type { BackupInspection, BackupResult } from '@writing-buddy/platform-ports';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
 
@@ -19,9 +19,11 @@ export function ProjectBackupPanel({
 	const [message, setMessage] = useState('');
 	const [lastBackup, setLastBackup] = useState<BackupResult>();
 	const [inspection, setInspection] = useState<BackupInspection>();
+	const actionGuardRef = useRef(false);
 
 	const createBackup = async () => {
-		if (!snapshot || busyAction) return;
+		if (!snapshot || busyAction || actionGuardRef.current) return;
+		actionGuardRef.current = true;
 		setBusyAction('create');
 		setMessage('');
 		try {
@@ -34,12 +36,14 @@ export function ProjectBackupPanel({
 			setInspection(undefined);
 			setMessage('备份创建失败，项目内容未受影响。请检查目标位置后重试。');
 		} finally {
+			actionGuardRef.current = false;
 			setBusyAction(undefined);
 		}
 	};
 
 	const chooseBackup = async () => {
-		if (busyAction) return;
+		if (busyAction || actionGuardRef.current) return;
+		actionGuardRef.current = true;
 		setBusyAction('choose');
 		setMessage('');
 		try {
@@ -60,6 +64,7 @@ export function ProjectBackupPanel({
 			setInspection(undefined);
 			setMessage('无法读取所选备份，请重新选择有效的 .wbbackup 文件。');
 		} finally {
+			actionGuardRef.current = false;
 			setBusyAction(undefined);
 		}
 	};
@@ -67,11 +72,13 @@ export function ProjectBackupPanel({
 	const restoreBackup = async () => {
 		if (
 			!snapshot
-			|| !lastBackup
+		|| !lastBackup
 			|| !inspection?.valid
 			|| busyAction
+			|| actionGuardRef.current
 			|| !window.confirm('恢复备份会替换当前项目副本中的文件。系统会先创建恢复前快照。确定继续吗？')
 		) return;
+		actionGuardRef.current = true;
 		setBusyAction('restore');
 		setMessage('');
 		try {
@@ -85,6 +92,7 @@ export function ProjectBackupPanel({
 		} catch {
 			setMessage('备份恢复失败，恢复前快照仍然保留。请检查文件权限后重试。');
 		} finally {
+			actionGuardRef.current = false;
 			setBusyAction(undefined);
 		}
 	};
@@ -104,6 +112,8 @@ export function ProjectBackupPanel({
 				<button
 					className="secondary-button"
 					type="button"
+					data-testid="project-backup-action"
+					data-backup-action="create"
 					disabled={!snapshot || snapshot.readOnly || isBusy}
 					onClick={() => void createBackup()}
 				>
@@ -113,6 +123,8 @@ export function ProjectBackupPanel({
 				<button
 					className="secondary-button"
 					type="button"
+					data-testid="project-backup-action"
+					data-backup-action="choose"
 					disabled={!snapshot || isBusy}
 					onClick={() => void chooseBackup()}
 				>
@@ -122,6 +134,8 @@ export function ProjectBackupPanel({
 				<button
 					className="secondary-button"
 					type="button"
+					data-testid="project-backup-action"
+					data-backup-action="restore"
 					disabled={!snapshot || snapshot.readOnly || !inspection?.valid || isBusy}
 					onClick={() => void restoreBackup()}
 				>

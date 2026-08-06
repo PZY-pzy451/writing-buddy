@@ -941,5 +941,43 @@ describe('control inventory rendered-element boundary', () => {
 				'system-search-story-resource',
 				'system-version-select'
 			]));
+		const dynamicControlContracts = [
+			{
+				source: 'apps/desktop/src/features/projects/ui/ProjectActionsMenu.tsx',
+				count: 3,
+				selector: 'project-action-item'
+			},
+			{
+				source: 'apps/desktop/src/features/backup/ProjectBackupPanel.tsx',
+				count: 1,
+				selector: 'project-backup-action'
+			},
+			{
+				source: 'apps/desktop/src/features/story/assets/StoryAssetsPage.tsx',
+				count: 5,
+				selector: 'story-asset-select'
+			},
+			{
+				source: 'apps/desktop/src/features/writer-navigator/WriterNavigator.tsx',
+				count: 4,
+				selector: 'writer-navigator-result'
+			},
+			{
+				source: 'apps/desktop/src/workspace/WriterToolRail.tsx',
+				count: 1,
+				selector: 'writer-tool-rail-item'
+			}
+		];
+
+		for (const contract of dynamicControlContracts) {
+			const sourceControls = inventory.controls.filter(control => (
+				control.source === contract.source
+			));
+			expect(sourceControls, contract.source).toHaveLength(contract.count);
+			expect(sourceControls.map(control => control.stableSelectorStatus), contract.source)
+				.not.toContain('UNMAPPED');
+			expect(sourceControls.map(control => control.stableSelectorValue), contract.source)
+				.toContain(contract.selector);
+		}
 	});
 });

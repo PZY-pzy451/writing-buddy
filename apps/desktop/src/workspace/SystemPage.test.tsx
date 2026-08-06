@@ -32,15 +32,29 @@ afterEach(() => {
 });
 
 describe('SystemPage author workspace', () => {
-	it('renders and hides enabled search/version controls and selects each by pointer', async () => {
+	it('renders and hides enabled writer-tool/search/version controls and selects each by pointer', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const recent = await screen.findByRole('navigation', { name: '最近作品' });
 		await user.click(within(recent.parentElement as HTMLElement)
 			.getByRole('button', { name: '打开项目' }));
 		await screen.findByRole('main', { name: '写作首页' });
+		await user.click(screen.getByRole('button', { name: '继续上次位置' }));
+		await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+		const writerTools = screen.getAllByTestId('writer-tool-rail-item');
+		expect(writerTools).toHaveLength(4);
+		const referencesTool = writerTools.find(control => (
+			control.getAttribute('data-writer-tool-id') === 'references'
+		));
+		expect(referencesTool).toBeEnabled();
+		await user.click(referencesTool!);
+		expect(useAppStore.getState()).toMatchObject({
+			assistantOpen: true,
+			writerTool: 'references'
+		});
 
 		await user.click(screen.getByRole('button', { name: '历史' }));
+		expect(screen.queryByTestId('writer-tool-rail-item')).not.toBeInTheDocument();
 		expect(document.querySelector('.app-shell')).toHaveClass('is-system-page');
 		expect(screen.queryByRole('tablist', { name: '已打开资源' })).not.toBeInTheDocument();
 		await user.click(screen.getByRole('button', { name: '创建安全快照' }));
