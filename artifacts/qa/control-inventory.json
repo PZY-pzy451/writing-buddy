@@ -677,7 +677,7 @@
       "controlType": "button",
       "accessibleName": "按住显示 API Key",
       "stableSelectorValue": "ai-settings-key-reveal",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -1647,7 +1647,7 @@
       "controlType": "input",
       "accessibleName": "转交后数量",
       "stableSelectorValue": "association-transfer-quantity",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -1698,7 +1698,7 @@
       "controlType": "input",
       "accessibleName": "生效叙事位置",
       "stableSelectorValue": "association-transfer-narrative-order",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -2157,7 +2157,7 @@
       "controlType": "button",
       "accessibleName": "关闭新建章节",
       "stableSelectorValue": "chapter-creation-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -2259,7 +2259,7 @@
       "controlType": "input",
       "accessibleName": "章节标题",
       "stableSelectorValue": "chapter-creation-title",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -2361,7 +2361,7 @@
       "controlType": "select",
       "accessibleName": "放入卷",
       "stableSelectorValue": "chapter-creation-volume",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3177,7 +3177,7 @@
       "controlType": "button",
       "accessibleName": "保存人物",
       "stableSelectorValue": "character-save",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3226,7 +3226,7 @@
       "controlType": "form",
       "accessibleName": "人物编辑表单",
       "stableSelectorValue": "character-editor-form",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3277,7 +3277,7 @@
       "controlType": "input",
       "accessibleName": "渴望",
       "stableSelectorValue": "character-desires",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3328,7 +3328,7 @@
       "controlType": "input",
       "accessibleName": "恐惧",
       "stableSelectorValue": "character-fears",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3379,7 +3379,7 @@
       "controlType": "input",
       "accessibleName": "职业 / 身份",
       "stableSelectorValue": "character-occupation",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3430,7 +3430,7 @@
       "controlType": "input",
       "accessibleName": "称谓 / 代词",
       "stableSelectorValue": "character-pronouns",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3481,7 +3481,7 @@
       "controlType": "input",
       "accessibleName": "当前目标",
       "stableSelectorValue": "character-goals",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3532,7 +3532,7 @@
       "controlType": "input",
       "accessibleName": "人物姓名",
       "stableSelectorValue": "character-title",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3583,7 +3583,7 @@
       "controlType": "select",
       "accessibleName": "叙事角色",
       "stableSelectorValue": "character-role",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3634,7 +3634,7 @@
       "controlType": "textarea",
       "accessibleName": "人物摘要",
       "stableSelectorValue": "character-summary",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3685,7 +3685,7 @@
       "controlType": "textarea",
       "accessibleName": "语言风格",
       "stableSelectorValue": "character-speech-style",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -3940,7 +3940,7 @@
       "controlType": "button",
       "accessibleName": "取消退出",
       "stableSelectorValue": "close-protection-cancel",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6489,7 +6489,7 @@
       "controlType": "form",
       "accessibleName": "每日写作目标设置",
       "stableSelectorValue": "daily-writing-goal-form",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6947,7 +6947,7 @@
       "controlType": "button",
       "accessibleName": "保存事件",
       "stableSelectorValue": "event-inspector-save",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -6998,7 +6998,7 @@
       "controlType": "button",
       "accessibleName": "关闭事件详情",
       "stableSelectorValue": "event-inspector-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7049,7 +7049,7 @@
       "controlType": "input",
       "accessibleName": "事件标题",
       "stableSelectorValue": "event-inspector-title",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7100,7 +7100,7 @@
       "controlType": "input",
       "accessibleName": "叙事位置",
       "stableSelectorValue": "event-inspector-narrative-order",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7151,7 +7151,7 @@
       "controlType": "input",
       "accessibleName": "实际开始",
       "stableSelectorValue": "event-inspector-story-start",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7202,7 +7202,7 @@
       "controlType": "input",
       "accessibleName": "实际结束",
       "stableSelectorValue": "event-inspector-story-end",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7253,7 +7253,7 @@
       "controlType": "input",
       "accessibleName": "事件类型",
       "stableSelectorValue": "event-inspector-event-type",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -8069,7 +8069,7 @@
       "controlType": "button",
       "accessibleName": "新建",
       "stableSelectorValue": "global-create-trigger",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -8528,7 +8528,7 @@
       "controlType": "input",
       "accessibleName": "叙事位置",
       "stableSelectorValue": "information-narrative-position",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -8579,7 +8579,7 @@
       "controlType": "input",
       "accessibleName": "搜索事实与秘密",
       "stableSelectorValue": "information-search",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -9854,7 +9854,7 @@
       "controlType": "button",
       "accessibleName": "关闭转移对话框",
       "stableSelectorValue": "item-transfer-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -9956,7 +9956,7 @@
       "controlType": "input",
       "accessibleName": "转移叙事位置",
       "stableSelectorValue": "item-transfer-order",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -10007,7 +10007,7 @@
       "controlType": "input",
       "accessibleName": "新持有人 ID",
       "stableSelectorValue": "item-transfer-holder",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -10058,7 +10058,7 @@
       "controlType": "input",
       "accessibleName": "转移数量",
       "stableSelectorValue": "item-transfer-quantity",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -10109,7 +10109,7 @@
       "controlType": "input",
       "accessibleName": "新地点 ID",
       "stableSelectorValue": "item-transfer-location",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -10874,7 +10874,7 @@
       "controlType": "button",
       "accessibleName": "查看正文依据",
       "stableSelectorValue": "extraction-candidate-evidence",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11384,7 +11384,7 @@
       "controlType": "button",
       "accessibleName": "稍后整理",
       "stableSelectorValue": "extraction-candidate-defer",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11486,7 +11486,7 @@
       "controlType": "button",
       "accessibleName": "拒绝候选",
       "stableSelectorValue": "extraction-candidate-reject",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11741,7 +11741,7 @@
       "controlType": "input",
       "accessibleName": "只看冲突",
       "stableSelectorValue": "extraction-conflict-only",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11843,7 +11843,7 @@
       "controlType": "select",
       "accessibleName": "基准章节",
       "stableSelectorValue": "extraction-base-chapter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11894,7 +11894,7 @@
       "controlType": "select",
       "accessibleName": "按候选类型筛选",
       "stableSelectorValue": "extraction-candidate-type-filter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11945,7 +11945,7 @@
       "controlType": "select",
       "accessibleName": "选择历史整理运行",
       "stableSelectorValue": "extraction-run-history",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -11996,7 +11996,7 @@
       "controlType": "textarea",
       "accessibleName": "作者指令",
       "stableSelectorValue": "extraction-author-instruction",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -13930,7 +13930,7 @@
       "controlType": "button",
       "accessibleName": "关闭新建项目向导",
       "stableSelectorValue": "project-wizard-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -14236,7 +14236,7 @@
       "controlType": "input",
       "accessibleName": "作品名称",
       "stableSelectorValue": "project-wizard-name",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -14338,7 +14338,7 @@
       "controlType": "input",
       "accessibleName": "保存位置",
       "stableSelectorValue": "project-wizard-root",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -14389,7 +14389,7 @@
       "controlType": "select",
       "accessibleName": "项目类型",
       "stableSelectorValue": "project-wizard-project-type",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -14440,7 +14440,7 @@
       "controlType": "select",
       "accessibleName": "语言",
       "stableSelectorValue": "project-wizard-language",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -14491,7 +14491,7 @@
       "controlType": "textarea",
       "accessibleName": "作品说明",
       "stableSelectorValue": "project-wizard-description",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -15409,7 +15409,7 @@
       "controlType": "button",
       "accessibleName": "关闭快速记录",
       "stableSelectorValue": "quick-capture-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -15613,7 +15613,7 @@
       "controlType": "textarea",
       "accessibleName": "记录内容",
       "stableSelectorValue": "quick-capture-text",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -16431,7 +16431,7 @@
       "controlType": "input",
       "accessibleName": "叙事位置",
       "stableSelectorValue": "relationship-graph-narrative-position",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -16482,7 +16482,7 @@
       "controlType": "button",
       "accessibleName": "保存关系",
       "stableSelectorValue": "relationship-inspector-save",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -16533,7 +16533,7 @@
       "controlType": "input",
       "accessibleName": "关系强度",
       "stableSelectorValue": "relationship-inspector-strength",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -16584,7 +16584,7 @@
       "controlType": "input",
       "accessibleName": "关系类型",
       "stableSelectorValue": "relationship-inspector-type",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -16635,7 +16635,7 @@
       "controlType": "select",
       "accessibleName": "公开程度",
       "stableSelectorValue": "relationship-inspector-visibility",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -20915,7 +20915,7 @@
       "controlType": "button",
       "accessibleName": "撤销大纲改动",
       "stableSelectorValue": "outline-undo",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21068,7 +21068,7 @@
       "controlType": "button",
       "accessibleName": "关闭创建确认",
       "stableSelectorValue": "outline-materialization-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21119,7 +21119,7 @@
       "controlType": "button",
       "accessibleName": "关闭拆分预览",
       "stableSelectorValue": "outline-hierarchy-preview-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21272,7 +21272,7 @@
       "controlType": "button",
       "accessibleName": "关闭局部候选审核",
       "stableSelectorValue": "outline-candidate-review-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21425,7 +21425,7 @@
       "controlType": "button",
       "accessibleName": "关闭大纲检查",
       "stableSelectorValue": "outline-quality-close",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21629,7 +21629,7 @@
       "controlType": "button",
       "accessibleName": "·",
       "stableSelectorValue": "outline-candidate-tab",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21988,7 +21988,7 @@
       "controlType": "button",
       "accessibleName": "选择故事总纲",
       "stableSelectorValue": "outline-tree-root",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -22141,7 +22141,7 @@
       "controlType": "input",
       "accessibleName": "拆分候选数量",
       "stableSelectorValue": "outline-hierarchy-count",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -22341,7 +22341,7 @@
       "controlType": "select",
       "accessibleName": "节点状态",
       "stableSelectorValue": "outline-node-status",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -22392,7 +22392,7 @@
       "controlType": "select",
       "accessibleName": "局部生成策略",
       "stableSelectorValue": "outline-generation-strategy",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -23812,7 +23812,7 @@
       "controlType": "select",
       "accessibleName": "故事进程分析范围",
       "stableSelectorValue": "timeline-ai-scope",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24425,7 +24425,7 @@
       "controlType": "button",
       "accessibleName": "设置",
       "stableSelectorValue": "topbar-settings",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24476,7 +24476,7 @@
       "controlType": "button",
       "accessibleName": "恢复当前工作区默认布局",
       "stableSelectorValue": "topbar-workspace-reset-layout",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24527,7 +24527,7 @@
       "controlType": "button",
       "accessibleName": "退出专注",
       "stableSelectorValue": "topbar-focus-exit",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24578,7 +24578,7 @@
       "controlType": "button",
       "accessibleName": "恢复写作布局",
       "stableSelectorValue": "topbar-writer-reset-layout",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24731,7 +24731,7 @@
       "controlType": "button",
       "accessibleName": "快速记录",
       "stableSelectorValue": "topbar-quick-capture",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24782,7 +24782,7 @@
       "controlType": "button",
       "accessibleName": "打开作者导航器",
       "stableSelectorValue": "topbar-search",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -24935,7 +24935,7 @@
       "controlType": "button",
       "accessibleName": "AI 快速动作",
       "stableSelectorValue": "topbar-ai-quick-actions",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -25037,7 +25037,7 @@
       "controlType": "button",
       "accessibleName": "AI 连接测试",
       "stableSelectorValue": "topbar-ai-settings",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -25599,7 +25599,7 @@
       "controlType": "button",
       "accessibleName": "从正文提取",
       "stableSelectorValue": "world-ai-action",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -25752,7 +25752,7 @@
       "controlType": "select",
       "accessibleName": "世界观目标类型",
       "stableSelectorValue": "world-ai-target",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26566,7 +26566,7 @@
       "controlType": "button",
       "accessibleName": "三种走向",
       "stableSelectorValue": "writer-three-directions",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26611,13 +26611,64 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
+      "id": "CTRL-WRITERHEADER-BUTTON-02FA3039",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "featureId": "FEATURE-01-02",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "writer-chapter-status-option",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "disabled expression is false"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-WRITERHEADER-BUTTON-02FA3039-VISIBLE",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-HIDDEN",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-ENABLED",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-DISABLED",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-POINTER",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-KEYBOARD",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-FOCUS-IN",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-FOCUS-OUT",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-REPEAT",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-DEDUPLICATION",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-LOADING",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-SUCCESS",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-FAILURE",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-CANCELLED",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-OFFLINE",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-PERMISSION",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-PERSISTENCE",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-RESTART",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-VISUAL",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-ACCESSIBLE-NAME",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-DESTRUCTIVE-CONFIRMATION",
+        "STATE-WRITERHEADER-BUTTON-02FA3039-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/workspace/WriterHeader.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
       "id": "CTRL-WRITERHEADER-BUTTON-1DD8E3E9",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "继续本段",
       "stableSelectorValue": "writer-continue-paragraph",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26668,7 +26719,7 @@
       "controlType": "button",
       "accessibleName": "整理本章",
       "stableSelectorValue": "writer-organize-chapter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26719,7 +26770,7 @@
       "controlType": "button",
       "accessibleName": "完成场景",
       "stableSelectorValue": "writer-finish-scene",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26770,7 +26821,7 @@
       "controlType": "button",
       "accessibleName": "上一章",
       "stableSelectorValue": "writer-previous-chapter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26866,64 +26917,13 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-WRITERHEADER-BUTTON-9786A1B4",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "featureId": "FEATURE-01-02",
-      "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "writer-density-option",
-      "selectorStrategy": "data-testid",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-VISIBLE",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-HIDDEN",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-ENABLED",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-DISABLED",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-POINTER",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-KEYBOARD",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-FOCUS-IN",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-FOCUS-OUT",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-REPEAT",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-DEDUPLICATION",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-LOADING",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-SUCCESS",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-FAILURE",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-CANCELLED",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-OFFLINE",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-PERMISSION",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-PERSISTENCE",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-RESTART",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-VISUAL",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-ACCESSIBLE-NAME",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-DESTRUCTIVE-CONFIRMATION",
-        "STATE-WRITERHEADER-BUTTON-9786A1B4-UNDO"
-      ],
-      "persistenceExpected": false,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/workspace/WriterHeader.tsx",
-      "stableSelectorStatus": "MAPPED"
-    },
-    {
       "id": "CTRL-WRITERHEADER-BUTTON-D71C9A16",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "导出章节",
       "stableSelectorValue": "writer-export-chapter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -26968,18 +26968,18 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-WRITERHEADER-BUTTON-EB726C5E",
+      "id": "CTRL-WRITERHEADER-BUTTON-F017AE7C",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
-      "stableSelectorValue": "writer-chapter-status-option",
+      "stableSelectorValue": "writer-density-option",
       "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
       "enabledWhen": [
-        "disabled expression is false"
+        "rendered"
       ],
       "actions": [
         "onClick"
@@ -26988,28 +26988,28 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-VISIBLE",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-HIDDEN",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-ENABLED",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-DISABLED",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-POINTER",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-KEYBOARD",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-FOCUS-IN",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-FOCUS-OUT",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-REPEAT",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-DEDUPLICATION",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-LOADING",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-SUCCESS",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-FAILURE",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-CANCELLED",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-OFFLINE",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-PERMISSION",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-PERSISTENCE",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-RESTART",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-VISUAL",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-ACCESSIBLE-NAME",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-DESTRUCTIVE-CONFIRMATION",
-        "STATE-WRITERHEADER-BUTTON-EB726C5E-UNDO"
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-VISIBLE",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-HIDDEN",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-ENABLED",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-DISABLED",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-POINTER",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-KEYBOARD",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-FOCUS-IN",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-FOCUS-OUT",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-REPEAT",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-DEDUPLICATION",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-LOADING",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-SUCCESS",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-FAILURE",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-CANCELLED",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-OFFLINE",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-PERMISSION",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-PERSISTENCE",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-RESTART",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-VISUAL",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-ACCESSIBLE-NAME",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-DESTRUCTIVE-CONFIRMATION",
+        "STATE-WRITERHEADER-BUTTON-F017AE7C-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
@@ -27025,7 +27025,7 @@
       "controlType": "button",
       "accessibleName": "下一章",
       "stableSelectorValue": "writer-next-chapter",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -27070,7 +27070,7 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-WRITERHEADER-SUMMARY-254BC5B3",
+      "id": "CTRL-WRITERHEADER-SUMMARY-30F70A68",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "summary",
@@ -27084,34 +27084,35 @@
         "rendered"
       ],
       "actions": [
-        "onClick"
+        "onClick",
+        "onKeyDown"
       ],
       "expectedEffects": [
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-VISIBLE",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-HIDDEN",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-ENABLED",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-DISABLED",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-POINTER",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-KEYBOARD",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-FOCUS-IN",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-FOCUS-OUT",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-REPEAT",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-DEDUPLICATION",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-LOADING",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-SUCCESS",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-FAILURE",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-CANCELLED",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-OFFLINE",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-PERMISSION",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-PERSISTENCE",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-RESTART",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-VISUAL",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-ACCESSIBLE-NAME",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-DESTRUCTIVE-CONFIRMATION",
-        "STATE-WRITERHEADER-SUMMARY-254BC5B3-UNDO"
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-VISIBLE",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-HIDDEN",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-ENABLED",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-DISABLED",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-POINTER",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-KEYBOARD",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-FOCUS-IN",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-FOCUS-OUT",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-REPEAT",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-DEDUPLICATION",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-LOADING",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-SUCCESS",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-FAILURE",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-CANCELLED",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-OFFLINE",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-PERMISSION",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-PERSISTENCE",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-RESTART",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-VISUAL",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-ACCESSIBLE-NAME",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-DESTRUCTIVE-CONFIRMATION",
+        "STATE-WRITERHEADER-SUMMARY-30F70A68-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
@@ -27121,46 +27122,48 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-WRITERHEADER-SUMMARY-D869BEE9",
+      "id": "CTRL-WRITERHEADER-SUMMARY-A46BD3EC",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "summary",
       "accessibleName": "更多章节操作",
       "stableSelectorValue": "writer-more-actions",
-      "selectorStrategy": "role+accessible-name",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
       "enabledWhen": [
         "rendered"
       ],
-      "actions": [],
+      "actions": [
+        "onKeyDown"
+      ],
       "expectedEffects": [
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-VISIBLE",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-HIDDEN",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-ENABLED",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-DISABLED",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-POINTER",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-KEYBOARD",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-FOCUS-IN",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-FOCUS-OUT",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-REPEAT",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-DEDUPLICATION",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-LOADING",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-SUCCESS",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-FAILURE",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-CANCELLED",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-OFFLINE",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-PERMISSION",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-PERSISTENCE",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-RESTART",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-VISUAL",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-ACCESSIBLE-NAME",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-DESTRUCTIVE-CONFIRMATION",
-        "STATE-WRITERHEADER-SUMMARY-D869BEE9-UNDO"
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-VISIBLE",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-HIDDEN",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-ENABLED",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DISABLED",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-POINTER",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-KEYBOARD",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FOCUS-IN",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FOCUS-OUT",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-REPEAT",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DEDUPLICATION",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-LOADING",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-SUCCESS",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FAILURE",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-CANCELLED",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-OFFLINE",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-PERMISSION",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-PERSISTENCE",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-RESTART",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-VISUAL",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-ACCESSIBLE-NAME",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DESTRUCTIVE-CONFIRMATION",
+        "STATE-WRITERHEADER-SUMMARY-A46BD3EC-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,

@@ -1853,6 +1853,145 @@
                   ]
                 },
                 {
+                  "id": "CTRL-WRITERHEADER-BUTTON-02FA3039",
+                  "level": "L4",
+                  "name": "button",
+                  "states": [
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-WRITERHEADER-BUTTON-02FA3039-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-WRITERHEADER-BUTTON-1DD8E3E9",
                   "level": "L4",
                   "name": "继续本段",
@@ -2548,145 +2687,6 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WRITERHEADER-BUTTON-9786A1B4",
-                  "level": "L4",
-                  "name": "button",
-                  "states": [
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-WRITERHEADER-BUTTON-9786A1B4-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
                   "id": "CTRL-WRITERHEADER-BUTTON-D71C9A16",
                   "level": "L4",
                   "name": "导出章节",
@@ -2826,138 +2826,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WRITERHEADER-BUTTON-EB726C5E",
+                  "id": "CTRL-WRITERHEADER-BUTTON-F017AE7C",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-VISIBLE",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-HIDDEN",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-ENABLED",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-DISABLED",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-POINTER",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-KEYBOARD",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-FOCUS-IN",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-FOCUS-OUT",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-REPEAT",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-DEDUPLICATION",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-LOADING",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-SUCCESS",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-FAILURE",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-CANCELLED",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-OFFLINE",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-PERMISSION",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-PERSISTENCE",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-RESTART",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-VISUAL",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-ACCESSIBLE-NAME",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-BUTTON-EB726C5E-UNDO",
+                      "id": "STATE-WRITERHEADER-BUTTON-F017AE7C-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -3104,138 +3104,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WRITERHEADER-SUMMARY-254BC5B3",
+                  "id": "CTRL-WRITERHEADER-SUMMARY-30F70A68",
                   "level": "L4",
                   "name": "summary",
                   "states": [
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-VISIBLE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-HIDDEN",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-ENABLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-DISABLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-POINTER",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-KEYBOARD",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-FOCUS-IN",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-FOCUS-OUT",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-REPEAT",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-DEDUPLICATION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-LOADING",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-SUCCESS",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-FAILURE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-CANCELLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-OFFLINE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-PERMISSION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-PERSISTENCE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-RESTART",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-VISUAL",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-ACCESSIBLE-NAME",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-254BC5B3-UNDO",
+                      "id": "STATE-WRITERHEADER-SUMMARY-30F70A68-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -3243,138 +3243,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-WRITERHEADER-SUMMARY-D869BEE9",
+                  "id": "CTRL-WRITERHEADER-SUMMARY-A46BD3EC",
                   "level": "L4",
                   "name": "更多章节操作",
                   "states": [
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-VISIBLE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-HIDDEN",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-ENABLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-DISABLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-POINTER",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-KEYBOARD",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-FOCUS-IN",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-FOCUS-OUT",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-REPEAT",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-DEDUPLICATION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-LOADING",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-SUCCESS",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-FAILURE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-CANCELLED",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-OFFLINE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-PERMISSION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-PERSISTENCE",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-RESTART",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-VISUAL",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-ACCESSIBLE-NAME",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-WRITERHEADER-SUMMARY-D869BEE9-UNDO",
+                      "id": "STATE-WRITERHEADER-SUMMARY-A46BD3EC-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -78126,7 +78126,7 @@
       "id": "TC-DISCOVERED-04C36D86E9",
       "title": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
       "declarationTitle": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
-      "declarationLine": 239,
+      "declarationLine": 274,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -78530,7 +78530,7 @@
       "id": "TC-DISCOVERED-095D0EE2E0",
       "title": "blocks whole-work export when the active manuscript cannot be saved safely",
       "declarationTitle": "blocks whole-work export when the active manuscript cannot be saved safely",
-      "declarationLine": 639,
+      "declarationLine": 708,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -79007,6 +79007,24 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-0E044B8396",
+      "title": "TC-WRITER-HEADER-004 blocks organizing, keeps extraction hidden and keeps the writer open after an offline save failure",
+      "declarationTitle": "TC-WRITER-HEADER-004 blocks organizing, keeps extraction hidden and keeps the writer open after an offline save failure",
+      "declarationLine": 547,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -79508,7 +79526,7 @@
       "id": "TC-DISCOVERED-17C71D59E7",
       "title": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
       "declarationTitle": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
-      "declarationLine": 280,
+      "declarationLine": 315,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -80310,7 +80328,7 @@
       "id": "TC-DISCOVERED-219A8D0B99",
       "title": "shows chapter status without an edit control for read-only projects",
       "declarationTitle": "shows chapter status without an edit control for read-only projects",
-      "declarationLine": 579,
+      "declarationLine": 642,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -81558,7 +81576,7 @@
       "id": "TC-DISCOVERED-2F836D8E13",
       "title": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
       "declarationTitle": "TC-TOP-BAR-004 shows the accessible topbar-focus-exit control and uses F11 and Escape without changing the normal layout",
-      "declarationLine": 920,
+      "declarationLine": 989,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -81886,7 +81904,7 @@
       "id": "TC-DISCOVERED-3402929C42",
       "title": "TC-QA-INVENTORY-012 requires stable controls for manuscript extraction actions",
       "declarationTitle": "TC-QA-INVENTORY-012 requires stable controls for manuscript extraction actions",
-      "declarationLine": 188,
+      "declarationLine": 223,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -82877,6 +82895,24 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-02",
       "pageId": "PAGE-CONTINUITY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3D9B9B2512",
+      "title": "TC-WRITER-HEADER-007 exports successfully, persists one durable chapter receipt and ignores a cancelled retry",
+      "declarationTitle": "TC-WRITER-HEADER-007 exports successfully, persists one durable chapter receipt and ignores a cancelled retry",
+      "declarationLine": 656,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84117,24 +84153,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-4CF989AEA1",
-      "title": "writes one chapter status after one hundred same-frame dirty choices",
-      "declarationTitle": "writes one chapter status after one hundred same-frame dirty choices",
-      "declarationLine": 433,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-4D741A7AD6",
       "title": "rebases only a save-induced revision change with identical target content",
       "declarationTitle": "rebases only a save-induced revision change with identical target content",
@@ -84648,7 +84666,7 @@
       "id": "TC-DISCOVERED-549A6660F1",
       "title": "TC-QA-INVENTORY-017 maps every story association control to a stable selector",
       "declarationTitle": "TC-QA-INVENTORY-017 maps every story association control to a stable selector",
-      "declarationLine": 331,
+      "declarationLine": 366,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -85796,7 +85814,7 @@
       "id": "TC-DISCOVERED-69D848E775",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
-      "declarationLine": 615,
+      "declarationLine": 650,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -86250,7 +86268,7 @@
       "id": "TC-DISCOVERED-70FC306ED2",
       "title": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
       "declarationTitle": "preserves an applying AI transaction across 100 Alt+A shortcut actions",
-      "declarationLine": 879,
+      "declarationLine": 948,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -86376,7 +86394,7 @@
       "id": "TC-DISCOVERED-72920BB906",
       "title": "exports the whole work in project order and records its delivery scope",
       "declarationTitle": "exports the whole work in project order and records its delivery scope",
-      "declarationLine": 729,
+      "declarationLine": 798,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87486,7 +87504,7 @@
       "id": "TC-DISCOVERED-81A8B4BCED",
       "title": "does not export or create a receipt when dirty manuscript saving fails",
       "declarationTitle": "does not export or create a receipt when dirty manuscript saving fails",
-      "declarationLine": 620,
+      "declarationLine": 689,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -87645,16 +87663,16 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-84F12EFC4A",
-      "title": "opens the existing extraction center for the current chapter without starting AI",
-      "declarationTitle": "opens the existing extraction center for the current chapter without starting AI",
-      "declarationLine": 389,
+      "id": "TC-DISCOVERED-84E0D60EF7",
+      "title": "TC-WRITER-HEADER-005 saves and persists dirty prose before a successful chapter status change",
+      "declarationTitle": "TC-WRITER-HEADER-005 saves and persists dirty prose before a successful chapter status change",
+      "declarationLine": 569,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88415,24 +88433,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-90E74517D7",
-      "title": "exports the active chapter from the writer menu and records a durable receipt",
-      "declarationTitle": "exports the active chapter from the writer menu and records a durable receipt",
-      "declarationLine": 593,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-91185F2A8D",
       "title": "rejects mismatched types and unknown fields instead of silently drifting",
       "declarationTitle": "rejects mismatched types and unknown fields instead of silently drifting",
@@ -88925,6 +88925,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-98AD58B18B",
+      "title": "TC-WRITER-HEADER-001 opens the extraction center by pointer without starting paid AI",
+      "declarationTitle": "TC-WRITER-HEADER-001 opens the extraction center by pointer without starting paid AI",
+      "declarationLine": 389,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-98E4CCC8F7",
       "title": "TC-QA-INVENTORY-007 requires stable selectors for the project creation wizard",
       "declarationTitle": "TC-QA-INVENTORY-007 requires stable selectors for the project creation wizard",
@@ -89397,6 +89415,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-9DFCAFA107",
+      "title": "TC-WRITER-HEADER-003 deduplicates repeated chapter status choices while loading and writes one successful result",
+      "declarationTitle": "TC-WRITER-HEADER-003 deduplicates repeated chapter status choices while loading and writes one successful result",
+      "declarationLine": 487,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-9E06531334",
       "title": "publishes the six versioned built-in templates without manuscript prose",
       "declarationTitle": "publishes the six versioned built-in templates without manuscript prose",
@@ -89706,7 +89742,7 @@
       "id": "TC-DISCOVERED-A1611B6A78",
       "title": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
       "declarationTitle": "completes quick create, chapter create, AI and tab shortcuts with correct focus",
-      "declarationLine": 769,
+      "declarationLine": 838,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -90375,24 +90411,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-ACF0C9961A",
-      "title": "keeps the writer open when organizing a dirty chapter cannot save",
-      "declarationTitle": "keeps the writer open when organizing a dirty chapter cannot save",
-      "declarationLine": 485,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-AD31074789",
       "title": "promotes dependency and test-infrastructure changes to complete frontend acceptance",
       "declarationTitle": "promotes dependency and test-infrastructure changes to complete frontend acceptance",
@@ -90733,6 +90751,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-B23BF4736F",
+      "title": "TC-WRITER-HEADER-006 blocks chapter status changes after an offline manuscript save failure",
+      "declarationTitle": "TC-WRITER-HEADER-006 blocks chapter status changes after an offline manuscript save failure",
+      "declarationLine": 624,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -91287,24 +91323,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-B7C9AE59B2",
-      "title": "saves dirty prose before changing chapter status and updates publish readiness immediately",
-      "declarationTitle": "saves dirty prose before changing chapter status and updates publish readiness immediately",
-      "declarationLine": 506,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-B7E48BE02B",
       "title": "detaches every old job event while a replacement preview validates",
       "declarationTitle": "detaches every old job event while a replacement preview validates",
@@ -91326,7 +91344,7 @@
       "id": "TC-DISCOVERED-B7E68002CD",
       "title": "exports a structured Word work and records a Word delivery receipt",
       "declarationTitle": "exports a structured Word work and records a Word delivery receipt",
-      "declarationLine": 688,
+      "declarationLine": 757,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -92956,7 +92974,7 @@
       "id": "TC-DISCOVERED-CE89CC85E1",
       "title": "TC-QA-INVENTORY-016 retains distinct selector values for every relationship inspector control",
       "declarationTitle": "TC-QA-INVENTORY-016 retains distinct selector values for every relationship inspector control",
-      "declarationLine": 307,
+      "declarationLine": 342,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -93465,24 +93483,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-D441644F0B",
-      "title": "exposes stable handles for every writer-header operation",
-      "declarationTitle": "exposes stable handles for every writer-header operation",
-      "declarationLine": 410,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-D491C49CFB",
       "title": "presents case-4 with explicit text",
       "declarationTitle": "presents %o with explicit text",
@@ -93921,24 +93921,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-DCDA67C4D6",
-      "title": "does not change chapter status when dirty manuscript saving fails",
-      "declarationTitle": "does not change chapter status when dirty manuscript saving fails",
-      "declarationLine": 561,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
-      "domainId": "DOMAIN-08",
-      "featureId": "FEATURE-08-01",
-      "pageId": "PAGE-GLOBAL-SHELL",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-DD15491D4C",
       "title": "creates field-level diffs and applies only author-selected changed fields",
       "declarationTitle": "creates field-level diffs and applies only author-selected changed fields",
@@ -94313,6 +94295,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-14",
       "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-E1EAE99AEF",
+      "title": "TC-WRITER-HEADER-002 renders visible enabled disabled accessible visual handles with keyboard focus entry and exit, survives restart and enforces read-only permission",
+      "declarationTitle": "TC-WRITER-HEADER-002 renders visible enabled disabled accessible visual handles with keyboard focus entry and exit, survives restart and enforces read-only permission",
+      "declarationLine": 410,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
+      "domainId": "DOMAIN-01",
+      "featureId": "FEATURE-01-02",
+      "pageId": "PAGE-WRITING-EDITOR",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -95160,7 +95160,7 @@
       "id": "TC-DISCOVERED-EEA19A1249",
       "title": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
       "declarationTitle": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
-      "declarationLine": 259,
+      "declarationLine": 294,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -95758,7 +95758,7 @@
       "id": "TC-DISCOVERED-F6ACF87F59",
       "title": "offers Word and text exports in History without recording cancellation",
       "declarationTitle": "offers Word and text exports in History without recording cancellation",
-      "declarationLine": 661,
+      "declarationLine": 730,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",
@@ -96192,7 +96192,7 @@
       "id": "TC-DISCOVERED-FDF7FDE4C2",
       "title": "invalidates an open AI drawer when a same-revision project root replaces its source",
       "declarationTitle": "invalidates an open AI drawer when a same-revision project root replaces its source",
-      "declarationLine": 850,
+      "declarationLine": 919,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/app/WriterWorkspaceExperience.test.tsx",

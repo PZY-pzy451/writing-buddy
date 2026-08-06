@@ -14,31 +14,31 @@
     "testCases": 1096,
     "mappedFeatures": 20,
     "mappedPages": 18,
-    "mappedControls": 431,
-    "mappedStates": 5043,
+    "mappedControls": 444,
+    "mappedStates": 5333,
     "mappedShortcuts": 19,
     "mappedNativeActions": 1,
-    "mappedTestCases": 318,
+    "mappedTestCases": 322,
     "unmappedFeatures": 131,
     "unmappedPages": 6,
-    "unmappedControls": 107,
-    "unmappedStates": 6793,
+    "unmappedControls": 94,
+    "unmappedStates": 6503,
     "unmappedShortcuts": 4,
     "unmappedNativeActions": 54,
-    "unmappedTestCases": 778,
+    "unmappedTestCases": 774,
     "notApplicable": 0,
-    "automatedMappings": 5043,
-    "missingMappings": 6793,
-    "totalUnmapped": 7873
+    "automatedMappings": 5333,
+    "missingMappings": 6503,
+    "totalUnmapped": 7566
   },
   "coverage": {
     "features": 0.13245033112582782,
     "pages": 0.75,
-    "controls": 0.8011152416356877,
-    "states": 0.4260729976343359,
+    "controls": 0.8252788104089219,
+    "states": 0.4505745184183846,
     "shortcuts": 0.8260869565217391,
     "nativeActions": 0.01818181818181818,
-    "testCases": 0.29014598540145986
+    "testCases": 0.2937956204379562
   },
   "validationErrors": []
 }

@@ -4,35 +4,34 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Manuscript extraction control, interruption and trace convergence is complete
-on `codex/full-regression-gates-a-e-v2` against source `a602742d`.
+Writer Header control identity, keyboard behavior and trace convergence is
+complete on `codex/full-regression-gates-a-e-v2` against source `72f7ff2`.
 
-- The extraction center now exposes 26 exact, contextual control identities for
-  scope, chapter/type selection, planning, execution, stop/retry, run history,
-  stale refresh, reconciliation, evidence and candidate disposition. Its QA gate
-  requires the exact selector set; stable selectors remain 538/538 globally.
-- Failure-first offline testing reproduced a product defect: a structured
-  `network_unavailable` provider error was collapsed to `unknown`. Error
-  normalization now preserves supported structured codes, redacts raw provider
-  diagnostics and leaves the explicit retry action enabled.
-- The extraction domain passed 3 files / 33 tests. Ten pressure rounds passed
-  280 page/service instances; no duplicate paid run, cancellation, confirmation,
-  rejection or undo was dispatched. All 26 extraction controls, all 572 states
-  and all 15 rendered page tests now map; 13 service-only tests remain deliberately
-  outside the user-control trace.
+- All 12 chapter-header controls now have exact `data-testid` identities;
+  repeated chapter-status and density options also expose their concrete values.
+  Stable selector coverage remains 538/538 globally with zero missing selectors.
+- Failure-first keyboard testing reproduced a product defect: focused
+  `更多章节操作` did not open with Enter. The header now handles Enter/Space for
+  both chapter-status and action menus while preserving the busy-state block.
+- Seven real user journeys now explicitly belong to the writing editor and cover
+  pointer/keyboard/focus, busy deduplication, offline failure, persistence,
+  restart restoration, read-only permission and cancelled export behavior.
+  Writer Header mapping reaches 12/12 controls, 240/264 states and 7/7 tests;
+  the 24 remaining states are the inapplicable destructive-confirmation/undo
+  dimensions and were not hidden behind fabricated tests.
+- The full workspace file passed 24/24. Ten pressure rounds passed 70/70 header
+  journey instances, and QA infrastructure passed 30/30.
 - Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,017 frontend
   tests and production build. Rust passed 77 with two reasoned ignores and zero
-  failures; QA infrastructure passed 30/30. The convergence ledger is `PASS`.
-- Honest discovery grows inventory from 531 controls / 11,682 states / 1,092
-  tests to 538 / 11,836 / 1,096. Mapped controls/states/tests rise from
-  409 / 4,503 / 309 to 431 / 5,043 / 318. Unmapped controls/states/tests fall
-  from 122 / 7,179 / 783 to 107 / 6,793 / 778.
-- Strict gaps fall by 406, from 8,279 to 7,873, while the denominator grows by
-  165. Strict coverage is 5,850/13,723 (42.63%); control mapping is 431/538
-  (80.11%), state mapping is 5,043/11,836 (42.61%) and test mapping is
-  318/1,096 (29.01%).
-- Against the 11,088 / 136 reference, 3,215 mapping gaps and all 136 selector
-  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,873 strict
+  failures. The convergence ledger is `PASS`.
+- Global mapped controls/states/tests rise from 431 / 5,043 / 318 to
+  444 / 5,333 / 322. Unmapped controls/states/tests fall from
+  107 / 6,793 / 778 to 94 / 6,503 / 774.
+- Strict gaps fall by 307, from 7,873 to 7,566. Strict coverage reaches
+  6,157/13,723 (44.87%); control mapping is 444/538 (82.53%), state mapping is
+  5,333/11,836 (45.06%) and test mapping is 322/1,096 (29.38%).
+- Against the 11,088 / 136 reference, 3,522 mapping gaps and all 136 selector
+  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,566 strict
   mappings, real-provider smoke and packaged-EXE acceptance remain. Product is
   `PARTIAL`; release remains `BLOCKED`.
 
