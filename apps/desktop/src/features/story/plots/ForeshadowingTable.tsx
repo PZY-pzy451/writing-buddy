@@ -34,7 +34,16 @@ export function ForeshadowingTable({
 						);
 						return (
 							<tr key={item.id} className={overdue || early ? 'is-overdue' : ''}>
-								<td><button type="button" onClick={() => onSelect(item)}>{item.title}</button></td>
+								<td>
+									<button
+										type="button"
+										data-testid="foreshadowing-select"
+										data-foreshadowing-id={item.id}
+										onClick={() => onSelect(item)}
+									>
+										{item.title}
+									</button>
+								</td>
 								<td><span>{overdue || early ? <AlertTriangle size={13} /> : <CheckCircle2 size={13} />}{overdue ? '逾期' : early ? '提前回收' : statusLabels[item.status]}</span></td>
 								<td>{item.plantedAt?.narrativeOrder ?? '—'}</td>
 								<td>{item.reminderPositions.length}</td>

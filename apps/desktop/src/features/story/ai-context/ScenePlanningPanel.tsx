@@ -282,6 +282,8 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 				<button
 					className="primary-button"
 					type="button"
+					data-testid="scene-plan-generate"
+					data-scene-action={props.actionType}
 					disabled={!packReady || !scene || generating || props.readOnly || candidate?.status === 'accepted'}
 					onClick={() => void generate()}
 				>
@@ -313,6 +315,8 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 							<label className={selectedFields.includes(field) ? 'is-selected' : ''} key={field}>
 								<input
 									type="checkbox"
+									data-testid="scene-plan-field"
+									data-scene-field={field}
 									checked={selectedFields.includes(field)}
 									disabled={candidate.status !== 'candidate'}
 									onChange={() => toggleField(field)}
@@ -338,6 +342,8 @@ export function ScenePlanningPanel(props: ScenePlanningPanelProps): React.JSX.El
 					<div className="ai-action-toolbar">
 						<button
 							type="button"
+							data-testid="scene-plan-apply"
+							data-scene-id={candidate.sceneId}
 							disabled={
 								stale
 								|| candidate.status !== 'candidate'

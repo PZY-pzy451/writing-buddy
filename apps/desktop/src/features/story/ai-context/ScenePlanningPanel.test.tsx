@@ -1,8 +1,12 @@
+import { act, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import type {
 	StoryRepository,
 	StoryResource,
 	StoryScene
 } from '@writing-buddy/story-kernel';
+import { desktopBridge } from '../../../platform/bridge';
+import { ScenePlanningPanel } from './ScenePlanningPanel';
 import {
 	ScenePlanningService,
 	createScenePlanCandidate,
@@ -67,7 +71,7 @@ class SceneRepository implements StoryRepository {
 }
 
 describe('ScenePlanningService', () => {
-	it('snapshots and applies only selected fields with a scene revision guard', async () => {
+	it('persists a snapshot and applies only selected fields with a scene revision guard', async () => {
 		const events: string[] = [];
 		const repository = new SceneRepository(events);
 		const service = new ScenePlanningService(repository, () => {
@@ -130,5 +134,60 @@ describe('ScenePlanningService', () => {
 			{ ...scene, revision: 3 }
 		)).rejects.toThrow('staleScenePlanCandidate');
 		expect(events).toEqual([]);
+	});
+});
+
+describe('ScenePlanningPanel', () => {
+	beforeEach(async () => {
+		await desktopBridge.saveDeepSeekKey('browser-fixture');
+	});
+
+	afterEach(async () => {
+		vi.restoreAllMocks();
+		await desktopBridge.deleteDeepSeekKey();
+	});
+
+	it('deduplicates repeated pointer generation, selects exact fields and applies successfully', async () => {
+		const user = userEvent.setup();
+		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
+		const content = '夜雨落在旧火车站的玻璃穹顶上，细密的声响像一封迟迟没有拆开的信。\n\n林墨推开候车室的木门，看见墙上的时钟停在二十三点十七分。\n\n徐青已经等在长椅旁。她把一张褪色的行李票放到灯下，票面背后写着同一个时间。';
+		render(
+			<ScenePlanningPanel
+				projectRoot="browser-fixture"
+				resourceId="chapter:chapter-a11ce001"
+				sourceRevision={1}
+				content={content}
+				cursorOffset={12}
+				actionType="generate-outline"
+				readOnly={false}
+			/>
+		);
+
+		const generate = screen.getByTestId('scene-plan-generate');
+		await waitFor(() => expect(generate).toBeEnabled());
+		await act(async () => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				generate.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+			await Promise.resolve();
+		});
+
+		const fields = await screen.findAllByTestId('scene-plan-field');
+		expect(startAiGeneration).toHaveBeenCalledOnce();
+		expect(fields.map(field => field.getAttribute('data-scene-field'))).toEqual([
+			'goal',
+			'conflict',
+			'turn',
+			'outcome',
+			'emotionBeats'
+		]);
+		const outcome = fields.find(field => field.getAttribute('data-scene-field') === 'outcome');
+		if (!outcome) throw new Error('scene outcome field missing');
+		await user.click(outcome);
+		expect(outcome).not.toBeChecked();
+		await user.click(screen.getByTestId('scene-plan-apply'));
+		expect(await screen.findByRole('status')).toHaveTextContent(
+			'已创建安全快照，并写入所选场景字段。'
+		);
 	});
 });

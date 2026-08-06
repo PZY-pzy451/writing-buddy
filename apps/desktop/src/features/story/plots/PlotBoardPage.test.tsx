@@ -38,7 +38,11 @@ describe('PlotBoardPage', () => {
 		expect(save).toBeEnabled();
 		await user.click(screen.getByRole('tab', { name: '伏笔表' }));
 		expect(screen.getByRole('table', { name: '伏笔生命周期表' })).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: '停摆时钟' })).toBeEnabled();
+		const clue = screen.getByTestId('foreshadowing-select');
+		expect(clue).toBe(screen.getByRole('button', { name: '停摆时钟' }));
+		expect(clue).toHaveAttribute('data-foreshadowing-id', 'foreshadowing:clock');
+		expect(clue).toBeEnabled();
+		await user.click(clue);
 	});
 
 	it('opens the enabled AI plot panel, keeps secrets private, deduplicates repeated generation and shows success', async () => {

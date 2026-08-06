@@ -10,6 +10,7 @@ import { runLocalReview } from '@writing-buddy/review';
 import { App } from '../../app/App';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
+import { TaskDock } from '../../review/TaskDock';
 import { useAiStore } from '../ai/stores/aiStore';
 import { useReviewAutomationStore } from './stores/reviewAutomationStore';
 
@@ -251,7 +252,7 @@ describe('manual and AI review experience', () => {
 			.toBeInTheDocument();
 	});
 
-	it('opens the exact review target from the publish checklist', async () => {
+	it('opens the enabled exact review target from the publish checklist', async () => {
 		const user = userEvent.setup();
 		const reveal = vi.spyOn(useAppStore.getState(), 'requestEditorReveal');
 		render(<App />);
@@ -266,8 +267,17 @@ describe('manual and AI review experience', () => {
 		).issues[0];
 		if (!reviewIssue) throw new Error('publish issue fixture missing');
 		act(() => {
-			useAppStore.setState({ issues: [reviewIssue] });
+			useAppStore.setState({
+				issues: [reviewIssue],
+				dockOpen: true,
+				dockTab: 'issues'
+			});
 		});
+		render(<TaskDock />);
+		const dockIssue = screen.getByTestId('task-dock-issue');
+		expect(dockIssue).toHaveAttribute('data-issue-id', reviewIssue.id);
+		expect(dockIssue).toBeEnabled();
+		await user.click(dockIssue);
 
 		await user.click(screen.getByRole('button', { name: '检查' }));
 		await user.click(screen.getByRole('button', { name: /查看发布清单/ }));

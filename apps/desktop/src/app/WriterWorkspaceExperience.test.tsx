@@ -770,6 +770,12 @@ describe('quiet writer workspaces', () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
+		const writingRail = screen.getAllByTestId('global-rail-item').find(control => (
+			control.getAttribute('data-global-mode') === 'works'
+		));
+		expect(writingRail).toBeDefined();
+		writingRail?.focus();
+		expect(writingRail).toHaveFocus();
 		const chapterButton = screen.getByRole('button', { name: '新建章节' });
 		chapterButton.focus();
 

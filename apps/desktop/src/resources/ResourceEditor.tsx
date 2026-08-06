@@ -34,6 +34,7 @@ interface TimelineEvent {
 }
 
 function TextField(props: {
+	readonly fieldId: string;
 	readonly label: string;
 	readonly value: string;
 	readonly onChange: (value: string) => void;
@@ -43,8 +44,20 @@ function TextField(props: {
 		<label className={`form-field ${props.multiline ? 'is-multiline' : ''}`}>
 			<span>{props.label}</span>
 			{props.multiline
-				? <textarea value={props.value} onChange={event => props.onChange(event.target.value)} />
-				: <input value={props.value} onChange={event => props.onChange(event.target.value)} />}
+				? <textarea
+					data-testid="resource-editor-field"
+					data-resource-field={props.fieldId}
+					aria-label={props.label}
+					value={props.value}
+					onChange={event => props.onChange(event.target.value)}
+				/>
+				: <input
+					data-testid="resource-editor-field"
+					data-resource-field={props.fieldId}
+					aria-label={props.label}
+					value={props.value}
+					onChange={event => props.onChange(event.target.value)}
+				/>}
 		</label>
 	);
 }
@@ -125,6 +138,7 @@ export function ResourceEditor(): React.JSX.Element {
 						<article className="timeline-event" key={event.id}>
 							<div className="timeline-dot" aria-hidden="true" />
 							<TextField
+								fieldId={`events.${index}.when`}
 								label="时间"
 								value={event.when}
 								onChange={value => {
@@ -134,6 +148,7 @@ export function ResourceEditor(): React.JSX.Element {
 								}}
 							/>
 							<TextField
+								fieldId={`events.${index}.label`}
 								label="事件"
 								value={event.label}
 								onChange={value => {
@@ -143,6 +158,7 @@ export function ResourceEditor(): React.JSX.Element {
 								}}
 							/>
 							<TextField
+								fieldId={`events.${index}.description`}
 								label="说明"
 								value={event.description ?? ''}
 								multiline
@@ -158,33 +174,33 @@ export function ResourceEditor(): React.JSX.Element {
 				</div>
 			) : (
 				<div className="resource-form-grid">
-					<TextField label="名称" value={document.name ?? activeResource.title} onChange={name => update({ name })} />
+					<TextField fieldId="name" label="名称" value={document.name ?? activeResource.title} onChange={name => update({ name })} />
 					{activeResource.type === 'character' && (
 						<>
-							<TextField label="年龄" value={document.age?.toString() ?? ''} onChange={value => update({ age: Number(value) || undefined })} />
-							<TextField label="性别" value={document.gender ?? ''} onChange={gender => update({ gender })} />
-							<TextField label="性格" value={document.personality ?? ''} onChange={personality => update({ personality })} multiline />
-							<TextField label="背景" value={document.background ?? ''} onChange={background => update({ background })} multiline />
+							<TextField fieldId="age" label="年龄" value={document.age?.toString() ?? ''} onChange={value => update({ age: Number(value) || undefined })} />
+							<TextField fieldId="gender" label="性别" value={document.gender ?? ''} onChange={gender => update({ gender })} />
+							<TextField fieldId="personality" label="性格" value={document.personality ?? ''} onChange={personality => update({ personality })} multiline />
+							<TextField fieldId="background" label="背景" value={document.background ?? ''} onChange={background => update({ background })} multiline />
 						</>
 					)}
 					{activeResource.type === 'worldbuilding' && (
 						<>
-							<TextField label="地区" value={document.region ?? ''} onChange={region => update({ region })} />
-							<TextField label="势力" value={document.faction ?? ''} onChange={faction => update({ faction })} />
-							<TextField label="时代" value={document.era ?? ''} onChange={era => update({ era })} />
-							<TextField label="规则" value={document.rules ?? ''} onChange={rules => update({ rules })} multiline />
+							<TextField fieldId="region" label="地区" value={document.region ?? ''} onChange={region => update({ region })} />
+							<TextField fieldId="faction" label="势力" value={document.faction ?? ''} onChange={faction => update({ faction })} />
+							<TextField fieldId="era" label="时代" value={document.era ?? ''} onChange={era => update({ era })} />
+							<TextField fieldId="rules" label="规则" value={document.rules ?? ''} onChange={rules => update({ rules })} multiline />
 						</>
 					)}
 					{activeResource.type === 'item' && (
 						<>
-							<TextField label="类型" value={document.type ?? ''} onChange={type => update({ type })} />
-							<TextField label="状态" value={document.status ?? ''} onChange={status => update({ status })} />
-							<TextField label="持有人" value={document.owner ?? ''} onChange={owner => update({ owner })} />
-							<TextField label="位置" value={document.location ?? ''} onChange={location => update({ location })} />
-							<TextField label="描述" value={document.description ?? ''} onChange={description => update({ description })} multiline />
+							<TextField fieldId="type" label="类型" value={document.type ?? ''} onChange={type => update({ type })} />
+							<TextField fieldId="status" label="状态" value={document.status ?? ''} onChange={status => update({ status })} />
+							<TextField fieldId="owner" label="持有人" value={document.owner ?? ''} onChange={owner => update({ owner })} />
+							<TextField fieldId="location" label="位置" value={document.location ?? ''} onChange={location => update({ location })} />
+							<TextField fieldId="description" label="描述" value={document.description ?? ''} onChange={description => update({ description })} multiline />
 						</>
 					)}
-					<TextField label="备注" value={document.notes ?? ''} onChange={notes => update({ notes })} multiline />
+					<TextField fieldId="notes" label="备注" value={document.notes ?? ''} onChange={notes => update({ notes })} multiline />
 				</div>
 			)}
 		</div>

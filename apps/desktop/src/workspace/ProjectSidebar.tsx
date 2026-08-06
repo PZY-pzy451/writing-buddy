@@ -50,7 +50,13 @@ export function ProjectSidebar(): React.JSX.Element {
 				</div>
 				<nav className="sidebar-recent-list" aria-label="最近作品">
 					{recentProjectRoots.length ? recentProjectRoots.map(root => (
-						<button type="button" key={root} onClick={() => void openProject(root)}>
+						<button
+							type="button"
+							key={root}
+							data-testid="project-sidebar-recent"
+							data-project-root={root}
+							onClick={() => void openProject(root)}
+						>
 							<BookOpen size={18} />
 							<span>{root.split(/[\\/]/).filter(Boolean).at(-1) ?? root}</span>
 						</button>

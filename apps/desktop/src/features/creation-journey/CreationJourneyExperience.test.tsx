@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { App } from '../../app/App';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
+import { CreationJourneySidebar } from './CreationJourneySidebar';
 
 function resetWorkspace(): void {
 	localStorage.clear();
@@ -39,6 +40,36 @@ describe('Phase 1.2B creation journey experience', () => {
 	afterEach(() => {
 		vi.restoreAllMocks();
 		localStorage.clear();
+	});
+
+	it('opens the exact project dashboard from the journey sidebar by pointer', async () => {
+		const user = userEvent.setup();
+		const snapshot = await desktopBridge.openProject('browser-fixture');
+		act(() => {
+			useAppStore.setState({
+				snapshot,
+				activeMode: 'planning',
+				activeResource: {
+					id: 'chapter-a11ce001',
+					type: 'chapter',
+					title: '第一章 停摆的时钟',
+					path: 'chapters/chapter-001.md',
+					projectId: snapshot.project.projectId
+				}
+			});
+		});
+		render(<CreationJourneySidebar />);
+		const projectJourney = screen.getByTestId('creation-journey-project');
+		expect(projectJourney).toHaveAttribute(
+			'data-project-id',
+			snapshot.project.projectId
+		);
+		expect(projectJourney).toHaveAccessibleName(/返回作品仪表盘/);
+		await user.click(projectJourney);
+		expect(useAppStore.getState()).toMatchObject({
+			activeMode: 'works',
+			activeResource: undefined
+		});
 	});
 
 	it('moves from three ideas to three saved chapters without automatic AI', async () => {

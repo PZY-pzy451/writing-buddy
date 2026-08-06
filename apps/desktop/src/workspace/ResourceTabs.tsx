@@ -46,6 +46,9 @@ export function ResourceTabs(): React.JSX.Element {
 						<button
 							type="button"
 							role="tab"
+							data-testid="resource-tab-select"
+							data-resource-id={resource.id}
+							data-resource-type={resource.type}
 							aria-selected={active}
 							tabIndex={active ? 0 : -1}
 							onClick={() => void openResource(resource)}

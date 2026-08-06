@@ -48,7 +48,13 @@ export function BacklinksPanel({
 					<ul>
 						{backlinks.map(mention => (
 							<li key={mention.id}>
-								<button type="button" onClick={() => onOpenBacklink(mention)}>
+								<button
+									type="button"
+									data-testid="backlinks-open"
+									data-mention-id={mention.id}
+									aria-label={`打开正文反向链接：${mention.displayText}`}
+									onClick={() => onOpenBacklink(mention)}
+								>
 									<span>
 										<strong>{mention.displayText}</strong>
 										<small>{mention.chapterId} · 位置 {mention.anchor.start}</small>

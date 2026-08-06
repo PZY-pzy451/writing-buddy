@@ -979,5 +979,59 @@ describe('control inventory rendered-element boundary', () => {
 			expect(sourceControls.map(control => control.stableSelectorValue), contract.source)
 				.toContain(contract.selector);
 		}
+
+		const finalAnonymousControlContracts = [
+			{
+				source: 'apps/desktop/src/features/story/shared/BacklinksPanel.tsx',
+				count: 1,
+				selectors: ['backlinks-open']
+			},
+			{
+				source: 'apps/desktop/src/features/creation-journey/CreationJourneySidebar.tsx',
+				count: 1,
+				selectors: ['creation-journey-project']
+			},
+			{
+				source: 'apps/desktop/src/features/story/plots/ForeshadowingTable.tsx',
+				count: 1,
+				selectors: ['foreshadowing-select']
+			},
+			{
+				source: 'apps/desktop/src/workspace/ProjectSidebar.tsx',
+				count: 4,
+				selectors: ['project-sidebar-recent']
+			},
+			{
+				source: 'apps/desktop/src/workspace/ResourceTabs.tsx',
+				count: 2,
+				selectors: ['resource-tab-select']
+			},
+			{
+				source: 'apps/desktop/src/features/story/ai-context/ScenePlanningPanel.tsx',
+				count: 4,
+				selectors: ['scene-plan-generate', 'scene-plan-field']
+			},
+			{
+				source: 'apps/desktop/src/review/TaskDock.tsx',
+				count: 8,
+				selectors: ['task-dock-issue']
+			},
+			{
+				source: 'apps/desktop/src/resources/ResourceEditor.tsx',
+				count: 3,
+				selectors: ['resource-editor-field']
+			}
+		];
+
+		for (const contract of finalAnonymousControlContracts) {
+			const sourceControls = inventory.controls.filter(control => (
+				control.source === contract.source
+			));
+			expect(sourceControls, contract.source).toHaveLength(contract.count);
+			expect(sourceControls.map(control => control.stableSelectorStatus), contract.source)
+				.not.toContain('UNMAPPED');
+			expect(sourceControls.map(control => control.stableSelectorValue), contract.source)
+				.toEqual(expect.arrayContaining(contract.selectors));
+		}
 	});
 });

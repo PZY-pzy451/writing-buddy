@@ -16,7 +16,14 @@ export function CreationJourneySidebar(): React.JSX.Element {
 				</div>
 				<Lightbulb size={20} aria-hidden="true" />
 			</div>
-			<button className="creation-journey-project-card" type="button" onClick={openDashboard}>
+			<button
+				className="creation-journey-project-card"
+				type="button"
+				data-testid="creation-journey-project"
+				data-project-id={snapshot?.project.projectId}
+				aria-label={`返回作品仪表盘：${snapshot?.project.title ?? '当前作品'}`}
+				onClick={openDashboard}
+			>
 				<BookOpenText size={20} />
 				<span><strong>{snapshot?.project.title}</strong><small>返回作品仪表盘</small></span>
 			</button>

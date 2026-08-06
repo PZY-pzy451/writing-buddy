@@ -175,6 +175,8 @@ export function TaskDock(): React.JSX.Element {
 							<button
 								key={issue.id}
 								type="button"
+								data-testid="task-dock-issue"
+								data-issue-id={issue.id}
 								className={`issue-row ${selected?.id === issue.id ? 'is-active' : ''}`}
 								onClick={() => setSelectedId(issue.id)}
 							>
