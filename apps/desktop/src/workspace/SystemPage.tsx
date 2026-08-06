@@ -205,7 +205,19 @@ export function SystemPage(): React.JSX.Element | null {
 				<header><span className="eyebrow">Project Search</span><h1>搜索当前作品</h1><p>搜索章节标题和写作资料，不扫描项目外文件。</p></header>
 				<div className="search-result-list">
 					{results.map(result => (
-						<button type="button" key={`${result.type}:${result.id}`} onClick={() => snapshot && void openResource({ ...result, projectId: snapshot.project.projectId })}>
+						<button
+							type="button"
+							key={`${result.type}:${result.id}`}
+							data-testid="system-search-resource"
+							data-resource-id={result.id}
+							onClick={() => {
+								if (!snapshot) return;
+								void openResource({
+									...result,
+									projectId: snapshot.project.projectId
+								}).then(() => useAppStore.getState().setMode('works'));
+							}}
+						>
 							<FileSearch size={18} /><span><strong>{result.title}</strong><small>{result.path}</small></span>
 						</button>
 					))}
@@ -213,10 +225,12 @@ export function SystemPage(): React.JSX.Element | null {
 						<div className="search-story-result" key={result.id}>
 							<button
 								type="button"
+								data-testid="system-search-story-resource"
+								data-resource-id={result.id}
 								onClick={() => void useAppStore.getState().openStoryResource({
 									type: result.type,
 									id: result.id
-								})}
+								}).then(() => useAppStore.getState().setMode('references'))}
 							>
 								<FileSearch size={18} />
 								<span><strong>{result.title}</strong><small>{result.id}</small></span>
@@ -469,6 +483,8 @@ export function SystemPage(): React.JSX.Element | null {
 								<button
 									key={version.id}
 									type="button"
+									data-testid="system-version-select"
+									data-version-id={version.id}
 									className={selectedVersion === version.id ? 'is-active' : ''}
 									onClick={() => setSelectedVersion(version.id)}
 								>

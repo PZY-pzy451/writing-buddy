@@ -75,6 +75,7 @@ function setDashboardState(snapshot: ProjectSnapshot = projectSnapshot): void {
 }
 
 afterEach(() => {
+	cleanup();
 	vi.restoreAllMocks();
 	useAppStore.setState({
 		snapshot: undefined,

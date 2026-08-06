@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { ProjectSnapshot } from '@writing-buddy/platform-ports';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -22,6 +22,7 @@ const snapshot: ProjectSnapshot = {
 };
 
 afterEach(() => {
+	cleanup();
 	useAppStore.setState({ snapshot: undefined, writingProgress: {} });
 });
 

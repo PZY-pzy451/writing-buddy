@@ -40,6 +40,8 @@ export function GlobalRail(): React.JSX.Element {
 						<button
 							key={item.mode}
 							type="button"
+							data-testid="global-rail-item"
+							data-global-mode={item.mode}
 							className={`rail-item ${activeMode === item.mode ? 'is-active' : ''} ${presentation.muted ? 'is-progressive-muted' : ''}`}
 							onClick={() => setMode(item.mode)}
 							disabled={presentation.disabled}

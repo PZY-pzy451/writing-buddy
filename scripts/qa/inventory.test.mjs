@@ -919,5 +919,27 @@ describe('control inventory rendered-element boundary', () => {
 			.not.toContain('UNMAPPED');
 		expect(undoToastControls.map(control => control.stableSelectorValue))
 			.toContain('undo-toast-undo');
+		const globalRailControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/shell/GlobalRail.tsx'
+		));
+
+		expect(globalRailControls).toHaveLength(1);
+		expect(globalRailControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(globalRailControls.map(control => control.stableSelectorValue))
+			.toContain('global-rail-item');
+		const systemPageControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/workspace/SystemPage.tsx'
+		));
+
+		expect(systemPageControls).toHaveLength(6);
+		expect(systemPageControls.map(control => control.stableSelectorStatus))
+			.not.toContain('UNMAPPED');
+		expect(systemPageControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'system-search-resource',
+				'system-search-story-resource',
+				'system-version-select'
+			]));
 	});
 });
