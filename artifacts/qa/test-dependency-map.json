@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "graph": {
-    "nodeCount": 758,
-    "edgeCount": 1340,
+    "nodeCount": 759,
+    "edgeCount": 1341,
     "nodes": [
       "apps/desktop/index.html",
       "apps/desktop/package.json",
@@ -449,6 +449,7 @@
       "apps/desktop/src/workspace/WriterHeader.tsx",
       "apps/desktop/src/workspace/WriterToolRail.tsx",
       "apps/desktop/tests/App.test.tsx",
+      "apps/desktop/tests/e2e/story-reference-navigation.spec.tsx",
       "apps/desktop/tests/e2e/storyforge-layout.spec.ts",
       "apps/desktop/tests/e2e/storyforge-professional-slice.spec.ts",
       "apps/desktop/tests/setup.tsx",
@@ -6105,6 +6106,16 @@
         "kind": "static-import"
       },
       {
+        "from": "apps/desktop/tests/e2e/story-reference-navigation.spec.tsx",
+        "to": "apps/desktop/src/app/store.ts",
+        "kind": "static-import"
+      },
+      {
+        "from": "apps/desktop/tests/e2e/story-reference-navigation.spec.tsx",
+        "to": "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx",
+        "kind": "static-import"
+      },
+      {
         "from": "apps/desktop/tests/e2e/storyforge-layout.spec.ts",
         "to": "apps/desktop/src/app/store.ts",
         "kind": "static-import"
@@ -6112,11 +6123,6 @@
       {
         "from": "apps/desktop/tests/e2e/storyforge-layout.spec.ts",
         "to": "apps/desktop/src/features/projects/ui/ProjectOpenErrorDialog.tsx",
-        "kind": "static-import"
-      },
-      {
-        "from": "apps/desktop/tests/e2e/storyforge-layout.spec.ts",
-        "to": "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx",
         "kind": "static-import"
       },
       {
@@ -8138,8 +8144,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "1EE44E2278F0FA0E163C7DAB0179568A5D6094B6E75426BDA24B2B9C5A4B2A5F",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "D8FD3A170650D29D00B72ED67BC523E4BF6761AC65DFD11F5A7F72086E71541B",
       "testImplementationFingerprint": "38EFFC7584D98B2757E1530A95216C7ECB0CE7CCB83D6C7FAECD45598FB83F53"
     },
     {
@@ -9457,8 +9463,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "010C3C083F0889ABB037BE47F7D3557A15E4B8648E5350EA5D8E2C6B8A1132EE",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "2CDD0FBF7BDA0C83A54025EF621CFFB87EC07E88DE2F3CA863648179A76128EE",
       "testImplementationFingerprint": "535C02BC9C8BB33E703E3ADF05C68E7DEC00C5031CC21039B3402DD1DBF72B82"
     },
     {
@@ -10314,7 +10320,7 @@
     {
       "testSource": "apps/desktop/src/features/market-hierarchy/MarketNavigationExperience.test.tsx",
       "testCaseIds": [
-        "TC-DISCOVERED-4A7FDE07B4"
+        "TC-DISCOVERED-AC50CB6243"
       ],
       "directDependencies": [
         "apps/desktop/src/app/store.ts",
@@ -10393,9 +10399,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "1CEABB0B1472ACC6A44E8DD7FD57F29A0BEFA2EE6F80BEA2D8932A7B7560C823",
-      "dependencyFingerprint": "3C18885FC660466785F61008CAA27B9AD0BA551EF1675BA50B69F3B6EC3015EA",
-      "testImplementationFingerprint": "FE5B62F8F68DE915F291FB3FCE3CCE73FCDCFB543C23A62C279ABBE0480913DE"
+      "sourceFingerprint": "3703A660DF788F9FC2DCB948F43928CC465FD81DA67CA454719344205315A360",
+      "dependencyFingerprint": "A5B76DF6405BFC19D175DBC9989F14ADA6193E71DADDE6AEEED6F40F3DCCD060",
+      "testImplementationFingerprint": "F5D79367FFF2040A8BD17E628ACA20D626396944BEAA70AAAF9615BFB4B2CA44"
     },
     {
       "testSource": "apps/desktop/src/features/market-hierarchy/ProductHierarchy.test.ts",
@@ -11462,8 +11468,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "7606FD634B7EEF961BF01F542DCC396D3B515CEF66ACFF5FE9441BB742645CC4",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "108E557037F93DD407019D3979156E582534FF5F2A44D4362700840EC9916123",
       "testImplementationFingerprint": "B2BDCD7B37E86E86DD9C1021BA33C61F2B6DB1065B8B4B7004C992C52FD0BB44"
     },
     {
@@ -11812,8 +11818,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "9A3CF1AF7A9CA205B3C33CA243966BFC0353E2969BE095C8F55992D62942B6EF",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "3F66CD731043DE41A2AE26D3D853D9EF3A8EB2B820A17766E40A4434917D984D",
       "testImplementationFingerprint": "4934C8D1A96C2737B01E5E55EAF0A46FF0B9F9E7A08C1FCCA6334FB14C71FC21"
     },
     {
@@ -12155,8 +12161,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "F41B51655499A4C8739B19A0D562A2E27BA59B17A276EEF69B996BA8F569971D",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "4C3E74D899429811B0446616C629F4D8C3665631AA7CA1153C6D452E0CC705B8",
       "testImplementationFingerprint": "58C03DEE2DA94C5F55C8609B6F4043420559806B969DE765D10E6AF9A6A3DA00"
     },
     {
@@ -12668,8 +12674,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "4FA44C918035D4C6DD73C9A8660572C40ADAFB89E3630B74F03979C3F826CF5F",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "AFC0582965D09FEB74B13DA585ECF7856CF7F9FBA4EDD8E76F92B6F8DE6AF178",
       "testImplementationFingerprint": "D686B96C45A0AEA5186DE801CB2F4C1B59F503CCEC9877E274B2F4AC4AF1F444"
     },
     {
@@ -13304,8 +13310,8 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "659A7355890638E7BA279972E826865E73A9106C668EA980789B559E78471257",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "97BA9F430FB007210E8ECA2ED5AE48D9E2E6BB613B80127614C1DBB79241E466",
       "testImplementationFingerprint": "A724F9D64C9C903528F4C936DEDEC512A5FCF99232C814ADE07493AC5FA023FE"
     },
     {
@@ -13544,15 +13550,15 @@
     {
       "testSource": "apps/desktop/src/features/shared/interaction/interaction.test.tsx",
       "testCaseIds": [
+        "TC-DISCOVERED-7096C5116C",
         "TC-DISCOVERED-71C19B066B",
-        "TC-DISCOVERED-B337216AA5",
         "TC-DISCOVERED-BB1EFE2602"
       ],
       "directDependencies": [],
       "transitiveDependencies": [],
       "sourceFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
       "dependencyFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "testImplementationFingerprint": "2A98B67DD33BD2CD54748F3E6F9DA94E06F7A8461B396CAA013935BB707197D7"
+      "testImplementationFingerprint": "058E2A6CC5D3C861A58BD912B08291AA7D392FEFE49FB22B5AE49D9EE46B1EF8"
     },
     {
       "testSource": "apps/desktop/src/features/shared/presentation/AppEmptyState.test.tsx",
@@ -13791,7 +13797,7 @@
     {
       "testSource": "apps/desktop/src/features/story/ai-context/InlineDraftCard.test.tsx",
       "testCaseIds": [
-        "TC-DISCOVERED-1E80F4820F",
+        "TC-DISCOVERED-441419610C",
         "TC-DISCOVERED-84C58EFA0B"
       ],
       "directDependencies": [
@@ -13802,9 +13808,9 @@
         "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
         "apps/desktop/src/features/story/ai-context/InlineDraftCard.tsx"
       ],
-      "sourceFingerprint": "0BAE72B379066CBB559E72A932C7B119DB413DDEF308E3980F7A060E07677E03",
-      "dependencyFingerprint": "550C10C5A2429037D7D3424317EC7116D44F2C671C3DDA6D851A3D6005DD0801",
-      "testImplementationFingerprint": "F140B6019439B4C2688D8C934C5C56C8B48D88D8C4EFC85238D12572C486DDF5"
+      "sourceFingerprint": "884B2700C9055AE2CA67EA7765EE56558563D476160A8ABC1025A939C33221A8",
+      "dependencyFingerprint": "3B1D286FE5F6C1B27A6D9438ED6556F23A4AAFCD298223D297536A6C678ACBC5",
+      "testImplementationFingerprint": "E27B4F8375541A9C240E57C9C5B2736B712B1C18700E364B0615E1C4177906F4"
     },
     {
       "testSource": "apps/desktop/src/features/story/ai-context/InlinePlotExpansionControl.test.tsx",
@@ -18716,14 +18722,98 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "87DBDEB1C702D2E0302CD9E483D2FD16B686D4A59FEFF05138C5CC39A60664A6",
-      "dependencyFingerprint": "685EE160662BE4DE71ED433CCC05A12941951EF02BED2BA8FE4217816300EDF6",
+      "sourceFingerprint": "BD8A363DF9D372545415E2A7D7D441A33A3545483EE33BD21CFC7191FE72C1D9",
+      "dependencyFingerprint": "70F11EFCB519470DAC6CBC297A3444D4D58DD915524694FB6FB6AB0F463B9FF7",
       "testImplementationFingerprint": "3B708DF7A4C1F089B23C053C08E8C50078ACB221C4D5AEFFC11BA16EC3039C8A"
+    },
+    {
+      "testSource": "apps/desktop/tests/e2e/story-reference-navigation.spec.tsx",
+      "testCaseIds": [
+        "TC-DISCOVERED-778EC645D5"
+      ],
+      "directDependencies": [
+        "apps/desktop/src/app/store.ts",
+        "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx"
+      ],
+      "transitiveDependencies": [
+        "apps/desktop/src/app/store.ts",
+        "apps/desktop/src/app/writerSession.ts",
+        "apps/desktop/src/app/writerWorkspace.ts",
+        "apps/desktop/src/features/creation-journey/CreationJourneyModel.ts",
+        "apps/desktop/src/features/export/ChapterExportModel.ts",
+        "apps/desktop/src/features/market-hierarchy/ProductHierarchy.ts",
+        "apps/desktop/src/features/progress/DailyWritingProgressModel.ts",
+        "apps/desktop/src/features/projects/application/ProjectOpenService.ts",
+        "apps/desktop/src/features/projects/application/ProjectSceneMoveService.ts",
+        "apps/desktop/src/features/projects/application/ProjectStructureMoveService.ts",
+        "apps/desktop/src/features/quick-capture/QuickCaptureConversionService.ts",
+        "apps/desktop/src/features/quick-capture/QuickCaptureModel.ts",
+        "apps/desktop/src/features/quick-capture/QuickCaptureStore.ts",
+        "apps/desktop/src/features/save/SaveStateModel.ts",
+        "apps/desktop/src/features/story/ai-context/InlineDraftCandidateModel.ts",
+        "apps/desktop/src/features/story/application/StoryIndexService.ts",
+        "apps/desktop/src/features/story/application/StoryResourceOpenService.ts",
+        "apps/desktop/src/features/story/application/StoryResourceRegistry.ts",
+        "apps/desktop/src/features/story/manuscript/MentionService.ts",
+        "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx",
+        "apps/desktop/src/platform/bridge.ts",
+        "apps/desktop/src/shell/workspaceResize.ts",
+        "packages/ai/src/index.ts",
+        "packages/domain/src/index.ts",
+        "packages/platform-ports/src/index.ts",
+        "packages/project/src/ProjectStructureMove.ts",
+        "packages/project/src/ProjectTemplateRegistry.ts",
+        "packages/project/src/index.ts",
+        "packages/review/src/index.ts",
+        "packages/story-kernel/src/ids/StoryId.ts",
+        "packages/story-kernel/src/index.ts",
+        "packages/story-kernel/src/model/Character.ts",
+        "packages/story-kernel/src/model/EvidenceRef.ts",
+        "packages/story-kernel/src/model/Faction.ts",
+        "packages/story-kernel/src/model/Foreshadowing.ts",
+        "packages/story-kernel/src/model/ItemState.ts",
+        "packages/story-kernel/src/model/KnowledgeState.ts",
+        "packages/story-kernel/src/model/Location.ts",
+        "packages/story-kernel/src/model/MentionLink.ts",
+        "packages/story-kernel/src/model/PendingFact.ts",
+        "packages/story-kernel/src/model/PlotThread.ts",
+        "packages/story-kernel/src/model/Relationship.ts",
+        "packages/story-kernel/src/model/Scene.ts",
+        "packages/story-kernel/src/model/StateRecord.ts",
+        "packages/story-kernel/src/model/StoryInformation.ts",
+        "packages/story-kernel/src/model/StoryItem.ts",
+        "packages/story-kernel/src/model/StoryPosition.ts",
+        "packages/story-kernel/src/model/StoryResourceBase.ts",
+        "packages/story-kernel/src/model/TimelineEvent.ts",
+        "packages/story-kernel/src/model/WorldRule.ts",
+        "packages/story-kernel/src/query/ContextPackBuilder.ts",
+        "packages/story-kernel/src/query/TimelineQuery.ts",
+        "packages/story-kernel/src/query/TokenBudgetPolicy.ts",
+        "packages/story-kernel/src/repository/StoryPaths.ts",
+        "packages/story-kernel/src/repository/StoryRepository.ts",
+        "packages/story-kernel/src/schema/migrations/v0-to-v1.ts",
+        "packages/story-kernel/src/schema/resourceSchemas.ts",
+        "packages/story-kernel/src/schema/schemaRegistry.ts",
+        "packages/story-kernel/src/schema/storyManifestSchema.ts",
+        "packages/story-kernel/src/transaction/SceneMoveTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryDragTransaction.ts",
+        "packages/story-kernel/src/transaction/StoryTransaction.ts",
+        "packages/story-kernel/src/validation/ContinuityEngine.ts",
+        "packages/story-kernel/src/validation/RuleIssue.ts",
+        "packages/story-kernel/src/validation/informationRules.ts",
+        "packages/story-kernel/src/validation/itemRules.ts",
+        "packages/story-kernel/src/validation/locationRules.ts",
+        "packages/story-kernel/src/validation/plotRules.ts",
+        "packages/story-kernel/src/validation/timeRules.ts",
+        "packages/version/src/index.ts"
+      ],
+      "sourceFingerprint": "3703A660DF788F9FC2DCB948F43928CC465FD81DA67CA454719344205315A360",
+      "dependencyFingerprint": "BE55DD16CBBB83207848832C3A3F096CA9044A11EB883814273CD01B9D8405AB",
+      "testImplementationFingerprint": "57E5BF58D1F54F736BF27BB53B34D2243CB75898AA6E9351343029EF64450B21"
     },
     {
       "testSource": "apps/desktop/tests/e2e/storyforge-layout.spec.ts",
       "testCaseIds": [
-        "TC-DISCOVERED-1B8052BD24",
         "TC-DISCOVERED-87B3D8D3E5",
         "TC-DISCOVERED-DBE5DD40FC",
         "TC-DISCOVERED-DE9FEB6CAE",
@@ -18732,7 +18822,6 @@
       "directDependencies": [
         "apps/desktop/src/app/store.ts",
         "apps/desktop/src/features/projects/ui/ProjectOpenErrorDialog.tsx",
-        "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx",
         "apps/desktop/src/features/story/relationships/RelationshipMatrix.tsx",
         "apps/desktop/src/features/story/timeline/VirtualTimelineList.tsx",
         "apps/desktop/src/shell/TopBar.tsx",
@@ -18748,7 +18837,6 @@
         "apps/desktop/src/features/ai/errors/AiErrorPresentation.ts",
         "apps/desktop/src/features/creation-journey/CreationJourneyModel.ts",
         "apps/desktop/src/features/export/ChapterExportModel.ts",
-        "apps/desktop/src/features/market-hierarchy/ProductHierarchy.ts",
         "apps/desktop/src/features/progress/DailyWritingProgressModel.ts",
         "apps/desktop/src/features/projects/application/ProjectOpenService.ts",
         "apps/desktop/src/features/projects/application/ProjectSceneMoveService.ts",
@@ -18766,7 +18854,6 @@
         "apps/desktop/src/features/story/application/StoryResourceOpenService.ts",
         "apps/desktop/src/features/story/application/StoryResourceRegistry.ts",
         "apps/desktop/src/features/story/manuscript/MentionService.ts",
-        "apps/desktop/src/features/story/navigation/StoryReferenceSidebar.tsx",
         "apps/desktop/src/features/story/relationships/RelationshipMatrix.tsx",
         "apps/desktop/src/features/story/timeline/VirtualTimelineList.tsx",
         "apps/desktop/src/platform/bridge.ts",
@@ -18831,9 +18918,9 @@
         "packages/story-kernel/src/validation/timeRules.ts",
         "packages/version/src/index.ts"
       ],
-      "sourceFingerprint": "F12EB1EA51EC3C7A9ABFE8F2EFE524FE78F2D7C8B077742C8433E0EE2318B1FC",
-      "dependencyFingerprint": "A166BE77EBB7A0502679153BA22C211BA6B124CB30BE625AB68EE98B7F33D8A5",
-      "testImplementationFingerprint": "8AFB06BE082AB3F4161191CF4426CA640299DBE820AD08B97B45DD402F252FFB"
+      "sourceFingerprint": "8CF9D3C3DE3E0D6B305E3065A07A4BBA00DD75B398C0AEFABF542769FF9C364D",
+      "dependencyFingerprint": "CE60ADA3A6139D9919ECC79175FD5AEC242A1D4772B85F47F87156684E2BFA00",
+      "testImplementationFingerprint": "05FC68DCAA63EB49357ECBA79B74F01D39BA2A0A5BF819DF73E7F2546BACC438"
     },
     {
       "testSource": "apps/desktop/tests/e2e/storyforge-professional-slice.spec.ts",
@@ -20397,7 +20484,7 @@
       "transitiveDependencies": [],
       "sourceFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
       "dependencyFingerprint": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "testImplementationFingerprint": "F982F6D82181143FF86FB1540FE8049214FB353F2E6724F0DC28E98E65179CA9"
+      "testImplementationFingerprint": "9A725DA549C18B87EC660CC39AC884D1B03E6D6F87598DF3A08896843052A1A4"
     },
     {
       "testSource": "scripts/qa/test-discovery.test.mjs",

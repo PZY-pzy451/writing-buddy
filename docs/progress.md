@@ -4,31 +4,39 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Character State and Character AI trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `520f5db`.
+Writer support control and navigation trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `32d3b20`.
 
-- The narrative-order number input now exposes a stable identity. The rendered
-  character workspace test clears and types a position with the keyboard, then
-  verifies that the selected state heading refreshes to the new order.
-- Existing Character AI service tests now map duplicate-candidate hiding,
-  confirmed undo-snapshot persistence and authoritative-revision cancellation.
-  The stale candidate contract also proves that no character write occurs.
-  Focused character and inventory coverage passed 27/27.
-- The existing same-tick Character AI generation guard passed 20/20 pressure
-  rounds: 2,000 clicks produced exactly 20 provider starts.
-- Node 24 passed lint, typecheck, 189 files / 979 tests and production build;
+- Story Library/Planning navigation items now expose a stable identity plus
+  exact `StoryViewId`. Pointer selection and Arrow/Home/End keyboard focus are
+  isolated into precise product tests so unrelated layout cases cannot acquire
+  false mappings.
+- Inline Draft write and shared Undo Toast actions now expose independent stable
+  identities. Existing tests verify enabled author-confirmed writing, stale or
+  empty blocking, discard and undo/dismiss behavior. Focused coverage passed
+  26/26 across six files.
+- Navigation passed 20/20 pressure rounds: 2,000 repeated pointer selections
+  preserved the exact final Story view. Explicit cleanup also removed the
+  pre-existing Market Navigation React `act` warning.
+- Node 24 passed lint, typecheck, 190 files / 979 tests and production build;
   Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
   Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
 - Inventory remains 522 controls and 11,484 states. Mapped controls rise from
-  363 to 364, mapped states from 3,969 to 4,017 and mapped tests from 255 to
-  258. Strict gaps fall by 52 from 8,675 to 8,623, selector gaps from 23 to 22
-  and unmapped tests from 803 to 800.
+  364 to 367, mapped states from 4,017 to 4,046 and mapped tests from 258 to
+  260. Strict gaps fall by 34 from 8,623 to 8,589, selector gaps from 22 to 19
+  and unmapped tests from 800 to 798.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,694/13,317 (35.25%); stable selectors are 500/522 (95.79%); test mapping is
-  258/1,058 (24.39%). Against the 11,088 / 136 reference, 2,465 mapping gaps
-  and 114 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,623 strict mappings plus real-provider smoke and
+  4,728/13,317 (35.50%); stable selectors are 503/522 (96.36%); test mapping is
+  260/1,058 (24.57%). Against the 11,088 / 136 reference, 2,499 mapping gaps
+  and 117 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,589 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
+
+## Previous milestone
+
+Character State and Character AI trace convergence is complete against source
+`520f5db`: one selector gap and three unmapped tests were closed, and fixed
+acceptance passed 979 frontend tests.
 
 ## Previous milestone
 
