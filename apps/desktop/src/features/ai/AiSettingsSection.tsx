@@ -208,21 +208,59 @@ export function AiSettingsSection(): React.JSX.Element {
 						</div>
 					</label>
 					<div className="ai-button-row">
-						<button className="primary-button" type="button" onClick={() => void save()} disabled={!key.trim() || loading}>
+						<button
+							className="primary-button"
+							type="button"
+							data-testid="ai-settings-save-key"
+							data-ai-action="save-key"
+							onClick={() => void save()}
+							disabled={!key.trim() || loading}
+						>
 							<ShieldCheck size={18} />{loading ? '正在保存并验证…' : '安全保存并验证'}
 						</button>
-						<button className="secondary-button" type="button" onClick={() => void test()} disabled={!configured || loading}>
+						<button
+							className="secondary-button"
+							type="button"
+							data-testid="ai-settings-test-connection"
+							data-ai-action="test-connection"
+							onClick={() => void test()}
+							disabled={!configured || loading}
+						>
 							<Activity size={18} />测试连接
 						</button>
 						{!confirmDelete ? (
-							<button className="secondary-button danger-button" type="button" onClick={() => setConfirmDelete(true)} disabled={!configured || loading}>
+							<button
+								className="secondary-button danger-button"
+								type="button"
+								data-testid="ai-settings-remove-credential-request"
+								data-ai-action="request-remove-credential"
+								onClick={() => setConfirmDelete(true)}
+								disabled={!configured || loading}
+							>
 								<Trash2 size={18} />移除凭据
 							</button>
 						) : (
 							<div className="inline-confirm" role="group" aria-label="确认移除凭据">
 								<span>确定移除？</span>
-								<button className="danger-button" type="button" onClick={() => void remove()} disabled={loading}>确定</button>
-								<button type="button" onClick={() => setConfirmDelete(false)} disabled={loading}>取消</button>
+								<button
+									className="danger-button"
+									type="button"
+									data-testid="ai-settings-remove-credential-confirm"
+									data-ai-action="confirm-remove-credential"
+									onClick={() => void remove()}
+									disabled={loading}
+								>
+									确定
+								</button>
+								<button
+									type="button"
+									data-testid="ai-settings-remove-credential-cancel"
+									data-ai-action="cancel-remove-credential"
+									onClick={() => setConfirmDelete(false)}
+									disabled={loading}
+								>
+									取消
+								</button>
 							</div>
 						)}
 					</div>
@@ -281,10 +319,24 @@ export function AiSettingsSection(): React.JSX.Element {
 					</label>
 				</div>
 				<div className="ai-button-row compact">
-					<button className="secondary-button" type="button" onClick={() => void refreshModelList()} disabled={!configured || loading}>
+					<button
+						className="secondary-button"
+						type="button"
+						data-testid="ai-settings-refresh-models"
+						data-ai-action="refresh-models"
+						onClick={() => void refreshModelList()}
+						disabled={!configured || loading}
+					>
 						<RefreshCw size={16} />刷新模型列表
 					</button>
-					<button className="secondary-button" type="button" onClick={() => void refreshProviderBalance()} disabled={!configured || loading}>
+					<button
+						className="secondary-button"
+						type="button"
+						data-testid="ai-settings-refresh-balance"
+						data-ai-action="refresh-balance"
+						onClick={() => void refreshProviderBalance()}
+						disabled={!configured || loading}
+					>
 						<CircleDollarSign size={16} />刷新余额
 					</button>
 				</div>

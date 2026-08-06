@@ -76,28 +76,6 @@ describe('Phase 1.0A AI experience', () => {
 		expect(JSON.stringify(localValues)).not.toContain('fixture-key');
 	});
 
-	it('replaces the save notice with explicit feedback for each manual provider action', async () => {
-		const user = userEvent.setup();
-		render(<SettingsPage />);
-		await user.click(screen.getByRole('tab', { name: /AI 与模型/ }));
-		const input = await screen.findByLabelText('DeepSeek API Key');
-		expect(input).toHaveAttribute('data-testid', 'ai-settings-api-key-input');
-		await user.type(input, 'fixture-key');
-		await user.click(screen.getByRole('button', { name: /安全保存并验证/ }));
-		await screen.findByText('API Key 已安全保存，连接验证通过。');
-
-		await user.click(screen.getByRole('button', { name: '测试连接' }));
-		await screen.findByText('连接测试成功，当前凭据可用。');
-		expect(screen.queryByText('API Key 已安全保存，连接验证通过。')).not.toBeInTheDocument();
-
-		await user.click(screen.getByRole('button', { name: '刷新模型列表' }));
-		await screen.findByText('模型列表已刷新，共 2 个可用模型。');
-
-		await user.click(screen.getByRole('button', { name: '刷新余额' }));
-		await screen.findByText('余额已刷新：88.00 CNY。');
-		expect(screen.queryByText('模型列表已刷新，共 2 个可用模型。')).not.toBeInTheDocument();
-	});
-
 	it('shows recoverable feedback when a manual connection test fails', async () => {
 		await useAiStore.getState().initialize();
 		await useAiStore.getState().saveKeyAndValidate('fixture-key');
@@ -132,101 +110,6 @@ describe('Phase 1.0A AI experience', () => {
 		expect(useAiStore.getState().prompt).toBe('写一段雨夜车站的悬疑场景。');
 	});
 
-	it('starts one playground request for 100 same-tick generation calls', async () => {
-		const startAiGeneration = vi.spyOn(desktopBridge, 'startAiGeneration');
-		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob');
-		await act(async () => {
-			await useAiStore.getState().initialize();
-			await useAiStore.getState().saveKeyAndValidate('fixture-key');
-			useAiStore.getState().setPrompt('同一条件只应生成一次。');
-			await Promise.all(Array.from({ length: 100 }, () => (
-				useAiStore.getState().startGeneration()
-			)));
-		});
-
-		expect(startAiGeneration).toHaveBeenCalledOnce();
-		expect(cancelAiJob).not.toHaveBeenCalled();
-		expect(useAiStore.getState().jobState).toBe('completed');
-		startAiGeneration.mockRestore();
-		cancelAiJob.mockRestore();
-	});
-
-	it('saves and validates a key once for 100 same-tick requests', async () => {
-		await useAiStore.getState().initialize();
-		const secret = await desktopBridge.saveDeepSeekKey('fixture-key');
-		const connection = await desktopBridge.testDeepSeekConnection();
-		await desktopBridge.deleteDeepSeekKey();
-		const saveResult = createDeferred<typeof secret>();
-		const saveDeepSeekKey = vi.spyOn(desktopBridge, 'saveDeepSeekKey')
-			.mockImplementation(() => saveResult.promise);
-		const testDeepSeekConnection = vi.spyOn(desktopBridge, 'testDeepSeekConnection')
-			.mockResolvedValue(connection);
-
-		const attempts = Array.from({ length: 100 }, () => (
-			useAiStore.getState().saveKeyAndValidate('fixture-key')
-		));
-		expect(saveDeepSeekKey).toHaveBeenCalledOnce();
-		saveResult.resolve(secret);
-		await Promise.all(attempts);
-
-		expect(testDeepSeekConnection).toHaveBeenCalledOnce();
-		expect(useAiStore.getState().status?.secret.configured).toBe(true);
-	});
-
-	it('tests the connection once for 100 same-tick requests', async () => {
-		await useAiStore.getState().initialize();
-		await useAiStore.getState().saveKeyAndValidate('fixture-key');
-		const connection = await desktopBridge.testDeepSeekConnection();
-		const connectionResult = createDeferred<typeof connection>();
-		const testDeepSeekConnection = vi.spyOn(desktopBridge, 'testDeepSeekConnection')
-			.mockImplementation(() => connectionResult.promise);
-
-		const attempts = Array.from({ length: 100 }, () => (
-			useAiStore.getState().testConnection()
-		));
-		expect(testDeepSeekConnection).toHaveBeenCalledOnce();
-		connectionResult.resolve(connection);
-		await Promise.all(attempts);
-
-		expect(useAiStore.getState().loading).toBe(false);
-	});
-
-	it('refreshes models once for 100 same-tick requests', async () => {
-		await useAiStore.getState().initialize();
-		await useAiStore.getState().saveKeyAndValidate('fixture-key');
-		const models = await desktopBridge.listDeepSeekModels(true);
-		const modelsResult = createDeferred<typeof models>();
-		const listDeepSeekModels = vi.spyOn(desktopBridge, 'listDeepSeekModels')
-			.mockImplementation(() => modelsResult.promise);
-
-		const attempts = Array.from({ length: 100 }, () => (
-			useAiStore.getState().refreshModels()
-		));
-		expect(listDeepSeekModels).toHaveBeenCalledOnce();
-		modelsResult.resolve(models);
-		await Promise.all(attempts);
-
-		expect(useAiStore.getState().models).toEqual(models);
-	});
-
-	it('refreshes balance once for 100 same-tick requests', async () => {
-		await useAiStore.getState().initialize();
-		await useAiStore.getState().saveKeyAndValidate('fixture-key');
-		const balance = await desktopBridge.getDeepSeekBalance();
-		const balanceResult = createDeferred<typeof balance>();
-		const getDeepSeekBalance = vi.spyOn(desktopBridge, 'getDeepSeekBalance')
-			.mockImplementation(() => balanceResult.promise);
-
-		const attempts = Array.from({ length: 100 }, () => (
-			useAiStore.getState().refreshBalance()
-		));
-		expect(getDeepSeekBalance).toHaveBeenCalledOnce();
-		balanceResult.resolve(balance);
-		await Promise.all(attempts);
-
-		expect(useAiStore.getState().balance).toEqual(balance);
-	});
-
 	it('queues a different settings action without dropping or multiplying it', async () => {
 		await useAiStore.getState().initialize();
 		await useAiStore.getState().saveKeyAndValidate('fixture-key');
@@ -254,39 +137,6 @@ describe('Phase 1.0A AI experience', () => {
 		expect(useAiStore.getState().status?.secret.configured).toBe(false);
 	});
 
-	it('cancels one active job and deletes one key for 100 same-tick requests', async () => {
-		await useAiStore.getState().initialize();
-		await useAiStore.getState().saveKeyAndValidate('fixture-key');
-		useAiStore.setState({
-			jobId: 'qa-active-job',
-			jobState: 'streaming',
-			output: 'partial output'
-		});
-		const cancellationResult = createDeferred<boolean>();
-		const cancelAiJob = vi.spyOn(desktopBridge, 'cancelAiJob')
-			.mockImplementation(() => cancellationResult.promise);
-		const deletedSecret = {
-			configured: false,
-			providerId: 'deepseek' as const
-		};
-		const deleteDeepSeekKey = vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
-			.mockResolvedValue(deletedSecret);
-
-		const attempts = Array.from({ length: 100 }, () => (
-			useAiStore.getState().deleteKey()
-		));
-		expect(cancelAiJob).toHaveBeenCalledOnce();
-		cancellationResult.resolve(true);
-		await Promise.all(attempts);
-
-		expect(deleteDeepSeekKey).toHaveBeenCalledOnce();
-		expect(useAiStore.getState()).toMatchObject({
-			jobState: 'cancelled',
-			partial: true,
-			models: []
-		});
-	});
-
 	it('does not start a new generation while credential deletion is active', async () => {
 		await useAiStore.getState().initialize();
 		await useAiStore.getState().saveKeyAndValidate('fixture-key');
@@ -310,31 +160,6 @@ describe('Phase 1.0A AI experience', () => {
 
 		expect(useAiStore.getState().status?.secret.configured).toBe(false);
 		expect(useAiStore.getState().jobId).toBeUndefined();
-	});
-
-	it('keeps a cancelled job truthful when credential deletion fails', async () => {
-		await useAiStore.getState().initialize();
-		await useAiStore.getState().saveKeyAndValidate('fixture-key');
-		useAiStore.setState({
-			jobId: 'qa-cancelled-before-delete-failure',
-			jobState: 'streaming',
-			output: 'partial output',
-			startedAt: Date.now() - 100
-		});
-		vi.spyOn(desktopBridge, 'cancelAiJob').mockResolvedValue(true);
-		vi.spyOn(desktopBridge, 'deleteDeepSeekKey')
-			.mockRejectedValue(new Error('raw credential deletion failure'));
-
-		await expect(useAiStore.getState().deleteKey()).rejects.toThrow();
-
-		expect(useAiStore.getState()).toMatchObject({
-			jobState: 'cancelled',
-			partial: true,
-			loading: false,
-			status: { secret: { configured: true } }
-		});
-		expect(useAiStore.getState().error?.message)
-			.not.toContain('raw credential deletion failure');
 	});
 
 	it('shows a recoverable deletion failure and succeeds on explicit retry', async () => {

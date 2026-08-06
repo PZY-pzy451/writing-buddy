@@ -711,15 +711,24 @@ describe('control inventory rendered-element boundary', () => {
 			control.source === 'apps/desktop/src/features/ai/AiSettingsSection.tsx'
 		));
 
-		expect(settingsControls).toHaveLength(7);
+		expect(settingsControls).toHaveLength(12);
 		expect(settingsControls.map(control => control.stableSelectorStatus))
 			.not.toContain('UNMAPPED');
-		expect(settingsControls.map(control => control.stableSelectorValue))
-			.toEqual(expect.arrayContaining([
+		expect(settingsControls.map(control => control.stableSelectorValue).sort())
+			.toEqual([
 				'ai-settings-api-key-input',
 				'ai-settings-generation-select',
-				'ai-settings-inline-feature-toggle'
-			]));
+				'ai-settings-inline-feature-toggle',
+				'ai-settings-key-reveal',
+				'ai-settings-refresh-balance',
+				'ai-settings-refresh-models',
+				'ai-settings-remove-credential-cancel',
+				'ai-settings-remove-credential-confirm',
+				'ai-settings-remove-credential-request',
+				'ai-settings-save-key',
+				'ai-settings-test-connection',
+				'最大输出 Token'
+			]);
 		const projectWelcomeControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/features/projects/ui/ProjectWelcome.tsx'
 		));
