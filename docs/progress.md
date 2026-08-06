@@ -4,37 +4,47 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Creation Journey impact identity and trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `49e7280`.
+AI diagnostics control identity and trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `d903fae`.
 
-- Guidance options, repeated core fields and impact actions now expose stable
-  type selectors plus exact option, field and impact IDs. Failure-first tests
-  reproduced missing identities before implementation.
-- Pressure testing exposed a real reentrancy defect: 100 same-frame impact
-  regeneration clicks started 100 provider requests before React rendered the
-  busy state. A synchronous request guard now keeps one request in flight;
-  repeated keep actions on an already resolved impact return without false error.
-- The existing end-to-end author journey now selects a guidance answer, locks and
-  edits exact core fields, persists upstream changes, resolves exact impacts and
-  verifies keyboard focus restoration. It moves from unmapped to mapped without
-  adding a synthetic runtime case.
-- Focused tests passed 16/16; Creation Journey passed 19 files / 66 tests. Ten
-  pressure rounds and 2,000 same-frame impact actions passed. Fixed Node 24.14.0
-  acceptance passed lint, typecheck, 197 files / 985 frontend tests and production
-  build. Rust passed 77 with two reasoned ignores; QA passed 30/30.
-- Honest discovery adds one previously omitted real control, moving inventory
-  from 522 controls / 11,484 states to 523 / 11,506. Stable selectors remain
-  complete at 523/523. Mapped controls rise from 389 to 397, mapped states from
-  4,224 to 4,302 and mapped tests from 271 to 272.
-- Strict gaps fall by 64 from 8,381 to 8,317 despite the larger denominator.
-  Unmapped controls fall from 133 to 126, states from 7,260 to 7,204 and tests
-  from 793 to 792. Strict coverage is 5,029/13,346 (37.68%); control mapping is
-  397/523 (75.91%); state mapping is 4,302/11,506 (37.39%); test mapping is
-  272/1,064 (25.56%).
-- Against the 11,088 / 136 reference, 2,771 mapping gaps and all 136 selector
+- Seven AI diagnostic controls now expose stable type selectors plus exact action
+  identities: open settings, start, stop, copy, clear, secret reveal and preview
+  rejection. Each control has an isolated rendered test source so traceability
+  cannot map unrelated tests merely because they share one broad file.
+- Failure-first tests reproduced all missing identities. A second staged failure
+  exposed a real accessibility defect: the API-key reveal action worked only for
+  pointer users. Enter and Space now reveal only while held; keyup, Escape,
+  pointer cancel, pointer leave and blur all restore the password field.
+- Inventory regeneration exposed two static-identity collisions: start/stop and
+  copy/clear had been counted as two controls instead of four. The controls are
+  now independently inventoried and the QA gate verifies the exact six-control
+  AI Playground selector set instead of accepting the old collided count.
+- Focused tests passed 7 files / 22 tests; the entire AI domain passed 14 files /
+  140 tests. Ten pressure rounds passed 220 rendered cases, including 1,000 rapid
+  starts, 1,000 stops, 1,000 preview rejections, 1,000 secret reveal cycles and
+  repeated clear actions without duplicate requests, cancellation or writes.
+- Fixed Node 24.14.0 acceptance passed lint, typecheck, 204 files / 1,006 frontend
+  tests and production build. Rust passed 77 with two reasoned ignores; QA
+  infrastructure passed 30/30 and the convergence ledger reports `PASS`.
+- Honest collision discovery grows inventory from 523 controls / 11,506 states /
+  1,064 tests to 526 / 11,572 / 1,085. Stable selectors remain complete at
+  526/526. Mapped controls rise from 397 to 404, states from 4,302 to 4,394 and
+  tests from 272 to 293.
+- Strict gaps still fall by 30 from 8,317 to 8,287 despite the 90-item denominator
+  expansion. Unmapped controls fall from 126 to 122, states from 7,204 to 7,178
+  and tests remain 792. Strict coverage is 5,149/13,436 (38.32%); control mapping
+  is 404/526 (76.81%); state mapping is 4,394/11,572 (37.97%); test mapping is
+  293/1,085 (27.00%).
+- Against the 11,088 / 136 reference, 2,801 mapping gaps and all 136 selector
   gaps are closed. Release gates remain 1/4 complete (25%), so the release
-  distance is 8,317 strict mappings plus real-provider smoke and packaged-EXE
+  distance is 8,287 strict mappings plus real-provider smoke and packaged-EXE
   acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
+
+## Previous milestone
+
+Creation Journey impact identity and trace convergence is complete against source
+`49e7280`: eight controls and one existing journey mapped, and fixed acceptance
+passed 985 frontend tests.
 
 ## Previous milestone
 
