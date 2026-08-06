@@ -4,32 +4,31 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Writer support control and navigation trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `32d3b20`.
+Global Rail and System Page trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `37cdcce`.
 
-- Story Library/Planning navigation items now expose a stable identity plus
-  exact `StoryViewId`. Pointer selection and Arrow/Home/End keyboard focus are
-  isolated into precise product tests so unrelated layout cases cannot acquire
-  false mappings.
-- Inline Draft write and shared Undo Toast actions now expose independent stable
-  identities. Existing tests verify enabled author-confirmed writing, stale or
-  empty blocking, discard and undo/dismiss behavior. Focused coverage passed
-  26/26 across six files.
-- Navigation passed 20/20 pressure rounds: 2,000 repeated pointer selections
-  preserved the exact final Story view. Explicit cleanup also removed the
-  pre-existing Market Navigation React `act` warning.
-- Node 24 passed lint, typecheck, 190 files / 979 tests and production build;
-  Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
-  Runtime/static discovery remains 979/979 and the 1,058-case ledger is `PASS`.
+- Global Rail items and System Page chapter search, Story-resource search and
+  version selection now expose stable identities plus exact mode/resource IDs.
+  Failure-first inventory and rendered contracts cover all four selector gaps.
+- A real navigation defect was fixed: selecting a system search result now
+  reveals the opened chapter in Works or the opened Story resource in
+  References instead of leaving the author stranded on the Search page.
+- The broad shell system-route case moved to the authoritative workspace test
+  source. Pointer tests now select all three dynamic System controls, while the
+  Global Rail path survives 10/10 pressure rounds and 1,000 repeated clicks.
+- Explicit component cleanup removed the final three React `act` warning
+  sources: System Page, Daily Writing Goal and Story Dashboard. Node 24 passed
+  lint, typecheck, 191 files / 979 tests and production build without those
+  warnings; Rust passed 77 with two reasoned ignores; QA passed 30/30.
 - Inventory remains 522 controls and 11,484 states. Mapped controls rise from
-  364 to 367, mapped states from 4,017 to 4,046 and mapped tests from 258 to
-  260. Strict gaps fall by 34 from 8,623 to 8,589, selector gaps from 22 to 19
-  and unmapped tests from 800 to 798.
+  367 to 372, mapped states from 4,046 to 4,069 and mapped tests from 260 to
+  262. Strict gaps fall by 31 from 8,589 to 8,558, selector gaps from 19 to 15
+  and unmapped tests from 798 to 796.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,728/13,317 (35.50%); stable selectors are 503/522 (96.36%); test mapping is
-  260/1,058 (24.57%). Against the 11,088 / 136 reference, 2,499 mapping gaps
-  and 117 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,589 strict mappings plus real-provider smoke and
+  4,759/13,317 (35.74%); stable selectors are 507/522 (97.13%); test mapping is
+  262/1,058 (24.76%). Against the 11,088 / 136 reference, 2,530 mapping gaps
+  and 121 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,558 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`.
 
 ## Previous milestone

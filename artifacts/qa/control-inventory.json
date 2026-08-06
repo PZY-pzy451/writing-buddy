@@ -3,8 +3,8 @@
   "discovery": {
     "sourceFiles": 102,
     "declarationCount": 522,
-    "semanticSelectorMapped": 503,
-    "semanticSelectorMissing": 19
+    "semanticSelectorMapped": 507,
+    "semanticSelectorMissing": 15
   },
   "controls": [
     {
@@ -7858,13 +7858,13 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-GLOBALRAIL-BUTTON-BBAD8740",
+      "id": "CTRL-GLOBALRAIL-BUTTON-FC3F16B8",
       "pageId": "PAGE-GLOBAL-SHELL",
       "featureId": "FEATURE-08-01",
       "controlType": "button",
       "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "stableSelectorValue": "global-rail-item",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -7878,35 +7878,35 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-VISIBLE",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-HIDDEN",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-ENABLED",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-DISABLED",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-POINTER",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-KEYBOARD",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-FOCUS-IN",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-FOCUS-OUT",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-REPEAT",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-DEDUPLICATION",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-LOADING",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-SUCCESS",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-FAILURE",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-CANCELLED",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-OFFLINE",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-PERMISSION",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-PERSISTENCE",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-RESTART",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-VISUAL",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-ACCESSIBLE-NAME",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-DESTRUCTIVE-CONFIRMATION",
-        "STATE-GLOBALRAIL-BUTTON-BBAD8740-UNDO"
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-VISIBLE",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-HIDDEN",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-ENABLED",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-DISABLED",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-POINTER",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-KEYBOARD",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-FOCUS-IN",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-FOCUS-OUT",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-REPEAT",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-DEDUPLICATION",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-LOADING",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-SUCCESS",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-FAILURE",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-CANCELLED",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-OFFLINE",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-PERMISSION",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-PERSISTENCE",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-RESTART",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-VISUAL",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-ACCESSIBLE-NAME",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-DESTRUCTIVE-CONFIRMATION",
+        "STATE-GLOBALRAIL-BUTTON-FC3F16B8-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": true,
       "source": "apps/desktop/src/shell/GlobalRail.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
       "id": "CTRL-INFORMATIONCONTROLPAGE-BUTTON-850BDF2A",
@@ -21718,13 +21718,13 @@
       "stableSelectorStatus": "MAPPED"
     },
     {
-      "id": "CTRL-SYSTEMPAGE-BUTTON-0219C345",
+      "id": "CTRL-SYSTEMPAGE-BUTTON-0D36C182",
       "pageId": "PAGE-WRITING-EDITOR",
       "featureId": "FEATURE-01-02",
       "controlType": "button",
       "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
+      "stableSelectorValue": "system-version-select",
+      "selectorStrategy": "data-testid",
       "visibleWhen": [
         "rendered source branch is active"
       ],
@@ -21738,137 +21738,35 @@
         "requires traceability assertion"
       ],
       "stateIds": [
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-VISIBLE",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-HIDDEN",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-ENABLED",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-DISABLED",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-POINTER",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-KEYBOARD",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-FOCUS-IN",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-FOCUS-OUT",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-REPEAT",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-DEDUPLICATION",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-LOADING",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-SUCCESS",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-FAILURE",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-CANCELLED",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-OFFLINE",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-PERMISSION",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-PERSISTENCE",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-RESTART",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-VISUAL",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-ACCESSIBLE-NAME",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-DESTRUCTIVE-CONFIRMATION",
-        "STATE-SYSTEMPAGE-BUTTON-0219C345-UNDO"
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-VISIBLE",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-HIDDEN",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-ENABLED",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-DISABLED",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-POINTER",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-KEYBOARD",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-FOCUS-IN",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-FOCUS-OUT",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-REPEAT",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-DEDUPLICATION",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-LOADING",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-SUCCESS",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-FAILURE",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-CANCELLED",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-OFFLINE",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-PERMISSION",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-PERSISTENCE",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-RESTART",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-VISUAL",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-ACCESSIBLE-NAME",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-DESTRUCTIVE-CONFIRMATION",
+        "STATE-SYSTEMPAGE-BUTTON-0D36C182-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
       "nativeRuntimeRequired": false,
       "aiRequired": false,
       "source": "apps/desktop/src/workspace/SystemPage.tsx",
-      "stableSelectorStatus": "UNMAPPED"
-    },
-    {
-      "id": "CTRL-SYSTEMPAGE-BUTTON-1AFCA6B8",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "featureId": "FEATURE-01-02",
-      "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-VISIBLE",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-HIDDEN",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-ENABLED",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-DISABLED",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-POINTER",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-KEYBOARD",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-FOCUS-IN",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-FOCUS-OUT",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-REPEAT",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-DEDUPLICATION",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-LOADING",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-SUCCESS",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-FAILURE",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-CANCELLED",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-OFFLINE",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-PERMISSION",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-PERSISTENCE",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-RESTART",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-VISUAL",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-ACCESSIBLE-NAME",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-DESTRUCTIVE-CONFIRMATION",
-        "STATE-SYSTEMPAGE-BUTTON-1AFCA6B8-UNDO"
-      ],
-      "persistenceExpected": false,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/workspace/SystemPage.tsx",
-      "stableSelectorStatus": "UNMAPPED"
-    },
-    {
-      "id": "CTRL-SYSTEMPAGE-BUTTON-2175997B",
-      "pageId": "PAGE-WRITING-EDITOR",
-      "featureId": "FEATURE-01-02",
-      "controlType": "button",
-      "accessibleName": "",
-      "stableSelectorValue": "",
-      "selectorStrategy": "MISSING_STABLE_SELECTOR",
-      "visibleWhen": [
-        "rendered source branch is active"
-      ],
-      "enabledWhen": [
-        "rendered"
-      ],
-      "actions": [
-        "onClick"
-      ],
-      "expectedEffects": [
-        "requires traceability assertion"
-      ],
-      "stateIds": [
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-VISIBLE",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-HIDDEN",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-ENABLED",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-DISABLED",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-POINTER",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-KEYBOARD",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-FOCUS-IN",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-FOCUS-OUT",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-REPEAT",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-DEDUPLICATION",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-LOADING",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-SUCCESS",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-FAILURE",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-CANCELLED",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-OFFLINE",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-PERMISSION",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-PERSISTENCE",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-RESTART",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-VISUAL",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-ACCESSIBLE-NAME",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-DESTRUCTIVE-CONFIRMATION",
-        "STATE-SYSTEMPAGE-BUTTON-2175997B-UNDO"
-      ],
-      "persistenceExpected": false,
-      "destructive": false,
-      "nativeRuntimeRequired": false,
-      "aiRequired": false,
-      "source": "apps/desktop/src/workspace/SystemPage.tsx",
-      "stableSelectorStatus": "UNMAPPED"
+      "stableSelectorStatus": "MAPPED"
     },
     {
       "id": "CTRL-SYSTEMPAGE-BUTTON-31F70F13",
@@ -22015,6 +21913,108 @@
         "STATE-SYSTEMPAGE-BUTTON-A1551E37-ACCESSIBLE-NAME",
         "STATE-SYSTEMPAGE-BUTTON-A1551E37-DESTRUCTIVE-CONFIRMATION",
         "STATE-SYSTEMPAGE-BUTTON-A1551E37-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/workspace/SystemPage.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-SYSTEMPAGE-BUTTON-C893BD47",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "featureId": "FEATURE-01-02",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "system-search-story-resource",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-VISIBLE",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-HIDDEN",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-ENABLED",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-DISABLED",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-POINTER",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-KEYBOARD",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-FOCUS-IN",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-FOCUS-OUT",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-REPEAT",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-DEDUPLICATION",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-LOADING",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-SUCCESS",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-FAILURE",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-CANCELLED",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-OFFLINE",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-PERMISSION",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-PERSISTENCE",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-RESTART",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-VISUAL",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-ACCESSIBLE-NAME",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-DESTRUCTIVE-CONFIRMATION",
+        "STATE-SYSTEMPAGE-BUTTON-C893BD47-UNDO"
+      ],
+      "persistenceExpected": false,
+      "destructive": false,
+      "nativeRuntimeRequired": false,
+      "aiRequired": false,
+      "source": "apps/desktop/src/workspace/SystemPage.tsx",
+      "stableSelectorStatus": "MAPPED"
+    },
+    {
+      "id": "CTRL-SYSTEMPAGE-BUTTON-DA0A80D6",
+      "pageId": "PAGE-WRITING-EDITOR",
+      "featureId": "FEATURE-01-02",
+      "controlType": "button",
+      "accessibleName": "",
+      "stableSelectorValue": "system-search-resource",
+      "selectorStrategy": "data-testid",
+      "visibleWhen": [
+        "rendered source branch is active"
+      ],
+      "enabledWhen": [
+        "rendered"
+      ],
+      "actions": [
+        "onClick"
+      ],
+      "expectedEffects": [
+        "requires traceability assertion"
+      ],
+      "stateIds": [
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-VISIBLE",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-HIDDEN",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-ENABLED",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-DISABLED",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-POINTER",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-KEYBOARD",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-FOCUS-IN",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-FOCUS-OUT",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-REPEAT",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-DEDUPLICATION",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-LOADING",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-SUCCESS",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-FAILURE",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-CANCELLED",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-OFFLINE",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-PERMISSION",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-PERSISTENCE",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-RESTART",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-VISUAL",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-ACCESSIBLE-NAME",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-DESTRUCTIVE-CONFIRMATION",
+        "STATE-SYSTEMPAGE-BUTTON-DA0A80D6-UNDO"
       ],
       "persistenceExpected": false,
       "destructive": false,
