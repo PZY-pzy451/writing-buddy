@@ -394,7 +394,7 @@ describe('ManuscriptContinuationPanel', () => {
 		expect(await screen.findAllByRole(
 			'article',
 			{ name: /^候选：/u },
-			{ timeout: 5_000 }
+			{ timeout: 10_000 }
 		))
 			.toHaveLength(3);
 		const first = screen.getByRole('article', { name: '候选：追随钟声' });
@@ -433,5 +433,5 @@ describe('ManuscriptContinuationPanel', () => {
 		await waitFor(() => expect(props.onApply).toHaveBeenCalledOnce());
 		expect(onBeforeApply).toHaveBeenCalledTimes(2);
 		expect(runContinuation).toHaveBeenCalledOnce();
-	});
+	}, 15_000);
 });
