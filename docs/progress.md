@@ -4,32 +4,34 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Global Rail and System Page trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `37cdcce`.
+Dynamic navigation and backup-action trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3b6b7298`.
 
-- Global Rail items and System Page chapter search, Story-resource search and
-  version selection now expose stable identities plus exact mode/resource IDs.
-  Failure-first inventory and rendered contracts cover all four selector gaps.
-- A real navigation defect was fixed: selecting a system search result now
-  reveals the opened chapter in Works or the opened Story resource in
-  References instead of leaving the author stranded on the Search page.
-- The broad shell system-route case moved to the authoritative workspace test
-  source. Pointer tests now select all three dynamic System controls, while the
-  Global Rail path survives 10/10 pressure rounds and 1,000 repeated clicks.
-- Explicit component cleanup removed the final three React `act` warning
-  sources: System Page, Daily Writing Goal and Story Dashboard. Node 24 passed
-  lint, typecheck, 191 files / 979 tests and production build without those
-  warnings; Rust passed 77 with two reasoned ignores; QA passed 30/30.
+- Project actions, portable-backup actions, Story asset rows, Writer Navigator
+  results and Writer Tool Rail items now expose stable type selectors plus exact
+  business IDs. Failure-first rendered and inventory contracts reproduced all
+  five selector gaps before implementation.
+- Pressure testing exposed a real reentrancy defect: same-frame backup clicks
+  could pass the React-state guard and start duplicate work. A synchronous ref
+  guard now protects create, choose and restore while preserving integrity
+  checks and error recovery.
+- Existing backup and navigator journeys moved to authoritative feature tests;
+  project-action and tool-rail journeys were strengthened in place. The runtime
+  total remains 979 rather than growing to manufacture mapping progress.
+- The focused suite passed 58/58 across seven files. Backup/tool pressure passed
+  10/10 rounds and 2,000 operations. Fixed Node 24 acceptance passed lint,
+  typecheck, 193 files / 979 frontend tests and production build with zero
+  engine warnings. Rust passed 77 with two reasoned ignores; QA passed 30/30.
 - Inventory remains 522 controls and 11,484 states. Mapped controls rise from
-  367 to 372, mapped states from 4,046 to 4,069 and mapped tests from 260 to
-  262. Strict gaps fall by 31 from 8,589 to 8,558, selector gaps from 19 to 15
-  and unmapped tests from 798 to 796.
+  372 to 377, mapped states from 4,069 to 4,127 and mapped tests from 262 to
+  263. Strict gaps fall by 66 from 8,558 to 8,492, selector gaps from 15 to 10
+  and unmapped tests from 796 to 795.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,759/13,317 (35.74%); stable selectors are 507/522 (97.13%); test mapping is
-  262/1,058 (24.76%). Against the 11,088 / 136 reference, 2,530 mapping gaps
-  and 121 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,558 strict mappings plus real-provider smoke and
-  packaged-EXE acceptance. Product stays `PARTIAL`.
+  4,825/13,317 (36.23%); stable selectors are 512/522 (98.08%); test mapping is
+  263/1,058 (24.86%). Against the 11,088 / 136 reference, 2,596 mapping gaps
+  and 126 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,492 strict mappings plus real-provider smoke and
+  packaged-EXE acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
 
 ## Previous milestone
 
