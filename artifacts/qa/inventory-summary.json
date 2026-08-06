@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "PARTIAL",
+  "status": "COMPLETE",
   "counts": {
     "domains": 12,
     "features": 151,
@@ -10,11 +10,11 @@
     "states": 11484,
     "shortcuts": 23,
     "nativeActions": 55,
-    "discoveredTests": 1058,
-    "frontendDiscoveredTests": 979,
+    "discoveredTests": 1064,
+    "frontendDiscoveredTests": 985,
     "parameterizedTestInstances": 97,
     "unresolvedParameterizedDeclarations": 0,
-    "missingStableSelectors": 10
+    "missingStableSelectors": 0
   },
   "notes": [
     "Controls are unique interactive source declarations; repeated rendered collection instances share one declaration.",

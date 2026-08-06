@@ -4,33 +4,34 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Dynamic navigation and backup-action trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3b6b7298`.
+Final anonymous-control and user-path trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3831b77`.
 
-- Project actions, portable-backup actions, Story asset rows, Writer Navigator
-  results and Writer Tool Rail items now expose stable type selectors plus exact
-  business IDs. Failure-first rendered and inventory contracts reproduced all
-  five selector gaps before implementation.
-- Pressure testing exposed a real reentrancy defect: same-frame backup clicks
-  could pass the React-state guard and start duplicate work. A synchronous ref
-  guard now protects create, choose and restore while preserving integrity
-  checks and error recovery.
-- Existing backup and navigator journeys moved to authoritative feature tests;
-  project-action and tool-rail journeys were strengthened in place. The runtime
-  total remains 979 rather than growing to manufacture mapping progress.
-- The focused suite passed 58/58 across seven files. Backup/tool pressure passed
-  10/10 rounds and 2,000 operations. Fixed Node 24 acceptance passed lint,
-  typecheck, 193 files / 979 frontend tests and production build with zero
-  engine warnings. Rust passed 77 with two reasoned ignores; QA passed 30/30.
-- Inventory remains 522 controls and 11,484 states. Mapped controls rise from
-  372 to 377, mapped states from 4,069 to 4,127 and mapped tests from 262 to
-  263. Strict gaps fall by 66 from 8,558 to 8,492, selector gaps from 15 to 10
-  and unmapped tests from 796 to 795.
+- Backlinks, Creation Journey Sidebar, Foreshadowing Table, Project Sidebar,
+  Resource Tabs, Scene Planning, Task Dock and Resource Editor now expose stable
+  type selectors plus exact business IDs. Failure-first component and inventory
+  contracts reproduced all ten remaining anonymous declarations.
+- Authoritative rendered tests now drive the exact controls and observable user
+  outcomes. Scene planning covers generate, field selection, snapshot and apply;
+  review reaches the enabled issue target; resource editing verifies an atomic
+  write. Newly added tests all map, while two existing unmapped paths also close.
+- Same-frame pressure passed 10/10 rounds and 3,000 operations across scene-plan
+  generation, recent-project opening and resource-tab selection. Each round kept
+  one generation request and one project open while preserving deterministic tab
+  focus.
+- The focused suite passed 61/61 across ten files. Fixed Node 24.14.0 acceptance
+  passed lint, typecheck, 197 files / 985 frontend tests and production build.
+  Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
+- Inventory remains 522 controls and 11,484 states while discovered tests rise
+  from 1,058 to 1,064. Mapped controls rise from 377 to 389, mapped states from
+  4,127 to 4,224 and mapped tests from 263 to 271. Strict gaps fall by 111 from
+  8,492 to 8,381, selector gaps from 10 to 0 and unmapped tests from 795 to 793.
 - Quantified status: deterministic execution is 100%; strict coverage is
-  4,825/13,317 (36.23%); stable selectors are 512/522 (98.08%); test mapping is
-  263/1,058 (24.86%). Against the 11,088 / 136 reference, 2,596 mapping gaps
-  and 126 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,492 strict mappings plus real-provider smoke and
+  4,942/13,323 (37.09%); stable selectors are 522/522 (100%); control mapping is
+  389/522 (74.52%); state mapping is 4,224/11,484 (36.78%); test mapping is
+  271/1,064 (25.47%). Against the 11,088 / 136 reference, 2,707 mapping gaps and
+  all 136 selector gaps are closed. Release gates remain 1/4 complete (25%), so
+  the release distance is 8,381 strict mappings plus real-provider smoke and
   packaged-EXE acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
 
 ## Previous milestone
