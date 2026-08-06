@@ -28252,6 +28252,358 @@
       "applicability": "UNASSESSED"
     },
     {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-VISIBLE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-HIDDEN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-ENABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-DISABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-POINTER",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-KEYBOARD",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-FOCUS-IN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-FOCUS-OUT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-REPEAT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-DEDUPLICATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-LOADING",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-SUCCESS",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-FAILURE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-CANCELLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-OFFLINE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-PERMISSION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-PERSISTENCE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-RESTART",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-VISUAL",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2A27D55B-UNDO",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-2A27D55B"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
       "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-2B6FE9A9-VISIBLE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
@@ -28604,11 +28956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-VISIBLE",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-VISIBLE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -28620,11 +28972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-HIDDEN",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-HIDDEN",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -28636,11 +28988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-ENABLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-ENABLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -28652,11 +29004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-DISABLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-DISABLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -28668,11 +29020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-POINTER",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-POINTER",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -28684,11 +29036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-KEYBOARD",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-KEYBOARD",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -28700,11 +29052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-FOCUS-IN",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-FOCUS-IN",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -28716,11 +29068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-FOCUS-OUT",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-FOCUS-OUT",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -28732,11 +29084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-REPEAT",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-REPEAT",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -28748,11 +29100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-DEDUPLICATION",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-DEDUPLICATION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -28764,11 +29116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-LOADING",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-LOADING",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -28780,11 +29132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-SUCCESS",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-SUCCESS",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -28796,11 +29148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-FAILURE",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-FAILURE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -28812,11 +29164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-CANCELLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-CANCELLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -28828,11 +29180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-OFFLINE",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-OFFLINE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -28844,11 +29196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-PERMISSION",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-PERMISSION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -28860,11 +29212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-PERSISTENCE",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-PERSISTENCE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -28876,11 +29228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-RESTART",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-RESTART",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -28892,11 +29244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-VISUAL",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-VISUAL",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -28908,11 +29260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-ACCESSIBLE-NAME",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -28924,11 +29276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -28940,715 +29292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-47588731-UNDO",
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9-UNDO",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-47588731"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-VISIBLE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-HIDDEN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-ENABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-DISABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-POINTER",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-KEYBOARD",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-FOCUS-IN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-FOCUS-OUT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-REPEAT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-DEDUPLICATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-LOADING",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-SUCCESS",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-FAILURE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-CANCELLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-OFFLINE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-PERMISSION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-PERSISTENCE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-RESTART",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-VISUAL",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-52E194CC-UNDO",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-52E194CC"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-VISIBLE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-HIDDEN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-ENABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-DISABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-POINTER",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-KEYBOARD",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-FOCUS-IN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-FOCUS-OUT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-REPEAT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-DEDUPLICATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-LOADING",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-SUCCESS",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-FAILURE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-CANCELLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-OFFLINE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-PERMISSION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-PERSISTENCE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-RESTART",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-VISUAL",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-5353F451-UNDO",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-5353F451"
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-37EBFFF9"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -32828,6 +32476,710 @@
       "applicability": "UNASSESSED"
     },
     {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-VISIBLE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-HIDDEN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-ENABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-DISABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-POINTER",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-KEYBOARD",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-FOCUS-IN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-FOCUS-OUT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-REPEAT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-DEDUPLICATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-LOADING",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-SUCCESS",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-FAILURE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-CANCELLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-OFFLINE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-PERMISSION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-PERSISTENCE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-RESTART",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-VISUAL",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-92A6FD25-UNDO",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-92A6FD25"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-VISIBLE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-HIDDEN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-ENABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-DISABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-POINTER",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-KEYBOARD",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-FOCUS-IN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-FOCUS-OUT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-REPEAT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-DEDUPLICATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-LOADING",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-SUCCESS",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-FAILURE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-CANCELLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-OFFLINE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-PERMISSION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-PERSISTENCE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-RESTART",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-VISUAL",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-964AAA6E-UNDO",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-964AAA6E"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
       "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-A260A25B-VISIBLE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
@@ -33521,358 +33873,6 @@
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
         "CTRL-CREATIONJOURNEYPAGE-BUTTON-A5802D35"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-VISIBLE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-HIDDEN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-ENABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-DISABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-POINTER",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-KEYBOARD",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-FOCUS-IN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-FOCUS-OUT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-REPEAT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-DEDUPLICATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-LOADING",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-SUCCESS",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-FAILURE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-CANCELLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-OFFLINE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-PERMISSION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-PERSISTENCE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-RESTART",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-VISUAL",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-B56C0D56-UNDO",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-BUTTON-B56C0D56"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -34929,6 +34929,358 @@
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
         "CTRL-CREATIONJOURNEYPAGE-BUTTON-DC8ABFAC"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-VISIBLE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-HIDDEN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-ENABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-DISABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-POINTER",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-KEYBOARD",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-FOCUS-IN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-FOCUS-OUT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-REPEAT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-DEDUPLICATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-LOADING",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-SUCCESS",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-FAILURE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-CANCELLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-OFFLINE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-PERMISSION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-PERSISTENCE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-RESTART",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-VISUAL",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-BUTTON-DCA151E7-UNDO",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-BUTTON-DCA151E7"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -37052,11 +37404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-VISIBLE",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-VISIBLE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -37068,11 +37420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-HIDDEN",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-HIDDEN",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -37084,11 +37436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-ENABLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-ENABLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -37100,11 +37452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-DISABLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-DISABLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -37116,11 +37468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-POINTER",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-POINTER",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -37132,11 +37484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-KEYBOARD",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-KEYBOARD",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -37148,11 +37500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-FOCUS-IN",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-FOCUS-IN",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -37164,11 +37516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-FOCUS-OUT",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-FOCUS-OUT",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -37180,11 +37532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-REPEAT",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-REPEAT",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -37196,11 +37548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-DEDUPLICATION",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-DEDUPLICATION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -37212,11 +37564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-LOADING",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-LOADING",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -37228,11 +37580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-SUCCESS",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-SUCCESS",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -37244,11 +37596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-FAILURE",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-FAILURE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -37260,11 +37612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-CANCELLED",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-CANCELLED",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -37276,11 +37628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-OFFLINE",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-OFFLINE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -37292,11 +37644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-PERMISSION",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-PERMISSION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -37308,11 +37660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-PERSISTENCE",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-PERSISTENCE",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -37324,11 +37676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-RESTART",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-RESTART",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -37340,11 +37692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-VISUAL",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-VISUAL",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -37356,11 +37708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-ACCESSIBLE-NAME",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-ACCESSIBLE-NAME",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -37372,11 +37724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -37388,11 +37740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4-UNDO",
+      "id": "STATE-CREATIONJOURNEYPAGE-INPUT-DE4133AE-UNDO",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-INPUT-F1CD2EE4"
+        "CTRL-CREATIONJOURNEYPAGE-INPUT-DE4133AE"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -38801,6 +39153,358 @@
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
         "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-1E526039"
+      ],
+      "name": "撤销",
+      "dimension": "UNDO",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-VISIBLE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "是否显示",
+      "dimension": "VISIBLE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-HIDDEN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "是否隐藏",
+      "dimension": "HIDDEN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-ENABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "是否启用",
+      "dimension": "ENABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-DISABLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "是否禁用",
+      "dimension": "DISABLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-POINTER",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "鼠标操作",
+      "dimension": "POINTER",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-KEYBOARD",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "键盘操作",
+      "dimension": "KEYBOARD",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-FOCUS-IN",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "焦点进入",
+      "dimension": "FOCUS-IN",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-FOCUS-OUT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "焦点离开",
+      "dimension": "FOCUS-OUT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-REPEAT",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "重复操作",
+      "dimension": "REPEAT",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-DEDUPLICATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "防重复提交",
+      "dimension": "DEDUPLICATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-LOADING",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "加载状态",
+      "dimension": "LOADING",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-SUCCESS",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "成功状态",
+      "dimension": "SUCCESS",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-FAILURE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "失败状态",
+      "dimension": "FAILURE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-CANCELLED",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "取消状态",
+      "dimension": "CANCELLED",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-OFFLINE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "离线状态",
+      "dimension": "OFFLINE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-PERMISSION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "权限状态",
+      "dimension": "PERMISSION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-PERSISTENCE",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "持久化",
+      "dimension": "PERSISTENCE",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-RESTART",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "重启恢复",
+      "dimension": "RESTART",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-VISUAL",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "视觉状态",
+      "dimension": "VISUAL",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-ACCESSIBLE-NAME",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "无障碍名称",
+      "dimension": "ACCESSIBLE-NAME",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-DESTRUCTIVE-CONFIRMATION",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
+      ],
+      "name": "破坏性确认",
+      "dimension": "DESTRUCTIVE-CONFIRMATION",
+      "preconditions": [
+        "requires scenario assessment"
+      ],
+      "expectedVisualState": "UNASSESSED",
+      "expectedFunctionalState": "UNASSESSED",
+      "applicability": "UNASSESSED"
+    },
+    {
+      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-7919338E-UNDO",
+      "featureId": "FEATURE-02-01",
+      "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlIds": [
+        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-7919338E"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -40561,358 +41265,6 @@
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
       "controlIds": [
         "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-DFE38673"
-      ],
-      "name": "撤销",
-      "dimension": "UNDO",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-VISIBLE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "是否显示",
-      "dimension": "VISIBLE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-HIDDEN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "是否隐藏",
-      "dimension": "HIDDEN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-ENABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "是否启用",
-      "dimension": "ENABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-DISABLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "是否禁用",
-      "dimension": "DISABLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-POINTER",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "鼠标操作",
-      "dimension": "POINTER",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-KEYBOARD",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "键盘操作",
-      "dimension": "KEYBOARD",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-FOCUS-IN",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "焦点进入",
-      "dimension": "FOCUS-IN",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-FOCUS-OUT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "焦点离开",
-      "dimension": "FOCUS-OUT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-REPEAT",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "重复操作",
-      "dimension": "REPEAT",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-DEDUPLICATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "防重复提交",
-      "dimension": "DEDUPLICATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-LOADING",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "加载状态",
-      "dimension": "LOADING",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-SUCCESS",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "成功状态",
-      "dimension": "SUCCESS",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-FAILURE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "失败状态",
-      "dimension": "FAILURE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-CANCELLED",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "取消状态",
-      "dimension": "CANCELLED",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-OFFLINE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "离线状态",
-      "dimension": "OFFLINE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-PERMISSION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "权限状态",
-      "dimension": "PERMISSION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-PERSISTENCE",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "持久化",
-      "dimension": "PERSISTENCE",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-RESTART",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "重启恢复",
-      "dimension": "RESTART",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-VISUAL",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "视觉状态",
-      "dimension": "VISUAL",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-ACCESSIBLE-NAME",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "无障碍名称",
-      "dimension": "ACCESSIBLE-NAME",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-DESTRUCTIVE-CONFIRMATION",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
-      ],
-      "name": "破坏性确认",
-      "dimension": "DESTRUCTIVE-CONFIRMATION",
-      "preconditions": [
-        "requires scenario assessment"
-      ],
-      "expectedVisualState": "UNASSESSED",
-      "expectedFunctionalState": "UNASSESSED",
-      "applicability": "UNASSESSED"
-    },
-    {
-      "id": "STATE-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A-UNDO",
-      "featureId": "FEATURE-02-01",
-      "pageId": "PAGE-STORY-CREATION-JOURNEY",
-      "controlIds": [
-        "CTRL-CREATIONJOURNEYPAGE-TEXTAREA-FEE5766A"
       ],
       "name": "撤销",
       "dimension": "UNDO",

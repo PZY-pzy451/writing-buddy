@@ -4,35 +4,43 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Final anonymous-control and user-path trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3831b77`.
+Creation Journey impact identity and trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `49e7280`.
 
-- Backlinks, Creation Journey Sidebar, Foreshadowing Table, Project Sidebar,
-  Resource Tabs, Scene Planning, Task Dock and Resource Editor now expose stable
-  type selectors plus exact business IDs. Failure-first component and inventory
-  contracts reproduced all ten remaining anonymous declarations.
-- Authoritative rendered tests now drive the exact controls and observable user
-  outcomes. Scene planning covers generate, field selection, snapshot and apply;
-  review reaches the enabled issue target; resource editing verifies an atomic
-  write. Newly added tests all map, while two existing unmapped paths also close.
-- Same-frame pressure passed 10/10 rounds and 3,000 operations across scene-plan
-  generation, recent-project opening and resource-tab selection. Each round kept
-  one generation request and one project open while preserving deterministic tab
-  focus.
-- The focused suite passed 61/61 across ten files. Fixed Node 24.14.0 acceptance
-  passed lint, typecheck, 197 files / 985 frontend tests and production build.
-  Rust passed 77 with two reasoned ignores; QA infrastructure passed 30/30.
-- Inventory remains 522 controls and 11,484 states while discovered tests rise
-  from 1,058 to 1,064. Mapped controls rise from 377 to 389, mapped states from
-  4,127 to 4,224 and mapped tests from 263 to 271. Strict gaps fall by 111 from
-  8,492 to 8,381, selector gaps from 10 to 0 and unmapped tests from 795 to 793.
-- Quantified status: deterministic execution is 100%; strict coverage is
-  4,942/13,323 (37.09%); stable selectors are 522/522 (100%); control mapping is
-  389/522 (74.52%); state mapping is 4,224/11,484 (36.78%); test mapping is
-  271/1,064 (25.47%). Against the 11,088 / 136 reference, 2,707 mapping gaps and
-  all 136 selector gaps are closed. Release gates remain 1/4 complete (25%), so
-  the release distance is 8,381 strict mappings plus real-provider smoke and
-  packaged-EXE acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
+- Guidance options, repeated core fields and impact actions now expose stable
+  type selectors plus exact option, field and impact IDs. Failure-first tests
+  reproduced missing identities before implementation.
+- Pressure testing exposed a real reentrancy defect: 100 same-frame impact
+  regeneration clicks started 100 provider requests before React rendered the
+  busy state. A synchronous request guard now keeps one request in flight;
+  repeated keep actions on an already resolved impact return without false error.
+- The existing end-to-end author journey now selects a guidance answer, locks and
+  edits exact core fields, persists upstream changes, resolves exact impacts and
+  verifies keyboard focus restoration. It moves from unmapped to mapped without
+  adding a synthetic runtime case.
+- Focused tests passed 16/16; Creation Journey passed 19 files / 66 tests. Ten
+  pressure rounds and 2,000 same-frame impact actions passed. Fixed Node 24.14.0
+  acceptance passed lint, typecheck, 197 files / 985 frontend tests and production
+  build. Rust passed 77 with two reasoned ignores; QA passed 30/30.
+- Honest discovery adds one previously omitted real control, moving inventory
+  from 522 controls / 11,484 states to 523 / 11,506. Stable selectors remain
+  complete at 523/523. Mapped controls rise from 389 to 397, mapped states from
+  4,224 to 4,302 and mapped tests from 271 to 272.
+- Strict gaps fall by 64 from 8,381 to 8,317 despite the larger denominator.
+  Unmapped controls fall from 133 to 126, states from 7,260 to 7,204 and tests
+  from 793 to 792. Strict coverage is 5,029/13,346 (37.68%); control mapping is
+  397/523 (75.91%); state mapping is 4,302/11,506 (37.39%); test mapping is
+  272/1,064 (25.56%).
+- Against the 11,088 / 136 reference, 2,771 mapping gaps and all 136 selector
+  gaps are closed. Release gates remain 1/4 complete (25%), so the release
+  distance is 8,317 strict mappings plus real-provider smoke and packaged-EXE
+  acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
+
+## Previous milestone
+
+Final anonymous-control convergence is complete against source `3831b77`: all
+ten remaining selector gaps were closed, eight new tests mapped and fixed
+acceptance passed 985 frontend tests.
 
 ## Previous milestone
 
