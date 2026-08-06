@@ -4,42 +4,43 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-AI diagnostics control identity and trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `eeb2133`.
+AI settings provider-action selector and trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against source `3ae6b89d`.
 
-- Seven AI diagnostic controls now expose stable type selectors plus exact action
-  identities: open settings, start, stop, copy, clear, secret reveal and preview
-  rejection. Each control has an isolated rendered test source so traceability
-  cannot map unrelated tests merely because they share one broad file.
-- Failure-first tests reproduced all missing identities. A second staged failure
-  exposed a real accessibility defect: the API-key reveal action worked only for
-  pointer users. Enter and Space now reveal only while held; keyup, Escape,
-  pointer cancel, pointer leave and blur all restore the password field.
-- Inventory regeneration exposed two static-identity collisions: start/stop and
-  copy/clear had been counted as two controls instead of four. The controls are
-  now independently inventoried and the QA gate verifies the exact six-control
-  AI Playground selector set instead of accepting the old collided count.
-- Focused tests passed 7 files / 22 tests; the entire AI domain passed 14 files /
-  140 tests. Ten pressure rounds passed 220 rendered cases, including 1,000 rapid
-  starts, 1,000 stops, 1,000 preview rejections, 1,000 secret reveal cycles and
-  repeated clear actions without duplicate requests, cancellation or writes.
-- Fixed Node 24.14.0 acceptance passed lint, typecheck, 204 files / 1,006 frontend
+- Save key, test connection, request/confirm/cancel credential removal, refresh
+  models and refresh balance now have independent `data-testid` and
+  `data-ai-action` identities. Inventory had collapsed five of these real buttons
+  into adjacent localized controls; the QA gate now requires the exact 12-control
+  AI Settings selector set.
+- Failure-first rendered contracts failed 7 files / 8 tests solely on the missing
+  identities. Eight broad Store-call tests were then migrated or consolidated
+  into isolated user-control contracts without dropping their single-flight,
+  redaction, retry, partial-output or notice-replacement assertions.
+- Focused settings coverage passed 8 files / 28 tests. Ten pressure rounds passed
+  280 rendered cases and 4,000+ rapid actions with one provider, cancellation or
+  deletion call per active action. The entire AI domain passed 21 files / 147 tests.
+- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,013 frontend
   tests and production build. Rust passed 77 with two reasoned ignores; QA
   infrastructure passed 30/30 and the convergence ledger reports `PASS`.
-- Honest collision discovery grows inventory from 523 controls / 11,506 states /
-  1,064 tests to 526 / 11,572 / 1,085. Stable selectors remain complete at
-  526/526. Mapped controls rise from 397 to 404, states from 4,302 to 4,395 and
-  tests from 272 to 294. A final orphan audit mapped the existing pending-apply
-  rejection contract to the loading state without adding or weakening a test.
-- Strict gaps fall by 32 from 8,317 to 8,285 despite the 90-item denominator
-  expansion. Unmapped controls fall from 126 to 122, states from 7,204 to 7,177
-  and tests from 792 to 791. Strict coverage is 5,151/13,436 (38.34%); control
-  mapping is 404/526 (76.81%); state mapping is 4,395/11,572 (37.98%); test
-  mapping is 294/1,085 (27.10%).
-- Against the 11,088 / 136 reference, 2,803 mapping gaps and all 136 selector
+- Honest identity discovery expands inventory from 526 controls / 11,572 states /
+  1,085 tests to 531 / 11,682 / 1,092. Stable selectors remain complete at
+  531/531. Mapped controls rise from 404 to 409, states from 4,395 to 4,503 and
+  tests from 294 to 309.
+- Despite adding five controls, 110 states and seven tests, strict gaps fall by 6
+  from 8,285 to 8,279. Unmapped controls remain 122, states move from 7,177 to
+  7,179 and tests fall from 791 to 783. Strict coverage is 5,279/13,558 (38.94%);
+  control mapping is 409/531 (77.02%); state mapping is 4,503/11,682 (38.55%);
+  test mapping is 309/1,092 (28.30%).
+- Against the 11,088 / 136 reference, 2,809 mapping gaps and all 136 selector
   gaps are closed. Release gates remain 1/4 complete (25%), so the release
-  distance is 8,285 strict mappings plus real-provider smoke and packaged-EXE
+  distance is 8,279 strict mappings plus real-provider smoke and packaged-EXE
   acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
+
+## Previous milestone
+
+AI diagnostics control identity and trace convergence completed against source
+`eeb2133`: seven diagnostic actions received isolated identities, API-key reveal
+became keyboard accessible, and strict gaps reached 8,285.
 
 ## Previous milestone
 
