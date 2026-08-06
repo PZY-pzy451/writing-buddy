@@ -377,6 +377,11 @@ describe('ManuscriptExtractionCenterService', () => {
 
 	it('maps timeout and malformed provider responses to safe retryable codes', () => {
 		expect(extractionErrorCode(new Error('connection_timeout'))).toBe('connection_timeout');
+		expect(extractionErrorCode({
+			code: 'network_unavailable',
+			message: 'raw-provider-network-detail',
+			retryable: true
+		})).toBe('network_unavailable');
 		expect(extractionErrorCode(new SyntaxError('Unexpected token in JSON')))
 			.toBe('invalid-response');
 		expect(extractionErrorCode(new Error('provider leaked internal diagnostics')))

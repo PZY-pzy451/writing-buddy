@@ -201,8 +201,38 @@ describe('control inventory rendered-element boundary', () => {
 		const missingSelectors = extractionControls.filter(control => (
 			control.stableSelectorStatus !== 'MAPPED'
 		));
+		const selectors = extractionControls
+			.map(control => control.stableSelectorValue)
+			.sort();
 
-		expect(extractionControls).toHaveLength(19);
+		expect(selectors).toEqual([
+			'extraction-author-instruction',
+			'extraction-base-chapter',
+			'extraction-candidate-defer',
+			'extraction-candidate-evidence',
+			'extraction-candidate-option',
+			'extraction-candidate-reject',
+			'extraction-candidate-type-filter',
+			'extraction-chapter-option',
+			'extraction-confirm-selected',
+			'extraction-conflict-only',
+			'extraction-plan',
+			'extraction-reconciliation-defer',
+			'extraction-reconciliation-evidence',
+			'extraction-reconciliation-field',
+			'extraction-reconciliation-keep-difference',
+			'extraction-reconciliation-open-editor',
+			'extraction-reconciliation-replan-stale-batch',
+			'extraction-reconciliation-select-outline-fields',
+			'extraction-refresh-stale-chapter',
+			'extraction-replan-stale-batch',
+			'extraction-run-history',
+			'extraction-scope-option',
+			'extraction-start-or-resume',
+			'extraction-stop',
+			'extraction-target-type',
+			'extraction-undo-confirmation'
+		]);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
 	});
 

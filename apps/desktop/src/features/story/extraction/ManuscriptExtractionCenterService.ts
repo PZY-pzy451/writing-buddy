@@ -302,6 +302,17 @@ function serializeFile(runs: readonly ManuscriptExtractionRun[]): string {
 }
 
 export function extractionErrorCode(reason: unknown): ManuscriptExtractionErrorCode {
+	const structuredCode = reason !== null
+		&& typeof reason === 'object'
+		&& 'code' in reason
+		? (reason as { readonly code?: unknown }).code
+		: undefined;
+	if (
+		typeof structuredCode === 'string'
+		&& errorCodes.includes(structuredCode as ManuscriptExtractionErrorCode)
+	) {
+		return structuredCode as ManuscriptExtractionErrorCode;
+	}
 	const value = reason instanceof Error ? reason.message : String(reason);
 	if (errorCodes.includes(value as ManuscriptExtractionErrorCode)) {
 		return value as ManuscriptExtractionErrorCode;

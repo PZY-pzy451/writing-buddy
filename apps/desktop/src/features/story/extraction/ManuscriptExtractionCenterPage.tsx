@@ -931,6 +931,7 @@ export function ManuscriptExtractionCenterPage(props: {
 							<button
 								type="button"
 								data-testid="extraction-scope-option"
+								data-extraction-scope={id}
 								role="radio"
 								aria-checked={scope === id}
 								className={scope === id ? 'is-active' : ''}
@@ -960,9 +961,10 @@ export function ManuscriptExtractionCenterPage(props: {
 						<div className="extraction-chapter-checks" aria-label="指定整理章节">
 							{chapters.map(chapter => (
 								<label key={chapter.resourceId}>
-									<input
-										type="checkbox"
-										data-testid="extraction-chapter-option"
+								<input
+									type="checkbox"
+									data-testid="extraction-chapter-option"
+									data-chapter-id={chapter.resourceId}
 										checked={selectedChapterIds.includes(chapter.resourceId)}
 										onChange={() => setSelectedChapterIds(current => (
 											current.includes(chapter.resourceId)
@@ -982,6 +984,7 @@ export function ManuscriptExtractionCenterPage(props: {
 								<input
 									type="checkbox"
 									data-testid="extraction-target-type"
+									data-resource-type={type}
 									checked={targetTypes.includes(type)}
 									onChange={() => setTargetTypes(current => (
 										current.includes(type)
@@ -997,6 +1000,7 @@ export function ManuscriptExtractionCenterPage(props: {
 						<span>作者指令</span>
 						<textarea
 							aria-label="作者指令"
+							data-testid="extraction-author-instruction"
 							value={instruction}
 							maxLength={2_000}
 							onChange={event => setInstruction(event.target.value)}
@@ -1034,6 +1038,7 @@ export function ManuscriptExtractionCenterPage(props: {
 					{runs.length > 1 ? (
 						<select
 							aria-label="选择历史整理运行"
+							data-testid="extraction-run-history"
 							value={selectedRun?.id ?? ''}
 							onChange={event => {
 								setSelectedRunId(event.target.value);
@@ -1100,7 +1105,12 @@ export function ManuscriptExtractionCenterPage(props: {
 								) : null}
 								{chapter.errorCode ? <small>{chapter.errorCode}</small> : null}
 								{chapter.status === 'stale' ? (
-									<button type="button" onClick={() => void refreshStaleChapter(chapter.resourceId)}>
+									<button
+										type="button"
+										data-testid="extraction-refresh-stale-chapter"
+										data-chapter-id={chapter.resourceId}
+										onClick={() => void refreshStaleChapter(chapter.resourceId)}
+									>
 										<RotateCcw size={16} />使用最新正文
 									</button>
 								) : null}
@@ -1184,6 +1194,8 @@ export function ManuscriptExtractionCenterPage(props: {
 										<span><AlertTriangle size={16} />正文或计划已变化，旧比较不可确认</span>
 										<button
 											type="button"
+											data-testid="extraction-reconciliation-replan-stale-batch"
+											data-batch-id={batch.id}
 											disabled={planning || Boolean(busyAction) || props.readOnly}
 											onClick={() => void replanStaleBatch(batch)}
 										>
@@ -1197,9 +1209,11 @@ export function ManuscriptExtractionCenterPage(props: {
 										return (
 											<article key={difference.field}>
 												<label>
-													<input
-														type="checkbox"
-														data-testid="extraction-reconciliation-field"
+												<input
+													type="checkbox"
+													data-testid="extraction-reconciliation-field"
+													data-batch-id={batch.id}
+													data-reconciliation-field={difference.field}
 														aria-label={`更新大纲字段 ${reconciliationFieldLabels[difference.field]}`}
 														checked={checked}
 														disabled={
@@ -1229,8 +1243,10 @@ export function ManuscriptExtractionCenterPage(props: {
 													<small>实际</small>
 													<p>{difference.actual}</p>
 												</div>
-												<button
-													type="button"
+											<button
+												type="button"
+												data-testid="extraction-reconciliation-evidence"
+												data-reconciliation-field={difference.field}
 													aria-label={`查看 ${reconciliationFieldLabels[difference.field]} 正文依据`}
 													onClick={event => {
 														event.preventDefault();
@@ -1254,6 +1270,8 @@ export function ManuscriptExtractionCenterPage(props: {
 								<div className="chapter-reconciliation-actions">
 									<button
 										type="button"
+										data-testid="extraction-reconciliation-select-outline-fields"
+										data-batch-id={batch.id}
 										disabled={
 											stale
 											|| plan?.locked !== false
@@ -1278,6 +1296,8 @@ export function ManuscriptExtractionCenterPage(props: {
 									</button>
 									<button
 										type="button"
+										data-testid="extraction-reconciliation-open-editor"
+										data-batch-id={batch.id}
 										disabled={!firstEvidence}
 										onClick={() => {
 											if (firstEvidence) {
@@ -1293,6 +1313,8 @@ export function ManuscriptExtractionCenterPage(props: {
 									</button>
 									<button
 										type="button"
+										data-testid="extraction-reconciliation-keep-difference"
+										data-batch-id={batch.id}
 										disabled={
 											stale
 											|| reconciliation.status !== 'pending'
@@ -1305,6 +1327,8 @@ export function ManuscriptExtractionCenterPage(props: {
 									</button>
 									<button
 										type="button"
+										data-testid="extraction-reconciliation-defer"
+										data-batch-id={batch.id}
 										disabled={reconciliation.status !== 'pending'}
 										onClick={() => setNotice('差异保持待处理；正文与大纲均未修改。')}
 									>
@@ -1332,13 +1356,19 @@ export function ManuscriptExtractionCenterPage(props: {
 					</div>
 					<div className="extraction-candidate-filters">
 						<Filter size={16} />
-						<select aria-label="按候选类型筛选" value={candidateType} onChange={event => setCandidateType(event.target.value as typeof candidateType)}>
+						<select
+							aria-label="按候选类型筛选"
+							data-testid="extraction-candidate-type-filter"
+							value={candidateType}
+							onChange={event => setCandidateType(event.target.value as typeof candidateType)}
+						>
 							<option value="all">全部类型</option>
 							{storyKernelGenerationResourceTypes.map(type => <option value={type} key={type}>{typeLabels[type]}</option>)}
 						</select>
 						<label>
 							<input
 								aria-label="只看冲突"
+								data-testid="extraction-conflict-only"
 								type="checkbox"
 								checked={conflictOnly}
 								onChange={event => setConflictOnly(event.target.checked)}
@@ -1402,9 +1432,10 @@ export function ManuscriptExtractionCenterPage(props: {
 										>
 											<header>
 												<label>
-													<input
-														type="checkbox"
-														data-testid="extraction-candidate-option"
+												<input
+													type="checkbox"
+													data-testid="extraction-candidate-option"
+													data-candidate-id={candidate.id}
 														aria-label={`选择 ${candidate.title}`}
 														disabled={
 															stale
@@ -1434,9 +1465,10 @@ export function ManuscriptExtractionCenterPage(props: {
 													<span>
 														<AlertTriangle size={16} />正文已变化，请重新整理后再确认
 													</span>
-													<button
-														type="button"
-														data-testid="extraction-replan-stale-batch"
+											<button
+												type="button"
+												data-testid="extraction-replan-stale-batch"
+												data-batch-id={batch.id}
 														disabled={planning || Boolean(busyAction) || props.readOnly}
 														onClick={() => void replanStaleBatch(batch)}
 													>
@@ -1447,8 +1479,10 @@ export function ManuscriptExtractionCenterPage(props: {
 											{evidence ? (
 												<div className="extraction-evidence">
 													<blockquote>{evidence.quotePreview}</blockquote>
-													<button
-														type="button"
+											<button
+												type="button"
+												data-testid="extraction-candidate-evidence"
+												data-candidate-id={candidate.id}
 														aria-label="查看正文依据"
 														onClick={() => props.onOpenEvidence?.({
 															resourceId: evidence.resourceId,
@@ -1477,16 +1511,20 @@ export function ManuscriptExtractionCenterPage(props: {
 												</span>
 												{candidate.status === 'pending' ? (
 													<>
-														<button
-															type="button"
+												<button
+													type="button"
+													data-testid="extraction-candidate-defer"
+													data-candidate-id={candidate.id}
 															aria-label="稍后整理"
 															disabled={Boolean(resolvingCandidateId)}
 															onClick={() => deferCandidate(batch, candidate)}
 														>
 															<Clock3 size={16} />稍后整理
 														</button>
-														<button
-															type="button"
+												<button
+													type="button"
+													data-testid="extraction-candidate-reject"
+													data-candidate-id={candidate.id}
 															aria-label="拒绝候选"
 															disabled={
 																props.readOnly
