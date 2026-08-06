@@ -10,8 +10,8 @@
     "states": 11924,
     "shortcuts": 23,
     "nativeActions": 55,
-    "discoveredTests": 1101,
-    "frontendDiscoveredTests": 1022,
+    "discoveredTests": 1107,
+    "frontendDiscoveredTests": 1028,
     "parameterizedTestInstances": 97,
     "unresolvedParameterizedDeclarations": 0,
     "missingStableSelectors": 0

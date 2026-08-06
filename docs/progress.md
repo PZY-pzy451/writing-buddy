@@ -4,36 +4,35 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-Task Dock filter, contextual control, read-only permission and trace convergence
-is complete on `codex/full-regression-gates-a-e-v2` against source `718ddfb`.
+Status Bar control, read-only permission and trace convergence is complete on
+`codex/full-regression-gates-a-e-v2` against product source `148d8c3` and
+validated source `54ce0bb`.
 
-- The visible warning and ignored filters now change the issue list. Five tabs,
-  three filters and every issue/capture action expose stable contextual identity;
-  global stable-selector coverage is 542/542 with zero missing selectors.
-- Failure-first tests reproduced two product defects: 100 same-frame accept
-  events could enqueue duplicate editor changes, and read-only projects exposed
-  review/inbox mutation actions. A synchronous accept guard now permits one
-  edit, while both UI and Store boundaries reject read-only mutations without
-  blocking filters, navigation, source jumps or closing.
-- Five real Task Dock journeys cover pointer, keyboard, focus, visual and
-  accessible states; filtering; accept/ignore/restore and undo; busy disabling;
-  persisted inbox dismissal; repeated actions; and read-only permission. The
-  region reaches 12/12 controls, 264/264 states and 5/5 owned tests mapped.
-- Relevant journeys passed 16/16, QA infrastructure passed 31/31 and ten
-  pressure rounds passed 50/50 Task Dock cases. The repeated-accept path injected
-  1,000 events while preserving one write per run.
-- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,022 frontend
-  tests and production build. Rust passed 77 with two reasoned ignores and zero
-  failures. The convergence ledger is `PASS`.
-- Global mapped controls/states/tests rise from 444 / 5,333 / 322 to
-  455 / 5,587 / 325. Unmapped controls/states/tests move from
-  94 / 6,503 / 774 to 87 / 6,337 / 776; the two-test increase reflects five
-  newly inventoried tests with three net new mappings, not lost coverage.
-- Strict gaps fall by 171, from 7,566 to 7,395. Strict coverage reaches
-  6,425/13,820 (46.49%); control mapping is 455/542 (83.95%), state mapping is
-  5,587/11,924 (46.86%) and test mapping is 325/1,101 (29.52%).
-- Against the 11,088 / 136 reference, 3,693 mapping gaps and all 136 selector
-  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,395 strict
+- Quick capture, inbox and Task Dock entry now expose exact locale-independent
+  test IDs. Global stable-selector coverage remains 542/542 with zero gaps.
+- Failure-first testing reproduced the misleading read-only quick-capture
+  action. It is now disabled before activation, while read-only authors can
+  still browse the inbox and open Task Dock.
+- Six rendered author journeys cover no-session, writable, read-only, offline,
+  focus-mode, pointer, keyboard, cancellation, focus restoration, rapid request
+  deduplication and restart-persisted inbox counts. Status Bar reaches 3/3
+  mapped controls, 57/66 mapped states and 6/6 owned tests.
+- Ten Status Bar pressure rounds passed 60/60 cases and 1,000 rapid requests.
+  The first full run exposed a neighboring continuation-test timeout under suite
+  contention; its eventual-state contract was stabilized and passed 20/20
+  dedicated pressure executions.
+- Fixed Node 24.14.0 acceptance passed lint, typecheck, 212/212 files,
+  1,028/1,028 frontend tests and production build. Rust passed 77 with two
+  reasoned ignores and zero failures. The convergence ledger is `PASS`.
+- Global mapped controls/states/tests rise from 455 / 5,587 / 325 to
+  458 / 5,664 / 330. Unmapped controls/states/tests move from
+  87 / 6,337 / 776 to 84 / 6,260 / 777. The one-test increase reflects six new
+  tests with five net new global mappings; all six Status Bar cases are mapped.
+- Strict gaps fall by 79, from 7,395 to 7,316. Strict coverage reaches
+  6,510/13,826 (47.09%); control mapping is 458/542 (84.50%), state mapping is
+  5,664/11,924 (47.50%) and test mapping is 330/1,107 (29.81%).
+- Against the 11,088 / 136 reference, 3,772 mapping gaps and all 136 selector
+  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,316 strict
   mappings, real-provider smoke and packaged-EXE acceptance remain. Product is
   `PARTIAL`; release remains `BLOCKED`.
 

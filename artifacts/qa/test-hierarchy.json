@@ -71510,138 +71510,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STATUSBAR-BUTTON-1690489A",
+                  "id": "CTRL-STATUSBAR-BUTTON-314D9F64",
                   "level": "L4",
                   "name": "打开待整理箱",
                   "states": [
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-VISIBLE",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-HIDDEN",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-ENABLED",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-DISABLED",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-POINTER",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-KEYBOARD",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-FOCUS-IN",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-FOCUS-OUT",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-REPEAT",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-DEDUPLICATION",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-LOADING",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-SUCCESS",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-FAILURE",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-CANCELLED",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-OFFLINE",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-PERMISSION",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-PERSISTENCE",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-RESTART",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-VISUAL",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-ACCESSIBLE-NAME",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-1690489A-UNDO",
+                      "id": "STATE-STATUSBAR-BUTTON-314D9F64-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -71649,277 +71649,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-STATUSBAR-BUTTON-62048829",
-                  "level": "L4",
-                  "name": "显示或隐藏任务区 (Ctrl+J)",
-                  "states": [
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-STATUSBAR-BUTTON-62048829-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-STATUSBAR-BUTTON-BA61B19A",
+                  "id": "CTRL-STATUSBAR-BUTTON-6992E290",
                   "level": "L4",
                   "name": "快速记录 (Ctrl+Shift+Space)",
                   "states": [
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-VISIBLE",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-HIDDEN",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-ENABLED",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DISABLED",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-POINTER",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-KEYBOARD",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FOCUS-IN",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FOCUS-OUT",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-REPEAT",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DEDUPLICATION",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-LOADING",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-SUCCESS",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FAILURE",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-CANCELLED",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-OFFLINE",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-PERMISSION",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-PERSISTENCE",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-RESTART",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-VISUAL",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-ACCESSIBLE-NAME",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-UNDO",
+                      "id": "STATE-STATUSBAR-BUTTON-6992E290-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-STATUSBAR-BUTTON-916CF499",
+                  "level": "L4",
+                  "name": "显示或隐藏任务区 (Ctrl+J)",
+                  "states": [
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-STATUSBAR-BUTTON-916CF499-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -84529,6 +84529,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-4AA025DEB8",
+      "title": "TC-STATUS-BAR-001 renders visible accessible visual controls, disables session actions and toggles the dock by keyboard focus",
+      "declarationTitle": "TC-STATUS-BAR-001 renders visible accessible visual controls, disables session actions and toggles the dock by keyboard focus",
+      "declarationLine": 67,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-4B1CD22196",
       "title": "applies a selection quick-action preset without starting a paid request",
       "declarationTitle": "applies a selection quick-action preset without starting a paid request",
@@ -84998,6 +85016,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "orchestration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-501D112220",
+      "title": "TC-STATUS-BAR-006 persists a quick capture, reloads the project and restores the inbox count after restart",
+      "declarationTitle": "TC-STATUS-BAR-006 persists a quick capture, reloads the project and restores the inbox count after restart",
+      "declarationLine": 192,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -92211,6 +92247,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-BB75493BEB",
+      "title": "TC-STATUS-BAR-002 updates live counts and routes enabled pointer actions to quick capture, inbox and Task Dock",
+      "declarationTitle": "TC-STATUS-BAR-002 updates live counts and routes enabled pointer actions to quick capture, inbox and Task Dock",
+      "declarationLine": 89,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-BB8A5A7E13",
       "title": "loads a Story resource without mutating tabs before the caller commits it",
       "declarationTitle": "loads a Story resource without mutating tabs before the caller commits it",
@@ -92704,7 +92758,7 @@
       "id": "TC-DISCOVERED-C26F1DC309",
       "title": "TC-QA-INVENTORY-019 requires contextual stable controls and Review ownership for the Task Dock",
       "declarationTitle": "TC-QA-INVENTORY-019 requires contextual stable controls and Review ownership for the Task Dock",
-      "declarationLine": 1133,
+      "declarationLine": 1142,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -93545,6 +93599,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-CE0D743594",
+      "title": "TC-STATUS-BAR-003 enforces read-only permission before activation while preserving inbox and dock navigation",
+      "declarationTitle": "TC-STATUS-BAR-003 enforces read-only permission before activation while preserving inbox and dock navigation",
+      "declarationLine": 134,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-CE3FB2771B",
       "title": "renders four accessible stable controls and disables an invalid save",
       "declarationTitle": "renders four accessible stable controls and disables an invalid save",
@@ -94338,6 +94410,24 @@
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/theme/interactionTokens.test.ts",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-D91A26B1C3",
+      "title": "TC-STATUS-BAR-005 deduplicates one hundred repeated quick-capture requests into one dialog and one active seed",
+      "declarationTitle": "TC-STATUS-BAR-005 deduplicates one hundred repeated quick-capture requests into one dialog and one active seed",
+      "declarationLine": 177,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
@@ -95905,6 +95995,24 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-F0B2B31A89",
+      "title": "TC-STATUS-BAR-004 opens quick capture offline, cancels by keyboard, restores focus and hides in focus mode",
+      "declarationTitle": "TC-STATUS-BAR-004 opens quick capture offline, cancels by keyboard, restores focus and hides in focus mode",
+      "declarationLine": 158,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/shell/StatusBar.test.tsx",
+      "domainId": "DOMAIN-08",
+      "featureId": "FEATURE-08-01",
+      "pageId": "PAGE-GLOBAL-SHELL",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",

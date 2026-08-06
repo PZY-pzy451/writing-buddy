@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-06T08:35:57.807Z",
+  "generatedAt": "2026-08-06T09:28:26.697Z",
   "source": {
-    "commit": "718ddfbe744b6cf1108b687a570955c9a41ec0b0",
+    "commit": "54ce0bb3778f37141f6e732f9d4e67d21980260f",
     "branch": "codex/full-regression-gates-a-e-v2"
   },
   "executionStatus": "PASS",
@@ -21,8 +21,8 @@
         "gap": 49
       },
       "after": {
-        "frontendInventory": 1022,
-        "runtimeCollected": 1022,
+        "frontendInventory": 1028,
+        "runtimeCollected": 1028,
         "gap": 0,
         "unresolvedParameterizedDeclarations": 0
       }
@@ -41,7 +41,7 @@
         "failClosedWhenPnpmEntryMissing": true,
         "commandResolutionTests": 3,
         "selfTestUnsafeShellWarnings": 0,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -59,7 +59,7 @@
         "mockScenarioCount": 26,
         "validCandidatesRemainConfirmable": true,
         "malformedCandidateQuarantined": true,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -77,7 +77,7 @@
         "atomicWrites": 1,
         "rejectionStateWrites": 1,
         "retryAfterSnapshotFailure": true,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -95,7 +95,7 @@
         "pendingCancellationFeedback": true,
         "retryAfterCommandFailure": true,
         "retryAfterJobNotFound": true,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -118,7 +118,7 @@
         "retryAfterJobNotFound": true,
         "unknownErrorsLocalized": true,
         "focusedTests": 21,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -143,7 +143,7 @@
         "retryAfterSnapshotFailure": true,
         "dynamicRapidClickScenarios": 2,
         "focusedTests": 34,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -168,7 +168,7 @@
         "unknownErrorsRedacted": true,
         "retryAfterProviderStartFailure": true,
         "focusedTests": 45,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -184,7 +184,7 @@
         "acceptancePersistenceWrites": 1,
         "sharedAcceptRejectGuard": true,
         "focusedTests": 4,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -208,7 +208,7 @@
         "retryAfterCancellationFailure": true,
         "staleErrorClearedAfterRetry": true,
         "focusedTests": 27,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -237,7 +237,7 @@
         "deleteFailureRetryVisible": true,
         "generationBlockedDuringCredentialMutation": true,
         "focusedTests": 20,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -262,21 +262,21 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 22,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
       "id": "QA-LEDGER-INVENTORY-RECONCILIATION-014",
       "summary": "Convergence recording could mark a stale regression ledger PASS after new discovered tests had already executed successfully.",
       "before": {
-        "discoveredTests": 1101,
-        "ledgerCases": 1099,
+        "discoveredTests": 1107,
+        "ledgerCases": 1105,
         "missingExecutedCasesRejected": false
       },
       "after": {
-        "discoveredTests": 1101,
-        "ledgerCases": 1101,
-        "frontendLedgerCases": 1022,
+        "discoveredTests": 1107,
+        "ledgerCases": 1107,
+        "frontendLedgerCases": 1028,
         "nativeLedgerCases": 79,
         "missingExecutedCasesRejected": true,
         "reconciliationCommand": "pnpm qa:plan"
@@ -306,7 +306,7 @@
         "horizontalOverflow": false,
         "browserWarningsOrErrors": 0,
         "focusedTests": 11,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -339,7 +339,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 7,
         "impactedTests": 15,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -376,7 +376,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 10,
         "impactedTests": 34,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -413,7 +413,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 20,
         "impactedTests": 44,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -445,7 +445,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 27,
         "impactedTests": 51,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -477,7 +477,7 @@
         "browserWarningsOrErrors": 0,
         "focusedTests": 36,
         "impactedTests": 66,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -506,7 +506,7 @@
         "browserAutomationBlocker": "The in-app browser runtime failed before page control while installing its process shim; no product-only test backdoor was added.",
         "focusedTests": 35,
         "impactedTests": 70,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -533,7 +533,7 @@
         "stableAccessibleName": true,
         "focusedTests": 7,
         "impactedTests": 81,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -558,7 +558,7 @@
         "delayedOldConflictIgnored": true,
         "focusedTests": 38,
         "impactedTests": 93,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -583,7 +583,7 @@
         "dirtyDiscardConfirmations": 1,
         "focusedTests": 12,
         "impactedTests": 89,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -605,7 +605,7 @@
         "latestOpenFailurePreserved": true,
         "focusedTests": 15,
         "impactedTests": 92,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -641,7 +641,7 @@
         "rollbackUsesCapturedModel": true,
         "focusedTests": 11,
         "impactedTests": 98,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -678,7 +678,7 @@
         "redFailures": 6,
         "focusedTests": 15,
         "impactedTests": 113,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -713,7 +713,7 @@
         "redFailures": 5,
         "focusedTests": 22,
         "impactedTests": 118,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -744,7 +744,7 @@
         "redFailures": 2,
         "focusedTests": 25,
         "impactedTests": 121,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -787,7 +787,7 @@
         "redFailures": 8,
         "focusedTests": 41,
         "impactedTests": 137,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -834,7 +834,7 @@
         "redFailures": 5,
         "focusedTests": 46,
         "impactedTests": 142,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -852,8 +852,8 @@
         "pool": "threads",
         "maxWorkers": 2,
         "configurationContractTests": 1,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "normalExit": true,
         "runtimeInventoryDelta": 0
       }
@@ -888,7 +888,7 @@
         "redFailures": 4,
         "focusedTests": 48,
         "impactedTests": 147,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -937,7 +937,7 @@
         "redFailures": 4,
         "focusedTests": 40,
         "impactedTests": 151,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -985,7 +985,7 @@
         "redFailures": 6,
         "focusedTests": 46,
         "impactedTests": 157,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1020,7 +1020,7 @@
         "redFailures": 4,
         "focusedTests": 50,
         "impactedTests": 161,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1058,7 +1058,7 @@
         "redFailures": 4,
         "focusedTests": 67,
         "impactedTests": 172,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1088,7 +1088,7 @@
         "redFailures": 1,
         "focusedTests": 75,
         "impactedTests": 174,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1118,7 +1118,7 @@
         "redFailures": 2,
         "focusedTests": 22,
         "impactedTests": 93,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1149,7 +1149,7 @@
         "redFailures": 2,
         "focusedTests": 6,
         "impactedTests": 43,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1174,7 +1174,7 @@
         "redFailures": 2,
         "focusedTests": 15,
         "impactedTests": 48,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1199,7 +1199,7 @@
         "redFailures": 4,
         "focusedTests": 21,
         "impactedTests": 58,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1219,10 +1219,10 @@
         "missingStableSelectors": 0,
         "compositeControls": 0,
         "syntheticCompositeStates": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 1,
         "focusedTests": 16,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1246,12 +1246,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "testCleanupReactWarnings": 0,
         "redFailures": 2,
         "creationJourneyTests": 64,
         "qaScriptTests": 17,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1274,12 +1274,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 10,
         "creationJourneyTests": 65,
         "qaScriptTests": 16,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1303,13 +1303,13 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "projectImpactReactWarnings": 0,
         "redFailures": 2,
         "focusedTests": 16,
         "projectImpactTests": 64,
         "qaScriptTests": 17,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1333,12 +1333,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 8,
         "projectImpactTests": 65,
         "qaScriptTests": 18,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1373,13 +1373,13 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 10,
         "impactTests": 58,
         "storyKernelPanelTests": 22,
         "qaScriptTests": 19,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1416,12 +1416,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 17,
         "impactTests": 62,
         "qaScriptTests": 20,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1457,12 +1457,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 34,
         "impactTests": 95,
         "qaScriptTests": 21,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1499,12 +1499,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 20,
         "impactTests": 163,
         "qaScriptTests": 22,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1540,12 +1540,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 18,
         "impactTests": 73,
         "qaScriptTests": 25,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1583,12 +1583,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 16,
         "impactTests": 102,
         "qaScriptTests": 26,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1623,12 +1623,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 6,
         "focusedTests": 20,
         "impactTests": 15,
         "qaScriptTests": 26,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1661,12 +1661,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 17,
         "impactTests": 13,
         "qaScriptTests": 27,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1702,13 +1702,13 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "fullBaselineDefectsFound": 1,
         "focusedTests": 19,
         "impactTests": 8,
         "qaScriptTests": 28,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1738,12 +1738,12 @@
         "globalControls": 542,
         "globalStates": 11924,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 24,
         "impactTests": 14,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1778,14 +1778,14 @@
         "evidenceActionsVerified": 2,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
+        "globalTests": 1107,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 19,
         "impactTests": 42,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1822,16 +1822,16 @@
         "evidenceActionsVerified": 1,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 22,
         "impactTests": 79,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1870,16 +1870,16 @@
         "renderedControlRepresentatives": 7,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 19,
         "impactTests": 86,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1917,16 +1917,16 @@
         "targetTestsMapped": 7,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 8,
         "focusedTests": 22,
         "impactTests": 186,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -1973,16 +1973,16 @@
         "qaMetaTestCanDisplaceProductEvidence": false,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 6,
         "focusedTests": 25,
         "impactTests": 172,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2020,16 +2020,16 @@
         "searchInteractionCovered": true,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 28,
         "impactTests": 87,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2065,16 +2065,16 @@
         "exactBacklinkJump": true,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 17,
         "impactTests": 38,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2109,16 +2109,16 @@
         "pointerWorkflowsPreserved": true,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 17,
         "impactTests": 50,
         "qaScriptTests": 29,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2155,16 +2155,16 @@
         "falsePositiveKeyboardStateMappings": 0,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 24,
         "impactTests": 73,
         "qaScriptTests": 30,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2204,16 +2204,16 @@
         "newlyMappedInventoryItems": 75,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 21,
         "impactTests": 59,
         "qaScriptTests": 30,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2255,17 +2255,17 @@
         "globalMappedStateIncrease": 96,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 18,
         "impactTests": 79,
         "qaScriptTests": 30,
-        "frontendTests": 1022
+        "frontendTests": 1028
       }
     },
     {
@@ -2308,17 +2308,17 @@
         "globalMappedStateIncrease": 73,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 17,
         "impactTests": 49,
         "qaScriptTests": 30,
-        "frontendTests": 1022,
+        "frontendTests": 1028,
         "sequentialFullGate": true,
         "parallelInfrastructureCrashExitCode": 3221226505
       }
@@ -2364,18 +2364,18 @@
         "globalMappedStateIncrease": 32,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 22,
         "impactTests": 16,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2419,18 +2419,18 @@
         "globalMappedStateIncrease": 50,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 16,
         "impactTests": 2,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true,
         "initialRunnerTimeoutExitCode": 124
       }
@@ -2477,19 +2477,19 @@
         "globalMappedStateIncrease": 235,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 5,
         "impactTests": 51,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2535,19 +2535,19 @@
         "globalMappedTestIncrease": 3,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 20,
         "impactTests": 38,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2596,19 +2596,19 @@
         "globalMappedTestIncrease": 1,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redTestFailures": 2,
         "focusedTests": 16,
         "impactTests": 15,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2658,19 +2658,19 @@
         "globalMappedTestIncrease": 2,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 17,
         "impactTests": 39,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2724,19 +2724,19 @@
         "globalMappedTestIncrease": 2,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redProductContractFailures": 6,
         "focusedTests": 20,
         "impactTests": 23,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2790,19 +2790,19 @@
         "globalMappedTestIncrease": 5,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 5,
         "focusedTests": 21,
         "impactTests": 57,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2857,19 +2857,19 @@
         "globalMappedTestIncrease": 2,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 21,
         "impactTests": 164,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2923,19 +2923,19 @@
         "globalMappedTestIncrease": 3,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 4,
         "focusedTests": 19,
         "impactTests": 54,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -2989,19 +2989,19 @@
         "globalMappedTestIncrease": 2,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 4,
         "impactTests": 60,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3057,19 +3057,19 @@
         "globalMappedTestIncrease": 4,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 24,
         "impactTests": 84,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3125,19 +3125,19 @@
         "globalMappedTestIncrease": 4,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 1,
         "focusedTests": 15,
         "impactTests": 111,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3195,19 +3195,19 @@
         "globalMappedTestIncrease": 5,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 3,
         "focusedTests": 34,
         "impactTests": 224,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3255,22 +3255,22 @@
         "globalUnmappedTestDecrease": 5,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedControls": 87,
-        "unmappedStates": 6337,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedControls": 84,
+        "unmappedStates": 6260,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "redFailures": 2,
         "focusedTests": 33,
         "pressureRounds": 10,
         "pressureTestInstances": 280,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3317,21 +3317,21 @@
         "globalUnmappedTestDecrease": 4,
         "globalControls": 542,
         "globalStates": 11924,
-        "globalTests": 1101,
-        "mappedControls": 455,
-        "mappedStates": 5587,
-        "mappedTests": 325,
-        "unmappedControls": 87,
-        "unmappedStates": 6337,
-        "unmappedTests": 776,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedControls": 84,
+        "unmappedStates": 6260,
+        "unmappedTests": 777,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
+        "totalUnmapped": 7316,
         "focusedTests": 24,
         "pressureRounds": 10,
         "pressureTestInstances": 70,
         "qaScriptTests": 30,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     },
@@ -3378,6 +3378,36 @@
         "strictGapDecrease": 171,
         "globalControls": 542,
         "globalStates": 11924,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedControls": 84,
+        "unmappedStates": 6260,
+        "unmappedTests": 777,
+        "globalMissingStableSelectors": 0,
+        "totalUnmapped": 7316,
+        "focusedTests": 16,
+        "pressureRounds": 10,
+        "pressureTestInstances": 50,
+        "repeatedAcceptEvents": 1000,
+        "qaScriptTests": 31,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
+        "sequentialFullGate": true
+      }
+    },
+    {
+      "id": "QA-STATUS-BAR-CONTROL-PERMISSION-TRACE-CONVERGENCE-087",
+      "summary": "The global Status Bar relied on localized selectors, exposed quick capture as writable in read-only projects and had no strict user-journey ownership.",
+      "before": {
+        "statusBarControls": 3,
+        "strictlyMappedStatusBarControls": 0,
+        "statusBarStates": 66,
+        "mappedStatusBarStates": 0,
+        "statusBarOwnedTests": 0,
+        "globalControls": 542,
+        "globalStates": 11924,
         "globalTests": 1101,
         "mappedControls": 455,
         "mappedStates": 5587,
@@ -3386,14 +3416,50 @@
         "unmappedStates": 6337,
         "unmappedTests": 776,
         "globalMissingStableSelectors": 0,
-        "totalUnmapped": 7395,
-        "focusedTests": 16,
+        "totalUnmapped": 7395
+      },
+      "after": {
+        "statusBarControls": 3,
+        "stableStatusBarControls": 3,
+        "strictlyMappedStatusBarControls": 3,
+        "statusBarStates": 66,
+        "mappedStatusBarStates": 57,
+        "honestInapplicableStateGaps": 9,
+        "statusBarOwnedTests": 6,
+        "mappedStatusBarOwnedTests": 6,
+        "localeIndependentTestIdsAdded": 3,
+        "readOnlyQuickCaptureDisabled": true,
+        "readOnlyNavigationPreserved": true,
+        "offlineCancelAndFocusRestoreVerified": true,
+        "restartInboxPersistenceVerified": true,
+        "repeatedQuickCaptureRequestsPerRun": 100,
+        "continuationTimingPressureCases": 20,
+        "continuationTimingPressureFailures": 0,
+        "globalMappedControlIncrease": 3,
+        "globalMappedStateIncrease": 77,
+        "globalMappedTestIncrease": 5,
+        "globalUnmappedControlDecrease": 3,
+        "globalUnmappedStateDecrease": 77,
+        "globalUnmappedTestIncrease": 1,
+        "strictGapDecrease": 79,
+        "globalControls": 542,
+        "globalStates": 11924,
+        "globalTests": 1107,
+        "mappedControls": 458,
+        "mappedStates": 5664,
+        "mappedTests": 330,
+        "unmappedControls": 84,
+        "unmappedStates": 6260,
+        "unmappedTests": 777,
+        "globalMissingStableSelectors": 0,
+        "totalUnmapped": 7316,
+        "focusedTests": 6,
         "pressureRounds": 10,
-        "pressureTestInstances": 50,
-        "repeatedAcceptEvents": 1000,
+        "pressureTestInstances": 60,
+        "repeatedQuickCaptureRequests": 1000,
         "qaScriptTests": 31,
-        "frontendFiles": 211,
-        "frontendTests": 1022,
+        "frontendFiles": 212,
+        "frontendTests": 1028,
         "sequentialFullGate": true
       }
     }
@@ -3419,22 +3485,22 @@
       "validControlCandidates": 1,
       "quarantinedMutations": 11,
       "atomicWrites": 1,
-      "frontendTests": 1022
+      "frontendTests": 1028
     }
   ],
   "execution": {
     "frontend": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-06T08:29:46.337Z",
-      "completedAt": "2026-08-06T08:32:25.281Z",
+      "generatedAt": "2026-08-06T09:20:54.367Z",
+      "completedAt": "2026-08-06T09:24:42.389Z",
       "status": "PASS",
       "exitCode": 0,
       "inventoryExitCode": 0,
       "node": "24.14.0",
-      "durationMs": 158941,
-      "vitestFiles": 211,
-      "vitestPassed": 1022,
-      "inventoryFrontendTests": 1022,
+      "durationMs": 228022,
+      "vitestFiles": 212,
+      "vitestPassed": 1028,
+      "inventoryFrontendTests": 1028,
       "runtimeInventoryDelta": 0,
       "unresolvedParameterizedDeclarations": 0,
       "productionBuild": "PASS",
@@ -3443,10 +3509,10 @@
     },
     "cargo": {
       "schemaVersion": 1,
-      "generatedAt": "2026-08-06T08:33:41.922Z",
-      "completedAt": "2026-08-06T08:33:44.599Z",
+      "generatedAt": "2026-08-06T09:24:54.659Z",
+      "completedAt": "2026-08-06T09:24:57.248Z",
       "status": "PASS",
-      "durationMs": 2675,
+      "durationMs": 2588,
       "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
       "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
       "format": "PASS",
@@ -3472,7 +3538,7 @@
   },
   "traceability": {
     "status": "REGRESSION_INCOMPLETE",
-    "totalUnmapped": 7395,
+    "totalUnmapped": 7316,
     "missingStableSelectors": 0
   },
   "warnings": [

@@ -132796,11 +132796,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-VISIBLE",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -132812,11 +132812,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-HIDDEN",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -132828,11 +132828,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-ENABLED",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -132844,11 +132844,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-DISABLED",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -132860,11 +132860,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-POINTER",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -132876,11 +132876,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-KEYBOARD",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -132892,11 +132892,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-FOCUS-IN",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -132908,11 +132908,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-FOCUS-OUT",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -132924,11 +132924,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-REPEAT",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -132940,11 +132940,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-DEDUPLICATION",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -132956,11 +132956,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-LOADING",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -132972,11 +132972,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-SUCCESS",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -132988,11 +132988,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-FAILURE",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -133004,11 +133004,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-CANCELLED",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -133020,11 +133020,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-OFFLINE",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -133036,11 +133036,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-PERMISSION",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -133052,11 +133052,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-PERSISTENCE",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -133068,11 +133068,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-RESTART",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -133084,11 +133084,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-VISUAL",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -133100,11 +133100,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-ACCESSIBLE-NAME",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -133116,11 +133116,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -133132,11 +133132,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-1690489A-UNDO",
+      "id": "STATE-STATUSBAR-BUTTON-314D9F64-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-1690489A"
+        "CTRL-STATUSBAR-BUTTON-314D9F64"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -133148,11 +133148,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-VISIBLE",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -133164,11 +133164,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-HIDDEN",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -133180,11 +133180,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-ENABLED",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -133196,11 +133196,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-DISABLED",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -133212,11 +133212,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-POINTER",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -133228,11 +133228,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-KEYBOARD",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -133244,11 +133244,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-FOCUS-IN",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -133260,11 +133260,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-FOCUS-OUT",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -133276,11 +133276,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-REPEAT",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -133292,11 +133292,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-DEDUPLICATION",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -133308,11 +133308,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-LOADING",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -133324,11 +133324,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-SUCCESS",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -133340,11 +133340,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-FAILURE",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -133356,11 +133356,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-CANCELLED",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -133372,11 +133372,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-OFFLINE",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -133388,11 +133388,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-PERMISSION",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -133404,11 +133404,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-PERSISTENCE",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -133420,11 +133420,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-RESTART",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -133436,11 +133436,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-VISUAL",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -133452,11 +133452,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-ACCESSIBLE-NAME",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -133468,11 +133468,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -133484,11 +133484,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-62048829-UNDO",
+      "id": "STATE-STATUSBAR-BUTTON-6992E290-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-62048829"
+        "CTRL-STATUSBAR-BUTTON-6992E290"
       ],
       "name": "撤销",
       "dimension": "UNDO",
@@ -133500,11 +133500,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-VISIBLE",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-VISIBLE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "是否显示",
       "dimension": "VISIBLE",
@@ -133516,11 +133516,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-HIDDEN",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-HIDDEN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "是否隐藏",
       "dimension": "HIDDEN",
@@ -133532,11 +133532,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-ENABLED",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-ENABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "是否启用",
       "dimension": "ENABLED",
@@ -133548,11 +133548,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DISABLED",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-DISABLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "是否禁用",
       "dimension": "DISABLED",
@@ -133564,11 +133564,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-POINTER",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-POINTER",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "鼠标操作",
       "dimension": "POINTER",
@@ -133580,11 +133580,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-KEYBOARD",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-KEYBOARD",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "键盘操作",
       "dimension": "KEYBOARD",
@@ -133596,11 +133596,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FOCUS-IN",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-FOCUS-IN",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "焦点进入",
       "dimension": "FOCUS-IN",
@@ -133612,11 +133612,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FOCUS-OUT",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-FOCUS-OUT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "焦点离开",
       "dimension": "FOCUS-OUT",
@@ -133628,11 +133628,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-REPEAT",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-REPEAT",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "重复操作",
       "dimension": "REPEAT",
@@ -133644,11 +133644,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DEDUPLICATION",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-DEDUPLICATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "防重复提交",
       "dimension": "DEDUPLICATION",
@@ -133660,11 +133660,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-LOADING",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-LOADING",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "加载状态",
       "dimension": "LOADING",
@@ -133676,11 +133676,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-SUCCESS",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-SUCCESS",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "成功状态",
       "dimension": "SUCCESS",
@@ -133692,11 +133692,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-FAILURE",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-FAILURE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "失败状态",
       "dimension": "FAILURE",
@@ -133708,11 +133708,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-CANCELLED",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-CANCELLED",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "取消状态",
       "dimension": "CANCELLED",
@@ -133724,11 +133724,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-OFFLINE",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-OFFLINE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "离线状态",
       "dimension": "OFFLINE",
@@ -133740,11 +133740,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-PERMISSION",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-PERMISSION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "权限状态",
       "dimension": "PERMISSION",
@@ -133756,11 +133756,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-PERSISTENCE",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-PERSISTENCE",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "持久化",
       "dimension": "PERSISTENCE",
@@ -133772,11 +133772,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-RESTART",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-RESTART",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "重启恢复",
       "dimension": "RESTART",
@@ -133788,11 +133788,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-VISUAL",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-VISUAL",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "视觉状态",
       "dimension": "VISUAL",
@@ -133804,11 +133804,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-ACCESSIBLE-NAME",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-ACCESSIBLE-NAME",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "无障碍名称",
       "dimension": "ACCESSIBLE-NAME",
@@ -133820,11 +133820,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-DESTRUCTIVE-CONFIRMATION",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-DESTRUCTIVE-CONFIRMATION",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "破坏性确认",
       "dimension": "DESTRUCTIVE-CONFIRMATION",
@@ -133836,11 +133836,11 @@
       "applicability": "UNASSESSED"
     },
     {
-      "id": "STATE-STATUSBAR-BUTTON-BA61B19A-UNDO",
+      "id": "STATE-STATUSBAR-BUTTON-916CF499-UNDO",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
       "controlIds": [
-        "CTRL-STATUSBAR-BUTTON-BA61B19A"
+        "CTRL-STATUSBAR-BUTTON-916CF499"
       ],
       "name": "撤销",
       "dimension": "UNDO",
