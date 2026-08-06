@@ -5,7 +5,7 @@ Updated: 2026-08-06
 ## Active milestone
 
 AI diagnostics control identity and trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `d903fae`.
+`codex/full-regression-gates-a-e-v2` against source `eeb2133`.
 
 - Seven AI diagnostic controls now expose stable type selectors plus exact action
   identities: open settings, start, stop, copy, clear, secret reveal and preview
@@ -28,16 +28,17 @@ AI diagnostics control identity and trace convergence is complete on
   infrastructure passed 30/30 and the convergence ledger reports `PASS`.
 - Honest collision discovery grows inventory from 523 controls / 11,506 states /
   1,064 tests to 526 / 11,572 / 1,085. Stable selectors remain complete at
-  526/526. Mapped controls rise from 397 to 404, states from 4,302 to 4,394 and
-  tests from 272 to 293.
-- Strict gaps still fall by 30 from 8,317 to 8,287 despite the 90-item denominator
-  expansion. Unmapped controls fall from 126 to 122, states from 7,204 to 7,178
-  and tests remain 792. Strict coverage is 5,149/13,436 (38.32%); control mapping
-  is 404/526 (76.81%); state mapping is 4,394/11,572 (37.97%); test mapping is
-  293/1,085 (27.00%).
-- Against the 11,088 / 136 reference, 2,801 mapping gaps and all 136 selector
+  526/526. Mapped controls rise from 397 to 404, states from 4,302 to 4,395 and
+  tests from 272 to 294. A final orphan audit mapped the existing pending-apply
+  rejection contract to the loading state without adding or weakening a test.
+- Strict gaps fall by 32 from 8,317 to 8,285 despite the 90-item denominator
+  expansion. Unmapped controls fall from 126 to 122, states from 7,204 to 7,177
+  and tests from 792 to 791. Strict coverage is 5,151/13,436 (38.34%); control
+  mapping is 404/526 (76.81%); state mapping is 4,395/11,572 (37.98%); test
+  mapping is 294/1,085 (27.10%).
+- Against the 11,088 / 136 reference, 2,803 mapping gaps and all 136 selector
   gaps are closed. Release gates remain 1/4 complete (25%), so the release
-  distance is 8,287 strict mappings plus real-provider smoke and packaged-EXE
+  distance is 8,285 strict mappings plus real-provider smoke and packaged-EXE
   acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
 
 ## Previous milestone

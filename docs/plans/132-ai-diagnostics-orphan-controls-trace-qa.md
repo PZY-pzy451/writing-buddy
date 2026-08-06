@@ -60,3 +60,14 @@ the newly separated copy action and the start/stop generation pair.
 3. Run the fixed Node 24 acceptance gate, Rust gate and QA-infrastructure tests.
 4. Record convergence against the product commit, update canonical progress and
    daily memory, then commit generated evidence separately.
+
+## Outcome
+
+- Product source: `eeb2133`; stable selectors: 526 / 526.
+- Mapped controls/states/tests: 404 / 4,395 / 294; unmapped: 122 / 7,177 /
+  791. Total strict gaps: 8,285; strict coverage: 5,151 / 13,436 (38.34%).
+- Fixed Node 24 acceptance passed 204 files / 1,006 tests plus lint, typecheck and
+  production build. QA infrastructure passed 30 / 30; Rust evidence remains 77
+  passed with two reasoned ignores.
+- Execution is `PASS`, product is `PARTIAL`, and release remains `BLOCKED` until
+  strict traceability, real-provider smoke and packaged-EXE acceptance close.

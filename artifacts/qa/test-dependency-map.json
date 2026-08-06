@@ -9667,7 +9667,7 @@
         "TC-DISCOVERED-6FB173485B",
         "TC-DISCOVERED-9B3C742D64",
         "TC-DISCOVERED-B53FFB8506",
-        "TC-DISCOVERED-EBBE1D781B"
+        "TC-DISCOVERED-B68D5A93C5"
       ],
       "directDependencies": [
         "apps/desktop/src/features/ai/drawer/AiGenerationDrawer.tsx",
@@ -9744,7 +9744,7 @@
       ],
       "sourceFingerprint": "CEBDC42AF75B40FA9BFC3CED0FBCCAC241E6C11753F1009CE79C632311E1A661",
       "dependencyFingerprint": "1EF3EEC2BCE084E26AA6B9E284725669CA81F1A6E86747D84E7E244F35AF1CDA",
-      "testImplementationFingerprint": "980092819DC849F838A939F3056D9EBCD2498627CFE4DB7C78BD82771B0D670F"
+      "testImplementationFingerprint": "23C18BE76E23D3CABB93CA1A11B3ECF12402F4D32513E8826F3A3BD24E3E952E"
     },
     {
       "testSource": "apps/desktop/src/features/ai/drawer/aiGenerationStore.test.ts",
