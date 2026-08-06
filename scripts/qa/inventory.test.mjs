@@ -39,9 +39,25 @@ describe('control inventory rendered-element boundary', () => {
 		const missingSelectors = creationJourneyControls.filter(control => (
 			control.stableSelectorStatus !== 'MAPPED'
 		));
+		const creationJourneySource = readFileSync(resolve(
+			repositoryRoot,
+			'apps/desktop/src/features/creation-journey/CreationJourneyPage.tsx'
+		), 'utf8');
 
-		expect(creationJourneyControls.length).toBeGreaterThan(0);
+		expect(creationJourneyControls).toHaveLength(39);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
+		expect(creationJourneyControls.map(control => control.stableSelectorValue))
+			.toEqual(expect.arrayContaining([
+				'creation-guidance-option',
+				'creation-core-field',
+				'creation-core-field-lock',
+				'creation-impact-open',
+				'creation-impact-keep',
+				'creation-impact-regenerate'
+			]));
+		expect(creationJourneySource).toContain('data-option-id={option.id}');
+		expect(creationJourneySource).toContain('data-field-key={field.key}');
+		expect(creationJourneySource).toContain('data-impact-id={impact.id}');
 	});
 
 	it('TC-QA-INVENTORY-006 requires stable selectors for the structured outline workspace', () => {

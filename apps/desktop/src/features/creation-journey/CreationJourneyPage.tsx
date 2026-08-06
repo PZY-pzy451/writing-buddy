@@ -422,6 +422,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const outlineAlternativeRequestRef = useRef(false);
 	const hierarchyGenerationRequestRef = useRef(false);
 	const outlineSemanticCheckRequestRef = useRef(false);
+	const impactRegenerationRequestRef = useRef<string | undefined>(undefined);
 
 	useEffect(() => {
 		if (!snapshot) return;
@@ -885,7 +886,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 
 	const keepImpact = (impact: JourneyImpact) => {
 		const current = stateRef.current;
-		if (!current) return;
+		const currentImpact = current?.impacts.find(candidate => candidate.id === impact.id);
+		if (!current || currentImpact?.status !== 'pending') return;
 		try {
 			applyState(resolveJourneyImpact(current, impact.id, 'kept'), true);
 			setStatus('已保留当前内容；只处理了这一项影响。');
@@ -966,7 +968,14 @@ export function CreationJourneyPage(): React.JSX.Element {
 
 	const regenerateImpact = async (impact: JourneyImpact) => {
 		const current = stateRef.current;
-		if (!current || busyOperation) return;
+		const currentImpact = current?.impacts.find(candidate => candidate.id === impact.id);
+		if (
+			!current
+			|| currentImpact?.status !== 'pending'
+			|| busyOperation
+			|| impactRegenerationRequestRef.current
+		) return;
+		impactRegenerationRequestRef.current = impact.id;
 		setError(undefined);
 		try {
 			await persistLatest();
@@ -1015,6 +1024,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 			setError(journeyErrorCopy(reason));
 			setStatus('这一项未更新，原内容保持不变。');
 		} finally {
+			if (impactRegenerationRequestRef.current === impact.id) {
+				impactRegenerationRequestRef.current = undefined;
+			}
 			setBusyImpactId(undefined);
 			setBusyOperation(undefined);
 			setJobId(undefined);
@@ -1686,6 +1698,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 								<button
 									type="button"
 									data-testid="creation-guidance-option"
+									data-option-id={option.id}
 									key={option.id}
 									className={guidanceChoiceId === option.id ? 'is-selected' : ''}
 									aria-pressed={guidanceChoiceId === option.id}
@@ -1740,6 +1753,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 							<button
 								ref={impactOpenerRef}
 								type="button"
+								data-testid="creation-impact-open"
 								onClick={() => setImpactPanelOpen(true)}
 							>
 								查看影响
@@ -1871,6 +1885,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<button
 												type="button"
 												data-testid="creation-core-field-lock"
+												data-field-key={field.key}
 												aria-label={locked ? `解锁${field.label}` : `锁定${field.label}`}
 												aria-pressed={locked}
 												onClick={() => applyState(toggleJourneyLock(state, {
@@ -1883,9 +1898,11 @@ export function CreationJourneyPage(): React.JSX.Element {
 											</button>
 										</div>
 										{field.multiline ? (
-											<textarea
-												id={inputId}
-												name="creation-core-field"
+										<textarea
+											id={inputId}
+											name="creation-core-field"
+											data-testid="creation-core-field"
+											data-field-key={field.key}
 												value={state.core[field.key]}
 												disabled={locked}
 												maxLength={field.key === 'oneSentence' ? 2_000 : 1_000}
@@ -1896,9 +1913,11 @@ export function CreationJourneyPage(): React.JSX.Element {
 												onBlur={() => void persistLatest()}
 											/>
 										) : (
-											<input
-												id={inputId}
-												name="creation-core-field"
+										<input
+											id={inputId}
+											name="creation-core-field"
+											data-testid="creation-core-field"
+											data-field-key={field.key}
 												value={state.core[field.key]}
 												disabled={locked}
 												maxLength={1_000}
@@ -2224,6 +2243,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<div className="creation-impact-row-actions">
 												<button
 													type="button"
+													data-testid="creation-impact-keep"
+													data-impact-id={impact.id}
 													disabled={Boolean(busyOperation)}
 													onClick={() => keepImpact(impact)}
 												>
@@ -2233,6 +2254,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 													<button
 														className="is-ai"
 														type="button"
+														data-testid="creation-impact-regenerate"
+														data-impact-id={impact.id}
 														disabled={Boolean(busyOperation) || targetLocked}
 														onClick={() => void regenerateImpact(impact)}
 													>

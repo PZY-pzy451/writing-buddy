@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useAppStore } from '../../app/store';
 import { desktopBridge } from '../../platform/bridge';
@@ -112,7 +112,7 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		localStorage.clear();
 	});
 
-	it('asks one explicit question, locks decisions, and resolves impacts one item at a time', async () => {
+	it('shows and selects guided decisions by pointer, disables locked fields, saves each impact, and restores keyboard focus', async () => {
 		const user = userEvent.setup();
 		let persisted = serializeCreationJourneyState(completeJourney());
 		vi.spyOn(desktopBridge, 'readCreationJourneyState').mockResolvedValue({
@@ -148,8 +148,14 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		});
 		const questionCard = question.closest('section');
 		expect(questionCard).not.toBeNull();
-		expect(within(questionCard!).getAllByRole('button', { pressed: false })).toHaveLength(3);
-		await user.click(within(questionCard!).getByRole('button', { name: /最后的记忆/ }));
+		const guidanceOptions = within(questionCard!).getAllByTestId('creation-guidance-option');
+		expect(guidanceOptions).toHaveLength(3);
+		expect(guidanceOptions.every(option => Boolean(option.getAttribute('data-option-id'))))
+			.toBe(true);
+		const selectedGuidance = within(questionCard!).getByRole('button', { name: /最后的记忆/ });
+		expect(selectedGuidance).toHaveAttribute('data-testid', 'creation-guidance-option');
+		expect(selectedGuidance).toHaveAttribute('data-option-id');
+		await user.click(selectedGuidance);
 		await user.click(within(questionCard!).getByRole('button', { name: '确认这个答案' }));
 		await waitFor(() => expect(question).not.toBeInTheDocument());
 		await waitForJourneySave();
@@ -157,8 +163,16 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		expect(parseCreationJourneyState(persisted).guidance.answers).toHaveLength(1);
 
 		await user.click(screen.getByRole('button', { name: /故事核心/ }));
+		const protagonist = await screen.findByLabelText('主角');
+		expect(protagonist).toHaveAttribute('data-testid', 'creation-core-field');
+		expect(protagonist).toHaveAttribute('data-field-key', 'protagonist');
 		const stakes = await screen.findByLabelText('失败代价');
-		await user.click(screen.getByRole('button', { name: '锁定失败代价' }));
+		expect(stakes).toHaveAttribute('data-testid', 'creation-core-field');
+		expect(stakes).toHaveAttribute('data-field-key', 'stakes');
+		const stakesLock = screen.getByRole('button', { name: '锁定失败代价' });
+		expect(stakesLock).toHaveAttribute('data-testid', 'creation-core-field-lock');
+		expect(stakesLock).toHaveAttribute('data-field-key', 'stakes');
+		await user.click(stakesLock);
 		expect(stakes).toBeDisabled();
 		await user.click(screen.getByRole('button', { name: '解锁失败代价' }));
 		expect(stakes).toBeEnabled();
@@ -171,19 +185,35 @@ describe('Phase 1.2C guided creation journey experience', () => {
 		expect(screen.getByText('方向 3 项 · 提纲 5 项 · 章节 3 项待处理'))
 			.toBeInTheDocument();
 		const opener = screen.getByRole('button', { name: '查看影响' });
+		expect(opener).toHaveAttribute('data-testid', 'creation-impact-open');
 		await user.click(opener);
 		const dialog = await screen.findByRole('dialog', { name: '查看上游修改的影响' });
-		expect(within(dialog).getAllByRole('button', { name: '保留当前内容' })).toHaveLength(11);
+		const keepActions = within(dialog).getAllByTestId('creation-impact-keep');
+		expect(keepActions).toHaveLength(11);
+		expect(keepActions.every(action => Boolean(action.getAttribute('data-impact-id'))))
+			.toBe(true);
 
-		await user.click(within(dialog).getAllByRole('button', { name: '保留当前内容' })[0]);
+		const keptImpactId = keepActions[0].getAttribute('data-impact-id');
+		for (let index = 0; index < 100; index += 1) {
+			fireEvent.click(keepActions[0]);
+		}
 		await waitFor(() => {
-			expect(within(dialog).getAllByRole('button', { name: '保留当前内容' })).toHaveLength(10);
+			expect(within(dialog).getAllByTestId('creation-impact-keep')).toHaveLength(10);
 		});
+		expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+		expect(within(dialog).getAllByTestId('creation-impact-keep').map(action => (
+			action.getAttribute('data-impact-id')
+		))).not.toContain(keptImpactId);
 		await waitForJourneySave();
-		await user.click(within(dialog).getAllByRole('button', { name: 'AI 重新生成此项' })[0]);
+		const regenerateActions = within(dialog).getAllByTestId('creation-impact-regenerate');
+		expect(regenerateActions.every(action => Boolean(action.getAttribute('data-impact-id'))))
+			.toBe(true);
+		for (let index = 0; index < 100; index += 1) {
+			fireEvent.click(regenerateActions[0]);
+		}
 		await waitFor(() => {
 			expect(aiSpy).toHaveBeenCalledTimes(2);
-			expect(within(dialog).getAllByRole('button', { name: '保留当前内容' })).toHaveLength(9);
+			expect(within(dialog).getAllByTestId('creation-impact-keep')).toHaveLength(9);
 		});
 
 		await user.keyboard('{Escape}');
