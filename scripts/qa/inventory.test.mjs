@@ -1108,7 +1108,7 @@ describe('control inventory rendered-element boundary', () => {
 			},
 			{
 				source: 'apps/desktop/src/review/TaskDock.tsx',
-				count: 8,
+				count: 12,
 				selectors: ['task-dock-issue']
 			},
 			{
@@ -1128,5 +1128,56 @@ describe('control inventory rendered-element boundary', () => {
 			expect(sourceControls.map(control => control.stableSelectorValue), contract.source)
 				.toEqual(expect.arrayContaining(contract.selectors));
 		}
+	});
+
+	it('TC-QA-INVENTORY-019 requires contextual stable controls and Review ownership for the Task Dock', () => {
+		execFileSync(process.execPath, ['scripts/qa/inventory.mjs'], {
+			cwd: repositoryRoot,
+			stdio: 'pipe'
+		});
+		const inventory = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/control-inventory.json'),
+			'utf8'
+		));
+		const hierarchy = JSON.parse(readFileSync(
+			resolve(repositoryRoot, 'artifacts/qa/test-hierarchy.json'),
+			'utf8'
+		));
+		const source = readFileSync(resolve(
+			repositoryRoot,
+			'apps/desktop/src/review/TaskDock.tsx'
+		), 'utf8');
+		const taskDockControls = inventory.controls.filter(control => (
+			control.source === 'apps/desktop/src/review/TaskDock.tsx'
+		));
+
+		expect(taskDockControls.map(control => control.stableSelectorValue).sort())
+			.toEqual([
+				'task-dock-accept',
+				'task-dock-close',
+				'task-dock-conversion-target',
+				'task-dock-convert',
+				'task-dock-defer',
+				'task-dock-dismiss',
+				'task-dock-filter',
+				'task-dock-ignore',
+				'task-dock-issue',
+				'task-dock-jump-source',
+				'task-dock-restore',
+				'task-dock-tab'
+			]);
+		expect(taskDockControls.map(control => control.selectorStrategy))
+			.toEqual(Array.from({ length: 12 }, () => 'data-testid'));
+		expect(source).toContain('data-dock-tab={id}');
+		expect(source).toContain('data-issue-filter={id}');
+		expect(source).toContain('data-capture-id={capture.id}');
+		const ownedTaskDockTests = hierarchy.discoveredTests.filter(testCase => (
+			testCase.title.startsWith('TC-TASK-DOCK-')
+		));
+		expect(ownedTaskDockTests).toHaveLength(5);
+		expect(ownedTaskDockTests.map(testCase => testCase.pageId))
+			.toEqual(Array.from({ length: 5 }, () => 'PAGE-REVIEW'));
+		expect(ownedTaskDockTests.map(testCase => testCase.featureId))
+			.toEqual(Array.from({ length: 5 }, () => 'FEATURE-04-01'));
 	});
 });

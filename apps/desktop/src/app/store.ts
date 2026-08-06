@@ -3092,7 +3092,12 @@ export const useAppStore = create<AppState>()(persist((set, get) => ({
 	},
 	async setQuickCaptureStatus(id, status, convertedResourceId) {
 		const state = get();
-		if (!quickCaptureStore || state.quickCaptureBusy) return false;
+		if (
+			!state.snapshot
+			|| state.snapshot.readOnly
+			|| !quickCaptureStore
+			|| state.quickCaptureBusy
+		) return false;
 		set({ quickCaptureBusy: true, error: undefined });
 		try {
 			const saved = await quickCaptureStore.setStatus({

@@ -12,7 +12,7 @@ import {
 	RotateCcw,
 	X
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { EditTransactionService } from '@writing-buddy/project';
 import { resolveAnchor, ReviewResolutionService } from '@writing-buddy/review';
 import { useAppStore } from '../app/store';
@@ -25,6 +25,16 @@ import type {
 import { ProjectBackupPanel } from '../features/backup/ProjectBackupPanel';
 
 const resolution = new ReviewResolutionService(new EditTransactionService());
+
+const dockTabs = [
+	{ id: 'issues', label: '待处理', Icon: ClipboardList },
+	{ id: 'inbox', label: '待整理', Icon: Lightbulb },
+	{ id: 'diff', label: '修改对比', Icon: Files },
+	{ id: 'tasks', label: '后台任务', Icon: Clock3 },
+	{ id: 'backups', label: '备份记录', Icon: Archive }
+] as const;
+
+type IssueFilter = 'all' | 'warning' | 'ignored';
 
 export function TaskDock(): React.JSX.Element {
 	const snapshot = useAppStore(state => state.snapshot);
@@ -44,16 +54,29 @@ export function TaskDock(): React.JSX.Element {
 	const convertQuickCapture = useAppStore(state => state.convertQuickCapture);
 	const jumpToQuickCaptureSource = useAppStore(state => state.jumpToQuickCaptureSource);
 	const [selectedId, setSelectedId] = useState<string>();
+	const [issueFilter, setIssueFilter] = useState<IssueFilter>('all');
+	const acceptGuard = useRef(false);
 	const [conversionTargets, setConversionTargets] = useState<
 		Readonly<Record<string, QuickCaptureConversionTarget>>
 	>({});
+	const readOnly = snapshot?.readOnly ?? true;
 
-	const selected = issues.find(issue => issue.id === selectedId) ?? issues[0];
 	const counts = useMemo(() => ({
 		open: issues.filter(issue => issue.status === 'open').length,
 		warning: issues.filter(issue => issue.severity === 'warning' || issue.severity === 'error').length,
 		ignored: issues.filter(issue => issue.status === 'ignored').length
 	}), [issues]);
+	const visibleIssues = useMemo(() => issues.filter(issue => {
+		if (issueFilter === 'warning') {
+			return issue.severity === 'warning' || issue.severity === 'error';
+		}
+		if (issueFilter === 'ignored') return issue.status === 'ignored';
+		return true;
+	}), [issueFilter, issues]);
+	const selected = visibleIssues.find(issue => issue.id === selectedId) ?? visibleIssues[0];
+	useEffect(() => {
+		acceptGuard.current = false;
+	}, [selected?.id, selected?.status]);
 	const inboxGroups = useMemo(() => {
 		const active = quickCaptures.filter(capture => (
 			capture.status === 'inbox' || capture.status === 'later'
@@ -88,9 +111,10 @@ export function TaskDock(): React.JSX.Element {
 	};
 
 	const accept = () => {
-		if (!selected || !session) {
+		if (acceptGuard.current || readOnly || !selected || !session) {
 			return;
 		}
+		acceptGuard.current = true;
 		const range = resolveAnchor(session.content, selected.anchor);
 		if (!range || selected.replacement === undefined) {
 			updateIssue(selected.id, { ...selected, status: 'stale', updatedAt: new Date().toISOString() });
@@ -108,13 +132,13 @@ export function TaskDock(): React.JSX.Element {
 	};
 
 	const ignore = () => {
-		if (selected) {
+		if (selected && !readOnly) {
 			updateIssue(selected.id, resolution.ignore(selected));
 		}
 	};
 
 	const restore = () => {
-		if (!selected || !session) {
+		if (readOnly || !selected || !session) {
 			return;
 		}
 		const result = resolution.restore(selected, session.content);
@@ -126,25 +150,35 @@ export function TaskDock(): React.JSX.Element {
 		<section className="task-dock" aria-label="任务与审校">
 			<header className="dock-tabs">
 				<div role="tablist">
-					<button type="button" role="tab" aria-selected={tab === 'issues'} onClick={() => setTab('issues')}>
-						<ClipboardList size={16} />待处理 <span>{counts.open}</span>
-					</button>
-					<button type="button" role="tab" aria-selected={tab === 'inbox'} onClick={() => setTab('inbox')}>
-						<Lightbulb size={16} />待整理 <span>{quickCaptures.filter(capture => capture.status === 'inbox' || capture.status === 'later').length}</span>
-					</button>
-					<button type="button" role="tab" aria-selected={tab === 'diff'} onClick={() => setTab('diff')}>
-						<Files size={16} />修改对比
-					</button>
-					<button type="button" role="tab" aria-selected={tab === 'tasks'} onClick={() => setTab('tasks')}>
-						<Clock3 size={16} />后台任务
-					</button>
-					<button type="button" role="tab" aria-selected={tab === 'backups'} onClick={() => setTab('backups')}>
-						<Archive size={16} />备份记录
-					</button>
+					{dockTabs.map(({ id, label, Icon }) => {
+						const count = id === 'issues'
+							? counts.open
+							: id === 'inbox'
+								? quickCaptures.filter(capture => (
+									capture.status === 'inbox' || capture.status === 'later'
+								)).length
+								: undefined;
+						return (
+							<button
+								key={id}
+								type="button"
+								role="tab"
+								data-testid="task-dock-tab"
+								data-dock-tab={id}
+								aria-selected={tab === id}
+								aria-controls={`task-dock-panel-${id}`}
+								onClick={() => setTab(id)}
+							>
+								<Icon size={16} />{label}
+								{count !== undefined && <span>{count}</span>}
+							</button>
+						);
+					})}
 				</div>
 				<button
 					className="icon-button"
 					type="button"
+					data-testid="task-dock-close"
 					onClick={toggleDock}
 					aria-label="关闭任务区"
 					aria-keyshortcuts="Control+J Meta+J"
@@ -155,23 +189,39 @@ export function TaskDock(): React.JSX.Element {
 			</header>
 
 			{tab === 'issues' && (
-				<div className="dock-body issue-dock">
+				<div id="task-dock-panel-issues" className="dock-body issue-dock" role="tabpanel">
 					<div className="issue-filters">
-						<button type="button" className="is-active"><CircleAlert size={16} />全部 <strong>{issues.length}</strong></button>
-						<button type="button">严重与警告 <strong>{counts.warning}</strong></button>
-						<button type="button">已忽略 <strong>{counts.ignored}</strong></button>
+						{([
+							{ id: 'all', label: '全部', count: issues.length },
+							{ id: 'warning', label: '严重与警告', count: counts.warning },
+							{ id: 'ignored', label: '已忽略', count: counts.ignored }
+						] as const).map(({ id, label, count }) => (
+							<button
+								key={id}
+								type="button"
+								data-testid="task-dock-filter"
+								data-issue-filter={id}
+								className={issueFilter === id ? 'is-active' : undefined}
+								aria-pressed={issueFilter === id}
+								onClick={() => setIssueFilter(id)}
+							>
+								{id === 'all' && <CircleAlert size={16} />}{label} <strong>{count}</strong>
+							</button>
+						))}
 					</div>
 					<div className="issue-list">
-						{issues.length === 0 && (
+						{visibleIssues.length === 0 && (
 							<AppEmptyState
 								icon={Check}
-								title="当前章节没有待处理问题"
+								title={issueFilter === 'all'
+									? '当前章节没有待处理问题'
+									: '没有符合当前筛选的问题'}
 								density="compact"
 								tone="positive"
 								className="dock-empty"
 							/>
 						)}
-						{issues.map(issue => (
+						{visibleIssues.map(issue => (
 							<button
 								key={issue.id}
 								type="button"
@@ -195,9 +245,9 @@ export function TaskDock(): React.JSX.Element {
 								<blockquote>{selected.anchor.target}</blockquote>
 								{selected.replacement !== undefined && <div className="replacement-preview">{selected.replacement || '删除这段文字'}</div>}
 								<div className="detail-actions">
-									<button className="primary-button" type="button" onClick={accept} disabled={selected.status !== 'open' || selected.replacement === undefined}>接受</button>
-									<button className="secondary-button" type="button" onClick={ignore} disabled={selected.status !== 'open'}>忽略</button>
-									<button className="secondary-button" type="button" onClick={restore} disabled={selected.status !== 'accepted' && selected.status !== 'ignored'}><RotateCcw size={16} />恢复状态</button>
+									<button data-testid="task-dock-accept" className="primary-button" type="button" onClick={accept} disabled={readOnly || selected.status !== 'open' || selected.replacement === undefined}>接受</button>
+									<button data-testid="task-dock-ignore" className="secondary-button" type="button" onClick={ignore} disabled={readOnly || selected.status !== 'open'}>忽略</button>
+									<button data-testid="task-dock-restore" className="secondary-button" type="button" onClick={restore} disabled={readOnly || (selected.status !== 'accepted' && selected.status !== 'ignored')}><RotateCcw size={16} />恢复状态</button>
 								</div>
 							</>
 						) : (
@@ -213,14 +263,14 @@ export function TaskDock(): React.JSX.Element {
 			)}
 
 			{tab === 'diff' && (
-				<div className="dock-body diff-dock">
+				<div id="task-dock-panel-diff" className="dock-body diff-dock" role="tabpanel">
 					<div><span>原文</span><pre>{selected?.anchor.target ?? '选择一个带建议的问题'}</pre></div>
 					<div><span>建议</span><pre>{selected?.replacement ?? '暂无替换内容'}</pre></div>
 				</div>
 			)}
 
 			{tab === 'inbox' && (
-				<div className="dock-body quick-capture-inbox">
+				<div id="task-dock-panel-inbox" className="dock-body quick-capture-inbox" role="tabpanel">
 					{quickCaptures.filter(capture => (
 						capture.status === 'inbox' || capture.status === 'later'
 					)).length === 0 ? (
@@ -254,59 +304,69 @@ export function TaskDock(): React.JSX.Element {
 														</span>
 														{capture.status === 'later' && <small>稍后处理</small>}
 													</div>
-													<p>{capture.text}</p>
-													<footer>
-														<label className="quick-capture-conversion">
-															<span className="sr-only">正式资料类型</span>
-															<select
-																aria-label="正式资料类型"
-																value={conversionTargets[capture.id] ?? defaultConversionTarget(capture.type)}
-																disabled={quickCaptureBusy}
-																onChange={event => setConversionTargets(current => ({
-																	...current,
-																	[capture.id]: event.target.value as QuickCaptureConversionTarget
-																}))}
-															>
-																<option value="character">人物</option>
-																<option value="location">地点</option>
-																<option value="item">物品</option>
-																<option value="foreshadowing">伏笔</option>
-																<option value="worldRule">世界规则</option>
-															</select>
-															<button
-																type="button"
-																disabled={quickCaptureBusy}
-																onClick={() => void convertQuickCapture(
-																	capture.id,
-																	conversionTargets[capture.id]
-																		?? defaultConversionTarget(capture.type)
-																)}
-															>
-																<FileInput size={16} />转为正式资料
-															</button>
-														</label>
-														<button
-															type="button"
-															disabled={quickCaptureBusy || !capture.anchor}
-															onClick={() => void jumpToQuickCaptureSource(capture)}
-														>
-															<Link2 size={16} />跳到原文
-														</button>
-														<button
-															type="button"
-															disabled={quickCaptureBusy}
-															onClick={() => void setQuickCaptureStatus(capture.id, 'later')}
-														>
-															稍后
-														</button>
-														<button
-															type="button"
-															disabled={quickCaptureBusy}
-															onClick={() => void setQuickCaptureStatus(capture.id, 'dismissed')}
-														>
-															忽略
-														</button>
-													</footer>
+											<p>{capture.text}</p>
+											<footer>
+												<label className="quick-capture-conversion">
+													<span className="sr-only">正式资料类型</span>
+													<select
+														data-testid="task-dock-conversion-target"
+														data-capture-id={capture.id}
+														aria-label="正式资料类型"
+														value={conversionTargets[capture.id] ?? defaultConversionTarget(capture.type)}
+														disabled={quickCaptureBusy || readOnly}
+														onChange={event => setConversionTargets(current => ({
+															...current,
+															[capture.id]: event.target.value as QuickCaptureConversionTarget
+														}))}
+													>
+														<option value="character">人物</option>
+														<option value="location">地点</option>
+														<option value="item">物品</option>
+														<option value="foreshadowing">伏笔</option>
+														<option value="worldRule">世界规则</option>
+													</select>
+													<button
+														type="button"
+														data-testid="task-dock-convert"
+														data-capture-id={capture.id}
+														disabled={quickCaptureBusy || readOnly}
+														onClick={() => void convertQuickCapture(
+															capture.id,
+															conversionTargets[capture.id]
+																?? defaultConversionTarget(capture.type)
+														)}
+													>
+														<FileInput size={16} />转为正式资料
+													</button>
+												</label>
+												<button
+													type="button"
+													data-testid="task-dock-jump-source"
+													data-capture-id={capture.id}
+													disabled={quickCaptureBusy || !capture.anchor}
+													onClick={() => void jumpToQuickCaptureSource(capture)}
+												>
+													<Link2 size={16} />跳到原文
+												</button>
+												<button
+													type="button"
+													data-testid="task-dock-defer"
+													data-capture-id={capture.id}
+													disabled={quickCaptureBusy || readOnly}
+													onClick={() => void setQuickCaptureStatus(capture.id, 'later')}
+												>
+													稍后
+												</button>
+												<button
+													type="button"
+													data-testid="task-dock-dismiss"
+													data-capture-id={capture.id}
+													disabled={quickCaptureBusy || readOnly}
+													onClick={() => void setQuickCaptureStatus(capture.id, 'dismissed')}
+												>
+													忽略
+												</button>
+											</footer>
 												</article>
 											))}
 										</div>
@@ -317,7 +377,7 @@ export function TaskDock(): React.JSX.Element {
 			)}
 
 			{tab === 'tasks' && (
-				<div className="dock-body task-list">
+				<div id="task-dock-panel-tasks" className="dock-body task-list" role="tabpanel">
 					<div><Check size={18} /><span>读取项目清单</span><strong>完成</strong></div>
 					<div><Check size={18} /><span>建立资源索引</span><strong>完成</strong></div>
 					<div><ChevronDown size={18} /><span>本地章节审校</span><strong>{issues.length ? '完成' : '待运行'}</strong></div>
@@ -325,7 +385,7 @@ export function TaskDock(): React.JSX.Element {
 			)}
 
 			{tab === 'backups' && (
-				<div className="dock-body backup-dock">
+				<div id="task-dock-panel-backups" className="dock-body backup-dock" role="tabpanel">
 					<ProjectBackupPanel density="compact" />
 				</div>
 			)}

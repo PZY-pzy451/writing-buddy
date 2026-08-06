@@ -56,7 +56,7 @@ describe('Quick Capture experience', () => {
 	beforeEach(resetExperience);
 	afterEach(() => localStorage.clear());
 
-	it('captures from the global shortcut without leaving the chapter, then opens the inbox', async () => {
+	it('TC-TASK-DOCK-004 opens contextual inbox controls from the shortcut, persists one dismiss action and keeps the chapter selection', async () => {
 		const user = userEvent.setup();
 		render(<App />);
 		await openFixtureAndContinue(user);
@@ -95,7 +95,9 @@ describe('Quick Capture experience', () => {
 			dockOpen: true,
 			dockTab: 'inbox'
 		});
-		await user.click(screen.getByRole('button', { name: '忽略' }));
+		const dismiss = screen.getByTestId('task-dock-dismiss');
+		expect(dismiss).toHaveAttribute('data-capture-id', useAppStore.getState().quickCaptures[0]?.id);
+		await user.click(dismiss);
 		await waitFor(() => expect(useAppStore.getState().quickCaptures.at(0)?.status)
 			.toBe('dismissed'));
 	});

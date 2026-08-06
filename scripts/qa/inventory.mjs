@@ -64,6 +64,11 @@ const testTitleOwnership = [
 		prefix: 'TC-WRITER-HEADER-',
 		pageId: 'PAGE-WRITING-EDITOR',
 		featureId: 'FEATURE-01-02'
+	},
+	{
+		prefix: 'TC-TASK-DOCK-',
+		pageId: 'PAGE-REVIEW',
+		featureId: 'FEATURE-04-01'
 	}
 ];
 

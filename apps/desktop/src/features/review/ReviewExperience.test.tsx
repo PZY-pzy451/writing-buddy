@@ -66,6 +66,28 @@ function resetStores(): void {
 	});
 }
 
+async function openFixtureForTaskDock(user: ReturnType<typeof userEvent.setup>): Promise<{
+	readonly projectId: string;
+	readonly resourceId: string;
+	readonly content: string;
+}> {
+	const view = render(<App />);
+	await screen.findByRole('main', { name: '写作首页' });
+	await user.click(screen.getByRole('button', { name: '继续上次位置' }));
+	await screen.findByRole('heading', { level: 1, name: '第一章 停摆的时钟' });
+	const state = useAppStore.getState();
+	if (!state.snapshot || !state.activeResource || !state.session) {
+		throw new Error('task dock fixture missing');
+	}
+	const fixture = {
+		projectId: state.snapshot.project.projectId,
+		resourceId: state.activeResource.id,
+		content: state.session.content
+	};
+	view.unmount();
+	return fixture;
+}
+
 describe('manual and AI review experience', () => {
 	beforeEach(async () => {
 		await desktopBridge.deleteDeepSeekKey();
@@ -294,6 +316,209 @@ describe('manual and AI review experience', () => {
 			assistantOpen: true
 		});
 		expect(reveal).toHaveBeenCalledWith(chapter.id, reviewIssue.anchor.start);
+	});
+
+	it('TC-TASK-DOCK-001 renders visible enabled accessible visual contextual tabs and filters, hides nonmatching issues by pointer, moves keyboard focus and closes the dock', async () => {
+		const user = userEvent.setup();
+		const fixture = await openFixtureForTaskDock(user);
+		const content = '夜雨落下。。  林墨推开门。';
+		const reviewIssues = runLocalReview(
+			fixture.projectId,
+			fixture.resourceId,
+			content
+		).issues;
+		if (reviewIssues.length < 2) throw new Error('task dock review issues missing');
+		const ignoredIssue = {
+			...reviewIssues[1],
+			id: 'review:ignored-task-dock',
+			status: 'ignored' as const
+		};
+		act(() => {
+			useAppStore.getState().setContent(content);
+			useAppStore.setState({
+				issues: [...reviewIssues, ignoredIssue],
+				dockOpen: true,
+				dockTab: 'issues'
+			});
+		});
+		const dock = render(<TaskDock />);
+
+		const tabs = screen.getAllByTestId('task-dock-tab');
+		expect(tabs.map(tab => tab.getAttribute('data-dock-tab'))).toEqual([
+			'issues', 'inbox', 'diff', 'tasks', 'backups'
+		]);
+		for (const tab of tabs) expect(tab).toHaveAccessibleName();
+		const filters = screen.getAllByTestId('task-dock-filter');
+		expect(filters.map(filter => filter.getAttribute('data-issue-filter')))
+			.toEqual(['all', 'warning', 'ignored']);
+		expect(screen.getAllByTestId('task-dock-issue')).toHaveLength(3);
+
+		await user.click(filters[1]);
+		expect(screen.getAllByTestId('task-dock-issue')).toHaveLength(1);
+		expect(screen.getByTestId('task-dock-issue'))
+			.toHaveAttribute('data-issue-id', reviewIssues[0].id);
+		await user.click(filters[2]);
+		expect(screen.getAllByTestId('task-dock-issue')).toHaveLength(1);
+		expect(screen.getByTestId('task-dock-issue'))
+			.toHaveAttribute('data-issue-id', ignoredIssue.id);
+		await user.click(filters[0]);
+		expect(screen.getAllByTestId('task-dock-issue')).toHaveLength(3);
+
+		await user.click(tabs[3]);
+		expect(useAppStore.getState().dockTab).toBe('tasks');
+		expect(tabs[3]).toHaveAttribute('aria-selected', 'true');
+		const close = screen.getByTestId('task-dock-close');
+		close.focus();
+		expect(close).toHaveFocus();
+		await user.keyboard('{Enter}');
+		expect(useAppStore.getState().dockOpen).toBe(false);
+		dock.unmount();
+		expect(close).not.toHaveFocus();
+	});
+
+	it('TC-TASK-DOCK-002 deduplicates repeated accept actions, records one successful edit, blocks disabled actions, and restores accepted or ignored issues as undo', async () => {
+		const user = userEvent.setup();
+		const fixture = await openFixtureForTaskDock(user);
+		const content = '夜雨落下。。';
+		const issue = runLocalReview(fixture.projectId, fixture.resourceId, content).issues[0];
+		if (!issue) throw new Error('task dock lifecycle issue missing');
+		act(() => {
+			useAppStore.getState().setContent(content);
+			useAppStore.setState({ issues: [issue], dockOpen: true, dockTab: 'issues' });
+		});
+		const requestEditorEdit = vi.spyOn(useAppStore.getState(), 'requestEditorEdit').mockClear();
+		render(<TaskDock />);
+
+		const accept = screen.getByTestId('task-dock-accept');
+		const ignore = screen.getByTestId('task-dock-ignore');
+		const restore = screen.getByTestId('task-dock-restore');
+		expect(accept).toBeEnabled();
+		expect(ignore).toBeEnabled();
+		expect(restore).toBeDisabled();
+		act(() => {
+			for (let attempt = 0; attempt < 100; attempt += 1) {
+				accept.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			}
+		});
+		expect(requestEditorEdit).toHaveBeenCalledOnce();
+		expect(useAppStore.getState().issues[0]?.status).toBe('accepted');
+		expect(accept).toBeDisabled();
+
+		act(() => useAppStore.getState().setContent('夜雨落下。'));
+		await user.click(restore);
+		expect(useAppStore.getState().issues[0]?.status).toBe('open');
+		expect(useAppStore.getState().session?.content).toBe(content);
+		await user.click(ignore);
+		expect(useAppStore.getState().issues[0]?.status).toBe('ignored');
+		await user.click(restore);
+		expect(useAppStore.getState().issues[0]?.status).toBe('open');
+	});
+
+	it('TC-TASK-DOCK-003 renders contextual inbox controls disabled while loading and re-enables eligible controls when loading clears', async () => {
+		const user = userEvent.setup();
+		const fixture = await openFixtureForTaskDock(user);
+		const capture = {
+			id: 'capture:task-dock',
+			projectId: fixture.projectId,
+			type: 'idea',
+			text: '让玻璃顶在终章再次出现',
+			status: 'inbox',
+			createdAt: '2026-08-06T08:00:00.000Z',
+			updatedAt: '2026-08-06T08:00:00.000Z'
+		} as const;
+		void act(() => useAppStore.setState({
+			quickCaptures: [capture],
+			quickCaptureBusy: true,
+			dockOpen: true,
+			dockTab: 'inbox'
+		}));
+		render(<TaskDock />);
+
+		const contextControls = [
+			screen.getByTestId('task-dock-conversion-target'),
+			screen.getByTestId('task-dock-convert'),
+			screen.getByTestId('task-dock-jump-source'),
+			screen.getByTestId('task-dock-defer'),
+			screen.getByTestId('task-dock-dismiss')
+		];
+		for (const control of contextControls) {
+			expect(control).toHaveAttribute('data-capture-id', capture.id);
+			expect(control).toBeDisabled();
+			expect(control).toHaveAccessibleName();
+		}
+
+		void act(() => useAppStore.setState({ quickCaptureBusy: false }));
+		expect(screen.getByTestId('task-dock-conversion-target')).toBeEnabled();
+		expect(screen.getByTestId('task-dock-convert')).toBeEnabled();
+		expect(screen.getByTestId('task-dock-defer')).toBeEnabled();
+		expect(screen.getByTestId('task-dock-dismiss')).toBeEnabled();
+		expect(screen.getByTestId('task-dock-jump-source')).toBeDisabled();
+		await user.selectOptions(screen.getByTestId('task-dock-conversion-target'), 'item');
+		expect(screen.getByTestId('task-dock-conversion-target')).toHaveValue('item');
+	});
+
+	it('TC-TASK-DOCK-005 enforces read-only permission across every contextual control without blocking navigation', async () => {
+		const user = userEvent.setup();
+		const fixture = await openFixtureForTaskDock(user);
+		const content = '夜雨落下。。';
+		const openIssue = runLocalReview(fixture.projectId, fixture.resourceId, content).issues[0];
+		if (!openIssue) throw new Error('task dock permission issue missing');
+		const ignoredIssue = {
+			...openIssue,
+			id: 'review:read-only-ignored',
+			status: 'ignored' as const
+		};
+		const capture = {
+			id: 'capture:task-dock-read-only',
+			projectId: fixture.projectId,
+			type: 'idea',
+			text: '只读模式仍允许定位这条记录的原文',
+			chapterId: `chapter:${fixture.resourceId}`,
+			anchor: openIssue.anchor,
+			status: 'inbox',
+			createdAt: '2026-08-06T08:00:00.000Z',
+			updatedAt: '2026-08-06T08:00:00.000Z'
+		} as const;
+		const snapshot = useAppStore.getState().snapshot;
+		if (!snapshot) throw new Error('task dock permission snapshot missing');
+		act(() => {
+			useAppStore.getState().setContent(content);
+			useAppStore.setState({
+				snapshot: { ...snapshot, readOnly: true },
+				issues: [openIssue, ignoredIssue],
+				quickCaptures: [capture],
+				quickCaptureBusy: false,
+				dockOpen: true,
+				dockTab: 'issues'
+			});
+		});
+		const requestEditorEdit = vi.spyOn(useAppStore.getState(), 'requestEditorEdit').mockClear();
+		render(<TaskDock />);
+
+		for (const control of [
+			...screen.getAllByTestId('task-dock-tab'),
+			...screen.getAllByTestId('task-dock-filter'),
+			...screen.getAllByTestId('task-dock-issue'),
+			screen.getByTestId('task-dock-close')
+		]) expect(control).toBeEnabled();
+		expect(screen.getByTestId('task-dock-accept')).toBeDisabled();
+		expect(screen.getByTestId('task-dock-ignore')).toBeDisabled();
+		await user.click(screen.getAllByTestId('task-dock-issue')[1]);
+		expect(screen.getByTestId('task-dock-restore')).toBeDisabled();
+		expect(requestEditorEdit).not.toHaveBeenCalled();
+
+		const beforeCaptures = useAppStore.getState().quickCaptures;
+		expect(await useAppStore.getState().setQuickCaptureStatus(capture.id, 'dismissed'))
+			.toBe(false);
+		expect(useAppStore.getState().quickCaptures).toEqual(beforeCaptures);
+		await user.click(screen.getAllByTestId('task-dock-tab').find(control => (
+			control.getAttribute('data-dock-tab') === 'inbox'
+		))!);
+		expect(screen.getByTestId('task-dock-conversion-target')).toBeDisabled();
+		expect(screen.getByTestId('task-dock-convert')).toBeDisabled();
+		expect(screen.getByTestId('task-dock-defer')).toBeDisabled();
+		expect(screen.getByTestId('task-dock-dismiss')).toBeDisabled();
+		expect(screen.getByTestId('task-dock-jump-source')).toBeEnabled();
 	});
 
 	it('streams and successfully applies a real-provider-shaped AI review while keeping suggestions author-confirmed', async () => {
