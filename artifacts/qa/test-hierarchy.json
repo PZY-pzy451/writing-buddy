@@ -40482,6 +40482,423 @@
                   ]
                 },
                 {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885",
+                  "level": "L4",
+                  "name": "正文依据",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-17F30885-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26",
+                  "level": "L4",
+                  "name": "保留差异",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-1C6F6E26-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3",
+                  "level": "L4",
+                  "name": "查看正文依据",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-267EE7F3-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
                   "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-306B9B29",
                   "level": "L4",
                   "name": "创建快照并批量确认",
@@ -40621,138 +41038,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD",
                   "level": "L4",
-                  "name": "稍后处理",
+                  "name": "修改正文",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-374319EE-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7284D1DD-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -40760,277 +41177,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE",
                   "level": "L4",
-                  "name": "查看正文依据",
+                  "name": "更新大纲",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4607C2E9-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016",
-                  "level": "L4",
-                  "name": "拒绝候选",
-                  "states": [
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-4A137016-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-729A49AE-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41177,138 +41455,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA",
                   "level": "L4",
                   "name": "button",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-833E7821-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-7BCDB8FA-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53",
+                  "level": "L4",
+                  "name": "使用最新正文",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8AB13D53-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453",
+                  "level": "L4",
+                  "name": "稍后处理",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-8E896453-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41455,138 +42011,555 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311",
                   "level": "L4",
-                  "name": "使用最新正文",
+                  "name": "用最新内容重新整理",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-C97E82DE-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-A7D08311-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D",
+                  "level": "L4",
+                  "name": "稍后整理",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-AC20BE5D-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93",
+                  "level": "L4",
+                  "name": "用最新正文重新规划",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-CD918F93-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7",
+                  "level": "L4",
+                  "name": "拒绝候选",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-E083B7E7-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41733,138 +42706,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E",
                   "level": "L4",
-                  "name": "用最新正文重新规划",
+                  "name": "input",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-BUTTON-FBBEC704-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-074A778E-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -41872,138 +42845,416 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-3C379B63-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135",
+                  "level": "L4",
+                  "name": "input",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6219E135-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0",
                   "level": "L4",
                   "name": "只看冲突",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-4C19F55C-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-6F7585D0-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -42011,555 +43262,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62",
                   "level": "L4",
                   "name": "input",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-878EA4DF-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-A104420F-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-F799820E-UNDO",
-                      "level": "L5",
-                      "name": "撤销",
-                      "testCaseIds": []
-                    }
-                  ]
-                },
-                {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07",
-                  "level": "L4",
-                  "name": "input",
-                  "states": [
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-VISIBLE",
-                      "level": "L5",
-                      "name": "是否显示",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-HIDDEN",
-                      "level": "L5",
-                      "name": "是否隐藏",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-ENABLED",
-                      "level": "L5",
-                      "name": "是否启用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-DISABLED",
-                      "level": "L5",
-                      "name": "是否禁用",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-POINTER",
-                      "level": "L5",
-                      "name": "鼠标操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-KEYBOARD",
-                      "level": "L5",
-                      "name": "键盘操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-FOCUS-IN",
-                      "level": "L5",
-                      "name": "焦点进入",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-FOCUS-OUT",
-                      "level": "L5",
-                      "name": "焦点离开",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-REPEAT",
-                      "level": "L5",
-                      "name": "重复操作",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-DEDUPLICATION",
-                      "level": "L5",
-                      "name": "防重复提交",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-LOADING",
-                      "level": "L5",
-                      "name": "加载状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-SUCCESS",
-                      "level": "L5",
-                      "name": "成功状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-FAILURE",
-                      "level": "L5",
-                      "name": "失败状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-CANCELLED",
-                      "level": "L5",
-                      "name": "取消状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-OFFLINE",
-                      "level": "L5",
-                      "name": "离线状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-PERMISSION",
-                      "level": "L5",
-                      "name": "权限状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-PERSISTENCE",
-                      "level": "L5",
-                      "name": "持久化",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-RESTART",
-                      "level": "L5",
-                      "name": "重启恢复",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-VISUAL",
-                      "level": "L5",
-                      "name": "视觉状态",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-ACCESSIBLE-NAME",
-                      "level": "L5",
-                      "name": "无障碍名称",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-DESTRUCTIVE-CONFIRMATION",
-                      "level": "L5",
-                      "name": "破坏性确认",
-                      "testCaseIds": []
-                    },
-                    {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-FF990F07-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-INPUT-75384F62-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -42706,138 +43540,138 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB",
                   "level": "L4",
                   "name": "按候选类型筛选",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-EFFA141E-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-A11956CB-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -42845,138 +43679,277 @@
                   ]
                 },
                 {
-                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C",
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4",
                   "level": "L4",
-                  "name": "作者指令",
+                  "name": "选择历史整理运行",
                   "states": [
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-VISIBLE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-VISIBLE",
                       "level": "L5",
                       "name": "是否显示",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-HIDDEN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-HIDDEN",
                       "level": "L5",
                       "name": "是否隐藏",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-ENABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-ENABLED",
                       "level": "L5",
                       "name": "是否启用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-DISABLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-DISABLED",
                       "level": "L5",
                       "name": "是否禁用",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-POINTER",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-POINTER",
                       "level": "L5",
                       "name": "鼠标操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-KEYBOARD",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-KEYBOARD",
                       "level": "L5",
                       "name": "键盘操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-FOCUS-IN",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-FOCUS-IN",
                       "level": "L5",
                       "name": "焦点进入",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-FOCUS-OUT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-FOCUS-OUT",
                       "level": "L5",
                       "name": "焦点离开",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-REPEAT",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-REPEAT",
                       "level": "L5",
                       "name": "重复操作",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-DEDUPLICATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-DEDUPLICATION",
                       "level": "L5",
                       "name": "防重复提交",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-LOADING",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-LOADING",
                       "level": "L5",
                       "name": "加载状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-SUCCESS",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-SUCCESS",
                       "level": "L5",
                       "name": "成功状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-FAILURE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-FAILURE",
                       "level": "L5",
                       "name": "失败状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-CANCELLED",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-CANCELLED",
                       "level": "L5",
                       "name": "取消状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-OFFLINE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-OFFLINE",
                       "level": "L5",
                       "name": "离线状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-PERMISSION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-PERMISSION",
                       "level": "L5",
                       "name": "权限状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-PERSISTENCE",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-PERSISTENCE",
                       "level": "L5",
                       "name": "持久化",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-RESTART",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-RESTART",
                       "level": "L5",
                       "name": "重启恢复",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-VISUAL",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-VISUAL",
                       "level": "L5",
                       "name": "视觉状态",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-ACCESSIBLE-NAME",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-ACCESSIBLE-NAME",
                       "level": "L5",
                       "name": "无障碍名称",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-DESTRUCTIVE-CONFIRMATION",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-DESTRUCTIVE-CONFIRMATION",
                       "level": "L5",
                       "name": "破坏性确认",
                       "testCaseIds": []
                     },
                     {
-                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-27B79D8C-UNDO",
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-SELECT-FCFE3FB4-UNDO",
+                      "level": "L5",
+                      "name": "撤销",
+                      "testCaseIds": []
+                    }
+                  ]
+                },
+                {
+                  "id": "CTRL-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD",
+                  "level": "L4",
+                  "name": "作者指令",
+                  "states": [
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-VISIBLE",
+                      "level": "L5",
+                      "name": "是否显示",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-HIDDEN",
+                      "level": "L5",
+                      "name": "是否隐藏",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-ENABLED",
+                      "level": "L5",
+                      "name": "是否启用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-DISABLED",
+                      "level": "L5",
+                      "name": "是否禁用",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-POINTER",
+                      "level": "L5",
+                      "name": "鼠标操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-KEYBOARD",
+                      "level": "L5",
+                      "name": "键盘操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-FOCUS-IN",
+                      "level": "L5",
+                      "name": "焦点进入",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-FOCUS-OUT",
+                      "level": "L5",
+                      "name": "焦点离开",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-REPEAT",
+                      "level": "L5",
+                      "name": "重复操作",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-DEDUPLICATION",
+                      "level": "L5",
+                      "name": "防重复提交",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-LOADING",
+                      "level": "L5",
+                      "name": "加载状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-SUCCESS",
+                      "level": "L5",
+                      "name": "成功状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-FAILURE",
+                      "level": "L5",
+                      "name": "失败状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-CANCELLED",
+                      "level": "L5",
+                      "name": "取消状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-OFFLINE",
+                      "level": "L5",
+                      "name": "离线状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-PERMISSION",
+                      "level": "L5",
+                      "name": "权限状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-PERSISTENCE",
+                      "level": "L5",
+                      "name": "持久化",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-RESTART",
+                      "level": "L5",
+                      "name": "重启恢复",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-VISUAL",
+                      "level": "L5",
+                      "name": "视觉状态",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-ACCESSIBLE-NAME",
+                      "level": "L5",
+                      "name": "无障碍名称",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-DESTRUCTIVE-CONFIRMATION",
+                      "level": "L5",
+                      "name": "破坏性确认",
+                      "testCaseIds": []
+                    },
+                    {
+                      "id": "STATE-MANUSCRIPTEXTRACTIONCENTERPAGE-TEXTAREA-5DEEBEAD-UNDO",
                       "level": "L5",
                       "name": "撤销",
                       "testCaseIds": []
@@ -77153,7 +78126,7 @@
       "id": "TC-DISCOVERED-04C36D86E9",
       "title": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
       "declarationTitle": "TC-QA-INVENTORY-013 requires distinct stable controls for the global create menu",
-      "declarationLine": 209,
+      "declarationLine": 239,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -77416,6 +78389,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-082391B539",
+      "title": "TC-QA-AI-CANCEL-006 cancels the runner and native job once for repeated actions",
+      "declarationTitle": "TC-QA-AI-CANCEL-006 cancels the runner and native job once for repeated actions",
+      "declarationLine": 387,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -78114,6 +79105,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-11D791BF80",
+      "title": "shows loading while a failed plan retry remains pending",
+      "declarationTitle": "shows loading while a failed plan retry remains pending",
+      "declarationLine": 280,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-129ADAE934",
       "title": "shows one calm visible next step for an unplanned empty chapter",
       "declarationTitle": "shows one calm visible next step for an unplanned empty chapter",
@@ -78499,7 +79508,7 @@
       "id": "TC-DISCOVERED-17C71D59E7",
       "title": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
       "declarationTitle": "TC-QA-INVENTORY-015 retains distinct selector values for every event inspector control",
-      "declarationLine": 250,
+      "declarationLine": 280,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -79206,24 +80215,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-1F5C1069E4",
-      "title": "compares a materialized chapter plan and batch-confirms only explicit outline fields",
-      "declarationTitle": "compares a materialized chapter plan and batch-confirms only explicit outline fields",
-      "declarationLine": 480,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-1F7F44F0D5",
       "title": "keeps required null fields blocked at the response boundary",
       "declarationTitle": "keeps required null fields blocked at the response boundary",
@@ -79593,7 +80584,7 @@
       "id": "TC-DISCOVERED-2538578937",
       "title": "retries an explicitly resumed failed chapter without rerunning completions",
       "declarationTitle": "retries an explicitly resumed failed chapter without rerunning completions",
-      "declarationLine": 386,
+      "declarationLine": 391,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.test.ts",
@@ -80730,24 +81721,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-31788C9507",
-      "title": "undoes one confirmation for one hundred same-frame actions",
-      "declarationTitle": "undoes one confirmation for one hundred same-frame actions",
-      "declarationLine": 271,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-3194732616",
       "title": "persists only operational metadata and deterministic token estimates",
       "declarationTitle": "persists only operational metadata and deterministic token estimates",
@@ -80866,24 +81839,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-334F7290F4",
-      "title": "redacts unexpected extraction storage failures and keeps retry visible",
-      "declarationTitle": "redacts unexpected extraction storage failures and keeps retry visible",
-      "declarationLine": 231,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -81692,24 +82647,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-3C26055977",
-      "title": "plans one batch for one hundred same-frame actions",
-      "declarationTitle": "plans one batch for one hundred same-frame actions",
-      "declarationLine": 179,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-3C305DDAB2",
       "title": "covers the exact responsive targets, both themes, reduced motion and keyboard use",
       "declarationTitle": "covers the exact responsive targets, both themes, reduced motion and keyboard use",
@@ -81782,6 +82719,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3C7137A70D",
+      "title": "guards repeated plan actions against duplicate batches",
+      "declarationTitle": "guards repeated plan actions against duplicate batches",
+      "declarationLine": 256,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-3C7F5726D2",
       "title": "shows a non-color setup recovery action and blocks read-only fixes",
       "declarationTitle": "shows a non-color setup recovery action and blocks read-only fixes",
@@ -81792,6 +82747,24 @@
       "domainId": "DOMAIN-04",
       "featureId": "FEATURE-04-09",
       "pageId": "PAGE-REVIEW",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3CAEACAE21",
+      "title": "enables retry after a localized malformed-response failure",
+      "declarationTitle": "enables retry after a localized malformed-response failure",
+      "declarationLine": 436,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -82074,6 +83047,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-3E420576E4",
+      "title": "renders visible accessible setup and filter identities with keyboard focus",
+      "declarationTitle": "renders visible accessible setup and filter identities with keyboard focus",
+      "declarationLine": 192,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-3E44116976",
       "title": "renders a visible enabled accessible action and reveals only during pointer hold",
       "declarationTitle": "renders a visible enabled accessible action and reveals only during pointer hold",
@@ -82177,6 +83168,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-3FE32356EF",
+      "title": "restores run history after restart before refreshing one stale chapter",
+      "declarationTitle": "restores run history after restart before refreshing one stale chapter",
+      "declarationLine": 494,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -82866,6 +83875,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-4A26658F1C",
+      "title": "disables candidate rejection after one request is dispatched",
+      "declarationTitle": "disables candidate rejection after one request is dispatched",
+      "declarationLine": 341,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -83621,7 +84648,7 @@
       "id": "TC-DISCOVERED-549A6660F1",
       "title": "TC-QA-INVENTORY-017 maps every story association control to a stable selector",
       "declarationTitle": "TC-QA-INVENTORY-017 maps every story association control to a stable selector",
-      "declarationLine": 301,
+      "declarationLine": 331,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -84276,24 +85303,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-5FC562C676",
-      "title": "stops during provider preflight before a native AI job starts",
-      "declarationTitle": "stops during provider preflight before a native AI job starts",
-      "declarationLine": 383,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-5FD72C8B6B",
       "title": "previews a split, reports preservation and conflicts, and mutates only on confirmation",
       "declarationTitle": "previews a split, reports preservation and conflicts, and mutates only on confirmation",
@@ -84340,24 +85349,6 @@
       "domainId": "DOMAIN-06",
       "featureId": "FEATURE-06-01",
       "pageId": "PAGE-PROJECT-CREATION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
-      "id": "TC-DISCOVERED-604A2A276E",
-      "title": "rejects one candidate for one hundred same-frame actions",
-      "declarationTitle": "rejects one candidate for one hundred same-frame actions",
-      "declarationLine": 288,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -84656,24 +85647,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-667322738F",
-      "title": "confirms one candidate transaction for one hundred same-frame actions",
-      "declarationTitle": "confirms one candidate transaction for one hundred same-frame actions",
-      "declarationLine": 252,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-66CD2A2A05",
       "title": "preserves an applying transaction dismissed through escape",
       "declarationTitle": "preserves an applying transaction dismissed through %s",
@@ -84823,7 +85796,7 @@
       "id": "TC-DISCOVERED-69D848E775",
       "title": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
       "declarationTitle": "TC-QA-INVENTORY-018 maps every Character, Item, Relationship, Consistency, Selection Rewrite, Manuscript Continuation AI, Project Welcome and Review Center control to stable selectors",
-      "declarationLine": 585,
+      "declarationLine": 615,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -85364,24 +86337,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-720533E57E",
-      "title": "TC-QA-AI-CANCEL-006 stops the runner and native job once for one hundred clicks",
-      "declarationTitle": "TC-QA-AI-CANCEL-006 stops the runner and native job once for one hundred clicks",
-      "declarationLine": 334,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-7219C24D28",
       "title": "allows one direction or a two-direction merge but rejects every other count",
       "declarationTitle": "allows one direction or a two-direction merge but rejects every other count",
@@ -85392,6 +86347,24 @@
       "domainId": "DOMAIN-02",
       "featureId": "FEATURE-02-01",
       "pageId": "PAGE-STORY-CREATION-JOURNEY",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-727204AFCC",
+      "title": "keeps paid AI work hidden until explicit author confirmation",
+      "declarationTitle": "keeps paid AI work hidden until explicit author confirmation",
+      "declarationLine": 592,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -85846,6 +86819,24 @@
       "domainId": "DOMAIN-07",
       "featureId": "FEATURE-07-08",
       "pageId": "PAGE-AI-DIAGNOSTICS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-78E0DEBF74",
+      "title": "preserves retry after an offline provider interruption",
+      "declarationTitle": "preserves retry after an offline provider interruption",
+      "declarationLine": 464,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -86492,24 +87483,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-8162492F62",
-      "title": "starts one paid run for one hundred same-frame actions",
-      "declarationTitle": "starts one paid run for one hundred same-frame actions",
-      "declarationLine": 307,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-81A8B4BCED",
       "title": "does not export or create a receipt when dirty manuscript saving fails",
       "declarationTitle": "does not export or create a receipt when dirty manuscript saving fails",
@@ -86916,6 +87889,24 @@
       "domainId": "DOMAIN-03",
       "featureId": "FEATURE-03-03",
       "pageId": "PAGE-STORY-RELATIONSHIPS",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-881E011C16",
+      "title": "opens evidence and keeps a reconciliation difference by pointer",
+      "declarationTitle": "opens evidence and keeps a reconciliation difference by pointer",
+      "declarationLine": 727,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -88568,24 +89559,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-9F98D3FC9E",
-      "title": "releases the plan guard after failure and deduplicates the explicit retry",
-      "declarationTitle": "releases the plan guard after failure and deduplicates the explicit retry",
-      "declarationLine": 203,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-9FAE7182D3",
       "title": "hides the action after saved credentials survive a playground rerender",
       "declarationTitle": "hides the action after saved credentials survive a playground rerender",
@@ -89308,6 +90281,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-ABFDFA2E13",
+      "title": "blocks native generation during credential preflight cancellation",
+      "declarationTitle": "blocks native generation during credential preflight cancellation",
+      "declarationLine": 546,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-AC034F84BB",
       "title": "keeps STORY_CONSISTENCY_ANALYSIS_SYSTEM_PROMPT identical in TypeScript and Rust",
       "declarationTitle": "keeps ${name} identical in TypeScript and Rust",
@@ -89451,6 +90442,24 @@
       "controlId": null,
       "stateId": null,
       "testLayer": "unit-contract",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-ADD4F872C0",
+      "title": "reports one successful paid run after repeated start actions",
+      "declarationTitle": "reports one successful paid run after repeated start actions",
+      "declarationLine": 360,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
       "automationStatus": "AUTOMATED",
       "executionStatus": "NOT_RUN",
       "stableIdStatus": "MISSING_EXPLICIT_ID"
@@ -90152,6 +91161,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-B6794BA9D7",
+      "title": "persists only explicitly selected reconciliation fields",
+      "declarationTitle": "persists only explicitly selected reconciliation fields",
+      "declarationLine": 656,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-B68D5A93C5",
       "title": "keeps the reject action hidden while an apply transaction is pending",
       "declarationTitle": "keeps the reject action hidden while an apply transaction is pending",
@@ -90584,6 +91611,24 @@
       "domainId": "DOMAIN-08",
       "featureId": "FEATURE-08-01",
       "pageId": "PAGE-GLOBAL-SHELL",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
+      "id": "TC-DISCOVERED-BBC2D1FDF5",
+      "title": "undoes one confirmation after repeated rollback actions",
+      "declarationTitle": "undoes one confirmation after repeated rollback actions",
+      "declarationLine": 311,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
       "controlId": null,
       "stateId": null,
       "testLayer": "ui-integration",
@@ -91782,24 +92827,6 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
-      "id": "TC-DISCOVERED-CC1A77BD18",
-      "title": "plans without AI, then runs only after explicit confirmation",
-      "declarationTitle": "plans without AI, then runs only after explicit confirmation",
-      "declarationLine": 429,
-      "parameterized": false,
-      "parameterizationResolved": true,
-      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
-      "domainId": "DOMAIN-03",
-      "featureId": "FEATURE-03-14",
-      "pageId": "PAGE-STORY-EXTRACTION",
-      "controlId": null,
-      "stateId": null,
-      "testLayer": "ui-integration",
-      "automationStatus": "AUTOMATED",
-      "executionStatus": "NOT_RUN",
-      "stableIdStatus": "MISSING_EXPLICIT_ID"
-    },
-    {
       "id": "TC-DISCOVERED-CC1B034D2D",
       "title": "builds and validates selectable scene-plan fields",
       "declarationTitle": "builds and validates selectable scene-plan fields",
@@ -91929,7 +92956,7 @@
       "id": "TC-DISCOVERED-CE89CC85E1",
       "title": "TC-QA-INVENTORY-016 retains distinct selector values for every relationship inspector control",
       "declarationTitle": "TC-QA-INVENTORY-016 retains distinct selector values for every relationship inspector control",
-      "declarationLine": 277,
+      "declarationLine": 307,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",
@@ -93366,6 +94393,24 @@
       "stableIdStatus": "MISSING_EXPLICIT_ID"
     },
     {
+      "id": "TC-DISCOVERED-E3B5AAE994",
+      "title": "keeps extraction setup and filter controls in their visual layout",
+      "declarationTitle": "keeps extraction setup and filter controls in their visual layout",
+      "declarationLine": 216,
+      "parameterized": false,
+      "parameterizationResolved": true,
+      "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterPage.test.tsx",
+      "domainId": "DOMAIN-03",
+      "featureId": "FEATURE-03-14",
+      "pageId": "PAGE-STORY-EXTRACTION",
+      "controlId": null,
+      "stateId": null,
+      "testLayer": "ui-integration",
+      "automationStatus": "AUTOMATED",
+      "executionStatus": "NOT_RUN",
+      "stableIdStatus": "MISSING_EXPLICIT_ID"
+    },
+    {
       "id": "TC-DISCOVERED-E3C0D32104",
       "title": "keeps drawer toggles focused and restores focus after a modal closes",
       "declarationTitle": "keeps drawer toggles focused and restores focus after a modal closes",
@@ -94043,7 +95088,7 @@
       "id": "TC-DISCOVERED-EE49E2BC68",
       "title": "surfaces stale ledger writes instead of overwriting concurrent state",
       "declarationTitle": "surfaces stale ledger writes instead of overwriting concurrent state",
-      "declarationLine": 431,
+      "declarationLine": 436,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "apps/desktop/src/features/story/extraction/ManuscriptExtractionCenterService.test.ts",
@@ -94115,7 +95160,7 @@
       "id": "TC-DISCOVERED-EEA19A1249",
       "title": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
       "declarationTitle": "TC-QA-INVENTORY-014 requires distinct stable controls for chapter creation",
-      "declarationLine": 229,
+      "declarationLine": 259,
       "parameterized": false,
       "parameterizationResolved": true,
       "source": "scripts/qa/inventory.test.mjs",

@@ -4,37 +4,37 @@ Updated: 2026-08-06
 
 ## Active milestone
 
-AI settings provider-action selector and trace convergence is complete on
-`codex/full-regression-gates-a-e-v2` against source `3ae6b89d`.
+Manuscript extraction control, interruption and trace convergence is complete
+on `codex/full-regression-gates-a-e-v2` against source `a602742d`.
 
-- Save key, test connection, request/confirm/cancel credential removal, refresh
-  models and refresh balance now have independent `data-testid` and
-  `data-ai-action` identities. Inventory had collapsed five of these real buttons
-  into adjacent localized controls; the QA gate now requires the exact 12-control
-  AI Settings selector set.
-- Failure-first rendered contracts failed 7 files / 8 tests solely on the missing
-  identities. Eight broad Store-call tests were then migrated or consolidated
-  into isolated user-control contracts without dropping their single-flight,
-  redaction, retry, partial-output or notice-replacement assertions.
-- Focused settings coverage passed 8 files / 28 tests. Ten pressure rounds passed
-  280 rendered cases and 4,000+ rapid actions with one provider, cancellation or
-  deletion call per active action. The entire AI domain passed 21 files / 147 tests.
-- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,013 frontend
-  tests and production build. Rust passed 77 with two reasoned ignores; QA
-  infrastructure passed 30/30 and the convergence ledger reports `PASS`.
-- Honest identity discovery expands inventory from 526 controls / 11,572 states /
-  1,085 tests to 531 / 11,682 / 1,092. Stable selectors remain complete at
-  531/531. Mapped controls rise from 404 to 409, states from 4,395 to 4,503 and
-  tests from 294 to 309.
-- Despite adding five controls, 110 states and seven tests, strict gaps fall by 6
-  from 8,285 to 8,279. Unmapped controls remain 122, states move from 7,177 to
-  7,179 and tests fall from 791 to 783. Strict coverage is 5,279/13,558 (38.94%);
-  control mapping is 409/531 (77.02%); state mapping is 4,503/11,682 (38.55%);
-  test mapping is 309/1,092 (28.30%).
-- Against the 11,088 / 136 reference, 2,809 mapping gaps and all 136 selector
-  gaps are closed. Release gates remain 1/4 complete (25%), so the release
-  distance is 8,279 strict mappings plus real-provider smoke and packaged-EXE
-  acceptance. Product stays `PARTIAL`; release stays `BLOCKED`.
+- The extraction center now exposes 26 exact, contextual control identities for
+  scope, chapter/type selection, planning, execution, stop/retry, run history,
+  stale refresh, reconciliation, evidence and candidate disposition. Its QA gate
+  requires the exact selector set; stable selectors remain 538/538 globally.
+- Failure-first offline testing reproduced a product defect: a structured
+  `network_unavailable` provider error was collapsed to `unknown`. Error
+  normalization now preserves supported structured codes, redacts raw provider
+  diagnostics and leaves the explicit retry action enabled.
+- The extraction domain passed 3 files / 33 tests. Ten pressure rounds passed
+  280 page/service instances; no duplicate paid run, cancellation, confirmation,
+  rejection or undo was dispatched. All 26 extraction controls, all 572 states
+  and all 15 rendered page tests now map; 13 service-only tests remain deliberately
+  outside the user-control trace.
+- Fixed Node 24.14.0 acceptance passed lint, typecheck, 211 files / 1,017 frontend
+  tests and production build. Rust passed 77 with two reasoned ignores and zero
+  failures; QA infrastructure passed 30/30. The convergence ledger is `PASS`.
+- Honest discovery grows inventory from 531 controls / 11,682 states / 1,092
+  tests to 538 / 11,836 / 1,096. Mapped controls/states/tests rise from
+  409 / 4,503 / 309 to 431 / 5,043 / 318. Unmapped controls/states/tests fall
+  from 122 / 7,179 / 783 to 107 / 6,793 / 778.
+- Strict gaps fall by 406, from 8,279 to 7,873, while the denominator grows by
+  165. Strict coverage is 5,850/13,723 (42.63%); control mapping is 431/538
+  (80.11%), state mapping is 5,043/11,836 (42.61%) and test mapping is
+  318/1,096 (29.01%).
+- Against the 11,088 / 136 reference, 3,215 mapping gaps and all 136 selector
+  gaps are closed. Hard release gates remain 1/4 complete (25%): 7,873 strict
+  mappings, real-provider smoke and packaged-EXE acceptance remain. Product is
+  `PARTIAL`; release remains `BLOCKED`.
 
 ## Previous milestone
 
