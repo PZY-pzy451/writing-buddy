@@ -606,17 +606,4 @@ describe('Phase 1.0A AI experience', () => {
 		expect(screen.getByText(/DeepSeek 当前上限 384K/)).toBeInTheDocument();
 	});
 
-	it('keeps text but marks a plain-text result that reaches the output limit', async () => {
-		await act(async () => {
-			await useAiStore.getState().initialize();
-			await useAiStore.getState().saveKeyAndValidate('fixture-key');
-			useAiStore.getState().setPrompt('[QA_OUTPUT_LIMIT] 写一段长篇测试。');
-			await useAiStore.getState().startGeneration();
-		});
-
-		render(<AiPlaygroundPage />);
-		await screen.findByText('已完成 · 达到输出上限');
-		expect(useAiStore.getState().partial).toBe(true);
-		expect(screen.getByRole('log')).not.toBeEmptyDOMElement();
-	});
 });

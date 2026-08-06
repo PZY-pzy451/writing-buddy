@@ -64,7 +64,15 @@ export function AiPlaygroundPage(): React.JSX.Element {
 				<div className="ai-empty-state">
 					<KeyRound size={28} />
 					<div><strong>先配置 DeepSeek API Key</strong><span>完成安全保存与连接验证后，才能开始流式测试。</span></div>
-					<button className="primary-button" type="button" onClick={() => setMode('settings')}>打开 AI 设置</button>
+					<button
+						data-testid="ai-playground-open-settings"
+						data-ai-action="open-settings"
+						className="primary-button"
+						type="button"
+						onClick={() => setMode('settings')}
+					>
+						打开 AI 设置
+					</button>
 				</div>
 			)}
 
@@ -87,11 +95,25 @@ export function AiPlaygroundPage(): React.JSX.Element {
 					</label>
 					<div className="ai-prompt-meta"><span>{prompt.length.toLocaleString()} / 10,000 字符</span><span>最大输出 {preferences.maxOutputTokens.toLocaleString()} Token</span></div>
 					<div className="ai-button-row">
-						<button className="primary-button" type="button" onClick={() => void startGeneration()} disabled={!configured || !prompt.trim() || active}>
+						<button
+							data-testid="ai-playground-start-generation"
+							data-ai-action="start-generation"
+							className="primary-button"
+							type="button"
+							onClick={() => void startGeneration()}
+							disabled={!configured || !prompt.trim() || active}
+						>
 							{active ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 							{active ? '正在生成…' : '开始流式生成'}
 						</button>
-						<button className="secondary-button" type="button" onClick={() => void cancelGeneration()} disabled={!active}>
+						<button
+							data-testid="ai-playground-stop-generation"
+							data-ai-action="stop-generation"
+							className="secondary-button"
+							type="button"
+							onClick={() => void cancelGeneration()}
+							disabled={!active}
+						>
 							<Square size={16} />停止
 						</button>
 					</div>
@@ -118,10 +140,24 @@ export function AiPlaygroundPage(): React.JSX.Element {
 							<span>耗时 {durationMs === undefined ? '—' : `${(durationMs / 1000).toFixed(1)}s`}</span>
 						</div>
 						<div className="ai-button-row compact">
-							<button className="secondary-button" type="button" onClick={() => void copy()} disabled={!output}>
+							<button
+								data-testid="ai-playground-copy-result"
+								data-ai-action="copy-result"
+								className="secondary-button"
+								type="button"
+								onClick={() => void copy()}
+								disabled={!output}
+							>
 								{copied ? <Check size={16} /> : <Clipboard size={16} />}{copied ? '已复制' : '复制'}
 							</button>
-							<button className="secondary-button" type="button" onClick={clearResult} disabled={!output || active}>
+							<button
+								data-testid="ai-playground-clear-result"
+								data-ai-action="clear-result"
+								className="secondary-button"
+								type="button"
+								onClick={clearResult}
+								disabled={!output || active}
+							>
 								<Eraser size={16} />清空
 							</button>
 						</div>

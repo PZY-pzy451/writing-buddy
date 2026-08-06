@@ -178,12 +178,29 @@ export function AiSettingsSection(): React.JSX.Element {
 								placeholder={configured ? '输入新密钥以替换现有凭据' : '粘贴 API Key'}
 							/>
 							<button
+								data-testid="ai-settings-key-reveal"
+								data-ai-action="reveal-api-key"
 								type="button"
 								className="icon-button"
 								aria-label="按住显示 API Key"
 								onPointerDown={() => setRevealed(true)}
 								onPointerUp={() => setRevealed(false)}
 								onPointerLeave={() => setRevealed(false)}
+								onPointerCancel={() => setRevealed(false)}
+								onKeyDown={event => {
+									if (event.key === 'Enter' || event.key === ' ') {
+										event.preventDefault();
+										setRevealed(true);
+									} else if (event.key === 'Escape') {
+										setRevealed(false);
+									}
+								}}
+								onKeyUp={event => {
+									if (event.key === 'Enter' || event.key === ' ') {
+										event.preventDefault();
+										setRevealed(false);
+									}
+								}}
 								onBlur={() => setRevealed(false)}
 							>
 								<Eye size={18} />

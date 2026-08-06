@@ -261,7 +261,13 @@ export function AiGenerationDrawer({
 							{state.state === 'preview' ? (
 								<footer>
 									<span>确认操作将在对应审校页面完成并创建安全快照。</span>
-									<button className="secondary-button" type="button" onClick={state.rejectPreview}>
+									<button
+										data-testid="ai-drawer-reject-preview"
+										data-ai-action="reject-preview"
+										className="secondary-button"
+										type="button"
+										onClick={state.rejectPreview}
+									>
 										拒绝候选
 									</button>
 								</footer>

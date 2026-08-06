@@ -777,13 +777,18 @@ describe('control inventory rendered-element boundary', () => {
 			control.source === 'apps/desktop/src/features/ai/AiPlaygroundPage.tsx'
 		));
 
-		expect(aiPlaygroundControls).toHaveLength(3);
+		expect(aiPlaygroundControls).toHaveLength(6);
 		expect(aiPlaygroundControls.map(control => control.stableSelectorStatus))
 			.not.toContain('UNMAPPED');
-		expect(aiPlaygroundControls.map(control => control.stableSelectorValue))
-			.toEqual(expect.arrayContaining([
-				'ai-playground-prompt'
-			]));
+		expect(aiPlaygroundControls.map(control => control.stableSelectorValue).sort())
+			.toEqual([
+				'ai-playground-clear-result',
+				'ai-playground-copy-result',
+				'ai-playground-open-settings',
+				'ai-playground-prompt',
+				'ai-playground-start-generation',
+				'ai-playground-stop-generation'
+			]);
 		const plotAiControls = inventory.controls.filter(control => (
 			control.source === 'apps/desktop/src/features/story/plots/PlotAiPanel.tsx'
 		));
