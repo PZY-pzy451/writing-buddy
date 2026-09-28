@@ -58,7 +58,7 @@ jobs:
         id: verify
 
       - name: Upload EXE artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: writing-buddy-exe
           path: .build/electron/
