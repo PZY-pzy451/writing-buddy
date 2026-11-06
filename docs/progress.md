@@ -1,8 +1,42 @@
 # Current progress
 
-Updated: 2026-08-06
+Updated: 2026-11-06
 
 ## Active milestone
+
+Creation Journey manual-control, read-only permission and trace convergence is
+complete on `codex/full-regression-gates-a-e-v2` against product source
+`060c6e4`.
+
+- Honest inventory expansion exposed 52 controls rather than the previous 39.
+  All 52 now have exact locale-independent `data-testid` selectors, repeated
+  rows carry instance IDs and the global selector inventory remains 555/555
+  with zero gaps.
+- Failure-first tests reproduced writable fields, locks, reorder/delete actions
+  and impact decisions in read-only projects. Every mutation control is now
+  disabled and the shared mutation boundary fails closed, while stage browsing
+  and opening an existing first chapter remain available.
+- Creation Journey reaches 52/52 mapped controls and 768/1,144 mapped states.
+  Seven focused journeys pass; five pressure rounds pass 35/35 cases and 500
+  repeated read-only mutation attempts produce zero writes.
+- Fixed Node 24.14.0 acceptance passes lint, typecheck, 212/212 files,
+  1,032/1,032 frontend tests and production build. Rust formatting passes, but
+  the current cold test collection is host-blocked because Windows denies newly
+  generated dependency build scripts. The same Rust source and toolchain last
+  passed 77 tests with two reasoned ignores; this batch changes no Rust source.
+- Global mapped controls/states/tests rise from 458 / 5,664 / 330 to
+  495 / 6,342 / 333. Unmapped controls/states/tests move from
+  84 / 6,260 / 777 to 60 / 5,868 / 778. The single unmapped-test increase is
+  caused by four new tests producing three net new global mappings.
+- Strict gaps fall by 415, from 7,316 to 6,901. Strict coverage reaches
+  7,228/14,129 (51.16%); control mapping is 495/555 (89.19%), state mapping is
+  6,342/12,210 (51.94%) and test mapping is 333/1,111 (29.97%).
+- Against the 11,088 / 136 reference, 4,187 mapping gaps and all 136 selector
+  gaps are closed. Hard release gates remain 1/4 complete (25%): 6,901 strict
+  mappings, real-provider smoke and packaged-EXE acceptance remain. Product is
+  `PARTIAL`; release remains `BLOCKED`.
+
+## Previous milestone
 
 Status Bar control, read-only permission and trace convergence is complete on
 `codex/full-regression-gates-a-e-v2` against product source `148d8c3` and

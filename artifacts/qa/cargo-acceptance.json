@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-06T09:24:54.659Z",
-  "completedAt": "2026-08-06T09:24:57.248Z",
-  "status": "PASS",
-  "durationMs": 2588,
+  "generatedAt": "2026-11-06T15:08:02.293Z",
+  "completedAt": "2026-11-06T15:09:29.669Z",
+  "status": "FAIL",
+  "durationMs": 87373,
   "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
   "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
   "format": "PASS",
   "tests": {
-    "status": "PASS",
-    "collected": 79,
-    "passed": 77,
+    "status": "FAIL",
+    "collected": 0,
+    "passed": 0,
     "failed": 0,
-    "ignoredWithReason": 2
+    "ignoredWithReason": 0
   },
   "compilerWarnings": 0
 }
