@@ -112,21 +112,23 @@ describe('Phase 1.2B creation journey experience', () => {
 			control.getAttribute('name') === 'creation-element-category'
 		))).toBe(true);
 		expect(ideas.every(control => control.getAttribute('name') === 'creation-element-text')).toBe(true);
+		expect(screen.getByTestId('creation-element-add')).toBeEnabled();
 		await user.type(ideas[0], '旧车站玻璃顶');
 		await user.type(ideas[1], '失忆记者');
 		await user.type(ideas[2], '每天重置的夜雨');
-		await user.click(screen.getByRole('button', { name: '整理成故事核心' }));
+		await user.click(screen.getByTestId('creation-element-organize'));
 
 		expect(await screen.findByRole('heading', { name: '把碎片收束成一个故事核心' }))
 			.toBeInTheDocument();
 		expect(aiSpy).toHaveBeenCalledTimes(1);
 		expect(screen.getByDisplayValue(/失忆记者必须在一夜内/)).toBeInTheDocument();
-		await user.click(screen.getByRole('button', { name: '确认故事核心' }));
+		await user.click(screen.getByTestId('creation-core-confirm'));
 
 		expect(await screen.findByRole('heading', { name: '比较三个真正不同的方向' }))
 			.toBeInTheDocument();
 		expect(aiSpy).toHaveBeenCalledTimes(1);
-		const generateDirections = screen.getByRole('button', { name: '生成 3 个故事方向' });
+		const generateDirections = screen.getByTestId('creation-directions-generate');
+		expect(generateDirections).toHaveAccessibleName('生成 3 个故事方向');
 		await act(async () => {
 			for (let attempt = 0; attempt < 100; attempt += 1) {
 				generateDirections.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -144,7 +146,7 @@ describe('Phase 1.2B creation journey experience', () => {
 			control.getAttribute('name') === 'creation-direction-title'
 		))).toBe(true);
 		await user.click(screen.getAllByRole('button', { name: /选择此方向/ })[0]);
-		await user.click(screen.getByRole('button', { name: '生成故事总纲' }));
+		await user.click(screen.getByTestId('creation-directions-generate-outline'));
 
 		expect(await screen.findByRole('heading', { name: '调整故事节点的顺序' }))
 			.toBeInTheDocument();
@@ -157,7 +159,7 @@ describe('Phase 1.2B creation journey experience', () => {
 		await user.click(screen.getAllByRole('button', { name: /下移总纲节点/ })[0]);
 		expect(screen.getAllByLabelText('节点标题').map(input => (input as HTMLInputElement).value).slice(0, 2))
 			.toEqual(['重复雨痕', '雨夜抵达']);
-		await user.click(screen.getByRole('button', { name: '拆分为 3 个开篇章节' }));
+		await user.click(screen.getByTestId('creation-outline-split-chapters'));
 
 		expect(await screen.findByRole('heading', { name: '确认前三章怎样承接总纲' }))
 			.toBeInTheDocument();
@@ -166,7 +168,7 @@ describe('Phase 1.2B creation journey experience', () => {
 			control.getAttribute('name') === 'creation-chapter-title'
 		))).toBe(true);
 		expect(aiSpy).toHaveBeenCalledTimes(4);
-		await user.click(screen.getByRole('button', { name: '创建 3 章并进入第一章' }));
+		await user.click(screen.getByTestId('creation-create-chapters'));
 
 		await waitFor(() => {
 			expect(screen.getByRole('heading', { level: 1, name: '夜雨站台' })).toBeInTheDocument();

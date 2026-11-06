@@ -380,6 +380,7 @@ function journeyErrorCopy(error: unknown): string {
 		outlineSemanticCheckUnavailable: '请先补全结构化大纲，再运行语义检查。',
 		invalidCreationJourneyInput: '大纲内容过长或包含不安全字段，无法发送给 AI 检查。',
 		externalChange: '创作旅程已在其他窗口修改，请重新打开作品。',
+		projectReadOnly: '当前作品以只读模式打开，只能查看创作旅程。',
 		cancelled: '已取消本次 AI 请求，没有改动旅程。'
 	};
 	return copy[code] ?? (error instanceof Error ? error.message : '暂时无法完成这个操作。');
@@ -527,6 +528,11 @@ export function CreationJourneyPage(): React.JSX.Element {
 	};
 
 	const applyState = (next: CreationJourneyState, immediate = false) => {
+		if (snapshot?.readOnly) {
+			setStatus('只读模式，未修改项目');
+			setError(journeyErrorCopy(new Error('projectReadOnly')));
+			return;
+		}
 		const previousPending = stateRef.current?.impacts
 			.filter(impact => impact.status === 'pending').length ?? 0;
 		const nextPending = next.impacts.filter(impact => impact.status === 'pending').length;
@@ -545,7 +551,14 @@ export function CreationJourneyPage(): React.JSX.Element {
 	const goToStage = (stage: CreationJourneyStage) => {
 		if (!stateRef.current) return;
 		try {
-			applyState(advanceCreationJourney(stateRef.current, stage), true);
+			const next = advanceCreationJourney(stateRef.current, stage);
+			if (snapshot?.readOnly) {
+				stateRef.current = next;
+				setState(next);
+				setStatus('只读浏览，不会写入项目');
+			} else {
+				applyState(next, true);
+			}
 			setError(undefined);
 		} catch (reason) {
 			setError(journeyErrorCopy(reason));
@@ -1537,7 +1550,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 						<div className="creation-journey-error" role="alert">
 							<AlertTriangle size={18} />
 							<span>{error}</span>
-							<button type="button" aria-label="关闭错误" onClick={() => setError(undefined)}>
+							<button type="button" data-testid="creation-error-close" aria-label="关闭错误" onClick={() => setError(undefined)}>
 								<X size={16} />
 							</button>
 						</div>
@@ -1575,7 +1588,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 					<div className="creation-journey-error" role="alert">
 						<AlertTriangle size={18} />
 						<span>{error}</span>
-						<button type="button" aria-label="关闭错误" onClick={() => setError(undefined)}>
+						<button type="button" data-testid="creation-error-close" aria-label="关闭错误" onClick={() => setError(undefined)}>
 							<X size={16} />
 						</button>
 					</div>
@@ -1658,6 +1671,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 						<button
 							className="creation-guidance-trigger"
 							type="button"
+							data-testid="creation-guidance-trigger"
 							disabled={
 								Boolean(busyOperation)
 								|| snapshot.readOnly
@@ -1677,7 +1691,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 					<div className="creation-journey-error" role="alert">
 						<AlertTriangle size={18} />
 						<span>{error}</span>
-						<button type="button" aria-label="关闭错误" onClick={() => setError(undefined)}>
+						<button type="button" data-testid="creation-error-close" aria-label="关闭错误" onClick={() => setError(undefined)}>
 							<X size={16} />
 						</button>
 					</div>
@@ -1702,6 +1716,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 									key={option.id}
 									className={guidanceChoiceId === option.id ? 'is-selected' : ''}
 									aria-pressed={guidanceChoiceId === option.id}
+									disabled={snapshot.readOnly}
 									onClick={() => {
 										setGuidanceChoiceId(option.id);
 										setCustomGuidanceAnswer('');
@@ -1717,7 +1732,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 							<span>或者写下你的答案</span>
 							<textarea
 								name="creation-guidance-answer"
+								data-testid="creation-guidance-answer"
 								value={customGuidanceAnswer}
+								disabled={snapshot.readOnly}
 								maxLength={1_000}
 								placeholder="不必完整，一两句话也可以。"
 								onChange={event => {
@@ -1731,7 +1748,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 							<button
 								className="primary-button"
 								type="button"
-								disabled={!guidanceChoiceId && !customGuidanceAnswer.trim()}
+								data-testid="creation-guidance-confirm"
+								disabled={snapshot.readOnly || (!guidanceChoiceId && !customGuidanceAnswer.trim())}
 								onClick={confirmGuidanceAnswer}
 							>
 								<Check size={18} />确认这个答案
@@ -1758,7 +1776,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 							>
 								查看影响
 							</button>
-							<button type="button" onClick={() => setImpactSummaryDismissed(true)}>
+							<button type="button" data-testid="creation-impact-dismiss" onClick={() => setImpactSummaryDismissed(true)}>
 								暂不更新
 							</button>
 						</div>
@@ -1770,6 +1788,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 						ref={impactOpenerRef}
 						className="creation-impact-reopen"
 						type="button"
+						data-testid="creation-impact-reopen"
 						onClick={() => setImpactPanelOpen(true)}
 					>
 						<RefreshCw size={18} />
@@ -1793,8 +1812,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<span className="sr-only">要素类型</span>
 										<select
 											name="creation-element-category"
+											data-testid="creation-element-category"
+											data-element-id={element.id}
 											value={element.category}
-											disabled={element.locked}
+											disabled={snapshot.readOnly || element.locked}
 											onChange={event => applyState(updateStoryElement(
 												state,
 												element.id,
@@ -1810,8 +1831,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<span className="sr-only">灵感要素 {index + 1}</span>
 										<textarea
 											name="creation-element-text"
+											data-testid="creation-element-text"
+											data-element-id={element.id}
 											value={element.text}
-											disabled={element.locked}
+											disabled={snapshot.readOnly || element.locked}
 											maxLength={500}
 											placeholder="例如：一个只在雨夜出现的旧车站"
 											onChange={event => applyState(updateStoryElement(
@@ -1826,8 +1849,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 										<button
 											type="button"
 											data-testid="creation-element-lock"
+											data-element-id={element.id}
 											aria-label={element.locked ? `解锁要素 ${index + 1}` : `锁定要素 ${index + 1}`}
 											aria-pressed={element.locked}
+											disabled={snapshot.readOnly}
 											onClick={() => applyState(updateStoryElement(
 												state,
 												element.id,
@@ -1836,13 +1861,13 @@ export function CreationJourneyPage(): React.JSX.Element {
 										>
 											{element.locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 										</button>
-										<button type="button" data-testid="creation-element-move-up" aria-label={`上移要素 ${index + 1}`} disabled={element.locked || index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
+										<button type="button" data-testid="creation-element-move-up" data-element-id={element.id} aria-label={`上移要素 ${index + 1}`} disabled={snapshot.readOnly || element.locked || index === 0} onClick={() => applyState(moveStoryElement(state, index, index - 1), true)}>
 											<ArrowUp size={16} />
 										</button>
-										<button type="button" data-testid="creation-element-move-down" aria-label={`下移要素 ${index + 1}`} disabled={element.locked || index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
+										<button type="button" data-testid="creation-element-move-down" data-element-id={element.id} aria-label={`下移要素 ${index + 1}`} disabled={snapshot.readOnly || element.locked || index === state.elements.length - 1} onClick={() => applyState(moveStoryElement(state, index, index + 1), true)}>
 											<ArrowDown size={16} />
 										</button>
-										<button type="button" data-testid="creation-element-delete" aria-label={`删除要素 ${index + 1}`} disabled={element.locked || state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
+										<button type="button" data-testid="creation-element-delete" data-element-id={element.id} aria-label={`删除要素 ${index + 1}`} disabled={snapshot.readOnly || element.locked || state.elements.length <= 3} onClick={() => applyState(removeStoryElement(state, element.id), true)}>
 											<Trash2 size={16} />
 										</button>
 									</div>
@@ -1850,10 +1875,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 							))}
 						</div>
 						<div className="creation-stage-actions">
-							<button className="secondary-button" type="button" disabled={state.elements.length >= 8} onClick={() => applyState(addStoryElement(state), true)}>
+							<button className="secondary-button" type="button" data-testid="creation-element-add" disabled={snapshot.readOnly || state.elements.length >= 8} onClick={() => applyState(addStoryElement(state), true)}>
 								<Plus size={18} />添加一个要素
 							</button>
-							<button className="primary-button" type="button" disabled={incompleteElements || Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('organize-core')}>
+							<button className="primary-button" type="button" data-testid="creation-element-organize" disabled={incompleteElements || Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('organize-core')}>
 								{busyOperation === 'organize-core' ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 								整理成故事核心
 							</button>
@@ -1888,6 +1913,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 												data-field-key={field.key}
 												aria-label={locked ? `解锁${field.label}` : `锁定${field.label}`}
 												aria-pressed={locked}
+												disabled={snapshot.readOnly}
 												onClick={() => applyState(toggleJourneyLock(state, {
 													kind: 'core',
 													field: field.key
@@ -1904,7 +1930,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 											data-testid="creation-core-field"
 											data-field-key={field.key}
 												value={state.core[field.key]}
-												disabled={locked}
+											disabled={snapshot.readOnly || locked}
 												maxLength={field.key === 'oneSentence' ? 2_000 : 1_000}
 												placeholder={field.placeholder}
 												onChange={event => applyState(updateStoryCore(state, {
@@ -1919,7 +1945,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 											data-testid="creation-core-field"
 											data-field-key={field.key}
 												value={state.core[field.key]}
-												disabled={locked}
+											disabled={snapshot.readOnly || locked}
 												maxLength={1_000}
 												placeholder={field.placeholder}
 												onChange={event => applyState(updateStoryCore(state, {
@@ -1933,8 +1959,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 							})}
 						</div>
 						<div className="creation-stage-actions">
-							<button className="secondary-button" type="button" onClick={() => goToStage('elements')}>返回灵感</button>
-							<button className="primary-button" type="button" disabled={snapshot.readOnly} onClick={() => {
+							<button className="secondary-button" type="button" data-testid="creation-core-back" onClick={() => goToStage('elements')}>返回灵感</button>
+							<button className="primary-button" type="button" data-testid="creation-core-confirm" disabled={snapshot.readOnly} onClick={() => {
 								try {
 									const confirmed = confirmStoryCore(state);
 									applyState(advanceCreationJourney(confirmed, 'directions'), true);
@@ -1955,7 +1981,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 								<Sparkles size={28} />
 								<h3>故事核心已经由你确认</h3>
 								<p>现在可以让 AI 只生成三个方向。点击前不会产生请求。</p>
-								<button className="primary-button" type="button" disabled={Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('generate-directions')}>
+								<button className="primary-button" type="button" data-testid="creation-directions-generate" disabled={Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('generate-directions')}>
 									{busyOperation === 'generate-directions' ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 									生成 3 个故事方向
 								</button>
@@ -1979,9 +2005,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<button
 												type="button"
 												className="creation-direction-select"
-												data-testid="creation-direction-select"
-													aria-pressed={selected}
-													disabled={selectionFull}
+											data-testid="creation-direction-select"
+											data-direction-id={direction.id}
+												aria-pressed={selected}
+												disabled={snapshot.readOnly || selectionFull}
 													onClick={() => {
 														const ids = selected
 															? state.selectedDirectionIds.length > 1
@@ -2001,8 +2028,10 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<button
 												className="creation-card-lock"
 												type="button"
-												data-testid="creation-direction-lock"
-													aria-pressed={locked}
+											data-testid="creation-direction-lock"
+											data-direction-id={direction.id}
+												aria-pressed={locked}
+												disabled={snapshot.readOnly}
 													onClick={() => applyState(toggleJourneyLock(state, {
 														kind: 'direction',
 														id: direction.id
@@ -2011,11 +2040,11 @@ export function CreationJourneyPage(): React.JSX.Element {
 													{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 													{locked ? '已锁定方向' : '锁定方向'}
 												</button>
-											<label><span>方向标题</span><input name="creation-direction-title" disabled={locked} value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-											<label><span>故事前提</span><textarea name="creation-direction-premise" disabled={locked} value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-											<label><span>核心冲突</span><textarea name="creation-direction-conflict" disabled={locked} value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-											<label><span>结局承诺</span><textarea name="creation-direction-ending" disabled={locked} value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-											<label><span>整体气质</span><input name="creation-direction-tone" disabled={locked} value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>方向标题</span><input name="creation-direction-title" data-testid="creation-direction-title" data-direction-id={direction.id} disabled={snapshot.readOnly || locked} value={direction.title} maxLength={120} onChange={event => applyState(updateStoryDirection(state, direction.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>故事前提</span><textarea name="creation-direction-premise" data-testid="creation-direction-premise" data-direction-id={direction.id} disabled={snapshot.readOnly || locked} value={direction.premise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { premise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>核心冲突</span><textarea name="creation-direction-conflict" data-testid="creation-direction-conflict" data-direction-id={direction.id} disabled={snapshot.readOnly || locked} value={direction.centralConflict} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { centralConflict: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>结局承诺</span><textarea name="creation-direction-ending" data-testid="creation-direction-ending" data-direction-id={direction.id} disabled={snapshot.readOnly || locked} value={direction.endingPromise} maxLength={2_000} onChange={event => applyState(updateStoryDirection(state, direction.id, { endingPromise: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>整体气质</span><input name="creation-direction-tone" data-testid="creation-direction-tone" data-direction-id={direction.id} disabled={snapshot.readOnly || locked} value={direction.tone} maxLength={500} onChange={event => applyState(updateStoryDirection(state, direction.id, { tone: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 											</article>
 										);
 									})}
@@ -2025,8 +2054,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 									{state.selectedDirectionIds.length === 2 ? '，下一步会合并两者。' : '。'}
 								</p>
 								<div className="creation-stage-actions">
-									<button className="secondary-button" type="button" onClick={() => goToStage('core')}>返回故事核心</button>
-									<button className="primary-button" type="button" disabled={state.selectedDirectionIds.length === 0 || Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('generate-outline')}>
+									<button className="secondary-button" type="button" data-testid="creation-directions-back" onClick={() => goToStage('core')}>返回故事核心</button>
+									<button className="primary-button" type="button" data-testid="creation-directions-generate-outline" disabled={state.selectedDirectionIds.length === 0 || Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('generate-outline')}>
 										{busyOperation === 'generate-outline' ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 										{state.selectedDirectionIds.length === 2 ? '合并并生成故事总纲' : '生成故事总纲'}
 									</button>
@@ -2050,12 +2079,14 @@ export function CreationJourneyPage(): React.JSX.Element {
 										draggedOutlineIndex === index ? 'is-dragging' : '',
 										locked ? 'is-locked' : ''
 									].filter(Boolean).join(' ')}
-									draggable={!locked}
-									onDragStart={() => setDraggedOutlineIndex(index)}
+									draggable={!snapshot.readOnly && !locked}
+									onDragStart={() => {
+										if (!snapshot.readOnly) setDraggedOutlineIndex(index);
+									}}
 									onDragEnd={() => setDraggedOutlineIndex(undefined)}
 									onDragOver={event => event.preventDefault()}
 									onDrop={() => {
-										if (draggedOutlineIndex === undefined || draggedOutlineIndex === index) return;
+										if (snapshot.readOnly || draggedOutlineIndex === undefined || draggedOutlineIndex === index) return;
 										applyState(moveStoryOutlineNode(state, draggedOutlineIndex, index), true);
 										setDraggedOutlineIndex(undefined);
 									}}
@@ -2069,7 +2100,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 											className="creation-card-lock"
 											type="button"
 											data-testid="creation-outline-lock"
+											data-outline-node-id={node.id}
 											aria-pressed={locked}
+											disabled={snapshot.readOnly}
 											onClick={() => applyState(toggleJourneyLock(state, {
 												kind: 'outline',
 												id: node.id
@@ -2078,21 +2111,21 @@ export function CreationJourneyPage(): React.JSX.Element {
 											{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 											{locked ? '已锁定节点' : '锁定节点'}
 										</button>
-										<label><span>节点标题</span><input name="creation-outline-title" disabled={locked} value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>发生什么</span><textarea name="creation-outline-summary" disabled={locked} value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-										<label><span>叙事作用</span><input name="creation-outline-purpose" disabled={locked} value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>节点标题</span><input name="creation-outline-title" data-testid="creation-outline-title" data-outline-node-id={node.id} disabled={snapshot.readOnly || locked} value={node.title} maxLength={120} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>发生什么</span><textarea name="creation-outline-summary" data-testid="creation-outline-summary" data-outline-node-id={node.id} disabled={snapshot.readOnly || locked} value={node.summary} maxLength={3_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+										<label><span>叙事作用</span><input name="creation-outline-purpose" data-testid="creation-outline-purpose" data-outline-node-id={node.id} disabled={snapshot.readOnly || locked} value={node.purpose} maxLength={1_000} onChange={event => applyState(updateStoryOutlineNode(state, node.id, { purpose: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									</div>
 									<div className="creation-reorder-actions">
-										<button type="button" data-testid="creation-outline-move-up" aria-label={`上移总纲节点 ${index + 1}`} disabled={locked || index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
-										<button type="button" data-testid="creation-outline-move-down" aria-label={`下移总纲节点 ${index + 1}`} disabled={locked || index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
+										<button type="button" data-testid="creation-outline-move-up" data-outline-node-id={node.id} aria-label={`上移总纲节点 ${index + 1}`} disabled={snapshot.readOnly || locked || index === 0} onClick={() => applyState(moveStoryOutlineNode(state, index, index - 1), true)}><ArrowUp size={16} /></button>
+										<button type="button" data-testid="creation-outline-move-down" data-outline-node-id={node.id} aria-label={`下移总纲节点 ${index + 1}`} disabled={snapshot.readOnly || locked || index === state.outline.length - 1} onClick={() => applyState(moveStoryOutlineNode(state, index, index + 1), true)}><ArrowDown size={16} /></button>
 									</div>
 								</article>
 								);
 							})}
 						</div>
 						<div className="creation-stage-actions">
-							<button className="secondary-button" type="button" onClick={() => goToStage('directions')}>返回故事方向</button>
-							<button className="primary-button" type="button" disabled={Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('split-chapters')}>
+							<button className="secondary-button" type="button" data-testid="creation-outline-back" onClick={() => goToStage('directions')}>返回故事方向</button>
+							<button className="primary-button" type="button" data-testid="creation-outline-split-chapters" disabled={Boolean(busyOperation) || snapshot.readOnly} onClick={() => void runAi('split-chapters')}>
 								{busyOperation === 'split-chapters' ? <LoaderCircle className="spin" size={18} /> : <Sparkles size={18} />}
 								拆分为 3 个开篇章节
 							</button>
@@ -2115,7 +2148,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 										className="creation-card-lock"
 										type="button"
 										data-testid="creation-chapter-lock"
+										data-chapter-id={chapter.id}
 										aria-pressed={locked}
+										disabled={snapshot.readOnly}
 										onClick={() => applyState(toggleJourneyLock(state, {
 											kind: 'chapter',
 											id: chapter.id
@@ -2124,9 +2159,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 										{locked ? <LockKeyhole size={16} /> : <LockKeyholeOpen size={16} />}
 										{locked ? '已锁定章节' : '锁定章节'}
 									</button>
-									<label><span>章节标题</span><input name="creation-chapter-title" disabled={locked} value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>本章目标</span><textarea name="creation-chapter-goal" disabled={locked} value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
-									<label><span>章节摘要</span><textarea name="creation-chapter-summary" disabled={locked} value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>章节标题</span><input name="creation-chapter-title" data-testid="creation-chapter-title" data-chapter-id={chapter.id} disabled={snapshot.readOnly || locked} value={chapter.title} maxLength={120} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { title: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>本章目标</span><textarea name="creation-chapter-goal" data-testid="creation-chapter-goal" data-chapter-id={chapter.id} disabled={snapshot.readOnly || locked} value={chapter.goal} maxLength={1_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { goal: event.target.value }))} onBlur={() => void persistLatest()} /></label>
+									<label><span>章节摘要</span><textarea name="creation-chapter-summary" data-testid="creation-chapter-summary" data-chapter-id={chapter.id} disabled={snapshot.readOnly || locked} value={chapter.summary} maxLength={3_000} onChange={event => applyState(updateJourneyChapterProposal(state, chapter.id, { summary: event.target.value }))} onBlur={() => void persistLatest()} /></label>
 									<small>承接 {chapter.sourceNodeIds.length} 个总纲节点</small>
 								</article>
 								);
@@ -2137,8 +2172,8 @@ export function CreationJourneyPage(): React.JSX.Element {
 							<span><strong>一次性安全创建</strong><small>三章、项目结构和旅程状态会一起验证；失败时全部恢复。</small></span>
 						</div>
 						<div className="creation-stage-actions">
-							<button className="secondary-button" type="button" onClick={() => goToStage('outline')}>返回故事总纲</button>
-							<button className="primary-button" type="button" disabled={snapshot.readOnly || state.stale.chapters || state.chapters.some(chapter => !chapter.title.trim() || !chapter.goal.trim() || !chapter.summary.trim())} onClick={() => void createChapters()}>
+							<button className="secondary-button" type="button" data-testid="creation-chapters-back" onClick={() => goToStage('outline')}>返回故事总纲</button>
+							<button className="primary-button" type="button" data-testid="creation-create-chapters" disabled={snapshot.readOnly || state.stale.chapters || state.chapters.some(chapter => !chapter.title.trim() || !chapter.goal.trim() || !chapter.summary.trim())} onClick={() => void createChapters()}>
 								<BookOpenText size={18} />创建 3 章并进入第一章
 							</button>
 						</div>
@@ -2150,7 +2185,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 						<BookOpenText size={34} />
 						<h3>你的前三章已经存在于项目中</h3>
 						<p>创作旅程仍然保留，可以随时回来查看决定过程。</p>
-						<button className="primary-button" type="button" onClick={() => {
+						<button className="primary-button" type="button" data-testid="creation-open-first-chapter" onClick={() => {
 							const firstId = state.chapters[0]?.resourceId;
 							const first = snapshot.project.volumes
 								.flatMap(volume => volume.chapters)
@@ -2192,6 +2227,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 								<button
 									ref={impactCloseRef}
 									type="button"
+									data-testid="creation-impact-close"
 									aria-label="关闭影响面板"
 									onClick={closeImpactPanel}
 								>
@@ -2243,9 +2279,9 @@ export function CreationJourneyPage(): React.JSX.Element {
 											<div className="creation-impact-row-actions">
 												<button
 													type="button"
-													data-testid="creation-impact-keep"
-													data-impact-id={impact.id}
-													disabled={Boolean(busyOperation)}
+											data-testid="creation-impact-keep"
+											data-impact-id={impact.id}
+											disabled={snapshot.readOnly || Boolean(busyOperation)}
 													onClick={() => keepImpact(impact)}
 												>
 													<Check size={18} />保留当前内容
@@ -2256,7 +2292,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 														type="button"
 														data-testid="creation-impact-regenerate"
 														data-impact-id={impact.id}
-														disabled={Boolean(busyOperation) || targetLocked}
+												disabled={snapshot.readOnly || Boolean(busyOperation) || targetLocked}
 														onClick={() => void regenerateImpact(impact)}
 													>
 														{busyImpactId === impact.id
@@ -2272,7 +2308,7 @@ export function CreationJourneyPage(): React.JSX.Element {
 							</div>
 							<footer>
 								<span>每次只处理一项；关闭面板不会丢失待处理内容。</span>
-								<button type="button" onClick={closeImpactPanel}>完成查看</button>
+								<button type="button" data-testid="creation-impact-done" onClick={closeImpactPanel}>完成查看</button>
 							</footer>
 						</div>
 					</div>

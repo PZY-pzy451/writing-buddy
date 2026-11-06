@@ -44,19 +44,59 @@ describe('control inventory rendered-element boundary', () => {
 			'apps/desktop/src/features/creation-journey/CreationJourneyPage.tsx'
 		), 'utf8');
 
-		expect(creationJourneyControls).toHaveLength(39);
+		expect(creationJourneyControls).toHaveLength(52);
 		expect(missingSelectors.map(control => control.id)).toEqual([]);
+		expect(creationJourneyControls.every(control => (
+			control.selectorStrategy === 'data-testid'
+		))).toBe(true);
 		expect(creationJourneyControls.map(control => control.stableSelectorValue))
 			.toEqual(expect.arrayContaining([
+				'creation-error-close',
+				'creation-element-category',
+				'creation-element-text',
+				'creation-element-add',
+				'creation-element-organize',
+				'creation-guidance-trigger',
 				'creation-guidance-option',
+				'creation-guidance-answer',
+				'creation-guidance-confirm',
 				'creation-core-field',
 				'creation-core-field-lock',
+				'creation-core-back',
+				'creation-core-confirm',
+				'creation-directions-generate',
+				'creation-directions-back',
+				'creation-directions-generate-outline',
+				'creation-direction-title',
+				'creation-direction-premise',
+				'creation-direction-conflict',
+				'creation-direction-ending',
+				'creation-direction-tone',
+				'creation-outline-title',
+				'creation-outline-summary',
+				'creation-outline-purpose',
+				'creation-outline-back',
+				'creation-outline-split-chapters',
+				'creation-chapter-title',
+				'creation-chapter-goal',
+				'creation-chapter-summary',
+				'creation-create-chapters',
+				'creation-chapters-back',
 				'creation-impact-open',
+				'creation-impact-dismiss',
+				'creation-impact-reopen',
+				'creation-impact-close',
+				'creation-impact-done',
 				'creation-impact-keep',
-				'creation-impact-regenerate'
+				'creation-impact-regenerate',
+				'creation-open-first-chapter'
 			]));
 		expect(creationJourneySource).toContain('data-option-id={option.id}');
 		expect(creationJourneySource).toContain('data-field-key={field.key}');
+		expect(creationJourneySource).toContain('data-element-id={element.id}');
+		expect(creationJourneySource).toContain('data-direction-id={direction.id}');
+		expect(creationJourneySource).toContain('data-outline-node-id={node.id}');
+		expect(creationJourneySource).toContain('data-chapter-id={chapter.id}');
 		expect(creationJourneySource).toContain('data-impact-id={impact.id}');
 	});
 
